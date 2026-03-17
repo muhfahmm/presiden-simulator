@@ -1,0 +1,63 @@
+Untuk membuat **RATING PRESIDEN** yang realistis dan menantang, kamu perlu membaginya ke dalam beberapa indikator utama yang merepresentasikan keberhasilanmu di berbagai sektor. Rating ini akan menentukan apakah kamu akan **TERPILIH KEMBALI** di pemilu berikutnya atau justru menghadapi **KUDETA/REVOLUSI**.
+
+Berikut adalah rincian isi dari **RATING PRESIDEN** (Presidential Dashboard):
+
+---
+
+### 1. INDIKATOR KEPUASAN RAKYAT (APPROVAL RATING)
+Ini adalah skor utama yang muncul di layar utama game.
+* **TINGKAT KEBAHAGIAAN (HAPPINESS INDEX):** Dipengaruhi oleh ketersediaan PANGAN, HIBURAN, dan kualitas RESIDENSIAL.
+* **INDEKS BIAYA HIDUP:** Dipengaruhi oleh INFLASI harga PASAR dan tarif LISTRIK.
+* **KEPERCAYAAN PUBLIK (PUBLIC TRUST):** Dipengaruhi oleh seberapa sering kamu menepati janji kampanye dan tingkat KORUPSI.
+
+### 2. INDIKATOR EKONOMI & PEMBANGUNAN
+Menilai seberapa ahli kamu mengelola aset negara.
+* **PERTUMBUHAN PDB (GDP GROWTH):** Keberhasilan SEKTOR INDUSTRI, EKSTRAKSI, dan EKSPOR.
+* **TINGKAT PENGANGGURAN:** Keseimbangan antara jumlah RESIDENSIAL dan lapangan kerja di KOMERSIAL/PABRIK.
+* **STABILITAS MATA UANG:** Dipengaruhi oleh CADANGAN EMAS dan volume PERDAGANGAN INTERNASIONAL.
+
+### 3. INDIKATOR SOSIAL & LAYANAN PUBLIK
+Menilai kualitas hidup manusia di negaramu.
+* **INDEKS KESEHATAN:** Efektivitas RUMAH SAKIT dan tingkat polusi dari PABRIK.
+* **TINGKAT PENDIDIKAN:** Rasio lulusan PERGURUAN TINGGI terhadap kebutuhan TENAGA AHLI di PUSAT RISET.
+* **AKSESIBILITAS TRANSPORTASI:** Seberapa macet kota kamu (JALAN RAYA vs KERETA BAWAH TANAH).
+
+### 4. INDIKATOR KEAMANAN & HUKUM
+Menilai ketegasan dan keadilan pemerintahanmu.
+* **STABILITAS NASIONAL (STABILITY):** Jika rendah, risiko DEMO atau KUDETA MILITER meningkat.
+* **INDEKS PENEGAKAN HUKUM:** Kinerja PENGADILAN, KEJAKSAAN, dan tingkat KRIMINALITAS di KEPOLISIAN.
+* **SKOR ANTI-KORUPSI:** Seberapa bersih birokrasi kamu dari "kebocoran" anggaran APBN.
+
+### 5. INDIKATOR GEOPOLITIK & MILITER
+Menilai posisi negaramu di mata dunia.
+* **KEWIBAWAAN INTERNASIONAL (DIPLOMATIC STANDING):** Status hubungan dengan PBB dan ORGANISASI INTERNASIONAL.
+* **KEKUATAN PERTAHANAN (DEFENSE RATING):** Kesiapan AKADEMI MILITER, jumlah TANK di HANGAR, dan keberhasilan PROGRAM NUKLIR.
+
+---
+
+### **MEKANIK PERHITUNGAN RATING (LOGIC SYSTEM)**
+
+Dalam kodingmu, kamu bisa membuat skor akhir (Final Score) menggunakan bobot rata-rata:
+
+$$Rating = (Kepuasan \times 0.3) + (Ekonomi \times 0.25) + (Stabilitas \times 0.25) + (Lainnya \times 0.2)$$
+
+
+
+### **CONTOH VISUALISASI DI DALAM GAME:**
+
+| KATEGORI | SKOR (0-100) | STATUS | DAMPAK |
+| :--- | :--- | :--- | :--- |
+| **EKONOMI** | 85 | **SANGAT BAIK** | INVESTOR ASING MASUK |
+| **KEAMANAN** | 40 | **WASPADA** | RISIKO DEMO BURUH MENINGKAT |
+| **KESEHATAN** | 70 | **STABIL** | USIA HARAPAN HIDUP NAIK |
+| **HUKUM** | 30 | **BURUK** | KORUPSI MERALELA, BUDGET BOCOR |
+
+---
+
+### **FITUR TAMBAHAN: "PRESIDENT'S LEGACY"**
+Setelah masa jabatan berakhir, game akan memberikan gelar berdasarkan rating tersebut:
+* **"BAPAK PEMBANGUNAN"** (Jika skor INFRASTRUKTUR & INDUSTRI sangat tinggi).
+* **"DIKTATOR BESI"** (Jika skor MILITER tinggi tapi KEPUASAN RAKYAT rendah).
+* **"PEMIMPIN REFORMIS"** (Jika skor HUKUM & PENDIDIKAN tinggi).
+
+**Apakah kamu ingin saya buatkan "ALGORITMA SEDERHANA" (Python/PHP) untuk menghitung naik-turunnya Rating Presiden berdasarkan kejadian (Event) di dalam game?**

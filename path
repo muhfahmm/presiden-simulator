@@ -1,0 +1,23 @@
+===ADMINPANEL===
+server Go
+cd "c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\admin\backend"
+go run cmd/main.go
+
+frontend
+cd "c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\admin\frontend"
+npm run dev
+
+
+===USERPAGE===
+frontend-desktop (Web - port 3001)
+cd "c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\app\frontend-desktop"
+npm run dev
+
+frontend-desktop (Desktop - Tauri)
+cd "c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\app\frontend-desktop"
+npx tauri dev
+
+server Go (User Game Server - port 8081)
+cd "c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\app\backend"
+go run cmd/main.go
+

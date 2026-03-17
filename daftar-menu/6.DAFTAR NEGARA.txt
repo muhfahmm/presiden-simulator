@@ -1,0 +1,192 @@
+1. [x] afganistan
+2. [x] albania
+3. [x] aljazair
+4. [x] andorra
+5. [x] angola
+6. [x] antigua dan barbuda
+7. [x] arab saudi
+8. [x] argentina
+9. [x] armenia
+10. [x] australia
+11. [x] austria
+12. [x] azerbaijan
+13. [x] bahama
+14. [x] bahrain
+15. [x] bangladesh
+16. [x] barbados
+17. [x] belanda
+18. [x] belarus
+19. [x] belgia
+20. [x] belize
+21. [x] benin
+22. [x] bhutan
+23. [x] bolivia
+24. [x] bosnia dan hercegovina
+25. [x] botswana
+26. [x] brazil
+27. [x] brunei
+28. [x] bulgaria
+29. [x] burkina faso
+30. [x] burundi
+31. [x] chad
+32. [x] chile
+33. [x] china
+34. [x] costa rica
+35. [x] ceko
+36. [x] denmark
+37. [x] dominika
+38. [x] ekuador
+39. [x] el salvador
+40. [x] eritrea
+41. [x] estonia
+42. [x] ethiopia
+43. [x] fiji
+44. [x] filipina
+45. [x] finlandia
+46. [x] gabon
+47. [x] gambia
+48. [x] georgia
+49. [x] ghana
+50. [x] grenada
+51. [x] guatemala
+52. [x] guinea
+53. [x] guinea-bissau
+54. [x] guyana
+55. [x] haiti
+56. [x] honduras
+57. [x] hungaria
+58. [x] islandia
+59. [x] india
+60. [x] indonesia
+61. [x] irak
+62. [x] iran
+63. [x] irlandia
+64. [x] israel
+65. [x] italia
+66. [x] jamaika
+67. [x] jepang
+68. [x] jerman
+69. [x] yordania
+70. [x] kamboja
+71. [x] kamerun
+72. [x] kanada
+73. [x] kazakhstan
+74. [x] kenya
+75. [x] kirgizstan
+76. [x] kiribati
+77. [x] kolombia
+78. [x] komoro
+79. [x] kongo
+80. [x] korea selatan
+81. [x] korea utara
+82. [x] kosta rika
+83. [x] kroasia
+84. [x] kuba
+85. [x] kuwait
+86. [x] laos
+87. [x] latvia
+88. [x] lebanon
+89. [x] lesotho
+90. [x] liberia
+91. [x] libya
+92. [x] liechtenstein
+93. [x] lithuania
+94. [x] luksemburg
+95. [x] madagaskar
+96. [x] malawi
+97. [x] malaysia
+98. [x] maldives
+99. [x] mali
+100. [x] malta
+101. [x] maroko
+102. [x] marshall
+103. [x] mauritania
+104. [x] mauritius
+105. [x] meksiko
+106. [x] mikronesia
+107. [x] moldova
+108. [x] monako
+109. [x] mongolia
+110. [x] montenegro
+111. [x] mozambik
+112. [x] myanmar
+113. [x] namibia
+114. [x] nauru
+115. [x] nepal
+116. [x] niger
+117. [x] nigeria
+118. [x] nikaragua
+119. [x] norwegia
+120. [x] oman
+121. [x] pakistan
+122. [x] palau
+123. [x] palestina
+124. [x] panama
+125. [x] papua nugini
+126. [x] paraguay
+127. [x] peru
+128. [x] polandia
+129. [x] portugal
+130. [x] qatar
+131. [x] republik afrika tengah
+132. [x] republik demokratik kongo
+133. [x] republik dominika
+134. [x] republik madagaskar
+135. [x] republik moldova
+136. [x] republik mozambik
+137. [x] republik rumania
+138. [x] republik serbia
+139. [x] republik sudan
+140. [x] republik tanzania
+141. [x] republik timor-leste
+142. [x] republik uganda
+143. [x] republik zambia
+144. [x] republik zimbabwe
+145. [x] rusia
+146. [x] rwanda
+147. [x] saint kitts dan nevis
+148. [x] saint lucia
+149. [x] saint vincent dan grenadine
+150. [x] samoa
+151. [x] san marino
+152. [x] sao tome dan principe
+153. [x] senegal
+154. [x] seychelles
+155. [x] sierra leone
+156. [x] singapura
+157. [x] slowakia
+158. [x] slovenia
+159. [x] somalia
+160. [x] spanyol
+161. [x] sri lanka
+162. [x] sudan selatan
+163. [x] suriname
+164. [x] suriah
+165. [x] swedia
+166. [x] swiss
+167. [x] taiwan
+168. [x] tajikistan
+169. [x] tahiti
+170. [x] tanzania
+171. [x] thailand
+172. [x] timor-leste
+173. [x] togo
+174. [x] tonga
+175. [x] trinidad dan tobago
+176. [x] tunisia
+177. [x] turki
+178. [x] turkmenistan
+179. [x] tuvalu
+180. [x] ukraina
+181. [x] uni emirat arab
+182. [x] uruguay
+183. [x] uzbekistan
+184. [x] vanuatu
+185. [x] vatikan
+186. [x] venezuela
+187. [x] vietnam
+188. [x] yaman
+189. [x] yordania
+190. [x] yugoslavia
+191. [x] zambia
+192. [x] zimbabwe

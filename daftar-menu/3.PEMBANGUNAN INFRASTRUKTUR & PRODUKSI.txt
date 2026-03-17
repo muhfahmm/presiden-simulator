@@ -1,0 +1,132 @@
+1. insfratuktur kelistrikan
+Pembangkit Listrik Tenaga Surya (Panel Surya)
+Pembangkit Listrik Tenaga Bayu (Angin)
+pembangkit listrik hidroelektrik (PLTA)
+Pembangkit Listrik Tenaga Nuklir (Fisi)
+pembangkit listrik tenaga thermal
+
+===============================================
+
+2.Sektor Ekstraksi & Energi
+tambang emas
+tambang uranium
+tambang batubara
+minyak
+gas
+tambang garam
+tambang nikel
+tambang tembaga
+tambang tanah jarang
+tambang biji besi
+
+3.Sektor Pengolahan & Manufaktur
+Pabrik Elektronik & Semikonduktor
+Pabrik Mobil
+Pabrik Motor
+Pabrik Logam (Smelter)
+Pabrik Beton & Semen
+Penggergajian Kayu
+Pabrik Air Mineral
+Pabrik Gula
+Pabrik Roti
+Pabrik Farmasi
+Pabrik Pupuk
+Pabrik Pengolahan Daging
+Pabrik Mie Instan
+
+4. Sektor Peternakan
+Peternakan Ayam Petelur
+Peternakan Unggas (Ayam/Bebek)
+Peternakan Sapi Perah
+Peternakan Sapi Potong
+Peternakan Domba & Kambing
+Tambak Udang Intensif
+Budidaya Ikan Air Tawar
+Budidaya Kerang & Mutiara
+
+5. Sektor Pertanian
+Pertanian Padi
+Pertanian Gandum
+Pertanian Jagung
+Pertanian Umbi-umbian
+Pertanian Kedelai
+Perkebunan Kelapa Sawit
+Perkebunan Teh
+Perkebunan Kopi
+Perkebunan Kakao
+Perkebunan Tebu
+Pertanian Sayur Mayur
+
+===============================================
+
+1. transportasi
+jalur sepeda
+kereta bawah tanah
+jalur kereta api
+jalan raya
+bandara
+pelabuhan
+
+2. pendidikan
+TK
+sekolah dasar
+sekolah menengah
+sekolah atas
+perguruan tinggi
+lembaga pendidikan
+laboraturium
+observatorium
+pusat riset
+pusat penelitian
+
+3. kesehatan
+rumah sakit besar
+rumah sakit kecil
+pusat diagnostik
+
+4. olahraga
+kolam renang
+sirkuit balap
+stadion
+
+=====================
+
+1. Sektor Pertahanan
+penjara
+barak
+gudang senjata
+hangar tank
+akademi militer
+
+2. Sektor Hukum
+pusat bantuan hukum
+pengadilan
+kejaksaan
+
+3. Sektor Keamanan
+kepolisian
+armada mobil
+akademi polisi
+
+4. Sektor Militer
+Pusat Komando Strategis
+Pangkalan Udara & Laut
+Pabrik Alutsista
+
+=======================
+
+1. residensial
+rumah low density
+apartemen medium density
+perumahan high density
+
+2. komersial
+pasar
+ruko
+mall
+perkantoran
+pusat hiburan
+
+3. pariwisata
+perhotelan bintang 5
+stadion internasional
