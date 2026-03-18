@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "./countries";
+import { countries as centersData } from "./data/countries";
 
 interface WorldMapCanvasProps {
   selectedCountry: string;

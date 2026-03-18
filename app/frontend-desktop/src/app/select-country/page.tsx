@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation";
 import { HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import WorldMapCanvas from "./selectcountrymap";
-import { countries } from "./countries";
+import { countries } from "./data/countries";
 import { gameStorage } from "../game/gamestorage";
+import { CountryData } from "./data/types";
+import { Sword, Anchor, Plane, ShieldCheck, Globe2, TrendingUp, Gem, Droplets, Beef, TreePine, Mountain } from "lucide-react";
 
 export default function SelectCountry() {
   const router = useRouter();
@@ -49,9 +51,7 @@ export default function SelectCountry() {
     }
   };
 
-  const currentData = countries.find(c => c.name_en === selectedCountry) || {
-    name_id: "Memuat...", flag: "🏳️", pop: "---", budget: "---", religion: "---", ideology: "---"
-  };
+  const currentData = (countries.find(c => c.name_en === selectedCountry) || countries[0]) as CountryData;
 
   return (
     <div className="flex flex-col h-screen w-screen bg-zinc-950 text-white font-sans relative overflow-hidden select-none">
@@ -104,11 +104,61 @@ export default function SelectCountry() {
         {/* Ambient Darkened Vignette */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
 
-        {/* Floating Resource inventory panel */}
-        <div className="absolute top-4 right-4 bg-zinc-900/70 backdrop-blur-md border border-zinc-700/60 p-2 px-4 rounded-xl flex items-center gap-3 text-xs z-20">
-          <span className="text-zinc-400">Simpanan Sumber Daya:</span>
-          <div className="flex items-center gap-2 text-md font-bold">
-            🪵 🧱 🪙 🛢️ 🥩
+        {/* Floating Resource inventory panel (Detailed Stats) */}
+        <div className="absolute top-4 right-4 flex flex-col gap-3 z-20 pointer-events-none">
+          {/* Main Stats Card */}
+          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-64 pointer-events-auto">
+            <h3 className="text-[10px] font-black text-cyan-500 uppercase tracking-[0.2em] mb-1">Kekuatan Militer</h3>
+            <div className="flex items-center gap-3">
+              <div className="flex-1 bg-zinc-800 h-2 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 shadow-[0_0_10px_rgba(6,182,212,0.5)]" 
+                  style={{ width: `${currentData.military.strength}%` }}
+                />
+              </div>
+              <span className="text-xs font-bold text-cyan-400">{currentData.military.strength}%</span>
+            </div>
+            
+            <div className="grid grid-cols-2 gap-3">
+              <DetailStat icon={<Sword size={12}/>} label="Infanteri" value={formatNumber(currentData.military.infantry)} />
+              <DetailStat icon={<ShieldCheck size={12}/>} label="Tank" value={currentData.military.tanks.toLocaleString()} />
+              <DetailStat icon={<Plane size={12}/>} label="Udara" value={currentData.military.aircraft.toLocaleString()} />
+              <DetailStat icon={<Anchor size={12}/>} label="Laut" value={currentData.military.naval.toLocaleString()} />
+            </div>
+
+            {currentData.military.nuclear && (
+              <div className="mt-1 flex items-center gap-2 bg-red-500/10 border border-red-500/20 px-2 py-1 rounded-md">
+                <div className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
+                <span className="text-[9px] font-bold text-red-400 uppercase tracking-wider text-center">Kemampuan Nuklir Terdeteksi</span>
+              </div>
+            )}
+          </div>
+
+          {/* Resources Card */}
+          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-3 w-64 pointer-events-auto">
+            <h3 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.2em] mb-1">Sumber Daya Alam</h3>
+            <div className="grid grid-cols-2 gap-y-3">
+              <ResourceItem icon={<TreePine size={12} className="text-orange-400"/>} value={currentData.resources.wood} />
+              <ResourceItem icon={<Mountain size={12} className="text-zinc-400"/>} value={currentData.resources.stone} />
+              <ResourceItem icon={<Gem size={12} className="text-yellow-400"/>} value={currentData.resources.gold} />
+              <ResourceItem icon={<Droplets size={12} className="text-blue-400"/>} value={currentData.resources.oil} />
+              <ResourceItem icon={<Beef size={12} className="text-red-400"/>} value={currentData.resources.meat} />
+            </div>
+          </div>
+
+          {/* UN Card */}
+          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-3 rounded-2xl shadow-2xl flex items-center justify-between pointer-events-auto">
+            <div className="flex items-center gap-2">
+              <Globe2 size={14} className="text-blue-400" />
+              <span className="text-[10px] font-bold text-zinc-400 uppercase">Suara di PBB</span>
+            </div>
+            <span className={`text-[10px] font-black px-2 py-0.5 rounded ${
+              currentData.un_vote === 'Pro' ? 'bg-emerald-500/20 text-emerald-400' :
+              currentData.un_vote === 'Contra' ? 'bg-red-500/20 text-red-400' :
+              'bg-zinc-700/50 text-zinc-300'
+            }`}>
+              {currentData.un_vote}
+            </span>
           </div>
         </div>
       </main>
@@ -217,6 +267,7 @@ export default function SelectCountry() {
   );
 }
 
+
 function StatItem({ icon, label, value }: { icon: string, label: string, value: string }) {
   return (
     <div className="flex items-center gap-2">
@@ -227,6 +278,33 @@ function StatItem({ icon, label, value }: { icon: string, label: string, value: 
       </div>
     </div>
   );
+}
+
+function DetailStat({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) {
+  return (
+    <div className="flex flex-col gap-0.5">
+      <div className="flex items-center gap-1.5 text-zinc-500">
+        {icon}
+        <span className="text-[9px] font-bold uppercase tracking-tighter">{label}</span>
+      </div>
+      <span className="text-[11px] font-black text-zinc-200">{value}</span>
+    </div>
+  );
+}
+
+function ResourceItem({ icon, value }: { icon: React.ReactNode, value: number }) {
+  return (
+    <div className="flex items-center gap-2">
+      {icon}
+      <span className="text-xs font-bold text-zinc-300">{value}</span>
+    </div>
+  );
+}
+
+function formatNumber(num: number): string {
+  if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+  if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+  return num.toString();
 }
 
 

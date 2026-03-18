@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "../select-country/countries";
+import { countries as centersData } from "../select-country/data/countries";
 
 interface GameMapCanvasProps {
   userCountry: string;
