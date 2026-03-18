@@ -8,7 +8,14 @@ import WorldMapCanvas from "./selectcountrymap";
 import { countries } from "./data/countries";
 import { gameStorage } from "../game/gamestorage";
 import { CountryData } from "./data/types";
-import { Sword, Anchor, Plane, ShieldCheck, Globe2, TrendingUp, Gem, Droplets, Beef, TreePine, Mountain } from "lucide-react";
+import { 
+  Sword, Anchor, Plane, ShieldCheck, Globe2, TrendingUp, Gem, Droplets, Beef, TreePine, Mountain, 
+  Zap, Waves, Sun, Flame, Wind, Building2, TowerControl, Ship, Radio, Home, Store, Factory, Map, 
+  TrainFront, Wifi, Smartphone, Droplet, Cpu, Layers, Microscope, Trophy, Gavel, Sprout, Box, 
+  Syringe, GraduationCap, Crosshair, RadioTower, Landmark, Fish, Construction, Pill, Car, Bike, 
+  Utensils, Apple, Coffee, Milk, Bird, Egg, Leaf, Shell, Bean, Carrot, Cookie, Croissant, Soup,
+  HeartPulse, Search, Library, Lightbulb, Eye, Archive, ShieldAlert, Warehouse, Lock, Scale
+} from "lucide-react";
 
 export default function SelectCountry() {
   const router = useRouter();
@@ -73,6 +80,20 @@ export default function SelectCountry() {
         <div className="flex items-center gap-6">
           <StatItem label="Agama Mayoritas" value={currentData.religion} icon="☪️" />
           <StatItem label="Ideologi" value={currentData.ideology} icon="⚖️" />
+          
+          <div className="h-4 w-px bg-zinc-800" />
+          
+          <div className="flex items-center gap-2">
+            <Globe2 size={12} className="text-blue-400" />
+            <span className="text-[10px] text-zinc-500 font-medium uppercase tracking-wider">Suara PBB</span>
+            <span className={`text-[10px] font-black px-1.5 py-0.5 rounded ${
+              currentData.un_vote === 'Pro' ? 'bg-emerald-500/20 text-emerald-400' :
+              currentData.un_vote === 'Contra' ? 'bg-red-500/20 text-red-400' :
+              'bg-zinc-700/50 text-zinc-300'
+            }`}>
+              {currentData.un_vote}
+            </span>
+          </div>
         </div>
 
         {/* Selected Country Flag Overlay */}
@@ -91,10 +112,8 @@ export default function SelectCountry() {
           onInit={() => setIsCentered(true)}
           limitToBounds={true}
           doubleClick={{ disabled: true }}
-          
         >
           <TransformComponent wrapperClass="!w-full !h-full" contentClass="!h-full flex items-center justify-center">
-            {/* Background Map Container (Single wider canvas) */}
             <div ref={containerRef} className="relative h-full flex items-center justify-center w-max">
               <WorldMapCanvas selectedCountry={selectedCountry} onSelect={setSelectedCountry} />
             </div>
@@ -104,76 +123,295 @@ export default function SelectCountry() {
         {/* Ambient Darkened Vignette */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
 
-        {/* Floating Resource inventory panel (Detailed Stats) */}
-        <div className="absolute top-4 right-4 flex flex-col gap-3 z-20 pointer-events-none">
-          {/* Main Stats Card */}
-          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-64 pointer-events-auto">
-            <h3 className="text-[10px] font-black text-cyan-500 uppercase tracking-[0.2em] mb-1">Kekuatan Militer</h3>
-            <div className="flex items-center gap-3">
-              <div className="flex-1 bg-zinc-800 h-2 rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-gradient-to-r from-cyan-500 to-blue-500 shadow-[0_0_10px_rgba(6,182,212,0.5)]" 
-                  style={{ width: `${currentData.military.strength}%` }}
-                />
+        {/* --- LEFT SIDE PANELS --- */}
+        <div className="absolute top-4 left-4 flex flex-col gap-3 z-20 pointer-events-none max-h-[calc(100vh-160px)] overflow-y-auto no-scrollbar pb-10 px-1">
+          
+          {/* 1. Infrastruktur & Energi */}
+          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-[360px] pointer-events-auto">
+            <h3 className="text-[10px] font-black text-amber-500 uppercase tracking-[0.2em] mb-1">Infrastruktur & Logistik</h3>
+            
+            <div className="flex flex-col gap-3 overflow-y-auto max-h-[400px] no-scrollbar pr-1">
+              <div className="flex flex-col gap-1.5">
+                <span className="text-[9px] font-bold text-zinc-500 uppercase flex items-center gap-1"><Zap size={8}/> Jaringan Energi</span>
+                <ProgressStat label="Power Grid" value={currentData.infrastructure.power_grid} color="bg-amber-500" icon={<Zap size={10}/>} />
+                <div className="grid grid-cols-2 gap-x-3 gap-y-2 mt-2">
+                  <DetailStat icon={<Radio size={12} className="text-cyan-400"/>} label="PLTN" value={currentData.infrastructure.nuclear_plant.toString()} />
+                  <DetailStat icon={<Waves size={12} className="text-blue-400"/>} label="PLTA" value={currentData.infrastructure.hydro_plant.toString()} />
+                  <DetailStat icon={<Sun size={12} className="text-yellow-400"/>} label="PLTS" value={currentData.infrastructure.solar_plant.toString()} />
+                  <DetailStat icon={<Flame size={12} className="text-orange-400"/>} label="PLTU" value={currentData.infrastructure.thermal_plant.toString()} />
+                  <DetailStat icon={<Flame size={12} className="text-red-400"/>} label="PLTG" value={currentData.infrastructure.gas_plant.toString()} />
+                  <DetailStat icon={<Wind size={12} className="text-emerald-400"/>} label="PLTB" value={currentData.infrastructure.wind_plant.toString()} />
+                </div>
               </div>
-              <span className="text-xs font-bold text-cyan-400">{currentData.military.strength}%</span>
+
+              <div className="h-px bg-zinc-800/50" />
+
+              <div className="flex flex-col gap-2">
+                <span className="text-[9px] font-bold text-zinc-500 uppercase flex items-center gap-1"><Ship size={8}/> Transportasi & Digital</span>
+                <div className="space-y-2">
+                  <ProgressStat label="Kualitas Jalan" value={currentData.infrastructure.road_quality} color="bg-zinc-400" icon={<Map size={10}/>} />
+                  <ProgressStat label="Cakupan Internet" value={currentData.infrastructure.internet_coverage} color="bg-blue-500" icon={<Wifi size={10}/>} />
+                </div>
+                <div className="grid grid-cols-2 gap-3 mt-1">
+                  <DetailStat icon={<Bike size={12} className="text-emerald-400"/>} label="Jalur Sepeda" value={currentData.infrastructure.bicycle_path.toString()} />
+                  <DetailStat icon={<TrainFront size={12} className="text-blue-500"/>} label="Subway" value={currentData.infrastructure.subway.toString()} />
+                  <DetailStat icon={<TrainFront size={12} className="text-zinc-400"/>} label="Kereta Api" value={currentData.infrastructure.railway.toString()} />
+                  <DetailStat icon={<Map size={12} className="text-zinc-300"/>} label="Jalan Raya" value={currentData.infrastructure.highway.toString()} />
+                  <DetailStat icon={<Ship size={12} className="text-blue-400"/>} label="Pelabuhan" value={currentData.infrastructure.sea_port.toString()} />
+                  <DetailStat icon={<Plane size={12} className="text-cyan-400"/>} label="Bandara" value={currentData.infrastructure.airport.toString()} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 2. Sektor Produksi & Ekonomi Detailed */}
+          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-[360px] pointer-events-auto">
+            <h3 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.2em] mb-1">Produksi & Ekonomi Nasional</h3>
+            
+            <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px] no-scrollbar pr-1">
+              {/* Extraction */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Pickaxe size={10}/> Ekstraksi & Energi</span>
+                  <span className="text-[9px] font-black text-emerald-400">{currentData.sector_extraction.strength}%</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  <SectorStat icon={<Droplets size={10} className="text-blue-400"/>} label="Minyak" value={currentData.sector_extraction.oil} />
+                  <SectorStat icon={<Flame size={10} className="text-orange-400"/>} label="Gas" value={currentData.sector_extraction.gas} />
+                  <SectorStat icon={<Gem size={10} className="text-yellow-400"/>} label="Emas" value={currentData.sector_extraction.gold} />
+                  <SectorStat icon={<Radio size={10} className="text-emerald-400"/>} label="Uranium" value={currentData.sector_extraction.uranium} />
+                  <SectorStat icon={<Layers size={10} className="text-zinc-400"/>} label="Batubara" value={currentData.sector_extraction.coal} />
+                  <SectorStat icon={<Box size={10} className="text-orange-400"/>} label="Nikel" value={currentData.sector_extraction.nickel} />
+                  <SectorStat icon={<Pickaxe size={10} className="text-orange-300"/>} label="Tembaga" value={currentData.sector_extraction.copper} />
+                  <SectorStat icon={<Mountain size={10} className="text-zinc-500"/>} label="Biji Besi" value={currentData.sector_extraction.iron_ore} />
+                  <SectorStat icon={<Cpu size={10} className="text-purple-400"/>} label="Tanah Jarang" value={currentData.sector_extraction.rare_earth} />
+                  <SectorStat icon={<Waves size={10} className="text-blue-200"/>} label="Garam" value={currentData.sector_extraction.salt} />
+                </div>
+              </div>
+
+              <div className="h-px bg-zinc-800/50" />
+
+              {/* Manufacturing */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Factory size={10}/> Manufaktur & Industri</span>
+                  <span className="text-[9px] font-black text-blue-400">{currentData.sector_manufacturing.strength}%</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  <SectorStat icon={<Cpu size={10} className="text-purple-400"/>} label="Semikonduktor" value={currentData.sector_manufacturing.semiconductor} />
+                  <SectorStat icon={<Car size={10} className="text-zinc-300"/>} label="Mobil" value={currentData.sector_manufacturing.car} />
+                  <SectorStat icon={<Bike size={10} className="text-zinc-300"/>} label="Motor" value={currentData.sector_manufacturing.motorcycle} />
+                  <SectorStat icon={<Flame size={10} className="text-red-400"/>} label="Smelter" value={currentData.sector_manufacturing.smelter} />
+                  <SectorStat icon={<Construction size={10} className="text-zinc-400"/>} label="Beton & Semen" value={currentData.sector_manufacturing.concrete_cement} />
+                  <SectorStat icon={<TreePine size={10} className="text-emerald-600"/>} label="Kayu" value={currentData.sector_manufacturing.wood} />
+                  <SectorStat icon={<Droplet size={10} className="text-blue-400"/>} label="Air Mineral" value={currentData.sector_manufacturing.mineral_water} />
+                  <SectorStat icon={<Cookie size={10} className="text-yellow-600"/>} label="Gula" value={currentData.sector_manufacturing.sugar} />
+                  <SectorStat icon={<Croissant size={10} className="text-amber-400"/>} label="Roti" value={currentData.sector_manufacturing.bread} />
+                  <SectorStat icon={<Pill size={10} className="text-pink-400"/>} label="Farmasi" value={currentData.sector_manufacturing.pharmacy} />
+                  <SectorStat icon={<FlaskConical size={10} className="text-emerald-400"/>} label="Pupuk" value={currentData.sector_manufacturing.fertilizer} />
+                  <SectorStat icon={<Beef size={10} className="text-red-400"/>} label="Daging" value={currentData.sector_manufacturing.meat_processing} />
+                  <SectorStat icon={<Soup size={10} className="text-orange-400"/>} label="Mie Instan" value={currentData.sector_manufacturing.instant_noodle} />
+                </div>
+              </div>
+
+              <div className="h-px bg-zinc-800/50" />
+
+              {/* Agri & Livestock */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Sprout size={10}/> Agri & Peternakan</span>
+                  <span className="text-[9px] font-black text-orange-400">{Math.floor((currentData.sector_agriculture.strength + currentData.sector_livestock.strength)/2)}%</span>
+                </div>
+                
+                {/* Livestock Subgrid */}
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  <SectorStat icon={<Bird size={10} className="text-amber-500"/>} label="Ayam/Unggas" value={currentData.sector_livestock.chicken + currentData.sector_livestock.poultry} />
+                  <SectorStat icon={<Milk size={10} className="text-zinc-200"/>} label="Sapi Perah" value={currentData.sector_livestock.dairy_cow} />
+                  <SectorStat icon={<Beef size={10} className="text-red-500"/>} label="Sapi Potong" value={currentData.sector_livestock.beef_cow} />
+                  <SectorStat icon={<Leaf size={10} className="text-emerald-300"/>} label="Domba/Kambing" value={currentData.sector_livestock.sheep_goat} />
+                  <SectorStat icon={<Shell size={10} className="text-pink-300"/>} label="Udang/Kerang" value={currentData.sector_livestock.shrimp + currentData.sector_livestock.shellfish} />
+                  <SectorStat icon={<Fish size={10} className="text-blue-400"/>} label="Ikan" value={currentData.sector_livestock.fish} />
+                </div>
+
+                <div className="h-px bg-zinc-800/30 w-1/2 self-center my-1" />
+
+                {/* Agri Subgrid */}
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  <SectorStat icon={<Sprout size={10} className="text-green-500"/>} label="Padi" value={currentData.sector_agriculture.rice} />
+                  <SectorStat icon={<Utensils size={10} className="text-amber-600"/>} label="Gandum/Jagung" value={currentData.sector_agriculture.wheat + currentData.sector_agriculture.corn} />
+                  <SectorStat icon={<Apple size={10} className="text-red-500"/>} label="Sayur/Umbi" value={currentData.sector_agriculture.vegetables + currentData.sector_agriculture.tubers} />
+                  <SectorStat icon={<Bean size={10} className="text-emerald-700"/>} label="Kedelai" value={currentData.sector_agriculture.soy} />
+                  <SectorStat icon={<Droplet size={10} className="text-amber-500"/>} label="Kelapa Sawit" value={currentData.sector_agriculture.palm_oil} />
+                  <SectorStat icon={<Coffee size={10} className="text-amber-900"/>} label="Kopi/Teh/Kakao" value={currentData.sector_agriculture.coffee + currentData.sector_agriculture.tea + currentData.sector_agriculture.cocoa} />
+                  <SectorStat icon={<Leaf size={10} className="text-emerald-500"/>} label="Tebu" value={currentData.sector_agriculture.sugarcane} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* --- RIGHT SIDE PANELS --- */}
+        <div className="absolute top-4 right-4 flex flex-col gap-3 z-20 pointer-events-none max-h-[calc(100vh-160px)] overflow-y-auto no-scrollbar pr-1 pb-10">
+          
+          {/* 3. Pertahanan & Militer Strategis Detailed */}
+          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-[360px] pointer-events-auto">
+            <h3 className="text-[10px] font-black text-red-500 uppercase tracking-[0.2em] mb-1">Pertahanan & Strategis</h3>
+            
+            <div className="flex flex-col gap-4 overflow-y-auto max-h-[400px] no-scrollbar pr-1">
+              {/* Defense Assets */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase flex items-center gap-1.5"><ShieldCheck size={10}/> Sektor Pertahanan</span>
+                  <span className="text-[9px] font-black text-red-400">{currentData.sector_defense.strength}%</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  <SectorStat icon={<Gavel size={10} className="text-zinc-400"/>} label="Penjara" value={currentData.sector_defense.prison} />
+                  <SectorStat icon={<Home size={10} className="text-zinc-300"/>} label="Barak" value={currentData.sector_defense.barracks} />
+                  <SectorStat icon={<Archive size={10} className="text-orange-400"/>} label="Gudang Senjata" value={currentData.sector_defense.armory} />
+                  <SectorStat icon={<Warehouse size={10} className="text-zinc-500"/>} label="Hangar Tank" value={currentData.sector_defense.tank_hangar} />
+                  <SectorStat icon={<GraduationCap size={10} className="text-zinc-200"/>} label="Akademi Militer" value={currentData.sector_defense.military_academy} />
+                  <SectorStat icon={<Landmark size={10} className="text-red-400"/>} label="Budget" value={currentData.sector_defense.budget} />
+                </div>
+              </div>
+
+              <div className="h-px bg-zinc-800/50" />
+
+              {/* Strategic Assets */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Crosshair size={10}/> Militer Strategis</span>
+                  <span className="text-[9px] font-black text-indigo-400">{currentData.sector_military_strategic.cyber_defense}% Cyber</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  <SectorStat icon={<TowerControl size={10} className="text-zinc-100"/>} label="Pusat Komando" value={currentData.sector_military_strategic.command_center} />
+                  <SectorStat icon={<Plane size={10} className="text-cyan-400"/>} label="Pangkalan Udara" value={currentData.sector_military_strategic.military_air_base} />
+                  <SectorStat icon={<Anchor size={10} className="text-blue-400"/>} label="Pangkalan Laut" value={currentData.sector_military_strategic.military_naval_base} />
+                  <SectorStat icon={<Factory size={10} className="text-red-500"/>} label="Pabrik Alutsista" value={currentData.sector_military_strategic.arms_factory} />
+                  <SectorStat icon={<RadioTower size={10} className="text-purple-400"/>} label="Lintas Antariksa" value={currentData.sector_military_strategic.space_program} />
+                  <SectorStat icon={<Radio size={10} className="text-red-400"/>} label="Status Nuklir" value={currentData.sector_military_strategic.nuclear_status ? 1 : 0} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 4. Layanan Sosial & Publik Detailed */}
+          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-[360px] pointer-events-auto">
+            <h3 className="text-[10px] font-black text-cyan-500 uppercase tracking-[0.2em] mb-1">Layanan Sosial & Publik</h3>
+            
+            <div className="flex flex-col gap-4 overflow-y-auto max-h-[450px] no-scrollbar pr-1">
+              {/* Education & Research */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase flex items-center gap-1.5"><GraduationCap size={10}/> Pendidikan & Riset</span>
+                  <span className="text-[9px] font-black text-blue-400">{currentData.sector_social.education.literacy}% LT</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  <SectorStat icon={<Building2 size={10} className="text-zinc-400"/>} label="TK/SD" value={currentData.sector_social.education.kindergarten + currentData.sector_social.education.elementary_school} />
+                  <SectorStat icon={<Library size={10} className="text-zinc-300"/>} label="SMP/SMA" value={currentData.sector_social.education.middle_school + currentData.sector_social.education.high_school} />
+                  <SectorStat icon={<Library size={10} className="text-zinc-200"/>} label="PT/Lembaga" value={currentData.sector_social.education.university + currentData.sector_social.education.education_institute} />
+                  <SectorStat icon={<Microscope size={10} className="text-emerald-400"/>} label="Lab & Riset" value={currentData.sector_social.education.laboratory + currentData.sector_social.education.research_center} />
+                  <SectorStat icon={<Eye size={10} className="text-purple-300"/>} label="Observatorium" value={currentData.sector_social.education.observatory} />
+                  <SectorStat icon={<Lightbulb size={10} className="text-yellow-400"/>} label="Pengembangan" value={currentData.sector_social.education.development_center} />
+                </div>
+              </div>
+
+              <div className="h-px bg-zinc-800/50" />
+
+              {/* Health & Sports */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase flex items-center gap-1.5"><HeartPulse size={10}/> Kesehatan & Olahraga</span>
+                  <span className="text-[9px] font-black text-emerald-400">{currentData.sector_social.health.healthcare_index}% IX</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  <SectorStat icon={<Building2 size={10} className="text-emerald-500"/>} label="RS Besar/Kecil" value={currentData.sector_social.health.large_hospital + currentData.sector_social.health.small_hospital} />
+                  <SectorStat icon={<Search size={10} className="text-cyan-400"/>} label="Diagnostik" value={currentData.sector_social.health.diagnostic_center} />
+                  <SectorStat icon={<Waves size={10} className="text-blue-400"/>} label="Kolam Renang" value={currentData.sector_social.sports.swimming_pool} />
+                  <SectorStat icon={<Flame size={10} className="text-orange-500"/>} label="Sirkuit Balap" value={currentData.sector_social.sports.racing_circuit} />
+                  <SectorStat icon={<Trophy size={10} className="text-yellow-500"/>} label="Stadion" value={currentData.sector_social.sports.stadium + currentData.sector_social.sports.international_stadium} />
+                  <SectorStat icon={<Beef size={10} className="text-red-400"/>} label="Harapan Hidup" value={currentData.sector_social.health.life_expectancy} />
+                </div>
+              </div>
+
+              <div className="h-px bg-zinc-800/50" />
+
+              {/* Law & Security */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Gavel size={10}/> Hukum & Keamanan</span>
+                  <span className="text-[9px] font-black text-orange-400">{currentData.sector_social.law.security_index}% SEC</span>
+                </div>
+                <div className="grid grid-cols-2 gap-2 mt-1">
+                  <SectorStat icon={<GraduationCap size={10} className="text-zinc-200"/>} label="Akademi Polisi" value={currentData.sector_social.law.police_academy} />
+                  <SectorStat icon={<ShieldAlert size={10} className="text-blue-500"/>} label="Kepolisian" value={currentData.sector_social.law.police_station} />
+                  <SectorStat icon={<Car size={10} className="text-zinc-400"/>} label="Armada Mobil" value={currentData.sector_social.law.police_car_fleet} />
+                  <SectorStat icon={<Gavel size={10} className="text-orange-400"/>} label="Kejaksaan/Court" value={currentData.sector_social.law.prosecution_office + currentData.sector_social.law.court} />
+                  <SectorStat icon={<Scale size={10} className="text-yellow-500"/>} label="Bantuan Hukum" value={currentData.sector_social.law.legal_aid_center} />
+                  <SectorStat icon={<TrendingUp size={10} className="text-zinc-400"/>} label="Indeks Korupsi" value={currentData.sector_social.law.corruption_index} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 5. Ekonomi & Geopolitik */}
+          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-72 pointer-events-auto">
+            <div className="flex items-center justify-between">
+              <h3 className="text-[10px] font-black text-blue-500 uppercase tracking-[0.2em]">Ekonomi & Geopolitik</h3>
+              <span className="text-[9px] font-black bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded uppercase">{currentData.geopolitics.stance}</span>
             </div>
             
-            <div className="grid grid-cols-2 gap-3">
-              <DetailStat icon={<Sword size={12}/>} label="Infanteri" value={formatNumber(currentData.military.infantry)} />
-              <DetailStat icon={<ShieldCheck size={12}/>} label="Tank" value={currentData.military.tanks.toLocaleString()} />
-              <DetailStat icon={<Plane size={12}/>} label="Udara" value={currentData.military.aircraft.toLocaleString()} />
-              <DetailStat icon={<Anchor size={12}/>} label="Laut" value={currentData.military.naval.toLocaleString()} />
-            </div>
-
-            {currentData.military.nuclear && (
-              <div className="mt-1 flex items-center gap-2 bg-red-500/10 border border-red-500/20 px-2 py-1 rounded-md">
-                <div className="h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse" />
-                <span className="text-[9px] font-bold text-red-400 uppercase tracking-wider text-center">Kemampuan Nuklir Terdeteksi</span>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-1">
+                <span className="text-[9px] font-bold text-zinc-500 uppercase">Surplus Dagang</span>
+                <span className="text-[11px] font-black text-green-400">Rp {currentData.trade.sell_commodity - currentData.trade.buy_commodity} T</span>
               </div>
-            )}
-          </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-[9px] font-bold text-zinc-500 uppercase">Stabilitas Pajak</span>
+                <span className="text-[11px] font-black text-blue-400">{currentData.taxes.income.satisfaction}%</span>
+              </div>
+            </div>
 
-          {/* Resources Card */}
-          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-3 w-64 pointer-events-auto">
-            <h3 className="text-[10px] font-black text-emerald-500 uppercase tracking-[0.2em] mb-1">Sumber Daya Alam</h3>
-            <div className="grid grid-cols-2 gap-y-3">
-              <ResourceItem icon={<TreePine size={12} className="text-orange-400"/>} value={currentData.resources.wood} />
-              <ResourceItem icon={<Mountain size={12} className="text-zinc-400"/>} value={currentData.resources.stone} />
-              <ResourceItem icon={<Gem size={12} className="text-yellow-400"/>} value={currentData.resources.gold} />
-              <ResourceItem icon={<Droplets size={12} className="text-blue-400"/>} value={currentData.resources.oil} />
-              <ResourceItem icon={<Beef size={12} className="text-red-400"/>} value={currentData.resources.meat} />
+            <div className="flex flex-col gap-2 pt-1">
+              <span className="text-[9px] font-bold text-zinc-500 uppercase">Sekutu Utama</span>
+              <div className="flex flex-wrap gap-1.5">
+                {currentData.geopolitics.allies.slice(0, 3).map((a, i) => (
+                  <span key={i} className="text-[9px] font-bold text-zinc-300 bg-zinc-800 px-2 py-1 rounded-md border border-zinc-700/50">{a}</span>
+                ))}
+              </div>
             </div>
           </div>
 
-          {/* UN Card */}
-          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-3 rounded-2xl shadow-2xl flex items-center justify-between pointer-events-auto">
-            <div className="flex items-center gap-2">
-              <Globe2 size={14} className="text-blue-400" />
-              <span className="text-[10px] font-bold text-zinc-400 uppercase">Suara di PBB</span>
+          {/* 6. Demand & Satisfaction */}
+          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-72 pointer-events-auto">
+            <h3 className="text-[10px] font-black text-pink-500 uppercase tracking-[0.2em] mb-1">Permintaan Rakyat</h3>
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-zinc-300">Kepuasan Publik</span>
+              <span className={`text-xs font-black ${
+                currentData.demand.satisfaction >= 70 ? 'text-green-400' :
+                currentData.demand.satisfaction >= 40 ? 'text-yellow-400' : 'text-red-400'
+              }`}>{currentData.demand.satisfaction}%</span>
             </div>
-            <span className={`text-[10px] font-black px-2 py-0.5 rounded ${
-              currentData.un_vote === 'Pro' ? 'bg-emerald-500/20 text-emerald-400' :
-              currentData.un_vote === 'Contra' ? 'bg-red-500/20 text-red-400' :
-              'bg-zinc-700/50 text-zinc-300'
-            }`}>
-              {currentData.un_vote}
-            </span>
+            
+            <div className="grid grid-cols-3 gap-2">
+              <SectorDemand label="Residensial" value={currentData.demand.residential} icon={<Home size={10}/>} color="bg-emerald-500" />
+              <SectorDemand label="Komersial" value={currentData.demand.commercial} icon={<Store size={10}/>} color="bg-blue-500" />
+              <SectorDemand label="Industrial" value={currentData.demand.industrial} icon={<Factory size={10}/>} color="bg-orange-500" />
+            </div>
           </div>
+
         </div>
       </main>
 
       {/* 3. FOOTER CAROUSEL & CONTROLS */}
       <footer className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 flex items-end justify-between z-20">
         <div className="flex flex-col gap-3">
-          {/* Filter Bar */}
-          <button className="flex items-center gap-2 bg-gradient-to-r from-teal-900/40 to-emerald-900/40 border border-teal-800/40 px-3 py-1.5 rounded-xl text-xs font-semibold text-teal-300 hover:from-teal-800/60 transition cursor-pointer w-fit">
+          <button className="flex items-center gap-2 bg-gradient-to-r from-teal-900/40 to-emerald-900/40 border border-teal-800/40 px-3 py-1.5 rounded-xl text-xs font-semibold text-teal-300 hover:from-teal-800/60 transition cursor-pointer w-fit uppercase tracking-wider">
             <Filter className="h-3.5 w-3.5" />
-            Filter
+            Filter Region
           </button>
         </div>
 
-        {/* Carousel with Chevrons (Centered absolutely) */}
+        {/* Carousel with Chevrons */}
         <div className="absolute left-1/2 bottom-8 -translate-x-1/2 flex items-center gap-2 w-full max-w-xl z-30">
           <button 
             onClick={() => scrollByAmount('left')}
@@ -182,7 +420,7 @@ export default function SelectCountry() {
             <ChevronLeft size={16} />
           </button>
 
-          <div ref={scrollRef} className="flex flex-1 gap-6 overflow-x-auto pt-10 pb-2 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+          <div ref={scrollRef} className="flex flex-1 gap-6 overflow-x-auto pt-10 pb-2 no-scrollbar">
             {countries.map((c, i) => (
               <button 
                 key={i} 
@@ -201,7 +439,7 @@ export default function SelectCountry() {
                   </div>
                 )}
                 <span className="text-xl">{c.flag}</span>
-                <span className="text-[9px] font-bold text-zinc-300 text-center line-clamp-2 mt-1 px-1">
+                <span className="text-[9px] font-bold text-zinc-300 text-center line-clamp-2 mt-1 px-1 uppercase tracking-tighter">
                   {c.name_id}
                 </span>
               </button>
@@ -238,7 +476,7 @@ export default function SelectCountry() {
             className={`flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/30 transition-all cursor-pointer group scale-100 hover:scale-[1.02] active:scale-[0.98] ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <Play className="h-4 w-4" />
-            {isLoading ? "Memproses..." : "Mulai"}
+            {isLoading ? "Memproses..." : "Mulai Simulasi"}
           </button>
         </div>
       </footer>
@@ -267,7 +505,6 @@ export default function SelectCountry() {
   );
 }
 
-
 function StatItem({ icon, label, value }: { icon: string, label: string, value: string }) {
   return (
     <div className="flex items-center gap-2">
@@ -292,19 +529,127 @@ function DetailStat({ icon, label, value }: { icon: React.ReactNode, label: stri
   );
 }
 
-function ResourceItem({ icon, value }: { icon: React.ReactNode, value: number }) {
-  return (
-    <div className="flex items-center gap-2">
-      {icon}
-      <span className="text-xs font-bold text-zinc-300">{value}</span>
-    </div>
-  );
-}
-
 function formatNumber(num: number): string {
   if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
   if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
   return num.toString();
 }
+
+function MinistryStat({ label, value, color }: { label: string, value: number, color: string }) {
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center justify-between text-[9px] font-bold text-zinc-500 uppercase">
+        <span>{label}</span>
+        <span className="text-zinc-300">{value}%</span>
+      </div>
+      <div className="bg-zinc-800 h-1 rounded-full overflow-hidden">
+        <div 
+          className={`h-full ${color}`} 
+          style={{ width: `${value}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function SectorDemand({ label, value, icon, color }: { label: string, value: number, icon: React.ReactNode, color: string }) {
+  return (
+    <div className="flex flex-col gap-1.5 bg-zinc-800/20 p-2 rounded-lg border border-zinc-700/20">
+      <div className="flex items-center gap-1.5 text-zinc-400">
+        {icon}
+        <span className="text-[8px] font-bold uppercase tracking-tight">{label}</span>
+      </div>
+      <div className="flex items-center gap-2">
+        <div className="flex-1 bg-zinc-900 h-1 rounded-full overflow-hidden">
+          <div 
+            className={`h-full ${color}`} 
+            style={{ width: `${value}%` }}
+          />
+        </div>
+        <span className="text-[9px] font-black text-zinc-300">{value}%</span>
+      </div>
+    </div>
+  );
+}
+
+function ProgressStat({ label, value, color, icon }: { label: string, value: number, color: string, icon?: React.ReactNode }) {
+  return (
+    <div className="flex flex-col gap-1">
+      <div className="flex items-center justify-between text-[8px] font-bold text-zinc-500 uppercase">
+        <div className="flex items-center gap-1.5">
+          {icon}
+          <span>{label}</span>
+        </div>
+        <span className="text-zinc-300">{value}%</span>
+      </div>
+      <div className="bg-zinc-800 h-1 rounded-full overflow-hidden">
+        <div 
+          className={`h-full ${color} shadow-[0_0_8px_rgba(255,255,255,0.1)]`} 
+          style={{ width: `${value}%` }}
+        />
+      </div>
+    </div>
+  );
+}
+
+function SectorStat({ icon, label, value }: { icon: React.ReactNode, label: string, value: number }) {
+  return (
+    <div className="flex flex-col gap-0.5 bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+      <div className="flex items-center gap-1.5 text-zinc-500">
+        {icon}
+        <span className="text-[8px] font-bold uppercase tracking-tighter truncate">{label}</span>
+      </div>
+      <span className="text-[10px] font-black text-zinc-200">{value.toLocaleString()}</span>
+    </div>
+  );
+}
+
+// Icon for extraction
+function Pickaxe({ size, className }: { size?: number, className?: string }) {
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width={size || 24} 
+      height={size || 24} 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      className={className}
+    >
+      <path d="M22 2l-8 8" />
+      <path d="M17 13l5 5" />
+      <path d="M7 13l5 5" />
+      <path d="M12 22l-5-5-5 5" />
+      <path d="M2 13l5-5-5-5" />
+      <path d="M11 7l5 5" />
+    </svg>
+  );
+}
+
+// Icon for chemistry/chemicals
+function FlaskConical({ size, className }: { size?: number, className?: string }) {
+  return (
+    <svg 
+      xmlns="http://www.w3.org/2000/svg" 
+      width={size || 24} 
+      height={size || 24} 
+      viewBox="0 0 24 24" 
+      fill="none" 
+      stroke="currentColor" 
+      strokeWidth="2" 
+      strokeLinecap="round" 
+      strokeLinejoin="round" 
+      className={className}
+    >
+      <path d="M10 2v8L4.5 20.29A1 1 0 0 0 5.4 22h13.2a1 1 0 0 0 .9-1.71L14 10V2" />
+      <line x1="8" y1="2" x2="16" y2="2" />
+      <line x1="10" y1="12" x2="14" y2="12" />
+    </svg>
+  );
+}
+
 
 
