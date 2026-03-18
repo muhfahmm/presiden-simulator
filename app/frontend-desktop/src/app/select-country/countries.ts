@@ -1,4 +1,4 @@
-[
+export const countries = [
   {
     "name_en": "Afghanistan",
     "name_id": "Afganistan",
@@ -2166,4 +2166,4 @@
     "religion": "---",
     "ideology": "---"
   }
-]
+];

@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
+import { countries as centersData } from "../select-country/countries";
 
 interface GameMapCanvasProps {
   userCountry: string;
@@ -10,7 +11,6 @@ interface GameMapCanvasProps {
 export default function GameMapCanvas({ userCountry, targetCountry, onSelect }: GameMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [geoData, setGeoData] = useState<any>(null);
-  const [centersData, setCentersData] = useState<any[]>([]);
   const [isHovering, setIsHovering] = useState(false);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
 
@@ -25,12 +25,6 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect }: 
       .then(res => res.json())
       .then(data => setGeoData(data))
       .catch(err => console.error("Failed to load map data", err));
-
-    // Load Centers data
-    fetch("/country_centers.json")
-      .then(res => res.json())
-      .then(data => setCentersData(data))
-      .catch(err => console.error("Failed to load center data", err));
   }, []);
 
   useEffect(() => {

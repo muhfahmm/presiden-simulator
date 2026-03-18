@@ -1,11 +1,13 @@
 "use client"
 
 import { useState, useRef } from "react";
-import { Heart, Coins, Shield } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { Heart, Coins, Shield, LogOut } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import GameMapCanvas from "./gamemap";
 import StrategyModal from "./StrategyModal";
 import BottomNav from "./components/BottomNav";
+import { gameStorage } from "./gamestorage";
 
 // Bottom Nav Modals
 import RatingPresidenModal from "./components/rating-presiden/RatingPresidenModal";
@@ -30,11 +32,10 @@ export default function GameDashboard() {
   const [approval, setApproval] = useState(65);
   const [budget, setBudget] = useState(1240.5); // in Trillion
   const [stability, setStability] = useState(82);
+  const router = useRouter();
   const [userCountry] = useState(() => {
-    if (typeof window !== "undefined") {
-      return localStorage.getItem("selectedCountry") || "Indonesia";
-    }
-    return "Indonesia";
+    const session = gameStorage.getSession();
+    return session?.country || "Indonesia";
   });
   const [targetCountry, setTargetCountry] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -60,6 +61,19 @@ export default function GameDashboard() {
             <StatusBadge icon={<Heart className="h-4 w-4 text-red-500" />} label="Persetujuan" value={`${approval}%`} />
             <StatusBadge icon={<Coins className="h-4 w-4 text-yellow-500" />} label="Kas Negara" value={`Rp ${budget} T`} />
             <StatusBadge icon={<Shield className="h-4 w-4 text-green-500" />} label="Stabilitas" value={`${stability}%`} />
+            
+            <button 
+              onClick={() => {
+                if (confirm("Apakah Anda yakin ingin mengakhiri sesi simulasi ini? Semua kemajuan akan hilang.")) {
+                  gameStorage.clearSession();
+                  router.push("/select-country");
+                }
+              }}
+              className="ml-4 p-2 rounded-lg bg-zinc-800/50 hover:bg-red-500/20 text-zinc-400 hover:text-red-400 transition-all border border-zinc-700/50 group"
+              title="Akhiri Sesi"
+            >
+              <LogOut className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+            </button>
           </div>
         </header>
 

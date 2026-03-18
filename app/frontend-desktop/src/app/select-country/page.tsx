@@ -5,23 +5,24 @@ import { useRouter } from "next/navigation";
 import { HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import WorldMapCanvas from "./selectcountrymap";
+import { countries } from "./countries";
+import { gameStorage } from "../game/gamestorage";
 
 export default function SelectCountry() {
   const router = useRouter();
   const [selectedCountry, setSelectedCountry] = useState("Indonesia");
-  const [countries, setCountries] = useState<any[]>([]);
   const [isCentered, setIsCentered] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
   useEffect(() => {
-    fetch("/country_centers.json")
-      .then(res => res.json())
-      .then(data => {
-        setCountries(data);
-        if (data.length > 0) setSelectedCountry(data[0].name_en);
-      })
-      .catch(err => console.error("Failed to load countries", err));
+    // Check for active session
+    if (gameStorage.hasActiveSession()) {
+      router.push("/game");
+      return;
+    }
+    if (countries.length > 0 && !selectedCountry) setSelectedCountry(countries[0].name_en);
   }, []);
 
   // Auto-scroll selected item into view
@@ -177,16 +178,41 @@ export default function SelectCountry() {
 
           <button 
             onClick={() => {
-              localStorage.setItem("selectedCountry", selectedCountry);
-              router.push("/game");
+              setIsLoading(true);
+              gameStorage.saveSession(selectedCountry);
+              setTimeout(() => {
+                router.push("/game");
+              }, 1500);
             }}
-            className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/30 transition-all cursor-pointer group scale-100 hover:scale-[1.02] active:scale-[0.98]"
+            disabled={isLoading}
+            className={`flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/30 transition-all cursor-pointer group scale-100 hover:scale-[1.02] active:scale-[0.98] ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <Play className="h-4 w-4" />
-            Mulai
+            {isLoading ? "Memproses..." : "Mulai"}
           </button>
         </div>
       </footer>
+
+      {/* 4. LOADING OVERLAY */}
+      {isLoading && (
+        <div className="fixed inset-0 z-[100] bg-zinc-950/80 backdrop-blur-xl flex flex-col items-center justify-center animate-in fade-in duration-500">
+          <div className="relative">
+            <div className="h-24 w-24 rounded-full border-t-2 border-r-2 border-cyan-500 animate-spin" />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <div 
+                className="h-16 w-16 rounded-full border-b-2 border-l-2 border-blue-600 animate-spin" 
+                style={{ animationDirection: 'reverse' }}
+              />
+            </div>
+          </div>
+          <div className="mt-8 flex flex-col items-center gap-2">
+            <h2 className="text-xl font-bold tracking-widest text-white uppercase bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
+              Menyiapkan Simulasi
+            </h2>
+            <p className="text-zinc-500 text-[10px] animate-pulse uppercase tracking-tight">Sedang memproses data negara {currentData.name_id}...</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
