@@ -17,6 +17,6 @@ func main() {
 		})
 	})
 
-	fmt.Println("User Game Backend running on :8081")
-	r.Run(":8081") // Admin is on 8080, User on 8081
+	fmt.Println("User Game Backend running on :4001")
+	r.Run(":4001") // Admin is on 8080, User on 4001
 }

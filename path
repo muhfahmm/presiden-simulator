@@ -1,23 +1,29 @@
 ===ADMINPANEL===
 server Go
-cd "c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\admin\backend"
+cd "c:\fhm\EM4\admin\backend"
 go run cmd/main.go
 
 frontend
-cd "c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\admin\frontend"
+cd "c:\fhm\EM4\admin\frontend"
 npm run dev
 
 
 ===USERPAGE===
-frontend-desktop (Web - port 3001)
-cd "c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\app\frontend-desktop"
+frontend-desktop (Web - port 4000)
+cd "c:\fhm\EM4\app\frontend-desktop"
 npm run dev
 
 frontend-desktop (Desktop - Tauri)
-cd "c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\app\frontend-desktop"
+cd "c:\fhm\EM4\app\frontend-desktop"
 npx tauri dev
 
-server Go (User Game Server - port 8081)
-cd "c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\app\backend"
+server Go (User Game Server - port 4001)
+cd "c:\fhm\EM4\app\backend"
 go run cmd/main.go
 
+force stop
+node js
+taskkill /F /IM node.exe
+
+go
+taskkill /F /IM main.exe
