@@ -1,44 +1,49 @@
 "use client"
 
 import { X, Shield, Swords, Eye, Bomb, Map as MapIcon, Radiation, Users, Zap, Truck, Anchor, Plane, Search, Crosshair, Target } from "lucide-react"
+import { CountryData } from "../../../select-country/data/types";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  data: CountryData;
 }
 
-export default function PertahananModal({ isOpen, onClose }: ModalProps) {
+export default function PertahananModal({ isOpen, onClose, data }: ModalProps) {
   if (!isOpen) return null;
+
+  const strat = data.sector_military_strategic;
+  const def = data.sector_defense;
 
   const sections = [
     {
       title: "Strategi Nasional",
       icon: Target,
       items: [
-        { label: "Serang Negara", icon: Swords, desc: "Operasi militer terbuka" },
-        { label: "Operasi Spionase", icon: Eye, desc: "Intelijen luar negeri" },
-        { label: "Misi Sabotase", icon: Bomb, desc: "Gangguan infrastruktur musuh" },
-        { label: "Manajemen Wilayah", icon: MapIcon, desc: "Rekonsiliasi wilayah direbut" },
-        { label: "Program Nuklir", icon: Radiation, desc: "Pengembangan hulu ledak" },
+        { label: "Serang Negara", icon: Swords, desc: `${strat.strategic_operations.attack_mission} Operasi Aktif`, value: strat.strategic_operations.attack_mission },
+        { label: "Operasi Spionase", icon: Eye, desc: `${strat.strategic_operations.spy_mission} Agen Lapangan`, value: strat.strategic_operations.spy_mission },
+        { label: "Misi Sabotase", icon: Bomb, desc: `${strat.strategic_operations.sabotage_mission} Target Teridentifikasi`, value: strat.strategic_operations.sabotage_mission },
+        { label: "Manajemen Wilayah", icon: MapIcon, desc: `${strat.strategic_operations.territory_management}% Kontrol Wilayah`, value: strat.strategic_operations.territory_management },
+        { label: "Program Nuklir", icon: Radiation, desc: `${strat.strategic_operations.nuclear_program}% Kesiapan`, value: strat.strategic_operations.nuclear_program },
       ]
     },
     {
       title: "Alutsista & Unit",
       icon: Shield,
       items: [
-        { label: "Divisi Infanteri", icon: Users, desc: "Pasukan darat standar" },
-        { label: "Resimen Tank", icon: Truck, desc: "Kekuatan lapis baja" },
-        { label: "Armada Laut", icon: Anchor, desc: "Kapal perang & selam" },
-        { label: "Skuadron Udara", icon: Plane, desc: "Jet tempur & helikopter" },
+        { label: "Divisi Infanteri", icon: Users, desc: `${(data.military.infantry / 1000).toFixed(1)}k Personel`, value: data.military.infantry },
+        { label: "Resimen Tank", icon: Truck, desc: `${def.military_fleet.darat.main_battle_tank} MBT Siaga`, value: def.military_fleet.darat.main_battle_tank },
+        { label: "Armada Laut", icon: Anchor, desc: `${def.military_fleet.laut.kapal_destroyer} Destroyer Aktif`, value: def.military_fleet.laut.kapal_destroyer },
+        { label: "Skuadron Udara", icon: Plane, desc: `${def.military_fleet.udara.jet_tempur_stealth} Jet Stealth Ready`, value: def.military_fleet.udara.jet_tempur_stealth },
       ]
     },
     {
       title: "Intelijen & Radar",
       icon: Search,
       items: [
-        { label: "Sistem Satelit", icon: Zap, desc: "Pemantauan global" },
-        { label: "Jaringan Radar", icon: Crosshair, desc: "Pertahanan udara berlapis" },
-        { label: "Cyber Ops", icon: Eye, desc: "Perang informasi digital" },
+        { label: "Sistem Satelit", icon: Zap, desc: `${strat.intel_radar.satellite_system} Satelit Orbit`, value: strat.intel_radar.satellite_system },
+        { label: "Jaringan Radar", icon: Crosshair, desc: `${strat.intel_radar.radar_network}% Cakupan`, value: strat.intel_radar.radar_network },
+        { label: "Cyber Ops", icon: Eye, desc: `Level ${strat.intel_radar.cyber_ops} Defense`, value: strat.intel_radar.cyber_ops },
       ]
     }
   ];

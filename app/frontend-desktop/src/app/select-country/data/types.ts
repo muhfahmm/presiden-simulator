@@ -114,6 +114,25 @@ export interface CountryData {
     budget: number; // in T
     personnel: number;
     strength: number; // 0-100
+    military_fleet: {
+      darat: {
+        main_battle_tank: number;
+        apc: number;
+        artileri_berat: number;
+      };
+      laut: {
+        kapal_induk: number;
+        kapal_destroyer: number;
+        kapal_selam_nuklir: number;
+      };
+      udara: {
+        jet_tempur_stealth: number;
+        helikopter_serang: number;
+        pesawat_pengintai: number;
+      };
+      total_unit: number;
+      readiness: number; // 0-100%
+    };
   };
 
   // 7. Sektor Militer Strategis (Detailed)
@@ -126,6 +145,18 @@ export interface CountryData {
     space_program: number; // 0-100
     cyber_defense: number;
     intelligence: number;
+    strategic_operations: {
+      attack_mission: number;
+      spy_mission: number;
+      sabotage_mission: number;
+      territory_management: number;
+      nuclear_program: number;
+    };
+    intel_radar: {
+      satellite_system: number;
+      radar_network: number;
+      cyber_ops: number;
+    };
   };
 
   // 8. Transportasi & Logistik (Moved to infrastructure but keeping ref)
@@ -171,6 +202,25 @@ export interface CountryData {
       police_academy: number;
       corruption_index: number;
       security_index: number;
+      police_fleet: {
+        patroli_lantas: {
+          mobil_patroli: number;
+          sepeda_motor: number;
+          unit_k9: number;
+        };
+        taktis_khusus: {
+          swat: number;
+          helikopter_polisi: number;
+          anti_huru_hara: number;
+        };
+        pusat_komando: {
+          stasiun_polisi: number;
+          kamera_surveillance: number;
+          pusat_forensik: number;
+        };
+        response_time: number; // minutes
+        public_trust: number; // 0-100%
+      };
     };
   };
 
@@ -211,6 +261,20 @@ export interface CountryData {
     allies: string[];
     enemies: string[];
     stance: "Globalist" | "Isolationist" | "Neutral";
+    international_influence: {
+      soft_power: number; // 0-100
+      hard_power: number; // 0-100
+      diplomatic_prestige: number; // 0-100
+    };
+    international_orgs: {
+      name: string;
+      role: "Member" | "Leader" | "Observer";
+    }[];
+    agreements: {
+      partner: string;
+      type: "Trade" | "Military" | "Research" | "Political";
+      status: "Active" | "Pending" | "Cooling";
+    }[];
   };
   ministries: {
     health: number; // 0-100

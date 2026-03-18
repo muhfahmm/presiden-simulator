@@ -12,7 +12,9 @@ const targetNames = [
     // C
     "Cabo Verde", "Chad", "Chili", "Ceko",
     // D
-    "Denmark", "Djibouti", "Dominika"
+    "Denmark", "Djibouti", "Dominika",
+    // Focus
+    "Indonesia", "Rusia", "China", "Inggris", "Prancis", "Jerman"
 ];
 
 const metaContent = JSON.parse(fs.readFileSync(metaFilePath, 'utf8'));
@@ -57,7 +59,9 @@ const manualMap = {
     "yaman": "yemen", "afganistan": "afghanistan",
     "afrika selatan": "south africa", "amerika serikat": "united states",
     "brasil": "brazil", "brunei darussalam": "brunei",
-    "cabo verde": "cape verde", "chili": "chile"
+    "cabo verde": "cape verde", "chili": "chile",
+    "rusia": "russia", "china": "china", "inggris": "united kingdom",
+    "prancis": "france", "jerman": "germany", "indonesia": "indonesia"
 };
 
 const religions = ["Islam", "Protestan", "Katolik", "Kristen Ortodoks", "Hindu", "Buddha", "Ateisme", "Yahudi", "Konghucu", "Taoisme", "Shinto"];
@@ -180,7 +184,26 @@ function getStats() {
             military_academy: Math.floor(Math.random() * 10 * tier) + 1,
             budget: Math.floor(Math.random() * 200 * tier) + 5,
             personnel: Math.floor(Math.random() * 500000 * tier) + 10000,
-            strength: Math.floor(Math.random() * 40) + 40 * tier
+            strength: Math.floor(Math.random() * 40) + 40 * tier,
+            military_fleet: {
+                darat: {
+                    main_battle_tank: Math.floor(Math.random() * 500 * tier) + 50,
+                    apc: Math.floor(Math.random() * 1500 * tier) + 100,
+                    artileri_berat: Math.floor(Math.random() * 400 * tier) + 20
+                },
+                laut: {
+                    kapal_induk: tier > 0.95 ? Math.floor(Math.random() * 3) : 0,
+                    kapal_destroyer: Math.floor(Math.random() * 20 * tier) + 2,
+                    kapal_selam_nuklir: tier > 0.9 ? Math.floor(Math.random() * 10 * tier) : 0
+                },
+                udara: {
+                    jet_tempur_stealth: Math.floor(Math.random() * 60 * tier) + 5,
+                    helikopter_serang: Math.floor(Math.random() * 150 * tier) + 10,
+                    pesawat_pengintai: Math.floor(Math.random() * 30 * tier) + 2
+                },
+                total_unit: Math.floor(Math.random() * 3000 * tier) + 500,
+                readiness: Math.floor(Math.random() * 20) + 80
+            }
         },
 
         // 7. Sektor Militer Strategis (Detailed)
@@ -192,7 +215,19 @@ function getStats() {
             nuclear_status: tier > 0.9,
             space_program: Math.floor(Math.random() * 100 * tier),
             cyber_defense: Math.floor(Math.random() * 100 * tier),
-            intelligence: Math.floor(Math.random() * 100 * tier)
+            intelligence: Math.floor(Math.random() * 100 * tier),
+            strategic_operations: {
+                attack_mission: Math.floor(Math.random() * 10),
+                spy_mission: Math.floor(Math.random() * 20),
+                sabotage_mission: Math.floor(Math.random() * 15),
+                territory_management: Math.floor(Math.random() * 100),
+                nuclear_program: tier > 0.9 ? Math.floor(Math.random() * 100) : 0
+            },
+            intel_radar: {
+                satellite_system: Math.floor(Math.random() * 10 * tier),
+                radar_network: Math.floor(Math.random() * 100 * tier),
+                cyber_ops: Math.floor(Math.random() * 100 * tier)
+            }
         },
 
         // 9-12. Sektor Sosial (Detailed)
@@ -235,7 +270,26 @@ function getStats() {
                 police_car_fleet: Math.floor(Math.random() * 5000 * tier) + 200,
                 police_academy: Math.floor(Math.random() * 20 * tier) + 2,
                 corruption_index: Math.floor(Math.random() * 100),
-                security_index: Math.floor(Math.random() * 100)
+                security_index: Math.floor(Math.random() * 100),
+                police_fleet: {
+                    patroli_lantas: {
+                        mobil_patroli: Math.floor(Math.random() * 3000 * tier) + 500,
+                        sepeda_motor: Math.floor(Math.random() * 1500 * tier) + 200,
+                        unit_k9: Math.floor(Math.random() * 200 * tier) + 20
+                    },
+                    taktis_khusus: {
+                        swat: Math.floor(Math.random() * 100 * tier) + 10,
+                        helikopter_polisi: Math.floor(Math.random() * 40 * tier) + 5,
+                        anti_huru_hara: Math.floor(Math.random() * 600 * tier) + 50
+                    },
+                    pusat_komando: {
+                        stasiun_polisi: Math.floor(Math.random() * 150 * tier) + 20,
+                        kamera_surveillance: Math.floor(Math.random() * 50000 * tier) + 5000,
+                        pusat_forensik: Math.floor(Math.random() * 10 * tier) + 1
+                    },
+                    response_time: Math.floor(Math.random() * 10) + 2,
+                    public_trust: Math.floor(Math.random() * 40) + 50
+                }
             }
         },
 
@@ -276,7 +330,22 @@ function getStats() {
         geopolitics: {
             allies: ["Amerika Serikat", "Uni Eropa", "ASEAN"].slice(0, Math.floor(Math.random() * 3) + 1),
             enemies: tier > 0.8 ? ["Korea Utara", "Rusia"] : [],
-            stance: ["Globalist", "Isolationist", "Neutral"][Math.floor(Math.random() * 3)]
+            stance: ["Globalist", "Isolationist", "Neutral"][Math.floor(Math.random() * 3)],
+            international_influence: {
+                soft_power: Math.floor(Math.random() * 40 * tier) + 10,
+                hard_power: Math.floor(Math.random() * 50 * tier) + 5,
+                diplomatic_prestige: Math.floor(Math.random() * 30) + 40
+            },
+            international_orgs: [
+                { name: "PBB (UN)", role: tier > 0.9 ? "Leader" : "Member" },
+                { name: "WHO", role: "Member" },
+                { name: "WTO", role: "Member" }
+            ].concat(tier > 0.7 ? [{ name: "G20", role: "Member" }] : []),
+            agreements: ["Amerika Serikat", "Uni Eropa", "ASEAN"].slice(0, 2).map(a => ({
+                partner: a,
+                type: Math.random() > 0.5 ? "Trade" : "Military",
+                status: "Active"
+            }))
         },
         ministries: {
             health: Math.floor(Math.random() * 40) + 50,

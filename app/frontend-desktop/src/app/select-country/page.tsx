@@ -14,7 +14,8 @@ import {
   TrainFront, Wifi, Smartphone, Droplet, Cpu, Layers, Microscope, Trophy, Gavel, Sprout, Box, 
   Syringe, GraduationCap, Crosshair, RadioTower, Landmark, Fish, Construction, Pill, Car, Bike, 
   Utensils, Apple, Coffee, Milk, Bird, Egg, Leaf, Shell, Bean, Carrot, Cookie, Croissant, Soup,
-  HeartPulse, Search, Library, Lightbulb, Eye, Archive, ShieldAlert, Warehouse, Lock, Scale
+  HeartPulse, Search, Library, Lightbulb, Eye, Archive, ShieldAlert, Warehouse, Lock, Scale,
+  Truck, Shield
 } from "lucide-react";
 
 export default function SelectCountry() {
@@ -22,6 +23,7 @@ export default function SelectCountry() {
   const [selectedCountry, setSelectedCountry] = useState("Indonesia");
   const [isCentered, setIsCentered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [geoTab, setGeoTab] = useState<"overview" | "orgs" | "agreements">("overview");
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
@@ -257,7 +259,7 @@ export default function SelectCountry() {
           <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-[360px] pointer-events-auto">
             <h3 className="text-[10px] font-black text-red-500 uppercase tracking-[0.2em] mb-1">Pertahanan & Strategis</h3>
             
-            <div className="flex flex-col gap-4 overflow-y-auto max-h-[400px] no-scrollbar pr-1">
+            <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px] no-scrollbar pr-1">
               {/* Defense Assets */}
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
@@ -271,6 +273,64 @@ export default function SelectCountry() {
                   <SectorStat icon={<Warehouse size={10} className="text-zinc-500"/>} label="Hangar Tank" value={currentData.sector_defense.tank_hangar} />
                   <SectorStat icon={<GraduationCap size={10} className="text-zinc-200"/>} label="Akademi Militer" value={currentData.sector_defense.military_academy} />
                   <SectorStat icon={<Landmark size={10} className="text-red-400"/>} label="Budget" value={currentData.sector_defense.budget} />
+                </div>
+              </div>
+
+              <div className="h-px bg-zinc-800/50" />
+
+              {/* Military Fleet */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Truck size={10}/> Armada Militer</span>
+                  <span className="text-[9px] font-black text-amber-500">{currentData.sector_defense.military_fleet.readiness}% Ready</span>
+                </div>
+                
+                {/* Darat */}
+                <div className="grid grid-cols-3 gap-1.5">
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Tank</span>
+                    <span className="text-[10px] font-black text-white leading-none">{currentData.sector_defense.military_fleet.darat.main_battle_tank}</span>
+                  </div>
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">APC</span>
+                    <span className="text-[10px] font-black text-white leading-none">{currentData.sector_defense.military_fleet.darat.apc}</span>
+                  </div>
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Artileri</span>
+                    <span className="text-[10px] font-black text-white leading-none">{currentData.sector_defense.military_fleet.darat.artileri_berat}</span>
+                  </div>
+                </div>
+
+                {/* Laut */}
+                <div className="grid grid-cols-3 gap-1.5">
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Induk</span>
+                    <span className="text-[10px] font-black text-white leading-none">{currentData.sector_defense.military_fleet.laut.kapal_induk}</span>
+                  </div>
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Destroyer</span>
+                    <span className="text-[10px] font-black text-white leading-none">{currentData.sector_defense.military_fleet.laut.kapal_destroyer}</span>
+                  </div>
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Selam N</span>
+                    <span className="text-[10px] font-black text-white leading-none">{currentData.sector_defense.military_fleet.laut.kapal_selam_nuklir}</span>
+                  </div>
+                </div>
+
+                {/* Udara */}
+                <div className="grid grid-cols-3 gap-1.5">
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Stealth</span>
+                    <span className="text-[10px] font-black text-white leading-none">{currentData.sector_defense.military_fleet.udara.jet_tempur_stealth}</span>
+                  </div>
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Heli Ser</span>
+                    <span className="text-[10px] font-black text-white leading-none">{currentData.sector_defense.military_fleet.udara.helikopter_serang}</span>
+                  </div>
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Intai</span>
+                    <span className="text-[10px] font-black text-white leading-none">{currentData.sector_defense.military_fleet.udara.pesawat_pengintai}</span>
+                  </div>
                 </div>
               </div>
 
@@ -290,6 +350,81 @@ export default function SelectCountry() {
                   <SectorStat icon={<RadioTower size={10} className="text-purple-400"/>} label="Lintas Antariksa" value={currentData.sector_military_strategic.space_program} />
                   <SectorStat icon={<Radio size={10} className="text-red-400"/>} label="Status Nuklir" value={currentData.sector_military_strategic.nuclear_status ? 1 : 0} />
                 </div>
+
+                {/* Strategic Ops & Intel Radar */}
+                <div className="grid grid-cols-2 gap-2 mt-2">
+                  <div className="flex flex-col gap-1.5 p-2 bg-zinc-800/40 rounded-xl border border-zinc-700/30">
+                    <span className="text-[8px] font-black text-zinc-500 uppercase tracking-tighter">Strategic Ops</span>
+                    <div className="flex justify-between items-center text-[10px] font-bold">
+                      <span className="text-red-400">Attack: {currentData.sector_military_strategic.strategic_operations.attack_mission}</span>
+                      <span className="text-emerald-400">Spy: {currentData.sector_military_strategic.strategic_operations.spy_mission}</span>
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-1.5 p-2 bg-zinc-800/40 rounded-xl border border-zinc-700/30">
+                    <span className="text-[8px] font-black text-zinc-500 uppercase tracking-tighter">Intel Radar</span>
+                    <div className="flex justify-between items-center text-[10px] font-bold text-blue-400">
+                      <span>Sat: {currentData.sector_military_strategic.intel_radar.satellite_system}</span>
+                      <span>Net: {currentData.sector_military_strategic.intel_radar.radar_network}%</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="h-px bg-zinc-800/50" />
+
+              {/* Police Fleet Details */}
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[9px] font-black text-blue-400 uppercase tracking-widest flex items-center gap-1.5"><Shield size={10}/> Armada Kepolisian</span>
+                  <span className="text-[10px] font-bold text-emerald-400">{currentData.sector_social.law.police_fleet.public_trust}% Trust</span>
+                </div>
+                
+                {/* Patrol & Taktis */}
+                <div className="grid grid-cols-3 gap-1.5">
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Patroli</span>
+                    <span className="text-[10px] font-black text-white leading-none">{currentData.sector_social.law.police_fleet.patroli_lantas.mobil_patroli}</span>
+                  </div>
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Motor</span>
+                    <span className="text-[10px] font-black text-white">{currentData.sector_social.law.police_fleet.patroli_lantas.sepeda_motor}</span>
+                  </div>
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">K-9</span>
+                    <span className="text-[10px] font-black text-white">{currentData.sector_social.law.police_fleet.patroli_lantas.unit_k9}</span>
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-3 gap-1.5">
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">SWAT</span>
+                    <span className="text-[10px] font-black text-white leading-none">{currentData.sector_social.law.police_fleet.taktis_khusus.swat}</span>
+                  </div>
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Heli Pol</span>
+                    <span className="text-[10px] font-black text-white">{currentData.sector_social.law.police_fleet.taktis_khusus.helikopter_polisi}</span>
+                  </div>
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">HuruHara</span>
+                    <span className="text-[10px] font-black text-white">{currentData.sector_social.law.police_fleet.taktis_khusus.anti_huru_hara}</span>
+                  </div>
+                </div>
+
+                {/* Komando */}
+                <div className="grid grid-cols-3 gap-1.5">
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Stasiun</span>
+                    <span className="text-[10px] font-black text-white tracking-tighter">{currentData.sector_social.law.police_fleet.pusat_komando.stasiun_polisi}</span>
+                  </div>
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">CCTV</span>
+                    <span className="text-[10px] font-black text-white tracking-tighter">{currentData.sector_social.law.police_fleet.pusat_komando.kamera_surveillance}</span>
+                  </div>
+                  <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                    <span className="text-[7px] text-zinc-500 font-bold uppercase leading-none mb-1">Forensik</span>
+                    <span className="text-[10px] font-black text-white tracking-tighter">{currentData.sector_social.law.police_fleet.pusat_komando.pusat_forensik}</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -298,7 +433,7 @@ export default function SelectCountry() {
           <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-[360px] pointer-events-auto">
             <h3 className="text-[10px] font-black text-cyan-500 uppercase tracking-[0.2em] mb-1">Layanan Sosial & Publik</h3>
             
-            <div className="flex flex-col gap-4 overflow-y-auto max-h-[450px] no-scrollbar pr-1">
+            <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px] no-scrollbar pr-1">
               {/* Education & Research */}
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
@@ -353,31 +488,116 @@ export default function SelectCountry() {
             </div>
           </div>
 
-          {/* 5. Ekonomi & Geopolitik */}
-          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-72 pointer-events-auto">
+          {/* 5. Ekonomi & Geopolitik (Expanded) */}
+          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-3 w-80 pointer-events-auto">
             <div className="flex items-center justify-between">
-              <h3 className="text-[10px] font-black text-blue-500 uppercase tracking-[0.2em]">Ekonomi & Geopolitik</h3>
-              <span className="text-[9px] font-black bg-orange-500/20 text-orange-400 px-2 py-0.5 rounded uppercase">{currentData.geopolitics.stance}</span>
-            </div>
-            
-            <div className="grid grid-cols-2 gap-4">
-              <div className="flex flex-col gap-1">
-                <span className="text-[9px] font-bold text-zinc-500 uppercase">Surplus Dagang</span>
-                <span className="text-[11px] font-black text-green-400">Rp {currentData.trade.sell_commodity - currentData.trade.buy_commodity} T</span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-[9px] font-bold text-zinc-500 uppercase">Stabilitas Pajak</span>
-                <span className="text-[11px] font-black text-blue-400">{currentData.taxes.income.satisfaction}%</span>
-              </div>
+              <h3 className="text-[10px] font-black text-blue-500 uppercase tracking-[0.2em]">Geopolitik & Luar Negeri</h3>
+              <span className="text-[9px] font-black bg-indigo-500/20 text-indigo-400 px-2 py-0.5 rounded uppercase">{currentData.geopolitics.stance}</span>
             </div>
 
-            <div className="flex flex-col gap-2 pt-1">
-              <span className="text-[9px] font-bold text-zinc-500 uppercase">Sekutu Utama</span>
-              <div className="flex flex-wrap gap-1.5">
-                {currentData.geopolitics.allies.slice(0, 3).map((a, i) => (
-                  <span key={i} className="text-[9px] font-bold text-zinc-300 bg-zinc-800 px-2 py-1 rounded-md border border-zinc-700/50">{a}</span>
-                ))}
-              </div>
+            {/* Sub-Tabs */}
+            <div className="flex gap-1 p-1 bg-zinc-800/50 rounded-lg">
+              {(["overview", "orgs", "agreements"] as const).map(tab => (
+                <button
+                  key={tab}
+                  onClick={() => setGeoTab(tab)}
+                  className={`flex-1 text-[8px] font-bold uppercase py-1 rounded-md transition-all ${
+                    geoTab === tab ? "bg-zinc-700 text-white shadow-sm" : "text-zinc-500 hover:text-zinc-300"
+                  }`}
+                >
+                  {tab === "overview" ? "Overview" : tab === "orgs" ? "Diplomacy" : "Treaties"}
+                </button>
+              ))}
+            </div>
+            
+            <div className="min-h-[140px] flex flex-col gap-3">
+              {geoTab === "overview" && (
+                <div className="flex flex-col gap-3 animate-in fade-in slide-in-from-right-1 duration-300">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[9px] font-bold text-zinc-500 uppercase">Surplus Dagang</span>
+                      <span className="text-[11px] font-black text-green-400">Rp {currentData.trade.sell_commodity - currentData.trade.buy_commodity} T</span>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-[9px] font-bold text-zinc-500 uppercase">Diplomacy</span>
+                      <span className="text-[11px] font-black text-blue-400">{currentData.geopolitics.international_influence.diplomatic_prestige} IX</span>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <div className="flex flex-col gap-1">
+                      <div className="flex justify-between text-[8px] font-bold uppercase">
+                        <span className="text-zinc-500">Soft Power</span>
+                        <span className="text-indigo-400">{currentData.geopolitics.international_influence.soft_power}%</span>
+                      </div>
+                      <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
+                        <div className="h-full bg-indigo-500 transition-all duration-500" style={{ width: `${currentData.geopolitics.international_influence.soft_power}%` }} />
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <div className="flex justify-between text-[8px] font-bold uppercase">
+                        <span className="text-zinc-500">Hard Power</span>
+                        <span className="text-red-400">{currentData.geopolitics.international_influence.hard_power}%</span>
+                      </div>
+                      <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
+                        <div className="h-full bg-red-500 transition-all duration-500" style={{ width: `${currentData.geopolitics.international_influence.hard_power}%` }} />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-1.5 scroll-area max-h-[60px] no-scrollbar overflow-y-auto">
+                    <span className="text-[8px] font-bold text-zinc-500 uppercase">Sekutu Utama</span>
+                    <div className="flex flex-wrap gap-1">
+                      {currentData.geopolitics.allies.map((a, i) => (
+                        <span key={i} className="text-[8px] font-bold text-zinc-300 bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700/50">{a}</span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              )}
+
+              {geoTab === "orgs" && (
+                <div className="flex flex-col gap-2 animate-in fade-in slide-in-from-right-1 duration-300">
+                  <span className="text-[8px] font-bold text-zinc-500 uppercase">Keanggotaan Organisasi</span>
+                  <div className="flex flex-col gap-1.5">
+                    {currentData.geopolitics.international_orgs.map((org, i) => (
+                      <div key={i} className="flex items-center justify-between p-2 bg-zinc-800/40 rounded-lg border border-zinc-700/30">
+                        <div className="flex items-center gap-2">
+                          <Globe2 size={10} className="text-blue-400"/>
+                          <span className="text-[10px] font-bold text-white">{org.name}</span>
+                        </div>
+                        <span className={`text-[8px] font-black px-1.5 py-0.5 rounded ${
+                          org.role === "Leader" ? "bg-amber-500/20 text-amber-400" : "bg-zinc-700/50 text-zinc-400"
+                        }`}>{org.role}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {geoTab === "agreements" && (
+                <div className="flex flex-col gap-2 animate-in fade-in slide-in-from-right-1 duration-300">
+                  <span className="text-[8px] font-bold text-zinc-500 uppercase">Perjanjian Internasional</span>
+                  <div className="flex flex-col gap-1.5">
+                    {currentData.geopolitics.agreements.map((agr, i) => (
+                      <div key={i} className="flex flex-col gap-1 p-2 bg-zinc-800/40 rounded-lg border border-zinc-700/30">
+                        <div className="flex justify-between items-center text-[10px] font-black">
+                          <span className="text-white">{agr.partner}</span>
+                          <span className={`text-[8px] uppercase ${
+                            agr.type === "Military" ? "text-red-400" : agr.type === "Trade" ? "text-emerald-400" : "text-blue-400"
+                          }`}>{agr.type}</span>
+                        </div>
+                        <div className="flex justify-between items-center">
+                          <span className="text-[8px] text-zinc-500">{agr.status}</span>
+                          <div className="flex gap-0.5">
+                            {[1, 2, 3].map(s => <div key={s} className={`w-1 h-1 rounded-full ${s === 1 ? 'bg-emerald-500' : 'bg-zinc-700'}`} />)}
+                          </div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 

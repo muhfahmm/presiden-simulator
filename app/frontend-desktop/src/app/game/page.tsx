@@ -8,6 +8,8 @@ import GameMapCanvas from "./gamemap";
 import StrategyModal from "./StrategyModal";
 import BottomNav from "./components/BottomNav";
 import { gameStorage } from "./gamestorage";
+import { countries } from "../select-country/data/countries";
+import { CountryData } from "../select-country/data/types";
 
 // Bottom Nav Modals
 import RatingPresidenModal from "./components/rating-presiden/RatingPresidenModal";
@@ -25,6 +27,8 @@ import ProduksiMiliterModal from "./components/pembangunan/ProduksiMiliterModal"
 import TempatUmumModal from "./components/pembangunan/TempatUmumModal";
 import DemandModal from "./components/demands/DemandModal";
 import PertahananModal from "./components/pertahanan/PertahananModal";
+import ArmadaMiliterModal from "./components/pertahanan/ArmadaMiliterModal";
+import ArmadaPolisiModal from "./components/pertahanan/ArmadaPolisiModal";
 import GeopolitikModal from "./components/geopolitik/GeopolitikModal";
 import KementerianModal from "./components/kementerian/KementerianModal";
 
@@ -42,6 +46,8 @@ export default function GameDashboard() {
   const [isCentered, setIsCentered] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string>("Peta Taktis");
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const countryData = countries.find(c => c.name_id === userCountry) || countries[0];
 
 
 
@@ -170,10 +176,22 @@ export default function GameDashboard() {
           <PertahananModal 
             isOpen={activeMenu === "Komando Pertahanan"} 
             onClose={() => setActiveMenu("Pertahanan")} 
+            data={countryData}
+          />
+          <ArmadaMiliterModal
+            isOpen={activeMenu === "Menu:ArmadaMiliter"}
+            onClose={() => setActiveMenu("Pertahanan")}
+            data={countryData}
+          />
+          <ArmadaPolisiModal
+            isOpen={activeMenu === "Menu:ArmadaPolisi"}
+            onClose={() => setActiveMenu("Pertahanan")}
+            data={countryData}
           />
           <GeopolitikModal 
             isOpen={activeMenu === "Geopolitik & Luar Negeri"} 
             onClose={() => setActiveMenu("Geopolitik")} 
+            data={countryData}
           />
           <KementerianModal 
             isOpen={activeMenu === "Dashboard:Kementerian"} 
