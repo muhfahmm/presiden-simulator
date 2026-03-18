@@ -1,0 +1,201 @@
+# Checklist Negara dalam Game
+
+Berikut adalah daftar negara dari `/daftar-menu/6.DAFTAR NEGARA.txt` dan status keberadaannya di map visual:
+
+- [ ] **Afganistan** _(Belum Terlihat)_
+- [x] Albania
+- [x] Aljazair
+- [x] Andorra
+- [x] Angola
+- [x] Antigua Dan Barbuda
+- [x] Arab Saudi
+- [x] Argentina
+- [x] Armenia
+- [x] Australia
+- [x] Austria
+- [x] Azerbaijan
+- [x] Bahama
+- [x] Bahrain
+- [ ] **Bangladesh** _(Belum Terlihat)_
+- [x] Barbados
+- [x] Belanda
+- [x] Belarus
+- [x] Belgia
+- [x] Belize
+- [x] Benin
+- [x] Bhutan
+- [ ] **Bolivia** _(Belum Terlihat)_
+- [x] Bosnia Dan Hercegovina
+- [x] Botswana
+- [x] Brazil
+- [x] Brunei
+- [x] Bulgaria
+- [x] Burkina Faso
+- [x] Burundi
+- [x] Chad
+- [x] Chile
+- [x] China
+- [ ] **Costa Rica** _(Belum Terlihat)_
+- [x] Ceko
+- [ ] **Denmark** _(Belum Terlihat)_
+- [x] Dominika
+- [x] Ekuador
+- [x] El Salvador
+- [x] Eritrea
+- [ ] **Estonia** _(Belum Terlihat)_
+- [x] Ethiopia
+- [x] Fiji
+- [x] Filipina
+- [x] Finlandia
+- [x] Gabon
+- [x] Gambia
+- [ ] **Georgia** _(Belum Terlihat)_
+- [x] Ghana
+- [x] Grenada
+- [x] Guatemala
+- [x] Guinea
+- [x] Guinea-Bissau
+- [x] Guyana
+- [ ] **Haiti** _(Belum Terlihat)_
+- [x] Honduras
+- [x] Hungaria
+- [x] Islandia
+- [x] India
+- [ ] **Indonesia** _(Belum Terlihat)_
+- [x] Irak
+- [x] Iran
+- [ ] **Irlandia** _(Belum Terlihat)_
+- [x] Israel
+- [x] Italia
+- [x] Jamaika
+- [x] Jepang
+- [x] Jerman
+- [x] Yordania
+- [x] Kamboja
+- [x] Kamerun
+- [x] Kanada
+- [x] Kazakhstan
+- [x] Kenya
+- [x] Kirgizstan
+- [x] Kiribati
+- [x] Kolombia
+- [x] Komoro
+- [x] Kongo
+- [x] Korea Selatan
+- [ ] **Korea Utara** _(Belum Terlihat)_
+- [x] Kosta Rika
+- [x] Kroasia
+- [x] Kuba
+- [x] Kuwait
+- [x] Laos
+- [x] Latvia
+- [x] Lebanon
+- [x] Lesotho
+- [x] Liberia
+- [x] Libya
+- [x] Liechtenstein
+- [ ] **Lithuania** _(Belum Terlihat)_
+- [x] Luksemburg
+- [x] Madagaskar
+- [x] Malawi
+- [x] Malaysia
+- [x] Maldives
+- [x] Mali
+- [x] Malta
+- [x] Maroko
+- [x] Marshall
+- [ ] **Mauritania** _(Belum Terlihat)_
+- [x] Mauritius
+- [x] Meksiko
+- [x] Mikronesia
+- [x] Moldova
+- [x] Monako
+- [x] Mongolia
+- [x] Montenegro
+- [x] Mozambik
+- [ ] **Myanmar** _(Belum Terlihat)_
+- [x] Namibia
+- [x] Nauru
+- [ ] **Nepal** _(Belum Terlihat)_
+- [x] Niger
+- [x] Nigeria
+- [x] Nikaragua
+- [x] Norwegia
+- [x] Oman
+- [x] Pakistan
+- [x] Palau
+- [x] Palestina
+- [x] Panama
+- [x] Papua Nugini
+- [x] Paraguay
+- [x] Peru
+- [x] Polandia
+- [ ] **Portugal** _(Belum Terlihat)_
+- [x] Qatar
+- [x] Republik Afrika Tengah
+- [x] Republik Demokratik Kongo
+- [x] Republik Dominika
+- [x] Republik Madagaskar
+- [x] Republik Moldova
+- [x] Republik Mozambik
+- [x] Republik Rumania
+- [ ] **Republik Serbia** _(Belum Terlihat)_
+- [x] Republik Sudan
+- [x] Republik Tanzania
+- [x] Republik Timor-Leste
+- [x] Republik Uganda
+- [x] Republik Zambia
+- [x] Republik Zimbabwe
+- [x] Rusia
+- [x] Rwanda
+- [x] Saint Kitts Dan Nevis
+- [x] Saint Lucia
+- [x] Saint Vincent Dan Grenadine
+- [x] Samoa
+- [x] San Marino
+- [x] Sao Tome Dan Principe
+- [x] Senegal
+- [x] Seychelles
+- [x] Sierra Leone
+- [x] Singapura
+- [x] Slowakia
+- [x] Slovenia
+- [x] Somalia
+- [x] Spanyol
+- [x] Sri Lanka
+- [x] Sudan Selatan
+- [x] Suriname
+- [x] Suriah
+- [x] Swedia
+- [x] Swiss
+- [ ] **Taiwan** _(Belum Terlihat)_
+- [x] Tajikistan
+- [x] Tahiti
+- [x] Tanzania
+- [x] Thailand
+- [x] Timor-Leste
+- [x] Togo
+- [x] Tonga
+- [x] Trinidad Dan Tobago
+- [x] Tunisia
+- [x] Turki
+- [x] Turkmenistan
+- [x] Tuvalu
+- [x] Ukraina
+- [x] Uni Emirat Arab
+- [x] Uruguay
+- [x] Uzbekistan
+- [x] Vanuatu
+- [x] Vatikan
+- [x] Venezuela
+- [x] Vietnam
+- [x] Yaman
+- [x] Yordania
+- [x] Yugoslavia
+- [x] Zambia
+- [x] Zimbabwe
+
+## 📊 Ringkasan
+- **Total Negara di List**: 192
+- **Telah Ada di Map**: 174
+- **Belum Ada di Map**: 18

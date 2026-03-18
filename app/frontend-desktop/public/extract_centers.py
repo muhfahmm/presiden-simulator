@@ -1,6 +1,7 @@
 import json
 import os
 import random
+from typing import Dict, Any, List, cast
 
 geojson_path = r"c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\app\frontend-desktop\public\world.geojson"
 daftar_negara_path = r"c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\daftar-menu\6.DAFTAR NEGARA.txt"
@@ -17,10 +18,10 @@ if os.path.exists(daftar_negara_path):
                 daftar_id.append(parts[1].strip().lower())
 
 # Load ISO Mapping
-iso_map = {}
+iso_map: Dict[str, str] = {}
 if os.path.exists(iso_path):
     with open(iso_path, 'r', encoding='utf-8') as f:
-        iso_list = json.load(f)
+        iso_list = cast(List[Dict[str, str]], json.load(f))
         for item in iso_list:
             iso_map[item['alpha-3']] = item['alpha-2']
 
@@ -30,10 +31,10 @@ def get_flag(iso2):
 
 # Load Translation Lookup
 lookup_path = r"c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\app\frontend-desktop\public\translations.json"
-translations = {}
+translations: Dict[str, str] = {}
 if os.path.exists(lookup_path):
     with open(lookup_path, 'r', encoding='utf-8') as f:
-        translations = json.load(f)
+        translations = cast(Dict[str, str], json.load(f))
 
 def calculate_polygon_area_centroid(polygon):
     n = len(polygon)
@@ -68,11 +69,12 @@ with open(geojson_path, 'r', encoding='utf-8') as f:
 centers = []
 
 for feature in geojson['features']:
-    name_en = feature['properties']['name']
-    geom = feature['geometry']
-    iso3 = feature.get('id', '')
+    props = cast(Dict[str, Any], feature.get('properties', {}))
+    name_en = props.get('name', '')
+    geom = cast(Dict[str, Any], feature.get('geometry', {}))
+    iso3 = str(feature.get('id', ''))
     
-    max_area = -1
+    max_area = -1.0
     best_centroid = (0, 0)
     
     if geom['type'] == 'Polygon':
@@ -81,12 +83,13 @@ for feature in geojson['features']:
     elif geom['type'] == 'MultiPolygon':
         for polygon_coords in geom['coordinates']:
             area, centroid = calculate_polygon_area_centroid(polygon_coords[0])
-            if area > max_area:
+            if float(area) > max_area:
                 max_area = area
                 best_centroid = centroid
 
     # Match Translation
-    name_id = translations.get(name_en, name_en.title())
+    name_en_str = str(name_en)
+    name_id = str(translations.get(name_en_str, name_en_str.title()))
 
     iso2 = iso_map.get(iso3, "")
     flag = get_flag(iso2)

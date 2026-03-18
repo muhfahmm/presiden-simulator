@@ -3,7 +3,7 @@ import os
 
 daftar_negara_path = r"c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\daftar-menu\6.DAFTAR NEGARA.txt"
 centers_path = r"c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\app\frontend-desktop\public\country_centers.json"
-output_checklist_path = r"C:\Users\fahim\.gemini\antigravity\brain\1d14f05c-f696-4b08-ba79-3342ae8c4932\checklist_negara.md"
+output_checklist_path = r"c:\fhm\PROJECT - ANTIGRAVITY\GAME PRESIDEN\checklist_negara.md"
 
 daftar = []
 if os.path.exists(daftar_negara_path):
@@ -11,7 +11,12 @@ if os.path.exists(daftar_negara_path):
         for line in f:
             parts = line.strip().split('. ', 1)
             if len(parts) > 1:
-                daftar.append(parts[1].strip())
+                country = parts[1].strip()
+                if country.startswith('[x] '):
+                    country = str(country).replace('[x] ', '', 1).strip()
+                elif country.startswith('[ ] '):
+                    country = str(country).replace('[ ] ', '', 1).strip()
+                daftar.append(country)
 
 centers = []
 if os.path.exists(centers_path):
@@ -24,11 +29,11 @@ with open(output_checklist_path, 'w', encoding='utf-8') as f:
     f.write("# Checklist Negara dalam Game\n\n")
     f.write("Berikut adalah daftar negara dari `/daftar-menu/6.DAFTAR NEGARA.txt` dan status keberadaannya di map visual:\n\n")
     
-    missing_count = 0
-    found_count = 0
+    missing_count = [0]
+    found_count = [0]
     
     for country in daftar:
-        c_lower = country.lower()
+        c_lower = str(country).lower()
         on_map = False
         
         if c_lower in countries_on_map:
@@ -42,15 +47,15 @@ with open(output_checklist_path, 'w', encoding='utf-8') as f:
                     
         if on_map:
             f.write(f"- [x] {country.title()}\n")
-            found_count += 1
+            found_count[0] += 1
         else:
             f.write(f"- [ ] **{country.title()}** _(Belum Terlihat)_\n")
-            missing_count += 1
+            missing_count[0] += 1
             
     f.write(f"\n## 📊 Ringkasan\n")
     f.write(f"- **Total Negara di List**: {len(daftar)}\n")
-    f.write(f"- **Telah Ada di Map**: {found_count}\n")
-    f.write(f"- **Belum Ada di Map**: {missing_count}\n")
+    f.write(f"- **Telah Ada di Map**: {found_count[0]}\n")
+    f.write(f"- **Belum Ada di Map**: {missing_count[0]}\n")
     
 print(f"Checklist generated: {output_checklist_path}")
-print(f"Total: {len(daftar)}, Found: {found_count}, Missing: {missing_count}")
+print(f"Total: {len(daftar)}, Found: {found_count[0]}, Missing: {missing_count[0]}")

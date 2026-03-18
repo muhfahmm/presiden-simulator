@@ -1,14 +1,14 @@
 [
   {
     "name_en": "Afghanistan",
-    "name_id": "Sudan Selatan",
+    "name_id": "Afganistan",
     "lon": 66.08669017344614,
     "lat": 33.856399243318464,
     "flag": "🇦🇫",
-    "pop": "245M",
-    "budget": "Rp 2265 T",
-    "religion": "Kristen",
-    "ideology": "Sosiolisme"
+    "pop": "1.4B",
+    "budget": "Rp 2633 T",
+    "religion": "Katolik",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Angola",
@@ -16,10 +16,10 @@
     "lon": 17.502911842047805,
     "lat": -12.291553371095887,
     "flag": "🇦🇴",
-    "pop": "1.1B",
-    "budget": "Rp 2165 T",
-    "religion": "Sekuler",
-    "ideology": "Sosiolisme"
+    "pop": "19M",
+    "budget": "Rp 3494 T",
+    "religion": "Katolik",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Albania",
@@ -27,10 +27,10 @@
     "lon": 20.032426386052148,
     "lat": 41.14135336776868,
     "flag": "🇦🇱",
-    "pop": "395M",
-    "budget": "Rp 3122 T",
-    "religion": "Islam",
-    "ideology": "Sosiolisme"
+    "pop": "118M",
+    "budget": "Rp 3733 T",
+    "religion": "Sekuler",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "United Arab Emirates",
@@ -38,10 +38,10 @@
     "lon": 54.20671462253352,
     "lat": 23.868633515147298,
     "flag": "🇦🇪",
-    "pop": "54M",
-    "budget": "Rp 3231 T",
-    "religion": "Katolik",
-    "ideology": "Sosiolisme"
+    "pop": "470M",
+    "budget": "Rp 2268 T",
+    "religion": "Sekuler",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Argentina",
@@ -49,10 +49,10 @@
     "lon": -65.14954327970175,
     "lat": -35.22017190066764,
     "flag": "🇦🇷",
-    "pop": "1.4B",
-    "budget": "Rp 4338 T",
-    "religion": "Kristen",
-    "ideology": "Teokrasi"
+    "pop": "1.2B",
+    "budget": "Rp 3012 T",
+    "religion": "Islam",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Armenia",
@@ -60,32 +60,32 @@
     "lon": 45.000290236452194,
     "lat": 40.21660746331762,
     "flag": "🇦🇲",
-    "pop": "414M",
-    "budget": "Rp 1538 T",
-    "religion": "Katolik",
-    "ideology": "Komunisme"
+    "pop": "1.4B",
+    "budget": "Rp 4385 T",
+    "religion": "Sekuler",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Antarctica",
-    "name_id": "Antarctica",
+    "name_id": "Antarktika",
     "lon": 31.181922566996327,
     "lat": -77.33713476873983,
     "flag": "🇦🇶",
-    "pop": "99M",
-    "budget": "Rp 1760 T",
-    "religion": "Sekuler",
-    "ideology": "Komunisme"
+    "pop": "1.4B",
+    "budget": "Rp 3874 T",
+    "religion": "Islam",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "French Southern and Antarctic Lands",
-    "name_id": "French Southern And Antarctic Lands",
+    "name_id": "Wilayah Selatan Prancis",
     "lon": 69.5315804704273,
     "lat": -49.30645491167483,
     "flag": "🇹🇫",
-    "pop": "196M",
-    "budget": "Rp 3194 T",
-    "religion": "Ortodoks",
-    "ideology": "Teokrasi"
+    "pop": "333M",
+    "budget": "Rp 547 T",
+    "religion": "Katolik",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Australia",
@@ -93,10 +93,10 @@
     "lon": 134.37607854962764,
     "lat": -25.56076401553387,
     "flag": "🇦🇺",
-    "pop": "348M",
-    "budget": "Rp 3455 T",
-    "religion": "Ortodoks",
-    "ideology": "Otokrasi"
+    "pop": "276M",
+    "budget": "Rp 4368 T",
+    "religion": "Sekuler",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Austria",
@@ -104,10 +104,10 @@
     "lon": 14.076158737088802,
     "lat": 47.61394873674083,
     "flag": "🇦🇹",
-    "pop": "160M",
-    "budget": "Rp 4998 T",
-    "religion": "Hindu",
-    "ideology": "Teokrasi"
+    "pop": "1.4B",
+    "budget": "Rp 392 T",
+    "religion": "Ortodoks",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Azerbaijan",
@@ -115,10 +115,10 @@
     "lon": 47.68058264560041,
     "lat": 40.2805337362755,
     "flag": "🇦🇿",
-    "pop": "63M",
-    "budget": "Rp 3709 T",
-    "religion": "Kristen",
-    "ideology": "Pancasila"
+    "pop": "1.4B",
+    "budget": "Rp 4498 T",
+    "religion": "Katolik",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Burundi",
@@ -126,10 +126,10 @@
     "lon": 29.913901081153096,
     "lat": -3.377391780507067,
     "flag": "🇧🇮",
-    "pop": "214M",
-    "budget": "Rp 2105 T",
-    "religion": "Ortodoks",
-    "ideology": "Demokrasi"
+    "pop": "1.1B",
+    "budget": "Rp 4458 T",
+    "religion": "Sekuler",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Belgium",
@@ -137,10 +137,10 @@
     "lon": 4.580831170355562,
     "lat": 50.652442788532795,
     "flag": "🇧🇪",
-    "pop": "166M",
-    "budget": "Rp 1497 T",
-    "religion": "Sekuler",
-    "ideology": "Teokrasi"
+    "pop": "95M",
+    "budget": "Rp 3022 T",
+    "religion": "Ortodoks",
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Benin",
@@ -149,9 +149,9 @@
     "lat": 9.647430604325605,
     "flag": "🇧🇯",
     "pop": "1.1B",
-    "budget": "Rp 887 T",
-    "religion": "Sekuler",
-    "ideology": "Pancasila"
+    "budget": "Rp 3526 T",
+    "religion": "Ortodoks",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Burkina Faso",
@@ -159,19 +159,19 @@
     "lon": -1.7765373932154922,
     "lat": 12.311650411193025,
     "flag": "🇧🇫",
-    "pop": "170M",
-    "budget": "Rp 2159 T",
-    "religion": "Kristen",
+    "pop": "1.0B",
+    "budget": "Rp 3948 T",
+    "religion": "Hindu",
     "ideology": "Komunisme"
   },
   {
     "name_en": "Bangladesh",
-    "name_id": "Maldives",
+    "name_id": "Bangladesh",
     "lon": 90.26792836633719,
     "lat": 23.839461928066203,
     "flag": "🇧🇩",
-    "pop": "406M",
-    "budget": "Rp 2343 T",
+    "pop": "1.0B",
+    "budget": "Rp 3863 T",
     "religion": "Sekuler",
     "ideology": "Komunisme"
   },
@@ -181,32 +181,32 @@
     "lon": 25.195110896460317,
     "lat": 42.753118773003436,
     "flag": "🇧🇬",
-    "pop": "1.2B",
-    "budget": "Rp 1304 T",
-    "religion": "Hindu",
-    "ideology": "Teokrasi"
+    "pop": "1.0B",
+    "budget": "Rp 1343 T",
+    "religion": "Katolik",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "The Bahamas",
-    "name_id": "The Bahamas",
+    "name_id": "Bahama",
     "lon": -77.91580479355562,
     "lat": 24.506399672714938,
     "flag": "🇧🇸",
-    "pop": "1.0B",
-    "budget": "Rp 2021 T",
-    "religion": "Ortodoks",
-    "ideology": "Otokrasi"
+    "pop": "1.3B",
+    "budget": "Rp 3258 T",
+    "religion": "Islam",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Bosnia and Herzegovina",
-    "name_id": "Bosnia Dan Hercegovina",
+    "name_id": "Bosnia dan Herzegovina",
     "lon": 17.816883262474423,
     "lat": 44.18076800389087,
     "flag": "🇧🇦",
-    "pop": "1.0B",
-    "budget": "Rp 3683 T",
-    "religion": "Sekuler",
-    "ideology": "Sosiolisme"
+    "pop": "1.5B",
+    "budget": "Rp 368 T",
+    "religion": "Islam",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Belarus",
@@ -214,10 +214,10 @@
     "lon": 27.981354019495736,
     "lat": 53.506344352815105,
     "flag": "🇧🇾",
-    "pop": "451M",
-    "budget": "Rp 4276 T",
-    "religion": "Sekuler",
-    "ideology": "Komunisme"
+    "pop": "351M",
+    "budget": "Rp 2116 T",
+    "religion": "Ortodoks",
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Belize",
@@ -225,9 +225,9 @@
     "lon": -88.70342126984764,
     "lat": 17.197089795200295,
     "flag": "🇧🇿",
-    "pop": "144M",
-    "budget": "Rp 361 T",
-    "religion": "Sekuler",
+    "pop": "279M",
+    "budget": "Rp 2217 T",
+    "religion": "Katolik",
     "ideology": "Demokrasi"
   },
   {
@@ -236,42 +236,42 @@
     "lon": -64.7596428319412,
     "lat": 32.31249269892614,
     "flag": "🇧🇲",
-    "pop": "123M",
-    "budget": "Rp 2347 T",
-    "religion": "Hindu",
-    "ideology": "Demokrasi"
-  },
-  {
-    "name_en": "Bolivia",
-    "name_id": "Yugoslavia",
-    "lon": -64.64140560988855,
-    "lat": -16.728986949758703,
-    "flag": "🇧🇴",
-    "pop": "338M",
-    "budget": "Rp 3846 T",
-    "religion": "Katolik",
+    "pop": "158M",
+    "budget": "Rp 2912 T",
+    "religion": "Sekuler",
     "ideology": "Komunisme"
   },
   {
+    "name_en": "Bolivia",
+    "name_id": "Bolivia",
+    "lon": -64.64140560988855,
+    "lat": -16.728986949758703,
+    "flag": "🇧🇴",
+    "pop": "449M",
+    "budget": "Rp 3216 T",
+    "religion": "Kristen",
+    "ideology": "Pancasila"
+  },
+  {
     "name_en": "Brazil",
-    "name_id": "Brazil",
+    "name_id": "Brasil",
     "lon": -53.054339956839804,
     "lat": -10.806773681852466,
     "flag": "🇧🇷",
-    "pop": "1.4B",
-    "budget": "Rp 3713 T",
-    "religion": "Hindu",
-    "ideology": "Demokrasi"
+    "pop": "1.5B",
+    "budget": "Rp 3893 T",
+    "religion": "Ortodoks",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Brunei",
-    "name_id": "Brunei",
+    "name_id": "Brunei Darussalam",
     "lon": 114.91510881306823,
     "lat": 4.690250696299329,
     "flag": "🇧🇳",
-    "pop": "355M",
-    "budget": "Rp 4867 T",
-    "religion": "Katolik",
+    "pop": "111M",
+    "budget": "Rp 1980 T",
+    "religion": "Ortodoks",
     "ideology": "Otokrasi"
   },
   {
@@ -280,10 +280,10 @@
     "lon": 90.47242488617444,
     "lat": 27.42796865030104,
     "flag": "🇧🇹",
-    "pop": "1.2B",
-    "budget": "Rp 1627 T",
-    "religion": "Islam",
-    "ideology": "Pancasila"
+    "pop": "138M",
+    "budget": "Rp 3892 T",
+    "religion": "Ortodoks",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Botswana",
@@ -291,10 +291,10 @@
     "lon": 23.773081475874164,
     "lat": -22.099711410350633,
     "flag": "🇧🇼",
-    "pop": "1.4B",
-    "budget": "Rp 3019 T",
-    "religion": "Katolik",
-    "ideology": "Otokrasi"
+    "pop": "450M",
+    "budget": "Rp 3441 T",
+    "religion": "Kristen",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Central African Republic",
@@ -302,10 +302,10 @@
     "lon": 20.374346983937315,
     "lat": 6.542778839030221,
     "flag": "🇨🇫",
-    "pop": "1.5B",
-    "budget": "Rp 1823 T",
-    "religion": "Sekuler",
-    "ideology": "Otokrasi"
+    "pop": "466M",
+    "budget": "Rp 317 T",
+    "religion": "Hindu",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Canada",
@@ -313,10 +313,10 @@
     "lon": -101.5698221315834,
     "lat": 57.74876881312867,
     "flag": "🇨🇦",
-    "pop": "126M",
-    "budget": "Rp 3935 T",
-    "religion": "Islam",
-    "ideology": "Otokrasi"
+    "pop": "1.2B",
+    "budget": "Rp 3715 T",
+    "religion": "Hindu",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Switzerland",
@@ -324,43 +324,43 @@
     "lon": 8.118300753356504,
     "lat": 46.79173778186657,
     "flag": "🇨🇭",
-    "pop": "34M",
-    "budget": "Rp 460 T",
-    "religion": "Hindu",
-    "ideology": "Demokrasi"
-  },
-  {
-    "name_en": "Chile",
-    "name_id": "Chile",
-    "lon": -71.67094501844565,
-    "lat": -37.34183168298793,
-    "flag": "🇨🇱",
-    "pop": "180M",
-    "budget": "Rp 2578 T",
+    "pop": "1.3B",
+    "budget": "Rp 2111 T",
     "religion": "Islam",
     "ideology": "Demokrasi"
   },
   {
+    "name_en": "Chile",
+    "name_id": "Cile",
+    "lon": -71.67094501844565,
+    "lat": -37.34183168298793,
+    "flag": "🇨🇱",
+    "pop": "218M",
+    "budget": "Rp 3181 T",
+    "religion": "Katolik",
+    "ideology": "Sosiolisme"
+  },
+  {
     "name_en": "China",
-    "name_id": "China",
+    "name_id": "Tiongkok",
     "lon": 103.86536517143006,
     "lat": 36.60943236225276,
     "flag": "🇨🇳",
-    "pop": "435M",
-    "budget": "Rp 1150 T",
+    "pop": "1.2B",
+    "budget": "Rp 644 T",
     "religion": "Hindu",
-    "ideology": "Teokrasi"
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Ivory Coast",
-    "name_id": "Ivory Coast",
+    "name_id": "Pantai Gading",
     "lon": -5.6120436791882335,
     "lat": 7.553755039532438,
     "flag": "🇨🇮",
-    "pop": "311M",
-    "budget": "Rp 207 T",
-    "religion": "Kristen",
-    "ideology": "Sosiolisme"
+    "pop": "1.1B",
+    "budget": "Rp 507 T",
+    "religion": "Katolik",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Cameroon",
@@ -368,32 +368,32 @@
     "lon": 12.61155245695357,
     "lat": 5.663098262285095,
     "flag": "🇨🇲",
-    "pop": "40M",
-    "budget": "Rp 1977 T",
-    "religion": "Sekuler",
-    "ideology": "Pancasila"
-  },
-  {
-    "name_en": "Democratic Republic of the Congo",
-    "name_id": "Democratic Republic Of The Congo",
-    "lon": 23.582955887560274,
-    "lat": -2.8502756233323856,
-    "flag": "🇨🇩",
-    "pop": "267M",
-    "budget": "Rp 1112 T",
+    "pop": "16M",
+    "budget": "Rp 2587 T",
     "religion": "Islam",
     "ideology": "Demokrasi"
   },
   {
+    "name_en": "Democratic Republic of the Congo",
+    "name_id": "Demokratik Kongo",
+    "lon": 23.582955887560274,
+    "lat": -2.8502756233323856,
+    "flag": "🇨🇩",
+    "pop": "372M",
+    "budget": "Rp 2988 T",
+    "religion": "Ortodoks",
+    "ideology": "Komunisme"
+  },
+  {
     "name_en": "Republic of the Congo",
-    "name_id": "Republic Of The Congo",
+    "name_id": "Kongo",
     "lon": 15.134461756195181,
     "lat": -0.8378009737534012,
     "flag": "🇨🇬",
-    "pop": "417M",
-    "budget": "Rp 2621 T",
+    "pop": "335M",
+    "budget": "Rp 4704 T",
     "religion": "Ortodoks",
-    "ideology": "Demokrasi"
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Colombia",
@@ -401,10 +401,10 @@
     "lon": -73.07773203253659,
     "lat": 3.927213847920398,
     "flag": "🇨🇴",
-    "pop": "1.2B",
-    "budget": "Rp 2633 T",
-    "religion": "Katolik",
-    "ideology": "Komunisme"
+    "pop": "371M",
+    "budget": "Rp 2363 T",
+    "religion": "Ortodoks",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Costa Rica",
@@ -412,9 +412,9 @@
     "lon": -84.17542316107524,
     "lat": 9.965671026983046,
     "flag": "🇨🇷",
-    "pop": "259M",
-    "budget": "Rp 1871 T",
-    "religion": "Islam",
+    "pop": "447M",
+    "budget": "Rp 3530 T",
+    "religion": "Ortodoks",
     "ideology": "Otokrasi"
   },
   {
@@ -423,31 +423,31 @@
     "lon": -78.9606848744809,
     "lat": 21.631751486103937,
     "flag": "🇨🇺",
-    "pop": "1.0B",
-    "budget": "Rp 3875 T",
-    "religion": "Sekuler",
-    "ideology": "Otokrasi"
+    "pop": "1.4B",
+    "budget": "Rp 4727 T",
+    "religion": "Hindu",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Northern Cyprus",
-    "name_id": "Northern Cyprus",
+    "name_id": "Siprus Utara",
     "lon": 33.55828628437723,
     "lat": 35.27395776221244,
     "flag": "🏳️",
-    "pop": "247M",
-    "budget": "Rp 1446 T",
-    "religion": "Ortodoks",
-    "ideology": "Demokrasi"
+    "pop": "473M",
+    "budget": "Rp 2449 T",
+    "religion": "Hindu",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Cyprus",
-    "name_id": "Cyprus",
+    "name_id": "Siprus",
     "lon": 33.03955387093977,
     "lat": 34.90706080017199,
     "flag": "🇨🇾",
-    "pop": "229M",
-    "budget": "Rp 4163 T",
-    "religion": "Sekuler",
+    "pop": "1.0B",
+    "budget": "Rp 4899 T",
+    "religion": "Hindu",
     "ideology": "Demokrasi"
   },
   {
@@ -456,10 +456,10 @@
     "lon": 15.334558261592665,
     "lat": 49.77524526102691,
     "flag": "🇨🇿",
-    "pop": "84M",
-    "budget": "Rp 997 T",
-    "religion": "Katolik",
-    "ideology": "Sosiolisme"
+    "pop": "494M",
+    "budget": "Rp 1293 T",
+    "religion": "Ortodoks",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Germany",
@@ -467,43 +467,43 @@
     "lon": 10.28848506404657,
     "lat": 51.133722711258784,
     "flag": "🇩🇪",
-    "pop": "77M",
-    "budget": "Rp 1812 T",
-    "religion": "Kristen",
+    "pop": "104M",
+    "budget": "Rp 4646 T",
+    "religion": "Islam",
     "ideology": "Komunisme"
   },
   {
     "name_en": "Djibouti",
-    "name_id": "Djibouti",
+    "name_id": "Jibuti",
     "lon": 42.49801969680609,
     "lat": 11.773044433321871,
     "flag": "🇩🇯",
-    "pop": "459M",
-    "budget": "Rp 3254 T",
-    "religion": "Sekuler",
-    "ideology": "Komunisme"
+    "pop": "16M",
+    "budget": "Rp 4767 T",
+    "religion": "Katolik",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Denmark",
-    "name_id": "Maroko",
+    "name_id": "Denmark",
     "lon": 9.31077804638221,
     "lat": 56.219626257808855,
     "flag": "🇩🇰",
-    "pop": "463M",
-    "budget": "Rp 569 T",
-    "religion": "Hindu",
-    "ideology": "Teokrasi"
+    "pop": "1.2B",
+    "budget": "Rp 3597 T",
+    "religion": "Katolik",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Dominican Republic",
-    "name_id": "Dominican Republic",
+    "name_id": "Republik Dominika",
     "lon": -70.4623584650498,
     "lat": 18.88448706027172,
     "flag": "🇩🇴",
-    "pop": "371M",
-    "budget": "Rp 3592 T",
-    "religion": "Kristen",
-    "ideology": "Pancasila"
+    "pop": "387M",
+    "budget": "Rp 2260 T",
+    "religion": "Islam",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Algeria",
@@ -511,10 +511,10 @@
     "lon": 2.598047814474602,
     "lat": 28.185481292453208,
     "flag": "🇩🇿",
-    "pop": "446M",
-    "budget": "Rp 1219 T",
-    "religion": "Kristen",
-    "ideology": "Teokrasi"
+    "pop": "261M",
+    "budget": "Rp 2646 T",
+    "religion": "Hindu",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Ecuador",
@@ -522,21 +522,21 @@
     "lon": -78.38416672243,
     "lat": -1.4547717410770833,
     "flag": "🇪🇨",
-    "pop": "1.3B",
-    "budget": "Rp 3439 T",
-    "religion": "Islam",
-    "ideology": "Komunisme"
+    "pop": "99M",
+    "budget": "Rp 3930 T",
+    "religion": "Kristen",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Egypt",
-    "name_id": "Egypt",
+    "name_id": "Mesir",
     "lon": 29.844461516983507,
     "lat": 26.506619997407647,
     "flag": "🇪🇬",
-    "pop": "471M",
-    "budget": "Rp 842 T",
-    "religion": "Katolik",
-    "ideology": "Komunisme"
+    "pop": "56M",
+    "budget": "Rp 1469 T",
+    "religion": "Sekuler",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Eritrea",
@@ -544,10 +544,10 @@
     "lon": 38.67817733284897,
     "lat": 15.42727561505336,
     "flag": "🇪🇷",
-    "pop": "13M",
-    "budget": "Rp 4370 T",
-    "religion": "Kristen",
-    "ideology": "Pancasila"
+    "pop": "1.4B",
+    "budget": "Rp 3324 T",
+    "religion": "Katolik",
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Spain",
@@ -555,32 +555,32 @@
     "lon": -3.6170206759564443,
     "lat": 40.348656154214396,
     "flag": "🇪🇸",
-    "pop": "1.2B",
-    "budget": "Rp 1723 T",
-    "religion": "Katolik",
+    "pop": "1.4B",
+    "budget": "Rp 3047 T",
+    "religion": "Islam",
     "ideology": "Otokrasi"
   },
   {
     "name_en": "Estonia",
-    "name_id": "Tonga",
+    "name_id": "Estonia",
     "lon": 25.82472822310874,
     "lat": 58.64369521107791,
     "flag": "🇪🇪",
-    "pop": "258M",
-    "budget": "Rp 3174 T",
-    "religion": "Kristen",
-    "ideology": "Sosiolisme"
+    "pop": "415M",
+    "budget": "Rp 2176 T",
+    "religion": "Sekuler",
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Ethiopia",
-    "name_id": "Ethiopia",
+    "name_id": "Etiopia",
     "lon": 39.55125579592939,
     "lat": 8.653999193325813,
     "flag": "🇪🇹",
-    "pop": "374M",
-    "budget": "Rp 2404 T",
-    "religion": "Islam",
-    "ideology": "Teokrasi"
+    "pop": "367M",
+    "budget": "Rp 1995 T",
+    "religion": "Kristen",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Finland",
@@ -588,8 +588,8 @@
     "lon": 26.211764688890284,
     "lat": 64.50409386705037,
     "flag": "🇫🇮",
-    "pop": "155M",
-    "budget": "Rp 2430 T",
+    "pop": "17M",
+    "budget": "Rp 3710 T",
     "religion": "Hindu",
     "ideology": "Pancasila"
   },
@@ -599,32 +599,32 @@
     "lon": 177.99707018335187,
     "lat": -17.830935892543597,
     "flag": "🇫🇯",
-    "pop": "493M",
-    "budget": "Rp 4437 T",
-    "religion": "Sekuler",
+    "pop": "34M",
+    "budget": "Rp 417 T",
+    "religion": "Islam",
     "ideology": "Komunisme"
   },
   {
     "name_en": "Falkland Islands",
-    "name_id": "Falkland Islands",
+    "name_id": "Kepulauan Falkland",
     "lon": -59.42097279311143,
     "lat": -51.71322176551296,
     "flag": "🇫🇰",
-    "pop": "427M",
-    "budget": "Rp 2620 T",
-    "religion": "Ortodoks",
-    "ideology": "Demokrasi"
+    "pop": "348M",
+    "budget": "Rp 385 T",
+    "religion": "Kristen",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "France",
-    "name_id": "France",
+    "name_id": "Prancis",
     "lon": 2.3390887346463747,
     "lat": 46.60646331103217,
     "flag": "🇫🇷",
-    "pop": "1.2B",
-    "budget": "Rp 3926 T",
-    "religion": "Kristen",
-    "ideology": "Otokrasi"
+    "pop": "1.3B",
+    "budget": "Rp 3888 T",
+    "religion": "Katolik",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Gabon",
@@ -632,32 +632,32 @@
     "lon": 11.687751178626542,
     "lat": -0.6470482175701122,
     "flag": "🇬🇦",
-    "pop": "270M",
-    "budget": "Rp 4511 T",
-    "religion": "Kristen",
-    "ideology": "Teokrasi"
+    "pop": "173M",
+    "budget": "Rp 3046 T",
+    "religion": "Katolik",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "United Kingdom",
-    "name_id": "United Kingdom",
+    "name_id": "Britania Raya",
     "lon": -2.6579931115256543,
     "lat": 53.88335877899396,
     "flag": "🇬🇧",
-    "pop": "79M",
-    "budget": "Rp 2428 T",
-    "religion": "Kristen",
-    "ideology": "Pancasila"
+    "pop": "470M",
+    "budget": "Rp 1362 T",
+    "religion": "Katolik",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Georgia",
-    "name_id": "Norwegia",
+    "name_id": "Georgia",
     "lon": 43.48154010544427,
     "lat": 42.16201894135135,
     "flag": "🇬🇪",
-    "pop": "1.4B",
-    "budget": "Rp 740 T",
-    "religion": "Kristen",
-    "ideology": "Demokrasi"
+    "pop": "462M",
+    "budget": "Rp 2166 T",
+    "religion": "Ortodoks",
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Ghana",
@@ -665,10 +665,10 @@
     "lon": -1.236968481719099,
     "lat": 7.928651850055786,
     "flag": "🇬🇭",
-    "pop": "1.1B",
-    "budget": "Rp 889 T",
-    "religion": "Ortodoks",
-    "ideology": "Demokrasi"
+    "pop": "1.3B",
+    "budget": "Rp 3852 T",
+    "religion": "Katolik",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Guinea",
@@ -676,10 +676,10 @@
     "lon": -11.060853680804716,
     "lat": 10.448272958512797,
     "flag": "🇬🇳",
-    "pop": "168M",
-    "budget": "Rp 433 T",
-    "religion": "Katolik",
-    "ideology": "Pancasila"
+    "pop": "247M",
+    "budget": "Rp 3891 T",
+    "religion": "Kristen",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Gambia",
@@ -687,10 +687,10 @@
     "lon": -15.43187312507075,
     "lat": 13.475334412500278,
     "flag": "🇬🇲",
-    "pop": "216M",
-    "budget": "Rp 2951 T",
-    "religion": "Hindu",
-    "ideology": "Komunisme"
+    "pop": "183M",
+    "budget": "Rp 4327 T",
+    "religion": "Kristen",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Guinea Bissau",
@@ -698,43 +698,43 @@
     "lon": -15.110623891988222,
     "lat": 12.02270447902587,
     "flag": "🇬🇼",
-    "pop": "1.4B",
-    "budget": "Rp 3114 T",
-    "religion": "Hindu",
-    "ideology": "Sosiolisme"
-  },
-  {
-    "name_en": "Equatorial Guinea",
-    "name_id": "Equatorial Guinea",
-    "lon": 10.366031310571554,
-    "lat": 1.6458644272354879,
-    "flag": "🇬🇶",
-    "pop": "50M",
-    "budget": "Rp 3998 T",
-    "religion": "Ortodoks",
-    "ideology": "Teokrasi"
-  },
-  {
-    "name_en": "Greece",
-    "name_id": "Greece",
-    "lon": 22.563888190617075,
-    "lat": 39.34174662237825,
-    "flag": "🇬🇷",
-    "pop": "433M",
-    "budget": "Rp 4651 T",
-    "religion": "Islam",
+    "pop": "1.5B",
+    "budget": "Rp 3718 T",
+    "religion": "Kristen",
     "ideology": "Pancasila"
   },
   {
+    "name_en": "Equatorial Guinea",
+    "name_id": "Guinea Ekuatorial",
+    "lon": 10.366031310571554,
+    "lat": 1.6458644272354879,
+    "flag": "🇬🇶",
+    "pop": "264M",
+    "budget": "Rp 322 T",
+    "religion": "Islam",
+    "ideology": "Komunisme"
+  },
+  {
+    "name_en": "Greece",
+    "name_id": "Yunani",
+    "lon": 22.563888190617075,
+    "lat": 39.34174662237825,
+    "flag": "🇬🇷",
+    "pop": "121M",
+    "budget": "Rp 1825 T",
+    "religion": "Ortodoks",
+    "ideology": "Demokrasi"
+  },
+  {
     "name_en": "Greenland",
-    "name_id": "Korea Selatan",
+    "name_id": "Greenland",
     "lon": -41.50018111432649,
     "lat": 74.77048769413562,
     "flag": "🇬🇱",
-    "pop": "178M",
-    "budget": "Rp 2339 T",
-    "religion": "Ortodoks",
-    "ideology": "Sosiolisme"
+    "pop": "133M",
+    "budget": "Rp 3972 T",
+    "religion": "Islam",
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Guatemala",
@@ -742,21 +742,21 @@
     "lon": -90.36945850600885,
     "lat": 15.699360539402399,
     "flag": "🇬🇹",
-    "pop": "257M",
-    "budget": "Rp 2886 T",
-    "religion": "Hindu",
-    "ideology": "Sosiolisme"
+    "pop": "437M",
+    "budget": "Rp 4536 T",
+    "religion": "Islam",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "French Guiana",
-    "name_id": "French Guiana",
+    "name_id": "Guyana Prancis",
     "lon": -53.23850610465859,
     "lat": 3.9059336791597374,
     "flag": "🇬🇫",
-    "pop": "156M",
-    "budget": "Rp 3398 T",
-    "religion": "Sekuler",
-    "ideology": "Pancasila"
+    "pop": "1.5B",
+    "budget": "Rp 3457 T",
+    "religion": "Kristen",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Guyana",
@@ -764,10 +764,10 @@
     "lon": -58.971203123744004,
     "lat": 4.790225358669166,
     "flag": "🇬🇾",
-    "pop": "1.1B",
-    "budget": "Rp 160 T",
-    "religion": "Katolik",
-    "ideology": "Komunisme"
+    "pop": "193M",
+    "budget": "Rp 4656 T",
+    "religion": "Kristen",
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Honduras",
@@ -775,10 +775,10 @@
     "lon": -86.58996381210999,
     "lat": 14.82294706719618,
     "flag": "🇭🇳",
-    "pop": "197M",
-    "budget": "Rp 4396 T",
-    "religion": "Kristen",
-    "ideology": "Pancasila"
+    "pop": "153M",
+    "budget": "Rp 1620 T",
+    "religion": "Katolik",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Croatia",
@@ -786,43 +786,43 @@
     "lon": 16.56619110394413,
     "lat": 45.0162341027784,
     "flag": "🇭🇷",
-    "pop": "1.3B",
-    "budget": "Rp 3580 T",
+    "pop": "59M",
+    "budget": "Rp 3864 T",
+    "religion": "Ortodoks",
+    "ideology": "Otokrasi"
+  },
+  {
+    "name_en": "Haiti",
+    "name_id": "Haiti",
+    "lon": -72.65801345517127,
+    "lat": 18.90070095173092,
+    "flag": "🇭🇹",
+    "pop": "213M",
+    "budget": "Rp 904 T",
+    "religion": "Hindu",
+    "ideology": "Teokrasi"
+  },
+  {
+    "name_en": "Hungary",
+    "name_id": "Hongaria",
+    "lon": 19.3576285480236,
+    "lat": 47.199951195081454,
+    "flag": "🇭🇺",
+    "pop": "55M",
+    "budget": "Rp 2391 T",
     "religion": "Islam",
     "ideology": "Pancasila"
   },
   {
-    "name_en": "Haiti",
-    "name_id": "Tahiti",
-    "lon": -72.65801345517127,
-    "lat": 18.90070095173092,
-    "flag": "🇭🇹",
-    "pop": "1.4B",
-    "budget": "Rp 1969 T",
-    "religion": "Kristen",
-    "ideology": "Komunisme"
-  },
-  {
-    "name_en": "Hungary",
-    "name_id": "Hungaria",
-    "lon": 19.3576285480236,
-    "lat": 47.199951195081454,
-    "flag": "🇭🇺",
-    "pop": "271M",
-    "budget": "Rp 441 T",
-    "religion": "Sekuler",
-    "ideology": "Sosiolisme"
-  },
-  {
     "name_en": "Indonesia",
-    "name_id": "Mikronesia",
+    "name_id": "Indonesia",
     "lon": 114.02268357685442,
     "lat": -0.25430151202627704,
     "flag": "🇮🇩",
-    "pop": "438M",
-    "budget": "Rp 4154 T",
+    "pop": "1.2B",
+    "budget": "Rp 3339 T",
     "religion": "Sekuler",
-    "ideology": "Komunisme"
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "India",
@@ -830,21 +830,21 @@
     "lon": 79.59370366438492,
     "lat": 22.92500630007023,
     "flag": "🇮🇳",
-    "pop": "82M",
-    "budget": "Rp 3248 T",
-    "religion": "Sekuler",
-    "ideology": "Teokrasi"
+    "pop": "189M",
+    "budget": "Rp 4031 T",
+    "religion": "Ortodoks",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Ireland",
-    "name_id": "Republik Uganda",
+    "name_id": "Irlandia",
     "lon": -8.010236806541535,
     "lat": 53.18059108949022,
     "flag": "🇮🇪",
-    "pop": "139M",
-    "budget": "Rp 1049 T",
-    "religion": "Ortodoks",
-    "ideology": "Teokrasi"
+    "pop": "81M",
+    "budget": "Rp 1902 T",
+    "religion": "Katolik",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Iran",
@@ -852,10 +852,10 @@
     "lon": 54.28545149299196,
     "lat": 32.518917306489946,
     "flag": "🇮🇷",
-    "pop": "67M",
-    "budget": "Rp 4157 T",
-    "religion": "Sekuler",
-    "ideology": "Teokrasi"
+    "pop": "233M",
+    "budget": "Rp 4684 T",
+    "religion": "Katolik",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Iraq",
@@ -863,8 +863,8 @@
     "lon": 43.756911464164496,
     "lat": 33.03682253689675,
     "flag": "🇮🇶",
-    "pop": "1.0B",
-    "budget": "Rp 2085 T",
+    "pop": "1.1B",
+    "budget": "Rp 470 T",
     "religion": "Hindu",
     "ideology": "Komunisme"
   },
@@ -874,10 +874,10 @@
     "lon": -18.76102881712188,
     "lat": 65.07427634281467,
     "flag": "🇮🇸",
-    "pop": "29M",
-    "budget": "Rp 4359 T",
-    "religion": "Katolik",
-    "ideology": "Otokrasi"
+    "pop": "200M",
+    "budget": "Rp 4617 T",
+    "religion": "Kristen",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Israel",
@@ -885,10 +885,10 @@
     "lon": 35.00384996267353,
     "lat": 31.484917756756627,
     "flag": "🇮🇱",
-    "pop": "193M",
-    "budget": "Rp 2088 T",
+    "pop": "1.3B",
+    "budget": "Rp 2183 T",
     "religion": "Katolik",
-    "ideology": "Demokrasi"
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Italy",
@@ -896,10 +896,10 @@
     "lon": 12.219476444106418,
     "lat": 43.47247599725516,
     "flag": "🇮🇹",
-    "pop": "160M",
-    "budget": "Rp 3816 T",
-    "religion": "Ortodoks",
-    "ideology": "Pancasila"
+    "pop": "1.3B",
+    "budget": "Rp 1742 T",
+    "religion": "Katolik",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Jamaica",
@@ -907,10 +907,10 @@
     "lon": -77.32425474084792,
     "lat": 18.137635986094743,
     "flag": "🇯🇲",
-    "pop": "378M",
-    "budget": "Rp 2745 T",
+    "pop": "1.1B",
+    "budget": "Rp 3159 T",
     "religion": "Sekuler",
-    "ideology": "Pancasila"
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Jordan",
@@ -918,10 +918,10 @@
     "lon": 36.77945498882163,
     "lat": 31.245490666265326,
     "flag": "🇯🇴",
-    "pop": "1.4B",
-    "budget": "Rp 3835 T",
-    "religion": "Hindu",
-    "ideology": "Teokrasi"
+    "pop": "255M",
+    "budget": "Rp 557 T",
+    "religion": "Sekuler",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Japan",
@@ -929,10 +929,10 @@
     "lon": 136.8819471500021,
     "lat": 36.019075302950796,
     "flag": "🇯🇵",
-    "pop": "1.3B",
-    "budget": "Rp 3861 T",
-    "religion": "Sekuler",
-    "ideology": "Pancasila"
+    "pop": "471M",
+    "budget": "Rp 393 T",
+    "religion": "Katolik",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Kazakhstan",
@@ -940,10 +940,10 @@
     "lon": 67.28460878718062,
     "lat": 48.191662125259384,
     "flag": "🇰🇿",
-    "pop": "184M",
-    "budget": "Rp 3178 T",
-    "religion": "Islam",
-    "ideology": "Otokrasi"
+    "pop": "1.3B",
+    "budget": "Rp 1963 T",
+    "religion": "Kristen",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Kenya",
@@ -951,10 +951,10 @@
     "lon": 37.791555237645646,
     "lat": 0.5959662917718885,
     "flag": "🇰🇪",
-    "pop": "1.1B",
-    "budget": "Rp 929 T",
-    "religion": "Sekuler",
-    "ideology": "Komunisme"
+    "pop": "1.3B",
+    "budget": "Rp 4581 T",
+    "religion": "Kristen",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Kyrgyzstan",
@@ -962,43 +962,43 @@
     "lon": 74.62040463206608,
     "lat": 41.50689357007641,
     "flag": "🇰🇬",
-    "pop": "383M",
-    "budget": "Rp 2871 T",
+    "pop": "482M",
+    "budget": "Rp 2285 T",
     "religion": "Hindu",
-    "ideology": "Otokrasi"
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Cambodia",
-    "name_id": "Samoa",
+    "name_id": "Kamboja",
     "lon": 104.87608521320313,
     "lat": 12.684728701098136,
     "flag": "🇰🇭",
-    "pop": "124M",
-    "budget": "Rp 2059 T",
-    "religion": "Islam",
-    "ideology": "Sosiolisme"
+    "pop": "246M",
+    "budget": "Rp 4494 T",
+    "religion": "Katolik",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "South Korea",
-    "name_id": "South Korea",
+    "name_id": "Korea Selatan",
     "lon": 127.82131716621139,
     "lat": 36.42759872225762,
     "flag": "🇰🇷",
-    "pop": "43M",
-    "budget": "Rp 3550 T",
-    "religion": "Hindu",
-    "ideology": "Teokrasi"
+    "pop": "136M",
+    "budget": "Rp 3716 T",
+    "religion": "Kristen",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Kosovo",
-    "name_id": "Komoro",
+    "name_id": "Kosovo",
     "lon": 20.89535249981239,
     "lat": 42.579364814804016,
     "flag": "🏳️",
-    "pop": "1.4B",
-    "budget": "Rp 1897 T",
+    "pop": "181M",
+    "budget": "Rp 1372 T",
     "religion": "Ortodoks",
-    "ideology": "Komunisme"
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Kuwait",
@@ -1006,10 +1006,10 @@
     "lon": 47.60009862494719,
     "lat": 29.307266735296082,
     "flag": "🇰🇼",
-    "pop": "173M",
-    "budget": "Rp 3313 T",
-    "religion": "Sekuler",
-    "ideology": "Otokrasi"
+    "pop": "299M",
+    "budget": "Rp 3848 T",
+    "religion": "Kristen",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Laos",
@@ -1017,10 +1017,10 @@
     "lon": 103.75025970028973,
     "lat": 18.444978189084043,
     "flag": "🇱🇦",
-    "pop": "1.1B",
-    "budget": "Rp 573 T",
-    "religion": "Kristen",
-    "ideology": "Teokrasi"
+    "pop": "323M",
+    "budget": "Rp 2584 T",
+    "religion": "Sekuler",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Lebanon",
@@ -1028,10 +1028,10 @@
     "lon": 35.870986399455646,
     "lat": 33.91182712116963,
     "flag": "🇱🇧",
-    "pop": "329M",
-    "budget": "Rp 4988 T",
+    "pop": "1.4B",
+    "budget": "Rp 2979 T",
     "religion": "Ortodoks",
-    "ideology": "Pancasila"
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Liberia",
@@ -1039,10 +1039,10 @@
     "lon": -9.410836102614718,
     "lat": 6.431619946346842,
     "flag": "🇱🇷",
-    "pop": "80M",
-    "budget": "Rp 2035 T",
-    "religion": "Katolik",
-    "ideology": "Teokrasi"
+    "pop": "411M",
+    "budget": "Rp 727 T",
+    "religion": "Kristen",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Libya",
@@ -1050,10 +1050,10 @@
     "lon": 17.974352720239526,
     "lat": 26.997460440963433,
     "flag": "🇱🇾",
-    "pop": "1.0B",
-    "budget": "Rp 3909 T",
+    "pop": "28M",
+    "budget": "Rp 2205 T",
     "religion": "Hindu",
-    "ideology": "Sosiolisme"
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Sri Lanka",
@@ -1061,10 +1061,10 @@
     "lon": 80.66723578775134,
     "lat": 7.700534337706304,
     "flag": "🇱🇰",
-    "pop": "173M",
-    "budget": "Rp 4348 T",
-    "religion": "Hindu",
-    "ideology": "Demokrasi"
+    "pop": "1.2B",
+    "budget": "Rp 4748 T",
+    "religion": "Kristen",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Lesotho",
@@ -1072,20 +1072,20 @@
     "lon": 28.170105291093066,
     "lat": -29.62529067781291,
     "flag": "🇱🇸",
-    "pop": "344M",
-    "budget": "Rp 4241 T",
-    "religion": "Ortodoks",
-    "ideology": "Otokrasi"
+    "pop": "1.2B",
+    "budget": "Rp 4555 T",
+    "religion": "Katolik",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Lithuania",
-    "name_id": "Tanzania",
+    "name_id": "Lituania",
     "lon": 23.88064036129655,
     "lat": 55.284319424544655,
     "flag": "🇱🇹",
-    "pop": "386M",
-    "budget": "Rp 1489 T",
-    "religion": "Islam",
+    "pop": "407M",
+    "budget": "Rp 524 T",
+    "religion": "Ortodoks",
     "ideology": "Otokrasi"
   },
   {
@@ -1094,10 +1094,10 @@
     "lon": 5.9652232417386335,
     "lat": 49.765705317313795,
     "flag": "🇱🇺",
-    "pop": "154M",
-    "budget": "Rp 4396 T",
-    "religion": "Ortodoks",
-    "ideology": "Otokrasi"
+    "pop": "1.5B",
+    "budget": "Rp 1933 T",
+    "religion": "Islam",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Latvia",
@@ -1105,19 +1105,19 @@
     "lon": 24.833295923942824,
     "lat": 56.80717516493818,
     "flag": "🇱🇻",
-    "pop": "466M",
-    "budget": "Rp 3519 T",
-    "religion": "Sekuler",
-    "ideology": "Sosiolisme"
+    "pop": "461M",
+    "budget": "Rp 2767 T",
+    "religion": "Ortodoks",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Morocco",
-    "name_id": "Morocco",
+    "name_id": "Maroko",
     "lon": -8.420479718817836,
     "lat": 29.885394456203375,
     "flag": "🇲🇦",
-    "pop": "467M",
-    "budget": "Rp 3631 T",
+    "pop": "212M",
+    "budget": "Rp 3402 T",
     "religion": "Islam",
     "ideology": "Pancasila"
   },
@@ -1127,20 +1127,20 @@
     "lon": 28.410482745436806,
     "lat": 47.20367646591266,
     "flag": "🇲🇩",
-    "pop": "1.0B",
-    "budget": "Rp 3176 T",
-    "religion": "Kristen",
-    "ideology": "Otokrasi"
+    "pop": "146M",
+    "budget": "Rp 4255 T",
+    "religion": "Sekuler",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Madagascar",
-    "name_id": "Republik Madagaskar",
+    "name_id": "Madagaskar",
     "lon": 46.691170818879314,
     "lat": -19.356114029038597,
     "flag": "🇲🇬",
-    "pop": "1.1B",
-    "budget": "Rp 1073 T",
-    "religion": "Hindu",
+    "pop": "1.3B",
+    "budget": "Rp 1636 T",
+    "religion": "Sekuler",
     "ideology": "Demokrasi"
   },
   {
@@ -1149,21 +1149,21 @@
     "lon": -102.57634951262834,
     "lat": 23.935371917330777,
     "flag": "🇲🇽",
-    "pop": "1.4B",
-    "budget": "Rp 4562 T",
+    "pop": "1.1B",
+    "budget": "Rp 3139 T",
     "religion": "Islam",
-    "ideology": "Sosiolisme"
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Macedonia",
-    "name_id": "Macedonia",
+    "name_id": "Makedonia Utara",
     "lon": 21.69789690466618,
     "lat": 41.60592902478061,
     "flag": "🇲🇰",
-    "pop": "263M",
-    "budget": "Rp 4657 T",
-    "religion": "Hindu",
-    "ideology": "Pancasila"
+    "pop": "293M",
+    "budget": "Rp 4376 T",
+    "religion": "Sekuler",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Mali",
@@ -1171,10 +1171,10 @@
     "lon": -3.543294472195161,
     "lat": 17.26777221637535,
     "flag": "🇲🇱",
-    "pop": "280M",
-    "budget": "Rp 2426 T",
-    "religion": "Kristen",
-    "ideology": "Teokrasi"
+    "pop": "1.3B",
+    "budget": "Rp 206 T",
+    "religion": "Sekuler",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Malta",
@@ -1182,21 +1182,21 @@
     "lon": 14.443277809851045,
     "lat": 35.89002787883222,
     "flag": "🇲🇹",
-    "pop": "82M",
-    "budget": "Rp 3888 T",
+    "pop": "1.2B",
+    "budget": "Rp 4574 T",
     "religion": "Islam",
-    "ideology": "Sosiolisme"
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Myanmar",
-    "name_id": "San Marino",
+    "name_id": "Myanmar",
     "lon": 96.5058409110094,
     "lat": 21.01699982503085,
     "flag": "🇲🇲",
-    "pop": "478M",
-    "budget": "Rp 184 T",
-    "religion": "Ortodoks",
-    "ideology": "Teokrasi"
+    "pop": "64M",
+    "budget": "Rp 840 T",
+    "religion": "Katolik",
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Montenegro",
@@ -1204,10 +1204,10 @@
     "lon": 19.286181019707147,
     "lat": 42.78903831354369,
     "flag": "🇲🇪",
-    "pop": "1.0B",
-    "budget": "Rp 1762 T",
-    "religion": "Hindu",
-    "ideology": "Teokrasi"
+    "pop": "220M",
+    "budget": "Rp 3487 T",
+    "religion": "Sekuler",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Mongolia",
@@ -1215,10 +1215,10 @@
     "lon": 102.94640494589315,
     "lat": 46.823682495246196,
     "flag": "🇲🇳",
-    "pop": "465M",
-    "budget": "Rp 143 T",
-    "religion": "Kristen",
-    "ideology": "Teokrasi"
+    "pop": "1.1B",
+    "budget": "Rp 3792 T",
+    "religion": "Hindu",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Mozambique",
@@ -1226,20 +1226,20 @@
     "lon": 35.47261706364559,
     "lat": -17.23044664944241,
     "flag": "🇲🇿",
-    "pop": "356M",
-    "budget": "Rp 1552 T",
-    "religion": "Sekuler",
-    "ideology": "Teokrasi"
+    "pop": "399M",
+    "budget": "Rp 3074 T",
+    "religion": "Katolik",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Mauritania",
-    "name_id": "Mauritius",
+    "name_id": "Mauritania",
     "lon": -10.326397038820694,
     "lat": 20.20926721283943,
     "flag": "🇲🇷",
-    "pop": "1.3B",
-    "budget": "Rp 4223 T",
-    "religion": "Hindu",
+    "pop": "453M",
+    "budget": "Rp 1617 T",
+    "religion": "Islam",
     "ideology": "Otokrasi"
   },
   {
@@ -1248,9 +1248,9 @@
     "lon": 34.19360519275301,
     "lat": -13.172832818433916,
     "flag": "🇲🇼",
-    "pop": "395M",
-    "budget": "Rp 2113 T",
-    "religion": "Sekuler",
+    "pop": "381M",
+    "budget": "Rp 2036 T",
+    "religion": "Kristen",
     "ideology": "Komunisme"
   },
   {
@@ -1259,10 +1259,10 @@
     "lon": 114.6755139684612,
     "lat": 3.548111800051258,
     "flag": "🇲🇾",
-    "pop": "245M",
-    "budget": "Rp 1053 T",
-    "religion": "Ortodoks",
-    "ideology": "Otokrasi"
+    "pop": "1.3B",
+    "budget": "Rp 3768 T",
+    "religion": "Islam",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Namibia",
@@ -1270,21 +1270,21 @@
     "lon": 17.156168162687646,
     "lat": -22.099776973240576,
     "flag": "🇳🇦",
-    "pop": "1.4B",
-    "budget": "Rp 2619 T",
-    "religion": "Islam",
-    "ideology": "Demokrasi"
+    "pop": "462M",
+    "budget": "Rp 2950 T",
+    "religion": "Sekuler",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "New Caledonia",
-    "name_id": "New Caledonia",
+    "name_id": "Kaledonia Baru",
     "lon": 165.5344740475062,
     "lat": -21.261357478271837,
     "flag": "🇳🇨",
-    "pop": "365M",
-    "budget": "Rp 3903 T",
-    "religion": "Islam",
-    "ideology": "Pancasila"
+    "pop": "222M",
+    "budget": "Rp 1076 T",
+    "religion": "Sekuler",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Niger",
@@ -1292,21 +1292,21 @@
     "lon": 9.324429403544729,
     "lat": 17.345552361272084,
     "flag": "🇳🇪",
-    "pop": "1.2B",
-    "budget": "Rp 2556 T",
-    "religion": "Sekuler",
-    "ideology": "Komunisme"
+    "pop": "311M",
+    "budget": "Rp 4982 T",
+    "religion": "Hindu",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Nigeria",
-    "name_id": "Singapura",
+    "name_id": "Nigeria",
     "lon": 7.995127765434096,
     "lat": 9.548318380847917,
     "flag": "🇳🇬",
-    "pop": "139M",
-    "budget": "Rp 4248 T",
-    "religion": "Sekuler",
-    "ideology": "Demokrasi"
+    "pop": "410M",
+    "budget": "Rp 1680 T",
+    "religion": "Kristen",
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Nicaragua",
@@ -1314,10 +1314,10 @@
     "lon": -85.02031834631033,
     "lat": 12.848190416553432,
     "flag": "🇳🇮",
-    "pop": "1.4B",
-    "budget": "Rp 2423 T",
-    "religion": "Ortodoks",
-    "ideology": "Demokrasi"
+    "pop": "1.0B",
+    "budget": "Rp 4137 T",
+    "religion": "Hindu",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Netherlands",
@@ -1325,43 +1325,43 @@
     "lon": 5.512217257118115,
     "lat": 52.298700259566715,
     "flag": "🇳🇱",
-    "pop": "155M",
-    "budget": "Rp 288 T",
-    "religion": "Katolik",
-    "ideology": "Demokrasi"
+    "pop": "1.5B",
+    "budget": "Rp 2296 T",
+    "religion": "Sekuler",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Norway",
-    "name_id": "Norway",
+    "name_id": "Norwegia",
     "lon": 14.244779722394098,
     "lat": 64.53653011587959,
     "flag": "🇳🇴",
-    "pop": "286M",
-    "budget": "Rp 4439 T",
-    "religion": "Ortodoks",
-    "ideology": "Otokrasi"
+    "pop": "1.1B",
+    "budget": "Rp 3693 T",
+    "religion": "Katolik",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Nepal",
-    "name_id": "Palau",
+    "name_id": "Nepal",
     "lon": 84.01317380021746,
     "lat": 28.23944004709283,
     "flag": "🇳🇵",
-    "pop": "408M",
-    "budget": "Rp 3001 T",
-    "religion": "Sekuler",
-    "ideology": "Otokrasi"
+    "pop": "1.5B",
+    "budget": "Rp 2026 T",
+    "religion": "Hindu",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "New Zealand",
-    "name_id": "New Zealand",
+    "name_id": "Selandia Baru",
     "lon": 170.51301141318066,
     "lat": -43.98581762043853,
     "flag": "🇳🇿",
-    "pop": "154M",
-    "budget": "Rp 3180 T",
-    "religion": "Islam",
-    "ideology": "Komunisme"
+    "pop": "191M",
+    "budget": "Rp 3820 T",
+    "religion": "Katolik",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Oman",
@@ -1369,10 +1369,10 @@
     "lon": 56.097598515635774,
     "lat": 20.58108028230327,
     "flag": "🇴🇲",
-    "pop": "146M",
-    "budget": "Rp 1036 T",
-    "religion": "Kristen",
-    "ideology": "Otokrasi"
+    "pop": "156M",
+    "budget": "Rp 590 T",
+    "religion": "Katolik",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Pakistan",
@@ -1380,10 +1380,10 @@
     "lon": 69.41399808627136,
     "lat": 29.973460042550556,
     "flag": "🇵🇰",
-    "pop": "399M",
-    "budget": "Rp 2814 T",
-    "religion": "Sekuler",
-    "ideology": "Otokrasi"
+    "pop": "88M",
+    "budget": "Rp 4163 T",
+    "religion": "Katolik",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Panama",
@@ -1391,10 +1391,10 @@
     "lon": -80.10916482305028,
     "lat": 8.530019285800908,
     "flag": "🇵🇦",
-    "pop": "212M",
-    "budget": "Rp 964 T",
-    "religion": "Ortodoks",
-    "ideology": "Teokrasi"
+    "pop": "467M",
+    "budget": "Rp 3742 T",
+    "religion": "Kristen",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Peru",
@@ -1402,10 +1402,10 @@
     "lon": -74.39180587730092,
     "lat": -9.191562965945671,
     "flag": "🇵🇪",
-    "pop": "397M",
-    "budget": "Rp 428 T",
+    "pop": "99M",
+    "budget": "Rp 356 T",
     "religion": "Hindu",
-    "ideology": "Komunisme"
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Philippines",
@@ -1413,10 +1413,10 @@
     "lon": 121.5444424473767,
     "lat": 15.750944352886165,
     "flag": "🇵🇭",
-    "pop": "410M",
-    "budget": "Rp 377 T",
-    "religion": "Hindu",
-    "ideology": "Otokrasi"
+    "pop": "446M",
+    "budget": "Rp 4424 T",
+    "religion": "Sekuler",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Papua New Guinea",
@@ -1424,10 +1424,10 @@
     "lon": 144.33121563888304,
     "lat": -6.645007185852296,
     "flag": "🇵🇬",
-    "pop": "1.0B",
-    "budget": "Rp 4256 T",
+    "pop": "1.3B",
+    "budget": "Rp 4245 T",
     "religion": "Islam",
-    "ideology": "Demokrasi"
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Poland",
@@ -1435,43 +1435,43 @@
     "lon": 19.31101431086576,
     "lat": 52.148260305574276,
     "flag": "🇵🇱",
-    "pop": "1.3B",
-    "budget": "Rp 4549 T",
-    "religion": "Ortodoks",
+    "pop": "376M",
+    "budget": "Rp 2742 T",
+    "religion": "Kristen",
     "ideology": "Teokrasi"
   },
   {
     "name_en": "Puerto Rico",
-    "name_id": "Puerto Rico",
+    "name_id": "Puerto Riko",
     "lon": -66.47922257377436,
     "lat": 18.237224722054563,
     "flag": "🇵🇷",
-    "pop": "206M",
-    "budget": "Rp 892 T",
-    "religion": "Katolik",
-    "ideology": "Sosiolisme"
+    "pop": "454M",
+    "budget": "Rp 2539 T",
+    "religion": "Kristen",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "North Korea",
-    "name_id": "North Korea",
+    "name_id": "Korea Utara",
     "lon": 127.16501682893407,
     "lat": 40.14302104546928,
     "flag": "🇰🇵",
-    "pop": "364M",
-    "budget": "Rp 1334 T",
-    "religion": "Hindu",
-    "ideology": "Teokrasi"
+    "pop": "1.1B",
+    "budget": "Rp 407 T",
+    "religion": "Katolik",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Portugal",
-    "name_id": "Tuvalu",
+    "name_id": "Portugal",
     "lon": -8.05576565398752,
     "lat": 39.63404967691413,
     "flag": "🇵🇹",
-    "pop": "158M",
-    "budget": "Rp 532 T",
-    "religion": "Hindu",
-    "ideology": "Komunisme"
+    "pop": "1.2B",
+    "budget": "Rp 1022 T",
+    "religion": "Sekuler",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Paraguay",
@@ -1479,10 +1479,10 @@
     "lon": -58.38738769647536,
     "lat": -23.248042095447328,
     "flag": "🇵🇾",
-    "pop": "1.2B",
-    "budget": "Rp 1674 T",
-    "religion": "Katolik",
-    "ideology": "Komunisme"
+    "pop": "398M",
+    "budget": "Rp 1744 T",
+    "religion": "Kristen",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Qatar",
@@ -1490,21 +1490,21 @@
     "lon": 51.18350260887132,
     "lat": 25.32185100975744,
     "flag": "🇶🇦",
-    "pop": "440M",
-    "budget": "Rp 4185 T",
-    "religion": "Hindu",
-    "ideology": "Demokrasi"
+    "pop": "1.1B",
+    "budget": "Rp 2862 T",
+    "religion": "Ortodoks",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Romania",
-    "name_id": "Republik Rumania",
+    "name_id": "Rumania",
     "lon": 24.943252307608645,
     "lat": 45.85710098777519,
     "flag": "🇷🇴",
-    "pop": "1.2B",
-    "budget": "Rp 4963 T",
+    "pop": "452M",
+    "budget": "Rp 4131 T",
     "religion": "Sekuler",
-    "ideology": "Otokrasi"
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Russia",
@@ -1512,10 +1512,10 @@
     "lon": 99.21652676048653,
     "lat": 61.69256469352855,
     "flag": "🇷🇺",
-    "pop": "240M",
-    "budget": "Rp 4651 T",
-    "religion": "Katolik",
-    "ideology": "Sosiolisme"
+    "pop": "90M",
+    "budget": "Rp 4595 T",
+    "religion": "Islam",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Rwanda",
@@ -1523,21 +1523,21 @@
     "lon": 29.918965896965677,
     "lat": -2.01351556441697,
     "flag": "🇷🇼",
-    "pop": "106M",
-    "budget": "Rp 2483 T",
+    "pop": "1.2B",
+    "budget": "Rp 1098 T",
     "religion": "Sekuler",
-    "ideology": "Otokrasi"
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Western Sahara",
-    "name_id": "Western Sahara",
+    "name_id": "Sahara Barat",
     "lon": -12.137831279237853,
     "lat": 24.29117284991382,
     "flag": "🇪🇭",
-    "pop": "170M",
-    "budget": "Rp 1875 T",
-    "religion": "Ortodoks",
-    "ideology": "Pancasila"
+    "pop": "249M",
+    "budget": "Rp 2652 T",
+    "religion": "Kristen",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Saudi Arabia",
@@ -1545,10 +1545,10 @@
     "lon": 44.51636382661864,
     "lat": 24.12328979558363,
     "flag": "🇸🇦",
-    "pop": "210M",
-    "budget": "Rp 4499 T",
+    "pop": "74M",
+    "budget": "Rp 1768 T",
     "religion": "Kristen",
-    "ideology": "Pancasila"
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Sudan",
@@ -1556,21 +1556,21 @@
     "lon": 29.862604017208454,
     "lat": 15.99058495544573,
     "flag": "🇸🇩",
-    "pop": "1.2B",
-    "budget": "Rp 4961 T",
-    "religion": "Kristen",
-    "ideology": "Demokrasi"
+    "pop": "1.0B",
+    "budget": "Rp 3194 T",
+    "religion": "Hindu",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "South Sudan",
-    "name_id": "South Sudan",
+    "name_id": "Sudan Selatan",
     "lon": 30.198617471789227,
     "lat": 7.292889589795126,
     "flag": "🇸🇸",
-    "pop": "16M",
-    "budget": "Rp 1387 T",
-    "religion": "Sekuler",
-    "ideology": "Pancasila"
+    "pop": "38M",
+    "budget": "Rp 2226 T",
+    "religion": "Katolik",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Senegal",
@@ -1578,21 +1578,21 @@
     "lon": -14.50980270579705,
     "lat": 14.354140014155806,
     "flag": "🇸🇳",
-    "pop": "190M",
-    "budget": "Rp 4775 T",
-    "religion": "Hindu",
+    "pop": "498M",
+    "budget": "Rp 3990 T",
+    "religion": "Ortodoks",
     "ideology": "Sosiolisme"
   },
   {
     "name_en": "Solomon Islands",
-    "name_id": "Solomon Islands",
+    "name_id": "Kepulauan Solomon",
     "lon": 159.10249838312578,
     "lat": -7.902107562654502,
     "flag": "🇸🇧",
-    "pop": "459M",
-    "budget": "Rp 2115 T",
-    "religion": "Hindu",
-    "ideology": "Otokrasi"
+    "pop": "211M",
+    "budget": "Rp 1054 T",
+    "religion": "Katolik",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Sierra Leone",
@@ -1600,10 +1600,10 @@
     "lon": -11.795257379763953,
     "lat": 8.530353735589916,
     "flag": "🇸🇱",
-    "pop": "430M",
-    "budget": "Rp 3256 T",
-    "religion": "Sekuler",
-    "ideology": "Komunisme"
+    "pop": "337M",
+    "budget": "Rp 3201 T",
+    "religion": "Katolik",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "El Salvador",
@@ -1611,10 +1611,10 @@
     "lon": -88.87290324483844,
     "lat": 13.726091618589376,
     "flag": "🇸🇻",
-    "pop": "1.1B",
-    "budget": "Rp 948 T",
-    "religion": "Islam",
-    "ideology": "Komunisme"
+    "pop": "1.2B",
+    "budget": "Rp 4633 T",
+    "religion": "Ortodoks",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Somaliland",
@@ -1622,10 +1622,10 @@
     "lon": 46.23074785947254,
     "lat": 9.757970278633891,
     "flag": "🏳️",
-    "pop": "292M",
-    "budget": "Rp 1268 T",
+    "pop": "310M",
+    "budget": "Rp 2101 T",
     "religion": "Ortodoks",
-    "ideology": "Teokrasi"
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Somalia",
@@ -1633,20 +1633,20 @@
     "lon": 45.72670072386591,
     "lat": 4.752347709937329,
     "flag": "🇸🇴",
-    "pop": "1.2B",
-    "budget": "Rp 4930 T",
-    "religion": "Katolik",
-    "ideology": "Demokrasi"
+    "pop": "466M",
+    "budget": "Rp 1285 T",
+    "religion": "Ortodoks",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Republic of Serbia",
-    "name_id": "Republik Zambia",
+    "name_id": "Serbia",
     "lon": 20.819651225489288,
     "lat": 44.23303717135303,
     "flag": "🇷🇸",
-    "pop": "133M",
-    "budget": "Rp 3125 T",
-    "religion": "Katolik",
+    "pop": "91M",
+    "budget": "Rp 4143 T",
+    "religion": "Kristen",
     "ideology": "Teokrasi"
   },
   {
@@ -1655,10 +1655,10 @@
     "lon": -55.91145636465013,
     "lat": 4.120007947741114,
     "flag": "🇸🇷",
-    "pop": "235M",
-    "budget": "Rp 4923 T",
-    "religion": "Hindu",
-    "ideology": "Pancasila"
+    "pop": "21M",
+    "budget": "Rp 4650 T",
+    "religion": "Sekuler",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Slovakia",
@@ -1666,9 +1666,9 @@
     "lon": 19.507657094537745,
     "lat": 48.72671130750541,
     "flag": "🇸🇰",
-    "pop": "1.1B",
-    "budget": "Rp 128 T",
-    "religion": "Ortodoks",
+    "pop": "178M",
+    "budget": "Rp 301 T",
+    "religion": "Kristen",
     "ideology": "Sosiolisme"
   },
   {
@@ -1677,10 +1677,10 @@
     "lon": 14.938152421437303,
     "lat": 46.125422102647065,
     "flag": "🇸🇮",
-    "pop": "1.1B",
-    "budget": "Rp 3105 T",
-    "religion": "Kristen",
-    "ideology": "Demokrasi"
+    "pop": "1.3B",
+    "budget": "Rp 1756 T",
+    "religion": "Ortodoks",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Sweden",
@@ -1688,21 +1688,21 @@
     "lon": 16.59626587831342,
     "lat": 62.81148502345843,
     "flag": "🇸🇪",
-    "pop": "309M",
-    "budget": "Rp 3016 T",
-    "religion": "Kristen",
-    "ideology": "Demokrasi"
+    "pop": "318M",
+    "budget": "Rp 4255 T",
+    "religion": "Sekuler",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Swaziland",
-    "name_id": "Swaziland",
+    "name_id": "Eswatini",
     "lon": 31.39525584460547,
     "lat": -26.48985518070372,
     "flag": "🇸🇿",
-    "pop": "173M",
-    "budget": "Rp 1632 T",
-    "religion": "Katolik",
-    "ideology": "Demokrasi"
+    "pop": "279M",
+    "budget": "Rp 4156 T",
+    "religion": "Sekuler",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Syria",
@@ -1710,10 +1710,10 @@
     "lon": 38.54423937337721,
     "lat": 35.01261407482943,
     "flag": "🇸🇾",
-    "pop": "263M",
-    "budget": "Rp 4599 T",
-    "religion": "Kristen",
-    "ideology": "Sosiolisme"
+    "pop": "1.4B",
+    "budget": "Rp 3939 T",
+    "religion": "Katolik",
+    "ideology": "Otokrasi"
   },
   {
     "name_en": "Chad",
@@ -1721,10 +1721,10 @@
     "lon": 18.58132957570229,
     "lat": 15.328867455033206,
     "flag": "🇹🇩",
-    "pop": "1.1B",
-    "budget": "Rp 1764 T",
-    "religion": "Katolik",
-    "ideology": "Teokrasi"
+    "pop": "217M",
+    "budget": "Rp 4623 T",
+    "religion": "Kristen",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Togo",
@@ -1732,10 +1732,10 @@
     "lon": 0.9964041377430796,
     "lat": 8.439541614235031,
     "flag": "🇹🇬",
-    "pop": "1.3B",
-    "budget": "Rp 3436 T",
-    "religion": "Ortodoks",
-    "ideology": "Komunisme"
+    "pop": "153M",
+    "budget": "Rp 538 T",
+    "religion": "Sekuler",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Thailand",
@@ -1743,9 +1743,9 @@
     "lon": 101.0061336130775,
     "lat": 15.016975159492564,
     "flag": "🇹🇭",
-    "pop": "261M",
-    "budget": "Rp 2246 T",
-    "religion": "Kristen",
+    "pop": "152M",
+    "budget": "Rp 1098 T",
+    "religion": "Katolik",
     "ideology": "Demokrasi"
   },
   {
@@ -1754,9 +1754,9 @@
     "lon": 71.03443536178722,
     "lat": 38.58308139503346,
     "flag": "🇹🇯",
-    "pop": "431M",
-    "budget": "Rp 3385 T",
-    "religion": "Sekuler",
+    "pop": "449M",
+    "budget": "Rp 2039 T",
+    "religion": "Katolik",
     "ideology": "Pancasila"
   },
   {
@@ -1765,31 +1765,31 @@
     "lon": 59.275430450119,
     "lat": 39.09124009577987,
     "flag": "🇹🇲",
-    "pop": "1.1B",
-    "budget": "Rp 2113 T",
-    "religion": "Hindu",
-    "ideology": "Otokrasi"
+    "pop": "175M",
+    "budget": "Rp 4231 T",
+    "religion": "Islam",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "East Timor",
-    "name_id": "East Timor",
+    "name_id": "Timor-Leste",
     "lon": 125.96629991037219,
     "lat": -8.767760366825122,
     "flag": "🇹🇱",
-    "pop": "288M",
-    "budget": "Rp 3965 T",
-    "religion": "Sekuler",
-    "ideology": "Otokrasi"
+    "pop": "374M",
+    "budget": "Rp 1557 T",
+    "religion": "Islam",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Trinidad and Tobago",
-    "name_id": "Trinidad Dan Tobago",
+    "name_id": "Trinidad dan Tobago",
     "lon": -61.33036691444743,
     "lat": 10.428237089201463,
     "flag": "🇹🇹",
-    "pop": "75M",
-    "budget": "Rp 2081 T",
-    "religion": "Ortodoks",
+    "pop": "262M",
+    "budget": "Rp 3153 T",
+    "religion": "Kristen",
     "ideology": "Sosiolisme"
   },
   {
@@ -1798,10 +1798,10 @@
     "lon": 9.534716183500802,
     "lat": 34.17293925895331,
     "flag": "🇹🇳",
-    "pop": "1.2B",
-    "budget": "Rp 1604 T",
-    "religion": "Kristen",
-    "ideology": "Sosiolisme"
+    "pop": "193M",
+    "budget": "Rp 2609 T",
+    "religion": "Sekuler",
+    "ideology": "Demokrasi"
   },
   {
     "name_en": "Turkey",
@@ -1809,43 +1809,43 @@
     "lon": 35.39210233844099,
     "lat": 38.990729732518275,
     "flag": "🇹🇷",
-    "pop": "142M",
-    "budget": "Rp 4689 T",
-    "religion": "Sekuler",
-    "ideology": "Demokrasi"
+    "pop": "423M",
+    "budget": "Rp 4652 T",
+    "religion": "Ortodoks",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Taiwan",
-    "name_id": "Vatikan",
+    "name_id": "Taiwan",
     "lon": 120.97480073551196,
     "lat": 23.740964945370994,
     "flag": "🇹🇼",
-    "pop": "261M",
-    "budget": "Rp 257 T",
+    "pop": "422M",
+    "budget": "Rp 3386 T",
     "religion": "Hindu",
-    "ideology": "Otokrasi"
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "United Republic of Tanzania",
-    "name_id": "Republik Tanzania",
+    "name_id": "Tanzania",
     "lon": 34.75298812860288,
     "lat": -6.257732678257467,
     "flag": "🇹🇿",
-    "pop": "1.3B",
-    "budget": "Rp 4887 T",
+    "pop": "1.2B",
+    "budget": "Rp 4571 T",
     "religion": "Ortodoks",
     "ideology": "Teokrasi"
   },
   {
     "name_en": "Uganda",
-    "name_id": "Andorra",
+    "name_id": "Uganda",
     "lon": 32.35754824335681,
     "lat": 1.2954870115966226,
     "flag": "🇺🇬",
-    "pop": "235M",
-    "budget": "Rp 3132 T",
-    "religion": "Sekuler",
-    "ideology": "Demokrasi"
+    "pop": "126M",
+    "budget": "Rp 2490 T",
+    "religion": "Kristen",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Ukraine",
@@ -1853,10 +1853,10 @@
     "lon": 31.36953300795837,
     "lat": 48.97301785822512,
     "flag": "🇺🇦",
-    "pop": "243M",
-    "budget": "Rp 700 T",
-    "religion": "Katolik",
-    "ideology": "Komunisme"
+    "pop": "468M",
+    "budget": "Rp 1120 T",
+    "religion": "Hindu",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Uruguay",
@@ -1864,21 +1864,21 @@
     "lon": -56.00327859834271,
     "lat": -32.780904514653685,
     "flag": "🇺🇾",
-    "pop": "284M",
-    "budget": "Rp 2943 T",
-    "religion": "Hindu",
+    "pop": "104M",
+    "budget": "Rp 4703 T",
+    "religion": "Sekuler",
     "ideology": "Teokrasi"
   },
   {
     "name_en": "United States of America",
-    "name_id": "United States Of America",
+    "name_id": "Amerika Serikat",
     "lon": -99.06024062067767,
     "lat": 39.50155412627149,
     "flag": "🇺🇸",
-    "pop": "1.1B",
-    "budget": "Rp 468 T",
-    "religion": "Kristen",
-    "ideology": "Komunisme"
+    "pop": "26M",
+    "budget": "Rp 4931 T",
+    "religion": "Islam",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Uzbekistan",
@@ -1886,9 +1886,9 @@
     "lon": 63.20363970313532,
     "lat": 41.748602626152476,
     "flag": "🇺🇿",
-    "pop": "148M",
-    "budget": "Rp 4642 T",
-    "religion": "Sekuler",
+    "pop": "192M",
+    "budget": "Rp 4854 T",
+    "religion": "Ortodoks",
     "ideology": "Komunisme"
   },
   {
@@ -1897,10 +1897,10 @@
     "lon": -66.16382729479615,
     "lat": 7.162132242283123,
     "flag": "🇻🇪",
-    "pop": "199M",
-    "budget": "Rp 2520 T",
+    "pop": "51M",
+    "budget": "Rp 535 T",
     "religion": "Katolik",
-    "ideology": "Teokrasi"
+    "ideology": "Pancasila"
   },
   {
     "name_en": "Vietnam",
@@ -1908,10 +1908,10 @@
     "lon": 106.28584084813869,
     "lat": 16.657937717046437,
     "flag": "🇻🇳",
-    "pop": "426M",
-    "budget": "Rp 2244 T",
-    "religion": "Kristen",
-    "ideology": "Sosiolisme"
+    "pop": "373M",
+    "budget": "Rp 964 T",
+    "religion": "Islam",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Vanuatu",
@@ -1919,21 +1919,21 @@
     "lon": 166.9072292235316,
     "lat": -15.223343397456187,
     "flag": "🇻🇺",
-    "pop": "79M",
-    "budget": "Rp 3309 T",
-    "religion": "Katolik",
-    "ideology": "Komunisme"
+    "pop": "33M",
+    "budget": "Rp 1193 T",
+    "religion": "Sekuler",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "West Bank",
-    "name_id": "West Bank",
+    "name_id": "Tepi Barat",
     "lon": 35.27331963061388,
     "lat": 31.941136592976413,
     "flag": "🇵🇸",
-    "pop": "262M",
-    "budget": "Rp 4977 T",
-    "religion": "Katolik",
-    "ideology": "Otokrasi"
+    "pop": "413M",
+    "budget": "Rp 2106 T",
+    "religion": "Kristen",
+    "ideology": "Teokrasi"
   },
   {
     "name_en": "Yemen",
@@ -1941,21 +1941,21 @@
     "lon": 47.535044576933146,
     "lat": 15.91323186702399,
     "flag": "🇾🇪",
-    "pop": "1.3B",
-    "budget": "Rp 1593 T",
-    "religion": "Hindu",
-    "ideology": "Teokrasi"
+    "pop": "444M",
+    "budget": "Rp 4915 T",
+    "religion": "Sekuler",
+    "ideology": "Pancasila"
   },
   {
     "name_en": "South Africa",
-    "name_id": "South Africa",
+    "name_id": "Afrika Selatan",
     "lon": 25.117396260325854,
     "lat": -28.96210620692334,
     "flag": "🇿🇦",
-    "pop": "180M",
-    "budget": "Rp 2947 T",
-    "religion": "Sekuler",
-    "ideology": "Pancasila"
+    "pop": "23M",
+    "budget": "Rp 3228 T",
+    "religion": "Kristen",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Zambia",
@@ -1963,10 +1963,10 @@
     "lon": 27.7275918397033,
     "lat": -13.39506758615823,
     "flag": "🇿🇲",
-    "pop": "455M",
-    "budget": "Rp 1459 T",
-    "religion": "Islam",
-    "ideology": "Sosiolisme"
+    "pop": "1.1B",
+    "budget": "Rp 4408 T",
+    "religion": "Katolik",
+    "ideology": "Komunisme"
   },
   {
     "name_en": "Zimbabwe",
@@ -1974,153 +1974,131 @@
     "lon": 29.78854831417208,
     "lat": -18.906987904330226,
     "flag": "🇿🇼",
-    "pop": "329M",
-    "budget": "Rp 1786 T",
-    "religion": "Ortodoks",
-    "ideology": "Komunisme"
+    "pop": "497M",
+    "budget": "Rp 3793 T",
+    "religion": "Kristen",
+    "ideology": "Sosiolisme"
   },
   {
     "name_en": "Antigua and Barbuda",
-    "name_id": "Antigua Dan Barbuda",
-    "lon": -61.8,
-    "lat": 17.05,
+    "name_id": "Antigua dan Barbuda",
+    "lon": -61.796,
+    "lat": 17.06,
     "flag": "🇦🇬",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
-  },
-  {
-    "name_en": "Bahamas",
-    "name_id": "Bahama",
-    "lon": -76,
-    "lat": 24.25,
-    "flag": "🇧🇸",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Bahrain",
     "name_id": "Bahrain",
     "lon": 50.55,
-    "lat": 26,
+    "lat": 26.0,
     "flag": "🇧🇭",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Barbados",
     "name_id": "Barbados",
-    "lon": -59.53333333,
-    "lat": 13.16666666,
+    "lon": -59.543,
+    "lat": 13.193,
     "flag": "🇧🇧",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Dominica",
     "name_id": "Dominika",
-    "lon": -61.33333333,
-    "lat": 15.41666666,
+    "lon": -61.333,
+    "lat": 15.416,
     "flag": "🇩🇲",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Grenada",
     "name_id": "Grenada",
-    "lon": -61.66666666,
-    "lat": 12.11666666,
+    "lon": -61.666,
+    "lat": 12.116,
     "flag": "🇬🇩",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
-  },
-  {
-    "name_en": "Samoa",
-    "name_id": "Kamboja",
-    "lon": -172.33333333,
-    "lat": -13.58333333,
-    "flag": "🇼🇸",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Kiribati",
     "name_id": "Kiribati",
-    "lon": 173,
-    "lat": 1.41666666,
+    "lon": -168.734,
+    "lat": -3.37,
     "flag": "🇰🇮",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
-  },
-  {
-    "name_en": "Congo",
-    "name_id": "Kongo",
-    "lon": 15,
-    "lat": -1,
-    "flag": "🇨🇬",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Liechtenstein",
     "name_id": "Liechtenstein",
-    "lon": 9.53333333,
-    "lat": 47.26666666,
+    "lon": 9.555,
+    "lat": 47.166,
     "flag": "🇱🇮",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Marshall Islands",
-    "name_id": "Marshall",
-    "lon": 168,
-    "lat": 9,
+    "name_id": "Kepulauan Marshall",
+    "lon": 171.184,
+    "lat": 7.131,
     "flag": "🇲🇭",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
+  },
+  {
+    "name_en": "Micronesia",
+    "name_id": "Mikronesia",
+    "lon": 150.55,
+    "lat": 7.425,
+    "flag": "🇫🇲",
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Monaco",
     "name_id": "Monako",
-    "lon": 7.4,
-    "lat": 43.73333333,
+    "lon": 7.416,
+    "lat": 43.733,
     "flag": "🇲🇨",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Nauru",
     "name_id": "Nauru",
-    "lon": 166.91666666,
-    "lat": -0.53333333,
+    "lon": 166.931,
+    "lat": -0.522,
     "flag": "🇳🇷",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Palestine",
@@ -2128,86 +2106,64 @@
     "lon": 35.2,
     "lat": 31.9,
     "flag": "🇵🇸",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
-  },
-  {
-    "name_en": "Norfolk Island",
-    "name_id": "Republik Sudan",
-    "lon": 167.95,
-    "lat": -29.03333333,
-    "flag": "🇳🇫",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
-  },
-  {
-    "name_en": "Timor-Leste",
-    "name_id": "Republik Timor-Leste",
-    "lon": 125.91666666,
-    "lat": -8.83333333,
-    "flag": "🇹🇱",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Saint Kitts and Nevis",
-    "name_id": "Saint Kitts Dan Nevis",
-    "lon": -62.75,
-    "lat": 17.33333333,
+    "name_id": "Saint Kitts dan Nevis",
+    "lon": -62.782,
+    "lat": 17.357,
     "flag": "🇰🇳",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Saint Lucia",
     "name_id": "Saint Lucia",
-    "lon": -60.96666666,
-    "lat": 13.88333333,
+    "lon": -60.978,
+    "lat": 13.909,
     "flag": "🇱🇨",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Saint Vincent and the Grenadines",
-    "name_id": "Saint Vincent Dan Grenadine",
+    "name_id": "Saint Vincent dan Grenadines",
     "lon": -61.2,
     "lat": 13.25,
     "flag": "🇻🇨",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
-    "name_en": "São Tomé and Príncipe",
-    "name_id": "Sao Tome Dan Principe",
-    "lon": 7,
-    "lat": 1,
+    "name_en": "Sao Tome and Principe",
+    "name_id": "Sao Tome dan Principe",
+    "lon": 6.613,
+    "lat": 0.186,
     "flag": "🇸🇹",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   },
   {
     "name_en": "Seychelles",
     "name_id": "Seychelles",
-    "lon": 55.66666666,
-    "lat": -4.58333333,
+    "lon": 55.491,
+    "lat": -4.679,
     "flag": "🇸🇨",
-    "pop": "1M",
-    "budget": "Rp 500 T",
-    "religion": "N/A",
-    "ideology": "N/A"
+    "pop": "---",
+    "budget": "---",
+    "religion": "---",
+    "ideology": "---"
   }
 ]

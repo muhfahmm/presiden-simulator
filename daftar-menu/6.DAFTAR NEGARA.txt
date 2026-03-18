@@ -1,4 +1,4 @@
-1. [x] afganistan
+1. [ ] afganistan
 2. [x] albania
 3. [x] aljazair
 4. [x] andorra
@@ -12,7 +12,7 @@
 12. [x] azerbaijan
 13. [x] bahama
 14. [x] bahrain
-15. [x] bangladesh
+15. [ ] bangladesh
 16. [x] barbados
 17. [x] belanda
 18. [x] belarus
@@ -20,7 +20,7 @@
 20. [x] belize
 21. [x] benin
 22. [x] bhutan
-23. [x] bolivia
+23. [ ] bolivia
 24. [x] bosnia dan hercegovina
 25. [x] botswana
 26. [x] brazil
@@ -31,36 +31,36 @@
 31. [x] chad
 32. [x] chile
 33. [x] china
-34. [x] costa rica
+34. [ ] costa rica
 35. [x] ceko
-36. [x] denmark
+36. [ ] denmark
 37. [x] dominika
 38. [x] ekuador
 39. [x] el salvador
 40. [x] eritrea
-41. [x] estonia
+41. [ ] estonia
 42. [x] ethiopia
 43. [x] fiji
 44. [x] filipina
 45. [x] finlandia
 46. [x] gabon
 47. [x] gambia
-48. [x] georgia
+48. [ ] georgia
 49. [x] ghana
 50. [x] grenada
 51. [x] guatemala
 52. [x] guinea
 53. [x] guinea-bissau
 54. [x] guyana
-55. [x] haiti
+55. [ ] haiti
 56. [x] honduras
 57. [x] hungaria
 58. [x] islandia
 59. [x] india
-60. [x] indonesia
+60. [ ] indonesia
 61. [x] irak
 62. [x] iran
-63. [x] irlandia
+63. [ ] irlandia
 64. [x] israel
 65. [x] italia
 66. [x] jamaika
@@ -78,7 +78,7 @@
 78. [x] komoro
 79. [x] kongo
 80. [x] korea selatan
-81. [x] korea utara
+81. [ ] korea utara
 82. [x] kosta rika
 83. [x] kroasia
 84. [x] kuba
@@ -90,7 +90,7 @@
 90. [x] liberia
 91. [x] libya
 92. [x] liechtenstein
-93. [x] lithuania
+93. [ ] lithuania
 94. [x] luksemburg
 95. [x] madagaskar
 96. [x] malawi
@@ -100,7 +100,7 @@
 100. [x] malta
 101. [x] maroko
 102. [x] marshall
-103. [x] mauritania
+103. [ ] mauritania
 104. [x] mauritius
 105. [x] meksiko
 106. [x] mikronesia
@@ -109,10 +109,10 @@
 109. [x] mongolia
 110. [x] montenegro
 111. [x] mozambik
-112. [x] myanmar
+112. [ ] myanmar
 113. [x] namibia
 114. [x] nauru
-115. [x] nepal
+115. [ ] nepal
 116. [x] niger
 117. [x] nigeria
 118. [x] nikaragua
@@ -126,7 +126,7 @@
 126. [x] paraguay
 127. [x] peru
 128. [x] polandia
-129. [x] portugal
+129. [ ] portugal
 130. [x] qatar
 131. [x] republik afrika tengah
 132. [x] republik demokratik kongo
@@ -135,7 +135,7 @@
 135. [x] republik moldova
 136. [x] republik mozambik
 137. [x] republik rumania
-138. [x] republik serbia
+138. [ ] republik serbia
 139. [x] republik sudan
 140. [x] republik tanzania
 141. [x] republik timor-leste
@@ -164,7 +164,7 @@
 164. [x] suriah
 165. [x] swedia
 166. [x] swiss
-167. [x] taiwan
+167. [ ] taiwan
 168. [x] tajikistan
 169. [x] tahiti
 170. [x] tanzania

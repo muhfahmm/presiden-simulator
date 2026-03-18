@@ -4,12 +4,14 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import WorldMapCanvas from "@/components/WorldMapCanvas";
+import WorldMapCanvas from "@/components/selectcountrymap";
 
 export default function SelectCountry() {
   const router = useRouter();
   const [selectedCountry, setSelectedCountry] = useState("Indonesia");
   const [countries, setCountries] = useState<any[]>([]);
+  const [isCentered, setIsCentered] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
 
   useEffect(() => {
@@ -63,6 +65,7 @@ export default function SelectCountry() {
           <div className="flex items-center gap-4">
             <StatItem label="Populasi" value={currentData.pop} icon="👥" />
             <StatItem label="Kas Negara" value={currentData.budget} icon="💰" />
+            <StatItem label="Total Negara" value={`${countries.length}`} icon="🌍" />
           </div>
         </div>
 
@@ -83,20 +86,22 @@ export default function SelectCountry() {
           initialScale={1}
           minScale={1}
           maxScale={8}
-          centerOnInit={true}
+          centerOnInit={!isCentered}
+          onInit={() => setIsCentered(true)}
           limitToBounds={true}
+          doubleClick={{ disabled: true }}
+          
         >
-          <TransformComponent wrapperClass="!w-full !h-full" contentClass="!w-full !h-full flex items-center justify-center">
-            {/* Background Map Container */}
-            <div className="relative aspect-[2/1] min-w-[1200px] h-full flex items-center justify-center">
+          <TransformComponent wrapperClass="!w-full !h-full" contentClass="!h-full flex items-center justify-center">
+            {/* Background Map Container (Single wider canvas) */}
+            <div ref={containerRef} className="relative h-full flex items-center justify-center w-max">
               <WorldMapCanvas selectedCountry={selectedCountry} onSelect={setSelectedCountry} />
-              
-              {/* Ambient Darkened Vignette */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
-
             </div>
           </TransformComponent>
         </TransformWrapper>
+        
+        {/* Ambient Darkened Vignette */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
 
         {/* Floating Resource inventory panel */}
         <div className="absolute top-4 right-4 bg-zinc-900/70 backdrop-blur-md border border-zinc-700/60 p-2 px-4 rounded-xl flex items-center gap-3 text-xs z-20">
@@ -171,8 +176,11 @@ export default function SelectCountry() {
           </button>
 
           <button 
-            onClick={() => router.push("/game")}
-            className="flex items-center gap-2 px-8 py-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 font-bold hover:from-emerald-500 hover:to-teal-500 transition shadow-lg hover:shadow-emerald-500/20 cursor-pointer active:scale-95 text-sm"
+            onClick={() => {
+              localStorage.setItem("selectedCountry", selectedCountry);
+              router.push("/game");
+            }}
+            className="flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/30 transition-all cursor-pointer group scale-100 hover:scale-[1.02] active:scale-[0.98]"
           >
             <Play className="h-4 w-4" />
             Mulai

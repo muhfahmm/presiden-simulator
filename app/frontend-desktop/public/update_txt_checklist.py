@@ -17,11 +17,17 @@ for line in lines:
         parts = line.strip().split('. ', 1)
         number = parts[0]
         country = parts[1].strip()
+        if country.startswith('[x] '):
+            country = str(country).replace('[x] ', '', 1).strip()
+        elif country.startswith('[ ] '):
+            country = str(country).replace('[ ] ', '', 1).strip()
         c_lower = country.lower()
         
         on_map = False
         for m_name in countries_on_map:
-            if c_lower == m_name or c_lower in m_name or m_name in c_lower:
+            m_str = str(m_name)
+            c_str = str(c_lower)
+            if c_str == m_str or c_str in m_str or m_str in c_str:
                  on_map = True
                  break
                  

@@ -46,7 +46,7 @@ manual_missing = {
     "vatikan": "Vatican City"
 }
 
-added_count = 0
+added_count = [0]
 for d_name in daftar:
     d_lower = d_name.lower()
     if d_lower in countries_on_map:
@@ -57,7 +57,7 @@ for d_name in daftar:
         matches = difflib.get_close_matches(d_name, [m['name']['common'] for m in missing_data], n=1, cutoff=0.5)
         if matches:
             en_key = matches[0]
-
+ 
     if en_key:
         target_item = next((m for m in missing_data if m['name']['common'] == en_key), None)
         if target_item and 'latlng' in target_item and len(target_item['latlng']) == 2:
@@ -74,12 +74,12 @@ for d_name in daftar:
                 "religion": "N/A",
                 "ideology": "N/A"
             })
-            added_count += 1
+            added_count[0] += 1
             print(f"Added: {d_name} ({en_key})")
-
-if added_count > 0:
+ 
+if added_count[0] > 0:
     with open(centers_path, 'w', encoding='utf-8') as f:
          json.dump(centers, f, indent=2, ensure_ascii=False)
-    print(f"Successfully injected {added_count} missing microstates!")
+    print(f"Successfully injected {added_count[0]} missing microstates!")
 else:
     print("No missing items found to inject.")
