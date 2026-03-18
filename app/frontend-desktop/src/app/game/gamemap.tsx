@@ -8,6 +8,56 @@ interface GameMapCanvasProps {
   targetCountry: string | null;
   onSelect: (name: string) => void;
 }
+
+// Map Helper for Continent Colors
+const getContinentColor = (name: string, id: string): string => {
+  const n = name.trim().toLowerCase();
+  const i = id?.toUpperCase() || "";
+
+  // Africa - Jungle Green
+  if ([
+    "AGO", "BDI", "BEN", "BFA", "BWA", "CAF", "CIV", "CMR", "COD", "COG", "COM", "CPV", "DJI", "DZA", "EGY", "ERI", "ETH", 
+    "GAB", "GHA", "GIN", "GMB", "GNB", "GNQ", "KEN", "LBR", "LBY", "LSO", "MAR", "MDG", "MLI", "MOZ", "MRT", "MUS", "MWI", 
+    "NAM", "NER", "NGA", "REU", "RWA", "SDN", "SSD", "SEN", "SLE", "SOM", "STP", "SWZ", "SYC", "TCD", "TGO", "TUN", "TZA", 
+    "UGA", "ZAF", "ZMB", "ZWE", "ESH", "-99"
+  ].includes(i) || /senegal|gambia|guinea|ivory|tanzania|somaliland|sahara|congo|ethiopia|somalia|eritrea|djibouti/.test(n)) return "rgba(16, 185, 129, 0.4)";
+
+  // Asia - Gold/Amber
+  if ([
+    "AFG", "ARE", "ARM", "AZE", "BGD", "BHR", "BRN", "BTN", "CHN", "-99", "CYP", "GEO", "IDN", "IND", "IRN", "IRQ", "ISR", 
+    "JOR", "JPN", "KAZ", "KGZ", "KHM", "KOR", "KWT", "LAO", "LBN", "LKA", "MDV", "MMR", "MNG", "MYS", "NPL", "OMN", "PAK", 
+    "PHL", "PRK", "PSE", "QAT", "SAU", "SGP", "SYR", "THA", "TJK", "TKM", "TLS", "TUR", "TKM", "UZB", "VNM", "YEM", "TWN"
+  ].includes(i) || /india|china|japan|indonesia|pakistan|korea|vietnam|thailand|bangladesh|kyrgyz|tajikistan/.test(n)) return "rgba(245, 158, 11, 0.4)";
+
+  // Europe - Command Blue
+  if ([
+    "ALB", "AND", "AUT", "BEL", "BGR", "BIH", "BLR", "CHE", "CZE", "DEU", "DNK", "ESP", "EST", "FIN", "FRA", "GBR", "GRC", 
+    "HRV", "HUN", "IRL", "ISL", "ITA", "KOS", "CS-KM", "LTU", "LUX", "LVA", "MDA", "MCO", "MNE", "NLD", "NOR", "POL", "PRT", 
+    "ROU", "RUS", "SMR", "SRB", "SVK", "SVN", "SWE", "UKR", "VAT", "LIE", "MKD"
+  ].includes(i) || /russia|france|germany|italy|united kingdom|spain|romania/.test(n)) return "rgba(59, 130, 246, 0.4)";
+
+  // North America - Intelligence Purple
+  if ([
+    "BHS", "BLZ", "BMU", "CAN", "CRI", "CUB", "DOM", "GRL", "GTM", "HND", "HTI", "JAM", "MEX", "NIC", "PAN", "PRI", "SLV", 
+    "TTO", "USA", "ATG", "BRB", "DMA", "GRD", "KNA", "LCA", "VCT"
+  ].includes(i) || /united states|canada|mexico|cuba/.test(n)) return "rgba(139, 92, 246, 0.4)";
+
+  // South America - Pink/Magenta
+  if ([
+    "ARG", "BOL", "BRA", "CHL", "COL", "ECU", "FLK", "GUF", "GUY", "PER", "PRY", "SUR", "URY", "VEN"
+  ].includes(i) || /brazil|argentina|colombia|chile|peru/.test(n)) return "rgba(236, 72, 153, 0.4)";
+
+  // Oceania - Nano Cyan
+  if ([
+    "AUS", "FJI", "NCL", "NZL", "SLB", "VUT", "PNG", "KIR", "MHL", "FSM", "NRU", "PLW", "WSM", "TON", "TUV"
+  ].includes(i) || /australia|zealand|papua/.test(n)) return "rgba(6, 182, 212, 0.4)";
+
+  // Antarctica - Polar Slate
+  if (i === "ATA" || i === "ATF" || n.includes("antarctica")) return "rgba(148, 163, 184, 0.4)";
+
+  return "rgba(71, 85, 105, 0.3)";
+};
+
 export default function GameMapCanvas({ userCountry, targetCountry, onSelect }: GameMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [geoData, setGeoData] = useState<any>(null);
@@ -107,9 +157,9 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect }: 
           ctx.stroke();
           ctx.shadowBlur = 0;
         } else {
-          // Realistic Sage Green / Forest Earth tone for landmasses
-          ctx.fillStyle = "rgba(58, 90, 64, 0.75)"; // Sage/Moss green
-          ctx.strokeStyle = "rgba(245, 245, 220, 0.4)"; // Soft Beige/Parchment border
+          // Continent-based coloring
+          ctx.fillStyle = getContinentColor(name, feature.id);
+          ctx.strokeStyle = "rgba(245, 245, 220, 0.25)"; // Softer border
           ctx.lineWidth = 1;
           ctx.fill();
           ctx.stroke();
