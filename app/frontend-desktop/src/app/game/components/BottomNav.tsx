@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { 
   Star, Coins, Wrench, Shield, Globe, Landmark, LayoutGrid, ChevronLeft,
   Hammer, Swords as MilitaryIcon, Users2, BarChart3, TrendingUp,
-  ArrowRightLeft, FileText, CreditCard, Zap, Package
+  ArrowRightLeft, FileText, CreditCard, Zap, Package, Home
 } from "lucide-react";
 
 interface BottomNavProps {
@@ -20,6 +20,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
     { id: "Pertahanan", icon: Shield, label: "Pertahanan" },
     { id: "Geopolitik", icon: Globe, label: "Geopolitik" },
     { id: "Kementerian", icon: Landmark, label: "Kementerian" },
+    { id: "Demand", icon: Home, label: "Demand" },
   ];
 
   const subMenuItems: Record<string, any> = {

@@ -1,6 +1,6 @@
 "use client"
 
-import { X, Wrench, Shield, Truck, MapPin, Bomb, Radiation, Eye } from "lucide-react"
+import { X, Wrench, Shield, Truck, MapPin, Bomb, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship } from "lucide-react"
 
 interface ModalProps {
   isOpen: boolean;
@@ -10,13 +10,32 @@ interface ModalProps {
 export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
   if (!isOpen) return null;
 
-  const content = [
-    { label: "Gudang Senjata", icon: Shield, desc: "Fasilitas Pertahanan" },
-    { label: "Hangar Tank", icon: Truck, desc: "Logistik Tempur" },
-    { label: "Dermaga Perang", icon: MapPin, desc: "Fasilitas Militer" },
-    { label: "Pabrik Amunisi", icon: Bomb, desc: "Manufaktur Senjata" },
-    { label: "Pabrik Pesawat Tempur", icon: Radiation, desc: "Dirgantara" },
-    { label: "Pusat Riset Militer", icon: Eye, desc: "Riset Strategis" },
+  const militaryGroups = [
+    {
+      id: "pertahanan",
+      title: "Sektor Pertahanan",
+      icon: Shield,
+      color: "text-red-500",
+      items: [
+        { label: "Penjara", icon: Gavel, desc: "Lembaga Pemasyarakatan" },
+        { label: "Barak Militer", icon: MilitaryIcon, desc: "Hunian Tentara" },
+        { label: "Gudang Senjata", icon: Shield, desc: "Penyimpanan Amunisi" },
+        { label: "Hangar Tank", icon: Truck, desc: "Garasi Kendaraan Lapis Baja" },
+        { label: "Akademi Militer", icon: Landmark, desc: "Pendidikan Perwira" },
+      ]
+    },
+    {
+      id: "militer",
+      title: "Sektor Militer Strategis",
+      icon: MilitaryIcon,
+      color: "text-orange-600",
+      items: [
+        { label: "Pusat Komando Strategis", icon: TowerControl, desc: "Komando Tertinggi" },
+        { label: "Pangkalan Udara", icon: MapPin, desc: "Fasilitas Dirgantara" },
+        { label: "Pangkalan Laut", icon: Ship, desc: "Fasilitas Maritim" },
+        { label: "Pabrik Alutsista", icon: HardHat, desc: "Manufaktur Senjata" },
+      ]
+    }
   ];
 
   return (
@@ -40,9 +59,23 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 animate-in fade-in duration-500">
-            {content.map((item, idx) => (
-              <BuildingCard key={idx} item={item} />
+          <div className="space-y-12">
+            {militaryGroups.map((group) => (
+              <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+                <div className="flex items-center gap-3 mb-5 px-1">
+                  <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}>
+                    <group.icon className={`h-4 w-4 ${group.color}`} />
+                  </div>
+                  <h3 className="text-sm font-black text-zinc-200 uppercase tracking-widest">{group.title}</h3>
+                  <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-2"></div>
+                </div>
+                
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                  {group.items.map((item, idx) => (
+                    <BuildingCard key={idx} item={item} />
+                  ))}
+                </div>
+              </div>
             ))}
           </div>
         </div>
@@ -63,7 +96,7 @@ function BuildingCard({ item }: { item: any }) {
         </div>
       </div>
       <div>
-        <h4 className="text-sm font-bold text-zinc-100 tracking-tight group-hover:text-white transition-colors">{item.label}</h4>
+        <h4 className="text-[11px] font-bold text-zinc-100 tracking-tight group-hover:text-white transition-colors leading-tight line-clamp-1">{item.label}</h4>
         <div className="mt-2 flex items-center justify-between">
           <span className="text-[10px] text-zinc-500 font-medium">Biaya: Rp 25 T</span>
           <button className="px-3 py-1 rounded-lg bg-cyan-600/10 text-cyan-500 text-[10px] font-bold border border-cyan-500/20 hover:bg-cyan-600 hover:text-white transition-all">

@@ -21,6 +21,7 @@ import ProduksiBarangModal from "./components/ekonomi/ProduksiBarangModal";
 import ProduksiModal from "./components/pembangunan/ProduksiModal";
 import ProduksiMiliterModal from "./components/pembangunan/ProduksiMiliterModal";
 import TempatUmumModal from "./components/pembangunan/TempatUmumModal";
+import DemandModal from "./components/demands/DemandModal";
 import PertahananModal from "./components/pertahanan/PertahananModal";
 import GeopolitikModal from "./components/geopolitik/GeopolitikModal";
 import KementerianModal from "./components/kementerian/KementerianModal";
@@ -147,6 +148,10 @@ export default function GameDashboard() {
           <TempatUmumModal 
             isOpen={activeMenu === "Menu:TempatUmum"} 
             onClose={() => setActiveMenu("Pembangunan")} 
+          />
+          <DemandModal 
+            isOpen={activeMenu === "Demand"} 
+            onClose={() => setActiveMenu("Peta Taktis")} 
           />
           <PertahananModal 
             isOpen={activeMenu === "Komando Pertahanan"} 

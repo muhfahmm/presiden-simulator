@@ -1,86 +1,41 @@
 "use client"
 
-import { X, Wrench, Truck, MapPin, GraduationCap, HeartPulse, Trophy, Gavel, UserCheck, Bike, TrainFront, Plane, Ship, School, Landmark, Microscope, Eye, Crosshair, Shield } from "lucide-react"
+import { X, Wrench, Building2, Store, ShoppingBag, Briefcase, Palmtree, Hotel } from "lucide-react"
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
+export default function DemandModal({ isOpen, onClose }: ModalProps) {
   if (!isOpen) return null;
 
-  const publicGroups = [
+  const demandGroups = [
     {
-      id: "transportasi",
-      title: "Transportasi & Logistik",
-      icon: Truck,
-      color: "text-blue-400",
+      id: "residensial",
+      title: "Residensial",
+      icon: Building2,
+      color: "text-emerald-400",
       items: [
-        { label: "Jalur Sepeda", icon: Bike, desc: "Transportasi Hijau" },
-        { label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transit Cepat" },
-        { label: "Jalur Kereta Api", icon: TrainFront, desc: "Konektivitas" },
-        { label: "Jalan Raya", icon: Truck, desc: "Infrastruktur Dasar" },
-        { label: "Bandara", icon: Plane, desc: "Gerbang Udara" },
-        { label: "Pelabuhan", icon: Ship, desc: "Gerbang Maritim" },
+        { label: "Rumah Low Density", icon: Building2, desc: "Hunian" },
+        { label: "Apartemen Medium", icon: Building2, desc: "Hunian Vertikal" },
+        { label: "Perumahan High Density", icon: Building2, desc: "Hunian Padat" },
       ]
     },
     {
-      id: "pendidikan",
-      title: "Pendidikan & Riset",
-      icon: GraduationCap,
-      color: "text-indigo-400",
+      id: "komersial",
+      title: "Komersial & Pariwisata",
+      icon: Store,
+      color: "text-cyan-400",
       items: [
-        { label: "Taman Kanak-kanak", icon: School, desc: "Pendidikan Dini" },
-        { label: "Sekolah Dasar", icon: School, desc: "Pendidikan Dasar" },
-        { label: "Sekolah Menengah", icon: School, desc: "Pendidikan Menengah" },
-        { label: "Sekolah Atas", icon: School, desc: "Pendidikan Menengah" },
-        { label: "Perguruan Tinggi", icon: GraduationCap, desc: "Penyusun SDM" },
-        { label: "Lembaga Pendidikan", icon: School, desc: "Pelatihan" },
-        { label: "Laboratorium", icon: Microscope, desc: "Riset Sains" },
-        { label: "Observatorium", icon: Eye, desc: "Sains Antariksa" },
-        { label: "Pusat Riset", icon: Microscope, desc: "Inovasi" },
-        { label: "Pusat Penelitian", icon: Microscope, desc: "Pengembangan" },
+        { label: "Pasar", icon: Store, desc: "Ekonomi Rakyat" },
+        { label: "Ruko", icon: Store, desc: "Bisnis Kecil" },
+        { label: "Mall", icon: ShoppingBag, desc: "Pusat Belanja" },
+        { label: "Perkantoran", icon: Briefcase, desc: "Pusat Bisnis" },
+        { label: "Pusat Hiburan", icon: Palmtree, desc: "Rekreasi" },
+        { label: "Hotel Bintang 5", icon: Hotel, desc: "Pariwisata" },
       ]
-    },
-    {
-      id: "kesehatan",
-      title: "Kesehatan",
-      icon: HeartPulse,
-      color: "text-red-400",
-      items: [
-        { label: "Rumah Sakit Besar", icon: HeartPulse, desc: "Kesehatan Nasional" },
-        { label: "Rumah Sakit Kecil", icon: HeartPulse, desc: "Kesehatan Lokal" },
-        { label: "Pusat Diagnostik", icon: HeartPulse, desc: "Kesehatan Spesialis" },
-      ]
-    },
-    {
-      id: "olahraga",
-      title: "Olahraga & Rekreasi",
-      icon: Trophy,
-      color: "text-amber-500",
-      items: [
-        { label: "Kolam Renang", icon: Trophy, desc: "Fasilitas Umum" },
-        { label: "Sirkuit Balap", icon: Trophy, desc: "Hiburan & Sport" },
-        { label: "Stadion", icon: Trophy, desc: "Fasilitas Olahraga" },
-        { label: "Stadion Internasional", icon: Trophy, desc: "Sport & Prestige" },
-      ]
-    },
-    {
-      id: "hukum-keamanan",
-      title: "Hukum & Keamanan",
-      icon: Shield,
-      color: "text-zinc-400",
-      items: [
-        { label: "Pusat Bantuan Hukum", icon: Gavel, desc: "Layanan Hukum" },
-        { label: "Pengadilan", icon: Gavel, desc: "Keadilan" },
-        { label: "Kejaksaan", icon: Gavel, desc: "Penegakan Hukum" },
-        { label: "Kepolisian", icon: UserCheck, desc: "Keamanan Umum" },
-        { label: "Armada Mobil Polisi", icon: Truck, desc: "Patroli Keamanan" },
-        { label: "Akademi Polisi", icon: Landmark, desc: "Pendidikan Keamanan" },
-      ]
-    },
-
+    }
   ];
 
   return (
@@ -93,8 +48,8 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
               <Wrench className="h-6 w-6 text-purple-500" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white tracking-tight">Tempat Umum</h2>
-              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Public Services</p>
+              <h2 className="text-2xl font-bold text-white tracking-tight">Demand</h2>
+              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Development Demand</p>
             </div>
           </div>
           <button onClick={onClose} className="p-2 rounded-xl hover:bg-zinc-800 transition-all text-zinc-400 hover:text-white cursor-pointer group">
@@ -105,7 +60,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
           <div className="space-y-12">
-            {publicGroups.map((group) => (
+            {demandGroups.map((group) => (
               <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
                 <div className="flex items-center gap-3 mb-5 px-1">
                   <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}>
@@ -137,7 +92,7 @@ function BuildingCard({ item }: { item: any }) {
           <item.icon className="h-5 w-5 text-cyan-500 shadow-[0_0_10px_rgba(6,182,212,0.3)]" />
         </div>
         <div className="px-2 py-0.5 rounded-full bg-zinc-900 border border-zinc-800 text-[9px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
-          {item.desc || "Infrastruktur"}
+          {item.desc || "Demand"}
         </div>
       </div>
       <div>

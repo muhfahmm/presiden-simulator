@@ -1,6 +1,6 @@
 "use client"
 
-import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation } from "lucide-react"
+import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout } from "lucide-react"
 
 interface ModalProps {
   isOpen: boolean;
@@ -12,38 +12,90 @@ export default function ProduksiModal({ isOpen, onClose }: ModalProps) {
 
   const productionGroups = [
     {
-      id: "listrik",
-      title: "Produksi Listrik",
+      id: "kelistrikan",
+      title: "Infrastruktur Kelistrikan",
       icon: Zap,
       color: "text-amber-400",
       items: [
-        { label: "PLTS (Solar)", icon: Zap, desc: "Energi Terbarukan" },
-        { label: "PLTB (Angin)", icon: Zap, desc: "Energi Terbarukan" },
-        { label: "PLTA (Air)", icon: Zap, desc: "Energi Terbarukan" },
-        { label: "PLTN (Nuklir)", icon: Radiation, desc: "Energi Strategis" },
+        { label: "PLTS (Panel Surya)", icon: Zap, desc: "Energi Surya" },
+        { label: "PLTB (Angin)", icon: Zap, desc: "Energi Bayu" },
+        { label: "PLTA (Hidroelektrik)", icon: Droplets, desc: "Energi Air" },
+        { label: "PLTN (Fisi Nuklir)", icon: Radiation, desc: "Energi Nuklir" },
+        { label: "PLT Thermal", icon: Flame, desc: "Energi Panas" },
       ]
     },
     {
-      id: "energi",
-      title: "Energi & Sumber Daya",
+      id: "ekstraksi",
+      title: "Sektor Ekstraksi & Energi",
       icon: Pickaxe,
       color: "text-orange-500",
       items: [
-        { label: "Tambang Batubara", icon: Pickaxe, desc: "Ekstraksi Fosil" },
-        { label: "Kilang Minyak", icon: Pickaxe, desc: "Ekstraksi Fosil" },
+        { label: "Tambang Emas", icon: Coins, desc: "Logam Mulia" },
+        { label: "Tambang Uranium", icon: Radiation, desc: "Bahan Bakar Nuklir" },
+        { label: "Tambang Batubara", icon: Shovel, desc: "Bahan Bakar Fosil" },
+        { label: "Kilang Minyak", icon: Droplets, desc: "Energi Fosil" },
+        { label: "Kilang Gas", icon: Flame, desc: "Energi Fosil" },
+        { label: "Tambang Garam", icon: Pickaxe, desc: "Mineral" },
+        { label: "Tambang Nikel", icon: Pickaxe, desc: "Mineral Strategis" },
+        { label: "Tambang Tembaga", icon: Pickaxe, desc: "Mineral" },
+        { label: "Tanah Jarang", icon: Pickaxe, desc: "Mineral Elektronik" },
+        { label: "Tambang Biji Besi", icon: Pickaxe, desc: "Logam Dasar" },
       ]
     },
     {
-      id: "lainnya",
-      title: "Produksi Lainnya",
+      id: "manufaktur",
+      title: "Sektor Pengolahan & Manufaktur",
       icon: Factory,
       color: "text-cyan-400",
       items: [
-        { label: "Pabrik Baja", icon: Factory, desc: "Industri Berat" },
-        { label: "Pabrik Semen", icon: Construction, desc: "Material" },
-        { label: "Pabrik Makanan", icon: Store, desc: "Konsumsi" },
-        { label: "Peternakan Sapi", icon: Beef, desc: "Pangan" },
-        { label: "Lahan Beras", icon: Wheat, desc: "Pangan" },
+        { label: "Pabrik Semikonduktor", icon: Zap, desc: "Elektronik" },
+        { label: "Pabrik Mobil", icon: Car, desc: "Otomotif" },
+        { label: "Pabrik Motor", icon: Bike, desc: "Otomotif" },
+        { label: "Pabrik Logam (Smelter)", icon: Hammer, desc: "Industri Berat" },
+        { label: "Pabrik Beton & Semen", icon: Construction, desc: "Material" },
+        { label: "Penggergajian Kayu", icon: Hammer, desc: "Material" },
+        { label: "Pabrik Air Mineral", icon: Droplets, desc: "Konsumsi" },
+        { label: "Pabrik Gula", icon: Cookie, desc: "Konsumsi" },
+        { label: "Pabrik Roti", icon: Cookie, desc: "Konsumsi" },
+        { label: "Pabrik Farmasi", icon: FlaskConical, desc: "Kesehatan" },
+        { label: "Pabrik Pupuk", icon: Sprout, desc: "Pertanian" },
+        { label: "Pengolahan Daging", icon: Beef, desc: "Pangan" },
+        { label: "Pabrik Mie Instan", icon: Container, desc: "Pangan" },
+      ]
+    },
+    {
+      id: "peternakan",
+      title: "Sektor Peternakan",
+      icon: Beef,
+      color: "text-emerald-400",
+      items: [
+        { label: "Peternakan Ayam", icon: Beef, desc: "Pangan" },
+        { label: "Peternakan Unggas", icon: Beef, desc: "Pangan" },
+        { label: "Sapi Perah", icon: Milk, desc: "Pangan" },
+        { label: "Sapi Potong", icon: Beef, desc: "Pangan" },
+        { label: "Domba & Kambing", icon: Beef, desc: "Pangan" },
+        { label: "Tambak Udang", icon: Fish, desc: "Perikanan" },
+        { label: "Budidaya Ikan", icon: Fish, desc: "Perikanan" },
+        { label: "Budidaya Kerang", icon: Shell, desc: "Perikanan" },
+      ]
+    },
+    {
+      id: "pertanian",
+      title: "Sektor Pertanian",
+      icon: Wheat,
+      color: "text-yellow-400",
+      items: [
+        { label: "Pertanian Padi", icon: Wheat, desc: "Pangan" },
+        { label: "Pertanian Gandum", icon: Wheat, desc: "Pangan" },
+        { label: "Pertanian Jagung", icon: Wheat, desc: "Pangan" },
+        { label: "Umbi-umbian", icon: Wheat, desc: "Pangan" },
+        { label: "Pertanian Kedelai", icon: Wheat, desc: "Pangan" },
+        { label: "Kelapa Sawit", icon: Trees, desc: "Komoditi" },
+        { label: "Perkebunan Teh", icon: Trees, desc: "Komoditi" },
+        { label: "Perkebunan Kopi", icon: Coffee, desc: "Komoditi" },
+        { label: "Perkebunan Kakao", icon: Cookie, desc: "Komoditi" },
+        { label: "Perkebunan Tebu", icon: Trees, desc: "Pangan" },
+        { label: "Sayur Mayur", icon: Sprout, desc: "Pangan" },
       ]
     }
   ];
@@ -69,7 +121,7 @@ export default function ProduksiModal({ isOpen, onClose }: ModalProps) {
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
-          <div className="space-y-10">
+          <div className="space-y-12">
             {productionGroups.map((group) => (
               <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
                 <div className="flex items-center gap-3 mb-5 px-1">
@@ -106,7 +158,7 @@ function BuildingCard({ item }: { item: any }) {
         </div>
       </div>
       <div>
-        <h4 className="text-sm font-bold text-zinc-100 tracking-tight group-hover:text-white transition-colors">{item.label}</h4>
+        <h4 className="text-[11px] font-bold text-zinc-100 tracking-tight group-hover:text-white transition-colors leading-tight line-clamp-1">{item.label}</h4>
         <div className="mt-2 flex items-center justify-between">
           <span className="text-[10px] text-zinc-500 font-medium">Biaya: Rp 25 T</span>
           <button className="px-3 py-1 rounded-lg bg-cyan-600/10 text-cyan-500 text-[10px] font-bold border border-cyan-500/20 hover:bg-cyan-600 hover:text-white transition-all">
