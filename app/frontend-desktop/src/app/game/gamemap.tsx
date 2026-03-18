@@ -3,11 +3,11 @@
 import { useEffect, useRef, useState } from "react";
 
 interface GameMapCanvasProps {
-  selectedCountry: string;
+  userCountry: string;
+  targetCountry: string | null;
   onSelect: (name: string) => void;
 }
-
-export default function GameMapCanvas({ selectedCountry, onSelect }: GameMapCanvasProps) {
+export default function GameMapCanvas({ userCountry, targetCountry, onSelect }: GameMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [geoData, setGeoData] = useState<any>(null);
   const [centersData, setCentersData] = useState<any[]>([]);
@@ -50,8 +50,8 @@ export default function GameMapCanvas({ selectedCountry, onSelect }: GameMapCanv
 
       // Gradient Background
       const bgGradient = ctx.createRadialGradient(mapWidth/2, mapHeight/2, 100, mapWidth/2, mapHeight/2, mapWidth/1.5);
-      bgGradient.addColorStop(0, "#09090b"); // Zinc 950
-      bgGradient.addColorStop(1, "#020617"); // Slate 950 dark
+      bgGradient.addColorStop(0, "#121d31"); // Realistic Deep Marine
+      bgGradient.addColorStop(1, "#070b13"); // Deep dark ocean
       ctx.fillStyle = bgGradient;
       ctx.fillRect(0, 0, mapWidth, mapHeight);
 
@@ -63,20 +63,13 @@ export default function GameMapCanvas({ selectedCountry, onSelect }: GameMapCanv
         return { x, y };
       };
 
-      // Draw high-tech grid (more frequent and subtle)
-      ctx.strokeStyle = "rgba(56, 189, 248, 0.03)"; // Sky 400 very faint
-      ctx.lineWidth = 1;
-      for (let i = 0; i < mapWidth; i += 80) {
-        ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, mapHeight); ctx.stroke();
-      }
-      for (let j = 0; j < mapHeight; j += 80) {
-        ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(mapWidth, j); ctx.stroke();
-      }
+// Grid removed
 
       // Draw Countries
       geoData.features.forEach((feature: any) => {
         const name = feature.properties.name;
-        const isActive = name === selectedCountry;
+        const isPlayer = name === userCountry;
+        const isTarget = name === targetCountry;
 
         ctx.beginPath();
         
@@ -101,40 +94,35 @@ export default function GameMapCanvas({ selectedCountry, onSelect }: GameMapCanv
         ctx.closePath();
 
         // Styling parameters - Differentiated from WorldMapCanvas
-        if (isActive) {
-          ctx.fillStyle = "rgba(34, 211, 238, 0.15)"; // Cyan 400 accent
-          ctx.strokeStyle = "#22d3ee";
+        if (isPlayer) {
+          ctx.fillStyle = "rgba(34, 197, 94, 0.3)"; // Realistic Emerald/Green (Player)
+          ctx.strokeStyle = "#4ade80";
           ctx.lineWidth = 2;
-          ctx.shadowColor = "#22d3ee";
+          ctx.shadowColor = "#4ade80";
           ctx.shadowBlur = 15;
           ctx.fill();
           ctx.stroke();
-          ctx.shadowBlur = 0; // reset
+          ctx.shadowBlur = 0;
+        } else if (isTarget) {
+          ctx.fillStyle = "rgba(239, 68, 68, 0.3)"; // Realistic Red (Target)
+          ctx.strokeStyle = "#f87171";
+          ctx.lineWidth = 2;
+          ctx.shadowColor = "#f87171";
+          ctx.shadowBlur = 15;
+          ctx.fill();
+          ctx.stroke();
+          ctx.shadowBlur = 0;
         } else {
-          // Deep blue-ish zinc for unselected
-          ctx.fillStyle = "rgba(15, 23, 42, 0.4)"; 
-          ctx.strokeStyle = "rgba(71, 85, 105, 0.3)";
+          // Realistic Sage Green / Forest Earth tone for landmasses
+          ctx.fillStyle = "rgba(58, 90, 64, 0.75)"; // Sage/Moss green
+          ctx.strokeStyle = "rgba(245, 245, 220, 0.4)"; // Soft Beige/Parchment border
           ctx.lineWidth = 1;
           ctx.fill();
           ctx.stroke();
         }
       });
 
-      // Draw decorative "Radar Pulse" or "Data Streams"
-      const time = Date.now() * 0.001;
-      ctx.save();
-      ctx.globalAlpha = 0.1;
-      ctx.strokeStyle = "#38bdf8";
-      ctx.lineWidth = 0.5;
-      centersData.filter((_, i) => i % 10 === 0).forEach((center, i) => {
-          const x = ((center.lon + 180) / 360) * mapWidth;
-          const y = ((90 - center.lat) / 180) * mapHeight;
-          const pulse = (Math.sin(time + i) + 1) * 30;
-          ctx.beginPath();
-          ctx.arc(x, y, pulse, 0, Math.PI * 2);
-          ctx.stroke();
-      });
-      ctx.restore();
+// Radar removed
 
       // Draw Country Markers (Cyberpunk style)
       ctx.textAlign = "center";
@@ -150,22 +138,30 @@ export default function GameMapCanvas({ selectedCountry, onSelect }: GameMapCanv
 
       // Separate selected from non-selected to ensure selected is always on top
       const sortedCenters = [...centersData].sort((a, b) => {
-        if (a.name_en === selectedCountry) return 1;
-        if (b.name_en === selectedCountry) return -1;
+        if (a.name_en === targetCountry) return 1;
+        if (b.name_en === targetCountry) return -1;
+        if (a.name_en === userCountry) return 1;
+        if (b.name_en === userCountry) return -1;
         return 0;
       });
 
       sortedCenters.forEach((center: any) => {
         const x = ((center.lon + 180) / 360) * mapWidth;
         const y = ((90 - center.lat) / 180) * mapHeight;
-        const isSelected = center.name_en === selectedCountry;
+        const isPlayer = center.name_en === userCountry;
+        const isTarget = center.name_en === targetCountry;
 
         // 1. Draw glowing dot marker
         ctx.beginPath();
-        if (isSelected) {
+        if (isPlayer) {
           ctx.arc(x, y, 6, 0, Math.PI * 2);
           ctx.fillStyle = "#22d3ee"; // Cyan
           ctx.shadowColor = "#22d3ee";
+          ctx.shadowBlur = 15;
+        } else if (isTarget) {
+          ctx.arc(x, y, 6, 0, Math.PI * 2);
+          ctx.fillStyle = "#f59e0b"; // Amber
+          ctx.shadowColor = "#f59e0b";
           ctx.shadowBlur = 15;
         } else {
           ctx.arc(x, y, 2.5, 0, Math.PI * 2); // Smaller dots for non-selected
@@ -175,9 +171,8 @@ export default function GameMapCanvas({ selectedCountry, onSelect }: GameMapCanv
         }
         ctx.fill();
         ctx.shadowBlur = 0; // reset
-
         // 2. Text Labels with Decluttering
-        if (isSelected) {
+        if (isPlayer || isTarget) {
           // Name text removed per request
           ctx.font = "48px sans-serif";
           ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 10;
@@ -201,7 +196,7 @@ export default function GameMapCanvas({ selectedCountry, onSelect }: GameMapCanv
       ctx.restore();
     });
 
-  }, [geoData, selectedCountry, centersData]);
+  }, [geoData, userCountry, targetCountry, centersData]);
 
     // Define Custom Cursors
     const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;

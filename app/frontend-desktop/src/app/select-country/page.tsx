@@ -4,7 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import WorldMapCanvas from "@/components/selectcountrymap";
+import WorldMapCanvas from "./selectcountrymap";
 
 export default function SelectCountry() {
   const router = useRouter();

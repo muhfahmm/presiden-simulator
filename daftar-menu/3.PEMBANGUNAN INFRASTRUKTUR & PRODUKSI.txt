@@ -7,7 +7,7 @@ pembangkit listrik tenaga thermal
 
 ===============================================
 
-2.Sektor Ekstraksi & Energi
+1.Sektor Ekstraksi & Energi
 tambang emas
 tambang uranium
 tambang batubara
@@ -19,7 +19,7 @@ tambang tembaga
 tambang tanah jarang
 tambang biji besi
 
-3.Sektor Pengolahan & Manufaktur
+2.Sektor Pengolahan & Manufaktur
 Pabrik Elektronik & Semikonduktor
 Pabrik Mobil
 Pabrik Motor
@@ -34,7 +34,7 @@ Pabrik Pupuk
 Pabrik Pengolahan Daging
 Pabrik Mie Instan
 
-4. Sektor Peternakan
+3. Sektor Peternakan
 Peternakan Ayam Petelur
 Peternakan Unggas (Ayam/Bebek)
 Peternakan Sapi Perah
@@ -44,7 +44,7 @@ Tambak Udang Intensif
 Budidaya Ikan Air Tawar
 Budidaya Kerang & Mutiara
 
-5. Sektor Pertanian
+4. Sektor Pertanian
 Pertanian Padi
 Pertanian Gandum
 Pertanian Jagung
