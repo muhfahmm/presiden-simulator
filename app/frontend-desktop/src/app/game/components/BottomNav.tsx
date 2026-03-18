@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { 
   Star, Coins, Wrench, Shield, Globe, Landmark, LayoutGrid, ChevronLeft,
   Hammer, Swords as MilitaryIcon, Users2, BarChart3, TrendingUp,
-  ArrowRightLeft, FileText, CreditCard, Zap, Package, Home, ShieldAlert
+  ArrowRightLeft, FileText, CreditCard, Zap, Package, Home, ShieldAlert, Gem
 } from "lucide-react";
 
 interface BottomNavProps {
@@ -20,7 +20,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
     { id: "Pertahanan", icon: Shield, label: "Pertahanan" },
     { id: "Geopolitik", icon: Globe, label: "Geopolitik" },
     { id: "Kementerian", icon: Landmark, label: "Kementerian" },
-    { id: "Demand", icon: Home, label: "Demand" },
+    { id: "Minerals", icon: Gem, label: "Minerals" },
   ];
 
   const subMenuItems: Record<string, any> = {
@@ -133,12 +133,12 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
         </div>
 
         {/* Vertical Divider */}
-        {isMenuSelected && currentSubItems.length > 0 && (
+        {isMenuSelected && currentSubItems?.length > 0 && (
           <div className="h-8 w-[1px] bg-zinc-800/80 mx-2 animate-in fade-in duration-500" />
         )}
 
         {/* Sub-Menu Extension Section */}
-        {isMenuSelected && currentSubItems.length > 0 && (
+        {isMenuSelected && currentSubItems?.length > 0 && (
           <div className="flex items-center gap-1.5 overflow-x-auto no-scrollbar max-w-[65vw] animate-in slide-in-from-left-4 fade-in duration-500 py-1">
             {currentSubItems.map((sub: any) => (
               <div key={sub.id} className="group/sub relative">

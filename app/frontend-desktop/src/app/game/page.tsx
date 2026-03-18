@@ -21,11 +21,11 @@ import HutangModal from "./components/ekonomi/HutangModal";
 import BudgetTreasuryModal from "./components/ekonomi/BudgetTreasuryModal";
 import EnergiModal from "./components/ekonomi/EnergiModal";
 import ProduksiBarangModal from "./components/ekonomi/ProduksiBarangModal";
+import MineralsModal from "./components/ekonomi/MineralsModal";
 // Other Modals
 import ProduksiModal from "./components/pembangunan/ProduksiModal";
 import ProduksiMiliterModal from "./components/pembangunan/ProduksiMiliterModal";
 import TempatUmumModal from "./components/pembangunan/TempatUmumModal";
-import DemandModal from "./components/demands/DemandModal";
 import PertahananModal from "./components/pertahanan/PertahananModal";
 import ArmadaMiliterModal from "./components/pertahanan/ArmadaMiliterModal";
 import ArmadaPolisiModal from "./components/pertahanan/ArmadaPolisiModal";
@@ -62,8 +62,6 @@ export default function GameDashboard() {
           </h1>
           
           <div className="flex items-center gap-6">
-            <DemandIndicators />
-            <div className="h-8 w-[1px] bg-zinc-800 mx-2" />
             <StatusBadge icon={<Heart className="h-4 w-4 text-red-500" />} label="Persetujuan" value={`${approval}%`} />
             <StatusBadge icon={<Coins className="h-4 w-4 text-yellow-500" />} label="Kas Negara" value={`Rp ${budget} T`} />
             <StatusBadge icon={<Shield className="h-4 w-4 text-green-500" />} label="Stabilitas" value={`${stability}%`} />
@@ -96,7 +94,6 @@ export default function GameDashboard() {
             onInit={() => setIsCentered(true)} 
             limitToBounds={true}
             doubleClick={{ disabled: true }}
-            panning={{ lockAxisY: true }}
           >
             <TransformComponent wrapperClass="!w-full !h-full" contentClass="!h-full flex items-center justify-center">
               <div ref={containerRef} className="relative h-full flex items-center justify-center w-max">
@@ -157,6 +154,10 @@ export default function GameDashboard() {
             isOpen={activeMenu === "Menu:ProduksiBarang"} 
             onClose={() => setActiveMenu("Ekonomi")} 
           />
+          <MineralsModal 
+            isOpen={activeMenu === "Minerals"} 
+            onClose={() => setActiveMenu("Peta Taktis")} 
+          />
           <ProduksiModal 
             isOpen={activeMenu === "Menu:Produksi"} 
             onClose={() => setActiveMenu("Pembangunan")} 
@@ -168,10 +169,6 @@ export default function GameDashboard() {
           <TempatUmumModal 
             isOpen={activeMenu === "Menu:TempatUmum"} 
             onClose={() => setActiveMenu("Pembangunan")} 
-          />
-          <DemandModal 
-            isOpen={activeMenu === "Demand"} 
-            onClose={() => setActiveMenu("Peta Taktis")} 
           />
           <PertahananModal 
             isOpen={activeMenu === "Komando Pertahanan"} 
@@ -215,36 +212,3 @@ function StatusBadge({ icon, label, value }: { icon: React.ReactNode, label: str
   );
 }
 
-function DemandIndicators() {
-  const demands = [
-    { label: "R", color: "bg-green-500", value: 80, tooltip: "Residential Demand" },
-    { label: "C", color: "bg-blue-500", value: 45, tooltip: "Commercial Demand" },
-    { label: "I", color: "bg-orange-500", value: 60, tooltip: "Industrial Demand" },
-  ];
-
-  return (
-    <div className="flex items-center gap-3 bg-zinc-900/50 px-4 py-1.5 rounded-xl border border-zinc-800/50 shadow-inner group">
-      <div className="flex flex-col">
-        <span className="text-[9px] font-black text-zinc-500 uppercase tracking-tighter leading-none mb-1.5">Market Demand</span>
-        <div className="flex gap-1.5">
-          {demands.map((d, i) => (
-            <div key={i} className="flex flex-col items-center gap-1 group/bar relative">
-              <div className="w-2.5 h-6 bg-zinc-800 rounded-sm overflow-hidden flex flex-col justify-end ring-1 ring-zinc-700/50">
-                <div 
-                  className={`${d.color} w-full transition-all duration-1000 shadow-[0_0_8px_rgba(0,0,0,0.5)]`} 
-                  style={{ height: `${d.value}%` }}
-                />
-              </div>
-              <span className={`text-[8px] font-bold ${d.value > 70 ? 'text-zinc-200' : 'text-zinc-500'}`}>{d.label}</span>
-              
-              {/* Tooltip */}
-              <div className="absolute bottom-full mb-2 px-2 py-1 bg-zinc-900 border border-zinc-800 text-[8px] font-bold text-white rounded opacity-0 group-hover/bar:opacity-100 transition-opacity pointer-events-none whitespace-nowrap z-50 shadow-xl">
-                {d.tooltip}: {d.value}%
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}

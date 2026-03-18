@@ -4,6 +4,7 @@ import { Ideology } from "./ideologies";
 export interface CountryData {
   name_en: string;
   name_id: string;
+  capital: string;
   lon: number;
   lat: number;
   flag: string;
@@ -51,7 +52,9 @@ export interface CountryData {
     gas: number;
     salt: number;
     nickel: number;
+    lithium: number;
     copper: number;
+    aluminum: number;
     rare_earth: number;
     iron_ore: number;
     strength: number; // 0-100

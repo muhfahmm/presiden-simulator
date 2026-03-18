@@ -15,7 +15,7 @@ import {
   Syringe, GraduationCap, Crosshair, RadioTower, Landmark, Fish, Construction, Pill, Car, Bike, 
   Utensils, Apple, Coffee, Milk, Bird, Egg, Leaf, Shell, Bean, Carrot, Cookie, Croissant, Soup,
   HeartPulse, Search, Library, Lightbulb, Eye, Archive, ShieldAlert, Warehouse, Lock, Scale,
-  Truck, Shield
+  Truck, Shield, Users, Coins, Globe, Church, Battery, Pickaxe, FlaskConical
 } from "lucide-react";
 
 export default function SelectCountry() {
@@ -73,15 +73,16 @@ export default function SelectCountry() {
           </button>
           
           <div className="flex items-center gap-4">
-            <StatItem label="Populasi" value={currentData.pop} icon="👥" />
-            <StatItem label="Kas Negara" value={currentData.budget} icon="💰" />
-            <StatItem label="Total Negara" value={`${countries.length}`} icon="🌍" />
+            <StatItem label="Ibukota" value={currentData.capital} icon={<Landmark size={14} className="text-amber-400" />} />
+            <StatItem label="Populasi" value={currentData.pop} icon={<Users size={14} className="text-blue-400" />} />
+            <StatItem label="Kas Negara" value={currentData.budget} icon={<Coins size={14} className="text-yellow-400" />} />
+            <StatItem label="Total Negara" value={`${countries.length}`} icon={<Globe size={14} className="text-teal-400" />} />
           </div>
         </div>
 
         <div className="flex items-center gap-6">
-          <StatItem label="Agama Mayoritas" value={currentData.religion} icon="☪️" />
-          <StatItem label="Ideologi" value={currentData.ideology} icon="⚖️" />
+          <StatItem label="Agama Mayoritas" value={currentData.religion} icon={<Church size={14} className="text-purple-400" />} />
+          <StatItem label="Ideologi" value={currentData.ideology} icon={<Scale size={14} className="text-orange-400" />} />
           
           <div className="h-4 w-px bg-zinc-800" />
           
@@ -601,21 +602,20 @@ export default function SelectCountry() {
             </div>
           </div>
 
-          {/* 6. Demand & Satisfaction */}
+          {/* 6. Mineral Kritis & Strategis */}
           <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-72 pointer-events-auto">
-            <h3 className="text-[10px] font-black text-pink-500 uppercase tracking-[0.2em] mb-1">Permintaan Rakyat</h3>
-            <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-zinc-300">Kepuasan Publik</span>
-              <span className={`text-xs font-black ${
-                currentData.demand.satisfaction >= 70 ? 'text-green-400' :
-                currentData.demand.satisfaction >= 40 ? 'text-yellow-400' : 'text-red-400'
-              }`}>{currentData.demand.satisfaction}%</span>
+            <h3 className="text-[10px] font-black text-pink-500 uppercase tracking-[0.2em] mb-1">Mineral Kritis & Strategis</h3>
+            <div className="flex items-center justify-between mb-2">
+              <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Downstream Priority</span>
+              <span className="text-[10px] font-black text-emerald-400 uppercase">Strategic Asset</span>
             </div>
             
-            <div className="grid grid-cols-3 gap-2">
-              <SectorDemand label="Residensial" value={currentData.demand.residential} icon={<Home size={10}/>} color="bg-emerald-500" />
-              <SectorDemand label="Komersial" value={currentData.demand.commercial} icon={<Store size={10}/>} color="bg-blue-500" />
-              <SectorDemand label="Industrial" value={currentData.demand.industrial} icon={<Factory size={10}/>} color="bg-orange-500" />
+            <div className="grid grid-cols-2 gap-3">
+              <SectorStat icon={<Box size={10} className="text-orange-400"/>} label="Nikel" value={currentData.sector_extraction.nickel} />
+              <SectorStat icon={<Battery size={10} className="text-cyan-400"/>} label="Litium" value={currentData.sector_extraction.lithium} />
+              <SectorStat icon={<Layers size={10} className="text-zinc-400"/>} label="Batubara" value={currentData.sector_extraction.coal} />
+              <SectorStat icon={<Pickaxe size={10} className="text-orange-300"/>} label="Tembaga" value={currentData.sector_extraction.copper} />
+              <SectorStat icon={<Layers size={10} className="text-blue-200"/>} label="Alumunium" value={currentData.sector_extraction.aluminum} />
             </div>
           </div>
 
@@ -725,13 +725,15 @@ export default function SelectCountry() {
   );
 }
 
-function StatItem({ icon, label, value }: { icon: string, label: string, value: string }) {
+function StatItem({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) {
   return (
     <div className="flex items-center gap-2">
-      <span className="text-lg">{icon}</span>
+      <div className="flex items-center justify-center w-6 h-6 rounded-lg bg-zinc-800/50 border border-zinc-700/50">
+        {icon}
+      </div>
       <div className="flex flex-col">
         <span className="text-[10px] text-zinc-500 font-medium uppercase tracking-wider">{label}</span>
-        <span className="font-bold text-white text-xs">{value}</span>
+        <span className="font-bold text-white text-[11px] leading-tight">{value}</span>
       </div>
     </div>
   );
@@ -772,25 +774,6 @@ function MinistryStat({ label, value, color }: { label: string, value: number, c
   );
 }
 
-function SectorDemand({ label, value, icon, color }: { label: string, value: number, icon: React.ReactNode, color: string }) {
-  return (
-    <div className="flex flex-col gap-1.5 bg-zinc-800/20 p-2 rounded-lg border border-zinc-700/20">
-      <div className="flex items-center gap-1.5 text-zinc-400">
-        {icon}
-        <span className="text-[8px] font-bold uppercase tracking-tight">{label}</span>
-      </div>
-      <div className="flex items-center gap-2">
-        <div className="flex-1 bg-zinc-900 h-1 rounded-full overflow-hidden">
-          <div 
-            className={`h-full ${color}`} 
-            style={{ width: `${value}%` }}
-          />
-        </div>
-        <span className="text-[9px] font-black text-zinc-300">{value}%</span>
-      </div>
-    </div>
-  );
-}
 
 function ProgressStat({ label, value, color, icon }: { label: string, value: number, color: string, icon?: React.ReactNode }) {
   return (
@@ -821,53 +804,6 @@ function SectorStat({ icon, label, value }: { icon: React.ReactNode, label: stri
       </div>
       <span className="text-[10px] font-black text-zinc-200">{value.toLocaleString()}</span>
     </div>
-  );
-}
-
-// Icon for extraction
-function Pickaxe({ size, className }: { size?: number, className?: string }) {
-  return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      width={size || 24} 
-      height={size || 24} 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round" 
-      className={className}
-    >
-      <path d="M22 2l-8 8" />
-      <path d="M17 13l5 5" />
-      <path d="M7 13l5 5" />
-      <path d="M12 22l-5-5-5 5" />
-      <path d="M2 13l5-5-5-5" />
-      <path d="M11 7l5 5" />
-    </svg>
-  );
-}
-
-// Icon for chemistry/chemicals
-function FlaskConical({ size, className }: { size?: number, className?: string }) {
-  return (
-    <svg 
-      xmlns="http://www.w3.org/2000/svg" 
-      width={size || 24} 
-      height={size || 24} 
-      viewBox="0 0 24 24" 
-      fill="none" 
-      stroke="currentColor" 
-      strokeWidth="2" 
-      strokeLinecap="round" 
-      strokeLinejoin="round" 
-      className={className}
-    >
-      <path d="M10 2v8L4.5 20.29A1 1 0 0 0 5.4 22h13.2a1 1 0 0 0 .9-1.71L14 10V2" />
-      <line x1="8" y1="2" x2="16" y2="2" />
-      <line x1="10" y1="12" x2="14" y2="12" />
-    </svg>
   );
 }
 

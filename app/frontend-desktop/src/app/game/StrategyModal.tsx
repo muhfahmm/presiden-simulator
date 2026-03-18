@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { 
   Shield, AlertTriangle, Heart, Landmark, Handshake, 
-  FileText, FlaskConical, Truck, Eye, Flame, Zap, Bomb, Gift, Lightbulb, Swords 
+  FileText, FlaskConical, Truck, Eye, Flame, Zap, Bomb, Gift, Lightbulb, Swords, 
+  Globe, TreePine, Mountain, Droplets, Beef, ThumbsUp, BookOpen, Scale, BarChart3, X
 } from "lucide-react";
 
 interface StrategyModalProps {
@@ -24,7 +25,9 @@ export default function StrategyModal({ isOpen, onClose, targetCountry }: Strate
         {/* 1. Modal Header with Flag title structure */}
         <div className="flex justify-between items-center border-b border-zinc-800/80 p-5 bg-zinc-900/40">
           <div className="flex items-center gap-3">
-            <span className="text-3xl">🌍</span>
+            <div className="p-2 bg-blue-500/10 rounded-xl">
+              <Globe className="h-6 w-6 text-blue-400" />
+            </div>
             <div>
               <h2 className="font-bold text-xl text-amber-500">
                 {targetCountry}
@@ -36,7 +39,7 @@ export default function StrategyModal({ isOpen, onClose, targetCountry }: Strate
             onClick={onClose} 
             className="h-8 w-8 rounded-full hover:bg-zinc-800 flex items-center justify-center text-zinc-500 hover:text-white transition cursor-pointer"
           >
-            ✕
+            <X className="h-5 w-5" />
           </button>
         </div>
 
@@ -45,10 +48,29 @@ export default function StrategyModal({ isOpen, onClose, targetCountry }: Strate
           {menuTab === 'info' && (
             <div className="space-y-4">
               <div className="bg-zinc-900/70 p-4 rounded-xl border border-zinc-800/50 space-y-3">
-                <InfoRow label="Sumber Daya Alam" value="🪵 🪨 🛢️ 🥩" />
-                <InfoRow label="Jumlah suara di PBB" value="👍 14" />
-                <InfoRow label="Agama Mayoritas" value="📖 Islam" />
-                <InfoRow label="Ideologi Negara" value="⚖️ Pasifisme" />
+                <InfoRow label="Sumber Daya Alam" value={
+                  <div className="flex gap-2">
+                    <TreePine size={12} className="text-emerald-500" />
+                    <Mountain size={12} className="text-zinc-400" />
+                    <Droplets size={12} className="text-blue-400" />
+                    <Beef size={12} className="text-red-400" />
+                  </div>
+                } />
+                <InfoRow label="Jumlah suara di PBB" value={
+                  <div className="flex items-center gap-1 text-emerald-400">
+                    <ThumbsUp size={12} /> <span>14</span>
+                  </div>
+                } />
+                <InfoRow label="Agama Mayoritas" value={
+                  <div className="flex items-center gap-1">
+                    <BookOpen size={12} className="text-blue-400" /> <span>Islam</span>
+                  </div>
+                } />
+                <InfoRow label="Ideologi Negara" value={
+                  <div className="flex items-center gap-1">
+                    <Scale size={12} className="text-orange-400" /> <span>Pasifisme</span>
+                  </div>
+                } />
               </div>
               <div className="space-y-2.5">
                 <p className="text-xs text-zinc-500 font-semibold">Keseimbangan Pasukan</p>
@@ -96,11 +118,11 @@ export default function StrategyModal({ isOpen, onClose, targetCountry }: Strate
         </div>
 
         {/* 3. Constant Bottom Navigation Tab Bar */}
-        <div className="border-t border-zinc-800/80 bg-zinc-900/60 p-3 flex justify-evenly items-center">
-          <TabButton icon="📊" active={menuTab === 'info'} onClick={() => setMenuTab('info')} />
-          <TabButton icon="🤝" active={menuTab === 'diplomacy'} onClick={() => setMenuTab('diplomacy')} />
-          <TabButton icon="⚔️" active={menuTab === 'military'} onClick={() => setMenuTab('military')} />
-          <TabButton icon="🎁" active={menuTab === 'aid'} onClick={() => setMenuTab('aid')} />
+        <div className="border-t border-zinc-800/80 bg-zinc-900/60 p-3 flex justify-evenly items-center gap-2">
+          <TabButton icon={<BarChart3 size={20} />} active={menuTab === 'info'} onClick={() => setMenuTab('info')} />
+          <TabButton icon={<Handshake size={20} />} active={menuTab === 'diplomacy'} onClick={() => setMenuTab('diplomacy')} />
+          <TabButton icon={<Swords size={20} />} active={menuTab === 'military'} onClick={() => setMenuTab('military')} />
+          <TabButton icon={<Gift size={20} />} active={menuTab === 'aid'} onClick={() => setMenuTab('aid')} />
         </div>
 
       </div>
@@ -109,7 +131,7 @@ export default function StrategyModal({ isOpen, onClose, targetCountry }: Strate
 }
 
 {/* Helper UI Components for Modal Views */}
-function InfoRow({ label, value }: { label: string, value: string }) {
+function InfoRow({ label, value }: { label: string, value: React.ReactNode }) {
   return (
     <div className="flex items-center justify-between border-b border-zinc-800/40 pb-2.5">
       <span className="text-xs text-zinc-400 font-medium">{label}</span>
@@ -129,7 +151,7 @@ function ActionCard({ icon, label, bg }: { icon: React.ReactNode, label: string,
   );
 }
 
-function TabButton({ icon, active, onClick }: { icon: string, active: boolean, onClick: () => void }) {
+function TabButton({ icon, active, onClick }: { icon: React.ReactNode, active: boolean, onClick: () => void }) {
   return (
     <button 
       onClick={onClick}
@@ -139,7 +161,7 @@ function TabButton({ icon, active, onClick }: { icon: string, active: boolean, o
           : 'hover:bg-zinc-800/80 text-zinc-500 hover:text-zinc-200'
       }`}
     >
-      <span className="text-lg">{icon}</span>
+      {icon}
     </button>
   );
 }
