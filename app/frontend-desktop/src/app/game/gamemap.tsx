@@ -7,6 +7,7 @@ interface GameMapCanvasProps {
   userCountry: string;
   targetCountry: string | null;
   onSelect: (name: string) => void;
+  mapMode?: "default" | "sda" | "trade";
 }
 
 // Map Helper for Continent Colors
@@ -58,7 +59,7 @@ const getContinentColor = (name: string, id: string): string => {
   return "rgba(71, 85, 105, 0.3)";
 };
 
-export default function GameMapCanvas({ userCountry, targetCountry, onSelect }: GameMapCanvasProps) {
+export default function GameMapCanvas({ userCountry, targetCountry, onSelect, mapMode = "default" }: GameMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [geoData, setGeoData] = useState<any>(null);
   const [isHovering, setIsHovering] = useState(false);
@@ -137,33 +138,55 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect }: 
 
         ctx.closePath();
 
-        // Styling parameters - Differentiated from WorldMapCanvas
-        if (isPlayer) {
-          ctx.fillStyle = "rgba(34, 197, 94, 0.3)"; // Realistic Emerald/Green (Player)
-          ctx.strokeStyle = "#4ade80";
-          ctx.lineWidth = 2;
-          ctx.shadowColor = "#4ade80";
-          ctx.shadowBlur = 15;
-          ctx.fill();
-          ctx.stroke();
-          ctx.shadowBlur = 0;
-        } else if (isTarget) {
-          ctx.fillStyle = "rgba(239, 68, 68, 0.3)"; // Realistic Red (Target)
-          ctx.strokeStyle = "#f87171";
-          ctx.lineWidth = 2;
-          ctx.shadowColor = "#f87171";
-          ctx.shadowBlur = 15;
-          ctx.fill();
-          ctx.stroke();
-          ctx.shadowBlur = 0;
-        } else {
-          // Continent-based coloring
-          ctx.fillStyle = getContinentColor(name, feature.id);
-          ctx.strokeStyle = "rgba(245, 245, 220, 0.25)"; // Softer border
-          ctx.lineWidth = 1;
-          ctx.fill();
-          ctx.stroke();
+        // Styling parameters
+        let fillColor = getContinentColor(name, feature.id);
+        let strokeColor = "rgba(245, 245, 220, 0.25)";
+        let isHighlighted = isPlayer || isTarget;
+        
+        ctx.lineWidth = 1;
+        ctx.shadowBlur = 0;
+
+        if (mapMode === "sda") {
+          const cData = centersData.find(c => 
+            c.name_en.toLowerCase() === name.toLowerCase() || 
+            name.toLowerCase().includes(c.name_en.toLowerCase())
+          );
+          if (cData) {
+            const sda = cData.sector_extraction.strength;
+            if (sda <= 30) fillColor = "rgba(239, 68, 68, 0.5)"; // Red
+            else if (sda <= 70) fillColor = "rgba(234, 179, 8, 0.5)"; // Yellow
+            else fillColor = "rgba(34, 197, 94, 0.5)"; // Green
+            strokeColor = "rgba(255, 255, 255, 0.2)";
+          } else {
+            fillColor = "rgba(71, 85, 105, 0.2)";
+          }
+          if (!isPlayer && !isTarget) isHighlighted = false;
+        } else if (mapMode === "trade") {
+          fillColor = "rgba(15, 23, 42, 0.6)"; 
+          strokeColor = "rgba(51, 65, 85, 0.5)";
         }
+
+        if (isHighlighted && mapMode !== "sda") {
+          if (isPlayer) {
+            fillColor = "rgba(34, 197, 94, 0.3)";
+            strokeColor = "#4ade80";
+            ctx.lineWidth = 2;
+            ctx.shadowColor = "#4ade80";
+            ctx.shadowBlur = 15;
+          } else if (isTarget) {
+            fillColor = "rgba(239, 68, 68, 0.3)";
+            strokeColor = "#f87171";
+            ctx.lineWidth = 2;
+            ctx.shadowColor = "#f87171";
+            ctx.shadowBlur = 15;
+          }
+        }
+
+        ctx.fillStyle = fillColor;
+        ctx.strokeStyle = strokeColor;
+        ctx.fill();
+        ctx.stroke();
+        ctx.shadowBlur = 0;
       });
 
 // Radar removed
@@ -216,31 +239,95 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect }: 
         ctx.fill();
         ctx.shadowBlur = 0; // reset
         // 2. Text Labels with Decluttering
-        if (isPlayer || isTarget) {
-          // Name text removed per request
-          ctx.font = "48px sans-serif";
-          ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 10;
-          ctx.fillText(center.flag, x, y - 90);
-          ctx.shadowBlur = 0;
+        if (mapMode === "sda") {
+           const sda = center.sector_extraction.strength;
+           const isTooCrowded = labelGrid.some(pos => 
+             Math.abs(pos.x - x) < minLabelDist/1.5 && Math.abs(pos.y - y) < minLabelDist/1.5
+           );
+           if (!isTooCrowded || isPlayer || isTarget) {
+             ctx.font = "900 16px 'Inter', sans-serif";
+             if (sda <= 30) ctx.fillStyle = "#fca5a5"; 
+             else if (sda <= 70) ctx.fillStyle = "#fde047"; 
+             else ctx.fillStyle = "#86efac"; 
+             
+             ctx.shadowColor = "rgba(0,0,0,0.9)"; 
+             ctx.shadowBlur = 6;
+             ctx.fillText(Math.round(sda).toString(), x, y - 20);
+             ctx.shadowBlur = 0;
+             labelGrid.push({x, y});
+           }
         } else {
-          // Only draw background labels if they don't crowd others
-          const isTooCrowded = labelGrid.some(pos => 
-            Math.abs(pos.x - x) < minLabelDist && Math.abs(pos.y - y) < minLabelDist/2
-          );
+          if (isPlayer || isTarget) {
+            ctx.font = "48px sans-serif";
+            ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 10;
+            ctx.fillText(center.flag, x, y - 90);
+            ctx.shadowBlur = 0;
+          } else {
+            // Only draw background labels if they don't crowd others
+            const isTooCrowded = labelGrid.some(pos => 
+              Math.abs(pos.x - x) < minLabelDist && Math.abs(pos.y - y) < minLabelDist/2
+            );
 
-          if (!isTooCrowded) {
-            ctx.font = "14px 'Inter', sans-serif";
-            ctx.fillStyle = "rgba(148, 163, 184, 0.35)";
-            ctx.fillText(center.flag, x, y - 18);
-            labelGrid.push({x, y});
+            if (!isTooCrowded) {
+              ctx.font = "14px 'Inter', sans-serif";
+              ctx.fillStyle = "rgba(148, 163, 184, 0.35)";
+              ctx.fillText(center.flag, x, y - 18);
+              labelGrid.push({x, y});
+            }
           }
         }
       });
 
+      // 3. Trade Routes Render Pass
+      if (mapMode === "trade" && userCountry) {
+        const uCenter = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+        if (uCenter && uCenter.geopolitics?.agreements) {
+          const ux = ((uCenter.lon + 180) / 360) * mapWidth;
+          const uy = ((90 - uCenter.lat) / 180) * mapHeight;
+          
+          ctx.lineWidth = 2.5;
+          ctx.shadowColor = "#0ea5e9";
+          ctx.shadowBlur = 12;
+
+          uCenter.geopolitics.agreements.forEach((agr: any) => {
+             if (agr.type === "Trade" && agr.status === "Active") {
+               const pCenter = centersData.find(c => c.name_en === agr.partner || c.name_id === agr.partner);
+               if (pCenter) {
+                  const px = ((pCenter.lon + 180) / 360) * mapWidth;
+                  const py = ((90 - pCenter.lat) / 180) * mapHeight;
+                  
+                  // Ignore wrapping paths for simple rendering
+                  if (Math.abs(ux - px) > mapWidth / 2) return; 
+
+                  const gradient = ctx.createLinearGradient(ux, uy, px, py);
+                  gradient.addColorStop(0, "rgba(14, 165, 233, 0.9)");
+                  gradient.addColorStop(1, "rgba(56, 189, 248, 0.3)");
+                  ctx.strokeStyle = gradient;
+
+                  ctx.beginPath();
+                  ctx.moveTo(ux, uy);
+                  const midX = (ux + px) / 2;
+                  const dist = Math.sqrt((ux-px)**2 + (uy-py)**2);
+                  const midY = (uy + py) / 2 - Math.min(dist * 0.2, 400); 
+                  
+                  ctx.quadraticCurveTo(midX, midY, px, py);
+                  ctx.stroke();
+                  
+                  ctx.beginPath();
+                  ctx.arc(px, py, 4, 0, Math.PI*2);
+                  ctx.fillStyle = "#38bdf8";
+                  ctx.fill();
+               }
+             }
+          });
+          ctx.shadowBlur = 0;
+        }
+      }
+
       ctx.restore();
     });
 
-  }, [geoData, userCountry, targetCountry, centersData]);
+  }, [geoData, userCountry, targetCountry, centersData, mapMode]);
 
     // Define Custom Cursors
     const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;

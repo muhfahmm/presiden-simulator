@@ -288,6 +288,21 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Trade",
           "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -583,6 +598,26 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
           "type": "Trade",
           "status": "Active"
         }
@@ -881,6 +916,31 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "France",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
           "type": "Trade",
           "status": "Active"
         }
@@ -1187,6 +1247,21 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Trade",
           "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -1490,6 +1565,16 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Trade",
           "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -1785,6 +1870,26 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "South Africa",
           "type": "Trade",
           "status": "Active"
         }
@@ -2084,6 +2189,26 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "France",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
           "type": "Trade",
           "status": "Active"
         }
@@ -2389,6 +2514,21 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Trade",
           "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "France",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -2686,6 +2826,21 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United Kingdom",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
           "type": "Trade",
           "status": "Active"
         }
@@ -2994,6 +3149,31 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "United Kingdom",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -3298,6 +3478,21 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Trade",
           "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -3597,6 +3792,31 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United Kingdom",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -3894,6 +4114,26 @@ export const countries: CountryData[] = [
         {
           "partner": "Uni Eropa",
           "type": "Military",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
           "status": "Active"
         }
       ]
@@ -4193,6 +4433,21 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -4489,6 +4744,26 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
           "type": "Trade",
           "status": "Active"
         }
@@ -4788,6 +5063,21 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -5085,6 +5375,31 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
           "type": "Trade",
           "status": "Active"
         }
@@ -5386,6 +5701,31 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Trade",
           "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "France",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -5682,6 +6022,31 @@ export const countries: CountryData[] = [
         {
           "partner": "Uni Eropa",
           "type": "Military",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United Kingdom",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "France",
+          "type": "Trade",
           "status": "Active"
         }
       ]
@@ -5982,6 +6347,26 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -6280,6 +6665,31 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Trade",
           "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -6576,6 +6986,31 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United Kingdom",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
           "type": "Trade",
           "status": "Active"
         }
@@ -6877,6 +7312,31 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "United Kingdom",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "France",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -7173,6 +7633,26 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
           "type": "Trade",
           "status": "Active"
         }
@@ -7480,6 +7960,26 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -7782,6 +8282,31 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "United Kingdom",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -8079,6 +8604,26 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "France",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "South Africa",
           "type": "Trade",
           "status": "Active"
         }
@@ -8379,6 +8924,31 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -8676,6 +9246,21 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -8972,6 +9557,26 @@ export const countries: CountryData[] = [
         {
           "partner": "Uni Eropa",
           "type": "Military",
+          "status": "Active"
+        },
+        {
+          "partner": "United Kingdom",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
           "status": "Active"
         }
       ]
@@ -9276,6 +9881,21 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "France",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -9572,6 +10192,26 @@ export const countries: CountryData[] = [
         {
           "partner": "Uni Eropa",
           "type": "Military",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
           "status": "Active"
         }
       ]
@@ -9870,6 +10510,21 @@ export const countries: CountryData[] = [
         {
           "partner": "Uni Eropa",
           "type": "Military",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "France",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
           "status": "Active"
         }
       ]
@@ -10170,6 +10825,21 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -10466,6 +11136,21 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "France",
           "type": "Trade",
           "status": "Active"
         }
@@ -10767,6 +11452,31 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -11066,6 +11776,31 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "France",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United Kingdom",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -11361,6 +12096,21 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
           "type": "Trade",
           "status": "Active"
         }
@@ -11661,6 +12411,21 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "France",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -11957,6 +12722,21 @@ export const countries: CountryData[] = [
         {
           "partner": "Uni Eropa",
           "type": "Military",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
+          "type": "Trade",
           "status": "Active"
         }
       ]
@@ -12256,6 +13036,21 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Germany",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -12552,6 +13347,26 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United Kingdom",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "France",
           "type": "Trade",
           "status": "Active"
         }
@@ -12857,6 +13672,16 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Military",
           "status": "Active"
+        },
+        {
+          "partner": "Australia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "India",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -13154,6 +13979,21 @@ export const countries: CountryData[] = [
           "partner": "Uni Eropa",
           "type": "Trade",
           "status": "Active"
+        },
+        {
+          "partner": "South Africa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United States",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "United Kingdom",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -13449,6 +14289,21 @@ export const countries: CountryData[] = [
         },
         {
           "partner": "Uni Eropa",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Brazil",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Japan",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "China",
           "type": "Trade",
           "status": "Active"
         }
