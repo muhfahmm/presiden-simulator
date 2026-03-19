@@ -45,7 +45,7 @@ export default function GameDashboard() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCentered, setIsCentered] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string>("Peta Taktis");
-  const [mapMode, setMapMode] = useState<"default" | "sda" | "trade">("default");
+  const [mapMode, setMapMode] = useState<"default" | "sda" | "hubungan" | "trade">("default");
   const containerRef = useRef<HTMLDivElement>(null);
 
   const countryData = countries.find(c => c.name_id === userCountry) || countries[0];
@@ -88,7 +88,7 @@ export default function GameDashboard() {
           <BottomNav activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
 
           {/* Map Mode Toggles */}
-          <div className="absolute top-4 right-4 z-20 flex bg-zinc-900/80 backdrop-blur-md p-1 rounded-xl border border-zinc-800">
+          <div className="absolute bottom-24 left-1/2 -translate-x-1/2 z-20 flex bg-zinc-900/80 backdrop-blur-md p-1 rounded-xl border border-zinc-800 shadow-xl gap-1">
             <button 
               onClick={() => setMapMode("default")}
               className={`px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-lg transition-all ${mapMode === "default" ? "bg-zinc-800 text-white shadow-sm" : "text-zinc-500 hover:text-zinc-300"}`}
@@ -100,6 +100,12 @@ export default function GameDashboard() {
               className={`px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-lg transition-all ${mapMode === "sda" ? "bg-zinc-800 text-emerald-400 shadow-sm" : "text-zinc-500 hover:text-zinc-300"}`}
             >
               SDA
+            </button>
+            <button 
+              onClick={() => setMapMode("hubungan")}
+              className={`px-4 py-1.5 text-[11px] font-bold uppercase tracking-wider rounded-lg transition-all ${mapMode === "hubungan" ? "bg-zinc-800 text-amber-400 shadow-sm" : "text-zinc-500 hover:text-zinc-300"}`}
+            >
+              Hubungan
             </button>
             <button 
               onClick={() => setMapMode("trade")}

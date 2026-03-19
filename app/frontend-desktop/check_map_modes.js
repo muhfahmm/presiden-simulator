@@ -3,6 +3,8 @@ const { chromium } = require('playwright');
 (async () => {
   const browser = await chromium.launch();
   const page = await browser.newPage();
+  page.on('console', msg => console.log('BROWSER: ' + msg.text()));
+  page.on('pageerror', err => console.log('BROWSER ERROR: ' + err.message + '\n' + err.stack));
   await page.setViewportSize({ width: 1280, height: 800 });
 
   console.log('Navigating to Select Country...');

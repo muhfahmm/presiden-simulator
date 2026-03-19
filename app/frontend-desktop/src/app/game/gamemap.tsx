@@ -2,13 +2,108 @@
 
 import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "../select-country/data/countries";
+import { AITradePathfinder } from "./components/ai/AITradePathfinder";
 
 interface GameMapCanvasProps {
   userCountry: string;
   targetCountry: string | null;
   onSelect: (name: string) => void;
-  mapMode?: "default" | "sda" | "trade";
+  mapMode?: "default" | "sda" | "hubungan" | "trade";
 }
+
+// Pseudo-random relation hash
+const getRelation = (name: string, userCountry: string) => {
+  let str = name + userCountry;
+  let hash = 0;
+  for (let i=0; i<str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
+  if (name === userCountry) return 100;
+  return Math.abs(hash % 100) + 1;
+};
+
+// Tactical Maritime Labels (Oceans, Seas, Gulfs, Straits)
+const maritimeLabels = [
+  { name: "S A M U D R A   P A S I F I K", lon: -140, lat: 0, size: 36, color: "rgba(56, 189, 248, 0.15)" },
+  { name: "S A M U D R A   P A S I F I K", lon: 160, lat: 10, size: 36, color: "rgba(56, 189, 248, 0.15)" },
+  { name: "S A M U D R A   A T L A N T I K", lon: -40, lat: 25, size: 36, color: "rgba(56, 189, 248, 0.15)" },
+  { name: "S A M U D R A   A T L A N T I K", lon: -20, lat: -25, size: 36, color: "rgba(56, 189, 248, 0.15)" },
+  { name: "S A M U D R A   H I N D I A", lon: 80, lat: -20, size: 36, color: "rgba(56, 189, 248, 0.15)" },
+  { name: "S A M U D R A   A R K T I K", lon: 0, lat: 80, size: 32, color: "rgba(56, 189, 248, 0.15)" },
+  { name: "S A M U D R A   S E L A T A N", lon: 0, lat: -60, size: 32, color: "rgba(56, 189, 248, 0.15)" },
+  
+  // Majors Seas
+  { name: "Laut Mediterania", lon: 18, lat: 34, size: 20, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Karibia", lon: -75, lat: 15, size: 24, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Cina Selatan", lon: 112, lat: 12, size: 20, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Filipina", lon: 130, lat: 15, size: 20, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Jawa", lon: 110, lat: -5, size: 16, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Banda", lon: 130, lat: -6, size: 16, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Hitam", lon: 35, lat: 43, size: 18, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Merah", lon: 38, lat: 20, size: 18, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Baltik", lon: 20, lat: 57, size: 18, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Utara", lon: 3, lat: 56, size: 20, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Jepang", lon: 135, lat: 40, size: 20, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Bering", lon: -175, lat: 58, size: 24, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Arab", lon: 65, lat: 15, size: 24, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Tasman", lon: 160, lat: -40, size: 20, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Laut Koral", lon: 155, lat: -15, size: 20, color: "rgba(125, 211, 252, 0.4)" },
+
+  // Gulfs and Bays
+  { name: "Teluk Meksiko", lon: -90, lat: 25, size: 20, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Teluk Benggala", lon: 90, lat: 15, size: 24, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Teluk Persia", lon: 51, lat: 26, size: 16, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Teluk Aden", lon: 48, lat: 12, size: 14, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Teluk Guinea", lon: 0, lat: 0, size: 20, color: "rgba(125, 211, 252, 0.4)" },
+  { name: "Teluk Alaska", lon: -145, lat: 55, size: 20, color: "rgba(125, 211, 252, 0.4)" },
+  
+  // Tactical Straits and Canals
+  { name: "Selat Malaka", lon: 99, lat: 4, size: 12, color: "rgba(2, 132, 199, 0.6)" },
+  { name: "Selat Gibraltar", lon: -5.6, lat: 35.5, size: 12, color: "rgba(2, 132, 199, 0.6)" },
+  { name: "Selat Hormuz", lon: 56.5, lat: 26.5, size: 12, color: "rgba(2, 132, 199, 0.6)" },
+  { name: "Selat Sunda", lon: 105, lat: -6.5, size: 12, color: "rgba(2, 132, 199, 0.6)" },
+  { name: "Selat Bosporus", lon: 29, lat: 41, size: 12, color: "rgba(2, 132, 199, 0.6)" },
+  { name: "Terusan Suez", lon: 33.5, lat: 31, size: 12, color: "rgba(2, 132, 199, 0.6)" },
+  { name: "Terusan Panama", lon: -78.5, lat: 8, size: 12, color: "rgba(2, 132, 199, 0.6)" },
+  { name: "Selat Inggris", lon: 1, lat: 51, size: 14, color: "rgba(2, 132, 199, 0.6)" },
+  { name: "Kanal Taiwan", lon: 119.5, lat: 24, size: 14, color: "rgba(2, 132, 199, 0.6)" }
+];
+
+// Opsi rute kapal spesifik (Konfigurasi User-Controlled Multi-stop Waypoints)
+// Format -> "Negara Asal": { "Negara Tujuan Akhir": ["Perhentian1", "Perhentian2", "TujuanAkhir"] }
+const customTradeRoutes: Record<string, Record<string, string[]>> = {
+  "Indonesia": {
+    "Japan": ["Singapore", "Filipina", "Taiwan", "China", "South Korea", "Japan"],
+    "South Korea": ["Singapore", "Filipina", "Taiwan", "China", "South Korea"],
+    "China": ["Singapore", "Filipina", "Taiwan", "China"],
+    "Taiwan": ["Singapore", "Filipina", "Taiwan"],
+    "Filipina": ["Filipina"],
+    "Singapore": ["Singapore"]
+  },
+  "Bangladesh": {
+    "Japan": ["Sri Lanka", "Aceh", "Selat Malaka", "Singapore", "Filipina", "Taiwan", "China", "South Korea", "Japan"],
+    "Indonesia": ["Selat Malaka", "Jakarta"],
+    "Sri Lanka": ["Sri Lanka"]
+  },
+  "Sri Lanka": {
+    "Indonesia": ["Selat Malaka", "Jakarta"],
+    "Bangladesh": ["Bangladesh"]
+  }
+};
+
+// Fallback koordinat statis untuk negara kecil/pulau yang mungkin tidak dirender polygonnya di GeoJSON
+const waypointCoords: Record<string, {lon: number, lat: number}> = {
+  "Singapore": { lon: 103.8, lat: 1.3 },
+  "Singapura": { lon: 103.8, lat: 1.3 },
+  "Taiwan": { lon: 121.0, lat: 23.5 },
+  "China": { lon: 104.0, lat: 35.0 },
+  "South Korea": { lon: 127.5, lat: 36.0 },
+  "Japan": { lon: 138.0, lat: 36.0 },
+  "Jakarta": { lon: 106.8, lat: -6.2 },
+  "Filipina": { lon: 121.77, lat: 12.87 },
+  "Sri Lanka": { lon: 80, lat: 7 },
+  "Aceh": { lon: 95, lat: 5 },
+  "Selat Malaka": { lon: 99, lat: 3 },
+  "Bangladesh": { lon: 90, lat: 24 }
+};
 
 // Map Helper for Continent Colors
 const getContinentColor = (name: string, id: string): string => {
@@ -62,6 +157,7 @@ const getContinentColor = (name: string, id: string): string => {
 export default function GameMapCanvas({ userCountry, targetCountry, onSelect, mapMode = "default" }: GameMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [geoData, setGeoData] = useState<any>(null);
+  const [aiPathfinder, setAiPathfinder] = useState<AITradePathfinder | null>(null);
   const [isHovering, setIsHovering] = useState(false);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
 
@@ -74,7 +170,50 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
     // Load GeoJSON securely
     fetch("/world.geojson")
       .then(res => res.json())
-      .then(data => setGeoData(data))
+      .then(data => {
+         setGeoData(data);
+         
+         const meshW = 720;
+         const meshH = 360;
+         const canvas = document.createElement("canvas");
+         canvas.width = meshW;
+         canvas.height = meshH;
+         const oCtx = canvas.getContext("2d", { willReadFrequently: true });
+         
+         if (oCtx && data.features) {
+             oCtx.fillStyle = "#000000";
+             oCtx.fillRect(0, 0, meshW, meshH);
+             oCtx.fillStyle = "#ffffff";
+             
+             data.features.forEach((feat: any) => {
+                 if (!feat.geometry) return;
+                 const type = feat.geometry.type;
+                 const coordinates = feat.geometry.coordinates;
+
+                 const drawPoly = (ring: any[]) => {
+                     oCtx.beginPath();
+                     ring.forEach((coord: number[], index: number) => {
+                         const x = ((coord[0] + 180) / 360) * meshW;
+                         const y = ((90 - coord[1]) / 180) * meshH;
+                         if (index === 0) oCtx.moveTo(x, y);
+                         else oCtx.lineTo(x, y);
+                     });
+                     oCtx.closePath();
+                     oCtx.fill();
+                 };
+
+                 if (type === "Polygon") {
+                     coordinates.forEach(drawPoly);
+                 } else if (type === "MultiPolygon") {
+                     coordinates.forEach((poly: any[]) => poly.forEach(drawPoly));
+                 }
+             });
+
+             const pf = new AITradePathfinder(meshW, meshH);
+             pf.buildNavMeshFromCanvas(oCtx);
+             setAiPathfinder(pf);
+         }
+      })
       .catch(err => console.error("Failed to load map data", err));
   }, []);
 
@@ -146,27 +285,21 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
         ctx.lineWidth = 1;
         ctx.shadowBlur = 0;
 
-        if (mapMode === "sda") {
-          const cData = centersData.find(c => 
-            c.name_en.toLowerCase() === name.toLowerCase() || 
-            name.toLowerCase().includes(c.name_en.toLowerCase())
-          );
-          if (cData) {
-            const sda = cData.sector_extraction.strength;
-            if (sda <= 30) fillColor = "rgba(239, 68, 68, 0.5)"; // Red
-            else if (sda <= 70) fillColor = "rgba(234, 179, 8, 0.5)"; // Yellow
-            else fillColor = "rgba(34, 197, 94, 0.5)"; // Green
-            strokeColor = "rgba(255, 255, 255, 0.2)";
-          } else {
-            fillColor = "rgba(71, 85, 105, 0.2)";
-          }
+        if (mapMode === "hubungan") {
+          const relation = getRelation(name, userCountry);
+          if (relation <= 30) fillColor = "rgba(239, 68, 68, 0.5)"; // Red
+          else if (relation <= 70) fillColor = "rgba(234, 179, 8, 0.5)"; // Yellow
+          else fillColor = "rgba(34, 197, 94, 0.5)"; // Green
+          strokeColor = "rgba(255, 255, 255, 0.2)";
           if (!isPlayer && !isTarget) isHighlighted = false;
-        } else if (mapMode === "trade") {
-          fillColor = "rgba(15, 23, 42, 0.6)"; 
-          strokeColor = "rgba(51, 65, 85, 0.5)";
+        } else if (mapMode === "sda") {
+          // SDA: Just display dark continents to make the numbers pop
+          fillColor = "rgba(71, 85, 105, 0.4)"; 
+          strokeColor = "rgba(255, 255, 255, 0.1)";
+          if (!isPlayer && !isTarget) isHighlighted = false;
         }
 
-        if (isHighlighted && mapMode !== "sda") {
+        if (isHighlighted && mapMode !== "hubungan" && mapMode !== "sda") {
           if (isPlayer) {
             fillColor = "rgba(34, 197, 94, 0.3)";
             strokeColor = "#4ade80";
@@ -238,17 +371,46 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
         }
         ctx.fill();
         ctx.shadowBlur = 0; // reset
+
+        // 1.5 Draw Tactical Maritime Labels (Oceans, Seas, Gulfs)
+        maritimeLabels.forEach(label => {
+          const { x, y } = project(label.lon, label.lat);
+          ctx.font = `italic ${label.size}px 'Inter', sans-serif`;
+          ctx.fillStyle = label.color;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          // Only draw if it's within map bounds to save performance and stop artifacts
+          if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) {
+            ctx.fillText(label.name, x, y);
+          }
+        });
+
         // 2. Text Labels with Decluttering
-        if (mapMode === "sda") {
-           const sda = center.sector_extraction.strength;
+        if (mapMode === "hubungan") {
+           const relation = getRelation(center.name_en || center.id || "", userCountry);
            const isTooCrowded = labelGrid.some(pos => 
              Math.abs(pos.x - x) < minLabelDist/1.5 && Math.abs(pos.y - y) < minLabelDist/1.5
            );
            if (!isTooCrowded || isPlayer || isTarget) {
              ctx.font = "900 16px 'Inter', sans-serif";
-             if (sda <= 30) ctx.fillStyle = "#fca5a5"; 
-             else if (sda <= 70) ctx.fillStyle = "#fde047"; 
+             if (relation <= 30) ctx.fillStyle = "#fca5a5"; 
+             else if (relation <= 70) ctx.fillStyle = "#fde047"; 
              else ctx.fillStyle = "#86efac"; 
+             
+             ctx.shadowColor = "rgba(0,0,0,0.9)"; 
+             ctx.shadowBlur = 6;
+             ctx.fillText(relation.toString(), x, y - 20);
+             ctx.shadowBlur = 0;
+             labelGrid.push({x, y});
+           }
+        } else if (mapMode === "sda") {
+           const sda = center.sector_extraction?.strength || 0;
+           const isTooCrowded = labelGrid.some(pos => 
+             Math.abs(pos.x - x) < minLabelDist/1.5 && Math.abs(pos.y - y) < minLabelDist/1.5
+           );
+           if (!isTooCrowded || isPlayer || isTarget) {
+             ctx.font = "900 16px 'Inter', sans-serif";
+             ctx.fillStyle = "#38bdf8"; // Light Blue for SDA 
              
              ctx.shadowColor = "rgba(0,0,0,0.9)"; 
              ctx.shadowBlur = 6;
@@ -278,56 +440,156 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
         }
       });
 
-      // 3. Trade Routes Render Pass
-      if (mapMode === "trade" && userCountry) {
+      // 3. AI Trade Routes Render Pass
+      if (mapMode === "trade" && userCountry && aiPathfinder) {
         const uCenter = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
-        if (uCenter && uCenter.geopolitics?.agreements) {
+        if (uCenter) {
           const ux = ((uCenter.lon + 180) / 360) * mapWidth;
           const uy = ((90 - uCenter.lat) / 180) * mapHeight;
           
-          ctx.lineWidth = 2.5;
-          ctx.shadowColor = "#0ea5e9";
-          ctx.shadowBlur = 12;
+          ctx.lineWidth = 3;
+          ctx.shadowBlur = 0; // Solid classic lines, no glow
 
-          uCenter.geopolitics.agreements.forEach((agr: any) => {
+          // Draw origin node (Red circle, white center)
+          const drawNode = (nx: number, ny: number) => {
+            ctx.beginPath();
+            ctx.arc(nx, ny, 6, 0, Math.PI * 2);
+            ctx.fillStyle = "#ffffff"; // White center
+            ctx.fill();
+            ctx.lineWidth = 2.5;
+            ctx.strokeStyle = "#cc0000"; // Red border
+            ctx.stroke();
+          };
+
+          const activeAgreements = [...(uCenter.geopolitics?.agreements || [])];
+          
+          // Forcefully inject custom routes into the rendering pipeline so the user can immediately see their manually created paths!
+          const activeCustoms = customTradeRoutes[uCenter.name_en] || customTradeRoutes[uCenter.name_id] || {};
+          Object.keys(activeCustoms).forEach(dest => {
+              if (!activeAgreements.some(a => a.partner === dest || a.partner === centersData.find(c => c.name_en === dest)?.name_id)) {
+                  activeAgreements.push({ partner: dest, type: "Trade", status: "Active" });
+              }
+          });
+
+          activeAgreements.forEach((agr: any) => {
              if (agr.type === "Trade" && agr.status === "Active") {
-               const pCenter = centersData.find(c => c.name_en === agr.partner || c.name_id === agr.partner);
-               if (pCenter) {
-                  const px = ((pCenter.lon + 180) / 360) * mapWidth;
-                  const py = ((90 - pCenter.lat) / 180) * mapHeight;
-                  
-                  // Ignore wrapping paths for simple rendering
-                  if (Math.abs(ux - px) > mapWidth / 2) return; 
+               const pMatch = centersData.find(c => c.name_en === agr.partner || c.name_id === agr.partner);
+               const partnerEn = pMatch ? pMatch.name_en : agr.partner;
+               const partnerId = pMatch ? pMatch.name_id : agr.partner;
 
-                  const gradient = ctx.createLinearGradient(ux, uy, px, py);
-                  gradient.addColorStop(0, "rgba(14, 165, 233, 0.9)");
-                  gradient.addColorStop(1, "rgba(56, 189, 248, 0.3)");
-                  ctx.strokeStyle = gradient;
+               let waypoints = customTradeRoutes[uCenter.name_en]?.[partnerEn] || 
+                               customTradeRoutes[uCenter.name_id]?.[partnerEn] ||
+                               customTradeRoutes[uCenter.name_en]?.[partnerId] ||
+                               customTradeRoutes[uCenter.name_id]?.[partnerId];
+               
+               if (!waypoints) {
+                  if (pMatch) waypoints = [pMatch.name_en];
+               }
 
-                  ctx.beginPath();
-                  ctx.moveTo(ux, uy);
-                  const midX = (ux + px) / 2;
-                  const dist = Math.sqrt((ux-px)**2 + (uy-py)**2);
-                  const midY = (uy + py) / 2 - Math.min(dist * 0.2, 400); 
+               if (waypoints && waypoints.length > 0) {
+                  let currentStart: { lon: number, lat: number } = uCenter;
                   
-                  ctx.quadraticCurveTo(midX, midY, px, py);
-                  ctx.stroke();
-                  
-                  ctx.beginPath();
-                  ctx.arc(px, py, 4, 0, Math.PI*2);
-                  ctx.fillStyle = "#38bdf8";
-                  ctx.fill();
+                  waypoints.forEach((wpName, wpIdx) => {
+                      const nextWpObj = centersData.find(c => c.name_en === wpName || c.name_id === wpName);
+                      const staticWp = waypointCoords[wpName];
+                      
+                      const nextWpLon = nextWpObj?.lon ?? staticWp?.lon;
+                      const nextWpLat = nextWpObj?.lat ?? staticWp?.lat;
+                      
+                      if (nextWpLon === undefined || nextWpLat === undefined) return;
+                      
+                      // Run AI Pathfinding over maritime mesh
+                      const path = aiPathfinder.findPath(currentStart.lon, currentStart.lat, nextWpLon, nextWpLat);
+                      
+                      if (path && path.length > 0) {
+                         const normalized = aiPathfinder.normalizeGridPath(path);
+                         
+                         if (wpIdx === 0) {
+                             // Draw land-bridge indicator ONLY for the absolute beginning of the custom sequence
+                             const sux = ((currentStart.lon + 180) / 360) * mapWidth;
+                             const suy = ((90 - currentStart.lat) / 180) * mapHeight;
+                             ctx.lineWidth = 1.5;
+                             ctx.strokeStyle = "rgba(100, 116, 139, 0.6)";
+                             ctx.setLineDash([4, 4]);
+                             ctx.beginPath();
+                             ctx.moveTo(sux, suy);
+                             ctx.lineTo(normalized[0].rtX * mapWidth, normalized[0].rtY * mapHeight);
+                             ctx.stroke();
+                             ctx.setLineDash([]);
+                         }
+
+                         // Draw classic Dark Blue maritime solid line avoiding landmasses
+                         ctx.lineWidth = 3.5;
+                         ctx.strokeStyle = "#000099";
+                         
+                         ctx.beginPath();
+                         normalized.forEach((p, idx) => {
+                            let nextX = p.rtX * mapWidth;
+                            let nextY = p.rtY * mapHeight;
+                            
+                            if (idx === 0) ctx.moveTo(nextX, nextY);
+                            else {
+                               const prev = normalized[idx - 1];
+                               const dist = Math.abs(p.rtX - prev.rtX);
+                               if (dist > 0.5) ctx.moveTo(nextX, nextY); // Lift pen across timezone jump
+                               else ctx.lineTo(nextX, nextY);
+                            }
+                         });
+                         ctx.stroke();
+                         
+                         // Draw intermediate/destination port node
+                         const destP = normalized[normalized.length - 1];
+                         drawNode(destP.rtX * mapWidth, destP.rtY * mapHeight);
+                         
+                         if (wpIdx === waypoints.length - 1) {
+                             // Draw land-bridge indicator to inland capital target for FINAL destination
+                             const pUX = ((nextWpLon + 180) / 360) * mapWidth;
+                             const pUY = ((90 - nextWpLat) / 180) * mapHeight;
+                             ctx.lineWidth = 1.5;
+                             ctx.strokeStyle = "rgba(100, 116, 139, 0.6)";
+                             ctx.setLineDash([4, 4]);
+                             ctx.beginPath();
+                             ctx.moveTo(destP.rtX * mapWidth, destP.rtY * mapHeight);
+                             ctx.lineTo(pUX, pUY);
+                             ctx.stroke();
+                             ctx.setLineDash([]);
+                         }
+
+                      } else {
+                         // Fallback to simple bezier if AI resolution gets trapped
+                         const cx = ((currentStart.lon + 180) / 360) * mapWidth;
+                         const cy = ((90 - currentStart.lat) / 180) * mapHeight;
+                         const px = ((nextWpLon + 180) / 360) * mapWidth;
+                         const py = ((90 - nextWpLat) / 180) * mapHeight;
+                         if (Math.abs(cx - px) <= mapWidth / 2) { 
+                             ctx.lineWidth = 3.5;
+                             ctx.strokeStyle = "#000099"; 
+                             ctx.beginPath();
+                             ctx.moveTo(cx, cy);
+                             const midX = (cx + px) / 2;
+                             const dist = Math.sqrt((cx-px)**2 + (cy-py)**2);
+                             const midY = (cy + py) / 2 - Math.min(dist * 0.15, 250); 
+                             ctx.quadraticCurveTo(midX, midY, px, py);
+                             ctx.stroke();
+                             drawNode(px, py);
+                         }
+                      }
+                      
+                      currentStart = { lon: nextWpLon, lat: nextWpLat }; // Thread forward to the next waypoint
+                  });
                }
              }
           });
-          ctx.shadowBlur = 0;
+          
+          // Draw user country node on top
+          drawNode(ux, uy);
         }
       }
 
       ctx.restore();
     });
 
-  }, [geoData, userCountry, targetCountry, centersData, mapMode]);
+  }, [geoData, userCountry, targetCountry, centersData, mapMode, aiPathfinder]);
 
     // Define Custom Cursors
     const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;

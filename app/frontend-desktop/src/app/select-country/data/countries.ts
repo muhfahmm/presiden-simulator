@@ -5402,6 +5402,16 @@ export const countries: CountryData[] = [
           "partner": "Japan",
           "type": "Trade",
           "status": "Active"
+        },
+        {
+          "partner": "Indonesia",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Sri Lanka",
+          "type": "Trade",
+          "status": "Active"
         }
       ]
     },
@@ -5411,6 +5421,296 @@ export const countries: CountryData[] = [
       "security": 61,
       "finance": 72,
       "environment": 51
+    }
+  },
+  {
+    "name_en": "Sri Lanka",
+    "capital": "Colombo",
+    "name_id": "Sri Lanka",
+    "lon": 80,
+    "lat": 7,
+    "flag": "🇱🇰",
+    "pop": "21M",
+    "budget": "Rp 120 T",
+    "income": "Rp 115 T",
+    "religion": "Buddha",
+    "ideology": "Kapitalisme",
+    "infrastructure": {
+      "nuclear_plant": 0,
+      "hydro_plant": 0,
+      "solar_plant": 1,
+      "thermal_plant": 2,
+      "gas_plant": 0,
+      "wind_plant": 1,
+      "power_grid": 85,
+      "bicycle_path": 10,
+      "subway": 0,
+      "railway": 12,
+      "highway": 20,
+      "road_quality": 65,
+      "sea_port": 4,
+      "airport": 2,
+      "internet_coverage": 75,
+      "tech_stack": 60,
+      "water_access": 80
+    },
+    "sector_extraction": {
+      "gold": 1,
+      "uranium": 0,
+      "coal": 10,
+      "oil": 5,
+      "gas": 2,
+      "salt": 15,
+      "nickel": 0,
+      "lithium": 1,
+      "aluminum": 2,
+      "copper": 5,
+      "rare_earth": 10,
+      "iron_ore": 20,
+      "strength": 20
+    },
+    "sector_manufacturing": {
+      "semiconductor": 0,
+      "car": 1,
+      "motorcycle": 2,
+      "smelter": 1,
+      "concrete_cement": 10,
+      "wood": 15,
+      "mineral_water": 20,
+      "sugar": 10,
+      "bread": 20,
+      "pharmacy": 5,
+      "fertilizer": 5,
+      "meat_processing": 5,
+      "instant_noodle": 30,
+      "strength": 15
+    },
+    "sector_livestock": {
+      "chicken": 20,
+      "poultry": 15,
+      "dairy_cow": 10,
+      "beef_cow": 5,
+      "sheep_goat": 5,
+      "shrimp": 30,
+      "fish": 50,
+      "shellfish": 20,
+      "strength": 25
+    },
+    "sector_agriculture": {
+      "rice": 50,
+      "wheat": 5,
+      "corn": 10,
+      "tubers": 20,
+      "soy": 5,
+      "palm_oil": 10,
+      "tea": 80,
+      "coffee": 15,
+      "cocoa": 10,
+      "sugarcane": 10,
+      "vegetables": 30,
+      "strength": 40
+    },
+    "sector_defense": {
+      "prison": 5,
+      "barracks": 10,
+      "armory": 2,
+      "tank_hangar": 1,
+      "military_academy": 1,
+      "budget": 10,
+      "personnel": 15000,
+      "strength": 15,
+      "military_fleet": {
+        "darat": {
+          "main_battle_tank": 20,
+          "apc": 100,
+          "artileri_berat": 50
+        },
+        "laut": {
+          "kapal_induk": 0,
+          "kapal_destroyer": 2,
+          "kapal_selam_nuklir": 0
+        },
+        "udara": {
+          "jet_tempur_stealth": 5,
+          "helikopter_serang": 10,
+          "pesawat_pengintai": 2
+        },
+        "total_unit": 189,
+        "readiness": 80
+      }
+    },
+    "sector_military_strategic": {
+      "command_center": 1,
+      "military_air_base": 2,
+      "military_naval_base": 1,
+      "arms_factory": 1,
+      "nuclear_status": false,
+      "space_program": 1,
+      "cyber_defense": 5,
+      "intelligence": 5,
+      "strategic_operations": {
+        "attack_mission": 1,
+        "spy_mission": 5,
+        "sabotage_mission": 1,
+        "territory_management": 5,
+        "nuclear_program": 0
+      },
+      "intel_radar": {
+        "satellite_system": 0,
+        "radar_network": 10,
+        "cyber_ops": 2
+      }
+    },
+    "sector_social": {
+      "education": {
+        "kindergarten": 100,
+        "elementary_school": 200,
+        "middle_school": 150,
+        "high_school": 100,
+        "university": 10,
+        "education_institute": 20,
+        "laboratory": 10,
+        "observatory": 1,
+        "research_center": 2,
+        "development_center": 5,
+        "literacy": 92,
+        "research_index": 10
+      },
+      "health": {
+        "large_hospital": 5,
+        "small_hospital": 20,
+        "diagnostic_center": 10,
+        "hospital_beds": 10000,
+        "life_expectancy": 75,
+        "healthcare_index": 70
+      },
+      "sports": {
+        "swimming_pool": 10,
+        "racing_circuit": 1,
+        "stadium": 5,
+        "international_stadium": 1,
+        "olympic_score": 10,
+        "popularity": 50
+      },
+      "law": {
+        "legal_aid_center": 10,
+        "court": 5,
+        "prosecution_office": 5,
+        "police_station": 50,
+        "police_car_fleet": 500,
+        "police_academy": 2,
+        "corruption_index": 40,
+        "security_index": 60,
+        "police_fleet": {
+          "patroli_lantas": {
+            "mobil_patroli": 300,
+            "sepeda_motor": 200,
+            "unit_k9": 10
+          },
+          "taktis_khusus": {
+            "swat": 5,
+            "helikopter_polisi": 2,
+            "anti_huru_hara": 20
+          },
+          "pusat_komando": {
+            "stasiun_polisi": 10,
+            "kamera_surveillance": 1000,
+            "pusat_forensik": 1
+          },
+          "response_time": 10,
+          "public_trust": 65
+        }
+      }
+    },
+    "military": {
+      "infantry": 15000,
+      "tanks": 20,
+      "aircraft": 15,
+      "naval": 10,
+      "air_base": 2,
+      "naval_base": 1,
+      "military_base": 5,
+      "nuclear": false,
+      "strength": 20
+    },
+    "un_vote": "Pro",
+    "trade": {
+      "buy_commodity": 100,
+      "sell_commodity": 150
+    },
+    "taxes": {
+      "vat": {
+        "rate": 15,
+        "satisfaction": 70
+      },
+      "corporate": {
+        "rate": 25,
+        "satisfaction": 60
+      },
+      "income": {
+        "rate": 20,
+        "satisfaction": 50
+      },
+      "customs": {
+        "rate": 10,
+        "satisfaction": 65
+      },
+      "environment": {
+        "rate": 2,
+        "satisfaction": 80
+      },
+      "other": {
+        "rate": 5,
+        "satisfaction": 75
+      }
+    },
+    "demand": {
+      "satisfaction": 70,
+      "top_demands": [
+        "Infrastructure",
+        "Education"
+      ],
+      "residential": 60,
+      "commercial": 50,
+      "industrial": 40
+    },
+    "geopolitics": {
+      "allies": [
+        "India",
+        "Japan"
+      ],
+      "enemies": [],
+      "stance": "Neutral",
+      "international_influence": {
+        "soft_power": 15,
+        "hard_power": 10,
+        "diplomatic_prestige": 50
+      },
+      "international_orgs": [
+        {
+          "name": "PBB (UN)",
+          "role": "Member"
+        }
+      ],
+      "agreements": [
+        {
+          "partner": "Bangladesh",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Indonesia",
+          "type": "Trade",
+          "status": "Active"
+        }
+      ]
+    },
+    "ministries": {
+      "health": 60,
+      "education": 70,
+      "security": 60,
+      "finance": 65,
+      "environment": 75
     }
   },
   {
@@ -12441,8 +12741,8 @@ export const countries: CountryData[] = [
     "name_en": "Indonesia",
     "capital": "Jakarta",
     "name_id": "Indonesia",
-    "lon": 120,
-    "lat": -5,
+    "lon": 106.8,
+    "lat": -6.2,
     "flag": "🇮🇩",
     "pop": "48M",
     "budget": "Rp 374 T",
@@ -12725,17 +13025,22 @@ export const countries: CountryData[] = [
           "status": "Active"
         },
         {
-          "partner": "United States",
-          "type": "Trade",
-          "status": "Active"
-        },
-        {
           "partner": "Germany",
           "type": "Trade",
           "status": "Active"
         },
         {
           "partner": "India",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Bangladesh",
+          "type": "Trade",
+          "status": "Active"
+        },
+        {
+          "partner": "Sri Lanka",
           "type": "Trade",
           "status": "Active"
         }
