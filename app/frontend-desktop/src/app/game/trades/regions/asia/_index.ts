@@ -19,7 +19,7 @@ import { SaudiArabiaRoutes, SaudiArabiaWaypoints } from "./saudiarabia";
 import { SingaporeRoutes, SingaporeWaypoints } from "./singapore";
 import { SouthKoreaRoutes, SouthKoreaWaypoints } from "./southkorea";
 import { SriLankaRoutes, SriLankaWaypoints } from "./srilanka";
-import { steeringWaypoints, hiddenWaypoints } from "./steering";
+import { steeringWaypoints, hiddenWaypoints } from "./_steering";
 import { TaiwanRoutes, TaiwanWaypoints } from "./taiwan";
 import { ThailandRoutes, ThailandWaypoints } from "./thailand";
 import { UnitedArabEmiratesRoutes, UnitedArabEmiratesWaypoints } from "./unitedarabemirates";

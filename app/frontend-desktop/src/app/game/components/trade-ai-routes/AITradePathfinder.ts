@@ -21,14 +21,14 @@ export class AITradePathfinder {
             }
         }
         // Force unblock global strategic canals so AI can route through them cleanly
-        this.openCanal(this.lonToX(-79.5), this.latToY(9.0), 3); // Panama Canal
-        this.openCanal(this.lonToX(32.3), this.latToY(30.6), 3); // Suez Canal
-        this.openCanal(this.lonToX(26.2), this.latToY(40.2), 2); // Dardanelles / Bosporus
-        this.openCanal(this.lonToX(43.3), this.latToY(12.6), 2); // Bab el-Mandab
-        this.openCanal(this.lonToX(100.0), this.latToY(3.0), 3); // Strait of Malacca
-        this.openCanal(this.lonToX(-5.6), this.latToY(36.0), 3); // Strait of Gibraltar
-        this.openCanal(this.lonToX(1.0), this.latToY(51.0), 4); // English Channel
-        this.openCanal(this.lonToX(11.0), this.latToY(56.0), 4); // Danish Straits (Baltic Access)
+        this.openCanal(this.lonToX(-79.5), this.latToY(9.0), 6); // Panama Canal
+        this.openCanal(this.lonToX(32.3), this.latToY(30.6), 6); // Suez Canal
+        this.openCanal(this.lonToX(26.2), this.latToY(40.2), 6); // Dardanelles / Bosporus
+        this.openCanal(this.lonToX(43.3), this.latToY(12.6), 4); // Bab el-Mandab
+        this.openCanal(this.lonToX(100.0), this.latToY(3.0), 4); // Strait of Malacca
+        this.openCanal(this.lonToX(-5.6), this.latToY(36.0), 6); // Strait of Gibraltar
+        this.openCanal(this.lonToX(1.0), this.latToY(51.0), 8); // English Channel
+        this.openCanal(this.lonToX(11.0), this.latToY(56.0), 8); // Danish Straits (Baltic Access)
         this.openCanal(this.lonToX(56.0), this.latToY(26.0), 3); // Strait of Hormuz
         this.openCanal(this.lonToX(105.0), this.latToY(-6.0), 3); // Sunda Strait
         this.openCanal(this.lonToX(-80.0), this.latToY(25.0), 3); // Florida Strait

@@ -136,8 +136,8 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
       .then(data => {
         setGeoData(data);
 
-        const meshW = 720;
-        const meshH = 360;
+        const meshW = 1440;
+        const meshH = 720;
         const canvas = document.createElement("canvas");
         canvas.width = meshW;
         canvas.height = meshH;
@@ -315,10 +315,16 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
           ctx.shadowColor = "#f59e0b";
           ctx.shadowBlur = 15;
         } else {
-          ctx.arc(x, y, 2.5, 0, Math.PI * 2); // Smaller dots for non-selected
-          ctx.fillStyle = "rgba(148, 163, 184, 0.5)"; // Slate 400
-          ctx.shadowColor = "transparent";
-          ctx.shadowBlur = 0;
+          const isWhiteDot = ["Papua Nugini", "Papua New Guinea"].includes(center.name_en);
+          if (isWhiteDot) {
+            ctx.arc(x, y, 4, 0, Math.PI * 2); // Slightly larger
+            ctx.fillStyle = "#ffffff"; // Static White Dot Port
+            ctx.shadowColor = "#ffffff";
+            ctx.shadowBlur = 4;
+          } else {
+            ctx.arc(x, y, 2.5, 0, Math.PI * 2); // Smaller dots for non-selected
+            ctx.fillStyle = "rgba(148, 163, 184, 0.5)"; // Slate 400
+          }
         }
         ctx.fill();
         ctx.shadowBlur = 0; // reset
@@ -359,6 +365,24 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
           }
         }
       });
+      
+      // 2.5 Static Nodes for Custom Ports (Loaded from waypointCoords/Country Files)
+      Object.keys(waypointCoords).forEach(name => {
+         if (hiddenWaypoints.includes(name)) return; // Skip steering nodes
+         
+         const coord = waypointCoords[name];
+         const { x, y } = project(coord.lon, coord.lat);
+         
+         if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) {
+             ctx.beginPath();
+             ctx.arc(x, y, 3.5, 0, Math.PI * 2);
+             ctx.fillStyle = "#ffffff";
+             ctx.shadowColor = "#ffffff";
+             ctx.shadowBlur = 4;
+             ctx.fill();
+             ctx.shadowBlur = 0; // reset
+         }
+      });
 
       // 3. AI Trade Routes Render Pass
       if (userCountry && aiPathfinder) {
@@ -387,8 +411,12 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
           const uNameEn = uCenter.name_en?.trim();
           const uNameId = uCenter.name_id?.trim();
           const activeCustoms = customTradeRoutes[uNameEn] || customTradeRoutes[uNameId] || {};
+
           Object.keys(activeCustoms).forEach(dest => {
-            if (!activeAgreements.some(a => a.partner?.trim() === dest.trim() || a.partner?.trim() === centersData.find(c => c.name_en === dest)?.name_id?.trim())) {
+            const existingIdx = activeAgreements.findIndex(a => a.partner?.trim() === dest.trim() || a.partner?.trim() === centersData.find(c => c.name_en === dest)?.name_id?.trim());
+            if (existingIdx !== -1) {
+              activeAgreements[existingIdx] = { partner: dest, type: "Trade", status: "Active" };
+            } else {
               activeAgreements.push({ partner: dest, type: "Trade", status: "Active" });
             }
           });
@@ -423,9 +451,11 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
               customTradeRoutes[uNameEn]?.[pNameId] ||
               customTradeRoutes[uNameId]?.[pNameId];
 
-            if (!waypoints) {
-              if (pMatch) waypoints = [pMatch.name_en];
+            if (pNameEn === "Greenland" || pNameId === "Greenland") {
+               console.log(`[TradeMap Debug] User: ${uNameId || uNameEn}, Partner: ${pNameId}, Waypoints:`, waypoints);
             }
+
+/* Fallback removed to skip unmapped countries */
 
             if (waypoints && waypoints.length > 0) {
               let currentPos = { lon: uCenter.lon, lat: uCenter.lat };
@@ -456,11 +486,97 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
             }
           });
 
+          // 1.5 Global Custom Routes Segment Injector
+          Object.keys(customTradeRoutes).forEach(originName => {
+             const routesObj = customTradeRoutes[originName];
+             if (!routesObj) return;
+
+             Object.keys(routesObj).forEach(destName => {
+                const waypoints = routesObj[destName];
+                if (!waypoints || waypoints.length === 0) return;
+
+                const startWpObj = centersData.find(c => c.name_en === originName || c.name_id === originName);
+                const startStaticWp = waypointCoords[originName];
+                const startLon = startStaticWp?.lon ?? startWpObj?.lon;
+                const startLat = startStaticWp?.lat ?? startWpObj?.lat;
+
+                if (startLon === undefined || startLat === undefined) return;
+
+                let currentPos = { lon: startLon, lat: startLat };
+
+                waypoints.forEach((wpName, wpIdx) => {
+                   const nextWpObj = centersData.find(c => c.name_en === wpName || c.name_id === wpName);
+                   const staticWp = waypointCoords[wpName];
+                   const nextWpLon = staticWp?.lon ?? nextWpObj?.lon;
+                   const nextWpLat = staticWp?.lat ?? nextWpObj?.lat;
+
+                   if (nextWpLon !== undefined && nextWpLat !== undefined) {
+                      const isFinal = wpIdx === waypoints.length - 1;
+                      const key = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
+                      if (!uniqueSegments.has(key) || isFinal) {
+                         uniqueSegments.set(key, {
+                            start: { lon: currentPos.lon, lat: currentPos.lat },
+                            end: { lon: nextWpLon, lat: nextWpLat },
+                            isFinal,
+                            partner: wpName
+                         });
+                      }
+                      currentPos = { lon: nextWpLon, lat: nextWpLat };
+                   }
+                });
+             });
+          });
+
           // 2. Render each unique geographic segment exactly once
           uniqueSegments.forEach((seg) => {
-            const path = aiPathfinder.findPath(seg.start.lon, seg.start.lat, seg.end.lon, seg.end.lat);
+            let path = null;
+            try {
+              path = aiPathfinder.findPath(seg.start.lon, seg.start.lat, seg.end.lon, seg.end.lat);
+            } catch (err) {
+              console.warn(`Pathfinding error for ${seg.partner}:`, err);
+            }
+            let rawNormalized: { rtX: number, rtY: number }[] = [];
+
+            if (seg.partner === "Greenland" || seg.partner === "Islandia") {
+              console.log(`[TradeMap Seg] Partner: ${seg.partner}, Path length: ${path ? path.length : 0}, Start: ${seg.start.lon},${seg.start.lat}, End: ${seg.end.lon},${seg.end.lat}`);
+            }
+
             if (path && path.length > 0) {
-              const normalized = aiPathfinder.normalizeGridPath(path);
+              rawNormalized = aiPathfinder.normalizeGridPath(path);
+            } else {
+              rawNormalized = [
+                { rtX: (seg.start.lon + 180) / 360, rtY: (90 - seg.start.lat) / 180 },
+                { rtX: (seg.end.lon + 180) / 360, rtY: (90 - seg.end.lat) / 180 }
+              ];
+            }
+
+            if (rawNormalized.length > 0) {
+
+              // Smooth algorithm to combine staircase serrations into continuous curves
+              const smoothPath = (pts: any[]) => {
+                let smoothed = [...pts];
+                const iterations = 3; 
+                for (let k = 0; k < iterations; k++) {
+                  let nextSmoothed = [];
+                  for (let i = 0; i < smoothed.length; i++) {
+                    if (i === 0 || i === smoothed.length - 1) {
+                      nextSmoothed.push(smoothed[i]);
+                    } else {
+                      const prev = smoothed[i - 1];
+                      const curr = smoothed[i];
+                      const next = smoothed[i + 1];
+                      nextSmoothed.push({
+                        rtX: prev.rtX * 0.25 + curr.rtX * 0.5 + next.rtX * 0.25,
+                        rtY: prev.rtY * 0.25 + curr.rtY * 0.5 + next.rtY * 0.25
+                      });
+                    }
+                  }
+                  smoothed = nextSmoothed;
+                }
+                return smoothed;
+              };
+
+              const normalized = smoothPath(rawNormalized);
 
               // Style
               ctx.lineWidth = 3.5;
