@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "../select-country/data/countries";
+import { customTradeRoutes, waypointCoords } from "./tradeRoutes";
 import { AITradePathfinder } from "./components/ai/AITradePathfinder";
 
 interface GameMapCanvasProps {
@@ -67,43 +68,6 @@ const maritimeLabels = [
   { name: "Kanal Taiwan", lon: 119.5, lat: 24, size: 14, color: "rgba(2, 132, 199, 0.6)" }
 ];
 
-// Opsi rute kapal spesifik (Konfigurasi User-Controlled Multi-stop Waypoints)
-// Format -> "Negara Asal": { "Negara Tujuan Akhir": ["Perhentian1", "Perhentian2", "TujuanAkhir"] }
-const customTradeRoutes: Record<string, Record<string, string[]>> = {
-  "Indonesia": {
-    "Japan": ["Singapore", "Filipina", "Taiwan", "China", "South Korea", "Japan"],
-    "South Korea": ["Singapore", "Filipina", "Taiwan", "China", "South Korea"],
-    "China": ["Singapore", "Filipina", "Taiwan", "China"],
-    "Taiwan": ["Singapore", "Filipina", "Taiwan"],
-    "Filipina": ["Filipina"],
-    "Singapore": ["Singapore"]
-  },
-  "Bangladesh": {
-    "Japan": ["Sri Lanka", "Aceh", "Selat Malaka", "Singapore", "Filipina", "Taiwan", "China", "South Korea", "Japan"],
-    "Indonesia": ["Selat Malaka", "Jakarta"],
-    "Sri Lanka": ["Sri Lanka"]
-  },
-  "Sri Lanka": {
-    "Indonesia": ["Selat Malaka", "Jakarta"],
-    "Bangladesh": ["Bangladesh"]
-  }
-};
-
-// Fallback koordinat statis untuk negara kecil/pulau yang mungkin tidak dirender polygonnya di GeoJSON
-const waypointCoords: Record<string, {lon: number, lat: number}> = {
-  "Singapore": { lon: 103.8, lat: 1.3 },
-  "Singapura": { lon: 103.8, lat: 1.3 },
-  "Taiwan": { lon: 121.0, lat: 23.5 },
-  "China": { lon: 104.0, lat: 35.0 },
-  "South Korea": { lon: 127.5, lat: 36.0 },
-  "Japan": { lon: 138.0, lat: 36.0 },
-  "Jakarta": { lon: 106.8, lat: -6.2 },
-  "Filipina": { lon: 121.77, lat: 12.87 },
-  "Sri Lanka": { lon: 80, lat: 7 },
-  "Aceh": { lon: 95, lat: 5 },
-  "Selat Malaka": { lon: 99, lat: 3 },
-  "Bangladesh": { lon: 90, lat: 24 }
-};
 
 // Map Helper for Continent Colors
 const getContinentColor = (name: string, id: string): string => {
