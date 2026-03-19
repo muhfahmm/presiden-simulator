@@ -33,14 +33,45 @@ export class AITradePathfinder {
         this.openCanal(this.lonToX(105.0), this.latToY(-6.0), 3); // Sunda Strait
         this.openCanal(this.lonToX(-80.0), this.latToY(25.0), 3); // Florida Strait
         this.openCanal(this.lonToX(79.8), this.latToY(6.9), 4); // Sri Lanka Coastal Access
-        this.openCanal(this.lonToX(79.5), this.latToY(9.3), 3); // Palk Strait Access
+        this.openCanal(this.lonToX(79.5), this.latToY(9.3), 8); // Palk Strait Access
+        this.openCanal(this.lonToX(91.8), this.latToY(22.2), 8); // Bangladesh
         this.openCanal(this.lonToX(95.0), this.latToY(7.5), 3); // Northern Sumatra Bypass (Refined)
-        this.openCanal(this.lonToX(100.0), this.latToY(4.0), 3); // Malacca Strait Center (Refined)
-        this.openCanal(this.lonToX(106.7), this.latToY(10.8), 3); // Vietnam 
+        this.openCanal(this.lonToX(100.0), this.latToY(4.0), 3); // Malacca Strait Center
         this.openCanal(this.lonToX(114.9), this.latToY(4.9), 3); // Brunei
-        this.openCanal(this.lonToX(112.0), this.latToY(7.0), 5); // SCS Hub (Centrally located)
+        this.openCanal(this.lonToX(110.0), this.latToY(4.0), 3); // Steer Brunei
+        this.openCanal(this.lonToX(121.0), this.latToY(12.5), 3); // Philippines
+        this.openCanal(this.lonToX(121.0), this.latToY(23.5), 3); // Taiwan
+        this.openCanal(this.lonToX(114.2), this.latToY(22.3), 3); // China
+        this.openCanal(this.lonToX(129.3), this.latToY(35.0), 3); // Busan (Korea)
+        this.openCanal(this.lonToX(107.0), this.latToY(10.5), 3); // Vietnam
         this.openCanal(this.lonToX(103.5), this.latToY(10.6), 3); // Kamboja
-        this.openCanal(this.lonToX(100.5), this.latToY(13.7), 3); // Thailand
+        this.openCanal(this.lonToX(100.9), this.latToY(12.9), 3); // Thailand
+        this.openCanal(this.lonToX(101.7), this.latToY(3.0), 3); // Malaysia
+        this.openCanal(this.lonToX(96.2), this.latToY(16.8), 8); // Myanmar
+        this.openCanal(this.lonToX(72.8), this.latToY(18.9), 3); // India
+        this.openCanal(this.lonToX(67.0), this.latToY(24.8), 3); // Pakistan
+        this.openCanal(this.lonToX(56.3), this.latToY(27.2), 3); // Iran
+        this.openCanal(this.lonToX(58.6), this.latToY(23.6), 3); // Oman
+        this.openCanal(this.lonToX(129.5), this.latToY(34.0), 3); // Korea Strait Bypass
+        this.openCanal(this.lonToX(131.0), this.latToY(31.0), 3); // Steer Kyushu
+        this.openCanal(this.lonToX(135.0), this.latToY(31.5), 3); // Steer Japan 1
+        this.openCanal(this.lonToX(138.5), this.latToY(32.5), 3); // Steer Japan 2
+        this.openCanal(this.lonToX(141.0), this.latToY(34.5), 3); // Approach Japan
+        this.openCanal(this.lonToX(130.0), this.latToY(34.5), 3); // Approach Korea
+        this.openCanal(this.lonToX(101.5), this.latToY(9.5), 3); // Steer Gulf
+        this.openCanal(this.lonToX(106.0), this.latToY(7.5), 3); // Steer SCS South (Refined)
+        this.openCanal(this.lonToX(79.7), this.latToY(6.9), 10); // Sri Lanka Port
+        this.openCanal(this.lonToX(91.5), this.latToY(22.0), 10); // Bangladesh Port
+        this.openCanal(this.lonToX(79.5), this.latToY(9.3), 10); // Palk Strait
+        this.openCanal(this.lonToX(79.3), this.latToY(8.5), 8); // Palk West Entry
+        this.openCanal(this.lonToX(80.5), this.latToY(10.0), 8); // Palk East Exit
+        this.openCanal(this.lonToX(78.5), this.latToY(8.0), 8); // Steer Sri Lanka West
+        this.openCanal(this.lonToX(81.0), this.latToY(5.5), 8); // Steer Sri Lanka South
+        this.openCanal(this.lonToX(78.0), this.latToY(5.0), 8); // Steer Sri Lanka SW
+        this.openCanal(this.lonToX(82.0), this.latToY(10.0), 8); // Steer Bay 1
+        this.openCanal(this.lonToX(86.0), this.latToY(14.0), 8); // Steer Bay 2
+        this.openCanal(this.lonToX(90.0), this.latToY(18.0), 8); // Steer Bay 3
+        this.openCanal(this.lonToX(95.0), this.latToY(10.0), 8); // Steer Andaman
 
         // Flood fill the Global Ocean to cull inaccessible inland lakes
         const isOcean = Array(this.height).fill(null).map(() => new Uint8Array(this.width));

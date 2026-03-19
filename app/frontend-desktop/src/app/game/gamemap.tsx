@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "../select-country/data/countries";
 import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "./tradeRoutes";
-import { AITradePathfinder } from "./components/ai/AITradePathfinder";
+import { AITradePathfinder } from "./components/trade-ai-routes/AITradePathfinder";
 
 interface GameMapCanvasProps {
   userCountry: string;
@@ -421,7 +421,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
             ctx.fillStyle = "#ffffff"; // White center
             ctx.fill();
             ctx.lineWidth = 2.5;
-            ctx.strokeStyle = "#cc0000"; // Red border
+            ctx.strokeStyle = "#000099"; // Dark blue border (matched to trade lines)
             ctx.stroke();
           };
 
@@ -523,30 +523,40 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
                   });
                   ctx.stroke();
 
-                  // Nodes
-                  const destP = normalized[normalized.length - 1];
-                  if (seg.isFinal) {
-                      drawNode(destP.rtX * mapWidth, destP.rtY * mapHeight);
-                      // Final land-bridge
-                      const pUX = ((seg.end.lon + 180) / 360) * mapWidth;
-                      const pUY = ((90 - seg.end.lat) / 180) * mapHeight;
-                      ctx.lineWidth = 1.5;
-                      ctx.strokeStyle = "rgba(100, 116, 139, 0.6)";
-                      ctx.setLineDash([4, 4]);
-                      ctx.beginPath();
-                      ctx.moveTo(destP.rtX * mapWidth, destP.rtY * mapHeight);
-                      ctx.lineTo(pUX, pUY);
-                      ctx.stroke();
-                      ctx.setLineDash([]);
-                  } else if (!hiddenWaypoints.includes(seg.partner)) {
-                      ctx.beginPath();
-                      ctx.arc(destP.rtX * mapWidth, destP.rtY * mapHeight, 3, 0, Math.PI * 2);
-                      ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
-                      ctx.fill();
-                      ctx.strokeStyle = "#000099";
-                      ctx.lineWidth = 1;
-                      ctx.stroke();
-                  }
+                   // Nodes
+                   const destP = normalized[normalized.length - 1];
+                   const nodeX = destP.rtX * mapWidth;
+                   const nodeY = destP.rtY * mapHeight;
+
+                   // Override logic for specific country sizes
+                   const isSmallForced = ["Bangladesh", "Filipina", "Sri Lanka"].includes(seg.partner);
+                   const isLargeForced = ["Malaysia"].includes(seg.partner);
+
+                   if ((seg.isFinal || isLargeForced) && !isSmallForced) {
+                       drawNode(nodeX, nodeY);
+                       
+                       if (seg.isFinal) {
+                           // Final land-bridge
+                           const pUX = ((seg.end.lon + 180) / 360) * mapWidth;
+                           const pUY = ((90 - seg.end.lat) / 180) * mapHeight;
+                           ctx.lineWidth = 1.5;
+                           ctx.strokeStyle = "rgba(100, 116, 139, 0.6)";
+                           ctx.setLineDash([4, 4]);
+                           ctx.beginPath();
+                           ctx.moveTo(nodeX, nodeY);
+                           ctx.lineTo(pUX, pUY);
+                           ctx.stroke();
+                           ctx.setLineDash([]);
+                       }
+                   } else if (!hiddenWaypoints.includes(seg.partner)) {
+                       ctx.beginPath();
+                       ctx.arc(nodeX, nodeY, 3.2, 0, Math.PI * 2);
+                       ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+                       ctx.fill();
+                       ctx.strokeStyle = "#000099";
+                       ctx.lineWidth = 1;
+                       ctx.stroke();
+                   }
               }
           });
           
