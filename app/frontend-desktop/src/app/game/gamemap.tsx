@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "../select-country/data/countries";
-import { customTradeRoutes, waypointCoords } from "./tradeRoutes";
+import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "./tradeRoutes";
 import { AITradePathfinder } from "./components/ai/AITradePathfinder";
 
 interface GameMapCanvasProps {
@@ -428,121 +428,126 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
           const activeAgreements = [...(uCenter.geopolitics?.agreements || [])];
           
           // Forcefully inject custom routes into the rendering pipeline so the user can immediately see their manually created paths!
-          const activeCustoms = customTradeRoutes[uCenter.name_en] || customTradeRoutes[uCenter.name_id] || {};
+          const uNameEn = uCenter.name_en?.trim();
+          const uNameId = uCenter.name_id?.trim();
+          const activeCustoms = customTradeRoutes[uNameEn] || customTradeRoutes[uNameId] || {};
           Object.keys(activeCustoms).forEach(dest => {
-              if (!activeAgreements.some(a => a.partner === dest || a.partner === centersData.find(c => c.name_en === dest)?.name_id)) {
+              if (!activeAgreements.some(a => a.partner?.trim() === dest.trim() || a.partner?.trim() === centersData.find(c => c.name_en === dest)?.name_id?.trim())) {
                   activeAgreements.push({ partner: dest, type: "Trade", status: "Active" });
               }
           });
 
-          activeAgreements.forEach((agr: any) => {
-             if (agr.type === "Trade" && agr.status === "Active") {
-               const pMatch = centersData.find(c => c.name_en === agr.partner || c.name_id === agr.partner);
-               const partnerEn = pMatch ? pMatch.name_en : agr.partner;
-               const partnerId = pMatch ? pMatch.name_id : agr.partner;
+          // Deduplicate to prevent "double lines" if an agreement exists in both custom and original data
+          const uniqueAgreements: any[] = [];
+          const seenPartners = new Set<string>();
+          
+          activeAgreements.forEach(agr => {
+              const pName = agr.partner?.trim();
+              if (pName && !seenPartners.has(pName) && (agr.type === "Trade" || (agr as any).type === "Maritime") && agr.status === "Active") {
+                  seenPartners.add(pName);
+                  uniqueAgreements.push(agr);
+              }
+          });
 
-               let waypoints = customTradeRoutes[uCenter.name_en]?.[partnerEn] || 
-                               customTradeRoutes[uCenter.name_id]?.[partnerEn] ||
-                               customTradeRoutes[uCenter.name_en]?.[partnerId] ||
-                               customTradeRoutes[uCenter.name_id]?.[partnerId];
-               
-               if (!waypoints) {
-                  if (pMatch) waypoints = [pMatch.name_en];
-               }
+          // 1. Collect all intended geographic segments from all active (unique) agreements
+          const uniqueSegments: Map<string, {start: any, end: any, isFinal: boolean, partner: string}> = new Map();
+          
+          uniqueAgreements.forEach((agr: any) => {
+             const pMatch = centersData.find(c => c.name_en?.trim() === agr.partner?.trim() || c.name_id?.trim() === agr.partner?.trim());
+             const partnerEn = pMatch ? pMatch.name_en : agr.partner;
+             const partnerId = pMatch ? pMatch.name_id : agr.partner;
 
-               if (waypoints && waypoints.length > 0) {
-                  let currentStart: { lon: number, lat: number } = uCenter;
-                  
-                  waypoints.forEach((wpName, wpIdx) => {
-                      const nextWpObj = centersData.find(c => c.name_en === wpName || c.name_id === wpName);
-                      const staticWp = waypointCoords[wpName];
-                      
-                      const nextWpLon = nextWpObj?.lon ?? staticWp?.lon;
-                      const nextWpLat = nextWpObj?.lat ?? staticWp?.lat;
-                      
-                      if (nextWpLon === undefined || nextWpLat === undefined) return;
-                      
-                      // Run AI Pathfinding over maritime mesh
-                      const path = aiPathfinder.findPath(currentStart.lon, currentStart.lat, nextWpLon, nextWpLat);
-                      
-                      if (path && path.length > 0) {
-                         const normalized = aiPathfinder.normalizeGridPath(path);
-                         
-                         if (wpIdx === 0) {
-                             // Draw land-bridge indicator ONLY for the absolute beginning of the custom sequence
-                             const sux = ((currentStart.lon + 180) / 360) * mapWidth;
-                             const suy = ((90 - currentStart.lat) / 180) * mapHeight;
-                             ctx.lineWidth = 1.5;
-                             ctx.strokeStyle = "rgba(100, 116, 139, 0.6)";
-                             ctx.setLineDash([4, 4]);
-                             ctx.beginPath();
-                             ctx.moveTo(sux, suy);
-                             ctx.lineTo(normalized[0].rtX * mapWidth, normalized[0].rtY * mapHeight);
-                             ctx.stroke();
-                             ctx.setLineDash([]);
-                         }
+             const uNameEn = uCenter.name_en?.trim();
+             const uNameId = uCenter.name_id?.trim();
+             const pNameEn = partnerEn?.trim();
+             const pNameId = partnerId?.trim();
 
-                         // Draw classic Dark Blue maritime solid line avoiding landmasses
-                         ctx.lineWidth = 3.5;
-                         ctx.strokeStyle = "#000099";
-                         
-                         ctx.beginPath();
-                         normalized.forEach((p, idx) => {
-                            let nextX = p.rtX * mapWidth;
-                            let nextY = p.rtY * mapHeight;
-                            
-                            if (idx === 0) ctx.moveTo(nextX, nextY);
-                            else {
-                               const prev = normalized[idx - 1];
-                               const dist = Math.abs(p.rtX - prev.rtX);
-                               if (dist > 0.5) ctx.moveTo(nextX, nextY); // Lift pen across timezone jump
-                               else ctx.lineTo(nextX, nextY);
-                            }
-                         });
-                         ctx.stroke();
-                         
-                         // Draw intermediate/destination port node
-                         const destP = normalized[normalized.length - 1];
-                         drawNode(destP.rtX * mapWidth, destP.rtY * mapHeight);
-                         
-                         if (wpIdx === waypoints.length - 1) {
-                             // Draw land-bridge indicator to inland capital target for FINAL destination
-                             const pUX = ((nextWpLon + 180) / 360) * mapWidth;
-                             const pUY = ((90 - nextWpLat) / 180) * mapHeight;
-                             ctx.lineWidth = 1.5;
-                             ctx.strokeStyle = "rgba(100, 116, 139, 0.6)";
-                             ctx.setLineDash([4, 4]);
-                             ctx.beginPath();
-                             ctx.moveTo(destP.rtX * mapWidth, destP.rtY * mapHeight);
-                             ctx.lineTo(pUX, pUY);
-                             ctx.stroke();
-                             ctx.setLineDash([]);
-                         }
-
-                      } else {
-                         // Fallback to simple bezier if AI resolution gets trapped
-                         const cx = ((currentStart.lon + 180) / 360) * mapWidth;
-                         const cy = ((90 - currentStart.lat) / 180) * mapHeight;
-                         const px = ((nextWpLon + 180) / 360) * mapWidth;
-                         const py = ((90 - nextWpLat) / 180) * mapHeight;
-                         if (Math.abs(cx - px) <= mapWidth / 2) { 
-                             ctx.lineWidth = 3.5;
-                             ctx.strokeStyle = "#000099"; 
-                             ctx.beginPath();
-                             ctx.moveTo(cx, cy);
-                             const midX = (cx + px) / 2;
-                             const dist = Math.sqrt((cx-px)**2 + (cy-py)**2);
-                             const midY = (cy + py) / 2 - Math.min(dist * 0.15, 250); 
-                             ctx.quadraticCurveTo(midX, midY, px, py);
-                             ctx.stroke();
-                             drawNode(px, py);
-                         }
-                      }
-                      
-                      currentStart = { lon: nextWpLon, lat: nextWpLat }; // Thread forward to the next waypoint
-                  });
-               }
+             let waypoints = customTradeRoutes[uNameEn]?.[pNameEn] || 
+                             customTradeRoutes[uNameId]?.[pNameEn] ||
+                             customTradeRoutes[uNameEn]?.[pNameId] ||
+                             customTradeRoutes[uNameId]?.[pNameId];
+            
+             if (!waypoints) {
+                if (pMatch) waypoints = [pMatch.name_en];
              }
+
+             if (waypoints && waypoints.length > 0) {
+                let currentPos = { lon: uCenter.lon, lat: uCenter.lat };
+                
+                waypoints.forEach((wpName, wpIdx) => {
+                    const nextWpObj = centersData.find(c => c.name_en === wpName || c.name_id === wpName);
+                    const staticWp = waypointCoords[wpName];
+                    const nextWpLon = staticWp?.lon ?? nextWpObj?.lon;
+                    const nextWpLat = staticWp?.lat ?? nextWpObj?.lat;
+                    
+                    if (nextWpLon !== undefined && nextWpLat !== undefined) {
+                        const isFinal = wpIdx === waypoints.length - 1;
+                        // Use a precision-fixed key to identify identical segments
+                        const key = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
+                        
+                        // We prioritize 'isFinal' nodes so ports are always drawn over waypoint dots
+                        if (!uniqueSegments.has(key) || isFinal) {
+                            uniqueSegments.set(key, { 
+                                start: { lon: currentPos.lon, lat: currentPos.lat }, 
+                                end: { lon: nextWpLon, lat: nextWpLat },
+                                isFinal,
+                                partner: wpName
+                            });
+                        }
+                        currentPos = { lon: nextWpLon, lat: nextWpLat };
+                    }
+                });
+             }
+          });
+
+          // 2. Render each unique geographic segment exactly once
+          uniqueSegments.forEach((seg) => {
+              const path = aiPathfinder.findPath(seg.start.lon, seg.start.lat, seg.end.lon, seg.end.lat);
+              if (path && path.length > 0) {
+                  const normalized = aiPathfinder.normalizeGridPath(path);
+                  
+                  // Style
+                  ctx.lineWidth = 3.5;
+                  ctx.strokeStyle = "#000099";
+                  ctx.beginPath();
+                  const sx = ((seg.start.lon + 180) / 360) * mapWidth;
+                  const sy = ((90 - seg.start.lat) / 180) * mapHeight;
+                  ctx.moveTo(sx, sy);
+
+                  normalized.forEach((p, idx) => {
+                      let nextX = p.rtX * mapWidth;
+                      let nextY = p.rtY * mapHeight;
+                      const prevMatch = idx === 0 ? {rtX: sx/mapWidth, rtY: sy/mapHeight} : normalized[idx - 1];
+                      if (Math.abs(p.rtX - prevMatch.rtX) > 0.5) ctx.moveTo(nextX, nextY);
+                      else ctx.lineTo(nextX, nextY);
+                  });
+                  ctx.stroke();
+
+                  // Nodes
+                  const destP = normalized[normalized.length - 1];
+                  if (seg.isFinal) {
+                      drawNode(destP.rtX * mapWidth, destP.rtY * mapHeight);
+                      // Final land-bridge
+                      const pUX = ((seg.end.lon + 180) / 360) * mapWidth;
+                      const pUY = ((90 - seg.end.lat) / 180) * mapHeight;
+                      ctx.lineWidth = 1.5;
+                      ctx.strokeStyle = "rgba(100, 116, 139, 0.6)";
+                      ctx.setLineDash([4, 4]);
+                      ctx.beginPath();
+                      ctx.moveTo(destP.rtX * mapWidth, destP.rtY * mapHeight);
+                      ctx.lineTo(pUX, pUY);
+                      ctx.stroke();
+                      ctx.setLineDash([]);
+                  } else if (!hiddenWaypoints.includes(seg.partner)) {
+                      ctx.beginPath();
+                      ctx.arc(destP.rtX * mapWidth, destP.rtY * mapHeight, 3, 0, Math.PI * 2);
+                      ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+                      ctx.fill();
+                      ctx.strokeStyle = "#000099";
+                      ctx.lineWidth = 1;
+                      ctx.stroke();
+                  }
+              }
           });
           
           // Draw user country node on top
@@ -550,6 +555,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
         }
       }
 
+      ctx.restore();
       ctx.restore();
     });
 
