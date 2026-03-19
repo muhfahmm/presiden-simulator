@@ -2,11 +2,13 @@
 export const customTradeRoutes: Record<string, Record<string, string[]>> = {
   "Pakistan": {
     "Japan": ["Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Palk West Entry", "Palk Strait", "Palk East Exit", "Steer Bay 1", "Steer Bay 2", "Steer Bay 3", "Bangladesh", "Steer Andaman", "Selat Malaka", "Malaysia", "Singapore", "Steer Johor", "Thailand", "Steer Gulf", "Kamboja", "Steer SCS South", "Steer SCS East", "Vietnam", "Steer Brunei", "Brunei", "Filipina", "Taiwan", "China", "Approach Korea", "South Korea", "Approach Korea", "Steer Kyushu", "Steer Japan", "Steer Japan 2", "Approach Japan", "Japan"],
-    "North Korea": ["Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Palk West Entry", "Palk Strait", "Palk East Exit", "Steer Bay 1", "Steer Bay 2", "Steer Bay 3", "Bangladesh", "Steer Andaman", "Selat Malaka", "Malaysia", "Singapore", "Steer Johor", "Thailand", "Steer Gulf", "Kamboja", "Steer SCS South", "Steer SCS East", "Vietnam", "Steer Brunei", "Brunei", "Filipina", "Taiwan", "China", "Steer Yellow Sea", "North Korea"]
+    "North Korea": ["Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Palk West Entry", "Palk Strait", "Palk East Exit", "Steer Bay 1", "Steer Bay 2", "Steer Bay 3", "Bangladesh", "Steer Andaman", "Selat Malaka", "Malaysia", "Singapore", "Steer Johor", "Thailand", "Steer Gulf", "Kamboja", "Steer SCS South", "Steer SCS East", "Vietnam", "Steer Brunei", "Brunei", "Filipina", "Taiwan", "China", "Steer Yellow Sea", "North Korea"],
+    "Indonesia": ["Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Steer Sri Lanka SW", "Steer Sri Lanka South", "Aceh", "Selat Malaka", "Singapore", "Jakarta"]
   },
   "Iran": {
     "Japan": ["Iran", "Oman", "Steer Makran", "Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Palk West Entry", "Palk Strait", "Palk East Exit", "Steer Bay 1", "Steer Bay 2", "Steer Bay 3", "Bangladesh", "Steer Andaman", "Selat Malaka", "Malaysia", "Singapore", "Steer Johor", "Thailand", "Steer Gulf", "Kamboja", "Steer SCS South", "Steer SCS East", "Vietnam", "Steer Brunei", "Brunei", "Filipina", "Taiwan", "China", "Approach Korea", "South Korea", "Approach Korea", "Steer Kyushu", "Steer Japan", "Steer Japan 2", "Approach Japan", "Japan"],
-    "North Korea": ["Iran", "Oman", "Steer Makran", "Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Palk West Entry", "Palk Strait", "Palk East Exit", "Steer Bay 1", "Steer Bay 2", "Steer Bay 3", "Bangladesh", "Steer Andaman", "Selat Malaka", "Malaysia", "Singapore", "Steer Johor", "Thailand", "Steer Gulf", "Kamboja", "Steer SCS South", "Steer SCS East", "Vietnam", "Steer Brunei", "Brunei", "Filipina", "Taiwan", "China", "Steer Yellow Sea", "North Korea"]
+    "North Korea": ["Iran", "Oman", "Steer Makran", "Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Palk West Entry", "Palk Strait", "Palk East Exit", "Steer Bay 1", "Steer Bay 2", "Steer Bay 3", "Bangladesh", "Steer Andaman", "Selat Malaka", "Malaysia", "Singapore", "Steer Johor", "Thailand", "Steer Gulf", "Kamboja", "Steer SCS South", "Steer SCS East", "Vietnam", "Steer Brunei", "Brunei", "Filipina", "Taiwan", "China", "Steer Yellow Sea", "North Korea"],
+    "Indonesia": ["Iran", "Steer Hormuz", "Steer Musandam", "Steer Gulf of Oman", "Oman", "Steer Makran", "Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Steer Sri Lanka SW", "Steer Sri Lanka South", "Aceh", "Selat Malaka", "Singapore", "Jakarta"]
   },
   "Bangladesh": {
     "Japan": ["Bangladesh", "Steer Bay 3", "Myanmar", "Steer Bay 2", "Steer Bay 1", "Palk East Exit", "Palk Strait", "Palk West Entry", "Sri Lanka", "Steer Sri Lanka SW", "Steer Sri Lanka South", "Aceh", "Selat Malaka", "Malaysia", "Singapore", "Steer Johor", "Thailand", "Steer Gulf", "Kamboja", "Steer SCS South", "Steer SCS East", "Vietnam", "Steer Brunei", "Brunei", "Filipina", "Taiwan", "China", "Approach Korea", "South Korea", "Approach Korea", "Steer Kyushu", "Steer Japan", "Steer Japan 2", "Approach Japan", "Japan"],
@@ -43,10 +45,62 @@ export const customTradeRoutes: Record<string, Record<string, string[]>> = {
     "Saudi Arabia": ["Jakarta", "Singapore", "Selat Malaka", "Aceh", "Steer Sri Lanka South", "Steer Sri Lanka SW", "Sri Lanka", "Steer Sri Lanka West", "Steer Arabian Sea", "India", "Steer Gujarat", "Pakistan", "Steer Makran", "Oman", "Steer Muscat Coast", "Steer Oman East", "Steer Oman Central", "Steer Oman South", "Steer Socotra", "Yemen", "Steer Bab el Mandeb", "Steer Red Sea Entry", "Steer Red Sea 1", "Steer Red Sea 2", "Saudi Arabia"]
   },
   "China": {
-    "North Korea": ["China", "Steer Yellow Sea", "North Korea"]
+    "North Korea": ["China", "Steer Yellow Sea", "North Korea"],
+    "Indonesia": ["China", "Taiwan", "Filipina", "Brunei", "Steer Brunei", "Vietnam", "Steer SCS East", "Steer SCS South", "Kamboja", "Steer Gulf", "Thailand", "Steer Johor", "Singapore", "Malaysia", "Jakarta"]
   },
   "North Korea": {
-    "China": ["North Korea", "Steer Yellow Sea", "China"]
+    "China": ["North Korea", "Steer Yellow Sea", "China"],
+    "Pakistan": ["North Korea", "Steer Yellow Sea", "China", "Taiwan", "Filipina", "Brunei", "Steer Brunei", "Vietnam", "Steer SCS East", "Steer SCS South", "Kamboja", "Steer Gulf", "Thailand", "Steer Johor", "Singapore", "Malaysia", "Selat Malaka", "Steer Andaman", "Bangladesh", "Steer Bay 3", "Steer Bay 2", "Steer Bay 1", "Palk East Exit", "Palk Strait", "Palk West Entry", "Sri Lanka", "Steer Sri Lanka West", "Steer Arabian Sea", "India", "Steer Gujarat", "Pakistan"],
+    "Iran": ["North Korea", "Steer Yellow Sea", "China", "Taiwan", "Filipina", "Brunei", "Steer Brunei", "Vietnam", "Steer SCS East", "Steer SCS South", "Kamboja", "Steer Gulf", "Thailand", "Steer Johor", "Singapore", "Malaysia", "Selat Malaka", "Steer Andaman", "Bangladesh", "Steer Bay 3", "Steer Bay 2", "Steer Bay 1", "Palk East Exit", "Palk Strait", "Palk West Entry", "Sri Lanka", "Steer Sri Lanka West", "Steer Arabian Sea", "India", "Steer Gujarat", "Pakistan", "Steer Makran", "Oman", "Iran"],
+    "Bangladesh": ["North Korea", "Steer Yellow Sea", "China", "Taiwan", "Filipina", "Brunei", "Steer Brunei", "Vietnam", "Steer SCS East", "Steer SCS South", "Kamboja", "Steer Gulf", "Thailand", "Steer Johor", "Singapore", "Malaysia", "Selat Malaka", "Aceh", "Steer Sri Lanka South", "Steer Sri Lanka SW", "Sri Lanka", "Palk West Entry", "Palk Strait", "Palk East Exit", "Steer Bay 1", "Steer Bay 2", "Myanmar", "Steer Bay 3", "Bangladesh"],
+    "Sri Lanka": ["North Korea", "Steer Yellow Sea", "China", "Taiwan", "Filipina", "Brunei", "Steer Brunei", "Vietnam", "Steer SCS East", "Steer SCS South", "Kamboja", "Steer Gulf", "Thailand", "Steer Johor", "Singapore", "Malaysia", "Selat Malaka", "Steer Andaman", "Steer Bay 1", "Steer Bay 2", "Myanmar", "Steer Bay 3", "Bangladesh", "Steer Bay 3", "Steer Bay 2", "Steer Bay 1", "Palk East Exit", "Palk Strait", "Palk West Entry", "Sri Lanka"],
+    "Indonesia": ["North Korea", "Steer Yellow Sea", "China", "Taiwan", "Filipina", "Brunei", "Steer Brunei", "Vietnam", "Steer SCS East", "Steer SCS South", "Kamboja", "Steer Gulf", "Thailand", "Steer Johor", "Singapore", "Malaysia", "Jakarta"]
+  },
+  "Japan": {
+    "Pakistan": ["Japan", "Approach Japan", "Steer Japan 2", "Steer Japan", "Steer Kyushu", "Approach Korea", "South Korea", "Approach Korea", "China", "Taiwan", "Filipina", "Brunei", "Steer Brunei", "Vietnam", "Steer SCS East", "Steer SCS South", "Kamboja", "Steer Gulf", "Thailand", "Steer Johor", "Singapore", "Malaysia", "Selat Malaka", "Steer Andaman", "Bangladesh", "Steer Bay 3", "Steer Bay 2", "Steer Bay 1", "Palk East Exit", "Palk Strait", "Palk West Entry", "Sri Lanka", "Steer Sri Lanka West", "Steer Arabian Sea", "India", "Steer Gujarat", "Pakistan"],
+    "Iran": ["Japan", "Approach Japan", "Steer Japan 2", "Steer Japan", "Steer Kyushu", "Approach Korea", "South Korea", "Approach Korea", "China", "Taiwan", "Filipina", "Brunei", "Steer Brunei", "Vietnam", "Steer SCS East", "Steer SCS South", "Kamboja", "Steer Gulf", "Thailand", "Steer Johor", "Singapore", "Malaysia", "Selat Malaka", "Steer Andaman", "Bangladesh", "Steer Bay 3", "Steer Bay 2", "Steer Bay 1", "Palk East Exit", "Palk Strait", "Palk West Entry", "Sri Lanka", "Steer Sri Lanka West", "Steer Arabian Sea", "India", "Steer Gujarat", "Pakistan", "Steer Makran", "Oman", "Iran"],
+    "Bangladesh": ["Japan", "Approach Japan", "Steer Japan 2", "Steer Japan", "Steer Kyushu", "Approach Korea", "South Korea", "Approach Korea", "China", "Taiwan", "Filipina", "Brunei", "Steer Brunei", "Vietnam", "Steer SCS East", "Steer SCS South", "Kamboja", "Steer Gulf", "Thailand", "Steer Johor", "Singapore", "Malaysia", "Selat Malaka", "Aceh", "Steer Sri Lanka South", "Steer Sri Lanka SW", "Sri Lanka", "Palk West Entry", "Palk Strait", "Palk East Exit", "Steer Bay 1", "Steer Bay 2", "Myanmar", "Steer Bay 3", "Bangladesh"],
+    "Sri Lanka": ["Japan", "Approach Japan", "Steer Japan 2", "Steer Japan", "Steer Kyushu", "Approach Korea", "South Korea", "Approach Korea", "China", "Taiwan", "Filipina", "Brunei", "Steer Brunei", "Vietnam", "Steer SCS East", "Steer SCS South", "Kamboja", "Steer Gulf", "Thailand", "Steer Johor", "Singapore", "Malaysia", "Selat Malaka", "Steer Andaman", "Steer Bay 1", "Steer Bay 2", "Myanmar", "Steer Bay 3", "Bangladesh", "Steer Bay 3", "Steer Bay 2", "Steer Bay 1", "Palk East Exit", "Palk Strait", "Palk West Entry", "Sri Lanka"],
+    "Indonesia": ["Japan", "Approach Japan", "Steer Japan 2", "Steer Japan", "Steer Kyushu", "Approach Korea", "South Korea", "Approach Korea", "China", "Taiwan", "Filipina", "Brunei", "Steer Brunei", "Vietnam", "Steer SCS East", "Steer SCS South", "Kamboja", "Steer Gulf", "Thailand", "Steer Johor", "Singapore", "Malaysia", "Jakarta"]
+  },
+  "South Korea": {
+    "Indonesia": ["South Korea", "Approach Korea", "China", "Taiwan", "Filipina", "Brunei", "Steer Brunei", "Vietnam", "Steer SCS East", "Steer SCS South", "Kamboja", "Steer Gulf", "Thailand", "Steer Johor", "Singapore", "Malaysia", "Jakarta"]
+  },
+  "Myanmar": {
+    "Indonesia": ["Myanmar", "Steer Bay 2", "Steer Bay 1", "Palk East Exit", "Palk Strait", "Palk West Entry", "Sri Lanka", "Steer Sri Lanka SW", "Steer Sri Lanka South", "Aceh", "Selat Malaka", "Singapore", "Jakarta"]
+  },
+  "Taiwan": {
+    "Indonesia": ["Taiwan", "Filipina", "Brunei", "Steer Brunei", "Singapore", "Malaysia", "Jakarta"]
+  },
+  "Filipina": {
+    "Indonesia": ["Filipina", "Brunei", "Steer Brunei", "Singapore", "Malaysia", "Jakarta"]
+  },
+  "Singapore": {
+    "Indonesia": ["Singapore", "Malaysia", "Jakarta"]
+  },
+  "India": {
+    "Indonesia": ["India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Steer Sri Lanka SW", "Steer Sri Lanka South", "Aceh", "Selat Malaka", "Singapore", "Jakarta"]
+  },
+  "Oman": {
+    "Indonesia": ["Oman", "Steer Makran", "Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Steer Sri Lanka SW", "Steer Sri Lanka South", "Aceh", "Selat Malaka", "Singapore", "Jakarta"]
+  },
+  "United Arab Emirates": {
+    "Indonesia": ["United Arab Emirates", "Iran", "Steer Hormuz", "Steer Musandam", "Steer Gulf of Oman", "Oman", "Steer Makran", "Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Steer Sri Lanka SW", "Steer Sri Lanka South", "Aceh", "Selat Malaka", "Singapore", "Jakarta"]
+  },
+  "Qatar": {
+    "Indonesia": ["Qatar", "United Arab Emirates", "Iran", "Steer Hormuz", "Steer Musandam", "Steer Gulf of Oman", "Oman", "Steer Makran", "Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Steer Sri Lanka SW", "Steer Sri Lanka South", "Aceh", "Selat Malaka", "Singapore", "Jakarta"]
+  },
+  "Bahrain": {
+    "Indonesia": ["Bahrain", "Steer Qatar North", "Qatar", "United Arab Emirates", "Iran", "Steer Hormuz", "Steer Musandam", "Steer Gulf of Oman", "Oman", "Steer Makran", "Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Steer Sri Lanka SW", "Steer Sri Lanka South", "Aceh", "Selat Malaka", "Singapore", "Jakarta"]
+  },
+  "Kuwait": {
+    "Indonesia": ["Kuwait", "Steer Kuwait", "Bahrain", "Steer Qatar North", "Qatar", "United Arab Emirates", "Iran", "Steer Hormuz", "Steer Musandam", "Steer Gulf of Oman", "Oman", "Steer Makran", "Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Steer Sri Lanka SW", "Steer Sri Lanka South", "Aceh", "Selat Malaka", "Singapore", "Jakarta"]
+  },
+  "Yemen": {
+    "Indonesia": ["Yemen", "Steer Socotra", "Steer Oman South", "Steer Oman Central", "Steer Oman East", "Steer Muscat Coast", "Oman", "Steer Makran", "Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Steer Sri Lanka SW", "Steer Sri Lanka South", "Aceh", "Selat Malaka", "Singapore", "Jakarta"]
+  },
+  "Saudi Arabia": {
+    "Indonesia": ["Saudi Arabia", "Steer Red Sea 2", "Steer Red Sea 1", "Steer Red Sea Entry", "Steer Bab el Mandeb", "Yemen", "Steer Socotra", "Steer Oman South", "Steer Oman Central", "Steer Oman East", "Steer Muscat Coast", "Oman", "Steer Makran", "Pakistan", "Steer Gujarat", "India", "Steer Arabian Sea", "Steer Sri Lanka West", "Sri Lanka", "Steer Sri Lanka SW", "Steer Sri Lanka South", "Aceh", "Selat Malaka", "Singapore", "Jakarta"]
   }
 };
 
