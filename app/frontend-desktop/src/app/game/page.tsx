@@ -5,7 +5,8 @@ import { useRouter } from "next/navigation";
 import { Heart, Coins, Shield, LogOut } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import GameMapCanvas from "./gamemap";
-import StrategyModal from "./StrategyModal";
+import TradeMapCanvas from "./trades/TradeMapCanvas";
+import StrategyModal from "./components/StrategyModal";
 import BottomNav from "./components/BottomNav";
 import { gameStorage } from "./gamestorage";
 import { countries } from "../select-country/data/countries";
@@ -126,20 +127,37 @@ export default function GameDashboard() {
           >
             <TransformComponent wrapperClass="!w-full !h-full" contentClass="!h-full flex items-center justify-center">
               <div ref={containerRef} className="relative h-full flex items-center justify-center w-max">
-                <GameMapCanvas 
-                  userCountry={userCountry} 
-                  targetCountry={targetCountry} 
-                  mapMode={mapMode}
-                  onSelect={(name) => {
-                    if (name === userCountry) {
-                      setTargetCountry(null);
-                      setIsMenuOpen(false);
-                    } else {
-                      setTargetCountry(name);
-                      setIsMenuOpen(true);
-                    }
-                  }} 
-                />
+                <div style={{ display: mapMode === "trade" ? "none" : "contents" }} className="h-full">
+                  <GameMapCanvas 
+                    userCountry={userCountry} 
+                    targetCountry={targetCountry} 
+                    mapMode={mapMode}
+                    onSelect={(name) => {
+                      if (name === userCountry) {
+                        setTargetCountry(null);
+                        setIsMenuOpen(false);
+                      } else {
+                        setTargetCountry(name);
+                        setIsMenuOpen(true);
+                      }
+                    }} 
+                  />
+                </div>
+                <div style={{ display: mapMode === "trade" ? "contents" : "none" }} className="h-full">
+                  <TradeMapCanvas 
+                    userCountry={userCountry} 
+                    targetCountry={targetCountry} 
+                    onSelect={(name) => {
+                      if (name === userCountry) {
+                        setTargetCountry(null);
+                        setIsMenuOpen(false);
+                      } else {
+                        setTargetCountry(name);
+                        setIsMenuOpen(true);
+                      }
+                    }} 
+                  />
+                </div>
               </div>
             </TransformComponent>
           </TransformWrapper>

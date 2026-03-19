@@ -1,12 +1,14 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "../select-country/data/countries";
-interface GameMapCanvasProps {
+import { countries as centersData } from "../../select-country/data/countries";
+import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "./tradeRoutes";
+import { AITradePathfinder } from "../components/trade-ai-routes/AITradePathfinder";
+
+interface TradeMapCanvasProps {
   userCountry: string;
   targetCountry: string | null;
   onSelect: (name: string) => void;
-  mapMode?: "default" | "sda" | "hubungan" | "trade";
 }
 
 // Pseudo-random relation hash
@@ -115,10 +117,10 @@ const getContinentColor = (name: string, id: string): string => {
   return "rgba(71, 85, 105, 0.3)";
 };
 
-export default function GameMapCanvas({ userCountry, targetCountry, onSelect, mapMode = "default" }: GameMapCanvasProps) {
+export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }: TradeMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [geoData, setGeoData] = useState<any>(null);
-
+  const [aiPathfinder, setAiPathfinder] = useState<AITradePathfinder | null>(null);
   const [isHovering, setIsHovering] = useState(false);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
 
@@ -170,7 +172,9 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
             }
           });
 
-
+          const pf = new AITradePathfinder(meshW, meshH);
+          pf.buildNavMeshFromCanvas(oCtx);
+          setAiPathfinder(pf);
         }
       })
       .catch(err => console.error("Failed to load map data", err));
@@ -244,21 +248,9 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
         ctx.lineWidth = 1;
         ctx.shadowBlur = 0;
 
-        if (mapMode === "hubungan") {
-          const relation = getRelation(name, userCountry);
-          if (relation <= 30) fillColor = "rgba(239, 68, 68, 0.5)"; // Red
-          else if (relation <= 70) fillColor = "rgba(234, 179, 8, 0.5)"; // Yellow
-          else fillColor = "rgba(34, 197, 94, 0.5)"; // Green
-          strokeColor = "rgba(255, 255, 255, 0.2)";
-          if (!isPlayer && !isTarget) isHighlighted = false;
-        } else if (mapMode === "sda") {
-          // SDA: Just display dark continents to make the numbers pop
-          fillColor = "rgba(71, 85, 105, 0.4)";
-          strokeColor = "rgba(255, 255, 255, 0.1)";
-          if (!isPlayer && !isTarget) isHighlighted = false;
-        }
+        // Non-trade modes removed
 
-        if (isHighlighted && mapMode !== "hubungan" && mapMode !== "sda") {
+        if (isHighlighted) {
           if (isPlayer) {
             fillColor = "rgba(34, 197, 94, 0.3)";
             strokeColor = "#4ade80";
@@ -345,39 +337,8 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
         });
 
         // 2. Text Labels with Decluttering
-        if (mapMode === "hubungan") {
-          const relation = getRelation(center.name_en || center.id || "", userCountry);
-          const isTooCrowded = labelGrid.some(pos =>
-            Math.abs(pos.x - x) < minLabelDist / 1.5 && Math.abs(pos.y - y) < minLabelDist / 1.5
-          );
-          if (!isTooCrowded || isPlayer || isTarget) {
-            ctx.font = "900 16px 'Inter', sans-serif";
-            if (relation <= 30) ctx.fillStyle = "#fca5a5";
-            else if (relation <= 70) ctx.fillStyle = "#fde047";
-            else ctx.fillStyle = "#86efac";
-
-            ctx.shadowColor = "rgba(0,0,0,0.9)";
-            ctx.shadowBlur = 6;
-            ctx.fillText(relation.toString(), x, y - 20);
-            ctx.shadowBlur = 0;
-            labelGrid.push({ x, y });
-          }
-        } else if (mapMode === "sda") {
-          const sda = center.sector_extraction?.strength || 0;
-          const isTooCrowded = labelGrid.some(pos =>
-            Math.abs(pos.x - x) < minLabelDist / 1.5 && Math.abs(pos.y - y) < minLabelDist / 1.5
-          );
-          if (!isTooCrowded || isPlayer || isTarget) {
-            ctx.font = "900 16px 'Inter', sans-serif";
-            ctx.fillStyle = "#38bdf8"; // Light Blue for SDA 
-
-            ctx.shadowColor = "rgba(0,0,0,0.9)";
-            ctx.shadowBlur = 6;
-            ctx.fillText(Math.round(sda).toString(), x, y - 20);
-            ctx.shadowBlur = 0;
-            labelGrid.push({ x, y });
-          }
-        } else {
+        // Non-trade label modes removed
+        if (true) {
           if (isPlayer || isTarget) {
             ctx.font = "48px sans-serif";
             ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 10;
@@ -399,7 +360,166 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
         }
       });
 
-      // Trade mode rendering removed (Moved to Trades/TradeMapCanvas.tsx)
+      // 3. AI Trade Routes Render Pass
+      if (userCountry && aiPathfinder) {
+        const uCenter = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+        if (uCenter) {
+          const ux = ((uCenter.lon + 180) / 360) * mapWidth;
+          const uy = ((90 - uCenter.lat) / 180) * mapHeight;
+
+          ctx.lineWidth = 3;
+          ctx.shadowBlur = 0; // Solid classic lines, no glow
+
+          // Draw origin node (Red circle, white center)
+          const drawNode = (nx: number, ny: number) => {
+            ctx.beginPath();
+            ctx.arc(nx, ny, 6, 0, Math.PI * 2);
+            ctx.fillStyle = "#ffffff"; // White center
+            ctx.fill();
+            ctx.lineWidth = 2.5;
+            ctx.strokeStyle = "#ef4444"; // RED border!
+            ctx.stroke();
+          };
+
+          const activeAgreements = [...(uCenter.geopolitics?.agreements || [])];
+
+          // Forcefully inject custom routes into the rendering pipeline so the user can immediately see their manually created paths!
+          const uNameEn = uCenter.name_en?.trim();
+          const uNameId = uCenter.name_id?.trim();
+          const activeCustoms = customTradeRoutes[uNameEn] || customTradeRoutes[uNameId] || {};
+          Object.keys(activeCustoms).forEach(dest => {
+            if (!activeAgreements.some(a => a.partner?.trim() === dest.trim() || a.partner?.trim() === centersData.find(c => c.name_en === dest)?.name_id?.trim())) {
+              activeAgreements.push({ partner: dest, type: "Trade", status: "Active" });
+            }
+          });
+
+          // Deduplicate to prevent "double lines" if an agreement exists in both custom and original data
+          const uniqueAgreements: any[] = [];
+          const seenPartners = new Set<string>();
+
+          activeAgreements.forEach(agr => {
+            const pName = agr.partner?.trim();
+            if (pName && !seenPartners.has(pName) && (agr.type === "Trade" || (agr as any).type === "Maritime") && agr.status === "Active") {
+              seenPartners.add(pName);
+              uniqueAgreements.push(agr);
+            }
+          });
+
+          // 1. Collect all intended geographic segments from all active (unique) agreements
+          const uniqueSegments: Map<string, { start: any, end: any, isFinal: boolean, partner: string }> = new Map();
+
+          uniqueAgreements.forEach((agr: any) => {
+            const pMatch = centersData.find(c => c.name_en?.trim() === agr.partner?.trim() || c.name_id?.trim() === agr.partner?.trim());
+            const partnerEn = pMatch ? pMatch.name_en : agr.partner;
+            const partnerId = pMatch ? pMatch.name_id : agr.partner;
+
+            const uNameEn = uCenter.name_en?.trim();
+            const uNameId = uCenter.name_id?.trim();
+            const pNameEn = partnerEn?.trim();
+            const pNameId = partnerId?.trim();
+
+            let waypoints = customTradeRoutes[uNameEn]?.[pNameEn] ||
+              customTradeRoutes[uNameId]?.[pNameEn] ||
+              customTradeRoutes[uNameEn]?.[pNameId] ||
+              customTradeRoutes[uNameId]?.[pNameId];
+
+            if (!waypoints) {
+              if (pMatch) waypoints = [pMatch.name_en];
+            }
+
+            if (waypoints && waypoints.length > 0) {
+              let currentPos = { lon: uCenter.lon, lat: uCenter.lat };
+
+              waypoints.forEach((wpName, wpIdx) => {
+                const nextWpObj = centersData.find(c => c.name_en === wpName || c.name_id === wpName);
+                const staticWp = waypointCoords[wpName];
+                const nextWpLon = staticWp?.lon ?? nextWpObj?.lon;
+                const nextWpLat = staticWp?.lat ?? nextWpObj?.lat;
+
+                if (nextWpLon !== undefined && nextWpLat !== undefined) {
+                  const isFinal = wpIdx === waypoints.length - 1;
+                  // Use a precision-fixed key to identify identical segments
+                  const key = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
+
+                  // We prioritize 'isFinal' nodes so ports are always drawn over waypoint dots
+                  if (!uniqueSegments.has(key) || isFinal) {
+                    uniqueSegments.set(key, {
+                      start: { lon: currentPos.lon, lat: currentPos.lat },
+                      end: { lon: nextWpLon, lat: nextWpLat },
+                      isFinal,
+                      partner: wpName
+                    });
+                  }
+                  currentPos = { lon: nextWpLon, lat: nextWpLat };
+                }
+              });
+            }
+          });
+
+          // 2. Render each unique geographic segment exactly once
+          uniqueSegments.forEach((seg) => {
+            const path = aiPathfinder.findPath(seg.start.lon, seg.start.lat, seg.end.lon, seg.end.lat);
+            if (path && path.length > 0) {
+              const normalized = aiPathfinder.normalizeGridPath(path);
+
+              // Style
+              ctx.lineWidth = 3.5;
+              ctx.strokeStyle = "#ef4444"; // RED!
+              ctx.beginPath();
+              const sx = ((seg.start.lon + 180) / 360) * mapWidth;
+              const sy = ((90 - seg.start.lat) / 180) * mapHeight;
+              ctx.moveTo(sx, sy);
+
+              normalized.forEach((p, idx) => {
+                let nextX = p.rtX * mapWidth;
+                let nextY = p.rtY * mapHeight;
+                const prevMatch = idx === 0 ? { rtX: sx / mapWidth, rtY: sy / mapHeight } : normalized[idx - 1];
+                if (Math.abs(p.rtX - prevMatch.rtX) > 0.5) ctx.moveTo(nextX, nextY);
+                else ctx.lineTo(nextX, nextY);
+              });
+              ctx.stroke();
+
+              // Nodes
+              const destP = normalized[normalized.length - 1];
+              const nodeX = destP.rtX * mapWidth;
+              const nodeY = destP.rtY * mapHeight;
+
+              // Override logic for specific country sizes
+              const isSmallForced = ["Bangladesh", "Filipina", "Sri Lanka", "Myanmar", "India", "Pakistan", "Iran", "Oman", "United Arab Emirates", "Bahrain", "Qatar", "Kuwait", "Yemen", "Saudi Arabia"].includes(seg.partner);
+              const isLargeForced = ["Malaysia"].includes(seg.partner);
+
+              if ((seg.isFinal || isLargeForced) && !isSmallForced) {
+                drawNode(nodeX, nodeY);
+
+                if (seg.isFinal) {
+                  // Final land-bridge
+                  const pUX = ((seg.end.lon + 180) / 360) * mapWidth;
+                  const pUY = ((90 - seg.end.lat) / 180) * mapHeight;
+                  ctx.lineWidth = 1.5;
+                  ctx.strokeStyle = "rgba(220, 38, 38, 0.4)"; // Red shadow for end node connection
+                  ctx.setLineDash([4, 4]);
+                  ctx.beginPath();
+                  ctx.moveTo(nodeX, nodeY);
+                  ctx.lineTo(pUX, pUY);
+                  ctx.stroke();
+                  ctx.setLineDash([]);
+                }
+              } else if (!hiddenWaypoints.includes(seg.partner)) {
+                ctx.beginPath();
+                ctx.arc(nodeX, nodeY, 3.2, 0, Math.PI * 2);
+                ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
+                ctx.fill();
+                ctx.strokeStyle = "#ef4444"; // RED border
+                ctx.lineWidth = 1;
+                ctx.stroke();
+              }
+            }
+          });
+
+          // Draw user country node on top
+          drawNode(ux, uy);
+        }
+      }
 
 
 
@@ -407,7 +527,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
       ctx.restore();
     });
 
-  }, [geoData, userCountry, targetCountry, centersData, mapMode]);
+  }, [geoData, userCountry, targetCountry, centersData, aiPathfinder]);
 
   // Define Custom Cursors
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
