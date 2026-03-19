@@ -52,6 +52,12 @@ export class AITradePathfinder {
         this.openCanal(this.lonToX(67.0), this.latToY(24.8), 3); // Pakistan
         this.openCanal(this.lonToX(56.3), this.latToY(27.2), 3); // Iran
         this.openCanal(this.lonToX(58.6), this.latToY(23.6), 3); // Oman
+        this.openCanal(this.lonToX(55.3), this.latToY(25.2), 3); // UAE
+        this.openCanal(this.lonToX(51.5), this.latToY(25.3), 3); // Qatar
+        this.openCanal(this.lonToX(45.0), this.latToY(12.8), 3); // Yemen
+        this.openCanal(this.lonToX(39.2), this.latToY(21.5), 3); // Saudi Arabia
+        this.openCanal(this.lonToX(50.6), this.latToY(26.2), 3); // Bahrain
+        this.openCanal(this.lonToX(48.0), this.latToY(29.4), 3); // Kuwait
         this.openCanal(this.lonToX(129.5), this.latToY(34.0), 3); // Korea Strait Bypass
         this.openCanal(this.lonToX(131.0), this.latToY(31.0), 3); // Steer Kyushu
         this.openCanal(this.lonToX(135.0), this.latToY(31.5), 3); // Steer Japan 1
