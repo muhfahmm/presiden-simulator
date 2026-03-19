@@ -1,53 +1,15 @@
 export const HaitiRoutes = {
-  "United States": [
+  "Dominican Republic": [
     "Haiti",
-    "Panama",
-    "United States"
-  ],
-  "Bahamas": [
-    "Haiti",
-    "Panama",
-    "Bahamas"
-  ],
-  "Belize": [
-    "Haiti",
-    "Panama",
-    "Belize"
-  ],
-  "El Salvador": [
-    "Haiti",
-    "Panama",
-    "El Salvador"
-  ],
-  "Guatemala": [
-    "Haiti",
-    "Panama",
-    "Guatemala"
-  ],
-  "Honduras": [
-    "Haiti",
-    "Panama",
-    "Honduras"
+    "Dominican Republic"
   ],
   "Jamaica": [
     "Haiti",
-    "Panama",
     "Jamaica"
   ],
-  "Costa Rica": [
+  "Jamaika": [
     "Haiti",
-    "Panama",
-    "Costa Rica"
-  ],
-  "Nicaragua": [
-    "Haiti",
-    "Panama",
-    "Nicaragua"
-  ],
-  "Dominican Republic": [
-    "Haiti",
-    "Panama",
-    "Dominican Republic"
+    "Jamaica"
   ]
 };
 

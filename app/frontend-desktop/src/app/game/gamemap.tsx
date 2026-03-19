@@ -7,6 +7,7 @@ interface GameMapCanvasProps {
   targetCountry: string | null;
   onSelect: (name: string) => void;
   mapMode?: "default" | "sda" | "hubungan" | "trade";
+  active?: boolean;
 }
 
 // Pseudo-random relation hash
@@ -115,7 +116,7 @@ const getContinentColor = (name: string, id: string): string => {
   return "rgba(71, 85, 105, 0.3)";
 };
 
-export default function GameMapCanvas({ userCountry, targetCountry, onSelect, mapMode = "default" }: GameMapCanvasProps) {
+export default function GameMapCanvas({ userCountry, targetCountry, onSelect, mapMode = "default", active = true }: GameMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [geoData, setGeoData] = useState<any>(null);
 
@@ -411,7 +412,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
 
   // Define Custom Cursors
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
-  const hoverCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><circle cx='12' cy='12' r='8' fill='rgba(34, 211, 238, 0.2)' stroke='%2322d3ee' stroke-width='2'/><circle cx='12' cy='12' r='2' fill='%2322d3ee'/></svg>") 12 12, pointer`;
+  const hoverCursor = "pointer";
 
   return (
     <canvas
@@ -419,34 +420,37 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
       width={mapWidth * 3}
       height={mapHeight}
       className="h-full w-auto max-w-none z-10"
-      style={{ cursor: isHovering ? hoverCursor : defaultCursor }}
+      style={{ cursor: isHovering ? hoverCursor : defaultCursor, pointerEvents: active ? "auto" : "none" }}
       onMouseMove={(e) => {
+        if (typeof active !== 'undefined' && !active) return;
         const canvas = canvasRef.current;
         if (!canvas) return;
         const rect = canvas.getBoundingClientRect();
         const clickX = ((e.clientX - rect.left) / rect.width) * (mapWidth * 3);
         const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-        const mappedClickX = clickX % mapWidth; // Map to a single map segment
+        const mappedClickX = clickX % mapWidth;
 
         let foundHover = false;
         centersData.forEach((center: any) => {
           const x = ((center.lon + 180) / 360) * mapWidth;
           const y = ((90 - center.lat) / 180) * mapHeight;
           const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
-          if (dist < 40) { // Slightly larger threshold for high-res map
-            foundHover = true;
-          }
+          if (dist < 60) foundHover = true;
         });
+
+
+
         setIsHovering(foundHover);
       }}
       onMouseDown={(e) => {
         mouseDownPosRef.current = { x: e.clientX, y: e.clientY };
       }}
       onClick={(e) => {
+        if (!active) return;
         const startPos = mouseDownPosRef.current;
         if (startPos) {
           const dist = Math.hypot(e.clientX - startPos.x, e.clientY - startPos.y);
-          if (dist > 5) return; // Ignore clicks that are actually drags/pans
+          if (dist > 15) return; // Ignore slight drags // Ignore clicks that are actually drags/pans
         }
 
         const canvas = canvasRef.current;

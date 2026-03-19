@@ -1,22 +1,34 @@
 export const GreenlandRoutes = {
-  "Islandia": [
+  "Canada": [
     "Greenland",
-    "Islandia"
+    "Steer Baffin Bay",
+    "Canada"
+  ],
+  "Kanada": [
+    "Greenland",
+    "Steer Baffin Bay",
+    "Canada"
   ],
   "Iceland": [
     "Greenland",
-    "Islandia"
+    "Steer North Atlantic",
+    "Iceland"
   ],
-  "Norwegia": [
-    "Greenland", 
-    "Steer Baffin Bay", 
-    "Steer Canada Arctic", 
-    "Steer Greenland Upper", 
-    "Steer Iceland North", 
-    "Norwegia"
+  "Islandia": [
+    "Greenland",
+    "Steer North Atlantic",
+    "Iceland"
   ],
-  "Canada": [ "Greenland", "Steer Baffin Bay", "Canada" ],
-  "Kanada": [ "Greenland", "Steer Baffin Bay", "Canada" ]
+  "United States": [
+    "Greenland",
+    "Steer East Coast",
+    "United States"
+  ],
+  "Amerika Serikat": [
+    "Greenland",
+    "Steer East Coast",
+    "United States"
+  ]
 };
 
 export const GreenlandWaypoints = {

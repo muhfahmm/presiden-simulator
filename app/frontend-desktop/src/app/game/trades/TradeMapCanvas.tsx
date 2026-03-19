@@ -9,6 +9,7 @@ interface TradeMapCanvasProps {
   userCountry: string;
   targetCountry: string | null;
   onSelect: (name: string) => void;
+  active?: boolean;
 }
 
 // Pseudo-random relation hash
@@ -117,12 +118,15 @@ const getContinentColor = (name: string, id: string): string => {
   return "rgba(71, 85, 105, 0.3)";
 };
 
-export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }: TradeMapCanvasProps) {
+export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, active = true }: TradeMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [geoData, setGeoData] = useState<any>(null);
   const [aiPathfinder, setAiPathfinder] = useState<AITradePathfinder | null>(null);
   const [isHovering, setIsHovering] = useState(false);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
+    const [selectedWp, setSelectedWp] = useState<string | null>(null);
+  // Line hitting cache ref
+  const drawnPathsRef = useRef<{ pts: {rtX:number, rtY:number}[], origin: string, partner: string, originId: string, partnerId: string }[]>([]);
 
   // Higher resolution for more detail and less "narrow" feel
   // 3:1 or 2.5:1 aspect ratio can feel more panoramic
@@ -190,7 +194,11 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
     // Clear and Fill background style - Richer "Command Center" theme
     ctx.clearRect(0, 0, mapWidth * 3, mapHeight);
 
+    
+    // Line hitting cache
+    
     const offsets = [0, mapWidth, mapWidth * 2];
+    drawnPathsRef.current = []; // Clear line tap cache
     offsets.forEach(offset => {
       ctx.save();
       ctx.translate(offset, 0);
@@ -434,7 +442,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
           });
 
           // 1. Collect all intended geographic segments from all active (unique) agreements
-          const uniqueSegments: Map<string, { start: any, end: any, isFinal: boolean, partner: string }> = new Map();
+          const uniqueSegments = new Map<string, { start: any, end: any, isFinal: boolean, partner: string, origin?: string, originId?: string, partnerId?: string }>();
 
           uniqueAgreements.forEach((agr: any) => {
             const pMatch = centersData.find(c => c.name_en?.trim() === agr.partner?.trim() || c.name_id?.trim() === agr.partner?.trim());
@@ -451,14 +459,12 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
               customTradeRoutes[uNameEn]?.[pNameId] ||
               customTradeRoutes[uNameId]?.[pNameId];
 
-            if (pNameEn === "Greenland" || pNameId === "Greenland") {
-               console.log(`[TradeMap Debug] User: ${uNameId || uNameEn}, Partner: ${pNameId}, Waypoints:`, waypoints);
-            }
-
-/* Fallback removed to skip unmapped countries */
-
             if (waypoints && waypoints.length > 0) {
-              let currentPos = { lon: uCenter.lon, lat: uCenter.lat };
+              const startStaticWp = waypointCoords[uNameEn] || waypointCoords[uNameId];
+              let currentPos = { 
+                lon: startStaticWp?.lon ?? uCenter.lon, 
+                lat: startStaticWp?.lat ?? uCenter.lat 
+              };
 
               waypoints.forEach((wpName, wpIdx) => {
                 const nextWpObj = centersData.find(c => c.name_en === wpName || c.name_id === wpName);
@@ -468,17 +474,32 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
 
                 if (nextWpLon !== undefined && nextWpLat !== undefined) {
                   const isFinal = wpIdx === waypoints.length - 1;
-                  // Use a precision-fixed key to identify identical segments
-                  const key = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
 
-                  // We prioritize 'isFinal' nodes so ports are always drawn over waypoint dots
+                  const isAtlanticCrossing = (currentPos.lon < -55 && nextWpLon > -20) || (currentPos.lon > -20 && nextWpLon < -55);
+                  if (isAtlanticCrossing) {
+                    const midAtlantic = { lon: -40.0, lat: 45.0 };
+                    const key1 = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->-40.0,45.0`;
+                    uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: midAtlantic, isFinal: false, partner: "Mid-Atlantic Trunk", origin: uNameEn });
+                    const key2 = `-40.0,45.0->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
+                    uniqueSegments.set(key2, { start: midAtlantic, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, partner: wpName, origin: uNameEn });
+                    currentPos = { lon: nextWpLon, lat: nextWpLat };
+                    return;
+                  }
+
+                  const isPanamaCrossing = ((currentPos.lon < -78.5 && nextWpLon > -76.5) || (currentPos.lon > -76.5 && nextWpLon < -78.5)) && currentPos.lat > 1.0 && nextWpLat > 1.0 && currentPos.lat < 15.0 && nextWpLat < 15.0 && wpName !== "Panama" && Math.abs(currentPos.lon - (-79.53)) > 0.5 && Math.abs(nextWpLon - (-79.53)) > 0.5;
+                  if (isPanamaCrossing) {
+                    const panamaNode = { lon: -79.53, lat: 8.96 };
+                    const key1 = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->-79.5,9.0`;
+                    uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: panamaNode, isFinal: false, partner: "Panama Trunk", origin: uNameEn });
+                    const key2 = `-79.5,9.0->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
+                    uniqueSegments.set(key2, { start: panamaNode, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, partner: wpName, origin: uNameEn });
+                    currentPos = { lon: nextWpLon, lat: nextWpLat };
+                    return;
+                  }
+
+                  const key = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
                   if (!uniqueSegments.has(key) || isFinal) {
-                    uniqueSegments.set(key, {
-                      start: { lon: currentPos.lon, lat: currentPos.lat },
-                      end: { lon: nextWpLon, lat: nextWpLat },
-                      isFinal,
-                      partner: wpName
-                    });
+                    uniqueSegments.set(key, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: { lon: nextWpLon, lat: nextWpLat }, isFinal, partner: wpName, origin: uNameEn });
                   }
                   currentPos = { lon: nextWpLon, lat: nextWpLat };
                 }
@@ -512,14 +533,32 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
 
                    if (nextWpLon !== undefined && nextWpLat !== undefined) {
                       const isFinal = wpIdx === waypoints.length - 1;
+
+                      const isAtlanticCrossing = (currentPos.lon < -55 && nextWpLon > -20) || (currentPos.lon > -20 && nextWpLon < -55);
+                      if (isAtlanticCrossing) {
+                         const midAtlantic = { lon: -40.0, lat: 45.0 };
+                         const key1 = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->-40.0,45.0`;
+                         uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: midAtlantic, isFinal: false, partner: "Mid-Atlantic Trunk", origin: originName });
+                         const key2 = `-40.0,45.0->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
+                         uniqueSegments.set(key2, { start: midAtlantic, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, partner: wpName, origin: originName });
+                         currentPos = { lon: nextWpLon, lat: nextWpLat };
+                         return;
+                      }
+
+                      const isPanamaCrossing = ((currentPos.lon < -78.5 && nextWpLon > -76.5) || (currentPos.lon > -76.5 && nextWpLon < -78.5)) && currentPos.lat > 1.0 && nextWpLat > 1.0 && currentPos.lat < 15.0 && nextWpLat < 15.0 && wpName !== "Panama" && Math.abs(currentPos.lon - (-79.53)) > 0.5 && Math.abs(nextWpLon - (-79.53)) > 0.5;
+                      if (isPanamaCrossing) {
+                         const panamaNode = { lon: -79.53, lat: 8.96 };
+                         const key1 = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->-79.5,9.0`;
+                         uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: panamaNode, isFinal: false, partner: "Panama Trunk", origin: originName });
+                         const key2 = `-79.5,9.0->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
+                         uniqueSegments.set(key2, { start: panamaNode, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, partner: wpName, origin: originName });
+                         currentPos = { lon: nextWpLon, lat: nextWpLat };
+                         return;
+                      }
+
                       const key = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
                       if (!uniqueSegments.has(key) || isFinal) {
-                         uniqueSegments.set(key, {
-                            start: { lon: currentPos.lon, lat: currentPos.lat },
-                            end: { lon: nextWpLon, lat: nextWpLat },
-                            isFinal,
-                            partner: wpName
-                         });
+                         uniqueSegments.set(key, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: { lon: nextWpLon, lat: nextWpLat }, isFinal, partner: wpName, origin: originName });
                       }
                       currentPos = { lon: nextWpLon, lat: nextWpLat };
                    }
@@ -527,7 +566,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
              });
           });
 
-          // 2. Render each unique geographic segment exactly once
+          // 2. Render each unique segment exactly once
           uniqueSegments.forEach((seg) => {
             let path = null;
             try {
@@ -576,16 +615,29 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
                 return smoothed;
               };
 
-              const normalized = smoothPath(rawNormalized);
+              const normalized = (seg.partner === "Panama Trunk" || seg.partner === "Mid-Atlantic Trunk") ? rawNormalized : smoothPath(rawNormalized);
 
               // Style
-              ctx.lineWidth = 3.5;
-              ctx.strokeStyle = "#ef4444"; // RED!
+              const isSelected = selectedWp && (
+                 seg.origin?.trim().toLowerCase() === selectedWp.trim().toLowerCase() || 
+                 seg.partner?.trim().toLowerCase() === selectedWp.trim().toLowerCase() ||
+                 (seg.originId && seg.originId.trim().toLowerCase() === selectedWp.trim().toLowerCase()) ||
+                 (seg.partnerId && seg.partnerId.trim().toLowerCase() === selectedWp.trim().toLowerCase())
+              );
+              
+              if (selectedWp && Math.random() < 0.05) {
+                 console.log("[Draw Debug] selectedWp:", selectedWp, "seg.origin:", seg.origin, "seg.partner:", seg.partner, "originId:", seg.originId, "partnerId:", seg.partnerId, "isSelected:", isSelected);
+              }
+              ctx.lineWidth = isSelected ? 4.5 : 3.5;
+              ctx.strokeStyle = selectedWp ? (isSelected ? "#00e5ff" : "rgba(239, 68, 68, 0.25)") : "#ef4444";
+
+               // RED!
               ctx.beginPath();
               const sx = ((seg.start.lon + 180) / 360) * mapWidth;
               const sy = ((90 - seg.start.lat) / 180) * mapHeight;
               ctx.moveTo(sx, sy);
 
+              drawnPathsRef.current.push({ pts: normalized, origin: seg.origin || "", partner: seg.partner || "", originId: seg.originId || "", partnerId: seg.partnerId || "" });
               normalized.forEach((p, idx) => {
                 let nextX = p.rtX * mapWidth;
                 let nextY = p.rtY * mapHeight;
@@ -643,11 +695,11 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
       ctx.restore();
     });
 
-  }, [geoData, userCountry, targetCountry, centersData, aiPathfinder]);
+  }, [geoData, userCountry, targetCountry, centersData, aiPathfinder, selectedWp]);
 
   // Define Custom Cursors
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
-  const hoverCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><circle cx='12' cy='12' r='8' fill='rgba(34, 211, 238, 0.2)' stroke='%2322d3ee' stroke-width='2'/><circle cx='12' cy='12' r='2' fill='%2322d3ee'/></svg>") 12 12, pointer`;
+  const hoverCursor = "pointer";
 
   return (
     <canvas
@@ -655,36 +707,9 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
       width={mapWidth * 3}
       height={mapHeight}
       className="h-full w-auto max-w-none z-10"
-      style={{ cursor: isHovering ? hoverCursor : defaultCursor }}
+      style={{ cursor: isHovering ? hoverCursor : defaultCursor, pointerEvents: active ? "auto" : "none" }}
       onMouseMove={(e) => {
-        const canvas = canvasRef.current;
-        if (!canvas) return;
-        const rect = canvas.getBoundingClientRect();
-        const clickX = ((e.clientX - rect.left) / rect.width) * (mapWidth * 3);
-        const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-        const mappedClickX = clickX % mapWidth; // Map to a single map segment
-
-        let foundHover = false;
-        centersData.forEach((center: any) => {
-          const x = ((center.lon + 180) / 360) * mapWidth;
-          const y = ((90 - center.lat) / 180) * mapHeight;
-          const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
-          if (dist < 40) { // Slightly larger threshold for high-res map
-            foundHover = true;
-          }
-        });
-        setIsHovering(foundHover);
-      }}
-      onMouseDown={(e) => {
-        mouseDownPosRef.current = { x: e.clientX, y: e.clientY };
-      }}
-      onClick={(e) => {
-        const startPos = mouseDownPosRef.current;
-        if (startPos) {
-          const dist = Math.hypot(e.clientX - startPos.x, e.clientY - startPos.y);
-          if (dist > 5) return; // Ignore clicks that are actually drags/pans
-        }
-
+        if (typeof active !== 'undefined' && !active) return;
         const canvas = canvasRef.current;
         if (!canvas) return;
         const rect = canvas.getBoundingClientRect();
@@ -692,22 +717,31 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect }:
         const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
         const mappedClickX = clickX % mapWidth;
 
-        let closest: any = null;
-        let minDist = 100; // Larger radius for high-res map
-
+                let foundHover = false;
+        let debugMinDist = 99999;
+        let closestName = "";
+        
         centersData.forEach((center: any) => {
           const x = ((center.lon + 180) / 360) * mapWidth;
           const y = ((90 - center.lat) / 180) * mapHeight;
           const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
-          if (dist < minDist) {
-            minDist = dist;
-            closest = center;
-          }
+                    if (dist < 60) foundHover = true;
+          if (dist < debugMinDist) { debugMinDist = dist; closestName = center.name_en; }
+        
         });
 
-        if (closest) {
-          onSelect(closest.name_en);
+        if (typeof waypointCoords !== 'undefined') {
+          Object.keys(waypointCoords).forEach((name) => {
+             const coord = waypointCoords[name];
+             const x = ((coord.lon + 180) / 360) * mapWidth;
+             const y = ((90 - coord.lat) / 180) * mapHeight;
+             const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
+             if (dist < 60) foundHover = true;
+          });
         }
+
+                setIsHovering(foundHover);
+        if (Math.random() < 0.05) console.log("Hover debugging:", foundHover, "Min dist to", closestName, "is", debugMinDist);
       }}
     />
   );

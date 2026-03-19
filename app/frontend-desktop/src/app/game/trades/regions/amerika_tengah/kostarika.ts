@@ -1,53 +1,15 @@
 export const CostaRicaRoutes = {
-  "United States": [
+  "Panama": [
     "Costa Rica",
-    "Panama",
-    "United States"
-  ],
-  "Bahamas": [
-    "Costa Rica",
-    "Panama",
-    "Bahamas"
-  ],
-  "Belize": [
-    "Costa Rica",
-    "Panama",
-    "Belize"
-  ],
-  "El Salvador": [
-    "Costa Rica",
-    "Panama",
-    "El Salvador"
-  ],
-  "Guatemala": [
-    "Costa Rica",
-    "Panama",
-    "Guatemala"
-  ],
-  "Haiti": [
-    "Costa Rica",
-    "Panama",
-    "Haiti"
-  ],
-  "Honduras": [
-    "Costa Rica",
-    "Panama",
-    "Honduras"
-  ],
-  "Jamaica": [
-    "Costa Rica",
-    "Panama",
-    "Jamaica"
+    "Panama"
   ],
   "Nicaragua": [
     "Costa Rica",
-    "Panama",
     "Nicaragua"
   ],
-  "Dominican Republic": [
+  "Nikaragua": [
     "Costa Rica",
-    "Panama",
-    "Dominican Republic"
+    "Nicaragua"
   ]
 };
 

@@ -1,59 +1,25 @@
 export const HondurasRoutes = {
-  "United States": [
+  "Nicaragua": [
     "Honduras",
-    "Panama",
-    "United States"
+    "Nicaragua"
   ],
-  "Bahamas": [
+  "Nikaragua": [
     "Honduras",
-    "Panama",
-    "Bahamas"
-  ],
-  "Belize": [
-    "Honduras",
-    "Panama",
-    "Belize"
+    "Nicaragua"
   ],
   "El Salvador": [
     "Honduras",
-    "Panama",
     "El Salvador"
   ],
   "Guatemala": [
     "Honduras",
-    "Panama",
     "Guatemala"
-  ],
-  "Haiti": [
-    "Honduras",
-    "Panama",
-    "Haiti"
-  ],
-  "Jamaica": [
-    "Honduras",
-    "Panama",
-    "Jamaica"
-  ],
-  "Costa Rica": [
-    "Honduras",
-    "Panama",
-    "Costa Rica"
-  ],
-  "Nicaragua": [
-    "Honduras",
-    "Panama",
-    "Nicaragua"
-  ],
-  "Dominican Republic": [
-    "Honduras",
-    "Panama",
-    "Dominican Republic"
   ]
 };
 
 export const HondurasWaypoints = {
   "Honduras": {
-    "lon": -87.94,
-    "lat": 15.82
+    "lon": -86.9,
+    "lat": 15.9
   }
 };

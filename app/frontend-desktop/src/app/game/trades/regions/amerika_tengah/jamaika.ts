@@ -1,53 +1,15 @@
 export const JamaicaRoutes = {
-  "United States": [
-    "Jamaica",
-    "Panama",
-    "United States"
-  ],
-  "Bahamas": [
-    "Jamaica",
-    "Panama",
-    "Bahamas"
-  ],
-  "Belize": [
-    "Jamaica",
-    "Panama",
-    "Belize"
-  ],
-  "El Salvador": [
-    "Jamaica",
-    "Panama",
-    "El Salvador"
-  ],
-  "Guatemala": [
-    "Jamaica",
-    "Panama",
-    "Guatemala"
-  ],
   "Haiti": [
     "Jamaica",
-    "Panama",
     "Haiti"
   ],
-  "Honduras": [
+  "Cuba": [
     "Jamaica",
-    "Panama",
-    "Honduras"
+    "Cuba"
   ],
-  "Costa Rica": [
+  "Kuba": [
     "Jamaica",
-    "Panama",
-    "Costa Rica"
-  ],
-  "Nicaragua": [
-    "Jamaica",
-    "Panama",
-    "Nicaragua"
-  ],
-  "Dominican Republic": [
-    "Jamaica",
-    "Panama",
-    "Dominican Republic"
+    "Cuba"
   ]
 };
 

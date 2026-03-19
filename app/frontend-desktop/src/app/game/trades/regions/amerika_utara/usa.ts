@@ -1,7 +1,39 @@
 export const UsaRoutes = {
+  "Canada": [
+    "United States",
+    "Canada"
+  ],
+  "Mexico": [
+    "United States",
+    "Mexico"
+  ],
+  "Meksiko": [
+    "United States",
+    "Mexico"
+  ],
+  "Cuba": [
+    "United States",
+    "Cuba"
+  ],
+  "Kuba": [
+    "United States",
+    "Cuba"
+  ],
+  "Greenland": [
+    "United States",
+    "Steer East Coast",
+    "Steer North Atlantic",
+    "Greenland"
+  ],
   "Panama": [
     "United States",
+    "Steer East Coast",
+    "Steer Florida",
     "Panama"
+  ],
+  "Kanada": [
+    "United States",
+    "Canada"
   ]
 };
 

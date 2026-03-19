@@ -1,53 +1,7 @@
 export const BahamasRoutes = {
-  "United States": [
+  "Steer Florida": [
     "Bahamas",
-    "Panama",
-    "United States"
-  ],
-  "Belize": [
-    "Bahamas",
-    "Panama",
-    "Belize"
-  ],
-  "El Salvador": [
-    "Bahamas",
-    "Panama",
-    "El Salvador"
-  ],
-  "Guatemala": [
-    "Bahamas",
-    "Panama",
-    "Guatemala"
-  ],
-  "Haiti": [
-    "Bahamas",
-    "Panama",
-    "Haiti"
-  ],
-  "Honduras": [
-    "Bahamas",
-    "Panama",
-    "Honduras"
-  ],
-  "Jamaica": [
-    "Bahamas",
-    "Panama",
-    "Jamaica"
-  ],
-  "Costa Rica": [
-    "Bahamas",
-    "Panama",
-    "Costa Rica"
-  ],
-  "Nicaragua": [
-    "Bahamas",
-    "Panama",
-    "Nicaragua"
-  ],
-  "Dominican Republic": [
-    "Bahamas",
-    "Panama",
-    "Dominican Republic"
+    "Steer Florida"
   ]
 };
 
