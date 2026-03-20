@@ -17,11 +17,14 @@ export const internationalHubs: Hub[] = [
   { name: "Australia (Sydney)", lon: 151.20, lat: -33.85, radius: 4.5, fill: "#ffffff" },
   { name: "Afrika Selatan (Cape Town)", lon: 18.42, lat: -33.91, radius: 4.5, fill: "#ffffff" },
   { name: "Terusan Suez", lon: 32.53, lat: 29.93, radius: 4.5, fill: "#ffffff" },
-  { name: "Selat Gibraltar", lon: -5.60, lat: 35.95, radius: 4.5, fill: "#ffffff" },
-  { name: "Ujung Amerika Selatan", lon: -67.27, lat: -55.98, radius: 4.5, fill: "#ffffff" },
+
+  { name: "Ujung Amerika Selatan", lon: -67.80, lat: -55.85, radius: 4.5, fill: "#ffffff" },
   { name: "Terusan Panama", lon: -79.52, lat: 8.95, radius: 4.5, fill: "#ffffff" },
   { name: "Amerika Serikat (New York)", lon: -74.00, lat: 40.71, radius: 4.5, fill: "#ffffff" },
   { name: "Amerika Serikat (Los Angeles)", lon: -118.24, lat: 34.05, radius: 4.5, fill: "#ffffff" },
-  { name: "Jepang (Tokyo)", lon: 139.69, lat: 35.68, radius: 4.5, fill: "#ffffff" }
+  { name: "Jepang (Tokyo)", lon: 140.00, lat: 35.00, radius: 4.5, fill: "#ffffff" },
+  { name: "Sri Lanka (Colombo)", lon: 79.86, lat: 6.92, radius: 4.0, fill: "#ffffff" },
+  { name: "Kanada (Halifax)", lon: -63.57, lat: 44.65, radius: 4.5, fill: "#ffffff" },
+  { name: "Inggris (London)", lon: -1.30, lat: 50.80, radius: 4.5, fill: "#ffffff" }
 ];
 LinePlaceholder: true

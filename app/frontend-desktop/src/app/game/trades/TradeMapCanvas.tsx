@@ -8,7 +8,6 @@ import { singaporeHarbors } from './regions/asia/harbor/singapore';
 import { regionalRoutes } from './regions/asia/regionalRoutes';
 import { internationalHubs } from './international/hubs';
 import { internationalRoutes } from './international/routes';
-import { AITradePathfinder } from "../components/trade-ai-routes/AITradePathfinder";
 
 interface TradeMapCanvasProps {
   userCountry: string;
@@ -126,7 +125,6 @@ const getContinentColor = (name: string, id: string): string => {
 export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, active = true }: TradeMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [geoData, setGeoData] = useState<any>(null);
-  const [aiPathfinder, setAiPathfinder] = useState<AITradePathfinder | null>(null);
   const [isHovering, setIsHovering] = useState(false);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
     const [selectedWp, setSelectedWp] = useState<string | null>(null);
@@ -144,47 +142,6 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       .then(res => res.json())
       .then(data => {
         setGeoData(data);
-
-        const meshW = 1440;
-        const meshH = 720;
-        const canvas = document.createElement("canvas");
-        canvas.width = meshW;
-        canvas.height = meshH;
-        const oCtx = canvas.getContext("2d", { willReadFrequently: true });
-
-        if (oCtx && data.features) {
-          oCtx.fillStyle = "#000000";
-          oCtx.fillRect(0, 0, meshW, meshH);
-          oCtx.fillStyle = "#ffffff";
-
-          data.features.forEach((feat: any) => {
-            if (!feat.geometry) return;
-            const type = feat.geometry.type;
-            const coordinates = feat.geometry.coordinates;
-
-            const drawPoly = (ring: any[]) => {
-              oCtx.beginPath();
-              ring.forEach((coord: number[], index: number) => {
-                const x = ((coord[0] + 180) / 360) * meshW;
-                const y = ((90 - coord[1]) / 180) * meshH;
-                if (index === 0) oCtx.moveTo(x, y);
-                else oCtx.lineTo(x, y);
-              });
-              oCtx.closePath();
-              oCtx.fill();
-            };
-
-            if (type === "Polygon") {
-              coordinates.forEach(drawPoly);
-            } else if (type === "MultiPolygon") {
-              coordinates.forEach((poly: any[]) => poly.forEach(drawPoly));
-            }
-          });
-
-          const pf = new AITradePathfinder(meshW, meshH);
-          pf.buildNavMeshFromCanvas(oCtx);
-          setAiPathfinder(pf);
-        }
       })
       .catch(err => console.error("Failed to load map data", err));
   }, []);
@@ -387,10 +344,9 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
          }
       });
 
-      // 3. AI Trade Routes Render Pass
-      if (userCountry && aiPathfinder) {
-        const uCenter = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
-        if (uCenter) {
+      // 3. AI Trade Routes Render Pass (Purged)
+      const uCenter = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+      if (uCenter) {
           const ux = ((uCenter!.lon + 180) / 360) * mapWidth;
           const uy = ((90 - uCenter!.lat) / 180) * mapHeight;
 
@@ -566,26 +522,19 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
 
           // 2. Render each unique segment exactly once
           uniqueSegments.forEach((seg) => {
-            let path = null;
+            let path: any[] | null = null;
             try {
-              path = aiPathfinder.findPath(seg.start.lon, seg.start.lat, seg.end.lon, seg.end.lat);
+              // path = aiPathfinder.findPath(seg.start.lon, seg.start.lat, seg.end.lon, seg.end.lat);
             } catch (err) {
               console.warn(`Pathfinding error for ${seg.partner}:`, err);
             }
             let rawNormalized: { rtX: number, rtY: number }[] = [];
 
-            if (seg.partner === "Greenland" || seg.partner === "Islandia") {
-              console.log(`[TradeMap Seg] Partner: ${seg.partner}, Path length: ${path ? path.length : 0}, Start: ${seg.start.lon},${seg.start.lat}, End: ${seg.end.lon},${seg.end.lat}`);
-            }
-
-            if (path && path.length > 0) {
-              rawNormalized = aiPathfinder.normalizeGridPath(path);
-            } else {
+            // Standalone Static Coordinate Falling back index-matched setup flawless.
               rawNormalized = [
                 { rtX: (seg.start.lon + 180) / 360, rtY: (90 - seg.start.lat) / 180 },
                 { rtX: (seg.end.lon + 180) / 360, rtY: (90 - seg.end.lat) / 180 }
               ];
-            }
 
             if (rawNormalized.length > 0) {
 
@@ -687,6 +636,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
 
           // Draw user country node on top
           drawNode(ux, uy);
+       } // 👈 Close uCenter
 
           // === DRAW REGIONAL ROUTES (Loaded from regionalRoutes.ts) ===
           if (typeof regionalRoutes !== 'undefined') {
@@ -696,14 +646,16 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                       const route = destObj[dest];
                       
                       const isSelected = selectedWp && (
-                          origin.trim().toLowerCase() === selectedWp.trim().toLowerCase() ||
-                          dest.trim().toLowerCase() === selectedWp.trim().toLowerCase()
+                          selectedWp === `${origin}-${dest}` ||
+                          selectedWp === `${dest}-${origin}` ||
+                          origin.trim().toLowerCase().includes(selectedWp.trim().toLowerCase()) ||
+                          dest.trim().toLowerCase().includes(selectedWp.trim().toLowerCase())
                       );
 
                       ctx.lineWidth = isSelected ? 3.5 : 1.8;
-                      // Ketika diklik rutenya maka akan berubah warna (Cyan)
-                      ctx.strokeStyle = isSelected ? "#00e5ff" : "rgba(148, 163, 184, 0.4)"; 
-                      ctx.shadowColor = isSelected ? "#00e5ff" : "transparent";
+                      // Ketika diklik rutenya maka akan berubah warna (Biru)
+                      ctx.strokeStyle = isSelected ? "#0066ff" : "rgba(148, 163, 184, 0.4)"; 
+                      ctx.shadowColor = isSelected ? "#0066ff" : "transparent";
                       ctx.shadowBlur = isSelected ? 10 : 0;
 
                       // Cache path for click hit-testing
@@ -771,13 +723,15 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                   Object.keys(destObj).forEach(dest => {
                       const route = destObj[dest];
                       const isSelected = selectedWp && (
-                          origin.trim().toLowerCase() === selectedWp.trim().toLowerCase() ||
-                          dest.trim().toLowerCase() === selectedWp.trim().toLowerCase()
+                          selectedWp === `${origin}-${dest}` ||
+                          selectedWp === `${dest}-${origin}` ||
+                          origin.trim().toLowerCase().includes(selectedWp.trim().toLowerCase()) ||
+                          dest.trim().toLowerCase().includes(selectedWp.trim().toLowerCase())
                       );
 
                       ctx.lineWidth = isSelected ? 4.0 : 2.0;
-                      ctx.strokeStyle = isSelected ? "#00e5ff" : "rgba(245, 158, 11, 0.4)"; // Amber dormant
-                      ctx.shadowColor = isSelected ? "#00e5ff" : "transparent";
+                      ctx.strokeStyle = isSelected ? "#0066ff" : "rgba(245, 158, 11, 0.4)"; // Amber dormant
+                      ctx.shadowColor = isSelected ? "#0066ff" : "transparent";
                       ctx.shadowBlur = isSelected ? 12 : 0;
 
                       const normalizedPts = route.coords.map((pt: any) => ({
@@ -876,28 +830,30 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               ctx.strokeStyle = "transparent"; 
               ctx.stroke();
           });
-        }
-      }
-
-
 
       ctx.restore();
       ctx.restore();
     });
 
-  }, [geoData, userCountry, targetCountry, centersData, aiPathfinder, selectedWp]);
+  }, [geoData, userCountry, targetCountry, centersData, selectedWp]);
 
   // Define Custom Cursors
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
   const hoverCursor = "pointer";
 
   return (
-    <canvas
-      ref={canvasRef}
+    <div className="relative h-full w-full overflow-hidden">
+      <canvas
+        ref={canvasRef}
       width={mapWidth * 3}
       height={mapHeight}
       className="h-full w-auto max-w-none z-10"
-      style={{ cursor: isHovering ? hoverCursor : defaultCursor, pointerEvents: active ? "auto" : "none" }}
+      style={{ cursor: defaultCursor, pointerEvents: active ? "auto" : "none" }}
+      onMouseDown={(e) => {
+        if (mouseDownPosRef && mouseDownPosRef.current !== undefined) {
+          mouseDownPosRef.current = { x: e.clientX, y: e.clientY };
+        }
+      }}
       onMouseMove={(e) => {
         if (typeof active !== 'undefined' && !active) return;
         const canvas = canvasRef.current;
@@ -937,6 +893,12 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       onClick={(e) => {
         if (!active) return;
         
+        if (mouseDownPosRef.current) {
+          const dx = Math.abs(e.clientX - mouseDownPosRef.current.x);
+          const dy = Math.abs(e.clientY - mouseDownPosRef.current.y);
+          if (dx > 5 || dy > 5) return; // Drag detected, abort
+        }
+        
         const canvas = canvasRef.current;
         if (!canvas) return;
         const rect = canvas.getBoundingClientRect();
@@ -965,6 +927,15 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
           });
         }
 
+        if (typeof internationalHubs !== 'undefined') {
+          internationalHubs.forEach((hub) => {
+             const x = ((hub.lon + 180) / 360) * mapWidth;
+             const y = ((90 - hub.lat) / 180) * mapHeight;
+             const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
+             if (dist < minDist) { minDist = dist; closest = { name: hub.name }; }
+          });
+        }
+
         let clickedPath: any = null;
         if (minDist >= 60 && typeof drawnPathsRef !== 'undefined' && drawnPathsRef.current) {
             let minLineDist = 60; 
@@ -985,13 +956,9 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
           const targetName = closest.name;
           setSelectedWp(prev => prev === targetName ? null : targetName);
           // onSelect(targetName); // Modal disabled for trade mode
-        } else if (clickedPath) {
-          const targetName = clickedPath.origin || clickedPath.originId || clickedPath.partner;
-          setSelectedWp(prev => prev === targetName ? null : targetName);
-        } else {
-          setSelectedWp(null);
         }
       }}
-    />
+      />
+    </div>
   );
 }
