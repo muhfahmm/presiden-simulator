@@ -369,10 +369,11 @@ export const internationalRoutes: {
         { lon: 29.00, lat: 41.05 }, // Selat Bosporus (Istanbul Center)
         { lon: 28.00, lat: 40.70 }, // Laut Marmara
         { lon: 26.60, lat: 40.20 }, // Selat Dardanelles
-        { lon: 25.80, lat: 38.50 }, // Laut Aegea Timur 1
-        { lon: 26.40, lat: 37.00 }, // Laut Aegea Timur 2
-        { lon: 27.20, lat: 35.50 }, // Bypass Timur Kreta (Pass Rhodes)
+        { lon: 26.60, lat: 38.50 }, // Turun Lurus ke Selatan 
+        { lon: 26.90, lat: 37.00 }, // Lengkung halus ke kanan 
+        { lon: 27.30, lat: 35.50 }, // Bypass Kreta Timur
         { lon: 27.50, lat: 34.00 }, // Keluar ke Mediterania
+
         { lon: 29.50, lat: 33.20 }, // Transisi ke Suez
         { lon: 31.00, lat: 32.00 }, // MERGE NODE dengan Trunk Utama
         { lon: 32.53, lat: 29.93 }  // Terusan Suez Hub
