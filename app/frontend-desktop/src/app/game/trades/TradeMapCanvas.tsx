@@ -226,7 +226,9 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         const isPlayer = name === userCountry;
         const isTarget = name === targetCountry;
 
-        ctx.beginPath();
+        ctx.lineJoin = "round";
+              ctx.lineCap = "round";
+              ctx.beginPath();
 
         const drawCoords = (coordinates: any) => {
           coordinates.forEach((polyline: any, idx: number) => {
@@ -396,8 +398,8 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       if (userCountry && aiPathfinder) {
         const uCenter = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
         if (uCenter) {
-          const ux = ((uCenter.lon + 180) / 360) * mapWidth;
-          const uy = ((90 - uCenter.lat) / 180) * mapHeight;
+          const ux = ((uCenter!.lon + 180) / 360) * mapWidth;
+          const uy = ((90 - uCenter!.lat) / 180) * mapHeight;
 
           ctx.lineWidth = 3;
           ctx.shadowBlur = 0; // Solid classic lines, no glow
@@ -445,6 +447,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
           const uniqueSegments = new Map<string, { start: any, end: any, isFinal: boolean, partner: string, origin?: string, originId?: string, partnerId?: string }>();
 
           uniqueAgreements.forEach((agr: any) => {
+            if (!uCenter) return;
             const pMatch = centersData.find(c => c.name_en?.trim() === agr.partner?.trim() || c.name_id?.trim() === agr.partner?.trim());
             const partnerEn = pMatch ? pMatch.name_en : agr.partner;
             const partnerId = pMatch ? pMatch.name_id : agr.partner;
@@ -459,14 +462,14 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               customTradeRoutes[uNameEn]?.[pNameId] ||
               customTradeRoutes[uNameId]?.[pNameId];
 
-            if (waypoints && waypoints.length > 0) {
+            if (false && waypoints && waypoints.length > 0) {
               const startStaticWp = waypointCoords[uNameEn] || waypointCoords[uNameId];
               let currentPos = { 
-                lon: startStaticWp?.lon ?? uCenter.lon, 
-                lat: startStaticWp?.lat ?? uCenter.lat 
+                lon: startStaticWp?.lon ?? uCenter!.lon, 
+                lat: startStaticWp?.lat ?? uCenter!.lat 
               };
 
-              waypoints.forEach((wpName, wpIdx) => {
+              waypoints.forEach((wpName: string, wpIdx: number) => {
                 const nextWpObj = centersData.find(c => c.name_en === wpName || c.name_id === wpName);
                 const staticWp = waypointCoords[wpName];
                 const nextWpLon = staticWp?.lon ?? nextWpObj?.lon;
@@ -525,7 +528,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
 
                 let currentPos = { lon: startLon, lat: startLat };
 
-                waypoints.forEach((wpName, wpIdx) => {
+                waypoints.forEach((wpName: string, wpIdx: number) => {
                    const nextWpObj = centersData.find(c => c.name_en === wpName || c.name_id === wpName);
                    const staticWp = waypointCoords[wpName];
                    const nextWpLon = staticWp?.lon ?? nextWpObj?.lon;
@@ -594,7 +597,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               // Smooth algorithm to combine staircase serrations into continuous curves
               const smoothPath = (pts: any[]) => {
                 let smoothed = [...pts];
-                const iterations = 3; 
+                const iterations = 5; 
                 for (let k = 0; k < iterations; k++) {
                   let nextSmoothed = [];
                   for (let i = 0; i < smoothed.length; i++) {
@@ -646,6 +649,9 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                 else ctx.lineTo(nextX, nextY);
               });
               ctx.stroke();
+              // Reset shadow to avoid bleed to next segments
+              ctx.shadowColor = "transparent";
+              ctx.shadowBlur = 0;
 
               // Nodes
               const destP = normalized[normalized.length - 1];
@@ -742,6 +748,65 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
 
                 setIsHovering(foundHover);
         if (Math.random() < 0.05) console.log("Hover debugging:", foundHover, "Min dist to", closestName, "is", debugMinDist);
+      }}
+
+      onClick={(e) => {
+        if (!active) return;
+        
+        const canvas = canvasRef.current;
+        if (!canvas) return;
+        const rect = canvas.getBoundingClientRect();
+        const clickX = ((e.clientX - rect.left) / rect.width) * (mapWidth * 3);
+        const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
+        const mappedClickX = clickX % mapWidth;
+
+        let closest: any = null;
+        let minDist = 100;
+
+        centersData.forEach((center: any) => {
+          const x = ((center.lon + 180) / 360) * mapWidth;
+          const y = ((90 - center.lat) / 180) * mapHeight;
+          const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
+          if (dist < minDist) { minDist = dist; closest = { name: center.name_en?.trim() }; }
+        });
+
+        if (typeof waypointCoords !== 'undefined') {
+          Object.keys(waypointCoords).forEach((name) => {
+             if (typeof hiddenWaypoints !== 'undefined' && hiddenWaypoints.includes(name)) return;
+             const coord = waypointCoords[name];
+             const x = ((coord.lon + 180) / 360) * mapWidth;
+             const y = ((90 - coord.lat) / 180) * mapHeight;
+             const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
+             if (dist < minDist) { minDist = dist; closest = { name: name }; }
+          });
+        }
+
+        let clickedPath: any = null;
+        if (minDist >= 60 && typeof drawnPathsRef !== 'undefined' && drawnPathsRef.current) {
+            let minLineDist = 60; 
+            drawnPathsRef.current.forEach(line => {
+                line.pts.forEach(pt => {
+                    const lx = pt.rtX * mapWidth;
+                    const ly = pt.rtY * mapHeight;
+                    const lDist = Math.sqrt((mappedClickX - lx) ** 2 + (clickY - ly) ** 2);
+                    if (lDist < minLineDist) {
+                        minLineDist = lDist;
+                        clickedPath = line;
+                    }
+                });
+            });
+        }
+
+        if (closest && minDist < 60) {
+          const targetName = closest.name;
+          setSelectedWp(prev => prev === targetName ? null : targetName);
+          // onSelect(targetName); // Modal disabled for trade mode
+        } else if (clickedPath) {
+          const targetName = clickedPath.origin || clickedPath.originId || clickedPath.partner;
+          setSelectedWp(prev => prev === targetName ? null : targetName);
+        } else {
+          setSelectedWp(null);
+        }
       }}
     />
   );
