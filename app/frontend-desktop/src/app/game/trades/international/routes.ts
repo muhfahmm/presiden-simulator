@@ -378,7 +378,6 @@ export const internationalRoutes: {
         { lon: 31.00, lat: 32.00 }, // MERGE NODE dengan Trunk Utama
         { lon: 32.53, lat: 29.93 }  // Terusan Suez Hub
 
-
       ]
     }
   }
