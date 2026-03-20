@@ -18,20 +18,24 @@ export const internationalRoutes: {
       color: "#f59e0b",
       coords: [
         { lon: 103.85, lat: 1.25 },
-        { lon: 103.50, lat: 1.10 }, // Keluar pelabuhan ke selatan (menghindari Johor)
         { lon: 102.70, lat: 1.40 }, // Menjauh dari pesisir darat Malaysia
-        { lon: 101.50, lat: 2.50 }, // Tengah Selat Malaka
-        { lon: 98.00, lat: 5.60 },  // Jauh lebih ke Utara menjauhi pesisir Lhokseumawe
-        { lon: 96.50, lat: 6.20 },  // Transisi lengkung naik
+        { lon: 101.80, lat: 2.20 }, // Tengah Selat Malaka (Unified)
+        { lon: 101.35, lat: 3.00 }, // Malaysia Barat (Kiri)
+        { lon: 100.50, lat: 4.80 },
+        { lon: 99.50, lat: 6.20 },  // Menghindari Langkawi
+        { lon: 98.80, lat: 7.50 },  // Pendekatan Phuket halus
+        { lon: 98.39, lat: 7.88 },  // 🟢 Thailand (Kiri)
+        { lon: 97.50, lat: 7.70 },  // Busur keluar ke laut lepas
+        { lon: 95.00, lat: 6.50 },  // Lepas Andaman Islands 
         { lon: 94.80, lat: 6.50 },  // Mengudara tinggi di atas Banda Aceh
         { lon: 92.00, lat: 6.20 },  // Transisi lengkung turun
-        { lon: 89.00, lat: 5.80 },  
+        { lon: 89.00, lat: 5.80 },
         { lon: 85.00, lat: 5.15 },  // Mulai melengkung halus
         { lon: 81.00, lat: 4.80 },  // Titik terbawah busur
-        { lon: 78.50, lat: 4.90 },  
+        { lon: 78.50, lat: 4.90 },
         { lon: 76.50, lat: 5.50 },  // Transisi sudut naik
-        { lon: 74.50, lat: 7.20 },  
-        { lon: 73.20, lat: 10.50 }, 
+        { lon: 74.50, lat: 7.20 },
+        { lon: 73.20, lat: 10.50 },
         { lon: 72.85, lat: 19.00 }  // Mumbai
       ]
     },
@@ -39,17 +43,22 @@ export const internationalRoutes: {
       color: "#f59e0b",
       coords: [
         { lon: 103.85, lat: 1.25 },
-        { lon: 103.50, lat: 1.10 },
         { lon: 102.70, lat: 1.40 },
-        { lon: 101.50, lat: 2.50 },
-        { lon: 98.00, lat: 5.60 },
-        { lon: 96.50, lat: 6.20 },
+        { lon: 101.80, lat: 2.20 }, // Tengah Selat Malaka (Unified)
+        { lon: 101.35, lat: 3.00 }, // Malaysia Barat (Kiri)
+        { lon: 100.50, lat: 4.80 },
+        { lon: 99.50, lat: 6.20 },  // Menghindari Langkawi
+        { lon: 98.80, lat: 7.50 },  // Pendekatan Phuket halus
+        { lon: 98.39, lat: 7.88 },  // Thailand (Kiri)
+        { lon: 97.50, lat: 7.70 },  // Busur keluar ke laut lepas
+        { lon: 95.00, lat: 6.50 },  // Lepas Andaman Islands 
         { lon: 94.80, lat: 6.50 },
         { lon: 92.00, lat: 6.20 },
-        { lon: 85.00, lat: 5.60 }, // Turun ke bawah menjauhi daratan Timur
-        { lon: 81.00, lat: 5.30 }, // Di bawah Pulau Sri Lanka Selatan
-        { lon: 79.70, lat: 5.30 }, // Putar di bawah Colombo
-        { lon: 79.30, lat: 6.60 }, // Naik along West coast
+        { lon: 89.00, lat: 5.80 },  // 🟢 Unified Trunk
+        { lon: 85.00, lat: 5.15 },  // 🟢 Unified Trunk
+        { lon: 81.00, lat: 4.80 },  // 🟢 Unified Trunk Sub-coast
+        { lon: 79.50, lat: 5.40 },  // Cabang naik ke Colombo
+        { lon: 79.30, lat: 6.60 },
         { lon: 79.86, lat: 6.92 }
       ]
     },
@@ -58,15 +67,15 @@ export const internationalRoutes: {
       coords: [
         { lon: 103.85, lat: 1.25 },
         { lon: 104.50, lat: 1.80 }, // Keluar dari Singapura
-        { lon: 106.00, lat: 4.00 }, 
-        { lon: 108.50, lat: 7.50 }, 
-        { lon: 111.50, lat: 11.50 }, 
-        { lon: 114.30, lat: 15.30 }, 
-        { lon: 116.50, lat: 19.00 }, 
+        { lon: 106.00, lat: 4.00 },
+        { lon: 108.50, lat: 7.50 },
+        { lon: 111.50, lat: 11.50 },
+        { lon: 114.30, lat: 15.30 },
+        { lon: 116.50, lat: 19.00 },
         { lon: 118.20, lat: 21.80 }, // Memasuki Selat Taiwan (menghindari Taiwan selatan)
         { lon: 119.50, lat: 23.80 }, // Tengah Selat Taiwan
         { lon: 120.80, lat: 25.50 }, // Keluar dari Selat Taiwan
-        { lon: 122.00, lat: 27.50 }, 
+        { lon: 122.00, lat: 27.50 },
         { lon: 122.60, lat: 29.50 }, // Lengkung mendekati Shanghai
         { lon: 121.50, lat: 31.20 }
       ]
@@ -109,11 +118,11 @@ export const internationalRoutes: {
       coords: [
         { lon: 32.53, lat: 29.93 },
         { lon: 31.00, lat: 32.00 }, // Keluar Suez ke Mediterania
-        { lon: 25.00, lat: 34.00 }, 
-        { lon: 18.00, lat: 35.00 }, 
+        { lon: 25.00, lat: 34.00 },
+        { lon: 18.00, lat: 35.00 },
         { lon: 12.00, lat: 37.20 }, // Jauh di atas tanjung Cape Bon (Tunisia)
         { lon: 7.00, lat: 37.60 },  // Mendalam di atas pesisir Aljazair
-        { lon: 2.00, lat: 37.00 }, 
+        { lon: 2.00, lat: 37.00 },
         { lon: -3.00, lat: 36.30 }, // Memasuki laut Alboran
         { lon: -5.60, lat: 35.95 }, // Keluar Selat Gibraltar ke Atlantik
         { lon: -15.00, lat: 37.00 },
@@ -150,8 +159,8 @@ export const internationalRoutes: {
         { lon: 111.00, lat: -28.00 }, // Transisi melengkung sferis
         { lon: 114.00, lat: -34.20 }, // Lengkungan tumpul barat daya
         { lon: 118.00, lat: -36.20 }, // Masuk Great Australian Bight 1
-        { lon: 123.50, lat: -36.80 }, 
-        { lon: 129.00, lat: -37.20 }, 
+        { lon: 123.50, lat: -36.80 },
+        { lon: 129.00, lat: -37.20 },
         { lon: 136.00, lat: -38.00 }, // Di bawah Pulau Kangaroo
         { lon: 143.00, lat: -39.80 }, // Memasuki Selat Bass
         { lon: 147.10, lat: -39.20 }, // Keluar dari Selat Bass
@@ -164,8 +173,8 @@ export const internationalRoutes: {
       color: "#f59e0b",
       coords: [
         { lon: 106.82, lat: -6.17 },
-        { lon: 106.00, lat: -5.80 }, 
-        { lon: 105.40, lat: -6.15 }, 
+        { lon: 106.00, lat: -5.80 },
+        { lon: 105.40, lat: -6.15 },
         { lon: 104.50, lat: -7.00 },
         { lon: 95.00, lat: -14.00 },
         { lon: 82.00, lat: -20.00 },
@@ -193,7 +202,7 @@ export const internationalRoutes: {
         { lon: -75.80, lat: -51.50 }, // Menyusur Pantai Chile
         { lon: -74.50, lat: -53.50 }, // Mulai belok melengkung tumpul
         { lon: -72.00, lat: -55.30 }, // Lengkungan sferis kiri
-        { lon: -69.80, lat: -55.70 }, 
+        { lon: -69.80, lat: -55.70 },
         { lon: -67.80, lat: -55.85 }, // ⚓ CAPE HORN (Apex Simetris Center)
         { lon: -66.50, lat: -55.60 }, // Memasuki Selat Le Maire
         { lon: -65.10, lat: -54.60 }, // Corong tengah Strait
@@ -233,9 +242,9 @@ export const internationalRoutes: {
       color: "#f59e0b",
       coords: [
         { lon: -118.24, lat: 34.05 }, // LA
-        { lon: -121.00, lat: 38.00 }, 
+        { lon: -121.00, lat: 38.00 },
         { lon: -127.00, lat: 44.00 }, // Menyusur Pantai Barat AS
-        { lon: -135.00, lat: 50.00 }, 
+        { lon: -135.00, lat: 50.00 },
         { lon: -144.00, lat: 54.00 }, // Teluk Alaska bawah
         { lon: -154.00, lat: 54.20 }, // Menyusur bawah semenanjung Alaska
         { lon: -164.50, lat: 54.10 }, // Melintasi Selat Unimak ke Laut Bering
@@ -243,10 +252,10 @@ export const internationalRoutes: {
         { lon: -180.00, lat: 57.00 }, // 👈 Edge Seam 1 (West)
         { lon: 180.00, lat: 57.00 },  // 👈 Edge Seam 2 (East)
         { lon: 172.00, lat: 55.50 }, // Laut Bering Barat
-        { lon: 164.00, lat: 52.00 }, 
+        { lon: 164.00, lat: 52.00 },
         { lon: 154.00, lat: 46.00 }, // Menyusur Kuril
         { lon: 146.00, lat: 40.00 }, // Pesisir Timur Jepang
-        { lon: 142.00, lat: 36.50 }, 
+        { lon: 142.00, lat: 36.50 },
         { lon: 140.00, lat: 35.00 }  // Tokyo Dot
       ]
     }
@@ -261,14 +270,14 @@ export const internationalRoutes: {
         { lon: 138.40, lat: 33.70 }, // Busur halus masuk laut lepas dalam
         { lon: 137.00, lat: 32.90 }, // Pelayaran pantai Kii
         { lon: 135.00, lat: 32.30 }, // Di bawah Shikoku
-        { lon: 133.00, lat: 31.70 }, 
-        { lon: 131.20, lat: 30.90 }, 
+        { lon: 133.00, lat: 31.70 },
+        { lon: 131.20, lat: 30.90 },
         { lon: 130.40, lat: 30.50 }, // Lengkungan transisi halus
         { lon: 129.30, lat: 30.30 }, // Memutar di bawah Kyushu
         { lon: 128.20, lat: 30.40 }, // Mencegah sudut kaku di kiri
         { lon: 127.20, lat: 30.50 }, // Memasuki Laut China Timur
-        { lon: 125.00, lat: 30.80 }, 
-        { lon: 123.00, lat: 31.00 }, 
+        { lon: 125.00, lat: 30.80 },
+        { lon: 123.00, lat: 31.00 },
         { lon: 121.50, lat: 31.20 }
       ]
     }
@@ -282,7 +291,7 @@ export const internationalRoutes: {
         { lon: -12.00, lat: -38.00 },
         { lon: -28.00, lat: -42.00 },
         { lon: -45.00, lat: -47.00 }, // Naik melandai di tengah samudra
-        { lon: -61.00, lat: -50.00 }, 
+        { lon: -61.00, lat: -50.00 },
         { lon: -62.50, lat: -51.20 }, // Melengkung melandai diagonal
         { lon: -63.80, lat: -52.50 }, // Meningkat sudut lengkung
         { lon: -64.60, lat: -53.60 }, // Utara Pulau Staten masuk selat
@@ -300,8 +309,8 @@ export const internationalRoutes: {
         { lon: 79.00, lat: 6.60 }, // Keluar ke laut lepas Barat
         { lon: 77.80, lat: 5.80 }, // Transisi lengkung halus ke bawah
         { lon: 76.50, lat: 5.50 },
-        { lon: 74.50, lat: 7.20 }, 
-        { lon: 73.20, lat: 10.50 }, 
+        { lon: 74.50, lat: 7.20 },
+        { lon: 73.20, lat: 10.50 },
         { lon: 72.85, lat: 19.00 }
       ]
     }
@@ -313,9 +322,9 @@ export const internationalRoutes: {
         { lon: -63.57, lat: 44.65 }, // Halifax
         { lon: -53.00, lat: 46.00 }, // Off Newfoundland
         { lon: -40.00, lat: 48.00 }, // Tengah Atlantik Utara
-        { lon: -25.00, lat: 50.00 }, 
+        { lon: -25.00, lat: 50.00 },
         { lon: -10.00, lat: 51.00 }, // Memasuki Selat Inggris (English Channel)
-        { lon: -4.00, lat: 50.50 },  
+        { lon: -4.00, lat: 50.50 },
         { lon: -1.30, lat: 50.80 }   // Portsmouth/Southampton edge
       ]
     }

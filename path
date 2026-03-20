@@ -26,4 +26,4 @@ node js
 taskkill /F /IM node.exe
 
 go
-taskkill /F /IM main.exe
+taskkill /F /IM main.ex

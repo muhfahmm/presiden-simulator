@@ -3,9 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "../../select-country/data/countries";
 import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "./tradeRoutes";
-import { indonesiaHarbors } from './regions/asia/harbor/indonesia';
-import { singaporeHarbors } from './regions/asia/harbor/singapore';
-import { regionalRoutes } from './regions/asia/regionalRoutes';
+
+import { regionalRoutes } from './regional/AsianRoutes';
 import { internationalHubs } from './international/hubs';
 import { internationalRoutes } from './international/routes';
 
@@ -161,6 +160,11 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
     
     const offsets = [0, mapWidth, mapWidth * 2];
     drawnPathsRef.current = []; // Clear line tap cache
+
+    const selectedHubObj = selectedWp && typeof internationalHubs !== 'undefined' 
+        ? internationalHubs.find((h: any) => h.name === selectedWp) 
+        : null;
+
     offsets.forEach(offset => {
       ctx.save();
       ctx.translate(offset, 0);
@@ -649,7 +653,10 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                           selectedWp === `${origin}-${dest}` ||
                           selectedWp === `${dest}-${origin}` ||
                           origin.trim().toLowerCase().includes(selectedWp.trim().toLowerCase()) ||
-                          dest.trim().toLowerCase().includes(selectedWp.trim().toLowerCase())
+                          selectedWp.trim().toLowerCase().includes(origin.trim().toLowerCase()) ||
+                          dest.trim().toLowerCase().includes(selectedWp.trim().toLowerCase()) ||
+                          selectedWp.trim().toLowerCase().includes(dest.trim().toLowerCase()) ||
+                          (selectedHubObj && route.coords.some((pt: any) => Math.abs(pt.lon - selectedHubObj.lon) < 0.05 && Math.abs(pt.lat - selectedHubObj.lat) < 0.05))
                       );
 
                       ctx.lineWidth = isSelected ? 3.5 : 1.8;
@@ -726,7 +733,10 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                           selectedWp === `${origin}-${dest}` ||
                           selectedWp === `${dest}-${origin}` ||
                           origin.trim().toLowerCase().includes(selectedWp.trim().toLowerCase()) ||
-                          dest.trim().toLowerCase().includes(selectedWp.trim().toLowerCase())
+                          selectedWp.trim().toLowerCase().includes(origin.trim().toLowerCase()) ||
+                          dest.trim().toLowerCase().includes(selectedWp.trim().toLowerCase()) ||
+                          selectedWp.trim().toLowerCase().includes(dest.trim().toLowerCase()) ||
+                          (selectedHubObj && route.coords.some((pt: any) => Math.abs(pt.lon - selectedHubObj.lon) < 0.05 && Math.abs(pt.lat - selectedHubObj.lat) < 0.05))
                       );
 
                       ctx.lineWidth = isSelected ? 4.0 : 2.0;
@@ -810,26 +820,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               });
           }
 
-          // === DRAW CUSTOM HARBORS NODES (INDONESIA & SINGAPORE) ===
-          const trialHarbors = [...(typeof indonesiaHarbors !== 'undefined' ? indonesiaHarbors : []), ...(typeof singaporeHarbors !== 'undefined' ? singaporeHarbors : [])];
-          trialHarbors.forEach((harbor: any) => {
-              const hX = ((harbor.lon + 180) / 360) * mapWidth;
-              const hY = ((90 - harbor.lat) / 180) * mapHeight;
-              
-              ctx.beginPath();
-              ctx.arc(hX, hY, harbor.radius || 4.5, 0, Math.PI * 2);
-              ctx.fillStyle = harbor.fill || "#ffffff"; 
-              if (harbor.shadowColor) {
-                  ctx.shadowColor = harbor.shadowColor;
-                  ctx.shadowBlur = harbor.shadowBlur || 8;
-              }
-              ctx.fill();
-              
-              ctx.shadowColor = "transparent"; // reset shadow
-              ctx.shadowBlur = 0;
-              ctx.strokeStyle = "transparent"; 
-              ctx.stroke();
-          });
+
 
       ctx.restore();
       ctx.restore();
@@ -932,7 +923,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
              const x = ((hub.lon + 180) / 360) * mapWidth;
              const y = ((90 - hub.lat) / 180) * mapHeight;
              const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
-             if (dist < minDist) { minDist = dist; closest = { name: hub.name }; }
+             if (dist <= minDist) { minDist = dist; closest = { name: hub.name }; }
           });
         }
 
