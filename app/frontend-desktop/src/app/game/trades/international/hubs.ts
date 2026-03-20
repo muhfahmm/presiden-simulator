@@ -66,6 +66,7 @@ export const internationalHubs: Hub[] = [
   { name: "Jepang (Tokyo)", lon: 140.00, lat: 35.00, radius: 4.5, fill: "#ffffff" },
   { name: "Sri Lanka (Colombo)", lon: 79.86, lat: 6.92, radius: 4.0, fill: "#ffffff" },
   { name: "Kanada (Halifax)", lon: -63.57, lat: 44.65, radius: 4.5, fill: "#ffffff" },
-  { name: "Inggris (London)", lon: -1.30, lat: 50.80, radius: 4.5, fill: "#ffffff" }
+  { name: "Inggris (London)", lon: -1.30, lat: 50.80, radius: 4.5, fill: "#ffffff" },
+  { name: "Ukraina (Odesa)", lon: 30.72, lat: 46.48, radius: 4.5, fill: "#ffffff" }
 ];
 LinePlaceholder: true

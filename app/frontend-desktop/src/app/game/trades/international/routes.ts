@@ -81,6 +81,36 @@ export const internationalRoutes: {
       ]
     }
   },
+  "Kuwait": {
+    "Terusan Suez": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 47.98, lat: 29.37 }, 
+        { lon: 49.50, lat: 28.30 }, 
+        { lon: 51.00, lat: 27.20 }, 
+        { lon: 52.50, lat: 26.30 }, 
+        { lon: 54.00, lat: 25.50 }, 
+        { lon: 55.20, lat: 25.80 }, 
+        { lon: 55.80, lat: 26.30 }, 
+        { lon: 56.40, lat: 26.65 }, 
+        { lon: 56.40, lat: 26.65 }, 
+        { lon: 56.90, lat: 26.10 }, 
+        { lon: 57.50, lat: 25.50 }, // Smooth intermediate 1
+        { lon: 58.20, lat: 24.90 }, // Smooth intermediate 2
+        { lon: 59.00, lat: 24.10 }, // Smooth intermediate 3
+        { lon: 59.80, lat: 23.00 }, // Smooth intermediate 4
+        { lon: 60.40, lat: 22.00 }, // Smooth intermediate 5
+        { lon: 60.60, lat: 21.00 }, 
+        { lon: 58.50, lat: 16.50 }, 
+        { lon: 55.00, lat: 13.00 }  
+
+
+
+
+
+      ]
+    }
+  },
   "India (Mumbai)": {
     "Terusan Suez": {
       color: "#f59e0b",
@@ -326,6 +356,28 @@ export const internationalRoutes: {
         { lon: -10.00, lat: 51.00 }, // Memasuki Selat Inggris (English Channel)
         { lon: -4.00, lat: 50.50 },
         { lon: -1.30, lat: 50.80 }   // Portsmouth/Southampton edge
+      ]
+    }
+  },
+  "Ukraina (Odesa)": {
+    "Terusan Suez": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 30.72, lat: 46.48 }, // Odesa
+        { lon: 31.50, lat: 44.00 }, // Tengah Laut Hitam
+        { lon: 29.50, lat: 41.40 }, // Pintu Masuk Bosporus
+        { lon: 29.00, lat: 41.05 }, // Selat Bosporus (Istanbul Center)
+        { lon: 28.00, lat: 40.70 }, // Laut Marmara
+        { lon: 26.60, lat: 40.20 }, // Selat Dardanelles
+        { lon: 25.80, lat: 38.50 }, // Laut Aegea Timur 1
+        { lon: 26.40, lat: 37.00 }, // Laut Aegea Timur 2
+        { lon: 27.20, lat: 35.50 }, // Bypass Timur Kreta (Pass Rhodes)
+        { lon: 27.50, lat: 34.00 }, // Keluar ke Mediterania
+        { lon: 29.50, lat: 33.20 }, // Transisi ke Suez
+        { lon: 31.00, lat: 32.00 }, // MERGE NODE dengan Trunk Utama
+        { lon: 32.53, lat: 29.93 }  // Terusan Suez Hub
+
+
       ]
     }
   }
