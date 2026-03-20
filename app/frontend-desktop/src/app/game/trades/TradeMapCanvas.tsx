@@ -6,6 +6,8 @@ import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "./tradeRoute
 import { indonesiaHarbors } from './regions/asia/harbor/indonesia';
 import { singaporeHarbors } from './regions/asia/harbor/singapore';
 import { regionalRoutes } from './regions/asia/regionalRoutes';
+import { internationalHubs } from './international/hubs';
+import { internationalRoutes } from './international/routes';
 import { AITradePathfinder } from "../components/trade-ai-routes/AITradePathfinder";
 
 interface TradeMapCanvasProps {
@@ -723,7 +725,10 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                       route.coords.forEach((pt: any, idx: number) => {
                           const x = ((pt.lon + 180) / 360) * mapWidth;
                           const y = ((90 - pt.lat) / 180) * mapHeight;
-                          if (idx === 0) ctx.moveTo(x, y);
+                          const prevPt = idx > 0 ? route.coords[idx - 1] : null;
+                          const isSeamCrossing = prevPt && Math.abs(pt.lon - prevPt.lon) > 180;
+
+                          if (idx === 0 || isSeamCrossing) ctx.moveTo(x, y);
                           else ctx.lineTo(x, y);
                       });
                       ctx.stroke();
@@ -756,6 +761,98 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                       }
                       ctx.shadowBlur = 0; // reset
                   });
+              });
+          }
+
+          // === DRAW INTERNATIONAL ROUTES (Loaded from international/routes.ts) ===
+          if (typeof internationalRoutes !== 'undefined') {
+              Object.keys(internationalRoutes).forEach(origin => {
+                  const destObj = internationalRoutes[origin];
+                  Object.keys(destObj).forEach(dest => {
+                      const route = destObj[dest];
+                      const isSelected = selectedWp && (
+                          origin.trim().toLowerCase() === selectedWp.trim().toLowerCase() ||
+                          dest.trim().toLowerCase() === selectedWp.trim().toLowerCase()
+                      );
+
+                      ctx.lineWidth = isSelected ? 4.0 : 2.0;
+                      ctx.strokeStyle = isSelected ? "#00e5ff" : "rgba(245, 158, 11, 0.4)"; // Amber dormant
+                      ctx.shadowColor = isSelected ? "#00e5ff" : "transparent";
+                      ctx.shadowBlur = isSelected ? 12 : 0;
+
+                      const normalizedPts = route.coords.map((pt: any) => ({
+                          rtX: (pt.lon + 180) / 360,
+                          rtY: (90 - pt.lat) / 180
+                      }));
+                      if (typeof drawnPathsRef !== 'undefined' && drawnPathsRef.current) {
+                          drawnPathsRef.current.push({
+                              pts: normalizedPts,
+                              origin: origin,
+                              partner: dest,
+                              originId: "",
+                              partnerId: ""
+                          });
+                      }
+
+                      ctx.beginPath();
+                      route.coords.forEach((pt: any, idx: number) => {
+                          const x = ((pt.lon + 180) / 360) * mapWidth;
+                          const y = ((90 - pt.lat) / 180) * mapHeight;
+                          const prevPt = idx > 0 ? route.coords[idx - 1] : null;
+                          const isSeamCrossing = prevPt && Math.abs(pt.lon - prevPt.lon) > 180;
+
+                          if (idx === 0 || isSeamCrossing) ctx.moveTo(x, y);
+                          else ctx.lineTo(x, y);
+                      });
+                      ctx.stroke();
+
+                      if (isSelected) {
+                          for (let i = 0; i < route.coords.length - 1; i++) {
+                              const curr = route.coords[i];
+                              const next = route.coords[i + 1];
+                              const cX = ((curr.lon + 180) / 360) * mapWidth;
+                              const cY = ((90 - curr.lat) / 180) * mapHeight;
+                              const nX = ((next.lon + 180) / 360) * mapWidth;
+                              const nY = ((90 - next.lat) / 180) * mapHeight;
+                              const midX = (cX + nX) / 2;
+                              const midY = (cY + nY) / 2;
+                              const angle = Math.atan2(nY - cY, nX - cX);
+
+                              ctx.save();
+                              ctx.translate(midX, midY);
+                              ctx.rotate(angle);
+                              ctx.beginPath();
+                              ctx.moveTo(-6, -4);
+                              ctx.lineTo(4, 0);
+                              ctx.lineTo(-6, 4);
+                              ctx.fillStyle = "#ffffff";
+                              ctx.fill();
+                              ctx.restore();
+                          }
+                      }
+                      ctx.shadowBlur = 0;
+                  });
+              });
+          }
+
+          // === DRAW INTERNATIONAL HUBS (Loaded from international/hubs.ts) ===
+          if (typeof internationalHubs !== 'undefined') {
+              internationalHubs.forEach((hub: any) => {
+                  const hX = ((hub.lon + 180) / 360) * mapWidth;
+                  const hY = ((90 - hub.lat) / 180) * mapHeight;
+                  
+                  ctx.beginPath();
+                  ctx.arc(hX, hY, hub.radius || 4.5, 0, Math.PI * 2);
+                  ctx.fillStyle = hub.fill || "#ffffff"; 
+                  if (hub.shadowColor) {
+                      ctx.shadowColor = hub.shadowColor;
+                      ctx.shadowBlur = hub.shadowBlur || 8;
+                  }
+                  ctx.fill();
+                  ctx.shadowColor = "transparent";
+                  ctx.shadowBlur = 0;
+                  ctx.strokeStyle = "transparent";
+                  ctx.stroke();
               });
           }
 
