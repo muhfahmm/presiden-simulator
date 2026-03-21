@@ -1,4 +1,4 @@
-1. [ ] afganistan
+1. [x] afganistan
 2. [x] albania
 3. [x] aljazair
 4. [x] andorra
@@ -10,183 +10,183 @@
 10. [x] australia
 11. [x] austria
 12. [x] azerbaijan
-13. [x] bahama
-14. [x] bahrain
+13. [ ] bahama
+14. [ ] bahrain
 15. [ ] bangladesh
-16. [x] barbados
-17. [x] belanda
-18. [x] belarus
-19. [x] belgia
-20. [x] belize
-21. [x] benin
-22. [x] bhutan
+16. [ ] barbados
+17. [ ] belanda
+18. [ ] belarus
+19. [ ] belgia
+20. [ ] belize
+21. [ ] benin
+22. [ ] bhutan
 23. [ ] bolivia
-24. [x] bosnia dan hercegovina
-25. [x] botswana
-26. [x] brazil
-27. [x] brunei
-28. [x] bulgaria
-29. [x] burkina faso
-30. [x] burundi
-31. [x] chad
-32. [x] chile
-33. [x] china
+24. [ ] bosnia dan hercegovina
+25. [ ] botswana
+26. [ ] brazil
+27. [ ] brunei
+28. [ ] bulgaria
+29. [ ] burkina faso
+30. [ ] burundi
+31. [ ] chad
+32. [ ] chile
+33. [ ] china
 34. [ ] costa rica
-35. [x] ceko
+35. [ ] ceko
 36. [ ] denmark
-37. [x] dominika
-38. [x] ekuador
-39. [x] el salvador
-40. [x] eritrea
+37. [ ] dominika
+38. [ ] ekuador
+39. [ ] el salvador
+40. [ ] eritrea
 41. [ ] estonia
-42. [x] ethiopia
-43. [x] fiji
-44. [x] filipina
-45. [x] finlandia
-46. [x] gabon
-47. [x] gambia
+42. [ ] ethiopia
+43. [ ] fiji
+44. [ ] filipina
+45. [ ] finlandia
+46. [ ] gabon
+47. [ ] gambia
 48. [ ] georgia
-49. [x] ghana
-50. [x] grenada
-51. [x] guatemala
-52. [x] guinea
-53. [x] guinea-bissau
-54. [x] guyana
+49. [ ] ghana
+50. [ ] grenada
+51. [ ] guatemala
+52. [ ] guinea
+53. [ ] guinea-bissau
+54. [ ] guyana
 55. [ ] haiti
-56. [x] honduras
-57. [x] hungaria
-58. [x] islandia
-59. [x] india
+56. [ ] honduras
+57. [ ] hungaria
+58. [ ] islandia
+59. [ ] india
 60. [ ] indonesia
-61. [x] irak
-62. [x] iran
+61. [ ] irak
+62. [ ] iran
 63. [ ] irlandia
-64. [x] israel
-65. [x] italia
-66. [x] jamaika
-67. [x] jepang
-68. [x] jerman
-69. [x] yordania
-70. [x] kamboja
-71. [x] kamerun
-72. [x] kanada
-73. [x] kazakhstan
-74. [x] kenya
-75. [x] kirgizstan
-76. [x] kiribati
-77. [x] kolombia
-78. [x] komoro
-79. [x] kongo
-80. [x] korea selatan
+64. [ ] israel
+65. [ ] italia
+66. [ ] jamaika
+67. [ ] jepang
+68. [ ] jerman
+69. [ ] yordania
+70. [ ] kamboja
+71. [ ] kamerun
+72. [ ] kanada
+73. [ ] kazakhstan
+74. [ ] kenya
+75. [ ] kirgizstan
+76. [ ] kiribati
+77. [ ] kolombia
+78. [ ] komoro
+79. [ ] kongo
+80. [ ] korea selatan
 81. [ ] korea utara
-82. [x] kosta rika
-83. [x] kroasia
-84. [x] kuba
-85. [x] kuwait
-86. [x] laos
-87. [x] latvia
-88. [x] lebanon
-89. [x] lesotho
-90. [x] liberia
-91. [x] libya
-92. [x] liechtenstein
+82. [ ] kosta rika
+83. [ ] kroasia
+84. [ ] kuba
+85. [ ] kuwait
+86. [ ] laos
+87. [ ] latvia
+88. [ ] lebanon
+89. [ ] lesotho
+90. [ ] liberia
+91. [ ] libya
+92. [ ] liechtenstein
 93. [ ] lithuania
-94. [x] luksemburg
-95. [x] madagaskar
-96. [x] malawi
-97. [x] malaysia
-98. [x] maldives
-99. [x] mali
-100. [x] malta
-101. [x] maroko
-102. [x] marshall
+94. [ ] luksemburg
+95. [ ] madagaskar
+96. [ ] malawi
+97. [ ] malaysia
+98. [ ] maldives
+99. [ ] mali
+100. [ ] malta
+101. [ ] maroko
+102. [ ] marshall
 103. [ ] mauritania
-104. [x] mauritius
-105. [x] meksiko
-106. [x] mikronesia
-107. [x] moldova
-108. [x] monako
-109. [x] mongolia
-110. [x] montenegro
-111. [x] mozambik
+104. [ ] mauritius
+105. [ ] meksiko
+106. [ ] mikronesia
+107. [ ] moldova
+108. [ ] monako
+109. [ ] mongolia
+110. [ ] montenegro
+111. [ ] mozambik
 112. [ ] myanmar
-113. [x] namibia
-114. [x] nauru
+113. [ ] namibia
+114. [ ] nauru
 115. [ ] nepal
-116. [x] niger
-117. [x] nigeria
-118. [x] nikaragua
-119. [x] norwegia
-120. [x] oman
-121. [x] pakistan
-122. [x] palau
-123. [x] palestina
-124. [x] panama
-125. [x] papua nugini
-126. [x] paraguay
-127. [x] peru
-128. [x] polandia
+116. [ ] niger
+117. [ ] nigeria
+118. [ ] nikaragua
+119. [ ] norwegia
+120. [ ] oman
+121. [ ] pakistan
+122. [ ] palau
+123. [ ] palestina
+124. [ ] panama
+125. [ ] papua nugini
+126. [ ] paraguay
+127. [ ] peru
+128. [ ] polandia
 129. [ ] portugal
-130. [x] qatar
-131. [x] republik afrika tengah
-132. [x] republik demokratik kongo
-133. [x] republik dominika
-134. [x] republik madagaskar
-135. [x] republik moldova
-136. [x] republik mozambik
-137. [x] republik rumania
+130. [ ] qatar
+131. [ ] republik afrika tengah
+132. [ ] republik demokratik kongo
+133. [ ] republik dominika
+134. [ ] republik madagaskar
+135. [ ] republik moldova
+136. [ ] republik mozambik
+137. [ ] republik rumania
 138. [ ] republik serbia
-139. [x] republik sudan
-140. [x] republik tanzania
-141. [x] republik timor-leste
-142. [x] republik uganda
-143. [x] republik zambia
-144. [x] republik zimbabwe
-145. [x] rusia
-146. [x] rwanda
-147. [x] saint kitts dan nevis
-148. [x] saint lucia
-149. [x] saint vincent dan grenadine
-150. [x] samoa
-151. [x] san marino
-152. [x] sao tome dan principe
-153. [x] senegal
-154. [x] seychelles
-155. [x] sierra leone
-156. [x] singapura
-157. [x] slowakia
-158. [x] slovenia
-159. [x] somalia
-160. [x] spanyol
-161. [x] sri lanka
-162. [x] sudan selatan
-163. [x] suriname
-164. [x] suriah
-165. [x] swedia
-166. [x] swiss
+139. [ ] republik sudan
+140. [ ] republik tanzania
+141. [ ] republik timor-leste
+142. [ ] republik uganda
+143. [ ] republik zambia
+144. [ ] republik zimbabwe
+145. [ ] rusia
+146. [ ] rwanda
+147. [ ] saint kitts dan nevis
+148. [ ] saint lucia
+149. [ ] saint vincent dan grenadine
+150. [ ] samoa
+151. [ ] san marino
+152. [ ] sao tome dan principe
+153. [ ] senegal
+154. [ ] seychelles
+155. [ ] sierra leone
+156. [ ] singapura
+157. [ ] slowakia
+158. [ ] slovenia
+159. [ ] somalia
+160. [ ] spanyol
+161. [ ] sri lanka
+162. [ ] sudan selatan
+163. [ ] suriname
+164. [ ] suriah
+165. [ ] swedia
+166. [ ] swiss
 167. [ ] taiwan
-168. [x] tajikistan
-169. [x] tahiti
-170. [x] tanzania
-171. [x] thailand
-172. [x] timor-leste
-173. [x] togo
-174. [x] tonga
-175. [x] trinidad dan tobago
-176. [x] tunisia
-177. [x] turki
-178. [x] turkmenistan
-179. [x] tuvalu
-180. [x] ukraina
-181. [x] uni emirat arab
-182. [x] uruguay
-183. [x] uzbekistan
-184. [x] vanuatu
-185. [x] vatikan
-186. [x] venezuela
-187. [x] vietnam
-188. [x] yaman
-189. [x] yordania
-190. [x] yugoslavia
-191. [x] zambia
-192. [x] zimbabwe
+168. [ ] tajikistan
+169. [ ] tahiti
+170. [ ] tanzania
+171. [ ] thailand
+172. [ ] timor-leste
+173. [ ] togo
+174. [ ] tonga
+175. [ ] trinidad dan tobago
+176. [ ] tunisia
+177. [ ] turki
+178. [ ] turkmenistan
+179. [ ] tuvalu
+180. [ ] ukraina
+181. [ ] uni emirat arab
+182. [ ] uruguay
+183. [ ] uzbekistan
+184. [ ] vanuatu
+185. [ ] vatikan
+186. [ ] venezuela
+187. [ ] vietnam
+188. [ ] yaman
+189. [ ] yordania
+190. [ ] yugoslavia
+191. [ ] zambia
+192. [ ] zimbabwe
