@@ -1,0 +1,39 @@
+Match found in Route: India (Mumbai) -> India (Mumbai) (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37
+Match found in Route: India (Mumbai) -> Malaysia Barat (Kiri) (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37
+Match found in Route: India (Mumbai) -> Singapura (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37
+Match found in Route: India (Mumbai) -> Jakarta (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37
+Match found in Route: India (Mumbai) -> China (Shanghai) (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37
+Match found in Route: India (Mumbai) -> Jepang (Tokyo) (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37
+Match found in Route: India (Mumbai) -> Korea Selatan (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37
+Match found in Route: India (Mumbai) -> Bangladesh (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37
+Match found in Route: India (Mumbai) -> Myanmar (Selatan) (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37
+Match found in Route: India (Mumbai) -> Hainan (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37
+Match found in Route: India (Mumbai) -> Filipina (Utara) (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37
+Match found in Route: India (Mumbai) -> Korea Utara (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37
+Match found in Route: India (Mumbai) -> Rusia (Vladivostok) (Index 0 -> 1)
+  Node 0: lon=60.62, lat=25.29
+  Node 1: lon=47.98, lat=29.37

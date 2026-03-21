@@ -1,0 +1,22 @@
+Line 16: "Singapura": {
+Line 102: "Kuwait": {
+Line 829: "Terusan Suez": {
+Line 850: "Selat Gibraltar": {
+Line 863: "Jakarta": {
+Line 905: "Amerika Serikat (Los Angeles)": {
+Line 979: "Jepang (Tokyo)": {
+Line 1001: "Afrika Selatan (Cape Town)": {
+Line 1020: "Sri Lanka (Colombo)": {
+Line 1034: "Kanada (Halifax)": {
+Line 1048: "Ukraina (Odesa)": {
+Line 1068: "Taiwan": {
+Line 1152: "China (Hong Kong)": {
+Line 1192: "Yemen (Aden)": {
+Line 1230: "Yemen (Hodeidah)": {
+Line 1242: "Iran (Bushehr)": {
+Line 1925: "Bahrain": {
+Line 2608: "Qatar": {
+Line 3277: "Iran (Kiri)": {
+Line 3890: "Iran (Kanan)": {
+Line 4446: "Pakistan (Karachi)": {
+Line 4473: "Pakistan (Gwadar)": {

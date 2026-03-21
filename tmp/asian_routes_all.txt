@@ -35,7 +35,16 @@ export const regionalRoutes: {
         { lon: 103.40, lat: 3.90 }  // Malaysia Barat (Kanan)
       ]
     },
-
+    "Malaysia Timur (Kiri)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 103.85, lat: 1.25 }, // Singapura
+        { lon: 104.50, lat: 1.50 }, 
+        { lon: 106.50, lat: 1.80 }, 
+        { lon: 108.50, lat: 1.60 }, 
+        { lon: 110.35, lat: 1.55 }  // Malaysia Timur Kiri
+      ]
+    }
   },
   "Malaysia Barat (Kiri)": {},
   "Thailand (Kanan)": {
@@ -381,11 +390,11 @@ export const regionalRoutes: {
     "Brunei": {
       color: "#ff4d4d",
       coords: [
-        { lon: 110.35, lat: 1.55 }, // Kiri
-        { lon: 111.00, lat: 3.00 }, // Push North
-        { lon: 112.50, lat: 4.20 }, // Push North-East
-        { lon: 114.00, lat: 5.00 }, // Push North-East 2
-        { lon: 115.00, lat: 5.00 }  // Brunei
+        { lon: 110.35, lat: 1.55 },
+        { lon: 111.50, lat: 2.50 },
+        { lon: 113.00, lat: 3.80 },
+        { lon: 114.50, lat: 4.80 },
+        { lon: 115.00, lat: 5.00 }
       ]
     }
   },

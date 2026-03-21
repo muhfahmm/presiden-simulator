@@ -1,0 +1,30 @@
+Kuwait Origin start at line 102
+  Destination: Terusan Suez (Line 103)
+    coords start: Line 105
+  Destination: India (Mumbai) (Line 126)
+    coords start: Line 128
+  Destination: Malaysia Barat (Kiri) (Line 146)
+    coords start: Line 148
+  Destination: Singapura (Line 184)
+    coords start: Line 186
+  Destination: Jakarta (Line 225)
+    coords start: Line 227
+  Destination: China (Shanghai) (Line 271)
+    coords start: Line 273
+  Destination: Jepang (Tokyo) (Line 324)
+    coords start: Line 326
+  Destination: Korea Selatan (Line 391)
+    coords start: Line 393
+  Destination: Bangladesh (Line 448)
+    coords start: Line 450
+  Destination: Myanmar (Selatan) (Line 493)
+    coords start: Line 495
+  Destination: Hainan (Line 571)
+    coords start: Line 573
+  Destination: Filipina (Utara) (Line 623)
+    coords start: Line 625
+  Destination: Korea Utara (Line 674)
+    coords start: Line 676
+  Destination: Rusia (Vladivostok) (Line 737)
+    coords start: Line 739
+Kuwait Origin end at line 798
