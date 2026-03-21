@@ -88,7 +88,7 @@ export const internationalRoutes: {
       color: "#f59e0b",
       coords: [
         { lon: 103.85, lat: 1.25 },
-        { lon: 104.50, lat: 1.80 },
+        { lon: 104.50, lat: 1.80 }, 
         { lon: 106.00, lat: 4.00 },
         { lon: 108.50, lat: 7.50 },
         { lon: 111.50, lat: 11.50 },
@@ -290,8 +290,10 @@ export const internationalRoutes: {
       color: "#f59e0b",
       coords: [
         { lon: -118.24, lat: 34.05 }, // LA
-        { lon: -121.00, lat: 38.00 },
-        { lon: -127.00, lat: 44.00 }, // Menyusur Pantai Barat AS
+        { lon: -121.50, lat: 34.00 }, // Offshore Pt Conception
+        { lon: -124.00, lat: 36.00 }, // Offshore Monterey
+        { lon: -125.50, lat: 38.00 }, // Offshore San Francisco
+        { lon: -127.00, lat: 44.00 }, // Previous safe point
         { lon: -135.00, lat: 50.00 },
         { lon: -144.00, lat: 54.00 }, // Teluk Alaska bawah
         { lon: -154.00, lat: 54.20 }, // Menyusur bawah semenanjung Alaska
@@ -422,7 +424,129 @@ export const internationalRoutes: {
         { lon: 139.75, lat: 35.00 },
         { lon: 140.00, lat: 35.00 }
       ]
+    },
+    "Australia (Sydney) (Via Makassar)": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 120.30, lat: 22.62 },
+        { lon: 119.50, lat: 21.00 },
+        { lon: 118.00, lat: 18.00 },
+        { lon: 118.00, lat: 14.00 },
+        { lon: 118.50, lat: 10.00 },
+        { lon: 119.20, lat: 6.00 },
+        { lon: 118.80, lat: 2.00 },
+        { lon: 119.30, lat: 1.00 }, // Eastward Nudge
+        { lon: 118.50, lat: -1.00 },
+        { lon: 118.30, lat: -3.00 }, // Mid Strait
+        { lon: 118.40, lat: -5.20 }, // Smoother initial descent
+        { lon: 119.20, lat: -6.50 }, // Deep Bottom Corner
+        { lon: 121.00, lat: -6.50 }, // Deep Sub-channel flat
+        { lon: 123.00, lat: -6.80 }, 
+        { lon: 125.00, lat: -7.00 }, 
+        { lon: 130.00, lat: -7.50 }, 
+        { lon: 135.00, lat: -9.00 },
+        { lon: 142.00, lat: -10.50 }, // Torres Strait
+        { lon: 144.50, lat: -12.00 },
+        { lon: 147.00, lat: -15.00 },
+        { lon: 153.00, lat: -25.00 },
+        { lon: 154.50, lat: -30.00 },
+        { lon: 151.20, lat: -33.85 }
+      ]
+    },
+    "Australia (Sydney) (Via Selat Sunda)": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 120.30, lat: 22.62 },
+        { lon: 119.50, lat: 21.00 },
+        { lon: 118.00, lat: 18.00 },
+        { lon: 118.00, lat: 14.00 }, // Fork Center
+        { lon: 114.00, lat: 8.00 },
+        { lon: 111.00, lat: 3.00 },
+        { lon: 108.50, lat: -1.00 },
+        { lon: 107.50, lat: -3.00 },
+        { lon: 106.00, lat: -5.80 },
+        { lon: 105.40, lat: -6.15 },
+        { lon: 104.50, lat: -7.00 },
+        { lon: 105.00, lat: -12.00 },
+        { lon: 108.00, lat: -21.00 },
+        { lon: 111.00, lat: -28.00 },
+        { lon: 114.00, lat: -34.20 },
+        { lon: 118.00, lat: -36.20 },
+        { lon: 123.50, lat: -36.80 },
+        { lon: 129.00, lat: -37.20 },
+        { lon: 136.00, lat: -38.00 },
+        { lon: 143.00, lat: -39.80 },
+        { lon: 147.10, lat: -39.20 },
+        { lon: 149.80, lat: -38.50 },
+        { lon: 150.60, lat: -36.80 },
+        { lon: 151.20, lat: -33.85 }
+      ]
+    }
+  },
+  "China (Hong Kong)": {
+    "China (Shanghai)": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 114.15, lat: 22.25 },
+        { lon: 115.50, lat: 20.50 }, // Connect to Trunk
+        { lon: 116.50, lat: 19.00 }, // Singapura Trunk Node (Shared)
+        { lon: 118.20, lat: 21.80 }, // Trunk Node (Taiwan Strait entry)
+        { lon: 119.50, lat: 23.80 }, // Central Taiwan Strait
+        { lon: 120.80, lat: 25.50 },
+        { lon: 122.00, lat: 27.50 },
+        { lon: 122.60, lat: 29.50 },
+        { lon: 121.50, lat: 31.20 }  // Shanghai
+      ]
+    },
+    "Jepang (Tokyo)": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 114.15, lat: 22.25 },
+        { lon: 115.50, lat: 20.50 }, // Connect to Trunk
+        { lon: 116.50, lat: 19.00 }, // Trunk Node
+        { lon: 118.20, lat: 21.80 }, // Trunk Node
+        { lon: 121.00, lat: 21.60 }, // Branch for Southern Taiwan Bypass
+        { lon: 121.50, lat: 22.00 },
+        { lon: 122.00, lat: 23.00 },
+        { lon: 122.50, lat: 23.50 },
+        { lon: 124.50, lat: 24.50 },
+        { lon: 126.50, lat: 26.00 },
+        { lon: 127.20, lat: 30.50 },
+        { lon: 128.20, lat: 30.40 },
+        { lon: 129.30, lat: 30.30 },
+        { lon: 130.40, lat: 30.50 },
+        { lon: 131.20, lat: 30.90 },
+        { lon: 133.00, lat: 31.70 },
+        { lon: 135.00, lat: 32.30 },
+        { lon: 137.00, lat: 32.90 },
+        { lon: 138.40, lat: 33.70 },
+        { lon: 139.40, lat: 34.50 },
+        { lon: 139.75, lat: 35.00 },
+        { lon: 140.00, lat: 35.00 }
+      ]
+    },
+    "Singapura": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 114.15, lat: 22.25 },
+        { lon: 115.50, lat: 20.50 }, // Connect to Trunk
+        { lon: 116.50, lat: 19.00 }, // Trunk Node
+        { lon: 114.30, lat: 15.30 }, // Trunk backwards
+        { lon: 111.50, lat: 11.50 },
+        { lon: 108.50, lat: 7.50 },
+        { lon: 106.00, lat: 4.00 },
+        { lon: 104.50, lat: 1.80 },
+        { lon: 103.85, lat: 1.25 }   // Singapura
+      ]
+    },
+    "Taiwan": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 114.15, lat: 22.25 },
+        { lon: 116.50, lat: 21.80 }, 
+        { lon: 118.50, lat: 21.90 }, 
+        { lon: 120.30, lat: 22.62 }   // Taiwan Dot
+      ]
     }
   }
 };
-LinePlaceholder: true

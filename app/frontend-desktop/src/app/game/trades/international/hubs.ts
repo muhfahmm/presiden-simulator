@@ -58,6 +58,10 @@ export const internationalHubs: Hub[] = [
   { name: "Australia (Sydney)", lon: 151.20, lat: -33.85, radius: 4.5, fill: "#ffffff" },
   { name: "Afrika Selatan (Cape Town)", lon: 18.42, lat: -33.91, radius: 4.5, fill: "#ffffff" },
   { name: "Terusan Suez", lon: 32.53, lat: 29.93, radius: 4.5, fill: "#ffffff" },
+  { name: "Rusia (Vladivostok)", lon: 131.90, lat: 43.10, radius: 4.5, fill: "#ffffff" },
+  { name: "Rusia (Sakhalin)", lon: 142.80, lat: 46.60, radius: 4.5, fill: "#ffffff" },
+  { name: "Rusia (Magadan)", lon: 150.80, lat: 59.50, radius: 4.5, fill: "#ffffff" },
+  { name: "Rusia (Petropavlovsk)", lon: 158.60, lat: 53.00, radius: 4.5, fill: "#ffffff" },
 
   { name: "Ujung Amerika Selatan", lon: -67.80, lat: -55.85, radius: 4.5, fill: "#ffffff" },
   { name: "Terusan Panama", lon: -79.52, lat: 8.95, radius: 4.5, fill: "#ffffff" },

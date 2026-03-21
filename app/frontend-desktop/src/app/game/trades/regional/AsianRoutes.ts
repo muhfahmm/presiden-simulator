@@ -34,10 +34,19 @@ export const regionalRoutes: {
         { lon: 104.20, lat: 2.50 }, // Keluar ke Laut Cina Selatan
         { lon: 103.40, lat: 3.90 }  // Malaysia Barat (Kanan)
       ]
+    },
+    "Malaysia Timur (Kiri)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 103.85, lat: 1.25 }, // Singapura
+        { lon: 104.50, lat: 1.50 }, 
+        { lon: 106.50, lat: 1.80 }, 
+        { lon: 108.50, lat: 1.60 }, 
+        { lon: 110.35, lat: 1.55 }  // Malaysia Timur Kiri
+      ]
     }
   },
   "Malaysia Barat (Kiri)": {},
-  "Malaysia Timur (Kiri)": {},
   "Thailand (Kanan)": {
     "Malaysia Barat (Kanan)": {
       color: "#ff4d4d",
@@ -226,6 +235,207 @@ export const regionalRoutes: {
         { lon: 107.52, lat: 19.54 },
         { lon: 106.88, lat: 20.56 },
         { lon: 106.68, lat: 20.85 }
+      ]
+    }
+  },
+  "Vietnam (Utara)": {
+    "Hainan": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 106.68, lat: 20.85 },
+        { lon: 106.90, lat: 20.50 }, 
+        { lon: 107.20, lat: 20.00 }, 
+        { lon: 107.60, lat: 19.30 }, 
+        { lon: 108.10, lat: 18.60 }, // West bypass offshore
+        { lon: 108.60, lat: 18.10 }, 
+        { lon: 109.20, lat: 17.80 }, // Deep South tip clearance
+        { lon: 109.80, lat: 17.90 }, 
+        { lon: 110.40, lat: 18.20 }, // South-East corner
+        { lon: 111.00, lat: 18.70 }, // East Coast bulge offshore
+        { lon: 110.70, lat: 19.40 }  // Hainan Node
+      ]
+    }
+  },
+  "Hainan": {
+    "China (Hong Kong)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 110.70, lat: 19.40 },
+        { lon: 112.00, lat: 20.50 }, 
+        { lon: 113.50, lat: 21.50 }, 
+        { lon: 114.15, lat: 22.25 }  // China (Hong Kong)
+      ]
+    }
+  },
+  "China (Shanghai)": {
+    "China (Tianjin)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 121.50, lat: 31.20 },
+        { lon: 122.50, lat: 31.50 },
+        { lon: 123.00, lat: 34.20 }, // Yellow sea up
+        { lon: 122.50, lat: 37.50 }, // Round Shandong tip 
+        { lon: 121.00, lat: 38.20 }, // Enter Bohai
+        { lon: 119.50, lat: 38.50 }, // shared node
+        { lon: 117.70, lat: 38.98 }  // Tianjin
+      ]
+    },
+    "Korea Selatan": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 121.50, lat: 31.20 },
+        { lon: 124.00, lat: 32.00 },
+        { lon: 126.50, lat: 32.80 }, // South of Jeju
+        { lon: 128.00, lat: 34.20 },
+        { lon: 129.04, lat: 35.10 }  // Busan
+      ]
+    }
+  },
+  "China (Tianjin)": {
+    "Korea Utara": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 117.70, lat: 38.98 }, // Tianjin
+        { lon: 119.50, lat: 38.50 }, // shared node
+        { lon: 121.50, lat: 38.40 }, // exit Bohai rightwards 
+        { lon: 123.50, lat: 38.50 }, 
+        { lon: 125.40, lat: 38.74 }  // Korea Utara
+      ]
+    }
+  },
+
+  "Korea Selatan": {
+    "Jepang (Selatan)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 129.04, lat: 35.10 },
+        { lon: 129.60, lat: 34.70 }, // East of Tsushima
+        { lon: 130.00, lat: 34.10 },
+        { lon: 130.40, lat: 33.60 }
+      ]
+    },
+    "Rusia (Vladivostok)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 129.04, lat: 35.10 },
+        { lon: 129.50, lat: 35.50 },
+        { lon: 130.00, lat: 38.00 },
+        { lon: 131.00, lat: 41.00 },
+        { lon: 131.90, lat: 43.10 }
+      ]
+    }
+  },
+  "Rusia (Vladivostok)": {
+    "Rusia (Sakhalin)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 131.90, lat: 43.10 },
+        { lon: 134.00, lat: 42.50 },
+        { lon: 138.00, lat: 43.50 },
+        { lon: 141.00, lat: 45.30 },
+        { lon: 142.20, lat: 46.00 },
+        { lon: 142.80, lat: 46.60 }
+      ]
+    }
+  },
+  "Rusia (Sakhalin)": {
+    "Rusia (Magadan)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 142.80, lat: 46.60 },
+        { lon: 142.80, lat: 45.90 }, // Down South out of Bay
+        { lon: 143.80, lat: 45.90 }, // Curve Right (East) below tip
+        { lon: 144.50, lat: 47.00 }, // Then up (North)
+        { lon: 145.80, lat: 48.50 }, // Bypass Terpeniya Peninsula
+        { lon: 146.00, lat: 51.00 }, 
+        { lon: 148.00, lat: 55.00 },
+        { lon: 150.80, lat: 59.50 }
+      ]
+    }
+  },
+  "Rusia (Magadan)": {
+    "Rusia (Petropavlovsk)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 150.80, lat: 59.50 },
+        { lon: 152.00, lat: 57.50 },
+        { lon: 153.80, lat: 55.00 },
+        { lon: 155.00, lat: 52.50 },
+        { lon: 156.40, lat: 50.50 }, // Southern tip tip bypass
+        { lon: 157.50, lat: 51.00 },
+        { lon: 158.40, lat: 52.00 },
+        { lon: 158.60, lat: 53.00 }
+      ]
+    }
+  },
+  "Rusia (Petropavlovsk)": {
+    "Jepang (Utara)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 158.60, lat: 53.00 },
+        { lon: 158.40, lat: 52.00 }, 
+        { lon: 157.50, lat: 51.00 }, 
+        { lon: 156.00, lat: 50.00 }, 
+        { lon: 152.00, lat: 47.00 },
+        { lon: 148.00, lat: 44.00 },
+        { lon: 146.00, lat: 42.50 }, // East of Hokkaido tip
+        { lon: 144.00, lat: 41.50 }, // South of Erimo cape
+        { lon: 142.00, lat: 41.20 }, // Approach Strait East
+        { lon: 141.20, lat: 41.50 }, // Into Strait
+        { lon: 140.75, lat: 41.77 }
+      ]
+    }
+  },
+  "Malaysia Timur (Kiri)": {
+    "Brunei": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 110.35, lat: 1.55 },
+        { lon: 111.50, lat: 2.50 },
+        { lon: 113.00, lat: 3.80 },
+        { lon: 114.50, lat: 4.80 },
+        { lon: 115.00, lat: 5.00 }
+      ]
+    }
+  },
+  "Brunei": {
+    "Malaysia Timur (Kanan)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 115.00, lat: 5.00 },
+        { lon: 115.50, lat: 5.50 },
+        { lon: 116.05, lat: 6.00 }
+      ]
+    }
+  },
+  "Malaysia Timur (Kanan)": {
+    "Filipina (Mindanao)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 116.05, lat: 6.00 },
+        { lon: 116.15, lat: 7.00 }, // Initial Curve
+        { lon: 116.50, lat: 7.80 }, // Hump Peak
+        { lon: 118.00, lat: 7.50 }, // Slow Slope
+        { lon: 119.50, lat: 7.10 }, // Slope continuous
+        { lon: 121.00, lat: 6.90 }, // Approach Strait
+        { lon: 122.10, lat: 6.75 }, // Basilan Strait
+        { lon: 123.50, lat: 6.60 }, // Moro Gulf
+        { lon: 124.40, lat: 6.20 }  // Mindanao (Davao)
+      ]
+    }
+  },
+  "Filipina (Mindanao)": {
+    "Filipina (Visayas)": {
+      color: "#ff4d4d",
+      coords: [
+        { lon: 124.40, lat: 6.20 },
+        { lon: 124.60, lat: 5.80 }, 
+        { lon: 125.50, lat: 5.60 }, 
+        { lon: 127.50, lat: 6.00 }, // Outer Corner
+        { lon: 128.00, lat: 8.00 }, // Peak Gap
+        { lon: 127.50, lat: 10.00 }, // Rounding back
+        { lon: 126.50, lat: 11.20 }, 
+        { lon: 125.50, lat: 12.00 }
       ]
     }
   }
