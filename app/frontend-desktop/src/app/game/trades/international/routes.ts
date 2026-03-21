@@ -5754,5 +5754,30 @@ export const internationalRoutes: {
         { lon: 131.90, lat: 43.10 }
       ]
     }
+  },
+  "Arab Saudi (Yanbu)": {
+    "Terusan Suez": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 37.98, lat: 23.95 },
+        { lon: 36.50, lat: 25.00 },
+        { lon: 35.30, lat: 26.00 },
+        { lon: 34.00, lat: 27.50 },
+        { lon: 32.53, lat: 29.93 }
+      ]
+    }
+  },
+  "Arab Saudi (Jeddah)": {
+    "Terusan Suez": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 39.18, lat: 21.48 },
+        { lon: 38.00, lat: 22.50 },
+        { lon: 36.50, lat: 24.50 },
+        { lon: 35.30, lat: 26.00 },
+        { lon: 34.00, lat: 27.50 },
+        { lon: 32.53, lat: 29.93 }
+      ]
+    }
   }
 };
