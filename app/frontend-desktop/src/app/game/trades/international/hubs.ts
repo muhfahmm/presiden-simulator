@@ -41,6 +41,7 @@ export const internationalHubs: Hub[] = [
   { name: "Oman (Salalah)", lon: 54.10, lat: 17.00, radius: 4.5, fill: "#ffffff" },
   { name: "Yemen (Aden)", lon: 45.03, lat: 12.78, radius: 4.5, fill: "#ffffff" },
   { name: "Yemen (Hodeidah)", lon: 42.95, lat: 14.80, radius: 4.5, fill: "#ffffff" },
+
   { name: "Arab Saudi (Jeddah)", lon: 39.18, lat: 21.48, radius: 4.5, fill: "#ffffff" },
   { name: "Arab Saudi (Yanbu)", lon: 37.98, lat: 23.95, radius: 4.5, fill: "#ffffff" },
   { name: "Arab Saudi (Jizan)", lon: 42.53, lat: 16.88, radius: 4.5, fill: "#ffffff" },
