@@ -1,0 +1,31 @@
+Match: Singapura -> India (Mumbai) at line 37: lon=78.5, lat=4.9
+Match: Singapura -> India (Mumbai) at line 38: lon=76.5, lat=5.5
+Match: Singapura -> Sri Lanka (Colombo) at line 64: lon=79.5, lat=5.4
+Match: Singapura -> Sri Lanka (Colombo) at line 65: lon=79.3, lat=6.6
+Match: Kuwait -> Malaysia Barat (Kiri) at line 166: lon=76.5, lat=5.5
+Match: Kuwait -> Malaysia Barat (Kiri) at line 167: lon=78.5, lat=4.9
+Match: Kuwait -> Singapura at line 204: lon=76.5, lat=5.5
+Match: Kuwait -> Singapura at line 205: lon=78.5, lat=4.9
+Match: Kuwait -> Jakarta at line 245: lon=76.5, lat=5.5
+Match: Kuwait -> Jakarta at line 246: lon=78.5, lat=4.9
+Match: Kuwait -> China (Shanghai) at line 291: lon=76.5, lat=5.5
+Match: Kuwait -> China (Shanghai) at line 292: lon=78.5, lat=4.9
+Match: Kuwait -> Jepang (Tokyo) at line 344: lon=76.5, lat=5.5
+Match: Kuwait -> Jepang (Tokyo) at line 345: lon=78.5, lat=4.9
+Match: Kuwait -> Korea Selatan at line 411: lon=76.5, lat=5.5
+Match: Kuwait -> Korea Selatan at line 412: lon=78.5, lat=4.9
+Match: Kuwait -> Bangladesh at line 468: lon=76.5, lat=5.5
+Match: Kuwait -> Bangladesh at line 469: lon=78.5, lat=4.9
+Match: Kuwait -> Myanmar (Selatan) at line 512: lon=76.5, lat=5.5
+Match: Kuwait -> Myanmar (Selatan) at line 513: lon=78.5, lat=4.9
+Match: Kuwait -> Hainan at line 589: lon=76.5, lat=5.5
+Match: Kuwait -> Hainan at line 590: lon=78.5, lat=4.9
+Match: Kuwait -> Filipina (Utara) at line 641: lon=76.5, lat=5.5
+Match: Kuwait -> Filipina (Utara) at line 642: lon=78.5, lat=4.9
+Match: Kuwait -> Korea Utara at line 692: lon=76.5, lat=5.5
+Match: Kuwait -> Korea Utara at line 693: lon=78.5, lat=4.9
+Match: Kuwait -> Rusia (Vladivostok) at line 755: lon=76.5, lat=5.5
+Match: Kuwait -> Rusia (Vladivostok) at line 756: lon=78.5, lat=4.9
+Match: Sri Lanka (Colombo) -> India (Mumbai) at line 1023: lon=79.0, lat=6.6
+Match: Sri Lanka (Colombo) -> India (Mumbai) at line 1024: lon=77.8, lat=5.8
+Match: Sri Lanka (Colombo) -> India (Mumbai) at line 1025: lon=76.5, lat=5.5
