@@ -88,7 +88,7 @@ export const internationalRoutes: {
       color: "#f59e0b",
       coords: [
         { lon: 103.85, lat: 1.25 },
-        { lon: 104.50, lat: 1.80 }, 
+        { lon: 104.50, lat: 1.80 },
         { lon: 106.00, lat: 4.00 },
         { lon: 108.50, lat: 7.50 },
         { lon: 111.50, lat: 11.50 },
@@ -121,11 +121,6 @@ export const internationalRoutes: {
         { lon: 60.60, lat: 21.00 },
         { lon: 58.50, lat: 16.50 },
         { lon: 55.00, lat: 13.00 }
-
-
-
-
-
       ]
     }
   },
@@ -441,9 +436,9 @@ export const internationalRoutes: {
         { lon: 118.40, lat: -5.20 }, // Smoother initial descent
         { lon: 119.20, lat: -6.50 }, // Deep Bottom Corner
         { lon: 121.00, lat: -6.50 }, // Deep Sub-channel flat
-        { lon: 123.00, lat: -6.80 }, 
-        { lon: 125.00, lat: -7.00 }, 
-        { lon: 130.00, lat: -7.50 }, 
+        { lon: 123.00, lat: -6.80 },
+        { lon: 125.00, lat: -7.00 },
+        { lon: 130.00, lat: -7.50 },
         { lon: 135.00, lat: -9.00 },
         { lon: 142.00, lat: -10.50 }, // Torres Strait
         { lon: 144.50, lat: -12.00 },
@@ -498,33 +493,7 @@ export const internationalRoutes: {
         { lon: 121.50, lat: 31.20 }  // Shanghai
       ]
     },
-    "Jepang (Tokyo)": {
-      color: "#f59e0b",
-      coords: [
-        { lon: 114.15, lat: 22.25 },
-        { lon: 115.50, lat: 20.50 }, // Connect to Trunk
-        { lon: 116.50, lat: 19.00 }, // Trunk Node
-        { lon: 118.20, lat: 21.80 }, // Trunk Node
-        { lon: 121.00, lat: 21.60 }, // Branch for Southern Taiwan Bypass
-        { lon: 121.50, lat: 22.00 },
-        { lon: 122.00, lat: 23.00 },
-        { lon: 122.50, lat: 23.50 },
-        { lon: 124.50, lat: 24.50 },
-        { lon: 126.50, lat: 26.00 },
-        { lon: 127.20, lat: 30.50 },
-        { lon: 128.20, lat: 30.40 },
-        { lon: 129.30, lat: 30.30 },
-        { lon: 130.40, lat: 30.50 },
-        { lon: 131.20, lat: 30.90 },
-        { lon: 133.00, lat: 31.70 },
-        { lon: 135.00, lat: 32.30 },
-        { lon: 137.00, lat: 32.90 },
-        { lon: 138.40, lat: 33.70 },
-        { lon: 139.40, lat: 34.50 },
-        { lon: 139.75, lat: 35.00 },
-        { lon: 140.00, lat: 35.00 }
-      ]
-    },
+
     "Singapura": {
       color: "#f59e0b",
       coords: [
@@ -543,9 +512,59 @@ export const internationalRoutes: {
       color: "#f59e0b",
       coords: [
         { lon: 114.15, lat: 22.25 },
-        { lon: 116.50, lat: 21.80 }, 
-        { lon: 118.50, lat: 21.90 }, 
+        { lon: 116.50, lat: 21.80 },
+        { lon: 118.50, lat: 21.90 },
         { lon: 120.30, lat: 22.62 }   // Taiwan Dot
+      ]
+    }
+  },
+  "Yemen (Aden)": {
+    "India (Mumbai)": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 45.03, lat: 12.78 },
+        { lon: 45.00, lat: 12.00 }, // Mumbai Trunk
+        { lon: 50.00, lat: 12.00 }, // Mumbai Trunk
+        { lon: 55.00, lat: 13.00 }, // Mumbai Trunk
+        { lon: 65.00, lat: 15.00 }, // Mumbai Trunk
+        { lon: 72.85, lat: 19.00 }  // Mumbai Dot
+      ]
+    },
+    "Kuwait": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 45.03, lat: 12.78 },
+        { lon: 45.00, lat: 12.00 },
+        { lon: 50.00, lat: 12.00 },
+        { lon: 55.00, lat: 13.00 },
+        { lon: 58.50, lat: 16.50 },
+        { lon: 60.60, lat: 21.00 },
+        { lon: 60.40, lat: 22.00 },
+        { lon: 59.80, lat: 23.00 },
+        { lon: 59.00, lat: 24.10 },
+        { lon: 58.20, lat: 24.90 },
+        { lon: 57.50, lat: 25.50 },
+        { lon: 56.90, lat: 26.10 },
+        { lon: 56.40, lat: 26.65 },
+        { lon: 55.80, lat: 26.30 },
+        { lon: 55.20, lat: 25.80 },
+        { lon: 54.00, lat: 25.50 },
+        { lon: 52.50, lat: 26.30 },
+        { lon: 51.00, lat: 27.20 },
+        { lon: 49.50, lat: 28.30 },
+        { lon: 47.98, lat: 29.37 }
+      ]
+    }
+  },
+  "Yemen (Hodeidah)": {
+    "Terusan Suez": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 42.95, lat: 14.80 },
+        { lon: 41.00, lat: 15.00 }, // Mumbai Trunk
+        { lon: 38.00, lat: 20.00 }, // Mumbai Trunk
+        { lon: 34.00, lat: 27.50 }, // Mumbai Trunk Layout entry
+        { lon: 32.53, lat: 29.93 }
       ]
     }
   }
