@@ -21,6 +21,8 @@ export const internationalRoutes: {
         { lon: 102.70, lat: 1.40 }, // Menjauh dari pesisir darat Malaysia
         { lon: 101.80, lat: 2.20 }, // Tengah Selat Malaka (Unified)
         { lon: 101.35, lat: 3.00 }, // Malaysia Barat (Kiri)
+        { lon: 100.80, lat: 3.50 }, // Bow West around Selangor bulge
+        { lon: 100.40, lat: 4.20 }, // Bow West around Perak bulge
         { lon: 100.50, lat: 4.80 },
         { lon: 99.50, lat: 6.20 },  // Menghindari Langkawi
         { lon: 98.80, lat: 7.50 },  // Pendekatan Phuket halus
@@ -46,6 +48,8 @@ export const internationalRoutes: {
         { lon: 102.70, lat: 1.40 },
         { lon: 101.80, lat: 2.20 }, // Tengah Selat Malaka (Unified)
         { lon: 101.35, lat: 3.00 }, // Malaysia Barat (Kiri)
+        { lon: 100.80, lat: 3.50 }, // Bow West around Selangor bulge
+        { lon: 100.40, lat: 4.20 }, // Bow West around Perak bulge
         { lon: 100.50, lat: 4.80 },
         { lon: 99.50, lat: 6.20 },  // Menghindari Langkawi
         { lon: 98.80, lat: 7.50 },  // Pendekatan Phuket halus
@@ -79,30 +83,44 @@ export const internationalRoutes: {
         { lon: 122.60, lat: 29.50 }, // Lengkung mendekati Shanghai
         { lon: 121.50, lat: 31.20 }
       ]
+    },
+    "Taiwan": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 103.85, lat: 1.25 },
+        { lon: 104.50, lat: 1.80 },
+        { lon: 106.00, lat: 4.00 },
+        { lon: 108.50, lat: 7.50 },
+        { lon: 111.50, lat: 11.50 },
+        { lon: 114.30, lat: 15.30 },
+        { lon: 116.50, lat: 19.00 },
+        { lon: 118.20, lat: 21.80 },
+        { lon: 120.30, lat: 22.62 }
+      ]
     }
   },
   "Kuwait": {
     "Terusan Suez": {
       color: "#f59e0b",
       coords: [
-        { lon: 47.98, lat: 29.37 }, 
-        { lon: 49.50, lat: 28.30 }, 
-        { lon: 51.00, lat: 27.20 }, 
-        { lon: 52.50, lat: 26.30 }, 
-        { lon: 54.00, lat: 25.50 }, 
-        { lon: 55.20, lat: 25.80 }, 
-        { lon: 55.80, lat: 26.30 }, 
-        { lon: 56.40, lat: 26.65 }, 
-        { lon: 56.40, lat: 26.65 }, 
-        { lon: 56.90, lat: 26.10 }, 
+        { lon: 47.98, lat: 29.37 },
+        { lon: 49.50, lat: 28.30 },
+        { lon: 51.00, lat: 27.20 },
+        { lon: 52.50, lat: 26.30 },
+        { lon: 54.00, lat: 25.50 },
+        { lon: 55.20, lat: 25.80 },
+        { lon: 55.80, lat: 26.30 },
+        { lon: 56.40, lat: 26.65 },
+        { lon: 56.40, lat: 26.65 },
+        { lon: 56.90, lat: 26.10 },
         { lon: 57.50, lat: 25.50 }, // Smooth intermediate 1
         { lon: 58.20, lat: 24.90 }, // Smooth intermediate 2
         { lon: 59.00, lat: 24.10 }, // Smooth intermediate 3
         { lon: 59.80, lat: 23.00 }, // Smooth intermediate 4
         { lon: 60.40, lat: 22.00 }, // Smooth intermediate 5
-        { lon: 60.60, lat: 21.00 }, 
-        { lon: 58.50, lat: 16.50 }, 
-        { lon: 55.00, lat: 13.00 }  
+        { lon: 60.60, lat: 21.00 },
+        { lon: 58.50, lat: 16.50 },
+        { lon: 55.00, lat: 13.00 }
 
 
 
@@ -369,16 +387,40 @@ export const internationalRoutes: {
         { lon: 29.00, lat: 41.05 }, // Selat Bosporus (Istanbul Center)
         { lon: 28.00, lat: 40.70 }, // Laut Marmara
         { lon: 26.60, lat: 40.20 }, // Selat Dardanelles
-        { lon: 26.60, lat: 38.50 }, // Turun Lurus ke Selatan 
-        { lon: 26.90, lat: 37.00 }, // Lengkung halus ke kanan 
-        { lon: 27.30, lat: 35.50 }, // Bypass Kreta Timur
+        { lon: 25.80, lat: 38.50 }, // Laut Aegea Timur 1
+        { lon: 26.40, lat: 37.00 }, // Laut Aegea Timur 2
+        { lon: 27.20, lat: 35.50 }, // Bypass Timur Kreta (Pass Rhodes)
         { lon: 27.50, lat: 34.00 }, // Keluar ke Mediterania
-
         { lon: 29.50, lat: 33.20 }, // Transisi ke Suez
         { lon: 31.00, lat: 32.00 }, // MERGE NODE dengan Trunk Utama
         { lon: 32.53, lat: 29.93 }  // Terusan Suez Hub
-
-
+      ]
+    }
+  },
+  "Taiwan": {
+    "Jepang (Tokyo)": {
+      color: "#f59e0b",
+      coords: [
+        { lon: 120.30, lat: 22.62 },
+        { lon: 120.50, lat: 21.80 }, // Southbound around tip
+        { lon: 121.00, lat: 21.60 }, // Offshore Eluanbi south
+        { lon: 121.50, lat: 22.00 }, // East coast bottom
+        { lon: 122.00, lat: 23.00 }, // East coast mid
+        { lon: 122.50, lat: 23.50 },
+        { lon: 124.50, lat: 24.50 },
+        { lon: 126.50, lat: 26.00 },
+        { lon: 127.20, lat: 30.50 }, // MERGE with Tokyo->Shanghai trunk
+        { lon: 128.20, lat: 30.40 }, // Reversed path begins here
+        { lon: 129.30, lat: 30.30 },
+        { lon: 130.40, lat: 30.50 },
+        { lon: 131.20, lat: 30.90 },
+        { lon: 133.00, lat: 31.70 },
+        { lon: 135.00, lat: 32.30 },
+        { lon: 137.00, lat: 32.90 },
+        { lon: 138.40, lat: 33.70 },
+        { lon: 139.40, lat: 34.50 },
+        { lon: 139.75, lat: 35.00 },
+        { lon: 140.00, lat: 35.00 }
       ]
     }
   }

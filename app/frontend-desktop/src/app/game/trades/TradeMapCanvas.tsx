@@ -694,7 +694,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
 
                       // Menandakan rutenya dari mana berjalan ke arah mana (Arrow)
                       if (isSelected) {
-                          for (let i = 0; i < route.coords.length - 1; i++) {
+                          for (let i = 0; i < route.coords.length - 1; i += 4) {
                               const curr = route.coords[i];
                               const next = route.coords[i + 1];
                               const cX = ((curr.lon + 180) / 360) * mapWidth;
@@ -771,7 +771,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                       ctx.stroke();
 
                       if (isSelected) {
-                          for (let i = 0; i < route.coords.length - 1; i++) {
+                          for (let i = 0; i < route.coords.length - 1; i += 4) {
                               const curr = route.coords[i];
                               const next = route.coords[i + 1];
                               const cX = ((curr.lon + 180) / 360) * mapWidth;
