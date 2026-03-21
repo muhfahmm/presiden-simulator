@@ -1,0 +1,99 @@
+Expected Oman (Muscat) paths with Conditional Targets:
+
+--- Terusan Suez ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 59.0, 'lat': 24.1}
+  {'lon': 59.8, 'lat': 23.0}
+  {'lon': 60.4, 'lat': 22.0}
+
+--- India (Mumbai) ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
+
+--- Malaysia Barat (Kiri) ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
+
+--- Singapura ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
+
+--- Jakarta ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
+
+--- China (Shanghai) ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
+
+--- Jepang (Tokyo) ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
+
+--- Korea Selatan ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
+
+--- Bangladesh ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
+
+--- Myanmar (Selatan) ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
+
+--- Hainan ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
+
+--- Filipina (Utara) ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
+
+--- Korea Utara ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
+
+--- Rusia (Vladivostok) ---
+First 4 coordinates:
+  {'lon': 58.59, 'lat': 23.58}
+  {'lon': 60.0, 'lat': 23.5}
+  {'lon': 63.5, 'lat': 21.0}
+  {'lon': 68.0, 'lat': 19.5}
