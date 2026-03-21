@@ -1,0 +1,4 @@
+[310] Mismatch: Closed </div> but expected </main> opened at line 148
+[786] Extra closing tag: </div>
+
+--- UNCLOSED TAGS AT END OF FILE ---
