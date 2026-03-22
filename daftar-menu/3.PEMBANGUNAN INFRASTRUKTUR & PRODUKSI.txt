@@ -66,6 +66,8 @@ jalur kereta api
 jalan raya
 bandara
 pelabuhan
+terminal bus
+helipad
 
 2. pendidikan
 TK

@@ -1,0 +1,317 @@
+import { CountryData } from "../../types";
+
+export const eritrea: CountryData = {
+  "name_en": "Eritrea",
+  "capital": "Asmara",
+  "name_id": "Eritrea",
+  "lon": 39,
+  "lat": 15,
+  "flag": "🇪🇷",
+  "pop": "10M",
+  "budget": "Rp 496 T",
+  "income": "Rp 393 T",
+  "religion": "Protestan",
+  "ideology": "Kapitalisme",
+  "infrastructure": {
+    "nuclear_plant": 11,
+    "hydro_plant": 36,
+    "solar_plant": 31,
+    "thermal_plant": 8,
+    "gas_plant": 35,
+    "wind_plant": 37,
+    "power_grid": 67,
+    "bicycle_path": 8,
+    "subway": 25,
+    "railway": 3,
+    "highway": 13,
+    "road_quality": 75,
+    "sea_port": 9,
+    "airport": 20,
+    "bus_terminal": 28,
+    "helipad": 37,
+    "internet_coverage": 70,
+    "tech_stack": 71,
+    "water_access": 74
+  },
+  "sector_extraction": {
+    "gold": 35,
+    "uranium": 22,
+    "coal": 23,
+    "oil": 40,
+    "gas": 39,
+    "salt": 3,
+    "nickel": 13,
+    "lithium": 2,
+    "aluminum": 34,
+    "copper": 36,
+    "rare_earth": 33,
+    "iron_ore": 1,
+    "strength": 29.660809349923973
+  },
+  "sector_manufacturing": {
+    "semiconductor": 16,
+    "car": 11,
+    "motorcycle": 11,
+    "smelter": 32,
+    "concrete_cement": 7,
+    "wood": 1,
+    "mineral_water": 30,
+    "sugar": 9,
+    "bread": 39,
+    "pharmacy": 9,
+    "fertilizer": 1,
+    "meat_processing": 18,
+    "instant_noodle": 23,
+    "strength": 3.076011687404966
+  },
+  "sector_livestock": {
+    "chicken": 17,
+    "poultry": 39,
+    "dairy_cow": 3,
+    "beef_cow": 35,
+    "sheep_goat": 28,
+    "shrimp": 27,
+    "fish": 24,
+    "shellfish": 7,
+    "strength": 18.24560701244298
+  },
+  "sector_agriculture": {
+    "rice": 11,
+    "wheat": 35,
+    "corn": 32,
+    "tubers": 17,
+    "soy": 28,
+    "palm_oil": 24,
+    "tea": 21,
+    "coffee": 4,
+    "cocoa": 16,
+    "sugarcane": 29,
+    "vegetables": 25,
+    "strength": 20.660809349923973
+  },
+  "sector_defense": {
+    "prison": 15,
+    "barracks": 35,
+    "armory": 13,
+    "tank_hangar": 14,
+    "military_academy": 4,
+    "budget": 8,
+    "personnel": 16818,
+    "strength": 16.660809349923973,
+    "military_fleet": {
+      "darat": {
+        "main_battle_tank": 17,
+        "apc": 26,
+        "artileri_berat": 26
+      },
+      "laut": {
+        "kapal_induk": 1,
+        "kapal_destroyer": 32,
+        "kapal_selam_nuklir": 0
+      },
+      "udara": {
+        "jet_tempur_stealth": 4,
+        "helikopter_serang": 40,
+        "pesawat_pengintai": 2
+      },
+      "total_unit": 26,
+      "readiness": 98
+    }
+  },
+  "sector_military_strategic": {
+    "command_center": 25,
+    "military_air_base": 6,
+    "military_naval_base": 16,
+    "arms_factory": 5,
+    "nuclear_status": false,
+    "space_program": 22,
+    "cyber_defense": 40,
+    "intelligence": 36,
+    "strategic_operations": {
+      "attack_mission": 13,
+      "spy_mission": 34,
+      "sabotage_mission": 33,
+      "territory_management": 30,
+      "nuclear_program": 0
+    },
+    "intel_radar": {
+      "satellite_system": 19,
+      "radar_network": 18,
+      "cyber_ops": 2
+    }
+  },
+  "sector_social": {
+    "education": {
+      "kindergarten": 35,
+      "elementary_school": 35,
+      "middle_school": 38,
+      "high_school": 22,
+      "university": 26,
+      "education_institute": 37,
+      "laboratory": 14,
+      "observatory": 35,
+      "research_center": 18,
+      "development_center": 11,
+      "literacy": 90,
+      "research_index": 0
+    },
+    "health": {
+      "large_hospital": 39,
+      "small_hospital": 27,
+      "diagnostic_center": 37,
+      "hospital_beds": 2855,
+      "life_expectancy": 27,
+      "healthcare_index": 85
+    },
+    "sports": {
+      "swimming_pool": 22,
+      "racing_circuit": 37,
+      "stadium": 33,
+      "international_stadium": 5,
+      "olympic_score": 40,
+      "popularity": 44
+    },
+    "law": {
+      "legal_aid_center": 27,
+      "court": 5,
+      "prosecution_office": 1,
+      "police_station": 36,
+      "police_car_fleet": 2156,
+      "police_academy": 4,
+      "corruption_index": 57,
+      "security_index": 78,
+      "police_fleet": {
+        "patroli_lantas": {
+          "mobil_patroli": 26,
+          "sepeda_motor": 33,
+          "unit_k9": 23
+        },
+        "taktis_khusus": {
+          "swat": 32,
+          "helikopter_polisi": 36,
+          "anti_huru_hara": 62
+        },
+        "pusat_komando": {
+          "stasiun_polisi": 30,
+          "kamera_surveillance": 5,
+          "pusat_forensik": 1
+        },
+        "response_time": 31,
+        "public_trust": 50
+      }
+    }
+  },
+  "military": {
+    "infantry": 12,
+    "tanks": 6,
+    "aircraft": 24,
+    "naval": 24,
+    "air_base": 18,
+    "naval_base": 16,
+    "military_base": 23,
+    "nuclear": false,
+    "strength": 10
+  },
+  "un_vote": "Pro",
+  "trade": {
+    "buy_commodity": 20,
+    "sell_commodity": 409
+  },
+  "taxes": {
+    "vat": {
+      "rate": 31,
+      "satisfaction": 67
+    },
+    "corporate": {
+      "rate": 38,
+      "satisfaction": 52
+    },
+    "income": {
+      "rate": 26,
+      "satisfaction": 61
+    },
+    "customs": {
+      "rate": 7,
+      "satisfaction": 86
+    },
+    "environment": {
+      "rate": 15,
+      "satisfaction": 88
+    },
+    "other": {
+      "rate": 32,
+      "satisfaction": 93
+    }
+  },
+  "demand": {
+    "satisfaction": 85,
+    "top_demands": [
+      "Bantuan Sembako",
+      "Penyediaan Lapangan Kerja"
+    ],
+    "residential": 40,
+    "commercial": 27,
+    "industrial": 53
+  },
+  "geopolitics": {
+    "allies": [
+      "Amerika Serikat",
+      "Uni Eropa"
+    ],
+    "enemies": [],
+    "stance": "Neutral",
+    "international_influence": {
+      "soft_power": 27,
+      "hard_power": 6,
+      "diplomatic_prestige": 57
+    },
+    "international_orgs": [
+      {
+        "name": "PBB (UN)",
+        "role": "Member"
+      },
+      {
+        "name": "WHO",
+        "role": "Member"
+      },
+      {
+        "name": "WTO",
+        "role": "Member"
+      }
+    ],
+    "agreements": [
+      {
+        "partner": "Amerika Serikat",
+        "type": "Trade",
+        "status": "Active"
+      },
+      {
+        "partner": "Uni Eropa",
+        "type": "Trade",
+        "status": "Active"
+      },
+      {
+        "partner": "United States",
+        "type": "Trade",
+        "status": "Active"
+      },
+      {
+        "partner": "Germany",
+        "type": "Trade",
+        "status": "Active"
+      },
+      {
+        "partner": "Australia",
+        "type": "Trade",
+        "status": "Active"
+      }
+    ]
+  },
+  "ministries": {
+    "health": 31,
+    "education": 24,
+    "security": 11,
+    "finance": 18,
+    "environment": 60
+  }
+};

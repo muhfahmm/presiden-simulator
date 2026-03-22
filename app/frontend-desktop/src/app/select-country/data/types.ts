@@ -34,6 +34,8 @@ export interface CountryData {
     road_quality: number; // 0-100%
     sea_port: number;
     airport: number;
+    bus_terminal?: number;
+    helipad?: number;
     
     // Communication
     internet_coverage: number; // 0-100%

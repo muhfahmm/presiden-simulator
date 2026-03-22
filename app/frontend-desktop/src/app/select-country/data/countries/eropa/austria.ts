@@ -8,248 +8,250 @@ export const austria: CountryData = {
   "lat": 47.33333333,
   "flag": "🇦🇹",
   "pop": "42M",
-  "budget": "Rp 737 T",
-  "income": "Rp 881 T",
-  "religion": "Yahudi",
-  "ideology": "Sosialisme",
+  "budget": "Rp 405 T",
+  "income": "Rp 869 T",
+  "religion": "Protestan",
+  "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 0,
-    "hydro_plant": 2,
-    "solar_plant": 39,
-    "thermal_plant": 8,
-    "gas_plant": 4,
-    "wind_plant": 11,
-    "power_grid": 85,
-    "bicycle_path": 266,
-    "subway": 2,
-    "railway": 275,
-    "highway": 689,
-    "road_quality": 50,
-    "sea_port": 5,
-    "airport": 0,
-    "internet_coverage": 70,
-    "tech_stack": 69,
-    "water_access": 91
+    "nuclear_plant": 23,
+    "hydro_plant": 20,
+    "solar_plant": 25,
+    "thermal_plant": 18,
+    "gas_plant": 35,
+    "wind_plant": 10,
+    "power_grid": 89,
+    "bicycle_path": 22,
+    "subway": 28,
+    "railway": 33,
+    "highway": 18,
+    "road_quality": 70,
+    "sea_port": 31,
+    "airport": 40,
+    "bus_terminal": 18,
+    "helipad": 20,
+    "internet_coverage": 83,
+    "tech_stack": 84,
+    "water_access": 74
   },
   "sector_extraction": {
-    "gold": 39,
-    "uranium": 0,
-    "coal": 499,
-    "oil": 113,
-    "gas": 76,
-    "salt": 220,
-    "nickel": 73,
-    "lithium": 1,
-    "aluminum": 0,
-    "copper": 303,
-    "rare_earth": 122,
-    "iron_ore": 749,
-    "strength": 46.148348128971605
+    "gold": 36,
+    "uranium": 12,
+    "coal": 21,
+    "oil": 39,
+    "gas": 21,
+    "salt": 27,
+    "nickel": 28,
+    "lithium": 2,
+    "aluminum": 9,
+    "copper": 39,
+    "rare_earth": 28,
+    "iron_ore": 15,
+    "strength": 29.660809349923973
   },
   "sector_manufacturing": {
-    "semiconductor": 243,
-    "car": 444,
-    "motorcycle": 92,
-    "smelter": 84,
-    "concrete_cement": 66,
-    "wood": 92,
-    "mineral_water": 242,
-    "sugar": 136,
-    "bread": 227,
-    "pharmacy": 122,
-    "fertilizer": 133,
-    "meat_processing": 266,
-    "instant_noodle": 156,
-    "strength": 49.435435161214514
+    "semiconductor": 6,
+    "car": 5,
+    "motorcycle": 38,
+    "smelter": 15,
+    "concrete_cement": 6,
+    "wood": 31,
+    "mineral_water": 32,
+    "sugar": 23,
+    "bread": 26,
+    "pharmacy": 31,
+    "fertilizer": 25,
+    "meat_processing": 26,
+    "instant_noodle": 6,
+    "strength": 3.076011687404966
   },
   "sector_livestock": {
-    "chicken": 558,
-    "poultry": 83,
-    "dairy_cow": 24,
-    "beef_cow": 189,
-    "sheep_goat": 247,
-    "shrimp": 240,
-    "fish": 296,
-    "shellfish": 136,
-    "strength": 54.861261096728704
+    "chicken": 11,
+    "poultry": 40,
+    "dairy_cow": 21,
+    "beef_cow": 13,
+    "sheep_goat": 6,
+    "shrimp": 26,
+    "fish": 13,
+    "shellfish": 26,
+    "strength": 18.24560701244298
   },
   "sector_agriculture": {
-    "rice": 640,
-    "wheat": 294,
-    "corn": 279,
-    "tubers": 22,
-    "soy": 136,
-    "palm_oil": 11,
-    "tea": 0,
-    "coffee": 255,
-    "cocoa": 81,
-    "sugarcane": 50,
-    "vegetables": 82,
-    "strength": 59.148348128971605
+    "rice": 32,
+    "wheat": 1,
+    "corn": 14,
+    "tubers": 9,
+    "soy": 4,
+    "palm_oil": 14,
+    "tea": 10,
+    "coffee": 40,
+    "cocoa": 3,
+    "sugarcane": 10,
+    "vegetables": 12,
+    "strength": 20.660809349923973
   },
   "sector_defense": {
-    "prison": 47,
-    "barracks": 62,
-    "armory": 21,
-    "tank_hangar": 18,
-    "military_academy": 2,
-    "budget": 72,
-    "personnel": 24767,
-    "strength": 33.148348128971605,
+    "prison": 40,
+    "barracks": 38,
+    "armory": 6,
+    "tank_hangar": 7,
+    "military_academy": 11,
+    "budget": 21,
+    "personnel": 29535,
+    "strength": 16.660809349923973,
     "military_fleet": {
       "darat": {
-        "main_battle_tank": 283,
-        "apc": 277,
-        "artileri_berat": 211
+        "main_battle_tank": 15,
+        "apc": 13,
+        "artileri_berat": 26
       },
       "laut": {
-        "kapal_induk": 0,
-        "kapal_destroyer": 5,
+        "kapal_induk": 3,
+        "kapal_destroyer": 20,
         "kapal_selam_nuklir": 0
       },
       "udara": {
-        "jet_tempur_stealth": 34,
-        "helikopter_serang": 83,
-        "pesawat_pengintai": 14
+        "jet_tempur_stealth": 28,
+        "helikopter_serang": 6,
+        "pesawat_pengintai": 2
       },
-      "total_unit": 1832,
-      "readiness": 83
+      "total_unit": 18,
+      "readiness": 98
     }
   },
   "sector_military_strategic": {
-    "command_center": 2,
-    "military_air_base": 7,
-    "military_naval_base": 5,
-    "arms_factory": 3,
+    "command_center": 1,
+    "military_air_base": 21,
+    "military_naval_base": 4,
+    "arms_factory": 37,
     "nuclear_status": false,
-    "space_program": 42,
-    "cyber_defense": 14,
-    "intelligence": 42,
+    "space_program": 12,
+    "cyber_defense": 30,
+    "intelligence": 25,
     "strategic_operations": {
-      "attack_mission": 7,
-      "spy_mission": 16,
-      "sabotage_mission": 11,
-      "territory_management": 68,
+      "attack_mission": 14,
+      "spy_mission": 32,
+      "sabotage_mission": 4,
+      "territory_management": 9,
       "nuclear_program": 0
     },
     "intel_radar": {
-      "satellite_system": 4,
-      "radar_network": 55,
-      "cyber_ops": 30
+      "satellite_system": 24,
+      "radar_network": 33,
+      "cyber_ops": 2
     }
   },
   "sector_social": {
     "education": {
-      "kindergarten": 260,
-      "elementary_school": 328,
-      "middle_school": 544,
-      "high_school": 325,
-      "university": 119,
-      "education_institute": 127,
-      "laboratory": 90,
-      "observatory": 13,
-      "research_center": 36,
-      "development_center": 73,
-      "literacy": 77,
-      "research_index": 9
+      "kindergarten": 27,
+      "elementary_school": 10,
+      "middle_school": 30,
+      "high_school": 21,
+      "university": 7,
+      "education_institute": 26,
+      "laboratory": 12,
+      "observatory": 23,
+      "research_center": 22,
+      "development_center": 23,
+      "literacy": 88,
+      "research_index": 0
     },
     "health": {
-      "large_hospital": 48,
-      "small_hospital": 20,
-      "diagnostic_center": 24,
-      "hospital_beds": 41764,
-      "life_expectancy": 66,
-      "healthcare_index": 69
+      "large_hospital": 23,
+      "small_hospital": 6,
+      "diagnostic_center": 14,
+      "hospital_beds": 5562,
+      "life_expectancy": 13,
+      "healthcare_index": 85
     },
     "sports": {
-      "swimming_pool": 93,
-      "racing_circuit": 2,
-      "stadium": 3,
-      "international_stadium": 1,
-      "olympic_score": 10,
-      "popularity": 70
+      "swimming_pool": 28,
+      "racing_circuit": 32,
+      "stadium": 1,
+      "international_stadium": 29,
+      "olympic_score": 13,
+      "popularity": 44
     },
     "law": {
-      "legal_aid_center": 82,
-      "court": 23,
-      "prosecution_office": 54,
-      "police_station": 557,
-      "police_car_fleet": 1153,
-      "police_academy": 2,
-      "corruption_index": 40,
-      "security_index": 20,
+      "legal_aid_center": 19,
+      "court": 15,
+      "prosecution_office": 34,
+      "police_station": 16,
+      "police_car_fleet": 645,
+      "police_academy": 14,
+      "corruption_index": 61,
+      "security_index": 78,
       "police_fleet": {
         "patroli_lantas": {
-          "mobil_patroli": 1648,
-          "sepeda_motor": 767,
-          "unit_k9": 41
+          "mobil_patroli": 8,
+          "sepeda_motor": 14,
+          "unit_k9": 23
         },
         "taktis_khusus": {
-          "swat": 50,
-          "helikopter_polisi": 18,
-          "anti_huru_hara": 404
+          "swat": 17,
+          "helikopter_polisi": 33,
+          "anti_huru_hara": 62
         },
         "pusat_komando": {
-          "stasiun_polisi": 85,
-          "kamera_surveillance": 27072,
-          "pusat_forensik": 2
+          "stasiun_polisi": 3,
+          "kamera_surveillance": 1,
+          "pusat_forensik": 1
         },
-        "response_time": 2,
-        "public_trust": 66
+        "response_time": 35,
+        "public_trust": 50
       }
     }
   },
   "military": {
-    "infantry": 90959,
-    "tanks": 1775,
-    "aircraft": 403,
-    "naval": 82,
-    "air_base": 4,
-    "naval_base": 2,
-    "military_base": 11,
+    "infantry": 21,
+    "tanks": 32,
+    "aircraft": 13,
+    "naval": 29,
+    "air_base": 28,
+    "naval_base": 37,
+    "military_base": 10,
     "nuclear": false,
-    "strength": 22
+    "strength": 10
   },
-  "un_vote": "Neutral",
+  "un_vote": "Pro",
   "trade": {
-    "buy_commodity": 143,
-    "sell_commodity": 318
+    "buy_commodity": 15,
+    "sell_commodity": 409
   },
   "taxes": {
     "vat": {
-      "rate": 11,
-      "satisfaction": 60
+      "rate": 12,
+      "satisfaction": 67
     },
     "corporate": {
-      "rate": 22,
-      "satisfaction": 65
+      "rate": 38,
+      "satisfaction": 52
     },
     "income": {
-      "rate": 15,
-      "satisfaction": 66
+      "rate": 31,
+      "satisfaction": 61
     },
     "customs": {
-      "rate": 5,
-      "satisfaction": 88
+      "rate": 10,
+      "satisfaction": 86
     },
     "environment": {
-      "rate": 1,
-      "satisfaction": 83
+      "rate": 8,
+      "satisfaction": 88
     },
     "other": {
-      "rate": 2,
-      "satisfaction": 90
+      "rate": 30,
+      "satisfaction": 93
     }
   },
   "demand": {
-    "satisfaction": 83,
+    "satisfaction": 50,
     "top_demands": [
-      "Layanan Kesehatan Gratis",
-      "Subsidisi Listrik"
+      "Bantuan Sembako",
+      "Penyediaan Lapangan Kerja"
     ],
-    "residential": 40,
-    "commercial": 47,
-    "industrial": 55
+    "residential": 26,
+    "commercial": 25,
+    "industrial": 53
   },
   "geopolitics": {
     "allies": [
@@ -259,9 +261,9 @@ export const austria: CountryData = {
     "enemies": [],
     "stance": "Neutral",
     "international_influence": {
-      "soft_power": 15,
-      "hard_power": 32,
-      "diplomatic_prestige": 54
+      "soft_power": 28,
+      "hard_power": 34,
+      "diplomatic_prestige": 57
     },
     "international_orgs": [
       {
@@ -285,21 +287,11 @@ export const austria: CountryData = {
       },
       {
         "partner": "Uni Eropa",
-        "type": "Military",
-        "status": "Active"
-      },
-      {
-        "partner": "Japan",
         "type": "Trade",
         "status": "Active"
       },
       {
-        "partner": "South Africa",
-        "type": "Trade",
-        "status": "Active"
-      },
-      {
-        "partner": "Brazil",
+        "partner": "United States",
         "type": "Trade",
         "status": "Active"
       },
@@ -307,14 +299,19 @@ export const austria: CountryData = {
         "partner": "Germany",
         "type": "Trade",
         "status": "Active"
+      },
+      {
+        "partner": "Australia",
+        "type": "Trade",
+        "status": "Active"
       }
     ]
   },
   "ministries": {
-    "health": 60,
-    "education": 79,
-    "security": 82,
-    "finance": 64,
-    "environment": 79
+    "health": 18,
+    "education": 12,
+    "security": 23,
+    "finance": 37,
+    "environment": 60
   }
 };

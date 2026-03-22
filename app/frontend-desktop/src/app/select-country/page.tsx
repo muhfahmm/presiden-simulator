@@ -15,7 +15,7 @@ import {
   Syringe, GraduationCap, Crosshair, RadioTower, Landmark, Fish, Construction, Pill, Car, Bike, 
   Utensils, Apple, Coffee, Milk, Bird, Egg, Leaf, Shell, Bean, Carrot, Cookie, Croissant, Soup,
   HeartPulse, Search, Library, Lightbulb, Archive, ShieldAlert, Warehouse, Lock, Scale,
-  Truck, Shield, Users, Coins, Globe, Church, Battery, Pickaxe, FlaskConical
+  Truck, Shield, Users, Coins, Globe, Church, Battery, Pickaxe, FlaskConical, Bus
 } from "lucide-react";
 
 export default function SelectCountry() {
@@ -176,7 +176,7 @@ export default function SelectCountry() {
           <div style={{ width: `${leftWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel mb-4">
             <div onMouseDown={startResizeLeft} className="absolute inset-y-0 -right-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-amber-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>Infrastruktur & Logistik</span>
+              <span>1. Infrastruktur & Logistik</span>
               <button onClick={() => setIsInfraOpen(!isInfraOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isInfraOpen ? <Eye size={12} className="text-amber-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
               </button>
@@ -212,6 +212,8 @@ export default function SelectCountry() {
                   <DetailStat icon={<Map size={12} className="text-zinc-300"/>} label="Jalan Raya" value={currentData.infrastructure.highway.toString()} />
                   <DetailStat icon={<Ship size={12} className="text-blue-400"/>} label="Pelabuhan" value={currentData.infrastructure.sea_port.toString()} />
                   <DetailStat icon={<Plane size={12} className="text-cyan-400"/>} label="Bandara" value={currentData.infrastructure.airport.toString()} />
+                  <DetailStat icon={<Bus size={12} className="text-amber-400"/>} label="Terminal Bus" value={(currentData.infrastructure.bus_terminal ?? 0).toString()} />
+                  <DetailStat icon={<Plane size={12} className="text-pink-400"/>} label="Helipad" value={(currentData.infrastructure.helipad ?? 0).toString()} />
                 </div>
               </div>
           </div>
@@ -222,7 +224,7 @@ export default function SelectCountry() {
           <div style={{ width: `${leftWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeLeft} className="absolute inset-y-0 -right-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-emerald-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>Produksi & Ekonomi Nasional</span>
+              <span>2. Produksi & Ekonomi Nasional</span>
               <button onClick={() => setIsEconomyOpen(!isEconomyOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isEconomyOpen ? <Eye size={12} className="text-emerald-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
               </button>
@@ -319,7 +321,7 @@ export default function SelectCountry() {
           <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-red-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>Pertahanan & Strategis</span>
+              <span>3. Pertahanan & Strategis</span>
               <button onClick={() => setIsDefenseOpen(!isDefenseOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isDefenseOpen ? <Eye size={12} className="text-red-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
               </button>
@@ -501,7 +503,7 @@ export default function SelectCountry() {
           <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-cyan-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>Layanan Sosial & Publik</span>
+              <span>4. Layanan Sosial & Publik</span>
               <button onClick={() => setIsSocialOpen(!isSocialOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isSocialOpen ? <Eye size={12} className="text-cyan-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
               </button>
@@ -567,7 +569,7 @@ export default function SelectCountry() {
           {/* 5. Ekonomi & Geopolitik (Expanded) */}
           <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-3 w-80 pointer-events-auto">
             <div className="flex items-center justify-between">
-              <h3 className="text-xs font-black text-blue-500 uppercase tracking-[0.2em]">Geopolitik & Luar Negeri</h3>
+              <h3 className="text-xs font-black text-blue-500 uppercase tracking-[0.2em]">5. Geopolitik & Luar Negeri</h3>
               <span className="text-xs font-black bg-indigo-500/20 text-indigo-400 px-2 py-0.5 rounded uppercase">{currentData.geopolitics.stance}</span>
             </div>
 
@@ -679,7 +681,7 @@ export default function SelectCountry() {
 
           {/* 6. Mineral Kritis & Strategis */}
           <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-72 pointer-events-auto">
-            <h3 className="text-xs font-black text-pink-500 uppercase tracking-[0.2em] mb-1">Mineral Kritis & Strategis</h3>
+            <h3 className="text-xs font-black text-pink-500 uppercase tracking-[0.2em] mb-1">6. Mineral Kritis & Strategis</h3>
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Downstream Priority</span>
               <span className="text-xs font-black text-emerald-400 uppercase">Strategic Asset</span>
