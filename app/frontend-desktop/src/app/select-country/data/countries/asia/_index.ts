@@ -27,3 +27,26 @@ export { laos } from "./laos";
 export { lebanon } from "./lebanon";
 export { malaysia } from "./malaysia";
 export { maldives } from "./maldives";
+
+export { mongolia } from "./mongolia";
+export { myanmar } from "./myanmar";
+export { nepal } from "./nepal";
+export { oman } from "./oman";
+export { pakistan } from "./pakistan";
+export { palestina } from "./palestina";
+export { qatar } from "./qatar";
+
+export { republik_timor_leste } from "./republik_timor_leste";
+export { singapura } from "./singapura";
+export { sri_lanka } from "./sri_lanka";
+export { suriah } from "./suriah";
+export { taiwan } from "./taiwan";
+export { tajikistan } from "./tajikistan";
+export { thailand } from "./thailand";
+export { turkmenistan } from "./turkmenistan";
+export { uni_emirat_arab } from "./uni_emirat_arab";
+export { uzbekistan } from "./uzbekistan";
+export { vietnam } from "./vietnam";
+export { yaman } from "./yaman";
+export { hong_kong } from "./hong_kong";
+export { makau } from "./makau";

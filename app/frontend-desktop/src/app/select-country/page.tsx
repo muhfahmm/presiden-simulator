@@ -879,7 +879,7 @@ function SectorStat({ icon, label, value }: { icon: React.ReactNode, label: stri
         {icon}
         <span className="text-xs font-bold uppercase tracking-tighter truncate">{label}</span>
       </div>
-      <span className="text-xs font-black text-zinc-200">{value.toLocaleString()}</span>
+      <span className="text-xs font-black text-zinc-200">{value.toLocaleString('id-ID')}</span>
     </div>
   );
 }

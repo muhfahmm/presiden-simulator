@@ -14,3 +14,16 @@ export { honduras } from "./honduras";
 export { jamaika } from "./jamaika";
 export { kanada } from "./kanada";
 export { kuba } from "./kuba";
+
+export { meksiko } from "./meksiko";
+export { nikaragua } from "./nikaragua";
+export { panama } from "./panama";
+export { republik_dominika } from "./republik_dominika";
+export { saint_kitts_dan_nevis } from "./saint_kitts_dan_nevis";
+export { saint_lucia } from "./saint_lucia";
+export { saint_vincent_dan_grenadine } from "./saint_vincent_dan_grenadine";
+export { trinidad_dan_tobago } from "./trinidad_dan_tobago";
+export { bermuda } from "./bermuda";
+export { curacao } from "./curacao";
+export { greenland } from "./greenland";
+export { puerto_rico } from "./puerto_rico";

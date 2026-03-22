@@ -68,10 +68,16 @@ export default function WorldMapCanvas({ selectedCountry, onSelect }: WorldMapCa
       // Draw Countries
       geoData.features.forEach((feature: any) => {
         const name = feature.properties.name;
-        const isActive = name === selectedCountry;
+        
+        // Name aliases for accurate GeoJSON matching
+        const geoNameMap: { [key: string]: string } = {
+          "United States": "United States of America"
+        };
+        const targetGeoName = geoNameMap[selectedCountry] || selectedCountry;
+        const isActive = name === targetGeoName;
 
         ctx.beginPath();
-        
+
         const drawCoords = (coordinates: any) => {
           coordinates.forEach((polyline: any, idx: number) => {
             polyline.forEach((coord: any, cIdx: number) => {
@@ -155,15 +161,15 @@ export default function WorldMapCanvas({ selectedCountry, onSelect }: WorldMapCa
 
   }, [geoData, selectedCountry, centersData]);
 
-    // Define Custom Cursors
-    const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
-    const hoverCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><circle cx='12' cy='12' r='8' fill='rgba(34, 211, 238, 0.2)' stroke='%2322d3ee' stroke-width='2'/><circle cx='12' cy='12' r='2' fill='%2322d3ee'/></svg>") 12 12, pointer`;
+  // Define Custom Cursors
+  const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
+  const hoverCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><circle cx='12' cy='12' r='8' fill='rgba(34, 211, 238, 0.2)' stroke='%2322d3ee' stroke-width='2'/><circle cx='12' cy='12' r='2' fill='%2322d3ee'/></svg>") 12 12, pointer`;
 
   return (
-    <canvas 
-      ref={canvasRef} 
-      width={mapWidth * 3} 
-      height={mapHeight} 
+    <canvas
+      ref={canvasRef}
+      width={mapWidth * 3}
+      height={mapHeight}
       className="max-h-full max-w-none z-10 cursor-pointer"
       style={{ cursor: isHovering ? hoverCursor : defaultCursor }}
       onMouseMove={(e) => {
@@ -180,8 +186,8 @@ export default function WorldMapCanvas({ selectedCountry, onSelect }: WorldMapCa
         centersData.forEach((center: any) => {
           const x = ((center.lon + 180) / 360) * mapWidth;
           const y = ((90 - center.lat) / 180) * mapHeight;
-          const dist = Math.sqrt((mappedClickX - x)**2 + (clickY - y)**2);
-          if (dist < 30) { 
+          const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
+          if (dist < 30) {
             foundHover = true;
           }
         });
@@ -210,7 +216,7 @@ export default function WorldMapCanvas({ selectedCountry, onSelect }: WorldMapCa
         centersData.forEach((center: any) => {
           const x = ((center.lon + 180) / 360) * mapWidth;
           const y = ((90 - center.lat) / 180) * mapHeight;
-          const dist = Math.sqrt((mappedClickX - x)**2 + (clickY - y)**2);
+          const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
           if (dist < minDist) {
             minDist = dist;
             closest = center;

@@ -4,7 +4,7 @@ export const andorra: CountryData = {
   "name_en": "Andorra",
   "capital": "Andorra la Vella",
   "name_id": "Andorra",
-  "lon": 1.5,
+  "lon": 1.52,
   "lat": 42.5,
   "flag": "🇦🇩",
   "pop": "19M",
