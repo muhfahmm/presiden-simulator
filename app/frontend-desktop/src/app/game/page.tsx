@@ -1,11 +1,13 @@
 "use client"
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Heart, Coins, Shield, LogOut } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import GameMapCanvas from "./gamemap";
-import TradeMapCanvas from "./trades/TradeMapCanvas";
+import GameMapCanvas from "./mainGameMap";
+import TradeMapCanvas from "./tab-menu/trades/TradeMapCanvas";
+import MapSDA, { sdaIcons } from "./tab-menu/SDA/mapSDA";
+import MapHubungan from "./tab-menu/Hubungan/mapHubungan";
 import StrategyModal from "./components/StrategyModal";
 import BottomNav from "./components/BottomNav";
 import { gameStorage } from "./gamestorage";
@@ -33,7 +35,7 @@ import ArmadaPolisiModal from "./components/pertahanan/ArmadaPolisiModal";
 import GeopolitikModal from "./components/geopolitik/GeopolitikModal";
 import KementerianModal from "./components/kementerian/KementerianModal";
 
-export default function GameDashboard() {
+export default function GamePage() {
   const [approval, setApproval] = useState(65);
   const [budget, setBudget] = useState(1240.5); // in Trillion
   const [stability, setStability] = useState(82);
@@ -43,11 +45,20 @@ export default function GameDashboard() {
     return session?.country || "Indonesia";
   });
   const [targetCountry, setTargetCountry] = useState<string | null>(null);
+  const [selectedCountrySDA, setSelectedCountrySDA] = useState<{ name: string; flag: string; resources: any } | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCentered, setIsCentered] = useState(false);
   const [activeMenu, setActiveMenu] = useState<string>("Peta Taktis");
   const [mapMode, setMapMode] = useState<"default" | "sda" | "hubungan" | "trade">("default");
   const containerRef = useRef<HTMLDivElement>(null);
+  const [geoData, setGeoData] = useState<any>(null);
+
+  useEffect(() => {
+    fetch("/world.geojson")
+      .then(res => res.json())
+      .then(data => setGeoData(data))
+      .catch(err => console.error("Failed to load map data", err));
+  }, []);
 
   const countryData = countries.find(c => c.name_id === userCountry) || countries[0];
 
@@ -59,9 +70,17 @@ export default function GameDashboard() {
       <main className="flex-1 z-10 flex flex-col h-screen overflow-hidden">
         {/* Top Header / Status bar */}
         <header className="bg-zinc-900/30 backdrop-blur-sm border-b border-zinc-800 px-8 py-4 flex items-center justify-between">
-          <h1 className="text-xl font-bold bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
-            Pusat Komando Strategis
-          </h1>
+          <div className="flex items-center gap-4">
+            <h1 className="text-xl font-bold bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
+              Pusat Komando Strategis
+            </h1>
+            {countryData && (
+              <div className="flex items-center gap-2 bg-zinc-800/40 px-3 py-1.5 rounded-xl border border-zinc-700/50 shadow-sm backdrop-blur-md">
+                <span className="text-base">{countryData.flag}</span>
+                <span className="text-xs font-bold text-zinc-200 tracking-wide uppercase">{countryData.name_id}</span>
+              </div>
+            )}
+          </div>
           
           <div className="flex items-center gap-6">
             <StatusBadge icon={<Heart className="h-4 w-4 text-red-500" />} label="Persetujuan" value={`${approval}%`} />
@@ -143,25 +162,62 @@ export default function GameDashboard() {
             <TransformComponent wrapperClass="!w-full !h-full" contentClass="!h-full flex items-center justify-center">
               <div ref={containerRef} className="relative h-full flex items-center justify-center w-max">
                 <div style={{ display: mapMode === "trade" ? "none" : "contents" }} className="h-full">
-                  <GameMapCanvas 
-                    userCountry={userCountry} 
-                    targetCountry={targetCountry} 
-                    mapMode={mapMode}
-                    onSelect={(name) => {
-                      if (name === userCountry) {
-                        setTargetCountry(null);
-                        setIsMenuOpen(false);
-                      } else {
-                        setTargetCountry(name);
-                        setIsMenuOpen(true);
-                      }
-                    }} 
-                  />
+                  {mapMode === "default" && (
+                    <GameMapCanvas 
+                      userCountry={userCountry} 
+                      targetCountry={targetCountry} 
+                      mapMode={mapMode}
+                      geoData={geoData}
+                      onSelect={(name) => {
+                        if (name === userCountry) {
+                          setTargetCountry(null);
+                          setIsMenuOpen(false);
+                        } else {
+                          setTargetCountry(name);
+                          setIsMenuOpen(true);
+                        }
+                      }} 
+                    />
+                  )}
+                  {mapMode === "sda" && (
+                    <MapSDA 
+                      userCountry={userCountry} 
+                      targetCountry={targetCountry} 
+                      geoData={geoData}
+                      onSelect={(name) => {
+                        if (name === userCountry) {
+                          setTargetCountry(null);
+                          setIsMenuOpen(false);
+                        } else {
+                          setTargetCountry(name);
+                          setIsMenuOpen(true);
+                        }
+                      }} 
+                      onSelectSDA={(data) => setSelectedCountrySDA(data)}
+                    />
+                  )}
+                  {mapMode === "hubungan" && (
+                    <MapHubungan 
+                      userCountry={userCountry} 
+                      targetCountry={targetCountry} 
+                      geoData={geoData}
+                      onSelect={(name) => {
+                        if (name === userCountry) {
+                          setTargetCountry(null);
+                          setIsMenuOpen(false);
+                        } else {
+                          setTargetCountry(name);
+                          setIsMenuOpen(true);
+                        }
+                      }} 
+                    />
+                  )}
                 </div>
                 <div style={{ display: mapMode === "trade" ? "contents" : "none" }} className="h-full">
                   <TradeMapCanvas 
                     userCountry={userCountry} 
                     targetCountry={targetCountry} 
+                    geoData={geoData}
                     onSelect={(name) => {
                       if (name === userCountry) {
                         setTargetCountry(null);
@@ -182,7 +238,39 @@ export default function GameDashboard() {
             isOpen={isMenuOpen} 
             onClose={() => { setIsMenuOpen(false); setTargetCountry(null); }} 
             targetCountry={targetCountry} 
+            userCountry={userCountry}
           />
+
+          {/* Details Modal - Rendered Fixed Outside Scaling */}
+          {selectedCountrySDA && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm pointer-events-auto" onClick={() => setSelectedCountrySDA(null)}>
+              <div className="bg-zinc-900 border border-zinc-800 p-4 rounded-xl shadow-2xl max-w-sm w-full font-sans pointer-events-auto" onClick={(e) => e.stopPropagation()}>
+                <div className="flex justify-between items-center mb-3">
+                  <h3 className="text-white font-semibold flex items-center gap-2">
+                    <span className="text-lg">{selectedCountrySDA.flag}</span> 
+                    <span>{selectedCountrySDA.name}</span>
+                  </h3>
+                  <button className="text-zinc-400 hover:text-white cursor-pointer" onClick={() => setSelectedCountrySDA(null)}>✕</button>
+                </div>
+                <div className="grid grid-cols-2 gap-2 text-sm text-zinc-300">
+                  {Object.entries(selectedCountrySDA.resources).map(([key, value]) => {
+                    const asset = sdaIcons[key];
+                    if (!asset || (value as number) <= 0) return null;
+                    const IconComp = asset.icon;
+                    return (
+                      <div key={key} className="flex items-center gap-2 bg-zinc-800/30 p-2 rounded-md border border-zinc-800/80">
+                        <IconComp size={16} className={asset.color} />
+                        <div className="flex flex-col">
+                          <span className="text-[10px] text-zinc-400">{asset.label}</span>
+                          <span className="text-white font-medium text-xs">{(value as number)}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Categorical Modals */}
           <RatingPresidenModal 
@@ -274,4 +362,3 @@ function StatusBadge({ icon, label, value }: { icon: React.ReactNode, label: str
     </div>
   );
 }
-

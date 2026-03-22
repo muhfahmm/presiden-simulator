@@ -9,6 +9,7 @@ interface GameMapCanvasProps {
   onSelect: (name: string) => void;
   mapMode?: "default" | "sda" | "hubungan" | "trade";
   active?: boolean;
+  geoData?: any;
 }
 
 // Pseudo-random relation hash
@@ -117,11 +118,9 @@ const getContinentColor = (name: string, id: string): string => {
   return "rgba(71, 85, 105, 0.3)";
 };
 
-export default function GameMapCanvas({ userCountry, targetCountry, onSelect, mapMode = "default", active = true }: GameMapCanvasProps) {
+export default function GameMapCanvas({ userCountry, targetCountry, onSelect, mapMode = "default", active = true, geoData }: GameMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [geoData, setGeoData] = useState<any>(null);
-
-  const [isHovering, setIsHovering] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
 
   // Higher resolution for more detail and less "narrow" feel
@@ -129,54 +128,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
   const mapWidth = 6000;
   const mapHeight = 2400;
 
-  useEffect(() => {
-    // Load GeoJSON securely
-    fetch("/world.geojson")
-      .then(res => res.json())
-      .then(data => {
-        setGeoData(data);
-
-        const meshW = 720;
-        const meshH = 360;
-        const canvas = document.createElement("canvas");
-        canvas.width = meshW;
-        canvas.height = meshH;
-        const oCtx = canvas.getContext("2d", { willReadFrequently: true });
-
-        if (oCtx && data.features) {
-          oCtx.fillStyle = "#000000";
-          oCtx.fillRect(0, 0, meshW, meshH);
-          oCtx.fillStyle = "#ffffff";
-
-          data.features.forEach((feat: any) => {
-            if (!feat.geometry) return;
-            const type = feat.geometry.type;
-            const coordinates = feat.geometry.coordinates;
-
-            const drawPoly = (ring: any[]) => {
-              oCtx.beginPath();
-              ring.forEach((coord: number[], index: number) => {
-                const x = ((coord[0] + 180) / 360) * meshW;
-                const y = ((90 - coord[1]) / 180) * meshH;
-                if (index === 0) oCtx.moveTo(x, y);
-                else oCtx.lineTo(x, y);
-              });
-              oCtx.closePath();
-              oCtx.fill();
-            };
-
-            if (type === "Polygon") {
-              coordinates.forEach(drawPoly);
-            } else if (type === "MultiPolygon") {
-              coordinates.forEach((poly: any[]) => poly.forEach(drawPoly));
-            }
-          });
-
-
-        }
-      })
-      .catch(err => console.error("Failed to load map data", err));
-  }, []);
+  
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -246,21 +198,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
         ctx.lineWidth = 1;
         ctx.shadowBlur = 0;
 
-        if (mapMode === "hubungan") {
-          const relation = getRelation(name, userCountry);
-          if (relation <= 30) fillColor = "rgba(239, 68, 68, 0.5)"; // Red
-          else if (relation <= 70) fillColor = "rgba(234, 179, 8, 0.5)"; // Yellow
-          else fillColor = "rgba(34, 197, 94, 0.5)"; // Green
-          strokeColor = "rgba(255, 255, 255, 0.2)";
-          if (!isPlayer && !isTarget) isHighlighted = false;
-        } else if (mapMode === "sda") {
-          // SDA: Just display dark continents to make the numbers pop
-          fillColor = "rgba(71, 85, 105, 0.4)";
-          strokeColor = "rgba(255, 255, 255, 0.1)";
-          if (!isPlayer && !isTarget) isHighlighted = false;
-        }
-
-        if (isHighlighted && mapMode !== "hubungan" && mapMode !== "sda") {
+        if (isHighlighted) {
           if (isPlayer) {
             fillColor = "rgba(34, 197, 94, 0.3)";
             strokeColor = "#4ade80";
@@ -347,24 +285,6 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
         });
 
         // 2. Text Labels with Decluttering
-        if (mapMode === "hubungan") {
-          const relation = getRelation(center.name_en || center.id || "", userCountry);
-          const isTooCrowded = labelGrid.some(pos =>
-            Math.abs(pos.x - x) < minLabelDist / 1.5 && Math.abs(pos.y - y) < minLabelDist / 1.5
-          );
-          if (!isTooCrowded || isPlayer || isTarget) {
-            ctx.font = "900 16px 'Inter', sans-serif";
-            if (relation <= 30) ctx.fillStyle = "#fca5a5";
-            else if (relation <= 70) ctx.fillStyle = "#fde047";
-            else ctx.fillStyle = "#86efac";
-
-            ctx.shadowColor = "rgba(0,0,0,0.9)";
-            ctx.shadowBlur = 6;
-            ctx.fillText(relation.toString(), x, y - 20);
-            ctx.shadowBlur = 0;
-            labelGrid.push({ x, y });
-          }
-        } else {
           if (isPlayer || isTarget) {
             ctx.font = "48px sans-serif";
             ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 10;
@@ -383,13 +303,10 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
               labelGrid.push({ x, y });
             }
           }
-        }
       });
 
       // Trade mode rendering removed (Moved to Trades/TradeMapCanvas.tsx)
-
-
-
+      
       ctx.restore();
       ctx.restore();
     });
@@ -423,8 +340,6 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
           const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
           if (dist < 60) foundHover = true;
         });
-
-
 
         setIsHovering(foundHover);
       }}

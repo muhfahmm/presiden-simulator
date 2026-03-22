@@ -7,16 +7,65 @@ import {
   Globe, TreePine, Mountain, Droplets, Beef, ThumbsUp, BookOpen, Scale, BarChart3, X
 } from "lucide-react";
 
+import { allRelations } from "../../select-country/data/relations";
+import { countries as centersData } from "../../select-country/data/countries";
+
 interface StrategyModalProps {
   isOpen: boolean;
   onClose: () => void;
   targetCountry: string | null;
+  userCountry: string;
 }
 
-export default function StrategyModal({ isOpen, onClose, targetCountry }: StrategyModalProps) {
+const geoJsonToIndo: { [key: string]: string } = {
+  "The Bahamas": "bahama",
+  "Democratic Republic of the Congo": "republik demokratik kongo",
+  "Northern Cyprus": "siprus",
+  "Czech Republic": "ceko",
+  "Guinea Bissau": "guinea-bissau",
+  "Equatorial Guinea": "guinea",
+  "Macedonia": "makedonia utara",
+  "Republic of Serbia": "republik serbia",
+  "Swaziland": "eswatini",
+  "East Timor": "timor-leste",
+  "Turkey": "turki",
+  "United Republic of Tanzania": "republik tanzania",
+  "United States of America": "amerika serikat",
+  "West Bank": "palestina",
+  "Falkland Islands": "argentina",
+  "Western Sahara": "maroko",
+  "Somaliland": "somalia",
+  "New Caledonia": "fiji",
+  "Solomon Islands": "marshall"
+};
+
+export default function StrategyModal({ isOpen, onClose, targetCountry, userCountry }: StrategyModalProps) {
   const [menuTab, setMenuTab] = useState<'info' | 'diplomacy' | 'military' | 'aid'>('info');
 
   if (!isOpen || !targetCountry) return null;
+
+  const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+  const userId = userEntry ? userEntry.name_id.toLowerCase().trim() : userCountry.toLowerCase().trim();
+  
+  const countryEntry = centersData.find(c => c.name_en === targetCountry || c.name_id === targetCountry);
+  let targetId = countryEntry ? countryEntry.name_id.toLowerCase().trim() : targetCountry.toLowerCase().trim();
+  
+  if (geoJsonToIndo[targetCountry]) {
+    targetId = geoJsonToIndo[targetCountry].toLowerCase().trim();
+  }
+
+  const userRelations = allRelations[userId];
+  const relationItem = userRelations ? userRelations.find((item: any) => item.name.toLowerCase().trim() === targetId) : null;
+  const relationScore = relationItem ? relationItem.relation : 50;
+
+  let relationLabel = "Netral";
+  let relationColor = "text-yellow-400";
+
+  if (relationScore <= 25) { relationLabel = "Sangat Buruk"; relationColor = "text-red-500"; }
+  else if (relationScore <= 49) { relationLabel = "Buruk"; relationColor = "text-red-400"; }
+  else if (relationScore <= 69) { relationLabel = "Netral"; relationColor = "text-yellow-400"; }
+  else if (relationScore <= 79) { relationLabel = "Baik"; relationColor = "text-green-400"; }
+  else { relationLabel = "Cukup Baik"; relationColor = "text-emerald-500"; }
 
   return (
     <div className="absolute inset-0 bg-black/70 z-30 flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
@@ -32,7 +81,9 @@ export default function StrategyModal({ isOpen, onClose, targetCountry }: Strate
               <h2 className="font-bold text-xl text-amber-500">
                 {targetCountry}
               </h2>
-              <p className="text-xs text-zinc-400">Hubungan: Stabil (Netral)</p>
+              <p className="text-xs text-zinc-400">
+                Hubungan: <span className={`font-semibold ${relationColor}`}>{relationScore} ({relationLabel})</span>
+              </p>
             </div>
           </div>
           <button 

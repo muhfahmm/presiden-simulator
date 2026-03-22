@@ -1,18 +1,19 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "../../select-country/data/countries";
-import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "./tradeRoutes";
+import { countries as centersData } from "../../../select-country/data/countries";
+import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "../../../select-country/data/trades/tradeRoutes";
 
-import { regionalRoutes } from './regional/AsianRoutes';
-import { internationalHubs } from './international/hubs';
-import { internationalRoutes } from './international/routes';
+import { regionalRoutes } from "../../../select-country/data/trades/regional/AsianRoutes";
+import { internationalHubs } from "../../../select-country/data/trades/international/hubs";
+import { internationalRoutes } from "../../../select-country/data/trades/international/routes";
 
 interface TradeMapCanvasProps {
   userCountry: string;
   targetCountry: string | null;
   onSelect: (name: string) => void;
   active?: boolean;
+  geoData?: any;
 }
 
 // Pseudo-random relation hash
@@ -121,10 +122,9 @@ const getContinentColor = (name: string, id: string): string => {
   return "rgba(71, 85, 105, 0.3)";
 };
 
-export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, active = true }: TradeMapCanvasProps) {
+export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, active = true, geoData }: TradeMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-  const [geoData, setGeoData] = useState<any>(null);
-  const [isHovering, setIsHovering] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
   const [selectedWp, setSelectedWp] = useState<string | null>(null);
   // Line hitting cache ref
@@ -135,15 +135,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
   const mapWidth = 6000;
   const mapHeight = 2400;
 
-  useEffect(() => {
-    // Load GeoJSON securely
-    fetch("/world.geojson")
-      .then(res => res.json())
-      .then(data => {
-        setGeoData(data);
-      })
-      .catch(err => console.error("Failed to load map data", err));
-  }, []);
+  
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -772,16 +764,16 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               const isSeamCrossing = prevPt && Math.abs(pt.lon - prevPt.lon) > 180;
 
               if (idx > 0 && !isSeamCrossing && prevPt) {
-                  const prevX = ((prevPt.lon + 180) / 360) * mapWidth;
-                  const prevY = ((90 - prevPt.lat) / 180) * mapHeight;
-                  const key1 = `${prevPt.lon.toFixed(2)},${prevPt.lat.toFixed(2)}-${pt.lon.toFixed(2)},${pt.lat.toFixed(2)}`;
-                  const key2 = `${pt.lon.toFixed(2)},${pt.lat.toFixed(2)}-${prevPt.lon.toFixed(2)},${prevPt.lat.toFixed(2)}`;
-                  
-                  if (!targetSet.has(key1) && !targetSet.has(key2)) {
-                      targetSet.add(key1);
-                      ctx.moveTo(prevX, prevY);
-                      ctx.lineTo(x, y);
-                  }
+                const prevX = ((prevPt.lon + 180) / 360) * mapWidth;
+                const prevY = ((90 - prevPt.lat) / 180) * mapHeight;
+                const key1 = `${prevPt.lon.toFixed(2)},${prevPt.lat.toFixed(2)}-${pt.lon.toFixed(2)},${pt.lat.toFixed(2)}`;
+                const key2 = `${pt.lon.toFixed(2)},${pt.lat.toFixed(2)}-${prevPt.lon.toFixed(2)},${prevPt.lat.toFixed(2)}`;
+
+                if (!targetSet.has(key1) && !targetSet.has(key2)) {
+                  targetSet.add(key1);
+                  ctx.moveTo(prevX, prevY);
+                  ctx.lineTo(x, y);
+                }
               }
             });
             ctx.stroke();
