@@ -1,4 +1,5 @@
 // Auto-generated Relations Index
+import { afrika_selatan_relations } from "./afrika/afrika_selatan";
 import { aljazair_relations } from "./afrika/aljazair";
 import { angola_relations } from "./afrika/angola";
 import { benin_relations } from "./afrika/benin";
@@ -13,8 +14,8 @@ import { ethiopia_relations } from "./afrika/ethiopia";
 import { gabon_relations } from "./afrika/gabon";
 import { gambia_relations } from "./afrika/gambia";
 import { ghana_relations } from "./afrika/ghana";
-import { guinea_bissau_relations } from "./afrika/guinea-bissau";
 import { guinea_relations } from "./afrika/guinea";
+import { guinea_bissau_relations } from "./afrika/guinea_bissau";
 import { kamerun_relations } from "./afrika/kamerun";
 import { kenya_relations } from "./afrika/kenya";
 import { komoro_relations } from "./afrika/komoro";
@@ -87,7 +88,7 @@ import { oman_relations } from "./asia/oman";
 import { pakistan_relations } from "./asia/pakistan";
 import { palestina_relations } from "./asia/palestina";
 import { qatar_relations } from "./asia/qatar";
-import { republik_timor_leste_relations } from "./asia/republik_timor-leste";
+import { republik_timor_leste_relations } from "./asia/republik_timor_leste";
 import { singapura_relations } from "./asia/singapura";
 import { sri_lanka_relations } from "./asia/sri_lanka";
 import { suriah_relations } from "./asia/suriah";
@@ -149,6 +150,7 @@ import { turki_relations } from "./eropa/turki";
 import { ukraina_relations } from "./eropa/ukraina";
 import { vatikan_relations } from "./eropa/vatikan";
 import { yunani_relations } from "./eropa/yunani";
+import { amerika_serikat_relations } from "./na/amerika_serikat";
 import { antigua_dan_barbuda_relations } from "./na/antigua_dan_barbuda";
 import { bahama_relations } from "./na/bahama";
 import { barbados_relations } from "./na/barbados";
@@ -175,19 +177,6 @@ import { saint_kitts_dan_nevis_relations } from "./na/saint_kitts_dan_nevis";
 import { saint_lucia_relations } from "./na/saint_lucia";
 import { saint_vincent_dan_grenadine_relations } from "./na/saint_vincent_dan_grenadine";
 import { trinidad_dan_tobago_relations } from "./na/trinidad_dan_tobago";
-import { argentina_relations } from "./sa/argentina";
-import { bolivia_relations } from "./sa/bolivia";
-import { brazil_relations } from "./sa/brazil";
-import { chile_relations } from "./sa/chile";
-import { ekuador_relations } from "./sa/ekuador";
-import { guiana_prancis_relations } from "./sa/guiana_prancis";
-import { guyana_relations } from "./sa/guyana";
-import { kolombia_relations } from "./sa/kolombia";
-import { paraguay_relations } from "./sa/paraguay";
-import { peru_relations } from "./sa/peru";
-import { suriname_relations } from "./sa/suriname";
-import { uruguay_relations } from "./sa/uruguay";
-import { venezuela_relations } from "./sa/venezuela";
 import { australia_relations } from "./oceania/australia";
 import { fiji_relations } from "./oceania/fiji";
 import { guam_relations } from "./oceania/guam";
@@ -204,8 +193,22 @@ import { tahiti_relations } from "./oceania/tahiti";
 import { tonga_relations } from "./oceania/tonga";
 import { tuvalu_relations } from "./oceania/tuvalu";
 import { vanuatu_relations } from "./oceania/vanuatu";
+import { argentina_relations } from "./sa/argentina";
+import { bolivia_relations } from "./sa/bolivia";
+import { brazil_relations } from "./sa/brazil";
+import { chile_relations } from "./sa/chile";
+import { ekuador_relations } from "./sa/ekuador";
+import { guiana_prancis_relations } from "./sa/guiana_prancis";
+import { guyana_relations } from "./sa/guyana";
+import { kolombia_relations } from "./sa/kolombia";
+import { paraguay_relations } from "./sa/paraguay";
+import { peru_relations } from "./sa/peru";
+import { suriname_relations } from "./sa/suriname";
+import { uruguay_relations } from "./sa/uruguay";
+import { venezuela_relations } from "./sa/venezuela";
 
-export const allRelations: { [key: string]: { name: string, relation: number }[] } = {
+export const allRelations: { [key: string]: { name: string; relation: number }[] } = {
+  "afrika selatan": afrika_selatan_relations,
   "aljazair": aljazair_relations,
   "angola": angola_relations,
   "benin": benin_relations,
@@ -220,8 +223,8 @@ export const allRelations: { [key: string]: { name: string, relation: number }[]
   "gabon": gabon_relations,
   "gambia": gambia_relations,
   "ghana": ghana_relations,
-  "guinea-bissau": guinea_bissau_relations,
   "guinea": guinea_relations,
+  "guinea bissau": guinea_bissau_relations,
   "kamerun": kamerun_relations,
   "kenya": kenya_relations,
   "komoro": komoro_relations,
@@ -294,7 +297,7 @@ export const allRelations: { [key: string]: { name: string, relation: number }[]
   "pakistan": pakistan_relations,
   "palestina": palestina_relations,
   "qatar": qatar_relations,
-  "republik timor-leste": republik_timor_leste_relations,
+  "republik timor leste": republik_timor_leste_relations,
   "singapura": singapura_relations,
   "sri lanka": sri_lanka_relations,
   "suriah": suriah_relations,
@@ -356,6 +359,7 @@ export const allRelations: { [key: string]: { name: string, relation: number }[]
   "ukraina": ukraina_relations,
   "vatikan": vatikan_relations,
   "yunani": yunani_relations,
+  "amerika serikat": amerika_serikat_relations,
   "antigua dan barbuda": antigua_dan_barbuda_relations,
   "bahama": bahama_relations,
   "barbados": barbados_relations,
@@ -382,19 +386,6 @@ export const allRelations: { [key: string]: { name: string, relation: number }[]
   "saint lucia": saint_lucia_relations,
   "saint vincent dan grenadine": saint_vincent_dan_grenadine_relations,
   "trinidad dan tobago": trinidad_dan_tobago_relations,
-  "argentina": argentina_relations,
-  "bolivia": bolivia_relations,
-  "brazil": brazil_relations,
-  "chile": chile_relations,
-  "ekuador": ekuador_relations,
-  "guiana prancis": guiana_prancis_relations,
-  "guyana": guyana_relations,
-  "kolombia": kolombia_relations,
-  "paraguay": paraguay_relations,
-  "peru": peru_relations,
-  "suriname": suriname_relations,
-  "uruguay": uruguay_relations,
-  "venezuela": venezuela_relations,
   "australia": australia_relations,
   "fiji": fiji_relations,
   "guam": guam_relations,
@@ -411,4 +402,17 @@ export const allRelations: { [key: string]: { name: string, relation: number }[]
   "tonga": tonga_relations,
   "tuvalu": tuvalu_relations,
   "vanuatu": vanuatu_relations,
+  "argentina": argentina_relations,
+  "bolivia": bolivia_relations,
+  "brazil": brazil_relations,
+  "chile": chile_relations,
+  "ekuador": ekuador_relations,
+  "guiana prancis": guiana_prancis_relations,
+  "guyana": guyana_relations,
+  "kolombia": kolombia_relations,
+  "paraguay": paraguay_relations,
+  "peru": peru_relations,
+  "suriname": suriname_relations,
+  "uruguay": uruguay_relations,
+  "venezuela": venezuela_relations,
 };

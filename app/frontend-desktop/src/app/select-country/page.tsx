@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight, Eye, EyeOff } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import WorldMapCanvas from "./selectcountrymap";
+import MapHubungan from "../game/tab-menu/Hubungan/mapHubungan";
 import { countries } from "./data/countries";
 import { gameStorage } from "../game/gamestorage";
 import { CountryData } from "./data/types";
@@ -41,6 +42,15 @@ export default function SelectCountry() {
   const [isSocialOpen, setIsSocialOpen] = useState(true);
   const [isGeopoliticsOpen, setIsGeopoliticsOpen] = useState(true);
   const [isMineralsOpen, setIsMineralsOpen] = useState(true);
+  const [mapMode, setMapMode] = useState<"default" | "hubungan">("default");
+  const [geoData, setGeoData] = useState<any>(null);
+
+  useEffect(() => {
+    fetch("/world.geojson")
+      .then(res => res.json())
+      .then(data => setGeoData(data))
+      .catch(err => console.error("Failed to load map data", err));
+  }, []);
 
   const getGridCols = (w: number) => {
     if (w > 490) return "grid-cols-4";
@@ -170,7 +180,16 @@ export default function SelectCountry() {
         >
           <TransformComponent wrapperClass="!w-full !h-full" contentClass="!h-full flex items-center justify-center">
             <div ref={containerRef} className="relative h-full flex items-center justify-center w-max">
-              <WorldMapCanvas selectedCountry={selectedCountry} onSelect={setSelectedCountry} />
+              {mapMode === "default" ? (
+                <WorldMapCanvas selectedCountry={selectedCountry} onSelect={setSelectedCountry} />
+              ) : (
+                <MapHubungan 
+                  userCountry={selectedCountry} 
+                  targetCountry={null} 
+                  geoData={geoData}
+                  onSelect={setSelectedCountry} 
+                />
+              )}
             </div>
           </TransformComponent>
         </TransformWrapper>
@@ -748,6 +767,30 @@ export default function SelectCountry() {
 
         </div>
       </main>
+
+      {/* Map Mode Toggles - High Z-Index to stay on top of all overlays */}
+      <div className="fixed left-1/2 bottom-[140px] -translate-x-1/2 z-[100] flex bg-zinc-900/95 backdrop-blur-2xl p-1.5 rounded-2xl border border-zinc-700/50 shadow-[0_20px_50px_rgba(0,0,0,0.6)] gap-1.5 pointer-events-auto ring-1 ring-white/10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+        <button 
+          onClick={() => setMapMode("default")}
+          className={`px-6 py-2 text-[11px] font-black uppercase tracking-[0.2em] rounded-xl transition-all cursor-pointer active:scale-95 ${
+            mapMode === "default" 
+              ? "bg-zinc-100 text-zinc-950 shadow-[0_0_20px_rgba(255,255,255,0.3)]" 
+              : "text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800/80"
+          }`}
+        >
+          PETA UTAMA
+        </button>
+        <button 
+          onClick={() => setMapMode("hubungan")}
+          className={`px-6 py-2 text-[11px] font-black uppercase tracking-[0.2em] rounded-xl transition-all cursor-pointer active:scale-95 flex items-center gap-2 ${
+            mapMode === "hubungan" 
+              ? "bg-amber-500 text-zinc-950 shadow-[0_0_25px_rgba(245,158,11,0.5)]" 
+              : "text-zinc-500 hover:text-amber-500 hover:bg-amber-500/10"
+          }`}
+        >
+          HUBUNGAN
+        </button>
+      </div>
 
       {/* 3. FOOTER CAROUSEL & CONTROLS */}
       <footer className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 flex items-end justify-between z-20">
