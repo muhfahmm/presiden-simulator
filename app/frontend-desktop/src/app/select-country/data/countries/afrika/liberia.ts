@@ -13,81 +13,86 @@ export const liberia: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 33,
-    "hydro_plant": 35,
-    "solar_plant": 15,
-    "thermal_plant": 37,
-    "gas_plant": 23,
-    "wind_plant": 1,
-    "power_grid": 85,
+    "airport": 7,
     "bicycle_path": 35,
-    "subway": 12,
-    "railway": 20,
+    "bus_terminal": 8,
+    "gas_plant": 23,
+    "helipad": 31,
     "highway": 1,
+    "hydro_plant": 35,
+    "internet_coverage": 89,
+    "nuclear_plant": 33,
+    "power_grid": 85,
+    "railway": 20,
     "road_quality": 89,
     "sea_port": 3,
-    "airport": 7,
-    "bus_terminal": 8,
-    "helipad": 31,
-    "internet_coverage": 89,
+    "solar_plant": 15,
+    "subway": 12,
     "tech_stack": 58,
-    "water_access": 74
+    "thermal_plant": 37,
+    "water_access": 74,
+    "wind_plant": 1,
+  
   },
   "sector_extraction": {
-    "gold": 1,
-    "uranium": 39,
-    "coal": 8,
-    "oil": 12,
-    "gas": 10,
-    "salt": 15,
-    "nickel": 25,
-    "lithium": 27,
     "aluminum": 34,
+    "coal": 8,
     "copper": 25,
-    "rare_earth": 33,
+    "gas": 10,
+    "gold": 1,
     "iron_ore": 10,
-    "strength": 29.660809349923973
+    "lithium": 27,
+    "nickel": 25,
+    "oil": 12,
+    "rare_earth": 33,
+    "salt": 15,
+    "strength": 29.660809349923973,
+    "uranium": 39,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 31,
-    "car": 19,
-    "motorcycle": 10,
-    "smelter": 36,
-    "concrete_cement": 38,
-    "wood": 8,
-    "mineral_water": 31,
-    "sugar": 25,
     "bread": 22,
-    "pharmacy": 25,
+    "car": 19,
+    "concrete_cement": 38,
     "fertilizer": 14,
-    "meat_processing": 4,
     "instant_noodle": 10,
-    "strength": 3.076011687404966
+    "meat_processing": 4,
+    "mineral_water": 31,
+    "motorcycle": 10,
+    "pharmacy": 25,
+    "semiconductor": 31,
+    "smelter": 36,
+    "strength": 3.076011687404966,
+    "sugar": 25,
+    "wood": 8,
+  
   },
   "sector_livestock": {
-    "chicken": 33,
-    "poultry": 39,
-    "dairy_cow": 2,
     "beef_cow": 29,
-    "sheep_goat": 24,
-    "shrimp": 14,
+    "chicken": 33,
+    "dairy_cow": 2,
     "fish": 15,
+    "poultry": 39,
+    "sheep_goat": 24,
     "shellfish": 13,
-    "strength": 18.24560701244298
+    "shrimp": 14,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 28,
-    "wheat": 18,
-    "corn": 37,
-    "tubers": 29,
-    "soy": 29,
-    "palm_oil": 30,
-    "tea": 21,
-    "coffee": 19,
     "cocoa": 35,
+    "coffee": 19,
+    "corn": 37,
+    "palm_oil": 30,
+    "rice": 28,
+    "soy": 29,
+    "strength": 20.660809349923973,
     "sugarcane": 4,
+    "tea": 21,
+    "tubers": 29,
     "vegetables": 36,
-    "strength": 20.660809349923973
+    "wheat": 18,
+  
   },
   "sector_defense": {
     "prison": 30,
@@ -102,20 +107,20 @@ export const liberia: CountryData = {
       "darat": {
         "main_battle_tank": 12,
         "apc": 33,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 26,
         "kapal_destroyer": 2,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 35,
         "helikopter_serang": 38,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 15,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const liberia: CountryData = {
       "spy_mission": 1,
       "sabotage_mission": 5,
       "territory_management": 36,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 16,
       "radar_network": 24,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const liberia: CountryData = {
       "research_center": 24,
       "development_center": 36,
       "literacy": 50,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 4,
@@ -161,7 +166,7 @@ export const liberia: CountryData = {
       "diagnostic_center": 9,
       "hospital_beds": 8832,
       "life_expectancy": 6,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 30,
@@ -169,7 +174,7 @@ export const liberia: CountryData = {
       "stadium": 4,
       "international_stadium": 30,
       "olympic_score": 29,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 39,
@@ -184,20 +189,20 @@ export const liberia: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 21,
           "sepeda_motor": 31,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 24,
           "helikopter_polisi": 11,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 27,
           "kamera_surveillance": 23,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 13,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const liberia: CountryData = {
     "naval_base": 7,
     "military_base": 2,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 15,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 37,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 24,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 39,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 17,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 2,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 39,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const liberia: CountryData = {
     ],
     "residential": 26,
     "commercial": 12,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const liberia: CountryData = {
     "international_influence": {
       "soft_power": 39,
       "hard_power": 8,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const liberia: CountryData = {
     "education": 21,
     "security": 36,
     "finance": 3,
-    "environment": 60
+    "environment": 60,
   }
 };

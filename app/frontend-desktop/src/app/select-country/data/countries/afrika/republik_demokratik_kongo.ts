@@ -7,87 +7,92 @@ export const republik_demokratik_kongo: CountryData = {
   "lon": 25,
   "lat": 0,
   "flag": "🇨🇩",
-  "pop": "10M",
-  "budget": "Rp 241 T",
-  "income": "Rp 322 T",
+  "pop": "112M",
+  "budget": "Rp 220 T",
+  "income": "Rp 1120 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 25,
-    "hydro_plant": 36,
-    "solar_plant": 16,
-    "thermal_plant": 26,
-    "gas_plant": 29,
-    "wind_plant": 14,
-    "power_grid": 81,
+    "airport": 29,
     "bicycle_path": 20,
-    "subway": 21,
-    "railway": 29,
+    "bus_terminal": 30,
+    "gas_plant": 29,
+    "helipad": 3,
     "highway": 4,
+    "hydro_plant": 36,
+    "internet_coverage": 50,
+    "nuclear_plant": 25,
+    "power_grid": 81,
+    "railway": 29,
     "road_quality": 62,
     "sea_port": 34,
-    "airport": 29,
-    "bus_terminal": 30,
-    "helipad": 3,
-    "internet_coverage": 50,
+    "solar_plant": 16,
+    "subway": 21,
     "tech_stack": 82,
-    "water_access": 74
+    "thermal_plant": 26,
+    "water_access": 74,
+    "wind_plant": 14,
+  
   },
   "sector_extraction": {
-    "gold": 27,
-    "uranium": 14,
-    "coal": 40,
-    "oil": 19,
-    "gas": 7,
-    "salt": 30,
-    "nickel": 35,
-    "lithium": 38,
     "aluminum": 29,
-    "copper": 16,
-    "rare_earth": 24,
+    "coal": 40,
+    "copper": 90,
+    "gas": 7,
+    "gold": 60,
     "iron_ore": 26,
-    "strength": 29.660809349923973
+    "lithium": 38,
+    "nickel": 35,
+    "oil": 19,
+    "rare_earth": 85,
+    "salt": 30,
+    "strength": 29.660809349923973,
+    "uranium": 14,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 1,
-    "car": 20,
-    "motorcycle": 39,
-    "smelter": 13,
-    "concrete_cement": 25,
-    "wood": 37,
-    "mineral_water": 6,
-    "sugar": 38,
     "bread": 38,
-    "pharmacy": 38,
+    "car": 20,
+    "concrete_cement": 25,
     "fertilizer": 34,
-    "meat_processing": 21,
     "instant_noodle": 9,
-    "strength": 3.076011687404966
+    "meat_processing": 21,
+    "mineral_water": 6,
+    "motorcycle": 39,
+    "pharmacy": 38,
+    "semiconductor": 1,
+    "smelter": 13,
+    "strength": 3.076011687404966,
+    "sugar": 38,
+    "wood": 37,
+  
   },
   "sector_livestock": {
-    "chicken": 11,
-    "poultry": 2,
-    "dairy_cow": 13,
     "beef_cow": 37,
-    "sheep_goat": 25,
-    "shrimp": 31,
+    "chicken": 11,
+    "dairy_cow": 13,
     "fish": 34,
+    "poultry": 2,
+    "sheep_goat": 25,
     "shellfish": 40,
-    "strength": 18.24560701244298
+    "shrimp": 31,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 11,
-    "wheat": 26,
-    "corn": 26,
-    "tubers": 32,
-    "soy": 32,
-    "palm_oil": 32,
-    "tea": 30,
-    "coffee": 14,
     "cocoa": 37,
+    "coffee": 14,
+    "corn": 26,
+    "palm_oil": 32,
+    "rice": 11,
+    "soy": 32,
+    "strength": 20.660809349923973,
     "sugarcane": 9,
+    "tea": 30,
+    "tubers": 32,
     "vegetables": 34,
-    "strength": 20.660809349923973
+    "wheat": 26,
+  
   },
   "sector_defense": {
     "prison": 21,
@@ -102,20 +107,20 @@ export const republik_demokratik_kongo: CountryData = {
       "darat": {
         "main_battle_tank": 54,
         "apc": 82,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 33,
         "kapal_destroyer": 55,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 64,
         "helikopter_serang": 188,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 5,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const republik_demokratik_kongo: CountryData = {
       "spy_mission": 26,
       "sabotage_mission": 15,
       "territory_management": 17,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 3,
       "radar_network": 1,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const republik_demokratik_kongo: CountryData = {
       "research_center": 13,
       "development_center": 40,
       "literacy": 84,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 16,
@@ -161,7 +166,7 @@ export const republik_demokratik_kongo: CountryData = {
       "diagnostic_center": 22,
       "hospital_beds": 7571,
       "life_expectancy": 30,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 38,
@@ -169,7 +174,7 @@ export const republik_demokratik_kongo: CountryData = {
       "stadium": 16,
       "international_stadium": 26,
       "olympic_score": 6,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 8,
@@ -184,20 +189,20 @@ export const republik_demokratik_kongo: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 11,
           "sepeda_motor": 32,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 36,
           "helikopter_polisi": 31,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 16,
           "kamera_surveillance": 37,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 32,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const republik_demokratik_kongo: CountryData = {
     "naval_base": 20,
     "military_base": 16,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 8,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 29,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 30,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 26,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 32,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 4,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 9,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const republik_demokratik_kongo: CountryData = {
     ],
     "residential": 28,
     "commercial": 37,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const republik_demokratik_kongo: CountryData = {
     "international_influence": {
       "soft_power": 25,
       "hard_power": 19,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const republik_demokratik_kongo: CountryData = {
     "education": 24,
     "security": 9,
     "finance": 34,
-    "environment": 60
+    "environment": 60,
   }
 };

@@ -13,81 +13,86 @@ export const chad: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 23,
-    "hydro_plant": 13,
-    "solar_plant": 37,
-    "thermal_plant": 16,
-    "gas_plant": 18,
-    "wind_plant": 35,
-    "power_grid": 89,
+    "airport": 40,
     "bicycle_path": 26,
-    "subway": 25,
-    "railway": 12,
+    "bus_terminal": 20,
+    "gas_plant": 18,
+    "helipad": 28,
     "highway": 18,
+    "hydro_plant": 13,
+    "internet_coverage": 94,
+    "nuclear_plant": 23,
+    "power_grid": 89,
+    "railway": 12,
     "road_quality": 78,
     "sea_port": 29,
-    "airport": 40,
-    "bus_terminal": 20,
-    "helipad": 28,
-    "internet_coverage": 94,
+    "solar_plant": 37,
+    "subway": 25,
     "tech_stack": 54,
-    "water_access": 74
+    "thermal_plant": 16,
+    "water_access": 74,
+    "wind_plant": 35,
+  
   },
   "sector_extraction": {
-    "gold": 18,
-    "uranium": 22,
-    "coal": 40,
-    "oil": 14,
-    "gas": 22,
-    "salt": 7,
-    "nickel": 22,
-    "lithium": 32,
     "aluminum": 18,
+    "coal": 40,
     "copper": 16,
-    "rare_earth": 23,
+    "gas": 22,
+    "gold": 18,
     "iron_ore": 26,
-    "strength": 29.660809349923973
+    "lithium": 32,
+    "nickel": 22,
+    "oil": 14,
+    "rare_earth": 23,
+    "salt": 7,
+    "strength": 29.660809349923973,
+    "uranium": 22,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 17,
-    "car": 23,
-    "motorcycle": 27,
-    "smelter": 40,
-    "concrete_cement": 20,
-    "wood": 13,
-    "mineral_water": 17,
-    "sugar": 9,
     "bread": 27,
-    "pharmacy": 8,
+    "car": 23,
+    "concrete_cement": 20,
     "fertilizer": 40,
-    "meat_processing": 4,
     "instant_noodle": 34,
-    "strength": 3.076011687404966
+    "meat_processing": 4,
+    "mineral_water": 17,
+    "motorcycle": 27,
+    "pharmacy": 8,
+    "semiconductor": 17,
+    "smelter": 40,
+    "strength": 3.076011687404966,
+    "sugar": 9,
+    "wood": 13,
+  
   },
   "sector_livestock": {
-    "chicken": 10,
-    "poultry": 31,
-    "dairy_cow": 6,
     "beef_cow": 38,
-    "sheep_goat": 35,
-    "shrimp": 21,
+    "chicken": 10,
+    "dairy_cow": 6,
     "fish": 2,
+    "poultry": 31,
+    "sheep_goat": 35,
     "shellfish": 4,
-    "strength": 18.24560701244298
+    "shrimp": 21,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 4,
-    "wheat": 33,
-    "corn": 35,
-    "tubers": 34,
-    "soy": 27,
-    "palm_oil": 8,
-    "tea": 27,
-    "coffee": 19,
     "cocoa": 1,
+    "coffee": 19,
+    "corn": 35,
+    "palm_oil": 8,
+    "rice": 4,
+    "soy": 27,
+    "strength": 20.660809349923973,
     "sugarcane": 9,
+    "tea": 27,
+    "tubers": 34,
     "vegetables": 14,
-    "strength": 20.660809349923973
+    "wheat": 33,
+  
   },
   "sector_defense": {
     "prison": 11,
@@ -102,20 +107,20 @@ export const chad: CountryData = {
       "darat": {
         "main_battle_tank": 34,
         "apc": 1,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 20,
         "kapal_destroyer": 36,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 24,
         "helikopter_serang": 25,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 23,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const chad: CountryData = {
       "spy_mission": 20,
       "sabotage_mission": 35,
       "territory_management": 9,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 35,
       "radar_network": 31,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const chad: CountryData = {
       "research_center": 36,
       "development_center": 22,
       "literacy": 67,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 32,
@@ -161,7 +166,7 @@ export const chad: CountryData = {
       "diagnostic_center": 25,
       "hospital_beds": 720,
       "life_expectancy": 14,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 34,
@@ -169,7 +174,7 @@ export const chad: CountryData = {
       "stadium": 24,
       "international_stadium": 39,
       "olympic_score": 18,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 1,
@@ -184,20 +189,20 @@ export const chad: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 35,
           "sepeda_motor": 2,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 29,
           "helikopter_polisi": 3,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 2,
           "kamera_surveillance": 34,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 27,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const chad: CountryData = {
     "naval_base": 37,
     "military_base": 5,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 17,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 32,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 3,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 35,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 13,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 30,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 28,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const chad: CountryData = {
     ],
     "residential": 14,
     "commercial": 20,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const chad: CountryData = {
     "international_influence": {
       "soft_power": 7,
       "hard_power": 23,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const chad: CountryData = {
     "education": 32,
     "security": 6,
     "finance": 23,
-    "environment": 60
+    "environment": 60,
   }
 };

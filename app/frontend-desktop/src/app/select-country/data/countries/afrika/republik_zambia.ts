@@ -13,81 +13,86 @@ export const republik_zambia: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 25,
-    "hydro_plant": 28,
-    "solar_plant": 27,
-    "thermal_plant": 37,
-    "gas_plant": 1,
-    "wind_plant": 32,
-    "power_grid": 69,
+    "airport": 15,
     "bicycle_path": 5,
-    "subway": 37,
-    "railway": 24,
+    "bus_terminal": 4,
+    "gas_plant": 1,
+    "helipad": 5,
     "highway": 40,
+    "hydro_plant": 28,
+    "internet_coverage": 76,
+    "nuclear_plant": 25,
+    "power_grid": 69,
+    "railway": 24,
     "road_quality": 63,
     "sea_port": 7,
-    "airport": 15,
-    "bus_terminal": 4,
-    "helipad": 5,
-    "internet_coverage": 76,
+    "solar_plant": 27,
+    "subway": 37,
     "tech_stack": 71,
-    "water_access": 74
+    "thermal_plant": 37,
+    "water_access": 74,
+    "wind_plant": 32,
+  
   },
   "sector_extraction": {
-    "gold": 3,
-    "uranium": 16,
-    "coal": 39,
-    "oil": 12,
-    "gas": 18,
-    "salt": 24,
-    "nickel": 6,
-    "lithium": 21,
     "aluminum": 3,
+    "coal": 39,
     "copper": 32,
-    "rare_earth": 14,
+    "gas": 18,
+    "gold": 3,
     "iron_ore": 5,
-    "strength": 29.660809349923973
+    "lithium": 21,
+    "nickel": 6,
+    "oil": 12,
+    "rare_earth": 14,
+    "salt": 24,
+    "strength": 29.660809349923973,
+    "uranium": 16,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 28,
-    "car": 32,
-    "motorcycle": 8,
-    "smelter": 35,
-    "concrete_cement": 37,
-    "wood": 39,
-    "mineral_water": 27,
-    "sugar": 21,
     "bread": 38,
-    "pharmacy": 25,
+    "car": 32,
+    "concrete_cement": 37,
     "fertilizer": 36,
-    "meat_processing": 5,
     "instant_noodle": 3,
-    "strength": 3.076011687404966
+    "meat_processing": 5,
+    "mineral_water": 27,
+    "motorcycle": 8,
+    "pharmacy": 25,
+    "semiconductor": 28,
+    "smelter": 35,
+    "strength": 3.076011687404966,
+    "sugar": 21,
+    "wood": 39,
+  
   },
   "sector_livestock": {
-    "chicken": 4,
-    "poultry": 31,
-    "dairy_cow": 31,
     "beef_cow": 11,
-    "sheep_goat": 2,
-    "shrimp": 17,
+    "chicken": 4,
+    "dairy_cow": 31,
     "fish": 9,
+    "poultry": 31,
+    "sheep_goat": 2,
     "shellfish": 12,
-    "strength": 18.24560701244298
+    "shrimp": 17,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 11,
-    "wheat": 24,
-    "corn": 19,
-    "tubers": 11,
-    "soy": 34,
-    "palm_oil": 2,
-    "tea": 26,
-    "coffee": 29,
     "cocoa": 17,
+    "coffee": 29,
+    "corn": 19,
+    "palm_oil": 2,
+    "rice": 11,
+    "soy": 34,
+    "strength": 20.660809349923973,
     "sugarcane": 31,
+    "tea": 26,
+    "tubers": 11,
     "vegetables": 10,
-    "strength": 20.660809349923973
+    "wheat": 24,
+  
   },
   "sector_defense": {
     "prison": 1,
@@ -102,20 +107,20 @@ export const republik_zambia: CountryData = {
       "darat": {
         "main_battle_tank": 189,
         "apc": 10,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 31,
         "kapal_destroyer": 31,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 60,
         "helikopter_serang": 40,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 1,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const republik_zambia: CountryData = {
       "spy_mission": 34,
       "sabotage_mission": 6,
       "territory_management": 28,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 2,
       "radar_network": 2,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const republik_zambia: CountryData = {
       "research_center": 38,
       "development_center": 36,
       "literacy": 69,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 36,
@@ -161,7 +166,7 @@ export const republik_zambia: CountryData = {
       "diagnostic_center": 18,
       "hospital_beds": 736,
       "life_expectancy": 24,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 12,
@@ -169,7 +174,7 @@ export const republik_zambia: CountryData = {
       "stadium": 23,
       "international_stadium": 24,
       "olympic_score": 20,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 40,
@@ -184,20 +189,20 @@ export const republik_zambia: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 35,
           "sepeda_motor": 21,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 36,
           "helikopter_polisi": 7,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 9,
           "kamera_surveillance": 18,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 16,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const republik_zambia: CountryData = {
     "naval_base": 29,
     "military_base": 15,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 36,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 20,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 32,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 11,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 24,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 22,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 19,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const republik_zambia: CountryData = {
     ],
     "residential": 14,
     "commercial": 39,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const republik_zambia: CountryData = {
     "international_influence": {
       "soft_power": 1,
       "hard_power": 13,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const republik_zambia: CountryData = {
     "education": 14,
     "security": 32,
     "finance": 31,
-    "environment": 60
+    "environment": 60,
   }
 };

@@ -9,416 +9,210 @@ import { australia, fiji, kiribati, marshall, mikronesia, nauru, palau, papua_nu
 
 export const countries: CountryData[] = [
   afganistan,
-  arab_saudi,
-  armenia,
-  azerbaijan,
   afrika_selatan,
-  aljazair,
-  angola,
   albania,
-  andorra,
-  austria,
+  aljazair,
   amerika_serikat,
+  andorra,
+  angola,
   antigua_dan_barbuda,
+  arab_saudi,
   argentina,
+  armenia,
   australia,
+  austria,
+  azerbaijan,
+  bahama,
   bahrain,
   bangladesh,
-  bhutan,
-  brunei,
-  china,
-  benin,
-  botswana,
-  burkina_faso,
-  burundi,
-  chad,
+  barbados,
   belanda,
   belarus,
   belgia,
-  bosnia_dan_hercegovina,
-  bulgaria,
-  ceko,
-  bahama,
-  barbados,
   belize,
-  costa_rica,
+  benin,
+  bermuda,
+  bhutan,
   bolivia,
+  bosnia_dan_hercegovina,
+  botswana,
   brazil,
+  brunei,
+  bulgaria,
+  burkina_faso,
+  burundi,
+  ceko,
+  chad,
   chile,
-  filipina,
-  georgia,
+  china,
+  costa_rica,
+  curacao,
+  denmark,
+  djibouti,
+  dominika,
+  ekuador,
+  el_salvador,
   eritrea,
+  estonia,
+  eswatini,
   ethiopia,
+  fiji,
+  filipina,
+  finlandia,
   gabon,
   gambia,
+  georgia,
   ghana,
-  denmark,
-  estonia,
-  finlandia,
-  dominika,
-  el_salvador,
-  ekuador,
-  fiji,
-  india,
-  indonesia,
+  gibraltar,
+  greenland,
+  grenada,
+  guam,
+  guatemala,
+  guiana_prancis,
   guinea,
   guinea_bissau,
-  hungaria,
-  islandia,
-  grenada,
-  guatemala,
+  guyana,
   haiti,
   honduras,
-  guyana,
+  hong_kong,
+  hungaria,
+  india,
+  indonesia,
+  inggris,
   irak,
   iran,
-  israel,
-  jepang,
-  yordania,
-  kamboja,
   irlandia,
+  islandia,
+  israel,
   italia,
-  jerman,
   jamaika,
-  kazakhstan,
-  kirgizstan,
-  korea_selatan,
+  jepang,
+  jerman,
+  kamboja,
   kamerun,
+  kanada,
+  kazakhstan,
   kenya,
+  kepulauan_faroe,
+  kirgizstan,
+  kiribati,
+  kolombia,
   komoro,
   kongo,
-  kanada,
-  kolombia,
-  kiribati,
+  korea_selatan,
   korea_utara,
+  kosovo,
+  kroasia,
+  kuba,
   kuwait,
   laos,
+  latvia,
   lebanon,
   lesotho,
   liberia,
-  kroasia,
-  latvia,
-  kuba,
-  malaysia,
-  maldives,
   libya,
-  madagaskar,
-  malawi,
-  mali,
   liechtenstein,
   lithuania,
   luksemburg,
+  madagaskar,
+  makau,
+  makedonia_utara,
+  malawi,
+  malaysia,
+  maldives,
+  mali,
   malta,
-  mongolia,
   maroko,
+  marshall,
   mauritania,
   mauritius,
+  meksiko,
+  mesir,
+  mikronesia,
   moldova,
   monako,
+  mongolia,
   montenegro,
-  meksiko,
-  marshall,
-  mikronesia,
-  myanmar,
-  nepal,
-  oman,
   mozambik,
+  myanmar,
   namibia,
+  nauru,
+  nepal,
   niger,
   nigeria,
-  norwegia,
   nikaragua,
-  nauru,
+  norwegia,
+  oman,
   pakistan,
+  palau,
   palestina,
-  qatar,
-  polandia,
-  portugal,
   panama,
+  pantai_gading,
+  papua_nugini,
   paraguay,
   peru,
-  palau,
-  papua_nugini,
+  polandia,
+  portugal,
+  prancis,
+  puerto_rico,
+  qatar,
   republik_afrika_tengah,
   republik_demokratik_kongo,
+  republik_dominika,
+  republik_rumania,
+  republik_serbia,
   republik_sudan,
   republik_tanzania,
+  republik_timor_leste,
   republik_uganda,
   republik_zambia,
   republik_zimbabwe,
-  rwanda,
-  republik_rumania,
-  republik_serbia,
   rusia,
-  republik_dominika,
+  rwanda,
   saint_kitts_dan_nevis,
   saint_lucia,
   saint_vincent_dan_grenadine,
   samoa,
-  republik_timor_leste,
-  singapura,
-  sri_lanka,
-  suriah,
-  taiwan,
-  tajikistan,
+  samoa_amerika,
+  san_marino,
   sao_tome_dan_principe,
+  selandia_baru,
   senegal,
   seychelles,
   sierra_leone,
-  somalia,
-  sudan_selatan,
-  san_marino,
-  slowakia,
+  singapura,
+  siprus,
   slovenia,
+  slowakia,
+  somalia,
   spanyol,
+  sri_lanka,
+  sudan_selatan,
+  suriah,
+  suriname,
   swedia,
   swiss,
-  suriname,
   tahiti,
+  taiwan,
+  tajikistan,
+  tanjung_verde,
   thailand,
-  turkmenistan,
-  uni_emirat_arab,
-  uzbekistan,
-  vietnam,
-  yaman,
   togo,
+  tonga,
+  trinidad_dan_tobago,
   tunisia,
   turki,
-  ukraina,
-  vatikan,
-  trinidad_dan_tobago,
-  uruguay,
-  venezuela,
-  tonga,
+  turkmenistan,
   tuvalu,
+  ukraina,
+  uni_emirat_arab,
+  uruguay,
+  uzbekistan,
   vanuatu,
-  tanjung_verde,
-  djibouti,
-  mesir,
-  eswatini,
-  pantai_gading,
-  siprus,
-  prancis,
+  vatikan,
+  venezuela,
+  vietnam,
+  yaman,
+  yordania,
   yunani,
-  makedonia_utara,
-  selandia_baru,
-  hong_kong,
-  makau,
-  inggris,
-  kepulauan_faroe,
-  gibraltar,
-  kosovo,
-  bermuda,
-  curacao,
-  greenland,
-  puerto_rico,
-  guiana_prancis,
-  samoa_amerika,
-  guam,
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ];

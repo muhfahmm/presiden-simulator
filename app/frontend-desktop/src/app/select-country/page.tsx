@@ -32,6 +32,8 @@ export default function SelectCountry() {
   const [isEconomyOpen, setIsEconomyOpen] = useState(true);
   const [isDefenseOpen, setIsDefenseOpen] = useState(true);
   const [isSocialOpen, setIsSocialOpen] = useState(true);
+  const [isGeopoliticsOpen, setIsGeopoliticsOpen] = useState(true);
+  const [isMineralsOpen, setIsMineralsOpen] = useState(true);
 
   const getGridCols = (w: number) => {
     if (w > 490) return "grid-cols-4";
@@ -232,27 +234,6 @@ export default function SelectCountry() {
             
             <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isEconomyOpen ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0 pointer-events-none"}`}>
             <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px] no-scrollbar pr-1">
-              {/* Extraction */}
-              <div className="flex flex-col gap-2">
-                <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Pickaxe size={10}/> Ekstraksi & Energi</span>
-                  <span className="text-xs font-black text-emerald-400">{Math.floor(currentData.sector_extraction.strength)}%</span>
-                </div>
-                <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
-                  <SectorStat icon={<Droplets size={10} className="text-blue-400"/>} label="Minyak" value={currentData.sector_extraction.oil} />
-                  <SectorStat icon={<Flame size={10} className="text-orange-400"/>} label="Gas" value={currentData.sector_extraction.gas} />
-                  <SectorStat icon={<Gem size={10} className="text-yellow-400"/>} label="Emas" value={currentData.sector_extraction.gold} />
-                  <SectorStat icon={<Radio size={10} className="text-emerald-400"/>} label="Uranium" value={currentData.sector_extraction.uranium} />
-                  <SectorStat icon={<Layers size={10} className="text-zinc-400"/>} label="Batubara" value={currentData.sector_extraction.coal} />
-                  <SectorStat icon={<Box size={10} className="text-orange-400"/>} label="Nikel" value={currentData.sector_extraction.nickel} />
-                  <SectorStat icon={<Pickaxe size={10} className="text-orange-300"/>} label="Tembaga" value={currentData.sector_extraction.copper} />
-                  <SectorStat icon={<Mountain size={10} className="text-zinc-500"/>} label="Biji Besi" value={currentData.sector_extraction.iron_ore} />
-                  <SectorStat icon={<Cpu size={10} className="text-purple-400"/>} label="Tanah Jarang" value={currentData.sector_extraction.rare_earth} />
-                  <SectorStat icon={<Waves size={10} className="text-blue-200"/>} label="Garam" value={currentData.sector_extraction.salt} />
-                </div>
-              </div>
-
-              <div className="h-px bg-zinc-800/50" />
 
               {/* Manufacturing */}
               <div className="flex flex-col gap-2">
@@ -567,11 +548,20 @@ export default function SelectCountry() {
           </div>
 
           {/* 5. Ekonomi & Geopolitik (Expanded) */}
-          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-3 w-80 pointer-events-auto">
-            <div className="flex items-center justify-between">
+          <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-3 pointer-events-auto relative group/panel">
+            <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
+            <div className="flex items-center justify-between w-full">
               <h3 className="text-xs font-black text-blue-500 uppercase tracking-[0.2em]">5. Geopolitik & Luar Negeri</h3>
-              <span className="text-xs font-black bg-indigo-500/20 text-indigo-400 px-2 py-0.5 rounded uppercase">{currentData.geopolitics.stance}</span>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-black bg-indigo-500/20 text-indigo-400 px-1.5 py-0.5 rounded uppercase">{currentData.geopolitics.stance}</span>
+                <button onClick={() => setIsGeopoliticsOpen(!isGeopoliticsOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
+                  {isGeopoliticsOpen ? <Eye size={12} className="text-blue-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
+                </button>
+              </div>
             </div>
+            
+            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isGeopoliticsOpen ? "max-h-[500px] opacity-100 mt-1" : "max-h-0 opacity-0 pointer-events-none"}`}>
+            <div className="flex flex-col gap-3">
 
             {/* Sub-Tabs */}
             <div className="flex gap-1 p-1 bg-zinc-800/50 rounded-lg">
@@ -677,22 +667,42 @@ export default function SelectCountry() {
                 </div>
               )}
             </div>
+            </div>
+            </div>
           </div>
 
           {/* 6. Mineral Kritis & Strategis */}
-          <div className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 w-72 pointer-events-auto">
-            <h3 className="text-xs font-black text-pink-500 uppercase tracking-[0.2em] mb-1">6. Mineral Kritis & Strategis</h3>
+          <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
+            <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
+            <h3 className="text-xs font-black text-pink-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
+              <span>6. Mineral Kritis & Strategis</span>
+              <button onClick={() => setIsMineralsOpen(!isMineralsOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
+                {isMineralsOpen ? <Eye size={12} className="text-pink-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
+              </button>
+            </h3>
+            
+            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isMineralsOpen ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0 pointer-events-none"}`}>
+            <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold text-zinc-400 uppercase tracking-widest">Downstream Priority</span>
               <span className="text-xs font-black text-emerald-400 uppercase">Strategic Asset</span>
             </div>
             
-            <div className={`grid ${getGridCols(rightWidth)} gap-3`}>
-              <SectorStat icon={<Box size={10} className="text-orange-400"/>} label="Nikel" value={currentData.sector_extraction.nickel} />
-              <SectorStat icon={<Battery size={10} className="text-cyan-400"/>} label="Litium" value={currentData.sector_extraction.lithium} />
-              <SectorStat icon={<Layers size={10} className="text-zinc-400"/>} label="Batubara" value={currentData.sector_extraction.coal} />
-              <SectorStat icon={<Pickaxe size={10} className="text-orange-300"/>} label="Tembaga" value={currentData.sector_extraction.copper} />
+            <div className={`grid ${getGridCols(rightWidth)} gap-2`}>
               <SectorStat icon={<Layers size={10} className="text-blue-200"/>} label="Alumunium" value={currentData.sector_extraction.aluminum} />
+              <SectorStat icon={<Layers size={10} className="text-zinc-400"/>} label="Batubara" value={currentData.sector_extraction.coal} />
+              <SectorStat icon={<Mountain size={10} className="text-zinc-500"/>} label="Biji Besi" value={currentData.sector_extraction.iron_ore} />
+              <SectorStat icon={<Gem size={10} className="text-yellow-400"/>} label="Emas" value={currentData.sector_extraction.gold} />
+              <SectorStat icon={<Waves size={10} className="text-blue-200"/>} label="Garam" value={currentData.sector_extraction.salt} />
+              <SectorStat icon={<Flame size={10} className="text-orange-400"/>} label="Gas" value={currentData.sector_extraction.gas} />
+              <SectorStat icon={<Battery size={10} className="text-cyan-400"/>} label="Litium" value={currentData.sector_extraction.lithium} />
+              <SectorStat icon={<Droplets size={10} className="text-blue-400"/>} label="Minyak" value={currentData.sector_extraction.oil} />
+              <SectorStat icon={<Box size={10} className="text-orange-400"/>} label="Nikel" value={currentData.sector_extraction.nickel} />
+              <SectorStat icon={<Cpu size={10} className="text-purple-400"/>} label="Tanah Jarang" value={currentData.sector_extraction.rare_earth} />
+              <SectorStat icon={<Pickaxe size={10} className="text-orange-300"/>} label="Tembaga" value={currentData.sector_extraction.copper} />
+              <SectorStat icon={<Radio size={10} className="text-emerald-400"/>} label="Uranium" value={currentData.sector_extraction.uranium} />
+            </div>
+            </div>
             </div>
           </div>
 

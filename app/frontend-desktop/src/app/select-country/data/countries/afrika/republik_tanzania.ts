@@ -13,81 +13,86 @@ export const republik_tanzania: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 30,
-    "hydro_plant": 9,
-    "solar_plant": 25,
-    "thermal_plant": 36,
-    "gas_plant": 35,
-    "wind_plant": 19,
-    "power_grid": 79,
+    "airport": 14,
     "bicycle_path": 30,
-    "subway": 24,
-    "railway": 33,
+    "bus_terminal": 40,
+    "gas_plant": 35,
+    "helipad": 1,
     "highway": 14,
+    "hydro_plant": 9,
+    "internet_coverage": 58,
+    "nuclear_plant": 30,
+    "power_grid": 79,
+    "railway": 33,
     "road_quality": 56,
     "sea_port": 31,
-    "airport": 14,
-    "bus_terminal": 40,
-    "helipad": 1,
-    "internet_coverage": 58,
+    "solar_plant": 25,
+    "subway": 24,
     "tech_stack": 51,
-    "water_access": 74
+    "thermal_plant": 36,
+    "water_access": 74,
+    "wind_plant": 19,
+  
   },
   "sector_extraction": {
-    "gold": 9,
-    "uranium": 35,
-    "coal": 12,
-    "oil": 18,
-    "gas": 1,
-    "salt": 16,
-    "nickel": 2,
-    "lithium": 14,
     "aluminum": 17,
+    "coal": 12,
     "copper": 8,
-    "rare_earth": 36,
+    "gas": 1,
+    "gold": 9,
     "iron_ore": 16,
-    "strength": 29.660809349923973
+    "lithium": 14,
+    "nickel": 2,
+    "oil": 18,
+    "rare_earth": 36,
+    "salt": 16,
+    "strength": 29.660809349923973,
+    "uranium": 35,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 34,
-    "car": 30,
-    "motorcycle": 11,
-    "smelter": 10,
-    "concrete_cement": 15,
-    "wood": 13,
-    "mineral_water": 1,
-    "sugar": 8,
     "bread": 33,
-    "pharmacy": 8,
+    "car": 30,
+    "concrete_cement": 15,
     "fertilizer": 9,
-    "meat_processing": 36,
     "instant_noodle": 4,
-    "strength": 3.076011687404966
+    "meat_processing": 36,
+    "mineral_water": 1,
+    "motorcycle": 11,
+    "pharmacy": 8,
+    "semiconductor": 34,
+    "smelter": 10,
+    "strength": 3.076011687404966,
+    "sugar": 8,
+    "wood": 13,
+  
   },
   "sector_livestock": {
-    "chicken": 6,
-    "poultry": 31,
-    "dairy_cow": 26,
     "beef_cow": 21,
-    "sheep_goat": 38,
-    "shrimp": 20,
+    "chicken": 6,
+    "dairy_cow": 26,
     "fish": 30,
+    "poultry": 31,
+    "sheep_goat": 38,
     "shellfish": 31,
-    "strength": 18.24560701244298
+    "shrimp": 20,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 19,
-    "wheat": 12,
-    "corn": 21,
-    "tubers": 3,
-    "soy": 11,
-    "palm_oil": 6,
-    "tea": 4,
-    "coffee": 7,
     "cocoa": 23,
+    "coffee": 7,
+    "corn": 21,
+    "palm_oil": 6,
+    "rice": 19,
+    "soy": 11,
+    "strength": 20.660809349923973,
     "sugarcane": 40,
+    "tea": 4,
+    "tubers": 3,
     "vegetables": 19,
-    "strength": 20.660809349923973
+    "wheat": 12,
+  
   },
   "sector_defense": {
     "prison": 12,
@@ -102,20 +107,20 @@ export const republik_tanzania: CountryData = {
       "darat": {
         "main_battle_tank": 53,
         "apc": 45,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 39,
         "kapal_destroyer": 127,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 189,
         "helikopter_serang": 58,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 32,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const republik_tanzania: CountryData = {
       "spy_mission": 34,
       "sabotage_mission": 10,
       "territory_management": 30,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 1,
       "radar_network": 3,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const republik_tanzania: CountryData = {
       "research_center": 11,
       "development_center": 26,
       "literacy": 83,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 5,
@@ -161,7 +166,7 @@ export const republik_tanzania: CountryData = {
       "diagnostic_center": 4,
       "hospital_beds": 8507,
       "life_expectancy": 7,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 1,
@@ -169,7 +174,7 @@ export const republik_tanzania: CountryData = {
       "stadium": 34,
       "international_stadium": 40,
       "olympic_score": 12,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 32,
@@ -184,20 +189,20 @@ export const republik_tanzania: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 36,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 34,
           "helikopter_polisi": 27,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 32,
           "kamera_surveillance": 22,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 31,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const republik_tanzania: CountryData = {
     "naval_base": 20,
     "military_base": 35,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 29,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 31,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 38,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 26,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 27,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 33,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 24,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const republik_tanzania: CountryData = {
     ],
     "residential": 32,
     "commercial": 6,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const republik_tanzania: CountryData = {
     "international_influence": {
       "soft_power": 40,
       "hard_power": 11,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const republik_tanzania: CountryData = {
     "education": 34,
     "security": 40,
     "finance": 40,
-    "environment": 60
+    "environment": 60,
   }
 };

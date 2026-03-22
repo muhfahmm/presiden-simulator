@@ -7,87 +7,92 @@ export const angola: CountryData = {
   "lon": 13.23,
   "lat": -8.83,
   "flag": "🇦🇴",
-  "pop": "17M",
-  "budget": "Rp 312 T",
-  "income": "Rp 918 T",
+  "pop": "39M",
+  "budget": "Rp 280 T",
+  "income": "Rp 1440 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 16,
-    "hydro_plant": 27,
-    "solar_plant": 25,
-    "thermal_plant": 19,
-    "gas_plant": 39,
-    "wind_plant": 23,
-    "power_grid": 85,
+    "airport": 25,
     "bicycle_path": 27,
-    "subway": 16,
-    "railway": 39,
+    "bus_terminal": 18,
+    "gas_plant": 39,
+    "helipad": 10,
     "highway": 40,
+    "hydro_plant": 27,
+    "internet_coverage": 81,
+    "nuclear_plant": 16,
+    "power_grid": 85,
+    "railway": 39,
     "road_quality": 83,
     "sea_port": 6,
-    "airport": 25,
-    "bus_terminal": 18,
-    "helipad": 10,
-    "internet_coverage": 81,
+    "solar_plant": 25,
+    "subway": 16,
     "tech_stack": 68,
-    "water_access": 74
+    "thermal_plant": 19,
+    "water_access": 74,
+    "wind_plant": 23,
+  
   },
   "sector_extraction": {
-    "gold": 8,
-    "uranium": 21,
-    "coal": 13,
-    "oil": 12,
-    "gas": 11,
-    "salt": 7,
-    "nickel": 2,
-    "lithium": 39,
     "aluminum": 8,
+    "coal": 13,
     "copper": 28,
-    "rare_earth": 33,
+    "gas": 11,
+    "gold": 8,
     "iron_ore": 22,
-    "strength": 29.660809349923973
+    "lithium": 39,
+    "nickel": 2,
+    "oil": 80,
+    "rare_earth": 50,
+    "salt": 7,
+    "strength": 29.660809349923973,
+    "uranium": 21,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 1,
-    "car": 2,
-    "motorcycle": 38,
-    "smelter": 4,
-    "concrete_cement": 20,
-    "wood": 22,
-    "mineral_water": 40,
-    "sugar": 13,
     "bread": 37,
-    "pharmacy": 23,
+    "car": 2,
+    "concrete_cement": 20,
     "fertilizer": 32,
-    "meat_processing": 31,
     "instant_noodle": 13,
-    "strength": 3.076011687404966
+    "meat_processing": 31,
+    "mineral_water": 40,
+    "motorcycle": 38,
+    "pharmacy": 23,
+    "semiconductor": 1,
+    "smelter": 4,
+    "strength": 3.076011687404966,
+    "sugar": 13,
+    "wood": 22,
+  
   },
   "sector_livestock": {
-    "chicken": 10,
-    "poultry": 18,
-    "dairy_cow": 15,
     "beef_cow": 17,
-    "sheep_goat": 39,
-    "shrimp": 28,
+    "chicken": 10,
+    "dairy_cow": 15,
     "fish": 13,
+    "poultry": 18,
+    "sheep_goat": 39,
     "shellfish": 35,
-    "strength": 18.24560701244298
+    "shrimp": 28,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 20,
-    "wheat": 9,
-    "corn": 35,
-    "tubers": 9,
-    "soy": 5,
-    "palm_oil": 39,
-    "tea": 14,
-    "coffee": 32,
     "cocoa": 21,
+    "coffee": 32,
+    "corn": 35,
+    "palm_oil": 39,
+    "rice": 20,
+    "soy": 5,
+    "strength": 20.660809349923973,
     "sugarcane": 16,
+    "tea": 14,
+    "tubers": 9,
     "vegetables": 33,
-    "strength": 20.660809349923973
+    "wheat": 9,
+  
   },
   "sector_defense": {
     "prison": 10,
@@ -102,20 +107,20 @@ export const angola: CountryData = {
       "darat": {
         "main_battle_tank": 19,
         "apc": 39,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 40,
         "kapal_destroyer": 21,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 21,
         "helikopter_serang": 20,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 21,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const angola: CountryData = {
       "spy_mission": 17,
       "sabotage_mission": 5,
       "territory_management": 5,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 24,
       "radar_network": 30,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const angola: CountryData = {
       "research_center": 36,
       "development_center": 9,
       "literacy": 93,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 20,
@@ -161,7 +166,7 @@ export const angola: CountryData = {
       "diagnostic_center": 16,
       "hospital_beds": 5342,
       "life_expectancy": 28,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 30,
@@ -169,7 +174,7 @@ export const angola: CountryData = {
       "stadium": 36,
       "international_stadium": 40,
       "olympic_score": 2,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 5,
@@ -184,20 +189,20 @@ export const angola: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 33,
           "sepeda_motor": 33,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 12,
           "helikopter_polisi": 10,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 21,
           "kamera_surveillance": 21,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 5,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const angola: CountryData = {
     "naval_base": 35,
     "military_base": 8,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 18,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 26,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 26,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 28,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 16,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 26,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 34,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const angola: CountryData = {
     ],
     "residential": 39,
     "commercial": 13,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const angola: CountryData = {
     "international_influence": {
       "soft_power": 37,
       "hard_power": 6,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const angola: CountryData = {
     "education": 32,
     "security": 29,
     "finance": 18,
-    "environment": 60
+    "environment": 60,
   }
 };

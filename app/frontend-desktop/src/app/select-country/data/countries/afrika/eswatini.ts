@@ -13,81 +13,86 @@ export const eswatini: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 11,
-    "hydro_plant": 13,
-    "solar_plant": 39,
-    "thermal_plant": 25,
-    "gas_plant": 2,
-    "wind_plant": 18,
-    "power_grid": 65,
+    "airport": 26,
     "bicycle_path": 34,
-    "subway": 11,
-    "railway": 20,
+    "bus_terminal": 12,
+    "gas_plant": 2,
+    "helipad": 9,
     "highway": 13,
+    "hydro_plant": 13,
+    "internet_coverage": 71,
+    "nuclear_plant": 11,
+    "power_grid": 65,
+    "railway": 20,
     "road_quality": 65,
     "sea_port": 21,
-    "airport": 26,
-    "bus_terminal": 12,
-    "helipad": 9,
-    "internet_coverage": 71,
+    "solar_plant": 39,
+    "subway": 11,
     "tech_stack": 79,
-    "water_access": 74
+    "thermal_plant": 25,
+    "water_access": 74,
+    "wind_plant": 18,
+  
   },
   "sector_extraction": {
-    "gold": 30,
-    "uranium": 18,
-    "coal": 7,
-    "oil": 1,
-    "gas": 34,
-    "salt": 7,
-    "nickel": 1,
-    "lithium": 4,
     "aluminum": 32,
+    "coal": 7,
     "copper": 27,
-    "rare_earth": 1,
+    "gas": 34,
+    "gold": 30,
     "iron_ore": 20,
-    "strength": 29.660809349923973
+    "lithium": 4,
+    "nickel": 1,
+    "oil": 1,
+    "rare_earth": 1,
+    "salt": 7,
+    "strength": 29.660809349923973,
+    "uranium": 18,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 25,
-    "car": 38,
-    "motorcycle": 31,
-    "smelter": 1,
-    "concrete_cement": 6,
-    "wood": 20,
-    "mineral_water": 12,
-    "sugar": 33,
     "bread": 23,
-    "pharmacy": 35,
+    "car": 38,
+    "concrete_cement": 6,
     "fertilizer": 32,
-    "meat_processing": 19,
     "instant_noodle": 9,
-    "strength": 3.076011687404966
+    "meat_processing": 19,
+    "mineral_water": 12,
+    "motorcycle": 31,
+    "pharmacy": 35,
+    "semiconductor": 25,
+    "smelter": 1,
+    "strength": 3.076011687404966,
+    "sugar": 33,
+    "wood": 20,
+  
   },
   "sector_livestock": {
-    "chicken": 39,
-    "poultry": 17,
-    "dairy_cow": 2,
     "beef_cow": 28,
-    "sheep_goat": 3,
-    "shrimp": 4,
+    "chicken": 39,
+    "dairy_cow": 2,
     "fish": 6,
+    "poultry": 17,
+    "sheep_goat": 3,
     "shellfish": 11,
-    "strength": 18.24560701244298
+    "shrimp": 4,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 28,
-    "wheat": 14,
-    "corn": 7,
-    "tubers": 8,
-    "soy": 22,
-    "palm_oil": 17,
-    "tea": 13,
-    "coffee": 35,
     "cocoa": 28,
+    "coffee": 35,
+    "corn": 7,
+    "palm_oil": 17,
+    "rice": 28,
+    "soy": 22,
+    "strength": 20.660809349923973,
     "sugarcane": 31,
+    "tea": 13,
+    "tubers": 8,
     "vegetables": 2,
-    "strength": 20.660809349923973
+    "wheat": 14,
+  
   },
   "sector_defense": {
     "prison": 20,
@@ -102,20 +107,20 @@ export const eswatini: CountryData = {
       "darat": {
         "main_battle_tank": 38,
         "apc": 138,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 23,
         "kapal_destroyer": 50,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 138,
         "helikopter_serang": 150,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 35,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const eswatini: CountryData = {
       "spy_mission": 12,
       "sabotage_mission": 24,
       "territory_management": 6,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 1,
       "radar_network": 1,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const eswatini: CountryData = {
       "research_center": 27,
       "development_center": 35,
       "literacy": 70,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 29,
@@ -161,7 +166,7 @@ export const eswatini: CountryData = {
       "diagnostic_center": 20,
       "hospital_beds": 7444,
       "life_expectancy": 7,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 24,
@@ -169,7 +174,7 @@ export const eswatini: CountryData = {
       "stadium": 27,
       "international_stadium": 21,
       "olympic_score": 22,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 40,
@@ -184,20 +189,20 @@ export const eswatini: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 26,
           "sepeda_motor": 37,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 28,
           "helikopter_polisi": 35,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 27,
           "kamera_surveillance": 31,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 38,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const eswatini: CountryData = {
     "naval_base": 8,
     "military_base": 12,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 30,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 37,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 2,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 39,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 17,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 14,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 28,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const eswatini: CountryData = {
     ],
     "residential": 22,
     "commercial": 17,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const eswatini: CountryData = {
     "international_influence": {
       "soft_power": 19,
       "hard_power": 23,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const eswatini: CountryData = {
     "education": 40,
     "security": 6,
     "finance": 10,
-    "environment": 60
+    "environment": 60,
   }
 };

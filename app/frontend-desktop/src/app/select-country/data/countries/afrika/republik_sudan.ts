@@ -13,81 +13,86 @@ export const republik_sudan: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 26,
-    "hydro_plant": 17,
-    "solar_plant": 39,
-    "thermal_plant": 37,
-    "gas_plant": 37,
-    "wind_plant": 27,
-    "power_grid": 61,
+    "airport": 32,
     "bicycle_path": 8,
-    "subway": 12,
-    "railway": 16,
+    "bus_terminal": 9,
+    "gas_plant": 37,
+    "helipad": 30,
     "highway": 38,
+    "hydro_plant": 17,
+    "internet_coverage": 80,
+    "nuclear_plant": 26,
+    "power_grid": 61,
+    "railway": 16,
     "road_quality": 58,
     "sea_port": 11,
-    "airport": 32,
-    "bus_terminal": 9,
-    "helipad": 30,
-    "internet_coverage": 80,
+    "solar_plant": 39,
+    "subway": 12,
     "tech_stack": 82,
-    "water_access": 74
+    "thermal_plant": 37,
+    "water_access": 74,
+    "wind_plant": 27,
+  
   },
   "sector_extraction": {
-    "gold": 26,
-    "uranium": 37,
-    "coal": 3,
-    "oil": 34,
-    "gas": 35,
-    "salt": 36,
-    "nickel": 6,
-    "lithium": 21,
     "aluminum": 4,
+    "coal": 3,
     "copper": 35,
-    "rare_earth": 3,
+    "gas": 35,
+    "gold": 26,
     "iron_ore": 17,
-    "strength": 29.660809349923973
+    "lithium": 21,
+    "nickel": 6,
+    "oil": 34,
+    "rare_earth": 3,
+    "salt": 36,
+    "strength": 29.660809349923973,
+    "uranium": 37,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 20,
-    "car": 27,
-    "motorcycle": 21,
-    "smelter": 37,
-    "concrete_cement": 16,
-    "wood": 30,
-    "mineral_water": 20,
-    "sugar": 35,
     "bread": 38,
-    "pharmacy": 12,
+    "car": 27,
+    "concrete_cement": 16,
     "fertilizer": 16,
-    "meat_processing": 17,
     "instant_noodle": 35,
-    "strength": 3.076011687404966
+    "meat_processing": 17,
+    "mineral_water": 20,
+    "motorcycle": 21,
+    "pharmacy": 12,
+    "semiconductor": 20,
+    "smelter": 37,
+    "strength": 3.076011687404966,
+    "sugar": 35,
+    "wood": 30,
+  
   },
   "sector_livestock": {
-    "chicken": 6,
-    "poultry": 38,
-    "dairy_cow": 19,
     "beef_cow": 21,
-    "sheep_goat": 22,
-    "shrimp": 6,
+    "chicken": 6,
+    "dairy_cow": 19,
     "fish": 22,
+    "poultry": 38,
+    "sheep_goat": 22,
     "shellfish": 16,
-    "strength": 18.24560701244298
+    "shrimp": 6,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 18,
-    "wheat": 40,
-    "corn": 30,
-    "tubers": 13,
-    "soy": 34,
-    "palm_oil": 40,
-    "tea": 32,
-    "coffee": 36,
     "cocoa": 35,
+    "coffee": 36,
+    "corn": 30,
+    "palm_oil": 40,
+    "rice": 18,
+    "soy": 34,
+    "strength": 20.660809349923973,
     "sugarcane": 2,
+    "tea": 32,
+    "tubers": 13,
     "vegetables": 35,
-    "strength": 20.660809349923973
+    "wheat": 40,
+  
   },
   "sector_defense": {
     "prison": 31,
@@ -102,20 +107,20 @@ export const republik_sudan: CountryData = {
       "darat": {
         "main_battle_tank": 145,
         "apc": 122,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 13,
         "kapal_destroyer": 115,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 160,
         "helikopter_serang": 161,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 33,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const republik_sudan: CountryData = {
       "spy_mission": 16,
       "sabotage_mission": 22,
       "territory_management": 21,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 5,
       "radar_network": 4,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const republik_sudan: CountryData = {
       "research_center": 25,
       "development_center": 32,
       "literacy": 90,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 3,
@@ -161,7 +166,7 @@ export const republik_sudan: CountryData = {
       "diagnostic_center": 21,
       "hospital_beds": 6277,
       "life_expectancy": 8,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 2,
@@ -169,7 +174,7 @@ export const republik_sudan: CountryData = {
       "stadium": 26,
       "international_stadium": 39,
       "olympic_score": 9,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 14,
@@ -184,20 +189,20 @@ export const republik_sudan: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 23,
           "sepeda_motor": 9,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 13,
           "helikopter_polisi": 7,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 14,
           "kamera_surveillance": 30,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 27,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const republik_sudan: CountryData = {
     "naval_base": 12,
     "military_base": 8,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 5,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 21,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 13,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 5,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 38,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 2,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 29,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const republik_sudan: CountryData = {
     ],
     "residential": 17,
     "commercial": 35,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const republik_sudan: CountryData = {
     "international_influence": {
       "soft_power": 7,
       "hard_power": 34,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const republik_sudan: CountryData = {
     "education": 4,
     "security": 9,
     "finance": 20,
-    "environment": 60
+    "environment": 60,
   }
 };

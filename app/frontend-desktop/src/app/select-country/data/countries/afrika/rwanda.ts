@@ -13,81 +13,86 @@ export const rwanda: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 40,
-    "hydro_plant": 23,
-    "solar_plant": 33,
-    "thermal_plant": 23,
-    "gas_plant": 21,
-    "wind_plant": 14,
-    "power_grid": 50,
+    "airport": 7,
     "bicycle_path": 11,
-    "subway": 3,
-    "railway": 17,
+    "bus_terminal": 3,
+    "gas_plant": 21,
+    "helipad": 22,
     "highway": 11,
+    "hydro_plant": 23,
+    "internet_coverage": 52,
+    "nuclear_plant": 40,
+    "power_grid": 50,
+    "railway": 17,
     "road_quality": 56,
     "sea_port": 14,
-    "airport": 7,
-    "bus_terminal": 3,
-    "helipad": 22,
-    "internet_coverage": 52,
+    "solar_plant": 33,
+    "subway": 3,
     "tech_stack": 84,
-    "water_access": 74
+    "thermal_plant": 23,
+    "water_access": 74,
+    "wind_plant": 14,
+  
   },
   "sector_extraction": {
-    "gold": 1,
-    "uranium": 3,
-    "coal": 36,
-    "oil": 35,
-    "gas": 15,
-    "salt": 5,
-    "nickel": 1,
-    "lithium": 31,
     "aluminum": 9,
+    "coal": 36,
     "copper": 25,
-    "rare_earth": 36,
+    "gas": 15,
+    "gold": 1,
     "iron_ore": 7,
-    "strength": 29.660809349923973
+    "lithium": 31,
+    "nickel": 1,
+    "oil": 35,
+    "rare_earth": 36,
+    "salt": 5,
+    "strength": 29.660809349923973,
+    "uranium": 3,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 38,
-    "car": 6,
-    "motorcycle": 34,
-    "smelter": 17,
-    "concrete_cement": 12,
-    "wood": 11,
-    "mineral_water": 15,
-    "sugar": 7,
     "bread": 33,
-    "pharmacy": 32,
+    "car": 6,
+    "concrete_cement": 12,
     "fertilizer": 32,
-    "meat_processing": 15,
     "instant_noodle": 15,
-    "strength": 3.076011687404966
+    "meat_processing": 15,
+    "mineral_water": 15,
+    "motorcycle": 34,
+    "pharmacy": 32,
+    "semiconductor": 38,
+    "smelter": 17,
+    "strength": 3.076011687404966,
+    "sugar": 7,
+    "wood": 11,
+  
   },
   "sector_livestock": {
-    "chicken": 35,
-    "poultry": 24,
-    "dairy_cow": 38,
     "beef_cow": 22,
-    "sheep_goat": 13,
-    "shrimp": 22,
+    "chicken": 35,
+    "dairy_cow": 38,
     "fish": 2,
+    "poultry": 24,
+    "sheep_goat": 13,
     "shellfish": 7,
-    "strength": 18.24560701244298
+    "shrimp": 22,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 21,
-    "wheat": 6,
-    "corn": 9,
-    "tubers": 17,
-    "soy": 37,
-    "palm_oil": 3,
-    "tea": 33,
-    "coffee": 25,
     "cocoa": 20,
+    "coffee": 25,
+    "corn": 9,
+    "palm_oil": 3,
+    "rice": 21,
+    "soy": 37,
+    "strength": 20.660809349923973,
     "sugarcane": 29,
+    "tea": 33,
+    "tubers": 17,
     "vegetables": 39,
-    "strength": 20.660809349923973
+    "wheat": 6,
+  
   },
   "sector_defense": {
     "prison": 3,
@@ -102,20 +107,20 @@ export const rwanda: CountryData = {
       "darat": {
         "main_battle_tank": 193,
         "apc": 168,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 33,
         "kapal_destroyer": 53,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 52,
         "helikopter_serang": 80,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 11,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const rwanda: CountryData = {
       "spy_mission": 29,
       "sabotage_mission": 24,
       "territory_management": 15,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 5,
       "radar_network": 5,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const rwanda: CountryData = {
       "research_center": 12,
       "development_center": 9,
       "literacy": 86,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 37,
@@ -161,7 +166,7 @@ export const rwanda: CountryData = {
       "diagnostic_center": 22,
       "hospital_beds": 5672,
       "life_expectancy": 21,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 29,
@@ -169,7 +174,7 @@ export const rwanda: CountryData = {
       "stadium": 22,
       "international_stadium": 22,
       "olympic_score": 37,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 33,
@@ -184,20 +189,20 @@ export const rwanda: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 38,
           "sepeda_motor": 34,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 22,
           "helikopter_polisi": 12,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 21,
           "kamera_surveillance": 11,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 27,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const rwanda: CountryData = {
     "naval_base": 32,
     "military_base": 8,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 28,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 31,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 2,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 10,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 1,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 11,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 33,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const rwanda: CountryData = {
     ],
     "residential": 31,
     "commercial": 28,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const rwanda: CountryData = {
     "international_influence": {
       "soft_power": 12,
       "hard_power": 15,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const rwanda: CountryData = {
     "education": 19,
     "security": 24,
     "finance": 34,
-    "environment": 60
+    "environment": 60,
   }
 };

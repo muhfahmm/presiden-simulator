@@ -1,6 +1,0 @@
-[697] Mismatch: Closed </main> but expected </div> opened at line 173
-[798] Mismatch: Closed </div> but expected </main> opened at line 152
-
---- UNCLOSED TAGS AT END OF FILE ---
-Unclosed <div> opened at line 109
-Unclosed <main> opened at line 152

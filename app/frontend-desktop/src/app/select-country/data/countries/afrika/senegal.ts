@@ -13,81 +13,86 @@ export const senegal: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 1,
-    "hydro_plant": 40,
-    "solar_plant": 40,
-    "thermal_plant": 28,
-    "gas_plant": 16,
-    "wind_plant": 15,
-    "power_grid": 84,
+    "airport": 2,
     "bicycle_path": 31,
-    "subway": 12,
-    "railway": 36,
+    "bus_terminal": 33,
+    "gas_plant": 16,
+    "helipad": 4,
     "highway": 14,
+    "hydro_plant": 40,
+    "internet_coverage": 62,
+    "nuclear_plant": 1,
+    "power_grid": 84,
+    "railway": 36,
     "road_quality": 64,
     "sea_port": 11,
-    "airport": 2,
-    "bus_terminal": 33,
-    "helipad": 4,
-    "internet_coverage": 62,
+    "solar_plant": 40,
+    "subway": 12,
     "tech_stack": 60,
-    "water_access": 74
+    "thermal_plant": 28,
+    "water_access": 74,
+    "wind_plant": 15,
+  
   },
   "sector_extraction": {
-    "gold": 13,
-    "uranium": 14,
-    "coal": 18,
-    "oil": 39,
-    "gas": 26,
-    "salt": 27,
-    "nickel": 36,
-    "lithium": 18,
     "aluminum": 33,
+    "coal": 18,
     "copper": 8,
-    "rare_earth": 13,
+    "gas": 26,
+    "gold": 13,
     "iron_ore": 33,
-    "strength": 29.660809349923973
+    "lithium": 18,
+    "nickel": 36,
+    "oil": 39,
+    "rare_earth": 13,
+    "salt": 27,
+    "strength": 29.660809349923973,
+    "uranium": 14,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 26,
-    "car": 20,
-    "motorcycle": 31,
-    "smelter": 37,
-    "concrete_cement": 21,
-    "wood": 39,
-    "mineral_water": 34,
-    "sugar": 28,
     "bread": 8,
-    "pharmacy": 20,
+    "car": 20,
+    "concrete_cement": 21,
     "fertilizer": 37,
-    "meat_processing": 14,
     "instant_noodle": 4,
-    "strength": 3.076011687404966
+    "meat_processing": 14,
+    "mineral_water": 34,
+    "motorcycle": 31,
+    "pharmacy": 20,
+    "semiconductor": 26,
+    "smelter": 37,
+    "strength": 3.076011687404966,
+    "sugar": 28,
+    "wood": 39,
+  
   },
   "sector_livestock": {
-    "chicken": 39,
-    "poultry": 18,
-    "dairy_cow": 23,
     "beef_cow": 18,
-    "sheep_goat": 35,
-    "shrimp": 23,
+    "chicken": 39,
+    "dairy_cow": 23,
     "fish": 15,
+    "poultry": 18,
+    "sheep_goat": 35,
     "shellfish": 36,
-    "strength": 18.24560701244298
+    "shrimp": 23,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 28,
-    "wheat": 12,
-    "corn": 38,
-    "tubers": 10,
-    "soy": 23,
-    "palm_oil": 21,
-    "tea": 27,
-    "coffee": 12,
     "cocoa": 25,
+    "coffee": 12,
+    "corn": 38,
+    "palm_oil": 21,
+    "rice": 28,
+    "soy": 23,
+    "strength": 20.660809349923973,
     "sugarcane": 22,
+    "tea": 27,
+    "tubers": 10,
     "vegetables": 35,
-    "strength": 20.660809349923973
+    "wheat": 12,
+  
   },
   "sector_defense": {
     "prison": 40,
@@ -102,20 +107,20 @@ export const senegal: CountryData = {
       "darat": {
         "main_battle_tank": 172,
         "apc": 116,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 27,
         "kapal_destroyer": 37,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 133,
         "helikopter_serang": 173,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 7,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const senegal: CountryData = {
       "spy_mission": 21,
       "sabotage_mission": 16,
       "territory_management": 28,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 3,
       "radar_network": 5,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const senegal: CountryData = {
       "research_center": 1,
       "development_center": 29,
       "literacy": 89,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 9,
@@ -161,7 +166,7 @@ export const senegal: CountryData = {
       "diagnostic_center": 40,
       "hospital_beds": 5264,
       "life_expectancy": 5,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 15,
@@ -169,7 +174,7 @@ export const senegal: CountryData = {
       "stadium": 40,
       "international_stadium": 23,
       "olympic_score": 1,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 25,
@@ -184,20 +189,20 @@ export const senegal: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 3,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 27,
           "helikopter_polisi": 15,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 2,
           "kamera_surveillance": 14,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 4,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const senegal: CountryData = {
     "naval_base": 15,
     "military_base": 4,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 29,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 17,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 19,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 11,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 16,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 17,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 27,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const senegal: CountryData = {
     ],
     "residential": 13,
     "commercial": 30,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const senegal: CountryData = {
     "international_influence": {
       "soft_power": 34,
       "hard_power": 5,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const senegal: CountryData = {
     "education": 35,
     "security": 4,
     "finance": 23,
-    "environment": 60
+    "environment": 60,
   }
 };

@@ -13,81 +13,86 @@ export const tanjung_verde: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 36,
-    "hydro_plant": 5,
-    "solar_plant": 4,
-    "thermal_plant": 10,
-    "gas_plant": 16,
-    "wind_plant": 36,
-    "power_grid": 76,
+    "airport": 12,
     "bicycle_path": 36,
-    "subway": 20,
-    "railway": 23,
+    "bus_terminal": 10,
+    "gas_plant": 16,
+    "helipad": 18,
     "highway": 5,
+    "hydro_plant": 5,
+    "internet_coverage": 83,
+    "nuclear_plant": 36,
+    "power_grid": 76,
+    "railway": 23,
     "road_quality": 84,
     "sea_port": 5,
-    "airport": 12,
-    "bus_terminal": 10,
-    "helipad": 18,
-    "internet_coverage": 83,
+    "solar_plant": 4,
+    "subway": 20,
     "tech_stack": 62,
-    "water_access": 74
+    "thermal_plant": 10,
+    "water_access": 74,
+    "wind_plant": 36,
+  
   },
   "sector_extraction": {
-    "gold": 29,
-    "uranium": 30,
-    "coal": 3,
-    "oil": 36,
-    "gas": 12,
-    "salt": 10,
-    "nickel": 22,
-    "lithium": 33,
     "aluminum": 22,
+    "coal": 3,
     "copper": 13,
-    "rare_earth": 20,
+    "gas": 12,
+    "gold": 29,
     "iron_ore": 20,
-    "strength": 29.660809349923973
+    "lithium": 33,
+    "nickel": 22,
+    "oil": 36,
+    "rare_earth": 20,
+    "salt": 10,
+    "strength": 29.660809349923973,
+    "uranium": 30,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 17,
-    "car": 33,
-    "motorcycle": 20,
-    "smelter": 15,
-    "concrete_cement": 12,
-    "wood": 15,
-    "mineral_water": 9,
-    "sugar": 29,
     "bread": 16,
-    "pharmacy": 5,
+    "car": 33,
+    "concrete_cement": 12,
     "fertilizer": 27,
-    "meat_processing": 26,
     "instant_noodle": 30,
-    "strength": 3.076011687404966
+    "meat_processing": 26,
+    "mineral_water": 9,
+    "motorcycle": 20,
+    "pharmacy": 5,
+    "semiconductor": 17,
+    "smelter": 15,
+    "strength": 3.076011687404966,
+    "sugar": 29,
+    "wood": 15,
+  
   },
   "sector_livestock": {
-    "chicken": 26,
-    "poultry": 9,
-    "dairy_cow": 37,
     "beef_cow": 18,
-    "sheep_goat": 33,
-    "shrimp": 38,
+    "chicken": 26,
+    "dairy_cow": 37,
     "fish": 27,
+    "poultry": 9,
+    "sheep_goat": 33,
     "shellfish": 17,
-    "strength": 18.24560701244298
+    "shrimp": 38,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 19,
-    "wheat": 35,
-    "corn": 14,
-    "tubers": 22,
-    "soy": 11,
-    "palm_oil": 9,
-    "tea": 14,
-    "coffee": 6,
     "cocoa": 37,
+    "coffee": 6,
+    "corn": 14,
+    "palm_oil": 9,
+    "rice": 19,
+    "soy": 11,
+    "strength": 20.660809349923973,
     "sugarcane": 31,
+    "tea": 14,
+    "tubers": 22,
     "vegetables": 40,
-    "strength": 20.660809349923973
+    "wheat": 35,
+  
   },
   "sector_defense": {
     "prison": 28,
@@ -102,20 +107,20 @@ export const tanjung_verde: CountryData = {
       "darat": {
         "main_battle_tank": 188,
         "apc": 23,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 9,
         "kapal_destroyer": 54,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 10,
         "helikopter_serang": 81,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 6,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const tanjung_verde: CountryData = {
       "spy_mission": 25,
       "sabotage_mission": 18,
       "territory_management": 20,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 1,
       "radar_network": 3,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const tanjung_verde: CountryData = {
       "research_center": 36,
       "development_center": 11,
       "literacy": 95,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 39,
@@ -161,7 +166,7 @@ export const tanjung_verde: CountryData = {
       "diagnostic_center": 20,
       "hospital_beds": 4031,
       "life_expectancy": 37,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 12,
@@ -169,7 +174,7 @@ export const tanjung_verde: CountryData = {
       "stadium": 24,
       "international_stadium": 39,
       "olympic_score": 19,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 39,
@@ -184,20 +189,20 @@ export const tanjung_verde: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 39,
           "sepeda_motor": 24,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 23,
           "helikopter_polisi": 7,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 31,
           "kamera_surveillance": 12,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 23,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const tanjung_verde: CountryData = {
     "naval_base": 27,
     "military_base": 2,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 31,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 40,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 31,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 15,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 27,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 18,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 20,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const tanjung_verde: CountryData = {
     ],
     "residential": 16,
     "commercial": 23,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const tanjung_verde: CountryData = {
     "international_influence": {
       "soft_power": 38,
       "hard_power": 30,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const tanjung_verde: CountryData = {
     "education": 4,
     "security": 39,
     "finance": 13,
-    "environment": 60
+    "environment": 60,
   }
 };

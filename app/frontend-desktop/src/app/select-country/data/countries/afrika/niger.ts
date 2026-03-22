@@ -13,81 +13,86 @@ export const niger: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 34,
-    "hydro_plant": 23,
-    "solar_plant": 12,
-    "thermal_plant": 40,
-    "gas_plant": 35,
-    "wind_plant": 1,
-    "power_grid": 80,
+    "airport": 35,
     "bicycle_path": 14,
-    "subway": 38,
-    "railway": 35,
+    "bus_terminal": 39,
+    "gas_plant": 35,
+    "helipad": 38,
     "highway": 40,
+    "hydro_plant": 23,
+    "internet_coverage": 53,
+    "nuclear_plant": 34,
+    "power_grid": 80,
+    "railway": 35,
     "road_quality": 73,
     "sea_port": 38,
-    "airport": 35,
-    "bus_terminal": 39,
-    "helipad": 38,
-    "internet_coverage": 53,
+    "solar_plant": 12,
+    "subway": 38,
     "tech_stack": 92,
-    "water_access": 74
+    "thermal_plant": 40,
+    "water_access": 74,
+    "wind_plant": 1,
+  
   },
   "sector_extraction": {
-    "gold": 21,
-    "uranium": 18,
-    "coal": 25,
-    "oil": 28,
-    "gas": 19,
-    "salt": 13,
-    "nickel": 17,
-    "lithium": 28,
     "aluminum": 8,
+    "coal": 25,
     "copper": 38,
-    "rare_earth": 24,
+    "gas": 19,
+    "gold": 21,
     "iron_ore": 9,
-    "strength": 29.660809349923973
+    "lithium": 28,
+    "nickel": 17,
+    "oil": 28,
+    "rare_earth": 24,
+    "salt": 13,
+    "strength": 29.660809349923973,
+    "uranium": 18,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 14,
-    "car": 29,
-    "motorcycle": 21,
-    "smelter": 6,
-    "concrete_cement": 7,
-    "wood": 30,
-    "mineral_water": 9,
-    "sugar": 4,
     "bread": 5,
-    "pharmacy": 32,
+    "car": 29,
+    "concrete_cement": 7,
     "fertilizer": 24,
-    "meat_processing": 36,
     "instant_noodle": 27,
-    "strength": 3.076011687404966
+    "meat_processing": 36,
+    "mineral_water": 9,
+    "motorcycle": 21,
+    "pharmacy": 32,
+    "semiconductor": 14,
+    "smelter": 6,
+    "strength": 3.076011687404966,
+    "sugar": 4,
+    "wood": 30,
+  
   },
   "sector_livestock": {
-    "chicken": 37,
-    "poultry": 25,
-    "dairy_cow": 30,
     "beef_cow": 10,
-    "sheep_goat": 2,
-    "shrimp": 32,
+    "chicken": 37,
+    "dairy_cow": 30,
     "fish": 25,
+    "poultry": 25,
+    "sheep_goat": 2,
     "shellfish": 40,
-    "strength": 18.24560701244298
+    "shrimp": 32,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 1,
-    "wheat": 37,
-    "corn": 32,
-    "tubers": 38,
-    "soy": 24,
-    "palm_oil": 37,
-    "tea": 27,
-    "coffee": 15,
     "cocoa": 8,
+    "coffee": 15,
+    "corn": 32,
+    "palm_oil": 37,
+    "rice": 1,
+    "soy": 24,
+    "strength": 20.660809349923973,
     "sugarcane": 1,
+    "tea": 27,
+    "tubers": 38,
     "vegetables": 33,
-    "strength": 20.660809349923973
+    "wheat": 37,
+  
   },
   "sector_defense": {
     "prison": 32,
@@ -102,20 +107,20 @@ export const niger: CountryData = {
       "darat": {
         "main_battle_tank": 87,
         "apc": 136,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 27,
         "kapal_destroyer": 95,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 38,
         "helikopter_serang": 67,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 10,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const niger: CountryData = {
       "spy_mission": 26,
       "sabotage_mission": 38,
       "territory_management": 35,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 3,
       "radar_network": 3,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const niger: CountryData = {
       "research_center": 10,
       "development_center": 7,
       "literacy": 72,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 3,
@@ -161,7 +166,7 @@ export const niger: CountryData = {
       "diagnostic_center": 14,
       "hospital_beds": 4579,
       "life_expectancy": 30,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 22,
@@ -169,7 +174,7 @@ export const niger: CountryData = {
       "stadium": 24,
       "international_stadium": 1,
       "olympic_score": 18,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 24,
@@ -184,20 +189,20 @@ export const niger: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 30,
           "sepeda_motor": 6,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 8,
           "helikopter_polisi": 31,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 22,
           "kamera_surveillance": 34,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 23,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const niger: CountryData = {
     "naval_base": 9,
     "military_base": 26,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 2,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 38,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 30,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 38,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 15,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 27,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 27,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const niger: CountryData = {
     ],
     "residential": 32,
     "commercial": 5,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const niger: CountryData = {
     "international_influence": {
       "soft_power": 18,
       "hard_power": 5,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const niger: CountryData = {
     "education": 5,
     "security": 34,
     "finance": 1,
-    "environment": 60
+    "environment": 60,
   }
 };

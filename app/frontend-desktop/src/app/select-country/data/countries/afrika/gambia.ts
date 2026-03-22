@@ -13,81 +13,86 @@ export const gambia: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 6,
-    "hydro_plant": 38,
-    "solar_plant": 28,
-    "thermal_plant": 21,
-    "gas_plant": 27,
-    "wind_plant": 8,
-    "power_grid": 93,
+    "airport": 28,
     "bicycle_path": 8,
-    "subway": 11,
-    "railway": 24,
+    "bus_terminal": 26,
+    "gas_plant": 27,
+    "helipad": 29,
     "highway": 8,
+    "hydro_plant": 38,
+    "internet_coverage": 92,
+    "nuclear_plant": 6,
+    "power_grid": 93,
+    "railway": 24,
     "road_quality": 63,
     "sea_port": 13,
-    "airport": 28,
-    "bus_terminal": 26,
-    "helipad": 29,
-    "internet_coverage": 92,
+    "solar_plant": 28,
+    "subway": 11,
     "tech_stack": 94,
-    "water_access": 74
+    "thermal_plant": 21,
+    "water_access": 74,
+    "wind_plant": 8,
+  
   },
   "sector_extraction": {
-    "gold": 21,
-    "uranium": 32,
-    "coal": 40,
-    "oil": 40,
-    "gas": 26,
-    "salt": 37,
-    "nickel": 32,
-    "lithium": 31,
     "aluminum": 35,
+    "coal": 40,
     "copper": 11,
-    "rare_earth": 18,
+    "gas": 26,
+    "gold": 21,
     "iron_ore": 30,
-    "strength": 29.660809349923973
+    "lithium": 31,
+    "nickel": 32,
+    "oil": 40,
+    "rare_earth": 18,
+    "salt": 37,
+    "strength": 29.660809349923973,
+    "uranium": 32,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 24,
-    "car": 5,
-    "motorcycle": 16,
-    "smelter": 5,
-    "concrete_cement": 17,
-    "wood": 19,
-    "mineral_water": 7,
-    "sugar": 10,
     "bread": 9,
-    "pharmacy": 1,
+    "car": 5,
+    "concrete_cement": 17,
     "fertilizer": 9,
-    "meat_processing": 22,
     "instant_noodle": 37,
-    "strength": 3.076011687404966
+    "meat_processing": 22,
+    "mineral_water": 7,
+    "motorcycle": 16,
+    "pharmacy": 1,
+    "semiconductor": 24,
+    "smelter": 5,
+    "strength": 3.076011687404966,
+    "sugar": 10,
+    "wood": 19,
+  
   },
   "sector_livestock": {
-    "chicken": 26,
-    "poultry": 40,
-    "dairy_cow": 24,
     "beef_cow": 16,
-    "sheep_goat": 9,
-    "shrimp": 1,
+    "chicken": 26,
+    "dairy_cow": 24,
     "fish": 31,
+    "poultry": 40,
+    "sheep_goat": 9,
     "shellfish": 34,
-    "strength": 18.24560701244298
+    "shrimp": 1,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 19,
-    "wheat": 39,
-    "corn": 27,
-    "tubers": 30,
-    "soy": 18,
-    "palm_oil": 28,
-    "tea": 5,
-    "coffee": 33,
     "cocoa": 38,
+    "coffee": 33,
+    "corn": 27,
+    "palm_oil": 28,
+    "rice": 19,
+    "soy": 18,
+    "strength": 20.660809349923973,
     "sugarcane": 25,
+    "tea": 5,
+    "tubers": 30,
     "vegetables": 4,
-    "strength": 20.660809349923973
+    "wheat": 39,
+  
   },
   "sector_defense": {
     "prison": 27,
@@ -102,20 +107,20 @@ export const gambia: CountryData = {
       "darat": {
         "main_battle_tank": 31,
         "apc": 16,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 24,
         "kapal_destroyer": 20,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 9,
         "helikopter_serang": 22,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 22,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const gambia: CountryData = {
       "spy_mission": 26,
       "sabotage_mission": 22,
       "territory_management": 2,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 10,
       "radar_network": 16,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const gambia: CountryData = {
       "research_center": 23,
       "development_center": 13,
       "literacy": 51,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 39,
@@ -161,7 +166,7 @@ export const gambia: CountryData = {
       "diagnostic_center": 31,
       "hospital_beds": 7473,
       "life_expectancy": 16,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 9,
@@ -169,7 +174,7 @@ export const gambia: CountryData = {
       "stadium": 12,
       "international_stadium": 36,
       "olympic_score": 31,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 15,
@@ -184,20 +189,20 @@ export const gambia: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 1,
           "sepeda_motor": 32,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 15,
           "helikopter_polisi": 39,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 26,
           "kamera_surveillance": 34,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 2,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const gambia: CountryData = {
     "naval_base": 27,
     "military_base": 28,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 14,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 36,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 28,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 34,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 30,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 1,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 14,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const gambia: CountryData = {
     ],
     "residential": 4,
     "commercial": 17,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const gambia: CountryData = {
     "international_influence": {
       "soft_power": 40,
       "hard_power": 17,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const gambia: CountryData = {
     "education": 23,
     "security": 22,
     "finance": 31,
-    "environment": 60
+    "environment": 60,
   }
 };

@@ -13,81 +13,86 @@ export const malawi: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 40,
-    "hydro_plant": 30,
-    "solar_plant": 39,
-    "thermal_plant": 34,
-    "gas_plant": 29,
-    "wind_plant": 17,
-    "power_grid": 93,
+    "airport": 11,
     "bicycle_path": 2,
-    "subway": 27,
-    "railway": 12,
+    "bus_terminal": 35,
+    "gas_plant": 29,
+    "helipad": 25,
     "highway": 24,
+    "hydro_plant": 30,
+    "internet_coverage": 75,
+    "nuclear_plant": 40,
+    "power_grid": 93,
+    "railway": 12,
     "road_quality": 78,
     "sea_port": 14,
-    "airport": 11,
-    "bus_terminal": 35,
-    "helipad": 25,
-    "internet_coverage": 75,
+    "solar_plant": 39,
+    "subway": 27,
     "tech_stack": 64,
-    "water_access": 74
+    "thermal_plant": 34,
+    "water_access": 74,
+    "wind_plant": 17,
+  
   },
   "sector_extraction": {
-    "gold": 5,
-    "uranium": 5,
-    "coal": 31,
-    "oil": 27,
-    "gas": 27,
-    "salt": 4,
-    "nickel": 16,
-    "lithium": 38,
     "aluminum": 40,
+    "coal": 31,
     "copper": 21,
-    "rare_earth": 17,
+    "gas": 27,
+    "gold": 5,
     "iron_ore": 15,
-    "strength": 29.660809349923973
+    "lithium": 38,
+    "nickel": 16,
+    "oil": 27,
+    "rare_earth": 17,
+    "salt": 4,
+    "strength": 29.660809349923973,
+    "uranium": 5,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 4,
-    "car": 29,
-    "motorcycle": 39,
-    "smelter": 34,
-    "concrete_cement": 2,
-    "wood": 18,
-    "mineral_water": 12,
-    "sugar": 16,
     "bread": 22,
-    "pharmacy": 7,
+    "car": 29,
+    "concrete_cement": 2,
     "fertilizer": 23,
-    "meat_processing": 9,
     "instant_noodle": 30,
-    "strength": 3.076011687404966
+    "meat_processing": 9,
+    "mineral_water": 12,
+    "motorcycle": 39,
+    "pharmacy": 7,
+    "semiconductor": 4,
+    "smelter": 34,
+    "strength": 3.076011687404966,
+    "sugar": 16,
+    "wood": 18,
+  
   },
   "sector_livestock": {
-    "chicken": 20,
-    "poultry": 24,
-    "dairy_cow": 27,
     "beef_cow": 18,
-    "sheep_goat": 29,
-    "shrimp": 18,
+    "chicken": 20,
+    "dairy_cow": 27,
     "fish": 39,
+    "poultry": 24,
+    "sheep_goat": 29,
     "shellfish": 1,
-    "strength": 18.24560701244298
+    "shrimp": 18,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 19,
-    "wheat": 5,
-    "corn": 21,
-    "tubers": 37,
-    "soy": 37,
-    "palm_oil": 38,
-    "tea": 24,
-    "coffee": 7,
     "cocoa": 7,
+    "coffee": 7,
+    "corn": 21,
+    "palm_oil": 38,
+    "rice": 19,
+    "soy": 37,
+    "strength": 20.660809349923973,
     "sugarcane": 9,
+    "tea": 24,
+    "tubers": 37,
     "vegetables": 11,
-    "strength": 20.660809349923973
+    "wheat": 5,
+  
   },
   "sector_defense": {
     "prison": 28,
@@ -102,20 +107,20 @@ export const malawi: CountryData = {
       "darat": {
         "main_battle_tank": 36,
         "apc": 20,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 22,
         "kapal_destroyer": 19,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 1,
         "helikopter_serang": 40,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 16,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const malawi: CountryData = {
       "spy_mission": 1,
       "sabotage_mission": 21,
       "territory_management": 1,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 2,
       "radar_network": 25,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const malawi: CountryData = {
       "research_center": 19,
       "development_center": 32,
       "literacy": 95,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 1,
@@ -161,7 +166,7 @@ export const malawi: CountryData = {
       "diagnostic_center": 40,
       "hospital_beds": 9033,
       "life_expectancy": 18,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 9,
@@ -169,7 +174,7 @@ export const malawi: CountryData = {
       "stadium": 38,
       "international_stadium": 13,
       "olympic_score": 17,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 29,
@@ -184,20 +189,20 @@ export const malawi: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 26,
           "sepeda_motor": 19,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 2,
           "helikopter_polisi": 21,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 13,
           "kamera_surveillance": 4,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 17,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const malawi: CountryData = {
     "naval_base": 35,
     "military_base": 7,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 10,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 6,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 28,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 16,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 37,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 29,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 30,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const malawi: CountryData = {
     ],
     "residential": 3,
     "commercial": 21,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const malawi: CountryData = {
     "international_influence": {
       "soft_power": 3,
       "hard_power": 20,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const malawi: CountryData = {
     "education": 27,
     "security": 5,
     "finance": 2,
-    "environment": 60
+    "environment": 60,
   }
 };

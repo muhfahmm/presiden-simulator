@@ -1,7 +1,0 @@
-Matches:
-Found search 'united arab emirates': common='United Arab Emirates', official='United Arab Emirates', alt=['AE', 'UAE', 'Emirates']
-Found search 'trinidad and tobago': common='Trinidad and Tobago', official='Republic of Trinidad and Tobago', alt=['TT', 'Republic of Trinidad and Tobago']
-Found search 'turkey': common='Türkiye', official='Republic of Türkiye', alt=['TR', 'Turkiye', 'Republic of Turkey', 'Türkiye Cumhuriyeti']
-Found search 'turkiye': common='Türkiye', official='Republic of Türkiye', alt=['TR', 'Turkiye', 'Republic of Turkey', 'Türkiye Cumhuriyeti']
-Found search 'vatican': common='Vatican City', official='Vatican City State', alt=['VA', 'Holy See (Vatican City State)', 'Vatican City State', 'Vatican', 'Stato della Città del Vaticano']
-Found search 'vatican city': common='Vatican City', official='Vatican City State', alt=['VA', 'Holy See (Vatican City State)', 'Vatican City State', 'Vatican', 'Stato della Città del Vaticano']

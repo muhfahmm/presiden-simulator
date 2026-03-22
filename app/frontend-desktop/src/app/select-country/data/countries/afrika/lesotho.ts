@@ -13,81 +13,86 @@ export const lesotho: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 15,
-    "hydro_plant": 26,
-    "solar_plant": 38,
-    "thermal_plant": 37,
-    "gas_plant": 17,
-    "wind_plant": 6,
-    "power_grid": 67,
+    "airport": 17,
     "bicycle_path": 28,
-    "subway": 7,
-    "railway": 8,
+    "bus_terminal": 15,
+    "gas_plant": 17,
+    "helipad": 38,
     "highway": 13,
+    "hydro_plant": 26,
+    "internet_coverage": 51,
+    "nuclear_plant": 15,
+    "power_grid": 67,
+    "railway": 8,
     "road_quality": 68,
     "sea_port": 22,
-    "airport": 17,
-    "bus_terminal": 15,
-    "helipad": 38,
-    "internet_coverage": 51,
+    "solar_plant": 38,
+    "subway": 7,
     "tech_stack": 76,
-    "water_access": 74
+    "thermal_plant": 37,
+    "water_access": 74,
+    "wind_plant": 6,
+  
   },
   "sector_extraction": {
-    "gold": 18,
-    "uranium": 3,
-    "coal": 8,
-    "oil": 6,
-    "gas": 26,
-    "salt": 37,
-    "nickel": 39,
-    "lithium": 19,
     "aluminum": 5,
+    "coal": 8,
     "copper": 34,
-    "rare_earth": 22,
+    "gas": 26,
+    "gold": 18,
     "iron_ore": 3,
-    "strength": 29.660809349923973
+    "lithium": 19,
+    "nickel": 39,
+    "oil": 6,
+    "rare_earth": 22,
+    "salt": 37,
+    "strength": 29.660809349923973,
+    "uranium": 3,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 36,
-    "car": 19,
-    "motorcycle": 21,
-    "smelter": 2,
-    "concrete_cement": 7,
-    "wood": 22,
-    "mineral_water": 36,
-    "sugar": 29,
     "bread": 10,
-    "pharmacy": 33,
+    "car": 19,
+    "concrete_cement": 7,
     "fertilizer": 18,
-    "meat_processing": 17,
     "instant_noodle": 2,
-    "strength": 3.076011687404966
+    "meat_processing": 17,
+    "mineral_water": 36,
+    "motorcycle": 21,
+    "pharmacy": 33,
+    "semiconductor": 36,
+    "smelter": 2,
+    "strength": 3.076011687404966,
+    "sugar": 29,
+    "wood": 22,
+  
   },
   "sector_livestock": {
-    "chicken": 15,
-    "poultry": 27,
-    "dairy_cow": 31,
     "beef_cow": 8,
-    "sheep_goat": 27,
-    "shrimp": 1,
+    "chicken": 15,
+    "dairy_cow": 31,
     "fish": 31,
+    "poultry": 27,
+    "sheep_goat": 27,
     "shellfish": 33,
-    "strength": 18.24560701244298
+    "shrimp": 1,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 36,
-    "wheat": 34,
-    "corn": 13,
-    "tubers": 18,
-    "soy": 5,
-    "palm_oil": 23,
-    "tea": 29,
-    "coffee": 2,
     "cocoa": 2,
+    "coffee": 2,
+    "corn": 13,
+    "palm_oil": 23,
+    "rice": 36,
+    "soy": 5,
+    "strength": 20.660809349923973,
     "sugarcane": 38,
+    "tea": 29,
+    "tubers": 18,
     "vegetables": 3,
-    "strength": 20.660809349923973
+    "wheat": 34,
+  
   },
   "sector_defense": {
     "prison": 6,
@@ -102,20 +107,20 @@ export const lesotho: CountryData = {
       "darat": {
         "main_battle_tank": 19,
         "apc": 2,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 33,
         "kapal_destroyer": 4,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 27,
         "helikopter_serang": 8,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 6,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const lesotho: CountryData = {
       "spy_mission": 19,
       "sabotage_mission": 21,
       "territory_management": 6,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 4,
       "radar_network": 6,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const lesotho: CountryData = {
       "research_center": 14,
       "development_center": 1,
       "literacy": 67,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 12,
@@ -161,7 +166,7 @@ export const lesotho: CountryData = {
       "diagnostic_center": 21,
       "hospital_beds": 2889,
       "life_expectancy": 10,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 15,
@@ -169,7 +174,7 @@ export const lesotho: CountryData = {
       "stadium": 34,
       "international_stadium": 12,
       "olympic_score": 16,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 37,
@@ -184,20 +189,20 @@ export const lesotho: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 6,
           "sepeda_motor": 19,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 22,
           "helikopter_polisi": 29,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 22,
           "kamera_surveillance": 1,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 34,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const lesotho: CountryData = {
     "naval_base": 28,
     "military_base": 29,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 12,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 16,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 10,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 40,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 17,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 38,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 22,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const lesotho: CountryData = {
     ],
     "residential": 11,
     "commercial": 1,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const lesotho: CountryData = {
     "international_influence": {
       "soft_power": 36,
       "hard_power": 23,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const lesotho: CountryData = {
     "education": 9,
     "security": 11,
     "finance": 33,
-    "environment": 60
+    "environment": 60,
   }
 };

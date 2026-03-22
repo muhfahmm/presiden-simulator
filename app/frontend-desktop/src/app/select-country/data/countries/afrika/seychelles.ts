@@ -13,81 +13,86 @@ export const seychelles: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 33,
-    "hydro_plant": 28,
-    "solar_plant": 33,
-    "thermal_plant": 20,
-    "gas_plant": 15,
-    "wind_plant": 24,
-    "power_grid": 94,
+    "airport": 39,
     "bicycle_path": 38,
-    "subway": 15,
-    "railway": 4,
+    "bus_terminal": 28,
+    "gas_plant": 15,
+    "helipad": 38,
     "highway": 14,
+    "hydro_plant": 28,
+    "internet_coverage": 67,
+    "nuclear_plant": 33,
+    "power_grid": 94,
+    "railway": 4,
     "road_quality": 71,
     "sea_port": 24,
-    "airport": 39,
-    "bus_terminal": 28,
-    "helipad": 38,
-    "internet_coverage": 67,
+    "solar_plant": 33,
+    "subway": 15,
     "tech_stack": 61,
-    "water_access": 74
+    "thermal_plant": 20,
+    "water_access": 74,
+    "wind_plant": 24,
+  
   },
   "sector_extraction": {
-    "gold": 7,
-    "uranium": 11,
-    "coal": 33,
-    "oil": 37,
-    "gas": 31,
-    "salt": 16,
-    "nickel": 5,
-    "lithium": 16,
     "aluminum": 15,
+    "coal": 33,
     "copper": 30,
-    "rare_earth": 14,
+    "gas": 31,
+    "gold": 7,
     "iron_ore": 38,
-    "strength": 29.660809349923973
+    "lithium": 16,
+    "nickel": 5,
+    "oil": 37,
+    "rare_earth": 14,
+    "salt": 16,
+    "strength": 29.660809349923973,
+    "uranium": 11,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 32,
-    "car": 27,
-    "motorcycle": 29,
-    "smelter": 3,
-    "concrete_cement": 24,
-    "wood": 28,
-    "mineral_water": 36,
-    "sugar": 31,
     "bread": 25,
-    "pharmacy": 37,
+    "car": 27,
+    "concrete_cement": 24,
     "fertilizer": 13,
-    "meat_processing": 36,
     "instant_noodle": 23,
-    "strength": 3.076011687404966
+    "meat_processing": 36,
+    "mineral_water": 36,
+    "motorcycle": 29,
+    "pharmacy": 37,
+    "semiconductor": 32,
+    "smelter": 3,
+    "strength": 3.076011687404966,
+    "sugar": 31,
+    "wood": 28,
+  
   },
   "sector_livestock": {
-    "chicken": 25,
-    "poultry": 1,
-    "dairy_cow": 2,
     "beef_cow": 27,
-    "sheep_goat": 40,
-    "shrimp": 38,
+    "chicken": 25,
+    "dairy_cow": 2,
     "fish": 25,
+    "poultry": 1,
+    "sheep_goat": 40,
     "shellfish": 23,
-    "strength": 18.24560701244298
+    "shrimp": 38,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 23,
-    "wheat": 10,
-    "corn": 10,
-    "tubers": 28,
-    "soy": 40,
-    "palm_oil": 26,
-    "tea": 14,
-    "coffee": 24,
     "cocoa": 27,
+    "coffee": 24,
+    "corn": 10,
+    "palm_oil": 26,
+    "rice": 23,
+    "soy": 40,
+    "strength": 20.660809349923973,
     "sugarcane": 29,
+    "tea": 14,
+    "tubers": 28,
     "vegetables": 20,
-    "strength": 20.660809349923973
+    "wheat": 10,
+  
   },
   "sector_defense": {
     "prison": 18,
@@ -102,20 +107,20 @@ export const seychelles: CountryData = {
       "darat": {
         "main_battle_tank": 94,
         "apc": 100,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 18,
         "kapal_destroyer": 106,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 131,
         "helikopter_serang": 95,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 19,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const seychelles: CountryData = {
       "spy_mission": 16,
       "sabotage_mission": 33,
       "territory_management": 38,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 2,
       "radar_network": 5,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const seychelles: CountryData = {
       "research_center": 39,
       "development_center": 25,
       "literacy": 84,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 26,
@@ -161,7 +166,7 @@ export const seychelles: CountryData = {
       "diagnostic_center": 23,
       "hospital_beds": 9356,
       "life_expectancy": 31,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 13,
@@ -169,7 +174,7 @@ export const seychelles: CountryData = {
       "stadium": 39,
       "international_stadium": 19,
       "olympic_score": 33,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 12,
@@ -184,20 +189,20 @@ export const seychelles: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 39,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 30,
           "helikopter_polisi": 35,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 24,
           "kamera_surveillance": 10,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 1,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const seychelles: CountryData = {
     "naval_base": 30,
     "military_base": 40,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 7,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 9,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 6,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 27,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 31,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 36,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 17,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const seychelles: CountryData = {
     ],
     "residential": 15,
     "commercial": 33,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const seychelles: CountryData = {
     "international_influence": {
       "soft_power": 2,
       "hard_power": 27,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const seychelles: CountryData = {
     "education": 23,
     "security": 10,
     "finance": 27,
-    "environment": 60
+    "environment": 60,
   }
 };

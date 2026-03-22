@@ -13,81 +13,86 @@ export const guinea_bissau: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 22,
-    "hydro_plant": 33,
-    "solar_plant": 21,
-    "thermal_plant": 31,
-    "gas_plant": 28,
-    "wind_plant": 22,
-    "power_grid": 56,
+    "airport": 16,
     "bicycle_path": 38,
-    "subway": 1,
-    "railway": 22,
+    "bus_terminal": 15,
+    "gas_plant": 28,
+    "helipad": 15,
     "highway": 26,
+    "hydro_plant": 33,
+    "internet_coverage": 68,
+    "nuclear_plant": 22,
+    "power_grid": 56,
+    "railway": 22,
     "road_quality": 93,
     "sea_port": 25,
-    "airport": 16,
-    "bus_terminal": 15,
-    "helipad": 15,
-    "internet_coverage": 68,
+    "solar_plant": 21,
+    "subway": 1,
     "tech_stack": 66,
-    "water_access": 74
+    "thermal_plant": 31,
+    "water_access": 74,
+    "wind_plant": 22,
+  
   },
   "sector_extraction": {
-    "gold": 19,
-    "uranium": 34,
-    "coal": 38,
-    "oil": 21,
-    "gas": 3,
-    "salt": 6,
-    "nickel": 35,
-    "lithium": 15,
     "aluminum": 15,
+    "coal": 38,
     "copper": 3,
-    "rare_earth": 29,
+    "gas": 3,
+    "gold": 19,
     "iron_ore": 22,
-    "strength": 29.660809349923973
+    "lithium": 15,
+    "nickel": 35,
+    "oil": 21,
+    "rare_earth": 29,
+    "salt": 6,
+    "strength": 29.660809349923973,
+    "uranium": 34,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 30,
-    "car": 29,
-    "motorcycle": 18,
-    "smelter": 40,
-    "concrete_cement": 3,
-    "wood": 27,
-    "mineral_water": 22,
-    "sugar": 1,
     "bread": 29,
-    "pharmacy": 19,
+    "car": 29,
+    "concrete_cement": 3,
     "fertilizer": 24,
-    "meat_processing": 36,
     "instant_noodle": 9,
-    "strength": 3.076011687404966
+    "meat_processing": 36,
+    "mineral_water": 22,
+    "motorcycle": 18,
+    "pharmacy": 19,
+    "semiconductor": 30,
+    "smelter": 40,
+    "strength": 3.076011687404966,
+    "sugar": 1,
+    "wood": 27,
+  
   },
   "sector_livestock": {
-    "chicken": 2,
-    "poultry": 27,
-    "dairy_cow": 37,
     "beef_cow": 39,
-    "sheep_goat": 1,
-    "shrimp": 5,
+    "chicken": 2,
+    "dairy_cow": 37,
     "fish": 9,
+    "poultry": 27,
+    "sheep_goat": 1,
     "shellfish": 16,
-    "strength": 18.24560701244298
+    "shrimp": 5,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 6,
-    "wheat": 32,
-    "corn": 25,
-    "tubers": 16,
-    "soy": 1,
-    "palm_oil": 23,
-    "tea": 27,
-    "coffee": 40,
     "cocoa": 11,
+    "coffee": 40,
+    "corn": 25,
+    "palm_oil": 23,
+    "rice": 6,
+    "soy": 1,
+    "strength": 20.660809349923973,
     "sugarcane": 15,
+    "tea": 27,
+    "tubers": 16,
     "vegetables": 15,
-    "strength": 20.660809349923973
+    "wheat": 32,
+  
   },
   "sector_defense": {
     "prison": 6,
@@ -102,20 +107,20 @@ export const guinea_bissau: CountryData = {
       "darat": {
         "main_battle_tank": 28,
         "apc": 28,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 7,
         "kapal_destroyer": 11,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 17,
         "helikopter_serang": 24,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 16,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const guinea_bissau: CountryData = {
       "spy_mission": 5,
       "sabotage_mission": 28,
       "territory_management": 32,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 22,
       "radar_network": 19,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const guinea_bissau: CountryData = {
       "research_center": 6,
       "development_center": 33,
       "literacy": 80,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 9,
@@ -161,7 +166,7 @@ export const guinea_bissau: CountryData = {
       "diagnostic_center": 8,
       "hospital_beds": 1466,
       "life_expectancy": 26,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 15,
@@ -169,7 +174,7 @@ export const guinea_bissau: CountryData = {
       "stadium": 37,
       "international_stadium": 16,
       "olympic_score": 14,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 2,
@@ -184,20 +189,20 @@ export const guinea_bissau: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 33,
           "sepeda_motor": 27,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 11,
           "helikopter_polisi": 18,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 12,
           "kamera_surveillance": 35,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 20,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const guinea_bissau: CountryData = {
     "naval_base": 21,
     "military_base": 32,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 2,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 31,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 21,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 12,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 40,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 16,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 7,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const guinea_bissau: CountryData = {
     ],
     "residential": 26,
     "commercial": 21,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const guinea_bissau: CountryData = {
     "international_influence": {
       "soft_power": 28,
       "hard_power": 30,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const guinea_bissau: CountryData = {
     "education": 25,
     "security": 25,
     "finance": 32,
-    "environment": 60
+    "environment": 60,
   }
 };

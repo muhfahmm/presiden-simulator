@@ -13,81 +13,86 @@ export const mali: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 25,
-    "hydro_plant": 21,
-    "solar_plant": 16,
-    "thermal_plant": 20,
-    "gas_plant": 13,
-    "wind_plant": 4,
-    "power_grid": 50,
+    "airport": 12,
     "bicycle_path": 25,
-    "subway": 14,
-    "railway": 22,
+    "bus_terminal": 39,
+    "gas_plant": 13,
+    "helipad": 15,
     "highway": 21,
+    "hydro_plant": 21,
+    "internet_coverage": 63,
+    "nuclear_plant": 25,
+    "power_grid": 50,
+    "railway": 22,
     "road_quality": 70,
     "sea_port": 3,
-    "airport": 12,
-    "bus_terminal": 39,
-    "helipad": 15,
-    "internet_coverage": 63,
+    "solar_plant": 16,
+    "subway": 14,
     "tech_stack": 95,
-    "water_access": 74
+    "thermal_plant": 20,
+    "water_access": 74,
+    "wind_plant": 4,
+  
   },
   "sector_extraction": {
-    "gold": 19,
-    "uranium": 4,
-    "coal": 34,
-    "oil": 29,
-    "gas": 24,
-    "salt": 36,
-    "nickel": 23,
-    "lithium": 40,
     "aluminum": 10,
+    "coal": 34,
     "copper": 3,
-    "rare_earth": 31,
+    "gas": 24,
+    "gold": 19,
     "iron_ore": 1,
-    "strength": 29.660809349923973
+    "lithium": 40,
+    "nickel": 23,
+    "oil": 29,
+    "rare_earth": 31,
+    "salt": 36,
+    "strength": 29.660809349923973,
+    "uranium": 4,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 20,
-    "car": 24,
-    "motorcycle": 2,
-    "smelter": 1,
-    "concrete_cement": 27,
-    "wood": 1,
-    "mineral_water": 29,
-    "sugar": 16,
     "bread": 24,
-    "pharmacy": 32,
+    "car": 24,
+    "concrete_cement": 27,
     "fertilizer": 10,
-    "meat_processing": 5,
     "instant_noodle": 12,
-    "strength": 3.076011687404966
+    "meat_processing": 5,
+    "mineral_water": 29,
+    "motorcycle": 2,
+    "pharmacy": 32,
+    "semiconductor": 20,
+    "smelter": 1,
+    "strength": 3.076011687404966,
+    "sugar": 16,
+    "wood": 1,
+  
   },
   "sector_livestock": {
-    "chicken": 19,
-    "poultry": 19,
-    "dairy_cow": 14,
     "beef_cow": 40,
-    "sheep_goat": 17,
-    "shrimp": 4,
+    "chicken": 19,
+    "dairy_cow": 14,
     "fish": 11,
+    "poultry": 19,
+    "sheep_goat": 17,
     "shellfish": 28,
-    "strength": 18.24560701244298
+    "shrimp": 4,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 1,
-    "wheat": 10,
-    "corn": 11,
-    "tubers": 39,
-    "soy": 5,
-    "palm_oil": 8,
-    "tea": 15,
-    "coffee": 39,
     "cocoa": 39,
+    "coffee": 39,
+    "corn": 11,
+    "palm_oil": 8,
+    "rice": 1,
+    "soy": 5,
+    "strength": 20.660809349923973,
     "sugarcane": 36,
+    "tea": 15,
+    "tubers": 39,
     "vegetables": 25,
-    "strength": 20.660809349923973
+    "wheat": 10,
+  
   },
   "sector_defense": {
     "prison": 20,
@@ -102,20 +107,20 @@ export const mali: CountryData = {
       "darat": {
         "main_battle_tank": 18,
         "apc": 39,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 10,
         "kapal_destroyer": 40,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 36,
         "helikopter_serang": 28,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 39,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const mali: CountryData = {
       "spy_mission": 30,
       "sabotage_mission": 1,
       "territory_management": 3,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 25,
       "radar_network": 15,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const mali: CountryData = {
       "research_center": 20,
       "development_center": 17,
       "literacy": 80,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 9,
@@ -161,7 +166,7 @@ export const mali: CountryData = {
       "diagnostic_center": 5,
       "hospital_beds": 6075,
       "life_expectancy": 27,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 21,
@@ -169,7 +174,7 @@ export const mali: CountryData = {
       "stadium": 7,
       "international_stadium": 40,
       "olympic_score": 15,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 34,
@@ -184,20 +189,20 @@ export const mali: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 8,
           "sepeda_motor": 8,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 30,
           "helikopter_polisi": 23,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 11,
           "kamera_surveillance": 18,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 26,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const mali: CountryData = {
     "naval_base": 7,
     "military_base": 22,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 15,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 38,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 11,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 12,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 21,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 14,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 17,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const mali: CountryData = {
     ],
     "residential": 10,
     "commercial": 36,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const mali: CountryData = {
     "international_influence": {
       "soft_power": 17,
       "hard_power": 24,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const mali: CountryData = {
     "education": 20,
     "security": 21,
     "finance": 32,
-    "environment": 60
+    "environment": 60,
   }
 };

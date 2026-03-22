@@ -13,81 +13,86 @@ export const pantai_gading: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 10,
-    "hydro_plant": 4,
-    "solar_plant": 5,
-    "thermal_plant": 36,
-    "gas_plant": 6,
-    "wind_plant": 20,
-    "power_grid": 59,
+    "airport": 13,
     "bicycle_path": 8,
-    "subway": 1,
-    "railway": 17,
+    "bus_terminal": 19,
+    "gas_plant": 6,
+    "helipad": 34,
     "highway": 23,
+    "hydro_plant": 4,
+    "internet_coverage": 88,
+    "nuclear_plant": 10,
+    "power_grid": 59,
+    "railway": 17,
     "road_quality": 63,
     "sea_port": 4,
-    "airport": 13,
-    "bus_terminal": 19,
-    "helipad": 34,
-    "internet_coverage": 88,
+    "solar_plant": 5,
+    "subway": 1,
     "tech_stack": 62,
-    "water_access": 74
+    "thermal_plant": 36,
+    "water_access": 74,
+    "wind_plant": 20,
+  
   },
   "sector_extraction": {
-    "gold": 16,
-    "uranium": 4,
-    "coal": 15,
-    "oil": 33,
-    "gas": 38,
-    "salt": 24,
-    "nickel": 9,
-    "lithium": 12,
     "aluminum": 7,
+    "coal": 15,
     "copper": 36,
-    "rare_earth": 27,
+    "gas": 38,
+    "gold": 16,
     "iron_ore": 2,
-    "strength": 29.660809349923973
+    "lithium": 12,
+    "nickel": 9,
+    "oil": 33,
+    "rare_earth": 27,
+    "salt": 24,
+    "strength": 29.660809349923973,
+    "uranium": 4,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 6,
-    "car": 30,
-    "motorcycle": 40,
-    "smelter": 4,
-    "concrete_cement": 32,
-    "wood": 21,
-    "mineral_water": 26,
-    "sugar": 34,
     "bread": 16,
-    "pharmacy": 13,
+    "car": 30,
+    "concrete_cement": 32,
     "fertilizer": 40,
-    "meat_processing": 19,
     "instant_noodle": 10,
-    "strength": 3.076011687404966
+    "meat_processing": 19,
+    "mineral_water": 26,
+    "motorcycle": 40,
+    "pharmacy": 13,
+    "semiconductor": 6,
+    "smelter": 4,
+    "strength": 3.076011687404966,
+    "sugar": 34,
+    "wood": 21,
+  
   },
   "sector_livestock": {
-    "chicken": 22,
-    "poultry": 38,
-    "dairy_cow": 4,
     "beef_cow": 29,
-    "sheep_goat": 23,
-    "shrimp": 10,
+    "chicken": 22,
+    "dairy_cow": 4,
     "fish": 39,
+    "poultry": 38,
+    "sheep_goat": 23,
     "shellfish": 27,
-    "strength": 18.24560701244298
+    "shrimp": 10,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 32,
-    "wheat": 21,
-    "corn": 18,
-    "tubers": 34,
-    "soy": 2,
-    "palm_oil": 31,
-    "tea": 36,
-    "coffee": 15,
     "cocoa": 37,
+    "coffee": 15,
+    "corn": 18,
+    "palm_oil": 31,
+    "rice": 32,
+    "soy": 2,
+    "strength": 20.660809349923973,
     "sugarcane": 30,
+    "tea": 36,
+    "tubers": 34,
     "vegetables": 29,
-    "strength": 20.660809349923973
+    "wheat": 21,
+  
   },
   "sector_defense": {
     "prison": 17,
@@ -102,20 +107,20 @@ export const pantai_gading: CountryData = {
       "darat": {
         "main_battle_tank": 140,
         "apc": 24,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 7,
         "kapal_destroyer": 82,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 36,
         "helikopter_serang": 189,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 6,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const pantai_gading: CountryData = {
       "spy_mission": 3,
       "sabotage_mission": 31,
       "territory_management": 17,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 0,
       "radar_network": 4,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const pantai_gading: CountryData = {
       "research_center": 16,
       "development_center": 22,
       "literacy": 76,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 35,
@@ -161,7 +166,7 @@ export const pantai_gading: CountryData = {
       "diagnostic_center": 38,
       "hospital_beds": 7247,
       "life_expectancy": 10,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 14,
@@ -169,7 +174,7 @@ export const pantai_gading: CountryData = {
       "stadium": 33,
       "international_stadium": 32,
       "olympic_score": 15,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 20,
@@ -184,20 +189,20 @@ export const pantai_gading: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 23,
           "sepeda_motor": 4,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 23,
           "helikopter_polisi": 10,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 39,
           "kamera_surveillance": 23,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 4,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const pantai_gading: CountryData = {
     "naval_base": 35,
     "military_base": 37,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 27,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 36,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 34,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 4,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 23,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 25,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 7,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const pantai_gading: CountryData = {
     ],
     "residential": 17,
     "commercial": 20,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const pantai_gading: CountryData = {
     "international_influence": {
       "soft_power": 12,
       "hard_power": 1,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const pantai_gading: CountryData = {
     "education": 27,
     "security": 9,
     "finance": 4,
-    "environment": 60
+    "environment": 60,
   }
 };

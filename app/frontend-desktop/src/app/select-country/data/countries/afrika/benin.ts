@@ -13,81 +13,86 @@ export const benin: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 5,
-    "hydro_plant": 32,
-    "solar_plant": 25,
-    "thermal_plant": 13,
-    "gas_plant": 9,
-    "wind_plant": 16,
-    "power_grid": 79,
+    "airport": 38,
     "bicycle_path": 10,
-    "subway": 32,
-    "railway": 29,
+    "bus_terminal": 15,
+    "gas_plant": 9,
+    "helipad": 6,
     "highway": 1,
+    "hydro_plant": 32,
+    "internet_coverage": 74,
+    "nuclear_plant": 5,
+    "power_grid": 79,
+    "railway": 29,
     "road_quality": 86,
     "sea_port": 6,
-    "airport": 38,
-    "bus_terminal": 15,
-    "helipad": 6,
-    "internet_coverage": 74,
+    "solar_plant": 25,
+    "subway": 32,
     "tech_stack": 77,
-    "water_access": 74
+    "thermal_plant": 13,
+    "water_access": 74,
+    "wind_plant": 16,
+  
   },
   "sector_extraction": {
-    "gold": 8,
-    "uranium": 34,
-    "coal": 29,
-    "oil": 5,
-    "gas": 34,
-    "salt": 23,
-    "nickel": 19,
-    "lithium": 12,
     "aluminum": 19,
+    "coal": 29,
     "copper": 5,
-    "rare_earth": 4,
+    "gas": 34,
+    "gold": 8,
     "iron_ore": 4,
-    "strength": 29.660809349923973
+    "lithium": 12,
+    "nickel": 19,
+    "oil": 5,
+    "rare_earth": 4,
+    "salt": 23,
+    "strength": 29.660809349923973,
+    "uranium": 34,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 23,
-    "car": 31,
-    "motorcycle": 2,
-    "smelter": 14,
-    "concrete_cement": 10,
-    "wood": 23,
-    "mineral_water": 32,
-    "sugar": 9,
     "bread": 32,
-    "pharmacy": 1,
+    "car": 31,
+    "concrete_cement": 10,
     "fertilizer": 26,
-    "meat_processing": 21,
     "instant_noodle": 5,
-    "strength": 3.076011687404966
+    "meat_processing": 21,
+    "mineral_water": 32,
+    "motorcycle": 2,
+    "pharmacy": 1,
+    "semiconductor": 23,
+    "smelter": 14,
+    "strength": 3.076011687404966,
+    "sugar": 9,
+    "wood": 23,
+  
   },
   "sector_livestock": {
-    "chicken": 24,
-    "poultry": 12,
-    "dairy_cow": 12,
     "beef_cow": 31,
-    "sheep_goat": 27,
-    "shrimp": 31,
+    "chicken": 24,
+    "dairy_cow": 12,
     "fish": 11,
+    "poultry": 12,
+    "sheep_goat": 27,
     "shellfish": 31,
-    "strength": 18.24560701244298
+    "shrimp": 31,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 17,
-    "wheat": 9,
-    "corn": 2,
-    "tubers": 40,
-    "soy": 39,
-    "palm_oil": 35,
-    "tea": 14,
-    "coffee": 9,
     "cocoa": 12,
+    "coffee": 9,
+    "corn": 2,
+    "palm_oil": 35,
+    "rice": 17,
+    "soy": 39,
+    "strength": 20.660809349923973,
     "sugarcane": 29,
+    "tea": 14,
+    "tubers": 40,
     "vegetables": 1,
-    "strength": 20.660809349923973
+    "wheat": 9,
+  
   },
   "sector_defense": {
     "prison": 30,
@@ -102,20 +107,20 @@ export const benin: CountryData = {
       "darat": {
         "main_battle_tank": 1,
         "apc": 10,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 16,
         "kapal_destroyer": 16,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 6,
         "helikopter_serang": 3,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 17,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const benin: CountryData = {
       "spy_mission": 20,
       "sabotage_mission": 18,
       "territory_management": 12,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 8,
       "radar_network": 21,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const benin: CountryData = {
       "research_center": 17,
       "development_center": 36,
       "literacy": 87,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 17,
@@ -161,7 +166,7 @@ export const benin: CountryData = {
       "diagnostic_center": 17,
       "hospital_beds": 9601,
       "life_expectancy": 6,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 40,
@@ -169,7 +174,7 @@ export const benin: CountryData = {
       "stadium": 9,
       "international_stadium": 13,
       "olympic_score": 32,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 13,
@@ -184,20 +189,20 @@ export const benin: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 37,
           "sepeda_motor": 8,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 27,
           "helikopter_polisi": 7,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 32,
           "kamera_surveillance": 30,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 5,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const benin: CountryData = {
     "naval_base": 7,
     "military_base": 29,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 8,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 18,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 18,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 28,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 24,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 22,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 29,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const benin: CountryData = {
     ],
     "residential": 33,
     "commercial": 20,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const benin: CountryData = {
     "international_influence": {
       "soft_power": 1,
       "hard_power": 31,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const benin: CountryData = {
     "education": 32,
     "security": 17,
     "finance": 7,
-    "environment": 60
+    "environment": 60,
   }
 };

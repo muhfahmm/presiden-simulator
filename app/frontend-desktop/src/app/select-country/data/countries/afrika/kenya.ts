@@ -7,87 +7,92 @@ export const kenya: CountryData = {
   "lon": 38,
   "lat": 1,
   "flag": "🇰🇪",
-  "pop": "10M",
-  "budget": "Rp 178 T",
-  "income": "Rp 265 T",
+  "pop": "57M",
+  "budget": "Rp 350 T",
+  "income": "Rp 1760 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 8,
-    "hydro_plant": 13,
-    "solar_plant": 18,
-    "thermal_plant": 7,
-    "gas_plant": 26,
-    "wind_plant": 9,
-    "power_grid": 85,
+    "airport": 6,
     "bicycle_path": 36,
-    "subway": 13,
-    "railway": 39,
+    "bus_terminal": 9,
+    "gas_plant": 26,
+    "helipad": 3,
     "highway": 17,
+    "hydro_plant": 13,
+    "internet_coverage": 85,
+    "nuclear_plant": 8,
+    "power_grid": 85,
+    "railway": 39,
     "road_quality": 65,
     "sea_port": 1,
-    "airport": 6,
-    "bus_terminal": 9,
-    "helipad": 3,
-    "internet_coverage": 58,
+    "solar_plant": 18,
+    "subway": 13,
     "tech_stack": 52,
-    "water_access": 74
+    "thermal_plant": 7,
+    "water_access": 74,
+    "wind_plant": 9,
+  
   },
   "sector_extraction": {
-    "gold": 7,
-    "uranium": 10,
-    "coal": 7,
-    "oil": 23,
-    "gas": 8,
-    "salt": 20,
-    "nickel": 14,
-    "lithium": 4,
     "aluminum": 10,
+    "coal": 7,
     "copper": 5,
-    "rare_earth": 28,
+    "gas": 8,
+    "gold": 7,
     "iron_ore": 8,
-    "strength": 29.660809349923973
+    "lithium": 4,
+    "nickel": 14,
+    "oil": 23,
+    "rare_earth": 28,
+    "salt": 20,
+    "strength": 29.660809349923973,
+    "uranium": 10,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 14,
-    "car": 30,
-    "motorcycle": 17,
-    "smelter": 29,
-    "concrete_cement": 9,
-    "wood": 40,
-    "mineral_water": 36,
-    "sugar": 2,
     "bread": 25,
-    "pharmacy": 12,
+    "car": 30,
+    "concrete_cement": 9,
     "fertilizer": 7,
-    "meat_processing": 34,
     "instant_noodle": 15,
-    "strength": 3.076011687404966
+    "meat_processing": 34,
+    "mineral_water": 36,
+    "motorcycle": 17,
+    "pharmacy": 12,
+    "semiconductor": 14,
+    "smelter": 29,
+    "strength": 3.076011687404966,
+    "sugar": 2,
+    "wood": 40,
+  
   },
   "sector_livestock": {
-    "chicken": 10,
-    "poultry": 31,
-    "dairy_cow": 33,
     "beef_cow": 16,
-    "sheep_goat": 36,
-    "shrimp": 19,
+    "chicken": 10,
+    "dairy_cow": 33,
     "fish": 7,
+    "poultry": 31,
+    "sheep_goat": 36,
     "shellfish": 38,
-    "strength": 18.24560701244298
+    "shrimp": 19,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 26,
-    "wheat": 11,
-    "corn": 10,
-    "tubers": 14,
-    "soy": 35,
-    "palm_oil": 4,
-    "tea": 11,
-    "coffee": 34,
     "cocoa": 3,
+    "coffee": 70,
+    "corn": 10,
+    "palm_oil": 4,
+    "rice": 26,
+    "soy": 35,
+    "strength": 20.660809349923973,
     "sugarcane": 40,
+    "tea": 85,
+    "tubers": 14,
     "vegetables": 32,
-    "strength": 20.660809349923973
+    "wheat": 11,
+  
   },
   "sector_defense": {
     "prison": 33,
@@ -102,20 +107,20 @@ export const kenya: CountryData = {
       "darat": {
         "main_battle_tank": 15,
         "apc": 26,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 18,
         "kapal_destroyer": 16,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 34,
         "helikopter_serang": 18,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 31,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const kenya: CountryData = {
       "spy_mission": 34,
       "sabotage_mission": 39,
       "territory_management": 24,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 20,
       "radar_network": 2,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const kenya: CountryData = {
       "research_center": 34,
       "development_center": 18,
       "literacy": 57,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 36,
@@ -161,7 +166,7 @@ export const kenya: CountryData = {
       "diagnostic_center": 20,
       "hospital_beds": 1083,
       "life_expectancy": 37,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 4,
@@ -169,7 +174,7 @@ export const kenya: CountryData = {
       "stadium": 26,
       "international_stadium": 5,
       "olympic_score": 30,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 9,
@@ -184,20 +189,20 @@ export const kenya: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 24,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 11,
           "helikopter_polisi": 39,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 27,
           "kamera_surveillance": 9,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 16,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const kenya: CountryData = {
     "naval_base": 33,
     "military_base": 21,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 32,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 31,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 30,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 24,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 35,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 6,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 3,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const kenya: CountryData = {
     ],
     "residential": 12,
     "commercial": 31,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const kenya: CountryData = {
     "international_influence": {
       "soft_power": 31,
       "hard_power": 18,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const kenya: CountryData = {
     "education": 5,
     "security": 40,
     "finance": 23,
-    "environment": 60
+    "environment": 60,
   }
 };

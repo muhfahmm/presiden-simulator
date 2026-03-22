@@ -13,81 +13,86 @@ export const gabon: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 24,
-    "hydro_plant": 11,
-    "solar_plant": 12,
-    "thermal_plant": 3,
-    "gas_plant": 1,
-    "wind_plant": 30,
-    "power_grid": 73,
+    "airport": 21,
     "bicycle_path": 15,
-    "subway": 16,
-    "railway": 7,
+    "bus_terminal": 19,
+    "gas_plant": 1,
+    "helipad": 38,
     "highway": 11,
+    "hydro_plant": 11,
+    "internet_coverage": 54,
+    "nuclear_plant": 24,
+    "power_grid": 73,
+    "railway": 7,
     "road_quality": 64,
     "sea_port": 31,
-    "airport": 21,
-    "bus_terminal": 19,
-    "helipad": 38,
-    "internet_coverage": 54,
+    "solar_plant": 12,
+    "subway": 16,
     "tech_stack": 81,
-    "water_access": 74
+    "thermal_plant": 3,
+    "water_access": 74,
+    "wind_plant": 30,
+  
   },
   "sector_extraction": {
-    "gold": 16,
-    "uranium": 38,
-    "coal": 9,
-    "oil": 21,
-    "gas": 17,
-    "salt": 17,
-    "nickel": 12,
-    "lithium": 39,
     "aluminum": 11,
+    "coal": 9,
     "copper": 39,
-    "rare_earth": 14,
+    "gas": 17,
+    "gold": 16,
     "iron_ore": 8,
-    "strength": 29.660809349923973
+    "lithium": 39,
+    "nickel": 12,
+    "oil": 21,
+    "rare_earth": 14,
+    "salt": 17,
+    "strength": 29.660809349923973,
+    "uranium": 38,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 10,
-    "car": 16,
-    "motorcycle": 4,
-    "smelter": 1,
-    "concrete_cement": 23,
-    "wood": 31,
-    "mineral_water": 15,
-    "sugar": 10,
     "bread": 31,
-    "pharmacy": 9,
+    "car": 16,
+    "concrete_cement": 23,
     "fertilizer": 27,
-    "meat_processing": 25,
     "instant_noodle": 12,
-    "strength": 3.076011687404966
+    "meat_processing": 25,
+    "mineral_water": 15,
+    "motorcycle": 4,
+    "pharmacy": 9,
+    "semiconductor": 10,
+    "smelter": 1,
+    "strength": 3.076011687404966,
+    "sugar": 10,
+    "wood": 31,
+  
   },
   "sector_livestock": {
-    "chicken": 26,
-    "poultry": 37,
-    "dairy_cow": 32,
     "beef_cow": 1,
-    "sheep_goat": 7,
-    "shrimp": 29,
+    "chicken": 26,
+    "dairy_cow": 32,
     "fish": 31,
+    "poultry": 37,
+    "sheep_goat": 7,
     "shellfish": 35,
-    "strength": 18.24560701244298
+    "shrimp": 29,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 5,
-    "wheat": 38,
-    "corn": 12,
-    "tubers": 16,
-    "soy": 15,
-    "palm_oil": 29,
-    "tea": 26,
-    "coffee": 22,
     "cocoa": 24,
+    "coffee": 22,
+    "corn": 12,
+    "palm_oil": 29,
+    "rice": 5,
+    "soy": 15,
+    "strength": 20.660809349923973,
     "sugarcane": 6,
+    "tea": 26,
+    "tubers": 16,
     "vegetables": 4,
-    "strength": 20.660809349923973
+    "wheat": 38,
+  
   },
   "sector_defense": {
     "prison": 6,
@@ -102,20 +107,20 @@ export const gabon: CountryData = {
       "darat": {
         "main_battle_tank": 30,
         "apc": 30,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 24,
         "kapal_destroyer": 29,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 20,
         "helikopter_serang": 36,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 9,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const gabon: CountryData = {
       "spy_mission": 2,
       "sabotage_mission": 37,
       "territory_management": 3,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 13,
       "radar_network": 10,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const gabon: CountryData = {
       "research_center": 40,
       "development_center": 12,
       "literacy": 50,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 9,
@@ -161,7 +166,7 @@ export const gabon: CountryData = {
       "diagnostic_center": 3,
       "hospital_beds": 4436,
       "life_expectancy": 35,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 35,
@@ -169,7 +174,7 @@ export const gabon: CountryData = {
       "stadium": 25,
       "international_stadium": 32,
       "olympic_score": 31,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 12,
@@ -184,20 +189,20 @@ export const gabon: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 15,
           "sepeda_motor": 33,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 21,
           "helikopter_polisi": 18,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 1,
           "kamera_surveillance": 35,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 33,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const gabon: CountryData = {
     "naval_base": 14,
     "military_base": 9,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 29,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 28,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 37,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 25,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 39,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 23,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 25,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const gabon: CountryData = {
     ],
     "residential": 9,
     "commercial": 21,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const gabon: CountryData = {
     "international_influence": {
       "soft_power": 20,
       "hard_power": 13,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const gabon: CountryData = {
     "education": 26,
     "security": 11,
     "finance": 13,
-    "environment": 60
+    "environment": 60,
   }
 };

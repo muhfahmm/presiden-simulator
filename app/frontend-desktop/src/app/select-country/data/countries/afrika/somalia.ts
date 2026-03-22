@@ -13,81 +13,86 @@ export const somalia: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 35,
-    "hydro_plant": 17,
-    "solar_plant": 33,
-    "thermal_plant": 9,
-    "gas_plant": 22,
-    "wind_plant": 2,
-    "power_grid": 84,
+    "airport": 36,
     "bicycle_path": 22,
-    "subway": 17,
-    "railway": 28,
+    "bus_terminal": 34,
+    "gas_plant": 22,
+    "helipad": 40,
     "highway": 39,
+    "hydro_plant": 17,
+    "internet_coverage": 93,
+    "nuclear_plant": 35,
+    "power_grid": 84,
+    "railway": 28,
     "road_quality": 66,
     "sea_port": 2,
-    "airport": 36,
-    "bus_terminal": 34,
-    "helipad": 40,
-    "internet_coverage": 93,
+    "solar_plant": 33,
+    "subway": 17,
     "tech_stack": 80,
-    "water_access": 74
+    "thermal_plant": 9,
+    "water_access": 74,
+    "wind_plant": 2,
+  
   },
   "sector_extraction": {
-    "gold": 2,
-    "uranium": 27,
-    "coal": 23,
-    "oil": 25,
-    "gas": 28,
-    "salt": 10,
-    "nickel": 6,
-    "lithium": 13,
     "aluminum": 23,
+    "coal": 23,
     "copper": 6,
-    "rare_earth": 20,
+    "gas": 28,
+    "gold": 2,
     "iron_ore": 39,
-    "strength": 29.660809349923973
+    "lithium": 13,
+    "nickel": 6,
+    "oil": 25,
+    "rare_earth": 20,
+    "salt": 10,
+    "strength": 29.660809349923973,
+    "uranium": 27,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 16,
-    "car": 5,
-    "motorcycle": 13,
-    "smelter": 39,
-    "concrete_cement": 12,
-    "wood": 33,
-    "mineral_water": 9,
-    "sugar": 28,
     "bread": 9,
-    "pharmacy": 36,
+    "car": 5,
+    "concrete_cement": 12,
     "fertilizer": 8,
-    "meat_processing": 34,
     "instant_noodle": 8,
-    "strength": 3.076011687404966
+    "meat_processing": 34,
+    "mineral_water": 9,
+    "motorcycle": 13,
+    "pharmacy": 36,
+    "semiconductor": 16,
+    "smelter": 39,
+    "strength": 3.076011687404966,
+    "sugar": 28,
+    "wood": 33,
+  
   },
   "sector_livestock": {
-    "chicken": 11,
-    "poultry": 38,
-    "dairy_cow": 24,
     "beef_cow": 9,
-    "sheep_goat": 23,
-    "shrimp": 12,
+    "chicken": 11,
+    "dairy_cow": 24,
     "fish": 39,
+    "poultry": 38,
+    "sheep_goat": 23,
     "shellfish": 22,
-    "strength": 18.24560701244298
+    "shrimp": 12,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 31,
-    "wheat": 24,
-    "corn": 28,
-    "tubers": 36,
-    "soy": 15,
-    "palm_oil": 22,
-    "tea": 21,
-    "coffee": 15,
     "cocoa": 33,
+    "coffee": 15,
+    "corn": 28,
+    "palm_oil": 22,
+    "rice": 31,
+    "soy": 15,
+    "strength": 20.660809349923973,
     "sugarcane": 16,
+    "tea": 21,
+    "tubers": 36,
     "vegetables": 12,
-    "strength": 20.660809349923973
+    "wheat": 24,
+  
   },
   "sector_defense": {
     "prison": 8,
@@ -102,20 +107,20 @@ export const somalia: CountryData = {
       "darat": {
         "main_battle_tank": 72,
         "apc": 147,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 38,
         "kapal_destroyer": 99,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 166,
         "helikopter_serang": 198,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 25,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const somalia: CountryData = {
       "spy_mission": 4,
       "sabotage_mission": 17,
       "territory_management": 34,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 4,
       "radar_network": 0,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const somalia: CountryData = {
       "research_center": 38,
       "development_center": 3,
       "literacy": 74,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 40,
@@ -161,7 +166,7 @@ export const somalia: CountryData = {
       "diagnostic_center": 22,
       "hospital_beds": 7592,
       "life_expectancy": 40,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 22,
@@ -169,7 +174,7 @@ export const somalia: CountryData = {
       "stadium": 37,
       "international_stadium": 34,
       "olympic_score": 38,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 11,
@@ -184,20 +189,20 @@ export const somalia: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 29,
           "sepeda_motor": 17,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 22,
           "helikopter_polisi": 8,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 10,
           "kamera_surveillance": 38,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 35,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const somalia: CountryData = {
     "naval_base": 33,
     "military_base": 37,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 2,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 12,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 12,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 39,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 11,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 6,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 40,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const somalia: CountryData = {
     ],
     "residential": 14,
     "commercial": 20,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const somalia: CountryData = {
     "international_influence": {
       "soft_power": 35,
       "hard_power": 10,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const somalia: CountryData = {
     "education": 11,
     "security": 24,
     "finance": 13,
-    "environment": 60
+    "environment": 60,
   }
 };

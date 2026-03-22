@@ -13,81 +13,86 @@ export const mauritius: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 28,
-    "hydro_plant": 22,
-    "solar_plant": 3,
-    "thermal_plant": 13,
-    "gas_plant": 13,
-    "wind_plant": 11,
-    "power_grid": 86,
+    "airport": 32,
     "bicycle_path": 21,
-    "subway": 11,
-    "railway": 2,
+    "bus_terminal": 24,
+    "gas_plant": 13,
+    "helipad": 32,
     "highway": 4,
+    "hydro_plant": 22,
+    "internet_coverage": 75,
+    "nuclear_plant": 28,
+    "power_grid": 86,
+    "railway": 2,
     "road_quality": 68,
     "sea_port": 36,
-    "airport": 32,
-    "bus_terminal": 24,
-    "helipad": 32,
-    "internet_coverage": 75,
+    "solar_plant": 3,
+    "subway": 11,
     "tech_stack": 74,
-    "water_access": 74
+    "thermal_plant": 13,
+    "water_access": 74,
+    "wind_plant": 11,
+  
   },
   "sector_extraction": {
-    "gold": 27,
-    "uranium": 35,
-    "coal": 5,
-    "oil": 26,
-    "gas": 7,
-    "salt": 5,
-    "nickel": 36,
-    "lithium": 37,
     "aluminum": 23,
+    "coal": 5,
     "copper": 4,
-    "rare_earth": 15,
+    "gas": 7,
+    "gold": 27,
     "iron_ore": 18,
-    "strength": 29.660809349923973
+    "lithium": 37,
+    "nickel": 36,
+    "oil": 26,
+    "rare_earth": 15,
+    "salt": 5,
+    "strength": 29.660809349923973,
+    "uranium": 35,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 39,
-    "car": 40,
-    "motorcycle": 26,
-    "smelter": 38,
-    "concrete_cement": 26,
-    "wood": 14,
-    "mineral_water": 5,
-    "sugar": 24,
     "bread": 22,
-    "pharmacy": 33,
+    "car": 40,
+    "concrete_cement": 26,
     "fertilizer": 40,
-    "meat_processing": 16,
     "instant_noodle": 1,
-    "strength": 3.076011687404966
+    "meat_processing": 16,
+    "mineral_water": 5,
+    "motorcycle": 26,
+    "pharmacy": 33,
+    "semiconductor": 39,
+    "smelter": 38,
+    "strength": 3.076011687404966,
+    "sugar": 24,
+    "wood": 14,
+  
   },
   "sector_livestock": {
-    "chicken": 22,
-    "poultry": 11,
-    "dairy_cow": 16,
     "beef_cow": 30,
-    "sheep_goat": 15,
-    "shrimp": 39,
+    "chicken": 22,
+    "dairy_cow": 16,
     "fish": 10,
+    "poultry": 11,
+    "sheep_goat": 15,
     "shellfish": 25,
-    "strength": 18.24560701244298
+    "shrimp": 39,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 8,
-    "wheat": 5,
-    "corn": 17,
-    "tubers": 3,
-    "soy": 35,
-    "palm_oil": 15,
-    "tea": 25,
-    "coffee": 17,
     "cocoa": 5,
+    "coffee": 17,
+    "corn": 17,
+    "palm_oil": 15,
+    "rice": 8,
+    "soy": 35,
+    "strength": 20.660809349923973,
     "sugarcane": 24,
+    "tea": 25,
+    "tubers": 3,
     "vegetables": 2,
-    "strength": 20.660809349923973
+    "wheat": 5,
+  
   },
   "sector_defense": {
     "prison": 29,
@@ -102,20 +107,20 @@ export const mauritius: CountryData = {
       "darat": {
         "main_battle_tank": 164,
         "apc": 69,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 7,
         "kapal_destroyer": 116,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 172,
         "helikopter_serang": 181,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 18,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const mauritius: CountryData = {
       "spy_mission": 17,
       "sabotage_mission": 6,
       "territory_management": 39,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 5,
       "radar_network": 1,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const mauritius: CountryData = {
       "research_center": 16,
       "development_center": 36,
       "literacy": 95,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 26,
@@ -161,7 +166,7 @@ export const mauritius: CountryData = {
       "diagnostic_center": 10,
       "hospital_beds": 4769,
       "life_expectancy": 11,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 14,
@@ -169,7 +174,7 @@ export const mauritius: CountryData = {
       "stadium": 33,
       "international_stadium": 15,
       "olympic_score": 8,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 35,
@@ -184,20 +189,20 @@ export const mauritius: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 10,
           "sepeda_motor": 1,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 32,
           "helikopter_polisi": 34,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 36,
           "kamera_surveillance": 20,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 39,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const mauritius: CountryData = {
     "naval_base": 3,
     "military_base": 37,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 2,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 22,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 8,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 22,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 14,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 38,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 22,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const mauritius: CountryData = {
     ],
     "residential": 37,
     "commercial": 16,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const mauritius: CountryData = {
     "international_influence": {
       "soft_power": 13,
       "hard_power": 33,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const mauritius: CountryData = {
     "education": 39,
     "security": 11,
     "finance": 37,
-    "environment": 60
+    "environment": 60,
   }
 };

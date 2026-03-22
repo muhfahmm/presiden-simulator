@@ -13,81 +13,86 @@ export const kongo: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 32,
-    "hydro_plant": 26,
-    "solar_plant": 12,
-    "thermal_plant": 8,
-    "gas_plant": 18,
-    "wind_plant": 29,
-    "power_grid": 53,
+    "airport": 3,
     "bicycle_path": 35,
-    "subway": 12,
-    "railway": 32,
+    "bus_terminal": 40,
+    "gas_plant": 18,
+    "helipad": 18,
     "highway": 21,
+    "hydro_plant": 26,
+    "internet_coverage": 62,
+    "nuclear_plant": 32,
+    "power_grid": 53,
+    "railway": 32,
     "road_quality": 52,
     "sea_port": 38,
-    "airport": 3,
-    "bus_terminal": 40,
-    "helipad": 18,
-    "internet_coverage": 62,
+    "solar_plant": 12,
+    "subway": 12,
     "tech_stack": 90,
-    "water_access": 74
+    "thermal_plant": 8,
+    "water_access": 74,
+    "wind_plant": 29,
+  
   },
   "sector_extraction": {
-    "gold": 16,
-    "uranium": 32,
-    "coal": 31,
-    "oil": 34,
-    "gas": 9,
-    "salt": 11,
-    "nickel": 31,
-    "lithium": 24,
     "aluminum": 20,
+    "coal": 31,
     "copper": 36,
-    "rare_earth": 4,
+    "gas": 9,
+    "gold": 16,
     "iron_ore": 16,
-    "strength": 29.660809349923973
+    "lithium": 24,
+    "nickel": 31,
+    "oil": 34,
+    "rare_earth": 4,
+    "salt": 11,
+    "strength": 29.660809349923973,
+    "uranium": 32,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 25,
-    "car": 24,
-    "motorcycle": 34,
-    "smelter": 10,
-    "concrete_cement": 9,
-    "wood": 20,
-    "mineral_water": 26,
-    "sugar": 8,
     "bread": 25,
-    "pharmacy": 23,
+    "car": 24,
+    "concrete_cement": 9,
     "fertilizer": 25,
-    "meat_processing": 18,
     "instant_noodle": 35,
-    "strength": 3.076011687404966
+    "meat_processing": 18,
+    "mineral_water": 26,
+    "motorcycle": 34,
+    "pharmacy": 23,
+    "semiconductor": 25,
+    "smelter": 10,
+    "strength": 3.076011687404966,
+    "sugar": 8,
+    "wood": 20,
+  
   },
   "sector_livestock": {
-    "chicken": 38,
-    "poultry": 23,
-    "dairy_cow": 34,
     "beef_cow": 29,
-    "sheep_goat": 18,
-    "shrimp": 34,
+    "chicken": 38,
+    "dairy_cow": 34,
     "fish": 20,
+    "poultry": 23,
+    "sheep_goat": 18,
     "shellfish": 23,
-    "strength": 18.24560701244298
+    "shrimp": 34,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 13,
-    "wheat": 24,
-    "corn": 19,
-    "tubers": 18,
-    "soy": 28,
-    "palm_oil": 16,
-    "tea": 36,
-    "coffee": 40,
     "cocoa": 35,
+    "coffee": 40,
+    "corn": 19,
+    "palm_oil": 16,
+    "rice": 13,
+    "soy": 28,
+    "strength": 20.660809349923973,
     "sugarcane": 20,
+    "tea": 36,
+    "tubers": 18,
     "vegetables": 23,
-    "strength": 20.660809349923973
+    "wheat": 24,
+  
   },
   "sector_defense": {
     "prison": 28,
@@ -102,20 +107,20 @@ export const kongo: CountryData = {
       "darat": {
         "main_battle_tank": 24,
         "apc": 26,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 38,
         "kapal_destroyer": 9,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 1,
         "helikopter_serang": 19,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 16,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const kongo: CountryData = {
       "spy_mission": 35,
       "sabotage_mission": 21,
       "territory_management": 3,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 14,
       "radar_network": 38,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const kongo: CountryData = {
       "research_center": 38,
       "development_center": 33,
       "literacy": 64,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 13,
@@ -161,7 +166,7 @@ export const kongo: CountryData = {
       "diagnostic_center": 6,
       "hospital_beds": 2277,
       "life_expectancy": 4,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 22,
@@ -169,7 +174,7 @@ export const kongo: CountryData = {
       "stadium": 19,
       "international_stadium": 4,
       "olympic_score": 32,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 33,
@@ -184,20 +189,20 @@ export const kongo: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 2,
           "sepeda_motor": 31,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 5,
           "helikopter_polisi": 6,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 12,
           "kamera_surveillance": 31,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 19,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const kongo: CountryData = {
     "naval_base": 18,
     "military_base": 27,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 32,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 6,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 7,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 39,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 26,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 34,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 10,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const kongo: CountryData = {
     ],
     "residential": 10,
     "commercial": 31,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const kongo: CountryData = {
     "international_influence": {
       "soft_power": 15,
       "hard_power": 11,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const kongo: CountryData = {
     "education": 17,
     "security": 3,
     "finance": 37,
-    "environment": 60
+    "environment": 60,
   }
 };

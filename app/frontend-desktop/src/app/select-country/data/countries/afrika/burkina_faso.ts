@@ -13,81 +13,86 @@ export const burkina_faso: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 27,
-    "hydro_plant": 5,
-    "solar_plant": 29,
-    "thermal_plant": 19,
-    "gas_plant": 21,
-    "wind_plant": 22,
-    "power_grid": 58,
+    "airport": 23,
     "bicycle_path": 27,
-    "subway": 15,
-    "railway": 4,
+    "bus_terminal": 5,
+    "gas_plant": 21,
+    "helipad": 37,
     "highway": 25,
+    "hydro_plant": 5,
+    "internet_coverage": 52,
+    "nuclear_plant": 27,
+    "power_grid": 58,
+    "railway": 4,
     "road_quality": 74,
     "sea_port": 18,
-    "airport": 23,
-    "bus_terminal": 5,
-    "helipad": 37,
-    "internet_coverage": 52,
+    "solar_plant": 29,
+    "subway": 15,
     "tech_stack": 61,
-    "water_access": 74
+    "thermal_plant": 19,
+    "water_access": 74,
+    "wind_plant": 22,
+  
   },
   "sector_extraction": {
-    "gold": 4,
-    "uranium": 33,
-    "coal": 13,
-    "oil": 8,
-    "gas": 37,
-    "salt": 8,
-    "nickel": 37,
-    "lithium": 40,
     "aluminum": 30,
+    "coal": 13,
     "copper": 7,
-    "rare_earth": 22,
+    "gas": 37,
+    "gold": 4,
     "iron_ore": 29,
-    "strength": 29.660809349923973
+    "lithium": 40,
+    "nickel": 37,
+    "oil": 8,
+    "rare_earth": 22,
+    "salt": 8,
+    "strength": 29.660809349923973,
+    "uranium": 33,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 34,
-    "car": 33,
-    "motorcycle": 32,
-    "smelter": 17,
-    "concrete_cement": 12,
-    "wood": 39,
-    "mineral_water": 16,
-    "sugar": 40,
     "bread": 33,
-    "pharmacy": 28,
+    "car": 33,
+    "concrete_cement": 12,
     "fertilizer": 20,
-    "meat_processing": 32,
     "instant_noodle": 20,
-    "strength": 3.076011687404966
+    "meat_processing": 32,
+    "mineral_water": 16,
+    "motorcycle": 32,
+    "pharmacy": 28,
+    "semiconductor": 34,
+    "smelter": 17,
+    "strength": 3.076011687404966,
+    "sugar": 40,
+    "wood": 39,
+  
   },
   "sector_livestock": {
-    "chicken": 5,
-    "poultry": 4,
-    "dairy_cow": 9,
     "beef_cow": 2,
-    "sheep_goat": 39,
-    "shrimp": 9,
+    "chicken": 5,
+    "dairy_cow": 9,
     "fish": 17,
+    "poultry": 4,
+    "sheep_goat": 39,
     "shellfish": 29,
-    "strength": 18.24560701244298
+    "shrimp": 9,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 38,
-    "wheat": 37,
-    "corn": 22,
-    "tubers": 6,
-    "soy": 28,
-    "palm_oil": 39,
-    "tea": 4,
-    "coffee": 27,
     "cocoa": 29,
+    "coffee": 27,
+    "corn": 22,
+    "palm_oil": 39,
+    "rice": 38,
+    "soy": 28,
+    "strength": 20.660809349923973,
     "sugarcane": 1,
+    "tea": 4,
+    "tubers": 6,
     "vegetables": 22,
-    "strength": 20.660809349923973
+    "wheat": 37,
+  
   },
   "sector_defense": {
     "prison": 27,
@@ -102,20 +107,20 @@ export const burkina_faso: CountryData = {
       "darat": {
         "main_battle_tank": 40,
         "apc": 20,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 1,
         "kapal_destroyer": 12,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 18,
         "helikopter_serang": 35,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 24,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const burkina_faso: CountryData = {
       "spy_mission": 27,
       "sabotage_mission": 10,
       "territory_management": 8,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 16,
       "radar_network": 37,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const burkina_faso: CountryData = {
       "research_center": 38,
       "development_center": 2,
       "literacy": 50,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 37,
@@ -161,7 +166,7 @@ export const burkina_faso: CountryData = {
       "diagnostic_center": 26,
       "hospital_beds": 9571,
       "life_expectancy": 38,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 9,
@@ -169,7 +174,7 @@ export const burkina_faso: CountryData = {
       "stadium": 29,
       "international_stadium": 40,
       "olympic_score": 36,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 22,
@@ -184,20 +189,20 @@ export const burkina_faso: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 23,
           "sepeda_motor": 8,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 29,
           "helikopter_polisi": 2,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 9,
           "kamera_surveillance": 38,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 11,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const burkina_faso: CountryData = {
     "naval_base": 8,
     "military_base": 19,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 32,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 29,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 29,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 16,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 32,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 30,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 7,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const burkina_faso: CountryData = {
     ],
     "residential": 20,
     "commercial": 30,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const burkina_faso: CountryData = {
     "international_influence": {
       "soft_power": 15,
       "hard_power": 7,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const burkina_faso: CountryData = {
     "education": 20,
     "security": 1,
     "finance": 21,
-    "environment": 60
+    "environment": 60,
   }
 };

@@ -13,81 +13,86 @@ export const eritrea: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 11,
-    "hydro_plant": 36,
-    "solar_plant": 31,
-    "thermal_plant": 8,
-    "gas_plant": 35,
-    "wind_plant": 37,
-    "power_grid": 67,
+    "airport": 20,
     "bicycle_path": 8,
-    "subway": 25,
-    "railway": 3,
+    "bus_terminal": 28,
+    "gas_plant": 35,
+    "helipad": 37,
     "highway": 13,
+    "hydro_plant": 36,
+    "internet_coverage": 70,
+    "nuclear_plant": 11,
+    "power_grid": 67,
+    "railway": 3,
     "road_quality": 75,
     "sea_port": 9,
-    "airport": 20,
-    "bus_terminal": 28,
-    "helipad": 37,
-    "internet_coverage": 70,
+    "solar_plant": 31,
+    "subway": 25,
     "tech_stack": 71,
-    "water_access": 74
+    "thermal_plant": 8,
+    "water_access": 74,
+    "wind_plant": 37,
+  
   },
   "sector_extraction": {
-    "gold": 35,
-    "uranium": 22,
-    "coal": 23,
-    "oil": 40,
-    "gas": 39,
-    "salt": 3,
-    "nickel": 13,
-    "lithium": 2,
     "aluminum": 34,
+    "coal": 23,
     "copper": 36,
-    "rare_earth": 33,
+    "gas": 39,
+    "gold": 35,
     "iron_ore": 1,
-    "strength": 29.660809349923973
+    "lithium": 2,
+    "nickel": 13,
+    "oil": 40,
+    "rare_earth": 33,
+    "salt": 3,
+    "strength": 29.660809349923973,
+    "uranium": 22,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 16,
-    "car": 11,
-    "motorcycle": 11,
-    "smelter": 32,
-    "concrete_cement": 7,
-    "wood": 1,
-    "mineral_water": 30,
-    "sugar": 9,
     "bread": 39,
-    "pharmacy": 9,
+    "car": 11,
+    "concrete_cement": 7,
     "fertilizer": 1,
-    "meat_processing": 18,
     "instant_noodle": 23,
-    "strength": 3.076011687404966
+    "meat_processing": 18,
+    "mineral_water": 30,
+    "motorcycle": 11,
+    "pharmacy": 9,
+    "semiconductor": 16,
+    "smelter": 32,
+    "strength": 3.076011687404966,
+    "sugar": 9,
+    "wood": 1,
+  
   },
   "sector_livestock": {
-    "chicken": 17,
-    "poultry": 39,
-    "dairy_cow": 3,
     "beef_cow": 35,
-    "sheep_goat": 28,
-    "shrimp": 27,
+    "chicken": 17,
+    "dairy_cow": 3,
     "fish": 24,
+    "poultry": 39,
+    "sheep_goat": 28,
     "shellfish": 7,
-    "strength": 18.24560701244298
+    "shrimp": 27,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 11,
-    "wheat": 35,
-    "corn": 32,
-    "tubers": 17,
-    "soy": 28,
-    "palm_oil": 24,
-    "tea": 21,
-    "coffee": 4,
     "cocoa": 16,
+    "coffee": 4,
+    "corn": 32,
+    "palm_oil": 24,
+    "rice": 11,
+    "soy": 28,
+    "strength": 20.660809349923973,
     "sugarcane": 29,
+    "tea": 21,
+    "tubers": 17,
     "vegetables": 25,
-    "strength": 20.660809349923973
+    "wheat": 35,
+  
   },
   "sector_defense": {
     "prison": 15,
@@ -102,20 +107,20 @@ export const eritrea: CountryData = {
       "darat": {
         "main_battle_tank": 17,
         "apc": 26,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 1,
         "kapal_destroyer": 32,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 4,
         "helikopter_serang": 40,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 26,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const eritrea: CountryData = {
       "spy_mission": 34,
       "sabotage_mission": 33,
       "territory_management": 30,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 19,
       "radar_network": 18,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const eritrea: CountryData = {
       "research_center": 18,
       "development_center": 11,
       "literacy": 90,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 39,
@@ -161,7 +166,7 @@ export const eritrea: CountryData = {
       "diagnostic_center": 37,
       "hospital_beds": 2855,
       "life_expectancy": 27,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 22,
@@ -169,7 +174,7 @@ export const eritrea: CountryData = {
       "stadium": 33,
       "international_stadium": 5,
       "olympic_score": 40,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 27,
@@ -184,20 +189,20 @@ export const eritrea: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 26,
           "sepeda_motor": 33,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 32,
           "helikopter_polisi": 36,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 30,
           "kamera_surveillance": 5,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 31,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const eritrea: CountryData = {
     "naval_base": 16,
     "military_base": 23,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 20,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 31,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 38,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 26,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 7,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 15,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 32,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const eritrea: CountryData = {
     ],
     "residential": 40,
     "commercial": 27,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const eritrea: CountryData = {
     "international_influence": {
       "soft_power": 27,
       "hard_power": 6,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const eritrea: CountryData = {
     "education": 24,
     "security": 11,
     "finance": 18,
-    "environment": 60
+    "environment": 60,
   }
 };

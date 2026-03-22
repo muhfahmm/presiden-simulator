@@ -13,81 +13,86 @@ export const mauritania: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 7,
-    "hydro_plant": 16,
-    "solar_plant": 37,
-    "thermal_plant": 18,
-    "gas_plant": 28,
-    "wind_plant": 10,
-    "power_grid": 58,
+    "airport": 9,
     "bicycle_path": 14,
-    "subway": 38,
-    "railway": 24,
+    "bus_terminal": 12,
+    "gas_plant": 28,
+    "helipad": 25,
     "highway": 23,
+    "hydro_plant": 16,
+    "internet_coverage": 56,
+    "nuclear_plant": 7,
+    "power_grid": 58,
+    "railway": 24,
     "road_quality": 71,
     "sea_port": 38,
-    "airport": 9,
-    "bus_terminal": 12,
-    "helipad": 25,
-    "internet_coverage": 56,
+    "solar_plant": 37,
+    "subway": 38,
     "tech_stack": 57,
-    "water_access": 74
+    "thermal_plant": 18,
+    "water_access": 74,
+    "wind_plant": 10,
+  
   },
   "sector_extraction": {
-    "gold": 23,
-    "uranium": 36,
-    "coal": 18,
-    "oil": 17,
-    "gas": 17,
-    "salt": 8,
-    "nickel": 24,
-    "lithium": 20,
     "aluminum": 12,
+    "coal": 18,
     "copper": 20,
-    "rare_earth": 27,
+    "gas": 17,
+    "gold": 23,
     "iron_ore": 35,
-    "strength": 29.660809349923973
+    "lithium": 20,
+    "nickel": 24,
+    "oil": 17,
+    "rare_earth": 27,
+    "salt": 8,
+    "strength": 29.660809349923973,
+    "uranium": 36,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 1,
-    "car": 33,
-    "motorcycle": 24,
-    "smelter": 22,
-    "concrete_cement": 6,
-    "wood": 7,
-    "mineral_water": 25,
-    "sugar": 2,
     "bread": 40,
-    "pharmacy": 39,
+    "car": 33,
+    "concrete_cement": 6,
     "fertilizer": 18,
-    "meat_processing": 35,
     "instant_noodle": 26,
-    "strength": 3.076011687404966
+    "meat_processing": 35,
+    "mineral_water": 25,
+    "motorcycle": 24,
+    "pharmacy": 39,
+    "semiconductor": 1,
+    "smelter": 22,
+    "strength": 3.076011687404966,
+    "sugar": 2,
+    "wood": 7,
+  
   },
   "sector_livestock": {
-    "chicken": 21,
-    "poultry": 27,
-    "dairy_cow": 1,
     "beef_cow": 11,
-    "sheep_goat": 28,
-    "shrimp": 25,
+    "chicken": 21,
+    "dairy_cow": 1,
     "fish": 21,
+    "poultry": 27,
+    "sheep_goat": 28,
     "shellfish": 11,
-    "strength": 18.24560701244298
+    "shrimp": 25,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 25,
-    "wheat": 18,
-    "corn": 29,
-    "tubers": 27,
-    "soy": 10,
-    "palm_oil": 25,
-    "tea": 35,
-    "coffee": 14,
     "cocoa": 34,
+    "coffee": 14,
+    "corn": 29,
+    "palm_oil": 25,
+    "rice": 25,
+    "soy": 10,
+    "strength": 20.660809349923973,
     "sugarcane": 9,
+    "tea": 35,
+    "tubers": 27,
     "vegetables": 4,
-    "strength": 20.660809349923973
+    "wheat": 18,
+  
   },
   "sector_defense": {
     "prison": 2,
@@ -102,20 +107,20 @@ export const mauritania: CountryData = {
       "darat": {
         "main_battle_tank": 60,
         "apc": 180,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 10,
         "kapal_destroyer": 98,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 170,
         "helikopter_serang": 102,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 5,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const mauritania: CountryData = {
       "spy_mission": 11,
       "sabotage_mission": 32,
       "territory_management": 24,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 3,
       "radar_network": 5,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const mauritania: CountryData = {
       "research_center": 23,
       "development_center": 10,
       "literacy": 88,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 24,
@@ -161,7 +166,7 @@ export const mauritania: CountryData = {
       "diagnostic_center": 2,
       "hospital_beds": 998,
       "life_expectancy": 11,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 35,
@@ -169,7 +174,7 @@ export const mauritania: CountryData = {
       "stadium": 20,
       "international_stadium": 4,
       "olympic_score": 35,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 20,
@@ -184,20 +189,20 @@ export const mauritania: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 37,
           "sepeda_motor": 36,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 2,
           "helikopter_polisi": 5,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 40,
           "kamera_surveillance": 7,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 26,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const mauritania: CountryData = {
     "naval_base": 37,
     "military_base": 40,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 28,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 6,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 7,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 6,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 1,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 12,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 40,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const mauritania: CountryData = {
     ],
     "residential": 19,
     "commercial": 36,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const mauritania: CountryData = {
     "international_influence": {
       "soft_power": 17,
       "hard_power": 40,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const mauritania: CountryData = {
     "education": 29,
     "security": 29,
     "finance": 40,
-    "environment": 60
+    "environment": 60,
   }
 };

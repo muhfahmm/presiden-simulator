@@ -1,5 +1,0 @@
-Origin: India (Mumbai) -> Destination: Kuwait
-  First Node: ('45.03', '12.78')
-  Second Node: ('45.00', '12.00')
-  Last Node: ('47.98', '29.37')
-  Node count: 20

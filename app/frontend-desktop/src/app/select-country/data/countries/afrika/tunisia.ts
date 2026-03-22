@@ -13,81 +13,86 @@ export const tunisia: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 21,
-    "hydro_plant": 32,
-    "solar_plant": 32,
-    "thermal_plant": 14,
-    "gas_plant": 29,
-    "wind_plant": 8,
-    "power_grid": 88,
+    "airport": 12,
     "bicycle_path": 40,
-    "subway": 39,
-    "railway": 35,
+    "bus_terminal": 1,
+    "gas_plant": 29,
+    "helipad": 36,
     "highway": 37,
+    "hydro_plant": 32,
+    "internet_coverage": 68,
+    "nuclear_plant": 21,
+    "power_grid": 88,
+    "railway": 35,
     "road_quality": 87,
     "sea_port": 3,
-    "airport": 12,
-    "bus_terminal": 1,
-    "helipad": 36,
-    "internet_coverage": 68,
+    "solar_plant": 32,
+    "subway": 39,
     "tech_stack": 60,
-    "water_access": 74
+    "thermal_plant": 14,
+    "water_access": 74,
+    "wind_plant": 8,
+  
   },
   "sector_extraction": {
-    "gold": 40,
-    "uranium": 3,
-    "coal": 27,
-    "oil": 29,
-    "gas": 9,
-    "salt": 31,
-    "nickel": 22,
-    "lithium": 1,
     "aluminum": 8,
+    "coal": 27,
     "copper": 7,
-    "rare_earth": 24,
+    "gas": 9,
+    "gold": 40,
     "iron_ore": 2,
-    "strength": 29.660809349923973
+    "lithium": 1,
+    "nickel": 22,
+    "oil": 29,
+    "rare_earth": 24,
+    "salt": 31,
+    "strength": 29.660809349923973,
+    "uranium": 3,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 14,
-    "car": 39,
-    "motorcycle": 23,
-    "smelter": 22,
-    "concrete_cement": 37,
-    "wood": 12,
-    "mineral_water": 35,
-    "sugar": 20,
     "bread": 9,
-    "pharmacy": 11,
+    "car": 39,
+    "concrete_cement": 37,
     "fertilizer": 18,
-    "meat_processing": 37,
     "instant_noodle": 11,
-    "strength": 3.076011687404966
+    "meat_processing": 37,
+    "mineral_water": 35,
+    "motorcycle": 23,
+    "pharmacy": 11,
+    "semiconductor": 14,
+    "smelter": 22,
+    "strength": 3.076011687404966,
+    "sugar": 20,
+    "wood": 12,
+  
   },
   "sector_livestock": {
-    "chicken": 23,
-    "poultry": 13,
-    "dairy_cow": 35,
     "beef_cow": 8,
-    "sheep_goat": 20,
-    "shrimp": 26,
+    "chicken": 23,
+    "dairy_cow": 35,
     "fish": 7,
+    "poultry": 13,
+    "sheep_goat": 20,
     "shellfish": 2,
-    "strength": 18.24560701244298
+    "shrimp": 26,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 4,
-    "wheat": 38,
-    "corn": 4,
-    "tubers": 15,
-    "soy": 15,
-    "palm_oil": 33,
-    "tea": 11,
-    "coffee": 27,
     "cocoa": 34,
+    "coffee": 27,
+    "corn": 4,
+    "palm_oil": 33,
+    "rice": 4,
+    "soy": 15,
+    "strength": 20.660809349923973,
     "sugarcane": 30,
+    "tea": 11,
+    "tubers": 15,
     "vegetables": 18,
-    "strength": 20.660809349923973
+    "wheat": 38,
+  
   },
   "sector_defense": {
     "prison": 6,
@@ -102,20 +107,20 @@ export const tunisia: CountryData = {
       "darat": {
         "main_battle_tank": 94,
         "apc": 116,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 28,
         "kapal_destroyer": 80,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 19,
         "helikopter_serang": 107,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 22,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const tunisia: CountryData = {
       "spy_mission": 27,
       "sabotage_mission": 15,
       "territory_management": 11,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 0,
       "radar_network": 0,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const tunisia: CountryData = {
       "research_center": 10,
       "development_center": 38,
       "literacy": 64,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 13,
@@ -161,7 +166,7 @@ export const tunisia: CountryData = {
       "diagnostic_center": 9,
       "hospital_beds": 1361,
       "life_expectancy": 19,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 4,
@@ -169,7 +174,7 @@ export const tunisia: CountryData = {
       "stadium": 12,
       "international_stadium": 21,
       "olympic_score": 16,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 36,
@@ -184,20 +189,20 @@ export const tunisia: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 8,
           "sepeda_motor": 2,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 24,
           "helikopter_polisi": 32,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 28,
           "kamera_surveillance": 32,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 31,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const tunisia: CountryData = {
     "naval_base": 10,
     "military_base": 15,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 1,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 24,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 3,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 2,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 15,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 8,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 10,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const tunisia: CountryData = {
     ],
     "residential": 5,
     "commercial": 31,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const tunisia: CountryData = {
     "international_influence": {
       "soft_power": 1,
       "hard_power": 26,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const tunisia: CountryData = {
     "education": 39,
     "security": 14,
     "finance": 16,
-    "environment": 60
+    "environment": 60,
   }
 };

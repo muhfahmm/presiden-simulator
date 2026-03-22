@@ -7,87 +7,92 @@ export const ghana: CountryData = {
   "lon": -2,
   "lat": 8,
   "flag": "🇬🇭",
-  "pop": "10M",
-  "budget": "Rp 651 T",
-  "income": "Rp 956 T",
+  "pop": "35M",
+  "budget": "Rp 250 T",
+  "income": "Rp 1280 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 7,
-    "hydro_plant": 25,
-    "solar_plant": 2,
-    "thermal_plant": 17,
-    "gas_plant": 35,
-    "wind_plant": 36,
-    "power_grid": 77,
+    "airport": 12,
     "bicycle_path": 27,
-    "subway": 14,
-    "railway": 16,
+    "bus_terminal": 4,
+    "gas_plant": 35,
+    "helipad": 5,
     "highway": 9,
+    "hydro_plant": 25,
+    "internet_coverage": 65,
+    "nuclear_plant": 7,
+    "power_grid": 77,
+    "railway": 16,
     "road_quality": 58,
     "sea_port": 26,
-    "airport": 12,
-    "bus_terminal": 4,
-    "helipad": 5,
-    "internet_coverage": 65,
+    "solar_plant": 2,
+    "subway": 14,
     "tech_stack": 60,
-    "water_access": 74
+    "thermal_plant": 17,
+    "water_access": 74,
+    "wind_plant": 36,
+  
   },
   "sector_extraction": {
-    "gold": 14,
-    "uranium": 21,
-    "coal": 30,
-    "oil": 36,
-    "gas": 26,
-    "salt": 8,
-    "nickel": 2,
-    "lithium": 26,
     "aluminum": 32,
+    "coal": 30,
     "copper": 3,
-    "rare_earth": 8,
+    "gas": 26,
+    "gold": 65,
     "iron_ore": 28,
-    "strength": 29.660809349923973
+    "lithium": 26,
+    "nickel": 2,
+    "oil": 40,
+    "rare_earth": 8,
+    "salt": 8,
+    "strength": 29.660809349923973,
+    "uranium": 21,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 8,
-    "car": 36,
-    "motorcycle": 7,
-    "smelter": 38,
-    "concrete_cement": 13,
-    "wood": 40,
-    "mineral_water": 38,
-    "sugar": 13,
     "bread": 29,
-    "pharmacy": 6,
+    "car": 36,
+    "concrete_cement": 13,
     "fertilizer": 38,
-    "meat_processing": 24,
     "instant_noodle": 21,
-    "strength": 3.076011687404966
+    "meat_processing": 24,
+    "mineral_water": 38,
+    "motorcycle": 7,
+    "pharmacy": 6,
+    "semiconductor": 8,
+    "smelter": 38,
+    "strength": 3.076011687404966,
+    "sugar": 13,
+    "wood": 40,
+  
   },
   "sector_livestock": {
-    "chicken": 16,
-    "poultry": 19,
-    "dairy_cow": 33,
     "beef_cow": 15,
-    "sheep_goat": 4,
-    "shrimp": 37,
+    "chicken": 16,
+    "dairy_cow": 33,
     "fish": 35,
+    "poultry": 19,
+    "sheep_goat": 4,
     "shellfish": 16,
-    "strength": 18.24560701244298
+    "shrimp": 37,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 39,
-    "wheat": 3,
-    "corn": 24,
-    "tubers": 29,
-    "soy": 11,
-    "palm_oil": 22,
-    "tea": 37,
+    "cocoa": 80,
     "coffee": 39,
-    "cocoa": 3,
+    "corn": 24,
+    "palm_oil": 22,
+    "rice": 39,
+    "soy": 11,
+    "strength": 20.660809349923973,
     "sugarcane": 9,
+    "tea": 37,
+    "tubers": 29,
     "vegetables": 27,
-    "strength": 20.660809349923973
+    "wheat": 3,
+  
   },
   "sector_defense": {
     "prison": 34,
@@ -102,20 +107,20 @@ export const ghana: CountryData = {
       "darat": {
         "main_battle_tank": 8,
         "apc": 7,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 29,
         "kapal_destroyer": 34,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 31,
         "helikopter_serang": 24,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 30,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const ghana: CountryData = {
       "spy_mission": 1,
       "sabotage_mission": 28,
       "territory_management": 12,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 36,
       "radar_network": 25,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const ghana: CountryData = {
       "research_center": 23,
       "development_center": 18,
       "literacy": 56,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 23,
@@ -161,7 +166,7 @@ export const ghana: CountryData = {
       "diagnostic_center": 29,
       "hospital_beds": 5430,
       "life_expectancy": 18,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 19,
@@ -169,7 +174,7 @@ export const ghana: CountryData = {
       "stadium": 13,
       "international_stadium": 24,
       "olympic_score": 6,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 33,
@@ -184,20 +189,20 @@ export const ghana: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 8,
           "sepeda_motor": 9,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 7,
           "helikopter_polisi": 19,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 36,
           "kamera_surveillance": 39,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 7,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const ghana: CountryData = {
     "naval_base": 36,
     "military_base": 9,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 3,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 36,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 21,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 29,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 14,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 19,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 17,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const ghana: CountryData = {
     ],
     "residential": 5,
     "commercial": 5,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const ghana: CountryData = {
     "international_influence": {
       "soft_power": 17,
       "hard_power": 21,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const ghana: CountryData = {
     "education": 6,
     "security": 22,
     "finance": 17,
-    "environment": 60
+    "environment": 60,
   }
 };

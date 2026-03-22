@@ -7,87 +7,92 @@ export const maroko: CountryData = {
   "lon": -5,
   "lat": 32,
   "flag": "🇲🇦",
-  "pop": "10M",
-  "budget": "Rp 556 T",
-  "income": "Rp 221 T",
+  "pop": "38M",
+  "budget": "Rp 450 T",
+  "income": "Rp 2240 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 9,
-    "hydro_plant": 28,
-    "solar_plant": 28,
-    "thermal_plant": 6,
-    "gas_plant": 27,
-    "wind_plant": 9,
-    "power_grid": 72,
+    "airport": 37,
     "bicycle_path": 32,
-    "subway": 39,
-    "railway": 16,
+    "bus_terminal": 19,
+    "gas_plant": 27,
+    "helipad": 26,
     "highway": 6,
+    "hydro_plant": 28,
+    "internet_coverage": 89,
+    "nuclear_plant": 9,
+    "power_grid": 72,
+    "railway": 16,
     "road_quality": 63,
     "sea_port": 36,
-    "airport": 37,
-    "bus_terminal": 19,
-    "helipad": 26,
-    "internet_coverage": 89,
+    "solar_plant": 28,
+    "subway": 39,
     "tech_stack": 68,
-    "water_access": 74
+    "thermal_plant": 6,
+    "water_access": 74,
+    "wind_plant": 9,
+  
   },
   "sector_extraction": {
-    "gold": 20,
-    "uranium": 6,
-    "coal": 35,
-    "oil": 29,
-    "gas": 23,
-    "salt": 2,
-    "nickel": 18,
-    "lithium": 36,
     "aluminum": 10,
+    "coal": 35,
     "copper": 18,
-    "rare_earth": 38,
+    "gas": 23,
+    "gold": 20,
     "iron_ore": 3,
-    "strength": 29.660809349923973
+    "lithium": 36,
+    "nickel": 18,
+    "oil": 29,
+    "rare_earth": 38,
+    "salt": 2,
+    "strength": 29.660809349923973,
+    "uranium": 6,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 33,
-    "car": 23,
-    "motorcycle": 13,
-    "smelter": 11,
-    "concrete_cement": 37,
-    "wood": 35,
-    "mineral_water": 37,
-    "sugar": 18,
     "bread": 34,
-    "pharmacy": 24,
+    "car": 23,
+    "concrete_cement": 37,
     "fertilizer": 31,
-    "meat_processing": 1,
     "instant_noodle": 31,
-    "strength": 3.076011687404966
+    "meat_processing": 1,
+    "mineral_water": 37,
+    "motorcycle": 13,
+    "pharmacy": 24,
+    "semiconductor": 33,
+    "smelter": 11,
+    "strength": 3.076011687404966,
+    "sugar": 18,
+    "wood": 35,
+  
   },
   "sector_livestock": {
-    "chicken": 16,
-    "poultry": 39,
-    "dairy_cow": 16,
     "beef_cow": 18,
-    "sheep_goat": 1,
-    "shrimp": 12,
+    "chicken": 16,
+    "dairy_cow": 16,
     "fish": 1,
+    "poultry": 39,
+    "sheep_goat": 1,
     "shellfish": 3,
-    "strength": 18.24560701244298
+    "shrimp": 12,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 32,
-    "wheat": 17,
-    "corn": 1,
-    "tubers": 20,
-    "soy": 22,
-    "palm_oil": 25,
-    "tea": 2,
-    "coffee": 16,
     "cocoa": 10,
+    "coffee": 16,
+    "corn": 1,
+    "palm_oil": 25,
+    "rice": 32,
+    "soy": 22,
+    "strength": 20.660809349923973,
     "sugarcane": 15,
-    "vegetables": 11,
-    "strength": 20.660809349923973
+    "tea": 2,
+    "tubers": 20,
+    "vegetables": 65,
+    "wheat": 17,
+  
   },
   "sector_defense": {
     "prison": 11,
@@ -102,20 +107,20 @@ export const maroko: CountryData = {
       "darat": {
         "main_battle_tank": 77,
         "apc": 129,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 13,
         "kapal_destroyer": 35,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 121,
         "helikopter_serang": 72,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 4,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const maroko: CountryData = {
       "spy_mission": 23,
       "sabotage_mission": 3,
       "territory_management": 4,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 5,
       "radar_network": 0,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const maroko: CountryData = {
       "research_center": 35,
       "development_center": 33,
       "literacy": 66,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 15,
@@ -161,7 +166,7 @@ export const maroko: CountryData = {
       "diagnostic_center": 36,
       "hospital_beds": 2249,
       "life_expectancy": 40,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 21,
@@ -169,7 +174,7 @@ export const maroko: CountryData = {
       "stadium": 3,
       "international_stadium": 35,
       "olympic_score": 25,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 25,
@@ -184,20 +189,20 @@ export const maroko: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 29,
           "sepeda_motor": 23,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 28,
           "helikopter_polisi": 3,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 10,
           "kamera_surveillance": 40,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 39,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const maroko: CountryData = {
     "naval_base": 12,
     "military_base": 3,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 9,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 24,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 37,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 37,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 35,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 19,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 5,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const maroko: CountryData = {
     ],
     "residential": 7,
     "commercial": 30,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const maroko: CountryData = {
     "international_influence": {
       "soft_power": 5,
       "hard_power": 28,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const maroko: CountryData = {
     "education": 29,
     "security": 9,
     "finance": 14,
-    "environment": 60
+    "environment": 60,
   }
 };

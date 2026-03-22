@@ -13,81 +13,86 @@ export const republik_zimbabwe: CountryData = {
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 30,
-    "hydro_plant": 11,
-    "solar_plant": 14,
-    "thermal_plant": 1,
-    "gas_plant": 23,
-    "wind_plant": 1,
-    "power_grid": 66,
+    "airport": 20,
     "bicycle_path": 12,
-    "subway": 11,
-    "railway": 17,
+    "bus_terminal": 22,
+    "gas_plant": 23,
+    "helipad": 10,
     "highway": 25,
+    "hydro_plant": 11,
+    "internet_coverage": 61,
+    "nuclear_plant": 30,
+    "power_grid": 66,
+    "railway": 17,
     "road_quality": 78,
     "sea_port": 23,
-    "airport": 20,
-    "bus_terminal": 22,
-    "helipad": 10,
-    "internet_coverage": 61,
+    "solar_plant": 14,
+    "subway": 11,
     "tech_stack": 73,
-    "water_access": 74
+    "thermal_plant": 1,
+    "water_access": 74,
+    "wind_plant": 1,
+  
   },
   "sector_extraction": {
-    "gold": 23,
-    "uranium": 20,
-    "coal": 8,
-    "oil": 6,
-    "gas": 30,
-    "salt": 17,
-    "nickel": 21,
-    "lithium": 26,
     "aluminum": 36,
+    "coal": 8,
     "copper": 24,
-    "rare_earth": 40,
+    "gas": 30,
+    "gold": 23,
     "iron_ore": 36,
-    "strength": 29.660809349923973
+    "lithium": 26,
+    "nickel": 21,
+    "oil": 6,
+    "rare_earth": 40,
+    "salt": 17,
+    "strength": 29.660809349923973,
+    "uranium": 20,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 11,
-    "car": 19,
-    "motorcycle": 16,
-    "smelter": 24,
-    "concrete_cement": 40,
-    "wood": 26,
-    "mineral_water": 25,
-    "sugar": 31,
     "bread": 16,
-    "pharmacy": 16,
+    "car": 19,
+    "concrete_cement": 40,
     "fertilizer": 18,
-    "meat_processing": 25,
     "instant_noodle": 37,
-    "strength": 3.076011687404966
+    "meat_processing": 25,
+    "mineral_water": 25,
+    "motorcycle": 16,
+    "pharmacy": 16,
+    "semiconductor": 11,
+    "smelter": 24,
+    "strength": 3.076011687404966,
+    "sugar": 31,
+    "wood": 26,
+  
   },
   "sector_livestock": {
-    "chicken": 10,
-    "poultry": 9,
-    "dairy_cow": 34,
     "beef_cow": 40,
-    "sheep_goat": 32,
-    "shrimp": 27,
+    "chicken": 10,
+    "dairy_cow": 34,
     "fish": 1,
+    "poultry": 9,
+    "sheep_goat": 32,
     "shellfish": 21,
-    "strength": 18.24560701244298
+    "shrimp": 27,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 19,
-    "wheat": 39,
-    "corn": 34,
-    "tubers": 22,
-    "soy": 14,
-    "palm_oil": 12,
-    "tea": 8,
-    "coffee": 6,
     "cocoa": 22,
+    "coffee": 6,
+    "corn": 34,
+    "palm_oil": 12,
+    "rice": 19,
+    "soy": 14,
+    "strength": 20.660809349923973,
     "sugarcane": 38,
+    "tea": 8,
+    "tubers": 22,
     "vegetables": 14,
-    "strength": 20.660809349923973
+    "wheat": 39,
+  
   },
   "sector_defense": {
     "prison": 35,
@@ -102,20 +107,20 @@ export const republik_zimbabwe: CountryData = {
       "darat": {
         "main_battle_tank": 92,
         "apc": 97,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 39,
         "kapal_destroyer": 119,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 120,
         "helikopter_serang": 24,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 11,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const republik_zimbabwe: CountryData = {
       "spy_mission": 22,
       "sabotage_mission": 39,
       "territory_management": 37,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 3,
       "radar_network": 3,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const republik_zimbabwe: CountryData = {
       "research_center": 39,
       "development_center": 16,
       "literacy": 62,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 6,
@@ -161,7 +166,7 @@ export const republik_zimbabwe: CountryData = {
       "diagnostic_center": 35,
       "hospital_beds": 2089,
       "life_expectancy": 38,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 15,
@@ -169,7 +174,7 @@ export const republik_zimbabwe: CountryData = {
       "stadium": 9,
       "international_stadium": 28,
       "olympic_score": 16,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 9,
@@ -184,20 +189,20 @@ export const republik_zimbabwe: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 3,
           "sepeda_motor": 35,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 24,
           "helikopter_polisi": 29,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 13,
           "kamera_surveillance": 33,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 32,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const republik_zimbabwe: CountryData = {
     "naval_base": 20,
     "military_base": 4,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 4,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 34,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 25,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 18,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 18,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 3,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 26,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const republik_zimbabwe: CountryData = {
     ],
     "residential": 13,
     "commercial": 27,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const republik_zimbabwe: CountryData = {
     "international_influence": {
       "soft_power": 2,
       "hard_power": 24,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const republik_zimbabwe: CountryData = {
     "education": 17,
     "security": 27,
     "finance": 5,
-    "environment": 60
+    "environment": 60,
   }
 };

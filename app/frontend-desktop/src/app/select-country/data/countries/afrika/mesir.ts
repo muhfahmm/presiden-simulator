@@ -7,87 +7,92 @@ export const mesir: CountryData = {
   "lon": 30,
   "lat": 27,
   "flag": "🇪🇬",
-  "pop": "10M",
-  "budget": "Rp 560 T",
-  "income": "Rp 391 T",
+  "pop": "118M",
+  "budget": "Rp 1120 T",
+  "income": "Rp 5600 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
   "infrastructure": {
-    "nuclear_plant": 3,
-    "hydro_plant": 21,
-    "solar_plant": 31,
-    "thermal_plant": 20,
-    "gas_plant": 30,
-    "wind_plant": 5,
-    "power_grid": 67,
-    "bicycle_path": 37,
-    "subway": 17,
-    "railway": 12,
-    "highway": 16,
-    "road_quality": 92,
-    "sea_port": 18,
     "airport": 27,
+    "bicycle_path": 37,
     "bus_terminal": 24,
+    "gas_plant": 30,
     "helipad": 24,
+    "highway": 16,
+    "hydro_plant": 21,
     "internet_coverage": 88,
+    "nuclear_plant": 3,
+    "power_grid": 67,
+    "railway": 12,
+    "road_quality": 92,
+    "sea_port": 80,
+    "solar_plant": 31,
+    "subway": 17,
     "tech_stack": 78,
-    "water_access": 74
+    "thermal_plant": 20,
+    "water_access": 74,
+    "wind_plant": 5,
+  
   },
   "sector_extraction": {
-    "gold": 17,
-    "uranium": 24,
-    "coal": 24,
-    "oil": 18,
-    "gas": 3,
-    "salt": 30,
-    "nickel": 3,
-    "lithium": 40,
     "aluminum": 7,
+    "coal": 24,
     "copper": 37,
-    "rare_earth": 24,
+    "gas": 3,
+    "gold": 17,
     "iron_ore": 10,
-    "strength": 29.660809349923973
+    "lithium": 40,
+    "nickel": 3,
+    "oil": 18,
+    "rare_earth": 24,
+    "salt": 30,
+    "strength": 29.660809349923973,
+    "uranium": 24,
+  
   },
   "sector_manufacturing": {
-    "semiconductor": 30,
-    "car": 16,
-    "motorcycle": 16,
-    "smelter": 12,
-    "concrete_cement": 13,
-    "wood": 21,
-    "mineral_water": 9,
-    "sugar": 29,
     "bread": 21,
-    "pharmacy": 18,
+    "car": 16,
+    "concrete_cement": 13,
     "fertilizer": 7,
-    "meat_processing": 38,
     "instant_noodle": 39,
-    "strength": 3.076011687404966
+    "meat_processing": 38,
+    "mineral_water": 9,
+    "motorcycle": 16,
+    "pharmacy": 18,
+    "semiconductor": 30,
+    "smelter": 12,
+    "strength": 3.076011687404966,
+    "sugar": 29,
+    "wood": 21,
+  
   },
   "sector_livestock": {
-    "chicken": 28,
-    "poultry": 36,
-    "dairy_cow": 17,
     "beef_cow": 2,
-    "sheep_goat": 26,
-    "shrimp": 2,
+    "chicken": 28,
+    "dairy_cow": 17,
     "fish": 22,
+    "poultry": 36,
+    "sheep_goat": 26,
     "shellfish": 2,
-    "strength": 18.24560701244298
+    "shrimp": 2,
+    "strength": 18.24560701244298,
+  
   },
   "sector_agriculture": {
-    "rice": 5,
-    "wheat": 34,
-    "corn": 26,
-    "tubers": 20,
-    "soy": 4,
-    "palm_oil": 34,
-    "tea": 5,
-    "coffee": 39,
     "cocoa": 5,
+    "coffee": 39,
+    "corn": 26,
+    "palm_oil": 34,
+    "rice": 5,
+    "soy": 4,
+    "strength": 20.660809349923973,
     "sugarcane": 28,
-    "vegetables": 26,
-    "strength": 20.660809349923973
+    "tea": 5,
+    "tubers": 20,
+    "vegetables": 60,
+    "wheat": 70,
+  
   },
   "sector_defense": {
     "prison": 9,
@@ -102,20 +107,20 @@ export const mesir: CountryData = {
       "darat": {
         "main_battle_tank": 177,
         "apc": 57,
-        "artileri_berat": 26
+        "artileri_berat": 26,
       },
       "laut": {
         "kapal_induk": 10,
         "kapal_destroyer": 128,
-        "kapal_selam_nuklir": 0
+        "kapal_selam_nuklir": 0,
       },
       "udara": {
         "jet_tempur_stealth": 32,
         "helikopter_serang": 40,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
       },
       "total_unit": 9,
-      "readiness": 98
+      "readiness": 98,
     }
   },
   "sector_military_strategic": {
@@ -132,12 +137,12 @@ export const mesir: CountryData = {
       "spy_mission": 35,
       "sabotage_mission": 31,
       "territory_management": 20,
-      "nuclear_program": 0
+      "nuclear_program": 0,
     },
     "intel_radar": {
       "satellite_system": 2,
       "radar_network": 5,
-      "cyber_ops": 2
+      "cyber_ops": 2,
     }
   },
   "sector_social": {
@@ -153,7 +158,7 @@ export const mesir: CountryData = {
       "research_center": 18,
       "development_center": 7,
       "literacy": 67,
-      "research_index": 0
+      "research_index": 0,
     },
     "health": {
       "large_hospital": 8,
@@ -161,7 +166,7 @@ export const mesir: CountryData = {
       "diagnostic_center": 33,
       "hospital_beds": 2519,
       "life_expectancy": 25,
-      "healthcare_index": 85
+      "healthcare_index": 85,
     },
     "sports": {
       "swimming_pool": 38,
@@ -169,7 +174,7 @@ export const mesir: CountryData = {
       "stadium": 31,
       "international_stadium": 4,
       "olympic_score": 34,
-      "popularity": 44
+      "popularity": 44,
     },
     "law": {
       "legal_aid_center": 12,
@@ -184,20 +189,20 @@ export const mesir: CountryData = {
         "patroli_lantas": {
           "mobil_patroli": 32,
           "sepeda_motor": 30,
-          "unit_k9": 23
+          "unit_k9": 23,
         },
         "taktis_khusus": {
           "swat": 12,
           "helikopter_polisi": 27,
-          "anti_huru_hara": 62
+          "anti_huru_hara": 62,
         },
         "pusat_komando": {
           "stasiun_polisi": 13,
           "kamera_surveillance": 37,
-          "pusat_forensik": 1
+          "pusat_forensik": 1,
         },
         "response_time": 36,
-        "public_trust": 50
+        "public_trust": 50,
       }
     }
   },
@@ -210,37 +215,37 @@ export const mesir: CountryData = {
     "naval_base": 21,
     "military_base": 2,
     "nuclear": false,
-    "strength": 10
+    "strength": 10,
   },
   "un_vote": "Pro",
   "trade": {
     "buy_commodity": 9,
-    "sell_commodity": 409
+    "sell_commodity": 409,
   },
   "taxes": {
     "vat": {
       "rate": 37,
-      "satisfaction": 67
+      "satisfaction": 67,
     },
     "corporate": {
       "rate": 18,
-      "satisfaction": 52
+      "satisfaction": 52,
     },
     "income": {
       "rate": 10,
-      "satisfaction": 61
+      "satisfaction": 61,
     },
     "customs": {
       "rate": 31,
-      "satisfaction": 86
+      "satisfaction": 86,
     },
     "environment": {
       "rate": 20,
-      "satisfaction": 88
+      "satisfaction": 88,
     },
     "other": {
       "rate": 24,
-      "satisfaction": 93
+      "satisfaction": 93,
     }
   },
   "demand": {
@@ -251,7 +256,7 @@ export const mesir: CountryData = {
     ],
     "residential": 31,
     "commercial": 2,
-    "industrial": 53
+    "industrial": 53,
   },
   "geopolitics": {
     "allies": [
@@ -263,47 +268,47 @@ export const mesir: CountryData = {
     "international_influence": {
       "soft_power": 6,
       "hard_power": 34,
-      "diplomatic_prestige": 57
+      "diplomatic_prestige": 57,
     },
     "international_orgs": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Member",
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Member",
       }
     ],
     "agreements": [
       {
         "partner": "Amerika Serikat",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Uni Eropa",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "United States",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Germany",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       },
       {
         "partner": "Australia",
         "type": "Trade",
-        "status": "Active"
+        "status": "Active",
       }
     ]
   },
@@ -312,6 +317,6 @@ export const mesir: CountryData = {
     "education": 16,
     "security": 4,
     "finance": 23,
-    "environment": 60
+    "environment": 60,
   }
 };
