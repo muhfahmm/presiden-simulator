@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "../select-country/data/countries";
+import { hitungKonsumsiEkstraksi } from "../select-country/data/electricity/comsumtion/ekstraksi";
 interface GameMapCanvasProps {
   userCountry: string;
   targetCountry: string | null;
@@ -360,21 +361,6 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
             ctx.shadowColor = "rgba(0,0,0,0.9)";
             ctx.shadowBlur = 6;
             ctx.fillText(relation.toString(), x, y - 20);
-            ctx.shadowBlur = 0;
-            labelGrid.push({ x, y });
-          }
-        } else if (mapMode === "sda") {
-          const sda = center.sector_extraction?.strength || 0;
-          const isTooCrowded = labelGrid.some(pos =>
-            Math.abs(pos.x - x) < minLabelDist / 1.5 && Math.abs(pos.y - y) < minLabelDist / 1.5
-          );
-          if (!isTooCrowded || isPlayer || isTarget) {
-            ctx.font = "900 16px 'Inter', sans-serif";
-            ctx.fillStyle = "#38bdf8"; // Light Blue for SDA 
-
-            ctx.shadowColor = "rgba(0,0,0,0.9)";
-            ctx.shadowBlur = 6;
-            ctx.fillText(Math.round(sda).toString(), x, y - 20);
             ctx.shadowBlur = 0;
             labelGrid.push({ x, y });
           }
