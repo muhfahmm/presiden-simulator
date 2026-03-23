@@ -8,8 +8,8 @@ export const suriname: CountryData = {
   "lat": 4,
   "flag": "🇸🇷",
   "pop": "10M",
-  "budget": 339000000000000,
-  "income": "114.000.000.000.000 / 114 T",
+  "budget": 150,
+  "income": "150 / 150 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const suriname: CountryData = {
     "armory": 18,
     "tank_hangar": 1,
     "military_academy": 5,
-    "budget": 32,
+    "budget": 150,
     "personnel": 26544,
     "strength": 16.660809349923973,
     "military_fleet": {

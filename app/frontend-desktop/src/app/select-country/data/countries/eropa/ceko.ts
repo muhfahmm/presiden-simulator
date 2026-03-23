@@ -8,8 +8,8 @@ export const ceko: CountryData = {
   "lat": 49.75,
   "flag": "🇨🇿",
   "pop": "10M",
-  "budget": 383000000000000,
-  "income": "240.000.000.000.000 / 240 T",
+  "budget": 12146,
+  "income": "12.146 / 12146 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const ceko: CountryData = {
     "armory": 2,
     "tank_hangar": 6,
     "military_academy": 6,
-    "budget": 10,
+    "budget": 12146,
     "personnel": 16863,
     "strength": 16.660809349923973,
     "military_fleet": {

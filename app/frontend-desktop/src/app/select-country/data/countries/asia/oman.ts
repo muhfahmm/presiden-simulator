@@ -8,8 +8,8 @@ export const oman: CountryData = {
   "lat": 21,
   "flag": "🇴🇲",
   "pop": "10M",
-  "budget": 253000000000000,
-  "income": "203.000.000.000.000 / 203 T",
+  "budget": 253000000000,
+  "income": "203.000.000 / 203 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

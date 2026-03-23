@@ -8,8 +8,8 @@ export const afrika_selatan: CountryData = {
   "lat": -29,
   "flag": "🇿🇦",
   "pop": "64M",
-  "budget": 1280000000000000,
-  "income": "6.400.000.000.000.000 / 6400 T",
+  "budget": 13063,
+  "income": "13.063 / 13063 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -136,7 +136,7 @@ export const afrika_selatan: CountryData = {
     "armory": 16,
     "tank_hangar": 17,
     "military_academy": 22,
-    "budget": 39,
+    "budget": 13063,
     "personnel": 11064,
     "strength": 16.660809349923973,
     "military_fleet": {

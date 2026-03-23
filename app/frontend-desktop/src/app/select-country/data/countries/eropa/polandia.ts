@@ -8,8 +8,8 @@ export const polandia: CountryData = {
   "lat": 52,
   "flag": "🇵🇱",
   "pop": "10M",
-  "budget": 600000000000000,
-  "income": "471.000.000.000.000 / 471 T",
+  "budget": 29561,
+  "income": "29.561 / 29561 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const polandia: CountryData = {
     "armory": 9,
     "tank_hangar": 29,
     "military_academy": 28,
-    "budget": 24,
+    "budget": 29561,
     "personnel": 26707,
     "strength": 16.660809349923973,
     "military_fleet": {

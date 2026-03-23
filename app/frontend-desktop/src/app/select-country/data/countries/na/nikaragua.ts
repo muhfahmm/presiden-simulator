@@ -8,8 +8,8 @@ export const nikaragua: CountryData = {
   "lat": 13,
   "flag": "🇳🇮",
   "pop": "10M",
-  "budget": 350000000000000,
-  "income": "101.000.000.000.000 / 101 T",
+  "budget": 659,
+  "income": "659 / 659 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const nikaragua: CountryData = {
     "armory": 27,
     "tank_hangar": 20,
     "military_academy": 5,
-    "budget": 26,
+    "budget": 659,
     "personnel": 26563,
     "strength": 16.660809349923973,
     "military_fleet": {

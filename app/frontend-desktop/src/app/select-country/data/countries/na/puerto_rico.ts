@@ -8,8 +8,8 @@ export const puerto_rico: CountryData = {
   "lat": 18.25,
   "flag": "🇵🇷",
   "pop": "10M",
-  "budget": 474000000000000,
-  "income": "584.000.000.000.000 / 584 T",
+  "budget": 474000000000,
+  "income": "584.000.000 / 584 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

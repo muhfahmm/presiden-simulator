@@ -8,8 +8,8 @@ export const israel: CountryData = {
   "lat": 31.47,
   "flag": "🇮🇱",
   "pop": "10M",
-  "budget": 270000000000000,
-  "income": "704.000.000.000.000 / 704 T",
+  "budget": 19301,
+  "income": "19.301 / 19301 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const israel: CountryData = {
     "armory": 5,
     "tank_hangar": 36,
     "military_academy": 38,
-    "budget": 39,
+    "budget": 19301,
     "personnel": 19082,
     "strength": 16.660809349923973,
     "military_fleet": {

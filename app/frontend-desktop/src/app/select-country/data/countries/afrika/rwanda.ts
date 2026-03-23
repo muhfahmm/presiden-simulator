@@ -8,8 +8,8 @@ export const rwanda: CountryData = {
   "lat": -2,
   "flag": "🇷🇼",
   "pop": "10M",
-  "budget": 178000000000000,
-  "income": "196.000.000.000.000 / 196 T",
+  "budget": 509,
+  "income": "509 / 509 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -136,7 +136,7 @@ export const rwanda: CountryData = {
     "armory": 27,
     "tank_hangar": 28,
     "military_academy": 31,
-    "budget": 25,
+    "budget": 509,
     "personnel": 15116,
     "strength": 16.660809349923973,
     "military_fleet": {

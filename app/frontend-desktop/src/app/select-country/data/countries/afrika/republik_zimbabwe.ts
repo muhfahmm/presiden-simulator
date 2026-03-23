@@ -8,8 +8,8 @@ export const republik_zimbabwe: CountryData = {
   "lat": -20,
   "flag": "🇿🇼",
   "pop": "10M",
-  "budget": 159000000000000,
-  "income": "380.000.000.000.000 / 380 T",
+  "budget": 159000000000,
+  "income": "380.000.000 / 380 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

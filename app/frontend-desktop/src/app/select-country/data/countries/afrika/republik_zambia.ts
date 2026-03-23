@@ -8,8 +8,8 @@ export const republik_zambia: CountryData = {
   "lat": -15,
   "flag": "🇿🇲",
   "pop": "10M",
-  "budget": 144000000000000,
-  "income": "525.000.000.000.000 / 525 T",
+  "budget": 144000000000,
+  "income": "525.000.000 / 525 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

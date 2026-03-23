@@ -8,8 +8,8 @@ export const liechtenstein: CountryData = {
   "lat": 47.08,
   "flag": "🇱🇮",
   "pop": "10M",
-  "budget": 648000000000000,
-  "income": "237.000.000.000.000 / 237 T",
+  "budget": 648000000000,
+  "income": "237.000.000 / 237 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

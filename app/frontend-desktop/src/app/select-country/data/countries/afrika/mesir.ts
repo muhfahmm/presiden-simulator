@@ -8,8 +8,8 @@ export const mesir: CountryData = {
   "lat": 27,
   "flag": "🇪🇬",
   "pop": "118M",
-  "budget": 1120000000000000,
-  "income": "5.600.000.000.000.000 / 5600 T",
+  "budget": 13783,
+  "income": "13.783 / 13783 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -136,7 +136,7 @@ export const mesir: CountryData = {
     "armory": 18,
     "tank_hangar": 19,
     "military_academy": 27,
-    "budget": 5,
+    "budget": 13783,
     "personnel": 18783,
     "strength": 16.660809349923973,
     "military_fleet": {

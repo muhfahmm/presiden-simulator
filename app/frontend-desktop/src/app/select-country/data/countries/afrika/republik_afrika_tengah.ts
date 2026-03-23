@@ -8,8 +8,8 @@ export const republik_afrika_tengah: CountryData = {
   "lat": 7,
   "flag": "🇨🇫",
   "pop": "10M",
-  "budget": 554000000000000,
-  "income": "125.000.000.000.000 / 125 T",
+  "budget": 554000000000,
+  "income": "125.000.000 / 125 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const libya: CountryData = {
   "lat": 32.53,
   "flag": "🇱🇾",
   "pop": "10M",
-  "budget": 528000000000000,
-  "income": "530.000.000.000.000 / 530 T",
+  "budget": 528000000000,
+  "income": "530.000.000 / 530 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

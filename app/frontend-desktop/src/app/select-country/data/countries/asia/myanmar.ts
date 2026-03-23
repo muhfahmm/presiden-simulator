@@ -8,8 +8,8 @@ export const myanmar: CountryData = {
   "lat": 22,
   "flag": "🇲🇲",
   "pop": "10M",
-  "budget": 315000000000000,
-  "income": "169.000.000.000.000 / 169 T",
+  "budget": 2380,
+  "income": "2.380 / 2380 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const myanmar: CountryData = {
     "armory": 28,
     "tank_hangar": 35,
     "military_academy": 15,
-    "budget": 27,
+    "budget": 2380,
     "personnel": 26184,
     "strength": 16.660809349923973,
     "military_fleet": {

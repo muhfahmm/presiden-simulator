@@ -8,8 +8,8 @@ export const guyana: CountryData = {
   "lat": 5,
   "flag": "🇬🇾",
   "pop": "10M",
-  "budget": 628000000000000,
-  "income": "972.000.000.000.000 / 972 T",
+  "budget": 737,
+  "income": "737 / 737 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const guyana: CountryData = {
     "armory": 22,
     "tank_hangar": 7,
     "military_academy": 18,
-    "budget": 30,
+    "budget": 737,
     "personnel": 23186,
     "strength": 16.660809349923973,
     "military_fleet": {

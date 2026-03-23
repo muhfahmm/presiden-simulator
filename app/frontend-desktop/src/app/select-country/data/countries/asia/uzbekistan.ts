@@ -8,8 +8,8 @@ export const uzbekistan: CountryData = {
   "lat": 41,
   "flag": "🇺🇿",
   "pop": "10M",
-  "budget": 388000000000000,
-  "income": "435.000.000.000.000 / 435 T",
+  "budget": 3716,
+  "income": "3.716 / 3716 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const uzbekistan: CountryData = {
     "armory": 30,
     "tank_hangar": 14,
     "military_academy": 33,
-    "budget": 28,
+    "budget": 3716,
     "personnel": 20621,
     "strength": 16.660809349923973,
     "military_fleet": {

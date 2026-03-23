@@ -8,8 +8,8 @@ export const samoa_amerika: CountryData = {
   "lat": -14.33333333,
   "flag": "🇦🇸",
   "pop": "10M",
-  "budget": 477000000000000,
-  "income": "331.000.000.000.000 / 331 T",
+  "budget": 477000000000,
+  "income": "331.000.000 / 331 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

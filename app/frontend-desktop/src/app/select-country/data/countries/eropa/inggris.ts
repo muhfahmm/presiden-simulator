@@ -8,8 +8,8 @@ export const inggris: CountryData = {
   "lat": 54,
   "flag": "🇬🇧",
   "pop": "10M",
-  "budget": 532000000000000,
-  "income": "431.000.000.000.000 / 431 T",
+  "budget": 122333,
+  "income": "122.333 / 122333 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const inggris: CountryData = {
     "armory": 9,
     "tank_hangar": 1,
     "military_academy": 26,
-    "budget": 1,
+    "budget": 122333,
     "personnel": 11285,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -8,8 +8,8 @@ export const georgia: CountryData = {
   "lat": 42,
   "flag": "🇬🇪",
   "pop": "10M",
-  "budget": 272000000000000,
-  "income": "427.000.000.000.000 / 427 T",
+  "budget": 1139,
+  "income": "1.139 / 1139 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const georgia: CountryData = {
     "armory": 10,
     "tank_hangar": 26,
     "military_academy": 13,
-    "budget": 40,
+    "budget": 1139,
     "personnel": 6649,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -8,8 +8,8 @@ export const kanada: CountryData = {
   "lat": 60,
   "flag": "🇨🇦",
   "pop": "10M",
-  "budget": 327000000000000,
-  "income": "767.000.000.000.000 / 767 T",
+  "budget": 78527,
+  "income": "78.527 / 78527 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const kanada: CountryData = {
     "armory": 4,
     "tank_hangar": 6,
     "military_academy": 7,
-    "budget": 11,
+    "budget": 78527,
     "personnel": 8174,
     "strength": 16.660809349923973,
     "military_fleet": {

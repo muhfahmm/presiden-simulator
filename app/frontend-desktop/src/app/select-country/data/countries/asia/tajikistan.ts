@@ -8,8 +8,8 @@ export const tajikistan: CountryData = {
   "lat": 39,
   "flag": "🇹🇯",
   "pop": "10M",
-  "budget": 577000000000000,
-  "income": "481.000.000.000.000 / 481 T",
+  "budget": 577000000000,
+  "income": "481.000.000 / 481 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

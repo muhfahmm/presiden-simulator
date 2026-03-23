@@ -8,8 +8,8 @@ export const kepulauan_faroe: CountryData = {
   "lat": 62,
   "flag": "🇫🇴",
   "pop": "10M",
-  "budget": 193000000000000,
-  "income": "197.000.000.000.000 / 197 T",
+  "budget": 193000000000,
+  "income": "197.000.000 / 197 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

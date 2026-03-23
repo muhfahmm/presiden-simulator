@@ -8,8 +8,8 @@ export const marshall: CountryData = {
   "lat": 9,
   "flag": "🇲🇭",
   "pop": "10M",
-  "budget": 111000000000000,
-  "income": "420.000.000.000.000 / 420 T",
+  "budget": 5333,
+  "income": "5.333 / 5333 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const marshall: CountryData = {
     "armory": 10,
     "tank_hangar": 31,
     "military_academy": 16,
-    "budget": 23,
+    "budget": 5333,
     "personnel": 10658,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -8,8 +8,8 @@ export const hungaria: CountryData = {
   "lat": 47,
   "flag": "🇭🇺",
   "pop": "10M",
-  "budget": 519000000000000,
-  "income": "652.000.000.000.000 / 652 T",
+  "budget": 7819,
+  "income": "7.819 / 7819 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const hungaria: CountryData = {
     "armory": 12,
     "tank_hangar": 12,
     "military_academy": 37,
-    "budget": 35,
+    "budget": 7819,
     "personnel": 7893,
     "strength": 16.660809349923973,
     "military_fleet": {

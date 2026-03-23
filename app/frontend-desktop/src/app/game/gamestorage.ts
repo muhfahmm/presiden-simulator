@@ -9,6 +9,7 @@ export interface GameSession {
   constructionQueue: ConstructionItem[];
   buildingDeltas: Record<string, number>; // key: buildingKey, value: number of additional buildings
   cumulativeProduction: Record<string, number>; // key: buildingKey, value: total production so far
+  budget: number; // in Trillion (T)
 }
 
 export interface ConstructionItem {
@@ -24,6 +25,9 @@ export interface ConstructionItem {
 export const gameStorage = {
   saveSession: (country: string) => {
     if (typeof window === 'undefined') return;
+    const countryData = countries.find(c => c.name_id === country || c.name_en === country) || countries[0];
+    const initialBudget = typeof countryData.budget === 'number' ? countryData.budget / 1000000000 : 1240.5;
+
     const session: GameSession = {
       country,
       startTime: Date.now(),
@@ -31,6 +35,7 @@ export const gameStorage = {
       constructionQueue: [],
       buildingDeltas: {},
       cumulativeProduction: {},
+      budget: initialBudget,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     localStorage.setItem("selectedCountry", country);
@@ -58,6 +63,11 @@ export const gameStorage = {
 
       if (!session.cumulativeProduction || typeof session.cumulativeProduction !== 'object') {
         session.cumulativeProduction = {};
+      }
+
+      if (typeof session.budget !== 'number') {
+        const countryData = countries.find(c => c.name_id === session.country || c.name_en === session.country) || countries[0];
+        session.budget = typeof countryData.budget === 'number' ? countryData.budget / 1000000000000 : 1240.5;
       }
       
       return session as GameSession;
@@ -96,7 +106,10 @@ export const gameStorage = {
     let session = gameStorage.getSession();
     
     if (!session) {
-      const country = localStorage.getItem("selectedCountry") || "Indonesia";
+      const country = typeof window !== 'undefined' ? (localStorage.getItem("selectedCountry") || "Indonesia") : "Indonesia";
+      const countryData = countries.find(c => c.name_id === country || c.name_en === country) || countries[0];
+      const initialBudget = typeof countryData.budget === 'number' ? countryData.budget / 1000000000 : 1240.5;
+
       session = {
         country,
         startTime: Date.now(),
@@ -104,6 +117,7 @@ export const gameStorage = {
         constructionQueue: [],
         buildingDeltas: {},
         cumulativeProduction: {},
+        budget: initialBudget,
       };
     }
 
@@ -131,7 +145,10 @@ export const gameStorage = {
     let session = gameStorage.getSession();
     
     if (!session) {
-      const country = localStorage.getItem("selectedCountry") || "Indonesia";
+      const country = typeof window !== 'undefined' ? (localStorage.getItem("selectedCountry") || "Indonesia") : "Indonesia";
+      const countryData = countries.find(c => c.name_id === country || c.name_en === country) || countries[0];
+      const initialBudget = typeof countryData.budget === 'number' ? countryData.budget / 1000000000 : 1240.5;
+
       session = {
         country,
         startTime: Date.now(),
@@ -139,6 +156,7 @@ export const gameStorage = {
         constructionQueue: [],
         buildingDeltas: {},
         cumulativeProduction: {},
+        budget: initialBudget,
       };
     }
     
@@ -166,5 +184,20 @@ export const gameStorage = {
       
       localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     }
+  },
+
+  // NEW: Budget Management
+  updateBudget: (delta: number) => {
+    if (typeof window === 'undefined') return;
+    const session = gameStorage.getSession();
+    if (session) {
+      session.budget = (session.budget || 0) + delta;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+    }
+  },
+
+  getBudget: () => {
+    const session = gameStorage.getSession();
+    return session?.budget || 0;
   }
 };

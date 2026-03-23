@@ -8,8 +8,8 @@ export const turkmenistan: CountryData = {
   "lat": 40,
   "flag": "🇹🇲",
   "pop": "10M",
-  "budget": 324000000000000,
-  "income": "493.000.000.000.000 / 493 T",
+  "budget": 38974,
+  "income": "38.974 / 38974 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const turkmenistan: CountryData = {
     "armory": 32,
     "tank_hangar": 12,
     "military_academy": 1,
-    "budget": 3,
+    "budget": 38974,
     "personnel": 19822,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -8,8 +8,8 @@ export const liberia: CountryData = {
   "lat": 6.5,
   "flag": "🇱🇷",
   "pop": "10M",
-  "budget": 229000000000000,
-  "income": "275.000.000.000.000 / 275 T",
+  "budget": 229000000000,
+  "income": "275.000.000 / 275 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

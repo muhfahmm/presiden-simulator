@@ -102,23 +102,25 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
   const publicGroups = [
     {
       id: "infrastruktur",
-      title: "2. Sektor Infrastruktur & Logistik (8 jenis)",
+      title: "1. Sektor Infrastruktur & Logistik (8 jenis)",
       icon: Ship,
       color: "text-cyan-400",
-        items: [
-          { key: "bicycle_path", groupId: "logistik", label: "Jalur Sepeda", icon: Bike, desc: "Logistik", rate: 1, unit: "Unit", cost: 50, buildTime: 15, count: (currentData.infrastructure.bicycle_path || 0) + ((buildingDeltas["bicycle_path"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bicycle_path },
-          { key: "subway", groupId: "logistik", label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transportasi", rate: 1, unit: "Unit", cost: 1500, buildTime: 120, count: (currentData.infrastructure.subway || 0) + ((buildingDeltas["subway"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.subway },
-          { key: "railway", groupId: "logistik", label: "Kereta Api", icon: TrainFront, desc: "Logistik", rate: 1, unit: "Unit", cost: 1200, buildTime: 90, count: (currentData.infrastructure.railway || 0) + ((buildingDeltas["railway"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.railway },
-          { key: "highway", groupId: "logistik", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", rate: 1, unit: "Unit", cost: 800, buildTime: 60, count: (currentData.infrastructure.highway || 0) + ((buildingDeltas["highway"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.highway },
-          { key: "sea_port", groupId: "logistik", label: "Pelabuhan", icon: Ship, desc: "Maritim", rate: 1, unit: "Unit", cost: 3500, buildTime: 180, count: (currentData.infrastructure.sea_port || 0) + ((buildingDeltas["seaport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.sea_port },
-          { key: "airport", groupId: "logistik", label: "Bandara", icon: Plane, desc: "Udara", rate: 1, unit: "Unit", cost: 4500, buildTime: 240, count: (currentData.infrastructure.airport || 0) + ((buildingDeltas["airport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.airport },
-          { key: "bus_terminal", groupId: "logistik", label: "Terminal Bus", icon: Bus, desc: "Transportasi", rate: 1, unit: "Unit", cost: 300, buildTime: 45, count: (currentData.infrastructure.bus_terminal || 0) + ((buildingDeltas["bus_terminal"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bus_terminal },
-          { key: "helipad", groupId: "logistik", label: "Helipad", icon: Plane, desc: "Udara", rate: 1, unit: "Unit", cost: 150, buildTime: 30, count: (currentData.infrastructure.helipad || 0) + ((buildingDeltas["helipad"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.helipad },
-        ]
+      items: [
+        { key: "bicycle_path", groupId: "infra_darat", label: "Jalur Sepeda", icon: Bike, desc: "Logistik", rate: 1, unit: "Unit", cost: 50, buildTime: 15, count: (currentData.infrastructure.bicycle_path || 0) + ((buildingDeltas["bicycle_path"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bicycle_path },
+        { key: "highway", groupId: "infra_darat", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", rate: 1, unit: "Unit", cost: 800, buildTime: 60, count: (currentData.infrastructure.highway || 0) + ((buildingDeltas["highway"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.highway },
+        { key: "bus_terminal", groupId: "infra_darat", label: "Terminal Bus", icon: Bus, desc: "Transportasi", rate: 1, unit: "Unit", cost: 300, buildTime: 45, count: (currentData.infrastructure.bus_terminal || 0) + ((buildingDeltas["bus_terminal"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bus_terminal },
+        
+        { key: "railway", groupId: "perkeretaapian", label: "Kereta Api", icon: TrainFront, desc: "Logistik", rate: 1, unit: "Unit", cost: 1200, buildTime: 90, count: (currentData.infrastructure.railway || 0) + ((buildingDeltas["railway"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.railway },
+        { key: "subway", groupId: "perkeretaapian", label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transportasi", rate: 1, unit: "Unit", cost: 1500, buildTime: 120, count: (currentData.infrastructure.subway || 0) + ((buildingDeltas["subway"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.subway },
+        
+        { key: "sea_port", groupId: "maritim_udara", label: "Pelabuhan", icon: Ship, desc: "Maritim", rate: 1, unit: "Unit", cost: 3500, buildTime: 180, count: (currentData.infrastructure.sea_port || 0) + ((buildingDeltas["seaport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.sea_port },
+        { key: "airport", groupId: "maritim_udara", label: "Bandara", icon: Plane, desc: "Udara", rate: 1, unit: "Unit", cost: 4500, buildTime: 240, count: (currentData.infrastructure.airport || 0) + ((buildingDeltas["airport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.airport },
+        { key: "helipad", groupId: "maritim_udara", label: "Helipad", icon: Plane, desc: "Udara", rate: 1, unit: "Unit", cost: 150, buildTime: 30, count: (currentData.infrastructure.helipad || 0) + ((buildingDeltas["helipad"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.helipad },
+      ]
     },
     {
       id: "layanan_sosial",
-      title: "5. Sektor Layanan Sosial & Publik (18 jenis)",
+      title: "2. Sektor Layanan Sosial & Publik (18 jenis)",
       icon: HeartPulse,
       color: "text-rose-400",
       items: [
@@ -259,7 +261,10 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
                           pertanian: "Agrikultur & Pertanian",
                           pendidikan: "Pendidikan & Riset",
                           kesehatan: "Kesehatan, Olahraga & Media",
-                          law: "Hukum, Pertahanan & Keamanan"
+                          law: "Hukum, Pertahanan & Keamanan",
+                          infra_darat: "Infrastruktur Darat & Logistik",
+                          perkeretaapian: "Sistem Perkeretaapian Nasional",
+                          maritim_udara: "Hub Maritim & Dirgantara"
                         };
 
                         const showSubHeader = item.groupId && item.groupId !== prevGroupId;

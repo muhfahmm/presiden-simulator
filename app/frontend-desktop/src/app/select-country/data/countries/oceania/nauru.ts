@@ -8,8 +8,8 @@ export const nauru: CountryData = {
   "lat": -0.53333333,
   "flag": "🇳🇷",
   "pop": "10M",
-  "budget": 582000000000000,
-  "income": "291.000.000.000.000 / 291 T",
+  "budget": 582000000000,
+  "income": "291.000.000 / 291 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

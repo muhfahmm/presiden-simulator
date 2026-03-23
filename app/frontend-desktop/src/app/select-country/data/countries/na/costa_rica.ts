@@ -8,8 +8,8 @@ export const costa_rica: CountryData = {
   "lat": 10,
   "flag": "🇨🇷",
   "pop": "10M",
-  "budget": 122000000000000,
-  "income": "719.000.000.000.000 / 719 T",
+  "budget": 3337,
+  "income": "3.337 / 3337 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const costa_rica: CountryData = {
     "armory": 4,
     "tank_hangar": 29,
     "military_academy": 4,
-    "budget": 4,
+    "budget": 3337,
     "personnel": 5363,
     "strength": 16.660809349923973,
     "military_fleet": {

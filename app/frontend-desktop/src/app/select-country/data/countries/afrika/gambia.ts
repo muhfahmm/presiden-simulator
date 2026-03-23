@@ -8,8 +8,8 @@ export const gambia: CountryData = {
   "lat": 13.46666666,
   "flag": "🇬🇲",
   "pop": "10M",
-  "budget": 668000000000000,
-  "income": "860.000.000.000.000 / 860 T",
+  "budget": 668000000000,
+  "income": "860.000.000 / 860 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

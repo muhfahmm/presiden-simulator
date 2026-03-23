@@ -8,8 +8,8 @@ export const kuwait: CountryData = {
   "lat": 29.5,
   "flag": "🇰🇼",
   "pop": "10M",
-  "budget": 474000000000000,
-  "income": "597.000.000.000.000 / 597 T",
+  "budget": 474000000000,
+  "income": "597.000.000 / 597 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

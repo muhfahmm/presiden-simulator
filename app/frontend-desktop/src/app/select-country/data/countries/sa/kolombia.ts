@@ -8,8 +8,8 @@ export const kolombia: CountryData = {
   "lat": 4,
   "flag": "🇨🇴",
   "pop": "10M",
-  "budget": 156000000000000,
-  "income": "437.000.000.000.000 / 437 T",
+  "budget": 14658,
+  "income": "14.658 / 14658 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const kolombia: CountryData = {
     "armory": 12,
     "tank_hangar": 34,
     "military_academy": 2,
-    "budget": 40,
+    "budget": 14658,
     "personnel": 13873,
     "strength": 16.660809349923973,
     "military_fleet": {

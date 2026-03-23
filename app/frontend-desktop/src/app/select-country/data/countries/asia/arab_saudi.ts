@@ -8,8 +8,8 @@ export const arab_saudi: CountryData = {
   "lat": 24.77,
   "flag": "🇸🇦",
   "pop": "10M",
-  "budget": 201000000000000,
-  "income": "953.000.000.000.000 / 953 T",
+  "budget": 38710,
+  "income": "38.710 / 38710 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const arab_saudi: CountryData = {
     "armory": 27,
     "tank_hangar": 15,
     "military_academy": 27,
-    "budget": 12,
+    "budget": 38710,
     "personnel": 9491,
     "strength": 16.660809349923973,
     "military_fleet": {

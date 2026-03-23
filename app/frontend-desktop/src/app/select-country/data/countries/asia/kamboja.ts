@@ -8,8 +8,8 @@ export const kamboja: CountryData = {
   "lat": 13,
   "flag": "🇰🇭",
   "pop": "10M",
-  "budget": 113000000000000,
-  "income": "594.000.000.000.000 / 594 T",
+  "budget": 1613,
+  "income": "1.613 / 1613 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const kamboja: CountryData = {
     "armory": 25,
     "tank_hangar": 22,
     "military_academy": 15,
-    "budget": 23,
+    "budget": 1613,
     "personnel": 20038,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -8,8 +8,8 @@ export const yordania: CountryData = {
   "lat": 31,
   "flag": "🇯🇴",
   "pop": "10M",
-  "budget": 169000000000000,
-  "income": "640.000.000.000.000 / 640 T",
+  "budget": 1882,
+  "income": "1.882 / 1882 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const yordania: CountryData = {
     "armory": 15,
     "tank_hangar": 21,
     "military_academy": 9,
-    "budget": 1,
+    "budget": 1882,
     "personnel": 29178,
     "strength": 16.660809349923973,
     "military_fleet": {

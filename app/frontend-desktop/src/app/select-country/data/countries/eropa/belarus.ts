@@ -8,8 +8,8 @@ export const belarus: CountryData = {
   "lat": 53,
   "flag": "🇧🇾",
   "pop": "10M",
-  "budget": 800000000000000,
-  "income": "401.000.000.000.000 / 401 T",
+  "budget": 23252,
+  "income": "23.252 / 23252 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const belarus: CountryData = {
     "armory": 36,
     "tank_hangar": 1,
     "military_academy": 38,
-    "budget": 8,
+    "budget": 23252,
     "personnel": 5950,
     "strength": 16.660809349923973,
     "military_fleet": {

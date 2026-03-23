@@ -8,8 +8,8 @@ export const jerman: CountryData = {
   "lat": 51,
   "flag": "🇩🇪",
   "pop": "10M",
-  "budget": 654000000000000,
-  "income": "412.000.000.000.000 / 412 T",
+  "budget": 654000000000,
+  "income": "412.000.000 / 412 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

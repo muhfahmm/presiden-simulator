@@ -8,8 +8,8 @@ export const lesotho: CountryData = {
   "lat": -29.5,
   "flag": "🇱🇸",
   "pop": "10M",
-  "budget": 495000000000000,
-  "income": "240.000.000.000.000 / 240 T",
+  "budget": 495000000000,
+  "income": "240.000.000 / 240 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

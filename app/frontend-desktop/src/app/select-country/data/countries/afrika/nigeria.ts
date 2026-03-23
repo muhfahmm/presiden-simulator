@@ -8,8 +8,8 @@ export const nigeria: CountryData = {
   "lat": 10,
   "flag": "🇳🇬",
   "pop": "237M",
-  "budget": 900000000000000,
-  "income": "4.500.000.000.000.000 / 4500 T",
+  "budget": 8845,
+  "income": "8.845 / 8845 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -136,7 +136,7 @@ export const nigeria: CountryData = {
     "armory": 1,
     "tank_hangar": 1,
     "military_academy": 39,
-    "budget": 25,
+    "budget": 8845,
     "personnel": 21640,
     "strength": 16.660809349923973,
     "military_fleet": {

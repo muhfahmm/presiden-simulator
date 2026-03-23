@@ -8,8 +8,8 @@ export const gabon: CountryData = {
   "lat": -1,
   "flag": "🇬🇦",
   "pop": "10M",
-  "budget": 191000000000000,
-  "income": "774.000.000.000.000 / 774 T",
+  "budget": 736,
+  "income": "736 / 736 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -136,7 +136,7 @@ export const gabon: CountryData = {
     "armory": 30,
     "tank_hangar": 11,
     "military_academy": 27,
-    "budget": 15,
+    "budget": 736,
     "personnel": 16086,
     "strength": 16.660809349923973,
     "military_fleet": {

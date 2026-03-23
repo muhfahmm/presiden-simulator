@@ -8,8 +8,8 @@ export const vatikan: CountryData = {
   "lat": 41.9,
   "flag": "🇻🇦",
   "pop": "10M",
-  "budget": 489000000000000,
-  "income": "252.000.000.000.000 / 252 T",
+  "budget": 489000000000,
+  "income": "252.000.000 / 252 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

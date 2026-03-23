@@ -8,8 +8,8 @@ export const peru: CountryData = {
   "lat": -10,
   "flag": "🇵🇪",
   "pop": "10M",
-  "budget": 510000000000000,
-  "income": "600.000.000.000.000 / 600 T",
+  "budget": 9886,
+  "income": "9.886 / 9886 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const peru: CountryData = {
     "armory": 17,
     "tank_hangar": 34,
     "military_academy": 7,
-    "budget": 33,
+    "budget": 9886,
     "personnel": 10851,
     "strength": 16.660809349923973,
     "military_fleet": {

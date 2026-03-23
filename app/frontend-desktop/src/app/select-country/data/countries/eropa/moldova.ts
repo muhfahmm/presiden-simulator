@@ -8,8 +8,8 @@ export const moldova: CountryData = {
   "lat": 47,
   "flag": "🇲🇩",
   "pop": "10M",
-  "budget": 366000000000000,
-  "income": "415.000.000.000.000 / 415 T",
+  "budget": 366000000000,
+  "income": "415.000.000 / 415 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

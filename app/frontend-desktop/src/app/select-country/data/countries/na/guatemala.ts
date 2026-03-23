@@ -8,8 +8,8 @@ export const guatemala: CountryData = {
   "lat": 15.5,
   "flag": "🇬🇹",
   "pop": "10M",
-  "budget": 259000000000000,
-  "income": "819.000.000.000.000 / 819 T",
+  "budget": 259000000000,
+  "income": "819.000.000 / 819 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

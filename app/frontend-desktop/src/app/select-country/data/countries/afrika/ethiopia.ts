@@ -8,8 +8,8 @@ export const ethiopia: CountryData = {
   "lat": 8,
   "flag": "🇪🇹",
   "pop": "135M",
-  "budget": 510000000000000,
-  "income": "2.560.000.000.000.000 / 2560 T",
+  "budget": 7161,
+  "income": "7.161 / 7161 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -136,7 +136,7 @@ export const ethiopia: CountryData = {
     "armory": 4,
     "tank_hangar": 8,
     "military_academy": 37,
-    "budget": 36,
+    "budget": 7161,
     "personnel": 8526,
     "strength": 16.660809349923973,
     "military_fleet": {

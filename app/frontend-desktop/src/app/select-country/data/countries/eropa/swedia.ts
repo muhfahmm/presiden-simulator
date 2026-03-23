@@ -8,8 +8,8 @@ export const swedia: CountryData = {
   "lat": 62,
   "flag": "🇸🇪",
   "pop": "10M",
-  "budget": 464000000000000,
-  "income": "109.000.000.000.000 / 109 T",
+  "budget": 21806,
+  "income": "21.806 / 21806 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const swedia: CountryData = {
     "armory": 25,
     "tank_hangar": 37,
     "military_academy": 1,
-    "budget": 22,
+    "budget": 21806,
     "personnel": 6340,
     "strength": 16.660809349923973,
     "military_fleet": {

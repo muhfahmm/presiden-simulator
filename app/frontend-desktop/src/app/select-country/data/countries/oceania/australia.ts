@@ -8,8 +8,8 @@ export const australia: CountryData = {
   "lat": -35.28,
   "flag": "🇦🇺",
   "pop": "22M",
-  "budget": 592000000000000,
-  "income": "436.000.000.000.000 / 436 T",
+  "budget": 62842,
+  "income": "62.842 / 62842 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const australia: CountryData = {
     "armory": 4,
     "tank_hangar": 20,
     "military_academy": 28,
-    "budget": 22,
+    "budget": 62842,
     "personnel": 5646,
     "strength": 16.660809349923973,
     "military_fleet": {

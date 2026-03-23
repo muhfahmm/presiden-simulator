@@ -8,8 +8,8 @@ export const uni_emirat_arab: CountryData = {
   "lat": 24,
   "flag": "🇦🇪",
   "pop": "10M",
-  "budget": 451000000000000,
-  "income": "495.000.000.000.000 / 495 T",
+  "budget": 18789,
+  "income": "18.789 / 18789 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const uni_emirat_arab: CountryData = {
     "armory": 16,
     "tank_hangar": 31,
     "military_academy": 15,
-    "budget": 34,
+    "budget": 18789,
     "personnel": 9335,
     "strength": 16.660809349923973,
     "military_fleet": {

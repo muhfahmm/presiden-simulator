@@ -8,8 +8,8 @@ export const austria: CountryData = {
   "lat": 47.33333333,
   "flag": "🇦🇹",
   "pop": "42M",
-  "budget": 405000000000000,
-  "income": "869.000.000.000.000 / 869 T",
+  "budget": 62842,
+  "income": "62.842 / 62842 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const austria: CountryData = {
     "armory": 6,
     "tank_hangar": 7,
     "military_academy": 11,
-    "budget": 21,
+    "budget": 62842,
     "personnel": 29535,
     "strength": 16.660809349923973,
     "military_fleet": {

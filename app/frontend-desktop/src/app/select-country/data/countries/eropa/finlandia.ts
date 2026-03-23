@@ -8,8 +8,8 @@ export const finlandia: CountryData = {
   "lat": 64,
   "flag": "🇫🇮",
   "pop": "10M",
-  "budget": 393000000000000,
-  "income": "243.000.000.000.000 / 243 T",
+  "budget": 10789,
+  "income": "10.789 / 10789 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const finlandia: CountryData = {
     "armory": 21,
     "tank_hangar": 39,
     "military_academy": 9,
-    "budget": 40,
+    "budget": 10789,
     "personnel": 7855,
     "strength": 16.660809349923973,
     "military_fleet": {

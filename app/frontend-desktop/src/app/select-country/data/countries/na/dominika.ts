@@ -8,8 +8,8 @@ export const dominika: CountryData = {
   "lat": 15.41666666,
   "flag": "🇩🇲",
   "pop": "10M",
-  "budget": 320000000000000,
-  "income": "368.000.000.000.000 / 368 T",
+  "budget": 4497,
+  "income": "4.497 / 4497 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const dominika: CountryData = {
     "armory": 36,
     "tank_hangar": 27,
     "military_academy": 4,
-    "budget": 3,
+    "budget": 4497,
     "personnel": 13465,
     "strength": 16.660809349923973,
     "military_fleet": {

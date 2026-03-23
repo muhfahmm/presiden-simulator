@@ -8,8 +8,8 @@ export const singapura: CountryData = {
   "lat": 1.36666666,
   "flag": "🇸🇬",
   "pop": "10M",
-  "budget": 453000000000000,
-  "income": "321.000.000.000.000 / 321 T",
+  "budget": 18383,
+  "income": "18.383 / 18383 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const singapura: CountryData = {
     "armory": 31,
     "tank_hangar": 37,
     "military_academy": 26,
-    "budget": 23,
+    "budget": 18383,
     "personnel": 25079,
     "strength": 16.660809349923973,
     "military_fleet": {

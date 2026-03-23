@@ -8,8 +8,8 @@ export const korea_selatan: CountryData = {
   "lat": 37,
   "flag": "🇰🇷",
   "pop": "10M",
-  "budget": 796000000000000,
-  "income": "636.000.000.000.000 / 636 T",
+  "budget": 61633,
+  "income": "61.633 / 61633 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const korea_selatan: CountryData = {
     "armory": 7,
     "tank_hangar": 14,
     "military_academy": 38,
-    "budget": 32,
+    "budget": 61633,
     "personnel": 10626,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -8,8 +8,8 @@ export const republik_tanzania: CountryData = {
   "lat": -6,
   "flag": "🇹🇿",
   "pop": "10M",
-  "budget": 238000000000000,
-  "income": "148.000.000.000.000 / 148 T",
+  "budget": 238000000000,
+  "income": "148.000.000 / 148 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

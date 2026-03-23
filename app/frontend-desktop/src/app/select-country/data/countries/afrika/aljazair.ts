@@ -8,8 +8,8 @@ export const aljazair: CountryData = {
   "lat": 36.73,
   "flag": "🇩🇿",
   "pop": "47M",
-  "budget": 640000000000000,
-  "income": "3.200.000.000.000.000 / 3200 T",
+  "budget": 640000000000,
+  "income": "3.200.000.000 / 3200 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

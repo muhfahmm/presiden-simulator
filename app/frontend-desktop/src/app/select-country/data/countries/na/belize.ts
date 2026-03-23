@@ -8,8 +8,8 @@ export const belize: CountryData = {
   "lat": 17.25,
   "flag": "🇧🇿",
   "pop": "10M",
-  "budget": 619000000000000,
-  "income": "330.000.000.000.000 / 330 T",
+  "budget": 23252,
+  "income": "23.252 / 23252 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const belize: CountryData = {
     "armory": 14,
     "tank_hangar": 14,
     "military_academy": 24,
-    "budget": 11,
+    "budget": 23252,
     "personnel": 8458,
     "strength": 16.660809349923973,
     "military_fleet": {

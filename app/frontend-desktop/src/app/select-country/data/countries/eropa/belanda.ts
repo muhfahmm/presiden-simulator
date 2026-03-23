@@ -8,8 +8,8 @@ export const belanda: CountryData = {
   "lat": 52.5,
   "flag": "🇳🇱",
   "pop": "10M",
-  "budget": 234000000000000,
-  "income": "242.000.000.000.000 / 242 T",
+  "budget": 39987,
+  "income": "39.987 / 39987 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const belanda: CountryData = {
     "armory": 24,
     "tank_hangar": 10,
     "military_academy": 17,
-    "budget": 22,
+    "budget": 39987,
     "personnel": 25162,
     "strength": 16.660809349923973,
     "military_fleet": {

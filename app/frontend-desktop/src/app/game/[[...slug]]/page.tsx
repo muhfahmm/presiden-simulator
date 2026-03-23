@@ -53,10 +53,19 @@ export default function GamePage() {
     const session = gameStorage.getSession();
     if (session?.country) {
       setUserCountry(session.country);
+      setBudget(session.budget);
     }
     if (session?.isWelcomeSeen) {
       setShowWelcome(false);
     }
+
+    // Refresh budget from storage periodically to sync with daily ticks
+    const interval = setInterval(() => {
+      const currentBudget = gameStorage.getBudget();
+      setBudget(currentBudget);
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
   const [selectedCountrySDA, setSelectedCountrySDA] = useState<{ name: string; flag: string; resources: any } | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -125,7 +134,7 @@ export default function GamePage() {
 
             <StatusBadge icon={<Users className="h-4 w-4 text-blue-500" />} label="Populasi" value={countryData?.pop || 0} />
             <StatusBadge icon={<Heart className="h-4 w-4 text-red-500" />} label="Persetujuan" value={`${approval}%`} />
-            <StatusBadge icon={<Coins className="h-4 w-4 text-yellow-500" />} label="Kas Negara" value={budget * 1000000000000} />
+            <StatusBadge icon={<Coins className="h-4 w-4 text-yellow-500" />} label="Kas Negara" value={budget * 1000000000} />
             <StatusBadge icon={<Shield className="h-4 w-4 text-green-500" />} label="Stabilitas" value={`${stability}%`} />
             
             <button 

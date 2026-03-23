@@ -8,8 +8,8 @@ export const thailand: CountryData = {
   "lat": 15,
   "flag": "🇹🇭",
   "pop": "10M",
-  "budget": 541000000000000,
-  "income": "198.000.000.000.000 / 198 T",
+  "budget": 18512,
+  "income": "18.512 / 18512 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const thailand: CountryData = {
     "armory": 5,
     "tank_hangar": 36,
     "military_academy": 7,
-    "budget": 14,
+    "budget": 18512,
     "personnel": 10734,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -8,8 +8,8 @@ export const komoro: CountryData = {
   "lat": -12.16666666,
   "flag": "🇰🇲",
   "pop": "10M",
-  "budget": 462000000000000,
-  "income": "308.000.000.000.000 / 308 T",
+  "budget": 50,
+  "income": "50 / 50 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -136,7 +136,7 @@ export const komoro: CountryData = {
     "armory": 39,
     "tank_hangar": 27,
     "military_academy": 9,
-    "budget": 1,
+    "budget": 50,
     "personnel": 27240,
     "strength": 16.660809349923973,
     "military_fleet": {

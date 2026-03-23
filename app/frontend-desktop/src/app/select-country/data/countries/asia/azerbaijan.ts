@@ -8,8 +8,8 @@ export const azerbaijan: CountryData = {
   "lat": 40.5,
   "flag": "🇦🇿",
   "pop": "48M",
-  "budget": 325000000000000,
-  "income": "931.000.000.000.000 / 931 T",
+  "budget": 2601,
+  "income": "2.601 / 2601 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const azerbaijan: CountryData = {
     "armory": 33,
     "tank_hangar": 2,
     "military_academy": 26,
-    "budget": 11,
+    "budget": 2601,
     "personnel": 11539,
     "strength": 16.660809349923973,
     "military_fleet": {

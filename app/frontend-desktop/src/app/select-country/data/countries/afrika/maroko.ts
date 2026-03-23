@@ -8,8 +8,8 @@ export const maroko: CountryData = {
   "lat": 32,
   "flag": "🇲🇦",
   "pop": "38M",
-  "budget": 450000000000000,
-  "income": "2.240.000.000.000.000 / 2240 T",
+  "budget": 450000000000,
+  "income": "2.240.000.000 / 2240 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

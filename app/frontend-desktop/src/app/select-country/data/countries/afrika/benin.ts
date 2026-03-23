@@ -8,8 +8,8 @@ export const benin: CountryData = {
   "lat": 9.5,
   "flag": "🇧🇯",
   "pop": "10M",
-  "budget": 639000000000000,
-  "income": "842.000.000.000.000 / 842 T",
+  "budget": 752,
+  "income": "752 / 752 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -136,7 +136,7 @@ export const benin: CountryData = {
     "armory": 27,
     "tank_hangar": 12,
     "military_academy": 5,
-    "budget": 27,
+    "budget": 752,
     "personnel": 11853,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -8,8 +8,8 @@ export const swiss: CountryData = {
   "lat": 47,
   "flag": "🇨🇭",
   "pop": "10M",
-  "budget": 274000000000000,
-  "income": "337.000.000.000.000 / 337 T",
+  "budget": 32846,
+  "income": "32.846 / 32846 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const swiss: CountryData = {
     "armory": 5,
     "tank_hangar": 26,
     "military_academy": 29,
-    "budget": 39,
+    "budget": 32846,
     "personnel": 28391,
     "strength": 16.660809349923973,
     "military_fleet": {

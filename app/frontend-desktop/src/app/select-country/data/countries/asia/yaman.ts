@@ -8,8 +8,8 @@ export const yaman: CountryData = {
   "lat": 15,
   "flag": "🇾🇪",
   "pop": "10M",
-  "budget": 199000000000000,
-  "income": "522.000.000.000.000 / 522 T",
+  "budget": 592,
+  "income": "592 / 592 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const yaman: CountryData = {
     "armory": 23,
     "tank_hangar": 27,
     "military_academy": 23,
-    "budget": 31,
+    "budget": 592,
     "personnel": 13273,
     "strength": 16.660809349923973,
     "military_fleet": {

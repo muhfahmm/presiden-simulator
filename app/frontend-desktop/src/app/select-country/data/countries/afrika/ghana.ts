@@ -8,8 +8,8 @@ export const ghana: CountryData = {
   "lat": 8,
   "flag": "🇬🇭",
   "pop": "35M",
-  "budget": 250000000000000,
-  "income": "1.280.000.000.000.000 / 1280 T",
+  "budget": 2635,
+  "income": "2.635 / 2635 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -136,7 +136,7 @@ export const ghana: CountryData = {
     "armory": 14,
     "tank_hangar": 20,
     "military_academy": 18,
-    "budget": 27,
+    "budget": 2635,
     "personnel": 15287,
     "strength": 16.660809349923973,
     "military_fleet": {

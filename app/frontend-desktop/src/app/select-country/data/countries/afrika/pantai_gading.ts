@@ -8,8 +8,8 @@ export const pantai_gading: CountryData = {
   "lat": 8,
   "flag": "🇨🇮",
   "pop": "10M",
-  "budget": 508000000000000,
-  "income": "335.000.000.000.000 / 335 T",
+  "budget": 3048,
+  "income": "3.048 / 3048 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -136,7 +136,7 @@ export const pantai_gading: CountryData = {
     "armory": 19,
     "tank_hangar": 24,
     "military_academy": 3,
-    "budget": 24,
+    "budget": 3048,
     "personnel": 23769,
     "strength": 16.660809349923973,
     "military_fleet": {

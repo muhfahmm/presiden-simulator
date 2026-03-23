@@ -8,8 +8,8 @@ export const siprus: CountryData = {
   "lat": 35,
   "flag": "🇨🇾",
   "pop": "10M",
-  "budget": 440000000000000,
-  "income": "197.000.000.000.000 / 197 T",
+  "budget": 1271,
+  "income": "1.271 / 1271 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const siprus: CountryData = {
     "armory": 24,
     "tank_hangar": 16,
     "military_academy": 1,
-    "budget": 10,
+    "budget": 1271,
     "personnel": 15798,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -6,6 +6,7 @@ import { INITIAL_GAME_DATE, formatGameDate, addDays, saveGameDate, getStoredGame
 import { gameStorage } from "../../gamestorage";
 import { countries } from "../../../select-country/data/countries";
 import { calculateDailyProductionTotals } from "../../data/production/productionLogic";
+import { calculateDailyBudgetDelta } from "../../data/economy/economyLogic";
 
 export default function GameTimeControls() {
   const [gameDate, setGameDate] = useState<Date>(INITIAL_GAME_DATE);
@@ -38,6 +39,10 @@ export default function GameTimeControls() {
           
           const dailyDeltas = calculateDailyProductionTotals(currentData, session.buildingDeltas);
           gameStorage.updateCumulativeProduction(dailyDeltas);
+
+          // REAL-TIME BUDGET UPDATE
+          const budgetDelta = calculateDailyBudgetDelta(currentData, session);
+          gameStorage.updateBudget(budgetDelta);
         }
 
         return nextDate;

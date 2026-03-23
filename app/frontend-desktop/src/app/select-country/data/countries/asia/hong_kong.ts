@@ -8,8 +8,8 @@ export const hong_kong: CountryData = {
   "lat": 22.267,
   "flag": "🇭🇰",
   "pop": "10M",
-  "budget": 165000000000000,
-  "income": "510.000.000.000.000 / 510 T",
+  "budget": 14240,
+  "income": "14.240 / 14240 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const hong_kong: CountryData = {
     "armory": 6,
     "tank_hangar": 2,
     "military_academy": 15,
-    "budget": 4,
+    "budget": 14240,
     "personnel": 14863,
     "strength": 16.660809349923973,
     "military_fleet": {

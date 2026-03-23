@@ -8,8 +8,8 @@ export const amerika_serikat: CountryData = {
   "lat": 38,
   "flag": "🇺🇸",
   "pop": "36M",
-  "budget": 340000000000000,
-  "income": "321.000.000.000.000 / 321 T",
+  "budget": 1007337,
+  "income": "1.007.337 / 1007337 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const amerika_serikat: CountryData = {
     "armory": 29,
     "tank_hangar": 37,
     "military_academy": 33,
-    "budget": 5,
+    "budget": 1007337,
     "personnel": 29433,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -8,8 +8,8 @@ export const indonesia: CountryData = {
   "lat": -5,
   "flag": "🇮🇩",
   "pop": 278360115,
-  "budget": 456200000000000,
-  "income": "969.000.000.000.000 / 969 T",
+  "budget": 137801,
+  "income": "137.801 / 137801 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
@@ -132,7 +132,7 @@ export const indonesia: CountryData = {
     "armory": 39,
     "tank_hangar": 7,
     "military_academy": 23,
-    "budget": 13,
+    "budget": 137801,
     "personnel": 17457,
     "strength": 16.660809349923973,
     "military_fleet": {

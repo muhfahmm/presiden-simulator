@@ -99,6 +99,35 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   const totalPasokan = hitungTotalKapasitas(currentData.sector_electricity);
   const totalBeban = hitungTotalKonsumsiNasional(currentData);
 
+  // Robust mapping for manufacturing keys
+  const getManufacturingCount = (key: string) => {
+    const baseKeyMapping: Record<string, string> = {
+      "electronics_factory": "semiconductor",
+      "car_factory": "car",
+      "motorcycle_factory": "motorcycle",
+      "cement_factory": "concrete_cement",
+      "smelter": "smelter",
+      "bottled_water_factory": "mineral_water",
+      "sugar_factory": "sugar",
+      "pharma_factory": "pharmacy",
+      "noodle_factory": "instant_noodle",
+      "meat_processing_factory": "meat_processing",
+      "sawmill": "wood",
+      "fertilizer_factory": "fertilizer",
+      "bakery_factory": "bread"
+    };
+
+    const baseKey = baseKeyMapping[key] || key.replace('_factory', '');
+    const baseCount = (currentData?.sector_manufacturing && typeof (currentData.sector_manufacturing as any)[baseKey] === 'number')
+      ? (currentData.sector_manufacturing as any)[baseKey]
+      : 0;
+    const deltaCount = (buildingDeltas[key] && typeof buildingDeltas[key] === 'number')
+      ? buildingDeltas[key]
+      : 0;
+
+    return baseCount + deltaCount;
+  };
+
   let adjustedTotalPasokan = totalPasokan;
   let adjustedTotalBeban = totalBeban;
 
@@ -176,7 +205,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
     },
     {
       id: "produksi_ekonomi",
-      title: "3. Sektor Produksi & Ekonomi Nasional",
+      title: "2. Sektor Produksi & Ekonomi Nasional",
       icon: Factory,
       color: "text-emerald-500",
       items: [
@@ -191,7 +220,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
             desc: "Manufaktur",
             rate: val.production,
             unit: val.unit,
-            count: (currentData.sector_manufacturing[key.replace('_factory', '').replace('cement_factory', 'concrete_cement').replace('meat_processing_factory', 'meat_processing').replace('noodle_factory', 'instant_noodle').replace('sawmill', 'wood').replace('bottled_water_factory', 'mineral_water').replace('electronics_factory', 'semiconductor') as keyof typeof currentData.sector_manufacturing] || 0) + ((buildingDeltas[key] as number) || 0),
+            count: getManufacturingCount(key),
             income: 0,
             cost: 450,
             buildTime: val.buildTime || 45
@@ -336,7 +365,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
     },
     {
       id: "ekstraksi",
-      title: "7. Mineral Kritis & Strategis",
+      title: "3. Mineral Kritis & Strategis",
       icon: Pickaxe,
       color: "text-orange-500",
       items: Object.entries(mineralKritisRate).map(([key, val]: [string, any]) => {
@@ -755,7 +784,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
             </div>
           ) : (
             <div className="flex items-center justify-between mt-2">
-              <span className="text-xs text-zinc-400 font-bold tracking-tight">Biaya: Rp {item.cost} T</span>
+              <span className="text-xs text-zinc-400 font-bold tracking-tight">Biaya: Rp {item.cost} M</span>
               <button
                 onClick={(e) => { e.stopPropagation(); onBuild(item); }}
                 className="px-5 py-2 rounded-xl bg-cyan-600/10 text-cyan-500 text-xs font-black uppercase tracking-widest border border-cyan-500/30 hover:bg-cyan-600 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95"

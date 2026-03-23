@@ -8,8 +8,8 @@ export const eswatini: CountryData = {
   "lat": -26.5,
   "flag": "🇸🇿",
   "pop": "10M",
-  "budget": 542000000000000,
-  "income": "126.000.000.000.000 / 126 T",
+  "budget": 542000000000,
+  "income": "126.000.000 / 126 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

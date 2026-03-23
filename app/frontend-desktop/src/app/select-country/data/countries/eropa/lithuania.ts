@@ -8,8 +8,8 @@ export const lithuania: CountryData = {
   "lat": 54.41,
   "flag": "🇱🇹",
   "pop": "10M",
-  "budget": 733000000000000,
-  "income": "479.000.000.000.000 / 479 T",
+  "budget": 733000000000,
+  "income": "479.000.000 / 479 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

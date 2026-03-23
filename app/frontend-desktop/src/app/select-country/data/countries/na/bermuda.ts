@@ -8,8 +8,8 @@ export const bermuda: CountryData = {
   "lat": 32.33333333,
   "flag": "🇧🇲",
   "pop": "10M",
-  "budget": 156000000000000,
-  "income": "384.000.000.000.000 / 384 T",
+  "budget": 156000000000,
+  "income": "384.000.000 / 384 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const greenland: CountryData = {
   "lat": 72,
   "flag": "🇬🇱",
   "pop": "10M",
-  "budget": 251000000000000,
-  "income": "127.000.000.000.000 / 127 T",
+  "budget": 251000000000,
+  "income": "127.000.000 / 127 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const palau: CountryData = {
   "lat": 7.5,
   "flag": "🇵🇼",
   "pop": "10M",
-  "budget": 590000000000000,
-  "income": "293.000.000.000.000 / 293 T",
+  "budget": 590000000000,
+  "income": "293.000.000 / 293 M",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
