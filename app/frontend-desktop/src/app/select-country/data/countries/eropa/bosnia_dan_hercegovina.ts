@@ -8,8 +8,8 @@ export const bosnia_dan_hercegovina: CountryData = {
   "lat": 44,
   "flag": "🇧🇦",
   "pop": "10M",
-  "budget": 564000000000,
-  "income": "912.000.000 / 912 M",
+  "budget": 233,
+  "income": "667",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

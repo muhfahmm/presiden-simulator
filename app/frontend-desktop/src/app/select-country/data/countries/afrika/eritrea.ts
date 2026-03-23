@@ -8,8 +8,8 @@ export const eritrea: CountryData = {
   "lat": 15,
   "flag": "🇪🇷",
   "pop": "10M",
-  "budget": 95,
-  "income": "95 / 95 M",
+  "budget": 24,
+  "income": "69",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

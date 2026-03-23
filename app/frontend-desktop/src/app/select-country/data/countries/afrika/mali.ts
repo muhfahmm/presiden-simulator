@@ -8,8 +8,8 @@ export const mali: CountryData = {
   "lat": 12.39,
   "flag": "🇲🇱",
   "pop": "10M",
-  "budget": 228000000000,
-  "income": "968.000.000 / 968 M",
+  "budget": 175,
+  "income": "500",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

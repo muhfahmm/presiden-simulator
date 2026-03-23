@@ -8,8 +8,8 @@ export const norwegia: CountryData = {
   "lat": 62,
   "flag": "🇳🇴",
   "pop": "10M",
-  "budget": 18443,
-  "income": "18.443 / 18443 M",
+  "budget": 5639,
+  "income": "16112",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

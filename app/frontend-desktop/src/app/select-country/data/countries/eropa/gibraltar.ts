@@ -8,8 +8,8 @@ export const gibraltar: CountryData = {
   "lat": 36.13333333,
   "flag": "🇬🇮",
   "pop": "10M",
-  "budget": 341000000000,
-  "income": "289.000.000 / 289 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

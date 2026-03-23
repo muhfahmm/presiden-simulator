@@ -8,8 +8,8 @@ export const senegal: CountryData = {
   "lat": 14,
   "flag": "🇸🇳",
   "pop": "10M",
-  "budget": 1178,
-  "income": "1.178 / 1178 M",
+  "budget": 272,
+  "income": "778",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

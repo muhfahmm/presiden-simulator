@@ -8,8 +8,8 @@ export const kenya: CountryData = {
   "lat": 1,
   "flag": "🇰🇪",
   "pop": "57M",
-  "budget": 4071,
-  "income": "4.071 / 4071 M",
+  "budget": 1070,
+  "income": "3056",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

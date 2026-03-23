@@ -8,8 +8,8 @@ export const arab_saudi: CountryData = {
   "lat": 24.77,
   "flag": "🇸🇦",
   "pop": "10M",
-  "budget": 38710,
-  "income": "38.710 / 38710 M",
+  "budget": 10793,
+  "income": "30836",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

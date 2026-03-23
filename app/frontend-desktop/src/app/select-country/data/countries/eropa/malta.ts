@@ -8,8 +8,8 @@ export const malta: CountryData = {
   "lat": 35.53,
   "flag": "🇲🇹",
   "pop": "10M",
-  "budget": 481000000000,
-  "income": "635.000.000 / 635 M",
+  "budget": 194,
+  "income": "556",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const saint_kitts_dan_nevis: CountryData = {
   "lat": 17.33333333,
   "flag": "🇰🇳",
   "pop": "10M",
-  "budget": 122000000000,
-  "income": "121.000.000 / 121 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

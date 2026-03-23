@@ -8,8 +8,8 @@ export const guam: CountryData = {
   "lat": 13.46666666,
   "flag": "🇬🇺",
   "pop": "10M",
-  "budget": 154000000000,
-  "income": "215.000.000 / 215 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const malawi: CountryData = {
   "lat": -13.59,
   "flag": "🇲🇼",
   "pop": "10M",
-  "budget": 728000000000,
-  "income": "454.000.000 / 454 M",
+  "budget": 117,
+  "income": "333",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

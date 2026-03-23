@@ -8,8 +8,8 @@ export const luksemburg: CountryData = {
   "lat": 49.36,
   "flag": "🇱🇺",
   "pop": "10M",
-  "budget": 3099,
-  "income": "3.099 / 3099 M",
+  "budget": 846,
+  "income": "2417",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

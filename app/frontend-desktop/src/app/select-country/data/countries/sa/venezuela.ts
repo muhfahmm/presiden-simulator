@@ -8,8 +8,8 @@ export const venezuela: CountryData = {
   "lat": 8,
   "flag": "🇻🇪",
   "pop": "10M",
-  "budget": 3581,
-  "income": "3.581 / 3581 M",
+  "budget": 924,
+  "income": "2639",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

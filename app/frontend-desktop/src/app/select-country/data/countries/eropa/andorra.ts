@@ -8,8 +8,8 @@ export const andorra: CountryData = {
   "lat": 42.5,
   "flag": "🇦🇩",
   "pop": "19M",
-  "budget": 141,
-  "income": "141 / 141 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

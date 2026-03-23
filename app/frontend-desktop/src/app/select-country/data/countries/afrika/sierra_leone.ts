@@ -8,8 +8,8 @@ export const sierra_leone: CountryData = {
   "lat": 8.5,
   "flag": "🇸🇱",
   "pop": "10M",
-  "budget": 580000000000,
-  "income": "540.000.000 / 540 M",
+  "budget": 39,
+  "income": "111",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

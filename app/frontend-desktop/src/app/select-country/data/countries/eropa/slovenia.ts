@@ -8,8 +8,8 @@ export const slovenia: CountryData = {
   "lat": 46.11666666,
   "flag": "🇸🇮",
   "pop": "10M",
-  "budget": 361000000000,
-  "income": "260.000.000 / 260 M",
+  "budget": 632,
+  "income": "1806",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

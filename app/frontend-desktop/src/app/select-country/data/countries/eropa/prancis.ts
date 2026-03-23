@@ -8,8 +8,8 @@ export const prancis: CountryData = {
   "lat": 46,
   "flag": "🇫🇷",
   "pop": "10M",
-  "budget": 109565,
-  "income": "109.565 / 109565 M",
+  "budget": 30433,
+  "income": "86951",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const burkina_faso: CountryData = {
   "lat": 13,
   "flag": "🇧🇫",
   "pop": "10M",
-  "budget": 655000000000,
-  "income": "758.000.000 / 758 M",
+  "budget": 175,
+  "income": "500",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

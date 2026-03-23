@@ -8,8 +8,8 @@ export const armenia: CountryData = {
   "lat": 40.19,
   "flag": "🇦🇲",
   "pop": "81M",
-  "budget": 908,
-  "income": "908 / 908 M",
+  "budget": 214,
+  "income": "611",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

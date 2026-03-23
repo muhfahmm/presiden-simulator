@@ -8,8 +8,8 @@ export const kroasia: CountryData = {
   "lat": 45.16666666,
   "flag": "🇭🇷",
   "pop": "10M",
-  "budget": 788000000000,
-  "income": "915.000.000 / 915 M",
+  "budget": 758,
+  "income": "2167",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

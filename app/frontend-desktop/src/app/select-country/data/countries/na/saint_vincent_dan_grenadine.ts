@@ -8,8 +8,8 @@ export const saint_vincent_dan_grenadine: CountryData = {
   "lat": 13.25,
   "flag": "🇻🇨",
   "pop": "10M",
-  "budget": 589000000000,
-  "income": "174.000.000 / 174 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -26,7 +26,7 @@ export const gameStorage = {
   saveSession: (country: string) => {
     if (typeof window === 'undefined') return;
     const countryData = countries.find(c => c.name_id === country || c.name_en === country) || countries[0];
-    const initialBudget = typeof countryData.budget === 'number' ? countryData.budget / 1000000000 : 1240.5;
+    const initialBudget = typeof countryData.budget === 'number' ? countryData.budget : 1240;
 
     const session: GameSession = {
       country,
@@ -67,7 +67,7 @@ export const gameStorage = {
 
       if (typeof session.budget !== 'number') {
         const countryData = countries.find(c => c.name_id === session.country || c.name_en === session.country) || countries[0];
-        session.budget = typeof countryData.budget === 'number' ? countryData.budget / 1000000000000 : 1240.5;
+        session.budget = typeof countryData.budget === 'number' ? countryData.budget : 1240;
       }
       
       return session as GameSession;
@@ -108,7 +108,7 @@ export const gameStorage = {
     if (!session) {
       const country = typeof window !== 'undefined' ? (localStorage.getItem("selectedCountry") || "Indonesia") : "Indonesia";
       const countryData = countries.find(c => c.name_id === country || c.name_en === country) || countries[0];
-      const initialBudget = typeof countryData.budget === 'number' ? countryData.budget / 1000000000 : 1240.5;
+      const initialBudget = typeof countryData.budget === 'number' ? countryData.budget : 1240;
 
       session = {
         country,
@@ -147,7 +147,7 @@ export const gameStorage = {
     if (!session) {
       const country = typeof window !== 'undefined' ? (localStorage.getItem("selectedCountry") || "Indonesia") : "Indonesia";
       const countryData = countries.find(c => c.name_id === country || c.name_en === country) || countries[0];
-      const initialBudget = typeof countryData.budget === 'number' ? countryData.budget / 1000000000 : 1240.5;
+      const initialBudget = typeof countryData.budget === 'number' ? countryData.budget : 1240;
 
       session = {
         country,

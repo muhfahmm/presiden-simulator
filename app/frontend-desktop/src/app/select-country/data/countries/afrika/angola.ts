@@ -8,8 +8,8 @@ export const angola: CountryData = {
   "lat": -8.83,
   "flag": "🇦🇴",
   "pop": "39M",
-  "budget": 280000000000,
-  "income": "1.440.000.000 / 1440 M",
+  "budget": 826,
+  "income": "2361",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

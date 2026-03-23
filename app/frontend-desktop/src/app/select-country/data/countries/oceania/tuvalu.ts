@@ -8,8 +8,8 @@ export const tuvalu: CountryData = {
   "lat": -8,
   "flag": "🇹🇻",
   "pop": "10M",
-  "budget": 2,
-  "income": "2 / 2 M",
+  "budget": 10,
+  "income": "15",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

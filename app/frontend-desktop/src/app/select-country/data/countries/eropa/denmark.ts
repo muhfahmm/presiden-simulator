@@ -8,8 +8,8 @@ export const denmark: CountryData = {
   "lat": 56,
   "flag": "🇩🇰",
   "pop": "10M",
-  "budget": 216000000000,
-  "income": "335.000.000 / 335 M",
+  "budget": 3986,
+  "income": "11390",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

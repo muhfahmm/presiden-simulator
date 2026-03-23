@@ -8,8 +8,8 @@ export const botswana: CountryData = {
   "lat": -22,
   "flag": "🇧🇼",
   "pop": "10M",
-  "budget": 269000000000,
-  "income": "399.000.000 / 399 M",
+  "budget": 194,
+  "income": "556",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

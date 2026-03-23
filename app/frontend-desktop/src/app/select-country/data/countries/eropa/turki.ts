@@ -8,8 +8,8 @@ export const turki: CountryData = {
   "lat": 39,
   "flag": "🇹🇷",
   "pop": "10M",
-  "budget": 38974,
-  "income": "38.974 / 38974 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

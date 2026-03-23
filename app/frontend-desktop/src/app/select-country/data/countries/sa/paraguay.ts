@@ -8,8 +8,8 @@ export const paraguay: CountryData = {
   "lat": -23,
   "flag": "🇵🇾",
   "pop": "10M",
-  "budget": 525000000000,
-  "income": "454.000.000 / 454 M",
+  "budget": 428,
+  "income": "1222",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const maldives: CountryData = {
   "lat": 4.1,
   "flag": "🇲🇻",
   "pop": "10M",
-  "budget": 591000000000,
-  "income": "394.000.000 / 394 M",
+  "budget": 63,
+  "income": "181",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const niger: CountryData = {
   "lat": 16,
   "flag": "🇳🇪",
   "pop": "10M",
-  "budget": 485000000000,
-  "income": "465.000.000 / 465 M",
+  "budget": 146,
+  "income": "417",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

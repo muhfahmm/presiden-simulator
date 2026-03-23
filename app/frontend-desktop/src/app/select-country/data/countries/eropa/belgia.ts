@@ -8,8 +8,8 @@ export const belgia: CountryData = {
   "lat": 50.83333333,
   "flag": "🇧🇪",
   "pop": "10M",
-  "budget": 23252,
-  "income": "23.252 / 23252 M",
+  "budget": 6077,
+  "income": "17362",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

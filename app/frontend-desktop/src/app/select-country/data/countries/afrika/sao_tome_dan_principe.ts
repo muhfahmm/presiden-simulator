@@ -8,8 +8,8 @@ export const sao_tome_dan_principe: CountryData = {
   "lat": 1,
   "flag": "🇸🇹",
   "pop": "10M",
-  "budget": 480000000000,
-  "income": "494.000.000 / 494 M",
+  "budget": 10,
+  "income": "17",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

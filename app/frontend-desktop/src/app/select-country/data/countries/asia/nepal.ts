@@ -8,8 +8,8 @@ export const nepal: CountryData = {
   "lat": 28,
   "flag": "🇳🇵",
   "pop": "10M",
-  "budget": 373000000000,
-  "income": "549.000.000 / 549 M",
+  "budget": 389,
+  "income": "1111",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

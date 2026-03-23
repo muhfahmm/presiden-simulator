@@ -8,8 +8,8 @@ export const bulgaria: CountryData = {
   "lat": 43,
   "flag": "🇧🇬",
   "pop": "10M",
-  "budget": 114000000000,
-  "income": "814.000.000 / 814 M",
+  "budget": 1021,
+  "income": "2917",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

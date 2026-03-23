@@ -8,8 +8,8 @@ export const saint_lucia: CountryData = {
   "lat": 13.88333333,
   "flag": "🇱🇨",
   "pop": "10M",
-  "budget": 226000000000,
-  "income": "268.000.000 / 268 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

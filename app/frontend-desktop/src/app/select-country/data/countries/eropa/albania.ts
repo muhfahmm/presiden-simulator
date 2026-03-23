@@ -8,8 +8,8 @@ export const albania: CountryData = {
   "lat": 41.32,
   "flag": "🇦🇱",
   "pop": "33M",
-  "budget": 947,
-  "income": "947 / 947 M",
+  "budget": 214,
+  "income": "611",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

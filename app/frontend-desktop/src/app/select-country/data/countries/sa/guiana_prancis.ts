@@ -8,8 +8,8 @@ export const guiana_prancis: CountryData = {
   "lat": 4,
   "flag": "🇬🇫",
   "pop": "10M",
-  "budget": 439000000000,
-  "income": "147.000.000 / 147 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

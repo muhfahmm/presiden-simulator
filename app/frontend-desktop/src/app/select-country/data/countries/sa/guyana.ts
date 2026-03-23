@@ -8,8 +8,8 @@ export const guyana: CountryData = {
   "lat": 5,
   "flag": "🇬🇾",
   "pop": "10M",
-  "budget": 737,
-  "income": "737 / 737 M",
+  "budget": 146,
+  "income": "417",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

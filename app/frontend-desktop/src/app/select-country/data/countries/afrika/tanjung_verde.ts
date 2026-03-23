@@ -8,8 +8,8 @@ export const tanjung_verde: CountryData = {
   "lat": 16,
   "flag": "🇨🇻",
   "pop": "10M",
-  "budget": 193000000000,
-  "income": "321.000.000 / 321 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

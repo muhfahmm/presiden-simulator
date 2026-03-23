@@ -8,8 +8,8 @@ export const republik_dominika: CountryData = {
   "lat": 19,
   "flag": "🇩🇴",
   "pop": "10M",
-  "budget": 4497,
-  "income": "4.497 / 4497 M",
+  "budget": 1070,
+  "income": "3056",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

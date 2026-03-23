@@ -8,8 +8,8 @@ export const kazakhstan: CountryData = {
   "lat": 48,
   "flag": "🇰🇿",
   "pop": "10M",
-  "budget": 10385,
-  "income": "10.385 / 10385 M",
+  "budget": 2528,
+  "income": "7223",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const ukraina: CountryData = {
   "lat": 49,
   "flag": "🇺🇦",
   "pop": "10M",
-  "budget": 6612,
-  "income": "6.612 / 6612 M",
+  "budget": 1556,
+  "income": "4445",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

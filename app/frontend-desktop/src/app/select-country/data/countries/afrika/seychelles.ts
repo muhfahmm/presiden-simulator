@@ -8,8 +8,8 @@ export const seychelles: CountryData = {
   "lat": -4.58333333,
   "flag": "🇸🇨",
   "pop": "10M",
-  "budget": 523000000000,
-  "income": "275.000.000 / 275 M",
+  "budget": 19,
+  "income": "56",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

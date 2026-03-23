@@ -8,8 +8,8 @@ export const belanda: CountryData = {
   "lat": 52.5,
   "flag": "🇳🇱",
   "pop": "10M",
-  "budget": 39987,
-  "income": "39.987 / 39987 M",
+  "budget": 10598,
+  "income": "30280",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

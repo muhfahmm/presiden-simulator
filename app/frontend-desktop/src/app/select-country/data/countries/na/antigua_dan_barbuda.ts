@@ -8,8 +8,8 @@ export const antigua_dan_barbuda: CountryData = {
   "lat": 17.11,
   "flag": "🇦🇬",
   "pop": "6M",
-  "budget": 207000000000,
-  "income": "822.000.000 / 822 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

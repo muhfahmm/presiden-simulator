@@ -8,8 +8,8 @@ export const komoro: CountryData = {
   "lat": -12.16666666,
   "flag": "🇰🇲",
   "pop": "10M",
-  "budget": 50,
-  "income": "50 / 50 M",
+  "budget": 13,
+  "income": "36",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const togo: CountryData = {
   "lat": 8,
   "flag": "🇹🇬",
   "pop": "10M",
-  "budget": 171000000000,
-  "income": "217.000.000 / 217 M",
+  "budget": 88,
+  "income": "250",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const burundi: CountryData = {
   "lat": -3.5,
   "flag": "🇧🇮",
   "pop": "10M",
-  "budget": 663000000000,
-  "income": "432.000.000 / 432 M",
+  "budget": 34,
+  "income": "97",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

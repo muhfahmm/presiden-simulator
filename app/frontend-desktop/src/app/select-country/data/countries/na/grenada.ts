@@ -8,8 +8,8 @@ export const grenada: CountryData = {
   "lat": 12.11666666,
   "flag": "🇬🇩",
   "pop": "10M",
-  "budget": 222000000000,
-  "income": "335.000.000 / 335 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

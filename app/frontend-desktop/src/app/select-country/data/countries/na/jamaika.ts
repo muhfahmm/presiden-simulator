@@ -8,8 +8,8 @@ export const jamaika: CountryData = {
   "lat": 18.25,
   "flag": "🇯🇲",
   "pop": "10M",
-  "budget": 707,
-  "income": "707 / 707 M",
+  "budget": 175,
+  "income": "500",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const nikaragua: CountryData = {
   "lat": 13,
   "flag": "🇳🇮",
   "pop": "10M",
-  "budget": 659,
-  "income": "659 / 659 M",
+  "budget": 165,
+  "income": "472",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const suriah: CountryData = {
   "lat": 35,
   "flag": "🇸🇾",
   "pop": "10M",
-  "budget": 362,
-  "income": "362 / 362 M",
+  "budget": 117,
+  "income": "333",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

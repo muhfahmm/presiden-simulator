@@ -8,8 +8,8 @@ export const tunisia: CountryData = {
   "lat": 34,
   "flag": "🇹🇳",
   "pop": "10M",
-  "budget": 1901,
-  "income": "1.901 / 1901 M",
+  "budget": 457,
+  "income": "1306",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

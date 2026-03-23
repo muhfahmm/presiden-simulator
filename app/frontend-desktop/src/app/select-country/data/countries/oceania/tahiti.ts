@@ -8,8 +8,8 @@ export const tahiti: CountryData = {
   "lat": -15,
   "flag": "🇵🇫",
   "pop": "10M",
-  "budget": 379000000000,
-  "income": "220.000.000 / 220 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

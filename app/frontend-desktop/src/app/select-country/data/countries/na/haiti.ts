@@ -8,8 +8,8 @@ export const haiti: CountryData = {
   "lat": 19,
   "flag": "🇭🇹",
   "pop": "10M",
-  "budget": 573000000000,
-  "income": "998.000.000 / 998 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

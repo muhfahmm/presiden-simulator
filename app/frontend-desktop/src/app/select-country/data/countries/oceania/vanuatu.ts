@@ -8,8 +8,8 @@ export const vanuatu: CountryData = {
   "lat": -16,
   "flag": "🇻🇺",
   "pop": "10M",
-  "budget": 350000000000,
-  "income": "525.000.000 / 525 M",
+  "budget": 10,
+  "income": "28",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

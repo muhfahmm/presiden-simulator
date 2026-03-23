@@ -8,8 +8,8 @@ export const republik_uganda: CountryData = {
   "lat": 1,
   "flag": "🇺🇬",
   "pop": "10M",
-  "budget": 1971,
-  "income": "1.971 / 1971 M",
+  "budget": 486,
+  "income": "1389",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const korea_utara: CountryData = {
   "lat": 40,
   "flag": "🇰🇵",
   "pop": "10M",
-  "budget": 226000000000,
-  "income": "645.000.000 / 645 M",
+  "budget": 175,
+  "income": "500",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

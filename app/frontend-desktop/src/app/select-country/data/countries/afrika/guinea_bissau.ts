@@ -8,8 +8,8 @@ export const guinea_bissau: CountryData = {
   "lat": 12,
   "flag": "🇬🇼",
   "pop": "10M",
-  "budget": 520000000000,
-  "income": "241.000.000 / 241 M",
+  "budget": 18,
+  "income": "50",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

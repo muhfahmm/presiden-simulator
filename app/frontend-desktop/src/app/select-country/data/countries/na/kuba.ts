@@ -8,8 +8,8 @@ export const kuba: CountryData = {
   "lat": 21.5,
   "flag": "🇨🇺",
   "pop": "10M",
-  "budget": 282000000000,
-  "income": "325.000.000 / 325 M",
+  "budget": 1021,
+  "income": "2917",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

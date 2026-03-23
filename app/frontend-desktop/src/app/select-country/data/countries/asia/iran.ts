@@ -8,8 +8,8 @@ export const iran: CountryData = {
   "lat": 32,
   "flag": "🇮🇷",
   "pop": "10M",
-  "budget": 647000000000,
-  "income": "404.000.000 / 404 M",
+  "budget": 3598,
+  "income": "10279",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

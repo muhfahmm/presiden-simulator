@@ -8,8 +8,8 @@ export const mesir: CountryData = {
   "lat": 27,
   "flag": "🇪🇬",
   "pop": "118M",
-  "budget": 13783,
-  "income": "13.783 / 13783 M",
+  "budget": 3841,
+  "income": "10973",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

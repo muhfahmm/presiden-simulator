@@ -8,8 +8,8 @@ export const rwanda: CountryData = {
   "lat": -2,
   "flag": "🇷🇼",
   "pop": "10M",
-  "budget": 509,
-  "income": "509 / 509 M",
+  "budget": 126,
+  "income": "361",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

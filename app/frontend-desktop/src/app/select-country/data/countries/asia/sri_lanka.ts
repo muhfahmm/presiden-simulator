@@ -8,8 +8,8 @@ export const sri_lanka: CountryData = {
   "lat": 7,
   "flag": "🇱🇰",
   "pop": "10M",
-  "budget": 236000000000,
-  "income": "173.000.000 / 173 M",
+  "budget": 729,
+  "income": "2084",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const brazil: CountryData = {
   "lat": -10,
   "flag": "🇧🇷",
   "pop": "10M",
-  "budget": 76279,
-  "income": "76.279 / 76279 M",
+  "budget": 22655,
+  "income": "64727",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

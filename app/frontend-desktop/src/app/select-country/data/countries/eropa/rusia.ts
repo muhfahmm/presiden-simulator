@@ -8,8 +8,8 @@ export const rusia: CountryData = {
   "lat": 60,
   "flag": "🇷🇺",
   "pop": "10M",
-  "budget": 71980,
-  "income": "71.980 / 71980 M",
+  "budget": 19640,
+  "income": "56116",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

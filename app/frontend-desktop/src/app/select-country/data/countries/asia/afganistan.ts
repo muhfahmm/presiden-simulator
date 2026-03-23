@@ -8,8 +8,8 @@ export const afganistan: CountryData = {
   "lat": 34.54,
   "flag": "🇦🇫",
   "pop": "34M",
-  "budget": 632,
-  "income": "632 / 632 M",
+  "budget": 146,
+  "income": "417",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

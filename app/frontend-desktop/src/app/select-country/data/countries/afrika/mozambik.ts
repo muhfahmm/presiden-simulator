@@ -8,8 +8,8 @@ export const mozambik: CountryData = {
   "lat": -18.25,
   "flag": "🇲🇿",
   "pop": "10M",
-  "budget": 804,
-  "income": "804 / 804 M",
+  "budget": 175,
+  "income": "500",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

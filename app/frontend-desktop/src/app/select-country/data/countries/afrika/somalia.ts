@@ -8,8 +8,8 @@ export const somalia: CountryData = {
   "lat": 10,
   "flag": "🇸🇴",
   "pop": "10M",
-  "budget": 448,
-  "income": "448 / 448 M",
+  "budget": 78,
+  "income": "222",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

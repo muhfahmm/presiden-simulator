@@ -8,8 +8,8 @@ export const san_marino: CountryData = {
   "lat": 43.76666666,
   "flag": "🇸🇲",
   "pop": "10M",
-  "budget": 244000000000,
-  "income": "122.000.000 / 122 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

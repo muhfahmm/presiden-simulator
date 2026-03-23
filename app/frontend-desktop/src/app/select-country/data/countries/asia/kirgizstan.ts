@@ -8,8 +8,8 @@ export const kirgizstan: CountryData = {
   "lat": 41,
   "flag": "🇰🇬",
   "pop": "10M",
-  "budget": 506000000000,
-  "income": "953.000.000 / 953 M",
+  "budget": 117,
+  "income": "333",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

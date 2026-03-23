@@ -8,8 +8,8 @@ export const monako: CountryData = {
   "lat": 43.73333333,
   "flag": "🇲🇨",
   "pop": "10M",
-  "budget": 520000000000,
-  "income": "522.000.000 / 522 M",
+  "budget": 97,
+  "income": "278",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

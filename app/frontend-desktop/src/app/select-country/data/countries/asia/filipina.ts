@@ -8,8 +8,8 @@ export const filipina: CountryData = {
   "lat": 13,
   "flag": "🇵🇭",
   "pop": "10M",
-  "budget": 16503,
-  "income": "16.503 / 16503 M",
+  "budget": 4230,
+  "income": "12084",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
