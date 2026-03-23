@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf } from "lucide-react"
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "../../../select-country/data/pembangunan/laju-produksi";
 import { produksiMiliter } from "../../../select-country/data/pembangunan/produksi-militer";
@@ -200,7 +200,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         // --- 6 PETERNAKAN & PERIKANAN (Grouped) ---
         {
           key: "livestock_poultry",
-          groupId: "pangan",
+          groupId: "peternakan",
           label: "Ayam/Unggas",
           icon: Bird,
           desc: "Peternakan",
@@ -211,7 +211,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         },
         {
           key: "livestock_dairy",
-          groupId: "pangan",
+          groupId: "peternakan",
           label: "Sapi Perah",
           icon: Milk,
           desc: "Peternakan",
@@ -222,7 +222,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         },
         {
           key: "livestock_beef",
-          groupId: "pangan",
+          groupId: "peternakan",
           label: "Sapi Potong",
           icon: Beef,
           desc: "Peternakan",
@@ -233,7 +233,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         },
         {
           key: "livestock_sheep",
-          groupId: "pangan",
+          groupId: "peternakan",
           label: "Domba/Kambing",
           icon: Leaf,
           desc: "Peternakan",
@@ -244,7 +244,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         },
         {
           key: "livestock_shrimp",
-          groupId: "pangan",
+          groupId: "peternakan",
           label: "Udang/Kerang",
           icon: Shell,
           desc: "Peternakan",
@@ -255,7 +255,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         },
         {
           key: "livestock_fish",
-          groupId: "pangan",
+          groupId: "peternakan",
           label: "Ikan",
           icon: Fish,
           desc: "Perikanan",
@@ -268,7 +268,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         // --- 6 PERTANIAN (Grouped) ---
         {
           key: "agri_rice",
-          groupId: "pangan",
+          groupId: "pertanian",
           label: "Padi",
           icon: Sprout,
           desc: "Pertanian",
@@ -279,7 +279,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         },
         {
           key: "agri_grains",
-          groupId: "pangan",
+          groupId: "pertanian",
           label: "Gandum/Jagung",
           icon: Utensils,
           desc: "Pertanian",
@@ -290,7 +290,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         },
         {
           key: "agri_veg",
-          groupId: "pangan",
+          groupId: "pertanian",
           label: "Sayur/Umbi",
           icon: Apple,
           desc: "Pertanian",
@@ -301,7 +301,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         },
         {
           key: "agri_soy",
-          groupId: "pangan",
+          groupId: "pertanian",
           label: "Kedelai",
           icon: Bean,
           desc: "Pertanian",
@@ -312,7 +312,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         },
         {
           key: "agri_palm",
-          groupId: "pangan",
+          groupId: "pertanian",
           label: "Kelapa Sawit",
           icon: Droplets,
           desc: "Perkebunan",
@@ -323,7 +323,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         },
         {
           key: "agri_luxury",
-          groupId: "pangan",
+          groupId: "pertanian",
           label: "Kopi/Teh/Kakao",
           icon: Coffee,
           desc: "Perkebunan",
@@ -469,15 +469,34 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
                       {group.items.map((item, idx) => {
                         const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
+                        const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
+                        
+                        const subGroupLabels: Record<string, string> = {
+                          manufaktur: "Manufaktur & Industri",
+                          peternakan: "Peternakan & Perikanan",
+                          pertanian: "Agrikultur & Pertanian"
+                        };
+
+                        const showSubHeader = item.groupId && item.groupId !== prevGroupId;
 
                         return (
-                          <BuildingCard
-                            key={item.key || idx}
-                            item={item}
-                            onBuild={handleBuildRequest}
-                            construction={currentConstruction}
-                            cumulative={session?.cumulativeProduction?.[item.key] || 0}
-                          />
+                          <Fragment key={item.key || idx}>
+                            {showSubHeader && subGroupLabels[item.groupId] && (
+                              <div className="col-span-full mt-6 mb-2 flex items-center gap-4">
+                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-800 to-zinc-800"></div>
+                                <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] whitespace-nowrap bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full shadow-xl">
+                                  {subGroupLabels[item.groupId]}
+                                </span>
+                                <div className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-800 to-zinc-800"></div>
+                              </div>
+                            )}
+                            <BuildingCard
+                              item={item}
+                              onBuild={handleBuildRequest}
+                              construction={currentConstruction}
+                              cumulative={session?.cumulativeProduction?.[item.key] || 0}
+                            />
+                          </Fragment>
                         );
                       })}
                     </div>

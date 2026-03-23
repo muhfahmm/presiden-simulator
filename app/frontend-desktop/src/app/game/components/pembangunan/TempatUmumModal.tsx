@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Building2, Microscope, Search, Trophy, Gavel, Siren as PoliceIcon, Home as HomeIcon, Truck, School, Lightbulb } from "lucide-react"
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI } from "../../../select-country/data/electricity";
 import { gameStorage } from "../../gamestorage";
@@ -105,16 +105,16 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
       title: "2. Sektor Infrastruktur & Logistik (8 jenis)",
       icon: Ship,
       color: "text-cyan-400",
-      items: [
-        { key: "bicycle_path", label: "Jalur Sepeda", icon: Bike, desc: "Logistik", rate: 1, unit: "Unit", cost: 50, buildTime: 15, count: (currentData.infrastructure.bicycle_path || 0) + ((buildingDeltas["bicycle_path"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bicycle_path },
-        { key: "subway", label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transportasi", rate: 1, unit: "Unit", cost: 1500, buildTime: 120, count: (currentData.infrastructure.subway || 0) + ((buildingDeltas["subway"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.subway },
-        { key: "railway", label: "Kereta Api", icon: TrainFront, desc: "Logistik", rate: 1, unit: "Unit", cost: 1200, buildTime: 90, count: (currentData.infrastructure.railway || 0) + ((buildingDeltas["railway"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.railway },
-        { key: "highway", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", rate: 1, unit: "Unit", cost: 800, buildTime: 60, count: (currentData.infrastructure.highway || 0) + ((buildingDeltas["highway"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.highway },
-        { key: "sea_port", label: "Pelabuhan", icon: Ship, desc: "Maritim", rate: 1, unit: "Unit", cost: 3500, buildTime: 180, count: (currentData.infrastructure.sea_port || 0) + ((buildingDeltas["seaport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.sea_port },
-        { key: "airport", label: "Bandara", icon: Plane, desc: "Udara", rate: 1, unit: "Unit", cost: 4500, buildTime: 240, count: (currentData.infrastructure.airport || 0) + ((buildingDeltas["airport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.airport },
-        { key: "bus_terminal", label: "Terminal Bus", icon: Bus, desc: "Transportasi", rate: 1, unit: "Unit", cost: 300, buildTime: 45, count: (currentData.infrastructure.bus_terminal || 0) + ((buildingDeltas["bus_terminal"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bus_terminal },
-        { key: "helipad", label: "Helipad", icon: Plane, desc: "Udara", rate: 1, unit: "Unit", cost: 150, buildTime: 30, count: (currentData.infrastructure.helipad || 0) + ((buildingDeltas["helipad"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.helipad },
-      ]
+        items: [
+          { key: "bicycle_path", groupId: "logistik", label: "Jalur Sepeda", icon: Bike, desc: "Logistik", rate: 1, unit: "Unit", cost: 50, buildTime: 15, count: (currentData.infrastructure.bicycle_path || 0) + ((buildingDeltas["bicycle_path"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bicycle_path },
+          { key: "subway", groupId: "logistik", label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transportasi", rate: 1, unit: "Unit", cost: 1500, buildTime: 120, count: (currentData.infrastructure.subway || 0) + ((buildingDeltas["subway"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.subway },
+          { key: "railway", groupId: "logistik", label: "Kereta Api", icon: TrainFront, desc: "Logistik", rate: 1, unit: "Unit", cost: 1200, buildTime: 90, count: (currentData.infrastructure.railway || 0) + ((buildingDeltas["railway"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.railway },
+          { key: "highway", groupId: "logistik", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", rate: 1, unit: "Unit", cost: 800, buildTime: 60, count: (currentData.infrastructure.highway || 0) + ((buildingDeltas["highway"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.highway },
+          { key: "sea_port", groupId: "logistik", label: "Pelabuhan", icon: Ship, desc: "Maritim", rate: 1, unit: "Unit", cost: 3500, buildTime: 180, count: (currentData.infrastructure.sea_port || 0) + ((buildingDeltas["seaport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.sea_port },
+          { key: "airport", groupId: "logistik", label: "Bandara", icon: Plane, desc: "Udara", rate: 1, unit: "Unit", cost: 4500, buildTime: 240, count: (currentData.infrastructure.airport || 0) + ((buildingDeltas["airport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.airport },
+          { key: "bus_terminal", groupId: "logistik", label: "Terminal Bus", icon: Bus, desc: "Transportasi", rate: 1, unit: "Unit", cost: 300, buildTime: 45, count: (currentData.infrastructure.bus_terminal || 0) + ((buildingDeltas["bus_terminal"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bus_terminal },
+          { key: "helipad", groupId: "logistik", label: "Helipad", icon: Plane, desc: "Udara", rate: 1, unit: "Unit", cost: 150, buildTime: 30, count: (currentData.infrastructure.helipad || 0) + ((buildingDeltas["helipad"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.helipad },
+        ]
     },
     {
       id: "layanan_sosial",
@@ -123,28 +123,28 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
       color: "text-rose-400",
       items: [
         // --- PENDIDIKAN & RISET (6 JENIS) ---
-        { key: "tk_sd", label: "TK / SD", icon: Building2, desc: "Pendidikan", rate: 1, unit: "Unit", cost: 130, buildTime: 40, count: (currentData.sector_social.education.kindergarten + currentData.sector_social.education.elementary_school) + ((buildingDeltas["tk_sd"] as number) || 0), consumption: (KONSUMSI_SOSIAL.education.kindergarten + KONSUMSI_SOSIAL.education.elementary_school) / 2 },
-        { key: "smp_sma", label: "SMP / SMA", icon: Library, desc: "Pendidikan", rate: 1, unit: "Unit", cost: 320, buildTime: 60, count: (currentData.sector_social.education.middle_school + currentData.sector_social.education.high_school) + ((buildingDeltas["smp_sma"] as number) || 0), consumption: (KONSUMSI_SOSIAL.education.middle_school + KONSUMSI_SOSIAL.education.high_school) / 2 },
-        { key: "pt_lembaga", label: "PT / Lembaga", icon: Library, desc: "Pendidikan", rate: 1, unit: "Unit", cost: 2300, buildTime: 150, count: (currentData.sector_social.education.university + currentData.sector_social.education.education_institute) + ((buildingDeltas["pt_lembaga"] as number) || 0), consumption: (KONSUMSI_SOSIAL.education.university + KONSUMSI_SOSIAL.education.education_institute) / 2 },
-        { key: "lab_riset", label: "Lab & Riset", icon: Microscope, desc: "Riset", rate: 1, unit: "Unit", cost: 2900, buildTime: 120, count: (currentData.sector_social.education.laboratory + currentData.sector_social.education.research_center) + ((buildingDeltas["lab_riset"] as number) || 0), consumption: (KONSUMSI_SOSIAL.education.laboratory + KONSUMSI_SOSIAL.education.research_center) / 2 },
-        { key: "observatory", label: "Observatorium", icon: Eye, desc: "Riset", rate: 1, unit: "Unit", cost: 1200, buildTime: 180, count: (currentData.sector_social.education.observatory || 0) + ((buildingDeltas["observatory"] as number) || 0), consumption: KONSUMSI_SOSIAL.education.observatory },
-        { key: "development_center", label: "Pengembangan", icon: Lightbulb, desc: "Inovasi", rate: 1, unit: "Unit", cost: 1800, buildTime: 90, count: (currentData.sector_social.education.development_center || 0) + ((buildingDeltas["development_center"] as number) || 0), consumption: KONSUMSI_SOSIAL.education.development_center },
+        { key: "tk_sd", groupId: "pendidikan", label: "TK / SD", icon: Building2, desc: "Pendidikan", rate: 1, unit: "Unit", cost: 130, buildTime: 40, count: (currentData.sector_social.education.kindergarten + currentData.sector_social.education.elementary_school) + ((buildingDeltas["tk_sd"] as number) || 0), consumption: (KONSUMSI_SOSIAL.education.kindergarten + KONSUMSI_SOSIAL.education.elementary_school) / 2 },
+        { key: "smp_sma", groupId: "pendidikan", label: "SMP / SMA", icon: Library, desc: "Pendidikan", rate: 1, unit: "Unit", cost: 320, buildTime: 60, count: (currentData.sector_social.education.middle_school + currentData.sector_social.education.high_school) + ((buildingDeltas["smp_sma"] as number) || 0), consumption: (KONSUMSI_SOSIAL.education.middle_school + KONSUMSI_SOSIAL.education.high_school) / 2 },
+        { key: "pt_lembaga", groupId: "pendidikan", label: "PT / Lembaga", icon: Library, desc: "Pendidikan", rate: 1, unit: "Unit", cost: 2300, buildTime: 150, count: (currentData.sector_social.education.university + currentData.sector_social.education.education_institute) + ((buildingDeltas["pt_lembaga"] as number) || 0), consumption: (KONSUMSI_SOSIAL.education.university + KONSUMSI_SOSIAL.education.education_institute) / 2 },
+        { key: "lab_riset", groupId: "pendidikan", label: "Lab & Riset", icon: Microscope, desc: "Riset", rate: 1, unit: "Unit", cost: 2900, buildTime: 120, count: (currentData.sector_social.education.laboratory + currentData.sector_social.education.research_center) + ((buildingDeltas["lab_riset"] as number) || 0), consumption: (KONSUMSI_SOSIAL.education.laboratory + KONSUMSI_SOSIAL.education.research_center) / 2 },
+        { key: "observatory", groupId: "pendidikan", label: "Observatorium", icon: Eye, desc: "Riset", rate: 1, unit: "Unit", cost: 1200, buildTime: 180, count: (currentData.sector_social.education.observatory || 0) + ((buildingDeltas["observatory"] as number) || 0), consumption: KONSUMSI_SOSIAL.education.observatory },
+        { key: "development_center", groupId: "pendidikan", label: "Pengembangan", icon: Lightbulb, desc: "Inovasi", rate: 1, unit: "Unit", cost: 1800, buildTime: 90, count: (currentData.sector_social.education.development_center || 0) + ((buildingDeltas["development_center"] as number) || 0), consumption: KONSUMSI_SOSIAL.education.development_center },
 
         // --- KESEHATAN & OLAHRAGA (6 JENIS) ---
-        { key: "large_hospital", label: "RS Besar", icon: Building2, desc: "Kesehatan", rate: 1, unit: "Unit", cost: 3500, buildTime: 180, count: (currentData.sector_social.health.large_hospital || 0) + ((buildingDeltas["large_hospital"] as number) || 0), consumption: KONSUMSI_SOSIAL.health.large_hospital },
-        { key: "small_hospital", label: "RS Kecil", icon: Building2, desc: "Kesehatan", rate: 1, unit: "Unit", cost: 800, buildTime: 45, count: (currentData.sector_social.health.small_hospital || 0) + ((buildingDeltas["small_hospital"] as number) || 0), consumption: KONSUMSI_SOSIAL.health.small_hospital },
-        { key: "diagnostic_center", label: "Diagnostik", icon: Search, desc: "Kesehatan", rate: 1, unit: "Unit", cost: 300, buildTime: 30, count: (currentData.sector_social.health.diagnostic_center || 0) + ((buildingDeltas["diagnostic_center"] as number) || 0), consumption: KONSUMSI_SOSIAL.health.diagnostic_center },
-        { key: "swimming_pool", label: "Kolam Renang", icon: Waves, desc: "Olahraga", rate: 1, unit: "Unit", cost: 150, buildTime: 30, count: (currentData.sector_social.sports.swimming_pool || 0) + ((buildingDeltas["swimming_pool"] as number) || 0), consumption: KONSUMSI_SOSIAL.sports.swimming_pool },
-        { key: "racing_circuit", label: "Sirkuit Balap", icon: Flame, desc: "Olahraga", rate: 1, unit: "Unit", cost: 2500, buildTime: 180, count: (currentData.sector_social.sports.racing_circuit || 0) + ((buildingDeltas["racing_circuit"] as number) || 0), consumption: KONSUMSI_SOSIAL.sports.racing_circuit },
-        { key: "stadium_int", label: "Stadion (Nas/Int)", icon: Trophy, desc: "Olahraga", rate: 1, unit: "Unit", cost: 6700, buildTime: 240, count: (currentData.sector_social.sports.stadium + currentData.sector_social.sports.international_stadium) + ((buildingDeltas["stadium_int"] as number) || 0), consumption: (KONSUMSI_SOSIAL.sports.stadium + KONSUMSI_SOSIAL.sports.international_stadium) / 2 },
+        { key: "large_hospital", groupId: "kesehatan", label: "RS Besar", icon: Building2, desc: "Kesehatan", rate: 1, unit: "Unit", cost: 3500, buildTime: 180, count: (currentData.sector_social.health.large_hospital || 0) + ((buildingDeltas["large_hospital"] as number) || 0), consumption: KONSUMSI_SOSIAL.health.large_hospital },
+        { key: "small_hospital", groupId: "kesehatan", label: "RS Kecil", icon: Building2, desc: "Kesehatan", rate: 1, unit: "Unit", cost: 800, buildTime: 45, count: (currentData.sector_social.health.small_hospital || 0) + ((buildingDeltas["small_hospital"] as number) || 0), consumption: KONSUMSI_SOSIAL.health.small_hospital },
+        { key: "diagnostic_center", groupId: "kesehatan", label: "Diagnostik", icon: Search, desc: "Kesehatan", rate: 1, unit: "Unit", cost: 300, buildTime: 30, count: (currentData.sector_social.health.diagnostic_center || 0) + ((buildingDeltas["diagnostic_center"] as number) || 0), consumption: KONSUMSI_SOSIAL.health.diagnostic_center },
+        { key: "swimming_pool", groupId: "kesehatan", label: "Kolam Renang", icon: Waves, desc: "Olahraga", rate: 1, unit: "Unit", cost: 150, buildTime: 30, count: (currentData.sector_social.sports.swimming_pool || 0) + ((buildingDeltas["swimming_pool"] as number) || 0), consumption: KONSUMSI_SOSIAL.sports.swimming_pool },
+        { key: "racing_circuit", groupId: "kesehatan", label: "Sirkuit Balap", icon: Flame, desc: "Olahraga", rate: 1, unit: "Unit", cost: 2500, buildTime: 180, count: (currentData.sector_social.sports.racing_circuit || 0) + ((buildingDeltas["racing_circuit"] as number) || 0), consumption: KONSUMSI_SOSIAL.sports.racing_circuit },
+        { key: "stadium_int", groupId: "kesehatan", label: "Stadion (Nas/Int)", icon: Trophy, desc: "Olahraga", rate: 1, unit: "Unit", cost: 6700, buildTime: 240, count: (currentData.sector_social.sports.stadium + currentData.sector_social.sports.international_stadium) + ((buildingDeltas["stadium_int"] as number) || 0), consumption: (KONSUMSI_SOSIAL.sports.stadium + KONSUMSI_SOSIAL.sports.international_stadium) / 2 },
 
         // --- HUKUM & KEAMANAN (6 JENIS) ---
-        { key: "police_academy", label: "Akademi Polisi", icon: GraduationCap, desc: "Keamanan", rate: 1, unit: "Unit", cost: 400, buildTime: 60, count: (currentData.sector_social.law.police_academy || 0) + ((buildingDeltas["police_academy"] as number) || 0), consumption: KONSUMSI_SOSIAL.law.police_academy },
-        { key: "police_station", label: "Kepolisian", icon: ShieldAlert, desc: "Keamanan", rate: 1, unit: "Unit", cost: 250, buildTime: 60, count: (currentData.sector_social.law.police_station || 0) + ((buildingDeltas["police_station"] as number) || 0), consumption: KONSUMSI_SOSIAL.law.police_station },
-        { key: "police_fleet", label: "Armada Mobil", icon: Car, desc: "Keamanan", rate: 1, unit: "Unit", cost: 50, buildTime: 15, count: (currentData.sector_social.law.police_car_fleet || 0) + ((buildingDeltas["police_fleet"] as number) || 0), consumption: KONSUMSI_SOSIAL.law.police_car_fleet },
-        { key: "kejaksaan_court", label: "Kejaksaan/Court", icon: Gavel, desc: "Hukum", rate: 1, unit: "Unit", cost: 1200, buildTime: 90, count: (currentData.sector_social.law.prosecution_office + currentData.sector_social.law.court) + ((buildingDeltas["kejaksaan_court"] as number) || 0), consumption: (KONSUMSI_SOSIAL.law.prosecution_office + KONSUMSI_SOSIAL.law.court) / 2 },
-        { key: "legal_aid", label: "Bantuan Hukum", icon: Scale, desc: "Hukum", rate: 1, unit: "Unit", cost: 300, buildTime: 30, count: (currentData.sector_social.law.legal_aid_center || 0) + ((buildingDeltas["legal_aid"] as number) || 0), consumption: KONSUMSI_SOSIAL.law.legal_aid_center },
-        { key: "stasiun_komando", label: "Pusat Komando", icon: Siren, desc: "Keamanan", rate: 1, unit: "Unit", cost: 800, buildTime: 45, count: (currentData.sector_social.law.police_fleet.pusat_komando.stasiun_polisi || 0) + ((buildingDeltas["stasiun_komando"] as number) || 0), consumption: KONSUMSI_SOSIAL.law.police_station },
+        { key: "police_academy", groupId: "law", label: "Akademi Polisi", icon: GraduationCap, desc: "Keamanan", rate: 1, unit: "Unit", cost: 400, buildTime: 60, count: (currentData.sector_social.law.police_academy || 0) + ((buildingDeltas["police_academy"] as number) || 0), consumption: KONSUMSI_SOSIAL.law.police_academy },
+        { key: "police_station", groupId: "law", label: "Kepolisian", icon: ShieldAlert, desc: "Keamanan", rate: 1, unit: "Unit", cost: 250, buildTime: 60, count: (currentData.sector_social.law.police_station || 0) + ((buildingDeltas["police_station"] as number) || 0), consumption: KONSUMSI_SOSIAL.law.police_station },
+        { key: "police_fleet", groupId: "law", label: "Armada Mobil", icon: Car, desc: "Keamanan", rate: 1, unit: "Unit", cost: 50, buildTime: 15, count: (currentData.sector_social.law.police_car_fleet || 0) + ((buildingDeltas["police_fleet"] as number) || 0), consumption: KONSUMSI_SOSIAL.law.police_car_fleet },
+        { key: "kejaksaan_court", groupId: "law", label: "Kejaksaan/Court", icon: Gavel, desc: "Hukum", rate: 1, unit: "Unit", cost: 1200, buildTime: 90, count: (currentData.sector_social.law.prosecution_office + currentData.sector_social.law.court) + ((buildingDeltas["kejaksaan_court"] as number) || 0), consumption: (KONSUMSI_SOSIAL.law.prosecution_office + KONSUMSI_SOSIAL.law.court) / 2 },
+        { key: "legal_aid", groupId: "law", label: "Bantuan Hukum", icon: Scale, desc: "Hukum", rate: 1, unit: "Unit", cost: 300, buildTime: 30, count: (currentData.sector_social.law.legal_aid_center || 0) + ((buildingDeltas["legal_aid"] as number) || 0), consumption: KONSUMSI_SOSIAL.law.legal_aid_center },
+        { key: "stasiun_komando", groupId: "law", label: "Pusat Komando", icon: Siren, desc: "Keamanan", rate: 1, unit: "Unit", cost: 800, buildTime: 45, count: (currentData.sector_social.law.police_fleet.pusat_komando.stasiun_polisi || 0) + ((buildingDeltas["stasiun_komando"] as number) || 0), consumption: KONSUMSI_SOSIAL.law.police_station },
       ]
     }
   ];
@@ -249,9 +249,40 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
                 <div className={`grid transition-all duration-700 ease-in-out ${!collapsedSectors.has(group.id) ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
                   <div className="overflow-hidden">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
-                      {group.items.map((item, idx) => {
+                      {group.items.map((item: any, idx: number) => {
                         const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
-                        return <BuildingCard key={item.key || idx} item={item} onBuild={handleBuildRequest} construction={currentConstruction} cumulative={0} />
+                        const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
+                        
+                        const subGroupLabels: Record<string, string> = {
+                          manufaktur: "Manufaktur & Industri",
+                          peternakan: "Peternakan & Perikanan",
+                          pertanian: "Agrikultur & Pertanian",
+                          pendidikan: "Pendidikan & Riset",
+                          kesehatan: "Kesehatan, Olahraga & Media",
+                          law: "Hukum, Pertahanan & Keamanan"
+                        };
+
+                        const showSubHeader = item.groupId && item.groupId !== prevGroupId;
+
+                        return (
+                          <Fragment key={item.key || idx}>
+                            {showSubHeader && subGroupLabels[item.groupId] && (
+                              <div className="col-span-full mt-6 mb-2 flex items-center gap-4">
+                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-800 to-zinc-800"></div>
+                                <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] whitespace-nowrap bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full shadow-xl">
+                                  {subGroupLabels[item.groupId]}
+                                </span>
+                                <div className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-800 to-zinc-800"></div>
+                              </div>
+                            )}
+                            <BuildingCard
+                              item={item}
+                              onBuild={handleBuildRequest}
+                              construction={currentConstruction}
+                              cumulative={0}
+                            />
+                          </Fragment>
+                        );
                       })}
                     </div>
                   </div>
