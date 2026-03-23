@@ -11,8 +11,8 @@ export default function HutangModal({ isOpen, onClose }: ModalProps) {
   if (!isOpen) return null;
 
   const debtStats = [
-    { label: "Hutang Luar Negeri", value: "Rp 8,500 T", status: "Critical", color: "text-red-400" },
-    { label: "Bunga Tahunan", value: "Rp 540 T", status: "Steady", color: "text-amber-400" },
+    { label: "Hutang Luar Negeri", value: "8,500", status: "Critical", color: "text-red-400" },
+    { label: "Bunga Tahunan", value: "540", status: "Steady", color: "text-amber-400" },
     { label: "Rasio Hutang/PDB", value: "38.2%", status: "Safe Limit", color: "text-green-400" }
   ];
 
@@ -59,9 +59,9 @@ export default function HutangModal({ isOpen, onClose }: ModalProps) {
               </h3>
               <div className="space-y-4">
                 {[
-                  { name: "Bank Dunia", amount: "Rp 1,200 T" },
-                  { name: "IMF", amount: "Rp 850 T" },
-                  { name: "Bilateral (Tiongkok/Jepang)", amount: "Rp 4,500 T" }
+                  { name: "Bank Dunia", amount: "1,200" },
+                  { name: "IMF", amount: "850" },
+                  { name: "Bilateral (Tiongkok/Jepang)", amount: "4,500" }
                 ].map((lender, i) => (
                   <div key={i} className="flex items-center justify-between py-2 border-b border-zinc-800/50 last:border-0">
                     <span className="text-xs text-zinc-400 font-medium">{lender.name}</span>

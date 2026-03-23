@@ -199,7 +199,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         unit: val.unit,
         count: (currentData.sector_electricity[key as keyof typeof currentData.sector_electricity] || 0) + ((buildingDeltas[key] as number) || 0),
         income: 0,
-        cost: 350,
+        cost: 35,
         buildTime: val.buildTime || 90
       }))
     },
@@ -222,7 +222,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
             unit: val.unit,
             count: getManufacturingCount(key),
             income: 0,
-            cost: 450,
+            cost: 45,
             buildTime: val.buildTime || 45
           })),
 
@@ -236,7 +236,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_livestock.chicken + currentData.sector_livestock.poultry) + ((buildingDeltas["egg_farm"] as number) || 0),
-          income: 0, cost: 150, buildTime: 20
+          income: 0, cost: 8, buildTime: 20
         },
         {
           key: "livestock_dairy",
@@ -247,7 +247,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_livestock.dairy_cow) + ((buildingDeltas["dairy_farm"] as number) || 0),
-          income: 0, cost: 150, buildTime: 20
+          income: 0, cost: 8, buildTime: 20
         },
         {
           key: "livestock_beef",
@@ -258,7 +258,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_livestock.beef_cow) + ((buildingDeltas["cattle_farm"] as number) || 0),
-          income: 0, cost: 150, buildTime: 20
+          income: 0, cost: 8, buildTime: 20
         },
         {
           key: "livestock_sheep",
@@ -269,7 +269,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_livestock.sheep_goat) + ((buildingDeltas["sheep_farm"] as number) || 0),
-          income: 0, cost: 150, buildTime: 20
+          income: 0, cost: 8, buildTime: 20
         },
         {
           key: "livestock_shrimp",
@@ -280,7 +280,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_livestock.shrimp + currentData.sector_livestock.shellfish) + ((buildingDeltas["shrimp_farm"] as number) || 0),
-          income: 0, cost: 150, buildTime: 20
+          income: 0, cost: 8, buildTime: 20
         },
         {
           key: "livestock_fish",
@@ -291,7 +291,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_livestock.fish) + ((buildingDeltas["freshwater_fish_farm"] as number) || 0),
-          income: 0, cost: 150, buildTime: 20
+          income: 0, cost: 8, buildTime: 20
         },
 
         // --- 6 PERTANIAN (Grouped) ---
@@ -304,7 +304,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_agriculture.rice) + ((buildingDeltas["paddy_field"] as number) || 0),
-          income: 0, cost: 100, buildTime: 20
+          income: 0, cost: 5, buildTime: 20
         },
         {
           key: "agri_grains",
@@ -315,7 +315,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_agriculture.wheat + currentData.sector_agriculture.corn) + ((buildingDeltas["wheat_field"] as number) || 0),
-          income: 0, cost: 100, buildTime: 20
+          income: 0, cost: 5, buildTime: 20
         },
         {
           key: "agri_veg",
@@ -326,7 +326,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_agriculture.vegetables + currentData.sector_agriculture.tubers) + ((buildingDeltas["vegetable_farm"] as number) || 0),
-          income: 0, cost: 100, buildTime: 20
+          income: 0, cost: 5, buildTime: 20
         },
         {
           key: "agri_soy",
@@ -337,7 +337,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_agriculture.soy) + ((buildingDeltas["soybean_field"] as number) || 0),
-          income: 0, cost: 100, buildTime: 20
+          income: 0, cost: 5, buildTime: 20
         },
         {
           key: "agri_palm",
@@ -348,7 +348,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_agriculture.palm_oil) + ((buildingDeltas["palm_oil_plantation"] as number) || 0),
-          income: 0, cost: 100, buildTime: 20
+          income: 0, cost: 5, buildTime: 20
         },
         {
           key: "agri_luxury",
@@ -359,7 +359,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_agriculture.coffee + currentData.sector_agriculture.tea + currentData.sector_agriculture.cocoa) + ((buildingDeltas["coffee_plantation"] as number) || 0),
-          income: 0, cost: 100, buildTime: 20
+          income: 0, cost: 5, buildTime: 20
         }
       ]
     },
@@ -380,7 +380,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           unit: val.unit,
           count: count + ((buildingDeltas[key] as number) || 0),
           income: val.income,
-          cost: 250,
+          cost: 30,
           buildTime: val.buildTime || 30
         };
       })
@@ -551,7 +551,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
               <div className="w-full grid grid-cols-2 gap-3">
                 <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                   <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Total</span>
-                  <span className="text-xl font-black text-amber-500 group-hover:scale-110 transition-transform duration-300 tracking-tight">Rp {confirmBuild.cost * quantity} T</span>
+                  <span className="text-xl font-black text-amber-500 group-hover:scale-110 transition-transform duration-300 tracking-tight">{confirmBuild.cost * quantity}</span>
                 </div>
                 <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                   <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Waktu Total</span>
@@ -726,7 +726,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
           {item.income > 0 && (
             <div className="flex items-center gap-2">
               <Coins size={12} className="text-emerald-400" />
-              <span className="text-[12px] font-bold text-emerald-400">Pendapatan: +Rp {item.income} M/unit</span>
+              <span className="text-[12px] font-bold text-emerald-400">Pendapatan: +{item.income} /unit</span>
             </div>
           )}
 
@@ -746,7 +746,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
             {item.income > 0 && (
               <div className="flex justify-between items-baseline gap-2 border-t border-zinc-800/10 pt-1.5 mt-1">
                 <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter">Pendapatan:</span>
-                <span className="text-[14px] font-black text-emerald-400 tracking-tight">Rp {(item.count * item.income).toLocaleString('id-ID')} M <span className="text-[10px] text-emerald-400/60 font-normal uppercase italic">/hr</span></span>
+                <span className="text-[14px] font-black text-emerald-400 tracking-tight">{(item.count * item.income).toLocaleString('id-ID')} <span className="text-[10px] text-emerald-400/60 font-normal uppercase italic">/hr</span></span>
               </div>
             )}
             {/* Cumulative / Total Display for ALL buildings */}
@@ -784,7 +784,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
             </div>
           ) : (
             <div className="flex items-center justify-between mt-2">
-              <span className="text-xs text-zinc-400 font-bold tracking-tight">Biaya: Rp {item.cost} M</span>
+              <span className="text-xs text-zinc-400 font-bold tracking-tight">Biaya: {item.cost}</span>
               <button
                 onClick={(e) => { e.stopPropagation(); onBuild(item); }}
                 className="px-5 py-2 rounded-xl bg-cyan-600/10 text-cyan-500 text-xs font-black uppercase tracking-widest border border-cyan-500/30 hover:bg-cyan-600 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95"

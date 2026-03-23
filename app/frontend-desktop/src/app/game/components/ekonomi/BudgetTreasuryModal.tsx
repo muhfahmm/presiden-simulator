@@ -11,9 +11,9 @@ export default function BudgetTreasuryModal({ isOpen, onClose }: ModalProps) {
   if (!isOpen) return null;
 
   const budgetStats = [
-    { label: "Penerimaan Negara", value: "Rp 1,450 T", trend: "up", icon: ArrowUpCircle, color: "text-green-500" },
-    { label: "Belanja Negara", value: "Rp 1,680 T", trend: "up", icon: ArrowDownCircle, color: "text-red-500" },
-    { label: "Kurs / USD", value: "Rp 15,200", trend: "down", icon: Landmark, color: "text-blue-500" }
+    { label: "Penerimaan Negara", value: "1,450", trend: "up", icon: ArrowUpCircle, color: "text-green-500" },
+    { label: "Belanja Negara", value: "1,680", trend: "up", icon: ArrowDownCircle, color: "text-red-500" },
+    { label: "Kurs / USD", value: "15,200", trend: "down", icon: Landmark, color: "text-blue-500" }
   ];
 
   return (

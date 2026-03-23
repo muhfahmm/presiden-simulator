@@ -257,7 +257,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                   {/* Buy Section */}
                   <div className="flex flex-col gap-1 flex-shrink-0">
                     <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1">
-                      Rp {importPrice}
+                      {importPrice}
                     </div>
                     <button className="px-6 py-3 bg-red-500 text-white font-black uppercase text-[9px] lg:text-[10px] tracking-[0.2em] rounded-xl hover:bg-red-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap">
                       Eksekusi Impor
@@ -267,7 +267,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                   {/* Sell Section */}
                   <div className="flex flex-col gap-1 flex-shrink-0">
                     <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1">
-                      Rp {exportPrice}
+                      {exportPrice}
                     </div>
                     <button className="px-6 py-3 bg-green-500 text-white font-black uppercase text-[9px] lg:text-[10px] tracking-[0.2em] rounded-xl hover:bg-green-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap">
                       Eksekusi Ekspor

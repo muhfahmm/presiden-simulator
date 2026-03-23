@@ -20,7 +20,7 @@ export function calculateDailyBudgetDelta(countryData: CountryData, session: Gam
 
   // Maintenance costs for new buildings
   const buildingDeltaCount = Object.values(session.buildingDeltas).reduce((sum, count) => sum + count, 0);
-  const dailyMaintenanceExpense = buildingDeltaCount * 0.5; // 0.5 game units per new building per day
+  const dailyMaintenanceExpense = buildingDeltaCount * 0.05; // 0.05 game units per new building per day
 
   // 3. NET DELTA
   const netDelta = dailyTaxRevenue - dailyMilitaryExpense - dailyMaintenanceExpense;

@@ -101,17 +101,17 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
       icon: Shield,
       color: "text-red-500",
       items: [
-        { key: "prison", groupId: "pertahanan", label: "Penjara", icon: Gavel, desc: "Lembaga Pemasyarakatan", cost: 250, buildTime: 60, count: (currentData.sector_defense.prison || 0) + ((buildingDeltas["prison"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.prison },
-        { key: "barracks", groupId: "pertahanan", label: "Barak Militer", icon: MilitaryIcon, desc: "Hunian Tentara", cost: 400, buildTime: 45, count: (currentData.sector_defense.barracks || 0) + ((buildingDeltas["barracks"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.barracks },
-        { key: "armory", groupId: "pertahanan", label: "Gudang Senjata", icon: Archive, desc: "Penyimpanan Amunisi", cost: 300, buildTime: 30, count: (currentData.sector_defense.armory || 0) + ((buildingDeltas["armory"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.armory },
-        { key: "tank_hangar", groupId: "pertahanan", label: "Hangar Tank", icon: Truck, desc: "Garasi Tempur", cost: 500, buildTime: 60, count: (currentData.sector_defense.tank_hangar || 0) + ((buildingDeltas["tank_hangar"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.tank_hangar },
-        { key: "military_academy", groupId: "pertahanan", label: "Akademi Militer", icon: Landmark, desc: "Pendidikan Perwira", cost: 1500, buildTime: 180, count: (currentData.sector_defense.military_academy || 0) + ((buildingDeltas["military_academy"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.military_academy },
-        { key: "command_center", groupId: "pertahanan", label: "Pusat Komando", icon: TowerControl, desc: "Komando Tertinggi", cost: 4500, buildTime: 240, count: (currentData.sector_military_strategic.command_center || 0) + ((buildingDeltas["command_center"] as number) || 0), consumption: KONSUMSI_STRATEGIC.command_center },
-        { key: "military_air_base", groupId: "pertahanan", label: "Pangkalan Udara", icon: MapPin, desc: "Fasilitas Dirgantara", cost: 2800, buildTime: 180, count: (currentData.sector_military_strategic.military_air_base || 0) + ((buildingDeltas["military_air_base"] as number) || 0), consumption: KONSUMSI_STRATEGIC.military_air_base },
-        { key: "military_naval_base", groupId: "pertahanan", label: "Pangkalan Laut", icon: Ship, desc: "Fasilitas Maritim", cost: 3200, buildTime: 210, count: (currentData.sector_military_strategic.military_naval_base || 0) + ((buildingDeltas["military_naval_base"] as number) || 0), consumption: KONSUMSI_STRATEGIC.military_naval_base },
-        { key: "arms_factory", groupId: "pertahanan", label: "Pabrik Alutsista", icon: HardHat, desc: "Manufaktur Senjata", cost: 3500, buildTime: 240, count: (currentData.sector_military_strategic.arms_factory || 0) + ((buildingDeltas["arms_factory"] as number) || 0), consumption: KONSUMSI_STRATEGIC.arms_factory },
-        { key: "space_program", groupId: "pertahanan", label: "Lintas Antariksa", icon: Rocket, desc: "Program Satelit", cost: 6000, buildTime: 365, count: (currentData.sector_military_strategic.space_program || 0) + ((buildingDeltas["space_program"] as number) || 0), consumption: KONSUMSI_STRATEGIC.space_program },
-        { key: "cyber_shield", groupId: "pertahanan", label: "Cyber Defense", icon: ShieldAlert, desc: "Keamanan Digital", cost: 1800, buildTime: 120, count: Math.floor(currentData.sector_military_strategic.cyber_defense), consumption: 50 }
+        { key: "prison", groupId: "pertahanan", label: "Penjara", icon: Gavel, desc: "Lembaga Pemasyarakatan", cost: 25, buildTime: 60, count: (currentData.sector_defense.prison || 0) + ((buildingDeltas["prison"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.prison },
+        { key: "barracks", groupId: "pertahanan", label: "Barak Militer", icon: MilitaryIcon, desc: "Hunian Tentara", cost: 40, buildTime: 45, count: (currentData.sector_defense.barracks || 0) + ((buildingDeltas["barracks"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.barracks },
+        { key: "armory", groupId: "pertahanan", label: "Gudang Senjata", icon: Archive, desc: "Penyimpanan Amunisi", cost: 30, buildTime: 30, count: (currentData.sector_defense.armory || 0) + ((buildingDeltas["armory"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.armory },
+        { key: "tank_hangar", groupId: "pertahanan", label: "Hangar Tank", icon: Truck, desc: "Garasi Tempur", cost: 50, buildTime: 60, count: (currentData.sector_defense.tank_hangar || 0) + ((buildingDeltas["tank_hangar"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.tank_hangar },
+        { key: "military_academy", groupId: "pertahanan", label: "Akademi Militer", icon: Landmark, desc: "Pendidikan Perwira", cost: 150, buildTime: 180, count: (currentData.sector_defense.military_academy || 0) + ((buildingDeltas["military_academy"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.military_academy },
+        { key: "command_center", groupId: "pertahanan", label: "Pusat Komando", icon: TowerControl, desc: "Komando Tertinggi", cost: 450, buildTime: 240, count: (currentData.sector_military_strategic.command_center || 0) + ((buildingDeltas["command_center"] as number) || 0), consumption: KONSUMSI_STRATEGIC.command_center },
+        { key: "military_air_base", groupId: "pertahanan", label: "Pangkalan Udara", icon: MapPin, desc: "Fasilitas Dirgantara", cost: 280, buildTime: 180, count: (currentData.sector_military_strategic.military_air_base || 0) + ((buildingDeltas["military_air_base"] as number) || 0), consumption: KONSUMSI_STRATEGIC.military_air_base },
+        { key: "military_naval_base", groupId: "pertahanan", label: "Pangkalan Laut", icon: Ship, desc: "Fasilitas Maritim", cost: 320, buildTime: 210, count: (currentData.sector_military_strategic.military_naval_base || 0) + ((buildingDeltas["military_naval_base"] as number) || 0), consumption: KONSUMSI_STRATEGIC.military_naval_base },
+        { key: "arms_factory", groupId: "pertahanan", label: "Pabrik Alutsista", icon: HardHat, desc: "Manufaktur Senjata", cost: 350, buildTime: 240, count: (currentData.sector_military_strategic.arms_factory || 0) + ((buildingDeltas["arms_factory"] as number) || 0), consumption: KONSUMSI_STRATEGIC.arms_factory },
+        { key: "space_program", groupId: "pertahanan", label: "Lintas Antariksa", icon: Rocket, desc: "Program Satelit", cost: 600, buildTime: 365, count: (currentData.sector_military_strategic.space_program || 0) + ((buildingDeltas["space_program"] as number) || 0), consumption: KONSUMSI_STRATEGIC.space_program },
+        { key: "cyber_shield", groupId: "pertahanan", label: "Cyber Defense", icon: ShieldAlert, desc: "Keamanan Digital", cost: 180, buildTime: 120, count: Math.floor(currentData.sector_military_strategic.cyber_defense), consumption: 50 }
       ]
     },
     {
@@ -121,19 +121,19 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
       color: "text-orange-500",
       items: [
         // ARMADA DARAT
-        { key: "tank", groupId: "darat", label: "Main Battle Tank", icon: Truck, desc: "Kavaleri Darat", cost: 200, buildTime: 30, count: (currentData.sector_defense.military_fleet.darat.main_battle_tank || 0), consumption: KONSUMSI_FLEET.darat.main_battle_tank },
-        { key: "apc", groupId: "darat", label: "APC / Rantis", icon: Truck, desc: "Transportasi Taktis", cost: 80, buildTime: 15, count: (currentData.sector_defense.military_fleet.darat.apc || 0), consumption: KONSUMSI_FLEET.darat.apc },
-        { key: "artileri", groupId: "darat", label: "Artileri Berat", icon: Target, desc: "Pukulan Jarak Jauh", cost: 150, buildTime: 45, count: (currentData.sector_defense.military_fleet.darat.artileri_berat || 0), consumption: KONSUMSI_FLEET.darat.artileri_berat },
+        { key: "tank", groupId: "darat", label: "Main Battle Tank", icon: Truck, desc: "Kavaleri Darat", cost: 20, buildTime: 30, count: (currentData.sector_defense.military_fleet.darat.main_battle_tank || 0), consumption: KONSUMSI_FLEET.darat.main_battle_tank },
+        { key: "apc", groupId: "darat", label: "APC / Rantis", icon: Truck, desc: "Transportasi Taktis", cost: 8, buildTime: 15, count: (currentData.sector_defense.military_fleet.darat.apc || 0), consumption: KONSUMSI_FLEET.darat.apc },
+        { key: "artileri", groupId: "darat", label: "Artileri Berat", icon: Target, desc: "Pukulan Jarak Jauh", cost: 15, buildTime: 45, count: (currentData.sector_defense.military_fleet.darat.artileri_berat || 0), consumption: KONSUMSI_FLEET.darat.artileri_berat },
         
         // ARMADA LAUT
-        { key: "carrier", groupId: "laut", label: "Kapal Induk", icon: Ship, desc: "Pangkalan Apung", cost: 7500, buildTime: 480, count: (currentData.sector_defense.military_fleet.laut.kapal_induk || 0), consumption: KONSUMSI_FLEET.laut.kapal_induk },
-        { key: "destroyer", groupId: "laut", label: "Kapal Destroyer", icon: Waves, desc: "Perusak Maritim", cost: 2800, buildTime: 360, count: (currentData.sector_defense.military_fleet.laut.kapal_destroyer || 0), consumption: KONSUMSI_FLEET.laut.kapal_destroyer },
-        { key: "submarine", groupId: "laut", label: "Kapal Selam N", icon: RadioTower, desc: "Siluman Bawah Air", cost: 4200, buildTime: 420, count: (currentData.sector_defense.military_fleet.laut.kapal_selam_nuklir || 0), consumption: KONSUMSI_FLEET.laut.kapal_selam_nuklir },
+        { key: "carrier", groupId: "laut", label: "Kapal Induk", icon: Ship, desc: "Pangkalan Apung", cost: 750, buildTime: 480, count: (currentData.sector_defense.military_fleet.laut.kapal_induk || 0), consumption: KONSUMSI_FLEET.laut.kapal_induk },
+        { key: "destroyer", groupId: "laut", label: "Kapal Destroyer", icon: Waves, desc: "Perusak Maritim", cost: 280, buildTime: 360, count: (currentData.sector_defense.military_fleet.laut.kapal_destroyer || 0), consumption: KONSUMSI_FLEET.laut.kapal_destroyer },
+        { key: "submarine", groupId: "laut", label: "Kapal Selam N", icon: RadioTower, desc: "Siluman Bawah Air", cost: 420, buildTime: 420, count: (currentData.sector_defense.military_fleet.laut.kapal_selam_nuklir || 0), consumption: KONSUMSI_FLEET.laut.kapal_selam_nuklir },
         
         // ARMADA UDARA
-        { key: "stealth_jet", groupId: "udara", label: "Jet Stealth", icon: Plane, desc: "Supremasi Udara", cost: 2500, buildTime: 300, count: (currentData.sector_defense.military_fleet.udara.jet_tempur_stealth || 0), consumption: KONSUMSI_FLEET.udara.jet_tempur_stealth },
-        { key: "heli_attack", groupId: "udara", label: "Heli Serang", icon: Radio, desc: "Bantuan Udara", cost: 400, buildTime: 90, count: (currentData.sector_defense.military_fleet.udara.helikopter_serang || 0), consumption: KONSUMSI_FLEET.udara.helikopter_serang },
-        { key: "recon_plane", groupId: "udara", label: "Pesawat Intai", icon: Search, desc: "Intelijen Udara", cost: 800, buildTime: 120, count: (currentData.sector_defense.military_fleet.udara.pesawat_pengintai || 0), consumption: KONSUMSI_FLEET.udara.pesawat_pengintai }
+        { key: "stealth_jet", groupId: "udara", label: "Jet Stealth", icon: Plane, desc: "Supremasi Udara", cost: 250, buildTime: 300, count: (currentData.sector_defense.military_fleet.udara.jet_tempur_stealth || 0), consumption: KONSUMSI_FLEET.udara.jet_tempur_stealth },
+        { key: "heli_attack", groupId: "udara", label: "Heli Serang", icon: Radio, desc: "Bantuan Udara", cost: 40, buildTime: 90, count: (currentData.sector_defense.military_fleet.udara.helikopter_serang || 0), consumption: KONSUMSI_FLEET.udara.helikopter_serang },
+        { key: "recon_plane", groupId: "udara", label: "Pesawat Intai", icon: Search, desc: "Intelijen Udara", cost: 80, buildTime: 120, count: (currentData.sector_defense.military_fleet.udara.pesawat_pengintai || 0), consumption: KONSUMSI_FLEET.udara.pesawat_pengintai }
       ]
     },
     {
@@ -143,20 +143,20 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
       color: "text-indigo-400",
       items: [
         // INTELIJEN
-        { key: "satellite", groupId: "intel", label: "Sistem Satelit", icon: Satellite, desc: "Orbit Intelijen", cost: 3500, buildTime: 180, count: 1, consumption: 80 },
-        { key: "radar", groupId: "intel", label: "Jaringan Radar", icon: Radar, desc: "Deteksi Dini", cost: 1200, buildTime: 90, count: (currentData.sector_military_strategic.intel_radar.radar_network || 0), consumption: 25 },
-        { key: "cyber_ops", groupId: "intel", label: "Operasi Cyber", icon: Cpu, desc: "Perang Digital", cost: 1800, buildTime: 120, count: (currentData.sector_military_strategic.intel_radar.cyber_ops || 0), consumption: 40 },
+        { key: "satellite", groupId: "intel", label: "Sistem Satelit", icon: Satellite, desc: "Orbit Intelijen", cost: 350, buildTime: 180, count: 1, consumption: 80 },
+        { key: "radar", groupId: "intel", label: "Jaringan Radar", icon: Radar, desc: "Deteksi Dini", cost: 120, buildTime: 90, count: (currentData.sector_military_strategic.intel_radar.radar_network || 0), consumption: 25 },
+        { key: "cyber_ops", groupId: "intel", label: "Operasi Cyber", icon: Cpu, desc: "Perang Digital", cost: 180, buildTime: 120, count: (currentData.sector_military_strategic.intel_radar.cyber_ops || 0), consumption: 40 },
         
         // KEPOLISIAN
-        { key: "police_station", groupId: "polisi", label: "Stasiun Polisi", icon: Siren, desc: "Komando Wilayah", cost: 250, buildTime: 60, count: (currentData.sector_social.law.police_fleet.pusat_komando.stasiun_polisi || 0), consumption: KONSUMSI_SOSIAL.law.police_station },
-        { key: "police_car", groupId: "polisi", label: "Mobil Patroli", icon: Car, desc: "Patroli Lantas", cost: 20, buildTime: 7, count: (currentData.sector_social.law.police_fleet.patroli_lantas.mobil_patroli || 0), consumption: KONSUMSI_SOSIAL.law.police_car_fleet },
-        { key: "police_bike", groupId: "polisi", label: "Sepeda Motor", icon: Bike, desc: "Patroli Cepat", cost: 10, buildTime: 5, count: (currentData.sector_social.law.police_fleet.patroli_lantas.sepeda_motor || 0), consumption: 0.05 },
-        { key: "unit_k9", groupId: "polisi", label: "Unit K-9", icon: Dog, desc: "Pelacakan", cost: 5, buildTime: 5, count: (currentData.sector_social.law.police_fleet.patroli_lantas.unit_k9 || 0), consumption: 0.01 },
-        { key: "swat", groupId: "polisi", label: "Pasukan SWAT", icon: Crosshair, desc: "Taktis Khusus", cost: 50, buildTime: 30, count: (currentData.sector_social.law.police_fleet.taktis_khusus.swat || 0), consumption: 0.5 },
-        { key: "police_heli", groupId: "polisi", label: "Heli Polisi", icon: Radio, desc: "Udara Polisi", cost: 150, buildTime: 60, count: (currentData.sector_social.law.police_fleet.taktis_khusus.helikopter_polisi || 0), consumption: 2 },
-        { key: "riot_control", groupId: "polisi", label: "Anti-Huru Hara", icon: ShieldAlert, desc: "Ketertiban", cost: 40, buildTime: 20, count: (currentData.sector_social.law.police_fleet.taktis_khusus.anti_huru_hara || 0), consumption: 0.2 },
-        { key: "cctv_network", groupId: "polisi", label: "Network CCTV", icon: Cctv, desc: "Surveillance", cost: 100, buildTime: 30, count: (currentData.sector_social.law.police_fleet.pusat_komando.kamera_surveillance || 0), consumption: 10 },
-        { key: "forensik", groupId: "polisi", label: "Pusat Forensik", icon: Search, desc: "Identifikasi", cost: 300, buildTime: 90, count: (currentData.sector_social.law.police_fleet.pusat_komando.pusat_forensik || 0), consumption: 5 }
+        { key: "police_station", groupId: "polisi", label: "Stasiun Polisi", icon: Siren, desc: "Komando Wilayah", cost: 25, buildTime: 60, count: (currentData.sector_social.law.police_fleet.pusat_komando.stasiun_polisi || 0), consumption: KONSUMSI_SOSIAL.law.police_station },
+        { key: "police_car", groupId: "polisi", label: "Mobil Patroli", icon: Car, desc: "Patroli Lantas", cost: 2, buildTime: 7, count: (currentData.sector_social.law.police_fleet.patroli_lantas.mobil_patroli || 0), consumption: KONSUMSI_SOSIAL.law.police_car_fleet },
+        { key: "police_bike", groupId: "polisi", label: "Sepeda Motor", icon: Bike, desc: "Patroli Cepat", cost: 1, buildTime: 5, count: (currentData.sector_social.law.police_fleet.patroli_lantas.sepeda_motor || 0), consumption: 0.05 },
+        { key: "unit_k9", groupId: "polisi", label: "Unit K-9", icon: Dog, desc: "Pelacakan", cost: 1, buildTime: 5, count: (currentData.sector_social.law.police_fleet.patroli_lantas.unit_k9 || 0), consumption: 0.01 },
+        { key: "swat", groupId: "polisi", label: "Pasukan SWAT", icon: Crosshair, desc: "Taktis Khusus", cost: 5, buildTime: 30, count: (currentData.sector_social.law.police_fleet.taktis_khusus.swat || 0), consumption: 0.5 },
+        { key: "police_heli", groupId: "polisi", label: "Heli Polisi", icon: Radio, desc: "Udara Polisi", cost: 15, buildTime: 60, count: (currentData.sector_social.law.police_fleet.taktis_khusus.helikopter_polisi || 0), consumption: 2 },
+        { key: "riot_control", groupId: "polisi", label: "Anti-Huru Hara", icon: ShieldAlert, desc: "Ketertiban", cost: 4, buildTime: 20, count: (currentData.sector_social.law.police_fleet.taktis_khusus.anti_huru_hara || 0), consumption: 0.2 },
+        { key: "cctv_network", groupId: "polisi", label: "Network CCTV", icon: Cctv, desc: "Surveillance", cost: 10, buildTime: 30, count: (currentData.sector_social.law.police_fleet.pusat_komando.kamera_surveillance || 0), consumption: 10 },
+        { key: "forensik", groupId: "polisi", label: "Pusat Forensik", icon: Search, desc: "Identifikasi", cost: 30, buildTime: 90, count: (currentData.sector_social.law.police_fleet.pusat_komando.pusat_forensik || 0), consumption: 5 }
       ]
     }
   ];
@@ -285,7 +285,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
               </div>
               <div className="space-y-4 mb-8">
                 <div className="bg-zinc-950/50 p-4 rounded-2xl border border-zinc-800/50 space-y-3">
-                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Biaya Pembangunan</span><span className="text-sm font-black text-white">Rp {confirmBuild.cost} T</span></div>
+                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Biaya Pembangunan</span><span className="text-sm font-black text-white">{confirmBuild.cost}</span></div>
                   <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Waktu Pengerjaan</span><span className="text-sm font-black text-cyan-400">{confirmBuild.buildTime} Hari</span></div>
                   <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Beban Listrik</span><span className="text-sm font-black text-rose-500">{confirmBuild.consumption} MW / unit</span></div>
                 </div>
@@ -366,7 +366,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
             </div>
           ) : (
             <div className="flex items-center justify-between mt-2">
-              <span className="text-[10px] text-zinc-400 font-bold tracking-tight">Biaya: Rp {item.cost} M</span>
+              <span className="text-[10px] text-zinc-400 font-bold tracking-tight">Biaya: {item.cost}</span>
               <button onClick={e => { e.stopPropagation(); onBuild(item); }} className="px-4 py-1.5 rounded-lg bg-cyan-600/10 text-cyan-500 text-[10px] font-black uppercase tracking-widest border border-cyan-500/30 hover:bg-cyan-600 hover:text-white transition-all cursor-pointer">Bangun</button>
             </div>
           )}

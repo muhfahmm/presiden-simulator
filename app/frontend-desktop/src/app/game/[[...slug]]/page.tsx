@@ -134,7 +134,7 @@ export default function GamePage() {
 
             <StatusBadge icon={<Users className="h-4 w-4 text-blue-500" />} label="Populasi" value={countryData?.pop || 0} />
             <StatusBadge icon={<Heart className="h-4 w-4 text-red-500" />} label="Persetujuan" value={`${approval}%`} />
-            <StatusBadge icon={<Coins className="h-4 w-4 text-yellow-500" />} label="Kas Negara" value={`Rp ${Math.round(budget).toLocaleString('id-ID')}`} />
+            <StatusBadge icon={<Coins className="h-4 w-4 text-yellow-500" />} label="Kas Negara" value={`${Math.round(budget).toLocaleString('id-ID')}`} />
             <StatusBadge icon={<Shield className="h-4 w-4 text-green-500" />} label="Stabilitas" value={`${stability}%`} />
             
             <button 
@@ -452,7 +452,7 @@ export default function GamePage() {
                 <div className="flex-1 bg-zinc-950/50 border border-white/5 p-4 rounded-2xl flex flex-col items-center gap-1">
                   <Coins size={16} className="text-yellow-500 mb-1" />
                   <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Treasury</span>
-                  <span className="text-lg font-black text-white">Rp {budget} T</span>
+                  <span className="text-lg font-black text-white">{budget} T</span>
                 </div>
                 <div className="flex-1 bg-zinc-950/50 border border-white/5 p-4 rounded-2xl flex flex-col items-center gap-1">
                   <Shield size={16} className="text-green-500 mb-1" />
@@ -494,7 +494,7 @@ function StatusBadge({ icon, label, value }: { icon: React.ReactNode, label: str
       <div className="text-left leading-tight">
         <p className="text-[10px] text-zinc-500 font-semibold uppercase">{label}</p>
         <p className="text-xs font-bold text-zinc-100 italic">
-          {label === "Kas Negara" && typeof value === 'number' ? `Rp ${displayValue}` : displayValue}
+          {displayValue}
         </p>
       </div>
     </div>
