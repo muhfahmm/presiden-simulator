@@ -4,6 +4,7 @@ export interface GameSession {
   country: string;
   isActive: boolean;
   startTime: number;
+  isWelcomeSeen: boolean;
 }
 
 const STORAGE_KEY = "em4_game_session";
@@ -14,6 +15,7 @@ export const gameStorage = {
       country,
       isActive: true,
       startTime: Date.now(),
+      isWelcomeSeen: false,
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     localStorage.setItem("selectedCountry", country); // Keep legacy support if needed
@@ -39,5 +41,13 @@ export const gameStorage = {
   clearSession: () => {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem("selectedCountry");
+  },
+
+  markWelcomeSeen: () => {
+    const session = gameStorage.getSession();
+    if (session) {
+      session.isWelcomeSeen = true;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+    }
   }
 };
