@@ -8,8 +8,8 @@ export const vietnam: CountryData = {
   "lat": 16.16666666,
   "flag": "🇻🇳",
   "pop": "10M",
-  "budget": "Rp 140 T",
-  "income": "Rp 196 T",
+  "budget": 140000000000000,
+  "income": "196.000.000.000.000 / 196 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

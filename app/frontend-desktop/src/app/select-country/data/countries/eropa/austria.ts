@@ -8,8 +8,8 @@ export const austria: CountryData = {
   "lat": 47.33333333,
   "flag": "🇦🇹",
   "pop": "42M",
-  "budget": "Rp 405 T",
-  "income": "Rp 869 T",
+  "budget": 405000000000000,
+  "income": "869.000.000.000.000 / 869 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

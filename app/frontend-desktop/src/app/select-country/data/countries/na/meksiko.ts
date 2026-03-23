@@ -8,8 +8,8 @@ export const meksiko: CountryData = {
   "lat": 23,
   "flag": "🇲🇽",
   "pop": "10M",
-  "budget": "Rp 166 T",
-  "income": "Rp 226 T",
+  "budget": 166000000000000,
+  "income": "226.000.000.000.000 / 226 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

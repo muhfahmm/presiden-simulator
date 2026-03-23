@@ -8,8 +8,8 @@ export const madagaskar: CountryData = {
   "lat": -18.55,
   "flag": "🇲🇬",
   "pop": "10M",
-  "budget": "Rp 624 T",
-  "income": "Rp 528 T",
+  "budget": 624000000000000,
+  "income": "528.000.000.000.000 / 528 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const irlandia: CountryData = {
   "lat": 53,
   "flag": "🇮🇪",
   "pop": "10M",
-  "budget": "Rp 382 T",
-  "income": "Rp 201 T",
+  "budget": 382000000000000,
+  "income": "201.000.000.000.000 / 201 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

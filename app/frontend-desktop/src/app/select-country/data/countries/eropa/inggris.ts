@@ -8,8 +8,8 @@ export const inggris: CountryData = {
   "lat": 54,
   "flag": "🇬🇧",
   "pop": "10M",
-  "budget": "Rp 532 T",
-  "income": "Rp 431 T",
+  "budget": 532000000000000,
+  "income": "431.000.000.000.000 / 431 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

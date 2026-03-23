@@ -8,8 +8,8 @@ export const chile: CountryData = {
   "lat": -30,
   "flag": "🇨🇱",
   "pop": "10M",
-  "budget": "Rp 776 T",
-  "income": "Rp 356 T",
+  "budget": 776000000000000,
+  "income": "356.000.000.000.000 / 356 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

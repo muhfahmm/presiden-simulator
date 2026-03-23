@@ -8,8 +8,8 @@ export const taiwan: CountryData = {
   "lat": 23.5,
   "flag": "🇹🇼",
   "pop": "10M",
-  "budget": "Rp 598 T",
-  "income": "Rp 261 T",
+  "budget": 598000000000000,
+  "income": "261.000.000.000.000 / 261 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

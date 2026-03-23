@@ -8,8 +8,8 @@ export const lebanon: CountryData = {
   "lat": 33.83333333,
   "flag": "🇱🇧",
   "pop": "10M",
-  "budget": "Rp 218 T",
-  "income": "Rp 298 T",
+  "budget": 218000000000000,
+  "income": "298.000.000.000.000 / 298 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

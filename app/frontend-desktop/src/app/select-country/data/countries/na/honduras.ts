@@ -8,8 +8,8 @@ export const honduras: CountryData = {
   "lat": 15,
   "flag": "🇭🇳",
   "pop": "10M",
-  "budget": "Rp 312 T",
-  "income": "Rp 456 T",
+  "budget": 312000000000000,
+  "income": "456.000.000.000.000 / 456 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

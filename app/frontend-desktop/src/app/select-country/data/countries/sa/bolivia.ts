@@ -8,8 +8,8 @@ export const bolivia: CountryData = {
   "lat": -17,
   "flag": "🇧🇴",
   "pop": "10M",
-  "budget": "Rp 337 T",
-  "income": "Rp 650 T",
+  "budget": 337000000000000,
+  "income": "650.000.000.000.000 / 650 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

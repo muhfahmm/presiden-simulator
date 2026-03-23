@@ -8,8 +8,8 @@ export const panama: CountryData = {
   "lat": 9,
   "flag": "🇵🇦",
   "pop": "10M",
-  "budget": "Rp 227 T",
-  "income": "Rp 177 T",
+  "budget": 227000000000000,
+  "income": "177.000.000.000.000 / 177 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const islandia: CountryData = {
   "lat": 65,
   "flag": "🇮🇸",
   "pop": "10M",
-  "budget": "Rp 103 T",
-  "income": "Rp 777 T",
+  "budget": 103000000000000,
+  "income": "777.000.000.000.000 / 777 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const bahama: CountryData = {
   "lat": 24.25,
   "flag": "🇧🇸",
   "pop": "10M",
-  "budget": "Rp 408 T",
-  "income": "Rp 320 T",
+  "budget": 408000000000000,
+  "income": "320.000.000.000.000 / 320 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

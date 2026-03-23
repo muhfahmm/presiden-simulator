@@ -8,8 +8,8 @@ export const irak: CountryData = {
   "lat": 33,
   "flag": "🇮🇶",
   "pop": "10M",
-  "budget": "Rp 744 T",
-  "income": "Rp 458 T",
+  "budget": 744000000000000,
+  "income": "458.000.000.000.000 / 458 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

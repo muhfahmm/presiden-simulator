@@ -8,8 +8,8 @@ export const republik_rumania: CountryData = {
   "lat": 46,
   "flag": "🇷🇴",
   "pop": "10M",
-  "budget": "Rp 519 T",
-  "income": "Rp 552 T",
+  "budget": 519000000000000,
+  "income": "552.000.000.000.000 / 552 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

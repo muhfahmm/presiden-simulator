@@ -8,8 +8,8 @@ export const india: CountryData = {
   "lat": 20,
   "flag": "🇮🇳",
   "pop": "10M",
-  "budget": "Rp 675 T",
-  "income": "Rp 782 T",
+  "budget": 675000000000000,
+  "income": "782.000.000.000.000 / 782 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

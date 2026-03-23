@@ -8,8 +8,8 @@ export const bangladesh: CountryData = {
   "lat": 24,
   "flag": "🇧🇩",
   "pop": "10M",
-  "budget": "Rp 525 T",
-  "income": "Rp 540 T",
+  "budget": 525000000000000,
+  "income": "540.000.000.000.000 / 540 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

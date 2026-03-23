@@ -8,8 +8,8 @@ export const uni_emirat_arab: CountryData = {
   "lat": 24,
   "flag": "🇦🇪",
   "pop": "10M",
-  "budget": "Rp 451 T",
-  "income": "Rp 495 T",
+  "budget": 451000000000000,
+  "income": "495.000.000.000.000 / 495 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

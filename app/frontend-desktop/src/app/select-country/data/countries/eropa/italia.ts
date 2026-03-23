@@ -8,8 +8,8 @@ export const italia: CountryData = {
   "lat": 42.83333333,
   "flag": "🇮🇹",
   "pop": "10M",
-  "budget": "Rp 764 T",
-  "income": "Rp 836 T",
+  "budget": 764000000000000,
+  "income": "836.000.000.000.000 / 836 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

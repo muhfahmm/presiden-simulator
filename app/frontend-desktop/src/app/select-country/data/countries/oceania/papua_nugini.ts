@@ -8,8 +8,8 @@ export const papua_nugini: CountryData = {
   "lat": -6,
   "flag": "🇵🇬",
   "pop": "10M",
-  "budget": "Rp 137 T",
-  "income": "Rp 417 T",
+  "budget": 137000000000000,
+  "income": "417.000.000.000.000 / 417 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

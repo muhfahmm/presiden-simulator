@@ -8,8 +8,8 @@ export const kosovo: CountryData = {
   "lat": 42.666667,
   "flag": "🇽🇰",
   "pop": "10M",
-  "budget": "Rp 287 T",
-  "income": "Rp 227 T",
+  "budget": 287000000000000,
+  "income": "227.000.000.000.000 / 227 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

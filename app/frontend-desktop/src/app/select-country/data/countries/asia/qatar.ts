@@ -8,8 +8,8 @@ export const qatar: CountryData = {
   "lat": 25.5,
   "flag": "🇶🇦",
   "pop": "10M",
-  "budget": "Rp 122 T",
-  "income": "Rp 448 T",
+  "budget": 122000000000000,
+  "income": "448.000.000.000.000 / 448 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

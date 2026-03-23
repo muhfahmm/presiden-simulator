@@ -8,8 +8,8 @@ export const fiji: CountryData = {
   "lat": -18,
   "flag": "🇫🇯",
   "pop": "10M",
-  "budget": "Rp 638 T",
-  "income": "Rp 960 T",
+  "budget": 638000000000000,
+  "income": "960.000.000.000.000 / 960 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const republik_timor_leste: CountryData = {
   "lat": -8.83333333,
   "flag": "🇹🇱",
   "pop": "10M",
-  "budget": "Rp 426 T",
-  "income": "Rp 486 T",
+  "budget": 426000000000000,
+  "income": "486.000.000.000.000 / 486 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

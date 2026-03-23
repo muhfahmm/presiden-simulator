@@ -8,8 +8,8 @@ export const barbados: CountryData = {
   "lat": 13.16666666,
   "flag": "🇧🇧",
   "pop": "10M",
-  "budget": "Rp 430 T",
-  "income": "Rp 459 T",
+  "budget": 430000000000000,
+  "income": "459.000.000.000.000 / 459 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

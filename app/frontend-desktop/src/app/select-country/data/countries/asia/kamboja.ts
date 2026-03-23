@@ -8,8 +8,8 @@ export const kamboja: CountryData = {
   "lat": 13,
   "flag": "🇰🇭",
   "pop": "10M",
-  "budget": "Rp 113 T",
-  "income": "Rp 594 T",
+  "budget": 113000000000000,
+  "income": "594.000.000.000.000 / 594 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

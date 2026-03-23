@@ -8,8 +8,8 @@ export const pakistan: CountryData = {
   "lat": 30,
   "flag": "🇵🇰",
   "pop": "10M",
-  "budget": "Rp 103 T",
-  "income": "Rp 360 T",
+  "budget": 103000000000000,
+  "income": "360.000.000.000.000 / 360 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

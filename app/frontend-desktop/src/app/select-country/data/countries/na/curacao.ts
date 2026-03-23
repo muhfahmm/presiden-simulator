@@ -8,8 +8,8 @@ export const curacao: CountryData = {
   "lat": 12.116667,
   "flag": "🇨🇼",
   "pop": "10M",
-  "budget": "Rp 207 T",
-  "income": "Rp 246 T",
+  "budget": 207000000000000,
+  "income": "246.000.000.000.000 / 246 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

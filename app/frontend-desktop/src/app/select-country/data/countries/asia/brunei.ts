@@ -8,8 +8,8 @@ export const brunei: CountryData = {
   "lat": 4.5,
   "flag": "🇧🇳",
   "pop": "10M",
-  "budget": "Rp 218 T",
-  "income": "Rp 474 T",
+  "budget": 218000000000000,
+  "income": "474.000.000.000.000 / 474 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

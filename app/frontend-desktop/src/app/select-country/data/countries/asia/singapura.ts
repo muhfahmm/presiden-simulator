@@ -8,8 +8,8 @@ export const singapura: CountryData = {
   "lat": 1.36666666,
   "flag": "🇸🇬",
   "pop": "10M",
-  "budget": "Rp 453 T",
-  "income": "Rp 321 T",
+  "budget": 453000000000000,
+  "income": "321.000.000.000.000 / 321 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

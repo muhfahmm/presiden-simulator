@@ -8,8 +8,8 @@ export const namibia: CountryData = {
   "lat": -22,
   "flag": "🇳🇦",
   "pop": "10M",
-  "budget": "Rp 431 T",
-  "income": "Rp 182 T",
+  "budget": 431000000000000,
+  "income": "182.000.000.000.000 / 182 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

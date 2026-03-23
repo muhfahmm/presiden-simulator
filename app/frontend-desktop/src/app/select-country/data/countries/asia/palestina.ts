@@ -8,8 +8,8 @@ export const palestina: CountryData = {
   "lat": 31.9,
   "flag": "🇵🇸",
   "pop": "10M",
-  "budget": "Rp 529 T",
-  "income": "Rp 128 T",
+  "budget": 529000000000000,
+  "income": "128.000.000.000.000 / 128 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

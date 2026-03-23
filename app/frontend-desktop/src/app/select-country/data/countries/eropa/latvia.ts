@@ -8,8 +8,8 @@ export const latvia: CountryData = {
   "lat": 57,
   "flag": "🇱🇻",
   "pop": "10M",
-  "budget": "Rp 553 T",
-  "income": "Rp 826 T",
+  "budget": 553000000000000,
+  "income": "826.000.000.000.000 / 826 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

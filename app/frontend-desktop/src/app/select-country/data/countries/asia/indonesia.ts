@@ -9,7 +9,7 @@ export const indonesia: CountryData = {
   "flag": "🇮🇩",
   "pop": 278360115,
   "budget": 456200000000000,
-  "income": "Rp 969 T",
+  "income": "969.000.000.000.000 / 969 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

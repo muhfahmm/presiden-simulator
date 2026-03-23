@@ -8,8 +8,8 @@ export const kolombia: CountryData = {
   "lat": 4,
   "flag": "🇨🇴",
   "pop": "10M",
-  "budget": "Rp 156 T",
-  "income": "Rp 437 T",
+  "budget": 156000000000000,
+  "income": "437.000.000.000.000 / 437 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

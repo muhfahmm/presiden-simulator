@@ -8,8 +8,8 @@ export const kamerun: CountryData = {
   "lat": 6,
   "flag": "🇨🇲",
   "pop": "10M",
-  "budget": "Rp 255 T",
-  "income": "Rp 811 T",
+  "budget": 255000000000000,
+  "income": "811.000.000.000.000 / 811 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

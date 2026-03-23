@@ -8,8 +8,8 @@ export const republik_sudan: CountryData = {
   "lat": 15,
   "flag": "🇸🇩",
   "pop": "10M",
-  "budget": "Rp 224 T",
-  "income": "Rp 585 T",
+  "budget": 224000000000000,
+  "income": "585.000.000.000.000 / 585 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

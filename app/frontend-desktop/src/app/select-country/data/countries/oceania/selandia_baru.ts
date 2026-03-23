@@ -8,8 +8,8 @@ export const selandia_baru: CountryData = {
   "lat": -41,
   "flag": "🇳🇿",
   "pop": "10M",
-  "budget": "Rp 536 T",
-  "income": "Rp 269 T",
+  "budget": 536000000000000,
+  "income": "269.000.000.000.000 / 269 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

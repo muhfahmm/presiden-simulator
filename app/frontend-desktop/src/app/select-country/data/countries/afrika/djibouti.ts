@@ -8,8 +8,8 @@ export const djibouti: CountryData = {
   "lat": 11.5,
   "flag": "🇩🇯",
   "pop": "10M",
-  "budget": "Rp 218 T",
-  "income": "Rp 502 T",
+  "budget": 218000000000000,
+  "income": "502.000.000.000.000 / 502 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

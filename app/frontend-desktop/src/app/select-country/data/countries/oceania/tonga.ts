@@ -8,8 +8,8 @@ export const tonga: CountryData = {
   "lat": -20,
   "flag": "🇹🇴",
   "pop": "10M",
-  "budget": "Rp 430 T",
-  "income": "Rp 579 T",
+  "budget": 430000000000000,
+  "income": "579.000.000.000.000 / 579 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

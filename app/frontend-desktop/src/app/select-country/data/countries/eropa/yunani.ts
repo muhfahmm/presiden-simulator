@@ -8,8 +8,8 @@ export const yunani: CountryData = {
   "lat": 39,
   "flag": "🇬🇷",
   "pop": "10M",
-  "budget": "Rp 410 T",
-  "income": "Rp 352 T",
+  "budget": 410000000000000,
+  "income": "352.000.000.000.000 / 352 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

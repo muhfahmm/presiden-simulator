@@ -8,8 +8,8 @@ export const chad: CountryData = {
   "lat": 15,
   "flag": "🇹🇩",
   "pop": "10M",
-  "budget": "Rp 670 T",
-  "income": "Rp 307 T",
+  "budget": 670000000000000,
+  "income": "307.000.000.000.000 / 307 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

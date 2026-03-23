@@ -8,8 +8,8 @@ export const ekuador: CountryData = {
   "lat": -2,
   "flag": "🇪🇨",
   "pop": "10M",
-  "budget": "Rp 730 T",
-  "income": "Rp 777 T",
+  "budget": 730000000000000,
+  "income": "777.000.000.000.000 / 777 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

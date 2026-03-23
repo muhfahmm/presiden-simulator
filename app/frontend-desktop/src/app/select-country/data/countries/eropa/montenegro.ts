@@ -8,8 +8,8 @@ export const montenegro: CountryData = {
   "lat": 42.5,
   "flag": "🇲🇪",
   "pop": "10M",
-  "budget": "Rp 348 T",
-  "income": "Rp 477 T",
+  "budget": 348000000000000,
+  "income": "477.000.000.000.000 / 477 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

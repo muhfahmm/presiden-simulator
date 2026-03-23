@@ -8,8 +8,8 @@ export const mikronesia: CountryData = {
   "lat": 6.91666666,
   "flag": "🇫🇲",
   "pop": "10M",
-  "budget": "Rp 418 T",
-  "income": "Rp 274 T",
+  "budget": 418000000000000,
+  "income": "274.000.000.000.000 / 274 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

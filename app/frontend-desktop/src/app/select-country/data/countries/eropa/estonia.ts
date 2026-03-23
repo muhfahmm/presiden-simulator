@@ -8,8 +8,8 @@ export const estonia: CountryData = {
   "lat": 59,
   "flag": "🇪🇪",
   "pop": "10M",
-  "budget": "Rp 650 T",
-  "income": "Rp 400 T",
+  "budget": 650000000000000,
+  "income": "400.000.000.000.000 / 400 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

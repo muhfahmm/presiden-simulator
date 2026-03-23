@@ -8,8 +8,8 @@ export const republik_demokratik_kongo: CountryData = {
   "lat": 0,
   "flag": "🇨🇩",
   "pop": "112M",
-  "budget": "Rp 220 T",
-  "income": "Rp 1120 T",
+  "budget": 220000000000000,
+  "income": "1.120.000.000.000.000 / 1120 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

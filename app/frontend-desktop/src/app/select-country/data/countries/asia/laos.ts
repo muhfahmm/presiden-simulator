@@ -8,8 +8,8 @@ export const laos: CountryData = {
   "lat": 18,
   "flag": "🇱🇦",
   "pop": "10M",
-  "budget": "Rp 522 T",
-  "income": "Rp 538 T",
+  "budget": 522000000000000,
+  "income": "538.000.000.000.000 / 538 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

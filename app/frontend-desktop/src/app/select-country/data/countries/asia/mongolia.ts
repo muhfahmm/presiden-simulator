@@ -8,8 +8,8 @@ export const mongolia: CountryData = {
   "lat": 46,
   "flag": "🇲🇳",
   "pop": "10M",
-  "budget": "Rp 359 T",
-  "income": "Rp 214 T",
+  "budget": 359000000000000,
+  "income": "214.000.000.000.000 / 214 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

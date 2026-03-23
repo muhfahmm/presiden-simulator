@@ -8,8 +8,8 @@ export const makedonia_utara: CountryData = {
   "lat": 41.83333333,
   "flag": "🇲🇰",
   "pop": "10M",
-  "budget": "Rp 152 T",
-  "income": "Rp 261 T",
+  "budget": 152000000000000,
+  "income": "261.000.000.000.000 / 261 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

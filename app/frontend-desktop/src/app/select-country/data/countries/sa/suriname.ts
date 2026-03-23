@@ -8,8 +8,8 @@ export const suriname: CountryData = {
   "lat": 4,
   "flag": "🇸🇷",
   "pop": "10M",
-  "budget": "Rp 339 T",
-  "income": "Rp 114 T",
+  "budget": 339000000000000,
+  "income": "114.000.000.000.000 / 114 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

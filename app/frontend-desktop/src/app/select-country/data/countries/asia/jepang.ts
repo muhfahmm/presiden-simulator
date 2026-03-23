@@ -8,8 +8,8 @@ export const jepang: CountryData = {
   "lat": 36,
   "flag": "🇯🇵",
   "pop": "10M",
-  "budget": "Rp 217 T",
-  "income": "Rp 814 T",
+  "budget": 217000000000000,
+  "income": "814.000.000.000.000 / 814 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

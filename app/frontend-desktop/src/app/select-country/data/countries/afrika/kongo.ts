@@ -8,8 +8,8 @@ export const kongo: CountryData = {
   "lat": -1,
   "flag": "🇨🇬",
   "pop": "10M",
-  "budget": "Rp 419 T",
-  "income": "Rp 519 T",
+  "budget": 419000000000000,
+  "income": "519.000.000.000.000 / 519 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

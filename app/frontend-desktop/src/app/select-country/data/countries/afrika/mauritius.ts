@@ -8,8 +8,8 @@ export const mauritius: CountryData = {
   "lat": -20.28333333,
   "flag": "🇲🇺",
   "pop": "10M",
-  "budget": "Rp 538 T",
-  "income": "Rp 584 T",
+  "budget": 538000000000000,
+  "income": "584.000.000.000.000 / 584 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

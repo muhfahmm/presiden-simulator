@@ -8,8 +8,8 @@ export const bahrain: CountryData = {
   "lat": 26,
   "flag": "🇧🇭",
   "pop": "10M",
-  "budget": "Rp 732 T",
-  "income": "Rp 283 T",
+  "budget": 732000000000000,
+  "income": "283.000.000.000.000 / 283 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

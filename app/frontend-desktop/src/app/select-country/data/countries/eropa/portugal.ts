@@ -8,8 +8,8 @@ export const portugal: CountryData = {
   "lat": 39.5,
   "flag": "🇵🇹",
   "pop": "10M",
-  "budget": "Rp 430 T",
-  "income": "Rp 417 T",
+  "budget": 430000000000000,
+  "income": "417.000.000.000.000 / 417 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const malaysia: CountryData = {
   "lat": 3.1,
   "flag": "🇲🇾",
   "pop": "10M",
-  "budget": "Rp 790 T",
-  "income": "Rp 242 T",
+  "budget": 790000000000000,
+  "income": "242.000.000.000.000 / 242 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

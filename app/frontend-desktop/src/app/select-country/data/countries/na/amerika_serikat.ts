@@ -8,8 +8,8 @@ export const amerika_serikat: CountryData = {
   "lat": 38,
   "flag": "🇺🇸",
   "pop": "36M",
-  "budget": "Rp 340 T",
-  "income": "Rp 321 T",
+  "budget": 340000000000000,
+  "income": "321.000.000.000.000 / 321 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

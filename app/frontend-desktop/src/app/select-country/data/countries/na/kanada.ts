@@ -8,8 +8,8 @@ export const kanada: CountryData = {
   "lat": 60,
   "flag": "🇨🇦",
   "pop": "10M",
-  "budget": "Rp 327 T",
-  "income": "Rp 767 T",
+  "budget": 327000000000000,
+  "income": "767.000.000.000.000 / 767 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

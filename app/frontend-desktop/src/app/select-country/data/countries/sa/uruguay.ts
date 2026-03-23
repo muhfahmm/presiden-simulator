@@ -8,8 +8,8 @@ export const uruguay: CountryData = {
   "lat": -33,
   "flag": "🇺🇾",
   "pop": "10M",
-  "budget": "Rp 579 T",
-  "income": "Rp 472 T",
+  "budget": 579000000000000,
+  "income": "472.000.000.000.000 / 472 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

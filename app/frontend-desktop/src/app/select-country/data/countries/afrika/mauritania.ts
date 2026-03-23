@@ -8,8 +8,8 @@ export const mauritania: CountryData = {
   "lat": 20,
   "flag": "🇲🇷",
   "pop": "10M",
-  "budget": "Rp 101 T",
-  "income": "Rp 405 T",
+  "budget": 101000000000000,
+  "income": "405.000.000.000.000 / 405 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

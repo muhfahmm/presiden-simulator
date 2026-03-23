@@ -8,8 +8,8 @@ export const marshall: CountryData = {
   "lat": 9,
   "flag": "🇲🇭",
   "pop": "10M",
-  "budget": "Rp 111 T",
-  "income": "Rp 420 T",
+  "budget": 111000000000000,
+  "income": "420.000.000.000.000 / 420 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

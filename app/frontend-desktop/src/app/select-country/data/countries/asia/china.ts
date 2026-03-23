@@ -8,8 +8,8 @@ export const china: CountryData = {
   "lat": 35,
   "flag": "🇨🇳",
   "pop": "10M",
-  "budget": "Rp 333 T",
-  "income": "Rp 841 T",
+  "budget": 333000000000000,
+  "income": "841.000.000.000.000 / 841 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const makau: CountryData = {
   "lat": 22.16666666,
   "flag": "🇲🇴",
   "pop": "10M",
-  "budget": "Rp 405 T",
-  "income": "Rp 551 T",
+  "budget": 405000000000000,
+  "income": "551.000.000.000.000 / 551 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

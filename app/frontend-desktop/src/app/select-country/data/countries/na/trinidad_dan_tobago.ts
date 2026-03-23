@@ -8,8 +8,8 @@ export const trinidad_dan_tobago: CountryData = {
   "lat": 11,
   "flag": "🇹🇹",
   "pop": "10M",
-  "budget": "Rp 273 T",
-  "income": "Rp 240 T",
+  "budget": 273000000000000,
+  "income": "240.000.000.000.000 / 240 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

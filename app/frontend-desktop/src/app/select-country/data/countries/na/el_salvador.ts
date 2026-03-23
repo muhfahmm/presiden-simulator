@@ -8,8 +8,8 @@ export const el_salvador: CountryData = {
   "lat": 13.83333333,
   "flag": "🇸🇻",
   "pop": "10M",
-  "budget": "Rp 343 T",
-  "income": "Rp 874 T",
+  "budget": 343000000000000,
+  "income": "874.000.000.000.000 / 874 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

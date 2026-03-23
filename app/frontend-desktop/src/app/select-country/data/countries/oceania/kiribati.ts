@@ -8,8 +8,8 @@ export const kiribati: CountryData = {
   "lat": 1.41666666,
   "flag": "🇰🇮",
   "pop": "10M",
-  "budget": "Rp 782 T",
-  "income": "Rp 793 T",
+  "budget": 782000000000000,
+  "income": "793.000.000.000.000 / 793 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const slowakia: CountryData = {
   "lat": 48.66666666,
   "flag": "🇸🇰",
   "pop": "10M",
-  "budget": "Rp 397 T",
-  "income": "Rp 114 T",
+  "budget": 397000000000000,
+  "income": "114.000.000.000.000 / 114 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

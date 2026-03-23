@@ -8,8 +8,8 @@ export const finlandia: CountryData = {
   "lat": 64,
   "flag": "🇫🇮",
   "pop": "10M",
-  "budget": "Rp 393 T",
-  "income": "Rp 243 T",
+  "budget": 393000000000000,
+  "income": "243.000.000.000.000 / 243 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

@@ -8,8 +8,8 @@ export const sudan_selatan: CountryData = {
   "lat": 7,
   "flag": "🇸🇸",
   "pop": "10M",
-  "budget": "Rp 243 T",
-  "income": "Rp 230 T",
+  "budget": 243000000000000,
+  "income": "230.000.000.000.000 / 230 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

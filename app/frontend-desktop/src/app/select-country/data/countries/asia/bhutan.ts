@@ -8,8 +8,8 @@ export const bhutan: CountryData = {
   "lat": 27.5,
   "flag": "🇧🇹",
   "pop": "10M",
-  "budget": "Rp 117 T",
-  "income": "Rp 817 T",
+  "budget": 117000000000000,
+  "income": "817.000.000.000.000 / 817 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 

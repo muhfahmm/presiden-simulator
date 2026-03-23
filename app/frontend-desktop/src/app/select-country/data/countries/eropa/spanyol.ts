@@ -8,8 +8,8 @@ export const spanyol: CountryData = {
   "lat": 40,
   "flag": "🇪🇸",
   "pop": "10M",
-  "budget": "Rp 202 T",
-  "income": "Rp 540 T",
+  "budget": 202000000000000,
+  "income": "540.000.000.000.000 / 540 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
 
