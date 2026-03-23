@@ -2,7 +2,7 @@
 
 import React, { useState } from "react"
 import { X, Newspaper, Clock, Tag, ChevronRight, AlertCircle, TrendingUp, Globe, Shield, Users } from "lucide-react"
-import { mockNews, NewsItem } from "../data/news"
+import { mockNews, NewsItem } from "../../data/news/news"
 
 interface ModalProps {
   isOpen: boolean;

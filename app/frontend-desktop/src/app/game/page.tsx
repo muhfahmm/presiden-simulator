@@ -36,7 +36,7 @@ import ArmadaMiliterModal from "./components/pertahanan/ArmadaMiliterModal";
 import ArmadaPolisiModal from "./components/pertahanan/ArmadaPolisiModal";
 import GeopolitikModal from "./components/geopolitik/GeopolitikModal";
 import KementerianModal from "./components/kementerian/KementerianModal";
-import BeritaModal from "./components/BeritaModal";
+import BeritaModal from "./components/berita/BeritaModal";
 
 export default function GamePage() {
   const [approval, setApproval] = useState(65);
