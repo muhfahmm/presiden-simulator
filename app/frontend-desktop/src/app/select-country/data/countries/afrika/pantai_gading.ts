@@ -14,34 +14,40 @@ export const pantai_gading: CountryData = {
   "ideology": "Kapitalisme",
 
   // =============================================================
-  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)
+  // =============================================================
+
+  "sector_electricity": {
+    "gas_plant": 6,
+    "hydro_plant": 4,
+    "nuclear_plant": 10,
+    "power_grid": 59,
+    "solar_plant": 5,
+    "thermal_plant": 36,
+    "wind_plant": 20,
+  },
+
+  // =============================================================
+  // 2. 🏗️ SEKTOR INFRASTRUKTUR (12 Jenis)
   // =============================================================
 
   "infrastructure": {
     "airport": 13,
     "bicycle_path": 8,
     "bus_terminal": 19,
-    "gas_plant": 6,
     "helipad": 34,
     "highway": 23,
-    "hydro_plant": 4,
     "internet_coverage": 88,
-    "nuclear_plant": 10,
-    "power_grid": 59,
     "railway": 17,
     "road_quality": 63,
     "sea_port": 4,
-    "solar_plant": 5,
     "subway": 1,
     "tech_stack": 62,
-    "thermal_plant": 36,
     "water_access": 74,
-    "wind_plant": 20,
-  
   },
 
   // =============================================================
-  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // 7. ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
   // =============================================================
 
   "sector_extraction": {
@@ -62,7 +68,7 @@ export const pantai_gading: CountryData = {
   },
 
   // =============================================================
-  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // 3. 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
   // =============================================================
 
   "sector_manufacturing": {
@@ -84,7 +90,7 @@ export const pantai_gading: CountryData = {
   },
 
   // =============================================================
-  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // 3. 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
   // =============================================================
 
   "sector_livestock": {
@@ -101,7 +107,7 @@ export const pantai_gading: CountryData = {
   },
 
   // =============================================================
-  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // 3. 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
   // =============================================================
 
   "sector_agriculture": {
@@ -121,7 +127,7 @@ export const pantai_gading: CountryData = {
   },
 
   // =============================================================
-  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // 4. 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
   // =============================================================
 
   "sector_defense": {
@@ -155,7 +161,7 @@ export const pantai_gading: CountryData = {
   },
 
   // =============================================================
-  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // 4. 🛰️ STRATEGIS MILITER (19 Jenis)
   // =============================================================
 
   "sector_military_strategic": {
@@ -182,7 +188,7 @@ export const pantai_gading: CountryData = {
   },
 
   // =============================================================
-  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // 5. 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
   // =============================================================
 
   "sector_social": {
@@ -320,7 +326,7 @@ export const pantai_gading: CountryData = {
   },
 
   // =============================================================
-  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // 6. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
   // =============================================================
 
   "geopolitics": {

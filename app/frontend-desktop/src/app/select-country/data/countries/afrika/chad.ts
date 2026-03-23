@@ -14,34 +14,40 @@ export const chad: CountryData = {
   "ideology": "Kapitalisme",
 
   // =============================================================
-  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)
+  // =============================================================
+
+  "sector_electricity": {
+    "gas_plant": 18,
+    "hydro_plant": 13,
+    "nuclear_plant": 23,
+    "power_grid": 89,
+    "solar_plant": 37,
+    "thermal_plant": 16,
+    "wind_plant": 35,
+  },
+
+  // =============================================================
+  // 2. 🏗️ SEKTOR INFRASTRUKTUR (12 Jenis)
   // =============================================================
 
   "infrastructure": {
     "airport": 40,
     "bicycle_path": 26,
     "bus_terminal": 20,
-    "gas_plant": 18,
     "helipad": 28,
     "highway": 18,
-    "hydro_plant": 13,
     "internet_coverage": 94,
-    "nuclear_plant": 23,
-    "power_grid": 89,
     "railway": 12,
     "road_quality": 78,
     "sea_port": 29,
-    "solar_plant": 37,
     "subway": 25,
     "tech_stack": 54,
-    "thermal_plant": 16,
     "water_access": 74,
-    "wind_plant": 35,
-  
   },
 
   // =============================================================
-  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // 7. ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
   // =============================================================
 
   "sector_extraction": {
@@ -62,7 +68,7 @@ export const chad: CountryData = {
   },
 
   // =============================================================
-  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // 3. 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
   // =============================================================
 
   "sector_manufacturing": {
@@ -84,7 +90,7 @@ export const chad: CountryData = {
   },
 
   // =============================================================
-  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // 3. 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
   // =============================================================
 
   "sector_livestock": {
@@ -101,7 +107,7 @@ export const chad: CountryData = {
   },
 
   // =============================================================
-  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // 3. 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
   // =============================================================
 
   "sector_agriculture": {
@@ -121,7 +127,7 @@ export const chad: CountryData = {
   },
 
   // =============================================================
-  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // 4. 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
   // =============================================================
 
   "sector_defense": {
@@ -155,7 +161,7 @@ export const chad: CountryData = {
   },
 
   // =============================================================
-  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // 4. 🛰️ STRATEGIS MILITER (19 Jenis)
   // =============================================================
 
   "sector_military_strategic": {
@@ -182,7 +188,7 @@ export const chad: CountryData = {
   },
 
   // =============================================================
-  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // 5. 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
   // =============================================================
 
   "sector_social": {
@@ -320,7 +326,7 @@ export const chad: CountryData = {
   },
 
   // =============================================================
-  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // 6. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
   // =============================================================
 
   "geopolitics": {

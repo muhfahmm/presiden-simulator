@@ -14,34 +14,40 @@ export const seychelles: CountryData = {
   "ideology": "Kapitalisme",
 
   // =============================================================
-  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)
+  // =============================================================
+
+  "sector_electricity": {
+    "gas_plant": 15,
+    "hydro_plant": 28,
+    "nuclear_plant": 33,
+    "power_grid": 94,
+    "solar_plant": 33,
+    "thermal_plant": 20,
+    "wind_plant": 24,
+  },
+
+  // =============================================================
+  // 2. 🏗️ SEKTOR INFRASTRUKTUR (12 Jenis)
   // =============================================================
 
   "infrastructure": {
     "airport": 39,
     "bicycle_path": 38,
     "bus_terminal": 28,
-    "gas_plant": 15,
     "helipad": 38,
     "highway": 14,
-    "hydro_plant": 28,
     "internet_coverage": 67,
-    "nuclear_plant": 33,
-    "power_grid": 94,
     "railway": 4,
     "road_quality": 71,
     "sea_port": 24,
-    "solar_plant": 33,
     "subway": 15,
     "tech_stack": 61,
-    "thermal_plant": 20,
     "water_access": 74,
-    "wind_plant": 24,
-  
   },
 
   // =============================================================
-  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // 7. ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
   // =============================================================
 
   "sector_extraction": {
@@ -62,7 +68,7 @@ export const seychelles: CountryData = {
   },
 
   // =============================================================
-  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // 3. 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
   // =============================================================
 
   "sector_manufacturing": {
@@ -84,7 +90,7 @@ export const seychelles: CountryData = {
   },
 
   // =============================================================
-  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // 3. 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
   // =============================================================
 
   "sector_livestock": {
@@ -101,7 +107,7 @@ export const seychelles: CountryData = {
   },
 
   // =============================================================
-  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // 3. 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
   // =============================================================
 
   "sector_agriculture": {
@@ -121,7 +127,7 @@ export const seychelles: CountryData = {
   },
 
   // =============================================================
-  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // 4. 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
   // =============================================================
 
   "sector_defense": {
@@ -155,7 +161,7 @@ export const seychelles: CountryData = {
   },
 
   // =============================================================
-  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // 4. 🛰️ STRATEGIS MILITER (19 Jenis)
   // =============================================================
 
   "sector_military_strategic": {
@@ -182,7 +188,7 @@ export const seychelles: CountryData = {
   },
 
   // =============================================================
-  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // 5. 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
   // =============================================================
 
   "sector_social": {
@@ -320,7 +326,7 @@ export const seychelles: CountryData = {
   },
 
   // =============================================================
-  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // 6. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
   // =============================================================
 
   "geopolitics": {

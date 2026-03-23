@@ -14,34 +14,40 @@ export const afrika_selatan: CountryData = {
   "ideology": "Kapitalisme",
 
   // =============================================================
-  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)
+  // =============================================================
+
+  "sector_electricity": {
+    "gas_plant": 28,
+    "hydro_plant": 21,
+    "nuclear_plant": 10,
+    "power_grid": 56,
+    "solar_plant": 40,
+    "thermal_plant": 1,
+    "wind_plant": 6,
+  },
+
+  // =============================================================
+  // 2. 🏗️ SEKTOR INFRASTRUKTUR (12 Jenis)
   // =============================================================
 
   "infrastructure": {
     "airport": 3,
     "bicycle_path": 6,
     "bus_terminal": 6,
-    "gas_plant": 28,
     "helipad": 4,
     "highway": 12,
-    "hydro_plant": 21,
     "internet_coverage": 93,
-    "nuclear_plant": 10,
-    "power_grid": 56,
     "railway": 18,
     "road_quality": 81,
     "sea_port": 35,
-    "solar_plant": 40,
     "subway": 15,
     "tech_stack": 57,
-    "thermal_plant": 1,
     "water_access": 74,
-    "wind_plant": 6,
-  
   },
 
   // =============================================================
-  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // 7. ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
   // =============================================================
 
   "sector_extraction": {
@@ -62,7 +68,7 @@ export const afrika_selatan: CountryData = {
   },
 
   // =============================================================
-  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // 3. 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
   // =============================================================
 
   "sector_manufacturing": {
@@ -84,7 +90,7 @@ export const afrika_selatan: CountryData = {
   },
 
   // =============================================================
-  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // 3. 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
   // =============================================================
 
   "sector_livestock": {
@@ -101,7 +107,7 @@ export const afrika_selatan: CountryData = {
   },
 
   // =============================================================
-  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // 3. 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
   // =============================================================
 
   "sector_agriculture": {
@@ -121,7 +127,7 @@ export const afrika_selatan: CountryData = {
   },
 
   // =============================================================
-  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // 4. 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
   // =============================================================
 
   "sector_defense": {
@@ -155,7 +161,7 @@ export const afrika_selatan: CountryData = {
   },
 
   // =============================================================
-  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // 4. 🛰️ STRATEGIS MILITER (19 Jenis)
   // =============================================================
 
   "sector_military_strategic": {
@@ -182,7 +188,7 @@ export const afrika_selatan: CountryData = {
   },
 
   // =============================================================
-  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // 5. 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
   // =============================================================
 
   "sector_social": {
@@ -320,7 +326,7 @@ export const afrika_selatan: CountryData = {
   },
 
   // =============================================================
-  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // 6. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
   // =============================================================
 
   "geopolitics": {

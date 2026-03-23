@@ -14,10 +14,10 @@ export const malaysia: CountryData = {
   "ideology": "Kapitalisme",
 
   // =============================================================
-  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)
   // =============================================================
 
-  "infrastructure": {
+  "sector_electricity": {
     "nuclear_plant": 32,
     "hydro_plant": 14,
     "solar_plant": 16,
@@ -25,6 +25,13 @@ export const malaysia: CountryData = {
     "gas_plant": 2,
     "wind_plant": 22,
     "power_grid": 93,
+  },
+
+  // =============================================================
+  // 2. 🏗️ SEKTOR INFRASTRUKTUR (12 Jenis)
+  // =============================================================
+
+  "infrastructure": {
     "bicycle_path": 18,
     "subway": 37,
     "railway": 37,
@@ -40,7 +47,7 @@ export const malaysia: CountryData = {
   },
 
   // =============================================================
-  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // 7. ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
   // =============================================================
 
   "sector_extraction": {
@@ -60,7 +67,7 @@ export const malaysia: CountryData = {
   },
 
   // =============================================================
-  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // 3. 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
   // =============================================================
 
   "sector_manufacturing": {
@@ -81,7 +88,7 @@ export const malaysia: CountryData = {
   },
 
   // =============================================================
-  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // 3. 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
   // =============================================================
 
   "sector_livestock": {
@@ -97,7 +104,7 @@ export const malaysia: CountryData = {
   },
 
   // =============================================================
-  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // 3. 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
   // =============================================================
 
   "sector_agriculture": {
@@ -116,7 +123,7 @@ export const malaysia: CountryData = {
   },
 
   // =============================================================
-  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // 4. 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
   // =============================================================
 
   "sector_defense": {
@@ -150,7 +157,7 @@ export const malaysia: CountryData = {
   },
 
   // =============================================================
-  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // 4. 🛰️ STRATEGIS MILITER (19 Jenis)
   // =============================================================
 
   "sector_military_strategic": {
@@ -177,7 +184,7 @@ export const malaysia: CountryData = {
   },
 
   // =============================================================
-  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // 5. 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
   // =============================================================
 
   "sector_social": {
@@ -315,7 +322,7 @@ export const malaysia: CountryData = {
   },
 
   // =============================================================
-  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // 6. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
   // =============================================================
 
   "geopolitics": {

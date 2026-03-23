@@ -15,9 +15,8 @@ export interface CountryData {
   
   // --- SECTORS ---
   
-  // 1. Infrastruktur Kelistrikan (Expanded Infrastructure)
-  infrastructure: {
-    // Power
+  // 1. Sekor Kelistrikan (Electricity Sector)
+  sector_electricity: {
     nuclear_plant: number;
     hydro_plant: number;
     solar_plant: number;
@@ -25,7 +24,10 @@ export interface CountryData {
     gas_plant: number;
     wind_plant: number;
     power_grid: number; // 0-100% coverage
-    
+  };
+
+  // 2. Sektor Infrastruktur (Infrastructure Sector)
+  infrastructure: {
     // Transport & Logistik (Detailed)
     bicycle_path: number;
     subway: number;
@@ -45,7 +47,7 @@ export interface CountryData {
     water_access: number; // 0-100%
   };
 
-  // 2. Sektor Ekstraksi & Energi (Detailed)
+  // 3. Sektor Ekstraksi & Energi (Detailed)
   sector_extraction: {
     gold: number;
     uranium: number;
@@ -62,7 +64,7 @@ export interface CountryData {
     strength: number; // 0-100
   };
 
-  // 3. Sektor Pengolahan & Manufaktur (Detailed)
+  // 4. Sektor Pengolahan & Manufaktur (Detailed)
   sector_manufacturing: {
     semiconductor: number;
     car: number;
@@ -80,7 +82,7 @@ export interface CountryData {
     strength: number; // 0-100
   };
 
-  // 4. Sektor Peternakan (Detailed)
+  // 5. Sektor Peternakan (Detailed)
   sector_livestock: {
     chicken: number;
     poultry: number;
@@ -93,7 +95,7 @@ export interface CountryData {
     strength: number; // 0-100
   };
 
-  // 5. Sektor Pertanian (Detailed)
+  // 6. Sektor Pertanian (Detailed)
   sector_agriculture: {
     rice: number;
     wheat: number;
@@ -109,7 +111,7 @@ export interface CountryData {
     strength: number; // 0-100
   };
 
-  // 6. Sektor Pertahanan (Detailed)
+  // 7. Sektor Pertahanan (Detailed)
   sector_defense: {
     prison: number;
     barracks: number;
@@ -140,7 +142,7 @@ export interface CountryData {
     };
   };
 
-  // 7. Sektor Militer Strategis (Detailed)
+  // 8. Sektor Militer Strategis (Detailed)
   sector_military_strategic: {
     command_center: number;
     military_air_base: number;

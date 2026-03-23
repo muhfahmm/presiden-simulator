@@ -14,34 +14,40 @@ export const republik_sudan: CountryData = {
   "ideology": "Kapitalisme",
 
   // =============================================================
-  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)
+  // =============================================================
+
+  "sector_electricity": {
+    "gas_plant": 37,
+    "hydro_plant": 17,
+    "nuclear_plant": 26,
+    "power_grid": 61,
+    "solar_plant": 39,
+    "thermal_plant": 37,
+    "wind_plant": 27,
+  },
+
+  // =============================================================
+  // 2. 🏗️ SEKTOR INFRASTRUKTUR (12 Jenis)
   // =============================================================
 
   "infrastructure": {
     "airport": 32,
     "bicycle_path": 8,
     "bus_terminal": 9,
-    "gas_plant": 37,
     "helipad": 30,
     "highway": 38,
-    "hydro_plant": 17,
     "internet_coverage": 80,
-    "nuclear_plant": 26,
-    "power_grid": 61,
     "railway": 16,
     "road_quality": 58,
     "sea_port": 11,
-    "solar_plant": 39,
     "subway": 12,
     "tech_stack": 82,
-    "thermal_plant": 37,
     "water_access": 74,
-    "wind_plant": 27,
-  
   },
 
   // =============================================================
-  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // 7. ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
   // =============================================================
 
   "sector_extraction": {
@@ -62,7 +68,7 @@ export const republik_sudan: CountryData = {
   },
 
   // =============================================================
-  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // 3. 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
   // =============================================================
 
   "sector_manufacturing": {
@@ -84,7 +90,7 @@ export const republik_sudan: CountryData = {
   },
 
   // =============================================================
-  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // 3. 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
   // =============================================================
 
   "sector_livestock": {
@@ -101,7 +107,7 @@ export const republik_sudan: CountryData = {
   },
 
   // =============================================================
-  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // 3. 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
   // =============================================================
 
   "sector_agriculture": {
@@ -121,7 +127,7 @@ export const republik_sudan: CountryData = {
   },
 
   // =============================================================
-  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // 4. 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
   // =============================================================
 
   "sector_defense": {
@@ -155,7 +161,7 @@ export const republik_sudan: CountryData = {
   },
 
   // =============================================================
-  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // 4. 🛰️ STRATEGIS MILITER (19 Jenis)
   // =============================================================
 
   "sector_military_strategic": {
@@ -182,7 +188,7 @@ export const republik_sudan: CountryData = {
   },
 
   // =============================================================
-  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // 5. 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
   // =============================================================
 
   "sector_social": {
@@ -320,7 +326,7 @@ export const republik_sudan: CountryData = {
   },
 
   // =============================================================
-  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // 6. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
   // =============================================================
 
   "geopolitics": {

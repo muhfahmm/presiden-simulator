@@ -49,17 +49,17 @@ export const KAPASITAS_LISTRIK = Object.fromEntries(
   Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]) => [key, val.production])
 ) as Record<keyof typeof KAPASITAS_LISTRIK_METADATA, number>;
 
-export function hitungTotalKapasitas(infra: CountryData["infrastructure"]) {
+export function hitungTotalKapasitas(electricity: CountryData["sector_electricity"]) {
   return (
-    (infra.nuclear_plant ?? 0) * KAPASITAS_LISTRIK.nuclear_plant +
-    (infra.hydro_plant ?? 0) * KAPASITAS_LISTRIK.hydro_plant +
-    (infra.solar_plant ?? 0) * KAPASITAS_LISTRIK.solar_plant +
-    (infra.thermal_plant ?? 0) * KAPASITAS_LISTRIK.thermal_plant +
-    (infra.gas_plant ?? 0) * KAPASITAS_LISTRIK.gas_plant +
-    (infra.wind_plant ?? 0) * KAPASITAS_LISTRIK.wind_plant
+    (electricity.nuclear_plant ?? 0) * KAPASITAS_LISTRIK.nuclear_plant +
+    (electricity.hydro_plant ?? 0) * KAPASITAS_LISTRIK.hydro_plant +
+    (electricity.solar_plant ?? 0) * KAPASITAS_LISTRIK.solar_plant +
+    (electricity.thermal_plant ?? 0) * KAPASITAS_LISTRIK.thermal_plant +
+    (electricity.gas_plant ?? 0) * KAPASITAS_LISTRIK.gas_plant +
+    (electricity.wind_plant ?? 0) * KAPASITAS_LISTRIK.wind_plant
   );
 }
 
-export function hitungOutputPLTN(infra: CountryData["infrastructure"]) {
-  return (infra.nuclear_plant ?? 0) * KAPASITAS_LISTRIK.nuclear_plant;
+export function hitungOutputPLTN(electricity: CountryData["sector_electricity"]) {
+  return (electricity.nuclear_plant ?? 0) * KAPASITAS_LISTRIK.nuclear_plant;
 }

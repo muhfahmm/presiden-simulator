@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff } from "lucide-react"
+import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean } from "lucide-react"
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "../../../select-country/data/pembangunan/laju-produksi";
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "../../../select-country/data/electricity";
 import { gameStorage } from "../../gamestorage";
@@ -94,7 +94,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
 
   const buildingDeltas = (session && typeof session.buildingDeltas === 'object') ? session.buildingDeltas : {};
 
-  const totalPasokan = hitungTotalKapasitas(currentData.infrastructure);
+  const totalPasokan = hitungTotalKapasitas(currentData.sector_electricity);
   const totalBeban = hitungTotalKonsumsiNasional(currentData);
 
   let adjustedTotalPasokan = totalPasokan;
@@ -166,7 +166,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         desc: "Energi Listrik",
         rate: val.production,
         unit: val.unit,
-        count: (currentData.infrastructure[key as keyof typeof currentData.infrastructure] || 0) + ((buildingDeltas[key] as number) || 0),
+        count: (currentData.sector_electricity[key as keyof typeof currentData.sector_electricity] || 0) + ((buildingDeltas[key] as number) || 0),
         income: 0,
         cost: 25,
         buildTime: val.buildTime || 90
@@ -181,7 +181,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       items: Object.entries(mineralKritisRate).map(([key, val]: [string, any]) => {
         let count = 0;
         if (val.isInfrastructure) {
-          count = currentData.infrastructure[val.dataKey as keyof typeof currentData.infrastructure] || 0;
+          count = currentData.sector_electricity[val.dataKey as keyof typeof currentData.sector_electricity] || 0;
         } else {
           count = currentData.sector_extraction[val.dataKey as keyof typeof currentData.sector_extraction] || 0;
         }
@@ -201,46 +201,88 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       })
     },
     {
-      id: "manufaktur",
-      title: "Sektor Pengolahan & Manufaktur",
+      id: "industri_berat",
+      title: "Sektor Industri Berat & Teknologi",
       icon: Factory,
       color: "text-cyan-400",
-      items: Object.entries(produkIndustriRate).map(([key, val]: [string, any]) => ({
-        key,
-        groupId: "manufaktur",
-        label: val.desc,
-        icon: key.includes("semiconductor") ? Zap : (key.includes("car") ? Car : (key.includes("motorcycle") ? Bike : Factory)),
-        desc: "Produk Industri",
-        rate: val.production,
-        unit: val.unit,
-        count: (currentData.sector_manufacturing[key as keyof typeof currentData.sector_manufacturing] || 0) + ((buildingDeltas[key] as number) || 0),
-        income: 0,
-        cost: 35,
-        buildTime: val.buildTime || 45
-      }))
+      items: Object.entries(produkIndustriRate)
+        .filter(([key]) => ["electronics_factory", "car_factory", "motorcycle_factory", "cement_factory", "smelter"].includes(key))
+        .map(([key, val]: [string, any]) => ({
+          key,
+          groupId: "manufaktur",
+          label: val.desc,
+          icon: key.includes("electronics") ? Zap : (key.includes("car") ? Car : (key.includes("motorcycle") ? Bike : Factory)),
+          desc: "Industri Berat",
+          rate: val.production,
+          unit: val.unit,
+          count: (currentData.sector_manufacturing[key as keyof typeof currentData.sector_manufacturing] || 0) + ((buildingDeltas[key] as number) || 0),
+          income: 0,
+          cost: 45,
+          buildTime: val.buildTime || 45
+        }))
     },
     {
-      id: "pangan",
-      title: "Sektor Pangan & Komoditas",
-      icon: Wheat,
-      color: "text-emerald-400",
-      items: Object.entries(komoditasPanganRate).map(([key, val]: [string, any]) => {
-        const agriCount = currentData.sector_agriculture[key as keyof typeof currentData.sector_agriculture] || 0;
-        const liveCount = currentData.sector_livestock[key as keyof typeof currentData.sector_livestock] || 0;
-        return {
+      id: "industri_hilir",
+      title: "Sektor Industri Hilir & Konsumsi",
+      icon: Store,
+      color: "text-blue-400",
+      items: Object.entries(produkIndustriRate)
+        .filter(([key]) => ["sawmill", "bottled_water_factory", "sugar_factory", "bakery_factory", "pharma_factory", "fertilizer_factory", "meat_processing_factory", "noodle_factory"].includes(key))
+        .map(([key, val]: [string, any]) => ({
+          key,
+          groupId: "manufaktur",
+          label: val.desc,
+          icon: key.includes("sawmill") ? Trees : (key.includes("water") ? Droplets : (key.includes("pharma") ? Pill : (key.includes("sugar") ? Cookie : Store))),
+          desc: "Industri Konsumsi",
+          rate: val.production,
+          unit: val.unit,
+          count: (currentData.sector_manufacturing[key as keyof typeof currentData.sector_manufacturing] || 0) + ((buildingDeltas[key] as number) || 0),
+          income: 0,
+          cost: 25,
+          buildTime: val.buildTime || 30
+        }))
+    },
+    {
+      id: "peternakan",
+      title: "Sektor Peternakan & Perikanan",
+      icon: Bird,
+      color: "text-amber-500",
+      items: Object.entries(komoditasPanganRate)
+        .filter(([key]) => ["egg_farm", "poultry_farm", "dairy_farm", "cattle_farm", "sheep_farm", "shrimp_farm", "freshwater_fish_farm", "pearl_farm"].includes(key))
+        .map(([key, val]: [string, any]) => ({
           key,
           groupId: "pangan",
           label: val.desc,
-          icon: key.includes("ayam") || key.includes("chicken") || key.includes("sapi") || key.includes("beef") ? Beef : Wheat,
-          desc: "Komoditas Pangan",
+          icon: key.includes("egg") ? Cookie : (key.includes("poultry") ? Bird : (key.includes("dairy") ? Milk : (key.includes("cattle") ? Beef : (key.includes("shrimp") ? Shell : Fish)))),
+          desc: "Peternakan",
           rate: val.production,
           unit: val.unit,
-          count: (agriCount || liveCount) + ((buildingDeltas[key] as number) || 0),
+          count: (currentData.sector_livestock[key as keyof typeof currentData.sector_livestock] || 0) + ((buildingDeltas[key] as number) || 0),
           income: 0,
           cost: 15,
           buildTime: val.buildTime || 20
-        };
-      })
+        }))
+    },
+    {
+      id: "pertanian",
+      title: "Sektor Pertanian & Perkebunan",
+      icon: Sprout,
+      color: "text-emerald-500",
+      items: Object.entries(komoditasPanganRate)
+        .filter(([key]) => ["paddy_field", "wheat_field", "corn_field", "tuber_field", "soybean_field", "palm_oil_plantation", "tea_plantation", "coffee_plantation", "cocoa_plantation", "sugarcane_plantation", "vegetable_farm"].includes(key))
+        .map(([key, val]: [string, any]) => ({
+          key,
+          groupId: "pangan",
+          label: val.desc,
+          icon: key.includes("paddy") ? Sprout : (key.includes("wheat") || key.includes("corn") ? Wheat : (key.includes("coffee") ? Coffee : (key.includes("palm") ? Trees : (key.includes("vegetable") ? Apple : Sprout)))),
+          desc: "Pertanian",
+          rate: val.production,
+          unit: val.unit,
+          count: (currentData.sector_agriculture[key as keyof typeof currentData.sector_agriculture] || 0) + ((buildingDeltas[key] as number) || 0),
+          income: 0,
+          cost: 10,
+          buildTime: val.buildTime || 20
+        }))
     }
   ];
 
@@ -332,7 +374,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                   <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}>
                     <group.icon className={`h-4 w-4 ${group.color}`} />
                   </div>
-                  <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title} <span className="text-zinc-500 ml-3 font-bold lowercase italic text-xs tracking-normal opacity-60">({group.items.length} Jenis)</span></h3>
+                  <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title} <span className="text-zinc-400 ml-3 font-black lowercase italic text-xs tracking-normal">({group.items.length} Jenis)</span></h3>
                   <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
 
                   {/* Hide/Show Toggle */}

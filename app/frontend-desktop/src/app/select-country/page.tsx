@@ -37,6 +37,7 @@ export default function SelectCountry() {
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const [leftWidth, setLeftWidth] = useState(360);
   const [rightWidth, setRightWidth] = useState(360);
+  const [isElectricityOpen, setIsElectricityOpen] = useState(true);
   const [isInfraOpen, setIsInfraOpen] = useState(true);
   const [isEconomyOpen, setIsEconomyOpen] = useState(true);
   const [isDefenseOpen, setIsDefenseOpen] = useState(true);
@@ -199,42 +200,55 @@ export default function SelectCountry() {
         <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none" />
 
         {/* --- LEFT SIDE PANELS --- */}
-        <div className="absolute top-4 left-4 flex flex-col gap-4 z-20 pointer-events-none max-h-[calc(100vh-160px)] overflow-y-auto no-scrollbar pb-10 px-1">
+        <div className={`absolute top-4 left-4 flex flex-col gap-4 z-20 pointer-events-none max-h-[calc(100vh-160px)] overflow-y-auto no-scrollbar pb-10 px-1 transition-all duration-[900ms] ease-in-out ${selectedCountry ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-40 pointer-events-none"}`}>
           
-          {/* 1. Infrastruktur & Energi */}
+          {/* 1. Kelistrikan */}
           <div style={{ width: `${leftWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel mb-4">
             <div onMouseDown={startResizeLeft} className="absolute inset-y-0 -right-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-amber-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>1. Infrastruktur & Logistik</span>
+              <span>1. Kelistrikan (6 Jenis)</span>
+              <button onClick={() => setIsElectricityOpen(!isElectricityOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
+                {isElectricityOpen ? <Eye size={12} className="text-amber-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
+              </button>
+            </h3>
+            
+            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isElectricityOpen ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0 pointer-events-none"}`}>
+            <div className="flex flex-col gap-3 overflow-y-auto max-h-[400px] no-scrollbar pr-1">
+              <div className="flex flex-col gap-1.5">
+                <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1"><Zap size={8}/> Jaringan Energi</span>
+                <ProgressStat label="Power Grid" value={currentData.sector_electricity.power_grid} color="bg-amber-500" icon={<Zap size={10}/>} />
+                <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1.5 shadow-inner">
+                  <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500"/> Total Daya</span>
+                  <span className="text-amber-500 text-sm">
+                    {hitungTotalKapasitas(currentData.sector_electricity).toLocaleString('id-ID')} MW 
+                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sector_electricity.nuclear_plant + currentData.sector_electricity.hydro_plant + currentData.sector_electricity.solar_plant + currentData.sector_electricity.thermal_plant + currentData.sector_electricity.gas_plant + currentData.sector_electricity.wind_plant} Unit)</span>
+                  </span>
+                </div>
+                <div className={`grid ${getGridCols(leftWidth)} gap-x-3 gap-y-2 mt-2`}>
+                  <DetailStat icon={<Radio size={12} className="text-cyan-400"/>} label="PLTN" value={`${currentData.sector_electricity.nuclear_plant} (${(currentData.sector_electricity.nuclear_plant * KAPASITAS_LISTRIK.nuclear_plant).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Waves size={12} className="text-blue-400"/>} label="PLTA" value={`${currentData.sector_electricity.hydro_plant} (${(currentData.sector_electricity.hydro_plant * KAPASITAS_LISTRIK.hydro_plant).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Sun size={12} className="text-yellow-400"/>} label="PLTS" value={`${currentData.sector_electricity.solar_plant} (${(currentData.sector_electricity.solar_plant * KAPASITAS_LISTRIK.solar_plant).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Flame size={12} className="text-orange-400"/>} label="PLTU" value={`${currentData.sector_electricity.thermal_plant} (${(currentData.sector_electricity.thermal_plant * KAPASITAS_LISTRIK.thermal_plant).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Flame size={12} className="text-red-400"/>} label="PLTG" value={`${currentData.sector_electricity.gas_plant} (${(currentData.sector_electricity.gas_plant * KAPASITAS_LISTRIK.gas_plant).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Wind size={12} className="text-emerald-400"/>} label="PLTB" value={`${currentData.sector_electricity.wind_plant} (${(currentData.sector_electricity.wind_plant * KAPASITAS_LISTRIK.wind_plant).toLocaleString('id-ID')} MW)`} />
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+
+          {/* 2. Infrastruktur & Logistik */}
+          <div style={{ width: `${leftWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel mb-4">
+            <div onMouseDown={startResizeLeft} className="absolute inset-y-0 -right-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
+            <h3 className="text-xs font-black text-cyan-400 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
+              <span>2. Infrastruktur & Logistik (10 Jenis)</span>
               <button onClick={() => setIsInfraOpen(!isInfraOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
-                {isInfraOpen ? <Eye size={12} className="text-amber-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
+                {isInfraOpen ? <Eye size={12} className="text-cyan-400"/> : <EyeOff size={12} className="text-zinc-500"/>}
               </button>
             </h3>
             
             <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isInfraOpen ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0 pointer-events-none"}`}>
             <div className="flex flex-col gap-3 overflow-y-auto max-h-[400px] no-scrollbar pr-1">
-              <div className="flex flex-col gap-1.5">
-                <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1"><Zap size={8}/> Jaringan Energi</span>
-                <ProgressStat label="Power Grid" value={currentData.infrastructure.power_grid} color="bg-amber-500" icon={<Zap size={10}/>} />
-                <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1.5 shadow-inner">
-                  <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500"/> Total Daya</span>
-                  <span className="text-amber-500 text-sm">
-                    {hitungTotalKapasitas(currentData.infrastructure).toLocaleString('id-ID')} MW 
-                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.infrastructure.nuclear_plant + currentData.infrastructure.hydro_plant + currentData.infrastructure.solar_plant + currentData.infrastructure.thermal_plant + currentData.infrastructure.gas_plant + currentData.infrastructure.wind_plant} Unit)</span>
-                  </span>
-                </div>
-                <div className={`grid ${getGridCols(leftWidth)} gap-x-3 gap-y-2 mt-2`}>
-                  <DetailStat icon={<Radio size={12} className="text-cyan-400"/>} label="PLTN" value={`${currentData.infrastructure.nuclear_plant} (${(currentData.infrastructure.nuclear_plant * KAPASITAS_LISTRIK.nuclear_plant).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Waves size={12} className="text-blue-400"/>} label="PLTA" value={`${currentData.infrastructure.hydro_plant} (${(currentData.infrastructure.hydro_plant * KAPASITAS_LISTRIK.hydro_plant).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Sun size={12} className="text-yellow-400"/>} label="PLTS" value={`${currentData.infrastructure.solar_plant} (${(currentData.infrastructure.solar_plant * KAPASITAS_LISTRIK.solar_plant).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Flame size={12} className="text-orange-400"/>} label="PLTU" value={`${currentData.infrastructure.thermal_plant} (${(currentData.infrastructure.thermal_plant * KAPASITAS_LISTRIK.thermal_plant).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Flame size={12} className="text-red-400"/>} label="PLTG" value={`${currentData.infrastructure.gas_plant} (${(currentData.infrastructure.gas_plant * KAPASITAS_LISTRIK.gas_plant).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Wind size={12} className="text-emerald-400"/>} label="PLTB" value={`${currentData.infrastructure.wind_plant} (${(currentData.infrastructure.wind_plant * KAPASITAS_LISTRIK.wind_plant).toLocaleString('id-ID')} MW)`} />
-                </div>
-              </div>
-
-              <div className="h-px bg-zinc-800/50" />
-
               <div className="flex flex-col gap-2">
                 <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1"><Ship size={8}/> Transportasi & Digital</span>
                 <div className="space-y-2">
@@ -252,15 +266,14 @@ export default function SelectCountry() {
                   <DetailStat icon={<Plane size={12} className="text-pink-400"/>} label="Helipad" value={`${currentData.infrastructure.helipad ?? 0} (${((currentData.infrastructure.helipad ?? 0) * KONSUMSI_TRANSPORTASI.helipad).toLocaleString('id-ID')} MW)`} />
                 </div>
               </div>
-          </div>
-          </div>
-          
+            </div>
+            </div>
           </div>
           {/* 2. Sektor Produksi & Ekonomi Detailed */}
           <div style={{ width: `${leftWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeLeft} className="absolute inset-y-0 -right-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-emerald-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>2. Produksi & Ekonomi Nasional</span>
+              <span>3. Produksi & Ekonomi Nasional (25 Jenis)</span>
               <button onClick={() => setIsEconomyOpen(!isEconomyOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isEconomyOpen ? <Eye size={12} className="text-emerald-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
               </button>
@@ -327,22 +340,20 @@ export default function SelectCountry() {
                   <SectorStat icon={<Bean size={10} className="text-emerald-700"/>} label="Kedelai" value={`${currentData.sector_agriculture.soy} (${(currentData.sector_agriculture.soy * KONSUMSI_AGRI.soy).toLocaleString('id-ID')} MW)`} />
                   <SectorStat icon={<Droplet size={10} className="text-amber-500"/>} label="Kelapa Sawit" value={`${currentData.sector_agriculture.palm_oil} (${(currentData.sector_agriculture.palm_oil * KONSUMSI_AGRI.palm_oil).toLocaleString('id-ID')} MW)`} />
                   <SectorStat icon={<Coffee size={10} className="text-amber-900"/>} label="Kopi/Teh/Kakao" value={`${currentData.sector_agriculture.coffee + currentData.sector_agriculture.tea + currentData.sector_agriculture.cocoa} (${((currentData.sector_agriculture.coffee * KONSUMSI_AGRI.coffee) + (currentData.sector_agriculture.tea * KONSUMSI_AGRI.tea) + (currentData.sector_agriculture.cocoa * KONSUMSI_AGRI.cocoa)).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Leaf size={10} className="text-emerald-500"/>} label="Tebu" value={`${currentData.sector_agriculture.sugarcane} (${(currentData.sector_agriculture.sugarcane * KONSUMSI_AGRI.sugarcane).toLocaleString('id-ID')} MW)`} />
                 </div>
               </div>
             </div>
+          </div>
         </div>
-        </div>
-
         </div>
         {/* --- RIGHT SIDE PANELS --- */}
-        <div className="absolute top-4 right-4 flex flex-col gap-3 z-20 pointer-events-none max-h-[calc(100vh-160px)] overflow-y-auto no-scrollbar pr-1 pb-10">
+        <div className={`absolute top-4 right-4 flex flex-col gap-3 z-20 pointer-events-none max-h-[calc(100vh-160px)] overflow-y-auto no-scrollbar pr-1 pb-10 transition-all duration-[900ms] ease-in-out ${selectedCountry ? "opacity-100 translate-x-0" : "opacity-0 translate-x-40 pointer-events-none"}`}>
           
-          {/* 3. Pertahanan & Militer Strategis Detailed */}
+          {/* 4. Pertahanan & Militer Strategis Detailed */}
           <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-red-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>3. Pertahanan & Strategis</span>
+              <span>4. Pertahanan & Strategis (32 Jenis)</span>
               <button onClick={() => setIsDefenseOpen(!isDefenseOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isDefenseOpen ? <Eye size={12} className="text-red-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
               </button>
@@ -527,11 +538,11 @@ export default function SelectCountry() {
             </div>
           </div>
 
-          {/* 4. Layanan Sosial & Publik Detailed */}
+          {/* 5. Layanan Sosial & Publik Detailed */}
           <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-cyan-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>4. Layanan Sosial & Publik</span>
+              <span>5. Layanan Sosial & Publik (18 Jenis)</span>
               <button onClick={() => setIsSocialOpen(!isSocialOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isSocialOpen ? <Eye size={12} className="text-cyan-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
               </button>
@@ -601,11 +612,11 @@ export default function SelectCountry() {
             </div>
           </div>
 
-          {/* 5. Ekonomi & Geopolitik (Expanded) */}
+          {/* 6. Ekonomi & Geopolitik (Expanded) */}
           <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-3 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <div className="flex items-center justify-between w-full">
-              <h3 className="text-xs font-black text-blue-500 uppercase tracking-[0.2em]">5. Geopolitik & Luar Negeri</h3>
+              <h3 className="text-xs font-black text-blue-500 uppercase tracking-[0.2em]">6. Geopolitik & Luar Negeri (16 Jenis)</h3>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-black bg-indigo-500/20 text-indigo-400 px-1.5 py-0.5 rounded uppercase">{currentData.geopolitics.stance}</span>
                 <button onClick={() => setIsGeopoliticsOpen(!isGeopoliticsOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
@@ -725,11 +736,11 @@ export default function SelectCountry() {
             </div>
           </div>
 
-          {/* 6. Mineral Kritis & Strategis */}
+          {/* 7. Mineral Kritis & Strategis */}
           <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-pink-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>6. Mineral Kritis & Strategis</span>
+              <span>7. Mineral Kritis & Strategis (12 Jenis)</span>
               <button onClick={() => setIsMineralsOpen(!isMineralsOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isMineralsOpen ? <Eye size={12} className="text-pink-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
               </button>
