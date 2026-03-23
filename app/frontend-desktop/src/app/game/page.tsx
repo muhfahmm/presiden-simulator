@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Heart, Coins, Shield, LogOut } from "lucide-react";
+import { Heart, Coins, Shield, LogOut, Users } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import GameMapCanvas from "./mainGameMap";
 import TradeMapCanvas from "./tab-menu/trades/TradeMapCanvas";
@@ -13,6 +13,7 @@ import BottomNav from "./components/BottomNav";
 import { gameStorage } from "./gamestorage";
 import { countries } from "../select-country/data/countries";
 import { CountryData } from "../select-country/data/types";
+import GameTimeControls from "./components/time/GameTimeControls";
 
 // Bottom Nav Modals
 import RatingPresidenModal from "./components/rating-presiden/RatingPresidenModal";
@@ -27,7 +28,7 @@ import ProduksiBarangModal from "./components/ekonomi/ProduksiBarangModal";
 import MineralsModal from "./components/ekonomi/MineralsModal";
 import HargaBarangModal from "./components/ekonomi/HargaBarangModal";
 // Other Modals
-import ProduksiModal from "./components/pembangunan/ProduksiModal";
+import ProduksiHubV3 from "./components/pembangunan/ProduksiModal";
 import ProduksiMiliterModal from "./components/pembangunan/ProduksiMiliterModal";
 import TempatUmumModal from "./components/pembangunan/TempatUmumModal";
 import PertahananModal from "./components/pertahanan/PertahananModal";
@@ -82,9 +83,6 @@ export default function GamePage() {
         {/* Top Header / Status bar */}
         <header className="bg-zinc-900/30 backdrop-blur-sm border-b border-zinc-800 px-8 py-4 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <h1 className="text-xl font-bold bg-gradient-to-r from-cyan-500 to-blue-500 bg-clip-text text-transparent">
-              Pusat Komando Strategis
-            </h1>
             {countryData && (
               <div className="flex items-center gap-2 bg-zinc-800/40 px-3 py-1.5 rounded-xl border border-zinc-700/50 shadow-sm backdrop-blur-md">
                 <span className="text-base">{countryData.flag}</span>
@@ -94,8 +92,9 @@ export default function GamePage() {
           </div>
           
           <div className="flex items-center gap-6">
+            <StatusBadge icon={<Users className="h-4 w-4 text-blue-500" />} label="Populasi" value={countryData?.pop || 0} />
             <StatusBadge icon={<Heart className="h-4 w-4 text-red-500" />} label="Persetujuan" value={`${approval}%`} />
-            <StatusBadge icon={<Coins className="h-4 w-4 text-yellow-500" />} label="Kas Negara" value={`Rp ${budget} T`} />
+            <StatusBadge icon={<Coins className="h-4 w-4 text-yellow-500" />} label="Kas Negara" value={budget * 1000000000000} />
             <StatusBadge icon={<Shield className="h-4 w-4 text-green-500" />} label="Stabilitas" value={`${stability}%`} />
             
             <button 
@@ -117,6 +116,11 @@ export default function GamePage() {
         <div className="flex-1 relative w-full overflow-hidden bg-[#070b13]">
           {/* Floating Bottom Navigation Menu */}
           <BottomNav activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+
+          {/* Game Time Control - Bottom Right */}
+          <div className="absolute bottom-12 right-8 z-40">
+            <GameTimeControls />
+          </div>
 
           {/* Map Mode Toggles */}
           <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-20 flex bg-zinc-900/80 backdrop-blur-md p-1 rounded-xl border border-zinc-800 shadow-xl gap-1">
@@ -324,7 +328,7 @@ export default function GamePage() {
             isOpen={activeMenu === "Minerals"} 
             onClose={() => setActiveMenu("Peta Taktis")} 
           />
-          <ProduksiModal 
+          <ProduksiHubV3 
             isOpen={activeMenu === "Menu:Produksi"} 
             onClose={() => setActiveMenu("Pembangunan")} 
           />
@@ -433,13 +437,17 @@ export default function GamePage() {
   );
 }
 
-function StatusBadge({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) {
+function StatusBadge({ icon, label, value }: { icon: React.ReactNode, label: string, value: string | number }) {
+  const displayValue = typeof value === 'number' ? value.toLocaleString('id-ID') : value;
+  
   return (
     <div className="flex items-center gap-2 bg-zinc-900/80 px-3 py-1.5 rounded-lg border border-zinc-800">
       {icon}
       <div className="text-left leading-tight">
         <p className="text-[10px] text-zinc-500 font-semibold uppercase">{label}</p>
-        <p className="text-xs font-bold">{value}</p>
+        <p className="text-xs font-bold text-zinc-100 italic">
+          {label === "Kas Negara" && typeof value === 'number' ? `Rp ${displayValue}` : displayValue}
+        </p>
       </div>
     </div>
   );

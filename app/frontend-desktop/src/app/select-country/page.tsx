@@ -9,13 +9,14 @@ import MapHubungan from "../game/tab-menu/Hubungan/mapHubungan";
 import { countries } from "./data/countries";
 import { gameStorage } from "../game/gamestorage";
 import { CountryData } from "./data/types";
-import { hitungTotalKapasitas } from "./data/electricity/supply/listrik/kalkulasi";
-import { hitungKonsumsiProduksi, KONSUMSI_PRODUKSI, KONSUMSI_AGRI, KONSUMSI_PETERNAKAN } from "./data/electricity/comsumtion/produksi";
-import { hitungKonsumsiPertahanan, KONSUMSI_PERTAHANAN, KONSUMSI_FLEET, KONSUMSI_STRATEGIC } from "./data/electricity/comsumtion/pertahanan";
-import { hitungKonsumsiSosial, KONSUMSI_SOSIAL } from "./data/electricity/comsumtion/sosial";
-import { KAPASITAS_LISTRIK } from "./data/electricity/supply/listrik/kapasitas";
-import { hitungKonsumsiTransportasi, KONSUMSI_TRANSPORTASI } from "./data/electricity/comsumtion/transportasi";
-import { hitungKonsumsiEkstraksi, KONSUMSI_EKSTRAKSI } from "./data/electricity/comsumtion/ekstraksi";
+import { 
+  hitungTotalKapasitas, KAPASITAS_LISTRIK,
+  hitungKonsumsiProduksi, KONSUMSI_PRODUKSI, KONSUMSI_AGRI, KONSUMSI_PETERNAKAN,
+  hitungKonsumsiPertahanan, KONSUMSI_PERTAHANAN, KONSUMSI_FLEET, KONSUMSI_STRATEGIC,
+  hitungKonsumsiSosial, KONSUMSI_SOSIAL,
+  hitungKonsumsiTransportasi, KONSUMSI_TRANSPORTASI,
+  hitungKonsumsiEkstraksi, KONSUMSI_EKSTRAKSI 
+} from "./data/electricity";
 import { 
   Sword, Anchor, Plane, ShieldCheck, Globe2, TrendingUp, Gem, Droplets, Beef, TreePine, Mountain, 
   Zap, Waves, Sun, Flame, Wind, Building2, TowerControl, Ship, Radio, Home, Store, Factory, Map, 
@@ -895,7 +896,9 @@ export default function SelectCountry() {
   );
 }
 
-function StatItem({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) {
+function StatItem({ icon, label, value }: { icon: React.ReactNode, label: string, value: string | number }) {
+  const displayValue = typeof value === 'number' ? value.toLocaleString('id-ID') : value;
+  
   return (
     <div className="flex items-center gap-2">
       <div className="flex items-center justify-center w-6 h-6 rounded-lg bg-zinc-800/50 border border-zinc-700/50">
@@ -903,7 +906,9 @@ function StatItem({ icon, label, value }: { icon: React.ReactNode, label: string
       </div>
       <div className="flex flex-col">
         <span className="text-xs text-zinc-500 font-medium uppercase tracking-wider">{label}</span>
-        <span className="font-bold text-white text-sm leading-tight">{value}</span>
+        <span className="font-bold text-white text-sm leading-tight">
+          {label === "Kas Negara" && typeof value === 'number' ? `Rp ${displayValue}` : displayValue}
+        </span>
       </div>
     </div>
   );

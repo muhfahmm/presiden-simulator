@@ -8,8 +8,8 @@ export interface CountryData {
   lon: number;
   lat: number;
   flag: string;
-  pop: string;
-  budget: string;
+  pop: string | number;
+  budget: string | number;
   religion: Religion;
   ideology: Ideology;
   

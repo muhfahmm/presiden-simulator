@@ -7,8 +7,8 @@ export const indonesia: CountryData = {
   "lon": 120,
   "lat": -5,
   "flag": "🇮🇩",
-  "pop": "10M",
-  "budget": "Rp 456 T",
+  "pop": 278360115,
+  "budget": 456200000000000,
   "income": "Rp 969 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
@@ -280,18 +280,21 @@ export const indonesia: CountryData = {
       }
     ],
     "agreements": [
-      { "partner": "China", "type": "Trade", "status": "Active" },
+      { "partner": "Thailand", "type": "Trade", "status": "Active" },
+      { "partner": "Malaysia", "type": "Trade", "status": "Active" },
+      { "partner": "Filipina", "type": "Trade", "status": "Active" },
+      { "partner": "Jerman", "type": "Trade", "status": "Active" },
+      { "partner": "Prancis", "type": "Trade", "status": "Active" },
+      { "partner": "Vietnam", "type": "Trade", "status": "Active" },
       { "partner": "Amerika Serikat", "type": "Trade", "status": "Active" },
-      { "partner": "Jepang", "type": "Trade", "status": "Active" },
+      { "partner": "Uni Eropa", "type": "Trade", "status": "Active" },
+      { "partner": "Inggris", "type": "Trade", "status": "Active" },
+      { "partner": "Korea Selatan", "type": "Trade", "status": "Active" },
+      { "partner": "Uni Emirat Arab", "type": "Trade", "status": "Active" },
+      { "partner": "China", "type": "Trade", "status": "Active" },
       { "partner": "India", "type": "Trade", "status": "Active" },
       { "partner": "Singapura", "type": "Trade", "status": "Active" },
-      { "partner": "Malaysia", "type": "Trade", "status": "Active" },
-      { "partner": "Korea Selatan", "type": "Trade", "status": "Active" },
-      { "partner": "Filipina", "type": "Trade", "status": "Active" },
-      { "partner": "Vietnam", "type": "Trade", "status": "Active" },
-      { "partner": "Thailand", "type": "Trade", "status": "Active" },
-      { "partner": "Australia", "type": "Trade", "status": "Active" },
-      { "partner": "Jerman", "type": "Trade", "status": "Active" }
+      { "partner": "Jepang", "type": "Trade", "status": "Active" }
     ]
   },
   "ministries": {

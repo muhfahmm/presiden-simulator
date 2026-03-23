@@ -101,7 +101,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
             </div>
             <div>
               <h2 className="text-3xl font-black text-white tracking-tighter uppercase italic flex items-center gap-3">
-                HUB PERDAGANGAN STRATEGIS
+                HUB PERDAGANGAN STRATEGIS <span className="text-blue-500">— {currentData.flag} {currentData.name_id}</span>
               </h2>
               <div className="flex items-center gap-2 mt-1">
                 <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
@@ -304,13 +304,23 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
 
                 <div className="h-[400px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {(currentData.geopolitics?.agreements?.filter(a => a.type === 'Trade').length > 0 
-                      ? currentData.geopolitics.agreements.filter(a => a.type === 'Trade')
+                    {(currentData.geopolitics?.agreements?.filter(a => 
+                      a.type === 'Trade' && 
+                      a.partner.toLowerCase() !== currentData.name_id.toLowerCase() && 
+                      a.partner.toLowerCase() !== currentData.name_en.toLowerCase()
+                    ).length > 0 
+                      ? currentData.geopolitics.agreements
+                          .filter(a => 
+                            a.type === 'Trade' && 
+                            a.partner.toLowerCase() !== currentData.name_id.toLowerCase() && 
+                            a.partner.toLowerCase() !== currentData.name_en.toLowerCase()
+                          )
+                          .sort((a, b) => a.partner.localeCompare(b.partner))
                       : [
-                          { partner: "Vietnam", status: "Active" },
-                          { partner: "Tiongkok", status: "Active" },
                           { partner: "Afrika Selatan", status: "Active" },
-                          { partner: "Uni Emirat Arab", status: "Active" }
+                          { partner: "Tiongkok", status: "Active" },
+                          { partner: "Uni Emirat Arab", status: "Active" },
+                          { partner: "Vietnam", status: "Active" }
                         ]
                     ).map((agreement, idx) => (
                       <div key={idx} className="bg-zinc-900/20 border border-zinc-900 hover:border-zinc-700/50 p-5 rounded-2xl flex items-center justify-between group transition-all cursor-pointer">
@@ -320,7 +330,6 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                           </div>
                           <div>
                             <div className="text-xs font-black text-white uppercase tracking-wider">{agreement.partner}</div>
-                            <div className="text-[9px] font-bold text-zinc-500 uppercase tracking-tight mt-1">Perjanjian Dagang Bilateral</div>
                           </div>
                         </div>
                         <div className="flex flex-col items-end gap-1">
