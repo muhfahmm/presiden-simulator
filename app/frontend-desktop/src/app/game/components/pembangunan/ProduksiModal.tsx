@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
-import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean } from "lucide-react"
+import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf } from "lucide-react"
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "../../../select-country/data/pembangunan/laju-produksi";
+import { produksiMiliter } from "../../../select-country/data/pembangunan/produksi-militer";
+import { tempatUmum } from "../../../select-country/data/pembangunan/tempat-umum";
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "../../../select-country/data/electricity";
 import { gameStorage } from "../../gamestorage";
 import { formatGameDate, addDays, getStoredGameDate } from "../../data/time/gameTime";
@@ -155,7 +157,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   const productionGroups = [
     {
       id: "kelistrikan",
-      title: "Infrastruktur Kelistrikan",
+      title: "1. Sektor Kelistrikan Nasional",
       icon: Zap,
       color: "text-amber-400",
       items: Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]: [string, any]) => ({
@@ -168,23 +170,177 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         unit: val.unit,
         count: (currentData.sector_electricity[key as keyof typeof currentData.sector_electricity] || 0) + ((buildingDeltas[key] as number) || 0),
         income: 0,
-        cost: 25,
+        cost: 350,
         buildTime: val.buildTime || 90
       }))
     },
-    // ... group lain tetap sama
+    {
+      id: "produksi_ekonomi",
+      title: "3. Sektor Produksi & Ekonomi Nasional",
+      icon: Factory,
+      color: "text-emerald-500",
+      items: [
+        // --- 13 MANUFAKTUR ---
+        ...Object.entries(produkIndustriRate)
+          .filter(([key]) => ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill", "bottled_water_factory", "sugar_factory", "bakery_factory", "pharma_factory", "fertilizer_factory", "meat_processing_factory", "noodle_factory"].includes(key))
+          .map(([key, val]: [string, any]) => ({
+            key,
+            groupId: "manufaktur",
+            label: val.desc,
+            icon: key.includes("electronics") ? Cpu : (key.includes("car") ? Car : (key.includes("motorcycle") ? Bike : (key.includes("smelter") ? Flame : (key.includes("cement") ? Construction : (key.includes("sawmill") ? TreePine : (key.includes("water") ? Droplets : (key.includes("sugar") ? Cookie : (key.includes("bakery") ? Croissant : (key.includes("pharma") ? Pill : (key.includes("fertilizer") ? FlaskConical : (key.includes("meat") ? Beef : Soup))))))))))),
+            desc: "Manufaktur",
+            rate: val.production,
+            unit: val.unit,
+            count: (currentData.sector_manufacturing[key.replace('_factory', '').replace('cement_factory', 'concrete_cement').replace('meat_processing_factory', 'meat_processing').replace('noodle_factory', 'instant_noodle').replace('sawmill', 'wood').replace('bottled_water_factory', 'mineral_water').replace('electronics_factory', 'semiconductor') as keyof typeof currentData.sector_manufacturing] || 0) + ((buildingDeltas[key] as number) || 0),
+            income: 0,
+            cost: 450,
+            buildTime: val.buildTime || 45
+          })),
+
+        // --- 6 PETERNAKAN & PERIKANAN (Grouped) ---
+        {
+          key: "livestock_poultry",
+          groupId: "pangan",
+          label: "Ayam/Unggas",
+          icon: Bird,
+          desc: "Peternakan",
+          rate: 1,
+          unit: "Unit",
+          count: (currentData.sector_livestock.chicken + currentData.sector_livestock.poultry) + ((buildingDeltas["egg_farm"] as number) || 0),
+          income: 0, cost: 150, buildTime: 20
+        },
+        {
+          key: "livestock_dairy",
+          groupId: "pangan",
+          label: "Sapi Perah",
+          icon: Milk,
+          desc: "Peternakan",
+          rate: 1,
+          unit: "Unit",
+          count: (currentData.sector_livestock.dairy_cow) + ((buildingDeltas["dairy_farm"] as number) || 0),
+          income: 0, cost: 150, buildTime: 20
+        },
+        {
+          key: "livestock_beef",
+          groupId: "pangan",
+          label: "Sapi Potong",
+          icon: Beef,
+          desc: "Peternakan",
+          rate: 1,
+          unit: "Unit",
+          count: (currentData.sector_livestock.beef_cow) + ((buildingDeltas["cattle_farm"] as number) || 0),
+          income: 0, cost: 150, buildTime: 20
+        },
+        {
+          key: "livestock_sheep",
+          groupId: "pangan",
+          label: "Domba/Kambing",
+          icon: Leaf,
+          desc: "Peternakan",
+          rate: 1,
+          unit: "Unit",
+          count: (currentData.sector_livestock.sheep_goat) + ((buildingDeltas["sheep_farm"] as number) || 0),
+          income: 0, cost: 150, buildTime: 20
+        },
+        {
+          key: "livestock_shrimp",
+          groupId: "pangan",
+          label: "Udang/Kerang",
+          icon: Shell,
+          desc: "Peternakan",
+          rate: 1,
+          unit: "Unit",
+          count: (currentData.sector_livestock.shrimp + currentData.sector_livestock.shellfish) + ((buildingDeltas["shrimp_farm"] as number) || 0),
+          income: 0, cost: 150, buildTime: 20
+        },
+        {
+          key: "livestock_fish",
+          groupId: "pangan",
+          label: "Ikan",
+          icon: Fish,
+          desc: "Perikanan",
+          rate: 1,
+          unit: "Unit",
+          count: (currentData.sector_livestock.fish) + ((buildingDeltas["freshwater_fish_farm"] as number) || 0),
+          income: 0, cost: 150, buildTime: 20
+        },
+
+        // --- 6 PERTANIAN (Grouped) ---
+        {
+          key: "agri_rice",
+          groupId: "pangan",
+          label: "Padi",
+          icon: Sprout,
+          desc: "Pertanian",
+          rate: 1,
+          unit: "Unit",
+          count: (currentData.sector_agriculture.rice) + ((buildingDeltas["paddy_field"] as number) || 0),
+          income: 0, cost: 100, buildTime: 20
+        },
+        {
+          key: "agri_grains",
+          groupId: "pangan",
+          label: "Gandum/Jagung",
+          icon: Utensils,
+          desc: "Pertanian",
+          rate: 1,
+          unit: "Unit",
+          count: (currentData.sector_agriculture.wheat + currentData.sector_agriculture.corn) + ((buildingDeltas["wheat_field"] as number) || 0),
+          income: 0, cost: 100, buildTime: 20
+        },
+        {
+          key: "agri_veg",
+          groupId: "pangan",
+          label: "Sayur/Umbi",
+          icon: Apple,
+          desc: "Pertanian",
+          rate: 1,
+          unit: "Unit",
+          count: (currentData.sector_agriculture.vegetables + currentData.sector_agriculture.tubers) + ((buildingDeltas["vegetable_farm"] as number) || 0),
+          income: 0, cost: 100, buildTime: 20
+        },
+        {
+          key: "agri_soy",
+          groupId: "pangan",
+          label: "Kedelai",
+          icon: Bean,
+          desc: "Pertanian",
+          rate: 1,
+          unit: "Unit",
+          count: (currentData.sector_agriculture.soy) + ((buildingDeltas["soybean_field"] as number) || 0),
+          income: 0, cost: 100, buildTime: 20
+        },
+        {
+          key: "agri_palm",
+          groupId: "pangan",
+          label: "Kelapa Sawit",
+          icon: Droplets,
+          desc: "Perkebunan",
+          rate: 1,
+          unit: "Unit",
+          count: (currentData.sector_agriculture.palm_oil) + ((buildingDeltas["palm_oil_plantation"] as number) || 0),
+          income: 0, cost: 100, buildTime: 20
+        },
+        {
+          key: "agri_luxury",
+          groupId: "pangan",
+          label: "Kopi/Teh/Kakao",
+          icon: Coffee,
+          desc: "Perkebunan",
+          rate: 1,
+          unit: "Unit",
+          count: (currentData.sector_agriculture.coffee + currentData.sector_agriculture.tea + currentData.sector_agriculture.cocoa) + ((buildingDeltas["coffee_plantation"] as number) || 0),
+          income: 0, cost: 100, buildTime: 20
+        }
+      ]
+    },
     {
       id: "ekstraksi",
-      title: "Sektor Ekstraksi & Energi",
+      title: "7. Mineral Kritis & Strategis",
       icon: Pickaxe,
       color: "text-orange-500",
       items: Object.entries(mineralKritisRate).map(([key, val]: [string, any]) => {
-        let count = 0;
-        if (val.isInfrastructure) {
-          count = currentData.sector_electricity[val.dataKey as keyof typeof currentData.sector_electricity] || 0;
-        } else {
-          count = currentData.sector_extraction[val.dataKey as keyof typeof currentData.sector_extraction] || 0;
-        }
+        const count = (currentData.sector_extraction[val.dataKey as keyof typeof currentData.sector_extraction] || 0);
         return {
           key,
           groupId: "ekstraksi",
@@ -195,94 +351,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           unit: val.unit,
           count: count + ((buildingDeltas[key] as number) || 0),
           income: val.income,
-          cost: 25,
+          cost: 250,
           buildTime: val.buildTime || 30
         };
       })
-    },
-    {
-      id: "industri_berat",
-      title: "Sektor Industri Berat & Teknologi",
-      icon: Factory,
-      color: "text-cyan-400",
-      items: Object.entries(produkIndustriRate)
-        .filter(([key]) => ["electronics_factory", "car_factory", "motorcycle_factory", "cement_factory", "smelter"].includes(key))
-        .map(([key, val]: [string, any]) => ({
-          key,
-          groupId: "manufaktur",
-          label: val.desc,
-          icon: key.includes("electronics") ? Zap : (key.includes("car") ? Car : (key.includes("motorcycle") ? Bike : Factory)),
-          desc: "Industri Berat",
-          rate: val.production,
-          unit: val.unit,
-          count: (currentData.sector_manufacturing[key as keyof typeof currentData.sector_manufacturing] || 0) + ((buildingDeltas[key] as number) || 0),
-          income: 0,
-          cost: 45,
-          buildTime: val.buildTime || 45
-        }))
-    },
-    {
-      id: "industri_hilir",
-      title: "Sektor Industri Hilir & Konsumsi",
-      icon: Store,
-      color: "text-blue-400",
-      items: Object.entries(produkIndustriRate)
-        .filter(([key]) => ["sawmill", "bottled_water_factory", "sugar_factory", "bakery_factory", "pharma_factory", "fertilizer_factory", "meat_processing_factory", "noodle_factory"].includes(key))
-        .map(([key, val]: [string, any]) => ({
-          key,
-          groupId: "manufaktur",
-          label: val.desc,
-          icon: key.includes("sawmill") ? Trees : (key.includes("water") ? Droplets : (key.includes("pharma") ? Pill : (key.includes("sugar") ? Cookie : Store))),
-          desc: "Industri Konsumsi",
-          rate: val.production,
-          unit: val.unit,
-          count: (currentData.sector_manufacturing[key as keyof typeof currentData.sector_manufacturing] || 0) + ((buildingDeltas[key] as number) || 0),
-          income: 0,
-          cost: 25,
-          buildTime: val.buildTime || 30
-        }))
-    },
-    {
-      id: "peternakan",
-      title: "Sektor Peternakan & Perikanan",
-      icon: Bird,
-      color: "text-amber-500",
-      items: Object.entries(komoditasPanganRate)
-        .filter(([key]) => ["egg_farm", "poultry_farm", "dairy_farm", "cattle_farm", "sheep_farm", "shrimp_farm", "freshwater_fish_farm", "pearl_farm"].includes(key))
-        .map(([key, val]: [string, any]) => ({
-          key,
-          groupId: "pangan",
-          label: val.desc,
-          icon: key.includes("egg") ? Cookie : (key.includes("poultry") ? Bird : (key.includes("dairy") ? Milk : (key.includes("cattle") ? Beef : (key.includes("shrimp") ? Shell : Fish)))),
-          desc: "Peternakan",
-          rate: val.production,
-          unit: val.unit,
-          count: (currentData.sector_livestock[key as keyof typeof currentData.sector_livestock] || 0) + ((buildingDeltas[key] as number) || 0),
-          income: 0,
-          cost: 15,
-          buildTime: val.buildTime || 20
-        }))
-    },
-    {
-      id: "pertanian",
-      title: "Sektor Pertanian & Perkebunan",
-      icon: Sprout,
-      color: "text-emerald-500",
-      items: Object.entries(komoditasPanganRate)
-        .filter(([key]) => ["paddy_field", "wheat_field", "corn_field", "tuber_field", "soybean_field", "palm_oil_plantation", "tea_plantation", "coffee_plantation", "cocoa_plantation", "sugarcane_plantation", "vegetable_farm"].includes(key))
-        .map(([key, val]: [string, any]) => ({
-          key,
-          groupId: "pangan",
-          label: val.desc,
-          icon: key.includes("paddy") ? Sprout : (key.includes("wheat") || key.includes("corn") ? Wheat : (key.includes("coffee") ? Coffee : (key.includes("palm") ? Trees : (key.includes("vegetable") ? Apple : Sprout)))),
-          desc: "Pertanian",
-          rate: val.production,
-          unit: val.unit,
-          count: (currentData.sector_agriculture[key as keyof typeof currentData.sector_agriculture] || 0) + ((buildingDeltas[key] as number) || 0),
-          income: 0,
-          cost: 10,
-          buildTime: val.buildTime || 20
-        }))
     }
   ];
 
@@ -374,7 +446,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                   <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}>
                     <group.icon className={`h-4 w-4 ${group.color}`} />
                   </div>
-                  <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title} <span className="text-zinc-400 ml-3 font-black lowercase italic text-xs tracking-normal">({group.items.length} Jenis)</span></h3>
+                  <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title} <span className="text-cyan-400 ml-3 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span></h3>
                   <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
 
                   {/* Hide/Show Toggle */}
@@ -577,7 +649,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
           <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
             {item.desc || "Infrastruktur"}
           </div>
-          <div className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[11px] font-black text-emerald-400 uppercase tracking-tighter">
+          <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
             Terbangun: {item.count} Unit
           </div>
         </div>

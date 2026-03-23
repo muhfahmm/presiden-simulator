@@ -241,7 +241,7 @@ export default function SelectCountry() {
           <div style={{ width: `${leftWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel mb-4">
             <div onMouseDown={startResizeLeft} className="absolute inset-y-0 -right-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-cyan-400 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>2. Infrastruktur & Logistik (10 Jenis)</span>
+              <span>2. Infrastruktur & Logistik (8 Jenis)</span>
               <button onClick={() => setIsInfraOpen(!isInfraOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isInfraOpen ? <Eye size={12} className="text-cyan-400"/> : <EyeOff size={12} className="text-zinc-500"/>}
               </button>
@@ -257,7 +257,7 @@ export default function SelectCountry() {
                 </div>
                 <div className={`grid ${getGridCols(leftWidth)} gap-3 mt-1`}>
                   <DetailStat icon={<Bike size={12} className="text-emerald-400"/>} label="Jalur Sepeda" value={`${currentData.infrastructure.bicycle_path ?? 0} (${((currentData.infrastructure.bicycle_path ?? 0) * KONSUMSI_TRANSPORTASI.bicycle_path).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<TrainFront size={12} className="text-blue-500"/>} label="Subway" value={`${currentData.infrastructure.subway ?? 0} (${((currentData.infrastructure.subway ?? 0) * KONSUMSI_TRANSPORTASI.subway).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<TrainFront size={12} className="text-blue-500"/>} label="Kereta Bawah Tanah" value={`${currentData.infrastructure.subway ?? 0} (${((currentData.infrastructure.subway ?? 0) * KONSUMSI_TRANSPORTASI.subway).toLocaleString('id-ID')} MW)`} />
                   <DetailStat icon={<TrainFront size={12} className="text-zinc-400"/>} label="Kereta Api" value={`${currentData.infrastructure.railway ?? 0} (${((currentData.infrastructure.railway ?? 0) * KONSUMSI_TRANSPORTASI.railway).toLocaleString('id-ID')} MW)`} />
                   <DetailStat icon={<Map size={12} className="text-zinc-300"/>} label="Jalan Raya" value={`${currentData.infrastructure.highway ?? 0} (${((currentData.infrastructure.highway ?? 0) * KONSUMSI_TRANSPORTASI.highway).toLocaleString('id-ID')} MW)`} />
                   <DetailStat icon={<Ship size={12} className="text-blue-400"/>} label="Pelabuhan" value={`${currentData.infrastructure.sea_port} (${(currentData.infrastructure.sea_port * KONSUMSI_TRANSPORTASI.sea_port).toLocaleString('id-ID')} MW)`} />
@@ -459,23 +459,6 @@ export default function SelectCountry() {
                   <SectorStat icon={<Radio size={10} className="text-red-400"/>} label="Status Nuklir" value={currentData.sector_military_strategic.nuclear_status ? "Aktif" : "Mati"} />
                 </div>
 
-                {/* Strategic Ops & Intel Radar */}
-                <div className={`grid ${getGridCols(rightWidth)} gap-2 mt-2`}>
-                  <div className="flex flex-col gap-1.5 p-2 bg-zinc-800/40 rounded-xl border border-zinc-700/30">
-                    <span className="text-xs font-black text-zinc-500 uppercase tracking-tighter">Strategic Ops</span>
-                    <div className="flex justify-between items-center text-xs font-bold">
-                      <span className="text-red-400">Attack: {currentData.sector_military_strategic.strategic_operations.attack_mission}</span>
-                      <span className="text-emerald-400">Spy: {currentData.sector_military_strategic.strategic_operations.spy_mission}</span>
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-1.5 p-2 bg-zinc-800/40 rounded-xl border border-zinc-700/30">
-                    <span className="text-xs font-black text-zinc-500 uppercase tracking-tighter">Intel Radar</span>
-                    <div className="flex justify-between items-center text-xs font-bold text-blue-400">
-                      <span>Sat: {currentData.sector_military_strategic.intel_radar.satellite_system}</span>
-                      <span>Net: {currentData.sector_military_strategic.intel_radar.radar_network}%</span>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               <div className="h-px bg-zinc-800/50" />
@@ -928,9 +911,9 @@ function StatItem({ icon, label, value }: { icon: React.ReactNode, label: string
 function DetailStat({ icon, label, value }: { icon: React.ReactNode, label: string, value: string }) {
   return (
     <div className="flex flex-col gap-0.5">
-      <div className="flex items-center gap-1.5 text-zinc-500">
-        {icon}
-        <span className="text-xs font-bold uppercase tracking-tighter">{label}</span>
+      <div className="flex items-start gap-1.5 text-zinc-500">
+        <div className="mt-0.5">{icon}</div>
+        <span className="text-xs font-bold uppercase tracking-tighter leading-tight">{label}</span>
       </div>
       <span className="text-sm font-black text-zinc-200">{value}</span>
     </div>
@@ -984,9 +967,9 @@ function ProgressStat({ label, value, color, icon }: { label: string, value: num
 function SectorStat({ icon, label, value }: { icon: React.ReactNode, label: string, value: number | string }) {
   return (
     <div className="flex flex-col gap-0.5 bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-      <div className="flex items-center gap-1.5 text-zinc-500">
-        {icon}
-        <span className="text-xs font-bold uppercase tracking-tighter truncate">{label}</span>
+      <div className="flex items-start gap-1.5 text-zinc-500">
+        <div className="mt-0.5">{icon}</div>
+        <span className="text-xs font-bold uppercase tracking-tighter leading-tight">{label}</span>
       </div>
       <span className="text-xs font-black text-zinc-200">{typeof value === 'number' ? value.toLocaleString('id-ID') : value}</span>
     </div>
