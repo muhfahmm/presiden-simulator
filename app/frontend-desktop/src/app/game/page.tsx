@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { Heart, Coins, Shield, LogOut, Users } from "lucide-react";
+import { Heart, Coins, Shield, LogOut, Users, Newspaper } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import GameMapCanvas from "./mainGameMap";
 import TradeMapCanvas from "./tab-menu/trades/TradeMapCanvas";
@@ -36,6 +36,7 @@ import ArmadaMiliterModal from "./components/pertahanan/ArmadaMiliterModal";
 import ArmadaPolisiModal from "./components/pertahanan/ArmadaPolisiModal";
 import GeopolitikModal from "./components/geopolitik/GeopolitikModal";
 import KementerianModal from "./components/kementerian/KementerianModal";
+import BeritaModal from "./components/BeritaModal";
 
 export default function GamePage() {
   const [approval, setApproval] = useState(65);
@@ -90,8 +91,18 @@ export default function GamePage() {
               </div>
             )}
           </div>
-          
           <div className="flex items-center gap-6">
+            <button 
+              onClick={() => setActiveMenu("Menu:Berita")}
+              className="flex items-center gap-2 bg-emerald-500/10 hover:bg-emerald-500/20 px-4 py-2 rounded-xl border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all group cursor-pointer"
+            >
+              <Newspaper className="h-4 w-4 text-emerald-400 group-hover:scale-110 transition-transform" />
+              <div className="flex flex-col items-start leading-none">
+                <span className="text-[10px] font-black text-emerald-500/70 uppercase tracking-widest">Update</span>
+                <span className="text-xs font-black text-emerald-400 uppercase tracking-wider">Berita</span>
+              </div>
+            </button>
+
             <StatusBadge icon={<Users className="h-4 w-4 text-blue-500" />} label="Populasi" value={countryData?.pop || 0} />
             <StatusBadge icon={<Heart className="h-4 w-4 text-red-500" />} label="Persetujuan" value={`${approval}%`} />
             <StatusBadge icon={<Coins className="h-4 w-4 text-yellow-500" />} label="Kas Negara" value={budget * 1000000000000} />
@@ -363,6 +374,10 @@ export default function GamePage() {
           <KementerianModal 
             isOpen={activeMenu === "Dashboard:Kementerian"} 
             onClose={() => setActiveMenu("Kementerian")} 
+          />
+          <BeritaModal 
+            isOpen={activeMenu === "Menu:Berita"} 
+            onClose={() => setActiveMenu("Peta Taktis")} 
           />
         </div>
       </main>
