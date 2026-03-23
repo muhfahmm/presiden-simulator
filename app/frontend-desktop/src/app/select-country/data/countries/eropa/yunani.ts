@@ -282,27 +282,35 @@ export const yunani: CountryData = {
   "taxes": {
     "vat": {
       "rate": 34,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 90
     },
     "corporate": {
       "rate": 15,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 85
     },
     "income": {
       "rate": 15,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 48
     },
     "customs": {
       "rate": 40,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 202
     },
     "environment": {
       "rate": 36,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 125
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 12 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 34 },
     "other": {
       "rate": 38,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 127
     }
   },
 

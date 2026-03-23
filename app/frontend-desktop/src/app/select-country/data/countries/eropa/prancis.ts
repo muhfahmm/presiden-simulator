@@ -282,27 +282,35 @@ export const prancis: CountryData = {
   "taxes": {
     "vat": {
       "rate": 30,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 1497
     },
     "corporate": {
       "rate": 35,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 1939
     },
     "income": {
       "rate": 2,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 142
     },
     "customs": {
       "rate": 19,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 1458
     },
     "environment": {
       "rate": 3,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 157
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 153 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 457 },
     "other": {
       "rate": 10,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 520
     }
   },
 

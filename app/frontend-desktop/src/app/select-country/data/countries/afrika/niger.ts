@@ -287,26 +287,34 @@ export const niger: CountryData = {
     "vat": {
       "rate": 38,
       "satisfaction": 67,
+      "revenue": 7
     },
     "corporate": {
       "rate": 30,
       "satisfaction": 52,
+      "revenue": 5
     },
     "income": {
       "rate": 38,
       "satisfaction": 61,
+      "revenue": 8
     },
     "customs": {
       "rate": 15,
       "satisfaction": 86,
+      "revenue": 5
     },
     "environment": {
       "rate": 27,
       "satisfaction": 88,
+      "revenue": 5
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 27,
       "satisfaction": 93,
+      "revenue": 10
     }
   },
 

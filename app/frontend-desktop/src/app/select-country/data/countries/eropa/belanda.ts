@@ -282,27 +282,35 @@ export const belanda: CountryData = {
   "taxes": {
     "vat": {
       "rate": 12,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 271
     },
     "corporate": {
       "rate": 37,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 1015
     },
     "income": {
       "rate": 35,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 489
     },
     "customs": {
       "rate": 31,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 610
     },
     "environment": {
       "rate": 31,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 731
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 53 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 159 },
     "other": {
       "rate": 5,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 129
     }
   },
 

@@ -282,27 +282,35 @@ export const portugal: CountryData = {
   "taxes": {
     "vat": {
       "rate": 16,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 114
     },
     "corporate": {
       "rate": 40,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 204
     },
     "income": {
       "rate": 16,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 52
     },
     "customs": {
       "rate": 7,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 32
     },
     "environment": {
       "rate": 18,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 99
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 14 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 41 },
     "other": {
       "rate": 28,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 194
     }
   },
 

@@ -282,27 +282,35 @@ export const vietnam: CountryData = {
   "taxes": {
     "vat": {
       "rate": 13,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 95
     },
     "corporate": {
       "rate": 20,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 133
     },
     "income": {
       "rate": 24,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 185
     },
     "customs": {
       "rate": 40,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 233
     },
     "environment": {
       "rate": 6,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 70
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 21 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 63 },
     "other": {
       "rate": 1,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 9
     }
   },
 

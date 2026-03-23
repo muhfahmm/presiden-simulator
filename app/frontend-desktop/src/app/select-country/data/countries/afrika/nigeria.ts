@@ -287,26 +287,34 @@ export const nigeria: CountryData = {
     "vat": {
       "rate": 10,
       "satisfaction": 67,
+      "revenue": 99
     },
     "corporate": {
       "rate": 40,
       "satisfaction": 52,
+      "revenue": 255
     },
     "income": {
       "rate": 30,
       "satisfaction": 61,
+      "revenue": 323
     },
     "customs": {
       "rate": 17,
       "satisfaction": 86,
+      "revenue": 131
     },
     "environment": {
       "rate": 10,
       "satisfaction": 88,
+      "revenue": 58
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 24 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 70 },
     "other": {
       "rate": 21,
       "satisfaction": 93,
+      "revenue": 236
     }
   },
 

@@ -282,27 +282,35 @@ export const ekuador: CountryData = {
   "taxes": {
     "vat": {
       "rate": 25,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 28
     },
     "corporate": {
       "rate": 30,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 56
     },
     "income": {
       "rate": 40,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 61
     },
     "customs": {
       "rate": 28,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 91
     },
     "environment": {
       "rate": 28,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 34
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 6 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 17 },
     "other": {
       "rate": 28,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 83
     }
   },
 

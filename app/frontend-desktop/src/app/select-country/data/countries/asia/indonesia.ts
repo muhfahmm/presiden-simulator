@@ -282,27 +282,35 @@ export const indonesia: CountryData = {
  "taxes": {
     "vat": {
       "rate": 27,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 532
     },
     "corporate": {
       "rate": 15,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 220
     },
     "income": {
       "rate": 34,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 1159
     },
     "customs": {
       "rate": 40,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 1343
     },
     "environment": {
       "rate": 29,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 1060
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 70 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 208 },
     "other": {
       "rate": 19,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 724
     }
   },
 

@@ -282,27 +282,35 @@ export const belgia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 11,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 101
     },
     "corporate": {
       "rate": 27,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 194
     },
     "income": {
       "rate": 8,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 83
     },
     "customs": {
       "rate": 38,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 555
     },
     "environment": {
       "rate": 6,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 71
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 31 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 92 },
     "other": {
       "rate": 12,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 146
     }
   },
 

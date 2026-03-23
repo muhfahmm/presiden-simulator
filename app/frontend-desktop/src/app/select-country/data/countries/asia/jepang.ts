@@ -282,27 +282,35 @@ export const jepang: CountryData = {
   "taxes": {
     "vat": {
       "rate": 3,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 209
     },
     "corporate": {
       "rate": 6,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 245
     },
     "income": {
       "rate": 23,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 1899
     },
     "customs": {
       "rate": 12,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 568
     },
     "environment": {
       "rate": 5,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 433
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 200 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 600 },
     "other": {
       "rate": 16,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 1182
     }
   },
 

@@ -282,27 +282,35 @@ export const kuba: CountryData = {
   "taxes": {
     "vat": {
       "rate": 2,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 5
     },
     "corporate": {
       "rate": 22,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 26
     },
     "income": {
       "rate": 26,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 68
     },
     "customs": {
       "rate": 37,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 110
     },
     "environment": {
       "rate": 26,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 71
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 6 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 16 },
     "other": {
       "rate": 25,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 33
     }
   },
 

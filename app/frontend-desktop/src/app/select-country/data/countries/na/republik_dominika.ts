@@ -282,27 +282,35 @@ export const republik_dominika: CountryData = {
   "taxes": {
     "vat": {
       "rate": 37,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 64
     },
     "corporate": {
       "rate": 1,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 1
     },
     "income": {
       "rate": 28,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 34
     },
     "customs": {
       "rate": 12,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 28
     },
     "environment": {
       "rate": 6,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 8
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 6 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 17 },
     "other": {
       "rate": 29,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 44
     }
   },
 

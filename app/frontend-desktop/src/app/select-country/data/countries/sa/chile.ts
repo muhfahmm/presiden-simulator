@@ -282,27 +282,35 @@ export const chile: CountryData = {
   "taxes": {
     "vat": {
       "rate": 19,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 181
     },
     "corporate": {
       "rate": 34,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 128
     },
     "income": {
       "rate": 17,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 144
     },
     "customs": {
       "rate": 32,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 133
     },
     "environment": {
       "rate": 2,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 10
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 17 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 49 },
     "other": {
       "rate": 11,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 68
     }
   },
 

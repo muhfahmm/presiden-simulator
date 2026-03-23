@@ -282,27 +282,35 @@ export const republik_serbia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 8,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 14
     },
     "corporate": {
       "rate": 16,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 27
     },
     "income": {
       "rate": 10,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 8
     },
     "customs": {
       "rate": 32,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 42
     },
     "environment": {
       "rate": 11,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 20
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 4 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 10 },
     "other": {
       "rate": 12,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 10
     }
   },
 

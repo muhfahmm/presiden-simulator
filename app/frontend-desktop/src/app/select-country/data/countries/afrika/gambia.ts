@@ -287,26 +287,34 @@ export const gambia: CountryData = {
     "vat": {
       "rate": 36,
       "satisfaction": 67,
+      "revenue": 1
     },
     "corporate": {
       "rate": 28,
       "satisfaction": 52,
+      "revenue": 1
     },
     "income": {
       "rate": 34,
       "satisfaction": 61,
+      "revenue": 1
     },
     "customs": {
       "rate": 30,
       "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 1,
       "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 14,
       "satisfaction": 93,
+      "revenue": 0
     }
   },
 

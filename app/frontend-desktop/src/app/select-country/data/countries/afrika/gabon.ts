@@ -287,26 +287,34 @@ export const gabon: CountryData = {
     "vat": {
       "rate": 28,
       "satisfaction": 67,
+      "revenue": 16
     },
     "corporate": {
       "rate": 37,
       "satisfaction": 52,
+      "revenue": 19
     },
     "income": {
       "rate": 25,
       "satisfaction": 61,
+      "revenue": 12
     },
     "customs": {
       "rate": 39,
       "satisfaction": 86,
+      "revenue": 14
     },
     "environment": {
       "rate": 23,
       "satisfaction": 88,
+      "revenue": 8
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 25,
       "satisfaction": 93,
+      "revenue": 5
     }
   },
 

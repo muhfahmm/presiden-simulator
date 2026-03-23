@@ -287,26 +287,34 @@ export const djibouti: CountryData = {
     "vat": {
       "rate": 18,
       "satisfaction": 67,
+      "revenue": 1
     },
     "corporate": {
       "rate": 37,
       "satisfaction": 52,
+      "revenue": 2
     },
     "income": {
       "rate": 13,
       "satisfaction": 61,
+      "revenue": 0
     },
     "customs": {
       "rate": 18,
       "satisfaction": 86,
+      "revenue": 1
     },
     "environment": {
       "rate": 10,
       "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 28,
       "satisfaction": 93,
+      "revenue": 2
     }
   },
 

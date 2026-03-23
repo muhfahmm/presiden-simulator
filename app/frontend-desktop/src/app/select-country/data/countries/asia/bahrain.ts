@@ -282,27 +282,35 @@ export const bahrain: CountryData = {
   "taxes": {
     "vat": {
       "rate": 12,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 6
     },
     "corporate": {
       "rate": 27,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 27
     },
     "income": {
       "rate": 20,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 11
     },
     "customs": {
       "rate": 4,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 2
     },
     "environment": {
       "rate": 37,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 22
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 3 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 7 },
     "other": {
       "rate": 26,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 31
     }
   },
 

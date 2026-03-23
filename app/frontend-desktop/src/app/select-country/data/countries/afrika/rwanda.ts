@@ -287,26 +287,34 @@ export const rwanda: CountryData = {
     "vat": {
       "rate": 31,
       "satisfaction": 67,
+      "revenue": 8
     },
     "corporate": {
       "rate": 2,
       "satisfaction": 52,
+      "revenue": 0
     },
     "income": {
       "rate": 10,
       "satisfaction": 61,
+      "revenue": 2
     },
     "customs": {
       "rate": 1,
       "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 11,
       "satisfaction": 88,
+      "revenue": 4
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 33,
       "satisfaction": 93,
+      "revenue": 7
     }
   },
 

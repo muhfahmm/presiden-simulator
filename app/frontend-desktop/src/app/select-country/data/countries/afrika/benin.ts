@@ -287,26 +287,34 @@ export const benin: CountryData = {
     "vat": {
       "rate": 18,
       "satisfaction": 67,
+      "revenue": 4
     },
     "corporate": {
       "rate": 18,
       "satisfaction": 52,
+      "revenue": 7
     },
     "income": {
       "rate": 28,
       "satisfaction": 61,
+      "revenue": 11
     },
     "customs": {
       "rate": 24,
       "satisfaction": 86,
+      "revenue": 8
     },
     "environment": {
       "rate": 22,
       "satisfaction": 88,
+      "revenue": 5
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 29,
       "satisfaction": 93,
+      "revenue": 12
     }
   },
 

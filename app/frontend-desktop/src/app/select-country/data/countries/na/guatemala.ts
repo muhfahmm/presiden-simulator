@@ -282,27 +282,35 @@ export const guatemala: CountryData = {
   "taxes": {
     "vat": {
       "rate": 21,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 31
     },
     "corporate": {
       "rate": 27,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 61
     },
     "income": {
       "rate": 3,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 8
     },
     "customs": {
       "rate": 18,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 26
     },
     "environment": {
       "rate": 22,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 39
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 5 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 14 },
     "other": {
       "rate": 26,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 61
     }
   },
 

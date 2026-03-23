@@ -282,27 +282,35 @@ export const iran: CountryData = {
   "taxes": {
     "vat": {
       "rate": 30,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 267
     },
     "corporate": {
       "rate": 40,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 395
     },
     "income": {
       "rate": 7,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 60
     },
     "customs": {
       "rate": 11,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 74
     },
     "environment": {
       "rate": 13,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 137
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 18 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 54 },
     "other": {
       "rate": 18,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 131
     }
   },
 

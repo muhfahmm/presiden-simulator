@@ -282,27 +282,35 @@ export const filipina: CountryData = {
   "taxes": {
     "vat": {
       "rate": 34,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 201
     },
     "corporate": {
       "rate": 5,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 44
     },
     "income": {
       "rate": 29,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 279
     },
     "customs": {
       "rate": 7,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 81
     },
     "environment": {
       "rate": 27,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 149
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 22 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 64 },
     "other": {
       "rate": 7,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 69
     }
   },
 

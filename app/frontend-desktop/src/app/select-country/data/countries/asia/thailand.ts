@@ -282,27 +282,35 @@ export const thailand: CountryData = {
   "taxes": {
     "vat": {
       "rate": 25,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 307
     },
     "corporate": {
       "rate": 39,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 520
     },
     "income": {
       "rate": 26,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 152
     },
     "customs": {
       "rate": 40,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 451
     },
     "environment": {
       "rate": 8,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 43
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 25 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 75 },
     "other": {
       "rate": 22,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 135
     }
   },
 

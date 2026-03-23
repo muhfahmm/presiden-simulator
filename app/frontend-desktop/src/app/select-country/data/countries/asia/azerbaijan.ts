@@ -282,27 +282,35 @@ export const azerbaijan: CountryData = {
   "taxes": {
     "vat": {
       "rate": 34,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 44
     },
     "corporate": {
       "rate": 2,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 2
     },
     "income": {
       "rate": 26,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 28
     },
     "customs": {
       "rate": 7,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 10
     },
     "environment": {
       "rate": 11,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 6
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 3 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 9 },
     "other": {
       "rate": 19,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 19
     }
   },
 

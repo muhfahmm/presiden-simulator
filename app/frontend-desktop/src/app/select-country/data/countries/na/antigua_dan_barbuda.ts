@@ -282,27 +282,35 @@ export const antigua_dan_barbuda: CountryData = {
   "taxes": {
     "vat": {
       "rate": 21,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 3
     },
     "corporate": {
       "rate": 37,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 5
     },
     "income": {
       "rate": 15,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 2
     },
     "customs": {
       "rate": 25,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 5
     },
     "environment": {
       "rate": 32,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 6
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 40,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 9
     }
   },
 

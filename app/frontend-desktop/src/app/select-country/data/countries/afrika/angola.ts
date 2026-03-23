@@ -287,26 +287,34 @@ export const angola: CountryData = {
     "vat": {
       "rate": 26,
       "satisfaction": 67,
+      "revenue": 49
     },
     "corporate": {
       "rate": 26,
       "satisfaction": 52,
+      "revenue": 47
     },
     "income": {
       "rate": 28,
       "satisfaction": 61,
+      "revenue": 56
     },
     "customs": {
       "rate": 16,
       "satisfaction": 86,
+      "revenue": 32
     },
     "environment": {
       "rate": 26,
       "satisfaction": 88,
+      "revenue": 62
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 5 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 13 },
     "other": {
       "rate": 34,
       "satisfaction": 93,
+      "revenue": 69
     }
   },
 

@@ -282,27 +282,35 @@ export const finlandia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 2,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 7
     },
     "corporate": {
       "rate": 23,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 113
     },
     "income": {
       "rate": 24,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 99
     },
     "customs": {
       "rate": 15,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 82
     },
     "environment": {
       "rate": 13,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 63
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 15 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 44 },
     "other": {
       "rate": 18,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 93
     }
   },
 

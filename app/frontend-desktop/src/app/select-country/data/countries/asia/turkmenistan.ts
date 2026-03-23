@@ -282,27 +282,35 @@ export const turkmenistan: CountryData = {
   "taxes": {
     "vat": {
       "rate": 20,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 14
     },
     "corporate": {
       "rate": 34,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 25
     },
     "income": {
       "rate": 31,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 38
     },
     "customs": {
       "rate": 31,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 14
     },
     "environment": {
       "rate": 28,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 35
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 3 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 7 },
     "other": {
       "rate": 25,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 30
     }
   },
 

@@ -282,27 +282,35 @@ export const albania: CountryData = {
   "taxes": {
     "vat": {
       "rate": 24,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 8
     },
     "corporate": {
       "rate": 38,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 19
     },
     "income": {
       "rate": 37,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 15
     },
     "customs": {
       "rate": 1,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 18,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 6
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 2 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 4 },
     "other": {
       "rate": 25,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 7
     }
   },
 

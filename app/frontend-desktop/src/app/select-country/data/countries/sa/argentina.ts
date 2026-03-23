@@ -282,27 +282,35 @@ export const argentina: CountryData = {
   "taxes": {
     "vat": {
       "rate": 2,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 37
     },
     "corporate": {
       "rate": 13,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 159
     },
     "income": {
       "rate": 40,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 528
     },
     "customs": {
       "rate": 39,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 444
     },
     "environment": {
       "rate": 13,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 221
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 32 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 94 },
     "other": {
       "rate": 15,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 253
     }
   },
 

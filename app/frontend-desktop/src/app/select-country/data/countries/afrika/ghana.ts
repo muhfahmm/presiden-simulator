@@ -287,26 +287,34 @@ export const ghana: CountryData = {
     "vat": {
       "rate": 36,
       "satisfaction": 67,
+      "revenue": 55
     },
     "corporate": {
       "rate": 21,
       "satisfaction": 52,
+      "revenue": 45
     },
     "income": {
       "rate": 29,
       "satisfaction": 61,
+      "revenue": 42
     },
     "customs": {
       "rate": 14,
       "satisfaction": 86,
+      "revenue": 10
     },
     "environment": {
       "rate": 19,
       "satisfaction": 88,
+      "revenue": 29
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 4 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 12 },
     "other": {
       "rate": 17,
       "satisfaction": 93,
+      "revenue": 24
     }
   },
 

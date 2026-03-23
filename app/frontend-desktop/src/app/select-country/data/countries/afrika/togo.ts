@@ -287,26 +287,34 @@ export const togo: CountryData = {
     "vat": {
       "rate": 30,
       "satisfaction": 67,
+      "revenue": 5
     },
     "corporate": {
       "rate": 7,
       "satisfaction": 52,
+      "revenue": 0
     },
     "income": {
       "rate": 5,
       "satisfaction": 61,
+      "revenue": 1
     },
     "customs": {
       "rate": 28,
       "satisfaction": 86,
+      "revenue": 4
     },
     "environment": {
       "rate": 1,
       "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 35,
       "satisfaction": 93,
+      "revenue": 8
     }
   },
 

@@ -282,27 +282,35 @@ export const spanyol: CountryData = {
   "taxes": {
     "vat": {
       "rate": 30,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 1365
     },
     "corporate": {
       "rate": 11,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 370
     },
     "income": {
       "rate": 28,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 1029
     },
     "customs": {
       "rate": 26,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 950
     },
     "environment": {
       "rate": 19,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 445
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 77 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 231 },
     "other": {
       "rate": 39,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 742
     }
   },
 

@@ -282,27 +282,35 @@ export const republik_rumania: CountryData = {
   "taxes": {
     "vat": {
       "rate": 13,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 132
     },
     "corporate": {
       "rate": 21,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 177
     },
     "income": {
       "rate": 28,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 137
     },
     "customs": {
       "rate": 15,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 137
     },
     "environment": {
       "rate": 9,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 85
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 18 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 52 },
     "other": {
       "rate": 31,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 305
     }
   },
 

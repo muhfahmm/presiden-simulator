@@ -282,27 +282,35 @@ export const bulgaria: CountryData = {
   "taxes": {
     "vat": {
       "rate": 4,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 5
     },
     "corporate": {
       "rate": 30,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 77
     },
     "income": {
       "rate": 35,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 99
     },
     "customs": {
       "rate": 23,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 47
     },
     "environment": {
       "rate": 38,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 67
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 6 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 16 },
     "other": {
       "rate": 26,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 53
     }
   },
 

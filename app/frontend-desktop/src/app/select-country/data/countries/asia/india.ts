@@ -282,27 +282,35 @@ export const india: CountryData = {
   "taxes": {
     "vat": {
       "rate": 20,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 1262
     },
     "corporate": {
       "rate": 30,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 1658
     },
     "income": {
       "rate": 36,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 2793
     },
     "customs": {
       "rate": 27,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 1109
     },
     "environment": {
       "rate": 4,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 332
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 192 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 575 },
     "other": {
       "rate": 20,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 2111
     }
   },
 

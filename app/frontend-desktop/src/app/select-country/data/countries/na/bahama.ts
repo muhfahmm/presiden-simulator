@@ -282,27 +282,35 @@ export const bahama: CountryData = {
   "taxes": {
     "vat": {
       "rate": 39,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 5
     },
     "corporate": {
       "rate": 28,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 3
     },
     "income": {
       "rate": 39,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 11
     },
     "customs": {
       "rate": 32,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 8
     },
     "environment": {
       "rate": 38,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 14
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 32,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 11
     }
   },
 

@@ -287,26 +287,34 @@ export const kamerun: CountryData = {
     "vat": {
       "rate": 7,
       "satisfaction": 67,
+      "revenue": 5
     },
     "corporate": {
       "rate": 8,
       "satisfaction": 52,
+      "revenue": 9
     },
     "income": {
       "rate": 11,
       "satisfaction": 61,
+      "revenue": 8
     },
     "customs": {
       "rate": 33,
       "satisfaction": 86,
+      "revenue": 29
     },
     "environment": {
       "rate": 27,
       "satisfaction": 88,
+      "revenue": 30
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 3 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 7 },
     "other": {
       "rate": 3,
       "satisfaction": 93,
+      "revenue": 3
     }
   },
 

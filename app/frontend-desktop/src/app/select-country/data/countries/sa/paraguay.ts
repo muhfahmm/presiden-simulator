@@ -282,27 +282,35 @@ export const paraguay: CountryData = {
   "taxes": {
     "vat": {
       "rate": 14,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 12
     },
     "corporate": {
       "rate": 20,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 12
     },
     "income": {
       "rate": 37,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 30
     },
     "customs": {
       "rate": 8,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 3
     },
     "environment": {
       "rate": 25,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 14
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 3 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 7 },
     "other": {
       "rate": 36,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 29
     }
   },
 

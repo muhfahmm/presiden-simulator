@@ -282,27 +282,35 @@ export const italia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 24,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 1599
     },
     "corporate": {
       "rate": 40,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 1766
     },
     "income": {
       "rate": 40,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 2288
     },
     "customs": {
       "rate": 28,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 1840
     },
     "environment": {
       "rate": 27,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 1486
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 114 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 340 },
     "other": {
       "rate": 20,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 469
     }
   },
 

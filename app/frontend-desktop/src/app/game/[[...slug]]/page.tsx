@@ -75,18 +75,33 @@ export default function GamePage() {
   if (slug[0] === 'produksi') initialMenu = "Menu:Produksi";
   else if (slug[0] === 'produksi-militer') initialMenu = "Menu:ProduksiMiliter";
   else if (slug[0] === 'tempat-umum') initialMenu = "Menu:TempatUmum";
+  else if (slug[0] === 'perdagangan') initialMenu = "Menu:Perdagangan";
+  else if (slug[0] === 'harga-barang') initialMenu = "Menu:HargaBarang";
+  else if (slug[0] === 'pajak') initialMenu = "Menu:Pajak";
+  else if (slug[0] === 'hutang') initialMenu = "Menu:Hutang";
+  else if (slug[0] === 'anggaran') initialMenu = "Menu:Budget";
+  else if (slug[0] === 'energi') initialMenu = "Menu:Energi";
+  else if (slug[0] === 'produksi-barang') initialMenu = "Menu:ProduksiBarang";
   
   const [activeMenu, setActiveMenu] = useState<string>(initialMenu);
 
   useEffect(() => {
-    if (activeMenu === "Menu:Produksi") {
-      if (window.location.pathname !== '/game/produksi') window.history.pushState(null, '', '/game/produksi');
-    } else if (activeMenu === "Menu:ProduksiMiliter") {
-      if (window.location.pathname !== '/game/produksi-militer') window.history.pushState(null, '', '/game/produksi-militer');
-    } else if (activeMenu === "Menu:TempatUmum") {
-      if (window.location.pathname !== '/game/tempat-umum') window.history.pushState(null, '', '/game/tempat-umum');
-    } else {
-      if (window.location.pathname !== '/game') window.history.pushState(null, '', '/game');
+    const menuToPath: Record<string, string> = {
+      "Menu:Produksi": "/game/produksi",
+      "Menu:ProduksiMiliter": "/game/produksi-militer",
+      "Menu:TempatUmum": "/game/tempat-umum",
+      "Menu:Perdagangan": "/game/perdagangan",
+      "Menu:HargaBarang": "/game/harga-barang",
+      "Menu:Pajak": "/game/pajak",
+      "Menu:Hutang": "/game/hutang",
+      "Menu:Budget": "/game/anggaran",
+      "Menu:Energi": "/game/energi",
+      "Menu:ProduksiBarang": "/game/produksi-barang"
+    };
+
+    const targetPath = menuToPath[activeMenu] || "/game";
+    if (window.location.pathname !== targetPath) {
+      window.history.pushState(null, '', targetPath);
     }
   }, [activeMenu]);
 

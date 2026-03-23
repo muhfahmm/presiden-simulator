@@ -282,27 +282,35 @@ export const peru: CountryData = {
   "taxes": {
     "vat": {
       "rate": 33,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 196
     },
     "corporate": {
       "rate": 14,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 100
     },
     "income": {
       "rate": 29,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 138
     },
     "customs": {
       "rate": 30,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 218
     },
     "environment": {
       "rate": 24,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 74
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 13 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 38 },
     "other": {
       "rate": 1,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 6
     }
   },
 

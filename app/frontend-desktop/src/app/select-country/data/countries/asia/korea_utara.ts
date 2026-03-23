@@ -282,27 +282,35 @@ export const korea_utara: CountryData = {
   "taxes": {
     "vat": {
       "rate": 25,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 5
     },
     "corporate": {
       "rate": 27,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 9
     },
     "income": {
       "rate": 36,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 8
     },
     "customs": {
       "rate": 11,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 4
     },
     "environment": {
       "rate": 30,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 8
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 16,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 6
     }
   },
 

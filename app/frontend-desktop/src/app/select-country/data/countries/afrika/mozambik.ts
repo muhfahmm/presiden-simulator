@@ -287,26 +287,34 @@ export const mozambik: CountryData = {
     "vat": {
       "rate": 35,
       "satisfaction": 67,
+      "revenue": 10
     },
     "corporate": {
       "rate": 19,
       "satisfaction": 52,
+      "revenue": 9
     },
     "income": {
       "rate": 4,
       "satisfaction": 61,
+      "revenue": 1
     },
     "customs": {
       "rate": 8,
       "satisfaction": 86,
+      "revenue": 2
     },
     "environment": {
       "rate": 38,
       "satisfaction": 88,
+      "revenue": 7
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 6,
       "satisfaction": 93,
+      "revenue": 2
     }
   },
 

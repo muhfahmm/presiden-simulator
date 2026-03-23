@@ -282,27 +282,35 @@ export const bolivia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 27,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 21
     },
     "corporate": {
       "rate": 10,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 9
     },
     "income": {
       "rate": 22,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 25
     },
     "customs": {
       "rate": 40,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 32
     },
     "environment": {
       "rate": 8,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 7
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 3 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 7 },
     "other": {
       "rate": 26,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 24
     }
   },
 

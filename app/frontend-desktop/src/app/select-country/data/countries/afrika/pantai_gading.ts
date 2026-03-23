@@ -287,26 +287,34 @@ export const pantai_gading: CountryData = {
     "vat": {
       "rate": 36,
       "satisfaction": 67,
+      "revenue": 51
     },
     "corporate": {
       "rate": 34,
       "satisfaction": 52,
+      "revenue": 63
     },
     "income": {
       "rate": 4,
       "satisfaction": 61,
+      "revenue": 3
     },
     "customs": {
       "rate": 23,
       "satisfaction": 86,
+      "revenue": 21
     },
     "environment": {
       "rate": 25,
       "satisfaction": 88,
+      "revenue": 50
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 4 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 11 },
     "other": {
       "rate": 7,
       "satisfaction": 93,
+      "revenue": 6
     }
   },
 

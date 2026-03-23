@@ -282,27 +282,35 @@ export const tahiti: CountryData = {
   "taxes": {
     "vat": {
       "rate": 38,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 7
     },
     "corporate": {
       "rate": 32,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 8
     },
     "income": {
       "rate": 26,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 4
     },
     "customs": {
       "rate": 38,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 4
     },
     "environment": {
       "rate": 22,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 2
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 2,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 0
     }
   },
 

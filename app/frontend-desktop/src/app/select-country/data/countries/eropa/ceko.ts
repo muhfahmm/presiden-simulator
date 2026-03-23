@@ -282,27 +282,35 @@ export const ceko: CountryData = {
   "taxes": {
     "vat": {
       "rate": 9,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 66
     },
     "corporate": {
       "rate": 22,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 171
     },
     "income": {
       "rate": 25,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 98
     },
     "customs": {
       "rate": 9,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 43
     },
     "environment": {
       "rate": 13,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 72
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 17 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 49 },
     "other": {
       "rate": 25,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 131
     }
   },
 

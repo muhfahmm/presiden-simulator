@@ -282,27 +282,35 @@ export const jamaika: CountryData = {
   "taxes": {
     "vat": {
       "rate": 34,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 15
     },
     "corporate": {
       "rate": 23,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 6
     },
     "income": {
       "rate": 31,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 6
     },
     "customs": {
       "rate": 36,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 10
     },
     "environment": {
       "rate": 8,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 1
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 9,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 2
     }
   },
 

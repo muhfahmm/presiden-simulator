@@ -287,26 +287,34 @@ export const afrika_selatan: CountryData = {
     "vat": {
       "rate": 1,
       "satisfaction": 67,
+      "revenue": 9
     },
     "corporate": {
       "rate": 18,
       "satisfaction": 52,
+      "revenue": 157
     },
     "income": {
       "rate": 39,
       "satisfaction": 61,
+      "revenue": 367
     },
     "customs": {
       "rate": 6,
       "satisfaction": 86,
+      "revenue": 64
     },
     "environment": {
       "rate": 12,
       "satisfaction": 88,
+      "revenue": 83
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 20 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 60 },
     "other": {
       "rate": 13,
       "satisfaction": 93,
+      "revenue": 134
     }
   },
 

@@ -282,27 +282,35 @@ export const china: CountryData = {
   "taxes": {
     "vat": {
       "rate": 24,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 7003
     },
     "corporate": {
       "rate": 1,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 367
     },
     "income": {
       "rate": 6,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 2324
     },
     "customs": {
       "rate": 35,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 14341
     },
     "environment": {
       "rate": 23,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 5242
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 901 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2703 },
     "other": {
       "rate": 12,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 5219
     }
   },
 

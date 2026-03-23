@@ -287,26 +287,34 @@ export const liberia: CountryData = {
     "vat": {
       "rate": 37,
       "satisfaction": 67,
+      "revenue": 4
     },
     "corporate": {
       "rate": 24,
       "satisfaction": 52,
+      "revenue": 2
     },
     "income": {
       "rate": 39,
       "satisfaction": 61,
+      "revenue": 2
     },
     "customs": {
       "rate": 17,
       "satisfaction": 86,
+      "revenue": 1
     },
     "environment": {
       "rate": 2,
       "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 39,
       "satisfaction": 93,
+      "revenue": 4
     }
   },
 

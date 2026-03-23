@@ -282,27 +282,35 @@ export const islandia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 14,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 4
     },
     "corporate": {
       "rate": 32,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 9
     },
     "income": {
       "rate": 28,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 22
     },
     "customs": {
       "rate": 16,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 8
     },
     "environment": {
       "rate": 9,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 3
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 2 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 5 },
     "other": {
       "rate": 20,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 6
     }
   },
 

@@ -287,26 +287,34 @@ export const namibia: CountryData = {
     "vat": {
       "rate": 17,
       "satisfaction": 67,
+      "revenue": 3
     },
     "corporate": {
       "rate": 18,
       "satisfaction": 52,
+      "revenue": 5
     },
     "income": {
       "rate": 6,
       "satisfaction": 61,
+      "revenue": 2
     },
     "customs": {
       "rate": 2,
       "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 6,
       "satisfaction": 88,
+      "revenue": 1
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 22,
       "satisfaction": 93,
+      "revenue": 7
     }
   },
 

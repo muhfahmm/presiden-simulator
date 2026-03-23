@@ -282,27 +282,35 @@ export const uni_emirat_arab: CountryData = {
   "taxes": {
     "vat": {
       "rate": 40,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 211
     },
     "corporate": {
       "rate": 11,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 81
     },
     "income": {
       "rate": 32,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 204
     },
     "customs": {
       "rate": 17,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 200
     },
     "environment": {
       "rate": 36,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 419
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 25 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 75 },
     "other": {
       "rate": 21,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 227
     }
   },
 

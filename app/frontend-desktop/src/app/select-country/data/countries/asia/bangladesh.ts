@@ -282,27 +282,35 @@ export const bangladesh: CountryData = {
   "taxes": {
     "vat": {
       "rate": 7,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 58
     },
     "corporate": {
       "rate": 32,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 156
     },
     "income": {
       "rate": 11,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 55
     },
     "customs": {
       "rate": 5,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 39
     },
     "environment": {
       "rate": 21,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 248
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 23 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 68 },
     "other": {
       "rate": 9,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 96
     }
   },
 

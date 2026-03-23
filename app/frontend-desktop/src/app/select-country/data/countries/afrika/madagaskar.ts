@@ -287,26 +287,34 @@ export const madagaskar: CountryData = {
     "vat": {
       "rate": 15,
       "satisfaction": 67,
+      "revenue": 4
     },
     "corporate": {
       "rate": 30,
       "satisfaction": 52,
+      "revenue": 7
     },
     "income": {
       "rate": 6,
       "satisfaction": 61,
+      "revenue": 1
     },
     "customs": {
       "rate": 6,
       "satisfaction": 86,
+      "revenue": 1
     },
     "environment": {
       "rate": 2,
       "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 14,
       "satisfaction": 93,
+      "revenue": 4
     }
   },
 

@@ -282,27 +282,35 @@ export const hungaria: CountryData = {
   "taxes": {
     "vat": {
       "rate": 2,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 8
     },
     "corporate": {
       "rate": 19,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 62
     },
     "income": {
       "rate": 12,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 62
     },
     "customs": {
       "rate": 31,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 188
     },
     "environment": {
       "rate": 29,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 66
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 11 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 31 },
     "other": {
       "rate": 1,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 5
     }
   },
 

@@ -287,26 +287,34 @@ export const republik_uganda: CountryData = {
     "vat": {
       "rate": 37,
       "satisfaction": 67,
+      "revenue": 21
     },
     "corporate": {
       "rate": 37,
       "satisfaction": 52,
+      "revenue": 46
     },
     "income": {
       "rate": 30,
       "satisfaction": 61,
+      "revenue": 18
     },
     "customs": {
       "rate": 16,
       "satisfaction": 86,
+      "revenue": 11
     },
     "environment": {
       "rate": 6,
       "satisfaction": 88,
+      "revenue": 8
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 3 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 8 },
     "other": {
       "rate": 30,
       "satisfaction": 93,
+      "revenue": 36
     }
   },
 

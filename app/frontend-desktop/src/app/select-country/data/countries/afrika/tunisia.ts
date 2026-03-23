@@ -287,26 +287,34 @@ export const tunisia: CountryData = {
     "vat": {
       "rate": 24,
       "satisfaction": 67,
+      "revenue": 24
     },
     "corporate": {
       "rate": 3,
       "satisfaction": 52,
+      "revenue": 2
     },
     "income": {
       "rate": 2,
       "satisfaction": 61,
+      "revenue": 2
     },
     "customs": {
       "rate": 15,
       "satisfaction": 86,
+      "revenue": 11
     },
     "environment": {
       "rate": 8,
       "satisfaction": 88,
+      "revenue": 8
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 3 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 7 },
     "other": {
       "rate": 10,
       "satisfaction": 93,
+      "revenue": 4
     }
   },
 

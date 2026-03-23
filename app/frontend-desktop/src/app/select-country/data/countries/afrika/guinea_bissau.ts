@@ -287,26 +287,34 @@ export const guinea_bissau: CountryData = {
     "vat": {
       "rate": 31,
       "satisfaction": 67,
+      "revenue": 0
     },
     "corporate": {
       "rate": 21,
       "satisfaction": 52,
+      "revenue": 0
     },
     "income": {
       "rate": 12,
       "satisfaction": 61,
+      "revenue": 0
     },
     "customs": {
       "rate": 40,
       "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 16,
       "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 7,
       "satisfaction": 93,
+      "revenue": 0
     }
   },
 

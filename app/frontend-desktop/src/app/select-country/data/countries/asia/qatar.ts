@@ -282,27 +282,35 @@ export const qatar: CountryData = {
   "taxes": {
     "vat": {
       "rate": 25,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 81
     },
     "corporate": {
       "rate": 6,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 17
     },
     "income": {
       "rate": 14,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 68
     },
     "customs": {
       "rate": 8,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 32
     },
     "environment": {
       "rate": 1,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 3
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 11 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 33 },
     "other": {
       "rate": 17,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 49
     }
   },
 

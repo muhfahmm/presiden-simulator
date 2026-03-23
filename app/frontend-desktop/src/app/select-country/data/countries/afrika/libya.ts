@@ -287,26 +287,34 @@ export const libya: CountryData = {
     "vat": {
       "rate": 8,
       "satisfaction": 67,
+      "revenue": 8
     },
     "corporate": {
       "rate": 7,
       "satisfaction": 52,
+      "revenue": 3
     },
     "income": {
       "rate": 18,
       "satisfaction": 61,
+      "revenue": 16
     },
     "customs": {
       "rate": 40,
       "satisfaction": 86,
+      "revenue": 16
     },
     "environment": {
       "rate": 22,
       "satisfaction": 88,
+      "revenue": 24
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 3 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 7 },
     "other": {
       "rate": 36,
       "satisfaction": 93,
+      "revenue": 43
     }
   },
 

@@ -282,27 +282,35 @@ export const nikaragua: CountryData = {
   "taxes": {
     "vat": {
       "rate": 16,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 4
     },
     "corporate": {
       "rate": 20,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 3
     },
     "income": {
       "rate": 31,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 14
     },
     "customs": {
       "rate": 29,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 6
     },
     "environment": {
       "rate": 38,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 8
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 11,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 1
     }
   },
 

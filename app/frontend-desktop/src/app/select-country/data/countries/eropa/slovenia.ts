@@ -282,27 +282,35 @@ export const slovenia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 35,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 61
     },
     "corporate": {
       "rate": 32,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 60
     },
     "income": {
       "rate": 27,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 32
     },
     "customs": {
       "rate": 36,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 52
     },
     "environment": {
       "rate": 6,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 11
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 4 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 10 },
     "other": {
       "rate": 13,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 15
     }
   },
 

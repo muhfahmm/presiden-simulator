@@ -282,27 +282,35 @@ export const greenland: CountryData = {
   "taxes": {
     "vat": {
       "rate": 36,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 8
     },
     "corporate": {
       "rate": 37,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 8
     },
     "income": {
       "rate": 26,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 5
     },
     "customs": {
       "rate": 1,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 23,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 3
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 35,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 5
     }
   },
 

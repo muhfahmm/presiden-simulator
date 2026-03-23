@@ -287,26 +287,34 @@ export const guinea: CountryData = {
     "vat": {
       "rate": 33,
       "satisfaction": 67,
+      "revenue": 15
     },
     "corporate": {
       "rate": 35,
       "satisfaction": 52,
+      "revenue": 8
     },
     "income": {
       "rate": 3,
       "satisfaction": 61,
+      "revenue": 1
     },
     "customs": {
       "rate": 20,
       "satisfaction": 86,
+      "revenue": 9
     },
     "environment": {
       "rate": 25,
       "satisfaction": 88,
+      "revenue": 5
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 21,
       "satisfaction": 93,
+      "revenue": 8
     }
   },
 

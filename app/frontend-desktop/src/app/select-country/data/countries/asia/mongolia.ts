@@ -282,27 +282,35 @@ export const mongolia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 25,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 10
     },
     "corporate": {
       "rate": 40,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 13
     },
     "income": {
       "rate": 23,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 11
     },
     "customs": {
       "rate": 26,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 7
     },
     "environment": {
       "rate": 37,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 16
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 7,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 1
     }
   },
 

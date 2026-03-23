@@ -287,26 +287,34 @@ export const sierra_leone: CountryData = {
     "vat": {
       "rate": 33,
       "satisfaction": 67,
+      "revenue": 2
     },
     "corporate": {
       "rate": 20,
       "satisfaction": 52,
+      "revenue": 1
     },
     "income": {
       "rate": 23,
       "satisfaction": 61,
+      "revenue": 1
     },
     "customs": {
       "rate": 14,
       "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 40,
       "satisfaction": 88,
+      "revenue": 3
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 14,
       "satisfaction": 93,
+      "revenue": 1
     }
   },
 

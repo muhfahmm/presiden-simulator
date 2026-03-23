@@ -282,27 +282,35 @@ export const taiwan: CountryData = {
   "taxes": {
     "vat": {
       "rate": 14,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 207
     },
     "corporate": {
       "rate": 12,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 98
     },
     "income": {
       "rate": 8,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 155
     },
     "customs": {
       "rate": 31,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 667
     },
     "environment": {
       "rate": 26,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 594
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 39 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 116 },
     "other": {
       "rate": 39,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 523
     }
   },
 

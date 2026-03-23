@@ -282,27 +282,35 @@ export const denmark: CountryData = {
   "taxes": {
     "vat": {
       "rate": 10,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 72
     },
     "corporate": {
       "rate": 9,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 56
     },
     "income": {
       "rate": 21,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 107
     },
     "customs": {
       "rate": 38,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 272
     },
     "environment": {
       "rate": 29,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 273
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 20 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 60 },
     "other": {
       "rate": 26,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 180
     }
   },
 

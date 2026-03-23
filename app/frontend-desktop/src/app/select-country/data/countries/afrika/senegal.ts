@@ -287,26 +287,34 @@ export const senegal: CountryData = {
     "vat": {
       "rate": 17,
       "satisfaction": 67,
+      "revenue": 11
     },
     "corporate": {
       "rate": 19,
       "satisfaction": 52,
+      "revenue": 10
     },
     "income": {
       "rate": 11,
       "satisfaction": 61,
+      "revenue": 4
     },
     "customs": {
       "rate": 16,
       "satisfaction": 86,
+      "revenue": 9
     },
     "environment": {
       "rate": 17,
       "satisfaction": 88,
+      "revenue": 10
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 2 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 5 },
     "other": {
       "rate": 27,
       "satisfaction": 93,
+      "revenue": 10
     }
   },
 

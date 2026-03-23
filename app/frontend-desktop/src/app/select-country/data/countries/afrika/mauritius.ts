@@ -287,26 +287,34 @@ export const mauritius: CountryData = {
     "vat": {
       "rate": 22,
       "satisfaction": 67,
+      "revenue": 5
     },
     "corporate": {
       "rate": 8,
       "satisfaction": 52,
+      "revenue": 2
     },
     "income": {
       "rate": 22,
       "satisfaction": 61,
+      "revenue": 3
     },
     "customs": {
       "rate": 14,
       "satisfaction": 86,
+      "revenue": 2
     },
     "environment": {
       "rate": 38,
       "satisfaction": 88,
+      "revenue": 10
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 22,
       "satisfaction": 93,
+      "revenue": 7
     }
   },
 

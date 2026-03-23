@@ -287,26 +287,34 @@ export const lesotho: CountryData = {
     "vat": {
       "rate": 16,
       "satisfaction": 67,
+      "revenue": 0
     },
     "corporate": {
       "rate": 10,
       "satisfaction": 52,
+      "revenue": 0
     },
     "income": {
       "rate": 40,
       "satisfaction": 61,
+      "revenue": 2
     },
     "customs": {
       "rate": 17,
       "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 38,
       "satisfaction": 88,
+      "revenue": 2
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 22,
       "satisfaction": 93,
+      "revenue": 1
     }
   },
 

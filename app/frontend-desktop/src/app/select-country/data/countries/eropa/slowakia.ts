@@ -282,27 +282,35 @@ export const slowakia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 13,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 25
     },
     "corporate": {
       "rate": 13,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 39
     },
     "income": {
       "rate": 38,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 89
     },
     "customs": {
       "rate": 27,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 56
     },
     "environment": {
       "rate": 1,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 3
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 7 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 19 },
     "other": {
       "rate": 32,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 94
     }
   },
 

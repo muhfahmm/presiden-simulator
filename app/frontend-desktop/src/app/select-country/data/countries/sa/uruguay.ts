@@ -282,27 +282,35 @@ export const uruguay: CountryData = {
   "taxes": {
     "vat": {
       "rate": 11,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 16
     },
     "corporate": {
       "rate": 1,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 0
     },
     "income": {
       "rate": 23,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 37
     },
     "customs": {
       "rate": 30,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 22
     },
     "environment": {
       "rate": 33,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 66
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 4 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 11 },
     "other": {
       "rate": 19,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 20
     }
   },
 

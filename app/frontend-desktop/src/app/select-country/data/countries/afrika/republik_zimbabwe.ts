@@ -287,26 +287,34 @@ export const republik_zimbabwe: CountryData = {
     "vat": {
       "rate": 34,
       "satisfaction": 67,
+      "revenue": 15
     },
     "corporate": {
       "rate": 25,
       "satisfaction": 52,
+      "revenue": 13
     },
     "income": {
       "rate": 18,
       "satisfaction": 61,
+      "revenue": 7
     },
     "customs": {
       "rate": 18,
       "satisfaction": 86,
+      "revenue": 7
     },
     "environment": {
       "rate": 3,
       "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 26,
       "satisfaction": 93,
+      "revenue": 7
     }
   },
 

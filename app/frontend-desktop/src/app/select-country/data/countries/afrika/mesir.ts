@@ -287,26 +287,34 @@ export const mesir: CountryData = {
     "vat": {
       "rate": 37,
       "satisfaction": 67,
+      "revenue": 352
     },
     "corporate": {
       "rate": 18,
       "satisfaction": 52,
+      "revenue": 169
     },
     "income": {
       "rate": 10,
       "satisfaction": 61,
+      "revenue": 62
     },
     "customs": {
       "rate": 31,
       "satisfaction": 86,
+      "revenue": 209
     },
     "environment": {
       "rate": 20,
       "satisfaction": 88,
+      "revenue": 160
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 20 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 58 },
     "other": {
       "rate": 24,
       "satisfaction": 93,
+      "revenue": 137
     }
   },
 

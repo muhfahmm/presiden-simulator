@@ -282,27 +282,35 @@ export const bermuda: CountryData = {
   "taxes": {
     "vat": {
       "rate": 26,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 7
     },
     "corporate": {
       "rate": 21,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 5
     },
     "income": {
       "rate": 20,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 3
     },
     "customs": {
       "rate": 16,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 4
     },
     "environment": {
       "rate": 26,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 5
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 2,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 0
     }
   },
 

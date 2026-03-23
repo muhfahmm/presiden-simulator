@@ -282,27 +282,35 @@ export const brazil: CountryData = {
   "taxes": {
     "vat": {
       "rate": 12,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 594
     },
     "corporate": {
       "rate": 4,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 159
     },
     "income": {
       "rate": 4,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 213
     },
     "customs": {
       "rate": 20,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 1246
     },
     "environment": {
       "rate": 24,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 1341
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 114 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 340 },
     "other": {
       "rate": 3,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 95
     }
   },
 

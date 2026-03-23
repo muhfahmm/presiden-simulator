@@ -287,26 +287,34 @@ export const republik_tanzania: CountryData = {
     "vat": {
       "rate": 31,
       "satisfaction": 67,
+      "revenue": 58
     },
     "corporate": {
       "rate": 38,
       "satisfaction": 52,
+      "revenue": 82
     },
     "income": {
       "rate": 26,
       "satisfaction": 61,
+      "revenue": 51
     },
     "customs": {
       "rate": 27,
       "satisfaction": 86,
+      "revenue": 27
     },
     "environment": {
       "rate": 33,
       "satisfaction": 88,
+      "revenue": 42
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 4 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 11 },
     "other": {
       "rate": 24,
       "satisfaction": 93,
+      "revenue": 23
     }
   },
 

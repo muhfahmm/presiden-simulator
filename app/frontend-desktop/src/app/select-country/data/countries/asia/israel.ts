@@ -282,27 +282,35 @@ export const israel: CountryData = {
   "taxes": {
     "vat": {
       "rate": 6,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 40
     },
     "corporate": {
       "rate": 14,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 160
     },
     "income": {
       "rate": 17,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 97
     },
     "customs": {
       "rate": 4,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 58
     },
     "environment": {
       "rate": 17,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 139
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 26 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 76 },
     "other": {
       "rate": 37,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 383
     }
   },
 

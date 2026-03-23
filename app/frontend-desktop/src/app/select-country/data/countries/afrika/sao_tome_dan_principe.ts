@@ -287,26 +287,34 @@ export const sao_tome_dan_principe: CountryData = {
     "vat": {
       "rate": 8,
       "satisfaction": 67,
+      "revenue": 0
     },
     "corporate": {
       "rate": 32,
       "satisfaction": 52,
+      "revenue": 0
     },
     "income": {
       "rate": 35,
       "satisfaction": 61,
+      "revenue": 0
     },
     "customs": {
       "rate": 32,
       "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 6,
       "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 10,
       "satisfaction": 93,
+      "revenue": 0
     }
   },
 

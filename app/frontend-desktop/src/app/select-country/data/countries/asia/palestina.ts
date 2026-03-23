@@ -282,27 +282,35 @@ export const palestina: CountryData = {
   "taxes": {
     "vat": {
       "rate": 20,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 9
     },
     "corporate": {
       "rate": 27,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 11
     },
     "income": {
       "rate": 22,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 11
     },
     "customs": {
       "rate": 33,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 11
     },
     "environment": {
       "rate": 35,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 17
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 10,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 2
     }
   },
 

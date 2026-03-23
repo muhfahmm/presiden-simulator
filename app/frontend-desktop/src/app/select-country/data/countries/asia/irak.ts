@@ -282,27 +282,35 @@ export const irak: CountryData = {
   "taxes": {
     "vat": {
       "rate": 17,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 67
     },
     "corporate": {
       "rate": 1,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 6
     },
     "income": {
       "rate": 39,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 301
     },
     "customs": {
       "rate": 3,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 15
     },
     "environment": {
       "rate": 32,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 224
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 14 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 40 },
     "other": {
       "rate": 28,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 190
     }
   },
 

@@ -282,27 +282,35 @@ export const kazakhstan: CountryData = {
   "taxes": {
     "vat": {
       "rate": 32,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 133
     },
     "corporate": {
       "rate": 18,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 102
     },
     "income": {
       "rate": 13,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 90
     },
     "customs": {
       "rate": 22,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 100
     },
     "environment": {
       "rate": 13,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 65
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 13 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 38 },
     "other": {
       "rate": 17,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 46
     }
   },
 

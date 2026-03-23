@@ -287,26 +287,34 @@ export const burkina_faso: CountryData = {
     "vat": {
       "rate": 29,
       "satisfaction": 67,
+      "revenue": 6
     },
     "corporate": {
       "rate": 29,
       "satisfaction": 52,
+      "revenue": 8
     },
     "income": {
       "rate": 16,
       "satisfaction": 61,
+      "revenue": 5
     },
     "customs": {
       "rate": 32,
       "satisfaction": 86,
+      "revenue": 11
     },
     "environment": {
       "rate": 30,
       "satisfaction": 88,
+      "revenue": 11
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 7,
       "satisfaction": 93,
+      "revenue": 3
     }
   },
 

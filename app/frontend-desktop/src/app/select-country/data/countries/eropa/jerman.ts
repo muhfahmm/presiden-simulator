@@ -282,27 +282,35 @@ export const jerman: CountryData = {
   "taxes": {
     "vat": {
       "rate": 12,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 1299
     },
     "corporate": {
       "rate": 6,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 283
     },
     "income": {
       "rate": 24,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 1963
     },
     "customs": {
       "rate": 9,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 775
     },
     "environment": {
       "rate": 33,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 1581
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 224 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 670 },
     "other": {
       "rate": 12,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 931
     }
   },
 

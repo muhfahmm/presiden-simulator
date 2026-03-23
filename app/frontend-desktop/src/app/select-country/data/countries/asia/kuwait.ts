@@ -282,27 +282,35 @@ export const kuwait: CountryData = {
   "taxes": {
     "vat": {
       "rate": 19,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 52
     },
     "corporate": {
       "rate": 23,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 58
     },
     "income": {
       "rate": 21,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 70
     },
     "customs": {
       "rate": 13,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 55
     },
     "environment": {
       "rate": 26,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 44
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 8 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 23 },
     "other": {
       "rate": 6,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 24
     }
   },
 

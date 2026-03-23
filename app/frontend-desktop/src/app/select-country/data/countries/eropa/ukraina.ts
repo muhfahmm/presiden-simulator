@@ -282,27 +282,35 @@ export const ukraina: CountryData = {
   "taxes": {
     "vat": {
       "rate": 2,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 5
     },
     "corporate": {
       "rate": 13,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 20
     },
     "income": {
       "rate": 19,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 34
     },
     "customs": {
       "rate": 30,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 85
     },
     "environment": {
       "rate": 2,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 6
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 8 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 24 },
     "other": {
       "rate": 2,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 5
     }
   },
 

@@ -282,27 +282,35 @@ export const belarus: CountryData = {
   "taxes": {
     "vat": {
       "rate": 19,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 18
     },
     "corporate": {
       "rate": 35,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 48
     },
     "income": {
       "rate": 36,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 64
     },
     "customs": {
       "rate": 4,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 7
     },
     "environment": {
       "rate": 38,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 53
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 4 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 11 },
     "other": {
       "rate": 11,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 9
     }
   },
 

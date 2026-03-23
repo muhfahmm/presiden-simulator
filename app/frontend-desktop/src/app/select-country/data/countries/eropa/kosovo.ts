@@ -282,27 +282,35 @@ export const kosovo: CountryData = {
   "taxes": {
     "vat": {
       "rate": 30,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 3
     },
     "corporate": {
       "rate": 37,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 9
     },
     "income": {
       "rate": 32,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 8
     },
     "customs": {
       "rate": 31,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 8
     },
     "environment": {
       "rate": 8,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 2,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 0
     }
   },
 

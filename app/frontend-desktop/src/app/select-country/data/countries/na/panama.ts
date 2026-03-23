@@ -282,27 +282,35 @@ export const panama: CountryData = {
   "taxes": {
     "vat": {
       "rate": 29,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 41
     },
     "corporate": {
       "rate": 6,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 10
     },
     "income": {
       "rate": 11,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 14
     },
     "customs": {
       "rate": 36,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 54
     },
     "environment": {
       "rate": 8,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 17
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 4 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 12 },
     "other": {
       "rate": 39,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 85
     }
   },
 

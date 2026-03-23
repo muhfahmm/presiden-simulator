@@ -287,26 +287,34 @@ export const somalia: CountryData = {
     "vat": {
       "rate": 12,
       "satisfaction": 67,
+      "revenue": 1
     },
     "corporate": {
       "rate": 12,
       "satisfaction": 52,
+      "revenue": 2
     },
     "income": {
       "rate": 39,
       "satisfaction": 61,
+      "revenue": 5
     },
     "customs": {
       "rate": 11,
       "satisfaction": 86,
+      "revenue": 2
     },
     "environment": {
       "rate": 6,
       "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 40,
       "satisfaction": 93,
+      "revenue": 5
     }
   },
 

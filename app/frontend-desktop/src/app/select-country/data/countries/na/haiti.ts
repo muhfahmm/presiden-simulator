@@ -282,27 +282,35 @@ export const haiti: CountryData = {
   "taxes": {
     "vat": {
       "rate": 1,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 0
     },
     "corporate": {
       "rate": 6,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 0
     },
     "income": {
       "rate": 35,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 9
     },
     "customs": {
       "rate": 24,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 6
     },
     "environment": {
       "rate": 7,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 1
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 7,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 1
     }
   },
 

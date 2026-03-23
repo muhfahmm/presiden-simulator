@@ -282,27 +282,35 @@ export const guyana: CountryData = {
   "taxes": {
     "vat": {
       "rate": 11,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 2
     },
     "corporate": {
       "rate": 10,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 2
     },
     "income": {
       "rate": 1,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 0
     },
     "customs": {
       "rate": 18,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 3
     },
     "environment": {
       "rate": 26,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 6
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 36,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 13
     }
   },
 

@@ -282,27 +282,35 @@ export const sri_lanka: CountryData = {
   "taxes": {
     "vat": {
       "rate": 12,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 15
     },
     "corporate": {
       "rate": 33,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 69
     },
     "income": {
       "rate": 27,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 32
     },
     "customs": {
       "rate": 7,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 12
     },
     "environment": {
       "rate": 10,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 21
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 4 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 11 },
     "other": {
       "rate": 13,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 26
     }
   },
 

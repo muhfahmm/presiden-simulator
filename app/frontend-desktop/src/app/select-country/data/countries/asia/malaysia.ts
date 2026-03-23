@@ -282,27 +282,35 @@ export const malaysia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 21,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 170
     },
     "corporate": {
       "rate": 26,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 139
     },
     "income": {
       "rate": 29,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 259
     },
     "customs": {
       "rate": 8,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 82
     },
     "environment": {
       "rate": 12,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 80
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 20 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 59 },
     "other": {
       "rate": 22,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 167
     }
   },
 

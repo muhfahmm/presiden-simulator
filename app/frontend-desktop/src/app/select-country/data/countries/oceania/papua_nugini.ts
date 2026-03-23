@@ -282,27 +282,35 @@ export const papua_nugini: CountryData = {
   "taxes": {
     "vat": {
       "rate": 5,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 3
     },
     "corporate": {
       "rate": 5,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 3
     },
     "income": {
       "rate": 26,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 9
     },
     "customs": {
       "rate": 3,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 16,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 13
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 2 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 5 },
     "other": {
       "rate": 31,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 23
     }
   },
 

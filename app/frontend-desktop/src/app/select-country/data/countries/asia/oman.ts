@@ -282,27 +282,35 @@ export const oman: CountryData = {
   "taxes": {
     "vat": {
       "rate": 13,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 33
     },
     "corporate": {
       "rate": 1,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 2
     },
     "income": {
       "rate": 23,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 47
     },
     "customs": {
       "rate": 28,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 31
     },
     "environment": {
       "rate": 18,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 38
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 6 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 16 },
     "other": {
       "rate": 40,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 104
     }
   },
 

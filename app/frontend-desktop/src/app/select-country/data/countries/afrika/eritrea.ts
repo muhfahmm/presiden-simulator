@@ -287,26 +287,34 @@ export const eritrea: CountryData = {
     "vat": {
       "rate": 31,
       "satisfaction": 67,
+      "revenue": 1
     },
     "corporate": {
       "rate": 38,
       "satisfaction": 52,
+      "revenue": 1
     },
     "income": {
       "rate": 26,
       "satisfaction": 61,
+      "revenue": 1
     },
     "customs": {
       "rate": 7,
       "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 15,
       "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 32,
       "satisfaction": 93,
+      "revenue": 1
     }
   },
 

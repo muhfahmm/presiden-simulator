@@ -287,26 +287,34 @@ export const republik_demokratik_kongo: CountryData = {
     "vat": {
       "rate": 29,
       "satisfaction": 67,
+      "revenue": 50
     },
     "corporate": {
       "rate": 30,
       "satisfaction": 52,
+      "revenue": 49
     },
     "income": {
       "rate": 26,
       "satisfaction": 61,
+      "revenue": 23
     },
     "customs": {
       "rate": 32,
       "satisfaction": 86,
+      "revenue": 54
     },
     "environment": {
       "rate": 4,
       "satisfaction": 88,
+      "revenue": 6
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 4 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 10 },
     "other": {
       "rate": 9,
       "satisfaction": 93,
+      "revenue": 9
     }
   },
 

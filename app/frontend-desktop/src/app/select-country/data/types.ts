@@ -250,12 +250,14 @@ export interface CountryData {
     sell_commodity: number; // Value in T
   };
   taxes: {
-    vat: { rate: number; satisfaction: number }; // PPN
-    corporate: { rate: number; satisfaction: number }; // Pajak Korporasi
-    income: { rate: number; satisfaction: number }; // Pajak Penghasilan Pribadi
-    customs: { rate: number; satisfaction: number }; // Bea Cukai
-    environment: { rate: number; satisfaction: number }; // Pajak Lingkungan
-    other: { rate: number; satisfaction: number }; // Pajak yang lain
+    vat: { rate: number; satisfaction: number; revenue: number }; // PPN
+    corporate: { rate: number; satisfaction: number; revenue: number }; // Pajak Korporasi
+    income: { rate: number; satisfaction: number; revenue: number }; // Pajak Penghasilan Pribadi
+    customs: { rate: number; satisfaction: number; revenue: number }; // Bea Cukai
+    environment: { rate: number; satisfaction: number; revenue: number }; // Pajak Lingkungan
+    transit_allied: { rate: number; satisfaction: number; revenue: number }; // Pajak Transit (Hubungan Perdagangan)
+    transit_non_allied: { rate: number; satisfaction: number; revenue: number }; // Pajak Transit (Tanpa Hubungan)
+    other: { rate: number; satisfaction: number; revenue: number }; // Pajak yang lain
   };
   demand: {
     satisfaction: number; // 0-100

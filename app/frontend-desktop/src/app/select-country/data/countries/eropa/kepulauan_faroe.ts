@@ -282,27 +282,35 @@ export const kepulauan_faroe: CountryData = {
   "taxes": {
     "vat": {
       "rate": 35,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 4
     },
     "corporate": {
       "rate": 7,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 0
     },
     "income": {
       "rate": 29,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 8
     },
     "customs": {
       "rate": 30,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 6
     },
     "environment": {
       "rate": 34,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 4
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 1,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 0
     }
   },
 

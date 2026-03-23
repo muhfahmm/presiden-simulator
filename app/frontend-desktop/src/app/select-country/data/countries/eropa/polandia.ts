@@ -282,27 +282,35 @@ export const polandia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 12,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 112
     },
     "corporate": {
       "rate": 26,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 392
     },
     "income": {
       "rate": 6,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 80
     },
     "customs": {
       "rate": 34,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 763
     },
     "environment": {
       "rate": 24,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 382
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 41 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 123 },
     "other": {
       "rate": 25,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 591
     }
   },
 

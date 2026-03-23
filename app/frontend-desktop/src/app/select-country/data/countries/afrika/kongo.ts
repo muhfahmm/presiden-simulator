@@ -287,26 +287,34 @@ export const kongo: CountryData = {
     "vat": {
       "rate": 6,
       "satisfaction": 67,
+      "revenue": 1
     },
     "corporate": {
       "rate": 7,
       "satisfaction": 52,
+      "revenue": 2
     },
     "income": {
       "rate": 39,
       "satisfaction": 61,
+      "revenue": 12
     },
     "customs": {
       "rate": 26,
       "satisfaction": 86,
+      "revenue": 5
     },
     "environment": {
       "rate": 34,
       "satisfaction": 88,
+      "revenue": 11
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 10,
       "satisfaction": 93,
+      "revenue": 3
     }
   },
 

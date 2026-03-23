@@ -282,27 +282,35 @@ export const suriname: CountryData = {
   "taxes": {
     "vat": {
       "rate": 33,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 1
     },
     "corporate": {
       "rate": 40,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 3
     },
     "income": {
       "rate": 3,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 0
     },
     "customs": {
       "rate": 10,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 38,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 1
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 22,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 1
     }
   },
 

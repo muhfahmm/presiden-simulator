@@ -282,27 +282,35 @@ export const maldives: CountryData = {
   "taxes": {
     "vat": {
       "rate": 15,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 1
     },
     "corporate": {
       "rate": 11,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 1
     },
     "income": {
       "rate": 2,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 0
     },
     "customs": {
       "rate": 18,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 2
     },
     "environment": {
       "rate": 7,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 1
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 11,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 1
     }
   },
 

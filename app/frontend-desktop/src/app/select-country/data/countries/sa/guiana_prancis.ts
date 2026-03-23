@@ -282,27 +282,35 @@ export const guiana_prancis: CountryData = {
   "taxes": {
     "vat": {
       "rate": 9,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 1
     },
     "corporate": {
       "rate": 40,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 9
     },
     "income": {
       "rate": 20,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 2
     },
     "customs": {
       "rate": 28,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 5
     },
     "environment": {
       "rate": 1,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 14,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 2
     }
   },
 

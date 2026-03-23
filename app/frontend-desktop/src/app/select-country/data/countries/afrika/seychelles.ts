@@ -287,26 +287,34 @@ export const seychelles: CountryData = {
     "vat": {
       "rate": 9,
       "satisfaction": 67,
+      "revenue": 0
     },
     "corporate": {
       "rate": 6,
       "satisfaction": 52,
+      "revenue": 0
     },
     "income": {
       "rate": 27,
       "satisfaction": 61,
+      "revenue": 0
     },
     "customs": {
       "rate": 31,
       "satisfaction": 86,
+      "revenue": 1
     },
     "environment": {
       "rate": 36,
       "satisfaction": 88,
+      "revenue": 1
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 17,
       "satisfaction": 93,
+      "revenue": 0
     }
   },
 

@@ -282,27 +282,35 @@ export const australia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 17,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 392
     },
     "corporate": {
       "rate": 11,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 213
     },
     "income": {
       "rate": 10,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 209
     },
     "customs": {
       "rate": 13,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 509
     },
     "environment": {
       "rate": 33,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 635
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 84 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 251 },
     "other": {
       "rate": 19,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 764
     }
   },
 

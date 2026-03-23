@@ -282,27 +282,35 @@ export const arab_saudi: CountryData = {
   "taxes": {
     "vat": {
       "rate": 40,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 832
     },
     "corporate": {
       "rate": 2,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 44
     },
     "income": {
       "rate": 35,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 982
     },
     "customs": {
       "rate": 30,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 335
     },
     "environment": {
       "rate": 16,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 265
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 54 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 162 },
     "other": {
       "rate": 4,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 127
     }
   },
 

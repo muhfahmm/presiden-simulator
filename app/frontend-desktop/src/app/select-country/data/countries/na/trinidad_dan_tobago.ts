@@ -282,27 +282,35 @@ export const trinidad_dan_tobago: CountryData = {
   "taxes": {
     "vat": {
       "rate": 2,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 0
     },
     "corporate": {
       "rate": 8,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 5
     },
     "income": {
       "rate": 29,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 17
     },
     "customs": {
       "rate": 10,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 4
     },
     "environment": {
       "rate": 32,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 23
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 2 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 4 },
     "other": {
       "rate": 27,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 7
     }
   },
 

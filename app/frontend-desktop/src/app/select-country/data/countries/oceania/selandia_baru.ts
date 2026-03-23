@@ -282,27 +282,35 @@ export const selandia_baru: CountryData = {
   "taxes": {
     "vat": {
       "rate": 29,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 85
     },
     "corporate": {
       "rate": 38,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 180
     },
     "income": {
       "rate": 15,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 102
     },
     "customs": {
       "rate": 5,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 18
     },
     "environment": {
       "rate": 3,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 8
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 13 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 37 },
     "other": {
       "rate": 18,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 62
     }
   },
 

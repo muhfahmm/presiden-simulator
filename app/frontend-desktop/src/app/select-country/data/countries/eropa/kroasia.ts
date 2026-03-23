@@ -282,27 +282,35 @@ export const kroasia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 5,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 9
     },
     "corporate": {
       "rate": 21,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 33
     },
     "income": {
       "rate": 30,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 55
     },
     "customs": {
       "rate": 39,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 63
     },
     "environment": {
       "rate": 20,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 27
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 4 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 12 },
     "other": {
       "rate": 20,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 22
     }
   },
 

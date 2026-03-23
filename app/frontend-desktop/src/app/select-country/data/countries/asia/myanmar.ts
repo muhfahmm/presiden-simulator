@@ -282,27 +282,35 @@ export const myanmar: CountryData = {
   "taxes": {
     "vat": {
       "rate": 9,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 12
     },
     "corporate": {
       "rate": 30,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 43
     },
     "income": {
       "rate": 11,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 19
     },
     "customs": {
       "rate": 29,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 45
     },
     "environment": {
       "rate": 38,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 24
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 3 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 9 },
     "other": {
       "rate": 12,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 17
     }
   },
 

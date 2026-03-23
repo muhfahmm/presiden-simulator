@@ -287,26 +287,34 @@ export const maroko: CountryData = {
     "vat": {
       "rate": 24,
       "satisfaction": 67,
+      "revenue": 67
     },
     "corporate": {
       "rate": 37,
       "satisfaction": 52,
+      "revenue": 102
     },
     "income": {
       "rate": 37,
       "satisfaction": 61,
+      "revenue": 127
     },
     "customs": {
       "rate": 35,
       "satisfaction": 86,
+      "revenue": 73
     },
     "environment": {
       "rate": 19,
       "satisfaction": 88,
+      "revenue": 51
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 7 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 20 },
     "other": {
       "rate": 5,
       "satisfaction": 93,
+      "revenue": 10
     }
   },
 

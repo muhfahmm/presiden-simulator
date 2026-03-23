@@ -287,26 +287,34 @@ export const tanjung_verde: CountryData = {
     "vat": {
       "rate": 40,
       "satisfaction": 67,
+      "revenue": 7
     },
     "corporate": {
       "rate": 31,
       "satisfaction": 52,
+      "revenue": 6
     },
     "income": {
       "rate": 15,
       "satisfaction": 61,
+      "revenue": 3
     },
     "customs": {
       "rate": 27,
       "satisfaction": 86,
+      "revenue": 6
     },
     "environment": {
       "rate": 18,
       "satisfaction": 88,
+      "revenue": 4
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 20,
       "satisfaction": 93,
+      "revenue": 2
     }
   },
 

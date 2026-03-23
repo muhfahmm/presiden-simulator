@@ -282,27 +282,35 @@ export const amerika_serikat: CountryData = {
   "taxes": {
     "vat": {
       "rate": 35,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 28175
     },
     "corporate": {
       "rate": 28,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 19391
     },
     "income": {
       "rate": 21,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 5914
     },
     "customs": {
       "rate": 4,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 2690
     },
     "environment": {
       "rate": 18,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 7054
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1401 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 4201 },
     "other": {
       "rate": 13,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 4046
     }
   },
 

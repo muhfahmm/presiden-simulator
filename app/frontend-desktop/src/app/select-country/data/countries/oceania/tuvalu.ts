@@ -282,27 +282,35 @@ export const tuvalu: CountryData = {
   "taxes": {
     "vat": {
       "rate": 2,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 0
     },
     "corporate": {
       "rate": 22,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 0
     },
     "income": {
       "rate": 3,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 0
     },
     "customs": {
       "rate": 36,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 14,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 4,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 0
     }
   },
 

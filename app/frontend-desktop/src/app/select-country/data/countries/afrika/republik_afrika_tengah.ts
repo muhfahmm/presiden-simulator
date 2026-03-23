@@ -287,26 +287,34 @@ export const republik_afrika_tengah: CountryData = {
     "vat": {
       "rate": 30,
       "satisfaction": 67,
+      "revenue": 1
     },
     "corporate": {
       "rate": 24,
       "satisfaction": 52,
+      "revenue": 1
     },
     "income": {
       "rate": 4,
       "satisfaction": 61,
+      "revenue": 0
     },
     "customs": {
       "rate": 30,
       "satisfaction": 86,
+      "revenue": 1
     },
     "environment": {
       "rate": 25,
       "satisfaction": 88,
+      "revenue": 1
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 25,
       "satisfaction": 93,
+      "revenue": 1
     }
   },
 

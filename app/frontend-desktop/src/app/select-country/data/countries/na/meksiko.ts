@@ -282,27 +282,35 @@ export const meksiko: CountryData = {
   "taxes": {
     "vat": {
       "rate": 17,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 630
     },
     "corporate": {
       "rate": 37,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 1548
     },
     "income": {
       "rate": 30,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 1054
     },
     "customs": {
       "rate": 7,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 309
     },
     "environment": {
       "rate": 9,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 264
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 88 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 262 },
     "other": {
       "rate": 10,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 497
     }
   },
 

@@ -282,27 +282,35 @@ export const honduras: CountryData = {
   "taxes": {
     "vat": {
       "rate": 38,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 17
     },
     "corporate": {
       "rate": 25,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 18
     },
     "income": {
       "rate": 16,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 7
     },
     "customs": {
       "rate": 25,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 16
     },
     "environment": {
       "rate": 8,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 7
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 2 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 5 },
     "other": {
       "rate": 16,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 13
     }
   },
 

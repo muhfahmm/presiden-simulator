@@ -282,27 +282,35 @@ export const venezuela: CountryData = {
   "taxes": {
     "vat": {
       "rate": 37,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 75
     },
     "corporate": {
       "rate": 8,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 19
     },
     "income": {
       "rate": 4,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 10
     },
     "customs": {
       "rate": 40,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 85
     },
     "environment": {
       "rate": 28,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 41
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 5 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 14 },
     "other": {
       "rate": 4,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 7
     }
   },
 

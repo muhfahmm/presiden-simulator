@@ -287,26 +287,34 @@ export const ethiopia: CountryData = {
     "vat": {
       "rate": 17,
       "satisfaction": 67,
+      "revenue": 59
     },
     "corporate": {
       "rate": 25,
       "satisfaction": 52,
+      "revenue": 82
     },
     "income": {
       "rate": 30,
       "satisfaction": 61,
+      "revenue": 63
     },
     "customs": {
       "rate": 38,
       "satisfaction": 86,
+      "revenue": 81
     },
     "environment": {
       "rate": 30,
       "satisfaction": 88,
+      "revenue": 50
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 8 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 23 },
     "other": {
       "rate": 11,
       "satisfaction": 93,
+      "revenue": 18
     }
   },
 

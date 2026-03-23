@@ -282,27 +282,35 @@ export const gibraltar: CountryData = {
   "taxes": {
     "vat": {
       "rate": 20,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 2
     },
     "corporate": {
       "rate": 35,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 6
     },
     "income": {
       "rate": 26,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 3
     },
     "customs": {
       "rate": 23,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 4
     },
     "environment": {
       "rate": 5,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 17,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 1
     }
   },
 

@@ -282,27 +282,35 @@ export const kanada: CountryData = {
   "taxes": {
     "vat": {
       "rate": 17,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 586
     },
     "corporate": {
       "rate": 16,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 749
     },
     "income": {
       "rate": 9,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 273
     },
     "customs": {
       "rate": 8,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 304
     },
     "environment": {
       "rate": 25,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 1479
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 109 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 327 },
     "other": {
       "rate": 7,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 193
     }
   },
 

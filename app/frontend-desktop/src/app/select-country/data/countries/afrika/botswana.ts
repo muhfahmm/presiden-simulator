@@ -287,26 +287,34 @@ export const botswana: CountryData = {
     "vat": {
       "rate": 14,
       "satisfaction": 67,
+      "revenue": 4
     },
     "corporate": {
       "rate": 7,
       "satisfaction": 52,
+      "revenue": 3
     },
     "income": {
       "rate": 11,
       "satisfaction": 61,
+      "revenue": 5
     },
     "customs": {
       "rate": 23,
       "satisfaction": 86,
+      "revenue": 9
     },
     "environment": {
       "rate": 7,
       "satisfaction": 88,
+      "revenue": 3
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 13,
       "satisfaction": 93,
+      "revenue": 4
     }
   },
 

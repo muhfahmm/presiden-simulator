@@ -282,27 +282,35 @@ export const bosnia_dan_hercegovina: CountryData = {
   "taxes": {
     "vat": {
       "rate": 28,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 18
     },
     "corporate": {
       "rate": 8,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 5
     },
     "income": {
       "rate": 27,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 17
     },
     "customs": {
       "rate": 32,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 12
     },
     "environment": {
       "rate": 25,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 7
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 2 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 4 },
     "other": {
       "rate": 17,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 6
     }
   },
 

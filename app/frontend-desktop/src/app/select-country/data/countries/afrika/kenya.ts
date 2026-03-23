@@ -287,26 +287,34 @@ export const kenya: CountryData = {
     "vat": {
       "rate": 31,
       "satisfaction": 67,
+      "revenue": 55
     },
     "corporate": {
       "rate": 30,
       "satisfaction": 52,
+      "revenue": 95
     },
     "income": {
       "rate": 24,
       "satisfaction": 61,
+      "revenue": 49
     },
     "customs": {
       "rate": 35,
       "satisfaction": 86,
+      "revenue": 78
     },
     "environment": {
       "rate": 6,
       "satisfaction": 88,
+      "revenue": 15
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 6 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 17 },
     "other": {
       "rate": 3,
       "satisfaction": 93,
+      "revenue": 8
     }
   },
 

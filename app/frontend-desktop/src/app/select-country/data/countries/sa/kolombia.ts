@@ -282,27 +282,35 @@ export const kolombia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 9,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 34
     },
     "corporate": {
       "rate": 14,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 120
     },
     "income": {
       "rate": 18,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 93
     },
     "customs": {
       "rate": 31,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 136
     },
     "environment": {
       "rate": 1,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 6
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 17 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 50 },
     "other": {
       "rate": 8,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 60
     }
   },
 

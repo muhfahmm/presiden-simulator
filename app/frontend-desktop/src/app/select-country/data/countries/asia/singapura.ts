@@ -282,27 +282,35 @@ export const singapura: CountryData = {
   "taxes": {
     "vat": {
       "rate": 10,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 80
     },
     "corporate": {
       "rate": 36,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 478
     },
     "income": {
       "rate": 10,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 132
     },
     "customs": {
       "rate": 16,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 231
     },
     "environment": {
       "rate": 39,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 379
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 25 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 73 },
     "other": {
       "rate": 11,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 147
     }
   },
 

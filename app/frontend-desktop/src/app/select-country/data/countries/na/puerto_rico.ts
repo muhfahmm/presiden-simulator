@@ -282,27 +282,35 @@ export const puerto_rico: CountryData = {
   "taxes": {
     "vat": {
       "rate": 14,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 2
     },
     "corporate": {
       "rate": 38,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 8
     },
     "income": {
       "rate": 38,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 5
     },
     "customs": {
       "rate": 31,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 3
     },
     "environment": {
       "rate": 8,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 2
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 4,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 0
     }
   },
 

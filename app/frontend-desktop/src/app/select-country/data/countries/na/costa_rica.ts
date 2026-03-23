@@ -282,27 +282,35 @@ export const costa_rica: CountryData = {
   "taxes": {
     "vat": {
       "rate": 40,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 69
     },
     "corporate": {
       "rate": 34,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 41
     },
     "income": {
       "rate": 15,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 13
     },
     "customs": {
       "rate": 31,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 44
     },
     "environment": {
       "rate": 17,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 34
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 4 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 11 },
     "other": {
       "rate": 38,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 75
     }
   },
 

@@ -287,26 +287,34 @@ export const mali: CountryData = {
     "vat": {
       "rate": 38,
       "satisfaction": 67,
+      "revenue": 10
     },
     "corporate": {
       "rate": 11,
       "satisfaction": 52,
+      "revenue": 4
     },
     "income": {
       "rate": 12,
       "satisfaction": 61,
+      "revenue": 2
     },
     "customs": {
       "rate": 21,
       "satisfaction": 86,
+      "revenue": 10
     },
     "environment": {
       "rate": 14,
       "satisfaction": 88,
+      "revenue": 6
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 3 },
     "other": {
       "rate": 17,
       "satisfaction": 93,
+      "revenue": 7
     }
   },
 

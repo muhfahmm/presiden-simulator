@@ -287,26 +287,34 @@ export const republik_sudan: CountryData = {
     "vat": {
       "rate": 21,
       "satisfaction": 67,
+      "revenue": 5
     },
     "corporate": {
       "rate": 13,
       "satisfaction": 52,
+      "revenue": 5
     },
     "income": {
       "rate": 5,
       "satisfaction": 61,
+      "revenue": 1
     },
     "customs": {
       "rate": 38,
       "satisfaction": 86,
+      "revenue": 22
     },
     "environment": {
       "rate": 2,
       "satisfaction": 88,
+      "revenue": 1
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 2 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 4 },
     "other": {
       "rate": 29,
       "satisfaction": 93,
+      "revenue": 8
     }
   },
 

@@ -282,27 +282,35 @@ export const luksemburg: CountryData = {
   "taxes": {
     "vat": {
       "rate": 9,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 17
     },
     "corporate": {
       "rate": 16,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 31
     },
     "income": {
       "rate": 22,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 38
     },
     "customs": {
       "rate": 32,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 34
     },
     "environment": {
       "rate": 29,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 31
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 5 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 13 },
     "other": {
       "rate": 10,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 25
     }
   },
 

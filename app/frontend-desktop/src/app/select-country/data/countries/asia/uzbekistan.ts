@@ -282,27 +282,35 @@ export const uzbekistan: CountryData = {
   "taxes": {
     "vat": {
       "rate": 18,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 39
     },
     "corporate": {
       "rate": 32,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 74
     },
     "income": {
       "rate": 26,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 46
     },
     "customs": {
       "rate": 6,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 8
     },
     "environment": {
       "rate": 19,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 20
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 5 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 14 },
     "other": {
       "rate": 39,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 71
     }
   },
 

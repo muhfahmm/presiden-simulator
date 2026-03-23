@@ -282,27 +282,35 @@ export const makau: CountryData = {
   "taxes": {
     "vat": {
       "rate": 35,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 7
     },
     "corporate": {
       "rate": 28,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 3
     },
     "income": {
       "rate": 18,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 2
     },
     "customs": {
       "rate": 11,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 1
     },
     "environment": {
       "rate": 28,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 5
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 1,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 0
     }
   },
 

@@ -282,27 +282,35 @@ export const norwegia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 15,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 187
     },
     "corporate": {
       "rate": 19,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 146
     },
     "income": {
       "rate": 15,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 125
     },
     "customs": {
       "rate": 19,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 158
     },
     "environment": {
       "rate": 3,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 45
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 29 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 85 },
     "other": {
       "rate": 1,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 13
     }
   },
 

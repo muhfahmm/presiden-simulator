@@ -282,27 +282,35 @@ export const inggris: CountryData = {
   "taxes": {
     "vat": {
       "rate": 16,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 1495
     },
     "corporate": {
       "rate": 19,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 1669
     },
     "income": {
       "rate": 39,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 2342
     },
     "customs": {
       "rate": 35,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 3052
     },
     "environment": {
       "rate": 31,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 1976
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 171 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 511 },
     "other": {
       "rate": 7,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 641
     }
   },
 

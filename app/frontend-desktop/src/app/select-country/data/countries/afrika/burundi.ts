@@ -287,26 +287,34 @@ export const burundi: CountryData = {
     "vat": {
       "rate": 5,
       "satisfaction": 67,
+      "revenue": 0
     },
     "corporate": {
       "rate": 6,
       "satisfaction": 52,
+      "revenue": 0
     },
     "income": {
       "rate": 1,
       "satisfaction": 61,
+      "revenue": 0
     },
     "customs": {
       "rate": 27,
       "satisfaction": 86,
+      "revenue": 1
     },
     "environment": {
       "rate": 28,
       "satisfaction": 88,
+      "revenue": 2
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 36,
       "satisfaction": 93,
+      "revenue": 3
     }
   },
 

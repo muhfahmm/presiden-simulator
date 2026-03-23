@@ -282,27 +282,35 @@ export const georgia: CountryData = {
   "taxes": {
     "vat": {
       "rate": 23,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 10
     },
     "corporate": {
       "rate": 15,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 6
     },
     "income": {
       "rate": 22,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 7
     },
     "customs": {
       "rate": 7,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 3
     },
     "environment": {
       "rate": 32,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 17
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 2 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 4 },
     "other": {
       "rate": 17,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 9
     }
   },
 

@@ -282,27 +282,35 @@ export const pakistan: CountryData = {
   "taxes": {
     "vat": {
       "rate": 36,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 126
     },
     "corporate": {
       "rate": 32,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 205
     },
     "income": {
       "rate": 14,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 59
     },
     "customs": {
       "rate": 35,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 300
     },
     "environment": {
       "rate": 17,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 100
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 17 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 50 },
     "other": {
       "rate": 13,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 124
     }
   },
 

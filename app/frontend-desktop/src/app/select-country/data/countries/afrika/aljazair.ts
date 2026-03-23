@@ -287,26 +287,34 @@ export const aljazair: CountryData = {
     "vat": {
       "rate": 36,
       "satisfaction": 67,
+      "revenue": 214
     },
     "corporate": {
       "rate": 13,
       "satisfaction": 52,
+      "revenue": 49
     },
     "income": {
       "rate": 33,
       "satisfaction": 61,
+      "revenue": 196
     },
     "customs": {
       "rate": 15,
       "satisfaction": 86,
+      "revenue": 104
     },
     "environment": {
       "rate": 36,
       "satisfaction": 88,
+      "revenue": 249
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 12 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 36 },
     "other": {
       "rate": 21,
       "satisfaction": 93,
+      "revenue": 126
     }
   },
 

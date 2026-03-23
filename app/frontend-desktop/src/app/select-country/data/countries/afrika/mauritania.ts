@@ -287,26 +287,34 @@ export const mauritania: CountryData = {
     "vat": {
       "rate": 6,
       "satisfaction": 67,
+      "revenue": 0
     },
     "corporate": {
       "rate": 7,
       "satisfaction": 52,
+      "revenue": 1
     },
     "income": {
       "rate": 6,
       "satisfaction": 61,
+      "revenue": 1
     },
     "customs": {
       "rate": 1,
       "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 12,
       "satisfaction": 88,
+      "revenue": 2
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 40,
       "satisfaction": 93,
+      "revenue": 3
     }
   },
 

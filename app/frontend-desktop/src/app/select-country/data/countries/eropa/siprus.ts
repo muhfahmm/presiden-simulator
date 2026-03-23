@@ -282,27 +282,35 @@ export const siprus: CountryData = {
   "taxes": {
     "vat": {
       "rate": 28,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 21
     },
     "corporate": {
       "rate": 39,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 29
     },
     "income": {
       "rate": 15,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 7
     },
     "customs": {
       "rate": 34,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 11
     },
     "environment": {
       "rate": 8,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 3
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 2 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 5 },
     "other": {
       "rate": 2,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 0
     }
   },
 

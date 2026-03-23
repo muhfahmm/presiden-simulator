@@ -282,27 +282,35 @@ export const austria: CountryData = {
   "taxes": {
     "vat": {
       "rate": 12,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 170
     },
     "corporate": {
       "rate": 38,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 532
     },
     "income": {
       "rate": 31,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 408
     },
     "customs": {
       "rate": 10,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 117
     },
     "environment": {
       "rate": 8,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 64
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 25 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 75 },
     "other": {
       "rate": 30,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 219
     }
   },
 

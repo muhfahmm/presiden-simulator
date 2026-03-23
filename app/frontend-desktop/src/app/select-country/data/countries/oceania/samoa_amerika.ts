@@ -282,27 +282,35 @@ export const samoa_amerika: CountryData = {
   "taxes": {
     "vat": {
       "rate": 38,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 9
     },
     "corporate": {
       "rate": 31,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 8
     },
     "income": {
       "rate": 36,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 10
     },
     "customs": {
       "rate": 4,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 2,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 2 },
     "other": {
       "rate": 8,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 2
     }
   },
 

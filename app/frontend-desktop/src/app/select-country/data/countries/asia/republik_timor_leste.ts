@@ -282,27 +282,35 @@ export const republik_timor_leste: CountryData = {
   "taxes": {
     "vat": {
       "rate": 21,
-      "satisfaction": 67
+      "satisfaction": 67,
+      "revenue": 0
     },
     "corporate": {
       "rate": 3,
-      "satisfaction": 52
+      "satisfaction": 52,
+      "revenue": 0
     },
     "income": {
       "rate": 30,
-      "satisfaction": 61
+      "satisfaction": 61,
+      "revenue": 1
     },
     "customs": {
       "rate": 16,
-      "satisfaction": 86
+      "satisfaction": 86,
+      "revenue": 0
     },
     "environment": {
       "rate": 16,
-      "satisfaction": 88
+      "satisfaction": 88,
+      "revenue": 0
     },
+    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 1 },
+    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 1 },
     "other": {
       "rate": 27,
-      "satisfaction": 93
+      "satisfaction": 93,
+      "revenue": 1
     }
   },
 
