@@ -3,10 +3,13 @@
 import { useState, useEffect } from "react";
 import { Play, Pause, Calendar } from "lucide-react";
 import { INITIAL_GAME_DATE, formatGameDate, addDays, saveGameDate, getStoredGameDate } from "../../data/time/gameTime";
+import { gameStorage } from "../../gamestorage";
+import { countries } from "../../../select-country/data/countries";
+import { calculateDailyProductionTotals } from "../../data/production/productionLogic";
 
 export default function GameTimeControls() {
   const [gameDate, setGameDate] = useState<Date>(INITIAL_GAME_DATE);
-  const [isPaused, setIsPaused] = useState<boolean>(false);
+  const [isPaused, setIsPaused] = useState<boolean>(true);
   const [speed, setSpeed] = useState<number>(1); // Speed multiplier
   const [isMounted, setIsMounted] = useState(false);
 
@@ -22,6 +25,21 @@ export default function GameTimeControls() {
       setGameDate(prevDate => {
         const nextDate = addDays(prevDate, 1);
         saveGameDate(nextDate);
+
+        // REAL-TIME PRODUCTION UPDATE
+        const session = gameStorage.getSession();
+        if (session) {
+          const currentCountryCode = session.country || "Indonesia";
+          const currentData = countries.find((c: any) => 
+            c.name_id === currentCountryCode || 
+            c.name_en === currentCountryCode || 
+            (c.id && c.id === currentCountryCode)
+          ) || countries[79] || countries[0];
+          
+          const dailyDeltas = calculateDailyProductionTotals(currentData, session.buildingDeltas);
+          gameStorage.updateCumulativeProduction(dailyDeltas);
+        }
+
         return nextDate;
       });
     }, 2000 / speed); // 1 day every 2 seconds at 1x speed

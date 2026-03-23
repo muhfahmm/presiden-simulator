@@ -118,7 +118,7 @@ export default function GamePage() {
           <BottomNav activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
 
           {/* Game Time Control - Bottom Right */}
-          <div className="absolute bottom-12 right-8 z-40">
+          <div className="absolute bottom-12 right-8 z-[200]">
             <GameTimeControls />
           </div>
 

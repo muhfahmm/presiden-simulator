@@ -8,6 +8,7 @@ export interface GameSession {
   isWelcomeSeen: boolean;
   constructionQueue: ConstructionItem[];
   buildingDeltas: Record<string, number>; // key: buildingKey, value: number of additional buildings
+  cumulativeProduction: Record<string, number>; // key: buildingKey, value: total production so far
 }
 
 export interface ConstructionItem {
@@ -29,9 +30,11 @@ export const gameStorage = {
       isWelcomeSeen: false,
       constructionQueue: [],
       buildingDeltas: {},
+      cumulativeProduction: {},
     };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     localStorage.setItem("selectedCountry", country);
+    localStorage.removeItem("em4_game_date"); // Reset date for new game
   },
 
   getSession: (): GameSession | null => {
@@ -52,12 +55,20 @@ export const gameStorage = {
       if (!session.buildingDeltas || typeof session.buildingDeltas !== 'object') {
         session.buildingDeltas = {};
       }
+
+      if (!session.cumulativeProduction || typeof session.cumulativeProduction !== 'object') {
+        session.cumulativeProduction = {};
+      }
       
       return session as GameSession;
     } catch (e) {
       console.error("Failed to parse game session", e);
       return null;
     }
+  },
+
+  hasActiveSession: (): boolean => {
+    return gameStorage.getSession() !== null;
   },
 
   setWelcomeSeen: (seen: boolean) => {
@@ -76,7 +87,8 @@ export const gameStorage = {
   clearSession: () => {
     if (typeof window === 'undefined') return;
     localStorage.removeItem(STORAGE_KEY);
-    window.location.reload();
+    localStorage.removeItem("em4_game_date");
+    window.location.href = '/select-country';
   },
 
   addToQueue: (item: Omit<ConstructionItem, "id">) => {
@@ -88,22 +100,19 @@ export const gameStorage = {
       session = {
         country,
         startTime: Date.now(),
-        isWelcomeSeen: true, // If they are in the game, they've seen it
+        isWelcomeSeen: true,
         constructionQueue: [],
         buildingDeltas: {},
+        cumulativeProduction: {},
       };
     }
 
-    if (!Array.isArray(session.constructionQueue)) {
-      session.constructionQueue = [];
-    }
-    
     const newItem: ConstructionItem = {
       ...item,
-      id: Math.random().toString(36).substr(2, 9)
+      id: Math.random().toString(36).substring(2, 11)
     };
     
-    session.constructionQueue.push(newItem);
+    session.constructionQueue = [...(session.constructionQueue || []), newItem];
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     return newItem;
   },
@@ -111,20 +120,8 @@ export const gameStorage = {
   removeFromQueue: (id: string) => {
     if (typeof window === 'undefined') return;
     const session = gameStorage.getSession();
-    if (session) {
-      const q = session.constructionQueue;
-      const nextQ: ConstructionItem[] = [];
-      
-      if (Array.isArray(q)) {
-        for (let i = 0; i < q.length; i++) {
-          const item = q[i];
-          if (item && item.id !== id) {
-            nextQ.push(item);
-          }
-        }
-      }
-      
-      session.constructionQueue = nextQ;
+    if (session && session.constructionQueue) {
+      session.constructionQueue = session.constructionQueue.filter(item => item && item.id !== id);
       localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     }
   },
@@ -141,6 +138,7 @@ export const gameStorage = {
         isWelcomeSeen: true,
         constructionQueue: [],
         buildingDeltas: {},
+        cumulativeProduction: {},
       };
     }
     
@@ -152,5 +150,21 @@ export const gameStorage = {
     session.buildingDeltas[buildingKey] = (typeof currentCount === 'number' ? currentCount : 0) + 1;
     
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+  },
+
+  // NEW: Update cumulative production for all sectors
+  updateCumulativeProduction: (deltas: Record<string, number>) => {
+    if (typeof window === 'undefined') return;
+    const session = gameStorage.getSession();
+    if (session) {
+      if (!session.cumulativeProduction) session.cumulativeProduction = {};
+      
+      Object.entries(deltas).forEach(([key, amount]) => {
+        const current = session.cumulativeProduction[key] || 0;
+        session.cumulativeProduction[key] = current + amount;
+      });
+      
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+    }
   }
 };

@@ -5,7 +5,7 @@ export const mineralKritisRate = {
     no: 1,
     production: 5,
     unit: "kg",
-    desc: "Produksi Emas murni per hari",
+    desc: "Tambang Emas",
     income: 500, // In Miliar
     dataKey: "gold",
     buildTime: 30
@@ -14,7 +14,7 @@ export const mineralKritisRate = {
     no: 2,
     production: 0.8,
     unit: "kg",
-    desc: "Ekstraksi Uranium per hari",
+    desc: "Tambang Uranium",
     income: 750,
     dataKey: "uranium",
     buildTime: 45
@@ -23,7 +23,7 @@ export const mineralKritisRate = {
     no: 3,
     production: 120,
     unit: "ton",
-    desc: "Batu bara kualitas tinggi per hari",
+    desc: "Tambang Batubara",
     income: 120,
     dataKey: "coal",
     buildTime: 20
@@ -32,7 +32,7 @@ export const mineralKritisRate = {
     no: 4,
     production: 85,
     unit: "barrel",
-    desc: "Minyak mentah per hari",
+    desc: "Sumur Minyak Bumi",
     income: 350,
     dataKey: "oil",
     buildTime: 40
@@ -41,7 +41,7 @@ export const mineralKritisRate = {
     no: 5,
     production: 150,
     unit: "mcf",
-    desc: "Gas alam per hari",
+    desc: "Sumur Gas Alam",
     income: 280,
     dataKey: "gas",
     buildTime: 35
@@ -50,7 +50,7 @@ export const mineralKritisRate = {
     no: 6,
     production: 45,
     unit: "ton",
-    desc: "Garam industri per hari",
+    desc: "Tambang Garam",
     income: 50,
     dataKey: "salt",
     buildTime: 15
@@ -59,7 +59,7 @@ export const mineralKritisRate = {
     no: 7,
     production: 35,
     unit: "ton",
-    desc: "Biji Nikel per hari",
+    desc: "Tambang Nikel",
     income: 200,
     dataKey: "nickel",
     buildTime: 25
@@ -68,7 +68,7 @@ export const mineralKritisRate = {
     no: 8,
     production: 25,
     unit: "ton",
-    desc: "Biji Lithium (Baterai) per hari",
+    desc: "Tambang Lithium",
     income: 600,
     dataKey: "lithium",
     buildTime: 35
@@ -77,7 +77,7 @@ export const mineralKritisRate = {
     no: 9,
     production: 28,
     unit: "ton",
-    desc: "Biji Tembaga per hari",
+    desc: "Tambang Tembaga",
     income: 180,
     dataKey: "copper",
     buildTime: 25
@@ -86,7 +86,7 @@ export const mineralKritisRate = {
     no: 10,
     production: 40,
     unit: "ton",
-    desc: "Bijih Aluminium (Bauksit) per hari",
+    desc: "Tambang Bauksit",
     income: 140,
     dataKey: "aluminum",
     buildTime: 25
@@ -95,7 +95,7 @@ export const mineralKritisRate = {
     no: 11,
     production: 1.5,
     unit: "ton",
-    desc: "Logam tanah jarang per hari",
+    desc: "Tambang Logam Tanah Jarang",
     income: 900,
     dataKey: "rare_earth",
     buildTime: 60
@@ -104,7 +104,7 @@ export const mineralKritisRate = {
     no: 12,
     production: 210,
     unit: "ton",
-    desc: "Biji Besi per hari",
+    desc: "Tambang Biji Besi",
     income: 150,
     dataKey: "iron_ore",
     buildTime: 20
