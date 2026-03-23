@@ -12,6 +12,11 @@ export const iran: CountryData = {
   "income": "Rp 404 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "nuclear_plant": 22,
     "hydro_plant": 14,
@@ -33,6 +38,11 @@ export const iran: CountryData = {
     "tech_stack": 68,
     "water_access": 74
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "gold": 37,
     "uranium": 16,
@@ -48,6 +58,11 @@ export const iran: CountryData = {
     "iron_ore": 15,
     "strength": 29.660809349923973
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "semiconductor": 6,
     "car": 20,
@@ -64,6 +79,11 @@ export const iran: CountryData = {
     "instant_noodle": 39,
     "strength": 3.076011687404966
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "chicken": 23,
     "poultry": 36,
@@ -75,6 +95,11 @@ export const iran: CountryData = {
     "shellfish": 14,
     "strength": 18.24560701244298
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "rice": 21,
     "wheat": 1,
@@ -89,6 +114,11 @@ export const iran: CountryData = {
     "vegetables": 8,
     "strength": 20.660809349923973
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 18,
     "barracks": 26,
@@ -118,6 +148,11 @@ export const iran: CountryData = {
       "readiness": 98
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 15,
     "military_air_base": 16,
@@ -140,6 +175,11 @@ export const iran: CountryData = {
       "cyber_ops": 2
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 33,
@@ -201,6 +241,11 @@ export const iran: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 31,
     "tanks": 29,
@@ -213,10 +258,20 @@ export const iran: CountryData = {
     "strength": 10
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 14,
     "sell_commodity": 409
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 30,
@@ -243,6 +298,11 @@ export const iran: CountryData = {
       "satisfaction": 93
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 55,
     "top_demands": [
@@ -253,6 +313,11 @@ export const iran: CountryData = {
     "commercial": 7,
     "industrial": 53
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -292,6 +357,11 @@ export const iran: CountryData = {
       { "partner": "Singapura", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 5,
     "education": 16,

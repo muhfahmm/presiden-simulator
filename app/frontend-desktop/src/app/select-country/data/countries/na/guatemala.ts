@@ -12,6 +12,11 @@ export const guatemala: CountryData = {
   "income": "Rp 819 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "nuclear_plant": 15,
     "hydro_plant": 17,
@@ -33,6 +38,11 @@ export const guatemala: CountryData = {
     "tech_stack": 72,
     "water_access": 74
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "gold": 20,
     "uranium": 29,
@@ -48,6 +58,11 @@ export const guatemala: CountryData = {
     "iron_ore": 6,
     "strength": 29.660809349923973
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "semiconductor": 6,
     "car": 12,
@@ -64,6 +79,11 @@ export const guatemala: CountryData = {
     "instant_noodle": 28,
     "strength": 3.076011687404966
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "chicken": 4,
     "poultry": 33,
@@ -75,6 +95,11 @@ export const guatemala: CountryData = {
     "shellfish": 12,
     "strength": 18.24560701244298
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "rice": 27,
     "wheat": 30,
@@ -89,6 +114,11 @@ export const guatemala: CountryData = {
     "vegetables": 28,
     "strength": 20.660809349923973
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 4,
     "barracks": 39,
@@ -118,6 +148,11 @@ export const guatemala: CountryData = {
       "readiness": 98
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 8,
     "military_air_base": 38,
@@ -140,6 +175,11 @@ export const guatemala: CountryData = {
       "cyber_ops": 2
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 8,
@@ -201,6 +241,11 @@ export const guatemala: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 21,
     "tanks": 18,
@@ -213,10 +258,20 @@ export const guatemala: CountryData = {
     "strength": 10
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 20,
     "sell_commodity": 409
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 21,
@@ -243,6 +298,11 @@ export const guatemala: CountryData = {
       "satisfaction": 93
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 63,
     "top_demands": [
@@ -253,6 +313,11 @@ export const guatemala: CountryData = {
     "commercial": 23,
     "industrial": 53
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -294,6 +359,11 @@ export const guatemala: CountryData = {
       { "partner": "Kuba", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 15,
     "education": 20,

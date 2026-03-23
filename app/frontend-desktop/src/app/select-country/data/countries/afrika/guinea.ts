@@ -12,6 +12,11 @@ export const guinea: CountryData = {
   "income": "Rp 976 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "airport": 2,
     "bicycle_path": 19,
@@ -34,6 +39,11 @@ export const guinea: CountryData = {
     "wind_plant": 37,
   
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "aluminum": 25,
     "coal": 2,
@@ -50,6 +60,11 @@ export const guinea: CountryData = {
     "uranium": 18,
   
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "bread": 1,
     "car": 13,
@@ -67,6 +82,11 @@ export const guinea: CountryData = {
     "wood": 27,
   
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "beef_cow": 5,
     "chicken": 18,
@@ -79,6 +99,11 @@ export const guinea: CountryData = {
     "strength": 18.24560701244298,
   
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "cocoa": 34,
     "coffee": 14,
@@ -94,6 +119,11 @@ export const guinea: CountryData = {
     "wheat": 9,
   
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 19,
     "barracks": 20,
@@ -123,6 +153,11 @@ export const guinea: CountryData = {
       "readiness": 98,
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 27,
     "military_air_base": 26,
@@ -145,6 +180,11 @@ export const guinea: CountryData = {
       "cyber_ops": 2,
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 10,
@@ -206,6 +246,11 @@ export const guinea: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 11,
     "tanks": 7,
@@ -218,10 +263,20 @@ export const guinea: CountryData = {
     "strength": 10,
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 24,
     "sell_commodity": 409,
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 33,
@@ -248,6 +303,11 @@ export const guinea: CountryData = {
       "satisfaction": 93,
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 60,
     "top_demands": [
@@ -258,6 +318,11 @@ export const guinea: CountryData = {
     "commercial": 14,
     "industrial": 53,
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -297,6 +362,11 @@ export const guinea: CountryData = {
       { "partner": "Jepang", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 4,
     "education": 16,

@@ -12,6 +12,11 @@ export const san_marino: CountryData = {
   "income": "Rp 122 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "nuclear_plant": 1,
     "hydro_plant": 35,
@@ -33,6 +38,11 @@ export const san_marino: CountryData = {
     "tech_stack": 91,
     "water_access": 74
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "gold": 36,
     "uranium": 22,
@@ -48,6 +58,11 @@ export const san_marino: CountryData = {
     "iron_ore": 9,
     "strength": 29.660809349923973
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "semiconductor": 37,
     "car": 24,
@@ -64,6 +79,11 @@ export const san_marino: CountryData = {
     "instant_noodle": 36,
     "strength": 3.076011687404966
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "chicken": 8,
     "poultry": 23,
@@ -75,6 +95,11 @@ export const san_marino: CountryData = {
     "shellfish": 19,
     "strength": 18.24560701244298
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "rice": 1,
     "wheat": 38,
@@ -89,6 +114,11 @@ export const san_marino: CountryData = {
     "vegetables": 28,
     "strength": 20.660809349923973
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 34,
     "barracks": 22,
@@ -118,6 +148,11 @@ export const san_marino: CountryData = {
       "readiness": 98
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 7,
     "military_air_base": 7,
@@ -140,6 +175,11 @@ export const san_marino: CountryData = {
       "cyber_ops": 2
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 15,
@@ -201,6 +241,11 @@ export const san_marino: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 1,
     "tanks": 21,
@@ -213,10 +258,20 @@ export const san_marino: CountryData = {
     "strength": 10
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 14,
     "sell_commodity": 409
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 25,
@@ -243,6 +298,11 @@ export const san_marino: CountryData = {
       "satisfaction": 93
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 78,
     "top_demands": [
@@ -253,6 +313,11 @@ export const san_marino: CountryData = {
     "commercial": 37,
     "industrial": 53
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -297,6 +362,11 @@ export const san_marino: CountryData = {
       { "partner": "India", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 8,
     "education": 5,

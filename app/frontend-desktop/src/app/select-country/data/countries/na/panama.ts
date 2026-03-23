@@ -12,6 +12,11 @@ export const panama: CountryData = {
   "income": "Rp 177 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "nuclear_plant": 7,
     "hydro_plant": 1,
@@ -33,6 +38,11 @@ export const panama: CountryData = {
     "tech_stack": 70,
     "water_access": 74
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "gold": 29,
     "uranium": 24,
@@ -48,6 +58,11 @@ export const panama: CountryData = {
     "iron_ore": 29,
     "strength": 29.660809349923973
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "semiconductor": 34,
     "car": 36,
@@ -64,6 +79,11 @@ export const panama: CountryData = {
     "instant_noodle": 17,
     "strength": 3.076011687404966
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "chicken": 5,
     "poultry": 33,
@@ -75,6 +95,11 @@ export const panama: CountryData = {
     "shellfish": 34,
     "strength": 18.24560701244298
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "rice": 8,
     "wheat": 37,
@@ -89,6 +114,11 @@ export const panama: CountryData = {
     "vegetables": 25,
     "strength": 20.660809349923973
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 31,
     "barracks": 2,
@@ -118,6 +148,11 @@ export const panama: CountryData = {
       "readiness": 98
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 33,
     "military_air_base": 8,
@@ -140,6 +175,11 @@ export const panama: CountryData = {
       "cyber_ops": 2
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 17,
@@ -201,6 +241,11 @@ export const panama: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 10,
     "tanks": 7,
@@ -213,10 +258,20 @@ export const panama: CountryData = {
     "strength": 10
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 11,
     "sell_commodity": 409
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 29,
@@ -243,6 +298,11 @@ export const panama: CountryData = {
       "satisfaction": 93
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 62,
     "top_demands": [
@@ -253,6 +313,11 @@ export const panama: CountryData = {
     "commercial": 9,
     "industrial": 53
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -292,6 +357,11 @@ export const panama: CountryData = {
       { "partner": "Jepang", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 32,
     "education": 25,

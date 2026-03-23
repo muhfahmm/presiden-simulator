@@ -12,6 +12,11 @@ export const kosovo: CountryData = {
   "income": "Rp 227 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "nuclear_plant": 24,
     "hydro_plant": 27,
@@ -33,6 +38,11 @@ export const kosovo: CountryData = {
     "tech_stack": 78,
     "water_access": 74
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "gold": 36,
     "uranium": 23,
@@ -48,6 +58,11 @@ export const kosovo: CountryData = {
     "iron_ore": 28,
     "strength": 29.660809349923973
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "semiconductor": 4,
     "car": 2,
@@ -64,6 +79,11 @@ export const kosovo: CountryData = {
     "instant_noodle": 34,
     "strength": 3.076011687404966
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "chicken": 9,
     "poultry": 22,
@@ -75,6 +95,11 @@ export const kosovo: CountryData = {
     "shellfish": 23,
     "strength": 18.24560701244298
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "rice": 26,
     "wheat": 26,
@@ -89,6 +114,11 @@ export const kosovo: CountryData = {
     "vegetables": 25,
     "strength": 20.660809349923973
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 39,
     "barracks": 37,
@@ -118,6 +148,11 @@ export const kosovo: CountryData = {
       "readiness": 98
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 33,
     "military_air_base": 38,
@@ -140,6 +175,11 @@ export const kosovo: CountryData = {
       "cyber_ops": 2
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 4,
@@ -201,6 +241,11 @@ export const kosovo: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 7,
     "tanks": 39,
@@ -213,10 +258,20 @@ export const kosovo: CountryData = {
     "strength": 10
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 29,
     "sell_commodity": 409
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 30,
@@ -243,6 +298,11 @@ export const kosovo: CountryData = {
       "satisfaction": 93
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 72,
     "top_demands": [
@@ -253,6 +313,11 @@ export const kosovo: CountryData = {
     "commercial": 3,
     "industrial": 53
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -294,6 +359,11 @@ export const kosovo: CountryData = {
       { "partner": "Korea Selatan", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 39,
     "education": 9,

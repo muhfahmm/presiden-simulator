@@ -12,6 +12,11 @@ export const guinea_bissau: CountryData = {
   "income": "Rp 241 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "airport": 16,
     "bicycle_path": 38,
@@ -34,6 +39,11 @@ export const guinea_bissau: CountryData = {
     "wind_plant": 22,
   
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "aluminum": 15,
     "coal": 38,
@@ -50,6 +60,11 @@ export const guinea_bissau: CountryData = {
     "uranium": 34,
   
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "bread": 29,
     "car": 29,
@@ -67,6 +82,11 @@ export const guinea_bissau: CountryData = {
     "wood": 27,
   
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "beef_cow": 39,
     "chicken": 2,
@@ -79,6 +99,11 @@ export const guinea_bissau: CountryData = {
     "strength": 18.24560701244298,
   
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "cocoa": 11,
     "coffee": 40,
@@ -94,6 +119,11 @@ export const guinea_bissau: CountryData = {
     "wheat": 32,
   
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 6,
     "barracks": 33,
@@ -123,6 +153,11 @@ export const guinea_bissau: CountryData = {
       "readiness": 98,
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 31,
     "military_air_base": 18,
@@ -145,6 +180,11 @@ export const guinea_bissau: CountryData = {
       "cyber_ops": 2,
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 39,
@@ -206,6 +246,11 @@ export const guinea_bissau: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 6,
     "tanks": 35,
@@ -218,10 +263,20 @@ export const guinea_bissau: CountryData = {
     "strength": 10,
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 2,
     "sell_commodity": 409,
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 31,
@@ -248,6 +303,11 @@ export const guinea_bissau: CountryData = {
       "satisfaction": 93,
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 75,
     "top_demands": [
@@ -258,6 +318,11 @@ export const guinea_bissau: CountryData = {
     "commercial": 21,
     "industrial": 53,
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -301,6 +366,11 @@ export const guinea_bissau: CountryData = {
       { "partner": "Mesir", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 21,
     "education": 25,

@@ -12,6 +12,11 @@ export const burkina_faso: CountryData = {
   "income": "Rp 758 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "airport": 23,
     "bicycle_path": 27,
@@ -34,6 +39,11 @@ export const burkina_faso: CountryData = {
     "wind_plant": 22,
   
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "aluminum": 30,
     "coal": 13,
@@ -50,6 +60,11 @@ export const burkina_faso: CountryData = {
     "uranium": 33,
   
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "bread": 33,
     "car": 33,
@@ -67,6 +82,11 @@ export const burkina_faso: CountryData = {
     "wood": 39,
   
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "beef_cow": 2,
     "chicken": 5,
@@ -79,6 +99,11 @@ export const burkina_faso: CountryData = {
     "strength": 18.24560701244298,
   
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "cocoa": 29,
     "coffee": 27,
@@ -94,6 +119,11 @@ export const burkina_faso: CountryData = {
     "wheat": 37,
   
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 27,
     "barracks": 20,
@@ -123,6 +153,11 @@ export const burkina_faso: CountryData = {
       "readiness": 98,
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 27,
     "military_air_base": 34,
@@ -145,6 +180,11 @@ export const burkina_faso: CountryData = {
       "cyber_ops": 2,
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 21,
@@ -206,6 +246,11 @@ export const burkina_faso: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 10,
     "tanks": 14,
@@ -218,10 +263,20 @@ export const burkina_faso: CountryData = {
     "strength": 10,
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 32,
     "sell_commodity": 409,
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 29,
@@ -248,6 +303,11 @@ export const burkina_faso: CountryData = {
       "satisfaction": 93,
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 50,
     "top_demands": [
@@ -258,6 +318,11 @@ export const burkina_faso: CountryData = {
     "commercial": 30,
     "industrial": 53,
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -299,6 +364,11 @@ export const burkina_faso: CountryData = {
       { "partner": "Kenya", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 29,
     "education": 20,

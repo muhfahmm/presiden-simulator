@@ -12,6 +12,11 @@ export const mauritania: CountryData = {
   "income": "Rp 405 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "airport": 9,
     "bicycle_path": 14,
@@ -34,6 +39,11 @@ export const mauritania: CountryData = {
     "wind_plant": 10,
   
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "aluminum": 12,
     "coal": 18,
@@ -50,6 +60,11 @@ export const mauritania: CountryData = {
     "uranium": 36,
   
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "bread": 40,
     "car": 33,
@@ -67,6 +82,11 @@ export const mauritania: CountryData = {
     "wood": 7,
   
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "beef_cow": 11,
     "chicken": 21,
@@ -79,6 +99,11 @@ export const mauritania: CountryData = {
     "strength": 18.24560701244298,
   
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "cocoa": 34,
     "coffee": 14,
@@ -94,6 +119,11 @@ export const mauritania: CountryData = {
     "wheat": 18,
   
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 2,
     "barracks": 21,
@@ -123,6 +153,11 @@ export const mauritania: CountryData = {
       "readiness": 98,
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 13,
     "military_air_base": 31,
@@ -145,6 +180,11 @@ export const mauritania: CountryData = {
       "cyber_ops": 2,
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 20,
@@ -206,6 +246,11 @@ export const mauritania: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 26,
     "tanks": 8,
@@ -218,10 +263,20 @@ export const mauritania: CountryData = {
     "strength": 10,
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 28,
     "sell_commodity": 409,
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 6,
@@ -248,6 +303,11 @@ export const mauritania: CountryData = {
       "satisfaction": 93,
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 77,
     "top_demands": [
@@ -258,6 +318,11 @@ export const mauritania: CountryData = {
     "commercial": 36,
     "industrial": 53,
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -298,6 +363,11 @@ export const mauritania: CountryData = {
       { "partner": "Prancis", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 24,
     "education": 29,

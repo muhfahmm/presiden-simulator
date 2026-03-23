@@ -12,6 +12,11 @@ export const tunisia: CountryData = {
   "income": "Rp 433 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "airport": 12,
     "bicycle_path": 40,
@@ -34,6 +39,11 @@ export const tunisia: CountryData = {
     "wind_plant": 8,
   
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "aluminum": 8,
     "coal": 27,
@@ -50,6 +60,11 @@ export const tunisia: CountryData = {
     "uranium": 3,
   
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "bread": 9,
     "car": 39,
@@ -67,6 +82,11 @@ export const tunisia: CountryData = {
     "wood": 12,
   
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "beef_cow": 8,
     "chicken": 23,
@@ -79,6 +99,11 @@ export const tunisia: CountryData = {
     "strength": 18.24560701244298,
   
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "cocoa": 34,
     "coffee": 27,
@@ -94,6 +119,11 @@ export const tunisia: CountryData = {
     "wheat": 38,
   
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 6,
     "barracks": 12,
@@ -123,6 +153,11 @@ export const tunisia: CountryData = {
       "readiness": 98,
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 24,
     "military_air_base": 10,
@@ -145,6 +180,11 @@ export const tunisia: CountryData = {
       "cyber_ops": 2,
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 22,
@@ -206,6 +246,11 @@ export const tunisia: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 39,
     "tanks": 20,
@@ -218,10 +263,20 @@ export const tunisia: CountryData = {
     "strength": 10,
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 1,
     "sell_commodity": 409,
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 24,
@@ -248,6 +303,11 @@ export const tunisia: CountryData = {
       "satisfaction": 93,
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 62,
     "top_demands": [
@@ -258,6 +318,11 @@ export const tunisia: CountryData = {
     "commercial": 31,
     "industrial": 53,
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -302,6 +367,11 @@ export const tunisia: CountryData = {
       { "partner": "Uni Eropa", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 19,
     "education": 39,

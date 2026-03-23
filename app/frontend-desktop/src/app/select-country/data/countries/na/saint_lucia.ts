@@ -12,6 +12,11 @@ export const saint_lucia: CountryData = {
   "income": "Rp 268 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "nuclear_plant": 2,
     "hydro_plant": 39,
@@ -33,6 +38,11 @@ export const saint_lucia: CountryData = {
     "tech_stack": 92,
     "water_access": 74
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "gold": 24,
     "uranium": 28,
@@ -48,6 +58,11 @@ export const saint_lucia: CountryData = {
     "iron_ore": 7,
     "strength": 29.660809349923973
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "semiconductor": 33,
     "car": 2,
@@ -64,6 +79,11 @@ export const saint_lucia: CountryData = {
     "instant_noodle": 33,
     "strength": 3.076011687404966
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "chicken": 6,
     "poultry": 17,
@@ -75,6 +95,11 @@ export const saint_lucia: CountryData = {
     "shellfish": 22,
     "strength": 18.24560701244298
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "rice": 22,
     "wheat": 26,
@@ -89,6 +114,11 @@ export const saint_lucia: CountryData = {
     "vegetables": 22,
     "strength": 20.660809349923973
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 10,
     "barracks": 22,
@@ -118,6 +148,11 @@ export const saint_lucia: CountryData = {
       "readiness": 98
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 11,
     "military_air_base": 37,
@@ -140,6 +175,11 @@ export const saint_lucia: CountryData = {
       "cyber_ops": 2
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 13,
@@ -201,6 +241,11 @@ export const saint_lucia: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 36,
     "tanks": 32,
@@ -213,10 +258,20 @@ export const saint_lucia: CountryData = {
     "strength": 10
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 20,
     "sell_commodity": 409
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 12,
@@ -243,6 +298,11 @@ export const saint_lucia: CountryData = {
       "satisfaction": 93
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 91,
     "top_demands": [
@@ -253,6 +313,11 @@ export const saint_lucia: CountryData = {
     "commercial": 9,
     "industrial": 53
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -295,6 +360,11 @@ export const saint_lucia: CountryData = {
       { "partner": "Singapura", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 35,
     "education": 21,

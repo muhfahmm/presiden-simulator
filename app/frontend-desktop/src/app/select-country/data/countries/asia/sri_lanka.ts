@@ -12,6 +12,11 @@ export const sri_lanka: CountryData = {
   "income": "Rp 173 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "nuclear_plant": 15,
     "hydro_plant": 8,
@@ -33,6 +38,11 @@ export const sri_lanka: CountryData = {
     "tech_stack": 92,
     "water_access": 74
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "gold": 15,
     "uranium": 25,
@@ -48,6 +58,11 @@ export const sri_lanka: CountryData = {
     "iron_ore": 2,
     "strength": 29.660809349923973
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "semiconductor": 22,
     "car": 4,
@@ -64,6 +79,11 @@ export const sri_lanka: CountryData = {
     "instant_noodle": 3,
     "strength": 3.076011687404966
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "chicken": 36,
     "poultry": 31,
@@ -75,6 +95,11 @@ export const sri_lanka: CountryData = {
     "shellfish": 18,
     "strength": 18.24560701244298
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "rice": 27,
     "wheat": 8,
@@ -89,6 +114,11 @@ export const sri_lanka: CountryData = {
     "vegetables": 24,
     "strength": 20.660809349923973
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 18,
     "barracks": 37,
@@ -118,6 +148,11 @@ export const sri_lanka: CountryData = {
       "readiness": 98
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 35,
     "military_air_base": 28,
@@ -140,6 +175,11 @@ export const sri_lanka: CountryData = {
       "cyber_ops": 2
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 27,
@@ -201,6 +241,11 @@ export const sri_lanka: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 11,
     "tanks": 1,
@@ -213,10 +258,20 @@ export const sri_lanka: CountryData = {
     "strength": 10
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 6,
     "sell_commodity": 409
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 12,
@@ -243,6 +298,11 @@ export const sri_lanka: CountryData = {
       "satisfaction": 93
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 83,
     "top_demands": [
@@ -253,6 +313,11 @@ export const sri_lanka: CountryData = {
     "commercial": 4,
     "industrial": 53
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -294,6 +359,11 @@ export const sri_lanka: CountryData = {
       { "partner": "Uni Eropa", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 7,
     "education": 13,

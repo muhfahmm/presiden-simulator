@@ -12,6 +12,11 @@ export const uni_emirat_arab: CountryData = {
   "income": "Rp 495 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "nuclear_plant": 11,
     "hydro_plant": 40,
@@ -33,6 +38,11 @@ export const uni_emirat_arab: CountryData = {
     "tech_stack": 94,
     "water_access": 74
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "gold": 5,
     "uranium": 25,
@@ -48,6 +58,11 @@ export const uni_emirat_arab: CountryData = {
     "iron_ore": 38,
     "strength": 29.660809349923973
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "semiconductor": 13,
     "car": 13,
@@ -64,6 +79,11 @@ export const uni_emirat_arab: CountryData = {
     "instant_noodle": 11,
     "strength": 3.076011687404966
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "chicken": 11,
     "poultry": 38,
@@ -75,6 +95,11 @@ export const uni_emirat_arab: CountryData = {
     "shellfish": 27,
     "strength": 18.24560701244298
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "rice": 20,
     "wheat": 23,
@@ -89,6 +114,11 @@ export const uni_emirat_arab: CountryData = {
     "vegetables": 12,
     "strength": 20.660809349923973
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 34,
     "barracks": 1,
@@ -118,6 +148,11 @@ export const uni_emirat_arab: CountryData = {
       "readiness": 98
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 6,
     "military_air_base": 15,
@@ -140,6 +175,11 @@ export const uni_emirat_arab: CountryData = {
       "cyber_ops": 2
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 27,
@@ -201,6 +241,11 @@ export const uni_emirat_arab: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 5,
     "tanks": 33,
@@ -213,10 +258,20 @@ export const uni_emirat_arab: CountryData = {
     "strength": 10
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 35,
     "sell_commodity": 409
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 40,
@@ -243,6 +298,11 @@ export const uni_emirat_arab: CountryData = {
       "satisfaction": 93
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 84,
     "top_demands": [
@@ -253,6 +313,11 @@ export const uni_emirat_arab: CountryData = {
     "commercial": 8,
     "industrial": 53
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -294,6 +359,11 @@ export const uni_emirat_arab: CountryData = {
       { "partner": "India", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 37,
     "education": 16,

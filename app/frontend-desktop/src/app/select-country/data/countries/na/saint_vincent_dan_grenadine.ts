@@ -12,6 +12,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
   "income": "Rp 174 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "nuclear_plant": 1,
     "hydro_plant": 7,
@@ -33,6 +38,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "tech_stack": 95,
     "water_access": 74
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "gold": 19,
     "uranium": 19,
@@ -48,6 +58,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "iron_ore": 28,
     "strength": 29.660809349923973
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "semiconductor": 30,
     "car": 9,
@@ -64,6 +79,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "instant_noodle": 40,
     "strength": 3.076011687404966
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "chicken": 25,
     "poultry": 35,
@@ -75,6 +95,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "shellfish": 3,
     "strength": 18.24560701244298
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "rice": 35,
     "wheat": 10,
@@ -89,6 +114,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "vegetables": 18,
     "strength": 20.660809349923973
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 25,
     "barracks": 6,
@@ -118,6 +148,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
       "readiness": 98
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 8,
     "military_air_base": 39,
@@ -140,6 +175,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
       "cyber_ops": 2
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 21,
@@ -201,6 +241,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 9,
     "tanks": 23,
@@ -213,10 +258,20 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "strength": 10
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 4,
     "sell_commodity": 409
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 10,
@@ -243,6 +298,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
       "satisfaction": 93
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 66,
     "top_demands": [
@@ -253,6 +313,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "commercial": 15,
     "industrial": 53
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -296,6 +361,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
       { "partner": "Singapura", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 22,
     "education": 23,

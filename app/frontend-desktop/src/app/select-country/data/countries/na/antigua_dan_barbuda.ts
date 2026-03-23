@@ -12,6 +12,11 @@ export const antigua_dan_barbuda: CountryData = {
   "income": "Rp 822 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "nuclear_plant": 14,
     "hydro_plant": 38,
@@ -33,6 +38,11 @@ export const antigua_dan_barbuda: CountryData = {
     "tech_stack": 72,
     "water_access": 74
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "gold": 11,
     "uranium": 33,
@@ -48,6 +58,11 @@ export const antigua_dan_barbuda: CountryData = {
     "iron_ore": 2,
     "strength": 29.660809349923973
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "semiconductor": 33,
     "car": 1,
@@ -64,6 +79,11 @@ export const antigua_dan_barbuda: CountryData = {
     "instant_noodle": 19,
     "strength": 3.076011687404966
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "chicken": 19,
     "poultry": 36,
@@ -75,6 +95,11 @@ export const antigua_dan_barbuda: CountryData = {
     "shellfish": 23,
     "strength": 18.24560701244298
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "rice": 36,
     "wheat": 5,
@@ -89,6 +114,11 @@ export const antigua_dan_barbuda: CountryData = {
     "vegetables": 16,
     "strength": 20.660809349923973
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 13,
     "barracks": 4,
@@ -118,6 +148,11 @@ export const antigua_dan_barbuda: CountryData = {
       "readiness": 98
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 40,
     "military_air_base": 21,
@@ -140,6 +175,11 @@ export const antigua_dan_barbuda: CountryData = {
       "cyber_ops": 2
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 12,
@@ -201,6 +241,11 @@ export const antigua_dan_barbuda: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 36,
     "tanks": 1,
@@ -213,10 +258,20 @@ export const antigua_dan_barbuda: CountryData = {
     "strength": 10
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 36,
     "sell_commodity": 409
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 21,
@@ -243,6 +298,11 @@ export const antigua_dan_barbuda: CountryData = {
       "satisfaction": 93
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 71,
     "top_demands": [
@@ -253,6 +313,11 @@ export const antigua_dan_barbuda: CountryData = {
     "commercial": 39,
     "industrial": 53
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -294,6 +359,11 @@ export const antigua_dan_barbuda: CountryData = {
       { "partner": "Amerika Serikat", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 30,
     "education": 7,

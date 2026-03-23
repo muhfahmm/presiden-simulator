@@ -12,6 +12,11 @@ export const guiana_prancis: CountryData = {
   "income": "Rp 147 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "nuclear_plant": 38,
     "hydro_plant": 2,
@@ -33,6 +38,11 @@ export const guiana_prancis: CountryData = {
     "tech_stack": 84,
     "water_access": 74
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "gold": 29,
     "uranium": 24,
@@ -48,6 +58,11 @@ export const guiana_prancis: CountryData = {
     "iron_ore": 8,
     "strength": 29.660809349923973
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "semiconductor": 12,
     "car": 15,
@@ -64,6 +79,11 @@ export const guiana_prancis: CountryData = {
     "instant_noodle": 26,
     "strength": 3.076011687404966
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "chicken": 4,
     "poultry": 16,
@@ -75,6 +95,11 @@ export const guiana_prancis: CountryData = {
     "shellfish": 1,
     "strength": 18.24560701244298
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "rice": 31,
     "wheat": 32,
@@ -89,6 +114,11 @@ export const guiana_prancis: CountryData = {
     "vegetables": 6,
     "strength": 20.660809349923973
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 27,
     "barracks": 17,
@@ -118,6 +148,11 @@ export const guiana_prancis: CountryData = {
       "readiness": 98
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 4,
     "military_air_base": 27,
@@ -140,6 +175,11 @@ export const guiana_prancis: CountryData = {
       "cyber_ops": 2
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 35,
@@ -201,6 +241,11 @@ export const guiana_prancis: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 24,
     "tanks": 11,
@@ -213,10 +258,20 @@ export const guiana_prancis: CountryData = {
     "strength": 10
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 17,
     "sell_commodity": 409
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 9,
@@ -243,6 +298,11 @@ export const guiana_prancis: CountryData = {
       "satisfaction": 93
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 95,
     "top_demands": [
@@ -253,6 +313,11 @@ export const guiana_prancis: CountryData = {
     "commercial": 31,
     "industrial": 53
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -297,6 +362,11 @@ export const guiana_prancis: CountryData = {
       { "partner": "Chile", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 25,
     "education": 14,

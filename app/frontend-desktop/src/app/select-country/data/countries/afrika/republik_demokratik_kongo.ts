@@ -12,6 +12,11 @@ export const republik_demokratik_kongo: CountryData = {
   "income": "Rp 1120 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "airport": 29,
     "bicycle_path": 20,
@@ -34,6 +39,11 @@ export const republik_demokratik_kongo: CountryData = {
     "wind_plant": 14,
   
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "aluminum": 29,
     "coal": 40,
@@ -50,6 +60,11 @@ export const republik_demokratik_kongo: CountryData = {
     "uranium": 14,
   
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "bread": 38,
     "car": 20,
@@ -67,6 +82,11 @@ export const republik_demokratik_kongo: CountryData = {
     "wood": 37,
   
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "beef_cow": 37,
     "chicken": 11,
@@ -79,6 +99,11 @@ export const republik_demokratik_kongo: CountryData = {
     "strength": 18.24560701244298,
   
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "cocoa": 37,
     "coffee": 14,
@@ -94,6 +119,11 @@ export const republik_demokratik_kongo: CountryData = {
     "wheat": 26,
   
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 21,
     "barracks": 24,
@@ -123,6 +153,11 @@ export const republik_demokratik_kongo: CountryData = {
       "readiness": 98,
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 11,
     "military_air_base": 2,
@@ -145,6 +180,11 @@ export const republik_demokratik_kongo: CountryData = {
       "cyber_ops": 2,
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 35,
@@ -206,6 +246,11 @@ export const republik_demokratik_kongo: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 32,
     "tanks": 37,
@@ -218,10 +263,20 @@ export const republik_demokratik_kongo: CountryData = {
     "strength": 10,
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 8,
     "sell_commodity": 409,
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 29,
@@ -248,6 +303,11 @@ export const republik_demokratik_kongo: CountryData = {
       "satisfaction": 93,
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 90,
     "top_demands": [
@@ -258,6 +318,11 @@ export const republik_demokratik_kongo: CountryData = {
     "commercial": 37,
     "industrial": 53,
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -300,6 +365,11 @@ export const republik_demokratik_kongo: CountryData = {
       { "partner": "India", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 28,
     "education": 24,

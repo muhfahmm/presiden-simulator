@@ -12,6 +12,11 @@ export const sao_tome_dan_principe: CountryData = {
   "income": "Rp 494 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "airport": 37,
     "bicycle_path": 31,
@@ -34,6 +39,11 @@ export const sao_tome_dan_principe: CountryData = {
     "wind_plant": 10,
   
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "aluminum": 29,
     "coal": 25,
@@ -50,6 +60,11 @@ export const sao_tome_dan_principe: CountryData = {
     "uranium": 38,
   
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "bread": 1,
     "car": 14,
@@ -67,6 +82,11 @@ export const sao_tome_dan_principe: CountryData = {
     "wood": 8,
   
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "beef_cow": 20,
     "chicken": 19,
@@ -79,6 +99,11 @@ export const sao_tome_dan_principe: CountryData = {
     "strength": 18.24560701244298,
   
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "cocoa": 23,
     "coffee": 39,
@@ -94,6 +119,11 @@ export const sao_tome_dan_principe: CountryData = {
     "wheat": 39,
   
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 34,
     "barracks": 1,
@@ -123,6 +153,11 @@ export const sao_tome_dan_principe: CountryData = {
       "readiness": 98,
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 22,
     "military_air_base": 28,
@@ -145,6 +180,11 @@ export const sao_tome_dan_principe: CountryData = {
       "cyber_ops": 2,
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 11,
@@ -206,6 +246,11 @@ export const sao_tome_dan_principe: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 25,
     "tanks": 10,
@@ -218,10 +263,20 @@ export const sao_tome_dan_principe: CountryData = {
     "strength": 10,
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 14,
     "sell_commodity": 409,
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 8,
@@ -248,6 +303,11 @@ export const sao_tome_dan_principe: CountryData = {
       "satisfaction": 93,
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 56,
     "top_demands": [
@@ -258,6 +318,11 @@ export const sao_tome_dan_principe: CountryData = {
     "commercial": 27,
     "industrial": 53,
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -299,6 +364,11 @@ export const sao_tome_dan_principe: CountryData = {
       { "partner": "Amerika Serikat", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 3,
     "education": 23,

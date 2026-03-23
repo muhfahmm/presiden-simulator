@@ -12,6 +12,11 @@ export const kepulauan_faroe: CountryData = {
   "income": "Rp 197 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "nuclear_plant": 25,
     "hydro_plant": 38,
@@ -33,6 +38,11 @@ export const kepulauan_faroe: CountryData = {
     "tech_stack": 66,
     "water_access": 74
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "gold": 27,
     "uranium": 3,
@@ -48,6 +58,11 @@ export const kepulauan_faroe: CountryData = {
     "iron_ore": 29,
     "strength": 29.660809349923973
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "semiconductor": 12,
     "car": 30,
@@ -64,6 +79,11 @@ export const kepulauan_faroe: CountryData = {
     "instant_noodle": 27,
     "strength": 3.076011687404966
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "chicken": 1,
     "poultry": 26,
@@ -75,6 +95,11 @@ export const kepulauan_faroe: CountryData = {
     "shellfish": 15,
     "strength": 18.24560701244298
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "rice": 3,
     "wheat": 36,
@@ -89,6 +114,11 @@ export const kepulauan_faroe: CountryData = {
     "vegetables": 32,
     "strength": 20.660809349923973
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 7,
     "barracks": 23,
@@ -118,6 +148,11 @@ export const kepulauan_faroe: CountryData = {
       "readiness": 98
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 8,
     "military_air_base": 2,
@@ -140,6 +175,11 @@ export const kepulauan_faroe: CountryData = {
       "cyber_ops": 2
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 19,
@@ -201,6 +241,11 @@ export const kepulauan_faroe: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 17,
     "tanks": 5,
@@ -213,10 +258,20 @@ export const kepulauan_faroe: CountryData = {
     "strength": 10
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 17,
     "sell_commodity": 409
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 35,
@@ -243,6 +298,11 @@ export const kepulauan_faroe: CountryData = {
       "satisfaction": 93
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 50,
     "top_demands": [
@@ -253,6 +313,11 @@ export const kepulauan_faroe: CountryData = {
     "commercial": 33,
     "industrial": 53
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -297,6 +362,11 @@ export const kepulauan_faroe: CountryData = {
       { "partner": "Prancis", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 30,
     "education": 32,

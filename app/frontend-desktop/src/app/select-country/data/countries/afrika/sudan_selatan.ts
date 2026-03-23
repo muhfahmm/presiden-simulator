@@ -12,6 +12,11 @@ export const sudan_selatan: CountryData = {
   "income": "Rp 230 T",
   "religion": "Protestan",
   "ideology": "Kapitalisme",
+
+  // =============================================================
+  // 🏗️ INFRASTRUKTUR & KELISTRIKAN (20 Jenis)
+  // =============================================================
+
   "infrastructure": {
     "airport": 36,
     "bicycle_path": 40,
@@ -34,6 +39,11 @@ export const sudan_selatan: CountryData = {
     "wind_plant": 14,
   
   },
+
+  // =============================================================
+  // ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // =============================================================
+
   "sector_extraction": {
     "aluminum": 16,
     "coal": 20,
@@ -50,6 +60,11 @@ export const sudan_selatan: CountryData = {
     "uranium": 14,
   
   },
+
+  // =============================================================
+  // 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // =============================================================
+
   "sector_manufacturing": {
     "bread": 35,
     "car": 3,
@@ -67,6 +82,11 @@ export const sudan_selatan: CountryData = {
     "wood": 1,
   
   },
+
+  // =============================================================
+  // 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // =============================================================
+
   "sector_livestock": {
     "beef_cow": 26,
     "chicken": 11,
@@ -79,6 +99,11 @@ export const sudan_selatan: CountryData = {
     "strength": 18.24560701244298,
   
   },
+
+  // =============================================================
+  // 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // =============================================================
+
   "sector_agriculture": {
     "cocoa": 34,
     "coffee": 6,
@@ -94,6 +119,11 @@ export const sudan_selatan: CountryData = {
     "wheat": 29,
   
   },
+
+  // =============================================================
+  // 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // =============================================================
+
   "sector_defense": {
     "prison": 26,
     "barracks": 6,
@@ -123,6 +153,11 @@ export const sudan_selatan: CountryData = {
       "readiness": 98,
     }
   },
+
+  // =============================================================
+  // 🛰️ STRATEGIS MILITER (19 Jenis)
+  // =============================================================
+
   "sector_military_strategic": {
     "command_center": 28,
     "military_air_base": 22,
@@ -145,6 +180,11 @@ export const sudan_selatan: CountryData = {
       "cyber_ops": 2,
     }
   },
+
+  // =============================================================
+  // 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // =============================================================
+
   "sector_social": {
     "education": {
       "kindergarten": 35,
@@ -206,6 +246,11 @@ export const sudan_selatan: CountryData = {
       }
     }
   },
+
+  // =============================================================
+  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
+  // =============================================================
+
   "military": {
     "infantry": 35,
     "tanks": 31,
@@ -218,10 +263,20 @@ export const sudan_selatan: CountryData = {
     "strength": 10,
   },
   "un_vote": "Pro",
+
+  // =============================================================
+  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
+  // =============================================================
+
   "trade": {
     "buy_commodity": 3,
     "sell_commodity": 409,
   },
+
+  // =============================================================
+  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // =============================================================
+
   "taxes": {
     "vat": {
       "rate": 19,
@@ -248,6 +303,11 @@ export const sudan_selatan: CountryData = {
       "satisfaction": 93,
     }
   },
+
+  // =============================================================
+  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
+  // =============================================================
+
   "demand": {
     "satisfaction": 73,
     "top_demands": [
@@ -258,6 +318,11 @@ export const sudan_selatan: CountryData = {
     "commercial": 25,
     "industrial": 53,
   },
+
+  // =============================================================
+  // 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // =============================================================
+
   "geopolitics": {
     "allies": [
       "Amerika Serikat",
@@ -302,6 +367,11 @@ export const sudan_selatan: CountryData = {
       { "partner": "Aljazair", "type": "Trade", "status": "Active" }
     ]
   },
+
+  // =============================================================
+  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // =============================================================
+
   "ministries": {
     "health": 33,
     "education": 12,
