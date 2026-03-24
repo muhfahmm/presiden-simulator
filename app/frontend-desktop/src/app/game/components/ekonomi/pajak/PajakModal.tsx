@@ -1,10 +1,11 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, FileText, Scale, Coins, Smile, Meh, Frown, Angry, AlertCircle, TrendingUp, RefreshCw, Wallet } from "lucide-react"
-import { countries } from "../../../select-country/data/countries"
-import { CountryData } from "../../../select-country/data/types"
-import { gameStorage } from "../../gamestorage"
+import { X, FileText, Scale, Coins, Smile, Meh, Frown, Angry, AlertCircle, TrendingUp, RefreshCw, Wallet, Globe, Shield, ShieldAlert, Info } from "lucide-react"
+import { countries } from "../../../../select-country/data/countries"
+import { CountryData } from "../../../../select-country/data/types"
+import { gameStorage } from "../../../gamestorage"
+import { taxStorage } from "./TaxStorage"
 
 interface ModalProps {
   isOpen: boolean;
@@ -19,27 +20,33 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
   const [managedTaxes, setManagedTaxes] = useState<any>(null);
   const [currentBudget, setCurrentBudget] = useState<number>(session?.budget || 0);
   const [isSaving, setIsSaving] = useState(false);
+  const [hoveredInfo, setHoveredInfo] = useState<string | null>(null);
 
   useEffect(() => {
     if (initialCountry) {
-      setManagedTaxes(JSON.parse(JSON.stringify(initialCountry.taxes)));
+      const savedTaxes = taxStorage.getTaxes(initialCountry.name_en);
+      if (savedTaxes) {
+        setManagedTaxes(savedTaxes);
+      } else {
+        setManagedTaxes(JSON.parse(JSON.stringify(initialCountry.taxes)));
+      }
     }
   }, [initialCountry, isOpen]);
 
   if (!isOpen || !managedTaxes) return null;
 
   const domesticTaxes = [
-    { label: "Pajak Pertambahan Nilai (PPN)", key: "vat", color: "text-purple-400", accent: "bg-purple-500" },
-    { label: "Pajak Korporasi", key: "corporate", color: "text-cyan-400", accent: "bg-cyan-500" },
-    { label: "Pajak Penghasilan Pribadi", key: "income", color: "text-green-400", accent: "bg-green-500" },
-    { label: "Pajak Lingkungan", key: "environment", color: "text-emerald-400", accent: "bg-emerald-500" },
-    { label: "Pajak yang Lain", key: "other", color: "text-zinc-400", accent: "bg-zinc-500" }
+    { label: "Pajak Pertambahan Nilai (PPN)", key: "vat", color: "text-purple-400", accent: "bg-purple-500", info: "Pajak atas konsumsi barang dan jasa. Menaikkan PPN menambah pendapatan besar tapi menurunkan daya beli rakyat secara luas." },
+    { label: "Pajak Korporasi", key: "corporate", color: "text-cyan-400", accent: "bg-cyan-500", info: "Pajak atas keuntungan perusahaan. Tarif tinggi menghambat investasi namun sangat efektif untuk kas negara dari sektor industri." },
+    { label: "Pajak Penghasilan Pribadi", key: "income", color: "text-green-400", accent: "bg-green-500", info: "Pajak langsung dari pendapatan warga. Sangat sensitif bagi popularitas pemerintah; kenaikan kecil berdampak besar pada sentimen." },
+    { label: "Pajak Lingkungan", key: "environment", color: "text-emerald-400", accent: "bg-emerald-500", info: "Dikenakan pada polusi dan limbah. Mendukung target ekologi tapi bisa menaikkan biaya operasional bisnis." },
+    { label: "Pajak yang Lain", key: "other", color: "text-zinc-400", accent: "bg-zinc-500", info: "Pajak administratif dan retribusi lainnya. Dampak ekonomi moderat." }
   ];
 
   const tradeTaxes = [
-    { label: "Bea Cukai (Customs)", key: "customs", color: "text-amber-400", accent: "bg-amber-500" },
-    { label: "Transit (Mitra Dagang)", key: "transit_allied", color: "text-blue-400", accent: "bg-blue-500" },
-    { label: "Transit (Non-Mitra)", key: "transit_non_allied", color: "text-rose-400", accent: "bg-rose-500" }
+    { label: "Bea Cukai (Customs)", key: "customs", color: "text-amber-400", accent: "bg-amber-500", info: "Pajak impor/ekspor barang. Melindungi industri dalam negeri tapi bisa memicu perang tarif dagang." },
+    { label: "Transit (Mitra Dagang)", key: "transit_allied", color: "text-blue-400", accent: "bg-blue-500", info: "Biaya masuk jalur logistik untuk sekutu. Tarif tinggi merusak kepercayaan diplomatik dengan mitra dekat." },
+    { label: "Transit (Non-Mitra)", key: "transit_non_allied", color: "text-rose-400", accent: "bg-rose-500", info: "Biaya lintas untuk negara non-aliansi. Sumber pendapatan strategis tapi sangat berisiko memicu ketegangan geopolitik." }
   ];
 
   const handleRateChange = (key: string, newRate: number) => {
@@ -47,9 +54,16 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
     const baseRevenue = oldData.revenue / (oldData.rate || 1);
     const newRevenue = Math.floor(baseRevenue * newRate);
     
-    // Satisfaction impact
-    const satisfactionImpact = (newRate - oldData.rate) * 1.5;
-    const newSatisfaction = Math.max(0, Math.min(100, Math.floor(oldData.satisfaction - satisfactionImpact)));
+    // Satisfaction/Diplomacy impact
+    const isTradeTax = tradeTaxes.some(t => t.key === key);
+    const impactMultiplier = isTradeTax ? 2.0 : 1.5; 
+    
+    let specializedImpact = 0;
+    if (key === 'transit_allied' && newRate > 10) specializedImpact = (newRate - 10) * 1.5;
+    if (key === 'transit_non_allied' && newRate > 25) specializedImpact = (newRate - 25) * 1.0;
+
+    const totalImpact = ((newRate - oldData.rate) * impactMultiplier) + specializedImpact;
+    const newSatisfaction = Math.max(0, Math.min(100, Math.floor(oldData.satisfaction - totalImpact)));
 
     setManagedTaxes((prev: any) => ({
       ...prev,
@@ -62,7 +76,14 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
     }));
   };
 
-  const getSatisfactionIcon = (score: number) => {
+  const getSatisfactionIcon = (score: number, isTrade?: boolean) => {
+    if (isTrade) {
+      if (score >= 80) return <Globe className="h-4 w-4 text-blue-400 animate-pulse" />;
+      if (score >= 60) return <Shield className="h-4 w-4 text-cyan-400" />;
+      if (score >= 40) return <Globe className="h-4 w-4 text-yellow-400" />;
+      if (score >= 20) return <AlertCircle className="h-4 w-4 text-orange-400" />;
+      return <ShieldAlert className="h-4 w-4 text-red-500 animate-bounce" />;
+    }
     if (score >= 80) return <Smile className="h-4 w-4 text-green-400" />;
     if (score >= 60) return <Smile className="h-4 w-4 text-lime-400 opacity-80" />;
     if (score >= 40) return <Meh className="h-4 w-4 text-yellow-400" />;
@@ -81,6 +102,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
     setTimeout(() => {
       gameStorage.updateBudget(revenueDelta);
       setCurrentBudget(projectedBudget);
+      taxStorage.saveTaxes(initialCountry.name_en, managedTaxes); 
       setIsSaving(false);
       alert("Reformasi Pajak Berhasil! Kas negara telah disesuaikan.");
     }, 1500);
@@ -89,19 +111,50 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
   const renderTaxCard = (item: any) => {
     const data = managedTaxes[item.key];
     if (!data) return null;
+    const isTrade = tradeTaxes.some(t => t.key === item.key);
+    
     return (
-      <div key={item.key} className="bg-zinc-900/40 border border-zinc-800/80 p-6 rounded-[2rem] group hover:border-green-500/30 transition-all flex flex-col gap-6 relative overflow-hidden backdrop-blur-md">
-        <div className="absolute -top-10 -right-10 w-32 h-32 bg-white/5 blur-3xl rounded-full group-hover:bg-green-500/5 transition-colors"></div>
+      <div key={item.key} className={`bg-zinc-900/40 border ${isTrade ? 'border-amber-500/10 hover:border-amber-500/30' : 'border-zinc-800/80 hover:border-green-500/30'} p-6 rounded-3xl group transition-all flex flex-col gap-6 relative overflow-hidden backdrop-blur-md`}>
+        <div className={`absolute -top-10 -right-10 w-32 h-32 bg-white/5 blur-3xl rounded-full ${isTrade ? 'group-hover:bg-amber-500/5' : 'group-hover:bg-green-500/5'} transition-colors`}></div>
         
         <div className="flex justify-between items-start relative z-10">
           <div className="flex flex-col">
-            <span className="text-[9px] font-black text-zinc-600 uppercase tracking-wider mb-1">Tax_Classification</span>
-            <h3 className="text-sm font-black text-white leading-tight uppercase tracking-tight">{item.label}</h3>
+            <div className="flex items-center gap-2 group/info">
+              <span className="text-[9px] font-black text-zinc-600 uppercase tracking-wider">
+                {isTrade ? 'Trade_Logistics_Tax' : 'Domestic_Fiscal_Tax'}
+              </span>
+              <button 
+                onMouseEnter={() => setHoveredInfo(item.key)}
+                onMouseLeave={() => setHoveredInfo(null)}
+                className="p-1 rounded-full hover:bg-zinc-800 transition-colors"
+                title="Informasi Pajak"
+              >
+                <Info size={10} className="text-zinc-600 group-hover/info:text-zinc-400" />
+              </button>
+            </div>
+            <h3 className="text-sm font-black text-white leading-tight uppercase tracking-tight flex items-center gap-2">
+              {item.label}
+            </h3>
           </div>
           <div className={`${item.accent}/10 ${item.color} text-[11px] font-black px-3 py-1.5 rounded-xl border border-white/5 shadow-inner`}>
             {data.rate}%
           </div>
         </div>
+
+        {/* Info Tooltip Overlay */}
+        {hoveredInfo === item.key && (
+          <div className="absolute inset-0 z-20 bg-zinc-950/95 p-6 flex flex-col justify-center animate-in fade-in zoom-in-95 duration-200">
+            <Info className={`h-6 w-6 ${item.color} mb-3`} />
+            <p className="text-[11px] text-zinc-300 font-medium leading-relaxed italic">
+              "{item.info}"
+            </p>
+            <div className="mt-4 pt-4 border-t border-zinc-800">
+               <p className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">
+                 Dampak: {isTrade ? 'Stabilitas Diplomatik' : 'Kepuasan Warga'}
+               </p>
+            </div>
+          </div>
+        )}
 
         <div className="space-y-4 relative z-10">
           <div className="flex flex-col gap-2">
@@ -115,7 +168,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
               max="100" 
               value={data.rate} 
               onChange={(e) => handleRateChange(item.key, parseInt(e.target.value))}
-              className="w-full h-1.5 bg-zinc-800 rounded-full appearance-none cursor-pointer accent-green-500 hover:accent-green-400 transition-all"
+              className={`w-full h-1.5 bg-zinc-800 rounded-full appearance-none cursor-pointer accent-green-500 hover:accent-green-400 transition-all ${isTrade ? 'accent-amber-500 hover:accent-amber-400' : ''}`}
             />
           </div>
 
@@ -128,10 +181,12 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
                 </div>
              </div>
              <div className="flex flex-col gap-1 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-900 items-end">
-                <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-tighter text-right">Sentimen</span>
+                <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-tighter text-right">
+                  {isTrade ? 'Hubungan Negara' : 'Sentimen Publik'}
+                </span>
                 <div className="flex items-center gap-2">
-                  {getSatisfactionIcon(data.satisfaction)}
-                  <span className="text-xs font-black text-zinc-300">{data.satisfaction}%</span>
+                  {getSatisfactionIcon(data.satisfaction, isTrade)}
+                  <span className={`text-xs font-black ${isTrade ? 'text-amber-400/80' : 'text-zinc-300'}`}>{data.satisfaction}%</span>
                 </div>
              </div>
           </div>
@@ -140,7 +195,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
         <div className="h-1 w-full bg-zinc-800/50 rounded-full overflow-hidden relative z-10">
           <div 
             className={`h-full transition-all duration-300 ${
-              data.satisfaction >= 60 ? 'bg-green-500' : 
+              data.satisfaction >= 60 ? (isTrade ? 'bg-amber-400' : 'bg-green-500') : 
               data.satisfaction >= 40 ? 'bg-yellow-500' : 
               'bg-red-500 shadow-[0_0_10px_rgba(239,68,68,0.5)]'
             }`}
@@ -153,7 +208,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
 
   return (
     <div className="absolute inset-0 bg-black/80 z-50 flex items-center justify-center animate-in fade-in duration-200 p-8">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[2.5rem] w-full max-w-6xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col relative">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-3xl w-full max-w-6xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col relative">
         <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-green-500/50 to-transparent blur-sm"></div>
         
         {/* Header */}
@@ -166,7 +221,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
               <h2 className="text-3xl font-black text-white tracking-tighter uppercase italic">Manajemen Pajak</h2>
               <div className="flex items-center gap-2 mt-0.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse"></span>
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.3em]">Taxation & Revenue Center v3.5</p>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.3em]">Taxation & Revenue Center v4.0</p>
               </div>
             </div>
           </div>
@@ -198,7 +253,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
             </div>
           </div>
           
-          <div className="flex items-center gap-4 bg-zinc-900/50 border border-zinc-800 p-2 rounded-2xl">
+          <div className="flex items-center gap-4 bg-zinc-900/50 border border-zinc-800 p-2 rounded-xl">
             <div className="flex items-center gap-3 bg-green-500/5 border border-green-500/10 px-4 py-2 rounded-xl">
               <TrendingUp className="h-4 w-4 text-green-400" />
               <span className="text-[11px] font-black text-green-400 uppercase tracking-widest">
@@ -240,10 +295,10 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 pt-6">
-            <div className="bg-gradient-to-br from-green-600/10 to-transparent border border-green-500/20 p-8 rounded-[2.5rem] flex items-center justify-between gap-8 group hover:border-green-500/40 transition-all relative overflow-hidden">
+            <div className="bg-gradient-to-br from-green-600/10 to-transparent border border-green-500/20 p-8 rounded-3xl flex items-center justify-between gap-8 group hover:border-green-500/40 transition-all relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-green-500/5 blur-3xl pointer-events-none"></div>
               <div className="flex gap-6 items-center relative z-10">
-                <div className="p-5 bg-green-500/10 rounded-3xl border border-green-500/20 shadow-lg group-hover:scale-110 transition-transform">
+                <div className="p-5 bg-green-500/10 rounded-2xl border border-green-500/20 shadow-lg group-hover:scale-110 transition-transform">
                   <Wallet className="h-10 w-10 text-green-400" />
                 </div>
                 <div>
@@ -275,15 +330,15 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
               </button>
             </div>
 
-            <div className="bg-zinc-900/30 border border-zinc-800/50 p-8 rounded-[2.5rem] flex items-center gap-6 backdrop-blur-sm">
-              <div className="p-4 bg-amber-500/10 rounded-2xl border border-amber-500/20">
+            <div className="bg-zinc-900/30 border border-zinc-800/50 p-8 rounded-3xl flex items-center gap-6 backdrop-blur-sm">
+              <div className="p-4 bg-amber-500/10 rounded-xl border border-amber-500/20">
                 <AlertCircle className="h-8 w-8 text-amber-500" />
               </div>
               <div>
-                <h4 className="text-xs font-black text-white uppercase tracking-[0.2em] mb-1">Stabilitas Ekonomi</h4>
+                <h4 className="text-xs font-black text-white uppercase tracking-[0.2em] mb-1">Stabilitas & Diplomasi</h4>
                 <p className="text-[11px] text-zinc-500 font-medium leading-relaxed">
-                  Semakin tinggi pajak, semakin tinggi pendapatan, namun kepuasan publik akan menurun drastis. 
-                  <span className="text-amber-500/80 ml-1">Jaga rasio kepuasan di atas 40% untuk menghindari krisis.</span>
+                  Pajak domestik mempengaruhi rakyat, sementara pajak perdagangan mempengaruhi hubungan internasional.
+                  <span className="text-amber-500/80 ml-1">Tarif transit yang tinggi akan merusak hubungan dengan mitra dagang global.</span>
                 </p>
               </div>
             </div>
@@ -293,4 +348,3 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
     </div>
   )
 }
-

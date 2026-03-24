@@ -1,0 +1,15 @@
+export const myanmarAgreements = [
+
+      { "partner": "Uni Emirat Arab", "type": "Trade", "status": "Active" },
+      { "partner": "Vietnam", "type": "Trade", "status": "Active" },
+      { "partner": "Filipina", "type": "Trade", "status": "Active" },
+      { "partner": "Malaysia", "type": "Trade", "status": "Active" },
+      { "partner": "Indonesia", "type": "Trade", "status": "Active" },
+      { "partner": "Korea Selatan", "type": "Trade", "status": "Active" },
+      { "partner": "Inggris", "type": "Trade", "status": "Active" },
+      { "partner": "India", "type": "Trade", "status": "Active" },
+      { "partner": "Jepang", "type": "Trade", "status": "Active" },
+      { "partner": "Uni Eropa", "type": "Trade", "status": "Active" },
+      { "partner": "China", "type": "Trade", "status": "Active" }
+    
+];

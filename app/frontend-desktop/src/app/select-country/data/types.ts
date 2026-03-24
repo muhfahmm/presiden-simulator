@@ -279,7 +279,7 @@ export interface CountryData {
       name: string;
       role: "Member" | "Leader" | "Observer";
     }[];
-    agreements: {
+    agreements?: {
       partner: string;
       type: "Trade" | "Military" | "Research" | "Political";
       status: "Active" | "Pending" | "Cooling";

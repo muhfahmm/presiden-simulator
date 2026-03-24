@@ -632,7 +632,7 @@ export default function SelectCountry() {
                   <div className={`grid ${getGridCols(rightWidth)} gap-4`}>
                     <div className="flex flex-col gap-1">
                       <span className="text-xs font-bold text-zinc-500 uppercase">Surplus Dagang</span>
-                      <span className="text-sm font-black text-green-400">Rp {currentData.trade.sell_commodity - currentData.trade.buy_commodity} T</span>
+                      <span className="text-sm font-black text-green-400">Rp {(Number(currentData.trade.sell_commodity) - Number(currentData.trade.buy_commodity)).toLocaleString('id-ID')}</span>
                     </div>
                     <div className="flex flex-col gap-1">
                       <span className="text-xs font-bold text-zinc-500 uppercase">Diplomacy</span>
@@ -695,7 +695,7 @@ export default function SelectCountry() {
                 <div className="flex flex-col gap-2 animate-in fade-in slide-in-from-right-1 duration-300">
                   <span className="text-xs font-bold text-zinc-500 uppercase">Perjanjian Internasional</span>
                   <div className="flex flex-col gap-1.5">
-                    {currentData.geopolitics.agreements.map((agr, i) => (
+                    {currentData.geopolitics.agreements?.map((agr, i) => (
                       <div key={i} className="flex flex-col gap-1 p-2 bg-zinc-800/40 rounded-lg border border-zinc-700/30">
                         <div className="flex justify-between items-center text-xs font-black">
                           <span className="text-white">{agr.partner}</span>

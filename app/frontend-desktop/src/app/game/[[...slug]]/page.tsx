@@ -19,8 +19,8 @@ import GameTimeControls from "../components/time/GameTimeControls";
 import RatingPresidenModal from "../components/rating-presiden/RatingPresidenModal";
 import NaikkanRatingModal from "../components/rating-presiden/NaikkanRatingModal";
 // Ekonomi Modals
-import PerdaganganModal from "../components/ekonomi/PerdaganganModal";
-import PajakModal from "../components/ekonomi/PajakModal";
+import PerdaganganModal from "../components/ekonomi/1-perdagangan/PerdaganganModal";
+import PajakModal from "../components/ekonomi/pajak/PajakModal";
 import HutangModal from "../components/ekonomi/HutangModal";
 import BudgetTreasuryModal from "../components/ekonomi/BudgetTreasuryModal";
 import EnergiModal from "../components/ekonomi/EnergiModal";
@@ -148,7 +148,6 @@ export default function GamePage() {
             </button>
 
             <StatusBadge icon={<Users className="h-4 w-4 text-blue-500" />} label="Populasi" value={countryData?.pop || 0} />
-            <StatusBadge icon={<Heart className="h-4 w-4 text-red-500" />} label="Persetujuan" value={`${approval}%`} />
             <StatusBadge icon={<Coins className="h-4 w-4 text-yellow-500" />} label="Kas Negara" value={`${Math.round(budget).toLocaleString('id-ID')}`} />
             <StatusBadge icon={<Shield className="h-4 w-4 text-green-500" />} label="Stabilitas" value={`${stability}%`} />
             

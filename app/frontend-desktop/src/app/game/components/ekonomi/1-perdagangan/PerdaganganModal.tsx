@@ -5,9 +5,8 @@ import {
   Bird, Milk, Leaf, Shell, Fish, Sprout, Utensils, Apple, Bean, Layers, Mountain, Gem, Waves, Flame, 
   Battery, Droplets, Box, Pickaxe, Radio, Coffee, Carrot, Eye, ChevronRight
 } from "lucide-react"
-import { countries } from "../../../select-country/data/countries"
-import { CountryData } from "../../../select-country/data/types"
-import { gameStorage } from "../../gamestorage"
+import { CountryData } from "../../../../select-country/data/types"
+import { tradeStorage } from "./TradeStorage"
 
 interface ModalProps {
   isOpen: boolean;
@@ -15,29 +14,82 @@ interface ModalProps {
 }
 
 export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
-  const session = gameStorage.getSession();
-  const currentData = countries.find((c: CountryData) => c.name_en === session?.country) || countries[0];
+  const session = tradeStorage.getSession();
+  const currentCountry = tradeStorage.getCurrentCountry(session);
+  
+  // Local state for managed trade data
+  const [managedTrades, setManagedTrades] = React.useState<any>(null);
+
+  React.useEffect(() => {
+    if (currentCountry) {
+      const savedTrades = tradeStorage.getTrade(currentCountry.name_en);
+      if (savedTrades) {
+        setManagedTrades(savedTrades);
+      } else {
+        // Fallback to initial agreements from countries data
+        setManagedTrades(currentCountry.geopolitics?.agreements || []);
+      }
+    }
+  }, [currentCountry, isOpen]);
+
+  const buildingDeltas = session?.buildingDeltas || {};
+
+  // Helper for Manufacturing count (matches ProduksiHub)
+  const getManufacturingCount = (key: string, baseVal: number) => {
+    const baseKeyMapping: Record<string, string> = {
+      "electronics_factory": "semiconductor",
+      "car_factory": "car",
+      "motorcycle_factory": "motorcycle",
+      "cement_factory": "concrete_cement",
+      "smelter": "smelter",
+      "bottled_water_factory": "mineral_water",
+      "sugar_factory": "sugar",
+      "pharma_factory": "pharmacy",
+      "noodle_factory": "instant_noodle",
+      "meat_processing_factory": "meat_processing",
+      "sawmill": "wood",
+      "fertilizer_factory": "fertilizer",
+      "bakery_factory": "bread"
+    };
+    // If the key is a factory key (from produksi), find the corresponding storage key
+    const storageKey = baseKeyMapping[key] || key;
+    const delta = (buildingDeltas[key] || 0) as number;
+    return baseVal + delta;
+  };
 
   // Logic for 12 Minerals
-  const minerals = Object.entries(currentData.sector_extraction)
-    .filter(([key]) => key !== 'strength' && typeof currentData.sector_extraction[key as keyof typeof currentData.sector_extraction] === 'number')
-    .sort((a, b) => (b[1] as number) - (a[1] as number));
+  const minerals = (Object.entries(currentCountry.sector_extraction)
+    .filter(([key]) => key !== 'strength' && typeof currentCountry.sector_extraction[key as keyof typeof currentCountry.sector_extraction] === 'number')
+    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || 0) as number)])
+    .sort((a, b) => (b[1] as number) - (a[1] as number))) as [string, number][];
 
-  // Logic for Industry Products
-  const industryProducts = Object.entries(currentData.sector_manufacturing)
-    .filter(([key]) => key !== 'strength' && typeof currentData.sector_manufacturing[key as keyof typeof currentData.sector_manufacturing] === 'number')
-    .sort((a, b) => (b[1] as number) - (a[1] as number));
+  // Category 2: Sektor Produksi & Ekonomi (Splits into 3 Sub-groups like Produksi Hub)
+  const manufakturKeys = ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill", "bottled_water_factory", "sugar_factory", "bakery_factory", "pharma_factory", "fertilizer_factory", "meat_processing_factory", "noodle_factory"];
+  
+  const manufakturItems = Object.entries(currentCountry.sector_manufacturing)
+    .filter(([key]) => manufakturKeys.includes(key) || manufakturKeys.some(mk => mk.replace('_factory', '') === key))
+    .map(([key, val]) => {
+      // Find the factory key for delta lookup
+      const factoryKey = manufakturKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
+      return [key, getManufacturingCount(factoryKey, val as number)];
+    })
+    .sort((a, b) => (b[1] as number) - (a[1] as number)) as [string, number][];
 
-  // Logic for Food Commodities (Livestock + Agriculture)
-  const foodCommodities = [
-    ...Object.entries(currentData.sector_livestock).filter(([key]) => key !== 'strength'),
-    ...Object.entries(currentData.sector_agriculture).filter(([key]) => key !== 'strength')
-  ].sort((a, b) => (b[1] as number) - (a[1] as number));
+  const peternakanItems = Object.entries(currentCountry.sector_livestock)
+    .filter(([key]) => key !== 'strength')
+    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || 0) as number)])
+    .sort((a, b) => (b[1] as number) - (a[1] as number)) as [string, number][];
+
+  const pertanianItems = Object.entries(currentCountry.sector_agriculture)
+    .filter(([key]) => key !== 'strength')
+    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || buildingDeltas[key + '_field'] || 0) as number)])
+    .sort((a, b) => (b[1] as number) - (a[1] as number)) as [string, number][];
+
+  const industryAndEconomyLen = manufakturItems.length + peternakanItems.length + pertanianItems.length;
 
   const [selectedKey, setSelectedKey] = useState<string>(minerals[0]?.[0] || 'gold');
   const [showMinerals, setShowMinerals] = useState(true);
   const [showIndustry, setShowIndustry] = useState(false);
-  const [showFood, setShowFood] = useState(false);
 
   if (!isOpen) return null;
 
@@ -75,16 +127,17 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
 
   const selectedItem = [
     ...minerals,
-    ...industryProducts,
-    ...foodCommodities
+    ...manufakturItems,
+    ...peternakanItems,
+    ...pertanianItems
   ].find(m => m[0] === selectedKey);
 
   const selectedName = labelsMap[selectedKey] || selectedKey.charAt(0).toUpperCase() + selectedKey.slice(1).replace(/_/g, ' ');
   const selectedUnits = selectedItem ? (selectedItem[1] as number) : 0;
   
-  // Dynamic pricing logic
-  const exportPrice = `${(selectedUnits * 1.5 + 5).toFixed(1)}T`;
-  const importPrice = `${(25 + Math.random() * 5).toFixed(1)}T`;
+  // Dynamic pricing logic (matching new finance scale)
+  const exportPriceVal = Math.floor(selectedUnits * 15 + 50);
+  const importPriceVal = Math.floor(300 + (selectedUnits % 10) * 5); // Example deterministic price
 
   return (
     <div className="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center animate-in fade-in zoom-in-95 duration-300 p-4 lg:p-12 backdrop-blur-md">
@@ -101,7 +154,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
             </div>
             <div>
               <h2 className="text-3xl font-black text-white tracking-tighter uppercase italic flex items-center gap-3">
-                HUB PERDAGANGAN STRATEGIS <span className="text-blue-500">— {currentData.flag} {currentData.name_id}</span>
+                HUB PERDAGANGAN STRATEGIS <span className="text-blue-500">— {currentCountry.flag} {currentCountry.name_id}</span>
               </h2>
               <div className="flex items-center gap-2 mt-1">
                 <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
@@ -120,7 +173,9 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
             {/* 1. Category: Minerals */}
             <div className="border-b border-zinc-900/80">
               <div className="p-8 flex items-center justify-between">
-                <h3 className="text-[12px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">1. Mineral Kritis</h3>
+                <h3 className="text-[12px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
+                  1. Mineral Kritis ({minerals.length})
+                </h3>
                 <button 
                   onClick={() => setShowMinerals(!showMinerals)}
                   className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 hover:text-pink-500 transition-all cursor-pointer group"
@@ -147,7 +202,9 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                           }`}>
                             {getIcon(key, "h-4 w-4")}
                           </div>
-                          <span className="text-[10px] font-black uppercase tracking-tight">{labelsMap[key] || key.replace(/_/g, ' ')}</span>
+                          <span className="text-[10px] font-black uppercase tracking-tight">
+                            {labelsMap[key] || key.replace(/_/g, ' ')} ({val})
+                          </span>
                         </div>
                       </button>
                     ))}
@@ -156,79 +213,102 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
               </div>
             </div>
 
-            {/* 2. Category: Industry */}
+             {/* 2. Category: Industry & Economy */}
             <div className="border-b border-zinc-900/80">
               <div className="p-8 flex items-center justify-between">
-                <h3 className="text-[12px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">2. Produk Industri</h3>
+                <h3 className="text-[12px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
+                  2. Produksi & Ekonomi ({industryAndEconomyLen})
+                </h3>
                 <button 
-                  onClick={() => setShowIndustry(!showIndustry)}
+                   onClick={() => setShowIndustry(!showIndustry)}
                   className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 hover:text-blue-500 transition-all cursor-pointer group"
                 >
                   <Eye className={`h-4 w-4 group-hover:scale-110 transition-all duration-500 ${!showIndustry ? 'rotate-180 opacity-50' : ''}`} />
                 </button>
               </div>
               <div className={`grid transition-all duration-700 ease-in-out ${showIndustry ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-                <div className="overflow-hidden">
-                  <div className="px-4 pb-8 space-y-2">
-                    {industryProducts.map(([key, val]) => (
-                      <button
-                        key={key}
-                        onClick={() => setSelectedKey(key)}
-                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all group relative cursor-pointer overflow-hidden ${
-                          selectedKey === key 
-                          ? 'bg-blue-600/10 border border-blue-500/40 text-white' 
-                          : 'text-zinc-500 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800'
-                        }`}
-                      >
-                        <div className="flex items-center gap-4 relative z-10">
-                          <div className={`p-2 rounded-xl transition-all duration-300 ${
-                            selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'
-                          }`}>
-                            {getIcon(key, "h-4 w-4")}
+                <div className="overflow-hidden no-scrollbar">
+                  <div className="px-4 pb-8 space-y-6">
+                    {/* Sub-group: Manufaktur */}
+                    <div className="space-y-2">
+                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">Manufaktur & Industri</p>
+                      {manufakturItems.map(([key, val]) => (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedKey(key as string)}
+                          className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all group relative cursor-pointer overflow-hidden ${
+                            selectedKey === key 
+                            ? 'bg-blue-600/10 border border-blue-500/40 text-white' 
+                            : 'text-zinc-500 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800'
+                          }`}
+                        >
+                          <div className="flex items-center gap-4 relative z-10">
+                            <div className={`p-2 rounded-xl transition-all duration-300 ${
+                              selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'
+                            }`}>
+                              {getIcon(key as string, "h-4 w-4")}
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-tight">
+                              {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})
+                            </span>
                           </div>
-                          <span className="text-[10px] font-black uppercase tracking-tight">{labelsMap[key] || key.replace(/_/g, ' ')}</span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
+                        </button>
+                      ))}
+                    </div>
 
-            {/* 3. Category: Food */}
-            <div className="border-b border-zinc-900/80">
-              <div className="p-8 flex items-center justify-between">
-                <h3 className="text-[12px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">3. Komoditas Pangan</h3>
-                <button 
-                  onClick={() => setShowFood(!showFood)}
-                  className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 hover:text-green-500 transition-all cursor-pointer group"
-                >
-                  <Eye className={`h-4 w-4 group-hover:scale-110 transition-all duration-500 ${!showFood ? 'rotate-180 opacity-50' : ''}`} />
-                </button>
-              </div>
-              <div className={`grid transition-all duration-700 ease-in-out ${showFood ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-                <div className="overflow-hidden">
-                  <div className="px-4 pb-8 space-y-2">
-                    {foodCommodities.map(([key, val]) => (
-                      <button
-                        key={key}
-                        onClick={() => setSelectedKey(key)}
-                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all group relative cursor-pointer overflow-hidden ${
-                          selectedKey === key 
-                          ? 'bg-blue-600/10 border border-blue-500/40 text-white' 
-                          : 'text-zinc-500 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800'
-                        }`}
-                      >
-                        <div className="flex items-center gap-4 relative z-10">
-                          <div className={`p-2 rounded-xl transition-all duration-300 ${
-                            selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'
-                          }`}>
-                            {getIcon(key, "h-4 w-4")}
+                    {/* Sub-group: Peternakan */}
+                    <div className="space-y-2">
+                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">Peternakan & Perikanan</p>
+                      {peternakanItems.map(([key, val]) => (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedKey(key as string)}
+                          className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all group relative cursor-pointer overflow-hidden ${
+                            selectedKey === key 
+                            ? 'bg-blue-600/10 border border-blue-500/40 text-white' 
+                            : 'text-zinc-500 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800'
+                          }`}
+                        >
+                          <div className="flex items-center gap-4 relative z-10">
+                            <div className={`p-2 rounded-xl transition-all duration-300 ${
+                              selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'
+                            }`}>
+                              {getIcon(key as string, "h-4 w-4")}
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-tight">
+                              {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})
+                            </span>
                           </div>
-                          <span className="text-[10px] font-black uppercase tracking-tight">{labelsMap[key] || key.replace(/_/g, ' ')}</span>
-                        </div>
-                      </button>
-                    ))}
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Sub-group: Pertanian */}
+                    <div className="space-y-2">
+                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">Agrikultur & Pertanian</p>
+                      {pertanianItems.map(([key, val]) => (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedKey(key as string)}
+                          className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all group relative cursor-pointer overflow-hidden ${
+                            selectedKey === key 
+                            ? 'bg-blue-600/10 border border-blue-500/40 text-white' 
+                            : 'text-zinc-500 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800'
+                          }`}
+                        >
+                          <div className="flex items-center gap-4 relative z-10">
+                            <div className={`p-2 rounded-xl transition-all duration-300 ${
+                              selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'
+                            }`}>
+                              {getIcon(key as string, "h-4 w-4")}
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-tight">
+                              {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})
+                            </span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -257,7 +337,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                   {/* Buy Section */}
                   <div className="flex flex-col gap-1 flex-shrink-0">
                     <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1">
-                      {importPrice}
+                      Rp {importPriceVal.toLocaleString('id-ID')}
                     </div>
                     <button className="px-6 py-3 bg-red-500 text-white font-black uppercase text-[9px] lg:text-[10px] tracking-[0.2em] rounded-xl hover:bg-red-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap">
                       Eksekusi Impor
@@ -267,7 +347,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                   {/* Sell Section */}
                   <div className="flex flex-col gap-1 flex-shrink-0">
                     <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1">
-                      {exportPrice}
+                      Rp {exportPriceVal.toLocaleString('id-ID')}
                     </div>
                     <button className="px-6 py-3 bg-green-500 text-white font-black uppercase text-[9px] lg:text-[10px] tracking-[0.2em] rounded-xl hover:bg-green-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap">
                       Eksekusi Ekspor
@@ -304,25 +384,25 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
 
                 <div className="h-[400px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {(currentData.geopolitics?.agreements?.filter(a => 
+                    {(managedTrades?.filter((a: any) => 
                       a.type === 'Trade' && 
-                      a.partner.toLowerCase() !== currentData.name_id.toLowerCase() && 
-                      a.partner.toLowerCase() !== currentData.name_en.toLowerCase()
+                      a.partner.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
+                      a.partner.toLowerCase() !== currentCountry.name_en.toLowerCase()
                     ).length > 0 
-                      ? currentData.geopolitics.agreements
-                          .filter(a => 
+                      ? managedTrades
+                          .filter((a: any) => 
                             a.type === 'Trade' && 
-                            a.partner.toLowerCase() !== currentData.name_id.toLowerCase() && 
-                            a.partner.toLowerCase() !== currentData.name_en.toLowerCase()
+                            a.partner.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
+                            a.partner.toLowerCase() !== currentCountry.name_en.toLowerCase()
                           )
-                          .sort((a, b) => a.partner.localeCompare(b.partner))
+                          .sort((a: any, b: any) => a.partner.localeCompare(b.partner))
                       : [
                           { partner: "Afrika Selatan", status: "Active" },
                           { partner: "Tiongkok", status: "Active" },
                           { partner: "Uni Emirat Arab", status: "Active" },
                           { partner: "Vietnam", status: "Active" }
                         ]
-                    ).map((agreement, idx) => (
+                    ).map((agreement: any, idx: number) => (
                       <div key={idx} className="bg-zinc-900/20 border border-zinc-900 hover:border-zinc-700/50 p-5 rounded-2xl flex items-center justify-between group transition-all cursor-pointer">
                         <div className="flex items-center gap-4">
                           <div className="p-3 bg-zinc-900 rounded-xl group-hover:bg-blue-500/10 transition-colors">
@@ -336,7 +416,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                           <span className="px-2 py-1 bg-green-500/10 text-green-500 text-[8px] font-black uppercase tracking-widest rounded-md border border-green-500/20">
                             {agreement.status === 'Active' ? 'Terverifikasi' : agreement.status}
                           </span>
-                          <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">IDR 1.25T / bln</span>
+                          <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">Rp 1.250 / bln</span>
                         </div>
                       </div>
                     ))}

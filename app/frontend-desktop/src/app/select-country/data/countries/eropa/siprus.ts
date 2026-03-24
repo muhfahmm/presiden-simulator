@@ -359,19 +359,7 @@ export const siprus: CountryData = {
         "role": "Member"
       }
     ],
-    "agreements": [
-      { "partner": "Jerman", "type": "Trade", "status": "Active" },
-      { "partner": "Korea Selatan", "type": "Trade", "status": "Active" },
-      { "partner": "Swiss", "type": "Trade", "status": "Active" },
-      { "partner": "China", "type": "Trade", "status": "Active" },
-      { "partner": "Spanyol", "type": "Trade", "status": "Active" },
-      { "partner": "Jepang", "type": "Trade", "status": "Active" },
-      { "partner": "Rusia", "type": "Trade", "status": "Active" },
-      { "partner": "Italia", "type": "Trade", "status": "Active" },
-      { "partner": "Singapura", "type": "Trade", "status": "Active" },
-      { "partner": "Inggris", "type": "Trade", "status": "Active" }
-    ]
-  },
+    },
 
   // =============================================================
   // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
