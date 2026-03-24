@@ -465,13 +465,30 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                            const sectors = [
                               { label: "Kelistrikan", data: initialCountry.sector_electricity },
                               { label: "Infrastruktur", data: initialCountry.infrastructure },
-                              { label: "Pertahanan & Militer", data: { 
-                                 ...(initialCountry as any).sector_defense, 
-                                 ...(initialCountry as any).sector_military_strategic,
-                                 ...(initialCountry as any).sector_defense?.military_fleet?.darat,
-                                 ...(initialCountry as any).sector_defense?.military_fleet?.laut,
-                                 ...(initialCountry as any).sector_defense?.military_fleet?.udara
-                              } },
+                               { label: "Pertahanan & Militer", data: { 
+                                  ...(initialCountry as any).sector_defense, 
+                                  ...(initialCountry as any).sector_military_strategic,
+                                  // Armada Darat
+                                  tank: (initialCountry as any).sector_defense?.military_fleet?.darat?.main_battle_tank,
+                                  apc: (initialCountry as any).sector_defense?.military_fleet?.darat?.apc,
+                                  artileri: (initialCountry as any).sector_defense?.military_fleet?.darat?.artileri_berat,
+                                  // Armada Laut
+                                  carrier: (initialCountry as any).sector_defense?.military_fleet?.laut?.kapal_induk,
+                                  destroyer: (initialCountry as any).sector_defense?.military_fleet?.laut?.kapal_destroyer,
+                                  submarine: (initialCountry as any).sector_defense?.military_fleet?.laut?.kapal_selam_nuklir,
+                                  // Armada Udara
+                                 ...(initialCountry as any).sector_defense?.military_fleet?.udara,
+                                 ...(initialCountry as any).sector_social?.law?.police_fleet?.patroli_lantas,
+                                 ...(initialCountry as any).sector_social?.law?.police_fleet?.taktis_khusus,
+                                 ...(initialCountry as any).sector_social?.law?.police_fleet?.pusat_komando,
+                                  heli_attack: (initialCountry as any).sector_defense?.military_fleet?.udara?.helikopter_serang,
+                                  recon_plane: (initialCountry as any).sector_defense?.military_fleet?.udara?.pesawat_pengintai,
+                                  // Strategis & Intel
+                                  satellite: 1,
+                                  radar: (initialCountry as any).sector_military_strategic?.intel_radar?.radar_network,
+                                  cyber_ops: (initialCountry as any).sector_military_strategic?.intel_radar?.cyber_ops,
+                                  police_station: (initialCountry as any).sector_social?.law?.police_fleet?.pusat_komando?.stasiun_polisi
+                               } },
                               { label: "Ekstraksi", data: initialCountry.sector_extraction },
                               { label: "Manufaktur", data: initialCountry.sector_manufacturing },
                               { label: "Peternakan", data: initialCountry.sector_livestock },
