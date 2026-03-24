@@ -103,11 +103,13 @@ export function calculateDailyBudgetDelta(countryData: CountryData, buildingDelt
   const dailyMilitaryExpense = produksiMiliter.reduce((acc, item: any) => acc + (item.maintenance || 0), 0);
 
   // Subsidies (Percentage of tax revenue - simplified simulation)
-  const subsidyExpense = (dailyTaxRevenue * (expData.subsidyLevel / 100));
+  const totalSubsidiLevel = ((expData.subsidyEnergi || 0) + (expData.subsidyPangan || 0) + (expData.subsidyKesehatan || 0) + (expData.subsidyPendidikan || 0) + (expData.subsidyUmkm || 0) + (expData.subsidyTransport || 0) + (expData.subsidyRumah || 0)) / 7;
+  const subsidyExpense = (dailyTaxRevenue * (totalSubsidiLevel / 100));
 
   // Salaries (Linked to maintenance base but scaled by multiplier)
-  // Simplified: 10% of total maintenance represents the base salary cost, scaled by user multiplier
-  const salaryExpense = (maintenanceExpense * 0.1) * expData.salaryMultiplier;
+  // Simplified: 10% of total maintenance represents the base salary cost, scaled by user multiplier categories
+  const avgSalaryMultiplier = ((expData.salaryAsn || 1.0) + (expData.salaryGuru || 1.0) + (expData.salaryMedis || 1.0) + (expData.salaryMiliter || 1.0)) / 4;
+  const salaryExpense = (maintenanceExpense * 0.1) * avgSalaryMultiplier;
 
   const totalDailyExpense = maintenanceExpense + dailyMilitaryExpense + subsidyExpense + salaryExpense + (expData.debtInterestPaid || 0);
 

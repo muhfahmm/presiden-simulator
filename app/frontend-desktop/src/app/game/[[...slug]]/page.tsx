@@ -17,6 +17,8 @@ import { countries } from "../../select-country/data/countries";
 import { CountryData } from "../../select-country/data/types";
 import GameTimeControls from "../components/time/GameTimeControls";
 import { calculateDailyBudgetDelta } from "../data/economy/economyLogic";
+import { expenseStorage } from "../components/ekonomi/3-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
+import { calculatePopulationHappiness } from "../data/social/HappinessStorage";
 
 // Bottom Nav Modals
 import RatingPresidenModal from "../components/rating-presiden/RatingPresidenModal";
@@ -48,6 +50,7 @@ export default function GamePage() {
   const [approval, setApproval] = useState(65);
   const [budget, setBudget] = useState(1240.5); // in Trillion
   const [budgetDelta, setBudgetDelta] = useState(0);
+  const [happiness, setHappiness] = useState({ global: 50, salary: 50, subsidy: 50, infrastructure: 85 });
   const [stability, setStability] = useState(82);
   const router = useRouter();
   const params = useParams();
@@ -84,6 +87,10 @@ export default function GamePage() {
         const buildingData = buildingStorage.getData();
         const delta = calculateDailyBudgetDelta(currentCountry, buildingData.buildingDeltas);
         setBudgetDelta(delta);
+        
+        // Update Population Happiness
+        const expData = expenseStorage.getData();
+        setHappiness(calculatePopulationHappiness(expData));
       }
     };
 
@@ -211,6 +218,11 @@ export default function GamePage() {
             )}
           </div>
           <div className="flex items-center gap-6">
+            <StatusBadge 
+              icon={<Heart className="h-4 w-4 text-rose-500" />} 
+              label="Kepuasan" 
+              value={`${happiness.global}%`} 
+            />
             <StatusBadge icon={<Users className="h-4 w-4 text-blue-500" />} label="Populasi" value={countryData?.pop || 0} />
             <StatusBadge 
               icon={<Coins className="h-4 w-4 text-yellow-500" />} 

@@ -3,8 +3,17 @@ import { gameStorage } from "../../../../gamestorage";
 const EXPENSE_STORAGE_KEY = "em4_expense_data";
 
 export interface ExpenseData {
-  subsidyLevel: number; // 0-100%
-  salaryMultiplier: number; // 0.5 - 2.0x base
+  subsidyEnergi: number; // 0-100% alokasi per sektor dari total dana subsidi
+  subsidyPangan: number;
+  subsidyKesehatan: number;
+  subsidyPendidikan: number;
+  subsidyUmkm: number;
+  subsidyTransport: number;
+  subsidyRumah: number;
+  salaryAsn: number; // 0.5 - 2.0x base
+  salaryGuru: number; 
+  salaryMedis: number;
+  salaryMiliter: number;
   socialWelfareLevel: number; // 0-100
   debtInterestPaid: number;
   lastUpdated: number;
@@ -13,8 +22,17 @@ export interface ExpenseData {
 export const expenseStorage = {
   getData: (): ExpenseData => {
     if (typeof window === 'undefined') return { 
-      subsidyLevel: 10, 
-      salaryMultiplier: 1.0, 
+      subsidyEnergi: 10,
+      subsidyPangan: 10,
+      subsidyKesehatan: 10,
+      subsidyPendidikan: 10,
+      subsidyUmkm: 10,
+      subsidyTransport: 10,
+      subsidyRumah: 10,
+      salaryAsn: 1.0, 
+      salaryGuru: 1.0, 
+      salaryMedis: 1.0, 
+      salaryMiliter: 1.0, 
       socialWelfareLevel: 20,
       debtInterestPaid: 0,
       lastUpdated: Date.now() 
@@ -22,8 +40,17 @@ export const expenseStorage = {
     
     const stored = localStorage.getItem(EXPENSE_STORAGE_KEY);
     return stored ? JSON.parse(stored) : { 
-      subsidyLevel: 10, 
-      salaryMultiplier: 1.0, 
+      subsidyEnergi: 10,
+      subsidyPangan: 10,
+      subsidyKesehatan: 10,
+      subsidyPendidikan: 10,
+      subsidyUmkm: 10,
+      subsidyTransport: 10,
+      subsidyRumah: 10,
+      salaryAsn: 1.0, 
+      salaryGuru: 1.0, 
+      salaryMedis: 1.0, 
+      salaryMiliter: 1.0, 
       socialWelfareLevel: 20,
       debtInterestPaid: 0,
       lastUpdated: Date.now() 
