@@ -19,18 +19,18 @@ export default function HargaBarangModal({ isOpen, onClose }: ModalProps) {
   const [selectedCategory, setSelectedCategory] = useState<string>("Semua");
 
   const priceData = [
-    { name: "Emas (Gold)", price: "$2.150", unit: "/oz", trend: "up", change: "+0.3%", icon: Gem, color: "text-yellow-500", glow: "shadow-yellow-500/20" },
-    { name: "Uranium", price: "$92.40", unit: "/lb", trend: "up", change: "+1.2%", icon: Activity, color: "text-green-400", glow: "shadow-green-400/20" },
-    { name: "Batu Bara", price: "$125", unit: "/ton", trend: "down", change: "-5.8%", icon: Coins, color: "text-zinc-700", glow: "shadow-zinc-700/20" },
-    { name: "Minyak Bumi", price: "$78.40", unit: "/barrel", trend: "down", change: "-1.1%", icon: Coins, color: "text-zinc-400", glow: "shadow-zinc-500/20" },
-    { name: "Gas Alam", price: "$2.45", unit: "/mmBtu", trend: "up", change: "+3.2%", icon: Activity, color: "text-blue-300", glow: "shadow-blue-300/20" },
-    { name: "Garam (Salt)", price: "1.500", unit: "/kg", trend: "up", change: "+0.5%", icon: BarChart3, color: "text-white", glow: "shadow-white/20" },
-    { name: "Nikel", price: "$17.200", unit: "/ton", trend: "down", change: "-4.2%", icon: Gem, color: "text-green-500", glow: "shadow-green-500/20" },
-    { name: "Litium", price: "$13.500", unit: "/ton", trend: "up", change: "+8.5%", icon: Gem, color: "text-cyan-400", glow: "shadow-cyan-400/20" },
-    { name: "Tembaga", price: "$8.900", unit: "/ton", trend: "up", change: "+1.5%", icon: Gem, color: "text-orange-600", glow: "shadow-orange-600/20" },
-    { name: "Aluminium", price: "$2.450", unit: "/ton", trend: "up", change: "+0.4%", icon: BarChart3, color: "text-zinc-300", glow: "shadow-zinc-300/20" },
-    { name: "Rare Earth", price: "$640", unit: "/kg", trend: "up", change: "+12.4%", icon: Activity, color: "text-purple-400", glow: "shadow-purple-400/20" },
-    { name: "Bijih Besi", price: "$110", unit: "/ton", trend: "down", change: "-2.3%", icon: BarChart3, color: "text-red-900", glow: "shadow-red-900/20" },
+    { name: "Emas (Gold)", price: 2150, unit: "/oz", trend: "up", change: "+0.3%", icon: Gem, color: "text-yellow-500", glow: "shadow-yellow-500/20" },
+    { name: "Uranium", price: 92.4, unit: "/lb", trend: "up", change: "+1.2%", icon: Activity, color: "text-green-400", glow: "shadow-green-400/20" },
+    { name: "Batu Bara", price: 125, unit: "/ton", trend: "down", change: "-5.8%", icon: Coins, color: "text-zinc-700", glow: "shadow-zinc-700/20" },
+    { name: "Minyak Bumi", price: 78.4, unit: "/barrel", trend: "down", change: "-1.1%", icon: Coins, color: "text-zinc-400", glow: "shadow-zinc-500/20" },
+    { name: "Gas Alam", price: 2.45, unit: "/mmBtu", trend: "up", change: "+3.2%", icon: Activity, color: "text-blue-300", glow: "shadow-blue-300/20" },
+    { name: "Garam (Salt)", price: 1.5, unit: "/kg", trend: "up", change: "+0.5%", icon: BarChart3, color: "text-white", glow: "shadow-white/20" },
+    { name: "Nikel", price: 17200, unit: "/ton", trend: "down", change: "-4.2%", icon: Gem, color: "text-green-500", glow: "shadow-green-500/20" },
+    { name: "Litium", price: 13500, unit: "/ton", trend: "up", change: "+8.5%", icon: Gem, color: "text-cyan-400", glow: "shadow-cyan-400/20" },
+    { name: "Tembaga", price: 8900, unit: "/ton", trend: "up", change: "+1.5%", icon: Gem, color: "text-orange-600", glow: "shadow-orange-600/20" },
+    { name: "Aluminium", price: 2450, unit: "/ton", trend: "up", change: "+0.4%", icon: BarChart3, color: "text-zinc-300", glow: "shadow-zinc-300/20" },
+    { name: "Rare Earth", price: 640, unit: "/kg", trend: "up", change: "+12.4%", icon: Activity, color: "text-purple-400", glow: "shadow-purple-400/20" },
+    { name: "Bijih Besi", price: 110, unit: "/ton", trend: "down", change: "-2.3%", icon: BarChart3, color: "text-red-900", glow: "shadow-red-900/20" },
   ];
 
   // Memoized paths to prevent flickering on re-render
@@ -155,7 +155,7 @@ export default function HargaBarangModal({ isOpen, onClose }: ModalProps) {
                 <div className="space-y-1 relative z-10">
                   <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest block">Market Valuation</span>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-3xl font-black text-white tracking-tighter italic">{item.price}</span>
+                    <span className="text-3xl font-black text-white tracking-tighter italic">{typeof item.price === 'number' ? item.price.toLocaleString('id-ID') : item.price}</span>
                     <span className="text-[10px] font-bold text-zinc-500 uppercase">{item.unit}</span>
                   </div>
                 </div>

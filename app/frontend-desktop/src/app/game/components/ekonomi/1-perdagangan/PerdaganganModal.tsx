@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect, useMemo } from "react"
 import { 
   X, ArrowRightLeft, TrendingUp, TrendingDown, Globe, Ship, Landmark, BarChart3,
   Cpu, Car, Bike, Construction, TreePine, Droplet, Cookie, Croissant, Pill, FlaskConical, Beef, Soup, 
@@ -7,6 +7,8 @@ import {
 } from "lucide-react"
 import { CountryData } from "../../../../select-country/data/types"
 import { tradeStorage } from "./TradeStorage"
+import { buyPriceMap, sellPriceMap, labelsMap, baseKeyMapping } from "./tradeData"
+import { TradePriceChart } from "./TradePriceChart"
 
 interface ModalProps {
   isOpen: boolean;
@@ -36,23 +38,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
 
   // Helper for Manufacturing count (matches ProduksiHub)
   const getManufacturingCount = (key: string, baseVal: number) => {
-    const baseKeyMapping: Record<string, string> = {
-      "electronics_factory": "semiconductor",
-      "car_factory": "car",
-      "motorcycle_factory": "motorcycle",
-      "cement_factory": "concrete_cement",
-      "smelter": "smelter",
-      "bottled_water_factory": "mineral_water",
-      "sugar_factory": "sugar",
-      "pharma_factory": "pharmacy",
-      "noodle_factory": "instant_noodle",
-      "meat_processing_factory": "meat_processing",
-      "sawmill": "wood",
-      "fertilizer_factory": "fertilizer",
-      "bakery_factory": "bread"
-    };
     // If the key is a factory key (from produksi), find the corresponding storage key
-    const storageKey = baseKeyMapping[key] || key;
     const delta = (buildingDeltas[key] || 0) as number;
     return baseVal + delta;
   };
@@ -90,6 +76,8 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
   const [selectedKey, setSelectedKey] = useState<string>(minerals[0]?.[0] || 'gold');
   const [showMinerals, setShowMinerals] = useState(true);
   const [showIndustry, setShowIndustry] = useState(false);
+  const [selectedTimeframe, setSelectedTimeframe] = useState<string>("1w");
+
 
   if (!isOpen) return null;
 
@@ -105,20 +93,6 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
     palm_oil: Droplets, tea: Leaf, coffee: Coffee, cocoa: Apple, sugarcane: Leaf, vegetables: Carrot
   };
 
-  const labelsMap: Record<string, string> = {
-    gold: "Emas", uranium: "Uranium", coal: "Batu Bara", oil: "Minyak Bumi", gas: "Gas Alam", 
-    salt: "Garam", nickel: "Nikel", lithium: "Litium", copper: "Tembaga", aluminum: "Aluminium", 
-    rare_earth: "Rare Earth", iron_ore: "Bijih Besi",
-    semiconductor: "Semikonduktor", car: "Mobil", motorcycle: "Sepeda Motor", smelter: "Pengolahan Smelter",
-    concrete_cement: "Beton & Semen", wood: "Kayu", mineral_water: "Air Mineral", sugar: "Gula",
-    bread: "Roti", pharmacy: "Farmasi", fertilizer: "Pupuk", meat_processing: "Pengolahan Daging",
-    instant_noodle: "Mie Instan",
-    chicken: "Ayam", poultry: "Unggas", dairy_cow: "Sapi Perah", beef_cow: "Sapi Potong",
-    sheep_goat: "Domba/Kambing", shrimp: "Udang", fish: "Ikan", shellfish: "Kerang",
-    rice: "Padi", wheat: "Gandum", corn: "Jagung", tubers: "Umbi-umbian", soy: "Kedelai",
-    palm_oil: "Kelapa Sawit", tea: "Teh", coffee: "Kopi", cocoa: "Kakao", sugarcane: "Tebu",
-    vegetables: "Sayur-mayur"
-  };
 
   const getIcon = (key: string, size: string = "h-4 w-4") => {
     const Icon = iconMap[key] || BarChart3;
@@ -134,10 +108,14 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
 
   const selectedName = labelsMap[selectedKey] || selectedKey.charAt(0).toUpperCase() + selectedKey.slice(1).replace(/_/g, ' ');
   const selectedUnits = selectedItem ? (selectedItem[1] as number) : 0;
+
+  const baseBuyPrice = buyPriceMap[selectedKey] || buyPriceMap[selectedKey.toLowerCase()] || 0;
+  const baseSellPrice = sellPriceMap[selectedKey] || sellPriceMap[selectedKey.toLowerCase()] || 0;
   
-  // Dynamic pricing logic (matching new finance scale)
-  const exportPriceVal = Math.floor(selectedUnits * 15 + 50);
-  const importPriceVal = Math.floor(300 + (selectedUnits % 10) * 5); // Example deterministic price
+  // Dynamic pricing (per unit) - including market factor for the "live" rate
+  const marketFactor = 1.0; 
+  const exportPriceVal = baseSellPrice * marketFactor;
+  const importPriceVal = baseBuyPrice * marketFactor;
 
   return (
     <div className="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center animate-in fade-in zoom-in-95 duration-300 p-4 lg:p-12 backdrop-blur-md">
@@ -325,9 +303,6 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
               {/* Strategic Header & Action Cards */}
               <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-10">
                 <div className="space-y-1">
-                  <div className="flex items-center gap-2">
-                    <span className="text-[10px] font-black text-pink-500/40 uppercase tracking-[0.5em] block">Mineral Kritis & Strategis</span>
-                  </div>
                   <h2 className="text-2xl font-black text-white tracking-widest uppercase flex items-center gap-4 leading-none">
                     {selectedName}
                   </h2>
@@ -336,41 +311,71 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                 <div className="flex items-center gap-4 xl:gap-6 flex-wrap lg:flex-nowrap">
                   {/* Buy Section */}
                   <div className="flex flex-col gap-1 flex-shrink-0">
-                    <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1">
-                      Rp {importPriceVal.toLocaleString('id-ID')}
+                    <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1 flex flex-col">
+                      <span className="text-[8px] text-zinc-500 uppercase tracking-widest not-italic">Harga Beli</span>
+                      {importPriceVal.toLocaleString('id-ID')}
                     </div>
                     <button className="px-6 py-3 bg-red-500 text-white font-black uppercase text-[9px] lg:text-[10px] tracking-[0.2em] rounded-xl hover:bg-red-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap">
-                      Eksekusi Impor
+                      Eksekusi Impor {baseBuyPrice.toLocaleString('id-ID')}
                     </button>
                   </div>
 
                   {/* Sell Section */}
                   <div className="flex flex-col gap-1 flex-shrink-0">
-                    <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1">
-                      Rp {exportPriceVal.toLocaleString('id-ID')}
+                    <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1 flex flex-col">
+                      <span className="text-[8px] text-zinc-500 uppercase tracking-widest not-italic">Harga Jual</span>
+                      {exportPriceVal.toLocaleString('id-ID')}
                     </div>
                     <button className="px-6 py-3 bg-green-500 text-white font-black uppercase text-[9px] lg:text-[10px] tracking-[0.2em] rounded-xl hover:bg-green-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap">
-                      Eksekusi Ekspor
+                      Eksekusi Ekspor {baseSellPrice.toLocaleString('id-ID')}
                     </button>
                   </div>
                 </div>
               </div>
 
+              {/* Price Chart Section */}
+              <div className="space-y-6 pt-4">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1 bg-zinc-900/50 p-1.5 rounded-2xl border border-zinc-900/50 backdrop-blur-md">
+                    {["1d", "1w", "1m", "3m", "6m", "9m", "1y", "3y", "5y"].map((tf) => (
+                      <button
+                        key={tf}
+                        onClick={() => setSelectedTimeframe(tf)}
+                        className={`px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 ${
+                          selectedTimeframe === tf 
+                          ? 'bg-blue-600 text-white shadow-[0_10px_20px_rgba(37,99,235,0.3)] scale-110 z-10' 
+                          : 'text-zinc-500 hover:text-white hover:bg-zinc-800'
+                        }`}
+                      >
+                        {tf}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="flex flex-col items-end">
+                      <span className="text-[9px] font-black text-blue-500 uppercase tracking-[0.3em]">Status Terminal</span>
+                      <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">LIVE_DATA_FEED_v2.0</span>
+                    </div>
+                    <div className="h-10 w-10 rounded-2xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+                      <TrendingUp className="h-5 w-5 text-blue-400 animate-pulse" />
+                    </div>
+                  </div>
+                </div>
+
+                <TradePriceChart 
+                  selectedKey={selectedKey} 
+                  selectedTimeframe={selectedTimeframe} 
+                  basePrice={baseBuyPrice} 
+                />
+              </div>
+
               {/* Metrics Section */}
-              <div className="grid grid-cols-2 gap-8 pt-8 border-t border-zinc-900/80">
-                <div className="bg-zinc-900/40 border border-zinc-800/50 p-6 rounded-[2rem] relative group overflow-hidden">
+              <div className="pt-8 border-t border-zinc-900/80">
+                <div className="max-w-md bg-zinc-900/40 border border-zinc-800/50 p-6 rounded-[2rem] relative group overflow-hidden">
                   <div className="absolute top-0 left-0 w-1 h-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   <span className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.4em] block mb-3">Metrik Pasokan</span>
                   <div className="flex items-baseline gap-3">
                     <span className="text-3xl font-black text-white tracking-tighter italic">{selectedUnits}</span>
-                  </div>
-                </div>
-                <div className="bg-zinc-900/40 border border-zinc-800/50 p-6 rounded-[2rem] relative group overflow-hidden">
-                  <div className="absolute top-0 left-0 w-1 h-full bg-green-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <span className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.4em] block mb-3">Prioritas Hilirisasi</span>
-                  <div className="flex items-center gap-2">
-                    <div className="h-2 w-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.5)]"></div>
-                    <span className="text-xs font-black text-green-500 uppercase tracking-widest leading-none">Aset Strategis Level A1</span>
                   </div>
                 </div>
               </div>

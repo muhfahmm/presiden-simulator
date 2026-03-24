@@ -27,3 +27,9 @@ export function getStoredGameDate(): Date {
   }
   return INITIAL_GAME_DATE;
 }
+
+export function getGameWeekIndex(date: Date): number {
+  const diffTime = Math.abs(date.getTime() - INITIAL_GAME_DATE.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  return Math.floor(diffDays / 7);
+}
