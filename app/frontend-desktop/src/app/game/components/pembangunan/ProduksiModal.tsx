@@ -710,7 +710,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
           <div className="flex items-center gap-2">
             <TrendingUp size={12} className="text-amber-500" />
             <span className="text-[12px] font-bold text-amber-500/90">
-              Produksi: +{item.rate} {item.unit}/unit
+              Produksi: +{Math.floor(item.rate)} {item.unit}/unit
             </span>
           </div>
           
@@ -741,21 +741,21 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
           <div className="mt-3 pt-3 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-xl p-3">
             <div className="flex justify-between items-baseline gap-2">
               <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter">Hasil Produksi:</span>
-              <span className="text-[14px] font-black text-white tracking-tight">{(item.count * item.rate).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}/hr</span></span>
+              <span className="text-[14px] font-black text-white tracking-tight">{Math.floor(item.count * item.rate).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}/hr</span></span>
             </div>
             {item.income > 0 && (
               <div className="flex justify-between items-baseline gap-2 border-t border-zinc-800/10 pt-1.5 mt-1">
                 <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter">Pendapatan:</span>
-                <span className="text-[14px] font-black text-emerald-400 tracking-tight">{(item.count * item.income).toLocaleString('id-ID')} <span className="text-[10px] text-emerald-400/60 font-normal uppercase italic">/hr</span></span>
+                <span className="text-[14px] font-black text-emerald-400 tracking-tight">{Math.floor(item.count * item.income).toLocaleString('id-ID')} <span className="text-[10px] text-emerald-400/60 font-normal uppercase italic">/hr</span></span>
               </div>
             )}
             {/* Cumulative / Total Display for ALL buildings */}
             <div className="flex justify-between items-baseline gap-2 border-t border-zinc-800/10 pt-1.5 mt-1">
               <span className="text-[10px] font-black text-cyan-500 uppercase tracking-tighter italic">
-                {item.groupId === "kelistrikan" ? "Total Kapasitas:" : "Total Akumulasi:"}
+                {item.groupId === "kelistrikan" ? "Total Kapasitas:" : "Hasil di Gudang:"}
               </span>
               <span className="text-[14px] font-black text-cyan-400 tracking-tight">
-                {item.groupId === "kelistrikan" ? (item.count * item.rate).toLocaleString('id-ID') : cumulative.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}</span>
+                {item.groupId === "kelistrikan" ? Math.floor(item.count * item.rate).toLocaleString('id-ID') : Math.floor(cumulative).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}</span>
               </span>
             </div>
           </div>

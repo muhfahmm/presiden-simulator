@@ -61,3 +61,26 @@ export const baseKeyMapping: Record<string, string> = {
   "fertilizer_factory": "fertilizer",
   "bakery_factory": "bread"
 };
+
+// DYNAMIC PRICE GENERATOR
+export const getDynamicPrice = (key: string, type: "buy" | "sell", date: Date) => {
+  const baseMap = type === "buy" ? buyPriceMap : sellPriceMap;
+  const basePrice = baseMap[key] || 100;
+  
+  // Deterministic seed based on key and date
+  let keySeed = 0;
+  for (let i = 0; i < key.length; i++) {
+    keySeed = (keySeed << 5) - keySeed + key.charCodeAt(i);
+    keySeed |= 0;
+  }
+  
+  // Use day-based timestamp to ensure same price for the whole game day
+  const dayTimestamp = Math.floor(date.getTime() / (1000 * 60 * 60 * 24));
+  const seed = keySeed + dayTimestamp;
+  
+  // Pseudo-random fluctuation (+/- 15%)
+  const noise = (Math.sin(seed) * 10000) % 1;
+  const multiplier = 1 + (noise * 0.15);
+  
+  return Math.round(basePrice * multiplier);
+};

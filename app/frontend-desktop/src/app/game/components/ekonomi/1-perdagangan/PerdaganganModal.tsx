@@ -7,8 +7,10 @@ import {
 } from "lucide-react"
 import { CountryData } from "../../../../select-country/data/types"
 import { tradeStorage } from "./TradeStorage"
-import { buyPriceMap, sellPriceMap, labelsMap, baseKeyMapping } from "./tradeData"
+import { buyPriceMap, sellPriceMap, labelsMap, baseKeyMapping, getDynamicPrice } from "./tradeData"
 import { TradePriceChart } from "./TradePriceChart"
+import { TradeExecutionModal } from "./TradeExecutionModal"
+import { getStoredGameDate } from "../../../data/time/gameTime"
 
 interface ModalProps {
   isOpen: boolean;
@@ -77,8 +79,13 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
   const [showMinerals, setShowMinerals] = useState(true);
   const [showIndustry, setShowIndustry] = useState(false);
   const [selectedTimeframe, setSelectedTimeframe] = useState<string>("1w");
+  const [activeChartTab, setActiveChartTab] = useState<"buy" | "sell">("buy");
+  const [executionModalItem, setExecutionModalItem] = useState<{ type: "buy" | "sell" } | null>(null);
 
-
+  const currentDate = getStoredGameDate();
+  const baseBuyPrice = getDynamicPrice(selectedKey, "buy", currentDate);
+  const baseSellPrice = getDynamicPrice(selectedKey, "sell", currentDate);
+  
   if (!isOpen) return null;
 
   const iconMap: Record<string, any> = {
@@ -108,9 +115,6 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
 
   const selectedName = labelsMap[selectedKey] || selectedKey.charAt(0).toUpperCase() + selectedKey.slice(1).replace(/_/g, ' ');
   const selectedUnits = selectedItem ? (selectedItem[1] as number) : 0;
-
-  const baseBuyPrice = buyPriceMap[selectedKey] || buyPriceMap[selectedKey.toLowerCase()] || 0;
-  const baseSellPrice = sellPriceMap[selectedKey] || sellPriceMap[selectedKey.toLowerCase()] || 0;
   
   // Dynamic pricing (per unit) - including market factor for the "live" rate
   const marketFactor = 1.0; 
@@ -326,7 +330,10 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                       <span className="text-[8px] text-zinc-500 uppercase tracking-widest not-italic">Harga Jual</span>
                       {exportPriceVal.toLocaleString('id-ID')}
                     </div>
-                    <button className="px-6 py-3 bg-green-500 text-white font-black uppercase text-[9px] lg:text-[10px] tracking-[0.2em] rounded-xl hover:bg-green-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap">
+                    <button 
+                      onClick={() => setExecutionModalItem({ type: "sell" })}
+                      className="px-6 py-3 bg-green-500 text-white font-black uppercase text-[9px] lg:text-[10px] tracking-[0.2em] rounded-xl hover:bg-green-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap"
+                    >
                       Eksekusi Ekspor {baseSellPrice.toLocaleString('id-ID')}
                     </button>
                   </div>
@@ -335,7 +342,8 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
 
               {/* Price Chart Section */}
               <div className="space-y-6 pt-4">
-                <div className="flex items-center justify-between">
+                <div className="flex flex-wrap items-center justify-between gap-6">
+                  {/* Timeframe Selector */}
                   <div className="flex items-center gap-1 bg-zinc-900/50 p-1.5 rounded-2xl border border-zinc-900/50 backdrop-blur-md">
                     {["1d", "1w", "1m", "3m", "6m", "9m", "1y", "3y", "5y"].map((tf) => (
                       <button
@@ -351,6 +359,32 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                       </button>
                     ))}
                   </div>
+
+                  {/* Chart Tab Selector */}
+                  <div className="flex items-center gap-2 bg-zinc-900/40 p-1 rounded-2xl border border-zinc-900/50 backdrop-blur-md">
+                    <button 
+                      onClick={() => setActiveChartTab("buy")}
+                      className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 ${
+                        activeChartTab === "buy" 
+                        ? 'bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.2)]' 
+                        : 'text-zinc-600 hover:text-zinc-400'
+                      }`}
+                    >
+                      Grafik Beli
+                    </button>
+                    <button 
+                      onClick={() => setActiveChartTab("sell")}
+                      className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all duration-300 ${
+                        activeChartTab === "sell" 
+                        ? 'bg-green-500 text-white shadow-[0_0_20px_rgba(34,197,94,0.2)]' 
+                        : 'text-zinc-600 hover:text-zinc-400'
+                      }`}
+                    >
+                      Grafik Jual
+                    </button>
+                  </div>
+
+                  {/* Status Indicator */}
                   <div className="flex items-center gap-3">
                     <div className="flex flex-col items-end">
                       <span className="text-[9px] font-black text-blue-500 uppercase tracking-[0.3em]">Status Terminal</span>
@@ -362,11 +396,29 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                   </div>
                 </div>
 
-                <TradePriceChart 
-                  selectedKey={selectedKey} 
-                  selectedTimeframe={selectedTimeframe} 
-                  basePrice={baseBuyPrice} 
-                />
+                <div className="relative group/chart">
+                  {activeChartTab === "buy" ? (
+                    <div className="animate-in fade-in slide-in-from-left-4 duration-500">
+                      <TradePriceChart 
+                        selectedKey={selectedKey} 
+                        selectedTimeframe={selectedTimeframe} 
+                        basePrice={baseBuyPrice} 
+                        type="buy"
+                        color="#ef4444"
+                      />
+                    </div>
+                  ) : (
+                    <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+                      <TradePriceChart 
+                        selectedKey={selectedKey} 
+                        selectedTimeframe={selectedTimeframe} 
+                        basePrice={baseSellPrice} 
+                        type="sell"
+                        color="#22c55e"
+                      />
+                    </div>
+                  )}
+                </div>
               </div>
 
               {/* Metrics Section */}
@@ -433,6 +485,17 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
           </div>
         </div>
       </div>
+
+      <TradeExecutionModal 
+        isOpen={!!executionModalItem}
+        onClose={() => setExecutionModalItem(null)}
+        selectedKey={selectedKey}
+        selectedName={selectedName}
+        type={executionModalItem?.type || "buy"}
+        basePrice={executionModalItem?.type === "buy" ? baseBuyPrice : baseSellPrice}
+        icon={iconMap[selectedKey] || BarChart3}
+        color={executionModalItem?.type === "buy" ? "#ef4444" : "#22c55e"}
+      />
     </div>
   );
 }
