@@ -201,12 +201,11 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
               const filteredItems = items.filter((item: any) => item.name.toLowerCase().includes(searchQuery.toLowerCase()));
               const totalCount = filteredItems.length;
               if (totalCount === 0) return null;
-              const categorySum = filteredItems.reduce((sum: number, item: any) => sum + (item.count * item.maintenance), 0);
               return (
                 <div key={catIdx} className="space-y-2">
                   <div className="flex items-center gap-2">
                     <div className={`w-1 h-3 ${color.replace('text-', 'bg-')} rounded-full`}></div>
-                    <span className={`text-sm font-black ${color} uppercase tracking-wider`}>{category} <span className="text-zinc-200">({totalCount})</span> <span className="text-rose-400 font-black ml-1">= -{categorySum}</span></span>
+                    <span className={`text-sm font-black ${color} uppercase tracking-wider`}>{category} <span className="text-zinc-200">({totalCount})</span></span>
                   </div>
                   <div className="grid grid-cols-2 gap-2">
                     {filteredItems.map((item: any, idx: number) => (
@@ -215,7 +214,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                           <span className="text-sm font-bold text-white">{item.name}</span>
                           <span className="text-xs font-medium text-zinc-400">Jumlah: {item.count}</span>
                         </div>
-                        <span className="text-sm font-black text-rose-400">-{item.maintenance} / unit <span className="text-zinc-500 font-bold mx-1">=</span> <span className="text-rose-400">-{item.count * item.maintenance}</span></span>
+                        <span className="text-sm font-black text-rose-400">-{item.maintenance} / unit</span>
                       </div>
                     ))}
                   </div>
@@ -228,11 +227,19 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
     );
   };
 
-  const aggMaintenance = buildAggregated(maintenanceSectors);
-  const dailyBaseMaintenance = Object.values(aggMaintenance).reduce((sum, items) => sum + items.reduce((subSum, item) => subSum + (item.count * item.maintenance), 0), 0) / 100000;
+  const dailyBaseMaintenance = calculateBaseMaintenance(initialCountry);
   const dailyDeltaMaintenance = calculateDeltaMaintenance(buildingData.buildingDeltas);
   const aggMilitary = buildAggregated(militarySectors);
-  const dailyMilitaryExpense = Object.values(aggMilitary).reduce((sum, items) => sum + items.reduce((subSum, item) => subSum + (item.count * item.maintenance), 0), 0) / 100000;
+
+    const debugItems: any[] = [];
+    Object.entries(aggMilitary).forEach(([cat, items]: any) => {
+        items.forEach((item: any) => {
+           debugItems.push({ cat, name: item.name, count: item.count, maint: item.maintenance, total: item.count * item.maintenance });
+        });
+    });
+    fs.writeFileSync('c:\\fhm\\EM4\\militDebug.json', JSON.stringify(debugItems, null, 2));
+    
+  const dailyMilitaryExpense = Object.values(aggMilitary).reduce((sum, items) => sum + items.reduce((subSum, item) => subSum + (item.count * item.maintenance), 0), 0);
   
   // Extra Fiscal Expenses
   const totalSubsidyLevel = ((expData.subsidyEnergi || 0) + (expData.subsidyPangan || 0) + (expData.subsidyKesehatan || 0) + (expData.subsidyPendidikan || 0) + (expData.subsidyUmkm || 0) + (expData.subsidyTransport || 0) + (expData.subsidyRumah || 0)) / 7;
