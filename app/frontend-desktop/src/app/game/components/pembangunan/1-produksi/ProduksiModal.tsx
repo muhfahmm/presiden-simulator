@@ -1,13 +1,13 @@
 import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf } from "lucide-react"
-import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "../../../select-country/data/pembangunan/laju-produksi";
-import { produksiMiliter } from "../../../select-country/data/pembangunan/produksi-militer";
-import { tempatUmum } from "../../../select-country/data/pembangunan/tempat-umum";
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "../../../select-country/data/electricity";
-import { gameStorage } from "../../gamestorage";
-import { formatGameDate, addDays, getStoredGameDate } from "../../data/time/gameTime";
-import { calculateConstructionProgress, getStatusText } from "../../data/construction/constructionLogic";
-import { countries } from "../../../select-country/data/countries";
+import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "../../../../select-country/data/pembangunan/laju-produksi";
+import { produksiMiliter } from "../../../../select-country/data/pembangunan/produksi-militer";
+import { tempatUmum } from "../../../../select-country/data/pembangunan/tempat-umum";
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "../../../../select-country/data/electricity";
+import { gameStorage } from "../../../gamestorage";
+import { formatGameDate, addDays, getStoredGameDate } from "../../../data/time/gameTime";
+import { calculateConstructionProgress, getStatusText } from "../../../data/construction/constructionLogic";
+import { countries } from "../../../../select-country/data/countries";
 
 interface ModalProps {
   isOpen: boolean;
@@ -221,7 +221,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
             rate: val.production,
             unit: val.unit,
             count: getManufacturingCount(key),
-            income: 0,
+            income: val.income,
             cost: 45,
             buildTime: val.buildTime || 45
           })),
@@ -236,7 +236,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_livestock.chicken + currentData.sector_livestock.poultry) + ((buildingDeltas["egg_farm"] as number) || 0),
-          income: 0, cost: 8, buildTime: 20
+          income: 15, cost: 8, buildTime: 20
         },
         {
           key: "livestock_dairy",
@@ -247,7 +247,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_livestock.dairy_cow) + ((buildingDeltas["dairy_farm"] as number) || 0),
-          income: 0, cost: 8, buildTime: 20
+          income: 25, cost: 8, buildTime: 20
         },
         {
           key: "livestock_beef",
@@ -258,7 +258,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_livestock.beef_cow) + ((buildingDeltas["cattle_farm"] as number) || 0),
-          income: 0, cost: 8, buildTime: 20
+          income: 150, cost: 8, buildTime: 20
         },
         {
           key: "livestock_sheep",
@@ -269,7 +269,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_livestock.sheep_goat) + ((buildingDeltas["sheep_farm"] as number) || 0),
-          income: 0, cost: 8, buildTime: 20
+          income: 65, cost: 8, buildTime: 20
         },
         {
           key: "livestock_shrimp",
@@ -280,7 +280,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_livestock.shrimp + currentData.sector_livestock.shellfish) + ((buildingDeltas["shrimp_farm"] as number) || 0),
-          income: 0, cost: 8, buildTime: 20
+          income: 280, cost: 8, buildTime: 20
         },
         {
           key: "livestock_fish",
@@ -291,7 +291,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_livestock.fish) + ((buildingDeltas["freshwater_fish_farm"] as number) || 0),
-          income: 0, cost: 8, buildTime: 20
+          income: 45, cost: 8, buildTime: 20
         },
 
         // --- 6 PERTANIAN (Grouped) ---
@@ -304,7 +304,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_agriculture.rice) + ((buildingDeltas["paddy_field"] as number) || 0),
-          income: 0, cost: 5, buildTime: 20
+          income: 95, cost: 5, buildTime: 20
         },
         {
           key: "agri_grains",
@@ -315,7 +315,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_agriculture.wheat + currentData.sector_agriculture.corn) + ((buildingDeltas["wheat_field"] as number) || 0),
-          income: 0, cost: 5, buildTime: 20
+          income: 70, cost: 5, buildTime: 20
         },
         {
           key: "agri_veg",
@@ -326,7 +326,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_agriculture.vegetables + currentData.sector_agriculture.tubers) + ((buildingDeltas["vegetable_farm"] as number) || 0),
-          income: 0, cost: 5, buildTime: 20
+          income: 45, cost: 5, buildTime: 20
         },
         {
           key: "agri_soy",
@@ -337,7 +337,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_agriculture.soy) + ((buildingDeltas["soybean_field"] as number) || 0),
-          income: 0, cost: 5, buildTime: 20
+          income: 80, cost: 5, buildTime: 20
         },
         {
           key: "agri_palm",
@@ -348,7 +348,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_agriculture.palm_oil) + ((buildingDeltas["palm_oil_plantation"] as number) || 0),
-          income: 0, cost: 5, buildTime: 20
+          income: 320, cost: 5, buildTime: 20
         },
         {
           key: "agri_luxury",
@@ -359,7 +359,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: 1,
           unit: "Unit",
           count: (currentData.sector_agriculture.coffee + currentData.sector_agriculture.tea + currentData.sector_agriculture.cocoa) + ((buildingDeltas["coffee_plantation"] as number) || 0),
-          income: 0, cost: 5, buildTime: 20
+          income: 470, cost: 5, buildTime: 20
         }
       ]
     },
@@ -379,7 +379,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           rate: val.production,
           unit: val.unit,
           count: count + ((buildingDeltas[key] as number) || 0),
-          income: val.income,
+          income: 0,
           cost: 30,
           buildTime: val.buildTime || 30
         };
@@ -499,7 +499,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                       {group.items.map((item, idx) => {
                         const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
                         const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
-                        
+
                         const subGroupLabels: Record<string, string> = {
                           manufaktur: "Manufaktur & Industri",
                           peternakan: "Peternakan & Perikanan",
@@ -710,25 +710,20 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
           <div className="flex items-center gap-2">
             <TrendingUp size={12} className="text-amber-500" />
             <span className="text-[12px] font-bold text-amber-500/90">
-              Produksi: +{Math.floor(item.rate)} {item.unit}/unit
+              Produksi: +{Math.floor(item.rate)} {item.unit}/bangunan
             </span>
           </div>
-          
+
           {item.groupId !== "kelistrikan" && (
             <div className="flex items-center gap-2">
               <Zap size={12} className="text-rose-500/90" />
               <span className="text-[12px] font-bold text-rose-500/80">
-                Konsumsi Listrik: 5 MW/unit
+                Konsumsi Listrik: 5 MW/bangunan
               </span>
             </div>
           )}
 
-          {item.income > 0 && (
-            <div className="flex items-center gap-2">
-              <Coins size={12} className="text-emerald-400" />
-              <span className="text-[12px] font-bold text-emerald-400">Pendapatan: +{item.income} /unit</span>
-            </div>
-          )}
+
 
           {!progress && (
             <div className="flex items-center gap-2">
@@ -741,21 +736,15 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
           <div className="mt-3 pt-3 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-xl p-3">
             <div className="flex justify-between items-baseline gap-2">
               <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter">Hasil Produksi:</span>
-              <span className="text-[14px] font-black text-white tracking-tight">{Math.floor(item.count * item.rate).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}/hr</span></span>
+              <span className="text-[14px] font-black text-white tracking-tight">{(Math.floor(item.rate) * item.count).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}/hr</span></span>
             </div>
-            {item.income > 0 && (
-              <div className="flex justify-between items-baseline gap-2 border-t border-zinc-800/10 pt-1.5 mt-1">
-                <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter">Pendapatan:</span>
-                <span className="text-[14px] font-black text-emerald-400 tracking-tight">{Math.floor(item.count * item.income).toLocaleString('id-ID')} <span className="text-[10px] text-emerald-400/60 font-normal uppercase italic">/hr</span></span>
-              </div>
-            )}
             {/* Cumulative / Total Display for ALL buildings */}
             <div className="flex justify-between items-baseline gap-2 border-t border-zinc-800/10 pt-1.5 mt-1">
               <span className="text-[10px] font-black text-cyan-500 uppercase tracking-tighter italic">
                 {item.groupId === "kelistrikan" ? "Total Kapasitas:" : "Hasil di Gudang:"}
               </span>
               <span className="text-[14px] font-black text-cyan-400 tracking-tight">
-                {item.groupId === "kelistrikan" ? Math.floor(item.count * item.rate).toLocaleString('id-ID') : Math.floor(cumulative).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}</span>
+                {item.groupId === "kelistrikan" ? (Math.floor(item.rate) * item.count).toLocaleString('id-ID') : Math.floor(cumulative).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}</span>
               </span>
             </div>
           </div>

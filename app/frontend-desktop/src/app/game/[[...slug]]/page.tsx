@@ -28,9 +28,9 @@ import ProduksiBarangModal from "../components/ekonomi/ProduksiBarangModal";
 import MineralsModal from "../components/ekonomi/MineralsModal";
 import HargaBarangModal from "../components/ekonomi/HargaBarangModal";
 // Other Modals
-import ProduksiHubV3 from "../components/pembangunan/ProduksiModal";
-import ProduksiMiliterModal from "../components/pembangunan/ProduksiMiliterModal";
-import TempatUmumModal from "../components/pembangunan/TempatUmumModal";
+import ProduksiHubV3 from "../components/pembangunan/1-produksi/ProduksiModal";
+import ProduksiMiliterModal from "../components/pembangunan/2-produksi-militer/ProduksiMiliterModal";
+import TempatUmumModal from "../components/pembangunan/3-tempat-umum/TempatUmumModal";
 import PertahananModal from "../components/pertahanan/PertahananModal";
 import ArmadaMiliterModal from "../components/pertahanan/ArmadaMiliterModal";
 import ArmadaPolisiModal from "../components/pertahanan/ArmadaPolisiModal";

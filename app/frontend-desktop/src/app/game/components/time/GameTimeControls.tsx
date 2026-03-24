@@ -26,31 +26,34 @@ export default function GameTimeControls() {
       setGameDate(prevDate => {
         const nextDate = addDays(prevDate, 1);
         saveGameDate(nextDate);
-
-        // REAL-TIME PRODUCTION UPDATE
-        const session = gameStorage.getSession();
-        if (session) {
-          const currentCountryCode = session.country || "Indonesia";
-          const currentData = countries.find((c: any) => 
-            c.name_id === currentCountryCode || 
-            c.name_en === currentCountryCode || 
-            (c.id && c.id === currentCountryCode)
-          ) || countries[79] || countries[0];
-          
-          const dailyDeltas = calculateDailyProductionTotals(currentData, session.buildingDeltas);
-          gameStorage.updateCumulativeProduction(dailyDeltas);
-
-          // REAL-TIME BUDGET UPDATE
-          const budgetDelta = calculateDailyBudgetDelta(currentData, session);
-          gameStorage.updateBudget(budgetDelta);
-        }
-
         return nextDate;
       });
     }, 2000 / speed); // 1 day every 2 seconds at 1x speed
 
     return () => clearInterval(interval);
   }, [isPaused, speed]);
+
+  // Handle daily side effects (Production & Budget)
+  useEffect(() => {
+    // Skip initial mount calculation to start at 0 on Jan 1st
+    if (gameDate.getTime() === INITIAL_GAME_DATE.getTime()) return;
+
+    const session = gameStorage.getSession();
+    if (session) {
+      const currentCountryCode = session.country || "Indonesia";
+      const currentData = countries.find((c: any) => 
+        c.name_id === currentCountryCode || 
+        c.name_en === currentCountryCode || 
+        (c.id && c.id === currentCountryCode)
+      ) || countries[79] || countries[0];
+      
+      const dailyDeltas = calculateDailyProductionTotals(currentData, session.buildingDeltas);
+      gameStorage.updateCumulativeProduction(dailyDeltas);
+
+      const budgetDelta = calculateDailyBudgetDelta(currentData, session);
+      gameStorage.updateBudget(budgetDelta);
+    }
+  }, [gameDate]);
 
   return (
     <div className="flex items-center gap-3 bg-zinc-900/60 backdrop-blur-xl border border-zinc-800 p-1.5 rounded-2xl shadow-2xl">

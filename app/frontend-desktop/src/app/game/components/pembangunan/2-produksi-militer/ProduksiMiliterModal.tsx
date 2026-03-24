@@ -2,12 +2,12 @@
 
 import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Shield, Truck, MapPin, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship, Plane, Rocket, Crosshair, Activity, Wifi, Radio, Cctv, Search, Siren, Car, Bike, Dog, ShieldAlert, Anchor, Waves, Satellite, RadioTower, Cpu, Target, Radar, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, EyeOff, Building, Archive } from "lucide-react"
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "../../../select-country/data/electricity";
-import { KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_FLEET, KONSUMSI_SOSIAL } from "../../../select-country/data/electricity/2_konsumsi_listrik";
-import { gameStorage } from "../../gamestorage";
-import { formatGameDate, addDays, getStoredGameDate } from "../../data/time/gameTime";
-import { calculateConstructionProgress, getStatusText } from "../../data/construction/constructionLogic";
-import { countries } from "../../../select-country/data/countries";
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "../../../../select-country/data/electricity";
+import { KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_FLEET, KONSUMSI_SOSIAL } from "../../../../select-country/data/electricity/2_konsumsi_listrik";
+import { gameStorage } from "../../../gamestorage";
+import { formatGameDate, addDays, getStoredGameDate } from "../../../data/time/gameTime";
+import { calculateConstructionProgress, getStatusText } from "../../../data/construction/constructionLogic";
+import { countries } from "../../../../select-country/data/countries";
 
 interface ModalProps {
   isOpen: boolean;

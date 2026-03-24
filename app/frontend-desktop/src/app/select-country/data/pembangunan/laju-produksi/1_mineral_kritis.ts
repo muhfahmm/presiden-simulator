@@ -6,7 +6,6 @@ export const mineralKritisRate = {
     production: 120,
     unit: "ton",
     desc: "Batubara",
-    income: 120,
     dataKey: "coal",
     buildTime: 20
   },
@@ -15,7 +14,6 @@ export const mineralKritisRate = {
     production: 40,
     unit: "ton",
     desc: "Bauksit",
-    income: 140,
     dataKey: "aluminum",
     buildTime: 25
   },
@@ -24,7 +22,6 @@ export const mineralKritisRate = {
     production: 210,
     unit: "ton",
     desc: "Biji Besi",
-    income: 150,
     dataKey: "iron_ore",
     buildTime: 20
   },
@@ -33,7 +30,6 @@ export const mineralKritisRate = {
     production: 5,
     unit: "kg",
     desc: "Emas",
-    income: 500, // In Miliar
     dataKey: "gold",
     buildTime: 30
   },
@@ -42,7 +38,6 @@ export const mineralKritisRate = {
     production: 45,
     unit: "ton",
     desc: "Garam",
-    income: 50,
     dataKey: "salt",
     buildTime: 15
   },
@@ -51,7 +46,6 @@ export const mineralKritisRate = {
     production: 150,
     unit: "mcf",
     desc: "Gas Alam",
-    income: 280,
     dataKey: "gas",
     buildTime: 35
   },
@@ -60,7 +54,6 @@ export const mineralKritisRate = {
     production: 25,
     unit: "ton",
     desc: "Lithium",
-    income: 600,
     dataKey: "lithium",
     buildTime: 35
   },
@@ -69,7 +62,6 @@ export const mineralKritisRate = {
     production: 85,
     unit: "barrel",
     desc: "Minyak Bumi",
-    income: 350,
     dataKey: "oil",
     buildTime: 40
   },
@@ -78,16 +70,14 @@ export const mineralKritisRate = {
     production: 35,
     unit: "ton",
     desc: "Nikel",
-    income: 200,
     dataKey: "nickel",
     buildTime: 25
   },
   rare_earth_mine: {
     no: 10,
-    production: 1.5,
+    production: 1,
     unit: "ton",
     desc: "Tanah Jarang",
-    income: 900,
     dataKey: "rare_earth",
     buildTime: 60
   },
@@ -96,16 +86,14 @@ export const mineralKritisRate = {
     production: 28,
     unit: "ton",
     desc: "Tembaga",
-    income: 180,
     dataKey: "copper",
     buildTime: 25
   },
   uranium_mine: {
     no: 12,
-    production: 0.8,
+    production: 1,
     unit: "kg",
     desc: "Uranium",
-    income: 750,
     dataKey: "uranium",
     buildTime: 45
   }
