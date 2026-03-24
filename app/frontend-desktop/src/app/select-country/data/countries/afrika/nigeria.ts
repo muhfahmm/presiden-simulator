@@ -136,7 +136,7 @@ export const nigeria: CountryData = {
     "armory": 1,
     "tank_hangar": 1,
     "military_academy": 39,
-    "budget": 8845,
+    "budget": 1319,
     "personnel": 21640,
     "strength": 16.660809349923973,
     "military_fleet": {

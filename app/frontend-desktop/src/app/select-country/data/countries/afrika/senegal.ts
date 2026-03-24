@@ -136,7 +136,7 @@ export const senegal: CountryData = {
     "armory": 34,
     "tank_hangar": 22,
     "military_academy": 34,
-    "budget": 1178,
+    "budget": 77,
     "personnel": 5203,
     "strength": 16.660809349923973,
     "military_fleet": {

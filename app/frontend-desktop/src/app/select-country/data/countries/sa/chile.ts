@@ -132,7 +132,7 @@ export const chile: CountryData = {
     "armory": 5,
     "tank_hangar": 31,
     "military_academy": 13,
-    "budget": 2,
+    "budget": 930,
     "personnel": 28728,
     "strength": 16.660809349923973,
     "military_fleet": {

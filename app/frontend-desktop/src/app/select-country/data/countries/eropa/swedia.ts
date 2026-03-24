@@ -132,7 +132,7 @@ export const swedia: CountryData = {
     "armory": 25,
     "tank_hangar": 37,
     "military_academy": 1,
-    "budget": 21806,
+    "budget": 1666,
     "personnel": 6340,
     "strength": 16.660809349923973,
     "military_fleet": {

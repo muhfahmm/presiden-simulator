@@ -132,7 +132,7 @@ export const republik_timor_leste: CountryData = {
     "armory": 40,
     "tank_hangar": 27,
     "military_academy": 36,
-    "budget": 27,
+    "budget": 5,
     "personnel": 25828,
     "strength": 16.660809349923973,
     "military_fleet": {

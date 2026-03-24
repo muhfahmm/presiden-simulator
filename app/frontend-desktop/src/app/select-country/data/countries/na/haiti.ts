@@ -132,7 +132,7 @@ export const haiti: CountryData = {
     "armory": 35,
     "tank_hangar": 10,
     "military_academy": 15,
-    "budget": 21,
+    "budget": 27,
     "personnel": 29300,
     "strength": 16.660809349923973,
     "military_fleet": {

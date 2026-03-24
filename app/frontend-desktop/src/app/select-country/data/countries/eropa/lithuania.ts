@@ -132,7 +132,7 @@ export const lithuania: CountryData = {
     "armory": 25,
     "tank_hangar": 22,
     "military_academy": 3,
-    "budget": 19,
+    "budget": 211,
     "personnel": 10796,
     "strength": 16.660809349923973,
     "military_fleet": {

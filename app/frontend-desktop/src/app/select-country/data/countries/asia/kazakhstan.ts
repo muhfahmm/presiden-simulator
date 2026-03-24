@@ -132,7 +132,7 @@ export const kazakhstan: CountryData = {
     "armory": 32,
     "tank_hangar": 18,
     "military_academy": 32,
-    "budget": 10385,
+    "budget": 722,
     "personnel": 7149,
     "strength": 16.660809349923973,
     "military_fleet": {

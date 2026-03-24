@@ -1,10 +1,11 @@
 import { useState, useEffect, Fragment } from "react";
-import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf } from "lucide-react"
+import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info } from "lucide-react"
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "../../../../select-country/data/pembangunan/laju-produksi";
 import { produksiMiliter } from "../../../../select-country/data/pembangunan/produksi-militer";
 import { tempatUmum } from "../../../../select-country/data/pembangunan/tempat-umum";
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "../../../../select-country/data/electricity";
 import { gameStorage } from "../../../gamestorage";
+import { buildingStorage } from "../buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate } from "../../../data/time/gameTime";
 import { calculateConstructionProgress, getStatusText } from "../../../data/construction/constructionLogic";
 import { countries } from "../../../../select-country/data/countries";
@@ -34,12 +35,8 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   // Sync queue data whenever tick or confirmBuild changes or modal opens
   useEffect(() => {
     if (!isOpen) return;
-    const session = gameStorage.getSession();
-    if (session && Array.isArray(session.constructionQueue)) {
-      setActiveConstructions(session.constructionQueue);
-    } else {
-      setActiveConstructions([]);
-    }
+    const queue = buildingStorage.getQueue();
+    setActiveConstructions(queue);
   }, [tick, confirmBuild, isOpen]);
 
   // Debug log for checking key matching
@@ -55,10 +52,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
 
     const interval = setInterval(() => {
       try {
-        const session = gameStorage.getSession();
-        if (!session) return;
-
-        const queueToProcess = session.constructionQueue;
+        const queueToProcess = buildingStorage.getQueue();
         if (!queueToProcess || !Array.isArray(queueToProcess)) {
           return;
         }
@@ -69,10 +63,12 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         if (itemsToFinish.length > 0) {
           itemsToFinish.forEach(finishItem => {
             if (finishItem.buildingKey) {
-              gameStorage.incrementBuildingCount(finishItem.buildingKey);
-              gameStorage.removeFromQueue(finishItem.id);
+              buildingStorage.incrementBuildingCount(finishItem.buildingKey);
+              buildingStorage.removeFromQueue(finishItem.id);
             }
           });
+          // Dispatch event to sync other components
+          window.dispatchEvent(new Event('building_storage_updated'));
         }
 
         setTick(t => t + 1);
@@ -94,7 +90,8 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
     (c.id && c.id === currentCountryCode)
   ) || countries[79] || countries[0]; // countries[79] is Indonesia
 
-  const buildingDeltas = (session && typeof session.buildingDeltas === 'object') ? session.buildingDeltas : {};
+  const buildingData = buildingStorage.getData();
+  const buildingDeltas = buildingData.buildingDeltas;
 
   const totalPasokan = hitungTotalKapasitas(currentData.sector_electricity);
   const totalBeban = hitungTotalKonsumsiNasional(currentData);
@@ -155,7 +152,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       for (let i = 0; i < quantity; i++) {
         const currentEnd = addDays(new Date(currentStart), confirmBuild.buildTime).getTime();
 
-        const newItem = gameStorage.addToQueue({
+        const newItem = buildingStorage.addToQueue({
           buildingKey: confirmBuild.key,
           label: confirmBuild.label,
           sector: confirmBuild.groupId,
@@ -674,6 +671,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
 }
 
 function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, onBuild: (item: any) => void, construction?: any, cumulative: number }) {
+  const [showDetail, setShowDetail] = useState(false);
   const currentDate = getStoredGameDate().getTime();
   const progress = construction
     ? calculateConstructionProgress(construction.startDate, construction.endDate, currentDate)
@@ -690,8 +688,16 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
       )}
 
       <div className="flex items-start justify-between relative z-10">
-        <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform">
-          <item.icon className={`h-5 w-5 ${progress ? 'text-white' : 'text-cyan-500'} shadow-[0_0_10px_rgba(6,182,212,0.3)]`} />
+        <div className="flex gap-2">
+          <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform">
+            <item.icon className={`h-5 w-5 ${progress ? 'text-white' : 'text-cyan-500'} shadow-[0_0_10px_rgba(6,182,212,0.3)]`} />
+          </div>
+          <button 
+            onClick={() => setShowDetail(!showDetail)}
+            className={`p-2.5 rounded-xl border transition-all cursor-pointer ${showDetail ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'}`}
+          >
+            <Info size={16} />
+          </button>
         </div>
         <div className="flex flex-col items-end gap-1">
           <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
@@ -707,29 +713,43 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
         <h4 className="text-[15px] font-black text-zinc-100 tracking-tight group-hover:text-white transition-colors leading-tight">{item.label}</h4>
 
         <div className="flex flex-col gap-1 mt-1">
-          <div className="flex items-center gap-2">
-            <TrendingUp size={12} className="text-amber-500" />
-            <span className="text-[12px] font-bold text-amber-500/90">
-              Produksi: +{Math.floor(item.rate)} {item.unit}/bangunan
-            </span>
-          </div>
-
-          {item.groupId !== "kelistrikan" && (
-            <div className="flex items-center gap-2">
-              <Zap size={12} className="text-rose-500/90" />
-              <span className="text-[12px] font-bold text-rose-500/80">
-                Konsumsi Listrik: 5 MW/bangunan
-              </span>
+          {showDetail ? (
+            <div className="mt-2 space-y-2 animate-in fade-in slide-in-from-top-1 duration-300">
+               <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
+                  <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Pemeliharaan</span>
+                  <span className="text-[15px] font-black text-rose-400">-{item.maintenanceCost || 5} / hari</span>
+               </div>
+               <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
+                  <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Beban Listrik</span>
+                  <span className="text-[15px] font-black text-amber-500">{item.groupId === "kelistrikan" ? "Supply" : "5 MW"}</span>
+               </div>
+               <p className="text-[12px] text-zinc-400 italic mt-2 px-1 leading-relaxed">Fasilitas ini membutuhkan anggaran operasional harian agar tetap berfungsi optimal.</p>
             </div>
-          )}
+          ) : (
+            <>
+              <div className="flex items-center gap-2">
+                <TrendingUp size={12} className="text-amber-500" />
+                <span className="text-[12px] font-bold text-amber-500/90">
+                  Produksi: +{Math.floor(item.rate)} {item.unit}/bangunan
+                </span>
+              </div>
 
+              {item.groupId !== "kelistrikan" && (
+                <div className="flex items-center gap-2">
+                  <Zap size={12} className="text-rose-500/90" />
+                  <span className="text-[12px] font-bold text-rose-500/80">
+                    Konsumsi Listrik: 5 MW/bangunan
+                  </span>
+                </div>
+              )}
 
-
-          {!progress && (
-            <div className="flex items-center gap-2">
-              <Clock size={12} className="text-zinc-500" />
-              <span className="text-[12px] font-bold text-zinc-500 italic">Waktu Konstruksi: {item.buildTime} Hari</span>
-            </div>
+              {!progress && (
+                <div className="flex items-center gap-2">
+                  <Clock size={12} className="text-zinc-500" />
+                  <span className="text-[12px] font-bold text-zinc-500 italic">Waktu Konstruksi: {item.buildTime} Hari</span>
+                </div>
+              )}
+            </>
           )}
 
           {/* New Total Output Section */}

@@ -132,7 +132,7 @@ export const turkmenistan: CountryData = {
     "armory": 32,
     "tank_hangar": 12,
     "military_academy": 1,
-    "budget": 38974,
+    "budget": 125,
     "personnel": 19822,
     "strength": 16.660809349923973,
     "military_fleet": {

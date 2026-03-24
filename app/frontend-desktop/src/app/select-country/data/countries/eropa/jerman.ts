@@ -132,7 +132,7 @@ export const jerman: CountryData = {
     "armory": 17,
     "tank_hangar": 40,
     "military_academy": 34,
-    "budget": 32,
+    "budget": 12751,
     "personnel": 24955,
     "strength": 16.660809349923973,
     "military_fleet": {

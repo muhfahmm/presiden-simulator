@@ -136,7 +136,7 @@ export const botswana: CountryData = {
     "armory": 32,
     "tank_hangar": 30,
     "military_academy": 32,
-    "budget": 37,
+    "budget": 55,
     "personnel": 5148,
     "strength": 16.660809349923973,
     "military_fleet": {

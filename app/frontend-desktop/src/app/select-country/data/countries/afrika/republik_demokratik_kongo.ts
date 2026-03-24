@@ -136,7 +136,7 @@ export const republik_demokratik_kongo: CountryData = {
     "armory": 21,
     "tank_hangar": 22,
     "military_academy": 20,
-    "budget": 2,
+    "budget": 172,
     "personnel": 11536,
     "strength": 16.660809349923973,
     "military_fleet": {

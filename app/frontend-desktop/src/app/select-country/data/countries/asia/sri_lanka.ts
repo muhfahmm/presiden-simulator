@@ -132,7 +132,7 @@ export const sri_lanka: CountryData = {
     "armory": 4,
     "tank_hangar": 37,
     "military_academy": 3,
-    "budget": 3,
+    "budget": 208,
     "personnel": 23226,
     "strength": 16.660809349923973,
     "military_fleet": {

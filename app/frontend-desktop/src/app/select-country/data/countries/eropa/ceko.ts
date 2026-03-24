@@ -132,7 +132,7 @@ export const ceko: CountryData = {
     "armory": 2,
     "tank_hangar": 6,
     "military_academy": 6,
-    "budget": 12146,
+    "budget": 916,
     "personnel": 16863,
     "strength": 16.660809349923973,
     "military_fleet": {

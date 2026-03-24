@@ -132,7 +132,7 @@ export const laos: CountryData = {
     "armory": 10,
     "tank_hangar": 13,
     "military_academy": 32,
-    "budget": 537,
+    "budget": 41,
     "personnel": 19871,
     "strength": 16.660809349923973,
     "military_fleet": {

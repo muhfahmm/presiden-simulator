@@ -136,7 +136,7 @@ export const liberia: CountryData = {
     "armory": 16,
     "tank_hangar": 34,
     "military_academy": 2,
-    "budget": 29,
+    "budget": 11,
     "personnel": 29860,
     "strength": 16.660809349923973,
     "military_fleet": {

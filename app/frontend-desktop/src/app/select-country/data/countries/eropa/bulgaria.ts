@@ -132,7 +132,7 @@ export const bulgaria: CountryData = {
     "armory": 21,
     "tank_hangar": 20,
     "military_academy": 18,
-    "budget": 32,
+    "budget": 291,
     "personnel": 21002,
     "strength": 16.660809349923973,
     "military_fleet": {

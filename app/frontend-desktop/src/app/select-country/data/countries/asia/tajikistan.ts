@@ -132,7 +132,7 @@ export const tajikistan: CountryData = {
     "armory": 10,
     "tank_hangar": 32,
     "military_academy": 20,
-    "budget": 2,
+    "budget": 33,
     "personnel": 26720,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -136,7 +136,7 @@ export const afrika_selatan: CountryData = {
     "armory": 16,
     "tank_hangar": 17,
     "military_academy": 22,
-    "budget": 13063,
+    "budget": 1125,
     "personnel": 11064,
     "strength": 16.660809349923973,
     "military_fleet": {

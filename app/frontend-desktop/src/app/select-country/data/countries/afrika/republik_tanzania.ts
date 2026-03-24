@@ -136,7 +136,7 @@ export const republik_tanzania: CountryData = {
     "armory": 2,
     "tank_hangar": 4,
     "military_academy": 27,
-    "budget": 39,
+    "budget": 208,
     "personnel": 9790,
     "strength": 16.660809349923973,
     "military_fleet": {

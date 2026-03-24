@@ -132,7 +132,7 @@ export const kirgizstan: CountryData = {
     "armory": 18,
     "tank_hangar": 30,
     "military_academy": 25,
-    "budget": 28,
+    "budget": 33,
     "personnel": 13635,
     "strength": 16.660809349923973,
     "military_fleet": {

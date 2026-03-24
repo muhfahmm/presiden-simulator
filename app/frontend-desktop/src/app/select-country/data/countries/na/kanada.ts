@@ -132,7 +132,7 @@ export const kanada: CountryData = {
     "armory": 4,
     "tank_hangar": 6,
     "military_academy": 7,
-    "budget": 78527,
+    "budget": 6222,
     "personnel": 8174,
     "strength": 16.660809349923973,
     "military_fleet": {

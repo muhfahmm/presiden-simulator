@@ -132,7 +132,7 @@ export const portugal: CountryData = {
     "armory": 9,
     "tank_hangar": 8,
     "military_academy": 19,
-    "budget": 9,
+    "budget": 777,
     "personnel": 11519,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -136,7 +136,7 @@ export const lesotho: CountryData = {
     "armory": 28,
     "tank_hangar": 3,
     "military_academy": 35,
-    "budget": 16,
+    "budget": 6,
     "personnel": 9245,
     "strength": 16.660809349923973,
     "military_fleet": {

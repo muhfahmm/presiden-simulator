@@ -132,7 +132,7 @@ export const republik_rumania: CountryData = {
     "armory": 4,
     "tank_hangar": 31,
     "military_academy": 26,
-    "budget": 37,
+    "budget": 972,
     "personnel": 12938,
     "strength": 16.660809349923973,
     "military_fleet": {

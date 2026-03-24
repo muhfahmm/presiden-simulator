@@ -132,7 +132,7 @@ export const papua_nugini: CountryData = {
     "armory": 30,
     "tank_hangar": 13,
     "military_academy": 19,
-    "budget": 14,
+    "budget": 83,
     "personnel": 17167,
     "strength": 16.660809349923973,
     "military_fleet": {

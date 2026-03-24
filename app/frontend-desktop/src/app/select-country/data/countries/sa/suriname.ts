@@ -132,7 +132,7 @@ export const suriname: CountryData = {
     "armory": 18,
     "tank_hangar": 1,
     "military_academy": 5,
-    "budget": 150,
+    "budget": 9,
     "personnel": 26544,
     "strength": 16.660809349923973,
     "military_fleet": {

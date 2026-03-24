@@ -132,7 +132,7 @@ export const taiwan: CountryData = {
     "armory": 4,
     "tank_hangar": 5,
     "military_academy": 36,
-    "budget": 28103,
+    "budget": 2194,
     "personnel": 14057,
     "strength": 16.660809349923973,
     "military_fleet": {

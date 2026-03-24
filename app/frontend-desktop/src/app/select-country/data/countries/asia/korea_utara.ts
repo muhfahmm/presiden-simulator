@@ -132,7 +132,7 @@ export const korea_utara: CountryData = {
     "armory": 40,
     "tank_hangar": 1,
     "military_academy": 6,
-    "budget": 6,
+    "budget": 50,
     "personnel": 26229,
     "strength": 16.660809349923973,
     "military_fleet": {

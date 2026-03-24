@@ -132,7 +132,7 @@ export const brazil: CountryData = {
     "armory": 3,
     "tank_hangar": 34,
     "military_academy": 25,
-    "budget": 76279,
+    "budget": 6472,
     "personnel": 22445,
     "strength": 16.660809349923973,
     "military_fleet": {

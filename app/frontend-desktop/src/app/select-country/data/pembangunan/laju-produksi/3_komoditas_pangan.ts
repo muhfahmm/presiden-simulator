@@ -6,6 +6,7 @@ export const komoditasPanganRate = {
     unit: "ekor",
     desc: "Ayam (Daging)",
     income: 15,
+    maintenanceCost: 5,
     buildTime: 25
   },
   egg_farm: {
@@ -14,6 +15,7 @@ export const komoditasPanganRate = {
     unit: "butir",
     desc: "Ayam (Telur)",
     income: 5,
+    maintenanceCost: 5,
     buildTime: 20
   },
   freshwater_fish_farm: {
@@ -22,6 +24,7 @@ export const komoditasPanganRate = {
     unit: "ton",
     desc: "Ikan Air Tawar",
     income: 45,
+    maintenanceCost: 5,
     buildTime: 25
   },
   sheep_farm: {
@@ -38,6 +41,7 @@ export const komoditasPanganRate = {
     unit: "kg",
     desc: "Mutiara",
     income: 1200,
+    maintenanceCost: 5,
     buildTime: 60
   },
   dairy_farm: {
@@ -46,6 +50,7 @@ export const komoditasPanganRate = {
     unit: "liter",
     desc: "Sapi Perah",
     income: 25,
+    maintenanceCost: 5,
     buildTime: 30
   },
   cattle_farm: {
@@ -54,6 +59,7 @@ export const komoditasPanganRate = {
     unit: "ekor",
     desc: "Sapi Potong",
     income: 150,
+    maintenanceCost: 5,
     buildTime: 45
   },
   shrimp_farm: {
@@ -62,6 +68,7 @@ export const komoditasPanganRate = {
     unit: "ton",
     desc: "Udang",
     income: 280,
+    maintenanceCost: 5,
     buildTime: 30
   },
 
@@ -72,6 +79,7 @@ export const komoditasPanganRate = {
     unit: "ton",
     desc: "Gandum",
     income: 75,
+    maintenanceCost: 5,
     buildTime: 50
   },
   corn_field: {
@@ -88,6 +96,7 @@ export const komoditasPanganRate = {
     unit: "ton",
     desc: "Kakao",
     income: 450,
+    maintenanceCost: 5,
     buildTime: 100
   },
   soybean_field: {
@@ -96,6 +105,7 @@ export const komoditasPanganRate = {
     unit: "ton",
     desc: "Kedelai",
     income: 80,
+    maintenanceCost: 5,
     buildTime: 40
   },
   palm_oil_plantation: {
@@ -104,6 +114,7 @@ export const komoditasPanganRate = {
     unit: "ton",
     desc: "Kelapa Sawit",
     income: 320,
+    maintenanceCost: 5,
     buildTime: 120
   },
   coffee_plantation: {
@@ -112,6 +123,7 @@ export const komoditasPanganRate = {
     unit: "ton",
     desc: "Kopi",
     income: 550,
+    maintenanceCost: 5,
     buildTime: 110
   },
   paddy_field: {
@@ -120,6 +132,7 @@ export const komoditasPanganRate = {
     unit: "ton",
     desc: "Padi",
     income: 95,
+    maintenanceCost: 5,
     buildTime: 45
   },
   vegetable_farm: {
@@ -128,6 +141,7 @@ export const komoditasPanganRate = {
     unit: "ton",
     desc: "Sayuran",
     income: 55,
+    maintenanceCost: 5,
     buildTime: 20
   },
   sugarcane_plantation: {
@@ -136,6 +150,7 @@ export const komoditasPanganRate = {
     unit: "ton",
     desc: "Tebu",
     income: 40,
+    maintenanceCost: 5,
     buildTime: 60
   },
   tea_plantation: {
@@ -144,6 +159,7 @@ export const komoditasPanganRate = {
     unit: "ton",
     desc: "Teh",
     income: 410,
+    maintenanceCost: 5,
     buildTime: 90
   },
   tuber_field: {
@@ -152,6 +168,7 @@ export const komoditasPanganRate = {
     unit: "ton",
     desc: "Umbi-umbian",
     income: 35,
+    maintenanceCost: 5,
     buildTime: 35
   }
 };

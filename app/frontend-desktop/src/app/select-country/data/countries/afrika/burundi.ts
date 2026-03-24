@@ -136,7 +136,7 @@ export const burundi: CountryData = {
     "armory": 20,
     "tank_hangar": 8,
     "military_academy": 28,
-    "budget": 24,
+    "budget": 9,
     "personnel": 16307,
     "strength": 16.660809349923973,
     "military_fleet": {

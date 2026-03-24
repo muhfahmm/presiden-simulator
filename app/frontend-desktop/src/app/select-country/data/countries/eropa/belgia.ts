@@ -132,7 +132,7 @@ export const belgia: CountryData = {
     "armory": 2,
     "tank_hangar": 22,
     "military_academy": 20,
-    "budget": 23252,
+    "budget": 1736,
     "personnel": 17011,
     "strength": 16.660809349923973,
     "military_fleet": {

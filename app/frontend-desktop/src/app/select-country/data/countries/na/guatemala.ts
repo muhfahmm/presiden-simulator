@@ -132,7 +132,7 @@ export const guatemala: CountryData = {
     "armory": 5,
     "tank_hangar": 9,
     "military_academy": 33,
-    "budget": 23,
+    "budget": 263,
     "personnel": 18243,
     "strength": 16.660809349923973,
     "military_fleet": {

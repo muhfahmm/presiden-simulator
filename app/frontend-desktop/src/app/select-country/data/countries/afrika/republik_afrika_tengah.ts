@@ -136,7 +136,7 @@ export const republik_afrika_tengah: CountryData = {
     "armory": 6,
     "tank_hangar": 17,
     "military_academy": 5,
-    "budget": 15,
+    "budget": 6,
     "personnel": 12392,
     "strength": 16.660809349923973,
     "military_fleet": {

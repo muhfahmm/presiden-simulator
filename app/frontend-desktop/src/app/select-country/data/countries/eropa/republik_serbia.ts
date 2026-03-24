@@ -132,7 +132,7 @@ export const republik_serbia: CountryData = {
     "armory": 8,
     "tank_hangar": 14,
     "military_academy": 5,
-    "budget": 15,
+    "budget": 188,
     "personnel": 11561,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const swiss: CountryData = {
     "armory": 5,
     "tank_hangar": 26,
     "military_academy": 29,
-    "budget": 32846,
+    "budget": 2528,
     "personnel": 28391,
     "strength": 16.660809349923973,
     "military_fleet": {

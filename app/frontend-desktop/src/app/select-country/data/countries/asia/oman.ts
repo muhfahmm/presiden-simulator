@@ -132,7 +132,7 @@ export const oman: CountryData = {
     "armory": 24,
     "tank_hangar": 1,
     "military_academy": 30,
-    "budget": 40,
+    "budget": 291,
     "personnel": 11963,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const fiji: CountryData = {
     "armory": 32,
     "tank_hangar": 20,
     "military_academy": 34,
-    "budget": 37,
+    "budget": 13,
     "personnel": 15193,
     "strength": 16.660809349923973,
     "military_fleet": {

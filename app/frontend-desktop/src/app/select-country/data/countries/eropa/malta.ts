@@ -132,7 +132,7 @@ export const malta: CountryData = {
     "armory": 11,
     "tank_hangar": 12,
     "military_academy": 28,
-    "budget": 32,
+    "budget": 55,
     "personnel": 16653,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const meksiko: CountryData = {
     "armory": 20,
     "tank_hangar": 4,
     "military_academy": 34,
-    "budget": 70596,
+    "budget": 4972,
     "personnel": 17715,
     "strength": 16.660809349923973,
     "military_fleet": {

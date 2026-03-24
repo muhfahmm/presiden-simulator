@@ -132,7 +132,7 @@ export const bolivia: CountryData = {
     "armory": 25,
     "tank_hangar": 7,
     "military_academy": 36,
-    "budget": 1643,
+    "budget": 122,
     "personnel": 22740,
     "strength": 16.660809349923973,
     "military_fleet": {

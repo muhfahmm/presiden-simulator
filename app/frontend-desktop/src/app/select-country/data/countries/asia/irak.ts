@@ -132,7 +132,7 @@ export const irak: CountryData = {
     "armory": 9,
     "tank_hangar": 18,
     "military_academy": 12,
-    "budget": 8,
+    "budget": 744,
     "personnel": 28713,
     "strength": 16.660809349923973,
     "military_fleet": {

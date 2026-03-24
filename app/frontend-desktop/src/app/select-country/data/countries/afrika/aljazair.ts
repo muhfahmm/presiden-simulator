@@ -136,7 +136,7 @@ export const aljazair: CountryData = {
     "armory": 16,
     "tank_hangar": 20,
     "military_academy": 14,
-    "budget": 33,
+    "budget": 666,
     "personnel": 29427,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const bosnia_dan_hercegovina: CountryData = {
     "armory": 9,
     "tank_hangar": 37,
     "military_academy": 30,
-    "budget": 35,
+    "budget": 66,
     "personnel": 21185,
     "strength": 16.660809349923973,
     "military_fleet": {

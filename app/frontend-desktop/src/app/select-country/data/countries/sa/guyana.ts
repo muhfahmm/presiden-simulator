@@ -132,7 +132,7 @@ export const guyana: CountryData = {
     "armory": 22,
     "tank_hangar": 7,
     "military_academy": 18,
-    "budget": 737,
+    "budget": 41,
     "personnel": 23186,
     "strength": 16.660809349923973,
     "military_fleet": {

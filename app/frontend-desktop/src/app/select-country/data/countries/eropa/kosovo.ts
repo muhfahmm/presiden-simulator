@@ -132,7 +132,7 @@ export const kosovo: CountryData = {
     "armory": 13,
     "tank_hangar": 10,
     "military_academy": 30,
-    "budget": 396,
+    "budget": 27,
     "personnel": 8186,
     "strength": 16.660809349923973,
     "military_fleet": {

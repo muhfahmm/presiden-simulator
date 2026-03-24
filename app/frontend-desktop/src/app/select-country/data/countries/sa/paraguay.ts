@@ -132,7 +132,7 @@ export const paraguay: CountryData = {
     "armory": 7,
     "tank_hangar": 20,
     "military_academy": 31,
-    "budget": 18,
+    "budget": 122,
     "personnel": 17776,
     "strength": 16.660809349923973,
     "military_fleet": {

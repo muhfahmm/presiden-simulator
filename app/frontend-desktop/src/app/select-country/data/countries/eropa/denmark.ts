@@ -132,7 +132,7 @@ export const denmark: CountryData = {
     "armory": 3,
     "tank_hangar": 25,
     "military_academy": 40,
-    "budget": 23,
+    "budget": 1139,
     "personnel": 15749,
     "strength": 16.660809349923973,
     "military_fleet": {

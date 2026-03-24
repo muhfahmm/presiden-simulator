@@ -132,7 +132,7 @@ export const uni_emirat_arab: CountryData = {
     "armory": 16,
     "tank_hangar": 31,
     "military_academy": 15,
-    "budget": 18789,
+    "budget": 1416,
     "personnel": 9335,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const finlandia: CountryData = {
     "armory": 21,
     "tank_hangar": 39,
     "military_academy": 9,
-    "budget": 10789,
+    "budget": 833,
     "personnel": 7855,
     "strength": 16.660809349923973,
     "military_fleet": {

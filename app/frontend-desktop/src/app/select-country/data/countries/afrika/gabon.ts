@@ -136,7 +136,7 @@ export const gabon: CountryData = {
     "armory": 30,
     "tank_hangar": 11,
     "military_academy": 27,
-    "budget": 736,
+    "budget": 55,
     "personnel": 16086,
     "strength": 16.660809349923973,
     "military_fleet": {

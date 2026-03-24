@@ -132,7 +132,7 @@ export const palestina: CountryData = {
     "armory": 32,
     "tank_hangar": 35,
     "military_academy": 5,
-    "budget": 32,
+    "budget": 55,
     "personnel": 10762,
     "strength": 16.660809349923973,
     "military_fleet": {

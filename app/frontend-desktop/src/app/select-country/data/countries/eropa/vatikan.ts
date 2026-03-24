@@ -132,7 +132,7 @@ export const vatikan: CountryData = {
     "armory": 26,
     "tank_hangar": 2,
     "military_academy": 30,
-    "budget": 9,
+    "budget": 27,
     "personnel": 25857,
     "strength": 16.660809349923973,
     "military_fleet": {

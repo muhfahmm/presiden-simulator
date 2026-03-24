@@ -132,7 +132,7 @@ export const liechtenstein: CountryData = {
     "armory": 27,
     "tank_hangar": 7,
     "military_academy": 10,
-    "budget": 34,
+    "budget": 27,
     "personnel": 21650,
     "strength": 16.660809349923973,
     "military_fleet": {

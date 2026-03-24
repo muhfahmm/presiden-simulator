@@ -1,21 +1,7 @@
 import React from 'react';
 import { X, Mail, ShieldAlert, MessageSquare } from 'lucide-react';
 
-interface InboxItem {
-  id: string;
-  source: string;
-  subject: string;
-  time: string;
-  read: boolean;
-  priority: 'low' | 'medium' | 'high';
-}
-
-const mockMessages: InboxItem[] = [
-  { id: '1', source: 'Badan Pusat Statistik', subject: 'Laporan Pertumbuhan Ekonomi Kuartal I', time: '2 jam yang lalu', read: false, priority: 'medium' },
-  { id: '2', source: 'Kementerian Pertahanan', subject: 'Laporan Kesiapan Armada Militer Nasional', time: '5 jam yang lalu', read: true, priority: 'high' },
-  { id: '3', source: 'Menteri Luar Negeri', subject: 'Tawaran Perjanjian Perdagangan dari Tiongkok', time: 'Kemarin', read: true, priority: 'medium' },
-  { id: '4', source: 'Intelijen Negara', subject: 'Laporan Stabilitas Keamanan Wilayah Perbatasan', time: '2 hari yang lalu', read: true, priority: 'high' }
-];
+import { inboxStorage, InboxItem } from './inboxStorage';
 
 interface InboxModalProps {
   isOpen: boolean;
@@ -23,6 +9,20 @@ interface InboxModalProps {
 }
 
 export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
+  const [messages, setMessages] = React.useState<InboxItem[]>([]);
+
+  React.useEffect(() => {
+    if (isOpen) {
+      setMessages(inboxStorage.getMessages());
+    }
+  }, [isOpen]);
+
+  React.useEffect(() => {
+    const handleUpdate = () => setMessages(inboxStorage.getMessages());
+    window.addEventListener('inbox_updated', handleUpdate);
+    return () => window.removeEventListener('inbox_updated', handleUpdate);
+  }, []);
+
   if (!isOpen) return null;
 
   return (
@@ -46,16 +46,25 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-6 space-y-3 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
-          {mockMessages.map((msg) => (
-            <div 
-              key={msg.id}
-              className={`group p-5 rounded-2xl border transition-all cursor-pointer relative overflow-hidden ${
-                msg.read ? 'bg-zinc-900/20 border-zinc-900' : 'bg-blue-500/5 border-blue-500/20 shadow-[0_0_20px_rgba(59,130,246,0.05)]'
-              } hover:border-zinc-700`}
-            >
-              {!msg.read && (
-                <div className="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
-              )}
+          {messages.length === 0 ? (
+            <div className="flex flex-col items-center justify-center p-12 text-center text-zinc-500">
+              <Mail className="h-12 w-12 mb-4 opacity-20" />
+              <p className="font-medium">Tidak ada pesan di Kotak Masuk</p>
+            </div>
+          ) : (
+            messages.map((msg) => (
+              <div 
+                key={msg.id}
+                onClick={() => {
+                  if (!msg.read) inboxStorage.markAsRead(msg.id);
+                }}
+                className={`group p-5 rounded-2xl border transition-all cursor-pointer relative overflow-hidden ${
+                  msg.read ? 'bg-zinc-900/20 border-zinc-900' : 'bg-blue-500/5 border-blue-500/20 shadow-[0_0_20px_rgba(59,130,246,0.05)]'
+                } hover:border-zinc-700`}
+              >
+                {!msg.read && (
+                  <div className="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                )}
               <div className="flex items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
                   <div className={`p-3 rounded-xl ${msg.priority === 'high' ? 'bg-red-500/10 text-red-500' : 'bg-zinc-800 text-zinc-500'}`}>
@@ -74,12 +83,8 @@ export default function InboxModal({ isOpen, onClose }: InboxModalProps) {
                 {!msg.read && <div className="h-2 w-2 rounded-full bg-blue-500 animate-pulse"></div>}
               </div>
             </div>
-          ))}
-        </div>
-
-        {/* Footer */}
-        <div className="p-6 border-t border-zinc-900 bg-zinc-900/10 text-center">
-            <span className="text-[9px] font-black text-zinc-600 uppercase tracking-[0.3em] italic">Terhubung Pada Jaringan Terenkripsi Kominfo_v4.5</span>
+          ))
+        )}
         </div>
       </div>
     </div>

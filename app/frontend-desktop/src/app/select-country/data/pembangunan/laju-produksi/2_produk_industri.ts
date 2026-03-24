@@ -6,6 +6,7 @@ export const produkIndustriRate = {
     unit: "unit",
     desc: "Industri Semikonduktor",
     income: 450,
+    maintenanceCost: 25,
     buildTime: 45
   },
   car_factory: {
@@ -14,6 +15,7 @@ export const produkIndustriRate = {
     unit: "unit",
     desc: "Pabrik Mobil",
     income: 800,
+    maintenanceCost: 25,
     buildTime: 60
   },
   motorcycle_factory: {
@@ -22,6 +24,7 @@ export const produkIndustriRate = {
     unit: "unit",
     desc: "Pabrik Motor",
     income: 250,
+    maintenanceCost: 25,
     buildTime: 40
   },
   cement_factory: {
@@ -30,6 +33,7 @@ export const produkIndustriRate = {
     unit: "ton",
     desc: "Pabrik Semen",
     income: 120,
+    maintenanceCost: 25,
     buildTime: 45
   },
   smelter: {
@@ -38,6 +42,7 @@ export const produkIndustriRate = {
     unit: "ton",
     desc: "Smelter Logam",
     income: 600,
+    maintenanceCost: 25,
     buildTime: 90
   },
 
@@ -48,6 +53,7 @@ export const produkIndustriRate = {
     unit: "liter",
     desc: "Pabrik Air Minum",
     income: 35,
+    maintenanceCost: 10,
     buildTime: 15
   },
   pharma_factory: {
@@ -56,6 +62,7 @@ export const produkIndustriRate = {
     unit: "box",
     desc: "Industri Farmasi",
     income: 350,
+    maintenanceCost: 15,
     buildTime: 45
   },
   sugar_factory: {
@@ -64,6 +71,7 @@ export const produkIndustriRate = {
     unit: "ton",
     desc: "Pabrik Gula",
     income: 85,
+    maintenanceCost: 10,
     buildTime: 30
   },
   noodle_factory: {
@@ -72,6 +80,7 @@ export const produkIndustriRate = {
     unit: "pcs",
     desc: "Pabrik Mie Instan",
     income: 25,
+    maintenanceCost: 10,
   },
   meat_processing_factory: {
     no: 10,
@@ -79,6 +88,7 @@ export const produkIndustriRate = {
     unit: "ton",
     desc: "Pengolahan Daging",
     income: 110,
+    maintenanceCost: 10,
     buildTime: 25
   },
   sawmill: {
@@ -87,6 +97,7 @@ export const produkIndustriRate = {
     unit: "m3",
     desc: "Pengolahan Kayu",
     income: 65,
+    maintenanceCost: 10,
     buildTime: 20
   },
   fertilizer_factory: {
@@ -95,6 +106,7 @@ export const produkIndustriRate = {
     unit: "ton",
     desc: "Pabrik Pupuk",
     income: 140,
+    maintenanceCost: 15,
     buildTime: 35
   },
   bakery_factory: {
@@ -103,6 +115,7 @@ export const produkIndustriRate = {
     unit: "lot",
     desc: "Pabrik Roti",
     income: 45,
+    maintenanceCost: 10,
     buildTime: 15
   }
 };

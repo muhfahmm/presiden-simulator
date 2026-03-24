@@ -6,7 +6,6 @@ const TRADE_STORAGE_KEY = "game_trades";
 
 export const tradeStorage = {
   getSession: () => {
-    if (typeof window === 'undefined') return null;
     return gameStorage.getSession();
   },
 
@@ -16,9 +15,7 @@ export const tradeStorage = {
 
   saveTrade: (countryName: string, tradeData: any) => {
     if (typeof window === 'undefined') return;
-    const session = gameStorage.getSession();
-    const sessionId = session ? session.startTime : 'default';
-    const key = `${sessionId}_${countryName}`;
+    const key = countryName;
     const allTrades = tradeStorage.getAllTrades();
     allTrades[key] = tradeData;
     localStorage.setItem(TRADE_STORAGE_KEY, JSON.stringify(allTrades));
@@ -26,9 +23,7 @@ export const tradeStorage = {
 
   getTrade: (countryName: string): any | null => {
     if (typeof window === 'undefined') return null;
-    const session = gameStorage.getSession();
-    const sessionId = session ? session.startTime : 'default';
-    const key = `${sessionId}_${countryName}`;
+    const key = countryName;
     const allTrades = tradeStorage.getAllTrades();
     return allTrades[key] || null;
   },

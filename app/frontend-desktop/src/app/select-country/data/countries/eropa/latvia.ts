@@ -132,7 +132,7 @@ export const latvia: CountryData = {
     "armory": 25,
     "tank_hangar": 32,
     "military_academy": 38,
-    "budget": 25,
+    "budget": 119,
     "personnel": 25559,
     "strength": 16.660809349923973,
     "military_fleet": {

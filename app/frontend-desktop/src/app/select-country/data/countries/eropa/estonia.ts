@@ -132,7 +132,7 @@ export const estonia: CountryData = {
     "armory": 8,
     "tank_hangar": 11,
     "military_academy": 33,
-    "budget": 1460,
+    "budget": 111,
     "personnel": 21911,
     "strength": 16.660809349923973,
     "military_fleet": {

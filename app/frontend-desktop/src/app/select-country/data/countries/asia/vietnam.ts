@@ -132,7 +132,7 @@ export const vietnam: CountryData = {
     "armory": 33,
     "tank_hangar": 13,
     "military_academy": 24,
-    "budget": 16439,
+    "budget": 1194,
     "personnel": 9297,
     "strength": 16.660809349923973,
     "military_fleet": {

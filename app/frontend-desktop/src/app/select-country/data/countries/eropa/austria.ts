@@ -132,7 +132,7 @@ export const austria: CountryData = {
     "armory": 6,
     "tank_hangar": 7,
     "military_academy": 11,
-    "budget": 62842,
+    "budget": 1416,
     "personnel": 29535,
     "strength": 16.660809349923973,
     "military_fleet": {

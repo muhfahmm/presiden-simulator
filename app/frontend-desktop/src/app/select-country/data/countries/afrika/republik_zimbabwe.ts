@@ -136,7 +136,7 @@ export const republik_zimbabwe: CountryData = {
     "armory": 9,
     "tank_hangar": 2,
     "military_academy": 20,
-    "budget": 33,
+    "budget": 55,
     "personnel": 13156,
     "strength": 16.660809349923973,
     "military_fleet": {

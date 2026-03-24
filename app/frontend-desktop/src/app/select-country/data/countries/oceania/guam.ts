@@ -132,7 +132,7 @@ export const guam: CountryData = {
     "armory": 24,
     "tank_hangar": 2,
     "military_academy": 11,
-    "budget": 5,
+    "budget": 27,
     "personnel": 17421,
     "strength": 16.660809349923973,
     "military_fleet": {

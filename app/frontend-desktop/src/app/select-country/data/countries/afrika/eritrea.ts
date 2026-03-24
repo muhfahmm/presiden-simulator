@@ -136,7 +136,7 @@ export const eritrea: CountryData = {
     "armory": 13,
     "tank_hangar": 14,
     "military_academy": 4,
-    "budget": 95,
+    "budget": 6,
     "personnel": 16818,
     "strength": 16.660809349923973,
     "military_fleet": {

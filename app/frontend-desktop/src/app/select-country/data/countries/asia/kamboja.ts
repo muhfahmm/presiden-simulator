@@ -132,7 +132,7 @@ export const kamboja: CountryData = {
     "armory": 25,
     "tank_hangar": 22,
     "military_academy": 15,
-    "budget": 1613,
+    "budget": 83,
     "personnel": 20038,
     "strength": 16.660809349923973,
     "military_fleet": {

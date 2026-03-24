@@ -132,7 +132,7 @@ export const tahiti: CountryData = {
     "armory": 33,
     "tank_hangar": 18,
     "military_academy": 21,
-    "budget": 14,
+    "budget": 27,
     "personnel": 15019,
     "strength": 16.660809349923973,
     "military_fleet": {

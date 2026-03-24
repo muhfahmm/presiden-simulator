@@ -132,7 +132,7 @@ export const malaysia: CountryData = {
     "armory": 9,
     "tank_hangar": 33,
     "military_academy": 18,
-    "budget": 15593,
+    "budget": 1111,
     "personnel": 5130,
     "strength": 16.660809349923973,
     "military_fleet": {

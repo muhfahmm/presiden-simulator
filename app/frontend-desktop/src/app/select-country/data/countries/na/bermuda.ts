@@ -132,7 +132,7 @@ export const bermuda: CountryData = {
     "armory": 21,
     "tank_hangar": 15,
     "military_academy": 37,
-    "budget": 11,
+    "budget": 27,
     "personnel": 9667,
     "strength": 16.660809349923973,
     "military_fleet": {

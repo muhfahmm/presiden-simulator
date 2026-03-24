@@ -132,7 +132,7 @@ export const myanmar: CountryData = {
     "armory": 28,
     "tank_hangar": 35,
     "military_academy": 15,
-    "budget": 2380,
+    "budget": 166,
     "personnel": 26184,
     "strength": 16.660809349923973,
     "military_fleet": {

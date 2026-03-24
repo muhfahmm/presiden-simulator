@@ -132,7 +132,7 @@ export const marshall: CountryData = {
     "armory": 10,
     "tank_hangar": 31,
     "military_academy": 16,
-    "budget": 5333,
+    "budget": 1,
     "personnel": 10658,
     "strength": 16.660809349923973,
     "military_fleet": {

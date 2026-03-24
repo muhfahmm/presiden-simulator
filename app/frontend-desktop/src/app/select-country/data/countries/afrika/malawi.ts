@@ -136,7 +136,7 @@ export const malawi: CountryData = {
     "armory": 1,
     "tank_hangar": 9,
     "military_academy": 38,
-    "budget": 8,
+    "budget": 33,
     "personnel": 8841,
     "strength": 16.660809349923973,
     "military_fleet": {

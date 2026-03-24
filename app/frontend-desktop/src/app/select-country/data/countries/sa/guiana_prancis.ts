@@ -132,7 +132,7 @@ export const guiana_prancis: CountryData = {
     "armory": 27,
     "tank_hangar": 20,
     "military_academy": 30,
-    "budget": 26,
+    "budget": 27,
     "personnel": 25948,
     "strength": 16.660809349923973,
     "military_fleet": {

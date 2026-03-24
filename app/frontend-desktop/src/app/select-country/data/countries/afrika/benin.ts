@@ -136,7 +136,7 @@ export const benin: CountryData = {
     "armory": 27,
     "tank_hangar": 12,
     "military_academy": 5,
-    "budget": 752,
+    "budget": 52,
     "personnel": 11853,
     "strength": 16.660809349923973,
     "military_fleet": {

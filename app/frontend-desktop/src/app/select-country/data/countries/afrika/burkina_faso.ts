@@ -136,7 +136,7 @@ export const burkina_faso: CountryData = {
     "armory": 5,
     "tank_hangar": 15,
     "military_academy": 37,
-    "budget": 16,
+    "budget": 50,
     "personnel": 20867,
     "strength": 16.660809349923973,
     "military_fleet": {

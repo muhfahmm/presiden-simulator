@@ -132,7 +132,7 @@ export const uzbekistan: CountryData = {
     "armory": 30,
     "tank_hangar": 14,
     "military_academy": 33,
-    "budget": 3716,
+    "budget": 250,
     "personnel": 20621,
     "strength": 16.660809349923973,
     "military_fleet": {

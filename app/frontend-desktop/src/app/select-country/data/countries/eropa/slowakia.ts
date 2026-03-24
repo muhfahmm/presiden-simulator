@@ -132,7 +132,7 @@ export const slowakia: CountryData = {
     "armory": 19,
     "tank_hangar": 36,
     "military_academy": 19,
-    "budget": 30,
+    "budget": 361,
     "personnel": 9966,
     "strength": 16.660809349923973,
     "military_fleet": {

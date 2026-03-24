@@ -132,7 +132,7 @@ export const antigua_dan_barbuda: CountryData = {
     "armory": 8,
     "tank_hangar": 7,
     "military_academy": 13,
-    "budget": 15,
+    "budget": 27,
     "personnel": 16148,
     "strength": 16.660809349923973,
     "military_fleet": {

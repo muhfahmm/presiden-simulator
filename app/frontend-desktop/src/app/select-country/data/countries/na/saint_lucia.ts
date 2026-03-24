@@ -132,7 +132,7 @@ export const saint_lucia: CountryData = {
     "armory": 19,
     "tank_hangar": 34,
     "military_academy": 23,
-    "budget": 8,
+    "budget": 27,
     "personnel": 29084,
     "strength": 16.660809349923973,
     "military_fleet": {

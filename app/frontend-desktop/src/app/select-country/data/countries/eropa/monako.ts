@@ -132,7 +132,7 @@ export const monako: CountryData = {
     "armory": 21,
     "tank_hangar": 4,
     "military_academy": 6,
-    "budget": 3,
+    "budget": 27,
     "personnel": 5709,
     "strength": 16.660809349923973,
     "military_fleet": {

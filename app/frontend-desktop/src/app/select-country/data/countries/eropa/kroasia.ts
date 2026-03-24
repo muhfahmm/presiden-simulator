@@ -132,7 +132,7 @@ export const kroasia: CountryData = {
     "armory": 9,
     "tank_hangar": 18,
     "military_academy": 12,
-    "budget": 1,
+    "budget": 216,
     "personnel": 7037,
     "strength": 16.660809349923973,
     "military_fleet": {

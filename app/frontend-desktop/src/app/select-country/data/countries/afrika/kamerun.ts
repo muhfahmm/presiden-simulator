@@ -136,7 +136,7 @@ export const kamerun: CountryData = {
     "armory": 5,
     "tank_hangar": 13,
     "military_academy": 21,
-    "budget": 24,
+    "budget": 125,
     "personnel": 11152,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const polandia: CountryData = {
     "armory": 9,
     "tank_hangar": 29,
     "military_academy": 28,
-    "budget": 29561,
+    "budget": 2333,
     "personnel": 26707,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -136,7 +136,7 @@ export const mesir: CountryData = {
     "armory": 18,
     "tank_hangar": 19,
     "military_academy": 27,
-    "budget": 13783,
+    "budget": 1097,
     "personnel": 18783,
     "strength": 16.660809349923973,
     "military_fleet": {

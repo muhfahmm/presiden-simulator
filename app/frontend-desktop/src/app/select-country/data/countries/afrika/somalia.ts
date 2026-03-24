@@ -136,7 +136,7 @@ export const somalia: CountryData = {
     "armory": 25,
     "tank_hangar": 11,
     "military_academy": 13,
-    "budget": 448,
+    "budget": 22,
     "personnel": 26203,
     "strength": 16.660809349923973,
     "military_fleet": {

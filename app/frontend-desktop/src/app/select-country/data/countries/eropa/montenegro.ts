@@ -132,7 +132,7 @@ export const montenegro: CountryData = {
     "armory": 19,
     "tank_hangar": 30,
     "military_academy": 4,
-    "budget": 29,
+    "budget": 19,
     "personnel": 12867,
     "strength": 16.660809349923973,
     "military_fleet": {

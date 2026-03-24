@@ -6,6 +6,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     production: 20,
     unit: "MW",
     desc: "PLTS (Panel Surya)",
+    maintenanceCost: 2,
     buildTime: 30
   },
   wind_plant: {
@@ -13,6 +14,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     production: 10,
     unit: "MW",
     desc: "PLTB (Angin)",
+    maintenanceCost: 3,
     buildTime: 45
   },
   hydro_plant: {
@@ -20,6 +22,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     production: 100,
     unit: "MW",
     desc: "PLTA (Hidroelektrik)",
+    maintenanceCost: 15,
     buildTime: 180
   },
   nuclear_plant: {
@@ -27,6 +30,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     production: 1000,
     unit: "MW",
     desc: "PLTN (Fisi Nuklir)",
+    maintenanceCost: 80,
     buildTime: 365
   },
   thermal_plant: {
@@ -34,6 +38,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     production: 500,
     unit: "MW",
     desc: "PLT Thermal",
+    maintenanceCost: 40,
     buildTime: 120
   },
   gas_plant: {
@@ -41,6 +46,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     production: 300,
     unit: "MW",
     desc: "PLTG (Gas Alam)",
+    maintenanceCost: 25,
     buildTime: 90
   }
 };

@@ -132,7 +132,7 @@ export const bangladesh: CountryData = {
     "armory": 38,
     "tank_hangar": 18,
     "military_academy": 22,
-    "budget": 15766,
+    "budget": 1277,
     "personnel": 8753,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const armenia: CountryData = {
     "armory": 11,
     "tank_hangar": 27,
     "military_academy": 38,
-    "budget": 908,
+    "budget": 61,
     "personnel": 13691,
     "strength": 16.660809349923973,
     "military_fleet": {

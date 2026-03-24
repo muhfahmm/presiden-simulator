@@ -132,7 +132,7 @@ export const mongolia: CountryData = {
     "armory": 16,
     "tank_hangar": 38,
     "military_academy": 34,
-    "budget": 28,
+    "budget": 50,
     "personnel": 20325,
     "strength": 16.660809349923973,
     "military_fleet": {

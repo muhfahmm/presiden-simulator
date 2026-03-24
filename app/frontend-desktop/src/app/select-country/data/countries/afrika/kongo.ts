@@ -136,7 +136,7 @@ export const kongo: CountryData = {
     "armory": 3,
     "tank_hangar": 19,
     "military_academy": 40,
-    "budget": 26,
+    "budget": 41,
     "personnel": 7783,
     "strength": 16.660809349923973,
     "military_fleet": {

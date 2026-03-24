@@ -132,7 +132,7 @@ export const gibraltar: CountryData = {
     "armory": 16,
     "tank_hangar": 21,
     "military_academy": 24,
-    "budget": 23,
+    "budget": 27,
     "personnel": 14652,
     "strength": 16.660809349923973,
     "military_fleet": {

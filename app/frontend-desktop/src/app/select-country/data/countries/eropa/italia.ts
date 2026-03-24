@@ -132,7 +132,7 @@ export const italia: CountryData = {
     "armory": 39,
     "tank_hangar": 18,
     "military_academy": 17,
-    "budget": 81481,
+    "budget": 6472,
     "personnel": 10534,
     "strength": 16.660809349923973,
     "military_fleet": {

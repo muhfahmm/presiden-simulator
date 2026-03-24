@@ -132,7 +132,7 @@ export const andorra: CountryData = {
     "armory": 18,
     "tank_hangar": 31,
     "military_academy": 3,
-    "budget": 141,
+    "budget": 27,
     "personnel": 5837,
     "strength": 16.660809349923973,
     "military_fleet": {

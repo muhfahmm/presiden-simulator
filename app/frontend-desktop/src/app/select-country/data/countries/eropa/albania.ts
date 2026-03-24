@@ -132,7 +132,7 @@ export const albania: CountryData = {
     "armory": 22,
     "tank_hangar": 22,
     "military_academy": 7,
-    "budget": 947,
+    "budget": 61,
     "personnel": 13779,
     "strength": 16.660809349923973,
     "military_fleet": {

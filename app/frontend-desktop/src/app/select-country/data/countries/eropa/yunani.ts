@@ -132,7 +132,7 @@ export const yunani: CountryData = {
     "armory": 11,
     "tank_hangar": 25,
     "military_academy": 10,
-    "budget": 36,
+    "budget": 638,
     "personnel": 24523,
     "strength": 16.660809349923973,
     "military_fleet": {

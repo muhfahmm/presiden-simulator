@@ -136,7 +136,7 @@ export const ghana: CountryData = {
     "armory": 14,
     "tank_hangar": 20,
     "military_academy": 18,
-    "budget": 2635,
+    "budget": 211,
     "personnel": 15287,
     "strength": 16.660809349923973,
     "military_fleet": {

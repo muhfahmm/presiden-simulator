@@ -132,7 +132,7 @@ export const hungaria: CountryData = {
     "armory": 12,
     "tank_hangar": 12,
     "military_academy": 37,
-    "budget": 7819,
+    "budget": 583,
     "personnel": 7893,
     "strength": 16.660809349923973,
     "military_fleet": {

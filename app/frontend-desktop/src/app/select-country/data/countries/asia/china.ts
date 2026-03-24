@@ -132,7 +132,7 @@ export const china: CountryData = {
     "armory": 37,
     "tank_hangar": 28,
     "military_academy": 15,
-    "budget": 656241,
+    "budget": 51476,
     "personnel": 24571,
     "strength": 16.660809349923973,
     "military_fleet": {

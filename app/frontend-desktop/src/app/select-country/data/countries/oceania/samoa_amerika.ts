@@ -132,7 +132,7 @@ export const samoa_amerika: CountryData = {
     "armory": 31,
     "tank_hangar": 12,
     "military_academy": 37,
-    "budget": 32,
+    "budget": 27,
     "personnel": 20895,
     "strength": 16.660809349923973,
     "military_fleet": {

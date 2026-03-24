@@ -132,7 +132,7 @@ export const filipina: CountryData = {
     "armory": 26,
     "tank_hangar": 30,
     "military_academy": 31,
-    "budget": 16503,
+    "budget": 1208,
     "personnel": 21168,
     "strength": 16.660809349923973,
     "military_fleet": {

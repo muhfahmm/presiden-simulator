@@ -136,7 +136,7 @@ export const komoro: CountryData = {
     "armory": 39,
     "tank_hangar": 27,
     "military_academy": 9,
-    "budget": 50,
+    "budget": 3,
     "personnel": 27240,
     "strength": 16.660809349923973,
     "military_fleet": {

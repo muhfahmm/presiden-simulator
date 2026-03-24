@@ -132,7 +132,7 @@ export const iran: CountryData = {
     "armory": 17,
     "tank_hangar": 4,
     "military_academy": 5,
-    "budget": 18,
+    "budget": 1027,
     "personnel": 23614,
     "strength": 16.660809349923973,
     "military_fleet": {

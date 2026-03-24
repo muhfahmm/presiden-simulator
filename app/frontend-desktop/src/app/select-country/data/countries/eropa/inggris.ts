@@ -132,7 +132,7 @@ export const inggris: CountryData = {
     "armory": 9,
     "tank_hangar": 1,
     "military_academy": 26,
-    "budget": 122333,
+    "budget": 9723,
     "personnel": 11285,
     "strength": 16.660809349923973,
     "military_fleet": {

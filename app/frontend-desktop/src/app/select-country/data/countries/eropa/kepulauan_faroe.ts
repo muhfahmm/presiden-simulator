@@ -132,7 +132,7 @@ export const kepulauan_faroe: CountryData = {
     "armory": 18,
     "tank_hangar": 38,
     "military_academy": 23,
-    "budget": 1,
+    "budget": 27,
     "personnel": 23620,
     "strength": 16.660809349923973,
     "military_fleet": {

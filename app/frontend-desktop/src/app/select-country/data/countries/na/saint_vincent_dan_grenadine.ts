@@ -132,7 +132,7 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "armory": 21,
     "tank_hangar": 23,
     "military_academy": 40,
-    "budget": 24,
+    "budget": 27,
     "personnel": 19964,
     "strength": 16.660809349923973,
     "military_fleet": {

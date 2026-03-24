@@ -132,7 +132,7 @@ export const hong_kong: CountryData = {
     "armory": 6,
     "tank_hangar": 2,
     "military_academy": 15,
-    "budget": 14240,
+    "budget": 27,
     "personnel": 14863,
     "strength": 16.660809349923973,
     "military_fleet": {

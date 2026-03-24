@@ -132,7 +132,7 @@ export const thailand: CountryData = {
     "armory": 5,
     "tank_hangar": 36,
     "military_academy": 7,
-    "budget": 18512,
+    "budget": 1416,
     "personnel": 10734,
     "strength": 16.660809349923973,
     "military_fleet": {

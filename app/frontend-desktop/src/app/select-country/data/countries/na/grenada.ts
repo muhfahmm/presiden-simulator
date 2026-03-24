@@ -132,7 +132,7 @@ export const grenada: CountryData = {
     "armory": 20,
     "tank_hangar": 21,
     "military_academy": 32,
-    "budget": 10,
+    "budget": 27,
     "personnel": 18577,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const makedonia_utara: CountryData = {
     "armory": 34,
     "tank_hangar": 20,
     "military_academy": 22,
-    "budget": 18443,
+    "budget": 38,
     "personnel": 28814,
     "strength": 16.660809349923973,
     "military_fleet": {

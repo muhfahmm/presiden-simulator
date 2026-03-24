@@ -132,7 +132,7 @@ export const moldova: CountryData = {
     "armory": 29,
     "tank_hangar": 16,
     "military_academy": 5,
-    "budget": 35,
+    "budget": 44,
     "personnel": 12846,
     "strength": 16.660809349923973,
     "military_fleet": {

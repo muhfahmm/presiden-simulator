@@ -132,7 +132,7 @@ export const kolombia: CountryData = {
     "armory": 12,
     "tank_hangar": 34,
     "military_academy": 2,
-    "budget": 14658,
+    "budget": 944,
     "personnel": 13873,
     "strength": 16.660809349923973,
     "military_fleet": {

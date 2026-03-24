@@ -132,7 +132,7 @@ export const belize: CountryData = {
     "armory": 14,
     "tank_hangar": 14,
     "military_academy": 24,
-    "budget": 23252,
+    "budget": 6,
     "personnel": 8458,
     "strength": 16.660809349923973,
     "military_fleet": {

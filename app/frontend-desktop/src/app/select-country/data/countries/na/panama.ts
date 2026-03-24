@@ -132,7 +132,7 @@ export const panama: CountryData = {
     "armory": 13,
     "tank_hangar": 12,
     "military_academy": 18,
-    "budget": 3057,
+    "budget": 211,
     "personnel": 24498,
     "strength": 16.660809349923973,
     "military_fleet": {

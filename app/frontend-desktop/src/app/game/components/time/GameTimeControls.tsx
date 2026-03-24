@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import { Play, Pause, Calendar } from "lucide-react";
 import { INITIAL_GAME_DATE, formatGameDate, addDays, saveGameDate, getStoredGameDate } from "../../data/time/gameTime";
 import { gameStorage } from "../../gamestorage";
+import { budgetStorage } from "../ekonomi/budgetStorage";
+import { buildingStorage } from "../pembangunan/buildingStorage";
 import { countries } from "../../../select-country/data/countries";
 import { calculateDailyProductionTotals } from "../../data/production/productionLogic";
 import { calculateDailyBudgetDelta } from "../../data/economy/economyLogic";
@@ -47,11 +49,12 @@ export default function GameTimeControls() {
         (c.id && c.id === currentCountryCode)
       ) || countries[79] || countries[0];
       
-      const dailyDeltas = calculateDailyProductionTotals(currentData, session.buildingDeltas);
-      gameStorage.updateCumulativeProduction(dailyDeltas);
+      const buildingData = buildingStorage.getData();
+      const dailyDeltas = calculateDailyProductionTotals(currentData, buildingData.buildingDeltas);
+      budgetStorage.updateCumulativeProduction(dailyDeltas);
 
-      const budgetDelta = calculateDailyBudgetDelta(currentData, session);
-      gameStorage.updateBudget(budgetDelta);
+      const budgetDelta = calculateDailyBudgetDelta(currentData, buildingData.buildingDeltas);
+      budgetStorage.updateBudget(budgetDelta);
     }
   }, [gameDate]);
 

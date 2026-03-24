@@ -136,7 +136,7 @@ export const madagaskar: CountryData = {
     "armory": 5,
     "tank_hangar": 16,
     "military_academy": 5,
-    "budget": 33,
+    "budget": 41,
     "personnel": 13106,
     "strength": 16.660809349923973,
     "military_fleet": {

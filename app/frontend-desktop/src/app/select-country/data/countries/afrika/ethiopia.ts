@@ -136,7 +136,7 @@ export const ethiopia: CountryData = {
     "armory": 4,
     "tank_hangar": 8,
     "military_academy": 37,
-    "budget": 7161,
+    "budget": 430,
     "personnel": 8526,
     "strength": 16.660809349923973,
     "military_fleet": {

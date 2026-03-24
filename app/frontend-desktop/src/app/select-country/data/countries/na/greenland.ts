@@ -132,7 +132,7 @@ export const greenland: CountryData = {
     "armory": 6,
     "tank_hangar": 11,
     "military_academy": 30,
-    "budget": 6,
+    "budget": 27,
     "personnel": 5611,
     "strength": 16.660809349923973,
     "military_fleet": {

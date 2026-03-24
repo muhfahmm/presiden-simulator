@@ -132,7 +132,7 @@ export const amerika_serikat: CountryData = {
     "armory": 29,
     "tank_hangar": 37,
     "military_academy": 33,
-    "budget": 1007337,
+    "budget": 80006,
     "personnel": 29433,
     "strength": 16.660809349923973,
     "military_fleet": {

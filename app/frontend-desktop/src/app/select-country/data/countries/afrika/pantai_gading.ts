@@ -136,7 +136,7 @@ export const pantai_gading: CountryData = {
     "armory": 19,
     "tank_hangar": 24,
     "military_academy": 3,
-    "budget": 3048,
+    "budget": 194,
     "personnel": 23769,
     "strength": 16.660809349923973,
     "military_fleet": {

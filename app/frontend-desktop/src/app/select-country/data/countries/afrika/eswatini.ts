@@ -136,7 +136,7 @@ export const eswatini: CountryData = {
     "armory": 38,
     "tank_hangar": 29,
     "military_academy": 23,
-    "budget": 26,
+    "budget": 12,
     "personnel": 7566,
     "strength": 16.660809349923973,
     "military_fleet": {

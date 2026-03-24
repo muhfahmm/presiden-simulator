@@ -136,7 +136,7 @@ export const angola: CountryData = {
     "armory": 38,
     "tank_hangar": 9,
     "military_academy": 4,
-    "budget": 28,
+    "budget": 236,
     "personnel": 14025,
     "strength": 16.660809349923973,
     "military_fleet": {

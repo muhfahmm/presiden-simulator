@@ -132,7 +132,7 @@ export const vanuatu: CountryData = {
     "armory": 36,
     "tank_hangar": 36,
     "military_academy": 12,
-    "budget": 11,
+    "budget": 2,
     "personnel": 27037,
     "strength": 16.660809349923973,
     "military_fleet": {

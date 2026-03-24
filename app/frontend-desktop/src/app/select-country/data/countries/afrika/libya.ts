@@ -136,7 +136,7 @@ export const libya: CountryData = {
     "armory": 32,
     "tank_hangar": 25,
     "military_academy": 17,
-    "budget": 28,
+    "budget": 116,
     "personnel": 23085,
     "strength": 16.660809349923973,
     "military_fleet": {

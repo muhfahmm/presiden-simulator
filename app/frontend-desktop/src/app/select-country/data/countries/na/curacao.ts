@@ -132,7 +132,7 @@ export const curacao: CountryData = {
     "armory": 6,
     "tank_hangar": 35,
     "military_academy": 32,
-    "budget": 20,
+    "budget": 27,
     "personnel": 29923,
     "strength": 16.660809349923973,
     "military_fleet": {

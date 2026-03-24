@@ -136,7 +136,7 @@ export const maroko: CountryData = {
     "armory": 17,
     "tank_hangar": 22,
     "military_academy": 23,
-    "budget": 3,
+    "budget": 375,
     "personnel": 26033,
     "strength": 16.660809349923973,
     "military_fleet": {

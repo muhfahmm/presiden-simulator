@@ -132,7 +132,7 @@ export const ukraina: CountryData = {
     "armory": 11,
     "tank_hangar": 37,
     "military_academy": 29,
-    "budget": 6612,
+    "budget": 444,
     "personnel": 24941,
     "strength": 16.660809349923973,
     "military_fleet": {

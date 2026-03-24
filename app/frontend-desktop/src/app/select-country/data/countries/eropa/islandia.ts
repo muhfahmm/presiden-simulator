@@ -132,7 +132,7 @@ export const islandia: CountryData = {
     "armory": 12,
     "tank_hangar": 15,
     "military_academy": 19,
-    "budget": 38,
+    "budget": 83,
     "personnel": 11762,
     "strength": 16.660809349923973,
     "military_fleet": {

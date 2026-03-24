@@ -132,7 +132,7 @@ export const korea_selatan: CountryData = {
     "armory": 7,
     "tank_hangar": 14,
     "military_academy": 38,
-    "budget": 61633,
+    "budget": 4889,
     "personnel": 10626,
     "strength": 16.660809349923973,
     "military_fleet": {

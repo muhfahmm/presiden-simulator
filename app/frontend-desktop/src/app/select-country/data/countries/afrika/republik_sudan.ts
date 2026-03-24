@@ -136,7 +136,7 @@ export const republik_sudan: CountryData = {
     "armory": 26,
     "tank_hangar": 27,
     "military_academy": 24,
-    "budget": 34,
+    "budget": 69,
     "personnel": 29459,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -136,7 +136,7 @@ export const namibia: CountryData = {
     "armory": 22,
     "tank_hangar": 4,
     "military_academy": 30,
-    "budget": 485,
+    "budget": 36,
     "personnel": 9679,
     "strength": 16.660809349923973,
     "military_fleet": {

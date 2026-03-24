@@ -132,7 +132,7 @@ export const nauru: CountryData = {
     "armory": 37,
     "tank_hangar": 13,
     "military_academy": 25,
-    "budget": 28,
+    "budget": 1,
     "personnel": 21961,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -136,7 +136,7 @@ export const kenya: CountryData = {
     "armory": 7,
     "tank_hangar": 13,
     "military_academy": 33,
-    "budget": 4071,
+    "budget": 305,
     "personnel": 22851,
     "strength": 16.660809349923973,
     "military_fleet": {

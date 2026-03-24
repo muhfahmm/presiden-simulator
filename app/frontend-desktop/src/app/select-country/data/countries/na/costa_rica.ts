@@ -132,7 +132,7 @@ export const costa_rica: CountryData = {
     "armory": 4,
     "tank_hangar": 29,
     "military_academy": 4,
-    "budget": 3337,
+    "budget": 194,
     "personnel": 5363,
     "strength": 16.660809349923973,
     "military_fleet": {

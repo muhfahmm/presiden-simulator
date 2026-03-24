@@ -136,7 +136,7 @@ export const mali: CountryData = {
     "armory": 17,
     "tank_hangar": 18,
     "military_academy": 17,
-    "budget": 13,
+    "budget": 50,
     "personnel": 6980,
     "strength": 16.660809349923973,
     "military_fleet": {

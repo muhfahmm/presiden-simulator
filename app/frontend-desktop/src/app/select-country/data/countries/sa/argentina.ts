@@ -132,7 +132,7 @@ export const argentina: CountryData = {
     "armory": 27,
     "tank_hangar": 30,
     "military_academy": 13,
-    "budget": 22303,
+    "budget": 1777,
     "personnel": 26895,
     "strength": 16.660809349923973,
     "military_fleet": {

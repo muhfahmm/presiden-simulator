@@ -132,7 +132,7 @@ export const rusia: CountryData = {
     "armory": 27,
     "tank_hangar": 22,
     "military_academy": 31,
-    "budget": 71980,
+    "budget": 5611,
     "personnel": 10237,
     "strength": 16.660809349923973,
     "military_fleet": {

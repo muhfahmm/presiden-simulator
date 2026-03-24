@@ -132,7 +132,7 @@ export const republik_dominika: CountryData = {
     "armory": 32,
     "tank_hangar": 5,
     "military_academy": 10,
-    "budget": 4497,
+    "budget": 305,
     "personnel": 27397,
     "strength": 16.660809349923973,
     "military_fleet": {

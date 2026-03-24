@@ -132,7 +132,7 @@ export const jamaika: CountryData = {
     "armory": 19,
     "tank_hangar": 30,
     "military_academy": 10,
-    "budget": 707,
+    "budget": 50,
     "personnel": 5600,
     "strength": 16.660809349923973,
     "military_fleet": {

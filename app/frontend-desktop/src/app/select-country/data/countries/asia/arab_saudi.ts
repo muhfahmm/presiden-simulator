@@ -132,7 +132,7 @@ export const arab_saudi: CountryData = {
     "armory": 27,
     "tank_hangar": 15,
     "military_academy": 27,
-    "budget": 38710,
+    "budget": 3083,
     "personnel": 9491,
     "strength": 16.660809349923973,
     "military_fleet": {

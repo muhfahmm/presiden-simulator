@@ -132,7 +132,7 @@ export const kuba: CountryData = {
     "armory": 37,
     "tank_hangar": 18,
     "military_academy": 24,
-    "budget": 18,
+    "budget": 291,
     "personnel": 15719,
     "strength": 16.660809349923973,
     "military_fleet": {

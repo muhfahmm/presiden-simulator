@@ -132,7 +132,7 @@ export const venezuela: CountryData = {
     "armory": 6,
     "tank_hangar": 7,
     "military_academy": 7,
-    "budget": 3581,
+    "budget": 263,
     "personnel": 23710,
     "strength": 16.660809349923973,
     "military_fleet": {

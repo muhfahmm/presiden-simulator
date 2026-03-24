@@ -132,7 +132,7 @@ export const jepang: CountryData = {
     "armory": 36,
     "tank_hangar": 13,
     "military_academy": 12,
-    "budget": 38,
+    "budget": 11417,
     "personnel": 24201,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const brunei: CountryData = {
     "armory": 34,
     "tank_hangar": 36,
     "military_academy": 36,
-    "budget": 541,
+    "budget": 41,
     "personnel": 16977,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const tuvalu: CountryData = {
     "armory": 26,
     "tank_hangar": 1,
     "military_academy": 23,
-    "budget": 2,
+    "budget": 1,
     "personnel": 8409,
     "strength": 16.660809349923973,
     "military_fleet": {

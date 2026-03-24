@@ -132,7 +132,7 @@ export const lebanon: CountryData = {
     "armory": 8,
     "tank_hangar": 2,
     "military_academy": 26,
-    "budget": 39,
+    "budget": 50,
     "personnel": 24392,
     "strength": 16.660809349923973,
     "military_fleet": {

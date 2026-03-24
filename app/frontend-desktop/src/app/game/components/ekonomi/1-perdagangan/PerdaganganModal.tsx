@@ -13,6 +13,9 @@ import { TradePriceChart } from "./TradePriceChart"
 import { TradeExecutionModal } from "./TradeExecutionModal"
 import { getStoredGameDate } from "../../../data/time/gameTime"
 import { getInitialAgreements } from "./database_mitra/agreementsRegistry"
+import { inboxStorage } from "../../inbox/inboxStorage"
+import { buildingStorage } from "../../pembangunan/buildingStorage"
+import { budgetStorage } from "../budgetStorage"
 
 interface ModalProps {
   isOpen: boolean;
@@ -59,6 +62,14 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
     const updatedTrades = [...currentTrades, newAgreement];
     setManagedTrades(updatedTrades);
     tradeStorage.saveTrade(currentCountry.name_en, updatedTrades);
+
+    // Send Inbox Notification
+    inboxStorage.addMessage({
+      source: 'Kementerian Perdagangan',
+      subject: `Pengajuan Kerja Sama Perdagangan ke ${target.name_id} Telah Dikirim`,
+      time: 'Baru saja',
+      priority: 'low'
+    });
   };
 
   // Evaluate pending trades when the component renders or opens
@@ -75,6 +86,17 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
           changed = true;
           // Determine success based on chance
           const isAccepted = Math.random() * 100 <= (t.chance || 40);
+          
+          // Send Inbox Notification for result
+          inboxStorage.addMessage({
+            source: 'Diplomasi Internasional',
+            subject: isAccepted 
+              ? `Kabar Baik! Pengajuan Perdagangan dengan ${t.partner} DISETUJUI`
+              : `Sayang Sekali, Pengajuan Perdagangan dengan ${t.partner} DITOLAK`,
+            time: 'Baru saja',
+            priority: isAccepted ? 'medium' : 'high'
+          });
+
           return {
             ...t,
             status: isAccepted ? 'Active' : 'Rejected',
@@ -91,7 +113,9 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
     }
   }, [isOpen]); // Only run when modal opens/closes to prevent infinite loops
 
-  const buildingDeltas = session?.buildingDeltas || {};
+  const buildingData = buildingStorage.getData();
+  const buildingDeltas = buildingData.buildingDeltas || {};
+  const budgetData = budgetStorage.getData();
 
   // Helper for Manufacturing count (matches ProduksiHub)
   const getManufacturingCount = (key: string, baseVal: number) => {
@@ -416,7 +440,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                           };
                           const mfgKey = Object.keys(baseKeyMapping).find(k => baseKeyMapping[k] === selectedKey);
                           const stockKey = stockKeyMap[selectedKey] || mfgKey || selectedKey;
-                          const stockValue = session?.cumulativeProduction?.[stockKey] || 0;
+                          const stockValue = budgetData.cumulativeProduction?.[stockKey] || 0;
                           return Math.floor(stockValue).toLocaleString('id-ID');
                         })()}
                       </span>
@@ -431,7 +455,10 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                       <span className="text-[8px] text-zinc-500 uppercase tracking-widest not-italic">Harga Beli</span>
                       {importPriceVal.toLocaleString('id-ID')}
                     </div>
-                    <button className="px-6 py-3 bg-red-500 text-white font-black uppercase text-[9px] lg:text-[10px] tracking-[0.2em] rounded-xl hover:bg-red-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap">
+                    <button 
+                      onClick={() => setExecutionModalItem({ type: "buy" })}
+                      className="px-6 py-3 bg-red-500 text-white font-black uppercase text-[9px] lg:text-[10px] tracking-[0.2em] rounded-xl hover:bg-red-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap"
+                    >
                       Eksekusi Impor {baseBuyPrice.toLocaleString('id-ID')}
                     </button>
                   </div>
@@ -594,7 +621,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                             </span>
                           )}
                           {agreement.status === 'Active' && (
-                            <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">Rp 1.250 / bln</span>
+                            <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">1.250 / bln</span>
                           )}
                           {agreement.status === 'Pending' && agreement.targetDate && (
                             <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">
@@ -622,6 +649,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
         basePrice={executionModalItem?.type === "buy" ? baseBuyPrice : baseSellPrice}
         icon={iconMap[selectedKey] || BarChart3}
         color={executionModalItem?.type === "buy" ? "#ef4444" : "#22c55e"}
+        partners={activePartnersList}
       />
 
       <AddTradePartnerModal 

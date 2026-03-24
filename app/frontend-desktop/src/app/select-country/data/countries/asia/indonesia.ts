@@ -50,7 +50,7 @@ export const indonesia: CountryData = {
   // 7. ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
   // =============================================================
 
- "sector_extraction": {
+  "sector_extraction": {
     "gold": 35,
     "uranium": 5,
     "coal": 6,
@@ -70,7 +70,7 @@ export const indonesia: CountryData = {
   // 3. 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
   // =============================================================
 
- "sector_manufacturing": {
+  "sector_manufacturing": {
     "semiconductor": 33,
     "car": 6,
     "motorcycle": 30,
@@ -91,7 +91,7 @@ export const indonesia: CountryData = {
   // 3. 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
   // =============================================================
 
- "sector_livestock": {
+  "sector_livestock": {
     "chicken": 1,
     "poultry": 5,
     "dairy_cow": 14,
@@ -107,7 +107,7 @@ export const indonesia: CountryData = {
   // 3. 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
   // =============================================================
 
- "sector_agriculture": {
+  "sector_agriculture": {
     "rice": 29,
     "wheat": 15,
     "corn": 15,
@@ -126,13 +126,13 @@ export const indonesia: CountryData = {
   // 4. 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
   // =============================================================
 
- "sector_defense": {
+  "sector_defense": {
     "prison": 9,
     "barracks": 34,
     "armory": 39,
     "tank_hangar": 7,
     "military_academy": 23,
-    "budget": 137801,
+    "budget": 3944,
     "personnel": 17457,
     "strength": 16.660809349923973,
     "military_fleet": {
@@ -160,7 +160,7 @@ export const indonesia: CountryData = {
   // 4. 🛰️ STRATEGIS MILITER (19 Jenis)
   // =============================================================
 
- "sector_military_strategic": {
+  "sector_military_strategic": {
     "command_center": 7,
     "military_air_base": 37,
     "military_naval_base": 11,
@@ -187,7 +187,7 @@ export const indonesia: CountryData = {
   // 5. 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
   // =============================================================
 
- "sector_social": {
+  "sector_social": {
     "education": {
       "kindergarten": 27,
       "elementary_school": 31,
@@ -253,7 +253,7 @@ export const indonesia: CountryData = {
   // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
   // =============================================================
 
- "military": {
+  "military": {
     "infantry": 3,
     "tanks": 37,
     "aircraft": 38,
@@ -270,7 +270,7 @@ export const indonesia: CountryData = {
   // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
   // =============================================================
 
- "trade": {
+  "trade": {
     "buy_commodity": 17,
     "sell_commodity": 409
   },
@@ -279,7 +279,7 @@ export const indonesia: CountryData = {
   // 💰 PAJAK & EKONOMI (19 Jenis)
   // =============================================================
 
- "taxes": {
+  "taxes": {
     "vat": {
       "rate": 27,
       "satisfaction": 67,
@@ -318,7 +318,7 @@ export const indonesia: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
- "demand": {
+  "demand": {
     "satisfaction": 83,
     "top_demands": [
       "Bantuan Sembako",
@@ -333,7 +333,7 @@ export const indonesia: CountryData = {
   // 6. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
   // =============================================================
 
- "geopolitics": {
+  "geopolitics": {
     "allies": [
       "Amerika Serikat",
       "Uni Eropa"
@@ -359,13 +359,13 @@ export const indonesia: CountryData = {
         "role": "Member"
       }
     ],
-    },
+  },
 
   // =============================================================
   // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
   // =============================================================
 
- "ministries": {
+  "ministries": {
     "health": 37,
     "education": 19,
     "security": 9,

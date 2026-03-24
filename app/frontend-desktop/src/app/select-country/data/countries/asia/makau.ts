@@ -132,7 +132,7 @@ export const makau: CountryData = {
     "armory": 38,
     "tank_hangar": 22,
     "military_academy": 37,
-    "budget": 1902,
+    "budget": 27,
     "personnel": 23407,
     "strength": 16.660809349923973,
     "military_fleet": {

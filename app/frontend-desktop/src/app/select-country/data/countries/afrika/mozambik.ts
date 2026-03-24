@@ -136,7 +136,7 @@ export const mozambik: CountryData = {
     "armory": 16,
     "tank_hangar": 25,
     "military_academy": 27,
-    "budget": 804,
+    "budget": 50,
     "personnel": 17347,
     "strength": 16.660809349923973,
     "military_fleet": {

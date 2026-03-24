@@ -132,7 +132,7 @@ export const singapura: CountryData = {
     "armory": 31,
     "tank_hangar": 37,
     "military_academy": 26,
-    "budget": 18383,
+    "budget": 1389,
     "personnel": 25079,
     "strength": 16.660809349923973,
     "military_fleet": {

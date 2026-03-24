@@ -132,7 +132,7 @@ export const kiribati: CountryData = {
     "armory": 6,
     "tank_hangar": 22,
     "military_academy": 9,
-    "budget": 10,
+    "budget": 1,
     "personnel": 11061,
     "strength": 16.660809349923973,
     "military_fleet": {

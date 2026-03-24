@@ -132,7 +132,7 @@ export const nepal: CountryData = {
     "armory": 2,
     "tank_hangar": 5,
     "military_academy": 31,
-    "budget": 40,
+    "budget": 111,
     "personnel": 17021,
     "strength": 16.660809349923973,
     "military_fleet": {

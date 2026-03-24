@@ -132,7 +132,7 @@ export const afganistan: CountryData = {
     "armory": 17,
     "tank_hangar": 7,
     "military_academy": 9,
-    "budget": 632,
+    "budget": 41,
     "personnel": 20991,
     "strength": 16.660809349923973,
     "military_fleet": {

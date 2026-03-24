@@ -132,7 +132,7 @@ export const turki: CountryData = {
     "armory": 5,
     "tank_hangar": 4,
     "military_academy": 25,
-    "budget": 38974,
+    "budget": 27,
     "personnel": 5849,
     "strength": 16.660809349923973,
     "military_fleet": {

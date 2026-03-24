@@ -136,7 +136,7 @@ export const guinea: CountryData = {
     "armory": 13,
     "tank_hangar": 9,
     "military_academy": 28,
-    "budget": 30,
+    "budget": 50,
     "personnel": 25018,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const siprus: CountryData = {
     "armory": 24,
     "tank_hangar": 16,
     "military_academy": 1,
-    "budget": 1271,
+    "budget": 83,
     "personnel": 15798,
     "strength": 16.660809349923973,
     "military_fleet": {

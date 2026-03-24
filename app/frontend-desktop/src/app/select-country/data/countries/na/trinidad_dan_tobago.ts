@@ -132,7 +132,7 @@ export const trinidad_dan_tobago: CountryData = {
     "armory": 38,
     "tank_hangar": 34,
     "military_academy": 24,
-    "budget": 31,
+    "budget": 69,
     "personnel": 22968,
     "strength": 16.660809349923973,
     "military_fleet": {

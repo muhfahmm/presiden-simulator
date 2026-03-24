@@ -132,7 +132,7 @@ export const uruguay: CountryData = {
     "armory": 28,
     "tank_hangar": 9,
     "military_academy": 26,
-    "budget": 8,
+    "budget": 200,
     "personnel": 21800,
     "strength": 16.660809349923973,
     "military_fleet": {

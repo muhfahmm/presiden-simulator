@@ -132,7 +132,7 @@ export const tonga: CountryData = {
     "armory": 28,
     "tank_hangar": 24,
     "military_academy": 19,
-    "budget": 20,
+    "budget": 1,
     "personnel": 7153,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const ekuador: CountryData = {
     "armory": 10,
     "tank_hangar": 11,
     "military_academy": 10,
-    "budget": 4245,
+    "budget": 319,
     "personnel": 7190,
     "strength": 16.660809349923973,
     "military_fleet": {

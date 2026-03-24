@@ -7,6 +7,7 @@ export const mineralKritisRate = {
     unit: "ton",
     desc: "Batubara",
     dataKey: "coal",
+    maintenanceCost: 10,
     buildTime: 20
   },
   aluminum_mine: {
@@ -15,6 +16,7 @@ export const mineralKritisRate = {
     unit: "ton",
     desc: "Bauksit",
     dataKey: "aluminum",
+    maintenanceCost: 10,
     buildTime: 25
   },
   iron_ore_mine: {
@@ -23,6 +25,7 @@ export const mineralKritisRate = {
     unit: "ton",
     desc: "Biji Besi",
     dataKey: "iron_ore",
+    maintenanceCost: 10,
     buildTime: 20
   },
   gold_mine: {
@@ -31,6 +34,7 @@ export const mineralKritisRate = {
     unit: "kg",
     desc: "Emas",
     dataKey: "gold",
+    maintenanceCost: 10,
     buildTime: 30
   },
   salt_mine: {
@@ -39,6 +43,7 @@ export const mineralKritisRate = {
     unit: "ton",
     desc: "Garam",
     dataKey: "salt",
+    maintenanceCost: 10,
     buildTime: 15
   },
   gas_well: {
@@ -47,6 +52,7 @@ export const mineralKritisRate = {
     unit: "mcf",
     desc: "Gas Alam",
     dataKey: "gas",
+    maintenanceCost: 10,
     buildTime: 35
   },
   lithium_mine: {
@@ -55,6 +61,7 @@ export const mineralKritisRate = {
     unit: "ton",
     desc: "Lithium",
     dataKey: "lithium",
+    maintenanceCost: 10,
     buildTime: 35
   },
   oil_well: {
@@ -63,6 +70,7 @@ export const mineralKritisRate = {
     unit: "barrel",
     desc: "Minyak Bumi",
     dataKey: "oil",
+    maintenanceCost: 10,
     buildTime: 40
   },
   nickel_mine: {
@@ -71,6 +79,7 @@ export const mineralKritisRate = {
     unit: "ton",
     desc: "Nikel",
     dataKey: "nickel",
+    maintenanceCost: 10,
     buildTime: 25
   },
   rare_earth_mine: {
@@ -79,6 +88,7 @@ export const mineralKritisRate = {
     unit: "ton",
     desc: "Tanah Jarang",
     dataKey: "rare_earth",
+    maintenanceCost: 10,
     buildTime: 60
   },
   copper_mine: {
@@ -87,6 +97,7 @@ export const mineralKritisRate = {
     unit: "ton",
     desc: "Tembaga",
     dataKey: "copper",
+    maintenanceCost: 10,
     buildTime: 25
   },
   uranium_mine: {
@@ -95,6 +106,7 @@ export const mineralKritisRate = {
     unit: "kg",
     desc: "Uranium",
     dataKey: "uranium",
+    maintenanceCost: 10,
     buildTime: 45
   }
 };

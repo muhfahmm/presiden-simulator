@@ -136,7 +136,7 @@ export const sao_tome_dan_principe: CountryData = {
     "armory": 12,
     "tank_hangar": 7,
     "military_academy": 21,
-    "budget": 24,
+    "budget": 1,
     "personnel": 7538,
     "strength": 16.660809349923973,
     "military_fleet": {

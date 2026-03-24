@@ -132,7 +132,7 @@ export const saint_kitts_dan_nevis: CountryData = {
     "armory": 32,
     "tank_hangar": 18,
     "military_academy": 8,
-    "budget": 29,
+    "budget": 27,
     "personnel": 12081,
     "strength": 16.660809349923973,
     "military_fleet": {

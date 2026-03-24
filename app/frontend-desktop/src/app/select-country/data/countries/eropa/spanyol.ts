@@ -132,7 +132,7 @@ export const spanyol: CountryData = {
     "armory": 31,
     "tank_hangar": 30,
     "military_academy": 19,
-    "budget": 38,
+    "budget": 4389,
     "personnel": 6338,
     "strength": 16.660809349923973,
     "military_fleet": {

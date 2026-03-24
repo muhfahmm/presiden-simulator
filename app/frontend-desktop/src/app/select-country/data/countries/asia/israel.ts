@@ -132,7 +132,7 @@ export const israel: CountryData = {
     "armory": 5,
     "tank_hangar": 36,
     "military_academy": 38,
-    "budget": 19301,
+    "budget": 1444,
     "personnel": 19082,
     "strength": 16.660809349923973,
     "military_fleet": {

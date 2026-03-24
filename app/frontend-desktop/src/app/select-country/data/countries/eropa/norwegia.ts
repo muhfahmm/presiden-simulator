@@ -132,7 +132,7 @@ export const norwegia: CountryData = {
     "armory": 10,
     "tank_hangar": 9,
     "military_academy": 20,
-    "budget": 18443,
+    "budget": 1611,
     "personnel": 27689,
     "strength": 16.660809349923973,
     "military_fleet": {

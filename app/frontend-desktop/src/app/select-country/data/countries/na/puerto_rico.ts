@@ -132,7 +132,7 @@ export const puerto_rico: CountryData = {
     "armory": 27,
     "tank_hangar": 4,
     "military_academy": 37,
-    "budget": 36,
+    "budget": 27,
     "personnel": 11294,
     "strength": 16.660809349923973,
     "military_fleet": {

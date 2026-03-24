@@ -132,7 +132,7 @@ export const qatar: CountryData = {
     "armory": 6,
     "tank_hangar": 30,
     "military_academy": 3,
-    "budget": 8564,
+    "budget": 611,
     "personnel": 14032,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const yaman: CountryData = {
     "armory": 23,
     "tank_hangar": 27,
     "military_academy": 23,
-    "budget": 592,
+    "budget": 61,
     "personnel": 13273,
     "strength": 16.660809349923973,
     "military_fleet": {

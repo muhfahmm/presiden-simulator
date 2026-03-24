@@ -132,7 +132,7 @@ export const honduras: CountryData = {
     "armory": 37,
     "tank_hangar": 12,
     "military_academy": 35,
-    "budget": 36,
+    "budget": 88,
     "personnel": 10512,
     "strength": 16.660809349923973,
     "military_fleet": {

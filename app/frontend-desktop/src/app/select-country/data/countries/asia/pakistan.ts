@@ -132,7 +132,7 @@ export const pakistan: CountryData = {
     "armory": 25,
     "tank_hangar": 19,
     "military_academy": 14,
-    "budget": 13115,
+    "budget": 944,
     "personnel": 10292,
     "strength": 16.660809349923973,
     "military_fleet": {

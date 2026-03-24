@@ -132,7 +132,7 @@ export const azerbaijan: CountryData = {
     "armory": 33,
     "tank_hangar": 2,
     "military_academy": 26,
-    "budget": 2601,
+    "budget": 152,
     "personnel": 11539,
     "strength": 16.660809349923973,
     "military_fleet": {

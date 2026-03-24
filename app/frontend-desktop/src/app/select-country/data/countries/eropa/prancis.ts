@@ -132,7 +132,7 @@ export const prancis: CountryData = {
     "armory": 33,
     "tank_hangar": 8,
     "military_academy": 2,
-    "budget": 109565,
+    "budget": 8695,
     "personnel": 5623,
     "strength": 16.660809349923973,
     "military_fleet": {

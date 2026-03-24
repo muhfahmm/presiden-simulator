@@ -132,7 +132,7 @@ export const georgia: CountryData = {
     "armory": 10,
     "tank_hangar": 26,
     "military_academy": 13,
-    "budget": 1139,
+    "budget": 69,
     "personnel": 6649,
     "strength": 16.660809349923973,
     "military_fleet": {

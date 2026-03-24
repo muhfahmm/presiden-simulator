@@ -132,7 +132,7 @@ export const selandia_baru: CountryData = {
     "armory": 32,
     "tank_hangar": 18,
     "military_academy": 10,
-    "budget": 8860,
+    "budget": 694,
     "personnel": 6610,
     "strength": 16.660809349923973,
     "military_fleet": {

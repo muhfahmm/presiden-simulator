@@ -136,7 +136,7 @@ export const chad: CountryData = {
     "armory": 40,
     "tank_hangar": 33,
     "military_academy": 14,
-    "budget": 7,
+    "budget": 33,
     "personnel": 25495,
     "strength": 16.660809349923973,
     "military_fleet": {

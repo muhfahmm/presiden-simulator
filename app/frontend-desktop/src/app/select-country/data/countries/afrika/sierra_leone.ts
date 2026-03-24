@@ -136,7 +136,7 @@ export const sierra_leone: CountryData = {
     "armory": 7,
     "tank_hangar": 32,
     "military_academy": 23,
-    "budget": 5,
+    "budget": 11,
     "personnel": 25678,
     "strength": 16.660809349923973,
     "military_fleet": {

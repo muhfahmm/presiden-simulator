@@ -132,7 +132,7 @@ export const luksemburg: CountryData = {
     "armory": 20,
     "tank_hangar": 13,
     "military_academy": 34,
-    "budget": 3099,
+    "budget": 241,
     "personnel": 9876,
     "strength": 16.660809349923973,
     "military_fleet": {

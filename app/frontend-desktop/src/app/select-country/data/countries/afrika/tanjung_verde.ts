@@ -136,7 +136,7 @@ export const tanjung_verde: CountryData = {
     "armory": 21,
     "tank_hangar": 15,
     "military_academy": 31,
-    "budget": 1,
+    "budget": 27,
     "personnel": 29185,
     "strength": 16.660809349923973,
     "military_fleet": {

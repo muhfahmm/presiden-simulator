@@ -136,7 +136,7 @@ export const seychelles: CountryData = {
     "armory": 17,
     "tank_hangar": 9,
     "military_academy": 7,
-    "budget": 13,
+    "budget": 5,
     "personnel": 17226,
     "strength": 16.660809349923973,
     "military_fleet": {

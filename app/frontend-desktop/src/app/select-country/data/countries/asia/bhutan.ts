@@ -132,7 +132,7 @@ export const bhutan: CountryData = {
     "armory": 36,
     "tank_hangar": 38,
     "military_academy": 40,
-    "budget": 108,
+    "budget": 7,
     "personnel": 22464,
     "strength": 16.660809349923973,
     "military_fleet": {

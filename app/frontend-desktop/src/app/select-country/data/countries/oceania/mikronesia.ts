@@ -132,7 +132,7 @@ export const mikronesia: CountryData = {
     "armory": 17,
     "tank_hangar": 3,
     "military_academy": 2,
-    "budget": 24,
+    "budget": 1,
     "personnel": 15904,
     "strength": 16.660809349923973,
     "military_fleet": {

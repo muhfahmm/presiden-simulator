@@ -132,7 +132,7 @@ export const yordania: CountryData = {
     "armory": 15,
     "tank_hangar": 21,
     "military_academy": 9,
-    "budget": 1882,
+    "budget": 130,
     "personnel": 29178,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const kuwait: CountryData = {
     "armory": 18,
     "tank_hangar": 32,
     "military_academy": 22,
-    "budget": 11,
+    "budget": 430,
     "personnel": 20884,
     "strength": 16.660809349923973,
     "military_fleet": {

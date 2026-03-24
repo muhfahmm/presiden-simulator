@@ -132,7 +132,7 @@ export const maldives: CountryData = {
     "armory": 2,
     "tank_hangar": 8,
     "military_academy": 14,
-    "budget": 10,
+    "budget": 18,
     "personnel": 8232,
     "strength": 16.660809349923973,
     "military_fleet": {

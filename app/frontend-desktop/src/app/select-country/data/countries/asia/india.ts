@@ -132,7 +132,7 @@ export const india: CountryData = {
     "armory": 32,
     "tank_hangar": 16,
     "military_academy": 26,
-    "budget": 137801,
+    "budget": 10945,
     "personnel": 26363,
     "strength": 16.660809349923973,
     "military_fleet": {

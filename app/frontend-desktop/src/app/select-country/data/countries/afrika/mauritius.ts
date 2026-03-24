@@ -136,7 +136,7 @@ export const mauritius: CountryData = {
     "armory": 6,
     "tank_hangar": 10,
     "military_academy": 5,
-    "budget": 11,
+    "budget": 38,
     "personnel": 23297,
     "strength": 16.660809349923973,
     "military_fleet": {

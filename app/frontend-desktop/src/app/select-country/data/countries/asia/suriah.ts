@@ -132,7 +132,7 @@ export const suriah: CountryData = {
     "armory": 34,
     "tank_hangar": 18,
     "military_academy": 40,
-    "budget": 362,
+    "budget": 33,
     "personnel": 12966,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const slovenia: CountryData = {
     "armory": 16,
     "tank_hangar": 11,
     "military_academy": 36,
-    "budget": 20,
+    "budget": 180,
     "personnel": 18503,
     "strength": 16.660809349923973,
     "military_fleet": {

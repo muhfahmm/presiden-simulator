@@ -132,7 +132,7 @@ export const san_marino: CountryData = {
     "armory": 27,
     "tank_hangar": 19,
     "military_academy": 3,
-    "budget": 7,
+    "budget": 27,
     "personnel": 16893,
     "strength": 16.660809349923973,
     "military_fleet": {

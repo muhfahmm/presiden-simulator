@@ -136,7 +136,7 @@ export const gambia: CountryData = {
     "armory": 3,
     "tank_hangar": 27,
     "military_academy": 16,
-    "budget": 3,
+    "budget": 6,
     "personnel": 8568,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const bahama: CountryData = {
     "armory": 5,
     "tank_hangar": 27,
     "military_academy": 13,
-    "budget": 9,
+    "budget": 38,
     "personnel": 20085,
     "strength": 16.660809349923973,
     "military_fleet": {

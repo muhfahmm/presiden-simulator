@@ -132,7 +132,7 @@ export const barbados: CountryData = {
     "armory": 40,
     "tank_hangar": 11,
     "military_academy": 3,
-    "budget": 8,
+    "budget": 15,
     "personnel": 18644,
     "strength": 16.660809349923973,
     "military_fleet": {

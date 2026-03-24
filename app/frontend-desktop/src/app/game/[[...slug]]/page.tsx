@@ -11,18 +11,21 @@ import MapHubungan from "../tab-menu/Hubungan/mapHubungan";
 import StrategyModal from "../components/StrategyModal";
 import BottomNav from "../components/BottomNav";
 import { gameStorage } from "../gamestorage";
+import { budgetStorage } from "../components/ekonomi/budgetStorage";
+import { buildingStorage } from "../components/pembangunan/buildingStorage";
 import { countries } from "../../select-country/data/countries";
 import { CountryData } from "../../select-country/data/types";
 import GameTimeControls from "../components/time/GameTimeControls";
+import { calculateDailyBudgetDelta } from "../data/economy/economyLogic";
 
 // Bottom Nav Modals
 import RatingPresidenModal from "../components/rating-presiden/RatingPresidenModal";
 import NaikkanRatingModal from "../components/rating-presiden/NaikkanRatingModal";
 // Ekonomi Modals
 import PerdaganganModal from "../components/ekonomi/1-perdagangan/PerdaganganModal";
-import PajakModal from "../components/ekonomi/pajak/PajakModal";
+import PajakModal from "../components/ekonomi/2-pajak/PajakModal";
 import HutangModal from "../components/ekonomi/HutangModal";
-import BudgetTreasuryModal from "../components/ekonomi/BudgetTreasuryModal";
+import PemasukkanPengeluaranModal from "../components/ekonomi/3-pemasukkanpengeluaran/PemasukkanPengeluaranModal";
 import EnergiModal from "../components/ekonomi/EnergiModal";
 import ProduksiBarangModal from "../components/ekonomi/ProduksiBarangModal";
 import MineralsModal from "../components/ekonomi/MineralsModal";
@@ -38,15 +41,19 @@ import GeopolitikModal from "../components/geopolitik/GeopolitikModal";
 import KementerianModal from "../components/kementerian/KementerianModal";
 import BeritaModal from "../components/berita/BeritaModal";
 import InboxModal from "../components/inbox/InboxModal";
+import NewMessageToast from "../components/inbox/NewMessageToast";
+import { inboxStorage } from "../components/inbox/inboxStorage";
 
 export default function GamePage() {
   const [approval, setApproval] = useState(65);
   const [budget, setBudget] = useState(1240.5); // in Trillion
+  const [budgetDelta, setBudgetDelta] = useState(0);
   const [stability, setStability] = useState(82);
   const router = useRouter();
   const params = useParams();
   const [userCountry, setUserCountry] = useState("Indonesia");
   const [isMounted, setIsMounted] = useState(false);
+  const [unreadCount, setUnreadCount] = useState(0);
   const [targetCountry, setTargetCountry] = useState<string | null>(null);
   
   useEffect(() => {
@@ -54,17 +61,34 @@ export default function GamePage() {
     const session = gameStorage.getSession();
     if (session?.country) {
       setUserCountry(session.country);
-      setBudget(session.budget);
+      setBudget(budgetStorage.getBudget());
     }
     if (session?.isWelcomeSeen) {
       setShowWelcome(false);
     }
+    
+    // Inbox Unread Count Listener
+    const updateInboxCount = () => setUnreadCount(inboxStorage.getUnreadCount());
+    updateInboxCount(); // initial fetch
+    window.addEventListener('inbox_updated', updateInboxCount);
 
-    // Refresh budget from storage periodically to sync with daily ticks
-    const interval = setInterval(() => {
-      const currentBudget = gameStorage.getBudget();
+    const updateBudgetAndDelta = () => {
+      const currentBudget = budgetStorage.getBudget();
       setBudget(currentBudget);
-    }, 1000);
+
+      const session = gameStorage.getSession();
+      const currentCountryName = session?.country || "Indonesia";
+      const currentCountry = countries.find(c => c.name_en === currentCountryName);
+      
+      if (currentCountry) {
+        const buildingData = buildingStorage.getData();
+        const delta = calculateDailyBudgetDelta(currentCountry, buildingData.buildingDeltas);
+        setBudgetDelta(delta);
+      }
+    };
+
+    updateBudgetAndDelta(); // Immediate calculation on mount
+    const interval = setInterval(updateBudgetAndDelta, 1000);
 
     return () => clearInterval(interval);
   }, []);
@@ -80,7 +104,7 @@ export default function GamePage() {
   else if (slug[0] === 'harga-barang') initialMenu = "Menu:HargaBarang";
   else if (slug[0] === 'pajak') initialMenu = "Menu:Pajak";
   else if (slug[0] === 'hutang') initialMenu = "Menu:Hutang";
-  else if (slug[0] === 'anggaran') initialMenu = "Menu:Budget";
+  else if (slug[0] === 'pemasukkan-pengeluaran') initialMenu = "Menu:Budget";
   else if (slug[0] === 'energi') initialMenu = "Menu:Energi";
   else if (slug[0] === 'produksi-barang') initialMenu = "Menu:ProduksiBarang";
   
@@ -95,7 +119,7 @@ export default function GamePage() {
       "Menu:HargaBarang": "/game/harga-barang",
       "Menu:Pajak": "/game/pajak",
       "Menu:Hutang": "/game/hutang",
-      "Menu:Budget": "/game/anggaran",
+      "Menu:Budget": "/game/pemasukkan-pengeluaran",
       "Menu:Energi": "/game/energi",
       "Menu:ProduksiBarang": "/game/produksi-barang"
     };
@@ -125,9 +149,59 @@ export default function GamePage() {
   return (
     <div className="flex min-h-screen bg-zinc-950 text-white font-sans relative overflow-hidden">
       {/* Main Content Area */}
-      <main className="flex-1 z-10 flex flex-col h-screen overflow-hidden">
+      <main className="flex-1 z-10 flex flex-col h-screen overflow-hidden relative">
+        
+        {/* Floating UI Elements */}
+        <div className="absolute left-8 top-1/4 z-50 flex flex-col items-center bg-zinc-950/40 backdrop-blur-2xl border border-white/5 rounded-3xl p-1.5 shadow-[0_20px_50px_rgba(0,0,0,0.5)] overflow-hidden animate-in slide-in-from-left-10 duration-700">
+          
+          {/* 1. Berita / News Button (Top) */}
+          <button 
+            onClick={() => setActiveMenu("Menu:Berita")}
+            className={`relative group flex flex-col items-center justify-center w-16 h-24 rounded-2xl transition-all cursor-pointer overflow-hidden ${activeMenu === "Menu:Berita" ? 'bg-emerald-500/20 shadow-[inset_0_0_20px_rgba(16,185,129,0.2)]' : 'hover:bg-white/5'}`}
+          >
+            <Newspaper className={`h-6 w-6 ${activeMenu === "Menu:Berita" ? 'text-emerald-400 scale-110' : 'text-zinc-400'} group-hover:text-emerald-400 group-hover:scale-110 transition-all`} />
+            <span className={`text-[10px] font-black uppercase tracking-[0.1em] mt-2 ${activeMenu === "Menu:Berita" ? 'text-emerald-400' : 'text-zinc-300'} group-hover:text-emerald-400 transition-colors`}>Update</span>
+            <span className="text-[7px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">News</span>
+            
+            {/* Active Indicator */}
+            {activeMenu === "Menu:Berita" && (
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-emerald-500 rounded-r-full shadow-[0_0_10px_rgba(16,185,129,1)]"></div>
+            )}
+          </button>
+
+          {/* Separator Line */}
+          <div className="w-8 h-px bg-white/5 my-1"></div>
+
+          {/* 2. Inbox / Communication Button (Bottom) */}
+          <button 
+            onClick={() => setActiveMenu("Menu:Inbox")}
+            className={`relative group flex flex-col items-center justify-center w-16 h-24 rounded-2xl transition-all cursor-pointer overflow-hidden ${activeMenu === "Menu:Inbox" ? 'bg-blue-500/20 shadow-[inset_0_0_20px_rgba(59,130,246,0.2)]' : 'hover:bg-white/5'}`}
+          >
+             {/* Unread Glow Effect */}
+             {unreadCount > 0 && (
+              <div className="absolute inset-0 bg-blue-500/5 animate-pulse"></div>
+            )}
+            
+            <div className="relative">
+              <Mail className={`h-6 w-6 ${unreadCount > 0 || activeMenu === "Menu:Inbox" ? 'text-blue-400' : 'text-zinc-400'} group-hover:scale-110 group-hover:text-blue-400 transition-all`} />
+              {unreadCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 flex h-4 w-4 items-center justify-center bg-red-500 text-[8px] font-black text-white rounded-full border border-zinc-950 shadow-lg shadow-red-500/20">
+                  {unreadCount}
+                </span>
+              )}
+            </div>
+            <span className={`text-[10px] font-black uppercase tracking-[0.1em] mt-2 ${activeMenu === "Menu:Inbox" ? 'text-blue-400' : 'text-zinc-300'} group-hover:text-blue-400 transition-colors`}>Inbox</span>
+            <span className="text-[7px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">Pesan</span>
+            
+            {/* Active Indicator */}
+            {activeMenu === "Menu:Inbox" && (
+              <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-8 bg-blue-500 rounded-r-full shadow-[0_0_10px_rgba(59,130,246,1)]"></div>
+            )}
+          </button>
+        </div>
+
         {/* Top Header / Status bar */}
-        <header className="bg-zinc-900/30 backdrop-blur-sm border-b border-zinc-800 px-8 py-4 flex items-center justify-between">
+        <header className="relative z-[300] bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/80 px-8 py-4 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
           <div className="flex items-center gap-4">
             {countryData && (
               <div className="flex items-center gap-2 bg-zinc-800/40 px-3 py-1.5 rounded-xl border border-zinc-700/50 shadow-sm backdrop-blur-md">
@@ -137,30 +211,13 @@ export default function GamePage() {
             )}
           </div>
           <div className="flex items-center gap-6">
-            <button 
-              onClick={() => setActiveMenu("Menu:Berita")}
-              className="flex items-center gap-2 bg-emerald-500/10 hover:bg-emerald-500/20 px-4 py-2 rounded-xl border border-emerald-500/30 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all group cursor-pointer"
-            >
-              <Newspaper className="h-4 w-4 text-emerald-400 group-hover:scale-110 transition-transform" />
-              <div className="flex flex-col items-start leading-none">
-                <span className="text-[10px] font-black text-emerald-500/70 uppercase tracking-widest">Update</span>
-                <span className="text-xs font-black text-emerald-400 uppercase tracking-wider">Berita</span>
-              </div>
-            </button>
-
-            <button 
-              onClick={() => setActiveMenu("Menu:Inbox")}
-              className="flex items-center gap-2 bg-blue-500/10 hover:bg-blue-500/20 px-4 py-2 rounded-xl border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all group cursor-pointer"
-            >
-              <Mail className="h-4 w-4 text-blue-400 group-hover:scale-110 transition-transform" />
-              <div className="flex flex-col items-start leading-none">
-                <span className="text-[10px] font-black text-blue-500/70 uppercase tracking-widest">Pesan</span>
-                <span className="text-xs font-black text-blue-400 uppercase tracking-wider">Inbox</span>
-              </div>
-            </button>
-
             <StatusBadge icon={<Users className="h-4 w-4 text-blue-500" />} label="Populasi" value={countryData?.pop || 0} />
-            <StatusBadge icon={<Coins className="h-4 w-4 text-yellow-500" />} label="Kas Negara" value={`${Math.round(budget).toLocaleString('id-ID')}`} />
+            <StatusBadge 
+              icon={<Coins className="h-4 w-4 text-yellow-500" />} 
+              label="Kas Negara" 
+              value={`${Math.round(budget).toLocaleString('id-ID')}`} 
+              delta={budgetDelta}
+            />
             <StatusBadge icon={<Shield className="h-4 w-4 text-green-500" />} label="Stabilitas" value={`${stability}%`} />
             
             <button 
@@ -376,7 +433,7 @@ export default function GamePage() {
                 isOpen={activeMenu === "Menu:Hutang"} 
                 onClose={() => setActiveMenu("Ekonomi")} 
               />
-              <BudgetTreasuryModal 
+              <PemasukkanPengeluaranModal 
                 isOpen={activeMenu === "Menu:Budget"} 
                 onClose={() => setActiveMenu("Ekonomi")} 
               />
@@ -440,6 +497,7 @@ export default function GamePage() {
                 isOpen={activeMenu === "Menu:Inbox"} 
                 onClose={() => setActiveMenu("Peta Taktis")} 
               />
+              <NewMessageToast />
             </>
           )}
         </div>
@@ -482,7 +540,7 @@ export default function GamePage() {
                 <div className="flex-1 bg-zinc-950/50 border border-white/5 p-4 rounded-2xl flex flex-col items-center gap-1">
                   <Coins size={16} className="text-yellow-500 mb-1" />
                   <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Treasury</span>
-                  <span className="text-lg font-black text-white">{budget} T</span>
+                  <span className="text-lg font-black text-white">{budget.toLocaleString('id-ID')}</span>
                 </div>
                 <div className="flex-1 bg-zinc-950/50 border border-white/5 p-4 rounded-2xl flex flex-col items-center gap-1">
                   <Shield size={16} className="text-green-500 mb-1" />
@@ -515,17 +573,25 @@ export default function GamePage() {
   );
 }
 
-function StatusBadge({ icon, label, value }: { icon: React.ReactNode, label: string, value: string | number }) {
+function StatusBadge({ icon, label, value, delta }: { icon: React.ReactNode, label: string, value: string | number, delta?: number }) {
   const displayValue = typeof value === 'number' ? value.toLocaleString('id-ID') : value;
   
   return (
-    <div className="flex items-center gap-2 bg-zinc-900/80 px-3 py-1.5 rounded-lg border border-zinc-800">
+    <div className="flex items-center gap-2 bg-zinc-900/80 px-3 py-1.5 rounded-lg border border-zinc-800 relative group overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       {icon}
-      <div className="text-left leading-tight">
+      <div className="text-left leading-tight relative z-10">
         <p className="text-[10px] text-zinc-500 font-semibold uppercase">{label}</p>
-        <p className="text-xs font-bold text-zinc-100 italic">
-          {displayValue}
-        </p>
+        <div className="flex items-center gap-1.5">
+          <p className="text-xs font-black text-zinc-100 italic tracking-wide">
+            {displayValue}
+          </p>
+          {delta !== undefined && delta !== 0 && (
+            <span className={`text-[9px] font-black px-1 rounded-sm ${delta > 0 ? 'text-emerald-400 bg-emerald-500/10' : 'text-red-400 bg-red-500/10'}`}>
+              {delta > 0 ? '+' : ''}{Math.round(delta).toLocaleString('id-ID')}
+            </span>
+          )}
+        </div>
       </div>
     </div>
   );

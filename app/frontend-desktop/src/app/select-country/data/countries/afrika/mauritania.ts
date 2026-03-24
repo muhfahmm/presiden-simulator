@@ -136,7 +136,7 @@ export const mauritania: CountryData = {
     "armory": 19,
     "tank_hangar": 24,
     "military_academy": 28,
-    "budget": 30,
+    "budget": 27,
     "personnel": 22541,
     "strength": 16.660809349923973,
     "military_fleet": {

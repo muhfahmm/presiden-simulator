@@ -136,7 +136,7 @@ export const rwanda: CountryData = {
     "armory": 27,
     "tank_hangar": 28,
     "military_academy": 31,
-    "budget": 509,
+    "budget": 36,
     "personnel": 15116,
     "strength": 16.660809349923973,
     "military_fleet": {

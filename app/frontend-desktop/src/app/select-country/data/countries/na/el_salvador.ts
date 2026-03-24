@@ -132,7 +132,7 @@ export const el_salvador: CountryData = {
     "armory": 7,
     "tank_hangar": 3,
     "military_academy": 5,
-    "budget": 1307,
+    "budget": 88,
     "personnel": 19334,
     "strength": 16.660809349923973,
     "military_fleet": {

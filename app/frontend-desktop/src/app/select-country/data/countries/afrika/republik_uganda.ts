@@ -136,7 +136,7 @@ export const republik_uganda: CountryData = {
     "armory": 31,
     "tank_hangar": 20,
     "military_academy": 35,
-    "budget": 1971,
+    "budget": 138,
     "personnel": 21943,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const irlandia: CountryData = {
     "armory": 15,
     "tank_hangar": 3,
     "military_academy": 28,
-    "budget": 19740,
+    "budget": 1472,
     "personnel": 17072,
     "strength": 16.660809349923973,
     "military_fleet": {

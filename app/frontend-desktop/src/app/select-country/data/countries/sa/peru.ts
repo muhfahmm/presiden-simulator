@@ -132,7 +132,7 @@ export const peru: CountryData = {
     "armory": 17,
     "tank_hangar": 34,
     "military_academy": 7,
-    "budget": 9886,
+    "budget": 722,
     "personnel": 10851,
     "strength": 16.660809349923973,
     "military_fleet": {

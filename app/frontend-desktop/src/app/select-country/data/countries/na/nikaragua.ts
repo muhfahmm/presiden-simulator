@@ -132,7 +132,7 @@ export const nikaragua: CountryData = {
     "armory": 27,
     "tank_hangar": 20,
     "military_academy": 5,
-    "budget": 659,
+    "budget": 47,
     "personnel": 26563,
     "strength": 16.660809349923973,
     "military_fleet": {

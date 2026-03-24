@@ -136,7 +136,7 @@ export const tunisia: CountryData = {
     "armory": 2,
     "tank_hangar": 1,
     "military_academy": 22,
-    "budget": 1901,
+    "budget": 130,
     "personnel": 17828,
     "strength": 16.660809349923973,
     "military_fleet": {

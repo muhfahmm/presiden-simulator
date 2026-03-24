@@ -136,7 +136,7 @@ export const togo: CountryData = {
     "armory": 16,
     "tank_hangar": 40,
     "military_academy": 25,
-    "budget": 21,
+    "budget": 25,
     "personnel": 16018,
     "strength": 16.660809349923973,
     "military_fleet": {

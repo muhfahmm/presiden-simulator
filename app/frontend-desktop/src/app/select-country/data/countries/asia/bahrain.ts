@@ -132,7 +132,7 @@ export const bahrain: CountryData = {
     "armory": 20,
     "tank_hangar": 38,
     "military_academy": 9,
-    "budget": 8,
+    "budget": 122,
     "personnel": 9786,
     "strength": 16.660809349923973,
     "military_fleet": {

@@ -132,7 +132,7 @@ export const belarus: CountryData = {
     "armory": 36,
     "tank_hangar": 1,
     "military_academy": 38,
-    "budget": 23252,
+    "budget": 194,
     "personnel": 5950,
     "strength": 16.660809349923973,
     "military_fleet": {

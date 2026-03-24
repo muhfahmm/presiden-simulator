@@ -136,7 +136,7 @@ export const sudan_selatan: CountryData = {
     "armory": 17,
     "tank_hangar": 1,
     "military_academy": 31,
-    "budget": 33,
+    "budget": 13,
     "personnel": 27759,
     "strength": 16.660809349923973,
     "military_fleet": {
