@@ -235,7 +235,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Peternakan",
           rate: 1,
           unit: "Unit",
-          count: (currentData.sector_livestock.chicken + currentData.sector_livestock.poultry) + ((buildingDeltas["egg_farm"] as number) || 0),
+          count: (currentData.sector_livestock.chicken + currentData.sector_livestock.poultry) + ((buildingDeltas["egg_farm"] as number) || 0) + ((buildingDeltas["poultry_farm"] as number) || 0),
           income: 15, cost: 8, buildTime: 20
         },
         {
@@ -279,7 +279,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Peternakan",
           rate: 1,
           unit: "Unit",
-          count: (currentData.sector_livestock.shrimp + currentData.sector_livestock.shellfish) + ((buildingDeltas["shrimp_farm"] as number) || 0),
+          count: (currentData.sector_livestock.shrimp + currentData.sector_livestock.shellfish) + ((buildingDeltas["shrimp_farm"] as number) || 0) + ((buildingDeltas["pearl_farm"] as number) || 0),
           income: 280, cost: 8, buildTime: 20
         },
         {
@@ -314,7 +314,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Pertanian",
           rate: 1,
           unit: "Unit",
-          count: (currentData.sector_agriculture.wheat + currentData.sector_agriculture.corn) + ((buildingDeltas["wheat_field"] as number) || 0),
+          count: (currentData.sector_agriculture.wheat + currentData.sector_agriculture.corn) + ((buildingDeltas["wheat_field"] as number) || 0) + ((buildingDeltas["corn_field"] as number) || 0),
           income: 70, cost: 5, buildTime: 20
         },
         {
@@ -325,7 +325,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Pertanian",
           rate: 1,
           unit: "Unit",
-          count: (currentData.sector_agriculture.vegetables + currentData.sector_agriculture.tubers) + ((buildingDeltas["vegetable_farm"] as number) || 0),
+          count: (currentData.sector_agriculture.vegetables + currentData.sector_agriculture.tubers) + ((buildingDeltas["vegetable_farm"] as number) || 0) + ((buildingDeltas["tuber_field"] as number) || 0),
           income: 45, cost: 5, buildTime: 20
         },
         {
@@ -358,7 +358,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Perkebunan",
           rate: 1,
           unit: "Unit",
-          count: (currentData.sector_agriculture.coffee + currentData.sector_agriculture.tea + currentData.sector_agriculture.cocoa) + ((buildingDeltas["coffee_plantation"] as number) || 0),
+          count: (currentData.sector_agriculture.coffee + currentData.sector_agriculture.tea + currentData.sector_agriculture.cocoa) + ((buildingDeltas["coffee_plantation"] as number) || 0) + ((buildingDeltas["tea_plantation"] as number) || 0) + ((buildingDeltas["cocoa_plantation"] as number) || 0),
           income: 470, cost: 5, buildTime: 20
         }
       ]

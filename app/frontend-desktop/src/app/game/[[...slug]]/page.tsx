@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { Heart, Coins, Shield, LogOut, Users, Newspaper } from "lucide-react";
+import { Heart, Coins, Shield, LogOut, Users, Newspaper, Mail } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import GameMapCanvas from "../mainGameMap";
 import TradeMapCanvas from "../tab-menu/trades/TradeMapCanvas";
@@ -37,6 +37,7 @@ import ArmadaPolisiModal from "../components/pertahanan/ArmadaPolisiModal";
 import GeopolitikModal from "../components/geopolitik/GeopolitikModal";
 import KementerianModal from "../components/kementerian/KementerianModal";
 import BeritaModal from "../components/berita/BeritaModal";
+import InboxModal from "../components/inbox/InboxModal";
 
 export default function GamePage() {
   const [approval, setApproval] = useState(65);
@@ -144,6 +145,17 @@ export default function GamePage() {
               <div className="flex flex-col items-start leading-none">
                 <span className="text-[10px] font-black text-emerald-500/70 uppercase tracking-widest">Update</span>
                 <span className="text-xs font-black text-emerald-400 uppercase tracking-wider">Berita</span>
+              </div>
+            </button>
+
+            <button 
+              onClick={() => setActiveMenu("Menu:Inbox")}
+              className="flex items-center gap-2 bg-blue-500/10 hover:bg-blue-500/20 px-4 py-2 rounded-xl border border-blue-500/30 shadow-[0_0_15px_rgba(59,130,246,0.1)] transition-all group cursor-pointer"
+            >
+              <Mail className="h-4 w-4 text-blue-400 group-hover:scale-110 transition-transform" />
+              <div className="flex flex-col items-start leading-none">
+                <span className="text-[10px] font-black text-blue-500/70 uppercase tracking-widest">Pesan</span>
+                <span className="text-xs font-black text-blue-400 uppercase tracking-wider">Inbox</span>
               </div>
             </button>
 
@@ -422,6 +434,10 @@ export default function GamePage() {
               />
               <BeritaModal 
                 isOpen={activeMenu === "Menu:Berita"} 
+                onClose={() => setActiveMenu("Peta Taktis")} 
+              />
+              <InboxModal 
+                isOpen={activeMenu === "Menu:Inbox"} 
                 onClose={() => setActiveMenu("Peta Taktis")} 
               />
             </>

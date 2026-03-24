@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from "react";
-import { TrendingUp, BarChart3, Clock } from "lucide-react";
 import { getStoredGameDate } from "../../../data/time/gameTime";
+import { getDynamicPrice } from "./tradeData";
 
 interface TradePriceChartProps {
   selectedKey: string;
@@ -19,96 +19,61 @@ export const TradePriceChart: React.FC<TradePriceChartProps> = ({
 }) => {
   const [hoverData, setHoverData] = useState<{ x: number; y: number; val: number; index: number } | null>(null);
 
-  // Generate consistent chart data based on key and timeframe
+  // Generate consistent chart data matching getDynamicPrice with fixed interval alignment
   const chartData = useMemo(() => {
-    let points = 24; 
-    
-    // Timeframe configuration
-    const tfConfigs: Record<string, { days: number, labelType: string }> = {
-      "1d": { days: 1, labelType: "hour" },
-      "1w": { days: 7, labelType: "day" },
-      "1m": { days: 30, labelType: "date" },
-      "3m": { days: 90, labelType: "month" },
-      "6m": { days: 180, labelType: "month" },
-      "9m": { days: 270, labelType: "month" },
-      "1y": { days: 365, labelType: "month" },
-      "3y": { days: 1095, labelType: "year" },
-      "5y": { days: 1825, labelType: "year" }
+    // interval config: how many points, what's each step in ms, and what's the label step
+    const intervalConfigs: Record<string, { points: number, stepMs: number, labelType: string }> = {
+      "1d": { points: 25, stepMs: 60 * 60 * 1000, labelType: "hour" }, // 24h + now
+      "1w": { points: 8, stepMs: 24 * 60 * 60 * 1000, labelType: "day" }, // 7 days + now
+      "1m": { points: 31, stepMs: 24 * 60 * 60 * 1000, labelType: "date" },
+      "3m": { points: 46, stepMs: 2 * 24 * 60 * 60 * 1000, labelType: "month" },
+      "6m": { points: 61, stepMs: 3 * 24 * 60 * 60 * 1000, labelType: "month" },
+      "1y": { points: 53, stepMs: 7 * 24 * 60 * 60 * 1000, labelType: "month" },
+      "5y": { points: 61, stepMs: 30 * 24 * 60 * 60 * 1000, labelType: "year" }
     };
     
-    if (selectedTimeframe === "1d") points = 24;
-    if (selectedTimeframe === "1w") points = 7;
-    if (selectedTimeframe === "1m") points = 30;
-    if (selectedTimeframe === "3m") points = 45; 
-    if (selectedTimeframe === "6m") points = 60;
-    if (selectedTimeframe === "1y") points = 52;
-    if (selectedTimeframe === "5y") points = 60;
-
+    const config = intervalConfigs[selectedTimeframe] || intervalConfigs["1w"];
+    const points = config.points;
     const data: number[] = new Array(points);
-    const labels: string[] = [];
     const currentDate = getStoredGameDate();
-    const config = tfConfigs[selectedTimeframe] || tfConfigs["1w"];
-
-    // Hash for the key
-    let keySeed = 0;
-    for (let i = 0; i < selectedKey.length; i++) {
-        keySeed = (keySeed << 5) - keySeed + selectedKey.charCodeAt(i);
-        keySeed |= 0;
-    }
-
-    // Generate data backwards from the current price
-    let currentVal = basePrice;
     const labelInterval = Math.max(1, Math.floor(points / 6));
 
-    for (let i = points - 1; i >= 0; i--) {
-      data[i] = currentVal;
-      
-      const pointDate = new Date(currentDate);
-      pointDate.setDate(pointDate.getDate() - (config.days * (1 - i / (points - 1))));
-      
-      const seedVal = keySeed + Math.floor(pointDate.getTime() / (1000 * 60 * 60 * 24));
-      const pseudoRandom = (Math.sin(seedVal) * 10000) % 1;
-      const change = (pseudoRandom - 0.5) * 0.08; 
-      
-      // Label generation (only for specific points)
-      if (i % labelInterval === 0 || i === points - 1) {
-        let labelText = "";
-        if (config.labelType === "hour") {
-          labelText = `${String(Math.floor(i * (24 / (points - 1)))).padStart(2, '0')}:00`;
-        } else if (config.labelType === "day") {
-          const days = ["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"];
-          labelText = days[pointDate.getDay()];
-        } else if (config.labelType === "date") {
-          labelText = `${pointDate.getDate()}/${pointDate.getMonth() + 1}`;
-        } else if (config.labelType === "month") {
-          const months = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
-          labelText = months[pointDate.getMonth()];
-        } else if (config.labelType === "year") {
-          labelText = String(pointDate.getFullYear());
+    const nowMs = currentDate.getTime();
+    const intervalRoundedNow = Math.floor(nowMs / config.stepMs) * config.stepMs;
+    
+    // To ensure consistency, previous points (0 to points-2) are pinned to fixed intervals
+    // Point points-1 is Exactly Now.
+    
+    for (let i = 0; i < points; i++) {
+      if (i === points - 1) {
+        data[i] = basePrice;
+      } else {
+        const pointMs = intervalRoundedNow - (points - 2 - i) * config.stepMs;
+        const pointDate = new Date(pointMs);
+        
+        // Use the actual dynamic price for that date
+        let val = getDynamicPrice(selectedKey, type, pointDate);
+        
+        // Stable hourly noise for 1d
+        if (selectedTimeframe === "1d") {
+          let hourlySeed = 0;
+          for (let s = 0; s < selectedKey.length; s++) hourlySeed = (hourlySeed << 5) - hourlySeed + selectedKey.charCodeAt(s);
+          const hourStamp = Math.floor(pointDate.getTime() / (1000 * 60 * 60));
+          const noise = (Math.sin(hourlySeed + hourStamp) * 10000) % 1;
+          val = Math.round(val * (1 + noise * 0.05));
         }
-        labels.unshift(labelText); // Note: we are working backwards, but labels array push/unshift needs care
-      }
-
-      // Reverse accumulation
-      currentVal = currentVal / (1 + change);
-      
-      // Mean reversion
-      const drift = (currentVal - basePrice) / basePrice;
-      if (Math.abs(drift) > 0.3) {
-        currentVal += (basePrice - currentVal) * 0.05;
+        
+        data[i] = val;
       }
     }
 
-    // Fix labels order (reverse back since we unshifted while iterating backwards)
-    // Actually since we go i=points-1 down to 0, labels.unshift(current) keeps them in order?
-    // Let's just use labels[index] to be safe.
-    // Redo labels logic:
     const finalLabels: string[] = [];
     for (let i = 0; i < points; i++) {
-        const pointDate = new Date(currentDate);
-        pointDate.setDate(pointDate.getDate() - (config.days * (1 - i / (points - 1))));
+        const pointMs = i === points - 1 ? nowMs : intervalRoundedNow - (points - 2 - i) * config.stepMs;
+        const pointDate = new Date(pointMs);
+
         if (i % labelInterval === 0 || i === points - 1) {
-            if (config.labelType === "hour") finalLabels.push(`${String(Math.floor(i * (24 / (points - 1)))).padStart(2, '0')}:00`);
+            if (config.labelType === "hour") finalLabels.push(`${String(pointDate.getHours()).padStart(2, '0')}:00`);
             else if (config.labelType === "day") finalLabels.push(["Min", "Sen", "Sel", "Rab", "Kam", "Jum", "Sab"][pointDate.getDay()]);
             else if (config.labelType === "date") finalLabels.push(`${pointDate.getDate()}/${pointDate.getMonth() + 1}`);
             else if (config.labelType === "month") finalLabels.push(["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"][pointDate.getMonth()]);
@@ -128,7 +93,7 @@ export const TradePriceChart: React.FC<TradePriceChartProps> = ({
     const step = width / (points - 1);
     const min = Math.min(...smoothedData);
     const max = Math.max(...smoothedData);
-    const range = max - min || 1;
+    const range = (max - min) || 1;
     
     const pathPoints = smoothedData.map((val, i) => ({
       x: i * step,
@@ -141,7 +106,7 @@ export const TradePriceChart: React.FC<TradePriceChartProps> = ({
       points: pathPoints.map((p, i) => ({ ...p, val: smoothedData[i] })),
       labels: finalLabels
     };
-  }, [selectedKey, selectedTimeframe, basePrice]);
+  }, [selectedKey, selectedTimeframe, basePrice, type]);
 
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = e.currentTarget;
@@ -181,7 +146,7 @@ export const TradePriceChart: React.FC<TradePriceChartProps> = ({
         <path d={chartData.line} fill="none" stroke={color} strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" style={{ filter: `drop-shadow(0 0 15px ${color}80)` }} />
         
         {/* Static Points */}
-        {chartData.points.map((p, i) => (
+        {chartData.points.map((p: any, i: number) => (
           <circle 
             key={i} cx={p.x} cy={p.y} r="2" 
             fill={color} opacity="0.3" 
@@ -237,7 +202,7 @@ export const TradePriceChart: React.FC<TradePriceChartProps> = ({
 
       {/* Time Labels Indicator */}
       <div className="flex items-center justify-between px-8 pb-8 relative z-10 border-t border-zinc-900/30 bg-zinc-900/10">
-        {chartData.labels.map((label, i) => (
+        {chartData.labels.map((label: string, i: number) => (
           <div key={i} className="flex flex-col items-center gap-2">
              <div className="h-2 w-[1.5px]" style={{ backgroundColor: `${color}40` }}></div>
              <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.2em]">{label}</span>

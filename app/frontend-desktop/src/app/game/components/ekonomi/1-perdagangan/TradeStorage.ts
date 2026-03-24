@@ -16,15 +16,21 @@ export const tradeStorage = {
 
   saveTrade: (countryName: string, tradeData: any) => {
     if (typeof window === 'undefined') return;
+    const session = gameStorage.getSession();
+    const sessionId = session ? session.startTime : 'default';
+    const key = `${sessionId}_${countryName}`;
     const allTrades = tradeStorage.getAllTrades();
-    allTrades[countryName] = tradeData;
+    allTrades[key] = tradeData;
     localStorage.setItem(TRADE_STORAGE_KEY, JSON.stringify(allTrades));
   },
 
   getTrade: (countryName: string): any | null => {
     if (typeof window === 'undefined') return null;
+    const session = gameStorage.getSession();
+    const sessionId = session ? session.startTime : 'default';
+    const key = `${sessionId}_${countryName}`;
     const allTrades = tradeStorage.getAllTrades();
-    return allTrades[countryName] || null;
+    return allTrades[key] || null;
   },
 
   getAllTrades: (): Record<string, any> => {

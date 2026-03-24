@@ -3,14 +3,16 @@ import {
   X, ArrowRightLeft, TrendingUp, TrendingDown, Globe, Ship, Landmark, BarChart3,
   Cpu, Car, Bike, Construction, TreePine, Droplet, Cookie, Croissant, Pill, FlaskConical, Beef, Soup, 
   Bird, Milk, Leaf, Shell, Fish, Sprout, Utensils, Apple, Bean, Layers, Mountain, Gem, Waves, Flame, 
-  Battery, Droplets, Box, Pickaxe, Radio, Coffee, Carrot, Eye, ChevronRight
+  Battery, Droplets, Box, Pickaxe, Radio, Coffee, Carrot, Eye, ChevronRight, Plus
 } from "lucide-react"
+import { AddTradePartnerModal } from "./mitra_dagang_internasional/AddTradePartnerModal"
 import { CountryData } from "../../../../select-country/data/types"
 import { tradeStorage } from "./TradeStorage"
 import { buyPriceMap, sellPriceMap, labelsMap, baseKeyMapping, getDynamicPrice } from "./tradeData"
 import { TradePriceChart } from "./TradePriceChart"
 import { TradeExecutionModal } from "./TradeExecutionModal"
 import { getStoredGameDate } from "../../../data/time/gameTime"
+import { getInitialAgreements } from "./database_mitra/agreementsRegistry"
 
 interface ModalProps {
   isOpen: boolean;
@@ -23,6 +25,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
   
   // Local state for managed trade data
   const [managedTrades, setManagedTrades] = React.useState<any>(null);
+  const [isAddPartnerOpen, setIsAddPartnerOpen] = React.useState(false);
 
   React.useEffect(() => {
     if (currentCountry) {
@@ -30,11 +33,36 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
       if (savedTrades) {
         setManagedTrades(savedTrades);
       } else {
-        // Fallback to initial agreements from countries data
-        setManagedTrades(currentCountry.geopolitics?.agreements || []);
+        // Use predefined agreements from database
+        const defaults = getInitialAgreements(currentCountry.name_en, currentCountry.name_id);
+        if (defaults.length > 0) {
+          setManagedTrades(defaults);
+        } else {
+          // Fallback to initial agreements from countries data
+          setManagedTrades(currentCountry.geopolitics?.agreements || []);
+        }
       }
     }
   }, [currentCountry, isOpen]);
+
+  const handleAddPartner = (partnerName: string) => {
+    const newAgreement = {
+      partner: partnerName,
+      type: 'Trade',
+      status: 'Active',
+      startDate: getStoredGameDate().toISOString(),
+      details: 'Strategic Trade Partnership'
+    };
+    const currentTrades = managedTrades || [
+      { partner: "Afrika Selatan", status: "Active", type: "Trade" },
+      { partner: "Tiongkok", status: "Active", type: "Trade" },
+      { partner: "Uni Emirat Arab", status: "Active", type: "Trade" },
+      { partner: "Vietnam", status: "Active", type: "Trade" }
+    ];
+    const updatedTrades = [...currentTrades, newAgreement];
+    setManagedTrades(updatedTrades);
+    tradeStorage.saveTrade(currentCountry.name_en, updatedTrades);
+  };
 
   const buildingDeltas = session?.buildingDeltas || {};
 
@@ -120,6 +148,28 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
   const marketFactor = 1.0; 
   const exportPriceVal = baseSellPrice * marketFactor;
   const importPriceVal = baseBuyPrice * marketFactor;
+
+  const activePartnersList = (managedTrades?.filter((a: any) => 
+    a.type === 'Trade' && 
+    a.partner.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
+    a.partner.toLowerCase() !== currentCountry.name_en.toLowerCase()
+  ).length > 0 
+    ? managedTrades
+        .filter((a: any) => 
+          a.type === 'Trade' && 
+          a.partner.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
+          a.partner.toLowerCase() !== currentCountry.name_en.toLowerCase()
+        )
+        .sort((a: any, b: any) => a.partner.localeCompare(b.partner))
+    : getInitialAgreements(currentCountry.name_en, currentCountry.name_id).length > 0
+      ? getInitialAgreements(currentCountry.name_en, currentCountry.name_id)
+      : [
+          { partner: "Afrika Selatan", status: "Active" },
+          { partner: "Tiongkok", status: "Active" },
+          { partner: "Uni Emirat Arab", status: "Active" },
+          { partner: "Vietnam", status: "Active" }
+        ]
+  );
 
   return (
     <div className="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center animate-in fade-in zoom-in-95 duration-300 p-4 lg:p-12 backdrop-blur-md">
@@ -306,10 +356,45 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
               
               {/* Strategic Header & Action Cards */}
               <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-10">
-                <div className="space-y-1">
+                <div className="space-y-2">
                   <h2 className="text-2xl font-black text-white tracking-widest uppercase flex items-center gap-4 leading-none">
                     {selectedName}
                   </h2>
+                  <div className="flex flex-col items-start gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-zinc-500 italic">
+                    <div className="flex items-center gap-2">
+                      <span className="text-zinc-600 not-italic">Harga Tertinggi</span>
+                      <span className="text-green-500">
+                        {Math.round((activeChartTab === 'buy' ? (buyPriceMap[selectedKey] || 0) : (sellPriceMap[selectedKey] || 0)) * 1.15).toLocaleString('id-ID')}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-zinc-600 not-italic">Harga Terendah</span>
+                      <span className="text-red-500">
+                        {Math.round((activeChartTab === 'buy' ? (buyPriceMap[selectedKey] || 0) : (sellPriceMap[selectedKey] || 0)) * 0.85).toLocaleString('id-ID')}
+                      </span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-zinc-600 not-italic">Total Stok</span>
+                      <span className="text-blue-500">
+                        {(() => {
+                          const stockKeyMap: Record<string, string> = {
+                            gold: "gold_mine", uranium: "uranium_mine", coal: "coal_mine", oil: "oil_well", gas: "gas_well",
+                            salt: "salt_mine", nickel: "nickel_mine", lithium: "lithium_mine", copper: "copper_mine",
+                            aluminum: "aluminum_mine", rare_earth: "rare_earth_mine", iron_ore: "iron_ore_mine",
+                            chicken: "livestock_poultry", poultry: "livestock_poultry", dairy_cow: "livestock_dairy",
+                            beef_cow: "livestock_beef", sheep_goat: "livestock_sheep", shrimp: "livestock_shrimp",
+                            shellfish: "livestock_shrimp", fish: "livestock_fish", rice: "agri_rice",
+                            wheat: "agri_grains", corn: "agri_grains", vegetables: "agri_veg", tubers: "agri_veg",
+                            soy: "agri_soy", palm_oil: "agri_palm", coffee: "agri_luxury", tea: "agri_luxury", cocoa: "agri_luxury"
+                          };
+                          const mfgKey = Object.keys(baseKeyMapping).find(k => baseKeyMapping[k] === selectedKey);
+                          const stockKey = stockKeyMap[selectedKey] || mfgKey || selectedKey;
+                          const stockValue = session?.cumulativeProduction?.[stockKey] || 0;
+                          return Math.floor(stockValue).toLocaleString('id-ID');
+                        })()}
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-4 xl:gap-6 flex-wrap lg:flex-nowrap">
@@ -435,31 +520,27 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
               {/* Trade Partners Section */}
               <div className="space-y-6 pt-8 border-t border-zinc-900/80">
                 <div className="flex items-center justify-between">
-                  <h3 className="text-[11px] font-black text-white uppercase tracking-[0.3em] italic">DAFTAR MITRA STRATEGIS (KONTRAK AKTIF)</h3>
+                  <h3 className="text-[11px] font-black text-white uppercase tracking-[0.3em] italic">DAFTAR MITRA DAGANG INTERNASIONAL (KONTRAK AKTIF - {activePartnersList.length})</h3>
                   <div className="h-[1px] flex-1 bg-zinc-900 mx-8"></div>
                 </div>
 
                 <div className="h-[400px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {(managedTrades?.filter((a: any) => 
-                      a.type === 'Trade' && 
-                      a.partner.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
-                      a.partner.toLowerCase() !== currentCountry.name_en.toLowerCase()
-                    ).length > 0 
-                      ? managedTrades
-                          .filter((a: any) => 
-                            a.type === 'Trade' && 
-                            a.partner.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
-                            a.partner.toLowerCase() !== currentCountry.name_en.toLowerCase()
-                          )
-                          .sort((a: any, b: any) => a.partner.localeCompare(b.partner))
-                      : [
-                          { partner: "Afrika Selatan", status: "Active" },
-                          { partner: "Tiongkok", status: "Active" },
-                          { partner: "Uni Emirat Arab", status: "Active" },
-                          { partner: "Vietnam", status: "Active" }
-                        ]
-                    ).map((agreement: any, idx: number) => (
+                    {/* Add Partner Button */}
+                    <button 
+                      onClick={() => setIsAddPartnerOpen(true)}
+                      className="bg-blue-500/5 border border-dashed border-blue-500/30 hover:border-blue-500/60 hover:bg-blue-500/10 p-5 rounded-2xl flex items-center gap-4 group transition-all cursor-pointer"
+                    >
+                      <div className="p-3 bg-blue-500/10 rounded-xl group-hover:bg-blue-500 group-hover:text-white transition-all text-blue-400">
+                        <Plus className="h-5 w-5" />
+                      </div>
+                      <div className="text-left">
+                        <div className="text-xs font-black text-blue-400 uppercase tracking-widest">Tambah Mitra Dagang</div>
+                        <div className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">Ekspansi Jaringan</div>
+                      </div>
+                    </button>
+
+                    {activePartnersList.map((agreement: any, idx: number) => (
                       <div key={idx} className="bg-zinc-900/20 border border-zinc-900 hover:border-zinc-700/50 p-5 rounded-2xl flex items-center justify-between group transition-all cursor-pointer">
                         <div className="flex items-center gap-4">
                           <div className="p-3 bg-zinc-900 rounded-xl group-hover:bg-blue-500/10 transition-colors">
@@ -495,6 +576,17 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
         basePrice={executionModalItem?.type === "buy" ? baseBuyPrice : baseSellPrice}
         icon={iconMap[selectedKey] || BarChart3}
         color={executionModalItem?.type === "buy" ? "#ef4444" : "#22c55e"}
+      />
+
+      <AddTradePartnerModal 
+        isOpen={isAddPartnerOpen}
+        onClose={() => setIsAddPartnerOpen(false)}
+        onAdd={handleAddPartner}
+        existingPartners={[
+          currentCountry.name_id,
+          currentCountry.name_en,
+          ...((managedTrades || []).map((t: any) => t.partner))
+        ]}
       />
     </div>
   );

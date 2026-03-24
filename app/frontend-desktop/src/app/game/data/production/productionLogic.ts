@@ -41,17 +41,33 @@ export function calculateDailyProductionTotals(countryData: CountryData, buildin
     deltas[key] = totalCount * Math.floor(val.production || 0);
   });
 
-  // 3. Pangan & Komoditas
-  Object.entries(komoditasPanganRate).forEach(([key, val]: [string, any]) => {
-    const agriValue = countryData.sector_agriculture?.[key as keyof typeof countryData.sector_agriculture];
-    const liveValue = countryData.sector_livestock?.[key as keyof typeof countryData.sector_livestock];
+  // 3. Pangan & Komoditas (Grouped for UI Alignment)
+  const panganGroups = [
+    { key: "livestock_poultry", base: ["chicken", "poultry"], deltas: ["poultry_farm", "egg_farm"], sector: "sector_livestock" },
+    { key: "livestock_dairy", base: ["dairy_cow"], deltas: ["dairy_farm"], sector: "sector_livestock" },
+    { key: "livestock_beef", base: ["beef_cow"], deltas: ["cattle_farm"], sector: "sector_livestock" },
+    { key: "livestock_sheep", base: ["sheep_goat"], deltas: ["sheep_farm"], sector: "sector_livestock" },
+    { key: "livestock_shrimp", base: ["shrimp", "shellfish"], deltas: ["shrimp_farm"], sector: "sector_livestock" },
+    { key: "livestock_fish", base: ["fish"], deltas: ["freshwater_fish_farm"], sector: "sector_livestock" },
+    { key: "agri_rice", base: ["rice"], deltas: ["paddy_field"], sector: "sector_agriculture" },
+    { key: "agri_grains", base: ["wheat", "corn"], deltas: ["wheat_field", "corn_field"], sector: "sector_agriculture" },
+    { key: "agri_veg", base: ["vegetables", "tubers"], deltas: ["vegetable_farm", "tuber_field"], sector: "sector_agriculture" },
+    { key: "agri_soy", base: ["soy"], deltas: ["soybean_field"], sector: "sector_agriculture" },
+    { key: "agri_palm", base: ["palm_oil"], deltas: ["palm_oil_plantation"], sector: "sector_agriculture" },
+    { key: "agri_luxury", base: ["coffee", "tea", "cocoa"], deltas: ["coffee_plantation", "tea_plantation", "cocoa_plantation"], sector: "sector_agriculture" },
+  ];
+
+  panganGroups.forEach(group => {
+    let baseCount = 0;
+    const sectorData = countryData[group.sector as keyof CountryData] as any;
+    if (sectorData) {
+      group.base.forEach(b => baseCount += (sectorData[b] || 0));
+    }
+    let deltaCount = 0;
+    group.deltas.forEach(d => deltaCount += (Number(buildingDeltas[d]) || 0));
     
-    const agriCount = typeof agriValue === 'number' ? agriValue : 0;
-    const liveCount = typeof liveValue === 'number' ? liveValue : 0;
-    
-    const baseCount = agriCount || liveCount || 0;
-    const totalCount = baseCount + (Number(buildingDeltas[key]) || 0);
-    deltas[key] = totalCount * Math.floor(val.production || 0);
+    // For these grouped items, rate is effectively 1 per count in the UI
+    deltas[group.key] = baseCount + deltaCount;
   });
 
   return deltas;
