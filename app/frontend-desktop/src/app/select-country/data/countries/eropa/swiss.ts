@@ -10,7 +10,7 @@ export const swiss: CountryData = {
   "pop": "10M",
   "budget": 8848,
   "income": "25280",
-  "religion": "Protestan",
+  "religion": "Katolik",
   "ideology": "Kapitalisme",
 
   // =============================================================

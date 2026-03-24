@@ -11,7 +11,7 @@ export const suriname: CountryData = {
   "budget": 34,
   "income": "97",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

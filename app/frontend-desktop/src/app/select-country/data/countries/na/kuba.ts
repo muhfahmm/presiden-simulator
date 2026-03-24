@@ -10,8 +10,8 @@ export const kuba: CountryData = {
   "pop": "10M",
   "budget": 1021,
   "income": "2917",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Komunisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

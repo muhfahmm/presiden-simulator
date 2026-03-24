@@ -10,8 +10,8 @@ export const brazil: CountryData = {
   "pop": "10M",
   "budget": 22655,
   "income": "64727",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

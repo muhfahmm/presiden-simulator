@@ -10,8 +10,8 @@ export const togo: CountryData = {
   "pop": "10M",
   "budget": 88,
   "income": "250",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Konservatisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

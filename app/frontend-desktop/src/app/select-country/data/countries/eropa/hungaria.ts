@@ -10,8 +10,8 @@ export const hungaria: CountryData = {
   "pop": "10M",
   "budget": 2042,
   "income": "5834",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

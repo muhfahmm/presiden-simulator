@@ -11,7 +11,7 @@ export const swedia: CountryData = {
   "budget": 5834,
   "income": "16668",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

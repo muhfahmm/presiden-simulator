@@ -10,8 +10,8 @@ export const nepal: CountryData = {
   "pop": "10M",
   "budget": 389,
   "income": "1111",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Hindu",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

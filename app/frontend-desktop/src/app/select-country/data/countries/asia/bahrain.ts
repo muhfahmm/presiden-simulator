@@ -10,8 +10,8 @@ export const bahrain: CountryData = {
   "pop": "10M",
   "budget": 428,
   "income": "1222",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Monarki",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

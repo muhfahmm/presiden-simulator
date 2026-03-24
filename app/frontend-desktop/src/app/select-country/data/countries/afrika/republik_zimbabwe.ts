@@ -11,7 +11,7 @@ export const republik_zimbabwe: CountryData = {
   "budget": 194,
   "income": "556",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

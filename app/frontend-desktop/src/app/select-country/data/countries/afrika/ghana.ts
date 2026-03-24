@@ -11,7 +11,7 @@ export const ghana: CountryData = {
   "budget": 739,
   "income": "2111",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

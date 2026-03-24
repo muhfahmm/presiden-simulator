@@ -10,8 +10,8 @@ export const mauritius: CountryData = {
   "pop": "10M",
   "budget": 136,
   "income": "389",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Hindu",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

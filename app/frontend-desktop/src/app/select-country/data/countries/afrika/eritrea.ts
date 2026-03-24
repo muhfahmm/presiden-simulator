@@ -10,8 +10,8 @@ export const eritrea: CountryData = {
   "pop": "10M",
   "budget": 24,
   "income": "69",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

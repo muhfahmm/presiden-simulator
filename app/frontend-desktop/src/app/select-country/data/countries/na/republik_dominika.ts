@@ -10,8 +10,8 @@ export const republik_dominika: CountryData = {
   "pop": "10M",
   "budget": 1070,
   "income": "3056",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

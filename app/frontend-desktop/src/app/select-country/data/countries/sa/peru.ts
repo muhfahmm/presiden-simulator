@@ -10,8 +10,8 @@ export const peru: CountryData = {
   "pop": "10M",
   "budget": 2528,
   "income": "7223",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

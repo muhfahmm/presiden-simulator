@@ -11,7 +11,7 @@ export const namibia: CountryData = {
   "budget": 126,
   "income": "361",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,7 +10,7 @@ export const irlandia: CountryData = {
   "pop": "10M",
   "budget": 5153,
   "income": "14723",
-  "religion": "Protestan",
+  "religion": "Katolik",
   "ideology": "Kapitalisme",
 
   // =============================================================

@@ -10,8 +10,8 @@ export const palestina: CountryData = {
   "pop": "10M",
   "budget": 194,
   "income": "556",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const laos: CountryData = {
   "pop": "10M",
   "budget": 146,
   "income": "417",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Buddha",
+  "ideology": "Komunisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

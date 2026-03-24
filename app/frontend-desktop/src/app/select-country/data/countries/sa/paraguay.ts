@@ -10,8 +10,8 @@ export const paraguay: CountryData = {
   "pop": "10M",
   "budget": 428,
   "income": "1222",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Konservatisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

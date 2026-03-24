@@ -10,8 +10,8 @@ export const myanmar: CountryData = {
   "pop": "10M",
   "budget": 583,
   "income": "1667",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Buddha",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

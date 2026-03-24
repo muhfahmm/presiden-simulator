@@ -10,8 +10,8 @@ export const tunisia: CountryData = {
   "pop": "10M",
   "budget": 457,
   "income": "1306",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const somalia: CountryData = {
   "pop": "10M",
   "budget": 78,
   "income": "222",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Konservatisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

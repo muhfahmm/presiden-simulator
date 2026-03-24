@@ -10,8 +10,8 @@ export const venezuela: CountryData = {
   "pop": "10M",
   "budget": 924,
   "income": "2639",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

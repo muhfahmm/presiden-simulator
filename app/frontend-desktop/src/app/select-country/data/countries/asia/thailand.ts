@@ -10,8 +10,8 @@ export const thailand: CountryData = {
   "pop": "10M",
   "budget": 4959,
   "income": "14168",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Buddha",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const portugal: CountryData = {
   "pop": "10M",
   "budget": 2722,
   "income": "7778",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

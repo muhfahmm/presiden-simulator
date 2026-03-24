@@ -10,8 +10,8 @@ export const seychelles: CountryData = {
   "pop": "10M",
   "budget": 19,
   "income": "56",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Liberalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const republik_demokratik_kongo: CountryData = {
   "pop": "112M",
   "budget": 603,
   "income": "1722",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

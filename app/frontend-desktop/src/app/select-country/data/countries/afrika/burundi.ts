@@ -10,8 +10,8 @@ export const burundi: CountryData = {
   "pop": "10M",
   "budget": 34,
   "income": "97",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Konservatisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

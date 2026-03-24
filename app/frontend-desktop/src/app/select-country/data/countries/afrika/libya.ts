@@ -10,8 +10,8 @@ export const libya: CountryData = {
   "pop": "10M",
   "budget": 408,
   "income": "1167",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

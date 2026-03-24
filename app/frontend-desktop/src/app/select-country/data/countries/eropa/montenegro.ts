@@ -10,8 +10,8 @@ export const montenegro: CountryData = {
   "pop": "10M",
   "budget": 68,
   "income": "194",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Kristen Ortodoks",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

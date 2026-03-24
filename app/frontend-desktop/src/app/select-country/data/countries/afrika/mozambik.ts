@@ -10,8 +10,8 @@ export const mozambik: CountryData = {
   "pop": "10M",
   "budget": 175,
   "income": "500",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

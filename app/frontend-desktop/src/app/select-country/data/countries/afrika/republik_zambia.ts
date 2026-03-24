@@ -11,7 +11,7 @@ export const republik_zambia: CountryData = {
   "budget": 272,
   "income": "778",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

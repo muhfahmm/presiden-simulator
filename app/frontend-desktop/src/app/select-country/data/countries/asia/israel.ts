@@ -10,7 +10,7 @@ export const israel: CountryData = {
   "pop": "10M",
   "budget": 5056,
   "income": "14446",
-  "religion": "Protestan",
+  "religion": "Yahudi",
   "ideology": "Kapitalisme",
 
   // =============================================================

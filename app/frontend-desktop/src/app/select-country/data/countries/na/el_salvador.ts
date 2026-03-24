@@ -10,8 +10,8 @@ export const el_salvador: CountryData = {
   "pop": "10M",
   "budget": 311,
   "income": "889",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

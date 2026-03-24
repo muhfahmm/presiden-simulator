@@ -1,21 +1,28 @@
 import React, { useState } from 'react';
 import { X, Globe, Search, Plus } from 'lucide-react';
 import { countries } from './countriesList';
+import { CountryData } from '../../../../../select-country/data/types';
+import { PengajuanMitraModal } from './proposal_mitra/PengajuanMitraModal';
 
 interface AddTradePartnerModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onAdd: (partnerName: string) => void;
+  // Now passing the full target country, wait time, and calculated chance
+  onAddProposal: (target: CountryData, waitDays: number, chance: number) => void;
   existingPartners: string[];
+  playerCountry: CountryData;
 }
 
 export const AddTradePartnerModal: React.FC<AddTradePartnerModalProps> = ({ 
   isOpen, 
   onClose, 
-  onAdd, 
-  existingPartners 
+  onAddProposal, 
+  existingPartners,
+  playerCountry
 }) => {
   const [search, setSearch] = useState('');
+  const [selectedTarget, setSelectedTarget] = useState<CountryData | null>(null);
+
 
   if (!isOpen) return null;
 
@@ -80,8 +87,7 @@ export const AddTradePartnerModal: React.FC<AddTradePartnerModalProps> = ({
                 <button
                     key={c.name_en}
                     onClick={() => {
-                        onAdd(c.name_id);
-                        onClose();
+                        setSelectedTarget(c);
                     }}
                     className="w-full flex items-center justify-between p-4 rounded-2xl bg-zinc-950 border border-zinc-900 hover:border-blue-500/50 hover:bg-zinc-900/50 transition-all group cursor-pointer"
                 >
@@ -103,6 +109,19 @@ export const AddTradePartnerModal: React.FC<AddTradePartnerModalProps> = ({
           )}
         </div>
       </div>
+
+      {/* Proposal Modal */}
+      <PengajuanMitraModal
+        isOpen={selectedTarget !== null}
+        onClose={() => setSelectedTarget(null)}
+        playerCountry={playerCountry}
+        targetCountry={selectedTarget}
+        onConfirm={(target, waitDays, chance) => {
+          onAddProposal(target, waitDays, chance);
+          setSelectedTarget(null);
+          onClose(); // Close the main Add Partner modal as well
+        }}
+      />
     </div>
   );
 };

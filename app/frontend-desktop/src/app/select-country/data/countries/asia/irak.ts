@@ -10,8 +10,8 @@ export const irak: CountryData = {
   "pop": "10M",
   "budget": 2606,
   "income": "7445",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

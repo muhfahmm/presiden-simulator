@@ -11,7 +11,7 @@ export const afrika_selatan: CountryData = {
   "budget": 3938,
   "income": "11251",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

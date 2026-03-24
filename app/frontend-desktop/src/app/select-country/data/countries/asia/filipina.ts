@@ -10,8 +10,8 @@ export const filipina: CountryData = {
   "pop": "10M",
   "budget": 4230,
   "income": "12084",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

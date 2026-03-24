@@ -11,7 +11,7 @@ export const eswatini: CountryData = {
   "budget": 44,
   "income": "125",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Monarki",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

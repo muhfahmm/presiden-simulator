@@ -11,7 +11,7 @@ export const estonia: CountryData = {
   "budget": 389,
   "income": "1111",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

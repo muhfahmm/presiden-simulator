@@ -10,8 +10,8 @@ export const rusia: CountryData = {
   "pop": "10M",
   "budget": 19640,
   "income": "56116",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Kristen Ortodoks",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

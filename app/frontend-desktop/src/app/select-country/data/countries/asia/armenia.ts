@@ -10,8 +10,8 @@ export const armenia: CountryData = {
   "pop": "81M",
   "budget": 214,
   "income": "611",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Kristen Ortodoks",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

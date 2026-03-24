@@ -10,8 +10,8 @@ export const spanyol: CountryData = {
   "pop": "10M",
   "budget": 15362,
   "income": "43892",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const republik_tanzania: CountryData = {
   "pop": "10M",
   "budget": 729,
   "income": "2084",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

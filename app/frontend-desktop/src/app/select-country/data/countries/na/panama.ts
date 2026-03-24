@@ -10,8 +10,8 @@ export const panama: CountryData = {
   "pop": "10M",
   "budget": 739,
   "income": "2111",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

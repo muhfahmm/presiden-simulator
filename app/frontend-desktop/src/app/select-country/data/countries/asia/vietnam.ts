@@ -10,8 +10,8 @@ export const vietnam: CountryData = {
   "pop": "10M",
   "budget": 4181,
   "income": "11945",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Ateisme",
+  "ideology": "Komunisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

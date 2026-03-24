@@ -10,8 +10,8 @@ export const ethiopia: CountryData = {
   "pop": "135M",
   "budget": 1507,
   "income": "4306",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Kristen Ortodoks",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

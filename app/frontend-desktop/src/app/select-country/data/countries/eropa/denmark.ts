@@ -11,7 +11,7 @@ export const denmark: CountryData = {
   "budget": 3986,
   "income": "11390",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

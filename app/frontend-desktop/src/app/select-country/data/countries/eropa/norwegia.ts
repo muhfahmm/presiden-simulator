@@ -11,7 +11,7 @@ export const norwegia: CountryData = {
   "budget": 5639,
   "income": "16112",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

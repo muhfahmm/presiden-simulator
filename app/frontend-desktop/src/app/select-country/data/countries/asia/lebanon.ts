@@ -10,8 +10,8 @@ export const lebanon: CountryData = {
   "pop": "10M",
   "budget": 175,
   "income": "500",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

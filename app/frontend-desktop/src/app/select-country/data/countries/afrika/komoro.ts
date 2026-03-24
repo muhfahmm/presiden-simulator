@@ -10,8 +10,8 @@ export const komoro: CountryData = {
   "pop": "10M",
   "budget": 13,
   "income": "36",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

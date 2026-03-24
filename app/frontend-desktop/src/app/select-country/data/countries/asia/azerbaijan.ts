@@ -10,8 +10,8 @@ export const azerbaijan: CountryData = {
   "pop": "48M",
   "budget": 535,
   "income": "1528",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

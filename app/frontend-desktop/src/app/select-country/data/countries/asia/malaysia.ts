@@ -10,8 +10,8 @@ export const malaysia: CountryData = {
   "pop": "10M",
   "budget": 3889,
   "income": "11112",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

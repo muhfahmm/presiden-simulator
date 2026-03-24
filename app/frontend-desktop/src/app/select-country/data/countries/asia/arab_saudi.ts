@@ -10,8 +10,8 @@ export const arab_saudi: CountryData = {
   "pop": "10M",
   "budget": 10793,
   "income": "30836",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Monarki",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

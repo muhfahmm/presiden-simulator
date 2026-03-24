@@ -10,8 +10,8 @@ export const india: CountryData = {
   "pop": "10M",
   "budget": 38309,
   "income": "109453",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Hindu",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

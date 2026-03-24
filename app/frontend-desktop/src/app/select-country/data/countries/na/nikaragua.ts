@@ -10,8 +10,8 @@ export const nikaragua: CountryData = {
   "pop": "10M",
   "budget": 165,
   "income": "472",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const bhutan: CountryData = {
   "pop": "10M",
   "budget": 27,
   "income": "78",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Buddha",
+  "ideology": "Monarki",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

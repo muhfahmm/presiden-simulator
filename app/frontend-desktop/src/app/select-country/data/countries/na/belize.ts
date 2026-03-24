@@ -10,8 +10,8 @@ export const belize: CountryData = {
   "pop": "10M",
   "budget": 24,
   "income": "69",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -11,7 +11,7 @@ export const tonga: CountryData = {
   "budget": 10,
   "income": "15",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Monarki",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

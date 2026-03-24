@@ -10,8 +10,8 @@ export const republik_uganda: CountryData = {
   "pop": "10M",
   "budget": 486,
   "income": "1389",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Konservatisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

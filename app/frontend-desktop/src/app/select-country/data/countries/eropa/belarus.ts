@@ -10,8 +10,8 @@ export const belarus: CountryData = {
   "pop": "10M",
   "budget": 681,
   "income": "1945",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Kristen Ortodoks",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

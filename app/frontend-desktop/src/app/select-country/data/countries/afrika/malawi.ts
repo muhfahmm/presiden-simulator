@@ -11,7 +11,7 @@ export const malawi: CountryData = {
   "budget": 117,
   "income": "333",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

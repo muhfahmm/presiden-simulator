@@ -10,8 +10,8 @@ export const bulgaria: CountryData = {
   "pop": "10M",
   "budget": 1021,
   "income": "2917",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Kristen Ortodoks",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

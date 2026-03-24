@@ -10,7 +10,7 @@ export const singapura: CountryData = {
   "pop": "10M",
   "budget": 4862,
   "income": "13890",
-  "religion": "Protestan",
+  "religion": "Buddha",
   "ideology": "Kapitalisme",
 
   // =============================================================

@@ -10,8 +10,8 @@ export const meksiko: CountryData = {
   "pop": "10M",
   "budget": 17404,
   "income": "49726",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

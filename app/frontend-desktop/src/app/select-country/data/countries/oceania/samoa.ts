@@ -11,7 +11,7 @@ export const samoa: CountryData = {
   "budget": 10,
   "income": "25",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

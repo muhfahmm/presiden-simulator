@@ -10,7 +10,7 @@ export const korea_selatan: CountryData = {
   "pop": "10M",
   "budget": 17112,
   "income": "48893",
-  "religion": "Protestan",
+  "religion": "Ateisme",
   "ideology": "Kapitalisme",
 
   // =============================================================

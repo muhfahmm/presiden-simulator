@@ -10,7 +10,7 @@ export const jepang: CountryData = {
   "pop": "10M",
   "budget": 39962,
   "income": "114176",
-  "religion": "Protestan",
+  "religion": "Shinto",
   "ideology": "Kapitalisme",
 
   // =============================================================

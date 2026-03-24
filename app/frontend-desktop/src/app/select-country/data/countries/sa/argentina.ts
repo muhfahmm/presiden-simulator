@@ -10,7 +10,7 @@ export const argentina: CountryData = {
   "pop": "123M",
   "budget": 6223,
   "income": "17779",
-  "religion": "Protestan",
+  "religion": "Katolik",
   "ideology": "Kapitalisme",
 
   // =============================================================

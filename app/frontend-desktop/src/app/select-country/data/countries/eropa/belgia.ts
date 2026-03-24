@@ -10,8 +10,8 @@ export const belgia: CountryData = {
   "pop": "10M",
   "budget": 6077,
   "income": "17362",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

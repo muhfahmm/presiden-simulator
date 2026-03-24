@@ -10,7 +10,7 @@ export const taiwan: CountryData = {
   "pop": "10M",
   "budget": 7681,
   "income": "21946",
-  "religion": "Protestan",
+  "religion": "Buddha",
   "ideology": "Kapitalisme",
 
   // =============================================================

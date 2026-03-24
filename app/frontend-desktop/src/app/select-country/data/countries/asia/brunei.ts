@@ -10,8 +10,8 @@ export const brunei: CountryData = {
   "pop": "10M",
   "budget": 146,
   "income": "417",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Monarki",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

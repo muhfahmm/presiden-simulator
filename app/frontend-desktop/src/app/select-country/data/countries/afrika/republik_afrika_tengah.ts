@@ -11,7 +11,7 @@ export const republik_afrika_tengah: CountryData = {
   "budget": 24,
   "income": "69",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

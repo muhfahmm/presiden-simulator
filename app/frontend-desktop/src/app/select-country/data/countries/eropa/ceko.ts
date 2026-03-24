@@ -10,8 +10,8 @@ export const ceko: CountryData = {
   "pop": "10M",
   "budget": 3209,
   "income": "9167",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Ateisme",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

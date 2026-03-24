@@ -10,7 +10,7 @@ export const pantai_gading: CountryData = {
   "pop": "10M",
   "budget": 681,
   "income": "1945",
-  "religion": "Protestan",
+  "religion": "Islam",
   "ideology": "Kapitalisme",
 
   // =============================================================

@@ -10,7 +10,7 @@ export const austria: CountryData = {
   "pop": "42M",
   "budget": 4959,
   "income": "14168",
-  "religion": "Protestan",
+  "religion": "Katolik",
   "ideology": "Kapitalisme",
 
   // =============================================================

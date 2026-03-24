@@ -11,7 +11,7 @@ export const vanuatu: CountryData = {
   "budget": 10,
   "income": "28",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

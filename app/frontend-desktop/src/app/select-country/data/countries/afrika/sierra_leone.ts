@@ -10,8 +10,8 @@ export const sierra_leone: CountryData = {
   "pop": "10M",
   "budget": 39,
   "income": "111",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

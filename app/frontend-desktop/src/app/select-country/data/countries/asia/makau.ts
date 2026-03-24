@@ -10,7 +10,7 @@ export const makau: CountryData = {
   "pop": "10M",
   "budget": 97,
   "income": "278",
-  "religion": "Protestan",
+  "religion": "Buddha",
   "ideology": "Kapitalisme",
 
   // =============================================================

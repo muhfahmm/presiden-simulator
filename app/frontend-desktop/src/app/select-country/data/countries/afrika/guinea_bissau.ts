@@ -10,8 +10,8 @@ export const guinea_bissau: CountryData = {
   "pop": "10M",
   "budget": 18,
   "income": "50",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

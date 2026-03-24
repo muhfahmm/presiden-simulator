@@ -10,8 +10,8 @@ export const kolombia: CountryData = {
   "pop": "10M",
   "budget": 3306,
   "income": "9445",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

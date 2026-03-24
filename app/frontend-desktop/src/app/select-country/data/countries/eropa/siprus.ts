@@ -10,8 +10,8 @@ export const siprus: CountryData = {
   "pop": "10M",
   "budget": 292,
   "income": "833",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Kristen Ortodoks",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

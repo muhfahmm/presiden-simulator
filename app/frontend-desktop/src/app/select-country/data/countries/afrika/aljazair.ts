@@ -10,8 +10,8 @@ export const aljazair: CountryData = {
   "pop": "47M",
   "budget": 2334,
   "income": "6667",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

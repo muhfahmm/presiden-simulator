@@ -10,8 +10,8 @@ export const uni_emirat_arab: CountryData = {
   "pop": "10M",
   "budget": 4959,
   "income": "14168",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Monarki",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

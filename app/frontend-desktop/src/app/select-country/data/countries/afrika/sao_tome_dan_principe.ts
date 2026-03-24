@@ -10,8 +10,8 @@ export const sao_tome_dan_principe: CountryData = {
   "pop": "10M",
   "budget": 10,
   "income": "17",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

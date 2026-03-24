@@ -10,8 +10,8 @@ export const qatar: CountryData = {
   "pop": "10M",
   "budget": 2139,
   "income": "6112",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Monarki",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

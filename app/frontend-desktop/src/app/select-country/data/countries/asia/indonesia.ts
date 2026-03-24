@@ -10,8 +10,8 @@ export const indonesia: CountryData = {
   "pop": 278360115,
   "budget": 13807,
   "income": "39448",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

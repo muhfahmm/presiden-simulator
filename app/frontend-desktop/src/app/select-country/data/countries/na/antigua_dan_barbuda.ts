@@ -10,8 +10,8 @@ export const antigua_dan_barbuda: CountryData = {
   "pop": "6M",
   "budget": 97,
   "income": "278",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

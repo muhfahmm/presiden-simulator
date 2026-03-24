@@ -10,8 +10,8 @@ export const georgia: CountryData = {
   "pop": "10M",
   "budget": 243,
   "income": "694",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Kristen Ortodoks",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

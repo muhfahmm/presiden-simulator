@@ -10,8 +10,8 @@ export const republik_rumania: CountryData = {
   "pop": "10M",
   "budget": 3403,
   "income": "9723",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

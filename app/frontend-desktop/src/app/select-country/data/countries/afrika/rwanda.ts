@@ -10,8 +10,8 @@ export const rwanda: CountryData = {
   "pop": "10M",
   "budget": 126,
   "income": "361",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Konservatisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

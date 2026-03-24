@@ -45,24 +45,51 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
     }
   }, [currentCountry, isOpen]);
 
-  const handleAddPartner = (partnerName: string) => {
+  const handleAddProposal = (target: CountryData, waitDays: number, chance: number) => {
     const newAgreement = {
-      partner: partnerName,
+      partner: target.name_id,
       type: 'Trade',
-      status: 'Active',
+      status: 'Pending',
       startDate: getStoredGameDate().toISOString(),
-      details: 'Strategic Trade Partnership'
+      targetDate: new Date(getStoredGameDate().getTime() + waitDays * 24 * 60 * 60 * 1000).toISOString(),
+      chance: chance,
+      details: 'Evaluasi Hubungan Bilateral'
     };
-    const currentTrades = managedTrades || [
-      { partner: "Afrika Selatan", status: "Active", type: "Trade" },
-      { partner: "Tiongkok", status: "Active", type: "Trade" },
-      { partner: "Uni Emirat Arab", status: "Active", type: "Trade" },
-      { partner: "Vietnam", status: "Active", type: "Trade" }
-    ];
+    const currentTrades = managedTrades || [];
     const updatedTrades = [...currentTrades, newAgreement];
     setManagedTrades(updatedTrades);
     tradeStorage.saveTrade(currentCountry.name_en, updatedTrades);
   };
+
+  // Evaluate pending trades when the component renders or opens
+  React.useEffect(() => {
+    if (!managedTrades || !currentCountry) return;
+    
+    let changed = false;
+    const today = getStoredGameDate();
+    
+    const newTrades = managedTrades.map((t: any) => {
+      if (t.status === 'Pending' && t.targetDate) {
+        const targetDate = new Date(t.targetDate);
+        if (today >= targetDate) {
+          changed = true;
+          // Determine success based on chance
+          const isAccepted = Math.random() * 100 <= (t.chance || 40);
+          return {
+            ...t,
+            status: isAccepted ? 'Active' : 'Rejected',
+            details: isAccepted ? 'Strategic Trade Partnership' : 'Pengajuan Ditolak'
+          };
+        }
+      }
+      return t;
+    });
+
+    if (changed) {
+      setManagedTrades(newTrades);
+      tradeStorage.saveTrade(currentCountry.name_en, newTrades);
+    }
+  }, [isOpen]); // Only run when modal opens/closes to prevent infinite loops
 
   const buildingDeltas = session?.buildingDeltas || {};
 
@@ -551,10 +578,29 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                           </div>
                         </div>
                         <div className="flex flex-col items-end gap-1">
-                          <span className="px-2 py-1 bg-green-500/10 text-green-500 text-[8px] font-black uppercase tracking-widest rounded-md border border-green-500/20">
-                            {agreement.status === 'Active' ? 'Terverifikasi' : agreement.status}
-                          </span>
-                          <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">Rp 1.250 / bln</span>
+                          {agreement.status === 'Active' && (
+                            <span className="px-2 py-1 bg-green-500/10 text-green-500 text-[8px] font-black uppercase tracking-widest rounded-md border border-green-500/20">
+                              Terverifikasi
+                            </span>
+                          )}
+                          {agreement.status === 'Pending' && (
+                            <span className="px-2 py-1 bg-yellow-500/10 text-yellow-500 text-[8px] font-black uppercase tracking-widest rounded-md border border-yellow-500/20">
+                              Diproses
+                            </span>
+                          )}
+                          {agreement.status === 'Rejected' && (
+                            <span className="px-2 py-1 bg-red-500/10 text-red-500 text-[8px] font-black uppercase tracking-widest rounded-md border border-red-500/20">
+                              Ditolak
+                            </span>
+                          )}
+                          {agreement.status === 'Active' && (
+                            <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">Rp 1.250 / bln</span>
+                          )}
+                          {agreement.status === 'Pending' && agreement.targetDate && (
+                            <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">
+                              {Math.max(0, Math.ceil((new Date(agreement.targetDate).getTime() - getStoredGameDate().getTime()) / (1000 * 60 * 60 * 24)))} Hari Lagi
+                            </span>
+                          )}
                         </div>
                       </div>
                     ))}
@@ -581,7 +627,8 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
       <AddTradePartnerModal 
         isOpen={isAddPartnerOpen}
         onClose={() => setIsAddPartnerOpen(false)}
-        onAdd={handleAddPartner}
+        onAddProposal={handleAddProposal}
+        playerCountry={currentCountry}
         existingPartners={[
           currentCountry.name_id,
           currentCountry.name_en,

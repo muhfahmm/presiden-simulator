@@ -11,7 +11,7 @@ export const kanada: CountryData = {
   "budget": 21780,
   "income": "62227",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Liberalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

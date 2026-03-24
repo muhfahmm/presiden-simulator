@@ -10,8 +10,8 @@ export const turkmenistan: CountryData = {
   "pop": "10M",
   "budget": 438,
   "income": "1250",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

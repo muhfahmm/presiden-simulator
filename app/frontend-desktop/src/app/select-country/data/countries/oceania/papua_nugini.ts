@@ -11,7 +11,7 @@ export const papua_nugini: CountryData = {
   "budget": 292,
   "income": "833",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

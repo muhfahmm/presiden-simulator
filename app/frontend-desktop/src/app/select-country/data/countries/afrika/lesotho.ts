@@ -10,8 +10,8 @@ export const lesotho: CountryData = {
   "pop": "10M",
   "budget": 24,
   "income": "69",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Monarki",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

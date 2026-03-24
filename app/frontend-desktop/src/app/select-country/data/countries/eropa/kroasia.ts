@@ -10,8 +10,8 @@ export const kroasia: CountryData = {
   "pop": "10M",
   "budget": 758,
   "income": "2167",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const afganistan: CountryData = {
   "pop": "34M",
   "budget": 146,
   "income": "417",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Konservatisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const yaman: CountryData = {
   "pop": "10M",
   "budget": 214,
   "income": "611",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

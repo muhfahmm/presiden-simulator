@@ -10,8 +10,8 @@ export const slovenia: CountryData = {
   "pop": "10M",
   "budget": 632,
   "income": "1806",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

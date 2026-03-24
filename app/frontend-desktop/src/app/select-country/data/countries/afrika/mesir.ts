@@ -10,8 +10,8 @@ export const mesir: CountryData = {
   "pop": "118M",
   "budget": 3841,
   "income": "10973",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

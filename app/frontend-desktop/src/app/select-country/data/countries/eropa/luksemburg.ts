@@ -10,7 +10,7 @@ export const luksemburg: CountryData = {
   "pop": "10M",
   "budget": 846,
   "income": "2417",
-  "religion": "Protestan",
+  "religion": "Katolik",
   "ideology": "Kapitalisme",
 
   // =============================================================

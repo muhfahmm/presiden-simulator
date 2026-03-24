@@ -10,8 +10,8 @@ export const albania: CountryData = {
   "pop": "33M",
   "budget": 214,
   "income": "611",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

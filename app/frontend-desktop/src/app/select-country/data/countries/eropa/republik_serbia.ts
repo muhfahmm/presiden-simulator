@@ -10,8 +10,8 @@ export const republik_serbia: CountryData = {
   "pop": "10M",
   "budget": 661,
   "income": "1889",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

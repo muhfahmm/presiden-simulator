@@ -11,7 +11,7 @@ export const latvia: CountryData = {
   "budget": 418,
   "income": "1195",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -11,7 +11,7 @@ export const madagaskar: CountryData = {
   "budget": 146,
   "income": "417",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

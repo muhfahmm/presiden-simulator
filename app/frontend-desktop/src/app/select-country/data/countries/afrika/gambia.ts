@@ -10,8 +10,8 @@ export const gambia: CountryData = {
   "pop": "10M",
   "budget": 21,
   "income": "61",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

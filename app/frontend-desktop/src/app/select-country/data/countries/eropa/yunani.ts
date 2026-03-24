@@ -10,8 +10,8 @@ export const yunani: CountryData = {
   "pop": "10M",
   "budget": 2236,
   "income": "6389",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Kristen Ortodoks",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const maroko: CountryData = {
   "pop": "38M",
   "budget": 1313,
   "income": "3750",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Monarki",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

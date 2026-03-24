@@ -10,8 +10,8 @@ export const prancis: CountryData = {
   "pop": "10M",
   "budget": 30433,
   "income": "86951",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

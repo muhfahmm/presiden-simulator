@@ -10,8 +10,8 @@ export const moldova: CountryData = {
   "pop": "10M",
   "budget": 156,
   "income": "444",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Kristen Ortodoks",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

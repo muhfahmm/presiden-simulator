@@ -10,8 +10,8 @@ export const chile: CountryData = {
   "pop": "10M",
   "budget": 3257,
   "income": "9306",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Liberalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const polandia: CountryData = {
   "pop": "10M",
   "budget": 8167,
   "income": "23335",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const angola: CountryData = {
   "pop": "39M",
   "budget": 826,
   "income": "2361",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Sosialisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

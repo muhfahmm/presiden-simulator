@@ -10,8 +10,8 @@ export const yordania: CountryData = {
   "pop": "10M",
   "budget": 457,
   "income": "1306",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Monarki",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

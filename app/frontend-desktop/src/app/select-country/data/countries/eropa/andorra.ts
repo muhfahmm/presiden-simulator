@@ -10,8 +10,8 @@ export const andorra: CountryData = {
   "pop": "19M",
   "budget": 97,
   "income": "278",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

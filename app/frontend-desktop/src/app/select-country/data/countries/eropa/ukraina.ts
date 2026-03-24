@@ -10,8 +10,8 @@ export const ukraina: CountryData = {
   "pop": "10M",
   "budget": 1556,
   "income": "4445",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Kristen Ortodoks",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

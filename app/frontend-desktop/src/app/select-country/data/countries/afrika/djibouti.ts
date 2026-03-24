@@ -10,8 +10,8 @@ export const djibouti: CountryData = {
   "pop": "10M",
   "budget": 39,
   "income": "111",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Konservatisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

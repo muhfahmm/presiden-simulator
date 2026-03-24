@@ -10,8 +10,8 @@ export const sri_lanka: CountryData = {
   "pop": "10M",
   "budget": 729,
   "income": "2084",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Buddha",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

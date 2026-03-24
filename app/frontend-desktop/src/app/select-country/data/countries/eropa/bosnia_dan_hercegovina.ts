@@ -10,8 +10,8 @@ export const bosnia_dan_hercegovina: CountryData = {
   "pop": "10M",
   "budget": 233,
   "income": "667",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

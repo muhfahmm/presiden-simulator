@@ -10,8 +10,8 @@ export const nigeria: CountryData = {
   "pop": "237M",
   "budget": 4618,
   "income": "13196",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

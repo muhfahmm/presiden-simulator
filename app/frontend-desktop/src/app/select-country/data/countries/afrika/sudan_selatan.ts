@@ -10,8 +10,8 @@ export const sudan_selatan: CountryData = {
   "pop": "10M",
   "budget": 49,
   "income": "139",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const slowakia: CountryData = {
   "pop": "10M",
   "budget": 1264,
   "income": "3611",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Katolik",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

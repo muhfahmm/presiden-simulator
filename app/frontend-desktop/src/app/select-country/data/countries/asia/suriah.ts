@@ -10,8 +10,8 @@ export const suriah: CountryData = {
   "pop": "10M",
   "budget": 117,
   "income": "333",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Nasionalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

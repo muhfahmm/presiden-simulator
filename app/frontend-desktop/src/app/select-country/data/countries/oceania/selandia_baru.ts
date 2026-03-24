@@ -11,7 +11,7 @@ export const selandia_baru: CountryData = {
   "budget": 2431,
   "income": "6945",
   "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "ideology": "Liberalisme",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)

@@ -10,8 +10,8 @@ export const senegal: CountryData = {
   "pop": "10M",
   "budget": 272,
   "income": "778",
-  "religion": "Protestan",
-  "ideology": "Kapitalisme",
+  "religion": "Islam",
+  "ideology": "Demokrasi",
 
   // =============================================================
   // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)
