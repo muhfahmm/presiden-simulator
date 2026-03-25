@@ -11,5 +11,4 @@ export interface SektorAgriPeternakan {
   kedelai: number;
   kelapa_sawit: number;
   kopi_teh_kakao: number;
-  kekuatan: number; // 0-100
 }

@@ -39,9 +39,7 @@ export const belize: CountryData = {
     "bandara": 10,
     "terminal_bus": 12,
     "helipad": 39,
-    "cakupan_internet": 77,
-    "indeks_teknologi": 77,
-    "akses_air": 74
+    "cakupan_internet": 77
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const belize: CountryData = {
     "aluminium": 12,
     "tembaga": 34,
     "logam_tanah_jarang": 36,
-    "bijih_besi": 14,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const belize: CountryData = {
     "farmasi": 28,
     "pupuk": 36,
     "pengolahan_daging": 10,
-    "mie_instan": 24,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 24
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const belize: CountryData = {
     "sayur_umbi": 15.0,
     "kedelai": 32,
     "kelapa_sawit": 4,
-    "kopi_teh_kakao": 22.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 22.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const belize: CountryData = {
     "pangkalan_laut": 32,
     "program_luar_angkasa": 30,
     "pertahanan_siber": 17,
-    "anggaran_pertahanan": 6,
-    "personel": 8458,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 6
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const belize: CountryData = {
 
   "sektor_armada": {
     "barak": 4,
-    "infanteri": 17,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 40,
         "apc": 5,
@@ -142,23 +132,20 @@ export const belize: CountryData = {
         "jet_tempur_siluman": 8,
         "helikopter_serang": 38,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 40,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 39,
-      "jaringan_radar": 16,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 40,
           "sepeda_motor": 27,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 29,
           "helikopter_polisi": 33,
@@ -169,10 +156,12 @@ export const belize: CountryData = {
           "kamera_pengawas": 28,
           "pusat_forensik": 1
         },
-        "waktu_respon": 22,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 22,
     "intelijen": 14,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 8,
       "misi_mata_mata": 10,
       "misi_sabotase": 36,
@@ -185,34 +174,24 @@ export const belize: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 9,
-      "sd": 6,
-      "smp": 13,
-      "sma": 6,
+      "prasekolah": 9,
+      "dasar": 6,
+      "menengah": 13,
+      "lanjutan": 6,
       "universitas": 5,
       "lembaga_pendidikan": 37,
       "laboratorium": 40,
       "observatorium": 14,
       "pusat_penelitian": 19,
       "pusat_pengembangan": 26,
-      "literasi": 64,
-      "indeks_penelitian": 0
+      "literasi": 64
     },
     "kesehatan": {
       "rumah_sakit_besar": 36,
       "rumah_sakit_kecil": 8,
       "pusat_diagnostik": 2,
-      "tempat_tidur_rs": 9761,
       "harapan_hidup": 38,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 10,
-      "sirkuit_balap": 15,
-      "stadion": 32,
-      "stadion_internasional": 3,
-      "skor_olimpiade": 37,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 34,
@@ -224,6 +203,12 @@ export const belize: CountryData = {
       "indeks_korupsi": 80,
       "indeks_keamanan": 63
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 10,
+      "sirkuit_balap": 15,
+      "stadion": 32,
+      "stadion_internasional": 3
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const belize: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 5,
@@ -345,3 +329,6 @@ export const belize: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const marshall: CountryData = {
     "bandara": 18,
     "terminal_bus": 40,
     "helipad": 29,
-    "cakupan_internet": 80,
-    "indeks_teknologi": 62,
-    "akses_air": 74
+    "cakupan_internet": 80
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const marshall: CountryData = {
     "aluminium": 28,
     "tembaga": 23,
     "logam_tanah_jarang": 20,
-    "bijih_besi": 10,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 10
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const marshall: CountryData = {
     "farmasi": 1,
     "pupuk": 39,
     "pengolahan_daging": 32,
-    "mie_instan": 4,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 4
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const marshall: CountryData = {
     "sayur_umbi": 30.0,
     "kedelai": 35,
     "kelapa_sawit": 15,
-    "kopi_teh_kakao": 20.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 20.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const marshall: CountryData = {
     "pangkalan_laut": 28,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 15,
-    "anggaran_pertahanan": 1,
-    "personel": 10658,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const marshall: CountryData = {
 
   "sektor_armada": {
     "barak": 2,
-    "infanteri": 3,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 179,
         "apc": 27,
@@ -142,23 +132,20 @@ export const marshall: CountryData = {
         "jet_tempur_siluman": 83,
         "helikopter_serang": 131,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 38,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 0,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 4,
           "sepeda_motor": 27,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 17,
           "helikopter_polisi": 11,
@@ -169,10 +156,12 @@ export const marshall: CountryData = {
           "kamera_pengawas": 30,
           "pusat_forensik": 1
         },
-        "waktu_respon": 11,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 11,
     "intelijen": 11,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 4,
       "misi_mata_mata": 31,
       "misi_sabotase": 28,
@@ -185,34 +174,24 @@ export const marshall: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 31,
-      "sd": 10,
-      "smp": 13,
-      "sma": 26,
+      "prasekolah": 31,
+      "dasar": 10,
+      "menengah": 13,
+      "lanjutan": 26,
       "universitas": 12,
       "lembaga_pendidikan": 11,
       "laboratorium": 24,
       "observatorium": 18,
       "pusat_penelitian": 20,
       "pusat_pengembangan": 27,
-      "literasi": 58,
-      "indeks_penelitian": 0
+      "literasi": 58
     },
     "kesehatan": {
       "rumah_sakit_besar": 24,
       "rumah_sakit_kecil": 21,
       "pusat_diagnostik": 27,
-      "tempat_tidur_rs": 3035,
       "harapan_hidup": 37,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 25,
-      "sirkuit_balap": 35,
-      "stadion": 40,
-      "stadion_internasional": 20,
-      "skor_olimpiade": 20,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 7,
@@ -224,6 +203,12 @@ export const marshall: CountryData = {
       "indeks_korupsi": 77,
       "indeks_keamanan": 53
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 25,
+      "sirkuit_balap": 35,
+      "stadion": 40,
+      "stadion_internasional": 20
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const marshall: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 22,
@@ -345,3 +329,6 @@ export const marshall: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const bolivia: CountryData = {
     "bandara": 10,
     "terminal_bus": 21,
     "helipad": 19,
-    "cakupan_internet": 89,
-    "indeks_teknologi": 78,
-    "akses_air": 74
+    "cakupan_internet": 89
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const bolivia: CountryData = {
     "aluminium": 37,
     "tembaga": 30,
     "logam_tanah_jarang": 28,
-    "bijih_besi": 29,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 29
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const bolivia: CountryData = {
     "farmasi": 8,
     "pupuk": 8,
     "pengolahan_daging": 2,
-    "mie_instan": 9,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 9
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const bolivia: CountryData = {
     "sayur_umbi": 24.0,
     "kedelai": 13,
     "kelapa_sawit": 31,
-    "kopi_teh_kakao": 23.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 23.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const bolivia: CountryData = {
     "pangkalan_laut": 26,
     "program_luar_angkasa": 4,
     "pertahanan_siber": 26,
-    "anggaran_pertahanan": 122,
-    "personel": 22740,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 122
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const bolivia: CountryData = {
 
   "sektor_armada": {
     "barak": 15,
-    "infanteri": 23,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 8,
         "apc": 4,
@@ -142,23 +132,20 @@ export const bolivia: CountryData = {
         "jet_tempur_siluman": 26,
         "helikopter_serang": 12,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 27,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 12,
-      "jaringan_radar": 20,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 11,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 11,
           "helikopter_polisi": 13,
@@ -169,10 +156,12 @@ export const bolivia: CountryData = {
           "kamera_pengawas": 28,
           "pusat_forensik": 1
         },
-        "waktu_respon": 18,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 18,
     "intelijen": 35,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 9,
       "misi_mata_mata": 33,
       "misi_sabotase": 6,
@@ -185,34 +174,24 @@ export const bolivia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 17,
-      "sd": 7,
-      "smp": 38,
-      "sma": 26,
+      "prasekolah": 17,
+      "dasar": 7,
+      "menengah": 38,
+      "lanjutan": 26,
       "universitas": 27,
       "lembaga_pendidikan": 21,
       "laboratorium": 15,
       "observatorium": 7,
       "pusat_penelitian": 26,
       "pusat_pengembangan": 9,
-      "literasi": 92,
-      "indeks_penelitian": 0
+      "literasi": 92
     },
     "kesehatan": {
       "rumah_sakit_besar": 8,
       "rumah_sakit_kecil": 9,
       "pusat_diagnostik": 38,
-      "tempat_tidur_rs": 1678,
       "harapan_hidup": 11,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 15,
-      "sirkuit_balap": 19,
-      "stadion": 30,
-      "stadion_internasional": 24,
-      "skor_olimpiade": 38,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 27,
@@ -224,6 +203,12 @@ export const bolivia: CountryData = {
       "indeks_korupsi": 52,
       "indeks_keamanan": 58
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 15,
+      "sirkuit_balap": 19,
+      "stadion": 30,
+      "stadion_internasional": 24
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const bolivia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 16,
@@ -345,3 +329,6 @@ export const bolivia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

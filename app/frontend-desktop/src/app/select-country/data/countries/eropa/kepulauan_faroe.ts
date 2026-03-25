@@ -39,9 +39,7 @@ export const kepulauan_faroe: CountryData = {
     "bandara": 36,
     "terminal_bus": 35,
     "helipad": 34,
-    "cakupan_internet": 79,
-    "indeks_teknologi": 66,
-    "akses_air": 74
+    "cakupan_internet": 79
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const kepulauan_faroe: CountryData = {
     "aluminium": 18,
     "tembaga": 4,
     "logam_tanah_jarang": 8,
-    "bijih_besi": 29,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 29
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const kepulauan_faroe: CountryData = {
     "farmasi": 37,
     "pupuk": 19,
     "pengolahan_daging": 15,
-    "mie_instan": 27,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 27
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const kepulauan_faroe: CountryData = {
     "sayur_umbi": 17.0,
     "kedelai": 27,
     "kelapa_sawit": 31,
-    "kopi_teh_kakao": 16.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 16.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const kepulauan_faroe: CountryData = {
     "pangkalan_laut": 40,
     "program_luar_angkasa": 30,
     "pertahanan_siber": 3,
-    "anggaran_pertahanan": 27,
-    "personel": 23620,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const kepulauan_faroe: CountryData = {
 
   "sektor_armada": {
     "barak": 23,
-    "infanteri": 17,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 107,
         "apc": 45,
@@ -142,23 +132,20 @@ export const kepulauan_faroe: CountryData = {
         "jet_tempur_siluman": 104,
         "helikopter_serang": 142,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 35,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 3,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 37,
           "sepeda_motor": 29,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 25,
           "helikopter_polisi": 12,
@@ -169,10 +156,12 @@ export const kepulauan_faroe: CountryData = {
           "kamera_pengawas": 21,
           "pusat_forensik": 1
         },
-        "waktu_respon": 31,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 31,
     "intelijen": 18,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 20,
       "misi_mata_mata": 34,
       "misi_sabotase": 26,
@@ -185,34 +174,24 @@ export const kepulauan_faroe: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 19,
-      "sd": 1,
-      "smp": 20,
-      "sma": 32,
+      "prasekolah": 19,
+      "dasar": 1,
+      "menengah": 20,
+      "lanjutan": 32,
       "universitas": 40,
       "lembaga_pendidikan": 24,
       "laboratorium": 18,
       "observatorium": 39,
       "pusat_penelitian": 13,
       "pusat_pengembangan": 12,
-      "literasi": 86,
-      "indeks_penelitian": 0
+      "literasi": 86
     },
     "kesehatan": {
       "rumah_sakit_besar": 39,
       "rumah_sakit_kecil": 7,
       "pusat_diagnostik": 23,
-      "tempat_tidur_rs": 9763,
       "harapan_hidup": 1,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 1,
-      "sirkuit_balap": 39,
-      "stadion": 17,
-      "stadion_internasional": 10,
-      "skor_olimpiade": 22,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 37,
@@ -224,6 +203,12 @@ export const kepulauan_faroe: CountryData = {
       "indeks_korupsi": 94,
       "indeks_keamanan": 68
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 1,
+      "sirkuit_balap": 39,
+      "stadion": 17,
+      "stadion_internasional": 10
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const kepulauan_faroe: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 9,
@@ -345,3 +329,6 @@ export const kepulauan_faroe: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

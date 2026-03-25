@@ -39,9 +39,7 @@ export const estonia: CountryData = {
     "bandara": 14,
     "terminal_bus": 2,
     "helipad": 19,
-    "cakupan_internet": 59,
-    "indeks_teknologi": 78,
-    "akses_air": 74
+    "cakupan_internet": 59
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const estonia: CountryData = {
     "aluminium": 33,
     "tembaga": 40,
     "logam_tanah_jarang": 27,
-    "bijih_besi": 14,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const estonia: CountryData = {
     "farmasi": 12,
     "pupuk": 11,
     "pengolahan_daging": 27,
-    "mie_instan": 27,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 27
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const estonia: CountryData = {
     "sayur_umbi": 28.5,
     "kedelai": 14,
     "kelapa_sawit": 29,
-    "kopi_teh_kakao": 15.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 15.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const estonia: CountryData = {
     "pangkalan_laut": 23,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 7,
-    "anggaran_pertahanan": 111,
-    "personel": 21911,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 111
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const estonia: CountryData = {
 
   "sektor_armada": {
     "barak": 31,
-    "infanteri": 16,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 22,
         "apc": 13,
@@ -142,23 +132,20 @@ export const estonia: CountryData = {
         "jet_tempur_siluman": 4,
         "helikopter_serang": 37,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 5,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 9,
-      "jaringan_radar": 8,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 25,
           "sepeda_motor": 15,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 25,
           "helikopter_polisi": 18,
@@ -169,10 +156,12 @@ export const estonia: CountryData = {
           "kamera_pengawas": 25,
           "pusat_forensik": 1
         },
-        "waktu_respon": 17,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 17,
     "intelijen": 16,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 7,
       "misi_mata_mata": 19,
       "misi_sabotase": 8,
@@ -185,34 +174,24 @@ export const estonia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 20,
-      "sd": 1,
-      "smp": 8,
-      "sma": 19,
+      "prasekolah": 20,
+      "dasar": 1,
+      "menengah": 8,
+      "lanjutan": 19,
       "universitas": 27,
       "lembaga_pendidikan": 12,
       "laboratorium": 8,
       "observatorium": 9,
       "pusat_penelitian": 13,
       "pusat_pengembangan": 20,
-      "literasi": 88,
-      "indeks_penelitian": 0
+      "literasi": 88
     },
     "kesehatan": {
       "rumah_sakit_besar": 8,
       "rumah_sakit_kecil": 18,
       "pusat_diagnostik": 10,
-      "tempat_tidur_rs": 7708,
       "harapan_hidup": 32,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 14,
-      "sirkuit_balap": 21,
-      "stadion": 20,
-      "stadion_internasional": 30,
-      "skor_olimpiade": 10,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 22,
@@ -224,6 +203,12 @@ export const estonia: CountryData = {
       "indeks_korupsi": 57,
       "indeks_keamanan": 95
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 14,
+      "sirkuit_balap": 21,
+      "stadion": 20,
+      "stadion_internasional": 30
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const estonia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 38,
@@ -345,3 +329,6 @@ export const estonia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

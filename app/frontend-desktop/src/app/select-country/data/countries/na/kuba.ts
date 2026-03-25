@@ -39,9 +39,7 @@ export const kuba: CountryData = {
     "bandara": 23,
     "terminal_bus": 8,
     "helipad": 29,
-    "cakupan_internet": 66,
-    "indeks_teknologi": 79,
-    "akses_air": 74
+    "cakupan_internet": 66
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const kuba: CountryData = {
     "aluminium": 9,
     "tembaga": 6,
     "logam_tanah_jarang": 17,
-    "bijih_besi": 3,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const kuba: CountryData = {
     "farmasi": 10,
     "pupuk": 23,
     "pengolahan_daging": 35,
-    "mie_instan": 19,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 19
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const kuba: CountryData = {
     "sayur_umbi": 21.5,
     "kedelai": 6,
     "kelapa_sawit": 25,
-    "kopi_teh_kakao": 27.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 27.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const kuba: CountryData = {
     "pangkalan_laut": 4,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 15,
-    "anggaran_pertahanan": 291,
-    "personel": 15719,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 291
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const kuba: CountryData = {
 
   "sektor_armada": {
     "barak": 32,
-    "infanteri": 24,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 31,
         "apc": 35,
@@ -142,23 +132,20 @@ export const kuba: CountryData = {
         "jet_tempur_siluman": 13,
         "helikopter_serang": 28,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 27,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 39,
-      "jaringan_radar": 20,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 23,
           "sepeda_motor": 29,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 28,
           "helikopter_polisi": 26,
@@ -169,10 +156,12 @@ export const kuba: CountryData = {
           "kamera_pengawas": 9,
           "pusat_forensik": 1
         },
-        "waktu_respon": 34,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 34,
     "intelijen": 30,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 1,
       "misi_mata_mata": 6,
       "misi_sabotase": 20,
@@ -185,34 +174,24 @@ export const kuba: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 18,
-      "sd": 33,
-      "smp": 9,
-      "sma": 40,
+      "prasekolah": 18,
+      "dasar": 33,
+      "menengah": 9,
+      "lanjutan": 40,
       "universitas": 9,
       "lembaga_pendidikan": 24,
       "laboratorium": 23,
       "observatorium": 11,
       "pusat_penelitian": 27,
       "pusat_pengembangan": 12,
-      "literasi": 59,
-      "indeks_penelitian": 0
+      "literasi": 59
     },
     "kesehatan": {
       "rumah_sakit_besar": 4,
       "rumah_sakit_kecil": 28,
       "pusat_diagnostik": 18,
-      "tempat_tidur_rs": 2424,
       "harapan_hidup": 6,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 22,
-      "sirkuit_balap": 8,
-      "stadion": 26,
-      "stadion_internasional": 19,
-      "skor_olimpiade": 28,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 17,
@@ -224,6 +203,12 @@ export const kuba: CountryData = {
       "indeks_korupsi": 77,
       "indeks_keamanan": 80
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 22,
+      "sirkuit_balap": 8,
+      "stadion": 26,
+      "stadion_internasional": 19
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const kuba: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 39,
@@ -345,3 +329,6 @@ export const kuba: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

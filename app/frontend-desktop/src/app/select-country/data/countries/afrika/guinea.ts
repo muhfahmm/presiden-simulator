@@ -39,9 +39,7 @@ export const guinea: CountryData = {
     "jalur_kereta": 33,
     "kualitas_jalan": 92,
     "pelabuhan_laut": 24,
-    "kereta_bawah_tanah": 9,
-    "indeks_teknologi": 63,
-    "akses_air": 74
+    "kereta_bawah_tanah": 9
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const guinea: CountryData = {
     "minyak_bumi": 19,
     "logam_tanah_jarang": 13,
     "garam": 12,
-    "kekuatan": 29.660809349923973,
     "uranium": 18
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const guinea: CountryData = {
     "farmasi": 18,
     "semikonduktor": 21,
     "smelter": 34,
-    "kekuatan": 3.076011687404966,
     "gula": 15,
     "kayu": 27
   },
@@ -98,9 +94,8 @@ export const guinea: CountryData = {
     "sayur_umbi": 15.5,
     "kedelai": 22,
     "kelapa_sawit": 33,
-    "kopi_teh_kakao": 29.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 29.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const guinea: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 39,
     "pertahanan_siber": 29,
-    "anggaran_pertahanan": 50,
-    "personel": 25018,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 50
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const guinea: CountryData = {
 
   "sektor_armada": {
     "barak": 20,
-    "infanteri": 11,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 10,
         "apc": 4,
@@ -142,23 +132,19 @@ export const guinea: CountryData = {
         "jet_tempur_siluman": 12,
         "helikopter_serang": 3,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 22,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 22,
-      "jaringan_radar": 34,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 28,
           "sepeda_motor": 18,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 6,
@@ -170,11 +156,12 @@ export const guinea: CountryData = {
           "kamera_pengawas": 25,
           "pusat_forensik": 1
   },
-        "waktu_respon": 39,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 39,
     "intelijen": 19,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 1,
       "misi_mata_mata": 21,
       "misi_sabotase": 35,
@@ -188,34 +175,24 @@ export const guinea: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 10,
-      "sd": 33,
-      "smp": 17,
-      "sma": 10,
+      "prasekolah": 10,
+      "dasar": 33,
+      "menengah": 17,
+      "lanjutan": 10,
       "universitas": 11,
       "lembaga_pendidikan": 10,
       "laboratorium": 1,
       "observatorium": 26,
       "pusat_penelitian": 26,
       "pusat_pengembangan": 9,
-      "literasi": 80,
-      "indeks_penelitian": 0
+      "literasi": 80
   },
     "kesehatan": {
       "rumah_sakit_besar": 11,
       "rumah_sakit_kecil": 2,
       "pusat_diagnostik": 39,
-      "tempat_tidur_rs": 5525,
       "harapan_hidup": 37,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 1,
-      "sirkuit_balap": 8,
-      "stadion": 33,
-      "stadion_internasional": 20,
-      "skor_olimpiade": 8,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 27,
@@ -227,6 +204,12 @@ export const guinea: CountryData = {
       "indeks_korupsi": 85,
       "indeks_keamanan": 71
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 1,
+      "sirkuit_balap": 8,
+      "stadion": 33,
+      "stadion_internasional": 20
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const guinea: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 18,
@@ -348,3 +330,6 @@ export const guinea: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const azerbaijan: CountryData = {
     "bandara": 6,
     "terminal_bus": 5,
     "helipad": 29,
-    "cakupan_internet": 55,
-    "indeks_teknologi": 57,
-    "akses_air": 74
+    "cakupan_internet": 55
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const azerbaijan: CountryData = {
     "aluminium": 6,
     "tembaga": 17,
     "logam_tanah_jarang": 30,
-    "bijih_besi": 3,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const azerbaijan: CountryData = {
     "farmasi": 24,
     "pupuk": 27,
     "pengolahan_daging": 19,
-    "mie_instan": 40,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 40
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const azerbaijan: CountryData = {
     "sayur_umbi": 17.5,
     "kedelai": 2,
     "kelapa_sawit": 5,
-    "kopi_teh_kakao": 31.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 31.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const azerbaijan: CountryData = {
     "pangkalan_laut": 24,
     "program_luar_angkasa": 2,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 152,
-    "personel": 11539,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 152
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const azerbaijan: CountryData = {
 
   "sektor_armada": {
     "barak": 6,
-    "infanteri": 38,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 11,
         "apc": 35,
@@ -142,23 +132,20 @@ export const azerbaijan: CountryData = {
         "jet_tempur_siluman": 25,
         "helikopter_serang": 8,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 18,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 38,
-      "jaringan_radar": 9,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 24,
           "sepeda_motor": 38,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 37,
           "helikopter_polisi": 21,
@@ -169,10 +156,12 @@ export const azerbaijan: CountryData = {
           "kamera_pengawas": 13,
           "pusat_forensik": 1
         },
-        "waktu_respon": 2,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 2,
     "intelijen": 10,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 9,
       "misi_mata_mata": 31,
       "misi_sabotase": 39,
@@ -185,34 +174,24 @@ export const azerbaijan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 39,
-      "sd": 11,
-      "smp": 18,
-      "sma": 17,
+      "prasekolah": 39,
+      "dasar": 11,
+      "menengah": 18,
+      "lanjutan": 17,
       "universitas": 14,
       "lembaga_pendidikan": 16,
       "laboratorium": 11,
       "observatorium": 30,
       "pusat_penelitian": 29,
       "pusat_pengembangan": 18,
-      "literasi": 63,
-      "indeks_penelitian": 0
+      "literasi": 63
     },
     "kesehatan": {
       "rumah_sakit_besar": 21,
       "rumah_sakit_kecil": 29,
       "pusat_diagnostik": 1,
-      "tempat_tidur_rs": 9323,
       "harapan_hidup": 31,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 37,
-      "sirkuit_balap": 13,
-      "stadion": 7,
-      "stadion_internasional": 10,
-      "skor_olimpiade": 40,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 34,
@@ -224,6 +203,12 @@ export const azerbaijan: CountryData = {
       "indeks_korupsi": 56,
       "indeks_keamanan": 82
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 37,
+      "sirkuit_balap": 13,
+      "stadion": 7,
+      "stadion_internasional": 10
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const azerbaijan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 13,
@@ -345,3 +329,6 @@ export const azerbaijan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

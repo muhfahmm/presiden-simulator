@@ -39,9 +39,7 @@ export const bangladesh: CountryData = {
     "bandara": 34,
     "terminal_bus": 13,
     "helipad": 28,
-    "cakupan_internet": 66,
-    "indeks_teknologi": 91,
-    "akses_air": 74
+    "cakupan_internet": 66
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const bangladesh: CountryData = {
     "aluminium": 30,
     "tembaga": 24,
     "logam_tanah_jarang": 20,
-    "bijih_besi": 23,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 23
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const bangladesh: CountryData = {
     "farmasi": 28,
     "pupuk": 1,
     "pengolahan_daging": 4,
-    "mie_instan": 5,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 5
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const bangladesh: CountryData = {
     "sayur_umbi": 24.5,
     "kedelai": 12,
     "kelapa_sawit": 26,
-    "kopi_teh_kakao": 26.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 26.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const bangladesh: CountryData = {
     "pangkalan_laut": 14,
     "program_luar_angkasa": 40,
     "pertahanan_siber": 7,
-    "anggaran_pertahanan": 1277,
-    "personel": 8753,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1277
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const bangladesh: CountryData = {
 
   "sektor_armada": {
     "barak": 30,
-    "infanteri": 36,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 12,
         "apc": 20,
@@ -142,23 +132,20 @@ export const bangladesh: CountryData = {
         "jet_tempur_siluman": 12,
         "helikopter_serang": 14,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 2,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 40,
-      "jaringan_radar": 38,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 25,
           "sepeda_motor": 30,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 6,
           "helikopter_polisi": 39,
@@ -169,10 +156,12 @@ export const bangladesh: CountryData = {
           "kamera_pengawas": 34,
           "pusat_forensik": 1
         },
-        "waktu_respon": 27,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 27,
     "intelijen": 1,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 25,
       "misi_mata_mata": 14,
       "misi_sabotase": 22,
@@ -185,34 +174,24 @@ export const bangladesh: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 27,
-      "sd": 38,
-      "smp": 3,
-      "sma": 17,
+      "prasekolah": 27,
+      "dasar": 38,
+      "menengah": 3,
+      "lanjutan": 17,
       "universitas": 27,
       "lembaga_pendidikan": 28,
       "laboratorium": 11,
       "observatorium": 39,
       "pusat_penelitian": 24,
       "pusat_pengembangan": 1,
-      "literasi": 55,
-      "indeks_penelitian": 0
+      "literasi": 55
     },
     "kesehatan": {
       "rumah_sakit_besar": 1,
       "rumah_sakit_kecil": 5,
       "pusat_diagnostik": 20,
-      "tempat_tidur_rs": 3222,
       "harapan_hidup": 17,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 25,
-      "sirkuit_balap": 36,
-      "stadion": 9,
-      "stadion_internasional": 39,
-      "skor_olimpiade": 19,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 13,
@@ -224,6 +203,12 @@ export const bangladesh: CountryData = {
       "indeks_korupsi": 79,
       "indeks_keamanan": 63
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 25,
+      "sirkuit_balap": 36,
+      "stadion": 9,
+      "stadion_internasional": 39
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const bangladesh: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 7,
@@ -345,3 +329,6 @@ export const bangladesh: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

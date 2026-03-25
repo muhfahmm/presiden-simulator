@@ -39,9 +39,7 @@ export const malta: CountryData = {
     "bandara": 37,
     "terminal_bus": 11,
     "helipad": 27,
-    "cakupan_internet": 69,
-    "indeks_teknologi": 69,
-    "akses_air": 74
+    "cakupan_internet": 69
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const malta: CountryData = {
     "aluminium": 1,
     "tembaga": 9,
     "logam_tanah_jarang": 8,
-    "bijih_besi": 3,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const malta: CountryData = {
     "farmasi": 7,
     "pupuk": 7,
     "pengolahan_daging": 28,
-    "mie_instan": 39,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 39
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const malta: CountryData = {
     "sayur_umbi": 19.5,
     "kedelai": 17,
     "kelapa_sawit": 14,
-    "kopi_teh_kakao": 28.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 28.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const malta: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 32,
     "pertahanan_siber": 22,
-    "anggaran_pertahanan": 55,
-    "personel": 16653,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 55
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const malta: CountryData = {
 
   "sektor_armada": {
     "barak": 19,
-    "infanteri": 11,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 32,
         "apc": 5,
@@ -142,23 +132,20 @@ export const malta: CountryData = {
         "jet_tempur_siluman": 27,
         "helikopter_serang": 3,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 8,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 29,
-      "jaringan_radar": 32,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 3,
           "sepeda_motor": 13,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 1,
           "helikopter_polisi": 18,
@@ -169,10 +156,12 @@ export const malta: CountryData = {
           "kamera_pengawas": 5,
           "pusat_forensik": 1
         },
-        "waktu_respon": 3,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 3,
     "intelijen": 36,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 38,
       "misi_mata_mata": 35,
       "misi_sabotase": 13,
@@ -185,34 +174,24 @@ export const malta: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 13,
-      "sd": 6,
-      "smp": 36,
-      "sma": 26,
+      "prasekolah": 13,
+      "dasar": 6,
+      "menengah": 36,
+      "lanjutan": 26,
       "universitas": 4,
       "lembaga_pendidikan": 22,
       "laboratorium": 28,
       "observatorium": 13,
       "pusat_penelitian": 9,
       "pusat_pengembangan": 17,
-      "literasi": 83,
-      "indeks_penelitian": 0
+      "literasi": 83
     },
     "kesehatan": {
       "rumah_sakit_besar": 13,
       "rumah_sakit_kecil": 13,
       "pusat_diagnostik": 31,
-      "tempat_tidur_rs": 6898,
       "harapan_hidup": 39,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 21,
-      "sirkuit_balap": 24,
-      "stadion": 26,
-      "stadion_internasional": 3,
-      "skor_olimpiade": 28,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 29,
@@ -224,6 +203,12 @@ export const malta: CountryData = {
       "indeks_korupsi": 89,
       "indeks_keamanan": 82
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 21,
+      "sirkuit_balap": 24,
+      "stadion": 26,
+      "stadion_internasional": 3
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const malta: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 17,
@@ -345,3 +329,6 @@ export const malta: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

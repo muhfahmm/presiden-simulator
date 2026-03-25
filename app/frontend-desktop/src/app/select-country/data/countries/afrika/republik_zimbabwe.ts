@@ -39,9 +39,7 @@ export const republik_zimbabwe: CountryData = {
     "jalur_kereta": 17,
     "kualitas_jalan": 78,
     "pelabuhan_laut": 23,
-    "kereta_bawah_tanah": 11,
-    "indeks_teknologi": 73,
-    "akses_air": 74
+    "kereta_bawah_tanah": 11
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const republik_zimbabwe: CountryData = {
     "minyak_bumi": 6,
     "logam_tanah_jarang": 40,
     "garam": 17,
-    "kekuatan": 29.660809349923973,
     "uranium": 20
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const republik_zimbabwe: CountryData = {
     "farmasi": 16,
     "semikonduktor": 11,
     "smelter": 24,
-    "kekuatan": 3.076011687404966,
     "gula": 31,
     "kayu": 26
   },
@@ -98,9 +94,8 @@ export const republik_zimbabwe: CountryData = {
     "sayur_umbi": 18.0,
     "kedelai": 14,
     "kelapa_sawit": 12,
-    "kopi_teh_kakao": 12.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 12.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const republik_zimbabwe: CountryData = {
     "pangkalan_laut": 20,
     "program_luar_angkasa": 6,
     "pertahanan_siber": 1,
-    "anggaran_pertahanan": 55,
-    "personel": 13156,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 55
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const republik_zimbabwe: CountryData = {
 
   "sektor_armada": {
     "barak": 7,
-    "infanteri": 26,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 92,
         "apc": 97,
@@ -142,23 +132,19 @@ export const republik_zimbabwe: CountryData = {
         "jet_tempur_siluman": 120,
         "helikopter_serang": 24,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 11,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 3,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 3,
           "sepeda_motor": 35,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 24,
@@ -170,11 +156,12 @@ export const republik_zimbabwe: CountryData = {
           "kamera_pengawas": 33,
           "pusat_forensik": 1
   },
-        "waktu_respon": 32,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 32,
     "intelijen": 15,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 28,
       "misi_mata_mata": 22,
       "misi_sabotase": 39,
@@ -188,34 +175,24 @@ export const republik_zimbabwe: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 38,
-      "sd": 32,
-      "smp": 5,
-      "sma": 3,
+      "prasekolah": 38,
+      "dasar": 32,
+      "menengah": 5,
+      "lanjutan": 3,
       "universitas": 19,
       "lembaga_pendidikan": 15,
       "laboratorium": 25,
       "observatorium": 14,
       "pusat_penelitian": 39,
       "pusat_pengembangan": 16,
-      "literasi": 62,
-      "indeks_penelitian": 0
+      "literasi": 62
   },
     "kesehatan": {
       "rumah_sakit_besar": 6,
       "rumah_sakit_kecil": 33,
       "pusat_diagnostik": 35,
-      "tempat_tidur_rs": 2089,
       "harapan_hidup": 38,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 15,
-      "sirkuit_balap": 12,
-      "stadion": 9,
-      "stadion_internasional": 28,
-      "skor_olimpiade": 16,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 9,
@@ -227,6 +204,12 @@ export const republik_zimbabwe: CountryData = {
       "indeks_korupsi": 76,
       "indeks_keamanan": 86
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 15,
+      "sirkuit_balap": 12,
+      "stadion": 9,
+      "stadion_internasional": 28
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const republik_zimbabwe: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 2,
@@ -348,3 +330,6 @@ export const republik_zimbabwe: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

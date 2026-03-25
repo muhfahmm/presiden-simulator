@@ -39,9 +39,7 @@ export const malawi: CountryData = {
     "jalur_kereta": 12,
     "kualitas_jalan": 78,
     "pelabuhan_laut": 14,
-    "kereta_bawah_tanah": 27,
-    "indeks_teknologi": 64,
-    "akses_air": 74
+    "kereta_bawah_tanah": 27
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const malawi: CountryData = {
     "minyak_bumi": 27,
     "logam_tanah_jarang": 17,
     "garam": 4,
-    "kekuatan": 29.660809349923973,
     "uranium": 5
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const malawi: CountryData = {
     "farmasi": 7,
     "semikonduktor": 4,
     "smelter": 34,
-    "kekuatan": 3.076011687404966,
     "gula": 16,
     "kayu": 18
   },
@@ -98,9 +94,8 @@ export const malawi: CountryData = {
     "sayur_umbi": 24.0,
     "kedelai": 37,
     "kelapa_sawit": 38,
-    "kopi_teh_kakao": 12.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 12.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const malawi: CountryData = {
     "pangkalan_laut": 34,
     "program_luar_angkasa": 40,
     "pertahanan_siber": 10,
-    "anggaran_pertahanan": 33,
-    "personel": 8841,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 33
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const malawi: CountryData = {
 
   "sektor_armada": {
     "barak": 34,
-    "infanteri": 28,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 36,
         "apc": 20,
@@ -142,23 +132,19 @@ export const malawi: CountryData = {
         "jet_tempur_siluman": 1,
         "helikopter_serang": 40,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 16,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 25,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 26,
           "sepeda_motor": 19,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 2,
@@ -170,11 +156,12 @@ export const malawi: CountryData = {
           "kamera_pengawas": 4,
           "pusat_forensik": 1
   },
-        "waktu_respon": 17,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 17,
     "intelijen": 14,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 20,
       "misi_mata_mata": 1,
       "misi_sabotase": 21,
@@ -188,34 +175,24 @@ export const malawi: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 17,
-      "sd": 38,
-      "smp": 16,
-      "sma": 5,
+      "prasekolah": 17,
+      "dasar": 38,
+      "menengah": 16,
+      "lanjutan": 5,
       "universitas": 35,
       "lembaga_pendidikan": 39,
       "laboratorium": 6,
       "observatorium": 28,
       "pusat_penelitian": 19,
       "pusat_pengembangan": 32,
-      "literasi": 95,
-      "indeks_penelitian": 0
+      "literasi": 95
   },
     "kesehatan": {
       "rumah_sakit_besar": 1,
       "rumah_sakit_kecil": 23,
       "pusat_diagnostik": 40,
-      "tempat_tidur_rs": 9033,
       "harapan_hidup": 18,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 9,
-      "sirkuit_balap": 33,
-      "stadion": 38,
-      "stadion_internasional": 13,
-      "skor_olimpiade": 17,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 29,
@@ -227,6 +204,12 @@ export const malawi: CountryData = {
       "indeks_korupsi": 82,
       "indeks_keamanan": 90
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 9,
+      "sirkuit_balap": 33,
+      "stadion": 38,
+      "stadion_internasional": 13
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const malawi: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 3,
@@ -348,3 +330,6 @@ export const malawi: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

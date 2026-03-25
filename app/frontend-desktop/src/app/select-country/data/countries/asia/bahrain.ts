@@ -39,9 +39,7 @@ export const bahrain: CountryData = {
     "bandara": 11,
     "terminal_bus": 30,
     "helipad": 16,
-    "cakupan_internet": 56,
-    "indeks_teknologi": 69,
-    "akses_air": 74
+    "cakupan_internet": 56
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const bahrain: CountryData = {
     "aluminium": 18,
     "tembaga": 35,
     "logam_tanah_jarang": 26,
-    "bijih_besi": 36,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 36
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const bahrain: CountryData = {
     "farmasi": 5,
     "pupuk": 24,
     "pengolahan_daging": 8,
-    "mie_instan": 34,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 34
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const bahrain: CountryData = {
     "sayur_umbi": 27.5,
     "kedelai": 40,
     "kelapa_sawit": 2,
-    "kopi_teh_kakao": 22.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 22.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const bahrain: CountryData = {
     "pangkalan_laut": 25,
     "program_luar_angkasa": 1,
     "pertahanan_siber": 17,
-    "anggaran_pertahanan": 122,
-    "personel": 9786,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 122
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const bahrain: CountryData = {
 
   "sektor_armada": {
     "barak": 6,
-    "infanteri": 28,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 29,
         "apc": 7,
@@ -142,23 +132,20 @@ export const bahrain: CountryData = {
         "jet_tempur_siluman": 39,
         "helikopter_serang": 32,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 6,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 14,
-      "jaringan_radar": 9,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 19,
           "sepeda_motor": 28,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 23,
           "helikopter_polisi": 39,
@@ -169,10 +156,12 @@ export const bahrain: CountryData = {
           "kamera_pengawas": 9,
           "pusat_forensik": 1
         },
-        "waktu_respon": 36,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 36,
     "intelijen": 37,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 24,
       "misi_mata_mata": 34,
       "misi_sabotase": 9,
@@ -185,34 +174,24 @@ export const bahrain: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 27,
-      "sd": 35,
-      "smp": 39,
-      "sma": 12,
+      "prasekolah": 27,
+      "dasar": 35,
+      "menengah": 39,
+      "lanjutan": 12,
       "universitas": 24,
       "lembaga_pendidikan": 3,
       "laboratorium": 12,
       "observatorium": 4,
       "pusat_penelitian": 18,
       "pusat_pengembangan": 24,
-      "literasi": 61,
-      "indeks_penelitian": 0
+      "literasi": 61
     },
     "kesehatan": {
       "rumah_sakit_besar": 36,
       "rumah_sakit_kecil": 12,
       "pusat_diagnostik": 7,
-      "tempat_tidur_rs": 5560,
       "harapan_hidup": 11,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 5,
-      "sirkuit_balap": 13,
-      "stadion": 4,
-      "stadion_internasional": 27,
-      "skor_olimpiade": 24,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 35,
@@ -224,6 +203,12 @@ export const bahrain: CountryData = {
       "indeks_korupsi": 92,
       "indeks_keamanan": 72
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 5,
+      "sirkuit_balap": 13,
+      "stadion": 4,
+      "stadion_internasional": 27
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const bahrain: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 27,
@@ -345,3 +329,6 @@ export const bahrain: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

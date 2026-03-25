@@ -39,9 +39,7 @@ export const tahiti: CountryData = {
     "bandara": 31,
     "terminal_bus": 24,
     "helipad": 16,
-    "cakupan_internet": 57,
-    "indeks_teknologi": 88,
-    "akses_air": 74
+    "cakupan_internet": 57
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const tahiti: CountryData = {
     "aluminium": 2,
     "tembaga": 16,
     "logam_tanah_jarang": 7,
-    "bijih_besi": 11,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const tahiti: CountryData = {
     "farmasi": 24,
     "pupuk": 12,
     "pengolahan_daging": 2,
-    "mie_instan": 34,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 34
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const tahiti: CountryData = {
     "sayur_umbi": 13.0,
     "kedelai": 34,
     "kelapa_sawit": 24,
-    "kopi_teh_kakao": 14.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 14.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const tahiti: CountryData = {
     "pangkalan_laut": 11,
     "program_luar_angkasa": 39,
     "pertahanan_siber": 2,
-    "anggaran_pertahanan": 27,
-    "personel": 15019,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const tahiti: CountryData = {
 
   "sektor_armada": {
     "barak": 17,
-    "infanteri": 13,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 137,
         "apc": 49,
@@ -142,23 +132,20 @@ export const tahiti: CountryData = {
         "jet_tempur_siluman": 52,
         "helikopter_serang": 191,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 4,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 2,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 25,
           "helikopter_polisi": 36,
@@ -169,10 +156,12 @@ export const tahiti: CountryData = {
           "kamera_pengawas": 5,
           "pusat_forensik": 1
         },
-        "waktu_respon": 14,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 14,
     "intelijen": 34,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 36,
       "misi_mata_mata": 2,
       "misi_sabotase": 1,
@@ -185,34 +174,24 @@ export const tahiti: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 40,
-      "sd": 12,
-      "smp": 17,
-      "sma": 40,
+      "prasekolah": 40,
+      "dasar": 12,
+      "menengah": 17,
+      "lanjutan": 40,
       "universitas": 33,
       "lembaga_pendidikan": 20,
       "laboratorium": 29,
       "observatorium": 37,
       "pusat_penelitian": 9,
       "pusat_pengembangan": 37,
-      "literasi": 56,
-      "indeks_penelitian": 0
+      "literasi": 56
     },
     "kesehatan": {
       "rumah_sakit_besar": 12,
       "rumah_sakit_kecil": 13,
       "pusat_diagnostik": 12,
-      "tempat_tidur_rs": 3480,
       "harapan_hidup": 40,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 19,
-      "sirkuit_balap": 1,
-      "stadion": 22,
-      "stadion_internasional": 1,
-      "skor_olimpiade": 39,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 32,
@@ -224,6 +203,12 @@ export const tahiti: CountryData = {
       "indeks_korupsi": 82,
       "indeks_keamanan": 94
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 19,
+      "sirkuit_balap": 1,
+      "stadion": 22,
+      "stadion_internasional": 1
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const tahiti: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 14,
@@ -345,3 +329,6 @@ export const tahiti: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

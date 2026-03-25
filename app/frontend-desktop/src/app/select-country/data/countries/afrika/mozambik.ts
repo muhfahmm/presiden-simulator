@@ -39,9 +39,7 @@ export const mozambik: CountryData = {
     "jalur_kereta": 8,
     "kualitas_jalan": 51,
     "pelabuhan_laut": 14,
-    "kereta_bawah_tanah": 18,
-    "indeks_teknologi": 83,
-    "akses_air": 74
+    "kereta_bawah_tanah": 18
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const mozambik: CountryData = {
     "minyak_bumi": 35,
     "logam_tanah_jarang": 27,
     "garam": 8,
-    "kekuatan": 29.660809349923973,
     "uranium": 18
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const mozambik: CountryData = {
     "farmasi": 12,
     "semikonduktor": 13,
     "smelter": 29,
-    "kekuatan": 3.076011687404966,
     "gula": 27,
     "kayu": 28
   },
@@ -98,9 +94,8 @@ export const mozambik: CountryData = {
     "sayur_umbi": 4.0,
     "kedelai": 16,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 13.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 13.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const mozambik: CountryData = {
     "pangkalan_laut": 27,
     "program_luar_angkasa": 1,
     "pertahanan_siber": 40,
-    "anggaran_pertahanan": 50,
-    "personel": 17347,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 50
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const mozambik: CountryData = {
 
   "sektor_armada": {
     "barak": 12,
-    "infanteri": 15,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 31,
         "apc": 164,
@@ -142,23 +132,19 @@ export const mozambik: CountryData = {
         "jet_tempur_siluman": 77,
         "helikopter_serang": 63,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 15,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 5,
-      "jaringan_radar": 3,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 26,
           "sepeda_motor": 23,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 40,
@@ -170,11 +156,12 @@ export const mozambik: CountryData = {
           "kamera_pengawas": 2,
           "pusat_forensik": 1
   },
-        "waktu_respon": 12,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 12,
     "intelijen": 33,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 24,
       "misi_mata_mata": 3,
       "misi_sabotase": 30,
@@ -188,34 +175,24 @@ export const mozambik: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 38,
-      "sd": 12,
-      "smp": 22,
-      "sma": 16,
+      "prasekolah": 38,
+      "dasar": 12,
+      "menengah": 22,
+      "lanjutan": 16,
       "universitas": 17,
       "lembaga_pendidikan": 12,
       "laboratorium": 17,
       "observatorium": 33,
       "pusat_penelitian": 25,
       "pusat_pengembangan": 4,
-      "literasi": 83,
-      "indeks_penelitian": 0
+      "literasi": 83
   },
     "kesehatan": {
       "rumah_sakit_besar": 34,
       "rumah_sakit_kecil": 7,
       "pusat_diagnostik": 40,
-      "tempat_tidur_rs": 9983,
       "harapan_hidup": 23,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 25,
-      "sirkuit_balap": 26,
-      "stadion": 9,
-      "stadion_internasional": 3,
-      "skor_olimpiade": 27,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 34,
@@ -227,6 +204,12 @@ export const mozambik: CountryData = {
       "indeks_korupsi": 78,
       "indeks_keamanan": 84
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 25,
+      "sirkuit_balap": 26,
+      "stadion": 9,
+      "stadion_internasional": 3
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const mozambik: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 12,
@@ -348,3 +330,6 @@ export const mozambik: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

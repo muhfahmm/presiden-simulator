@@ -39,9 +39,7 @@ export const denmark: CountryData = {
     "bandara": 15,
     "terminal_bus": 32,
     "helipad": 16,
-    "cakupan_internet": 64,
-    "indeks_teknologi": 63,
-    "akses_air": 74
+    "cakupan_internet": 64
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const denmark: CountryData = {
     "aluminium": 11,
     "tembaga": 29,
     "logam_tanah_jarang": 16,
-    "bijih_besi": 27,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const denmark: CountryData = {
     "farmasi": 25,
     "pupuk": 31,
     "pengolahan_daging": 10,
-    "mie_instan": 26,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 26
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const denmark: CountryData = {
     "sayur_umbi": 15.5,
     "kedelai": 30,
     "kelapa_sawit": 6,
-    "kopi_teh_kakao": 23.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 23.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const denmark: CountryData = {
     "pangkalan_laut": 11,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 1,
-    "anggaran_pertahanan": 1139,
-    "personel": 15749,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1139
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const denmark: CountryData = {
 
   "sektor_armada": {
     "barak": 37,
-    "infanteri": 14,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 1,
         "apc": 13,
@@ -142,23 +132,20 @@ export const denmark: CountryData = {
         "jet_tempur_siluman": 36,
         "helikopter_serang": 5,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 37,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 22,
-      "jaringan_radar": 7,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 14,
           "sepeda_motor": 27,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 31,
           "helikopter_polisi": 30,
@@ -169,10 +156,12 @@ export const denmark: CountryData = {
           "kamera_pengawas": 34,
           "pusat_forensik": 1
         },
-        "waktu_respon": 22,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 22,
     "intelijen": 24,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 1,
       "misi_mata_mata": 11,
       "misi_sabotase": 38,
@@ -185,34 +174,24 @@ export const denmark: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 9,
-      "sd": 3,
-      "smp": 37,
-      "sma": 28,
+      "prasekolah": 9,
+      "dasar": 3,
+      "menengah": 37,
+      "lanjutan": 28,
       "universitas": 20,
       "lembaga_pendidikan": 39,
       "laboratorium": 40,
       "observatorium": 2,
       "pusat_penelitian": 29,
       "pusat_pengembangan": 18,
-      "literasi": 78,
-      "indeks_penelitian": 0
+      "literasi": 78
     },
     "kesehatan": {
       "rumah_sakit_besar": 28,
       "rumah_sakit_kecil": 7,
       "pusat_diagnostik": 5,
-      "tempat_tidur_rs": 7134,
       "harapan_hidup": 24,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 17,
-      "sirkuit_balap": 25,
-      "stadion": 38,
-      "stadion_internasional": 26,
-      "skor_olimpiade": 13,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 32,
@@ -224,6 +203,12 @@ export const denmark: CountryData = {
       "indeks_korupsi": 66,
       "indeks_keamanan": 75
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 17,
+      "sirkuit_balap": 25,
+      "stadion": 38,
+      "stadion_internasional": 26
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const denmark: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 32,
@@ -345,3 +329,6 @@ export const denmark: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

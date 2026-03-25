@@ -39,9 +39,7 @@ export const libya: CountryData = {
     "jalur_kereta": 9,
     "kualitas_jalan": 86,
     "pelabuhan_laut": 29,
-    "kereta_bawah_tanah": 28,
-    "indeks_teknologi": 95,
-    "akses_air": 74
+    "kereta_bawah_tanah": 28
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const libya: CountryData = {
     "minyak_bumi": 2,
     "logam_tanah_jarang": 2,
     "garam": 7,
-    "kekuatan": 29.660809349923973,
     "uranium": 26
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const libya: CountryData = {
     "farmasi": 7,
     "semikonduktor": 20,
     "smelter": 25,
-    "kekuatan": 3.076011687404966,
     "gula": 32,
     "kayu": 22
   },
@@ -98,9 +94,8 @@ export const libya: CountryData = {
     "sayur_umbi": 39.0,
     "kedelai": 25,
     "kelapa_sawit": 15,
-    "kopi_teh_kakao": 20.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const libya: CountryData = {
     "pangkalan_laut": 30,
     "program_luar_angkasa": 33,
     "pertahanan_siber": 2,
-    "anggaran_pertahanan": 116,
-    "personel": 23085,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 116
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const libya: CountryData = {
 
   "sektor_armada": {
     "barak": 24,
-    "infanteri": 15,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 8,
         "apc": 2,
@@ -142,23 +132,19 @@ export const libya: CountryData = {
         "jet_tempur_siluman": 25,
         "helikopter_serang": 1,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 36,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 39,
-      "jaringan_radar": 10,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 38,
           "sepeda_motor": 17,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 11,
@@ -170,11 +156,12 @@ export const libya: CountryData = {
           "kamera_pengawas": 38,
           "pusat_forensik": 1
   },
-        "waktu_respon": 21,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 21,
     "intelijen": 31,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 38,
       "misi_mata_mata": 27,
       "misi_sabotase": 37,
@@ -188,34 +175,24 @@ export const libya: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 11,
-      "sd": 24,
-      "smp": 10,
-      "sma": 25,
+      "prasekolah": 11,
+      "dasar": 24,
+      "menengah": 10,
+      "lanjutan": 25,
       "universitas": 11,
       "lembaga_pendidikan": 9,
       "laboratorium": 34,
       "observatorium": 14,
       "pusat_penelitian": 3,
       "pusat_pengembangan": 18,
-      "literasi": 88,
-      "indeks_penelitian": 0
+      "literasi": 88
   },
     "kesehatan": {
       "rumah_sakit_besar": 30,
       "rumah_sakit_kecil": 19,
       "pusat_diagnostik": 12,
-      "tempat_tidur_rs": 6470,
       "harapan_hidup": 21,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 18,
-      "stadion": 26,
-      "stadion_internasional": 33,
-      "skor_olimpiade": 18,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 18,
@@ -227,6 +204,12 @@ export const libya: CountryData = {
       "indeks_korupsi": 94,
       "indeks_keamanan": 89
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 35,
+      "sirkuit_balap": 18,
+      "stadion": 26,
+      "stadion_internasional": 33
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const libya: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 17,
@@ -348,3 +330,6 @@ export const libya: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

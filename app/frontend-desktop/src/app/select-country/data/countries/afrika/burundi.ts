@@ -39,9 +39,7 @@ export const burundi: CountryData = {
     "jalur_kereta": 5,
     "kualitas_jalan": 66,
     "pelabuhan_laut": 14,
-    "kereta_bawah_tanah": 24,
-    "indeks_teknologi": 78,
-    "akses_air": 74
+    "kereta_bawah_tanah": 24
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const burundi: CountryData = {
     "minyak_bumi": 21,
     "logam_tanah_jarang": 13,
     "garam": 16,
-    "kekuatan": 29.660809349923973,
     "uranium": 18
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const burundi: CountryData = {
     "farmasi": 38,
     "semikonduktor": 27,
     "smelter": 14,
-    "kekuatan": 3.076011687404966,
     "gula": 15,
     "kayu": 37
   },
@@ -98,9 +94,8 @@ export const burundi: CountryData = {
     "sayur_umbi": 22.0,
     "kedelai": 34,
     "kelapa_sawit": 4,
-    "kopi_teh_kakao": 16.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 16.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const burundi: CountryData = {
     "pangkalan_laut": 37,
     "program_luar_angkasa": 10,
     "pertahanan_siber": 40,
-    "anggaran_pertahanan": 9,
-    "personel": 16307,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 9
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const burundi: CountryData = {
 
   "sektor_armada": {
     "barak": 30,
-    "infanteri": 28,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 15,
         "apc": 30,
@@ -142,23 +132,19 @@ export const burundi: CountryData = {
         "jet_tempur_siluman": 14,
         "helikopter_serang": 28,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 10,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 1,
-      "jaringan_radar": 14,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 1,
           "sepeda_motor": 32,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 3,
@@ -170,11 +156,12 @@ export const burundi: CountryData = {
           "kamera_pengawas": 28,
           "pusat_forensik": 1
   },
-        "waktu_respon": 13,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 13,
     "intelijen": 18,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 7,
       "misi_mata_mata": 17,
       "misi_sabotase": 27,
@@ -188,34 +175,24 @@ export const burundi: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 9,
-      "sd": 21,
-      "smp": 1,
-      "sma": 34,
+      "prasekolah": 9,
+      "dasar": 21,
+      "menengah": 1,
+      "lanjutan": 34,
       "universitas": 35,
       "lembaga_pendidikan": 17,
       "laboratorium": 14,
       "observatorium": 3,
       "pusat_penelitian": 8,
       "pusat_pengembangan": 28,
-      "literasi": 88,
-      "indeks_penelitian": 0
+      "literasi": 88
   },
     "kesehatan": {
       "rumah_sakit_besar": 23,
       "rumah_sakit_kecil": 8,
       "pusat_diagnostik": 9,
-      "tempat_tidur_rs": 1828,
       "harapan_hidup": 30,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 9,
-      "sirkuit_balap": 3,
-      "stadion": 4,
-      "stadion_internasional": 12,
-      "skor_olimpiade": 6,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 37,
@@ -227,6 +204,12 @@ export const burundi: CountryData = {
       "indeks_korupsi": 75,
       "indeks_keamanan": 59
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 9,
+      "sirkuit_balap": 3,
+      "stadion": 4,
+      "stadion_internasional": 12
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const burundi: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 9,
@@ -348,3 +330,6 @@ export const burundi: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

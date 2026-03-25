@@ -39,9 +39,7 @@ export const sri_lanka: CountryData = {
     "bandara": 31,
     "terminal_bus": 15,
     "helipad": 24,
-    "cakupan_internet": 57,
-    "indeks_teknologi": 92,
-    "akses_air": 74
+    "cakupan_internet": 57
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const sri_lanka: CountryData = {
     "aluminium": 2,
     "tembaga": 37,
     "logam_tanah_jarang": 17,
-    "bijih_besi": 2,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 2
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const sri_lanka: CountryData = {
     "farmasi": 7,
     "pupuk": 29,
     "pengolahan_daging": 29,
-    "mie_instan": 3,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 3
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const sri_lanka: CountryData = {
     "sayur_umbi": 31.5,
     "kedelai": 2,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 29.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 29.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const sri_lanka: CountryData = {
     "pangkalan_laut": 9,
     "program_luar_angkasa": 35,
     "pertahanan_siber": 13,
-    "anggaran_pertahanan": 208,
-    "personel": 23226,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 208
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const sri_lanka: CountryData = {
 
   "sektor_armada": {
     "barak": 37,
-    "infanteri": 11,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 21,
         "apc": 161,
@@ -142,23 +132,20 @@ export const sri_lanka: CountryData = {
         "jet_tempur_siluman": 58,
         "helikopter_serang": 23,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 13,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 2,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 10,
           "sepeda_motor": 22,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 8,
           "helikopter_polisi": 13,
@@ -169,10 +156,12 @@ export const sri_lanka: CountryData = {
           "kamera_pengawas": 18,
           "pusat_forensik": 1
         },
-        "waktu_respon": 19,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 19,
     "intelijen": 20,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 9,
       "misi_mata_mata": 24,
       "misi_sabotase": 15,
@@ -185,34 +174,24 @@ export const sri_lanka: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 27,
-      "sd": 26,
-      "smp": 34,
-      "sma": 27,
+      "prasekolah": 27,
+      "dasar": 26,
+      "menengah": 34,
+      "lanjutan": 27,
       "universitas": 34,
       "lembaga_pendidikan": 38,
       "laboratorium": 34,
       "observatorium": 38,
       "pusat_penelitian": 25,
       "pusat_pengembangan": 8,
-      "literasi": 80,
-      "indeks_penelitian": 0
+      "literasi": 80
     },
     "kesehatan": {
       "rumah_sakit_besar": 36,
       "rumah_sakit_kecil": 1,
       "pusat_diagnostik": 35,
-      "tempat_tidur_rs": 2367,
       "harapan_hidup": 18,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 30,
-      "stadion": 39,
-      "stadion_internasional": 30,
-      "skor_olimpiade": 18,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 10,
@@ -224,6 +203,12 @@ export const sri_lanka: CountryData = {
       "indeks_korupsi": 89,
       "indeks_keamanan": 67
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 3,
+      "sirkuit_balap": 30,
+      "stadion": 39,
+      "stadion_internasional": 30
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const sri_lanka: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 15,
@@ -345,3 +329,6 @@ export const sri_lanka: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

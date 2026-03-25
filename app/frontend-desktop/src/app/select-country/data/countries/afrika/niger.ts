@@ -39,9 +39,7 @@ export const niger: CountryData = {
     "jalur_kereta": 35,
     "kualitas_jalan": 73,
     "pelabuhan_laut": 38,
-    "kereta_bawah_tanah": 38,
-    "indeks_teknologi": 92,
-    "akses_air": 74
+    "kereta_bawah_tanah": 38
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const niger: CountryData = {
     "minyak_bumi": 28,
     "logam_tanah_jarang": 24,
     "garam": 13,
-    "kekuatan": 29.660809349923973,
     "uranium": 18
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const niger: CountryData = {
     "farmasi": 32,
     "semikonduktor": 14,
     "smelter": 6,
-    "kekuatan": 3.076011687404966,
     "gula": 4,
     "kayu": 30
   },
@@ -98,9 +94,8 @@ export const niger: CountryData = {
     "sayur_umbi": 35.5,
     "kedelai": 24,
     "kelapa_sawit": 37,
-    "kopi_teh_kakao": 16.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 16.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const niger: CountryData = {
     "pangkalan_laut": 25,
     "program_luar_angkasa": 39,
     "pertahanan_siber": 16,
-    "anggaran_pertahanan": 41,
-    "personel": 10472,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 41
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const niger: CountryData = {
 
   "sektor_armada": {
     "barak": 2,
-    "infanteri": 36,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 87,
         "apc": 136,
@@ -142,23 +132,19 @@ export const niger: CountryData = {
         "jet_tempur_siluman": 38,
         "helikopter_serang": 67,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 10,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 3,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 30,
           "sepeda_motor": 6,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 8,
@@ -170,11 +156,12 @@ export const niger: CountryData = {
           "kamera_pengawas": 34,
           "pusat_forensik": 1
   },
-        "waktu_respon": 23,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 23,
     "intelijen": 2,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 5,
       "misi_mata_mata": 26,
       "misi_sabotase": 38,
@@ -188,34 +175,24 @@ export const niger: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 13,
-      "sd": 34,
-      "smp": 7,
-      "sma": 15,
+      "prasekolah": 13,
+      "dasar": 34,
+      "menengah": 7,
+      "lanjutan": 15,
       "universitas": 1,
       "lembaga_pendidikan": 19,
       "laboratorium": 23,
       "observatorium": 40,
       "pusat_penelitian": 10,
       "pusat_pengembangan": 7,
-      "literasi": 72,
-      "indeks_penelitian": 0
+      "literasi": 72
   },
     "kesehatan": {
       "rumah_sakit_besar": 3,
       "rumah_sakit_kecil": 11,
       "pusat_diagnostik": 14,
-      "tempat_tidur_rs": 4579,
       "harapan_hidup": 30,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 22,
-      "sirkuit_balap": 35,
-      "stadion": 24,
-      "stadion_internasional": 1,
-      "skor_olimpiade": 18,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 24,
@@ -227,6 +204,12 @@ export const niger: CountryData = {
       "indeks_korupsi": 69,
       "indeks_keamanan": 81
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 22,
+      "sirkuit_balap": 35,
+      "stadion": 24,
+      "stadion_internasional": 1
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const niger: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 18,
@@ -348,3 +330,6 @@ export const niger: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

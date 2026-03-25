@@ -39,9 +39,7 @@ export const peru: CountryData = {
     "bandara": 13,
     "terminal_bus": 38,
     "helipad": 33,
-    "cakupan_internet": 94,
-    "indeks_teknologi": 78,
-    "akses_air": 74
+    "cakupan_internet": 94
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const peru: CountryData = {
     "aluminium": 30,
     "tembaga": 19,
     "logam_tanah_jarang": 39,
-    "bijih_besi": 5,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 5
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const peru: CountryData = {
     "farmasi": 21,
     "pupuk": 37,
     "pengolahan_daging": 39,
-    "mie_instan": 28,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 28
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const peru: CountryData = {
     "sayur_umbi": 16.5,
     "kedelai": 32,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 15.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 15.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const peru: CountryData = {
     "pangkalan_laut": 16,
     "program_luar_angkasa": 34,
     "pertahanan_siber": 10,
-    "anggaran_pertahanan": 722,
-    "personel": 10851,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 722
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const peru: CountryData = {
 
   "sektor_armada": {
     "barak": 2,
-    "infanteri": 15,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 178,
         "apc": 14,
@@ -142,23 +132,20 @@ export const peru: CountryData = {
         "jet_tempur_siluman": 137,
         "helikopter_serang": 43,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 28,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 2,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 6,
           "sepeda_motor": 37,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 32,
           "helikopter_polisi": 5,
@@ -169,10 +156,12 @@ export const peru: CountryData = {
           "kamera_pengawas": 2,
           "pusat_forensik": 1
         },
-        "waktu_respon": 30,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 30,
     "intelijen": 17,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 2,
       "misi_mata_mata": 32,
       "misi_sabotase": 14,
@@ -185,34 +174,24 @@ export const peru: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 16,
-      "sd": 32,
-      "smp": 29,
-      "sma": 27,
+      "prasekolah": 16,
+      "dasar": 32,
+      "menengah": 29,
+      "lanjutan": 27,
       "universitas": 21,
       "lembaga_pendidikan": 15,
       "laboratorium": 29,
       "observatorium": 16,
       "pusat_penelitian": 28,
       "pusat_pengembangan": 13,
-      "literasi": 59,
-      "indeks_penelitian": 0
+      "literasi": 59
     },
     "kesehatan": {
       "rumah_sakit_besar": 17,
       "rumah_sakit_kecil": 32,
       "pusat_diagnostik": 36,
-      "tempat_tidur_rs": 883,
       "harapan_hidup": 31,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 27,
-      "sirkuit_balap": 30,
-      "stadion": 2,
-      "stadion_internasional": 3,
-      "skor_olimpiade": 24,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 3,
@@ -224,6 +203,12 @@ export const peru: CountryData = {
       "indeks_korupsi": 91,
       "indeks_keamanan": 89
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 27,
+      "sirkuit_balap": 30,
+      "stadion": 2,
+      "stadion_internasional": 3
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const peru: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 2,
@@ -345,3 +329,6 @@ export const peru: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

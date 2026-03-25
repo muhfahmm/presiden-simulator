@@ -39,9 +39,7 @@ export const austria: CountryData = {
     "bandara": 40,
     "terminal_bus": 18,
     "helipad": 20,
-    "cakupan_internet": 83,
-    "indeks_teknologi": 84,
-    "akses_air": 74
+    "cakupan_internet": 83
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const austria: CountryData = {
     "aluminium": 9,
     "tembaga": 39,
     "logam_tanah_jarang": 28,
-    "bijih_besi": 15,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const austria: CountryData = {
     "farmasi": 31,
     "pupuk": 25,
     "pengolahan_daging": 26,
-    "mie_instan": 6,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 6
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const austria: CountryData = {
     "sayur_umbi": 10.5,
     "kedelai": 4,
     "kelapa_sawit": 14,
-    "kopi_teh_kakao": 17.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 17.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const austria: CountryData = {
     "pangkalan_laut": 4,
     "program_luar_angkasa": 12,
     "pertahanan_siber": 30,
-    "anggaran_pertahanan": 1416,
-    "personel": 29535,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1416
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const austria: CountryData = {
 
   "sektor_armada": {
     "barak": 38,
-    "infanteri": 21,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 15,
         "apc": 13,
@@ -142,23 +132,20 @@ export const austria: CountryData = {
         "jet_tempur_siluman": 28,
         "helikopter_serang": 6,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 18,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 24,
-      "jaringan_radar": 33,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 8,
           "sepeda_motor": 14,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 17,
           "helikopter_polisi": 33,
@@ -169,10 +156,12 @@ export const austria: CountryData = {
           "kamera_pengawas": 1,
           "pusat_forensik": 1
         },
-        "waktu_respon": 35,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 35,
     "intelijen": 25,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 14,
       "misi_mata_mata": 32,
       "misi_sabotase": 4,
@@ -185,34 +174,24 @@ export const austria: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 27,
-      "sd": 10,
-      "smp": 30,
-      "sma": 21,
+      "prasekolah": 27,
+      "dasar": 10,
+      "menengah": 30,
+      "lanjutan": 21,
       "universitas": 7,
       "lembaga_pendidikan": 26,
       "laboratorium": 12,
       "observatorium": 23,
       "pusat_penelitian": 22,
       "pusat_pengembangan": 23,
-      "literasi": 88,
-      "indeks_penelitian": 0
+      "literasi": 88
     },
     "kesehatan": {
       "rumah_sakit_besar": 23,
       "rumah_sakit_kecil": 6,
       "pusat_diagnostik": 14,
-      "tempat_tidur_rs": 5562,
       "harapan_hidup": 13,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 28,
-      "sirkuit_balap": 32,
-      "stadion": 1,
-      "stadion_internasional": 29,
-      "skor_olimpiade": 13,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 19,
@@ -224,6 +203,12 @@ export const austria: CountryData = {
       "indeks_korupsi": 61,
       "indeks_keamanan": 78
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 28,
+      "sirkuit_balap": 32,
+      "stadion": 1,
+      "stadion_internasional": 29
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const austria: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 28,
@@ -345,3 +329,6 @@ export const austria: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

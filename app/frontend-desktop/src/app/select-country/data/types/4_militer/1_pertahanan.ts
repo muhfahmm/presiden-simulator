@@ -10,6 +10,4 @@ export interface SektorPertahanan {
   lisensi_siber?: boolean;
   pertahanan_siber: number;
   anggaran_pertahanan: number;
-  personel: number;
-  kekuatan: number; // 0-100
 }

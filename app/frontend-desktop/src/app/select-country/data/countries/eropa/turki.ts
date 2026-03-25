@@ -39,9 +39,7 @@ export const turki: CountryData = {
     "bandara": 24,
     "terminal_bus": 16,
     "helipad": 6,
-    "cakupan_internet": 80,
-    "indeks_teknologi": 75,
-    "akses_air": 74
+    "cakupan_internet": 80
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const turki: CountryData = {
     "aluminium": 1,
     "tembaga": 12,
     "logam_tanah_jarang": 32,
-    "bijih_besi": 30,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 30
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const turki: CountryData = {
     "farmasi": 40,
     "pupuk": 27,
     "pengolahan_daging": 5,
-    "mie_instan": 27,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 27
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const turki: CountryData = {
     "sayur_umbi": 6.0,
     "kedelai": 32,
     "kelapa_sawit": 35,
-    "kopi_teh_kakao": 21.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 21.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const turki: CountryData = {
     "pangkalan_laut": 12,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 36,
-    "anggaran_pertahanan": 27,
-    "personel": 5849,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const turki: CountryData = {
 
   "sektor_armada": {
     "barak": 37,
-    "infanteri": 40,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 40,
         "apc": 146,
@@ -142,23 +132,20 @@ export const turki: CountryData = {
         "jet_tempur_siluman": 189,
         "helikopter_serang": 175,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 34,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 5,
-      "jaringan_radar": 2,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 1,
           "sepeda_motor": 19,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 18,
           "helikopter_polisi": 30,
@@ -169,10 +156,12 @@ export const turki: CountryData = {
           "kamera_pengawas": 11,
           "pusat_forensik": 1
         },
-        "waktu_respon": 33,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 33,
     "intelijen": 7,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 25,
       "misi_mata_mata": 35,
       "misi_sabotase": 40,
@@ -185,34 +174,24 @@ export const turki: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 31,
-      "sd": 11,
-      "smp": 38,
-      "sma": 38,
+      "prasekolah": 31,
+      "dasar": 11,
+      "menengah": 38,
+      "lanjutan": 38,
       "universitas": 1,
       "lembaga_pendidikan": 23,
       "laboratorium": 30,
       "observatorium": 19,
       "pusat_penelitian": 33,
       "pusat_pengembangan": 15,
-      "literasi": 93,
-      "indeks_penelitian": 0
+      "literasi": 93
     },
     "kesehatan": {
       "rumah_sakit_besar": 37,
       "rumah_sakit_kecil": 4,
       "pusat_diagnostik": 23,
-      "tempat_tidur_rs": 7569,
       "harapan_hidup": 36,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 25,
-      "sirkuit_balap": 39,
-      "stadion": 37,
-      "stadion_internasional": 38,
-      "skor_olimpiade": 4,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 23,
@@ -224,6 +203,12 @@ export const turki: CountryData = {
       "indeks_korupsi": 72,
       "indeks_keamanan": 59
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 25,
+      "sirkuit_balap": 39,
+      "stadion": 37,
+      "stadion_internasional": 38
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const turki: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 35,
@@ -345,3 +329,6 @@ export const turki: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

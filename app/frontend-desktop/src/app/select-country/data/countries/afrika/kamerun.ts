@@ -39,9 +39,7 @@ export const kamerun: CountryData = {
     "jalur_kereta": 36,
     "kualitas_jalan": 86,
     "pelabuhan_laut": 27,
-    "kereta_bawah_tanah": 35,
-    "indeks_teknologi": 50,
-    "akses_air": 74
+    "kereta_bawah_tanah": 35
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const kamerun: CountryData = {
     "minyak_bumi": 22,
     "logam_tanah_jarang": 30,
     "garam": 22,
-    "kekuatan": 29.660809349923973,
     "uranium": 8
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const kamerun: CountryData = {
     "farmasi": 3,
     "semikonduktor": 22,
     "smelter": 23,
-    "kekuatan": 3.076011687404966,
     "gula": 39,
     "kayu": 34
   },
@@ -98,9 +94,8 @@ export const kamerun: CountryData = {
     "sayur_umbi": 19.5,
     "kedelai": 4,
     "kelapa_sawit": 26,
-    "kopi_teh_kakao": 26.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 26.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const kamerun: CountryData = {
     "pangkalan_laut": 27,
     "program_luar_angkasa": 37,
     "pertahanan_siber": 18,
-    "anggaran_pertahanan": 125,
-    "personel": 11152,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 125
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const kamerun: CountryData = {
 
   "sektor_armada": {
     "barak": 13,
-    "infanteri": 29,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 3,
         "apc": 20,
@@ -142,23 +132,19 @@ export const kamerun: CountryData = {
         "jet_tempur_siluman": 16,
         "helikopter_serang": 18,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 21,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 40,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 21,
           "sepeda_motor": 36,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 40,
@@ -170,11 +156,12 @@ export const kamerun: CountryData = {
           "kamera_pengawas": 8,
           "pusat_forensik": 1
   },
-        "waktu_respon": 29,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 29,
     "intelijen": 1,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 21,
       "misi_mata_mata": 18,
       "misi_sabotase": 37,
@@ -188,34 +175,24 @@ export const kamerun: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 31,
-      "sd": 32,
-      "smp": 23,
-      "sma": 34,
+      "prasekolah": 31,
+      "dasar": 32,
+      "menengah": 23,
+      "lanjutan": 34,
       "universitas": 38,
       "lembaga_pendidikan": 2,
       "laboratorium": 9,
       "observatorium": 10,
       "pusat_penelitian": 37,
       "pusat_pengembangan": 40,
-      "literasi": 50,
-      "indeks_penelitian": 0
+      "literasi": 50
   },
     "kesehatan": {
       "rumah_sakit_besar": 37,
       "rumah_sakit_kecil": 37,
       "pusat_diagnostik": 3,
-      "tempat_tidur_rs": 5653,
       "harapan_hidup": 32,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 30,
-      "sirkuit_balap": 32,
-      "stadion": 6,
-      "stadion_internasional": 3,
-      "skor_olimpiade": 17,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 19,
@@ -227,6 +204,12 @@ export const kamerun: CountryData = {
       "indeks_korupsi": 65,
       "indeks_keamanan": 75
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 30,
+      "sirkuit_balap": 32,
+      "stadion": 6,
+      "stadion_internasional": 3
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const kamerun: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 26,
@@ -348,3 +330,6 @@ export const kamerun: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

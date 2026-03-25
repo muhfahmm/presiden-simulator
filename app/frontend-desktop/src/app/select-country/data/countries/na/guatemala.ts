@@ -39,9 +39,7 @@ export const guatemala: CountryData = {
     "bandara": 21,
     "terminal_bus": 26,
     "helipad": 25,
-    "cakupan_internet": 55,
-    "indeks_teknologi": 72,
-    "akses_air": 74
+    "cakupan_internet": 55
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const guatemala: CountryData = {
     "aluminium": 37,
     "tembaga": 34,
     "logam_tanah_jarang": 33,
-    "bijih_besi": 6,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 6
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const guatemala: CountryData = {
     "farmasi": 6,
     "pupuk": 18,
     "pengolahan_daging": 38,
-    "mie_instan": 28,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 28
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const guatemala: CountryData = {
     "sayur_umbi": 22.5,
     "kedelai": 25,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 19.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 19.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const guatemala: CountryData = {
     "pangkalan_laut": 12,
     "program_luar_angkasa": 32,
     "pertahanan_siber": 39,
-    "anggaran_pertahanan": 263,
-    "personel": 18243,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 263
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const guatemala: CountryData = {
 
   "sektor_armada": {
     "barak": 39,
-    "infanteri": 21,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 30,
         "apc": 7,
@@ -142,23 +132,20 @@ export const guatemala: CountryData = {
         "jet_tempur_siluman": 11,
         "helikopter_serang": 26,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 29,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 25,
-      "jaringan_radar": 32,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 32,
           "sepeda_motor": 15,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 13,
           "helikopter_polisi": 26,
@@ -169,10 +156,12 @@ export const guatemala: CountryData = {
           "kamera_pengawas": 37,
           "pusat_forensik": 1
         },
-        "waktu_respon": 5,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 5,
     "intelijen": 11,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 38,
       "misi_mata_mata": 22,
       "misi_sabotase": 23,
@@ -185,34 +174,24 @@ export const guatemala: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 8,
-      "sd": 13,
-      "smp": 28,
-      "sma": 37,
+      "prasekolah": 8,
+      "dasar": 13,
+      "menengah": 28,
+      "lanjutan": 37,
       "universitas": 14,
       "lembaga_pendidikan": 34,
       "laboratorium": 21,
       "observatorium": 19,
       "pusat_penelitian": 11,
       "pusat_pengembangan": 22,
-      "literasi": 91,
-      "indeks_penelitian": 0
+      "literasi": 91
     },
     "kesehatan": {
       "rumah_sakit_besar": 28,
       "rumah_sakit_kecil": 36,
       "pusat_diagnostik": 7,
-      "tempat_tidur_rs": 7066,
       "harapan_hidup": 6,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 22,
-      "sirkuit_balap": 13,
-      "stadion": 21,
-      "stadion_internasional": 27,
-      "skor_olimpiade": 14,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 40,
@@ -224,6 +203,12 @@ export const guatemala: CountryData = {
       "indeks_korupsi": 77,
       "indeks_keamanan": 51
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 22,
+      "sirkuit_balap": 13,
+      "stadion": 21,
+      "stadion_internasional": 27
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const guatemala: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 31,
@@ -345,3 +329,6 @@ export const guatemala: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const pantai_gading: CountryData = {
     "jalur_kereta": 17,
     "kualitas_jalan": 63,
     "pelabuhan_laut": 4,
-    "kereta_bawah_tanah": 1,
-    "indeks_teknologi": 62,
-    "akses_air": 74
+    "kereta_bawah_tanah": 1
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const pantai_gading: CountryData = {
     "minyak_bumi": 33,
     "logam_tanah_jarang": 27,
     "garam": 24,
-    "kekuatan": 29.660809349923973,
     "uranium": 4
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const pantai_gading: CountryData = {
     "farmasi": 13,
     "semikonduktor": 6,
     "smelter": 4,
-    "kekuatan": 3.076011687404966,
     "gula": 34,
     "kayu": 21
   },
@@ -98,9 +94,8 @@ export const pantai_gading: CountryData = {
     "sayur_umbi": 31.5,
     "kedelai": 2,
     "kelapa_sawit": 31,
-    "kopi_teh_kakao": 29.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 29.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const pantai_gading: CountryData = {
     "pangkalan_laut": 31,
     "program_luar_angkasa": 38,
     "pertahanan_siber": 22,
-    "anggaran_pertahanan": 194,
-    "personel": 23769,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 194
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const pantai_gading: CountryData = {
 
   "sektor_armada": {
     "barak": 28,
-    "infanteri": 5,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 140,
         "apc": 24,
@@ -142,23 +132,19 @@ export const pantai_gading: CountryData = {
         "jet_tempur_siluman": 36,
         "helikopter_serang": 189,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 6,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 4,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 23,
           "sepeda_motor": 4,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 23,
@@ -170,11 +156,12 @@ export const pantai_gading: CountryData = {
           "kamera_pengawas": 23,
           "pusat_forensik": 1
   },
-        "waktu_respon": 4,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 4,
     "intelijen": 38,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 8,
       "misi_mata_mata": 3,
       "misi_sabotase": 31,
@@ -188,34 +175,24 @@ export const pantai_gading: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 6,
-      "sd": 14,
-      "smp": 12,
-      "sma": 9,
+      "prasekolah": 6,
+      "dasar": 14,
+      "menengah": 12,
+      "lanjutan": 9,
       "universitas": 36,
       "lembaga_pendidikan": 24,
       "laboratorium": 38,
       "observatorium": 37,
       "pusat_penelitian": 16,
       "pusat_pengembangan": 22,
-      "literasi": 76,
-      "indeks_penelitian": 0
+      "literasi": 76
   },
     "kesehatan": {
       "rumah_sakit_besar": 35,
       "rumah_sakit_kecil": 38,
       "pusat_diagnostik": 38,
-      "tempat_tidur_rs": 7247,
       "harapan_hidup": 10,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 14,
-      "sirkuit_balap": 33,
-      "stadion": 33,
-      "stadion_internasional": 32,
-      "skor_olimpiade": 15,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 20,
@@ -227,6 +204,12 @@ export const pantai_gading: CountryData = {
       "indeks_korupsi": 90,
       "indeks_keamanan": 64
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 14,
+      "sirkuit_balap": 33,
+      "stadion": 33,
+      "stadion_internasional": 32
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const pantai_gading: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 12,
@@ -348,3 +330,6 @@ export const pantai_gading: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

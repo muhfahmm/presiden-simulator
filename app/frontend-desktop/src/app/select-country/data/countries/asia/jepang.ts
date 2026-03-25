@@ -39,9 +39,7 @@ export const jepang: CountryData = {
     "bandara": 36,
     "terminal_bus": 9,
     "helipad": 7,
-    "cakupan_internet": 93,
-    "indeks_teknologi": 80,
-    "akses_air": 74
+    "cakupan_internet": 93
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const jepang: CountryData = {
     "aluminium": 17,
     "tembaga": 27,
     "logam_tanah_jarang": 9,
-    "bijih_besi": 39,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const jepang: CountryData = {
     "farmasi": 13,
     "pupuk": 1,
     "pengolahan_daging": 1,
-    "mie_instan": 23,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 23
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const jepang: CountryData = {
     "sayur_umbi": 15.5,
     "kedelai": 23,
     "kelapa_sawit": 29,
-    "kopi_teh_kakao": 33.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 33.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const jepang: CountryData = {
     "pangkalan_laut": 31,
     "program_luar_angkasa": 30,
     "pertahanan_siber": 19,
-    "anggaran_pertahanan": 11417,
-    "personel": 24201,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 11417
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const jepang: CountryData = {
 
   "sektor_armada": {
     "barak": 32,
-    "infanteri": 12,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 8,
         "apc": 1,
@@ -142,23 +132,20 @@ export const jepang: CountryData = {
         "jet_tempur_siluman": 3,
         "helikopter_serang": 31,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 25,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 1,
-      "jaringan_radar": 31,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 16,
           "sepeda_motor": 31,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 8,
           "helikopter_polisi": 23,
@@ -169,10 +156,12 @@ export const jepang: CountryData = {
           "kamera_pengawas": 28,
           "pusat_forensik": 1
         },
-        "waktu_respon": 15,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 15,
     "intelijen": 3,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 33,
       "misi_mata_mata": 19,
       "misi_sabotase": 17,
@@ -185,34 +174,24 @@ export const jepang: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 28,
-      "sd": 7,
-      "smp": 22,
-      "sma": 10,
+      "prasekolah": 28,
+      "dasar": 7,
+      "menengah": 22,
+      "lanjutan": 10,
       "universitas": 23,
       "lembaga_pendidikan": 17,
       "laboratorium": 17,
       "observatorium": 9,
       "pusat_penelitian": 13,
       "pusat_pengembangan": 5,
-      "literasi": 86,
-      "indeks_penelitian": 0
+      "literasi": 86
     },
     "kesehatan": {
       "rumah_sakit_besar": 11,
       "rumah_sakit_kecil": 35,
       "pusat_diagnostik": 9,
-      "tempat_tidur_rs": 6548,
       "harapan_hidup": 17,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 13,
-      "sirkuit_balap": 39,
-      "stadion": 39,
-      "stadion_internasional": 12,
-      "skor_olimpiade": 30,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 23,
@@ -224,6 +203,12 @@ export const jepang: CountryData = {
       "indeks_korupsi": 90,
       "indeks_keamanan": 64
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 13,
+      "sirkuit_balap": 39,
+      "stadion": 39,
+      "stadion_internasional": 12
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const jepang: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 39,
@@ -345,3 +329,6 @@ export const jepang: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

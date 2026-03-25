@@ -39,9 +39,7 @@ export const yunani: CountryData = {
     "bandara": 18,
     "terminal_bus": 15,
     "helipad": 28,
-    "cakupan_internet": 91,
-    "indeks_teknologi": 74,
-    "akses_air": 74
+    "cakupan_internet": 91
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const yunani: CountryData = {
     "aluminium": 25,
     "tembaga": 15,
     "logam_tanah_jarang": 5,
-    "bijih_besi": 22,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 22
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const yunani: CountryData = {
     "farmasi": 37,
     "pupuk": 4,
     "pengolahan_daging": 20,
-    "mie_instan": 20,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 20
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const yunani: CountryData = {
     "sayur_umbi": 26.5,
     "kedelai": 25,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 13.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 13.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const yunani: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 6,
     "pertahanan_siber": 28,
-    "anggaran_pertahanan": 638,
-    "personel": 24523,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 638
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const yunani: CountryData = {
 
   "sektor_armada": {
     "barak": 14,
-    "infanteri": 27,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 161,
         "apc": 126,
@@ -142,23 +132,20 @@ export const yunani: CountryData = {
         "jet_tempur_siluman": 60,
         "helikopter_serang": 126,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 27,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 1,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 28,
           "sepeda_motor": 5,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 32,
           "helikopter_polisi": 21,
@@ -169,10 +156,12 @@ export const yunani: CountryData = {
           "kamera_pengawas": 32,
           "pusat_forensik": 1
         },
-        "waktu_respon": 8,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 8,
     "intelijen": 33,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 16,
       "misi_mata_mata": 25,
       "misi_sabotase": 29,
@@ -185,34 +174,24 @@ export const yunani: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 17,
-      "sd": 30,
-      "smp": 11,
-      "sma": 32,
+      "prasekolah": 17,
+      "dasar": 30,
+      "menengah": 11,
+      "lanjutan": 32,
       "universitas": 38,
       "lembaga_pendidikan": 40,
       "laboratorium": 35,
       "observatorium": 15,
       "pusat_penelitian": 17,
       "pusat_pengembangan": 17,
-      "literasi": 50,
-      "indeks_penelitian": 0
+      "literasi": 50
     },
     "kesehatan": {
       "rumah_sakit_besar": 40,
       "rumah_sakit_kecil": 18,
       "pusat_diagnostik": 25,
-      "tempat_tidur_rs": 5656,
       "harapan_hidup": 2,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 38,
-      "sirkuit_balap": 24,
-      "stadion": 27,
-      "stadion_internasional": 37,
-      "skor_olimpiade": 26,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 11,
@@ -224,6 +203,12 @@ export const yunani: CountryData = {
       "indeks_korupsi": 74,
       "indeks_keamanan": 75
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 38,
+      "sirkuit_balap": 24,
+      "stadion": 27,
+      "stadion_internasional": 37
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const yunani: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 27,
@@ -345,3 +329,6 @@ export const yunani: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

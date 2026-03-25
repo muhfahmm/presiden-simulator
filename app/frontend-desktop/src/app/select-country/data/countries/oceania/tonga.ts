@@ -39,9 +39,7 @@ export const tonga: CountryData = {
     "bandara": 20,
     "terminal_bus": 14,
     "helipad": 24,
-    "cakupan_internet": 79,
-    "indeks_teknologi": 58,
-    "akses_air": 74
+    "cakupan_internet": 79
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const tonga: CountryData = {
     "aluminium": 36,
     "tembaga": 35,
     "logam_tanah_jarang": 30,
-    "bijih_besi": 27,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const tonga: CountryData = {
     "farmasi": 16,
     "pupuk": 37,
     "pengolahan_daging": 15,
-    "mie_instan": 6,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 6
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const tonga: CountryData = {
     "sayur_umbi": 9.0,
     "kedelai": 15,
     "kelapa_sawit": 8,
-    "kopi_teh_kakao": 18.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 18.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const tonga: CountryData = {
     "pangkalan_laut": 31,
     "program_luar_angkasa": 16,
     "pertahanan_siber": 39,
-    "anggaran_pertahanan": 1,
-    "personel": 7153,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const tonga: CountryData = {
 
   "sektor_armada": {
     "barak": 38,
-    "infanteri": 17,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 150,
         "apc": 147,
@@ -142,23 +132,20 @@ export const tonga: CountryData = {
         "jet_tempur_siluman": 174,
         "helikopter_serang": 167,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 28,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 2,
           "sepeda_motor": 40,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 39,
           "helikopter_polisi": 1,
@@ -169,10 +156,12 @@ export const tonga: CountryData = {
           "kamera_pengawas": 18,
           "pusat_forensik": 1
         },
-        "waktu_respon": 11,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 11,
     "intelijen": 3,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 5,
       "misi_mata_mata": 19,
       "misi_sabotase": 15,
@@ -185,34 +174,24 @@ export const tonga: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 10,
-      "sd": 17,
-      "smp": 21,
-      "sma": 40,
+      "prasekolah": 10,
+      "dasar": 17,
+      "menengah": 21,
+      "lanjutan": 40,
       "universitas": 36,
       "lembaga_pendidikan": 22,
       "laboratorium": 28,
       "observatorium": 36,
       "pusat_penelitian": 24,
       "pusat_pengembangan": 23,
-      "literasi": 87,
-      "indeks_penelitian": 0
+      "literasi": 87
     },
     "kesehatan": {
       "rumah_sakit_besar": 9,
       "rumah_sakit_kecil": 11,
       "pusat_diagnostik": 37,
-      "tempat_tidur_rs": 597,
       "harapan_hidup": 15,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 20,
-      "sirkuit_balap": 32,
-      "stadion": 31,
-      "stadion_internasional": 14,
-      "skor_olimpiade": 4,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 9,
@@ -224,6 +203,12 @@ export const tonga: CountryData = {
       "indeks_korupsi": 75,
       "indeks_keamanan": 71
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 20,
+      "sirkuit_balap": 32,
+      "stadion": 31,
+      "stadion_internasional": 14
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const tonga: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 5,
@@ -345,3 +329,6 @@ export const tonga: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

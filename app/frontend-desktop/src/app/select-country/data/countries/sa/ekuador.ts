@@ -39,9 +39,7 @@ export const ekuador: CountryData = {
     "bandara": 1,
     "terminal_bus": 11,
     "helipad": 21,
-    "cakupan_internet": 95,
-    "indeks_teknologi": 79,
-    "akses_air": 74
+    "cakupan_internet": 95
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const ekuador: CountryData = {
     "aluminium": 35,
     "tembaga": 10,
     "logam_tanah_jarang": 1,
-    "bijih_besi": 28,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 28
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const ekuador: CountryData = {
     "farmasi": 32,
     "pupuk": 26,
     "pengolahan_daging": 12,
-    "mie_instan": 3,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 3
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const ekuador: CountryData = {
     "sayur_umbi": 26.0,
     "kedelai": 33,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 30.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 30.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const ekuador: CountryData = {
     "pangkalan_laut": 6,
     "program_luar_angkasa": 39,
     "pertahanan_siber": 22,
-    "anggaran_pertahanan": 319,
-    "personel": 7190,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 319
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const ekuador: CountryData = {
 
   "sektor_armada": {
     "barak": 20,
-    "infanteri": 18,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 22,
         "apc": 31,
@@ -142,23 +132,20 @@ export const ekuador: CountryData = {
         "jet_tempur_siluman": 9,
         "helikopter_serang": 25,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 30,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 37,
-      "jaringan_radar": 36,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 4,
           "sepeda_motor": 8,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 25,
           "helikopter_polisi": 29,
@@ -169,10 +156,12 @@ export const ekuador: CountryData = {
           "kamera_pengawas": 35,
           "pusat_forensik": 1
         },
-        "waktu_respon": 39,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 39,
     "intelijen": 12,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 12,
       "misi_mata_mata": 21,
       "misi_sabotase": 22,
@@ -185,34 +174,24 @@ export const ekuador: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 12,
-      "sd": 5,
-      "smp": 37,
-      "sma": 14,
+      "prasekolah": 12,
+      "dasar": 5,
+      "menengah": 37,
+      "lanjutan": 14,
       "universitas": 30,
       "lembaga_pendidikan": 13,
       "laboratorium": 27,
       "observatorium": 9,
       "pusat_penelitian": 12,
       "pusat_pengembangan": 26,
-      "literasi": 60,
-      "indeks_penelitian": 0
+      "literasi": 60
     },
     "kesehatan": {
       "rumah_sakit_besar": 33,
       "rumah_sakit_kecil": 1,
       "pusat_diagnostik": 34,
-      "tempat_tidur_rs": 4344,
       "harapan_hidup": 2,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 14,
-      "sirkuit_balap": 14,
-      "stadion": 9,
-      "stadion_internasional": 27,
-      "skor_olimpiade": 16,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 12,
@@ -224,6 +203,12 @@ export const ekuador: CountryData = {
       "indeks_korupsi": 90,
       "indeks_keamanan": 59
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 14,
+      "sirkuit_balap": 14,
+      "stadion": 9,
+      "stadion_internasional": 27
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const ekuador: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 3,
@@ -345,3 +329,6 @@ export const ekuador: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

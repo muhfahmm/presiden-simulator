@@ -39,9 +39,7 @@ export const senegal: CountryData = {
     "jalur_kereta": 36,
     "kualitas_jalan": 64,
     "pelabuhan_laut": 11,
-    "kereta_bawah_tanah": 12,
-    "indeks_teknologi": 60,
-    "akses_air": 74
+    "kereta_bawah_tanah": 12
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const senegal: CountryData = {
     "minyak_bumi": 39,
     "logam_tanah_jarang": 13,
     "garam": 27,
-    "kekuatan": 29.660809349923973,
     "uranium": 14
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const senegal: CountryData = {
     "farmasi": 20,
     "semikonduktor": 26,
     "smelter": 37,
-    "kekuatan": 3.076011687404966,
     "gula": 28,
     "kayu": 39
   },
@@ -98,9 +94,8 @@ export const senegal: CountryData = {
     "sayur_umbi": 22.5,
     "kedelai": 23,
     "kelapa_sawit": 21,
-    "kopi_teh_kakao": 21.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 21.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const senegal: CountryData = {
     "pangkalan_laut": 33,
     "program_luar_angkasa": 28,
     "pertahanan_siber": 36,
-    "anggaran_pertahanan": 77,
-    "personel": 5203,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 77
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const senegal: CountryData = {
 
   "sektor_armada": {
     "barak": 25,
-    "infanteri": 25,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 172,
         "apc": 116,
@@ -142,23 +132,19 @@ export const senegal: CountryData = {
         "jet_tempur_siluman": 133,
         "helikopter_serang": 173,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 7,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 5,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 3,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 27,
@@ -170,11 +156,12 @@ export const senegal: CountryData = {
           "kamera_pengawas": 14,
           "pusat_forensik": 1
   },
-        "waktu_respon": 4,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 4,
     "intelijen": 13,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 16,
       "misi_mata_mata": 21,
       "misi_sabotase": 16,
@@ -188,34 +175,24 @@ export const senegal: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 29,
-      "sd": 17,
-      "smp": 11,
-      "sma": 32,
+      "prasekolah": 29,
+      "dasar": 17,
+      "menengah": 11,
+      "lanjutan": 32,
       "universitas": 35,
       "lembaga_pendidikan": 28,
       "laboratorium": 4,
       "observatorium": 22,
       "pusat_penelitian": 1,
       "pusat_pengembangan": 29,
-      "literasi": 89,
-      "indeks_penelitian": 0
+      "literasi": 89
   },
     "kesehatan": {
       "rumah_sakit_besar": 9,
       "rumah_sakit_kecil": 5,
       "pusat_diagnostik": 40,
-      "tempat_tidur_rs": 5264,
       "harapan_hidup": 5,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 15,
-      "sirkuit_balap": 27,
-      "stadion": 40,
-      "stadion_internasional": 23,
-      "skor_olimpiade": 1,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 25,
@@ -227,6 +204,12 @@ export const senegal: CountryData = {
       "indeks_korupsi": 87,
       "indeks_keamanan": 66
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 15,
+      "sirkuit_balap": 27,
+      "stadion": 40,
+      "stadion_internasional": 23
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const senegal: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 34,
@@ -348,3 +330,6 @@ export const senegal: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

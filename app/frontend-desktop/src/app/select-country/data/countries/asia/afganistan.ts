@@ -39,9 +39,7 @@ export const afganistan: CountryData = {
     "bandara": 38,
     "terminal_bus": 30,
     "helipad": 17,
-    "cakupan_internet": 53,
-    "indeks_teknologi": 91,
-    "akses_air": 74
+    "cakupan_internet": 53
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const afganistan: CountryData = {
     "aluminium": 12,
     "tembaga": 34,
     "logam_tanah_jarang": 38,
-    "bijih_besi": 11,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const afganistan: CountryData = {
     "farmasi": 9,
     "pupuk": 9,
     "pengolahan_daging": 31,
-    "mie_instan": 12,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 12
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const afganistan: CountryData = {
     "sayur_umbi": 8.5,
     "kedelai": 34,
     "kelapa_sawit": 21,
-    "kopi_teh_kakao": 25.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 25.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const afganistan: CountryData = {
     "pangkalan_laut": 14,
     "program_luar_angkasa": 38,
     "pertahanan_siber": 22,
-    "anggaran_pertahanan": 41,
-    "personel": 20991,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 41
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const afganistan: CountryData = {
 
   "sektor_armada": {
     "barak": 25,
-    "infanteri": 15,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 36,
         "apc": 22,
@@ -142,23 +132,20 @@ export const afganistan: CountryData = {
         "jet_tempur_siluman": 7,
         "helikopter_serang": 16,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 16,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 8,
-      "jaringan_radar": 25,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 15,
           "sepeda_motor": 28,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 23,
           "helikopter_polisi": 9,
@@ -169,10 +156,12 @@ export const afganistan: CountryData = {
           "kamera_pengawas": 38,
           "pusat_forensik": 1
         },
-        "waktu_respon": 24,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 24,
     "intelijen": 16,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 33,
       "misi_mata_mata": 3,
       "misi_sabotase": 9,
@@ -185,34 +174,24 @@ export const afganistan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 30,
-      "sd": 21,
-      "smp": 33,
-      "sma": 11,
+      "prasekolah": 30,
+      "dasar": 21,
+      "menengah": 33,
+      "lanjutan": 11,
       "universitas": 30,
       "lembaga_pendidikan": 9,
       "laboratorium": 28,
       "observatorium": 25,
       "pusat_penelitian": 1,
       "pusat_pengembangan": 13,
-      "literasi": 70,
-      "indeks_penelitian": 0
+      "literasi": 70
     },
     "kesehatan": {
       "rumah_sakit_besar": 23,
       "rumah_sakit_kecil": 16,
       "pusat_diagnostik": 25,
-      "tempat_tidur_rs": 6565,
       "harapan_hidup": 24,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 25,
-      "sirkuit_balap": 32,
-      "stadion": 11,
-      "stadion_internasional": 33,
-      "skor_olimpiade": 27,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 25,
@@ -224,6 +203,12 @@ export const afganistan: CountryData = {
       "indeks_korupsi": 91,
       "indeks_keamanan": 57
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 25,
+      "sirkuit_balap": 32,
+      "stadion": 11,
+      "stadion_internasional": 33
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const afganistan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 25,
@@ -345,3 +329,6 @@ export const afganistan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

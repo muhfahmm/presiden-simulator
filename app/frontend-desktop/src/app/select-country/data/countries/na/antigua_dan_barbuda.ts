@@ -39,9 +39,7 @@ export const antigua_dan_barbuda: CountryData = {
     "bandara": 29,
     "terminal_bus": 12,
     "helipad": 19,
-    "cakupan_internet": 86,
-    "indeks_teknologi": 72,
-    "akses_air": 74
+    "cakupan_internet": 86
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const antigua_dan_barbuda: CountryData = {
     "aluminium": 14,
     "tembaga": 4,
     "logam_tanah_jarang": 25,
-    "bijih_besi": 2,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 2
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const antigua_dan_barbuda: CountryData = {
     "farmasi": 8,
     "pupuk": 22,
     "pengolahan_daging": 27,
-    "mie_instan": 19,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 19
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const antigua_dan_barbuda: CountryData = {
     "sayur_umbi": 11.5,
     "kedelai": 29,
     "kelapa_sawit": 34,
-    "kopi_teh_kakao": 16.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 16.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const antigua_dan_barbuda: CountryData = {
     "pangkalan_laut": 33,
     "program_luar_angkasa": 31,
     "pertahanan_siber": 22,
-    "anggaran_pertahanan": 27,
-    "personel": 16148,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const antigua_dan_barbuda: CountryData = {
 
   "sektor_armada": {
     "barak": 4,
-    "infanteri": 36,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 25,
         "apc": 20,
@@ -142,23 +132,20 @@ export const antigua_dan_barbuda: CountryData = {
         "jet_tempur_siluman": 6,
         "helikopter_serang": 34,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 7,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 21,
-      "jaringan_radar": 40,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 39,
           "sepeda_motor": 6,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 20,
           "helikopter_polisi": 35,
@@ -169,10 +156,12 @@ export const antigua_dan_barbuda: CountryData = {
           "kamera_pengawas": 40,
           "pusat_forensik": 1
         },
-        "waktu_respon": 32,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 32,
     "intelijen": 9,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 17,
       "misi_mata_mata": 11,
       "misi_sabotase": 25,
@@ -185,34 +174,24 @@ export const antigua_dan_barbuda: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 12,
-      "sd": 40,
-      "smp": 2,
-      "sma": 13,
+      "prasekolah": 12,
+      "dasar": 40,
+      "menengah": 2,
+      "lanjutan": 13,
       "universitas": 3,
       "lembaga_pendidikan": 30,
       "laboratorium": 33,
       "observatorium": 39,
       "pusat_penelitian": 2,
       "pusat_pengembangan": 38,
-      "literasi": 95,
-      "indeks_penelitian": 0
+      "literasi": 95
     },
     "kesehatan": {
       "rumah_sakit_besar": 1,
       "rumah_sakit_kecil": 34,
       "pusat_diagnostik": 19,
-      "tempat_tidur_rs": 500,
       "harapan_hidup": 14,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 5,
-      "sirkuit_balap": 40,
-      "stadion": 23,
-      "stadion_internasional": 32,
-      "skor_olimpiade": 36,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 3,
@@ -224,6 +203,12 @@ export const antigua_dan_barbuda: CountryData = {
       "indeks_korupsi": 52,
       "indeks_keamanan": 83
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 5,
+      "sirkuit_balap": 40,
+      "stadion": 23,
+      "stadion_internasional": 32
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const antigua_dan_barbuda: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 14,
@@ -345,3 +329,6 @@ export const antigua_dan_barbuda: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

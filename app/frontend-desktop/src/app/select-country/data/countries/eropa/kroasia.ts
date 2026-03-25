@@ -39,9 +39,7 @@ export const kroasia: CountryData = {
     "bandara": 18,
     "terminal_bus": 5,
     "helipad": 33,
-    "cakupan_internet": 57,
-    "indeks_teknologi": 92,
-    "akses_air": 74
+    "cakupan_internet": 57
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const kroasia: CountryData = {
     "aluminium": 38,
     "tembaga": 29,
     "logam_tanah_jarang": 13,
-    "bijih_besi": 11,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const kroasia: CountryData = {
     "farmasi": 14,
     "pupuk": 3,
     "pengolahan_daging": 11,
-    "mie_instan": 9,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 9
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const kroasia: CountryData = {
     "sayur_umbi": 26.5,
     "kedelai": 32,
     "kelapa_sawit": 23,
-    "kopi_teh_kakao": 19.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 19.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const kroasia: CountryData = {
     "pangkalan_laut": 13,
     "program_luar_angkasa": 16,
     "pertahanan_siber": 37,
-    "anggaran_pertahanan": 216,
-    "personel": 7037,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 216
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const kroasia: CountryData = {
 
   "sektor_armada": {
     "barak": 26,
-    "infanteri": 3,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 31,
         "apc": 33,
@@ -142,23 +132,20 @@ export const kroasia: CountryData = {
         "jet_tempur_siluman": 25,
         "helikopter_serang": 8,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 29,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 7,
-      "jaringan_radar": 24,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 31,
           "sepeda_motor": 38,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 17,
           "helikopter_polisi": 6,
@@ -169,10 +156,12 @@ export const kroasia: CountryData = {
           "kamera_pengawas": 22,
           "pusat_forensik": 1
         },
-        "waktu_respon": 27,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 27,
     "intelijen": 11,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 25,
       "misi_mata_mata": 28,
       "misi_sabotase": 39,
@@ -185,34 +174,24 @@ export const kroasia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 28,
-      "sd": 13,
-      "smp": 35,
-      "sma": 19,
+      "prasekolah": 28,
+      "dasar": 13,
+      "menengah": 35,
+      "lanjutan": 19,
       "universitas": 40,
       "lembaga_pendidikan": 8,
       "laboratorium": 22,
       "observatorium": 4,
       "pusat_penelitian": 30,
       "pusat_pengembangan": 20,
-      "literasi": 55,
-      "indeks_penelitian": 0
+      "literasi": 55
     },
     "kesehatan": {
       "rumah_sakit_besar": 9,
       "rumah_sakit_kecil": 16,
       "pusat_diagnostik": 26,
-      "tempat_tidur_rs": 620,
       "harapan_hidup": 22,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 37,
-      "sirkuit_balap": 37,
-      "stadion": 32,
-      "stadion_internasional": 12,
-      "skor_olimpiade": 16,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 11,
@@ -224,6 +203,12 @@ export const kroasia: CountryData = {
       "indeks_korupsi": 62,
       "indeks_keamanan": 91
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 37,
+      "sirkuit_balap": 37,
+      "stadion": 32,
+      "stadion_internasional": 12
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const kroasia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 35,
@@ -345,3 +329,6 @@ export const kroasia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

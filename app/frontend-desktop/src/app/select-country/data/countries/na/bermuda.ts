@@ -39,9 +39,7 @@ export const bermuda: CountryData = {
     "bandara": 37,
     "terminal_bus": 39,
     "helipad": 29,
-    "cakupan_internet": 67,
-    "indeks_teknologi": 52,
-    "akses_air": 74
+    "cakupan_internet": 67
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const bermuda: CountryData = {
     "aluminium": 21,
     "tembaga": 21,
     "logam_tanah_jarang": 36,
-    "bijih_besi": 8,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 8
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const bermuda: CountryData = {
     "farmasi": 17,
     "pupuk": 31,
     "pengolahan_daging": 40,
-    "mie_instan": 3,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 3
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const bermuda: CountryData = {
     "sayur_umbi": 14.0,
     "kedelai": 22,
     "kelapa_sawit": 33,
-    "kopi_teh_kakao": 23.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 23.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const bermuda: CountryData = {
     "pangkalan_laut": 39,
     "program_luar_angkasa": 39,
     "pertahanan_siber": 37,
-    "anggaran_pertahanan": 27,
-    "personel": 9667,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const bermuda: CountryData = {
 
   "sektor_armada": {
     "barak": 39,
-    "infanteri": 6,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 89,
         "apc": 153,
@@ -142,23 +132,20 @@ export const bermuda: CountryData = {
         "jet_tempur_siluman": 79,
         "helikopter_serang": 80,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 9,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 1,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 5,
           "sepeda_motor": 32,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 9,
           "helikopter_polisi": 12,
@@ -169,10 +156,12 @@ export const bermuda: CountryData = {
           "kamera_pengawas": 12,
           "pusat_forensik": 1
         },
-        "waktu_respon": 5,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 5,
     "intelijen": 39,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 15,
       "misi_mata_mata": 32,
       "misi_sabotase": 28,
@@ -185,34 +174,24 @@ export const bermuda: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 28,
-      "sd": 35,
-      "smp": 3,
-      "sma": 21,
+      "prasekolah": 28,
+      "dasar": 35,
+      "menengah": 3,
+      "lanjutan": 21,
       "universitas": 6,
       "lembaga_pendidikan": 29,
       "laboratorium": 40,
       "observatorium": 23,
       "pusat_penelitian": 20,
       "pusat_pengembangan": 6,
-      "literasi": 94,
-      "indeks_penelitian": 0
+      "literasi": 94
     },
     "kesehatan": {
       "rumah_sakit_besar": 16,
       "rumah_sakit_kecil": 31,
       "pusat_diagnostik": 40,
-      "tempat_tidur_rs": 5996,
       "harapan_hidup": 31,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 39,
-      "sirkuit_balap": 40,
-      "stadion": 19,
-      "stadion_internasional": 22,
-      "skor_olimpiade": 28,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 30,
@@ -224,6 +203,12 @@ export const bermuda: CountryData = {
       "indeks_korupsi": 56,
       "indeks_keamanan": 85
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 39,
+      "sirkuit_balap": 40,
+      "stadion": 19,
+      "stadion_internasional": 22
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const bermuda: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 5,
@@ -345,3 +329,6 @@ export const bermuda: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

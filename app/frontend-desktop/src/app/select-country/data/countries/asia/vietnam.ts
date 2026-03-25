@@ -39,9 +39,7 @@ export const vietnam: CountryData = {
     "bandara": 32,
     "terminal_bus": 11,
     "helipad": 9,
-    "cakupan_internet": 74,
-    "indeks_teknologi": 77,
-    "akses_air": 74
+    "cakupan_internet": 74
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const vietnam: CountryData = {
     "aluminium": 2,
     "tembaga": 26,
     "logam_tanah_jarang": 37,
-    "bijih_besi": 26,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 26
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const vietnam: CountryData = {
     "farmasi": 27,
     "pupuk": 39,
     "pengolahan_daging": 23,
-    "mie_instan": 5,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 5
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const vietnam: CountryData = {
     "sayur_umbi": 24.0,
     "kedelai": 5,
     "kelapa_sawit": 35,
-    "kopi_teh_kakao": 23.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 23.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const vietnam: CountryData = {
     "pangkalan_laut": 34,
     "program_luar_angkasa": 20,
     "pertahanan_siber": 5,
-    "anggaran_pertahanan": 1194,
-    "personel": 9297,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1194
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const vietnam: CountryData = {
 
   "sektor_armada": {
     "barak": 10,
-    "infanteri": 8,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 58,
         "apc": 12,
@@ -142,23 +132,20 @@ export const vietnam: CountryData = {
         "jet_tempur_siluman": 159,
         "helikopter_serang": 112,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 6,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 19,
           "sepeda_motor": 1,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 39,
           "helikopter_polisi": 22,
@@ -169,10 +156,12 @@ export const vietnam: CountryData = {
           "kamera_pengawas": 16,
           "pusat_forensik": 1
         },
-        "waktu_respon": 8,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 8,
     "intelijen": 40,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 40,
       "misi_mata_mata": 16,
       "misi_sabotase": 9,
@@ -185,34 +174,24 @@ export const vietnam: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 11,
-      "sd": 29,
-      "smp": 36,
-      "sma": 5,
+      "prasekolah": 11,
+      "dasar": 29,
+      "menengah": 36,
+      "lanjutan": 5,
       "universitas": 18,
       "lembaga_pendidikan": 20,
       "laboratorium": 13,
       "observatorium": 23,
       "pusat_penelitian": 25,
       "pusat_pengembangan": 15,
-      "literasi": 74,
-      "indeks_penelitian": 0
+      "literasi": 74
     },
     "kesehatan": {
       "rumah_sakit_besar": 11,
       "rumah_sakit_kecil": 2,
       "pusat_diagnostik": 4,
-      "tempat_tidur_rs": 7588,
       "harapan_hidup": 17,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 32,
-      "sirkuit_balap": 13,
-      "stadion": 29,
-      "stadion_internasional": 28,
-      "skor_olimpiade": 40,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 14,
@@ -224,6 +203,12 @@ export const vietnam: CountryData = {
       "indeks_korupsi": 68,
       "indeks_keamanan": 68
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 32,
+      "sirkuit_balap": 13,
+      "stadion": 29,
+      "stadion_internasional": 28
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const vietnam: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 10,
@@ -345,3 +329,6 @@ export const vietnam: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

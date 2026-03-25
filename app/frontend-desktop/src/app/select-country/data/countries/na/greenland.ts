@@ -39,9 +39,7 @@ export const greenland: CountryData = {
     "bandara": 6,
     "terminal_bus": 25,
     "helipad": 27,
-    "cakupan_internet": 94,
-    "indeks_teknologi": 71,
-    "akses_air": 74
+    "cakupan_internet": 94
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const greenland: CountryData = {
     "aluminium": 32,
     "tembaga": 12,
     "logam_tanah_jarang": 10,
-    "bijih_besi": 17,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 17
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const greenland: CountryData = {
     "farmasi": 1,
     "pupuk": 7,
     "pengolahan_daging": 24,
-    "mie_instan": 11,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 11
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const greenland: CountryData = {
     "sayur_umbi": 29.5,
     "kedelai": 13,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 26.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 26.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const greenland: CountryData = {
     "pangkalan_laut": 31,
     "program_luar_angkasa": 26,
     "pertahanan_siber": 19,
-    "anggaran_pertahanan": 27,
-    "personel": 5611,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const greenland: CountryData = {
 
   "sektor_armada": {
     "barak": 31,
-    "infanteri": 19,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 164,
         "apc": 78,
@@ -142,23 +132,20 @@ export const greenland: CountryData = {
         "jet_tempur_siluman": 60,
         "helikopter_serang": 48,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 39,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 35,
           "sepeda_motor": 3,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 37,
           "helikopter_polisi": 34,
@@ -169,10 +156,12 @@ export const greenland: CountryData = {
           "kamera_pengawas": 32,
           "pusat_forensik": 1
         },
-        "waktu_respon": 18,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 18,
     "intelijen": 3,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 28,
       "misi_mata_mata": 36,
       "misi_sabotase": 4,
@@ -185,34 +174,24 @@ export const greenland: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 5,
-      "sd": 22,
-      "smp": 27,
-      "sma": 1,
+      "prasekolah": 5,
+      "dasar": 22,
+      "menengah": 27,
+      "lanjutan": 1,
       "universitas": 29,
       "lembaga_pendidikan": 21,
       "laboratorium": 11,
       "observatorium": 14,
       "pusat_penelitian": 4,
       "pusat_pengembangan": 10,
-      "literasi": 81,
-      "indeks_penelitian": 0
+      "literasi": 81
     },
     "kesehatan": {
       "rumah_sakit_besar": 20,
       "rumah_sakit_kecil": 10,
       "pusat_diagnostik": 22,
-      "tempat_tidur_rs": 7955,
       "harapan_hidup": 11,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 30,
-      "sirkuit_balap": 16,
-      "stadion": 2,
-      "stadion_internasional": 17,
-      "skor_olimpiade": 4,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 40,
@@ -224,6 +203,12 @@ export const greenland: CountryData = {
       "indeks_korupsi": 66,
       "indeks_keamanan": 50
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 30,
+      "sirkuit_balap": 16,
+      "stadion": 2,
+      "stadion_internasional": 17
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const greenland: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 6,
@@ -345,3 +329,6 @@ export const greenland: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

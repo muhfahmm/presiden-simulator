@@ -39,9 +39,7 @@ export const makedonia_utara: CountryData = {
     "bandara": 11,
     "terminal_bus": 10,
     "helipad": 31,
-    "cakupan_internet": 54,
-    "indeks_teknologi": 77,
-    "akses_air": 74
+    "cakupan_internet": 54
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const makedonia_utara: CountryData = {
     "aluminium": 31,
     "tembaga": 34,
     "logam_tanah_jarang": 20,
-    "bijih_besi": 40,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 40
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const makedonia_utara: CountryData = {
     "farmasi": 35,
     "pupuk": 2,
     "pengolahan_daging": 21,
-    "mie_instan": 35,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 35
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const makedonia_utara: CountryData = {
     "sayur_umbi": 19.5,
     "kedelai": 37,
     "kelapa_sawit": 34,
-    "kopi_teh_kakao": 25.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 25.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const makedonia_utara: CountryData = {
     "pangkalan_laut": 14,
     "program_luar_angkasa": 39,
     "pertahanan_siber": 25,
-    "anggaran_pertahanan": 38,
-    "personel": 28814,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 38
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const makedonia_utara: CountryData = {
 
   "sektor_armada": {
     "barak": 31,
-    "infanteri": 15,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 130,
         "apc": 12,
@@ -142,23 +132,20 @@ export const makedonia_utara: CountryData = {
         "jet_tempur_siluman": 144,
         "helikopter_serang": 174,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 28,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 37,
           "sepeda_motor": 4,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 27,
           "helikopter_polisi": 6,
@@ -169,10 +156,12 @@ export const makedonia_utara: CountryData = {
           "kamera_pengawas": 38,
           "pusat_forensik": 1
         },
-        "waktu_respon": 2,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 2,
     "intelijen": 32,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 15,
       "misi_mata_mata": 36,
       "misi_sabotase": 26,
@@ -185,34 +174,24 @@ export const makedonia_utara: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 27,
-      "sd": 33,
-      "smp": 3,
-      "sma": 7,
+      "prasekolah": 27,
+      "dasar": 33,
+      "menengah": 3,
+      "lanjutan": 7,
       "universitas": 8,
       "lembaga_pendidikan": 21,
       "laboratorium": 15,
       "observatorium": 21,
       "pusat_penelitian": 24,
       "pusat_pengembangan": 14,
-      "literasi": 65,
-      "indeks_penelitian": 0
+      "literasi": 65
     },
     "kesehatan": {
       "rumah_sakit_besar": 12,
       "rumah_sakit_kecil": 9,
       "pusat_diagnostik": 24,
-      "tempat_tidur_rs": 4478,
       "harapan_hidup": 20,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 7,
-      "sirkuit_balap": 18,
-      "stadion": 25,
-      "stadion_internasional": 7,
-      "skor_olimpiade": 26,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 6,
@@ -224,6 +203,12 @@ export const makedonia_utara: CountryData = {
       "indeks_korupsi": 68,
       "indeks_keamanan": 63
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 7,
+      "sirkuit_balap": 18,
+      "stadion": 25,
+      "stadion_internasional": 7
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const makedonia_utara: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 32,
@@ -345,3 +329,6 @@ export const makedonia_utara: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

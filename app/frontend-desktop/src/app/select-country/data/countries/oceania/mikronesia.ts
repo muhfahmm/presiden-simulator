@@ -39,9 +39,7 @@ export const mikronesia: CountryData = {
     "bandara": 4,
     "terminal_bus": 2,
     "helipad": 12,
-    "cakupan_internet": 81,
-    "indeks_teknologi": 78,
-    "akses_air": 74
+    "cakupan_internet": 81
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const mikronesia: CountryData = {
     "aluminium": 9,
     "tembaga": 39,
     "logam_tanah_jarang": 7,
-    "bijih_besi": 4,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const mikronesia: CountryData = {
     "farmasi": 22,
     "pupuk": 28,
     "pengolahan_daging": 29,
-    "mie_instan": 9,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 9
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const mikronesia: CountryData = {
     "sayur_umbi": 27.5,
     "kedelai": 21,
     "kelapa_sawit": 7,
-    "kopi_teh_kakao": 25.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 25.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const mikronesia: CountryData = {
     "pangkalan_laut": 27,
     "program_luar_angkasa": 6,
     "pertahanan_siber": 22,
-    "anggaran_pertahanan": 1,
-    "personel": 15904,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const mikronesia: CountryData = {
 
   "sektor_armada": {
     "barak": 30,
-    "infanteri": 14,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 82,
         "apc": 60,
@@ -142,23 +132,20 @@ export const mikronesia: CountryData = {
         "jet_tempur_siluman": 27,
         "helikopter_serang": 163,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 6,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 1,
-      "jaringan_radar": 3,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 4,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 24,
           "helikopter_polisi": 17,
@@ -169,10 +156,12 @@ export const mikronesia: CountryData = {
           "kamera_pengawas": 37,
           "pusat_forensik": 1
         },
-        "waktu_respon": 25,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 25,
     "intelijen": 27,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 8,
       "misi_mata_mata": 36,
       "misi_sabotase": 9,
@@ -185,34 +174,24 @@ export const mikronesia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 36,
-      "sd": 16,
-      "smp": 1,
-      "sma": 2,
+      "prasekolah": 36,
+      "dasar": 16,
+      "menengah": 1,
+      "lanjutan": 2,
       "universitas": 1,
       "lembaga_pendidikan": 8,
       "laboratorium": 33,
       "observatorium": 40,
       "pusat_penelitian": 15,
       "pusat_pengembangan": 28,
-      "literasi": 86,
-      "indeks_penelitian": 0
+      "literasi": 86
     },
     "kesehatan": {
       "rumah_sakit_besar": 26,
       "rumah_sakit_kecil": 21,
       "pusat_diagnostik": 28,
-      "tempat_tidur_rs": 6619,
       "harapan_hidup": 29,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 2,
-      "sirkuit_balap": 28,
-      "stadion": 26,
-      "stadion_internasional": 34,
-      "skor_olimpiade": 10,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 20,
@@ -224,6 +203,12 @@ export const mikronesia: CountryData = {
       "indeks_korupsi": 65,
       "indeks_keamanan": 93
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 2,
+      "sirkuit_balap": 28,
+      "stadion": 26,
+      "stadion_internasional": 34
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const mikronesia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 9,
@@ -345,3 +329,6 @@ export const mikronesia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

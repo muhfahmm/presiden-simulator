@@ -39,9 +39,7 @@ export const finlandia: CountryData = {
     "bandara": 35,
     "terminal_bus": 38,
     "helipad": 4,
-    "cakupan_internet": 93,
-    "indeks_teknologi": 63,
-    "akses_air": 74
+    "cakupan_internet": 93
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const finlandia: CountryData = {
     "aluminium": 29,
     "tembaga": 24,
     "logam_tanah_jarang": 9,
-    "bijih_besi": 5,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 5
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const finlandia: CountryData = {
     "farmasi": 39,
     "pupuk": 17,
     "pengolahan_daging": 37,
-    "mie_instan": 31,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 31
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const finlandia: CountryData = {
     "sayur_umbi": 36.5,
     "kedelai": 9,
     "kelapa_sawit": 19,
-    "kopi_teh_kakao": 13.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 13.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const finlandia: CountryData = {
     "pangkalan_laut": 35,
     "program_luar_angkasa": 40,
     "pertahanan_siber": 15,
-    "anggaran_pertahanan": 833,
-    "personel": 7855,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 833
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const finlandia: CountryData = {
 
   "sektor_armada": {
     "barak": 36,
-    "infanteri": 22,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 13,
         "apc": 17,
@@ -142,23 +132,20 @@ export const finlandia: CountryData = {
         "jet_tempur_siluman": 25,
         "helikopter_serang": 29,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 30,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 32,
-      "jaringan_radar": 10,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 4,
           "sepeda_motor": 19,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 3,
           "helikopter_polisi": 28,
@@ -169,10 +156,12 @@ export const finlandia: CountryData = {
           "kamera_pengawas": 9,
           "pusat_forensik": 1
         },
-        "waktu_respon": 40,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 40,
     "intelijen": 4,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 17,
       "misi_sabotase": 12,
@@ -185,34 +174,24 @@ export const finlandia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 14,
-      "sd": 2,
-      "smp": 37,
-      "sma": 36,
+      "prasekolah": 14,
+      "dasar": 2,
+      "menengah": 37,
+      "lanjutan": 36,
       "universitas": 32,
       "lembaga_pendidikan": 15,
       "laboratorium": 17,
       "observatorium": 3,
       "pusat_penelitian": 36,
       "pusat_pengembangan": 40,
-      "literasi": 64,
-      "indeks_penelitian": 0
+      "literasi": 64
     },
     "kesehatan": {
       "rumah_sakit_besar": 35,
       "rumah_sakit_kecil": 10,
       "pusat_diagnostik": 25,
-      "tempat_tidur_rs": 8016,
       "harapan_hidup": 28,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 31,
-      "sirkuit_balap": 18,
-      "stadion": 4,
-      "stadion_internasional": 20,
-      "skor_olimpiade": 40,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 22,
@@ -224,6 +203,12 @@ export const finlandia: CountryData = {
       "indeks_korupsi": 50,
       "indeks_keamanan": 88
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 31,
+      "sirkuit_balap": 18,
+      "stadion": 4,
+      "stadion_internasional": 20
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const finlandia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 22,
@@ -345,3 +329,6 @@ export const finlandia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

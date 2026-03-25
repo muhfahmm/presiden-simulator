@@ -39,9 +39,7 @@ export const armenia: CountryData = {
     "bandara": 24,
     "terminal_bus": 19,
     "helipad": 39,
-    "cakupan_internet": 58,
-    "indeks_teknologi": 94,
-    "akses_air": 74
+    "cakupan_internet": 58
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const armenia: CountryData = {
     "aluminium": 25,
     "tembaga": 33,
     "logam_tanah_jarang": 36,
-    "bijih_besi": 40,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 40
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const armenia: CountryData = {
     "farmasi": 12,
     "pupuk": 21,
     "pengolahan_daging": 15,
-    "mie_instan": 8,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 8
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const armenia: CountryData = {
     "sayur_umbi": 24.5,
     "kedelai": 8,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 18.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 18.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const armenia: CountryData = {
     "pangkalan_laut": 17,
     "program_luar_angkasa": 36,
     "pertahanan_siber": 11,
-    "anggaran_pertahanan": 61,
-    "personel": 13691,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 61
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const armenia: CountryData = {
 
   "sektor_armada": {
     "barak": 40,
-    "infanteri": 16,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 18,
         "apc": 29,
@@ -142,23 +132,20 @@ export const armenia: CountryData = {
         "jet_tempur_siluman": 40,
         "helikopter_serang": 2,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 37,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 37,
-      "jaringan_radar": 16,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 1,
           "sepeda_motor": 10,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 16,
           "helikopter_polisi": 34,
@@ -169,10 +156,12 @@ export const armenia: CountryData = {
           "kamera_pengawas": 35,
           "pusat_forensik": 1
         },
-        "waktu_respon": 9,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 9,
     "intelijen": 13,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 29,
       "misi_mata_mata": 14,
       "misi_sabotase": 19,
@@ -185,34 +174,24 @@ export const armenia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 40,
-      "sd": 40,
-      "smp": 33,
-      "sma": 24,
+      "prasekolah": 40,
+      "dasar": 40,
+      "menengah": 33,
+      "lanjutan": 24,
       "universitas": 17,
       "lembaga_pendidikan": 23,
       "laboratorium": 12,
       "observatorium": 3,
       "pusat_penelitian": 4,
       "pusat_pengembangan": 27,
-      "literasi": 69,
-      "indeks_penelitian": 0
+      "literasi": 69
     },
     "kesehatan": {
       "rumah_sakit_besar": 15,
       "rumah_sakit_kecil": 2,
       "pusat_diagnostik": 18,
-      "tempat_tidur_rs": 3658,
       "harapan_hidup": 27,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 32,
-      "sirkuit_balap": 18,
-      "stadion": 18,
-      "stadion_internasional": 13,
-      "skor_olimpiade": 7,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 14,
@@ -224,6 +203,12 @@ export const armenia: CountryData = {
       "indeks_korupsi": 58,
       "indeks_keamanan": 55
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 32,
+      "sirkuit_balap": 18,
+      "stadion": 18,
+      "stadion_internasional": 13
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const armenia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 30,
@@ -345,3 +329,6 @@ export const armenia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const qatar: CountryData = {
     "bandara": 2,
     "terminal_bus": 10,
     "helipad": 19,
-    "cakupan_internet": 86,
-    "indeks_teknologi": 79,
-    "akses_air": 74
+    "cakupan_internet": 86
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const qatar: CountryData = {
     "aluminium": 8,
     "tembaga": 2,
     "logam_tanah_jarang": 4,
-    "bijih_besi": 14,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const qatar: CountryData = {
     "farmasi": 15,
     "pupuk": 35,
     "pengolahan_daging": 16,
-    "mie_instan": 1,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 1
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const qatar: CountryData = {
     "sayur_umbi": 13.0,
     "kedelai": 37,
     "kelapa_sawit": 32,
-    "kopi_teh_kakao": 18.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 18.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const qatar: CountryData = {
     "pangkalan_laut": 11,
     "program_luar_angkasa": 7,
     "pertahanan_siber": 24,
-    "anggaran_pertahanan": 611,
-    "personel": 14032,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 611
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const qatar: CountryData = {
 
   "sektor_armada": {
     "barak": 40,
-    "infanteri": 1,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 196,
         "apc": 25,
@@ -142,23 +132,20 @@ export const qatar: CountryData = {
         "jet_tempur_siluman": 133,
         "helikopter_serang": 91,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 29,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 5,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 38,
           "sepeda_motor": 33,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 17,
           "helikopter_polisi": 29,
@@ -169,10 +156,12 @@ export const qatar: CountryData = {
           "kamera_pengawas": 38,
           "pusat_forensik": 1
         },
-        "waktu_respon": 34,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 34,
     "intelijen": 19,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 1,
       "misi_mata_mata": 20,
       "misi_sabotase": 20,
@@ -185,34 +174,24 @@ export const qatar: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 17,
-      "sd": 34,
-      "smp": 6,
-      "sma": 29,
+      "prasekolah": 17,
+      "dasar": 34,
+      "menengah": 6,
+      "lanjutan": 29,
       "universitas": 40,
       "lembaga_pendidikan": 40,
       "laboratorium": 8,
       "observatorium": 17,
       "pusat_penelitian": 16,
       "pusat_pengembangan": 39,
-      "literasi": 95,
-      "indeks_penelitian": 0
+      "literasi": 95
     },
     "kesehatan": {
       "rumah_sakit_besar": 30,
       "rumah_sakit_kecil": 37,
       "pusat_diagnostik": 2,
-      "tempat_tidur_rs": 7651,
       "harapan_hidup": 39,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 8,
-      "sirkuit_balap": 12,
-      "stadion": 17,
-      "stadion_internasional": 39,
-      "skor_olimpiade": 9,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 19,
@@ -224,6 +203,12 @@ export const qatar: CountryData = {
       "indeks_korupsi": 85,
       "indeks_keamanan": 74
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 8,
+      "sirkuit_balap": 12,
+      "stadion": 17,
+      "stadion_internasional": 39
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const qatar: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 36,
@@ -345,3 +329,6 @@ export const qatar: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

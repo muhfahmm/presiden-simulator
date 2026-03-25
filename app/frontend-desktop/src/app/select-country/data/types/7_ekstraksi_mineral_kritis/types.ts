@@ -11,5 +11,4 @@ export interface SektorEkstraksi {
   aluminium: number;
   logam_tanah_jarang: number;
   bijih_besi: number;
-  kekuatan: number; // 0-100
 }

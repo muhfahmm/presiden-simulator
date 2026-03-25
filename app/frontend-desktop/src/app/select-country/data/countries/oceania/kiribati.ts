@@ -39,9 +39,7 @@ export const kiribati: CountryData = {
     "bandara": 3,
     "terminal_bus": 7,
     "helipad": 2,
-    "cakupan_internet": 69,
-    "indeks_teknologi": 72,
-    "akses_air": 74
+    "cakupan_internet": 69
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const kiribati: CountryData = {
     "aluminium": 6,
     "tembaga": 1,
     "logam_tanah_jarang": 25,
-    "bijih_besi": 32,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 32
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const kiribati: CountryData = {
     "farmasi": 2,
     "pupuk": 34,
     "pengolahan_daging": 35,
-    "mie_instan": 25,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 25
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const kiribati: CountryData = {
     "sayur_umbi": 18.5,
     "kedelai": 40,
     "kelapa_sawit": 36,
-    "kopi_teh_kakao": 17.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 17.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const kiribati: CountryData = {
     "pangkalan_laut": 28,
     "program_luar_angkasa": 25,
     "pertahanan_siber": 31,
-    "anggaran_pertahanan": 1,
-    "personel": 11061,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const kiribati: CountryData = {
 
   "sektor_armada": {
     "barak": 10,
-    "infanteri": 9,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 10,
         "apc": 20,
@@ -142,23 +132,20 @@ export const kiribati: CountryData = {
         "jet_tempur_siluman": 8,
         "helikopter_serang": 21,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 34,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 8,
-      "jaringan_radar": 19,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 40,
           "sepeda_motor": 19,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 20,
           "helikopter_polisi": 11,
@@ -169,10 +156,12 @@ export const kiribati: CountryData = {
           "kamera_pengawas": 32,
           "pusat_forensik": 1
         },
-        "waktu_respon": 4,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 4,
     "intelijen": 12,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 6,
       "misi_mata_mata": 21,
       "misi_sabotase": 1,
@@ -185,34 +174,24 @@ export const kiribati: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 15,
-      "sd": 8,
-      "smp": 18,
-      "sma": 1,
+      "prasekolah": 15,
+      "dasar": 8,
+      "menengah": 18,
+      "lanjutan": 1,
       "universitas": 16,
       "lembaga_pendidikan": 1,
       "laboratorium": 25,
       "observatorium": 2,
       "pusat_penelitian": 13,
       "pusat_pengembangan": 33,
-      "literasi": 78,
-      "indeks_penelitian": 0
+      "literasi": 78
     },
     "kesehatan": {
       "rumah_sakit_besar": 1,
       "rumah_sakit_kecil": 14,
       "pusat_diagnostik": 6,
-      "tempat_tidur_rs": 4018,
       "harapan_hidup": 7,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 31,
-      "sirkuit_balap": 2,
-      "stadion": 35,
-      "stadion_internasional": 2,
-      "skor_olimpiade": 17,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 2,
@@ -224,6 +203,12 @@ export const kiribati: CountryData = {
       "indeks_korupsi": 55,
       "indeks_keamanan": 87
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 31,
+      "sirkuit_balap": 2,
+      "stadion": 35,
+      "stadion_internasional": 2
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const kiribati: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 3,
@@ -345,3 +329,6 @@ export const kiribati: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

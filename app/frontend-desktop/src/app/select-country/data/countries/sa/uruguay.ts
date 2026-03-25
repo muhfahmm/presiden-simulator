@@ -39,9 +39,7 @@ export const uruguay: CountryData = {
     "bandara": 2,
     "terminal_bus": 8,
     "helipad": 33,
-    "cakupan_internet": 66,
-    "indeks_teknologi": 95,
-    "akses_air": 74
+    "cakupan_internet": 66
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const uruguay: CountryData = {
     "aluminium": 36,
     "tembaga": 2,
     "logam_tanah_jarang": 15,
-    "bijih_besi": 32,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 32
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const uruguay: CountryData = {
     "farmasi": 26,
     "pupuk": 6,
     "pengolahan_daging": 1,
-    "mie_instan": 15,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 15
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const uruguay: CountryData = {
     "sayur_umbi": 17.5,
     "kedelai": 28,
     "kelapa_sawit": 33,
-    "kopi_teh_kakao": 25.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 25.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const uruguay: CountryData = {
     "pangkalan_laut": 39,
     "program_luar_angkasa": 32,
     "pertahanan_siber": 32,
-    "anggaran_pertahanan": 200,
-    "personel": 21800,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 200
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const uruguay: CountryData = {
 
   "sektor_armada": {
     "barak": 30,
-    "infanteri": 40,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 100,
         "apc": 97,
@@ -142,23 +132,20 @@ export const uruguay: CountryData = {
         "jet_tempur_siluman": 120,
         "helikopter_serang": 167,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 29,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 25,
           "sepeda_motor": 28,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 34,
           "helikopter_polisi": 21,
@@ -169,10 +156,12 @@ export const uruguay: CountryData = {
           "kamera_pengawas": 11,
           "pusat_forensik": 1
         },
-        "waktu_respon": 1,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 1,
     "intelijen": 4,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 8,
       "misi_mata_mata": 16,
       "misi_sabotase": 15,
@@ -185,34 +174,24 @@ export const uruguay: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 9,
-      "sd": 27,
-      "smp": 15,
-      "sma": 14,
+      "prasekolah": 9,
+      "dasar": 27,
+      "menengah": 15,
+      "lanjutan": 14,
       "universitas": 34,
       "lembaga_pendidikan": 20,
       "laboratorium": 15,
       "observatorium": 22,
       "pusat_penelitian": 8,
       "pusat_pengembangan": 32,
-      "literasi": 95,
-      "indeks_penelitian": 0
+      "literasi": 95
     },
     "kesehatan": {
       "rumah_sakit_besar": 5,
       "rumah_sakit_kecil": 21,
       "pusat_diagnostik": 6,
-      "tempat_tidur_rs": 7828,
       "harapan_hidup": 6,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 16,
-      "stadion": 34,
-      "stadion_internasional": 9,
-      "skor_olimpiade": 11,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 6,
@@ -224,6 +203,12 @@ export const uruguay: CountryData = {
       "indeks_korupsi": 61,
       "indeks_keamanan": 87
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 24,
+      "sirkuit_balap": 16,
+      "stadion": 34,
+      "stadion_internasional": 9
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const uruguay: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 8,
@@ -345,3 +329,6 @@ export const uruguay: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

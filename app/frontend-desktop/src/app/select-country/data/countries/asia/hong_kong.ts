@@ -39,9 +39,7 @@ export const hong_kong: CountryData = {
     "bandara": 19,
     "terminal_bus": 31,
     "helipad": 7,
-    "cakupan_internet": 50,
-    "indeks_teknologi": 65,
-    "akses_air": 74
+    "cakupan_internet": 50
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const hong_kong: CountryData = {
     "aluminium": 15,
     "tembaga": 28,
     "logam_tanah_jarang": 29,
-    "bijih_besi": 36,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 36
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const hong_kong: CountryData = {
     "farmasi": 18,
     "pupuk": 24,
     "pengolahan_daging": 19,
-    "mie_instan": 17,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 17
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const hong_kong: CountryData = {
     "sayur_umbi": 14.0,
     "kedelai": 30,
     "kelapa_sawit": 11,
-    "kopi_teh_kakao": 18.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 18.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const hong_kong: CountryData = {
     "pangkalan_laut": 37,
     "program_luar_angkasa": 26,
     "pertahanan_siber": 1,
-    "anggaran_pertahanan": 27,
-    "personel": 14863,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const hong_kong: CountryData = {
 
   "sektor_armada": {
     "barak": 34,
-    "infanteri": 6,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 171,
         "apc": 109,
@@ -142,23 +132,20 @@ export const hong_kong: CountryData = {
         "jet_tempur_siluman": 125,
         "helikopter_serang": 153,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 35,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 13,
           "sepeda_motor": 13,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 1,
           "helikopter_polisi": 31,
@@ -169,10 +156,12 @@ export const hong_kong: CountryData = {
           "kamera_pengawas": 11,
           "pusat_forensik": 1
         },
-        "waktu_respon": 1,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 1,
     "intelijen": 28,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 39,
       "misi_mata_mata": 10,
       "misi_sabotase": 32,
@@ -185,34 +174,24 @@ export const hong_kong: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 4,
-      "sd": 8,
-      "smp": 22,
-      "sma": 27,
+      "prasekolah": 4,
+      "dasar": 8,
+      "menengah": 22,
+      "lanjutan": 27,
       "universitas": 38,
       "lembaga_pendidikan": 5,
       "laboratorium": 25,
       "observatorium": 39,
       "pusat_penelitian": 19,
       "pusat_pengembangan": 36,
-      "literasi": 59,
-      "indeks_penelitian": 0
+      "literasi": 59
     },
     "kesehatan": {
       "rumah_sakit_besar": 18,
       "rumah_sakit_kecil": 17,
       "pusat_diagnostik": 21,
-      "tempat_tidur_rs": 1541,
       "harapan_hidup": 15,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 7,
-      "sirkuit_balap": 1,
-      "stadion": 31,
-      "stadion_internasional": 33,
-      "skor_olimpiade": 7,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 10,
@@ -224,6 +203,12 @@ export const hong_kong: CountryData = {
       "indeks_korupsi": 86,
       "indeks_keamanan": 66
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 7,
+      "sirkuit_balap": 1,
+      "stadion": 31,
+      "stadion_internasional": 33
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const hong_kong: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 1,
@@ -345,3 +329,6 @@ export const hong_kong: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

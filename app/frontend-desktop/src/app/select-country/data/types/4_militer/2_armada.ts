@@ -1,8 +1,5 @@
 export interface SektorArmada {
   barak: number;
-  infanteri: number;
-  penerjun_payung: number;
-  pasukan_khusus: number;
   darat: {
     tank_tempur_utama: number;
     apc: number;
@@ -18,6 +15,4 @@ export interface SektorArmada {
     helikopter_serang: number;
     pesawat_pengintai: number;
   };
-  total_unit: number;
-  kesiapan: number; // 0-100%
 }

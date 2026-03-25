@@ -39,9 +39,7 @@ export const mongolia: CountryData = {
     "bandara": 32,
     "terminal_bus": 12,
     "helipad": 23,
-    "cakupan_internet": 86,
-    "indeks_teknologi": 62,
-    "akses_air": 74
+    "cakupan_internet": 86
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const mongolia: CountryData = {
     "aluminium": 35,
     "tembaga": 17,
     "logam_tanah_jarang": 9,
-    "bijih_besi": 15,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const mongolia: CountryData = {
     "farmasi": 21,
     "pupuk": 20,
     "pengolahan_daging": 28,
-    "mie_instan": 14,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 14
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const mongolia: CountryData = {
     "sayur_umbi": 37.5,
     "kedelai": 23,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 30.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 30.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const mongolia: CountryData = {
     "pangkalan_laut": 13,
     "program_luar_angkasa": 31,
     "pertahanan_siber": 16,
-    "anggaran_pertahanan": 50,
-    "personel": 20325,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 50
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const mongolia: CountryData = {
 
   "sektor_armada": {
     "barak": 39,
-    "infanteri": 23,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 50,
         "apc": 148,
@@ -142,23 +132,20 @@ export const mongolia: CountryData = {
         "jet_tempur_siluman": 139,
         "helikopter_serang": 94,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 9,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 3,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 14,
           "sepeda_motor": 30,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 17,
           "helikopter_polisi": 22,
@@ -169,10 +156,12 @@ export const mongolia: CountryData = {
           "kamera_pengawas": 40,
           "pusat_forensik": 1
         },
-        "waktu_respon": 31,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 31,
     "intelijen": 33,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 4,
       "misi_mata_mata": 35,
       "misi_sabotase": 33,
@@ -185,34 +174,24 @@ export const mongolia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 11,
-      "sd": 22,
-      "smp": 1,
-      "sma": 3,
+      "prasekolah": 11,
+      "dasar": 22,
+      "menengah": 1,
+      "lanjutan": 3,
       "universitas": 40,
       "lembaga_pendidikan": 31,
       "laboratorium": 25,
       "observatorium": 28,
       "pusat_penelitian": 3,
       "pusat_pengembangan": 28,
-      "literasi": 57,
-      "indeks_penelitian": 0
+      "literasi": 57
     },
     "kesehatan": {
       "rumah_sakit_besar": 3,
       "rumah_sakit_kecil": 1,
       "pusat_diagnostik": 28,
-      "tempat_tidur_rs": 4807,
       "harapan_hidup": 37,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 5,
-      "sirkuit_balap": 11,
-      "stadion": 40,
-      "stadion_internasional": 37,
-      "skor_olimpiade": 31,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 26,
@@ -224,6 +203,12 @@ export const mongolia: CountryData = {
       "indeks_korupsi": 87,
       "indeks_keamanan": 78
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 5,
+      "sirkuit_balap": 11,
+      "stadion": 40,
+      "stadion_internasional": 37
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const mongolia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 34,
@@ -345,3 +329,6 @@ export const mongolia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

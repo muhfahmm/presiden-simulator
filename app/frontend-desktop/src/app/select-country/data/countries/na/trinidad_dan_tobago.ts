@@ -39,9 +39,7 @@ export const trinidad_dan_tobago: CountryData = {
     "bandara": 14,
     "terminal_bus": 33,
     "helipad": 39,
-    "cakupan_internet": 57,
-    "indeks_teknologi": 52,
-    "akses_air": 74
+    "cakupan_internet": 57
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const trinidad_dan_tobago: CountryData = {
     "aluminium": 26,
     "tembaga": 33,
     "logam_tanah_jarang": 38,
-    "bijih_besi": 37,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 37
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const trinidad_dan_tobago: CountryData = {
     "farmasi": 23,
     "pupuk": 40,
     "pengolahan_daging": 29,
-    "mie_instan": 28,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 28
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const trinidad_dan_tobago: CountryData = {
     "sayur_umbi": 25.0,
     "kedelai": 8,
     "kelapa_sawit": 34,
-    "kopi_teh_kakao": 27.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 27.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const trinidad_dan_tobago: CountryData = {
     "pangkalan_laut": 15,
     "program_luar_angkasa": 1,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 69,
-    "personel": 22968,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 69
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const trinidad_dan_tobago: CountryData = {
 
   "sektor_armada": {
     "barak": 29,
-    "infanteri": 2,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 190,
         "apc": 112,
@@ -142,23 +132,20 @@ export const trinidad_dan_tobago: CountryData = {
         "jet_tempur_siluman": 138,
         "helikopter_serang": 96,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 3,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 3,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 40,
           "sepeda_motor": 39,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 16,
           "helikopter_polisi": 5,
@@ -169,10 +156,12 @@ export const trinidad_dan_tobago: CountryData = {
           "kamera_pengawas": 33,
           "pusat_forensik": 1
         },
-        "waktu_respon": 9,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 9,
     "intelijen": 35,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 30,
       "misi_mata_mata": 19,
       "misi_sabotase": 8,
@@ -185,34 +174,24 @@ export const trinidad_dan_tobago: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 26,
-      "sd": 5,
-      "smp": 22,
-      "sma": 32,
+      "prasekolah": 26,
+      "dasar": 5,
+      "menengah": 22,
+      "lanjutan": 32,
       "universitas": 2,
       "lembaga_pendidikan": 14,
       "laboratorium": 39,
       "observatorium": 40,
       "pusat_penelitian": 32,
       "pusat_pengembangan": 3,
-      "literasi": 74,
-      "indeks_penelitian": 0
+      "literasi": 74
     },
     "kesehatan": {
       "rumah_sakit_besar": 39,
       "rumah_sakit_kecil": 33,
       "pusat_diagnostik": 22,
-      "tempat_tidur_rs": 3922,
       "harapan_hidup": 16,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 8,
-      "sirkuit_balap": 34,
-      "stadion": 8,
-      "stadion_internasional": 20,
-      "skor_olimpiade": 6,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 17,
@@ -224,6 +203,12 @@ export const trinidad_dan_tobago: CountryData = {
       "indeks_korupsi": 62,
       "indeks_keamanan": 54
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 8,
+      "sirkuit_balap": 34,
+      "stadion": 8,
+      "stadion_internasional": 20
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const trinidad_dan_tobago: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 22,
@@ -345,3 +329,6 @@ export const trinidad_dan_tobago: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

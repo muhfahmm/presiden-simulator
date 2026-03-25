@@ -39,9 +39,7 @@ export const curacao: CountryData = {
     "bandara": 24,
     "terminal_bus": 20,
     "helipad": 35,
-    "cakupan_internet": 51,
-    "indeks_teknologi": 89,
-    "akses_air": 74
+    "cakupan_internet": 51
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const curacao: CountryData = {
     "aluminium": 6,
     "tembaga": 15,
     "logam_tanah_jarang": 16,
-    "bijih_besi": 18,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 18
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const curacao: CountryData = {
     "farmasi": 31,
     "pupuk": 27,
     "pengolahan_daging": 16,
-    "mie_instan": 36,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 36
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const curacao: CountryData = {
     "sayur_umbi": 24.5,
     "kedelai": 31,
     "kelapa_sawit": 7,
-    "kopi_teh_kakao": 14.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 14.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const curacao: CountryData = {
     "pangkalan_laut": 8,
     "program_luar_angkasa": 1,
     "pertahanan_siber": 18,
-    "anggaran_pertahanan": 27,
-    "personel": 29923,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const curacao: CountryData = {
 
   "sektor_armada": {
     "barak": 21,
-    "infanteri": 4,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 28,
         "apc": 152,
@@ -142,23 +132,20 @@ export const curacao: CountryData = {
         "jet_tempur_siluman": 27,
         "helikopter_serang": 64,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 26,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 28,
           "sepeda_motor": 1,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 21,
           "helikopter_polisi": 39,
@@ -169,10 +156,12 @@ export const curacao: CountryData = {
           "kamera_pengawas": 19,
           "pusat_forensik": 1
         },
-        "waktu_respon": 32,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 32,
     "intelijen": 27,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 20,
       "misi_mata_mata": 4,
       "misi_sabotase": 40,
@@ -185,34 +174,24 @@ export const curacao: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 3,
-      "sd": 31,
-      "smp": 24,
-      "sma": 13,
+      "prasekolah": 3,
+      "dasar": 31,
+      "menengah": 24,
+      "lanjutan": 13,
       "universitas": 17,
       "lembaga_pendidikan": 9,
       "laboratorium": 14,
       "observatorium": 1,
       "pusat_penelitian": 27,
       "pusat_pengembangan": 13,
-      "literasi": 78,
-      "indeks_penelitian": 0
+      "literasi": 78
     },
     "kesehatan": {
       "rumah_sakit_besar": 32,
       "rumah_sakit_kecil": 23,
       "pusat_diagnostik": 17,
-      "tempat_tidur_rs": 8470,
       "harapan_hidup": 35,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 25,
-      "sirkuit_balap": 4,
-      "stadion": 17,
-      "stadion_internasional": 38,
-      "skor_olimpiade": 9,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 11,
@@ -224,6 +203,12 @@ export const curacao: CountryData = {
       "indeks_korupsi": 78,
       "indeks_keamanan": 79
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 25,
+      "sirkuit_balap": 4,
+      "stadion": 17,
+      "stadion_internasional": 38
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const curacao: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 27,
@@ -345,3 +329,6 @@ export const curacao: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

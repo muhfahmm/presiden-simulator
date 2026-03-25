@@ -39,9 +39,7 @@ export const liechtenstein: CountryData = {
     "bandara": 39,
     "terminal_bus": 28,
     "helipad": 39,
-    "cakupan_internet": 82,
-    "indeks_teknologi": 56,
-    "akses_air": 74
+    "cakupan_internet": 82
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const liechtenstein: CountryData = {
     "aluminium": 34,
     "tembaga": 28,
     "logam_tanah_jarang": 38,
-    "bijih_besi": 14,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const liechtenstein: CountryData = {
     "farmasi": 32,
     "pupuk": 18,
     "pengolahan_daging": 21,
-    "mie_instan": 32,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 32
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const liechtenstein: CountryData = {
     "sayur_umbi": 14.5,
     "kedelai": 16,
     "kelapa_sawit": 22,
-    "kopi_teh_kakao": 15.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 15.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const liechtenstein: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 22,
     "pertahanan_siber": 16,
-    "anggaran_pertahanan": 27,
-    "personel": 21650,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const liechtenstein: CountryData = {
 
   "sektor_armada": {
     "barak": 25,
-    "infanteri": 3,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 27,
         "apc": 34,
@@ -142,23 +132,20 @@ export const liechtenstein: CountryData = {
         "jet_tempur_siluman": 17,
         "helikopter_serang": 31,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 37,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 6,
-      "jaringan_radar": 11,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 15,
           "sepeda_motor": 24,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 4,
           "helikopter_polisi": 34,
@@ -169,10 +156,12 @@ export const liechtenstein: CountryData = {
           "kamera_pengawas": 3,
           "pusat_forensik": 1
         },
-        "waktu_respon": 8,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 8,
     "intelijen": 25,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 21,
       "misi_mata_mata": 24,
       "misi_sabotase": 35,
@@ -185,34 +174,24 @@ export const liechtenstein: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 13,
-      "sd": 5,
-      "smp": 11,
-      "sma": 23,
+      "prasekolah": 13,
+      "dasar": 5,
+      "menengah": 11,
+      "lanjutan": 23,
       "universitas": 30,
       "lembaga_pendidikan": 21,
       "laboratorium": 37,
       "observatorium": 1,
       "pusat_penelitian": 7,
       "pusat_pengembangan": 7,
-      "literasi": 51,
-      "indeks_penelitian": 0
+      "literasi": 51
     },
     "kesehatan": {
       "rumah_sakit_besar": 34,
       "rumah_sakit_kecil": 11,
       "pusat_diagnostik": 24,
-      "tempat_tidur_rs": 4491,
       "harapan_hidup": 10,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 14,
-      "sirkuit_balap": 26,
-      "stadion": 37,
-      "stadion_internasional": 3,
-      "skor_olimpiade": 39,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 27,
@@ -224,6 +203,12 @@ export const liechtenstein: CountryData = {
       "indeks_korupsi": 79,
       "indeks_keamanan": 89
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 14,
+      "sirkuit_balap": 26,
+      "stadion": 37,
+      "stadion_internasional": 3
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const liechtenstein: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 1,
@@ -345,3 +329,6 @@ export const liechtenstein: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

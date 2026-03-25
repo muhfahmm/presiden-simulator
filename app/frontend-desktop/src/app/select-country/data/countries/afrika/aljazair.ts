@@ -39,9 +39,7 @@ export const aljazair: CountryData = {
     "jalur_kereta": 12,
     "kualitas_jalan": 90,
     "pelabuhan_laut": 15,
-    "kereta_bawah_tanah": 34,
-    "indeks_teknologi": 69,
-    "akses_air": 74
+    "kereta_bawah_tanah": 34
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const aljazair: CountryData = {
     "minyak_bumi": 75,
     "logam_tanah_jarang": 12,
     "garam": 12,
-    "kekuatan": 29.660809349923973,
     "uranium": 15
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const aljazair: CountryData = {
     "farmasi": 36,
     "semikonduktor": 29,
     "smelter": 12,
-    "kekuatan": 3.076011687404966,
     "gula": 2,
     "kayu": 13
   },
@@ -98,9 +94,8 @@ export const aljazair: CountryData = {
     "sayur_umbi": 29.0,
     "kedelai": 28,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 27.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 27.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const aljazair: CountryData = {
     "pangkalan_laut": 18,
     "program_luar_angkasa": 21,
     "pertahanan_siber": 11,
-    "anggaran_pertahanan": 666,
-    "personel": 29427,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 666
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const aljazair: CountryData = {
 
   "sektor_armada": {
     "barak": 32,
-    "infanteri": 17,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 25,
         "apc": 29,
@@ -142,23 +132,19 @@ export const aljazair: CountryData = {
         "jet_tempur_siluman": 40,
         "helikopter_serang": 33,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 25,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 30,
-      "jaringan_radar": 38,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 26,
           "sepeda_motor": 33,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 38,
@@ -170,11 +156,12 @@ export const aljazair: CountryData = {
           "kamera_pengawas": 25,
           "pusat_forensik": 1
   },
-        "waktu_respon": 15,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 15,
     "intelijen": 1,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 32,
       "misi_mata_mata": 8,
       "misi_sabotase": 14,
@@ -188,34 +175,24 @@ export const aljazair: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 23,
-      "sd": 35,
-      "smp": 5,
-      "sma": 7,
+      "prasekolah": 23,
+      "dasar": 35,
+      "menengah": 5,
+      "lanjutan": 7,
       "universitas": 5,
       "lembaga_pendidikan": 16,
       "laboratorium": 6,
       "observatorium": 2,
       "pusat_penelitian": 24,
       "pusat_pengembangan": 19,
-      "literasi": 60,
-      "indeks_penelitian": 0
+      "literasi": 60
   },
     "kesehatan": {
       "rumah_sakit_besar": 35,
       "rumah_sakit_kecil": 4,
       "pusat_diagnostik": 33,
-      "tempat_tidur_rs": 8595,
       "harapan_hidup": 39,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 20,
-      "sirkuit_balap": 36,
-      "stadion": 12,
-      "stadion_internasional": 26,
-      "skor_olimpiade": 36,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 10,
@@ -227,6 +204,12 @@ export const aljazair: CountryData = {
       "indeks_korupsi": 58,
       "indeks_keamanan": 61
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 20,
+      "sirkuit_balap": 36,
+      "stadion": 12,
+      "stadion_internasional": 26
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const aljazair: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 5,
@@ -348,3 +330,6 @@ export const aljazair: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

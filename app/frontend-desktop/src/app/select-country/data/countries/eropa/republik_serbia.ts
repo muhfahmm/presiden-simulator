@@ -39,9 +39,7 @@ export const republik_serbia: CountryData = {
     "bandara": 3,
     "terminal_bus": 2,
     "helipad": 26,
-    "cakupan_internet": 93,
-    "indeks_teknologi": 59,
-    "akses_air": 74
+    "cakupan_internet": 93
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const republik_serbia: CountryData = {
     "aluminium": 16,
     "tembaga": 21,
     "logam_tanah_jarang": 2,
-    "bijih_besi": 15,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const republik_serbia: CountryData = {
     "farmasi": 20,
     "pupuk": 21,
     "pengolahan_daging": 30,
-    "mie_instan": 25,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 25
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const republik_serbia: CountryData = {
     "sayur_umbi": 6.0,
     "kedelai": 19,
     "kelapa_sawit": 24,
-    "kopi_teh_kakao": 21.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 21.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const republik_serbia: CountryData = {
     "pangkalan_laut": 29,
     "program_luar_angkasa": 9,
     "pertahanan_siber": 2,
-    "anggaran_pertahanan": 188,
-    "personel": 11561,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 188
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const republik_serbia: CountryData = {
 
   "sektor_armada": {
     "barak": 6,
-    "infanteri": 8,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 108,
         "apc": 117,
@@ -142,23 +132,20 @@ export const republik_serbia: CountryData = {
         "jet_tempur_siluman": 59,
         "helikopter_serang": 149,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 2,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 0,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 21,
           "sepeda_motor": 14,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 6,
           "helikopter_polisi": 29,
@@ -169,10 +156,12 @@ export const republik_serbia: CountryData = {
           "kamera_pengawas": 15,
           "pusat_forensik": 1
         },
-        "waktu_respon": 28,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 28,
     "intelijen": 33,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 19,
       "misi_mata_mata": 3,
       "misi_sabotase": 2,
@@ -185,34 +174,24 @@ export const republik_serbia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 4,
-      "sd": 13,
-      "smp": 18,
-      "sma": 24,
+      "prasekolah": 4,
+      "dasar": 13,
+      "menengah": 18,
+      "lanjutan": 24,
       "universitas": 39,
       "lembaga_pendidikan": 6,
       "laboratorium": 10,
       "observatorium": 8,
       "pusat_penelitian": 29,
       "pusat_pengembangan": 25,
-      "literasi": 66,
-      "indeks_penelitian": 0
+      "literasi": 66
     },
     "kesehatan": {
       "rumah_sakit_besar": 26,
       "rumah_sakit_kecil": 12,
       "pusat_diagnostik": 23,
-      "tempat_tidur_rs": 9624,
       "harapan_hidup": 13,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 40,
-      "sirkuit_balap": 3,
-      "stadion": 27,
-      "stadion_internasional": 25,
-      "skor_olimpiade": 11,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 19,
@@ -224,6 +203,12 @@ export const republik_serbia: CountryData = {
       "indeks_korupsi": 94,
       "indeks_keamanan": 80
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 40,
+      "sirkuit_balap": 3,
+      "stadion": 27,
+      "stadion_internasional": 25
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const republik_serbia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 29,
@@ -345,3 +329,6 @@ export const republik_serbia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

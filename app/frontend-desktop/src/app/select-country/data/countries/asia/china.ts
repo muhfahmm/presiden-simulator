@@ -39,9 +39,7 @@ export const china: CountryData = {
     "bandara": 24,
     "terminal_bus": 38,
     "helipad": 4,
-    "cakupan_internet": 60,
-    "indeks_teknologi": 86,
-    "akses_air": 74
+    "cakupan_internet": 60
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const china: CountryData = {
     "aluminium": 8,
     "tembaga": 27,
     "logam_tanah_jarang": 34,
-    "bijih_besi": 22,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 22
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const china: CountryData = {
     "farmasi": 27,
     "pupuk": 38,
     "pengolahan_daging": 24,
-    "mie_instan": 11,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 11
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const china: CountryData = {
     "sayur_umbi": 25.0,
     "kedelai": 24,
     "kelapa_sawit": 38,
-    "kopi_teh_kakao": 17.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 17.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const china: CountryData = {
     "pangkalan_laut": 9,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 28,
-    "anggaran_pertahanan": 51476,
-    "personel": 24571,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 51476
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const china: CountryData = {
 
   "sektor_armada": {
     "barak": 33,
-    "infanteri": 7,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 27,
         "apc": 38,
@@ -142,23 +132,20 @@ export const china: CountryData = {
         "jet_tempur_siluman": 33,
         "helikopter_serang": 32,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 25,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 35,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 18,
           "sepeda_motor": 15,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 35,
           "helikopter_polisi": 27,
@@ -169,10 +156,12 @@ export const china: CountryData = {
           "kamera_pengawas": 40,
           "pusat_forensik": 1
         },
-        "waktu_respon": 32,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 32,
     "intelijen": 5,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 11,
       "misi_mata_mata": 8,
       "misi_sabotase": 3,
@@ -185,34 +174,24 @@ export const china: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 37,
-      "sd": 33,
-      "smp": 12,
-      "sma": 34,
+      "prasekolah": 37,
+      "dasar": 33,
+      "menengah": 12,
+      "lanjutan": 34,
       "universitas": 9,
       "lembaga_pendidikan": 20,
       "laboratorium": 3,
       "observatorium": 28,
       "pusat_penelitian": 20,
       "pusat_pengembangan": 27,
-      "literasi": 95,
-      "indeks_penelitian": 0
+      "literasi": 95
     },
     "kesehatan": {
       "rumah_sakit_besar": 26,
       "rumah_sakit_kecil": 35,
       "pusat_diagnostik": 11,
-      "tempat_tidur_rs": 3809,
       "harapan_hidup": 3,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 6,
-      "sirkuit_balap": 17,
-      "stadion": 31,
-      "stadion_internasional": 5,
-      "skor_olimpiade": 37,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 30,
@@ -224,6 +203,12 @@ export const china: CountryData = {
       "indeks_korupsi": 64,
       "indeks_keamanan": 80
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 6,
+      "sirkuit_balap": 17,
+      "stadion": 31,
+      "stadion_internasional": 5
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const china: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 3,
@@ -345,3 +329,6 @@ export const china: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

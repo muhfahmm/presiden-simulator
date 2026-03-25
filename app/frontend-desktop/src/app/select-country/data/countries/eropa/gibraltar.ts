@@ -39,9 +39,7 @@ export const gibraltar: CountryData = {
     "bandara": 27,
     "terminal_bus": 13,
     "helipad": 1,
-    "cakupan_internet": 87,
-    "indeks_teknologi": 59,
-    "akses_air": 74
+    "cakupan_internet": 87
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const gibraltar: CountryData = {
     "aluminium": 10,
     "tembaga": 10,
     "logam_tanah_jarang": 28,
-    "bijih_besi": 10,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 10
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const gibraltar: CountryData = {
     "farmasi": 36,
     "pupuk": 4,
     "pengolahan_daging": 24,
-    "mie_instan": 29,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 29
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const gibraltar: CountryData = {
     "sayur_umbi": 18.5,
     "kedelai": 6,
     "kelapa_sawit": 9,
-    "kopi_teh_kakao": 25.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 25.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const gibraltar: CountryData = {
     "pangkalan_laut": 15,
     "program_luar_angkasa": 6,
     "pertahanan_siber": 30,
-    "anggaran_pertahanan": 27,
-    "personel": 14652,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const gibraltar: CountryData = {
 
   "sektor_armada": {
     "barak": 18,
-    "infanteri": 9,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 197,
         "apc": 84,
@@ -142,23 +132,20 @@ export const gibraltar: CountryData = {
         "jet_tempur_siluman": 33,
         "helikopter_serang": 106,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 17,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 1,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 22,
           "sepeda_motor": 14,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 31,
           "helikopter_polisi": 6,
@@ -169,10 +156,12 @@ export const gibraltar: CountryData = {
           "kamera_pengawas": 39,
           "pusat_forensik": 1
         },
-        "waktu_respon": 7,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 7,
     "intelijen": 39,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 25,
       "misi_mata_mata": 27,
       "misi_sabotase": 15,
@@ -185,34 +174,24 @@ export const gibraltar: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 21,
-      "sd": 37,
-      "smp": 9,
-      "sma": 33,
+      "prasekolah": 21,
+      "dasar": 37,
+      "menengah": 9,
+      "lanjutan": 33,
       "universitas": 12,
       "lembaga_pendidikan": 32,
       "laboratorium": 14,
       "observatorium": 40,
       "pusat_penelitian": 33,
       "pusat_pengembangan": 11,
-      "literasi": 86,
-      "indeks_penelitian": 0
+      "literasi": 86
     },
     "kesehatan": {
       "rumah_sakit_besar": 4,
       "rumah_sakit_kecil": 38,
       "pusat_diagnostik": 26,
-      "tempat_tidur_rs": 6283,
       "harapan_hidup": 15,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 18,
-      "sirkuit_balap": 37,
-      "stadion": 39,
-      "stadion_internasional": 19,
-      "skor_olimpiade": 26,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 14,
@@ -224,6 +203,12 @@ export const gibraltar: CountryData = {
       "indeks_korupsi": 74,
       "indeks_keamanan": 79
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 18,
+      "sirkuit_balap": 37,
+      "stadion": 39,
+      "stadion_internasional": 19
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const gibraltar: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 13,
@@ -345,3 +329,6 @@ export const gibraltar: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const fiji: CountryData = {
     "bandara": 14,
     "terminal_bus": 39,
     "helipad": 19,
-    "cakupan_internet": 84,
-    "indeks_teknologi": 83,
-    "akses_air": 74
+    "cakupan_internet": 84
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const fiji: CountryData = {
     "aluminium": 7,
     "tembaga": 24,
     "logam_tanah_jarang": 22,
-    "bijih_besi": 18,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 18
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const fiji: CountryData = {
     "farmasi": 29,
     "pupuk": 23,
     "pengolahan_daging": 9,
-    "mie_instan": 22,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 22
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const fiji: CountryData = {
     "sayur_umbi": 33.0,
     "kedelai": 15,
     "kelapa_sawit": 22,
-    "kopi_teh_kakao": 29.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 29.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const fiji: CountryData = {
     "pangkalan_laut": 28,
     "program_luar_angkasa": 8,
     "pertahanan_siber": 21,
-    "anggaran_pertahanan": 13,
-    "personel": 15193,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 13
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const fiji: CountryData = {
 
   "sektor_armada": {
     "barak": 37,
-    "infanteri": 13,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 10,
         "apc": 3,
@@ -142,23 +132,20 @@ export const fiji: CountryData = {
         "jet_tempur_siluman": 11,
         "helikopter_serang": 23,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 13,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 26,
-      "jaringan_radar": 11,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 16,
           "sepeda_motor": 37,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 33,
           "helikopter_polisi": 20,
@@ -169,10 +156,12 @@ export const fiji: CountryData = {
           "kamera_pengawas": 31,
           "pusat_forensik": 1
         },
-        "waktu_respon": 13,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 13,
     "intelijen": 18,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 25,
       "misi_mata_mata": 34,
       "misi_sabotase": 11,
@@ -185,34 +174,24 @@ export const fiji: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 13,
-      "sd": 36,
-      "smp": 17,
-      "sma": 29,
+      "prasekolah": 13,
+      "dasar": 36,
+      "menengah": 17,
+      "lanjutan": 29,
       "universitas": 17,
       "lembaga_pendidikan": 30,
       "laboratorium": 15,
       "observatorium": 24,
       "pusat_penelitian": 36,
       "pusat_pengembangan": 12,
-      "literasi": 83,
-      "indeks_penelitian": 0
+      "literasi": 83
     },
     "kesehatan": {
       "rumah_sakit_besar": 36,
       "rumah_sakit_kecil": 24,
       "pusat_diagnostik": 11,
-      "tempat_tidur_rs": 6862,
       "harapan_hidup": 39,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 17,
-      "sirkuit_balap": 32,
-      "stadion": 6,
-      "stadion_internasional": 20,
-      "skor_olimpiade": 20,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 37,
@@ -224,6 +203,12 @@ export const fiji: CountryData = {
       "indeks_korupsi": 68,
       "indeks_keamanan": 67
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 17,
+      "sirkuit_balap": 32,
+      "stadion": 6,
+      "stadion_internasional": 20
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const fiji: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 37,
@@ -345,3 +329,6 @@ export const fiji: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const nauru: CountryData = {
     "bandara": 30,
     "terminal_bus": 40,
     "helipad": 33,
-    "cakupan_internet": 79,
-    "indeks_teknologi": 67,
-    "akses_air": 74
+    "cakupan_internet": 79
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const nauru: CountryData = {
     "aluminium": 8,
     "tembaga": 1,
     "logam_tanah_jarang": 33,
-    "bijih_besi": 32,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 32
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const nauru: CountryData = {
     "farmasi": 20,
     "pupuk": 20,
     "pengolahan_daging": 34,
-    "mie_instan": 5,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 5
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const nauru: CountryData = {
     "sayur_umbi": 23.0,
     "kedelai": 7,
     "kelapa_sawit": 8,
-    "kopi_teh_kakao": 17.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 17.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const nauru: CountryData = {
     "pangkalan_laut": 5,
     "program_luar_angkasa": 23,
     "pertahanan_siber": 1,
-    "anggaran_pertahanan": 1,
-    "personel": 21961,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const nauru: CountryData = {
 
   "sektor_armada": {
     "barak": 40,
-    "infanteri": 37,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 146,
         "apc": 99,
@@ -142,23 +132,20 @@ export const nauru: CountryData = {
         "jet_tempur_siluman": 169,
         "helikopter_serang": 62,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 31,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 1,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 12,
           "sepeda_motor": 33,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 24,
           "helikopter_polisi": 20,
@@ -169,10 +156,12 @@ export const nauru: CountryData = {
           "kamera_pengawas": 7,
           "pusat_forensik": 1
         },
-        "waktu_respon": 3,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 3,
     "intelijen": 24,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 25,
       "misi_mata_mata": 34,
       "misi_sabotase": 9,
@@ -185,34 +174,24 @@ export const nauru: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 28,
-      "sd": 7,
-      "smp": 7,
-      "sma": 21,
+      "prasekolah": 28,
+      "dasar": 7,
+      "menengah": 7,
+      "lanjutan": 21,
       "universitas": 4,
       "lembaga_pendidikan": 3,
       "laboratorium": 1,
       "observatorium": 30,
       "pusat_penelitian": 14,
       "pusat_pengembangan": 15,
-      "literasi": 61,
-      "indeks_penelitian": 0
+      "literasi": 61
     },
     "kesehatan": {
       "rumah_sakit_besar": 36,
       "rumah_sakit_kecil": 9,
       "pusat_diagnostik": 25,
-      "tempat_tidur_rs": 6572,
       "harapan_hidup": 25,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 27,
-      "sirkuit_balap": 11,
-      "stadion": 23,
-      "stadion_internasional": 30,
-      "skor_olimpiade": 11,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 37,
@@ -224,6 +203,12 @@ export const nauru: CountryData = {
       "indeks_korupsi": 73,
       "indeks_keamanan": 65
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 27,
+      "sirkuit_balap": 11,
+      "stadion": 23,
+      "stadion_internasional": 30
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const nauru: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 23,
@@ -345,3 +329,6 @@ export const nauru: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

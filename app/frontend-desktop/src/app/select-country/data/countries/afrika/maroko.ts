@@ -39,9 +39,7 @@ export const maroko: CountryData = {
     "jalur_kereta": 16,
     "kualitas_jalan": 63,
     "pelabuhan_laut": 36,
-    "kereta_bawah_tanah": 39,
-    "indeks_teknologi": 68,
-    "akses_air": 74
+    "kereta_bawah_tanah": 39
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const maroko: CountryData = {
     "minyak_bumi": 29,
     "logam_tanah_jarang": 38,
     "garam": 2,
-    "kekuatan": 29.660809349923973,
     "uranium": 6
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const maroko: CountryData = {
     "farmasi": 24,
     "semikonduktor": 33,
     "smelter": 11,
-    "kekuatan": 3.076011687404966,
     "gula": 18,
     "kayu": 35
   },
@@ -98,9 +94,8 @@ export const maroko: CountryData = {
     "sayur_umbi": 42.5,
     "kedelai": 22,
     "kelapa_sawit": 25,
-    "kopi_teh_kakao": 9.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 9.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const maroko: CountryData = {
     "pangkalan_laut": 31,
     "program_luar_angkasa": 13,
     "pertahanan_siber": 15,
-    "anggaran_pertahanan": 375,
-    "personel": 26033,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 375
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const maroko: CountryData = {
 
   "sektor_armada": {
     "barak": 19,
-    "infanteri": 39,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 77,
         "apc": 129,
@@ -142,23 +132,19 @@ export const maroko: CountryData = {
         "jet_tempur_siluman": 121,
         "helikopter_serang": 72,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 4,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 5,
-      "jaringan_radar": 0,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 29,
           "sepeda_motor": 23,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 28,
@@ -170,11 +156,12 @@ export const maroko: CountryData = {
           "kamera_pengawas": 40,
           "pusat_forensik": 1
   },
-        "waktu_respon": 39,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 39,
     "intelijen": 38,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 29,
       "misi_mata_mata": 23,
       "misi_sabotase": 3,
@@ -188,34 +175,24 @@ export const maroko: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 13,
-      "sd": 17,
-      "smp": 39,
-      "sma": 22,
+      "prasekolah": 13,
+      "dasar": 17,
+      "menengah": 39,
+      "lanjutan": 22,
       "universitas": 18,
       "lembaga_pendidikan": 23,
       "laboratorium": 40,
       "observatorium": 21,
       "pusat_penelitian": 35,
       "pusat_pengembangan": 33,
-      "literasi": 66,
-      "indeks_penelitian": 0
+      "literasi": 66
   },
     "kesehatan": {
       "rumah_sakit_besar": 15,
       "rumah_sakit_kecil": 40,
       "pusat_diagnostik": 36,
-      "tempat_tidur_rs": 2249,
       "harapan_hidup": 40,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 21,
-      "sirkuit_balap": 22,
-      "stadion": 3,
-      "stadion_internasional": 35,
-      "skor_olimpiade": 25,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 25,
@@ -227,6 +204,12 @@ export const maroko: CountryData = {
       "indeks_korupsi": 70,
       "indeks_keamanan": 60
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 21,
+      "sirkuit_balap": 22,
+      "stadion": 3,
+      "stadion_internasional": 35
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const maroko: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 5,
@@ -348,3 +330,6 @@ export const maroko: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

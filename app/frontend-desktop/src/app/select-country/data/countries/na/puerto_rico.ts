@@ -39,9 +39,7 @@ export const puerto_rico: CountryData = {
     "bandara": 37,
     "terminal_bus": 31,
     "helipad": 8,
-    "cakupan_internet": 85,
-    "indeks_teknologi": 72,
-    "akses_air": 74
+    "cakupan_internet": 85
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const puerto_rico: CountryData = {
     "aluminium": 12,
     "tembaga": 5,
     "logam_tanah_jarang": 34,
-    "bijih_besi": 39,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const puerto_rico: CountryData = {
     "farmasi": 25,
     "pupuk": 39,
     "pengolahan_daging": 6,
-    "mie_instan": 9,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 9
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const puerto_rico: CountryData = {
     "sayur_umbi": 20.5,
     "kedelai": 17,
     "kelapa_sawit": 20,
-    "kopi_teh_kakao": 10.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 10.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const puerto_rico: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 1,
     "pertahanan_siber": 38,
-    "anggaran_pertahanan": 27,
-    "personel": 11294,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const puerto_rico: CountryData = {
 
   "sektor_armada": {
     "barak": 13,
-    "infanteri": 27,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 27,
         "apc": 16,
@@ -142,23 +132,20 @@ export const puerto_rico: CountryData = {
         "jet_tempur_siluman": 65,
         "helikopter_serang": 104,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 34,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 1,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 37,
           "sepeda_motor": 35,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 30,
           "helikopter_polisi": 37,
@@ -169,10 +156,12 @@ export const puerto_rico: CountryData = {
           "kamera_pengawas": 19,
           "pusat_forensik": 1
         },
-        "waktu_respon": 28,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 28,
     "intelijen": 25,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 38,
       "misi_mata_mata": 37,
       "misi_sabotase": 37,
@@ -185,34 +174,24 @@ export const puerto_rico: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 31,
-      "sd": 8,
-      "smp": 14,
-      "sma": 27,
+      "prasekolah": 31,
+      "dasar": 8,
+      "menengah": 14,
+      "lanjutan": 27,
       "universitas": 19,
       "lembaga_pendidikan": 26,
       "laboratorium": 28,
       "observatorium": 40,
       "pusat_penelitian": 22,
       "pusat_pengembangan": 9,
-      "literasi": 55,
-      "indeks_penelitian": 0
+      "literasi": 55
     },
     "kesehatan": {
       "rumah_sakit_besar": 19,
       "rumah_sakit_kecil": 38,
       "pusat_diagnostik": 11,
-      "tempat_tidur_rs": 4758,
       "harapan_hidup": 35,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 39,
-      "sirkuit_balap": 35,
-      "stadion": 6,
-      "stadion_internasional": 13,
-      "skor_olimpiade": 25,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 15,
@@ -224,6 +203,12 @@ export const puerto_rico: CountryData = {
       "indeks_korupsi": 91,
       "indeks_keamanan": 77
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 39,
+      "sirkuit_balap": 35,
+      "stadion": 6,
+      "stadion_internasional": 13
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const puerto_rico: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 36,
@@ -345,3 +329,6 @@ export const puerto_rico: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

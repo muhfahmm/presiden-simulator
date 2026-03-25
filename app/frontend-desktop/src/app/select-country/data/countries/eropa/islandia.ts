@@ -39,9 +39,7 @@ export const islandia: CountryData = {
     "bandara": 16,
     "terminal_bus": 34,
     "helipad": 23,
-    "cakupan_internet": 80,
-    "indeks_teknologi": 86,
-    "akses_air": 74
+    "cakupan_internet": 80
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const islandia: CountryData = {
     "aluminium": 15,
     "tembaga": 12,
     "logam_tanah_jarang": 23,
-    "bijih_besi": 7,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 7
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const islandia: CountryData = {
     "farmasi": 24,
     "pupuk": 16,
     "pengolahan_daging": 12,
-    "mie_instan": 25,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 25
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const islandia: CountryData = {
     "sayur_umbi": 30.5,
     "kedelai": 23,
     "kelapa_sawit": 14,
-    "kopi_teh_kakao": 25.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 25.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const islandia: CountryData = {
     "pangkalan_laut": 22,
     "program_luar_angkasa": 32,
     "pertahanan_siber": 6,
-    "anggaran_pertahanan": 83,
-    "personel": 11762,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 83
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const islandia: CountryData = {
 
   "sektor_armada": {
     "barak": 7,
-    "infanteri": 37,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 19,
         "apc": 22,
@@ -142,23 +132,20 @@ export const islandia: CountryData = {
         "jet_tempur_siluman": 10,
         "helikopter_serang": 6,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 5,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 40,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 36,
           "sepeda_motor": 4,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 25,
           "helikopter_polisi": 36,
@@ -169,10 +156,12 @@ export const islandia: CountryData = {
           "kamera_pengawas": 2,
           "pusat_forensik": 1
         },
-        "waktu_respon": 37,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 37,
     "intelijen": 28,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 5,
       "misi_mata_mata": 34,
       "misi_sabotase": 31,
@@ -185,34 +174,24 @@ export const islandia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 11,
-      "sd": 25,
-      "smp": 3,
-      "sma": 29,
+      "prasekolah": 11,
+      "dasar": 25,
+      "menengah": 3,
+      "lanjutan": 29,
       "universitas": 37,
       "lembaga_pendidikan": 34,
       "laboratorium": 11,
       "observatorium": 16,
       "pusat_penelitian": 13,
       "pusat_pengembangan": 18,
-      "literasi": 57,
-      "indeks_penelitian": 0
+      "literasi": 57
     },
     "kesehatan": {
       "rumah_sakit_besar": 29,
       "rumah_sakit_kecil": 12,
       "pusat_diagnostik": 5,
-      "tempat_tidur_rs": 1340,
       "harapan_hidup": 33,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 40,
-      "sirkuit_balap": 7,
-      "stadion": 3,
-      "stadion_internasional": 27,
-      "skor_olimpiade": 19,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 1,
@@ -224,6 +203,12 @@ export const islandia: CountryData = {
       "indeks_korupsi": 59,
       "indeks_keamanan": 83
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 40,
+      "sirkuit_balap": 7,
+      "stadion": 3,
+      "stadion_internasional": 27
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const islandia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 29,
@@ -345,3 +329,6 @@ export const islandia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

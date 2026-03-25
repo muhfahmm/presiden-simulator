@@ -39,9 +39,7 @@ export const kazakhstan: CountryData = {
     "bandara": 20,
     "terminal_bus": 25,
     "helipad": 16,
-    "cakupan_internet": 82,
-    "indeks_teknologi": 94,
-    "akses_air": 74
+    "cakupan_internet": 82
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const kazakhstan: CountryData = {
     "aluminium": 33,
     "tembaga": 32,
     "logam_tanah_jarang": 28,
-    "bijih_besi": 12,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 12
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const kazakhstan: CountryData = {
     "farmasi": 16,
     "pupuk": 6,
     "pengolahan_daging": 29,
-    "mie_instan": 21,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 21
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const kazakhstan: CountryData = {
     "sayur_umbi": 24.5,
     "kedelai": 25,
     "kelapa_sawit": 13,
-    "kopi_teh_kakao": 9.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 9.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const kazakhstan: CountryData = {
     "pangkalan_laut": 23,
     "program_luar_angkasa": 20,
     "pertahanan_siber": 6,
-    "anggaran_pertahanan": 722,
-    "personel": 7149,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 722
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const kazakhstan: CountryData = {
 
   "sektor_armada": {
     "barak": 24,
-    "infanteri": 1,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 13,
         "apc": 39,
@@ -142,23 +132,20 @@ export const kazakhstan: CountryData = {
         "jet_tempur_siluman": 34,
         "helikopter_serang": 12,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 20,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 33,
-      "jaringan_radar": 7,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 1,
           "sepeda_motor": 20,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 10,
           "helikopter_polisi": 6,
@@ -169,10 +156,12 @@ export const kazakhstan: CountryData = {
           "kamera_pengawas": 30,
           "pusat_forensik": 1
         },
-        "waktu_respon": 5,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 5,
     "intelijen": 30,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 14,
       "misi_mata_mata": 2,
       "misi_sabotase": 40,
@@ -185,34 +174,24 @@ export const kazakhstan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 19,
-      "sd": 38,
-      "smp": 1,
-      "sma": 39,
+      "prasekolah": 19,
+      "dasar": 38,
+      "menengah": 1,
+      "lanjutan": 39,
       "universitas": 15,
       "lembaga_pendidikan": 19,
       "laboratorium": 22,
       "observatorium": 40,
       "pusat_penelitian": 8,
       "pusat_pengembangan": 36,
-      "literasi": 85,
-      "indeks_penelitian": 0
+      "literasi": 85
     },
     "kesehatan": {
       "rumah_sakit_besar": 7,
       "rumah_sakit_kecil": 17,
       "pusat_diagnostik": 13,
-      "tempat_tidur_rs": 9427,
       "harapan_hidup": 7,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 11,
-      "sirkuit_balap": 4,
-      "stadion": 23,
-      "stadion_internasional": 9,
-      "skor_olimpiade": 24,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 9,
@@ -224,6 +203,12 @@ export const kazakhstan: CountryData = {
       "indeks_korupsi": 71,
       "indeks_keamanan": 72
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 11,
+      "sirkuit_balap": 4,
+      "stadion": 23,
+      "stadion_internasional": 9
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const kazakhstan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 38,
@@ -345,3 +329,6 @@ export const kazakhstan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const latvia: CountryData = {
     "bandara": 22,
     "terminal_bus": 5,
     "helipad": 30,
-    "cakupan_internet": 65,
-    "indeks_teknologi": 86,
-    "akses_air": 74
+    "cakupan_internet": 65
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const latvia: CountryData = {
     "aluminium": 9,
     "tembaga": 1,
     "logam_tanah_jarang": 2,
-    "bijih_besi": 28,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 28
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const latvia: CountryData = {
     "farmasi": 20,
     "pupuk": 29,
     "pengolahan_daging": 20,
-    "mie_instan": 21,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 21
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const latvia: CountryData = {
     "sayur_umbi": 24.5,
     "kedelai": 21,
     "kelapa_sawit": 10,
-    "kopi_teh_kakao": 31.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 31.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const latvia: CountryData = {
     "pangkalan_laut": 1,
     "program_luar_angkasa": 20,
     "pertahanan_siber": 28,
-    "anggaran_pertahanan": 119,
-    "personel": 25559,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 119
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const latvia: CountryData = {
 
   "sektor_armada": {
     "barak": 36,
-    "infanteri": 35,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 31,
         "apc": 3,
@@ -142,23 +132,20 @@ export const latvia: CountryData = {
         "jet_tempur_siluman": 26,
         "helikopter_serang": 17,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 2,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 22,
-      "jaringan_radar": 27,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 38,
           "sepeda_motor": 32,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 28,
           "helikopter_polisi": 5,
@@ -169,10 +156,12 @@ export const latvia: CountryData = {
           "kamera_pengawas": 4,
           "pusat_forensik": 1
         },
-        "waktu_respon": 8,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 8,
     "intelijen": 16,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 13,
       "misi_mata_mata": 16,
       "misi_sabotase": 37,
@@ -185,34 +174,24 @@ export const latvia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 11,
-      "sd": 18,
-      "smp": 3,
-      "sma": 11,
+      "prasekolah": 11,
+      "dasar": 18,
+      "menengah": 3,
+      "lanjutan": 11,
       "universitas": 18,
       "lembaga_pendidikan": 40,
       "laboratorium": 32,
       "observatorium": 18,
       "pusat_penelitian": 39,
       "pusat_pengembangan": 24,
-      "literasi": 70,
-      "indeks_penelitian": 0
+      "literasi": 70
     },
     "kesehatan": {
       "rumah_sakit_besar": 27,
       "rumah_sakit_kecil": 24,
       "pusat_diagnostik": 28,
-      "tempat_tidur_rs": 4897,
       "harapan_hidup": 6,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 7,
-      "sirkuit_balap": 11,
-      "stadion": 21,
-      "stadion_internasional": 19,
-      "skor_olimpiade": 29,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 20,
@@ -224,6 +203,12 @@ export const latvia: CountryData = {
       "indeks_korupsi": 56,
       "indeks_keamanan": 59
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 7,
+      "sirkuit_balap": 11,
+      "stadion": 21,
+      "stadion_internasional": 19
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const latvia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 37,
@@ -345,3 +329,6 @@ export const latvia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

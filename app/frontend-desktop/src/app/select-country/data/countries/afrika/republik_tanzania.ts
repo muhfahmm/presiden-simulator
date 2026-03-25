@@ -39,9 +39,7 @@ export const republik_tanzania: CountryData = {
     "jalur_kereta": 33,
     "kualitas_jalan": 56,
     "pelabuhan_laut": 31,
-    "kereta_bawah_tanah": 24,
-    "indeks_teknologi": 51,
-    "akses_air": 74
+    "kereta_bawah_tanah": 24
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const republik_tanzania: CountryData = {
     "minyak_bumi": 18,
     "logam_tanah_jarang": 36,
     "garam": 16,
-    "kekuatan": 29.660809349923973,
     "uranium": 35
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const republik_tanzania: CountryData = {
     "farmasi": 8,
     "semikonduktor": 34,
     "smelter": 10,
-    "kekuatan": 3.076011687404966,
     "gula": 8,
     "kayu": 13
   },
@@ -98,9 +94,8 @@ export const republik_tanzania: CountryData = {
     "sayur_umbi": 11.0,
     "kedelai": 11,
     "kelapa_sawit": 6,
-    "kopi_teh_kakao": 11.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 11.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const republik_tanzania: CountryData = {
     "pangkalan_laut": 19,
     "program_luar_angkasa": 11,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 208,
-    "personel": 9790,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 208
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const republik_tanzania: CountryData = {
 
   "sektor_armada": {
     "barak": 31,
-    "infanteri": 17,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 53,
         "apc": 45,
@@ -142,23 +132,19 @@ export const republik_tanzania: CountryData = {
         "jet_tempur_siluman": 189,
         "helikopter_serang": 58,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 32,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 1,
-      "jaringan_radar": 3,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 36,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 34,
@@ -170,11 +156,12 @@ export const republik_tanzania: CountryData = {
           "kamera_pengawas": 22,
           "pusat_forensik": 1
   },
-        "waktu_respon": 31,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 31,
     "intelijen": 14,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 3,
       "misi_mata_mata": 34,
       "misi_sabotase": 10,
@@ -188,34 +175,24 @@ export const republik_tanzania: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 9,
-      "sd": 2,
-      "smp": 8,
-      "sma": 17,
+      "prasekolah": 9,
+      "dasar": 2,
+      "menengah": 8,
+      "lanjutan": 17,
       "universitas": 1,
       "lembaga_pendidikan": 40,
       "laboratorium": 6,
       "observatorium": 21,
       "pusat_penelitian": 11,
       "pusat_pengembangan": 26,
-      "literasi": 83,
-      "indeks_penelitian": 0
+      "literasi": 83
   },
     "kesehatan": {
       "rumah_sakit_besar": 5,
       "rumah_sakit_kecil": 7,
       "pusat_diagnostik": 4,
-      "tempat_tidur_rs": 8507,
       "harapan_hidup": 7,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 1,
-      "sirkuit_balap": 3,
-      "stadion": 34,
-      "stadion_internasional": 40,
-      "skor_olimpiade": 12,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 32,
@@ -227,6 +204,12 @@ export const republik_tanzania: CountryData = {
       "indeks_korupsi": 70,
       "indeks_keamanan": 64
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 1,
+      "sirkuit_balap": 3,
+      "stadion": 34,
+      "stadion_internasional": 40
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const republik_tanzania: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 40,
@@ -348,3 +330,6 @@ export const republik_tanzania: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

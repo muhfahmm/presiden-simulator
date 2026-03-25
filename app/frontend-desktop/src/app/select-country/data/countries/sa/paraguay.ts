@@ -39,9 +39,7 @@ export const paraguay: CountryData = {
     "bandara": 15,
     "terminal_bus": 15,
     "helipad": 21,
-    "cakupan_internet": 55,
-    "indeks_teknologi": 87,
-    "akses_air": 74
+    "cakupan_internet": 55
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const paraguay: CountryData = {
     "aluminium": 32,
     "tembaga": 28,
     "logam_tanah_jarang": 23,
-    "bijih_besi": 33,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 33
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const paraguay: CountryData = {
     "farmasi": 26,
     "pupuk": 12,
     "pengolahan_daging": 24,
-    "mie_instan": 38,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 38
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const paraguay: CountryData = {
     "sayur_umbi": 11.5,
     "kedelai": 14,
     "kelapa_sawit": 5,
-    "kopi_teh_kakao": 17.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 17.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const paraguay: CountryData = {
     "pangkalan_laut": 14,
     "program_luar_angkasa": 36,
     "pertahanan_siber": 5,
-    "anggaran_pertahanan": 122,
-    "personel": 17776,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 122
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const paraguay: CountryData = {
 
   "sektor_armada": {
     "barak": 39,
-    "infanteri": 22,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 50,
         "apc": 89,
@@ -142,23 +132,20 @@ export const paraguay: CountryData = {
         "jet_tempur_siluman": 177,
         "helikopter_serang": 67,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 15,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 24,
           "sepeda_motor": 34,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 8,
           "helikopter_polisi": 23,
@@ -169,10 +156,12 @@ export const paraguay: CountryData = {
           "kamera_pengawas": 6,
           "pusat_forensik": 1
         },
-        "waktu_respon": 14,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 14,
     "intelijen": 19,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 19,
       "misi_mata_mata": 6,
       "misi_sabotase": 32,
@@ -185,34 +174,24 @@ export const paraguay: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 1,
-      "sd": 7,
-      "smp": 15,
-      "sma": 4,
+      "prasekolah": 1,
+      "dasar": 7,
+      "menengah": 15,
+      "lanjutan": 4,
       "universitas": 26,
       "lembaga_pendidikan": 25,
       "laboratorium": 14,
       "observatorium": 30,
       "pusat_penelitian": 11,
       "pusat_pengembangan": 13,
-      "literasi": 81,
-      "indeks_penelitian": 0
+      "literasi": 81
     },
     "kesehatan": {
       "rumah_sakit_besar": 37,
       "rumah_sakit_kecil": 14,
       "pusat_diagnostik": 23,
-      "tempat_tidur_rs": 1721,
       "harapan_hidup": 18,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 33,
-      "sirkuit_balap": 32,
-      "stadion": 24,
-      "stadion_internasional": 16,
-      "skor_olimpiade": 5,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 6,
@@ -224,6 +203,12 @@ export const paraguay: CountryData = {
       "indeks_korupsi": 82,
       "indeks_keamanan": 72
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 33,
+      "sirkuit_balap": 32,
+      "stadion": 24,
+      "stadion_internasional": 16
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const paraguay: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 17,
@@ -345,3 +329,6 @@ export const paraguay: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

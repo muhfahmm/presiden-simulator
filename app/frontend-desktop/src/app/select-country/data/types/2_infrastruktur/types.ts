@@ -9,6 +9,4 @@ export interface SektorInfrastruktur {
   bandara: number;
   terminal_bus?: number;
   helipad?: number;
-  indeks_teknologi: number; // 0-100%
-  akses_air: number; // 0-100%
 }

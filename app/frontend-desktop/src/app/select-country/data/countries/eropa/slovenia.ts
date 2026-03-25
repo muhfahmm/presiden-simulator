@@ -39,9 +39,7 @@ export const slovenia: CountryData = {
     "bandara": 26,
     "terminal_bus": 23,
     "helipad": 35,
-    "cakupan_internet": 58,
-    "indeks_teknologi": 66,
-    "akses_air": 74
+    "cakupan_internet": 58
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const slovenia: CountryData = {
     "aluminium": 7,
     "tembaga": 15,
     "logam_tanah_jarang": 7,
-    "bijih_besi": 17,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 17
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const slovenia: CountryData = {
     "farmasi": 28,
     "pupuk": 16,
     "pengolahan_daging": 40,
-    "mie_instan": 25,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 25
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const slovenia: CountryData = {
     "sayur_umbi": 33.5,
     "kedelai": 21,
     "kelapa_sawit": 1,
-    "kopi_teh_kakao": 15.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 15.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const slovenia: CountryData = {
     "pangkalan_laut": 18,
     "program_luar_angkasa": 17,
     "pertahanan_siber": 33,
-    "anggaran_pertahanan": 180,
-    "personel": 18503,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 180
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const slovenia: CountryData = {
 
   "sektor_armada": {
     "barak": 2,
-    "infanteri": 26,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 78,
         "apc": 64,
@@ -142,23 +132,20 @@ export const slovenia: CountryData = {
         "jet_tempur_siluman": 68,
         "helikopter_serang": 62,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 21,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 5,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 8,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 14,
           "helikopter_polisi": 16,
@@ -169,10 +156,12 @@ export const slovenia: CountryData = {
           "kamera_pengawas": 24,
           "pusat_forensik": 1
         },
-        "waktu_respon": 17,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 17,
     "intelijen": 9,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 28,
       "misi_sabotase": 16,
@@ -185,34 +174,24 @@ export const slovenia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 29,
-      "sd": 16,
-      "smp": 22,
-      "sma": 21,
+      "prasekolah": 29,
+      "dasar": 16,
+      "menengah": 22,
+      "lanjutan": 21,
       "universitas": 2,
       "lembaga_pendidikan": 36,
       "laboratorium": 39,
       "observatorium": 8,
       "pusat_penelitian": 14,
       "pusat_pengembangan": 25,
-      "literasi": 69,
-      "indeks_penelitian": 0
+      "literasi": 69
     },
     "kesehatan": {
       "rumah_sakit_besar": 36,
       "rumah_sakit_kecil": 5,
       "pusat_diagnostik": 19,
-      "tempat_tidur_rs": 6003,
       "harapan_hidup": 17,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 16,
-      "sirkuit_balap": 3,
-      "stadion": 27,
-      "stadion_internasional": 29,
-      "skor_olimpiade": 1,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 1,
@@ -224,6 +203,12 @@ export const slovenia: CountryData = {
       "indeks_korupsi": 91,
       "indeks_keamanan": 56
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 16,
+      "sirkuit_balap": 3,
+      "stadion": 27,
+      "stadion_internasional": 29
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const slovenia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 10,
@@ -345,3 +329,6 @@ export const slovenia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

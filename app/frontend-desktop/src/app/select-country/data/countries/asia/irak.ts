@@ -39,9 +39,7 @@ export const irak: CountryData = {
     "bandara": 30,
     "terminal_bus": 30,
     "helipad": 24,
-    "cakupan_internet": 75,
-    "indeks_teknologi": 81,
-    "akses_air": 74
+    "cakupan_internet": 75
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const irak: CountryData = {
     "aluminium": 29,
     "tembaga": 29,
     "logam_tanah_jarang": 7,
-    "bijih_besi": 6,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 6
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const irak: CountryData = {
     "farmasi": 40,
     "pupuk": 32,
     "pengolahan_daging": 5,
-    "mie_instan": 30,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 30
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const irak: CountryData = {
     "sayur_umbi": 19.0,
     "kedelai": 10,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 12.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 12.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const irak: CountryData = {
     "pangkalan_laut": 8,
     "program_luar_angkasa": 29,
     "pertahanan_siber": 18,
-    "anggaran_pertahanan": 744,
-    "personel": 28713,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 744
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const irak: CountryData = {
 
   "sektor_armada": {
     "barak": 30,
-    "infanteri": 40,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 13,
         "apc": 37,
@@ -142,23 +132,20 @@ export const irak: CountryData = {
         "jet_tempur_siluman": 38,
         "helikopter_serang": 38,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 1,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 38,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 14,
           "sepeda_motor": 15,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 21,
           "helikopter_polisi": 18,
@@ -169,10 +156,12 @@ export const irak: CountryData = {
           "kamera_pengawas": 27,
           "pusat_forensik": 1
         },
-        "waktu_respon": 12,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 12,
     "intelijen": 23,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 26,
       "misi_mata_mata": 33,
       "misi_sabotase": 16,
@@ -185,34 +174,24 @@ export const irak: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 29,
-      "sd": 5,
-      "smp": 10,
-      "sma": 29,
+      "prasekolah": 29,
+      "dasar": 5,
+      "menengah": 10,
+      "lanjutan": 29,
       "universitas": 1,
       "lembaga_pendidikan": 7,
       "laboratorium": 38,
       "observatorium": 12,
       "pusat_penelitian": 24,
       "pusat_pengembangan": 38,
-      "literasi": 66,
-      "indeks_penelitian": 0
+      "literasi": 66
     },
     "kesehatan": {
       "rumah_sakit_besar": 35,
       "rumah_sakit_kecil": 14,
       "pusat_diagnostik": 35,
-      "tempat_tidur_rs": 2970,
       "harapan_hidup": 29,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 39,
-      "sirkuit_balap": 21,
-      "stadion": 23,
-      "stadion_internasional": 23,
-      "skor_olimpiade": 7,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 38,
@@ -224,6 +203,12 @@ export const irak: CountryData = {
       "indeks_korupsi": 87,
       "indeks_keamanan": 64
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 39,
+      "sirkuit_balap": 21,
+      "stadion": 23,
+      "stadion_internasional": 23
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const irak: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 22,
@@ -345,3 +329,6 @@ export const irak: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

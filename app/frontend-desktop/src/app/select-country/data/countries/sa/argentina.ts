@@ -39,9 +39,7 @@ export const argentina: CountryData = {
     "bandara": 10,
     "terminal_bus": 29,
     "helipad": 40,
-    "cakupan_internet": 55,
-    "indeks_teknologi": 53,
-    "akses_air": 74
+    "cakupan_internet": 55
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const argentina: CountryData = {
     "aluminium": 33,
     "tembaga": 12,
     "logam_tanah_jarang": 6,
-    "bijih_besi": 19,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 19
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const argentina: CountryData = {
     "farmasi": 27,
     "pupuk": 37,
     "pengolahan_daging": 21,
-    "mie_instan": 1,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 1
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const argentina: CountryData = {
     "sayur_umbi": 17.0,
     "kedelai": 2,
     "kelapa_sawit": 22,
-    "kopi_teh_kakao": 22.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 22.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const argentina: CountryData = {
     "pangkalan_laut": 5,
     "program_luar_angkasa": 22,
     "pertahanan_siber": 32,
-    "anggaran_pertahanan": 1777,
-    "personel": 26895,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1777
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const argentina: CountryData = {
 
   "sektor_armada": {
     "barak": 23,
-    "infanteri": 1,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 7,
         "apc": 36,
@@ -142,23 +132,20 @@ export const argentina: CountryData = {
         "jet_tempur_siluman": 20,
         "helikopter_serang": 19,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 22,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 21,
-      "jaringan_radar": 30,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 9,
           "sepeda_motor": 21,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 18,
           "helikopter_polisi": 19,
@@ -169,10 +156,12 @@ export const argentina: CountryData = {
           "kamera_pengawas": 21,
           "pusat_forensik": 1
         },
-        "waktu_respon": 28,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 28,
     "intelijen": 35,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 34,
       "misi_mata_mata": 20,
       "misi_sabotase": 40,
@@ -185,34 +174,24 @@ export const argentina: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 38,
-      "sd": 16,
-      "smp": 21,
-      "sma": 26,
+      "prasekolah": 38,
+      "dasar": 16,
+      "menengah": 21,
+      "lanjutan": 26,
       "universitas": 23,
       "lembaga_pendidikan": 40,
       "laboratorium": 19,
       "observatorium": 13,
       "pusat_penelitian": 4,
       "pusat_pengembangan": 22,
-      "literasi": 75,
-      "indeks_penelitian": 0
+      "literasi": 75
     },
     "kesehatan": {
       "rumah_sakit_besar": 32,
       "rumah_sakit_kecil": 13,
       "pusat_diagnostik": 21,
-      "tempat_tidur_rs": 7640,
       "harapan_hidup": 33,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 40,
-      "sirkuit_balap": 13,
-      "stadion": 37,
-      "stadion_internasional": 35,
-      "skor_olimpiade": 7,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 32,
@@ -224,6 +203,12 @@ export const argentina: CountryData = {
       "indeks_korupsi": 79,
       "indeks_keamanan": 58
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 40,
+      "sirkuit_balap": 13,
+      "stadion": 37,
+      "stadion_internasional": 35
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const argentina: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 23,
@@ -345,3 +329,6 @@ export const argentina: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

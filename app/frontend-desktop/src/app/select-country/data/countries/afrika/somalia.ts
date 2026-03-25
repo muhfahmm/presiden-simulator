@@ -39,9 +39,7 @@ export const somalia: CountryData = {
     "jalur_kereta": 28,
     "kualitas_jalan": 66,
     "pelabuhan_laut": 2,
-    "kereta_bawah_tanah": 17,
-    "indeks_teknologi": 80,
-    "akses_air": 74
+    "kereta_bawah_tanah": 17
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const somalia: CountryData = {
     "minyak_bumi": 25,
     "logam_tanah_jarang": 20,
     "garam": 10,
-    "kekuatan": 29.660809349923973,
     "uranium": 27
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const somalia: CountryData = {
     "farmasi": 36,
     "semikonduktor": 16,
     "smelter": 39,
-    "kekuatan": 3.076011687404966,
     "gula": 28,
     "kayu": 33
   },
@@ -98,9 +94,8 @@ export const somalia: CountryData = {
     "sayur_umbi": 24.0,
     "kedelai": 15,
     "kelapa_sawit": 22,
-    "kopi_teh_kakao": 23.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 23.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const somalia: CountryData = {
     "pangkalan_laut": 13,
     "program_luar_angkasa": 31,
     "pertahanan_siber": 18,
-    "anggaran_pertahanan": 22,
-    "personel": 26203,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 22
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const somalia: CountryData = {
 
   "sektor_armada": {
     "barak": 8,
-    "infanteri": 4,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 72,
         "apc": 147,
@@ -142,23 +132,19 @@ export const somalia: CountryData = {
         "jet_tempur_siluman": 166,
         "helikopter_serang": 198,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 25,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 0,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 29,
           "sepeda_motor": 17,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 22,
@@ -170,11 +156,12 @@ export const somalia: CountryData = {
           "kamera_pengawas": 38,
           "pusat_forensik": 1
   },
-        "waktu_respon": 35,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 35,
     "intelijen": 16,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 3,
       "misi_mata_mata": 4,
       "misi_sabotase": 17,
@@ -188,34 +175,24 @@ export const somalia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 38,
-      "sd": 19,
-      "smp": 20,
-      "sma": 24,
+      "prasekolah": 38,
+      "dasar": 19,
+      "menengah": 20,
+      "lanjutan": 24,
       "universitas": 21,
       "lembaga_pendidikan": 35,
       "laboratorium": 1,
       "observatorium": 1,
       "pusat_penelitian": 38,
       "pusat_pengembangan": 3,
-      "literasi": 74,
-      "indeks_penelitian": 0
+      "literasi": 74
   },
     "kesehatan": {
       "rumah_sakit_besar": 40,
       "rumah_sakit_kecil": 23,
       "pusat_diagnostik": 22,
-      "tempat_tidur_rs": 7592,
       "harapan_hidup": 40,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 22,
-      "sirkuit_balap": 40,
-      "stadion": 37,
-      "stadion_internasional": 34,
-      "skor_olimpiade": 38,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 11,
@@ -227,6 +204,12 @@ export const somalia: CountryData = {
       "indeks_korupsi": 78,
       "indeks_keamanan": 74
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 22,
+      "sirkuit_balap": 40,
+      "stadion": 37,
+      "stadion_internasional": 34
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const somalia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 35,
@@ -348,3 +330,6 @@ export const somalia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

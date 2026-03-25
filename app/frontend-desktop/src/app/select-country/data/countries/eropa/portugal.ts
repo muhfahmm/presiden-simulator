@@ -39,9 +39,7 @@ export const portugal: CountryData = {
     "bandara": 5,
     "terminal_bus": 23,
     "helipad": 19,
-    "cakupan_internet": 59,
-    "indeks_teknologi": 51,
-    "akses_air": 74
+    "cakupan_internet": 59
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const portugal: CountryData = {
     "aluminium": 26,
     "tembaga": 23,
     "logam_tanah_jarang": 9,
-    "bijih_besi": 27,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const portugal: CountryData = {
     "farmasi": 5,
     "pupuk": 35,
     "pengolahan_daging": 34,
-    "mie_instan": 33,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 33
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const portugal: CountryData = {
     "sayur_umbi": 15.0,
     "kedelai": 15,
     "kelapa_sawit": 28,
-    "kopi_teh_kakao": 20.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 20.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const portugal: CountryData = {
     "pangkalan_laut": 25,
     "program_luar_angkasa": 23,
     "pertahanan_siber": 20,
-    "anggaran_pertahanan": 777,
-    "personel": 11519,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 777
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const portugal: CountryData = {
 
   "sektor_armada": {
     "barak": 22,
-    "infanteri": 10,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 169,
         "apc": 136,
@@ -142,23 +132,20 @@ export const portugal: CountryData = {
         "jet_tempur_siluman": 135,
         "helikopter_serang": 136,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 32,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 0,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 11,
           "sepeda_motor": 18,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 31,
           "helikopter_polisi": 11,
@@ -169,10 +156,12 @@ export const portugal: CountryData = {
           "kamera_pengawas": 25,
           "pusat_forensik": 1
         },
-        "waktu_respon": 10,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 10,
     "intelijen": 23,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 1,
       "misi_sabotase": 18,
@@ -185,34 +174,24 @@ export const portugal: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 3,
-      "sd": 4,
-      "smp": 24,
-      "sma": 29,
+      "prasekolah": 3,
+      "dasar": 4,
+      "menengah": 24,
+      "lanjutan": 29,
       "universitas": 30,
       "lembaga_pendidikan": 18,
       "laboratorium": 22,
       "observatorium": 34,
       "pusat_penelitian": 32,
       "pusat_pengembangan": 11,
-      "literasi": 52,
-      "indeks_penelitian": 0
+      "literasi": 52
     },
     "kesehatan": {
       "rumah_sakit_besar": 12,
       "rumah_sakit_kecil": 9,
       "pusat_diagnostik": 26,
-      "tempat_tidur_rs": 8574,
       "harapan_hidup": 23,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 21,
-      "sirkuit_balap": 35,
-      "stadion": 38,
-      "stadion_internasional": 21,
-      "skor_olimpiade": 5,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 30,
@@ -224,6 +203,12 @@ export const portugal: CountryData = {
       "indeks_korupsi": 56,
       "indeks_keamanan": 80
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 21,
+      "sirkuit_balap": 35,
+      "stadion": 38,
+      "stadion_internasional": 21
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const portugal: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 36,
@@ -345,3 +329,6 @@ export const portugal: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const india: CountryData = {
     "bandara": 20,
     "terminal_bus": 14,
     "helipad": 40,
-    "cakupan_internet": 90,
-    "indeks_teknologi": 91,
-    "akses_air": 74
+    "cakupan_internet": 90
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const india: CountryData = {
     "aluminium": 13,
     "tembaga": 1,
     "logam_tanah_jarang": 34,
-    "bijih_besi": 4,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const india: CountryData = {
     "farmasi": 26,
     "pupuk": 28,
     "pengolahan_daging": 37,
-    "mie_instan": 37,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 37
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const india: CountryData = {
     "sayur_umbi": 14.5,
     "kedelai": 32,
     "kelapa_sawit": 9,
-    "kopi_teh_kakao": 19.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 19.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const india: CountryData = {
     "pangkalan_laut": 14,
     "program_luar_angkasa": 15,
     "pertahanan_siber": 40,
-    "anggaran_pertahanan": 10945,
-    "personel": 26363,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 10945
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const india: CountryData = {
 
   "sektor_armada": {
     "barak": 37,
-    "infanteri": 3,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 7,
         "apc": 17,
@@ -142,23 +132,20 @@ export const india: CountryData = {
         "jet_tempur_siluman": 7,
         "helikopter_serang": 15,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 12,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 34,
-      "jaringan_radar": 21,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 8,
           "sepeda_motor": 10,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 8,
           "helikopter_polisi": 8,
@@ -169,10 +156,12 @@ export const india: CountryData = {
           "kamera_pengawas": 35,
           "pusat_forensik": 1
         },
-        "waktu_respon": 11,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 11,
     "intelijen": 40,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 17,
       "misi_mata_mata": 19,
       "misi_sabotase": 4,
@@ -185,34 +174,24 @@ export const india: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 26,
-      "sd": 3,
-      "smp": 31,
-      "sma": 23,
+      "prasekolah": 26,
+      "dasar": 3,
+      "menengah": 31,
+      "lanjutan": 23,
       "universitas": 26,
       "lembaga_pendidikan": 19,
       "laboratorium": 25,
       "observatorium": 16,
       "pusat_penelitian": 23,
       "pusat_pengembangan": 5,
-      "literasi": 63,
-      "indeks_penelitian": 0
+      "literasi": 63
     },
     "kesehatan": {
       "rumah_sakit_besar": 4,
       "rumah_sakit_kecil": 18,
       "pusat_diagnostik": 40,
-      "tempat_tidur_rs": 7754,
       "harapan_hidup": 3,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 19,
-      "stadion": 13,
-      "stadion_internasional": 40,
-      "skor_olimpiade": 32,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 17,
@@ -224,6 +203,12 @@ export const india: CountryData = {
       "indeks_korupsi": 68,
       "indeks_keamanan": 54
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 35,
+      "sirkuit_balap": 19,
+      "stadion": 13,
+      "stadion_internasional": 40
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const india: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 15,
@@ -345,3 +329,6 @@ export const india: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const afrika_selatan: CountryData = {
     "jalur_kereta": 18,
     "kualitas_jalan": 81,
     "pelabuhan_laut": 35,
-    "kereta_bawah_tanah": 15,
-    "indeks_teknologi": 57,
-    "akses_air": 74
+    "kereta_bawah_tanah": 15
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const afrika_selatan: CountryData = {
     "minyak_bumi": 5,
     "logam_tanah_jarang": 60,
     "garam": 3,
-    "kekuatan": 29.660809349923973,
     "uranium": 40
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const afrika_selatan: CountryData = {
     "farmasi": 38,
     "semikonduktor": 37,
     "smelter": 4,
-    "kekuatan": 3.076011687404966,
     "gula": 23,
     "kayu": 9
   },
@@ -98,9 +94,8 @@ export const afrika_selatan: CountryData = {
     "sayur_umbi": 16.0,
     "kedelai": 8,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 11.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 11.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const afrika_selatan: CountryData = {
     "pangkalan_laut": 9,
     "program_luar_angkasa": 13,
     "pertahanan_siber": 23,
-    "anggaran_pertahanan": 1125,
-    "personel": 11064,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1125
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const afrika_selatan: CountryData = {
 
   "sektor_armada": {
     "barak": 25,
-    "infanteri": 31,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 21,
         "apc": 26,
@@ -142,23 +132,19 @@ export const afrika_selatan: CountryData = {
         "jet_tempur_siluman": 26,
         "helikopter_serang": 36,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 39,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 37,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 16,
           "sepeda_motor": 15,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 33,
@@ -170,11 +156,12 @@ export const afrika_selatan: CountryData = {
           "kamera_pengawas": 21,
           "pusat_forensik": 1
   },
-        "waktu_respon": 36,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 36,
     "intelijen": 23,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 15,
       "misi_mata_mata": 11,
       "misi_sabotase": 26,
@@ -188,34 +175,24 @@ export const afrika_selatan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 32,
-      "sd": 3,
-      "smp": 34,
-      "sma": 15,
+      "prasekolah": 32,
+      "dasar": 3,
+      "menengah": 34,
+      "lanjutan": 15,
       "universitas": 2,
       "lembaga_pendidikan": 20,
       "laboratorium": 28,
       "observatorium": 20,
       "pusat_penelitian": 40,
       "pusat_pengembangan": 10,
-      "literasi": 85,
-      "indeks_penelitian": 0
+      "literasi": 85
   },
     "kesehatan": {
       "rumah_sakit_besar": 20,
       "rumah_sakit_kecil": 22,
       "pusat_diagnostik": 36,
-      "tempat_tidur_rs": 2925,
       "harapan_hidup": 15,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 16,
-      "sirkuit_balap": 21,
-      "stadion": 18,
-      "stadion_internasional": 32,
-      "skor_olimpiade": 11,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 21,
@@ -227,6 +204,12 @@ export const afrika_selatan: CountryData = {
       "indeks_korupsi": 58,
       "indeks_keamanan": 52
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 16,
+      "sirkuit_balap": 21,
+      "stadion": 18,
+      "stadion_internasional": 32
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const afrika_selatan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 34,
@@ -348,3 +330,6 @@ export const afrika_selatan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

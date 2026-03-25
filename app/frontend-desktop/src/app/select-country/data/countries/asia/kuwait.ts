@@ -39,9 +39,7 @@ export const kuwait: CountryData = {
     "bandara": 17,
     "terminal_bus": 18,
     "helipad": 5,
-    "cakupan_internet": 58,
-    "indeks_teknologi": 83,
-    "akses_air": 74
+    "cakupan_internet": 58
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const kuwait: CountryData = {
     "aluminium": 16,
     "tembaga": 33,
     "logam_tanah_jarang": 29,
-    "bijih_besi": 4,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const kuwait: CountryData = {
     "farmasi": 6,
     "pupuk": 25,
     "pengolahan_daging": 34,
-    "mie_instan": 22,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 22
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const kuwait: CountryData = {
     "sayur_umbi": 35.5,
     "kedelai": 27,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 30.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 30.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const kuwait: CountryData = {
     "pangkalan_laut": 4,
     "program_luar_angkasa": 12,
     "pertahanan_siber": 34,
-    "anggaran_pertahanan": 430,
-    "personel": 20884,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 430
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const kuwait: CountryData = {
 
   "sektor_armada": {
     "barak": 38,
-    "infanteri": 18,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 25,
         "apc": 7,
@@ -142,23 +132,20 @@ export const kuwait: CountryData = {
         "jet_tempur_siluman": 8,
         "helikopter_serang": 5,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 37,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 34,
-      "jaringan_radar": 13,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 36,
           "sepeda_motor": 18,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 13,
           "helikopter_polisi": 14,
@@ -169,10 +156,12 @@ export const kuwait: CountryData = {
           "kamera_pengawas": 19,
           "pusat_forensik": 1
         },
-        "waktu_respon": 37,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 37,
     "intelijen": 27,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 30,
       "misi_mata_mata": 31,
       "misi_sabotase": 32,
@@ -185,34 +174,24 @@ export const kuwait: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 20,
-      "sd": 14,
-      "smp": 25,
-      "sma": 22,
+      "prasekolah": 20,
+      "dasar": 14,
+      "menengah": 25,
+      "lanjutan": 22,
       "universitas": 36,
       "lembaga_pendidikan": 37,
       "laboratorium": 36,
       "observatorium": 19,
       "pusat_penelitian": 22,
       "pusat_pengembangan": 27,
-      "literasi": 55,
-      "indeks_penelitian": 0
+      "literasi": 55
     },
     "kesehatan": {
       "rumah_sakit_besar": 15,
       "rumah_sakit_kecil": 23,
       "pusat_diagnostik": 21,
-      "tempat_tidur_rs": 4289,
       "harapan_hidup": 24,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 17,
-      "sirkuit_balap": 19,
-      "stadion": 28,
-      "stadion_internasional": 9,
-      "skor_olimpiade": 14,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 26,
@@ -224,6 +203,12 @@ export const kuwait: CountryData = {
       "indeks_korupsi": 72,
       "indeks_keamanan": 68
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 17,
+      "sirkuit_balap": 19,
+      "stadion": 28,
+      "stadion_internasional": 9
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const kuwait: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 36,
@@ -345,3 +329,6 @@ export const kuwait: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

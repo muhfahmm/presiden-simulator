@@ -39,9 +39,7 @@ export const malaysia: CountryData = {
     "bandara": 32,
     "terminal_bus": 6,
     "helipad": 14,
-    "cakupan_internet": 63,
-    "indeks_teknologi": 65,
-    "akses_air": 74
+    "cakupan_internet": 63
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const malaysia: CountryData = {
     "aluminium": 21,
     "tembaga": 23,
     "logam_tanah_jarang": 9,
-    "bijih_besi": 2,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 2
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const malaysia: CountryData = {
     "farmasi": 18,
     "pupuk": 17,
     "pengolahan_daging": 33,
-    "mie_instan": 4,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 4
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const malaysia: CountryData = {
     "sayur_umbi": 22.0,
     "kedelai": 16,
     "kelapa_sawit": 37,
-    "kopi_teh_kakao": 29.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 29.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const malaysia: CountryData = {
     "pangkalan_laut": 31,
     "program_luar_angkasa": 40,
     "pertahanan_siber": 25,
-    "anggaran_pertahanan": 1111,
-    "personel": 5130,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1111
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const malaysia: CountryData = {
 
   "sektor_armada": {
     "barak": 35,
-    "infanteri": 33,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 34,
         "apc": 30,
@@ -142,23 +132,20 @@ export const malaysia: CountryData = {
         "jet_tempur_siluman": 10,
         "helikopter_serang": 31,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 10,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 36,
-      "jaringan_radar": 16,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 7,
           "sepeda_motor": 34,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 19,
           "helikopter_polisi": 25,
@@ -169,10 +156,12 @@ export const malaysia: CountryData = {
           "kamera_pengawas": 23,
           "pusat_forensik": 1
         },
-        "waktu_respon": 16,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 16,
     "intelijen": 1,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 3,
       "misi_mata_mata": 34,
       "misi_sabotase": 36,
@@ -185,34 +174,24 @@ export const malaysia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 34,
-      "sd": 29,
-      "smp": 31,
-      "sma": 1,
+      "prasekolah": 34,
+      "dasar": 29,
+      "menengah": 31,
+      "lanjutan": 1,
       "universitas": 35,
       "lembaga_pendidikan": 36,
       "laboratorium": 12,
       "observatorium": 11,
       "pusat_penelitian": 8,
       "pusat_pengembangan": 6,
-      "literasi": 75,
-      "indeks_penelitian": 0
+      "literasi": 75
     },
     "kesehatan": {
       "rumah_sakit_besar": 6,
       "rumah_sakit_kecil": 30,
       "pusat_diagnostik": 25,
-      "tempat_tidur_rs": 2301,
       "harapan_hidup": 1,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 33,
-      "sirkuit_balap": 32,
-      "stadion": 37,
-      "stadion_internasional": 17,
-      "skor_olimpiade": 39,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 22,
@@ -224,6 +203,12 @@ export const malaysia: CountryData = {
       "indeks_korupsi": 52,
       "indeks_keamanan": 87
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 33,
+      "sirkuit_balap": 32,
+      "stadion": 37,
+      "stadion_internasional": 17
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const malaysia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 6,
@@ -345,3 +329,6 @@ export const malaysia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

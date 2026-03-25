@@ -39,9 +39,7 @@ export const polandia: CountryData = {
     "bandara": 23,
     "terminal_bus": 28,
     "helipad": 20,
-    "cakupan_internet": 76,
-    "indeks_teknologi": 64,
-    "akses_air": 74
+    "cakupan_internet": 76
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const polandia: CountryData = {
     "aluminium": 32,
     "tembaga": 31,
     "logam_tanah_jarang": 36,
-    "bijih_besi": 1,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 1
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const polandia: CountryData = {
     "farmasi": 37,
     "pupuk": 5,
     "pengolahan_daging": 15,
-    "mie_instan": 3,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 3
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const polandia: CountryData = {
     "sayur_umbi": 22.0,
     "kedelai": 6,
     "kelapa_sawit": 7,
-    "kopi_teh_kakao": 11.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 11.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const polandia: CountryData = {
     "pangkalan_laut": 36,
     "program_luar_angkasa": 25,
     "pertahanan_siber": 16,
-    "anggaran_pertahanan": 2333,
-    "personel": 26707,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 2333
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const polandia: CountryData = {
 
   "sektor_armada": {
     "barak": 30,
-    "infanteri": 13,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 184,
         "apc": 163,
@@ -142,23 +132,20 @@ export const polandia: CountryData = {
         "jet_tempur_siluman": 121,
         "helikopter_serang": 34,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 26,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 15,
           "sepeda_motor": 39,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 17,
           "helikopter_polisi": 30,
@@ -169,10 +156,12 @@ export const polandia: CountryData = {
           "kamera_pengawas": 30,
           "pusat_forensik": 1
         },
-        "waktu_respon": 3,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 3,
     "intelijen": 15,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 9,
       "misi_mata_mata": 24,
       "misi_sabotase": 36,
@@ -185,34 +174,24 @@ export const polandia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 22,
-      "sd": 29,
-      "smp": 10,
-      "sma": 11,
+      "prasekolah": 22,
+      "dasar": 29,
+      "menengah": 10,
+      "lanjutan": 11,
       "universitas": 10,
       "lembaga_pendidikan": 5,
       "laboratorium": 33,
       "observatorium": 31,
       "pusat_penelitian": 6,
       "pusat_pengembangan": 34,
-      "literasi": 60,
-      "indeks_penelitian": 0
+      "literasi": 60
     },
     "kesehatan": {
       "rumah_sakit_besar": 31,
       "rumah_sakit_kecil": 30,
       "pusat_diagnostik": 34,
-      "tempat_tidur_rs": 1830,
       "harapan_hidup": 32,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 33,
-      "sirkuit_balap": 34,
-      "stadion": 4,
-      "stadion_internasional": 33,
-      "skor_olimpiade": 5,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 4,
@@ -224,6 +203,12 @@ export const polandia: CountryData = {
       "indeks_korupsi": 72,
       "indeks_keamanan": 78
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 33,
+      "sirkuit_balap": 34,
+      "stadion": 4,
+      "stadion_internasional": 33
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const polandia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 39,
@@ -345,3 +329,6 @@ export const polandia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

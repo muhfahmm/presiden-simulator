@@ -39,9 +39,7 @@ export const tuvalu: CountryData = {
     "bandara": 4,
     "terminal_bus": 1,
     "helipad": 20,
-    "cakupan_internet": 78,
-    "indeks_teknologi": 94,
-    "akses_air": 74
+    "cakupan_internet": 78
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const tuvalu: CountryData = {
     "aluminium": 27,
     "tembaga": 21,
     "logam_tanah_jarang": 30,
-    "bijih_besi": 24,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 24
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const tuvalu: CountryData = {
     "farmasi": 8,
     "pupuk": 18,
     "pengolahan_daging": 3,
-    "mie_instan": 5,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 5
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const tuvalu: CountryData = {
     "sayur_umbi": 23.5,
     "kedelai": 35,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 27.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 27.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const tuvalu: CountryData = {
     "pangkalan_laut": 4,
     "program_luar_angkasa": 5,
     "pertahanan_siber": 31,
-    "anggaran_pertahanan": 1,
-    "personel": 8409,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const tuvalu: CountryData = {
 
   "sektor_armada": {
     "barak": 8,
-    "infanteri": 33,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 197,
         "apc": 173,
@@ -142,23 +132,20 @@ export const tuvalu: CountryData = {
         "jet_tempur_siluman": 195,
         "helikopter_serang": 62,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 4,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 31,
           "sepeda_motor": 2,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 24,
           "helikopter_polisi": 26,
@@ -169,10 +156,12 @@ export const tuvalu: CountryData = {
           "kamera_pengawas": 33,
           "pusat_forensik": 1
         },
-        "waktu_respon": 36,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 36,
     "intelijen": 13,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 27,
       "misi_mata_mata": 19,
       "misi_sabotase": 5,
@@ -185,34 +174,24 @@ export const tuvalu: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 17,
-      "sd": 24,
-      "smp": 21,
-      "sma": 22,
+      "prasekolah": 17,
+      "dasar": 24,
+      "menengah": 21,
+      "lanjutan": 22,
       "universitas": 13,
       "lembaga_pendidikan": 25,
       "laboratorium": 39,
       "observatorium": 39,
       "pusat_penelitian": 29,
       "pusat_pengembangan": 30,
-      "literasi": 81,
-      "indeks_penelitian": 0
+      "literasi": 81
     },
     "kesehatan": {
       "rumah_sakit_besar": 19,
       "rumah_sakit_kecil": 19,
       "pusat_diagnostik": 13,
-      "tempat_tidur_rs": 8311,
       "harapan_hidup": 39,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 10,
-      "sirkuit_balap": 19,
-      "stadion": 29,
-      "stadion_internasional": 5,
-      "skor_olimpiade": 38,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 39,
@@ -224,6 +203,12 @@ export const tuvalu: CountryData = {
       "indeks_korupsi": 94,
       "indeks_keamanan": 52
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 10,
+      "sirkuit_balap": 19,
+      "stadion": 29,
+      "stadion_internasional": 5
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const tuvalu: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 27,
@@ -345,3 +329,6 @@ export const tuvalu: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

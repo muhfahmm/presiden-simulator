@@ -39,9 +39,7 @@ export const chile: CountryData = {
     "bandara": 34,
     "terminal_bus": 9,
     "helipad": 15,
-    "cakupan_internet": 51,
-    "indeks_teknologi": 62,
-    "akses_air": 74
+    "cakupan_internet": 51
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const chile: CountryData = {
     "aluminium": 5,
     "tembaga": 36,
     "logam_tanah_jarang": 33,
-    "bijih_besi": 8,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 8
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const chile: CountryData = {
     "farmasi": 11,
     "pupuk": 18,
     "pengolahan_daging": 16,
-    "mie_instan": 4,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 4
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const chile: CountryData = {
     "sayur_umbi": 17.5,
     "kedelai": 21,
     "kelapa_sawit": 14,
-    "kopi_teh_kakao": 20.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 20.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const chile: CountryData = {
     "pangkalan_laut": 25,
     "program_luar_angkasa": 32,
     "pertahanan_siber": 27,
-    "anggaran_pertahanan": 930,
-    "personel": 28728,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 930
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const chile: CountryData = {
 
   "sektor_armada": {
     "barak": 34,
-    "infanteri": 31,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 18,
         "apc": 18,
@@ -142,23 +132,20 @@ export const chile: CountryData = {
         "jet_tempur_siluman": 33,
         "helikopter_serang": 39,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 35,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 24,
-      "jaringan_radar": 32,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 2,
           "sepeda_motor": 21,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 12,
           "helikopter_polisi": 15,
@@ -169,10 +156,12 @@ export const chile: CountryData = {
           "kamera_pengawas": 22,
           "pusat_forensik": 1
         },
-        "waktu_respon": 10,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 10,
     "intelijen": 31,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 37,
       "misi_mata_mata": 39,
       "misi_sabotase": 38,
@@ -185,34 +174,24 @@ export const chile: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 32,
-      "sd": 16,
-      "smp": 22,
-      "sma": 5,
+      "prasekolah": 32,
+      "dasar": 16,
+      "menengah": 22,
+      "lanjutan": 5,
       "universitas": 16,
       "lembaga_pendidikan": 35,
       "laboratorium": 10,
       "observatorium": 38,
       "pusat_penelitian": 7,
       "pusat_pengembangan": 20,
-      "literasi": 88,
-      "indeks_penelitian": 0
+      "literasi": 88
     },
     "kesehatan": {
       "rumah_sakit_besar": 14,
       "rumah_sakit_kecil": 32,
       "pusat_diagnostik": 32,
-      "tempat_tidur_rs": 8456,
       "harapan_hidup": 12,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 7,
-      "sirkuit_balap": 28,
-      "stadion": 28,
-      "stadion_internasional": 40,
-      "skor_olimpiade": 37,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 10,
@@ -224,6 +203,12 @@ export const chile: CountryData = {
       "indeks_korupsi": 58,
       "indeks_keamanan": 56
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 7,
+      "sirkuit_balap": 28,
+      "stadion": 28,
+      "stadion_internasional": 40
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const chile: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 26,
@@ -345,3 +329,6 @@ export const chile: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

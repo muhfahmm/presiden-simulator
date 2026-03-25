@@ -39,9 +39,7 @@ export const haiti: CountryData = {
     "bandara": 18,
     "terminal_bus": 23,
     "helipad": 36,
-    "cakupan_internet": 63,
-    "indeks_teknologi": 53,
-    "akses_air": 74
+    "cakupan_internet": 63
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const haiti: CountryData = {
     "aluminium": 20,
     "tembaga": 4,
     "logam_tanah_jarang": 22,
-    "bijih_besi": 3,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const haiti: CountryData = {
     "farmasi": 38,
     "pupuk": 37,
     "pengolahan_daging": 12,
-    "mie_instan": 37,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 37
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const haiti: CountryData = {
     "sayur_umbi": 21.5,
     "kedelai": 19,
     "kelapa_sawit": 19,
-    "kopi_teh_kakao": 26.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 26.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const haiti: CountryData = {
     "pangkalan_laut": 35,
     "program_luar_angkasa": 3,
     "pertahanan_siber": 8,
-    "anggaran_pertahanan": 27,
-    "personel": 29300,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const haiti: CountryData = {
 
   "sektor_armada": {
     "barak": 7,
-    "infanteri": 8,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 6,
         "apc": 18,
@@ -142,23 +132,20 @@ export const haiti: CountryData = {
         "jet_tempur_siluman": 30,
         "helikopter_serang": 19,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 4,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 2,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 3,
           "sepeda_motor": 2,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 3,
           "helikopter_polisi": 14,
@@ -169,10 +156,12 @@ export const haiti: CountryData = {
           "kamera_pengawas": 2,
           "pusat_forensik": 1
         },
-        "waktu_respon": 33,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 33,
     "intelijen": 22,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 24,
       "misi_mata_mata": 38,
       "misi_sabotase": 4,
@@ -185,34 +174,24 @@ export const haiti: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 37,
-      "sd": 32,
-      "smp": 5,
-      "sma": 25,
+      "prasekolah": 37,
+      "dasar": 32,
+      "menengah": 5,
+      "lanjutan": 25,
       "universitas": 40,
       "lembaga_pendidikan": 18,
       "laboratorium": 16,
       "observatorium": 21,
       "pusat_penelitian": 11,
       "pusat_pengembangan": 5,
-      "literasi": 80,
-      "indeks_penelitian": 0
+      "literasi": 80
     },
     "kesehatan": {
       "rumah_sakit_besar": 12,
       "rumah_sakit_kecil": 36,
       "pusat_diagnostik": 13,
-      "tempat_tidur_rs": 8268,
       "harapan_hidup": 38,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 11,
-      "sirkuit_balap": 33,
-      "stadion": 7,
-      "stadion_internasional": 40,
-      "skor_olimpiade": 22,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 17,
@@ -224,6 +203,12 @@ export const haiti: CountryData = {
       "indeks_korupsi": 50,
       "indeks_keamanan": 59
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 11,
+      "sirkuit_balap": 33,
+      "stadion": 7,
+      "stadion_internasional": 40
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const haiti: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 32,
@@ -345,3 +329,6 @@ export const haiti: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const costa_rica: CountryData = {
     "bandara": 39,
     "terminal_bus": 2,
     "helipad": 30,
-    "cakupan_internet": 81,
-    "indeks_teknologi": 54,
-    "akses_air": 74
+    "cakupan_internet": 81
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const costa_rica: CountryData = {
     "aluminium": 8,
     "tembaga": 4,
     "logam_tanah_jarang": 13,
-    "bijih_besi": 11,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const costa_rica: CountryData = {
     "farmasi": 32,
     "pupuk": 30,
     "pengolahan_daging": 1,
-    "mie_instan": 23,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 23
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const costa_rica: CountryData = {
     "sayur_umbi": 9.5,
     "kedelai": 34,
     "kelapa_sawit": 6,
-    "kopi_teh_kakao": 32.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 32.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const costa_rica: CountryData = {
     "pangkalan_laut": 2,
     "program_luar_angkasa": 23,
     "pertahanan_siber": 2,
-    "anggaran_pertahanan": 194,
-    "personel": 5363,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 194
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const costa_rica: CountryData = {
 
   "sektor_armada": {
     "barak": 39,
-    "infanteri": 26,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 39,
         "apc": 37,
@@ -142,23 +132,20 @@ export const costa_rica: CountryData = {
         "jet_tempur_siluman": 23,
         "helikopter_serang": 36,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 30,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 6,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 39,
           "sepeda_motor": 11,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 34,
           "helikopter_polisi": 22,
@@ -169,10 +156,12 @@ export const costa_rica: CountryData = {
           "kamera_pengawas": 37,
           "pusat_forensik": 1
         },
-        "waktu_respon": 10,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 10,
     "intelijen": 18,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 29,
       "misi_mata_mata": 35,
       "misi_sabotase": 3,
@@ -185,34 +174,24 @@ export const costa_rica: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 11,
-      "sd": 18,
-      "smp": 31,
-      "sma": 15,
+      "prasekolah": 11,
+      "dasar": 18,
+      "menengah": 31,
+      "lanjutan": 15,
       "universitas": 40,
       "lembaga_pendidikan": 21,
       "laboratorium": 22,
       "observatorium": 16,
       "pusat_penelitian": 23,
       "pusat_pengembangan": 39,
-      "literasi": 52,
-      "indeks_penelitian": 0
+      "literasi": 52
     },
     "kesehatan": {
       "rumah_sakit_besar": 22,
       "rumah_sakit_kecil": 20,
       "pusat_diagnostik": 40,
-      "tempat_tidur_rs": 3283,
       "harapan_hidup": 40,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 36,
-      "sirkuit_balap": 31,
-      "stadion": 19,
-      "stadion_internasional": 37,
-      "skor_olimpiade": 34,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 26,
@@ -224,6 +203,12 @@ export const costa_rica: CountryData = {
       "indeks_korupsi": 69,
       "indeks_keamanan": 52
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 36,
+      "sirkuit_balap": 31,
+      "stadion": 19,
+      "stadion_internasional": 37
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const costa_rica: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 4,
@@ -345,3 +329,6 @@ export const costa_rica: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

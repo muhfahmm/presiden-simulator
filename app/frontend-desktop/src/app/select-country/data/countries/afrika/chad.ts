@@ -39,9 +39,7 @@ export const chad: CountryData = {
     "jalur_kereta": 12,
     "kualitas_jalan": 78,
     "pelabuhan_laut": 29,
-    "kereta_bawah_tanah": 25,
-    "indeks_teknologi": 54,
-    "akses_air": 74
+    "kereta_bawah_tanah": 25
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const chad: CountryData = {
     "minyak_bumi": 14,
     "logam_tanah_jarang": 23,
     "garam": 7,
-    "kekuatan": 29.660809349923973,
     "uranium": 22
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const chad: CountryData = {
     "farmasi": 8,
     "semikonduktor": 17,
     "smelter": 40,
-    "kekuatan": 3.076011687404966,
     "gula": 9,
     "kayu": 13
   },
@@ -98,9 +94,8 @@ export const chad: CountryData = {
     "sayur_umbi": 24.0,
     "kedelai": 27,
     "kelapa_sawit": 8,
-    "kopi_teh_kakao": 15.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 15.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const chad: CountryData = {
     "pangkalan_laut": 22,
     "program_luar_angkasa": 3,
     "pertahanan_siber": 36,
-    "anggaran_pertahanan": 33,
-    "personel": 25495,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 33
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const chad: CountryData = {
 
   "sektor_armada": {
     "barak": 35,
-    "infanteri": 29,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 34,
         "apc": 1,
@@ -142,23 +132,19 @@ export const chad: CountryData = {
         "jet_tempur_siluman": 24,
         "helikopter_serang": 25,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 23,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 35,
-      "jaringan_radar": 31,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 35,
           "sepeda_motor": 2,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 29,
@@ -170,11 +156,12 @@ export const chad: CountryData = {
           "kamera_pengawas": 34,
           "pusat_forensik": 1
   },
-        "waktu_respon": 27,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 27,
     "intelijen": 30,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 29,
       "misi_mata_mata": 20,
       "misi_sabotase": 35,
@@ -188,34 +175,24 @@ export const chad: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 29,
-      "sd": 3,
-      "smp": 24,
-      "sma": 14,
+      "prasekolah": 29,
+      "dasar": 3,
+      "menengah": 24,
+      "lanjutan": 14,
       "universitas": 4,
       "lembaga_pendidikan": 27,
       "laboratorium": 26,
       "observatorium": 9,
       "pusat_penelitian": 36,
       "pusat_pengembangan": 22,
-      "literasi": 67,
-      "indeks_penelitian": 0
+      "literasi": 67
   },
     "kesehatan": {
       "rumah_sakit_besar": 32,
       "rumah_sakit_kecil": 14,
       "pusat_diagnostik": 25,
-      "tempat_tidur_rs": 720,
       "harapan_hidup": 14,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 34,
-      "sirkuit_balap": 31,
-      "stadion": 24,
-      "stadion_internasional": 39,
-      "skor_olimpiade": 18,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 1,
@@ -227,6 +204,12 @@ export const chad: CountryData = {
       "indeks_korupsi": 50,
       "indeks_keamanan": 78
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 34,
+      "sirkuit_balap": 31,
+      "stadion": 24,
+      "stadion_internasional": 39
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const chad: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 7,
@@ -348,3 +330,6 @@ export const chad: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

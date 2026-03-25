@@ -39,9 +39,7 @@ export const kirgizstan: CountryData = {
     "bandara": 23,
     "terminal_bus": 23,
     "helipad": 27,
-    "cakupan_internet": 53,
-    "indeks_teknologi": 91,
-    "akses_air": 74
+    "cakupan_internet": 53
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const kirgizstan: CountryData = {
     "aluminium": 24,
     "tembaga": 32,
     "logam_tanah_jarang": 18,
-    "bijih_besi": 11,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const kirgizstan: CountryData = {
     "farmasi": 34,
     "pupuk": 8,
     "pengolahan_daging": 38,
-    "mie_instan": 13,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 13
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const kirgizstan: CountryData = {
     "sayur_umbi": 7.0,
     "kedelai": 36,
     "kelapa_sawit": 2,
-    "kopi_teh_kakao": 28.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 28.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const kirgizstan: CountryData = {
     "pangkalan_laut": 9,
     "program_luar_angkasa": 29,
     "pertahanan_siber": 29,
-    "anggaran_pertahanan": 33,
-    "personel": 13635,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 33
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const kirgizstan: CountryData = {
 
   "sektor_armada": {
     "barak": 5,
-    "infanteri": 9,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 20,
         "apc": 13,
@@ -142,23 +132,20 @@ export const kirgizstan: CountryData = {
         "jet_tempur_siluman": 19,
         "helikopter_serang": 13,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 39,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 21,
-      "jaringan_radar": 25,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 12,
           "sepeda_motor": 29,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 9,
           "helikopter_polisi": 21,
@@ -169,10 +156,12 @@ export const kirgizstan: CountryData = {
           "kamera_pengawas": 17,
           "pusat_forensik": 1
         },
-        "waktu_respon": 36,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 36,
     "intelijen": 24,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 29,
       "misi_mata_mata": 28,
       "misi_sabotase": 40,
@@ -185,34 +174,24 @@ export const kirgizstan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 6,
-      "sd": 5,
-      "smp": 21,
-      "sma": 18,
+      "prasekolah": 6,
+      "dasar": 5,
+      "menengah": 21,
+      "lanjutan": 18,
       "universitas": 40,
       "lembaga_pendidikan": 28,
       "laboratorium": 17,
       "observatorium": 20,
       "pusat_penelitian": 22,
       "pusat_pengembangan": 14,
-      "literasi": 69,
-      "indeks_penelitian": 0
+      "literasi": 69
     },
     "kesehatan": {
       "rumah_sakit_besar": 22,
       "rumah_sakit_kecil": 22,
       "pusat_diagnostik": 28,
-      "tempat_tidur_rs": 6414,
       "harapan_hidup": 15,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 16,
-      "sirkuit_balap": 25,
-      "stadion": 23,
-      "stadion_internasional": 35,
-      "skor_olimpiade": 8,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 38,
@@ -224,6 +203,12 @@ export const kirgizstan: CountryData = {
       "indeks_korupsi": 90,
       "indeks_keamanan": 77
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 16,
+      "sirkuit_balap": 25,
+      "stadion": 23,
+      "stadion_internasional": 35
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const kirgizstan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 15,
@@ -345,3 +329,6 @@ export const kirgizstan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

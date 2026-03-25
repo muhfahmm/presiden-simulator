@@ -39,9 +39,7 @@ export const guyana: CountryData = {
     "bandara": 23,
     "terminal_bus": 3,
     "helipad": 16,
-    "cakupan_internet": 74,
-    "indeks_teknologi": 79,
-    "akses_air": 74
+    "cakupan_internet": 74
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const guyana: CountryData = {
     "aluminium": 36,
     "tembaga": 27,
     "logam_tanah_jarang": 29,
-    "bijih_besi": 15,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const guyana: CountryData = {
     "farmasi": 13,
     "pupuk": 29,
     "pengolahan_daging": 17,
-    "mie_instan": 7,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 7
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const guyana: CountryData = {
     "sayur_umbi": 30.5,
     "kedelai": 23,
     "kelapa_sawit": 34,
-    "kopi_teh_kakao": 17.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 17.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const guyana: CountryData = {
     "pangkalan_laut": 9,
     "program_luar_angkasa": 30,
     "pertahanan_siber": 19,
-    "anggaran_pertahanan": 41,
-    "personel": 23186,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 41
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const guyana: CountryData = {
 
   "sektor_armada": {
     "barak": 24,
-    "infanteri": 39,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 1,
         "apc": 38,
@@ -142,23 +132,20 @@ export const guyana: CountryData = {
         "jet_tempur_siluman": 38,
         "helikopter_serang": 12,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 11,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 32,
-      "jaringan_radar": 25,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 14,
           "sepeda_motor": 15,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 28,
           "helikopter_polisi": 22,
@@ -169,10 +156,12 @@ export const guyana: CountryData = {
           "kamera_pengawas": 15,
           "pusat_forensik": 1
         },
-        "waktu_respon": 6,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 6,
     "intelijen": 14,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 38,
       "misi_mata_mata": 3,
       "misi_sabotase": 31,
@@ -185,34 +174,24 @@ export const guyana: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 14,
-      "sd": 24,
-      "smp": 34,
-      "sma": 14,
+      "prasekolah": 14,
+      "dasar": 24,
+      "menengah": 34,
+      "lanjutan": 14,
       "universitas": 29,
       "lembaga_pendidikan": 21,
       "laboratorium": 36,
       "observatorium": 6,
       "pusat_penelitian": 34,
       "pusat_pengembangan": 16,
-      "literasi": 91,
-      "indeks_penelitian": 0
+      "literasi": 91
     },
     "kesehatan": {
       "rumah_sakit_besar": 15,
       "rumah_sakit_kecil": 15,
       "pusat_diagnostik": 19,
-      "tempat_tidur_rs": 1223,
       "harapan_hidup": 14,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 27,
-      "stadion": 2,
-      "stadion_internasional": 7,
-      "skor_olimpiade": 11,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 31,
@@ -224,6 +203,12 @@ export const guyana: CountryData = {
       "indeks_korupsi": 66,
       "indeks_keamanan": 53
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 35,
+      "sirkuit_balap": 27,
+      "stadion": 2,
+      "stadion_internasional": 7
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const guyana: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 5,
@@ -345,3 +329,6 @@ export const guyana: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

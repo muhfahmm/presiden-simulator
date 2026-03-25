@@ -39,9 +39,7 @@ export const jamaika: CountryData = {
     "bandara": 11,
     "terminal_bus": 22,
     "helipad": 30,
-    "cakupan_internet": 52,
-    "indeks_teknologi": 51,
-    "akses_air": 74
+    "cakupan_internet": 52
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const jamaika: CountryData = {
     "aluminium": 24,
     "tembaga": 34,
     "logam_tanah_jarang": 17,
-    "bijih_besi": 10,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 10
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const jamaika: CountryData = {
     "farmasi": 32,
     "pupuk": 19,
     "pengolahan_daging": 9,
-    "mie_instan": 26,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 26
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const jamaika: CountryData = {
     "sayur_umbi": 22.0,
     "kedelai": 14,
     "kelapa_sawit": 12,
-    "kopi_teh_kakao": 9.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 9.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const jamaika: CountryData = {
     "pangkalan_laut": 33,
     "program_luar_angkasa": 2,
     "pertahanan_siber": 10,
-    "anggaran_pertahanan": 50,
-    "personel": 5600,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 50
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const jamaika: CountryData = {
 
   "sektor_armada": {
     "barak": 36,
-    "infanteri": 3,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 10,
         "apc": 21,
@@ -142,23 +132,20 @@ export const jamaika: CountryData = {
         "jet_tempur_siluman": 20,
         "helikopter_serang": 23,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 16,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 17,
-      "jaringan_radar": 37,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 40,
           "sepeda_motor": 18,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 19,
           "helikopter_polisi": 37,
@@ -169,10 +156,12 @@ export const jamaika: CountryData = {
           "kamera_pengawas": 19,
           "pusat_forensik": 1
         },
-        "waktu_respon": 32,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 32,
     "intelijen": 39,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 14,
       "misi_mata_mata": 31,
       "misi_sabotase": 26,
@@ -185,34 +174,24 @@ export const jamaika: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 39,
-      "sd": 20,
-      "smp": 17,
-      "sma": 7,
+      "prasekolah": 39,
+      "dasar": 20,
+      "menengah": 17,
+      "lanjutan": 7,
       "universitas": 2,
       "lembaga_pendidikan": 21,
       "laboratorium": 1,
       "observatorium": 7,
       "pusat_penelitian": 20,
       "pusat_pengembangan": 35,
-      "literasi": 58,
-      "indeks_penelitian": 0
+      "literasi": 58
     },
     "kesehatan": {
       "rumah_sakit_besar": 28,
       "rumah_sakit_kecil": 9,
       "pusat_diagnostik": 2,
-      "tempat_tidur_rs": 9096,
       "harapan_hidup": 38,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 18,
-      "stadion": 39,
-      "stadion_internasional": 34,
-      "skor_olimpiade": 1,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 11,
@@ -224,6 +203,12 @@ export const jamaika: CountryData = {
       "indeks_korupsi": 77,
       "indeks_keamanan": 79
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 24,
+      "sirkuit_balap": 18,
+      "stadion": 39,
+      "stadion_internasional": 34
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const jamaika: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 4,
@@ -345,3 +329,6 @@ export const jamaika: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

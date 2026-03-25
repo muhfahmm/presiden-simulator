@@ -39,9 +39,7 @@ export const irlandia: CountryData = {
     "bandara": 23,
     "terminal_bus": 10,
     "helipad": 1,
-    "cakupan_internet": 86,
-    "indeks_teknologi": 57,
-    "akses_air": 74
+    "cakupan_internet": 86
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const irlandia: CountryData = {
     "aluminium": 1,
     "tembaga": 37,
     "logam_tanah_jarang": 19,
-    "bijih_besi": 4,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const irlandia: CountryData = {
     "farmasi": 12,
     "pupuk": 24,
     "pengolahan_daging": 23,
-    "mie_instan": 29,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 29
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const irlandia: CountryData = {
     "sayur_umbi": 22.5,
     "kedelai": 16,
     "kelapa_sawit": 4,
-    "kopi_teh_kakao": 10.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 10.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const irlandia: CountryData = {
     "pangkalan_laut": 26,
     "program_luar_angkasa": 17,
     "pertahanan_siber": 13,
-    "anggaran_pertahanan": 1472,
-    "personel": 17072,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1472
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const irlandia: CountryData = {
 
   "sektor_armada": {
     "barak": 16,
-    "infanteri": 35,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 34,
         "apc": 17,
@@ -142,23 +132,20 @@ export const irlandia: CountryData = {
         "jet_tempur_siluman": 32,
         "helikopter_serang": 20,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 31,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 7,
-      "jaringan_radar": 17,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 28,
           "sepeda_motor": 24,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 21,
           "helikopter_polisi": 4,
@@ -169,10 +156,12 @@ export const irlandia: CountryData = {
           "kamera_pengawas": 12,
           "pusat_forensik": 1
         },
-        "waktu_respon": 36,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 36,
     "intelijen": 27,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 9,
       "misi_mata_mata": 19,
       "misi_sabotase": 35,
@@ -185,34 +174,24 @@ export const irlandia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 23,
-      "sd": 22,
-      "smp": 37,
-      "sma": 24,
+      "prasekolah": 23,
+      "dasar": 22,
+      "menengah": 37,
+      "lanjutan": 24,
       "universitas": 35,
       "lembaga_pendidikan": 1,
       "laboratorium": 10,
       "observatorium": 37,
       "pusat_penelitian": 10,
       "pusat_pengembangan": 25,
-      "literasi": 92,
-      "indeks_penelitian": 0
+      "literasi": 92
     },
     "kesehatan": {
       "rumah_sakit_besar": 34,
       "rumah_sakit_kecil": 1,
       "pusat_diagnostik": 12,
-      "tempat_tidur_rs": 3299,
       "harapan_hidup": 24,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 17,
-      "sirkuit_balap": 3,
-      "stadion": 3,
-      "stadion_internasional": 17,
-      "skor_olimpiade": 15,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 37,
@@ -224,6 +203,12 @@ export const irlandia: CountryData = {
       "indeks_korupsi": 93,
       "indeks_keamanan": 79
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 17,
+      "sirkuit_balap": 3,
+      "stadion": 3,
+      "stadion_internasional": 17
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const irlandia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 29,
@@ -345,3 +329,6 @@ export const irlandia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

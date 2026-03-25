@@ -39,9 +39,7 @@ export const suriah: CountryData = {
     "bandara": 10,
     "terminal_bus": 23,
     "helipad": 40,
-    "cakupan_internet": 57,
-    "indeks_teknologi": 86,
-    "akses_air": 74
+    "cakupan_internet": 57
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const suriah: CountryData = {
     "aluminium": 14,
     "tembaga": 17,
     "logam_tanah_jarang": 25,
-    "bijih_besi": 20,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 20
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const suriah: CountryData = {
     "farmasi": 9,
     "pupuk": 6,
     "pengolahan_daging": 21,
-    "mie_instan": 6,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 6
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const suriah: CountryData = {
     "sayur_umbi": 19.5,
     "kedelai": 12,
     "kelapa_sawit": 35,
-    "kopi_teh_kakao": 21.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 21.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const suriah: CountryData = {
     "pangkalan_laut": 16,
     "program_luar_angkasa": 20,
     "pertahanan_siber": 9,
-    "anggaran_pertahanan": 33,
-    "personel": 12966,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 33
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const suriah: CountryData = {
 
   "sektor_armada": {
     "barak": 14,
-    "infanteri": 40,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 188,
         "apc": 187,
@@ -142,23 +132,20 @@ export const suriah: CountryData = {
         "jet_tempur_siluman": 164,
         "helikopter_serang": 19,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 13,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 19,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 16,
           "helikopter_polisi": 9,
@@ -169,10 +156,12 @@ export const suriah: CountryData = {
           "kamera_pengawas": 17,
           "pusat_forensik": 1
         },
-        "waktu_respon": 25,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 25,
     "intelijen": 7,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 18,
       "misi_mata_mata": 2,
       "misi_sabotase": 32,
@@ -185,34 +174,24 @@ export const suriah: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 8,
-      "sd": 13,
-      "smp": 35,
-      "sma": 2,
+      "prasekolah": 8,
+      "dasar": 13,
+      "menengah": 35,
+      "lanjutan": 2,
       "universitas": 12,
       "lembaga_pendidikan": 31,
       "laboratorium": 17,
       "observatorium": 35,
       "pusat_penelitian": 27,
       "pusat_pengembangan": 6,
-      "literasi": 60,
-      "indeks_penelitian": 0
+      "literasi": 60
     },
     "kesehatan": {
       "rumah_sakit_besar": 3,
       "rumah_sakit_kecil": 32,
       "pusat_diagnostik": 29,
-      "tempat_tidur_rs": 2902,
       "harapan_hidup": 19,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 13,
-      "sirkuit_balap": 40,
-      "stadion": 34,
-      "stadion_internasional": 1,
-      "skor_olimpiade": 7,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 3,
@@ -224,6 +203,12 @@ export const suriah: CountryData = {
       "indeks_korupsi": 54,
       "indeks_keamanan": 92
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 13,
+      "sirkuit_balap": 40,
+      "stadion": 34,
+      "stadion_internasional": 1
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const suriah: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 13,
@@ -345,3 +329,6 @@ export const suriah: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

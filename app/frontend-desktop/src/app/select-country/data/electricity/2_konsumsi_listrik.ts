@@ -1,4 +1,4 @@
-import { CountryData } from "../types";
+import { CountryData } from "../types/_index";
 
 // 1. Konsumsi Ekstraksi (Mining)
 export const KONSUMSI_EKSTRAKSI = {
@@ -95,9 +95,9 @@ export function hitungKonsumsiPertahanan(
 
   const fleetCons = (
     (fleet.barak ?? 0) * KONSUMSI_PERTAHANAN.barak +
-    Object.values(fleet.darat).reduce((a, b) => a + b, 0) * 0.5 + // Simplification
-    Object.values(fleet.laut).reduce((a, b) => a + b, 0) * 50 +
-    Object.values(fleet.udara).reduce((a, b) => a + b, 0) * 5
+    Object.values(fleet.darat).reduce((a: number, b: number) => a + b, 0) * 0.5 + // Simplification
+    Object.values(fleet.laut).reduce((a: number, b: number) => a + b, 0) * 50 +
+    Object.values(fleet.udara).reduce((a: number, b: number) => a + b, 0) * 5
   );
 
   const securityCons = (
@@ -126,22 +126,24 @@ export const KONSUMSI_SOSIAL = {
 export function hitungKonsumsiSosial(social: CountryData["sektor_sosial"]) {
   const edu = social.pendidikan || {};
   const kesehatan = social.kesehatan || {};
-  const olahraga = social.olahraga || {};
   const hukum = social.hukum || {};
 
-  const totalEdu = Object.keys(KONSUMSI_SOSIAL.pendidikan).reduce((total, key) => 
+  const totalEdu = Object.keys(KONSUMSI_SOSIAL.pendidikan).reduce((total, key) =>
     total + ((edu as any)[key] ?? 0) * (KONSUMSI_SOSIAL.pendidikan as any)[key], 0);
-  
-  const totalHealth = Object.keys(KONSUMSI_SOSIAL.kesehatan).reduce((total, key) => 
+
+  const totalHealth = Object.keys(KONSUMSI_SOSIAL.kesehatan).reduce((total, key) =>
     total + ((kesehatan as any)[key] ?? 0) * (KONSUMSI_SOSIAL.kesehatan as any)[key], 0);
-  
-  const totalSports = Object.keys(KONSUMSI_SOSIAL.olahraga).reduce((total, key) => 
-    total + ((olahraga as any)[key] ?? 0) * (KONSUMSI_SOSIAL.olahraga as any)[key], 0);
-  
-  const totalLaw = Object.keys(KONSUMSI_SOSIAL.hukum).reduce((total, key) => 
+
+  const totalLaw = Object.keys(KONSUMSI_SOSIAL.hukum).reduce((total, key) =>
     total + ((hukum as any)[key] ?? 0) * (KONSUMSI_SOSIAL.hukum as any)[key], 0);
 
-  return totalEdu + totalHealth + totalSports + totalLaw;
+  return totalEdu + totalHealth + totalLaw;
+}
+
+export function hitungKonsumsiOlahraga(olahraga: CountryData["sektor_olahraga"]) {
+  if (!olahraga) return 0;
+  return Object.keys(KONSUMSI_SOSIAL.olahraga).reduce((total, key) =>
+    total + ((olahraga as any)[key] ?? 0) * (KONSUMSI_SOSIAL.olahraga as any)[key], 0);
 }
 
 // 6. Konsumsi Transportasi
@@ -169,6 +171,7 @@ export function hitungTotalKonsumsiNasional(data: CountryData) {
     hitungKonsumsiPangan(data.sektor_agri_peternakan) +
     hitungKonsumsiPertahanan(data.sektor_pertahanan, data.sektor_armada, data.sektor_keamanan) +
     hitungKonsumsiSosial(data.sektor_sosial) +
+    hitungKonsumsiOlahraga(data.sektor_olahraga) +
     hitungKonsumsiTransportasi(data.infrastruktur)
   );
 }

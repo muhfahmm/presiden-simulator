@@ -39,9 +39,7 @@ export const guiana_prancis: CountryData = {
     "bandara": 22,
     "terminal_bus": 39,
     "helipad": 19,
-    "cakupan_internet": 92,
-    "indeks_teknologi": 84,
-    "akses_air": 74
+    "cakupan_internet": 92
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const guiana_prancis: CountryData = {
     "aluminium": 19,
     "tembaga": 12,
     "logam_tanah_jarang": 30,
-    "bijih_besi": 8,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 8
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const guiana_prancis: CountryData = {
     "farmasi": 13,
     "pupuk": 40,
     "pengolahan_daging": 9,
-    "mie_instan": 26,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 26
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const guiana_prancis: CountryData = {
     "sayur_umbi": 10.5,
     "kedelai": 38,
     "kelapa_sawit": 37,
-    "kopi_teh_kakao": 11.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 11.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const guiana_prancis: CountryData = {
     "pangkalan_laut": 15,
     "program_luar_angkasa": 29,
     "pertahanan_siber": 16,
-    "anggaran_pertahanan": 27,
-    "personel": 25948,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const guiana_prancis: CountryData = {
 
   "sektor_armada": {
     "barak": 17,
-    "infanteri": 24,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 15,
         "apc": 136,
@@ -142,23 +132,20 @@ export const guiana_prancis: CountryData = {
         "jet_tempur_siluman": 48,
         "helikopter_serang": 11,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 13,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 2,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 33,
           "sepeda_motor": 23,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 19,
           "helikopter_polisi": 14,
@@ -169,10 +156,12 @@ export const guiana_prancis: CountryData = {
           "kamera_pengawas": 18,
           "pusat_forensik": 1
         },
-        "waktu_respon": 4,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 4,
     "intelijen": 16,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 5,
       "misi_mata_mata": 15,
       "misi_sabotase": 10,
@@ -185,34 +174,24 @@ export const guiana_prancis: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 35,
-      "sd": 18,
-      "smp": 20,
-      "sma": 31,
+      "prasekolah": 35,
+      "dasar": 18,
+      "menengah": 20,
+      "lanjutan": 31,
       "universitas": 31,
       "lembaga_pendidikan": 29,
       "laboratorium": 10,
       "observatorium": 31,
       "pusat_penelitian": 22,
       "pusat_pengembangan": 23,
-      "literasi": 86,
-      "indeks_penelitian": 0
+      "literasi": 86
     },
     "kesehatan": {
       "rumah_sakit_besar": 21,
       "rumah_sakit_kecil": 18,
       "pusat_diagnostik": 21,
-      "tempat_tidur_rs": 4806,
       "harapan_hidup": 10,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 28,
-      "sirkuit_balap": 30,
-      "stadion": 31,
-      "stadion_internasional": 28,
-      "skor_olimpiade": 30,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 7,
@@ -224,6 +203,12 @@ export const guiana_prancis: CountryData = {
       "indeks_korupsi": 94,
       "indeks_keamanan": 69
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 28,
+      "sirkuit_balap": 30,
+      "stadion": 31,
+      "stadion_internasional": 28
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const guiana_prancis: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 3,
@@ -345,3 +329,6 @@ export const guiana_prancis: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

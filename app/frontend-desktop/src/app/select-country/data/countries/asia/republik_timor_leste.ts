@@ -39,9 +39,7 @@ export const republik_timor_leste: CountryData = {
     "bandara": 39,
     "terminal_bus": 13,
     "helipad": 28,
-    "cakupan_internet": 73,
-    "indeks_teknologi": 92,
-    "akses_air": 74
+    "cakupan_internet": 73
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const republik_timor_leste: CountryData = {
     "aluminium": 22,
     "tembaga": 26,
     "logam_tanah_jarang": 6,
-    "bijih_besi": 23,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 23
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const republik_timor_leste: CountryData = {
     "farmasi": 39,
     "pupuk": 24,
     "pengolahan_daging": 29,
-    "mie_instan": 10,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 10
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const republik_timor_leste: CountryData = {
     "sayur_umbi": 29.5,
     "kedelai": 9,
     "kelapa_sawit": 40,
-    "kopi_teh_kakao": 17.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 17.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const republik_timor_leste: CountryData = {
     "pangkalan_laut": 31,
     "program_luar_angkasa": 28,
     "pertahanan_siber": 32,
-    "anggaran_pertahanan": 5,
-    "personel": 25828,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 5
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const republik_timor_leste: CountryData = {
 
   "sektor_armada": {
     "barak": 28,
-    "infanteri": 15,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 38,
         "apc": 173,
@@ -142,23 +132,20 @@ export const republik_timor_leste: CountryData = {
         "jet_tempur_siluman": 97,
         "helikopter_serang": 47,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 9,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 1,
           "sepeda_motor": 29,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 2,
           "helikopter_polisi": 12,
@@ -169,10 +156,12 @@ export const republik_timor_leste: CountryData = {
           "kamera_pengawas": 32,
           "pusat_forensik": 1
         },
-        "waktu_respon": 18,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 18,
     "intelijen": 25,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 19,
       "misi_mata_mata": 6,
       "misi_sabotase": 23,
@@ -185,34 +174,24 @@ export const republik_timor_leste: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 8,
-      "sd": 7,
-      "smp": 32,
-      "sma": 8,
+      "prasekolah": 8,
+      "dasar": 7,
+      "menengah": 32,
+      "lanjutan": 8,
       "universitas": 16,
       "lembaga_pendidikan": 26,
       "laboratorium": 36,
       "observatorium": 8,
       "pusat_penelitian": 13,
       "pusat_pengembangan": 19,
-      "literasi": 79,
-      "indeks_penelitian": 0
+      "literasi": 79
     },
     "kesehatan": {
       "rumah_sakit_besar": 16,
       "rumah_sakit_kecil": 38,
       "pusat_diagnostik": 35,
-      "tempat_tidur_rs": 2027,
       "harapan_hidup": 32,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 2,
-      "sirkuit_balap": 36,
-      "stadion": 23,
-      "stadion_internasional": 6,
-      "skor_olimpiade": 9,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 17,
@@ -224,6 +203,12 @@ export const republik_timor_leste: CountryData = {
       "indeks_korupsi": 93,
       "indeks_keamanan": 90
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 2,
+      "sirkuit_balap": 36,
+      "stadion": 23,
+      "stadion_internasional": 6
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const republik_timor_leste: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 29,
@@ -345,3 +329,6 @@ export const republik_timor_leste: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

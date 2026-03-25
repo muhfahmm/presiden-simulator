@@ -39,9 +39,7 @@ export const ethiopia: CountryData = {
     "jalur_kereta": 24,
     "kualitas_jalan": 67,
     "pelabuhan_laut": 20,
-    "kereta_bawah_tanah": 28,
-    "indeks_teknologi": 82,
-    "akses_air": 74
+    "kereta_bawah_tanah": 28
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const ethiopia: CountryData = {
     "minyak_bumi": 19,
     "logam_tanah_jarang": 40,
     "garam": 20,
-    "kekuatan": 29.660809349923973,
     "uranium": 7
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const ethiopia: CountryData = {
     "farmasi": 6,
     "semikonduktor": 22,
     "smelter": 22,
-    "kekuatan": 3.076011687404966,
     "gula": 7,
     "kayu": 22
   },
@@ -98,9 +94,8 @@ export const ethiopia: CountryData = {
     "sayur_umbi": 17.5,
     "kedelai": 27,
     "kelapa_sawit": 26,
-    "kopi_teh_kakao": 48.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 48.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const ethiopia: CountryData = {
     "pangkalan_laut": 33,
     "program_luar_angkasa": 22,
     "pertahanan_siber": 26,
-    "anggaran_pertahanan": 430,
-    "personel": 8526,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 430
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const ethiopia: CountryData = {
 
   "sektor_armada": {
     "barak": 25,
-    "infanteri": 33,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 38,
         "apc": 14,
@@ -142,23 +132,19 @@ export const ethiopia: CountryData = {
         "jet_tempur_siluman": 9,
         "helikopter_serang": 11,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 16,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 17,
-      "jaringan_radar": 28,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 1,
           "sepeda_motor": 20,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 31,
@@ -170,11 +156,12 @@ export const ethiopia: CountryData = {
           "kamera_pengawas": 28,
           "pusat_forensik": 1
   },
-        "waktu_respon": 5,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 5,
     "intelijen": 34,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 11,
       "misi_mata_mata": 9,
       "misi_sabotase": 2,
@@ -188,34 +175,24 @@ export const ethiopia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 6,
-      "sd": 2,
-      "smp": 32,
-      "sma": 7,
+      "prasekolah": 6,
+      "dasar": 2,
+      "menengah": 32,
+      "lanjutan": 7,
       "universitas": 9,
       "lembaga_pendidikan": 16,
       "laboratorium": 38,
       "observatorium": 24,
       "pusat_penelitian": 28,
       "pusat_pengembangan": 33,
-      "literasi": 54,
-      "indeks_penelitian": 0
+      "literasi": 54
   },
     "kesehatan": {
       "rumah_sakit_besar": 39,
       "rumah_sakit_kecil": 15,
       "pusat_diagnostik": 7,
-      "tempat_tidur_rs": 7450,
       "harapan_hidup": 2,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 26,
-      "stadion": 14,
-      "stadion_internasional": 40,
-      "skor_olimpiade": 38,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 14,
@@ -227,6 +204,12 @@ export const ethiopia: CountryData = {
       "indeks_korupsi": 82,
       "indeks_keamanan": 82
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 35,
+      "sirkuit_balap": 26,
+      "stadion": 14,
+      "stadion_internasional": 40
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const ethiopia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 1,
@@ -348,3 +330,6 @@ export const ethiopia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const benin: CountryData = {
     "jalur_kereta": 29,
     "kualitas_jalan": 86,
     "pelabuhan_laut": 6,
-    "kereta_bawah_tanah": 32,
-    "indeks_teknologi": 77,
-    "akses_air": 74
+    "kereta_bawah_tanah": 32
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const benin: CountryData = {
     "minyak_bumi": 5,
     "logam_tanah_jarang": 4,
     "garam": 23,
-    "kekuatan": 29.660809349923973,
     "uranium": 34
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const benin: CountryData = {
     "farmasi": 1,
     "semikonduktor": 23,
     "smelter": 14,
-    "kekuatan": 3.076011687404966,
     "gula": 9,
     "kayu": 23
   },
@@ -98,9 +94,8 @@ export const benin: CountryData = {
     "sayur_umbi": 20.5,
     "kedelai": 39,
     "kelapa_sawit": 35,
-    "kopi_teh_kakao": 11.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 11.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const benin: CountryData = {
     "pangkalan_laut": 5,
     "program_luar_angkasa": 36,
     "pertahanan_siber": 32,
-    "anggaran_pertahanan": 52,
-    "personel": 11853,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 52
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const benin: CountryData = {
 
   "sektor_armada": {
     "barak": 27,
-    "infanteri": 9,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 1,
         "apc": 10,
@@ -142,23 +132,19 @@ export const benin: CountryData = {
         "jet_tempur_siluman": 6,
         "helikopter_serang": 3,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 17,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 8,
-      "jaringan_radar": 21,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 37,
           "sepeda_motor": 8,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 27,
@@ -170,11 +156,12 @@ export const benin: CountryData = {
           "kamera_pengawas": 30,
           "pusat_forensik": 1
   },
-        "waktu_respon": 5,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 5,
     "intelijen": 16,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 30,
       "misi_mata_mata": 20,
       "misi_sabotase": 18,
@@ -188,34 +175,24 @@ export const benin: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 18,
-      "sd": 28,
-      "smp": 25,
-      "sma": 21,
+      "prasekolah": 18,
+      "dasar": 28,
+      "menengah": 25,
+      "lanjutan": 21,
       "universitas": 38,
       "lembaga_pendidikan": 27,
       "laboratorium": 8,
       "observatorium": 33,
       "pusat_penelitian": 17,
       "pusat_pengembangan": 36,
-      "literasi": 87,
-      "indeks_penelitian": 0
+      "literasi": 87
   },
     "kesehatan": {
       "rumah_sakit_besar": 17,
       "rumah_sakit_kecil": 19,
       "pusat_diagnostik": 17,
-      "tempat_tidur_rs": 9601,
       "harapan_hidup": 6,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 40,
-      "sirkuit_balap": 33,
-      "stadion": 9,
-      "stadion_internasional": 13,
-      "skor_olimpiade": 32,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 13,
@@ -227,6 +204,12 @@ export const benin: CountryData = {
       "indeks_korupsi": 71,
       "indeks_keamanan": 55
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 40,
+      "sirkuit_balap": 33,
+      "stadion": 9,
+      "stadion_internasional": 13
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const benin: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 1,
@@ -348,3 +330,6 @@ export const benin: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const nepal: CountryData = {
     "bandara": 39,
     "terminal_bus": 21,
     "helipad": 33,
-    "cakupan_internet": 91,
-    "indeks_teknologi": 89,
-    "akses_air": 74
+    "cakupan_internet": 91
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const nepal: CountryData = {
     "aluminium": 31,
     "tembaga": 4,
     "logam_tanah_jarang": 17,
-    "bijih_besi": 30,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 30
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const nepal: CountryData = {
     "farmasi": 16,
     "pupuk": 29,
     "pengolahan_daging": 11,
-    "mie_instan": 26,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 26
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const nepal: CountryData = {
     "sayur_umbi": 12.0,
     "kedelai": 24,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 17.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 17.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const nepal: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 40,
     "pertahanan_siber": 35,
-    "anggaran_pertahanan": 111,
-    "personel": 17021,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 111
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const nepal: CountryData = {
 
   "sektor_armada": {
     "barak": 26,
-    "infanteri": 29,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 160,
         "apc": 23,
@@ -142,23 +132,20 @@ export const nepal: CountryData = {
         "jet_tempur_siluman": 81,
         "helikopter_serang": 168,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 3,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 1,
-      "jaringan_radar": 1,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 40,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 3,
           "helikopter_polisi": 18,
@@ -169,10 +156,12 @@ export const nepal: CountryData = {
           "kamera_pengawas": 22,
           "pusat_forensik": 1
         },
-        "waktu_respon": 23,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 23,
     "intelijen": 38,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 17,
       "misi_mata_mata": 17,
       "misi_sabotase": 31,
@@ -185,34 +174,24 @@ export const nepal: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 16,
-      "sd": 36,
-      "smp": 18,
-      "sma": 21,
+      "prasekolah": 16,
+      "dasar": 36,
+      "menengah": 18,
+      "lanjutan": 21,
       "universitas": 6,
       "lembaga_pendidikan": 35,
       "laboratorium": 22,
       "observatorium": 14,
       "pusat_penelitian": 6,
       "pusat_pengembangan": 17,
-      "literasi": 94,
-      "indeks_penelitian": 0
+      "literasi": 94
     },
     "kesehatan": {
       "rumah_sakit_besar": 4,
       "rumah_sakit_kecil": 8,
       "pusat_diagnostik": 19,
-      "tempat_tidur_rs": 2596,
       "harapan_hidup": 8,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 14,
-      "sirkuit_balap": 19,
-      "stadion": 17,
-      "stadion_internasional": 14,
-      "skor_olimpiade": 9,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 29,
@@ -224,6 +203,12 @@ export const nepal: CountryData = {
       "indeks_korupsi": 89,
       "indeks_keamanan": 78
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 14,
+      "sirkuit_balap": 19,
+      "stadion": 17,
+      "stadion_internasional": 14
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const nepal: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 17,
@@ -345,3 +329,6 @@ export const nepal: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

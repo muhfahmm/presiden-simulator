@@ -39,9 +39,7 @@ export const venezuela: CountryData = {
     "bandara": 21,
     "terminal_bus": 25,
     "helipad": 37,
-    "cakupan_internet": 51,
-    "indeks_teknologi": 87,
-    "akses_air": 74
+    "cakupan_internet": 51
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const venezuela: CountryData = {
     "aluminium": 17,
     "tembaga": 37,
     "logam_tanah_jarang": 23,
-    "bijih_besi": 2,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 2
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const venezuela: CountryData = {
     "farmasi": 21,
     "pupuk": 25,
     "pengolahan_daging": 19,
-    "mie_instan": 11,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 11
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const venezuela: CountryData = {
     "sayur_umbi": 11.0,
     "kedelai": 18,
     "kelapa_sawit": 10,
-    "kopi_teh_kakao": 21.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 21.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const venezuela: CountryData = {
     "pangkalan_laut": 16,
     "program_luar_angkasa": 32,
     "pertahanan_siber": 11,
-    "anggaran_pertahanan": 263,
-    "personel": 23710,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 263
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const venezuela: CountryData = {
 
   "sektor_armada": {
     "barak": 17,
-    "infanteri": 9,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 28,
         "apc": 85,
@@ -142,23 +132,20 @@ export const venezuela: CountryData = {
         "jet_tempur_siluman": 198,
         "helikopter_serang": 192,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 2,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 0,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 14,
           "sepeda_motor": 25,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 20,
           "helikopter_polisi": 2,
@@ -169,10 +156,12 @@ export const venezuela: CountryData = {
           "kamera_pengawas": 27,
           "pusat_forensik": 1
         },
-        "waktu_respon": 28,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 28,
     "intelijen": 11,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 34,
       "misi_mata_mata": 27,
       "misi_sabotase": 30,
@@ -185,34 +174,24 @@ export const venezuela: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 12,
-      "sd": 25,
-      "smp": 6,
-      "sma": 20,
+      "prasekolah": 12,
+      "dasar": 25,
+      "menengah": 6,
+      "lanjutan": 20,
       "universitas": 40,
       "lembaga_pendidikan": 38,
       "laboratorium": 40,
       "observatorium": 3,
       "pusat_penelitian": 25,
       "pusat_pengembangan": 10,
-      "literasi": 69,
-      "indeks_penelitian": 0
+      "literasi": 69
     },
     "kesehatan": {
       "rumah_sakit_besar": 20,
       "rumah_sakit_kecil": 38,
       "pusat_diagnostik": 8,
-      "tempat_tidur_rs": 2219,
       "harapan_hidup": 31,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 12,
-      "sirkuit_balap": 3,
-      "stadion": 23,
-      "stadion_internasional": 20,
-      "skor_olimpiade": 12,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 6,
@@ -224,6 +203,12 @@ export const venezuela: CountryData = {
       "indeks_korupsi": 87,
       "indeks_keamanan": 86
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 12,
+      "sirkuit_balap": 3,
+      "stadion": 23,
+      "stadion_internasional": 20
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const venezuela: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 40,
@@ -345,3 +329,6 @@ export const venezuela: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

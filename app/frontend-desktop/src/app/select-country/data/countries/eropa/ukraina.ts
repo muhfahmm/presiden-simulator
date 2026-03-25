@@ -39,9 +39,7 @@ export const ukraina: CountryData = {
     "bandara": 36,
     "terminal_bus": 25,
     "helipad": 6,
-    "cakupan_internet": 55,
-    "indeks_teknologi": 56,
-    "akses_air": 74
+    "cakupan_internet": 55
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const ukraina: CountryData = {
     "aluminium": 39,
     "tembaga": 37,
     "logam_tanah_jarang": 16,
-    "bijih_besi": 28,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 28
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const ukraina: CountryData = {
     "farmasi": 32,
     "pupuk": 33,
     "pengolahan_daging": 24,
-    "mie_instan": 10,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 10
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const ukraina: CountryData = {
     "sayur_umbi": 39.0,
     "kedelai": 38,
     "kelapa_sawit": 6,
-    "kopi_teh_kakao": 28.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 28.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const ukraina: CountryData = {
     "pangkalan_laut": 18,
     "program_luar_angkasa": 30,
     "pertahanan_siber": 12,
-    "anggaran_pertahanan": 444,
-    "personel": 24941,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 444
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const ukraina: CountryData = {
 
   "sektor_armada": {
     "barak": 40,
-    "infanteri": 6,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 92,
         "apc": 131,
@@ -142,23 +132,20 @@ export const ukraina: CountryData = {
         "jet_tempur_siluman": 159,
         "helikopter_serang": 37,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 1,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 35,
           "sepeda_motor": 32,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 8,
           "helikopter_polisi": 2,
@@ -169,10 +156,12 @@ export const ukraina: CountryData = {
           "kamera_pengawas": 8,
           "pusat_forensik": 1
         },
-        "waktu_respon": 33,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 33,
     "intelijen": 37,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 2,
       "misi_mata_mata": 35,
       "misi_sabotase": 30,
@@ -185,34 +174,24 @@ export const ukraina: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 5,
-      "sd": 34,
-      "smp": 38,
-      "sma": 20,
+      "prasekolah": 5,
+      "dasar": 34,
+      "menengah": 38,
+      "lanjutan": 20,
       "universitas": 33,
       "lembaga_pendidikan": 22,
       "laboratorium": 17,
       "observatorium": 37,
       "pusat_penelitian": 13,
       "pusat_pengembangan": 11,
-      "literasi": 56,
-      "indeks_penelitian": 0
+      "literasi": 56
     },
     "kesehatan": {
       "rumah_sakit_besar": 24,
       "rumah_sakit_kecil": 28,
       "pusat_diagnostik": 13,
-      "tempat_tidur_rs": 8810,
       "harapan_hidup": 31,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 20,
-      "sirkuit_balap": 22,
-      "stadion": 26,
-      "stadion_internasional": 23,
-      "skor_olimpiade": 34,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 29,
@@ -224,6 +203,12 @@ export const ukraina: CountryData = {
       "indeks_korupsi": 67,
       "indeks_keamanan": 59
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 20,
+      "sirkuit_balap": 22,
+      "stadion": 26,
+      "stadion_internasional": 23
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const ukraina: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 36,
@@ -345,3 +329,6 @@ export const ukraina: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

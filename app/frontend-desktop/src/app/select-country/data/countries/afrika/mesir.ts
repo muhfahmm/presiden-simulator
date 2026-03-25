@@ -39,9 +39,7 @@ export const mesir: CountryData = {
     "jalur_kereta": 12,
     "kualitas_jalan": 92,
     "pelabuhan_laut": 80,
-    "kereta_bawah_tanah": 17,
-    "indeks_teknologi": 78,
-    "akses_air": 74
+    "kereta_bawah_tanah": 17
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const mesir: CountryData = {
     "minyak_bumi": 18,
     "logam_tanah_jarang": 24,
     "garam": 30,
-    "kekuatan": 29.660809349923973,
     "uranium": 24
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const mesir: CountryData = {
     "farmasi": 18,
     "semikonduktor": 30,
     "smelter": 12,
-    "kekuatan": 3.076011687404966,
     "gula": 29,
     "kayu": 21
   },
@@ -98,9 +94,8 @@ export const mesir: CountryData = {
     "sayur_umbi": 40.0,
     "kedelai": 4,
     "kelapa_sawit": 34,
-    "kopi_teh_kakao": 16.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 16.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const mesir: CountryData = {
     "pangkalan_laut": 40,
     "program_luar_angkasa": 2,
     "pertahanan_siber": 17,
-    "anggaran_pertahanan": 1097,
-    "personel": 18783,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1097
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const mesir: CountryData = {
 
   "sektor_armada": {
     "barak": 28,
-    "infanteri": 37,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 177,
         "apc": 57,
@@ -142,23 +132,19 @@ export const mesir: CountryData = {
         "jet_tempur_siluman": 32,
         "helikopter_serang": 40,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 9,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 5,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 32,
           "sepeda_motor": 30,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 12,
@@ -170,11 +156,12 @@ export const mesir: CountryData = {
           "kamera_pengawas": 37,
           "pusat_forensik": 1
   },
-        "waktu_respon": 36,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 36,
     "intelijen": 17,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 9,
       "misi_mata_mata": 35,
       "misi_sabotase": 31,
@@ -188,34 +175,24 @@ export const mesir: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 3,
-      "sd": 3,
-      "smp": 19,
-      "sma": 28,
+      "prasekolah": 3,
+      "dasar": 3,
+      "menengah": 19,
+      "lanjutan": 28,
       "universitas": 30,
       "lembaga_pendidikan": 6,
       "laboratorium": 19,
       "observatorium": 14,
       "pusat_penelitian": 18,
       "pusat_pengembangan": 7,
-      "literasi": 67,
-      "indeks_penelitian": 0
+      "literasi": 67
   },
     "kesehatan": {
       "rumah_sakit_besar": 8,
       "rumah_sakit_kecil": 32,
       "pusat_diagnostik": 33,
-      "tempat_tidur_rs": 2519,
       "harapan_hidup": 25,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 38,
-      "sirkuit_balap": 6,
-      "stadion": 31,
-      "stadion_internasional": 4,
-      "skor_olimpiade": 34,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 12,
@@ -227,6 +204,12 @@ export const mesir: CountryData = {
       "indeks_korupsi": 72,
       "indeks_keamanan": 87
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 38,
+      "sirkuit_balap": 6,
+      "stadion": 31,
+      "stadion_internasional": 4
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const mesir: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 6,
@@ -348,3 +330,6 @@ export const mesir: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

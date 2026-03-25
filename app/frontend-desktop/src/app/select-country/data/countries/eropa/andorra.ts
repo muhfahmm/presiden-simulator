@@ -39,9 +39,7 @@ export const andorra: CountryData = {
     "bandara": 18,
     "terminal_bus": 29,
     "helipad": 27,
-    "cakupan_internet": 75,
-    "indeks_teknologi": 89,
-    "akses_air": 74
+    "cakupan_internet": 75
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const andorra: CountryData = {
     "aluminium": 32,
     "tembaga": 32,
     "logam_tanah_jarang": 28,
-    "bijih_besi": 34,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 34
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const andorra: CountryData = {
     "farmasi": 23,
     "pupuk": 35,
     "pengolahan_daging": 7,
-    "mie_instan": 26,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 26
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const andorra: CountryData = {
     "sayur_umbi": 24.0,
     "kedelai": 38,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 17.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 17.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const andorra: CountryData = {
     "pangkalan_laut": 4,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 31,
-    "anggaran_pertahanan": 27,
-    "personel": 5837,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const andorra: CountryData = {
 
   "sektor_armada": {
     "barak": 9,
-    "infanteri": 27,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 39,
         "apc": 31,
@@ -142,23 +132,20 @@ export const andorra: CountryData = {
         "jet_tempur_siluman": 32,
         "helikopter_serang": 40,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 32,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 17,
-      "jaringan_radar": 14,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 33,
           "sepeda_motor": 12,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 24,
           "helikopter_polisi": 5,
@@ -169,10 +156,12 @@ export const andorra: CountryData = {
           "kamera_pengawas": 19,
           "pusat_forensik": 1
         },
-        "waktu_respon": 6,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 6,
     "intelijen": 31,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 30,
       "misi_mata_mata": 11,
       "misi_sabotase": 6,
@@ -185,34 +174,24 @@ export const andorra: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 17,
-      "sd": 30,
-      "smp": 14,
-      "sma": 15,
+      "prasekolah": 17,
+      "dasar": 30,
+      "menengah": 14,
+      "lanjutan": 15,
       "universitas": 17,
       "lembaga_pendidikan": 22,
       "laboratorium": 38,
       "observatorium": 40,
       "pusat_penelitian": 16,
       "pusat_pengembangan": 4,
-      "literasi": 50,
-      "indeks_penelitian": 0
+      "literasi": 50
     },
     "kesehatan": {
       "rumah_sakit_besar": 16,
       "rumah_sakit_kecil": 10,
       "pusat_diagnostik": 3,
-      "tempat_tidur_rs": 6283,
       "harapan_hidup": 10,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 32,
-      "sirkuit_balap": 24,
-      "stadion": 1,
-      "stadion_internasional": 22,
-      "skor_olimpiade": 30,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 35,
@@ -224,6 +203,12 @@ export const andorra: CountryData = {
       "indeks_korupsi": 69,
       "indeks_keamanan": 61
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 32,
+      "sirkuit_balap": 24,
+      "stadion": 1,
+      "stadion_internasional": 22
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const andorra: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 4,
@@ -345,3 +329,6 @@ export const andorra: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

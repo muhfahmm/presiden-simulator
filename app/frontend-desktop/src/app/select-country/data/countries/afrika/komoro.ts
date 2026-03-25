@@ -39,9 +39,7 @@ export const komoro: CountryData = {
     "jalur_kereta": 8,
     "kualitas_jalan": 68,
     "pelabuhan_laut": 5,
-    "kereta_bawah_tanah": 39,
-    "indeks_teknologi": 72,
-    "akses_air": 74
+    "kereta_bawah_tanah": 39
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const komoro: CountryData = {
     "minyak_bumi": 17,
     "logam_tanah_jarang": 38,
     "garam": 6,
-    "kekuatan": 29.660809349923973,
     "uranium": 6
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const komoro: CountryData = {
     "farmasi": 36,
     "semikonduktor": 17,
     "smelter": 3,
-    "kekuatan": 3.076011687404966,
     "gula": 9,
     "kayu": 19
   },
@@ -98,9 +94,8 @@ export const komoro: CountryData = {
     "sayur_umbi": 18.0,
     "kedelai": 35,
     "kelapa_sawit": 20,
-    "kopi_teh_kakao": 27.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 27.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const komoro: CountryData = {
     "pangkalan_laut": 6,
     "program_luar_angkasa": 25,
     "pertahanan_siber": 25,
-    "anggaran_pertahanan": 3,
-    "personel": 27240,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 3
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const komoro: CountryData = {
 
   "sektor_armada": {
     "barak": 15,
-    "infanteri": 12,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 14,
         "apc": 31,
@@ -142,23 +132,19 @@ export const komoro: CountryData = {
         "jet_tempur_siluman": 16,
         "helikopter_serang": 16,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 30,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 37,
-      "jaringan_radar": 40,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 39,
           "sepeda_motor": 9,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 34,
@@ -170,11 +156,12 @@ export const komoro: CountryData = {
           "kamera_pengawas": 38,
           "pusat_forensik": 1
   },
-        "waktu_respon": 27,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 27,
     "intelijen": 9,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 4,
       "misi_mata_mata": 16,
       "misi_sabotase": 30,
@@ -188,34 +175,24 @@ export const komoro: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 14,
-      "sd": 36,
-      "smp": 35,
-      "sma": 30,
+      "prasekolah": 14,
+      "dasar": 36,
+      "menengah": 35,
+      "lanjutan": 30,
       "universitas": 4,
       "lembaga_pendidikan": 2,
       "laboratorium": 23,
       "observatorium": 10,
       "pusat_penelitian": 6,
       "pusat_pengembangan": 13,
-      "literasi": 56,
-      "indeks_penelitian": 0
+      "literasi": 56
   },
     "kesehatan": {
       "rumah_sakit_besar": 3,
       "rumah_sakit_kecil": 38,
       "pusat_diagnostik": 33,
-      "tempat_tidur_rs": 7311,
       "harapan_hidup": 35,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 35,
-      "stadion": 20,
-      "stadion_internasional": 1,
-      "skor_olimpiade": 24,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 11,
@@ -227,6 +204,12 @@ export const komoro: CountryData = {
       "indeks_korupsi": 71,
       "indeks_keamanan": 64
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 35,
+      "sirkuit_balap": 35,
+      "stadion": 20,
+      "stadion_internasional": 1
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const komoro: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 24,
@@ -348,3 +330,6 @@ export const komoro: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

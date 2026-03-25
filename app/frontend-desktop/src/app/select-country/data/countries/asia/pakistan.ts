@@ -39,9 +39,7 @@ export const pakistan: CountryData = {
     "bandara": 36,
     "terminal_bus": 38,
     "helipad": 26,
-    "cakupan_internet": 79,
-    "indeks_teknologi": 50,
-    "akses_air": 74
+    "cakupan_internet": 79
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const pakistan: CountryData = {
     "aluminium": 33,
     "tembaga": 29,
     "logam_tanah_jarang": 38,
-    "bijih_besi": 8,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 8
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const pakistan: CountryData = {
     "farmasi": 35,
     "pupuk": 5,
     "pengolahan_daging": 32,
-    "mie_instan": 25,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 25
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const pakistan: CountryData = {
     "sayur_umbi": 20.5,
     "kedelai": 37,
     "kelapa_sawit": 10,
-    "kopi_teh_kakao": 22.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 22.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const pakistan: CountryData = {
     "pangkalan_laut": 21,
     "program_luar_angkasa": 2,
     "pertahanan_siber": 18,
-    "anggaran_pertahanan": 944,
-    "personel": 10292,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 944
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const pakistan: CountryData = {
 
   "sektor_armada": {
     "barak": 10,
-    "infanteri": 30,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 133,
         "apc": 109,
@@ -142,23 +132,20 @@ export const pakistan: CountryData = {
         "jet_tempur_siluman": 137,
         "helikopter_serang": 200,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 33,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 0,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 12,
           "sepeda_motor": 27,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 22,
           "helikopter_polisi": 10,
@@ -169,10 +156,12 @@ export const pakistan: CountryData = {
           "kamera_pengawas": 27,
           "pusat_forensik": 1
         },
-        "waktu_respon": 33,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 33,
     "intelijen": 10,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 4,
       "misi_mata_mata": 8,
       "misi_sabotase": 4,
@@ -185,34 +174,24 @@ export const pakistan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 10,
-      "sd": 21,
-      "smp": 40,
-      "sma": 3,
+      "prasekolah": 10,
+      "dasar": 21,
+      "menengah": 40,
+      "lanjutan": 3,
       "universitas": 22,
       "lembaga_pendidikan": 17,
       "laboratorium": 11,
       "observatorium": 8,
       "pusat_penelitian": 16,
       "pusat_pengembangan": 31,
-      "literasi": 71,
-      "indeks_penelitian": 0
+      "literasi": 71
     },
     "kesehatan": {
       "rumah_sakit_besar": 35,
       "rumah_sakit_kecil": 7,
       "pusat_diagnostik": 5,
-      "tempat_tidur_rs": 5308,
       "harapan_hidup": 8,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 13,
-      "stadion": 8,
-      "stadion_internasional": 23,
-      "skor_olimpiade": 9,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 9,
@@ -224,6 +203,12 @@ export const pakistan: CountryData = {
       "indeks_korupsi": 61,
       "indeks_keamanan": 59
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 3,
+      "sirkuit_balap": 13,
+      "stadion": 8,
+      "stadion_internasional": 23
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const pakistan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 30,
@@ -345,3 +329,6 @@ export const pakistan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

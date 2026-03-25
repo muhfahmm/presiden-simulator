@@ -39,9 +39,7 @@ export const uzbekistan: CountryData = {
     "bandara": 28,
     "terminal_bus": 34,
     "helipad": 29,
-    "cakupan_internet": 55,
-    "indeks_teknologi": 59,
-    "akses_air": 74
+    "cakupan_internet": 55
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const uzbekistan: CountryData = {
     "aluminium": 7,
     "tembaga": 12,
     "logam_tanah_jarang": 29,
-    "bijih_besi": 27,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const uzbekistan: CountryData = {
     "farmasi": 10,
     "pupuk": 25,
     "pengolahan_daging": 12,
-    "mie_instan": 40,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 40
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const uzbekistan: CountryData = {
     "sayur_umbi": 7.5,
     "kedelai": 25,
     "kelapa_sawit": 16,
-    "kopi_teh_kakao": 19.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 19.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const uzbekistan: CountryData = {
     "pangkalan_laut": 33,
     "program_luar_angkasa": 23,
     "pertahanan_siber": 12,
-    "anggaran_pertahanan": 250,
-    "personel": 20621,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 250
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const uzbekistan: CountryData = {
 
   "sektor_armada": {
     "barak": 34,
-    "infanteri": 27,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 147,
         "apc": 106,
@@ -142,23 +132,20 @@ export const uzbekistan: CountryData = {
         "jet_tempur_siluman": 45,
         "helikopter_serang": 48,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 2,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 6,
           "sepeda_motor": 25,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 21,
           "helikopter_polisi": 26,
@@ -169,10 +156,12 @@ export const uzbekistan: CountryData = {
           "kamera_pengawas": 9,
           "pusat_forensik": 1
         },
-        "waktu_respon": 18,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 18,
     "intelijen": 22,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 11,
       "misi_mata_mata": 15,
       "misi_sabotase": 23,
@@ -185,34 +174,24 @@ export const uzbekistan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 31,
-      "sd": 18,
-      "smp": 36,
-      "sma": 40,
+      "prasekolah": 31,
+      "dasar": 18,
+      "menengah": 36,
+      "lanjutan": 40,
       "universitas": 25,
       "lembaga_pendidikan": 1,
       "laboratorium": 20,
       "observatorium": 5,
       "pusat_penelitian": 26,
       "pusat_pengembangan": 40,
-      "literasi": 60,
-      "indeks_penelitian": 0
+      "literasi": 60
     },
     "kesehatan": {
       "rumah_sakit_besar": 6,
       "rumah_sakit_kecil": 1,
       "pusat_diagnostik": 34,
-      "tempat_tidur_rs": 6333,
       "harapan_hidup": 36,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 37,
-      "sirkuit_balap": 3,
-      "stadion": 6,
-      "stadion_internasional": 26,
-      "skor_olimpiade": 29,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 3,
@@ -224,6 +203,12 @@ export const uzbekistan: CountryData = {
       "indeks_korupsi": 58,
       "indeks_keamanan": 63
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 37,
+      "sirkuit_balap": 3,
+      "stadion": 6,
+      "stadion_internasional": 26
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const uzbekistan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 18,
@@ -345,3 +329,6 @@ export const uzbekistan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

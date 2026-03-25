@@ -39,9 +39,7 @@ export const brunei: CountryData = {
     "bandara": 9,
     "terminal_bus": 34,
     "helipad": 21,
-    "cakupan_internet": 87,
-    "indeks_teknologi": 55,
-    "akses_air": 74
+    "cakupan_internet": 87
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const brunei: CountryData = {
     "aluminium": 6,
     "tembaga": 35,
     "logam_tanah_jarang": 36,
-    "bijih_besi": 6,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 6
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const brunei: CountryData = {
     "farmasi": 13,
     "pupuk": 5,
     "pengolahan_daging": 9,
-    "mie_instan": 12,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 12
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const brunei: CountryData = {
     "sayur_umbi": 17.0,
     "kedelai": 23,
     "kelapa_sawit": 36,
-    "kopi_teh_kakao": 20.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 20.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const brunei: CountryData = {
     "pangkalan_laut": 27,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 34,
-    "anggaran_pertahanan": 41,
-    "personel": 16977,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 41
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const brunei: CountryData = {
 
   "sektor_armada": {
     "barak": 7,
-    "infanteri": 21,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 30,
         "apc": 8,
@@ -142,23 +132,20 @@ export const brunei: CountryData = {
         "jet_tempur_siluman": 26,
         "helikopter_serang": 24,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 28,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 35,
-      "jaringan_radar": 30,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 34,
           "sepeda_motor": 11,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 26,
           "helikopter_polisi": 14,
@@ -169,10 +156,12 @@ export const brunei: CountryData = {
           "kamera_pengawas": 21,
           "pusat_forensik": 1
         },
-        "waktu_respon": 11,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 11,
     "intelijen": 38,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 16,
       "misi_mata_mata": 7,
       "misi_sabotase": 13,
@@ -185,34 +174,24 @@ export const brunei: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 3,
-      "sd": 14,
-      "smp": 14,
-      "sma": 2,
+      "prasekolah": 3,
+      "dasar": 14,
+      "menengah": 14,
+      "lanjutan": 2,
       "universitas": 12,
       "lembaga_pendidikan": 2,
       "laboratorium": 5,
       "observatorium": 13,
       "pusat_penelitian": 18,
       "pusat_pengembangan": 13,
-      "literasi": 61,
-      "indeks_penelitian": 0
+      "literasi": 61
     },
     "kesehatan": {
       "rumah_sakit_besar": 32,
       "rumah_sakit_kecil": 1,
       "pusat_diagnostik": 30,
-      "tempat_tidur_rs": 6182,
       "harapan_hidup": 9,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 23,
-      "sirkuit_balap": 33,
-      "stadion": 23,
-      "stadion_internasional": 9,
-      "skor_olimpiade": 5,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 29,
@@ -224,6 +203,12 @@ export const brunei: CountryData = {
       "indeks_korupsi": 76,
       "indeks_keamanan": 64
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 23,
+      "sirkuit_balap": 33,
+      "stadion": 23,
+      "stadion_internasional": 9
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const brunei: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 33,
@@ -345,3 +329,6 @@ export const brunei: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

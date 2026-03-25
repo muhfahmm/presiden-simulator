@@ -39,9 +39,7 @@ export const moldova: CountryData = {
     "bandara": 20,
     "terminal_bus": 13,
     "helipad": 29,
-    "cakupan_internet": 90,
-    "indeks_teknologi": 54,
-    "akses_air": 74
+    "cakupan_internet": 90
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const moldova: CountryData = {
     "aluminium": 2,
     "tembaga": 6,
     "logam_tanah_jarang": 5,
-    "bijih_besi": 33,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 33
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const moldova: CountryData = {
     "farmasi": 40,
     "pupuk": 37,
     "pengolahan_daging": 40,
-    "mie_instan": 11,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 11
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const moldova: CountryData = {
     "sayur_umbi": 20.0,
     "kedelai": 16,
     "kelapa_sawit": 20,
-    "kopi_teh_kakao": 12.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 12.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const moldova: CountryData = {
     "pangkalan_laut": 31,
     "program_luar_angkasa": 7,
     "pertahanan_siber": 6,
-    "anggaran_pertahanan": 44,
-    "personel": 12846,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 44
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const moldova: CountryData = {
 
   "sektor_armada": {
     "barak": 36,
-    "infanteri": 34,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 136,
         "apc": 49,
@@ -142,23 +132,20 @@ export const moldova: CountryData = {
         "jet_tempur_siluman": 66,
         "helikopter_serang": 93,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 26,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 29,
           "sepeda_motor": 3,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 21,
           "helikopter_polisi": 26,
@@ -169,10 +156,12 @@ export const moldova: CountryData = {
           "kamera_pengawas": 39,
           "pusat_forensik": 1
         },
-        "waktu_respon": 40,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 40,
     "intelijen": 12,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 26,
       "misi_mata_mata": 21,
       "misi_sabotase": 35,
@@ -185,34 +174,24 @@ export const moldova: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 13,
-      "sd": 32,
-      "smp": 34,
-      "sma": 25,
+      "prasekolah": 13,
+      "dasar": 32,
+      "menengah": 34,
+      "lanjutan": 25,
       "universitas": 40,
       "lembaga_pendidikan": 31,
       "laboratorium": 9,
       "observatorium": 20,
       "pusat_penelitian": 3,
       "pusat_pengembangan": 6,
-      "literasi": 59,
-      "indeks_penelitian": 0
+      "literasi": 59
     },
     "kesehatan": {
       "rumah_sakit_besar": 20,
       "rumah_sakit_kecil": 14,
       "pusat_diagnostik": 38,
-      "tempat_tidur_rs": 3715,
       "harapan_hidup": 2,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 29,
-      "sirkuit_balap": 7,
-      "stadion": 28,
-      "stadion_internasional": 38,
-      "skor_olimpiade": 22,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 39,
@@ -224,6 +203,12 @@ export const moldova: CountryData = {
       "indeks_korupsi": 57,
       "indeks_keamanan": 65
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 29,
+      "sirkuit_balap": 7,
+      "stadion": 28,
+      "stadion_internasional": 38
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const moldova: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 15,
@@ -345,3 +329,6 @@ export const moldova: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const belarus: CountryData = {
     "bandara": 22,
     "terminal_bus": 10,
     "helipad": 31,
-    "cakupan_internet": 92,
-    "indeks_teknologi": 72,
-    "akses_air": 74
+    "cakupan_internet": 92
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const belarus: CountryData = {
     "aluminium": 33,
     "tembaga": 28,
     "logam_tanah_jarang": 28,
-    "bijih_besi": 36,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 36
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const belarus: CountryData = {
     "farmasi": 35,
     "pupuk": 36,
     "pengolahan_daging": 20,
-    "mie_instan": 20,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 20
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const belarus: CountryData = {
     "sayur_umbi": 8.5,
     "kedelai": 2,
     "kelapa_sawit": 33,
-    "kopi_teh_kakao": 17.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 17.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const belarus: CountryData = {
     "pangkalan_laut": 36,
     "program_luar_angkasa": 13,
     "pertahanan_siber": 10,
-    "anggaran_pertahanan": 194,
-    "personel": 5950,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 194
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const belarus: CountryData = {
 
   "sektor_armada": {
     "barak": 17,
-    "infanteri": 40,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 8,
         "apc": 35,
@@ -142,23 +132,20 @@ export const belarus: CountryData = {
         "jet_tempur_siluman": 23,
         "helikopter_serang": 12,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 7,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 8,
-      "jaringan_radar": 25,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 34,
           "sepeda_motor": 6,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 26,
           "helikopter_polisi": 21,
@@ -169,10 +156,12 @@ export const belarus: CountryData = {
           "kamera_pengawas": 10,
           "pusat_forensik": 1
         },
-        "waktu_respon": 1,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 1,
     "intelijen": 24,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 30,
       "misi_mata_mata": 31,
       "misi_sabotase": 15,
@@ -185,34 +174,24 @@ export const belarus: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 36,
-      "sd": 16,
-      "smp": 11,
-      "sma": 6,
+      "prasekolah": 36,
+      "dasar": 16,
+      "menengah": 11,
+      "lanjutan": 6,
       "universitas": 16,
       "lembaga_pendidikan": 13,
       "laboratorium": 23,
       "observatorium": 33,
       "pusat_penelitian": 12,
       "pusat_pengembangan": 13,
-      "literasi": 90,
-      "indeks_penelitian": 0
+      "literasi": 90
     },
     "kesehatan": {
       "rumah_sakit_besar": 29,
       "rumah_sakit_kecil": 10,
       "pusat_diagnostik": 33,
-      "tempat_tidur_rs": 4629,
       "harapan_hidup": 11,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 16,
-      "sirkuit_balap": 37,
-      "stadion": 30,
-      "stadion_internasional": 11,
-      "skor_olimpiade": 36,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 14,
@@ -224,6 +203,12 @@ export const belarus: CountryData = {
       "indeks_korupsi": 62,
       "indeks_keamanan": 81
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 16,
+      "sirkuit_balap": 37,
+      "stadion": 30,
+      "stadion_internasional": 11
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const belarus: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 1,
@@ -345,3 +329,6 @@ export const belarus: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

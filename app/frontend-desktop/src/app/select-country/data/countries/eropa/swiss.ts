@@ -39,9 +39,7 @@ export const swiss: CountryData = {
     "bandara": 13,
     "terminal_bus": 14,
     "helipad": 24,
-    "cakupan_internet": 71,
-    "indeks_teknologi": 59,
-    "akses_air": 74
+    "cakupan_internet": 71
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const swiss: CountryData = {
     "aluminium": 40,
     "tembaga": 19,
     "logam_tanah_jarang": 29,
-    "bijih_besi": 35,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 35
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const swiss: CountryData = {
     "farmasi": 6,
     "pupuk": 12,
     "pengolahan_daging": 12,
-    "mie_instan": 18,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 18
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const swiss: CountryData = {
     "sayur_umbi": 20.5,
     "kedelai": 6,
     "kelapa_sawit": 26,
-    "kopi_teh_kakao": 16.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 16.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const swiss: CountryData = {
     "pangkalan_laut": 30,
     "program_luar_angkasa": 4,
     "pertahanan_siber": 29,
-    "anggaran_pertahanan": 2528,
-    "personel": 28391,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 2528
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const swiss: CountryData = {
 
   "sektor_armada": {
     "barak": 21,
-    "infanteri": 37,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 120,
         "apc": 163,
@@ -142,23 +132,20 @@ export const swiss: CountryData = {
         "jet_tempur_siluman": 50,
         "helikopter_serang": 123,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 19,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 1,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 20,
           "sepeda_motor": 20,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 38,
           "helikopter_polisi": 22,
@@ -169,10 +156,12 @@ export const swiss: CountryData = {
           "kamera_pengawas": 28,
           "pusat_forensik": 1
         },
-        "waktu_respon": 2,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 2,
     "intelijen": 1,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 9,
       "misi_mata_mata": 11,
       "misi_sabotase": 16,
@@ -185,34 +174,24 @@ export const swiss: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 30,
-      "sd": 1,
-      "smp": 26,
-      "sma": 36,
+      "prasekolah": 30,
+      "dasar": 1,
+      "menengah": 26,
+      "lanjutan": 36,
       "universitas": 33,
       "lembaga_pendidikan": 12,
       "laboratorium": 16,
       "observatorium": 10,
       "pusat_penelitian": 4,
       "pusat_pengembangan": 13,
-      "literasi": 64,
-      "indeks_penelitian": 0
+      "literasi": 64
     },
     "kesehatan": {
       "rumah_sakit_besar": 16,
       "rumah_sakit_kecil": 11,
       "pusat_diagnostik": 4,
-      "tempat_tidur_rs": 6811,
       "harapan_hidup": 7,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 34,
-      "stadion": 24,
-      "stadion_internasional": 13,
-      "skor_olimpiade": 30,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 24,
@@ -224,6 +203,12 @@ export const swiss: CountryData = {
       "indeks_korupsi": 84,
       "indeks_keamanan": 57
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 3,
+      "sirkuit_balap": 34,
+      "stadion": 24,
+      "stadion_internasional": 13
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const swiss: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 25,
@@ -345,3 +329,6 @@ export const swiss: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

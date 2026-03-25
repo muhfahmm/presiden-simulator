@@ -39,9 +39,7 @@ export const republik_demokratik_kongo: CountryData = {
     "jalur_kereta": 29,
     "kualitas_jalan": 62,
     "pelabuhan_laut": 34,
-    "kereta_bawah_tanah": 21,
-    "indeks_teknologi": 82,
-    "akses_air": 74
+    "kereta_bawah_tanah": 21
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const republik_demokratik_kongo: CountryData = {
     "minyak_bumi": 19,
     "logam_tanah_jarang": 85,
     "garam": 30,
-    "kekuatan": 29.660809349923973,
     "uranium": 14
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const republik_demokratik_kongo: CountryData = {
     "farmasi": 38,
     "semikonduktor": 1,
     "smelter": 13,
-    "kekuatan": 3.076011687404966,
     "gula": 38,
     "kayu": 37
   },
@@ -98,9 +94,8 @@ export const republik_demokratik_kongo: CountryData = {
     "sayur_umbi": 33.0,
     "kedelai": 32,
     "kelapa_sawit": 32,
-    "kopi_teh_kakao": 27.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 27.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const republik_demokratik_kongo: CountryData = {
     "pangkalan_laut": 15,
     "program_luar_angkasa": 32,
     "pertahanan_siber": 5,
-    "anggaran_pertahanan": 172,
-    "personel": 11536,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 172
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const republik_demokratik_kongo: CountryData = {
 
   "sektor_armada": {
     "barak": 24,
-    "infanteri": 32,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 54,
         "apc": 82,
@@ -142,23 +132,19 @@ export const republik_demokratik_kongo: CountryData = {
         "jet_tempur_siluman": 64,
         "helikopter_serang": 188,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 5,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 1,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 11,
           "sepeda_motor": 32,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 36,
@@ -170,11 +156,12 @@ export const republik_demokratik_kongo: CountryData = {
           "kamera_pengawas": 37,
           "pusat_forensik": 1
   },
-        "waktu_respon": 32,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 32,
     "intelijen": 26,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 16,
       "misi_mata_mata": 26,
       "misi_sabotase": 15,
@@ -188,34 +175,24 @@ export const republik_demokratik_kongo: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 35,
-      "sd": 34,
-      "smp": 40,
-      "sma": 8,
+      "prasekolah": 35,
+      "dasar": 34,
+      "menengah": 40,
+      "lanjutan": 8,
       "universitas": 19,
       "lembaga_pendidikan": 38,
       "laboratorium": 12,
       "observatorium": 27,
       "pusat_penelitian": 13,
       "pusat_pengembangan": 40,
-      "literasi": 84,
-      "indeks_penelitian": 0
+      "literasi": 84
   },
     "kesehatan": {
       "rumah_sakit_besar": 16,
       "rumah_sakit_kecil": 40,
       "pusat_diagnostik": 22,
-      "tempat_tidur_rs": 7571,
       "harapan_hidup": 30,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 38,
-      "sirkuit_balap": 26,
-      "stadion": 16,
-      "stadion_internasional": 26,
-      "skor_olimpiade": 6,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 8,
@@ -227,6 +204,12 @@ export const republik_demokratik_kongo: CountryData = {
       "indeks_korupsi": 76,
       "indeks_keamanan": 70
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 38,
+      "sirkuit_balap": 26,
+      "stadion": 16,
+      "stadion_internasional": 26
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const republik_demokratik_kongo: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 25,
@@ -348,3 +330,6 @@ export const republik_demokratik_kongo: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

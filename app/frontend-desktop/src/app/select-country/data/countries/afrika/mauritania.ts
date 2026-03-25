@@ -39,9 +39,7 @@ export const mauritania: CountryData = {
     "jalur_kereta": 24,
     "kualitas_jalan": 71,
     "pelabuhan_laut": 38,
-    "kereta_bawah_tanah": 38,
-    "indeks_teknologi": 57,
-    "akses_air": 74
+    "kereta_bawah_tanah": 38
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const mauritania: CountryData = {
     "minyak_bumi": 17,
     "logam_tanah_jarang": 27,
     "garam": 8,
-    "kekuatan": 29.660809349923973,
     "uranium": 36
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const mauritania: CountryData = {
     "farmasi": 39,
     "semikonduktor": 1,
     "smelter": 22,
-    "kekuatan": 3.076011687404966,
     "gula": 2,
     "kayu": 7
   },
@@ -98,9 +94,8 @@ export const mauritania: CountryData = {
     "sayur_umbi": 15.5,
     "kedelai": 10,
     "kelapa_sawit": 25,
-    "kopi_teh_kakao": 27.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 27.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const mauritania: CountryData = {
     "pangkalan_laut": 26,
     "program_luar_angkasa": 19,
     "pertahanan_siber": 17,
-    "anggaran_pertahanan": 27,
-    "personel": 22541,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const mauritania: CountryData = {
 
   "sektor_armada": {
     "barak": 21,
-    "infanteri": 26,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 60,
         "apc": 180,
@@ -142,23 +132,19 @@ export const mauritania: CountryData = {
         "jet_tempur_siluman": 170,
         "helikopter_serang": 102,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 5,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 5,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 37,
           "sepeda_motor": 36,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 2,
@@ -170,11 +156,12 @@ export const mauritania: CountryData = {
           "kamera_pengawas": 7,
           "pusat_forensik": 1
   },
-        "waktu_respon": 26,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 26,
     "intelijen": 5,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 27,
       "misi_mata_mata": 11,
       "misi_sabotase": 32,
@@ -188,34 +175,24 @@ export const mauritania: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 20,
-      "sd": 38,
-      "smp": 16,
-      "sma": 7,
+      "prasekolah": 20,
+      "dasar": 38,
+      "menengah": 16,
+      "lanjutan": 7,
       "universitas": 7,
       "lembaga_pendidikan": 5,
       "laboratorium": 39,
       "observatorium": 19,
       "pusat_penelitian": 23,
       "pusat_pengembangan": 10,
-      "literasi": 88,
-      "indeks_penelitian": 0
+      "literasi": 88
   },
     "kesehatan": {
       "rumah_sakit_besar": 24,
       "rumah_sakit_kecil": 29,
       "pusat_diagnostik": 2,
-      "tempat_tidur_rs": 998,
       "harapan_hidup": 11,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 10,
-      "stadion": 20,
-      "stadion_internasional": 4,
-      "skor_olimpiade": 35,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 20,
@@ -227,6 +204,12 @@ export const mauritania: CountryData = {
       "indeks_korupsi": 82,
       "indeks_keamanan": 71
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 35,
+      "sirkuit_balap": 10,
+      "stadion": 20,
+      "stadion_internasional": 4
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const mauritania: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 17,
@@ -348,3 +330,6 @@ export const mauritania: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

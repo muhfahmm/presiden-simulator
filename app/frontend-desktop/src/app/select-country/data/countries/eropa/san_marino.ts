@@ -39,9 +39,7 @@ export const san_marino: CountryData = {
     "bandara": 36,
     "terminal_bus": 26,
     "helipad": 20,
-    "cakupan_internet": 74,
-    "indeks_teknologi": 91,
-    "akses_air": 74
+    "cakupan_internet": 74
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const san_marino: CountryData = {
     "aluminium": 39,
     "tembaga": 40,
     "logam_tanah_jarang": 5,
-    "bijih_besi": 9,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 9
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const san_marino: CountryData = {
     "farmasi": 29,
     "pupuk": 25,
     "pengolahan_daging": 35,
-    "mie_instan": 36,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 36
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const san_marino: CountryData = {
     "sayur_umbi": 21.0,
     "kedelai": 15,
     "kelapa_sawit": 21,
-    "kopi_teh_kakao": 17.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 17.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const san_marino: CountryData = {
     "pangkalan_laut": 35,
     "program_luar_angkasa": 22,
     "pertahanan_siber": 39,
-    "anggaran_pertahanan": 27,
-    "personel": 16893,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const san_marino: CountryData = {
 
   "sektor_armada": {
     "barak": 22,
-    "infanteri": 1,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 87,
         "apc": 114,
@@ -142,23 +132,20 @@ export const san_marino: CountryData = {
         "jet_tempur_siluman": 70,
         "helikopter_serang": 185,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 1,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 5,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 28,
           "sepeda_motor": 3,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 40,
           "helikopter_polisi": 3,
@@ -169,10 +156,12 @@ export const san_marino: CountryData = {
           "kamera_pengawas": 7,
           "pusat_forensik": 1
         },
-        "waktu_respon": 28,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 28,
     "intelijen": 8,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 2,
       "misi_mata_mata": 2,
       "misi_sabotase": 4,
@@ -185,34 +174,24 @@ export const san_marino: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 15,
-      "sd": 39,
-      "smp": 25,
-      "sma": 10,
+      "prasekolah": 15,
+      "dasar": 39,
+      "menengah": 25,
+      "lanjutan": 10,
       "universitas": 18,
       "lembaga_pendidikan": 19,
       "laboratorium": 6,
       "observatorium": 18,
       "pusat_penelitian": 30,
       "pusat_pengembangan": 11,
-      "literasi": 50,
-      "indeks_penelitian": 0
+      "literasi": 50
     },
     "kesehatan": {
       "rumah_sakit_besar": 7,
       "rumah_sakit_kecil": 28,
       "pusat_diagnostik": 32,
-      "tempat_tidur_rs": 9839,
       "harapan_hidup": 9,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 27,
-      "sirkuit_balap": 20,
-      "stadion": 19,
-      "stadion_internasional": 32,
-      "skor_olimpiade": 14,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 4,
@@ -224,6 +203,12 @@ export const san_marino: CountryData = {
       "indeks_korupsi": 86,
       "indeks_keamanan": 73
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 27,
+      "sirkuit_balap": 20,
+      "stadion": 19,
+      "stadion_internasional": 32
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const san_marino: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 6,
@@ -345,3 +329,6 @@ export const san_marino: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

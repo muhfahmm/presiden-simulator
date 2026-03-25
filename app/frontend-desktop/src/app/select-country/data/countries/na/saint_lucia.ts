@@ -39,9 +39,7 @@ export const saint_lucia: CountryData = {
     "bandara": 39,
     "terminal_bus": 9,
     "helipad": 9,
-    "cakupan_internet": 91,
-    "indeks_teknologi": 92,
-    "akses_air": 74
+    "cakupan_internet": 91
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const saint_lucia: CountryData = {
     "aluminium": 33,
     "tembaga": 40,
     "logam_tanah_jarang": 2,
-    "bijih_besi": 7,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 7
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const saint_lucia: CountryData = {
     "farmasi": 20,
     "pupuk": 25,
     "pengolahan_daging": 30,
-    "mie_instan": 33,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 33
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const saint_lucia: CountryData = {
     "sayur_umbi": 15.5,
     "kedelai": 32,
     "kelapa_sawit": 31,
-    "kopi_teh_kakao": 27.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 27.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const saint_lucia: CountryData = {
     "pangkalan_laut": 12,
     "program_luar_angkasa": 2,
     "pertahanan_siber": 33,
-    "anggaran_pertahanan": 27,
-    "personel": 29084,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const saint_lucia: CountryData = {
 
   "sektor_armada": {
     "barak": 22,
-    "infanteri": 36,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 15,
         "apc": 98,
@@ -142,23 +132,20 @@ export const saint_lucia: CountryData = {
         "jet_tempur_siluman": 66,
         "helikopter_serang": 185,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 30,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 1,
-      "jaringan_radar": 1,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 21,
           "sepeda_motor": 2,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 19,
           "helikopter_polisi": 30,
@@ -169,10 +156,12 @@ export const saint_lucia: CountryData = {
           "kamera_pengawas": 15,
           "pusat_forensik": 1
         },
-        "waktu_respon": 16,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 16,
     "intelijen": 24,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 1,
       "misi_mata_mata": 11,
       "misi_sabotase": 30,
@@ -185,34 +174,24 @@ export const saint_lucia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 13,
-      "sd": 27,
-      "smp": 26,
-      "sma": 36,
+      "prasekolah": 13,
+      "dasar": 27,
+      "menengah": 26,
+      "lanjutan": 36,
       "universitas": 5,
       "lembaga_pendidikan": 3,
       "laboratorium": 28,
       "observatorium": 11,
       "pusat_penelitian": 3,
       "pusat_pengembangan": 27,
-      "literasi": 66,
-      "indeks_penelitian": 0
+      "literasi": 66
     },
     "kesehatan": {
       "rumah_sakit_besar": 15,
       "rumah_sakit_kecil": 13,
       "pusat_diagnostik": 36,
-      "tempat_tidur_rs": 4975,
       "harapan_hidup": 17,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 19,
-      "sirkuit_balap": 39,
-      "stadion": 20,
-      "stadion_internasional": 3,
-      "skor_olimpiade": 11,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 39,
@@ -224,6 +203,12 @@ export const saint_lucia: CountryData = {
       "indeks_korupsi": 71,
       "indeks_keamanan": 60
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 19,
+      "sirkuit_balap": 39,
+      "stadion": 20,
+      "stadion_internasional": 3
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const saint_lucia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 2,
@@ -345,3 +329,6 @@ export const saint_lucia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

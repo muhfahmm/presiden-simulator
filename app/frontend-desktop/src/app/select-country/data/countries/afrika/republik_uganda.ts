@@ -39,9 +39,7 @@ export const republik_uganda: CountryData = {
     "jalur_kereta": 36,
     "kualitas_jalan": 52,
     "pelabuhan_laut": 8,
-    "kereta_bawah_tanah": 40,
-    "indeks_teknologi": 71,
-    "akses_air": 74
+    "kereta_bawah_tanah": 40
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const republik_uganda: CountryData = {
     "minyak_bumi": 9,
     "logam_tanah_jarang": 3,
     "garam": 36,
-    "kekuatan": 29.660809349923973,
     "uranium": 4
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const republik_uganda: CountryData = {
     "farmasi": 22,
     "semikonduktor": 1,
     "smelter": 8,
-    "kekuatan": 3.076011687404966,
     "gula": 17,
     "kayu": 37
   },
@@ -98,9 +94,8 @@ export const republik_uganda: CountryData = {
     "sayur_umbi": 20.5,
     "kedelai": 12,
     "kelapa_sawit": 38,
-    "kopi_teh_kakao": 23.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 23.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const republik_uganda: CountryData = {
     "pangkalan_laut": 26,
     "program_luar_angkasa": 30,
     "pertahanan_siber": 35,
-    "anggaran_pertahanan": 138,
-    "personel": 21943,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 138
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const republik_uganda: CountryData = {
 
   "sektor_armada": {
     "barak": 37,
-    "infanteri": 30,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 93,
         "apc": 195,
@@ -142,23 +132,19 @@ export const republik_uganda: CountryData = {
         "jet_tempur_siluman": 64,
         "helikopter_serang": 148,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 33,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 5,
-      "jaringan_radar": 5,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 25,
           "sepeda_motor": 18,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 2,
@@ -170,11 +156,12 @@ export const republik_uganda: CountryData = {
           "kamera_pengawas": 16,
           "pusat_forensik": 1
   },
-        "waktu_respon": 7,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 7,
     "intelijen": 22,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 24,
       "misi_sabotase": 25,
@@ -188,34 +175,24 @@ export const republik_uganda: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 20,
-      "sd": 5,
-      "smp": 4,
-      "sma": 7,
+      "prasekolah": 20,
+      "dasar": 5,
+      "menengah": 4,
+      "lanjutan": 7,
       "universitas": 18,
       "lembaga_pendidikan": 2,
       "laboratorium": 20,
       "observatorium": 2,
       "pusat_penelitian": 23,
       "pusat_pengembangan": 25,
-      "literasi": 68,
-      "indeks_penelitian": 0
+      "literasi": 68
   },
     "kesehatan": {
       "rumah_sakit_besar": 24,
       "rumah_sakit_kecil": 11,
       "pusat_diagnostik": 8,
-      "tempat_tidur_rs": 5703,
       "harapan_hidup": 13,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 33,
-      "sirkuit_balap": 3,
-      "stadion": 4,
-      "stadion_internasional": 40,
-      "skor_olimpiade": 10,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 37,
@@ -227,6 +204,12 @@ export const republik_uganda: CountryData = {
       "indeks_korupsi": 78,
       "indeks_keamanan": 51
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 33,
+      "sirkuit_balap": 3,
+      "stadion": 4,
+      "stadion_internasional": 40
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const republik_uganda: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 20,
@@ -348,3 +330,6 @@ export const republik_uganda: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

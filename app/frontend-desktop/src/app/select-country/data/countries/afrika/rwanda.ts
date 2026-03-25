@@ -39,9 +39,7 @@ export const rwanda: CountryData = {
     "jalur_kereta": 17,
     "kualitas_jalan": 56,
     "pelabuhan_laut": 14,
-    "kereta_bawah_tanah": 3,
-    "indeks_teknologi": 84,
-    "akses_air": 74
+    "kereta_bawah_tanah": 3
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const rwanda: CountryData = {
     "minyak_bumi": 35,
     "logam_tanah_jarang": 36,
     "garam": 5,
-    "kekuatan": 29.660809349923973,
     "uranium": 3
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const rwanda: CountryData = {
     "farmasi": 32,
     "semikonduktor": 38,
     "smelter": 17,
-    "kekuatan": 3.076011687404966,
     "gula": 7,
     "kayu": 11
   },
@@ -98,9 +94,8 @@ export const rwanda: CountryData = {
     "sayur_umbi": 28.0,
     "kedelai": 37,
     "kelapa_sawit": 3,
-    "kopi_teh_kakao": 26.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 26.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const rwanda: CountryData = {
     "pangkalan_laut": 29,
     "program_luar_angkasa": 24,
     "pertahanan_siber": 12,
-    "anggaran_pertahanan": 36,
-    "personel": 15116,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 36
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const rwanda: CountryData = {
 
   "sektor_armada": {
     "barak": 25,
-    "infanteri": 17,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 193,
         "apc": 168,
@@ -142,23 +132,19 @@ export const rwanda: CountryData = {
         "jet_tempur_siluman": 52,
         "helikopter_serang": 80,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 11,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 5,
-      "jaringan_radar": 5,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 38,
           "sepeda_motor": 34,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 22,
@@ -170,11 +156,12 @@ export const rwanda: CountryData = {
           "kamera_pengawas": 11,
           "pusat_forensik": 1
   },
-        "waktu_respon": 27,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 27,
     "intelijen": 40,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 34,
       "misi_mata_mata": 29,
       "misi_sabotase": 24,
@@ -188,34 +175,24 @@ export const rwanda: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 9,
-      "sd": 28,
-      "smp": 28,
-      "sma": 30,
+      "prasekolah": 9,
+      "dasar": 28,
+      "menengah": 28,
+      "lanjutan": 30,
       "universitas": 8,
       "lembaga_pendidikan": 2,
       "laboratorium": 35,
       "observatorium": 24,
       "pusat_penelitian": 12,
       "pusat_pengembangan": 9,
-      "literasi": 86,
-      "indeks_penelitian": 0
+      "literasi": 86
   },
     "kesehatan": {
       "rumah_sakit_besar": 37,
       "rumah_sakit_kecil": 7,
       "pusat_diagnostik": 22,
-      "tempat_tidur_rs": 5672,
       "harapan_hidup": 21,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 29,
-      "sirkuit_balap": 39,
-      "stadion": 22,
-      "stadion_internasional": 22,
-      "skor_olimpiade": 37,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 33,
@@ -227,6 +204,12 @@ export const rwanda: CountryData = {
       "indeks_korupsi": 62,
       "indeks_keamanan": 88
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 29,
+      "sirkuit_balap": 39,
+      "stadion": 22,
+      "stadion_internasional": 22
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const rwanda: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 12,
@@ -348,3 +330,6 @@ export const rwanda: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

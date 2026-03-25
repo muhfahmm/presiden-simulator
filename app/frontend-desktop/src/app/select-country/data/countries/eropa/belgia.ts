@@ -39,9 +39,7 @@ export const belgia: CountryData = {
     "bandara": 33,
     "terminal_bus": 40,
     "helipad": 11,
-    "cakupan_internet": 91,
-    "indeks_teknologi": 84,
-    "akses_air": 74
+    "cakupan_internet": 91
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const belgia: CountryData = {
     "aluminium": 9,
     "tembaga": 16,
     "logam_tanah_jarang": 32,
-    "bijih_besi": 27,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const belgia: CountryData = {
     "farmasi": 39,
     "pupuk": 38,
     "pengolahan_daging": 2,
-    "mie_instan": 15,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 15
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const belgia: CountryData = {
     "sayur_umbi": 29.5,
     "kedelai": 14,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 12.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 12.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const belgia: CountryData = {
     "pangkalan_laut": 28,
     "program_luar_angkasa": 31,
     "pertahanan_siber": 6,
-    "anggaran_pertahanan": 1736,
-    "personel": 17011,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1736
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const belgia: CountryData = {
 
   "sektor_armada": {
     "barak": 27,
-    "infanteri": 30,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 8,
         "apc": 4,
@@ -142,23 +132,20 @@ export const belgia: CountryData = {
         "jet_tempur_siluman": 37,
         "helikopter_serang": 7,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 8,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 27,
-      "jaringan_radar": 15,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 13,
           "sepeda_motor": 8,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 7,
           "helikopter_polisi": 27,
@@ -169,10 +156,12 @@ export const belgia: CountryData = {
           "kamera_pengawas": 6,
           "pusat_forensik": 1
         },
-        "waktu_respon": 7,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 7,
     "intelijen": 36,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 34,
       "misi_mata_mata": 27,
       "misi_sabotase": 1,
@@ -185,34 +174,24 @@ export const belgia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 7,
-      "sd": 30,
-      "smp": 12,
-      "sma": 21,
+      "prasekolah": 7,
+      "dasar": 30,
+      "menengah": 12,
+      "lanjutan": 21,
       "universitas": 34,
       "lembaga_pendidikan": 2,
       "laboratorium": 32,
       "observatorium": 17,
       "pusat_penelitian": 6,
       "pusat_pengembangan": 38,
-      "literasi": 82,
-      "indeks_penelitian": 0
+      "literasi": 82
     },
     "kesehatan": {
       "rumah_sakit_besar": 37,
       "rumah_sakit_kecil": 11,
       "pusat_diagnostik": 36,
-      "tempat_tidur_rs": 6128,
       "harapan_hidup": 15,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 36,
-      "stadion": 34,
-      "stadion_internasional": 11,
-      "skor_olimpiade": 8,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 27,
@@ -224,6 +203,12 @@ export const belgia: CountryData = {
       "indeks_korupsi": 77,
       "indeks_keamanan": 76
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 3,
+      "sirkuit_balap": 36,
+      "stadion": 34,
+      "stadion_internasional": 11
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const belgia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 39,
@@ -345,3 +329,6 @@ export const belgia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

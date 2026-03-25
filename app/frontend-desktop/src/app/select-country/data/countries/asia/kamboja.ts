@@ -39,9 +39,7 @@ export const kamboja: CountryData = {
     "bandara": 21,
     "terminal_bus": 14,
     "helipad": 11,
-    "cakupan_internet": 84,
-    "indeks_teknologi": 94,
-    "akses_air": 74
+    "cakupan_internet": 84
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const kamboja: CountryData = {
     "aluminium": 11,
     "tembaga": 13,
     "logam_tanah_jarang": 8,
-    "bijih_besi": 22,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 22
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const kamboja: CountryData = {
     "farmasi": 30,
     "pupuk": 28,
     "pengolahan_daging": 11,
-    "mie_instan": 11,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 11
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const kamboja: CountryData = {
     "sayur_umbi": 4.5,
     "kedelai": 5,
     "kelapa_sawit": 17,
-    "kopi_teh_kakao": 18.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 18.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const kamboja: CountryData = {
     "pangkalan_laut": 1,
     "program_luar_angkasa": 26,
     "pertahanan_siber": 35,
-    "anggaran_pertahanan": 83,
-    "personel": 20038,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 83
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const kamboja: CountryData = {
 
   "sektor_armada": {
     "barak": 32,
-    "infanteri": 13,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 1,
         "apc": 22,
@@ -142,23 +132,20 @@ export const kamboja: CountryData = {
         "jet_tempur_siluman": 9,
         "helikopter_serang": 4,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 1,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 19,
-      "jaringan_radar": 16,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 20,
           "sepeda_motor": 30,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 5,
           "helikopter_polisi": 27,
@@ -169,10 +156,12 @@ export const kamboja: CountryData = {
           "kamera_pengawas": 18,
           "pusat_forensik": 1
         },
-        "waktu_respon": 29,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 29,
     "intelijen": 4,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 1,
       "misi_mata_mata": 24,
       "misi_sabotase": 2,
@@ -185,34 +174,24 @@ export const kamboja: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 22,
-      "sd": 19,
-      "smp": 40,
-      "sma": 25,
+      "prasekolah": 22,
+      "dasar": 19,
+      "menengah": 40,
+      "lanjutan": 25,
       "universitas": 33,
       "lembaga_pendidikan": 20,
       "laboratorium": 26,
       "observatorium": 35,
       "pusat_penelitian": 11,
       "pusat_pengembangan": 9,
-      "literasi": 65,
-      "indeks_penelitian": 0
+      "literasi": 65
     },
     "kesehatan": {
       "rumah_sakit_besar": 23,
       "rumah_sakit_kecil": 34,
       "pusat_diagnostik": 21,
-      "tempat_tidur_rs": 3102,
       "harapan_hidup": 40,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 36,
-      "sirkuit_balap": 5,
-      "stadion": 29,
-      "stadion_internasional": 6,
-      "skor_olimpiade": 37,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 36,
@@ -224,6 +203,12 @@ export const kamboja: CountryData = {
       "indeks_korupsi": 70,
       "indeks_keamanan": 62
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 36,
+      "sirkuit_balap": 5,
+      "stadion": 29,
+      "stadion_internasional": 6
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const kamboja: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 28,
@@ -345,3 +329,6 @@ export const kamboja: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

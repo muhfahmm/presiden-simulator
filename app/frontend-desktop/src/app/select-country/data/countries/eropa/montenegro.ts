@@ -39,9 +39,7 @@ export const montenegro: CountryData = {
     "bandara": 8,
     "terminal_bus": 40,
     "helipad": 7,
-    "cakupan_internet": 74,
-    "indeks_teknologi": 67,
-    "akses_air": 74
+    "cakupan_internet": 74
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const montenegro: CountryData = {
     "aluminium": 31,
     "tembaga": 11,
     "logam_tanah_jarang": 33,
-    "bijih_besi": 34,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 34
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const montenegro: CountryData = {
     "farmasi": 12,
     "pupuk": 31,
     "pengolahan_daging": 17,
-    "mie_instan": 11,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 11
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const montenegro: CountryData = {
     "sayur_umbi": 15.0,
     "kedelai": 29,
     "kelapa_sawit": 20,
-    "kopi_teh_kakao": 20.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 20.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const montenegro: CountryData = {
     "pangkalan_laut": 21,
     "program_luar_angkasa": 38,
     "pertahanan_siber": 12,
-    "anggaran_pertahanan": 19,
-    "personel": 12867,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 19
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const montenegro: CountryData = {
 
   "sektor_armada": {
     "barak": 22,
-    "infanteri": 33,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 16,
         "apc": 22,
@@ -142,23 +132,20 @@ export const montenegro: CountryData = {
         "jet_tempur_siluman": 35,
         "helikopter_serang": 177,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 13,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 35,
           "sepeda_motor": 27,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 39,
           "helikopter_polisi": 37,
@@ -169,10 +156,12 @@ export const montenegro: CountryData = {
           "kamera_pengawas": 20,
           "pusat_forensik": 1
         },
-        "waktu_respon": 20,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 20,
     "intelijen": 13,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 16,
       "misi_mata_mata": 1,
       "misi_sabotase": 7,
@@ -185,34 +174,24 @@ export const montenegro: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 3,
-      "sd": 11,
-      "smp": 7,
-      "sma": 34,
+      "prasekolah": 3,
+      "dasar": 11,
+      "menengah": 7,
+      "lanjutan": 34,
       "universitas": 20,
       "lembaga_pendidikan": 9,
       "laboratorium": 19,
       "observatorium": 38,
       "pusat_penelitian": 29,
       "pusat_pengembangan": 20,
-      "literasi": 83,
-      "indeks_penelitian": 0
+      "literasi": 83
     },
     "kesehatan": {
       "rumah_sakit_besar": 2,
       "rumah_sakit_kecil": 13,
       "pusat_diagnostik": 4,
-      "tempat_tidur_rs": 3768,
       "harapan_hidup": 4,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 23,
-      "sirkuit_balap": 1,
-      "stadion": 7,
-      "stadion_internasional": 7,
-      "skor_olimpiade": 22,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 3,
@@ -224,6 +203,12 @@ export const montenegro: CountryData = {
       "indeks_korupsi": 95,
       "indeks_keamanan": 72
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 23,
+      "sirkuit_balap": 1,
+      "stadion": 7,
+      "stadion_internasional": 7
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const montenegro: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 21,
@@ -345,3 +329,6 @@ export const montenegro: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

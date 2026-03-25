@@ -39,9 +39,7 @@ export const maldives: CountryData = {
     "bandara": 29,
     "terminal_bus": 31,
     "helipad": 18,
-    "cakupan_internet": 73,
-    "indeks_teknologi": 52,
-    "akses_air": 74
+    "cakupan_internet": 73
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const maldives: CountryData = {
     "aluminium": 21,
     "tembaga": 7,
     "logam_tanah_jarang": 2,
-    "bijih_besi": 5,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 5
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const maldives: CountryData = {
     "farmasi": 22,
     "pupuk": 35,
     "pengolahan_daging": 32,
-    "mie_instan": 29,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 29
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const maldives: CountryData = {
     "sayur_umbi": 19.0,
     "kedelai": 17,
     "kelapa_sawit": 7,
-    "kopi_teh_kakao": 20.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const maldives: CountryData = {
     "pangkalan_laut": 18,
     "program_luar_angkasa": 28,
     "pertahanan_siber": 33,
-    "anggaran_pertahanan": 18,
-    "personel": 8232,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 18
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const maldives: CountryData = {
 
   "sektor_armada": {
     "barak": 27,
-    "infanteri": 18,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 34,
         "apc": 20,
@@ -142,23 +132,20 @@ export const maldives: CountryData = {
         "jet_tempur_siluman": 22,
         "helikopter_serang": 36,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 29,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 14,
-      "jaringan_radar": 27,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 21,
           "sepeda_motor": 29,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 28,
           "helikopter_polisi": 28,
@@ -169,10 +156,12 @@ export const maldives: CountryData = {
           "kamera_pengawas": 4,
           "pusat_forensik": 1
         },
-        "waktu_respon": 10,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 10,
     "intelijen": 33,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 6,
       "misi_mata_mata": 7,
       "misi_sabotase": 9,
@@ -185,34 +174,24 @@ export const maldives: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 27,
-      "sd": 10,
-      "smp": 37,
-      "sma": 30,
+      "prasekolah": 27,
+      "dasar": 10,
+      "menengah": 37,
+      "lanjutan": 30,
       "universitas": 32,
       "lembaga_pendidikan": 21,
       "laboratorium": 29,
       "observatorium": 37,
       "pusat_penelitian": 38,
       "pusat_pengembangan": 5,
-      "literasi": 94,
-      "indeks_penelitian": 0
+      "literasi": 94
     },
     "kesehatan": {
       "rumah_sakit_besar": 11,
       "rumah_sakit_kecil": 6,
       "pusat_diagnostik": 20,
-      "tempat_tidur_rs": 4116,
       "harapan_hidup": 40,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 16,
-      "stadion": 12,
-      "stadion_internasional": 7,
-      "skor_olimpiade": 38,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 16,
@@ -224,6 +203,12 @@ export const maldives: CountryData = {
       "indeks_korupsi": 85,
       "indeks_keamanan": 80
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 24,
+      "sirkuit_balap": 16,
+      "stadion": 12,
+      "stadion_internasional": 7
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const maldives: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 36,
@@ -345,3 +329,6 @@ export const maldives: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

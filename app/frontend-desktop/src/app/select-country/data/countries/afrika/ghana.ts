@@ -39,9 +39,7 @@ export const ghana: CountryData = {
     "jalur_kereta": 16,
     "kualitas_jalan": 58,
     "pelabuhan_laut": 26,
-    "kereta_bawah_tanah": 14,
-    "indeks_teknologi": 60,
-    "akses_air": 74
+    "kereta_bawah_tanah": 14
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const ghana: CountryData = {
     "minyak_bumi": 40,
     "logam_tanah_jarang": 8,
     "garam": 8,
-    "kekuatan": 29.660809349923973,
     "uranium": 21
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const ghana: CountryData = {
     "farmasi": 6,
     "semikonduktor": 8,
     "smelter": 38,
-    "kekuatan": 3.076011687404966,
     "gula": 13,
     "kayu": 40
   },
@@ -98,9 +94,8 @@ export const ghana: CountryData = {
     "sayur_umbi": 28.0,
     "kedelai": 11,
     "kelapa_sawit": 22,
-    "kopi_teh_kakao": 52.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 52.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const ghana: CountryData = {
     "pangkalan_laut": 19,
     "program_luar_angkasa": 33,
     "pertahanan_siber": 18,
-    "anggaran_pertahanan": 211,
-    "personel": 15287,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 211
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const ghana: CountryData = {
 
   "sektor_armada": {
     "barak": 27,
-    "infanteri": 9,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 8,
         "apc": 7,
@@ -142,23 +132,19 @@ export const ghana: CountryData = {
         "jet_tempur_siluman": 31,
         "helikopter_serang": 24,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 30,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 36,
-      "jaringan_radar": 25,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 8,
           "sepeda_motor": 9,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 7,
@@ -170,11 +156,12 @@ export const ghana: CountryData = {
           "kamera_pengawas": 39,
           "pusat_forensik": 1
   },
-        "waktu_respon": 7,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 7,
     "intelijen": 3,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 24,
       "misi_mata_mata": 1,
       "misi_sabotase": 28,
@@ -188,34 +175,24 @@ export const ghana: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 29,
-      "sd": 16,
-      "smp": 24,
-      "sma": 3,
+      "prasekolah": 29,
+      "dasar": 16,
+      "menengah": 24,
+      "lanjutan": 3,
       "universitas": 37,
       "lembaga_pendidikan": 39,
       "laboratorium": 6,
       "observatorium": 18,
       "pusat_penelitian": 23,
       "pusat_pengembangan": 18,
-      "literasi": 56,
-      "indeks_penelitian": 0
+      "literasi": 56
   },
     "kesehatan": {
       "rumah_sakit_besar": 23,
       "rumah_sakit_kecil": 9,
       "pusat_diagnostik": 29,
-      "tempat_tidur_rs": 5430,
       "harapan_hidup": 18,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 19,
-      "sirkuit_balap": 9,
-      "stadion": 13,
-      "stadion_internasional": 24,
-      "skor_olimpiade": 6,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 33,
@@ -227,6 +204,12 @@ export const ghana: CountryData = {
       "indeks_korupsi": 65,
       "indeks_keamanan": 60
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 19,
+      "sirkuit_balap": 9,
+      "stadion": 13,
+      "stadion_internasional": 24
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const ghana: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 17,
@@ -348,3 +330,6 @@ export const ghana: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

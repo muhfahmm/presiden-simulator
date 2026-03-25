@@ -1,6 +1,5 @@
 export interface SektorGeopolitik {
   sekutu: string[];
-  musuh: string[];
   sikap: "Globalis" | "Isolasionis" | "Netral";
   pengaruh_internasional: {
     kekuatan_lunak: number;

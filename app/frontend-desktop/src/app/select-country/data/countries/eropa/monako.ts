@@ -39,9 +39,7 @@ export const monako: CountryData = {
     "bandara": 13,
     "terminal_bus": 33,
     "helipad": 31,
-    "cakupan_internet": 57,
-    "indeks_teknologi": 82,
-    "akses_air": 74
+    "cakupan_internet": 57
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const monako: CountryData = {
     "aluminium": 9,
     "tembaga": 18,
     "logam_tanah_jarang": 29,
-    "bijih_besi": 24,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 24
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const monako: CountryData = {
     "farmasi": 36,
     "pupuk": 37,
     "pengolahan_daging": 32,
-    "mie_instan": 32,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 32
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const monako: CountryData = {
     "sayur_umbi": 30.5,
     "kedelai": 37,
     "kelapa_sawit": 12,
-    "kopi_teh_kakao": 9.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 9.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const monako: CountryData = {
     "pangkalan_laut": 15,
     "program_luar_angkasa": 24,
     "pertahanan_siber": 28,
-    "anggaran_pertahanan": 27,
-    "personel": 5709,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const monako: CountryData = {
 
   "sektor_armada": {
     "barak": 13,
-    "infanteri": 9,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 183,
         "apc": 61,
@@ -142,23 +132,20 @@ export const monako: CountryData = {
         "jet_tempur_siluman": 32,
         "helikopter_serang": 183,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 29,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 32,
           "sepeda_motor": 29,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 8,
           "helikopter_polisi": 20,
@@ -169,10 +156,12 @@ export const monako: CountryData = {
           "kamera_pengawas": 24,
           "pusat_forensik": 1
         },
-        "waktu_respon": 2,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 2,
     "intelijen": 28,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 8,
       "misi_mata_mata": 23,
       "misi_sabotase": 38,
@@ -185,34 +174,24 @@ export const monako: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 4,
-      "sd": 22,
-      "smp": 32,
-      "sma": 16,
+      "prasekolah": 4,
+      "dasar": 22,
+      "menengah": 32,
+      "lanjutan": 16,
       "universitas": 1,
       "lembaga_pendidikan": 30,
       "laboratorium": 18,
       "observatorium": 9,
       "pusat_penelitian": 23,
       "pusat_pengembangan": 37,
-      "literasi": 68,
-      "indeks_penelitian": 0
+      "literasi": 68
     },
     "kesehatan": {
       "rumah_sakit_besar": 33,
       "rumah_sakit_kecil": 1,
       "pusat_diagnostik": 34,
-      "tempat_tidur_rs": 7403,
       "harapan_hidup": 3,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 10,
-      "sirkuit_balap": 19,
-      "stadion": 3,
-      "stadion_internasional": 25,
-      "skor_olimpiade": 25,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 33,
@@ -224,6 +203,12 @@ export const monako: CountryData = {
       "indeks_korupsi": 67,
       "indeks_keamanan": 81
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 10,
+      "sirkuit_balap": 19,
+      "stadion": 3,
+      "stadion_internasional": 25
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const monako: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 29,
@@ -345,3 +329,6 @@ export const monako: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

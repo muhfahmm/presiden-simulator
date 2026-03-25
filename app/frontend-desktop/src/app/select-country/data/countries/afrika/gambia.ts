@@ -39,9 +39,7 @@ export const gambia: CountryData = {
     "jalur_kereta": 24,
     "kualitas_jalan": 63,
     "pelabuhan_laut": 13,
-    "kereta_bawah_tanah": 11,
-    "indeks_teknologi": 94,
-    "akses_air": 74
+    "kereta_bawah_tanah": 11
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const gambia: CountryData = {
     "minyak_bumi": 40,
     "logam_tanah_jarang": 18,
     "garam": 37,
-    "kekuatan": 29.660809349923973,
     "uranium": 32
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const gambia: CountryData = {
     "farmasi": 1,
     "semikonduktor": 24,
     "smelter": 5,
-    "kekuatan": 3.076011687404966,
     "gula": 10,
     "kayu": 19
   },
@@ -98,9 +94,8 @@ export const gambia: CountryData = {
     "sayur_umbi": 17.0,
     "kedelai": 18,
     "kelapa_sawit": 28,
-    "kopi_teh_kakao": 25.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 25.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const gambia: CountryData = {
     "pangkalan_laut": 2,
     "program_luar_angkasa": 7,
     "pertahanan_siber": 18,
-    "anggaran_pertahanan": 6,
-    "personel": 8568,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 6
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const gambia: CountryData = {
 
   "sektor_armada": {
     "barak": 39,
-    "infanteri": 24,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 31,
         "apc": 16,
@@ -142,23 +132,19 @@ export const gambia: CountryData = {
         "jet_tempur_siluman": 9,
         "helikopter_serang": 22,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 22,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 10,
-      "jaringan_radar": 16,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 1,
           "sepeda_motor": 32,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 15,
@@ -170,11 +156,12 @@ export const gambia: CountryData = {
           "kamera_pengawas": 34,
           "pusat_forensik": 1
   },
-        "waktu_respon": 2,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 2,
     "intelijen": 12,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 17,
       "misi_mata_mata": 26,
       "misi_sabotase": 22,
@@ -188,34 +175,24 @@ export const gambia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 17,
-      "sd": 17,
-      "smp": 11,
-      "sma": 35,
+      "prasekolah": 17,
+      "dasar": 17,
+      "menengah": 11,
+      "lanjutan": 35,
       "universitas": 10,
       "lembaga_pendidikan": 2,
       "laboratorium": 22,
       "observatorium": 17,
       "pusat_penelitian": 23,
       "pusat_pengembangan": 13,
-      "literasi": 51,
-      "indeks_penelitian": 0
+      "literasi": 51
   },
     "kesehatan": {
       "rumah_sakit_besar": 39,
       "rumah_sakit_kecil": 8,
       "pusat_diagnostik": 31,
-      "tempat_tidur_rs": 7473,
       "harapan_hidup": 16,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 9,
-      "sirkuit_balap": 11,
-      "stadion": 12,
-      "stadion_internasional": 36,
-      "skor_olimpiade": 31,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 15,
@@ -227,6 +204,12 @@ export const gambia: CountryData = {
       "indeks_korupsi": 95,
       "indeks_keamanan": 64
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 9,
+      "sirkuit_balap": 11,
+      "stadion": 12,
+      "stadion_internasional": 36
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const gambia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 40,
@@ -348,3 +330,6 @@ export const gambia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

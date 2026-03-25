@@ -39,9 +39,7 @@ export const lithuania: CountryData = {
     "bandara": 23,
     "terminal_bus": 20,
     "helipad": 27,
-    "cakupan_internet": 59,
-    "indeks_teknologi": 52,
-    "akses_air": 74
+    "cakupan_internet": 59
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const lithuania: CountryData = {
     "aluminium": 6,
     "tembaga": 39,
     "logam_tanah_jarang": 8,
-    "bijih_besi": 4,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const lithuania: CountryData = {
     "farmasi": 36,
     "pupuk": 36,
     "pengolahan_daging": 4,
-    "mie_instan": 39,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 39
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const lithuania: CountryData = {
     "sayur_umbi": 22.5,
     "kedelai": 2,
     "kelapa_sawit": 5,
-    "kopi_teh_kakao": 9.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 9.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const lithuania: CountryData = {
     "pangkalan_laut": 5,
     "program_luar_angkasa": 4,
     "pertahanan_siber": 15,
-    "anggaran_pertahanan": 211,
-    "personel": 10796,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 211
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const lithuania: CountryData = {
 
   "sektor_armada": {
     "barak": 5,
-    "infanteri": 21,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 40,
         "apc": 19,
@@ -142,23 +132,20 @@ export const lithuania: CountryData = {
         "jet_tempur_siluman": 21,
         "helikopter_serang": 3,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 32,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 8,
-      "jaringan_radar": 30,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 33,
           "sepeda_motor": 21,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 19,
           "helikopter_polisi": 5,
@@ -169,10 +156,12 @@ export const lithuania: CountryData = {
           "kamera_pengawas": 13,
           "pusat_forensik": 1
         },
-        "waktu_respon": 40,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 40,
     "intelijen": 22,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 13,
       "misi_mata_mata": 36,
       "misi_sabotase": 28,
@@ -185,34 +174,24 @@ export const lithuania: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 4,
-      "sd": 11,
-      "smp": 31,
-      "sma": 7,
+      "prasekolah": 4,
+      "dasar": 11,
+      "menengah": 31,
+      "lanjutan": 7,
       "universitas": 21,
       "lembaga_pendidikan": 6,
       "laboratorium": 2,
       "observatorium": 20,
       "pusat_penelitian": 22,
       "pusat_pengembangan": 10,
-      "literasi": 93,
-      "indeks_penelitian": 0
+      "literasi": 93
     },
     "kesehatan": {
       "rumah_sakit_besar": 14,
       "rumah_sakit_kecil": 6,
       "pusat_diagnostik": 40,
-      "tempat_tidur_rs": 9308,
       "harapan_hidup": 23,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 36,
-      "sirkuit_balap": 40,
-      "stadion": 14,
-      "stadion_internasional": 15,
-      "skor_olimpiade": 38,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 31,
@@ -224,6 +203,12 @@ export const lithuania: CountryData = {
       "indeks_korupsi": 53,
       "indeks_keamanan": 73
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 36,
+      "sirkuit_balap": 40,
+      "stadion": 14,
+      "stadion_internasional": 15
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const lithuania: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 31,
@@ -345,3 +329,6 @@ export const lithuania: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

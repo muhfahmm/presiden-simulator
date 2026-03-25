@@ -39,9 +39,7 @@ export const republik_zambia: CountryData = {
     "jalur_kereta": 24,
     "kualitas_jalan": 63,
     "pelabuhan_laut": 7,
-    "kereta_bawah_tanah": 37,
-    "indeks_teknologi": 71,
-    "akses_air": 74
+    "kereta_bawah_tanah": 37
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const republik_zambia: CountryData = {
     "minyak_bumi": 12,
     "logam_tanah_jarang": 14,
     "garam": 24,
-    "kekuatan": 29.660809349923973,
     "uranium": 16
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const republik_zambia: CountryData = {
     "farmasi": 25,
     "semikonduktor": 28,
     "smelter": 35,
-    "kekuatan": 3.076011687404966,
     "gula": 21,
     "kayu": 39
   },
@@ -98,9 +94,8 @@ export const republik_zambia: CountryData = {
     "sayur_umbi": 10.5,
     "kedelai": 34,
     "kelapa_sawit": 2,
-    "kopi_teh_kakao": 24.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 24.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const republik_zambia: CountryData = {
     "pangkalan_laut": 31,
     "program_luar_angkasa": 40,
     "pertahanan_siber": 10,
-    "anggaran_pertahanan": 77,
-    "personel": 13255,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 77
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const republik_zambia: CountryData = {
 
   "sektor_armada": {
     "barak": 17,
-    "infanteri": 37,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 189,
         "apc": 10,
@@ -142,23 +132,19 @@ export const republik_zambia: CountryData = {
         "jet_tempur_siluman": 60,
         "helikopter_serang": 40,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 1,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 2,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 35,
           "sepeda_motor": 21,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 36,
@@ -170,11 +156,12 @@ export const republik_zambia: CountryData = {
           "kamera_pengawas": 18,
           "pusat_forensik": 1
   },
-        "waktu_respon": 16,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 16,
     "intelijen": 3,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 34,
       "misi_sabotase": 6,
@@ -188,34 +175,24 @@ export const republik_zambia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 23,
-      "sd": 18,
-      "smp": 17,
-      "sma": 3,
+      "prasekolah": 23,
+      "dasar": 18,
+      "menengah": 17,
+      "lanjutan": 3,
       "universitas": 23,
       "lembaga_pendidikan": 1,
       "laboratorium": 18,
       "observatorium": 24,
       "pusat_penelitian": 38,
       "pusat_pengembangan": 36,
-      "literasi": 69,
-      "indeks_penelitian": 0
+      "literasi": 69
   },
     "kesehatan": {
       "rumah_sakit_besar": 36,
       "rumah_sakit_kecil": 9,
       "pusat_diagnostik": 18,
-      "tempat_tidur_rs": 736,
       "harapan_hidup": 24,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 12,
-      "sirkuit_balap": 15,
-      "stadion": 23,
-      "stadion_internasional": 24,
-      "skor_olimpiade": 20,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 40,
@@ -227,6 +204,12 @@ export const republik_zambia: CountryData = {
       "indeks_korupsi": 70,
       "indeks_keamanan": 88
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 12,
+      "sirkuit_balap": 15,
+      "stadion": 23,
+      "stadion_internasional": 24
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const republik_zambia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 1,
@@ -348,3 +330,6 @@ export const republik_zambia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

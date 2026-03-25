@@ -39,9 +39,7 @@ export const bulgaria: CountryData = {
     "bandara": 37,
     "terminal_bus": 11,
     "helipad": 9,
-    "cakupan_internet": 76,
-    "indeks_teknologi": 92,
-    "akses_air": 74
+    "cakupan_internet": 76
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const bulgaria: CountryData = {
     "aluminium": 31,
     "tembaga": 35,
     "logam_tanah_jarang": 17,
-    "bijih_besi": 39,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const bulgaria: CountryData = {
     "farmasi": 15,
     "pupuk": 2,
     "pengolahan_daging": 24,
-    "mie_instan": 30,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 30
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const bulgaria: CountryData = {
     "sayur_umbi": 12.5,
     "kedelai": 28,
     "kelapa_sawit": 20,
-    "kopi_teh_kakao": 39.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 39.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const bulgaria: CountryData = {
     "pangkalan_laut": 16,
     "program_luar_angkasa": 20,
     "pertahanan_siber": 19,
-    "anggaran_pertahanan": 291,
-    "personel": 21002,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 291
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const bulgaria: CountryData = {
 
   "sektor_armada": {
     "barak": 32,
-    "infanteri": 24,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 33,
         "apc": 4,
@@ -142,23 +132,20 @@ export const bulgaria: CountryData = {
         "jet_tempur_siluman": 31,
         "helikopter_serang": 17,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 35,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 35,
-      "jaringan_radar": 24,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 2,
           "sepeda_motor": 26,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 34,
           "helikopter_polisi": 5,
@@ -169,10 +156,12 @@ export const bulgaria: CountryData = {
           "kamera_pengawas": 20,
           "pusat_forensik": 1
         },
-        "waktu_respon": 35,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 35,
     "intelijen": 35,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 33,
       "misi_sabotase": 10,
@@ -185,34 +174,24 @@ export const bulgaria: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 33,
-      "sd": 29,
-      "smp": 15,
-      "sma": 12,
+      "prasekolah": 33,
+      "dasar": 29,
+      "menengah": 15,
+      "lanjutan": 12,
       "universitas": 14,
       "lembaga_pendidikan": 19,
       "laboratorium": 25,
       "observatorium": 29,
       "pusat_penelitian": 16,
       "pusat_pengembangan": 35,
-      "literasi": 87,
-      "indeks_penelitian": 0
+      "literasi": 87
     },
     "kesehatan": {
       "rumah_sakit_besar": 9,
       "rumah_sakit_kecil": 30,
       "pusat_diagnostik": 35,
-      "tempat_tidur_rs": 3911,
       "harapan_hidup": 23,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 8,
-      "sirkuit_balap": 9,
-      "stadion": 25,
-      "stadion_internasional": 10,
-      "skor_olimpiade": 38,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 25,
@@ -224,6 +203,12 @@ export const bulgaria: CountryData = {
       "indeks_korupsi": 65,
       "indeks_keamanan": 52
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 8,
+      "sirkuit_balap": 9,
+      "stadion": 25,
+      "stadion_internasional": 10
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const bulgaria: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 2,
@@ -345,3 +329,6 @@ export const bulgaria: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

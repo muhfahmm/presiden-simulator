@@ -39,9 +39,7 @@ export const slowakia: CountryData = {
     "bandara": 39,
     "terminal_bus": 8,
     "helipad": 33,
-    "cakupan_internet": 56,
-    "indeks_teknologi": 89,
-    "akses_air": 74
+    "cakupan_internet": 56
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const slowakia: CountryData = {
     "aluminium": 22,
     "tembaga": 1,
     "logam_tanah_jarang": 21,
-    "bijih_besi": 7,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 7
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const slowakia: CountryData = {
     "farmasi": 34,
     "pupuk": 6,
     "pengolahan_daging": 12,
-    "mie_instan": 38,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 38
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const slowakia: CountryData = {
     "sayur_umbi": 24.0,
     "kedelai": 16,
     "kelapa_sawit": 39,
-    "kopi_teh_kakao": 26.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 26.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const slowakia: CountryData = {
     "pangkalan_laut": 27,
     "program_luar_angkasa": 24,
     "pertahanan_siber": 34,
-    "anggaran_pertahanan": 361,
-    "personel": 9966,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 361
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const slowakia: CountryData = {
 
   "sektor_armada": {
     "barak": 10,
-    "infanteri": 40,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 11,
         "apc": 35,
@@ -142,23 +132,20 @@ export const slowakia: CountryData = {
         "jet_tempur_siluman": 72,
         "helikopter_serang": 59,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 36,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 0,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 8,
           "sepeda_motor": 2,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 1,
           "helikopter_polisi": 7,
@@ -169,10 +156,12 @@ export const slowakia: CountryData = {
           "kamera_pengawas": 36,
           "pusat_forensik": 1
         },
-        "waktu_respon": 4,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 4,
     "intelijen": 39,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 38,
       "misi_sabotase": 26,
@@ -185,34 +174,24 @@ export const slowakia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 24,
-      "sd": 26,
-      "smp": 4,
-      "sma": 23,
+      "prasekolah": 24,
+      "dasar": 26,
+      "menengah": 4,
+      "lanjutan": 23,
       "universitas": 30,
       "lembaga_pendidikan": 18,
       "laboratorium": 1,
       "observatorium": 20,
       "pusat_penelitian": 36,
       "pusat_pengembangan": 4,
-      "literasi": 56,
-      "indeks_penelitian": 0
+      "literasi": 56
     },
     "kesehatan": {
       "rumah_sakit_besar": 6,
       "rumah_sakit_kecil": 18,
       "pusat_diagnostik": 21,
-      "tempat_tidur_rs": 5409,
       "harapan_hidup": 15,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 22,
-      "stadion": 20,
-      "stadion_internasional": 20,
-      "skor_olimpiade": 33,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 22,
@@ -224,6 +203,12 @@ export const slowakia: CountryData = {
       "indeks_korupsi": 65,
       "indeks_keamanan": 68
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 24,
+      "sirkuit_balap": 22,
+      "stadion": 20,
+      "stadion_internasional": 20
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const slowakia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 13,
@@ -345,3 +329,6 @@ export const slowakia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

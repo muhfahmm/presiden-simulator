@@ -39,9 +39,7 @@ export const eswatini: CountryData = {
     "jalur_kereta": 20,
     "kualitas_jalan": 65,
     "pelabuhan_laut": 21,
-    "kereta_bawah_tanah": 11,
-    "indeks_teknologi": 79,
-    "akses_air": 74
+    "kereta_bawah_tanah": 11
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const eswatini: CountryData = {
     "minyak_bumi": 1,
     "logam_tanah_jarang": 1,
     "garam": 7,
-    "kekuatan": 29.660809349923973,
     "uranium": 18
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const eswatini: CountryData = {
     "farmasi": 35,
     "semikonduktor": 25,
     "smelter": 1,
-    "kekuatan": 3.076011687404966,
     "gula": 33,
     "kayu": 20
   },
@@ -98,9 +94,8 @@ export const eswatini: CountryData = {
     "sayur_umbi": 5.0,
     "kedelai": 22,
     "kelapa_sawit": 17,
-    "kopi_teh_kakao": 25.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 25.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const eswatini: CountryData = {
     "pangkalan_laut": 4,
     "program_luar_angkasa": 16,
     "pertahanan_siber": 6,
-    "anggaran_pertahanan": 12,
-    "personel": 7566,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 12
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const eswatini: CountryData = {
 
   "sektor_armada": {
     "barak": 15,
-    "infanteri": 35,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 38,
         "apc": 138,
@@ -142,23 +132,19 @@ export const eswatini: CountryData = {
         "jet_tempur_siluman": 138,
         "helikopter_serang": 150,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 35,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 1,
-      "jaringan_radar": 1,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 26,
           "sepeda_motor": 37,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 28,
@@ -170,11 +156,12 @@ export const eswatini: CountryData = {
           "kamera_pengawas": 31,
           "pusat_forensik": 1
   },
-        "waktu_respon": 38,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 38,
     "intelijen": 23,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 19,
       "misi_mata_mata": 12,
       "misi_sabotase": 24,
@@ -188,34 +175,24 @@ export const eswatini: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 21,
-      "sd": 6,
-      "smp": 39,
-      "sma": 6,
+      "prasekolah": 21,
+      "dasar": 6,
+      "menengah": 39,
+      "lanjutan": 6,
       "universitas": 25,
       "lembaga_pendidikan": 30,
       "laboratorium": 18,
       "observatorium": 18,
       "pusat_penelitian": 27,
       "pusat_pengembangan": 35,
-      "literasi": 70,
-      "indeks_penelitian": 0
+      "literasi": 70
   },
     "kesehatan": {
       "rumah_sakit_besar": 29,
       "rumah_sakit_kecil": 2,
       "pusat_diagnostik": 20,
-      "tempat_tidur_rs": 7444,
       "harapan_hidup": 7,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 37,
-      "stadion": 27,
-      "stadion_internasional": 21,
-      "skor_olimpiade": 22,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 40,
@@ -227,6 +204,12 @@ export const eswatini: CountryData = {
       "indeks_korupsi": 51,
       "indeks_keamanan": 81
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 24,
+      "sirkuit_balap": 37,
+      "stadion": 27,
+      "stadion_internasional": 21
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const eswatini: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 19,
@@ -348,3 +330,6 @@ export const eswatini: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

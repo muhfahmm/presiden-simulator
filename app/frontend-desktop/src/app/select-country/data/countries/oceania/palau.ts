@@ -39,9 +39,7 @@ export const palau: CountryData = {
     "bandara": 23,
     "terminal_bus": 5,
     "helipad": 15,
-    "cakupan_internet": 92,
-    "indeks_teknologi": 77,
-    "akses_air": 74
+    "cakupan_internet": 92
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const palau: CountryData = {
     "aluminium": 40,
     "tembaga": 35,
     "logam_tanah_jarang": 18,
-    "bijih_besi": 11,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const palau: CountryData = {
     "farmasi": 4,
     "pupuk": 21,
     "pengolahan_daging": 9,
-    "mie_instan": 15,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 15
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const palau: CountryData = {
     "sayur_umbi": 13.5,
     "kedelai": 39,
     "kelapa_sawit": 23,
-    "kopi_teh_kakao": 16.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 16.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const palau: CountryData = {
     "pangkalan_laut": 13,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 1,
-    "personel": 28926,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const palau: CountryData = {
 
   "sektor_armada": {
     "barak": 16,
-    "infanteri": 24,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 152,
         "apc": 63,
@@ -142,23 +132,20 @@ export const palau: CountryData = {
         "jet_tempur_siluman": 190,
         "helikopter_serang": 63,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 24,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 3,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 33,
           "sepeda_motor": 36,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 21,
           "helikopter_polisi": 13,
@@ -169,10 +156,12 @@ export const palau: CountryData = {
           "kamera_pengawas": 30,
           "pusat_forensik": 1
         },
-        "waktu_respon": 14,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 14,
     "intelijen": 14,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 4,
       "misi_sabotase": 1,
@@ -185,34 +174,24 @@ export const palau: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 34,
-      "sd": 30,
-      "smp": 29,
-      "sma": 9,
+      "prasekolah": 34,
+      "dasar": 30,
+      "menengah": 29,
+      "lanjutan": 9,
       "universitas": 4,
       "lembaga_pendidikan": 17,
       "laboratorium": 24,
       "observatorium": 14,
       "pusat_penelitian": 24,
       "pusat_pengembangan": 21,
-      "literasi": 88,
-      "indeks_penelitian": 0
+      "literasi": 88
     },
     "kesehatan": {
       "rumah_sakit_besar": 4,
       "rumah_sakit_kecil": 15,
       "pusat_diagnostik": 13,
-      "tempat_tidur_rs": 9889,
       "harapan_hidup": 8,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 18,
-      "sirkuit_balap": 4,
-      "stadion": 19,
-      "stadion_internasional": 24,
-      "skor_olimpiade": 11,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 16,
@@ -224,6 +203,12 @@ export const palau: CountryData = {
       "indeks_korupsi": 69,
       "indeks_keamanan": 58
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 18,
+      "sirkuit_balap": 4,
+      "stadion": 19,
+      "stadion_internasional": 24
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const palau: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 34,
@@ -345,3 +329,6 @@ export const palau: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

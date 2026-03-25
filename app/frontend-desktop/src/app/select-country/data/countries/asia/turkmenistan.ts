@@ -39,9 +39,7 @@ export const turkmenistan: CountryData = {
     "bandara": 16,
     "terminal_bus": 11,
     "helipad": 33,
-    "cakupan_internet": 78,
-    "indeks_teknologi": 73,
-    "akses_air": 74
+    "cakupan_internet": 78
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const turkmenistan: CountryData = {
     "aluminium": 6,
     "tembaga": 20,
     "logam_tanah_jarang": 7,
-    "bijih_besi": 14,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const turkmenistan: CountryData = {
     "farmasi": 25,
     "pupuk": 4,
     "pengolahan_daging": 17,
-    "mie_instan": 36,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 36
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const turkmenistan: CountryData = {
     "sayur_umbi": 22.0,
     "kedelai": 5,
     "kelapa_sawit": 2,
-    "kopi_teh_kakao": 15.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 15.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const turkmenistan: CountryData = {
     "pangkalan_laut": 35,
     "program_luar_angkasa": 19,
     "pertahanan_siber": 40,
-    "anggaran_pertahanan": 125,
-    "personel": 19822,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 125
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const turkmenistan: CountryData = {
 
   "sektor_armada": {
     "barak": 17,
-    "infanteri": 24,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 104,
         "apc": 137,
@@ -142,23 +132,20 @@ export const turkmenistan: CountryData = {
         "jet_tempur_siluman": 87,
         "helikopter_serang": 140,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 23,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 3,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 9,
           "sepeda_motor": 40,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 37,
           "helikopter_polisi": 6,
@@ -169,10 +156,12 @@ export const turkmenistan: CountryData = {
           "kamera_pengawas": 7,
           "pusat_forensik": 1
         },
-        "waktu_respon": 15,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 15,
     "intelijen": 18,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 11,
       "misi_mata_mata": 34,
       "misi_sabotase": 2,
@@ -185,34 +174,24 @@ export const turkmenistan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 20,
-      "sd": 34,
-      "smp": 20,
-      "sma": 24,
+      "prasekolah": 20,
+      "dasar": 34,
+      "menengah": 20,
+      "lanjutan": 24,
       "universitas": 17,
       "lembaga_pendidikan": 6,
       "laboratorium": 9,
       "observatorium": 23,
       "pusat_penelitian": 27,
       "pusat_pengembangan": 4,
-      "literasi": 80,
-      "indeks_penelitian": 0
+      "literasi": 80
     },
     "kesehatan": {
       "rumah_sakit_besar": 27,
       "rumah_sakit_kecil": 21,
       "pusat_diagnostik": 37,
-      "tempat_tidur_rs": 6492,
       "harapan_hidup": 2,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 30,
-      "sirkuit_balap": 5,
-      "stadion": 4,
-      "stadion_internasional": 19,
-      "skor_olimpiade": 21,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 38,
@@ -224,6 +203,12 @@ export const turkmenistan: CountryData = {
       "indeks_korupsi": 56,
       "indeks_keamanan": 79
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 30,
+      "sirkuit_balap": 5,
+      "stadion": 4,
+      "stadion_internasional": 19
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const turkmenistan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 25,
@@ -345,3 +329,6 @@ export const turkmenistan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

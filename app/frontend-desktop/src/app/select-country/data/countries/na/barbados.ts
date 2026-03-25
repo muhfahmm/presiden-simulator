@@ -39,9 +39,7 @@ export const barbados: CountryData = {
     "bandara": 30,
     "terminal_bus": 23,
     "helipad": 31,
-    "cakupan_internet": 54,
-    "indeks_teknologi": 68,
-    "akses_air": 74
+    "cakupan_internet": 54
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const barbados: CountryData = {
     "aluminium": 26,
     "tembaga": 27,
     "logam_tanah_jarang": 1,
-    "bijih_besi": 39,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const barbados: CountryData = {
     "farmasi": 33,
     "pupuk": 30,
     "pengolahan_daging": 36,
-    "mie_instan": 12,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 12
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const barbados: CountryData = {
     "sayur_umbi": 18.0,
     "kedelai": 13,
     "kelapa_sawit": 34,
-    "kopi_teh_kakao": 22.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 22.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const barbados: CountryData = {
     "pangkalan_laut": 27,
     "program_luar_angkasa": 12,
     "pertahanan_siber": 28,
-    "anggaran_pertahanan": 15,
-    "personel": 18644,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 15
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const barbados: CountryData = {
 
   "sektor_armada": {
     "barak": 32,
-    "infanteri": 20,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 31,
         "apc": 40,
@@ -142,23 +132,20 @@ export const barbados: CountryData = {
         "jet_tempur_siluman": 6,
         "helikopter_serang": 24,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 1,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 35,
-      "jaringan_radar": 15,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 11,
           "sepeda_motor": 17,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 23,
           "helikopter_polisi": 36,
@@ -169,10 +156,12 @@ export const barbados: CountryData = {
           "kamera_pengawas": 19,
           "pusat_forensik": 1
         },
-        "waktu_respon": 15,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 15,
     "intelijen": 39,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 9,
       "misi_mata_mata": 26,
       "misi_sabotase": 11,
@@ -185,34 +174,24 @@ export const barbados: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 7,
-      "sd": 15,
-      "smp": 12,
-      "sma": 18,
+      "prasekolah": 7,
+      "dasar": 15,
+      "menengah": 12,
+      "lanjutan": 18,
       "universitas": 24,
       "lembaga_pendidikan": 13,
       "laboratorium": 19,
       "observatorium": 25,
       "pusat_penelitian": 14,
       "pusat_pengembangan": 1,
-      "literasi": 63,
-      "indeks_penelitian": 0
+      "literasi": 63
     },
     "kesehatan": {
       "rumah_sakit_besar": 26,
       "rumah_sakit_kecil": 30,
       "pusat_diagnostik": 21,
-      "tempat_tidur_rs": 787,
       "harapan_hidup": 7,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 36,
-      "sirkuit_balap": 39,
-      "stadion": 8,
-      "stadion_internasional": 26,
-      "skor_olimpiade": 39,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 23,
@@ -224,6 +203,12 @@ export const barbados: CountryData = {
       "indeks_korupsi": 83,
       "indeks_keamanan": 82
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 36,
+      "sirkuit_balap": 39,
+      "stadion": 8,
+      "stadion_internasional": 26
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const barbados: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 4,
@@ -345,3 +329,6 @@ export const barbados: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

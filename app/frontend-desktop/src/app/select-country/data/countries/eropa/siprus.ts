@@ -39,9 +39,7 @@ export const siprus: CountryData = {
     "bandara": 24,
     "terminal_bus": 21,
     "helipad": 25,
-    "cakupan_internet": 59,
-    "indeks_teknologi": 52,
-    "akses_air": 74
+    "cakupan_internet": 59
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const siprus: CountryData = {
     "aluminium": 1,
     "tembaga": 40,
     "logam_tanah_jarang": 31,
-    "bijih_besi": 5,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 5
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const siprus: CountryData = {
     "farmasi": 5,
     "pupuk": 31,
     "pengolahan_daging": 19,
-    "mie_instan": 37,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 37
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const siprus: CountryData = {
     "sayur_umbi": 19.5,
     "kedelai": 32,
     "kelapa_sawit": 3,
-    "kopi_teh_kakao": 11.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 11.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const siprus: CountryData = {
     "pangkalan_laut": 27,
     "program_luar_angkasa": 4,
     "pertahanan_siber": 32,
-    "anggaran_pertahanan": 83,
-    "personel": 15798,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 83
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const siprus: CountryData = {
 
   "sektor_armada": {
     "barak": 10,
-    "infanteri": 18,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 121,
         "apc": 125,
@@ -142,23 +132,20 @@ export const siprus: CountryData = {
         "jet_tempur_siluman": 19,
         "helikopter_serang": 98,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 25,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 3,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 29,
           "sepeda_motor": 10,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 27,
           "helikopter_polisi": 34,
@@ -169,10 +156,12 @@ export const siprus: CountryData = {
           "kamera_pengawas": 22,
           "pusat_forensik": 1
         },
-        "waktu_respon": 2,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 2,
     "intelijen": 25,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 31,
       "misi_mata_mata": 32,
       "misi_sabotase": 35,
@@ -185,34 +174,24 @@ export const siprus: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 11,
-      "sd": 33,
-      "smp": 25,
-      "sma": 24,
+      "prasekolah": 11,
+      "dasar": 33,
+      "menengah": 25,
+      "lanjutan": 24,
       "universitas": 27,
       "lembaga_pendidikan": 12,
       "laboratorium": 7,
       "observatorium": 6,
       "pusat_penelitian": 33,
       "pusat_pengembangan": 20,
-      "literasi": 66,
-      "indeks_penelitian": 0
+      "literasi": 66
     },
     "kesehatan": {
       "rumah_sakit_besar": 6,
       "rumah_sakit_kecil": 22,
       "pusat_diagnostik": 23,
-      "tempat_tidur_rs": 5269,
       "harapan_hidup": 17,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 32,
-      "sirkuit_balap": 3,
-      "stadion": 14,
-      "stadion_internasional": 24,
-      "skor_olimpiade": 29,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 24,
@@ -224,6 +203,12 @@ export const siprus: CountryData = {
       "indeks_korupsi": 61,
       "indeks_keamanan": 86
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 32,
+      "sirkuit_balap": 3,
+      "stadion": 14,
+      "stadion_internasional": 24
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const siprus: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 36,
@@ -345,3 +329,6 @@ export const siprus: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

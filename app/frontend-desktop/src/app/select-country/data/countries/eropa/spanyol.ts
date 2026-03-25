@@ -39,9 +39,7 @@ export const spanyol: CountryData = {
     "bandara": 23,
     "terminal_bus": 6,
     "helipad": 16,
-    "cakupan_internet": 80,
-    "indeks_teknologi": 59,
-    "akses_air": 74
+    "cakupan_internet": 80
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const spanyol: CountryData = {
     "aluminium": 40,
     "tembaga": 33,
     "logam_tanah_jarang": 36,
-    "bijih_besi": 33,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 33
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const spanyol: CountryData = {
     "farmasi": 4,
     "pupuk": 14,
     "pengolahan_daging": 29,
-    "mie_instan": 16,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 16
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const spanyol: CountryData = {
     "sayur_umbi": 14.5,
     "kedelai": 23,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 22.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 22.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const spanyol: CountryData = {
     "pangkalan_laut": 37,
     "program_luar_angkasa": 4,
     "pertahanan_siber": 35,
-    "anggaran_pertahanan": 4389,
-    "personel": 6338,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 4389
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const spanyol: CountryData = {
 
   "sektor_armada": {
     "barak": 16,
-    "infanteri": 13,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 146,
         "apc": 38,
@@ -142,23 +132,20 @@ export const spanyol: CountryData = {
         "jet_tempur_siluman": 128,
         "helikopter_serang": 133,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 5,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 5,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 28,
           "sepeda_motor": 8,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 6,
           "helikopter_polisi": 8,
@@ -169,10 +156,12 @@ export const spanyol: CountryData = {
           "kamera_pengawas": 7,
           "pusat_forensik": 1
         },
-        "waktu_respon": 40,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 40,
     "intelijen": 8,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 18,
       "misi_mata_mata": 30,
       "misi_sabotase": 6,
@@ -185,34 +174,24 @@ export const spanyol: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 15,
-      "sd": 7,
-      "smp": 3,
-      "sma": 40,
+      "prasekolah": 15,
+      "dasar": 7,
+      "menengah": 3,
+      "lanjutan": 40,
       "universitas": 4,
       "lembaga_pendidikan": 7,
       "laboratorium": 40,
       "observatorium": 39,
       "pusat_penelitian": 32,
       "pusat_pengembangan": 32,
-      "literasi": 60,
-      "indeks_penelitian": 0
+      "literasi": 60
     },
     "kesehatan": {
       "rumah_sakit_besar": 11,
       "rumah_sakit_kecil": 16,
       "pusat_diagnostik": 16,
-      "tempat_tidur_rs": 2962,
       "harapan_hidup": 8,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 1,
-      "sirkuit_balap": 11,
-      "stadion": 17,
-      "stadion_internasional": 4,
-      "skor_olimpiade": 27,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 4,
@@ -224,6 +203,12 @@ export const spanyol: CountryData = {
       "indeks_korupsi": 92,
       "indeks_keamanan": 86
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 1,
+      "sirkuit_balap": 11,
+      "stadion": 17,
+      "stadion_internasional": 4
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const spanyol: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 8,
@@ -345,3 +329,6 @@ export const spanyol: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

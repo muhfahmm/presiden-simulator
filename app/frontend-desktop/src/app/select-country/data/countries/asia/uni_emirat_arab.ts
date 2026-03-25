@@ -39,9 +39,7 @@ export const uni_emirat_arab: CountryData = {
     "bandara": 17,
     "terminal_bus": 14,
     "helipad": 19,
-    "cakupan_internet": 67,
-    "indeks_teknologi": 94,
-    "akses_air": 74
+    "cakupan_internet": 67
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const uni_emirat_arab: CountryData = {
     "aluminium": 4,
     "tembaga": 27,
     "logam_tanah_jarang": 36,
-    "bijih_besi": 38,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 38
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const uni_emirat_arab: CountryData = {
     "farmasi": 4,
     "pupuk": 37,
     "pengolahan_daging": 22,
-    "mie_instan": 11,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 11
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const uni_emirat_arab: CountryData = {
     "sayur_umbi": 14.5,
     "kedelai": 6,
     "kelapa_sawit": 7,
-    "kopi_teh_kakao": 26.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 26.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const uni_emirat_arab: CountryData = {
     "pangkalan_laut": 28,
     "program_luar_angkasa": 21,
     "pertahanan_siber": 24,
-    "anggaran_pertahanan": 1416,
-    "personel": 9335,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1416
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const uni_emirat_arab: CountryData = {
 
   "sektor_armada": {
     "barak": 1,
-    "infanteri": 5,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 41,
         "apc": 105,
@@ -142,23 +132,20 @@ export const uni_emirat_arab: CountryData = {
         "jet_tempur_siluman": 194,
         "helikopter_serang": 81,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 6,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 1,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 27,
           "sepeda_motor": 3,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 28,
           "helikopter_polisi": 31,
@@ -169,10 +156,12 @@ export const uni_emirat_arab: CountryData = {
           "kamera_pengawas": 35,
           "pusat_forensik": 1
         },
-        "waktu_respon": 33,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 33,
     "intelijen": 5,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 32,
       "misi_mata_mata": 23,
       "misi_sabotase": 37,
@@ -185,34 +174,24 @@ export const uni_emirat_arab: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 27,
-      "sd": 23,
-      "smp": 30,
-      "sma": 34,
+      "prasekolah": 27,
+      "dasar": 23,
+      "menengah": 30,
+      "lanjutan": 34,
       "universitas": 35,
       "lembaga_pendidikan": 36,
       "laboratorium": 35,
       "observatorium": 9,
       "pusat_penelitian": 37,
       "pusat_pengembangan": 22,
-      "literasi": 91,
-      "indeks_penelitian": 0
+      "literasi": 91
     },
     "kesehatan": {
       "rumah_sakit_besar": 25,
       "rumah_sakit_kecil": 32,
       "pusat_diagnostik": 1,
-      "tempat_tidur_rs": 8301,
       "harapan_hidup": 26,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 23,
-      "stadion": 1,
-      "stadion_internasional": 23,
-      "skor_olimpiade": 30,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 17,
@@ -224,6 +203,12 @@ export const uni_emirat_arab: CountryData = {
       "indeks_korupsi": 87,
       "indeks_keamanan": 76
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 3,
+      "sirkuit_balap": 23,
+      "stadion": 1,
+      "stadion_internasional": 23
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const uni_emirat_arab: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 32,
@@ -345,3 +329,6 @@ export const uni_emirat_arab: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const el_salvador: CountryData = {
     "bandara": 30,
     "terminal_bus": 27,
     "helipad": 39,
-    "cakupan_internet": 59,
-    "indeks_teknologi": 60,
-    "akses_air": 74
+    "cakupan_internet": 59
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const el_salvador: CountryData = {
     "aluminium": 16,
     "tembaga": 39,
     "logam_tanah_jarang": 10,
-    "bijih_besi": 23,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 23
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const el_salvador: CountryData = {
     "farmasi": 21,
     "pupuk": 19,
     "pengolahan_daging": 15,
-    "mie_instan": 20,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 20
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const el_salvador: CountryData = {
     "sayur_umbi": 28.0,
     "kedelai": 18,
     "kelapa_sawit": 6,
-    "kopi_teh_kakao": 21.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 21.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const el_salvador: CountryData = {
     "pangkalan_laut": 11,
     "program_luar_angkasa": 29,
     "pertahanan_siber": 18,
-    "anggaran_pertahanan": 88,
-    "personel": 19334,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 88
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const el_salvador: CountryData = {
 
   "sektor_armada": {
     "barak": 19,
-    "infanteri": 5,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 32,
         "apc": 9,
@@ -142,23 +132,20 @@ export const el_salvador: CountryData = {
         "jet_tempur_siluman": 23,
         "helikopter_serang": 8,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 14,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 16,
-      "jaringan_radar": 29,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 28,
           "sepeda_motor": 28,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 21,
           "helikopter_polisi": 1,
@@ -169,10 +156,12 @@ export const el_salvador: CountryData = {
           "kamera_pengawas": 13,
           "pusat_forensik": 1
         },
-        "waktu_respon": 3,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 3,
     "intelijen": 22,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 22,
       "misi_mata_mata": 32,
       "misi_sabotase": 21,
@@ -185,34 +174,24 @@ export const el_salvador: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 22,
-      "sd": 11,
-      "smp": 26,
-      "sma": 25,
+      "prasekolah": 22,
+      "dasar": 11,
+      "menengah": 26,
+      "lanjutan": 25,
       "universitas": 24,
       "lembaga_pendidikan": 24,
       "laboratorium": 16,
       "observatorium": 17,
       "pusat_penelitian": 36,
       "pusat_pengembangan": 34,
-      "literasi": 68,
-      "indeks_penelitian": 0
+      "literasi": 68
     },
     "kesehatan": {
       "rumah_sakit_besar": 31,
       "rumah_sakit_kecil": 19,
       "pusat_diagnostik": 32,
-      "tempat_tidur_rs": 9449,
       "harapan_hidup": 36,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 27,
-      "sirkuit_balap": 8,
-      "stadion": 1,
-      "stadion_internasional": 38,
-      "skor_olimpiade": 4,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 17,
@@ -224,6 +203,12 @@ export const el_salvador: CountryData = {
       "indeks_korupsi": 77,
       "indeks_keamanan": 78
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 27,
+      "sirkuit_balap": 8,
+      "stadion": 1,
+      "stadion_internasional": 38
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const el_salvador: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 26,
@@ -345,3 +329,6 @@ export const el_salvador: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

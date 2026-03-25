@@ -39,9 +39,7 @@ export const selandia_baru: CountryData = {
     "bandara": 14,
     "terminal_bus": 5,
     "helipad": 5,
-    "cakupan_internet": 87,
-    "indeks_teknologi": 87,
-    "akses_air": 74
+    "cakupan_internet": 87
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const selandia_baru: CountryData = {
     "aluminium": 7,
     "tembaga": 21,
     "logam_tanah_jarang": 18,
-    "bijih_besi": 14,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const selandia_baru: CountryData = {
     "farmasi": 24,
     "pupuk": 27,
     "pengolahan_daging": 16,
-    "mie_instan": 2,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 2
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const selandia_baru: CountryData = {
     "sayur_umbi": 14.5,
     "kedelai": 32,
     "kelapa_sawit": 19,
-    "kopi_teh_kakao": 12.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 12.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const selandia_baru: CountryData = {
     "pangkalan_laut": 12,
     "program_luar_angkasa": 8,
     "pertahanan_siber": 36,
-    "anggaran_pertahanan": 694,
-    "personel": 6610,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 694
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const selandia_baru: CountryData = {
 
   "sektor_armada": {
     "barak": 24,
-    "infanteri": 16,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 73,
         "apc": 50,
@@ -142,23 +132,20 @@ export const selandia_baru: CountryData = {
         "jet_tempur_siluman": 192,
         "helikopter_serang": 64,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 8,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 9,
           "sepeda_motor": 1,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 5,
           "helikopter_polisi": 4,
@@ -169,10 +156,12 @@ export const selandia_baru: CountryData = {
           "kamera_pengawas": 6,
           "pusat_forensik": 1
         },
-        "waktu_respon": 29,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 29,
     "intelijen": 40,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 25,
       "misi_mata_mata": 32,
       "misi_sabotase": 23,
@@ -185,34 +174,24 @@ export const selandia_baru: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 7,
-      "sd": 34,
-      "smp": 5,
-      "sma": 25,
+      "prasekolah": 7,
+      "dasar": 34,
+      "menengah": 5,
+      "lanjutan": 25,
       "universitas": 39,
       "lembaga_pendidikan": 6,
       "laboratorium": 3,
       "observatorium": 9,
       "pusat_penelitian": 13,
       "pusat_pengembangan": 28,
-      "literasi": 58,
-      "indeks_penelitian": 0
+      "literasi": 58
     },
     "kesehatan": {
       "rumah_sakit_besar": 3,
       "rumah_sakit_kecil": 28,
       "pusat_diagnostik": 22,
-      "tempat_tidur_rs": 1959,
       "harapan_hidup": 36,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 13,
-      "sirkuit_balap": 14,
-      "stadion": 26,
-      "stadion_internasional": 20,
-      "skor_olimpiade": 26,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 26,
@@ -224,6 +203,12 @@ export const selandia_baru: CountryData = {
       "indeks_korupsi": 77,
       "indeks_keamanan": 85
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 13,
+      "sirkuit_balap": 14,
+      "stadion": 26,
+      "stadion_internasional": 20
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const selandia_baru: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 4,
@@ -345,3 +329,6 @@ export const selandia_baru: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

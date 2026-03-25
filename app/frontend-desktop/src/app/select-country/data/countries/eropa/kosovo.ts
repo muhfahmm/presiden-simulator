@@ -39,9 +39,7 @@ export const kosovo: CountryData = {
     "bandara": 24,
     "terminal_bus": 38,
     "helipad": 17,
-    "cakupan_internet": 76,
-    "indeks_teknologi": 78,
-    "akses_air": 74
+    "cakupan_internet": 76
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const kosovo: CountryData = {
     "aluminium": 4,
     "tembaga": 13,
     "logam_tanah_jarang": 23,
-    "bijih_besi": 28,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 28
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const kosovo: CountryData = {
     "farmasi": 34,
     "pupuk": 37,
     "pengolahan_daging": 16,
-    "mie_instan": 34,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 34
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const kosovo: CountryData = {
     "sayur_umbi": 15.0,
     "kedelai": 33,
     "kelapa_sawit": 1,
-    "kopi_teh_kakao": 31.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 31.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const kosovo: CountryData = {
     "pangkalan_laut": 34,
     "program_luar_angkasa": 33,
     "pertahanan_siber": 9,
-    "anggaran_pertahanan": 27,
-    "personel": 8186,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const kosovo: CountryData = {
 
   "sektor_armada": {
     "barak": 37,
-    "infanteri": 7,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 44,
         "apc": 63,
@@ -142,23 +132,20 @@ export const kosovo: CountryData = {
         "jet_tempur_siluman": 99,
         "helikopter_serang": 172,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 16,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 1,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 38,
           "sepeda_motor": 16,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 35,
           "helikopter_polisi": 8,
@@ -169,10 +156,12 @@ export const kosovo: CountryData = {
           "kamera_pengawas": 31,
           "pusat_forensik": 1
         },
-        "waktu_respon": 11,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 11,
     "intelijen": 7,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 29,
       "misi_mata_mata": 4,
       "misi_sabotase": 37,
@@ -185,34 +174,24 @@ export const kosovo: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 4,
-      "sd": 38,
-      "smp": 37,
-      "sma": 39,
+      "prasekolah": 4,
+      "dasar": 38,
+      "menengah": 37,
+      "lanjutan": 39,
       "universitas": 25,
       "lembaga_pendidikan": 2,
       "laboratorium": 9,
       "observatorium": 21,
       "pusat_penelitian": 18,
       "pusat_pengembangan": 39,
-      "literasi": 51,
-      "indeks_penelitian": 0
+      "literasi": 51
     },
     "kesehatan": {
       "rumah_sakit_besar": 37,
       "rumah_sakit_kecil": 26,
       "pusat_diagnostik": 39,
-      "tempat_tidur_rs": 1646,
       "harapan_hidup": 10,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 22,
-      "sirkuit_balap": 33,
-      "stadion": 25,
-      "stadion_internasional": 13,
-      "skor_olimpiade": 3,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 11,
@@ -224,6 +203,12 @@ export const kosovo: CountryData = {
       "indeks_korupsi": 50,
       "indeks_keamanan": 93
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 22,
+      "sirkuit_balap": 33,
+      "stadion": 25,
+      "stadion_internasional": 13
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const kosovo: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 17,
@@ -345,3 +329,6 @@ export const kosovo: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

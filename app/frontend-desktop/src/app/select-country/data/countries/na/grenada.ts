@@ -39,9 +39,7 @@ export const grenada: CountryData = {
     "bandara": 25,
     "terminal_bus": 7,
     "helipad": 5,
-    "cakupan_internet": 85,
-    "indeks_teknologi": 81,
-    "akses_air": 74
+    "cakupan_internet": 85
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const grenada: CountryData = {
     "aluminium": 23,
     "tembaga": 10,
     "logam_tanah_jarang": 10,
-    "bijih_besi": 16,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 16
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const grenada: CountryData = {
     "farmasi": 4,
     "pupuk": 8,
     "pengolahan_daging": 40,
-    "mie_instan": 20,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 20
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const grenada: CountryData = {
     "sayur_umbi": 6.5,
     "kedelai": 37,
     "kelapa_sawit": 34,
-    "kopi_teh_kakao": 28.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 28.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const grenada: CountryData = {
     "pangkalan_laut": 11,
     "program_luar_angkasa": 6,
     "pertahanan_siber": 36,
-    "anggaran_pertahanan": 27,
-    "personel": 18577,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const grenada: CountryData = {
 
   "sektor_armada": {
     "barak": 16,
-    "infanteri": 11,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 8,
         "apc": 30,
@@ -142,23 +132,20 @@ export const grenada: CountryData = {
         "jet_tempur_siluman": 34,
         "helikopter_serang": 16,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 1,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 25,
-      "jaringan_radar": 2,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 29,
           "sepeda_motor": 29,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 33,
           "helikopter_polisi": 5,
@@ -169,10 +156,12 @@ export const grenada: CountryData = {
           "kamera_pengawas": 6,
           "pusat_forensik": 1
         },
-        "waktu_respon": 34,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 34,
     "intelijen": 20,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 17,
       "misi_mata_mata": 34,
       "misi_sabotase": 27,
@@ -185,34 +174,24 @@ export const grenada: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 8,
-      "sd": 24,
-      "smp": 11,
-      "sma": 6,
+      "prasekolah": 8,
+      "dasar": 24,
+      "menengah": 11,
+      "lanjutan": 6,
       "universitas": 32,
       "lembaga_pendidikan": 38,
       "laboratorium": 33,
       "observatorium": 8,
       "pusat_penelitian": 24,
       "pusat_pengembangan": 11,
-      "literasi": 60,
-      "indeks_penelitian": 0
+      "literasi": 60
     },
     "kesehatan": {
       "rumah_sakit_besar": 3,
       "rumah_sakit_kecil": 34,
       "pusat_diagnostik": 25,
-      "tempat_tidur_rs": 3310,
       "harapan_hidup": 32,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 30,
-      "stadion": 19,
-      "stadion_internasional": 14,
-      "skor_olimpiade": 15,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 21,
@@ -224,6 +203,12 @@ export const grenada: CountryData = {
       "indeks_korupsi": 60,
       "indeks_keamanan": 81
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 3,
+      "sirkuit_balap": 30,
+      "stadion": 19,
+      "stadion_internasional": 14
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const grenada: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 23,
@@ -345,3 +329,6 @@ export const grenada: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

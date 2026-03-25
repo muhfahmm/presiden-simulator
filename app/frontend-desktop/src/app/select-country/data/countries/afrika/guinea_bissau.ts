@@ -39,9 +39,7 @@ export const guinea_bissau: CountryData = {
     "jalur_kereta": 22,
     "kualitas_jalan": 93,
     "pelabuhan_laut": 25,
-    "kereta_bawah_tanah": 1,
-    "indeks_teknologi": 66,
-    "akses_air": 74
+    "kereta_bawah_tanah": 1
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const guinea_bissau: CountryData = {
     "minyak_bumi": 21,
     "logam_tanah_jarang": 29,
     "garam": 6,
-    "kekuatan": 29.660809349923973,
     "uranium": 34
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const guinea_bissau: CountryData = {
     "farmasi": 19,
     "semikonduktor": 30,
     "smelter": 40,
-    "kekuatan": 3.076011687404966,
     "gula": 1,
     "kayu": 27
   },
@@ -98,9 +94,8 @@ export const guinea_bissau: CountryData = {
     "sayur_umbi": 15.5,
     "kedelai": 1,
     "kelapa_sawit": 23,
-    "kopi_teh_kakao": 26.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 26.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const guinea_bissau: CountryData = {
     "pangkalan_laut": 40,
     "program_luar_angkasa": 24,
     "pertahanan_siber": 19,
-    "anggaran_pertahanan": 5,
-    "personel": 28830,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 5
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const guinea_bissau: CountryData = {
 
   "sektor_armada": {
     "barak": 33,
-    "infanteri": 6,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 28,
         "apc": 28,
@@ -142,23 +132,19 @@ export const guinea_bissau: CountryData = {
         "jet_tempur_siluman": 17,
         "helikopter_serang": 24,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 16,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 22,
-      "jaringan_radar": 19,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 33,
           "sepeda_motor": 27,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 11,
@@ -170,11 +156,12 @@ export const guinea_bissau: CountryData = {
           "kamera_pengawas": 35,
           "pusat_forensik": 1
   },
-        "waktu_respon": 20,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 20,
     "intelijen": 13,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 31,
       "misi_mata_mata": 5,
       "misi_sabotase": 28,
@@ -188,34 +175,24 @@ export const guinea_bissau: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 39,
-      "sd": 3,
-      "smp": 15,
-      "sma": 19,
+      "prasekolah": 39,
+      "dasar": 3,
+      "menengah": 15,
+      "lanjutan": 19,
       "universitas": 40,
       "lembaga_pendidikan": 20,
       "laboratorium": 35,
       "observatorium": 38,
       "pusat_penelitian": 6,
       "pusat_pengembangan": 33,
-      "literasi": 80,
-      "indeks_penelitian": 0
+      "literasi": 80
   },
     "kesehatan": {
       "rumah_sakit_besar": 9,
       "rumah_sakit_kecil": 26,
       "pusat_diagnostik": 8,
-      "tempat_tidur_rs": 1466,
       "harapan_hidup": 26,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 15,
-      "sirkuit_balap": 4,
-      "stadion": 37,
-      "stadion_internasional": 16,
-      "skor_olimpiade": 14,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 2,
@@ -227,6 +204,12 @@ export const guinea_bissau: CountryData = {
       "indeks_korupsi": 95,
       "indeks_keamanan": 92
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 15,
+      "sirkuit_balap": 4,
+      "stadion": 37,
+      "stadion_internasional": 16
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const guinea_bissau: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 28,
@@ -348,3 +330,6 @@ export const guinea_bissau: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

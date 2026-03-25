@@ -39,9 +39,7 @@ export const republik_dominika: CountryData = {
     "bandara": 34,
     "terminal_bus": 11,
     "helipad": 36,
-    "cakupan_internet": 92,
-    "indeks_teknologi": 93,
-    "akses_air": 74
+    "cakupan_internet": 92
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const republik_dominika: CountryData = {
     "aluminium": 3,
     "tembaga": 1,
     "logam_tanah_jarang": 16,
-    "bijih_besi": 2,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 2
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const republik_dominika: CountryData = {
     "farmasi": 13,
     "pupuk": 7,
     "pengolahan_daging": 4,
-    "mie_instan": 9,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 9
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const republik_dominika: CountryData = {
     "sayur_umbi": 14.0,
     "kedelai": 26,
     "kelapa_sawit": 37,
-    "kopi_teh_kakao": 29.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 29.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const republik_dominika: CountryData = {
     "pangkalan_laut": 8,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 7,
-    "anggaran_pertahanan": 305,
-    "personel": 27397,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 305
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const republik_dominika: CountryData = {
 
   "sektor_armada": {
     "barak": 9,
-    "infanteri": 25,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 57,
         "apc": 159,
@@ -142,23 +132,20 @@ export const republik_dominika: CountryData = {
         "jet_tempur_siluman": 150,
         "helikopter_serang": 184,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 20,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 1,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 2,
           "sepeda_motor": 26,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 15,
           "helikopter_polisi": 27,
@@ -169,10 +156,12 @@ export const republik_dominika: CountryData = {
           "kamera_pengawas": 6,
           "pusat_forensik": 1
         },
-        "waktu_respon": 31,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 31,
     "intelijen": 35,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 24,
       "misi_mata_mata": 17,
       "misi_sabotase": 30,
@@ -185,34 +174,24 @@ export const republik_dominika: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 10,
-      "sd": 13,
-      "smp": 20,
-      "sma": 3,
+      "prasekolah": 10,
+      "dasar": 13,
+      "menengah": 20,
+      "lanjutan": 3,
       "universitas": 28,
       "lembaga_pendidikan": 20,
       "laboratorium": 7,
       "observatorium": 19,
       "pusat_penelitian": 34,
       "pusat_pengembangan": 14,
-      "literasi": 62,
-      "indeks_penelitian": 0
+      "literasi": 62
     },
     "kesehatan": {
       "rumah_sakit_besar": 40,
       "rumah_sakit_kecil": 3,
       "pusat_diagnostik": 4,
-      "tempat_tidur_rs": 6147,
       "harapan_hidup": 26,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 28,
-      "sirkuit_balap": 35,
-      "stadion": 7,
-      "stadion_internasional": 31,
-      "skor_olimpiade": 6,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 28,
@@ -224,6 +203,12 @@ export const republik_dominika: CountryData = {
       "indeks_korupsi": 85,
       "indeks_keamanan": 84
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 28,
+      "sirkuit_balap": 35,
+      "stadion": 7,
+      "stadion_internasional": 31
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const republik_dominika: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 8,
@@ -345,3 +329,6 @@ export const republik_dominika: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

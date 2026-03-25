@@ -39,9 +39,7 @@ export const swedia: CountryData = {
     "bandara": 19,
     "terminal_bus": 10,
     "helipad": 11,
-    "cakupan_internet": 88,
-    "indeks_teknologi": 52,
-    "akses_air": 74
+    "cakupan_internet": 88
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const swedia: CountryData = {
     "aluminium": 31,
     "tembaga": 36,
     "logam_tanah_jarang": 32,
-    "bijih_besi": 8,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 8
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const swedia: CountryData = {
     "farmasi": 35,
     "pupuk": 2,
     "pengolahan_daging": 10,
-    "mie_instan": 16,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 16
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const swedia: CountryData = {
     "sayur_umbi": 18.0,
     "kedelai": 33,
     "kelapa_sawit": 23,
-    "kopi_teh_kakao": 25.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 25.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const swedia: CountryData = {
     "pangkalan_laut": 26,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 30,
-    "anggaran_pertahanan": 1666,
-    "personel": 6340,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1666
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const swedia: CountryData = {
 
   "sektor_armada": {
     "barak": 35,
-    "infanteri": 40,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 22,
         "apc": 53,
@@ -142,23 +132,20 @@ export const swedia: CountryData = {
         "jet_tempur_siluman": 64,
         "helikopter_serang": 59,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 10,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 5,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 6,
           "sepeda_motor": 35,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 24,
           "helikopter_polisi": 20,
@@ -169,10 +156,12 @@ export const swedia: CountryData = {
           "kamera_pengawas": 6,
           "pusat_forensik": 1
         },
-        "waktu_respon": 40,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 40,
     "intelijen": 9,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 2,
       "misi_sabotase": 33,
@@ -185,34 +174,24 @@ export const swedia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 5,
-      "sd": 30,
-      "smp": 4,
-      "sma": 32,
+      "prasekolah": 5,
+      "dasar": 30,
+      "menengah": 4,
+      "lanjutan": 32,
       "universitas": 38,
       "lembaga_pendidikan": 6,
       "laboratorium": 20,
       "observatorium": 30,
       "pusat_penelitian": 27,
       "pusat_pengembangan": 35,
-      "literasi": 84,
-      "indeks_penelitian": 0
+      "literasi": 84
     },
     "kesehatan": {
       "rumah_sakit_besar": 10,
       "rumah_sakit_kecil": 4,
       "pusat_diagnostik": 6,
-      "tempat_tidur_rs": 642,
       "harapan_hidup": 3,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 29,
-      "sirkuit_balap": 6,
-      "stadion": 31,
-      "stadion_internasional": 4,
-      "skor_olimpiade": 36,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 2,
@@ -224,6 +203,12 @@ export const swedia: CountryData = {
       "indeks_korupsi": 79,
       "indeks_keamanan": 76
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 29,
+      "sirkuit_balap": 6,
+      "stadion": 31,
+      "stadion_internasional": 4
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const swedia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 3,
@@ -345,3 +329,6 @@ export const swedia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const taiwan: CountryData = {
     "bandara": 9,
     "terminal_bus": 18,
     "helipad": 23,
-    "cakupan_internet": 95,
-    "indeks_teknologi": 62,
-    "akses_air": 74
+    "cakupan_internet": 95
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const taiwan: CountryData = {
     "aluminium": 38,
     "tembaga": 24,
     "logam_tanah_jarang": 2,
-    "bijih_besi": 26,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 26
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const taiwan: CountryData = {
     "farmasi": 7,
     "pupuk": 16,
     "pengolahan_daging": 10,
-    "mie_instan": 31,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 31
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const taiwan: CountryData = {
     "sayur_umbi": 28.0,
     "kedelai": 39,
     "kelapa_sawit": 13,
-    "kopi_teh_kakao": 16.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 16.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const taiwan: CountryData = {
     "pangkalan_laut": 30,
     "program_luar_angkasa": 19,
     "pertahanan_siber": 12,
-    "anggaran_pertahanan": 2194,
-    "personel": 14057,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 2194
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const taiwan: CountryData = {
 
   "sektor_armada": {
     "barak": 8,
-    "infanteri": 27,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 114,
         "apc": 68,
@@ -142,23 +132,20 @@ export const taiwan: CountryData = {
         "jet_tempur_siluman": 38,
         "helikopter_serang": 17,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 9,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 2,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 31,
           "sepeda_motor": 29,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 13,
           "helikopter_polisi": 13,
@@ -169,10 +156,12 @@ export const taiwan: CountryData = {
           "kamera_pengawas": 19,
           "pusat_forensik": 1
         },
-        "waktu_respon": 11,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 11,
     "intelijen": 24,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 20,
       "misi_mata_mata": 10,
       "misi_sabotase": 22,
@@ -185,34 +174,24 @@ export const taiwan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 38,
-      "sd": 25,
-      "smp": 21,
-      "sma": 40,
+      "prasekolah": 38,
+      "dasar": 25,
+      "menengah": 21,
+      "lanjutan": 40,
       "universitas": 37,
       "lembaga_pendidikan": 9,
       "laboratorium": 26,
       "observatorium": 14,
       "pusat_penelitian": 26,
       "pusat_pengembangan": 30,
-      "literasi": 93,
-      "indeks_penelitian": 0
+      "literasi": 93
     },
     "kesehatan": {
       "rumah_sakit_besar": 8,
       "rumah_sakit_kecil": 24,
       "pusat_diagnostik": 34,
-      "tempat_tidur_rs": 3992,
       "harapan_hidup": 17,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 10,
-      "sirkuit_balap": 18,
-      "stadion": 9,
-      "stadion_internasional": 16,
-      "skor_olimpiade": 11,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 30,
@@ -224,6 +203,12 @@ export const taiwan: CountryData = {
       "indeks_korupsi": 72,
       "indeks_keamanan": 57
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 10,
+      "sirkuit_balap": 18,
+      "stadion": 9,
+      "stadion_internasional": 16
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const taiwan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 14,
@@ -345,3 +329,6 @@ export const taiwan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

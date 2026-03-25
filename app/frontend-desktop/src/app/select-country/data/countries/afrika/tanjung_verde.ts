@@ -39,9 +39,7 @@ export const tanjung_verde: CountryData = {
     "jalur_kereta": 23,
     "kualitas_jalan": 84,
     "pelabuhan_laut": 5,
-    "kereta_bawah_tanah": 20,
-    "indeks_teknologi": 62,
-    "akses_air": 74
+    "kereta_bawah_tanah": 20
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const tanjung_verde: CountryData = {
     "minyak_bumi": 36,
     "logam_tanah_jarang": 20,
     "garam": 10,
-    "kekuatan": 29.660809349923973,
     "uranium": 30
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const tanjung_verde: CountryData = {
     "farmasi": 5,
     "semikonduktor": 17,
     "smelter": 15,
-    "kekuatan": 3.076011687404966,
     "gula": 29,
     "kayu": 15
   },
@@ -98,9 +94,8 @@ export const tanjung_verde: CountryData = {
     "sayur_umbi": 31.0,
     "kedelai": 11,
     "kelapa_sawit": 9,
-    "kopi_teh_kakao": 19.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 19.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const tanjung_verde: CountryData = {
     "pangkalan_laut": 30,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 4,
-    "anggaran_pertahanan": 27,
-    "personel": 29185,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const tanjung_verde: CountryData = {
 
   "sektor_armada": {
     "barak": 24,
-    "infanteri": 13,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 188,
         "apc": 23,
@@ -142,23 +132,19 @@ export const tanjung_verde: CountryData = {
         "jet_tempur_siluman": 10,
         "helikopter_serang": 81,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 6,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 1,
-      "jaringan_radar": 3,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 39,
           "sepeda_motor": 24,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 23,
@@ -170,11 +156,12 @@ export const tanjung_verde: CountryData = {
           "kamera_pengawas": 12,
           "pusat_forensik": 1
   },
-        "waktu_respon": 23,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 23,
     "intelijen": 28,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 32,
       "misi_mata_mata": 25,
       "misi_sabotase": 18,
@@ -188,34 +175,24 @@ export const tanjung_verde: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 1,
-      "sd": 8,
-      "smp": 15,
-      "sma": 3,
+      "prasekolah": 1,
+      "dasar": 8,
+      "menengah": 15,
+      "lanjutan": 3,
       "universitas": 7,
       "lembaga_pendidikan": 13,
       "laboratorium": 31,
       "observatorium": 12,
       "pusat_penelitian": 36,
       "pusat_pengembangan": 11,
-      "literasi": 95,
-      "indeks_penelitian": 0
+      "literasi": 95
   },
     "kesehatan": {
       "rumah_sakit_besar": 39,
       "rumah_sakit_kecil": 16,
       "pusat_diagnostik": 20,
-      "tempat_tidur_rs": 4031,
       "harapan_hidup": 37,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 12,
-      "sirkuit_balap": 5,
-      "stadion": 24,
-      "stadion_internasional": 39,
-      "skor_olimpiade": 19,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 39,
@@ -227,6 +204,12 @@ export const tanjung_verde: CountryData = {
       "indeks_korupsi": 79,
       "indeks_keamanan": 51
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 12,
+      "sirkuit_balap": 5,
+      "stadion": 24,
+      "stadion_internasional": 39
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const tanjung_verde: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 38,
@@ -348,3 +330,6 @@ export const tanjung_verde: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

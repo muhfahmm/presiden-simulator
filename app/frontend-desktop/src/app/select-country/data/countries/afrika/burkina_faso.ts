@@ -39,9 +39,7 @@ export const burkina_faso: CountryData = {
     "jalur_kereta": 4,
     "kualitas_jalan": 74,
     "pelabuhan_laut": 18,
-    "kereta_bawah_tanah": 15,
-    "indeks_teknologi": 61,
-    "akses_air": 74
+    "kereta_bawah_tanah": 15
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const burkina_faso: CountryData = {
     "minyak_bumi": 8,
     "logam_tanah_jarang": 22,
     "garam": 8,
-    "kekuatan": 29.660809349923973,
     "uranium": 33
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const burkina_faso: CountryData = {
     "farmasi": 28,
     "semikonduktor": 34,
     "smelter": 17,
-    "kekuatan": 3.076011687404966,
     "gula": 40,
     "kayu": 39
   },
@@ -98,9 +94,8 @@ export const burkina_faso: CountryData = {
     "sayur_umbi": 14.0,
     "kedelai": 28,
     "kelapa_sawit": 39,
-    "kopi_teh_kakao": 20.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const burkina_faso: CountryData = {
     "pangkalan_laut": 19,
     "program_luar_angkasa": 18,
     "pertahanan_siber": 21,
-    "anggaran_pertahanan": 50,
-    "personel": 20867,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 50
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const burkina_faso: CountryData = {
 
   "sektor_armada": {
     "barak": 20,
-    "infanteri": 10,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 40,
         "apc": 20,
@@ -142,23 +132,19 @@ export const burkina_faso: CountryData = {
         "jet_tempur_siluman": 18,
         "helikopter_serang": 35,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 24,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 16,
-      "jaringan_radar": 37,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 23,
           "sepeda_motor": 8,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 29,
@@ -170,11 +156,12 @@ export const burkina_faso: CountryData = {
           "kamera_pengawas": 38,
           "pusat_forensik": 1
   },
-        "waktu_respon": 11,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 11,
     "intelijen": 28,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 32,
       "misi_mata_mata": 27,
       "misi_sabotase": 10,
@@ -188,34 +175,24 @@ export const burkina_faso: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 21,
-      "sd": 26,
-      "smp": 12,
-      "sma": 23,
+      "prasekolah": 21,
+      "dasar": 26,
+      "menengah": 12,
+      "lanjutan": 23,
       "universitas": 40,
       "lembaga_pendidikan": 35,
       "laboratorium": 9,
       "observatorium": 18,
       "pusat_penelitian": 38,
       "pusat_pengembangan": 2,
-      "literasi": 50,
-      "indeks_penelitian": 0
+      "literasi": 50
   },
     "kesehatan": {
       "rumah_sakit_besar": 37,
       "rumah_sakit_kecil": 28,
       "pusat_diagnostik": 26,
-      "tempat_tidur_rs": 9571,
       "harapan_hidup": 38,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 9,
-      "sirkuit_balap": 6,
-      "stadion": 29,
-      "stadion_internasional": 40,
-      "skor_olimpiade": 36,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 22,
@@ -227,6 +204,12 @@ export const burkina_faso: CountryData = {
       "indeks_korupsi": 88,
       "indeks_keamanan": 54
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 9,
+      "sirkuit_balap": 6,
+      "stadion": 29,
+      "stadion_internasional": 40
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const burkina_faso: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 15,
@@ -348,3 +330,6 @@ export const burkina_faso: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const makau: CountryData = {
     "bandara": 4,
     "terminal_bus": 22,
     "helipad": 16,
-    "cakupan_internet": 94,
-    "indeks_teknologi": 60,
-    "akses_air": 74
+    "cakupan_internet": 94
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const makau: CountryData = {
     "aluminium": 15,
     "tembaga": 38,
     "logam_tanah_jarang": 5,
-    "bijih_besi": 39,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const makau: CountryData = {
     "farmasi": 36,
     "pupuk": 26,
     "pengolahan_daging": 28,
-    "mie_instan": 4,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 4
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const makau: CountryData = {
     "sayur_umbi": 17.0,
     "kedelai": 1,
     "kelapa_sawit": 13,
-    "kopi_teh_kakao": 15.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 15.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const makau: CountryData = {
     "pangkalan_laut": 40,
     "program_luar_angkasa": 9,
     "pertahanan_siber": 37,
-    "anggaran_pertahanan": 27,
-    "personel": 23407,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const makau: CountryData = {
 
   "sektor_armada": {
     "barak": 12,
-    "infanteri": 32,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 109,
         "apc": 93,
@@ -142,23 +132,20 @@ export const makau: CountryData = {
         "jet_tempur_siluman": 80,
         "helikopter_serang": 199,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 6,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 1,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 26,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 19,
           "helikopter_polisi": 20,
@@ -169,10 +156,12 @@ export const makau: CountryData = {
           "kamera_pengawas": 37,
           "pusat_forensik": 1
         },
-        "waktu_respon": 22,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 22,
     "intelijen": 37,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 2,
       "misi_mata_mata": 6,
       "misi_sabotase": 15,
@@ -185,34 +174,24 @@ export const makau: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 36,
-      "sd": 27,
-      "smp": 31,
-      "sma": 3,
+      "prasekolah": 36,
+      "dasar": 27,
+      "menengah": 31,
+      "lanjutan": 3,
       "universitas": 38,
       "lembaga_pendidikan": 15,
       "laboratorium": 24,
       "observatorium": 3,
       "pusat_penelitian": 24,
       "pusat_pengembangan": 13,
-      "literasi": 61,
-      "indeks_penelitian": 0
+      "literasi": 61
     },
     "kesehatan": {
       "rumah_sakit_besar": 38,
       "rumah_sakit_kecil": 33,
       "pusat_diagnostik": 34,
-      "tempat_tidur_rs": 2590,
       "harapan_hidup": 8,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 29,
-      "sirkuit_balap": 11,
-      "stadion": 27,
-      "stadion_internasional": 12,
-      "skor_olimpiade": 38,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 23,
@@ -224,6 +203,12 @@ export const makau: CountryData = {
       "indeks_korupsi": 90,
       "indeks_keamanan": 50
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 29,
+      "sirkuit_balap": 11,
+      "stadion": 27,
+      "stadion_internasional": 12
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const makau: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 21,
@@ -345,3 +329,6 @@ export const makau: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

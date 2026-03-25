@@ -39,9 +39,7 @@ export const myanmar: CountryData = {
     "bandara": 40,
     "terminal_bus": 36,
     "helipad": 22,
-    "cakupan_internet": 58,
-    "indeks_teknologi": 89,
-    "akses_air": 74
+    "cakupan_internet": 58
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const myanmar: CountryData = {
     "aluminium": 4,
     "tembaga": 21,
     "logam_tanah_jarang": 38,
-    "bijih_besi": 39,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const myanmar: CountryData = {
     "farmasi": 30,
     "pupuk": 28,
     "pengolahan_daging": 17,
-    "mie_instan": 21,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 21
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const myanmar: CountryData = {
     "sayur_umbi": 12.0,
     "kedelai": 30,
     "kelapa_sawit": 13,
-    "kopi_teh_kakao": 22.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 22.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const myanmar: CountryData = {
     "pangkalan_laut": 23,
     "program_luar_angkasa": 1,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 166,
-    "personel": 26184,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 166
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const myanmar: CountryData = {
 
   "sektor_armada": {
     "barak": 9,
-    "infanteri": 36,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 141,
         "apc": 54,
@@ -142,23 +132,20 @@ export const myanmar: CountryData = {
         "jet_tempur_siluman": 155,
         "helikopter_serang": 141,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 15,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 20,
           "sepeda_motor": 3,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 33,
           "helikopter_polisi": 13,
@@ -169,10 +156,12 @@ export const myanmar: CountryData = {
           "kamera_pengawas": 28,
           "pusat_forensik": 1
         },
-        "waktu_respon": 7,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 7,
     "intelijen": 33,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 17,
       "misi_mata_mata": 16,
       "misi_sabotase": 37,
@@ -185,34 +174,24 @@ export const myanmar: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 7,
-      "sd": 37,
-      "smp": 11,
-      "sma": 18,
+      "prasekolah": 7,
+      "dasar": 37,
+      "menengah": 11,
+      "lanjutan": 18,
       "universitas": 4,
       "lembaga_pendidikan": 31,
       "laboratorium": 1,
       "observatorium": 25,
       "pusat_penelitian": 22,
       "pusat_pengembangan": 13,
-      "literasi": 72,
-      "indeks_penelitian": 0
+      "literasi": 72
     },
     "kesehatan": {
       "rumah_sakit_besar": 16,
       "rumah_sakit_kecil": 20,
       "pusat_diagnostik": 3,
-      "tempat_tidur_rs": 2294,
       "harapan_hidup": 3,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 13,
-      "sirkuit_balap": 3,
-      "stadion": 29,
-      "stadion_internasional": 24,
-      "skor_olimpiade": 14,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 12,
@@ -224,6 +203,12 @@ export const myanmar: CountryData = {
       "indeks_korupsi": 51,
       "indeks_keamanan": 91
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 13,
+      "sirkuit_balap": 3,
+      "stadion": 29,
+      "stadion_internasional": 24
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const myanmar: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 15,
@@ -345,3 +329,6 @@ export const myanmar: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

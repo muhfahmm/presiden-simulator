@@ -39,9 +39,7 @@ export const nikaragua: CountryData = {
     "bandara": 5,
     "terminal_bus": 27,
     "helipad": 11,
-    "cakupan_internet": 68,
-    "indeks_teknologi": 78,
-    "akses_air": 74
+    "cakupan_internet": 68
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const nikaragua: CountryData = {
     "aluminium": 1,
     "tembaga": 36,
     "logam_tanah_jarang": 28,
-    "bijih_besi": 26,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 26
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const nikaragua: CountryData = {
     "farmasi": 2,
     "pupuk": 25,
     "pengolahan_daging": 10,
-    "mie_instan": 33,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 33
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const nikaragua: CountryData = {
     "sayur_umbi": 20.5,
     "kedelai": 22,
     "kelapa_sawit": 13,
-    "kopi_teh_kakao": 24.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 24.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const nikaragua: CountryData = {
     "pangkalan_laut": 5,
     "program_luar_angkasa": 33,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 47,
-    "personel": 26563,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 47
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const nikaragua: CountryData = {
 
   "sektor_armada": {
     "barak": 37,
-    "infanteri": 22,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 92,
         "apc": 40,
@@ -142,23 +132,20 @@ export const nikaragua: CountryData = {
         "jet_tempur_siluman": 63,
         "helikopter_serang": 92,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 24,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 8,
           "sepeda_motor": 7,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 36,
           "helikopter_polisi": 32,
@@ -169,10 +156,12 @@ export const nikaragua: CountryData = {
           "kamera_pengawas": 22,
           "pusat_forensik": 1
         },
-        "waktu_respon": 36,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 36,
     "intelijen": 24,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 4,
       "misi_mata_mata": 26,
       "misi_sabotase": 15,
@@ -185,34 +174,24 @@ export const nikaragua: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 25,
-      "sd": 21,
-      "smp": 22,
-      "sma": 19,
+      "prasekolah": 25,
+      "dasar": 21,
+      "menengah": 22,
+      "lanjutan": 19,
       "universitas": 9,
       "lembaga_pendidikan": 9,
       "laboratorium": 26,
       "observatorium": 34,
       "pusat_penelitian": 9,
       "pusat_pengembangan": 27,
-      "literasi": 75,
-      "indeks_penelitian": 0
+      "literasi": 75
     },
     "kesehatan": {
       "rumah_sakit_besar": 40,
       "rumah_sakit_kecil": 2,
       "pusat_diagnostik": 16,
-      "tempat_tidur_rs": 4276,
       "harapan_hidup": 29,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 37,
-      "sirkuit_balap": 7,
-      "stadion": 13,
-      "stadion_internasional": 31,
-      "skor_olimpiade": 35,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 13,
@@ -224,6 +203,12 @@ export const nikaragua: CountryData = {
       "indeks_korupsi": 88,
       "indeks_keamanan": 85
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 37,
+      "sirkuit_balap": 7,
+      "stadion": 13,
+      "stadion_internasional": 31
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const nikaragua: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 38,
@@ -345,3 +329,6 @@ export const nikaragua: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

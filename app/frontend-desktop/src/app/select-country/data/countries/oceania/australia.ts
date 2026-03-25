@@ -39,9 +39,7 @@ export const australia: CountryData = {
     "bandara": 34,
     "terminal_bus": 25,
     "helipad": 26,
-    "cakupan_internet": 62,
-    "indeks_teknologi": 73,
-    "akses_air": 74
+    "cakupan_internet": 62
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const australia: CountryData = {
     "aluminium": 2,
     "tembaga": 22,
     "logam_tanah_jarang": 10,
-    "bijih_besi": 26,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 26
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const australia: CountryData = {
     "farmasi": 3,
     "pupuk": 16,
     "pengolahan_daging": 1,
-    "mie_instan": 27,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 27
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const australia: CountryData = {
     "sayur_umbi": 3.0,
     "kedelai": 16,
     "kelapa_sawit": 33,
-    "kopi_teh_kakao": 33.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 33.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const australia: CountryData = {
     "pangkalan_laut": 26,
     "program_luar_angkasa": 11,
     "pertahanan_siber": 25,
-    "anggaran_pertahanan": 4778,
-    "personel": 5646,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 4778
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const australia: CountryData = {
 
   "sektor_armada": {
     "barak": 1,
-    "infanteri": 33,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 3,
         "apc": 36,
@@ -142,23 +132,20 @@ export const australia: CountryData = {
         "jet_tempur_siluman": 21,
         "helikopter_serang": 36,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 37,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 18,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 26,
           "sepeda_motor": 26,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 23,
           "helikopter_polisi": 3,
@@ -169,10 +156,12 @@ export const australia: CountryData = {
           "kamera_pengawas": 19,
           "pusat_forensik": 1
         },
-        "waktu_respon": 21,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 21,
     "intelijen": 20,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 9,
       "misi_mata_mata": 17,
       "misi_sabotase": 36,
@@ -185,34 +174,24 @@ export const australia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 7,
-      "sd": 15,
-      "smp": 20,
-      "sma": 33,
+      "prasekolah": 7,
+      "dasar": 15,
+      "menengah": 20,
+      "lanjutan": 33,
       "universitas": 29,
       "lembaga_pendidikan": 27,
       "laboratorium": 20,
       "observatorium": 17,
       "pusat_penelitian": 8,
       "pusat_pengembangan": 33,
-      "literasi": 50,
-      "indeks_penelitian": 0
+      "literasi": 50
     },
     "kesehatan": {
       "rumah_sakit_besar": 25,
       "rumah_sakit_kecil": 16,
       "pusat_diagnostik": 12,
-      "tempat_tidur_rs": 4286,
       "harapan_hidup": 26,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 11,
-      "sirkuit_balap": 12,
-      "stadion": 33,
-      "stadion_internasional": 12,
-      "skor_olimpiade": 7,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 14,
@@ -224,6 +203,12 @@ export const australia: CountryData = {
       "indeks_korupsi": 50,
       "indeks_keamanan": 80
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 11,
+      "sirkuit_balap": 12,
+      "stadion": 33,
+      "stadion_internasional": 12
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const australia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 6,
@@ -345,3 +329,6 @@ export const australia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

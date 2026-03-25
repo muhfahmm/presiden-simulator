@@ -39,9 +39,7 @@ export const mauritius: CountryData = {
     "jalur_kereta": 2,
     "kualitas_jalan": 68,
     "pelabuhan_laut": 36,
-    "kereta_bawah_tanah": 11,
-    "indeks_teknologi": 74,
-    "akses_air": 74
+    "kereta_bawah_tanah": 11
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const mauritius: CountryData = {
     "minyak_bumi": 26,
     "logam_tanah_jarang": 15,
     "garam": 5,
-    "kekuatan": 29.660809349923973,
     "uranium": 35
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const mauritius: CountryData = {
     "farmasi": 33,
     "semikonduktor": 39,
     "smelter": 38,
-    "kekuatan": 3.076011687404966,
     "gula": 24,
     "kayu": 14
   },
@@ -98,9 +94,8 @@ export const mauritius: CountryData = {
     "sayur_umbi": 2.5,
     "kedelai": 35,
     "kelapa_sawit": 15,
-    "kopi_teh_kakao": 15.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 15.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const mauritius: CountryData = {
     "pangkalan_laut": 15,
     "program_luar_angkasa": 5,
     "pertahanan_siber": 40,
-    "anggaran_pertahanan": 38,
-    "personel": 23297,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 38
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const mauritius: CountryData = {
 
   "sektor_armada": {
     "barak": 2,
-    "infanteri": 34,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 164,
         "apc": 69,
@@ -142,23 +132,19 @@ export const mauritius: CountryData = {
         "jet_tempur_siluman": 172,
         "helikopter_serang": 181,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 18,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 5,
-      "jaringan_radar": 1,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 10,
           "sepeda_motor": 1,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 32,
@@ -170,11 +156,12 @@ export const mauritius: CountryData = {
           "kamera_pengawas": 20,
           "pusat_forensik": 1
   },
-        "waktu_respon": 39,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 39,
     "intelijen": 21,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 38,
       "misi_mata_mata": 17,
       "misi_sabotase": 6,
@@ -188,34 +175,24 @@ export const mauritius: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 22,
-      "sd": 14,
-      "smp": 17,
-      "sma": 38,
+      "prasekolah": 22,
+      "dasar": 14,
+      "menengah": 17,
+      "lanjutan": 38,
       "universitas": 2,
       "lembaga_pendidikan": 13,
       "laboratorium": 1,
       "observatorium": 25,
       "pusat_penelitian": 16,
       "pusat_pengembangan": 36,
-      "literasi": 95,
-      "indeks_penelitian": 0
+      "literasi": 95
   },
     "kesehatan": {
       "rumah_sakit_besar": 26,
       "rumah_sakit_kecil": 17,
       "pusat_diagnostik": 10,
-      "tempat_tidur_rs": 4769,
       "harapan_hidup": 11,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 14,
-      "sirkuit_balap": 3,
-      "stadion": 33,
-      "stadion_internasional": 15,
-      "skor_olimpiade": 8,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 35,
@@ -227,6 +204,12 @@ export const mauritius: CountryData = {
       "indeks_korupsi": 72,
       "indeks_keamanan": 83
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 14,
+      "sirkuit_balap": 3,
+      "stadion": 33,
+      "stadion_internasional": 15
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const mauritius: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 13,
@@ -348,3 +330,6 @@ export const mauritius: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

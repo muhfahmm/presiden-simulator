@@ -39,9 +39,7 @@ export const yordania: CountryData = {
     "bandara": 32,
     "terminal_bus": 1,
     "helipad": 3,
-    "cakupan_internet": 82,
-    "indeks_teknologi": 55,
-    "akses_air": 74
+    "cakupan_internet": 82
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const yordania: CountryData = {
     "aluminium": 9,
     "tembaga": 22,
     "logam_tanah_jarang": 32,
-    "bijih_besi": 32,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 32
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const yordania: CountryData = {
     "farmasi": 29,
     "pupuk": 26,
     "pengolahan_daging": 7,
-    "mie_instan": 33,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 33
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const yordania: CountryData = {
     "sayur_umbi": 31.5,
     "kedelai": 20,
     "kelapa_sawit": 19,
-    "kopi_teh_kakao": 21.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 21.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const yordania: CountryData = {
     "pangkalan_laut": 26,
     "program_luar_angkasa": 3,
     "pertahanan_siber": 24,
-    "anggaran_pertahanan": 130,
-    "personel": 29178,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 130
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const yordania: CountryData = {
 
   "sektor_armada": {
     "barak": 31,
-    "infanteri": 31,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 38,
         "apc": 5,
@@ -142,23 +132,20 @@ export const yordania: CountryData = {
         "jet_tempur_siluman": 23,
         "helikopter_serang": 10,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 38,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 33,
-      "jaringan_radar": 13,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 13,
           "sepeda_motor": 32,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 40,
           "helikopter_polisi": 18,
@@ -169,10 +156,12 @@ export const yordania: CountryData = {
           "kamera_pengawas": 2,
           "pusat_forensik": 1
         },
-        "waktu_respon": 35,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 35,
     "intelijen": 17,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 39,
       "misi_mata_mata": 28,
       "misi_sabotase": 16,
@@ -185,34 +174,24 @@ export const yordania: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 4,
-      "sd": 10,
-      "smp": 27,
-      "sma": 36,
+      "prasekolah": 4,
+      "dasar": 10,
+      "menengah": 27,
+      "lanjutan": 36,
       "universitas": 33,
       "lembaga_pendidikan": 23,
       "laboratorium": 29,
       "observatorium": 28,
       "pusat_penelitian": 17,
       "pusat_pengembangan": 34,
-      "literasi": 69,
-      "indeks_penelitian": 0
+      "literasi": 69
     },
     "kesehatan": {
       "rumah_sakit_besar": 37,
       "rumah_sakit_kecil": 4,
       "pusat_diagnostik": 1,
-      "tempat_tidur_rs": 616,
       "harapan_hidup": 17,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 40,
-      "sirkuit_balap": 15,
-      "stadion": 19,
-      "stadion_internasional": 11,
-      "skor_olimpiade": 15,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 40,
@@ -224,6 +203,12 @@ export const yordania: CountryData = {
       "indeks_korupsi": 60,
       "indeks_keamanan": 55
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 40,
+      "sirkuit_balap": 15,
+      "stadion": 19,
+      "stadion_internasional": 11
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const yordania: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 7,
@@ -345,3 +329,6 @@ export const yordania: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

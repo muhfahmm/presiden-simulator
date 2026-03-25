@@ -39,9 +39,7 @@ export const albania: CountryData = {
     "bandara": 25,
     "terminal_bus": 6,
     "helipad": 6,
-    "cakupan_internet": 57,
-    "indeks_teknologi": 85,
-    "akses_air": 74
+    "cakupan_internet": 57
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const albania: CountryData = {
     "aluminium": 34,
     "tembaga": 32,
     "logam_tanah_jarang": 4,
-    "bijih_besi": 15,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const albania: CountryData = {
     "farmasi": 24,
     "pupuk": 8,
     "pengolahan_daging": 35,
-    "mie_instan": 8,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 8
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const albania: CountryData = {
     "sayur_umbi": 10.0,
     "kedelai": 37,
     "kelapa_sawit": 29,
-    "kopi_teh_kakao": 21.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 21.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const albania: CountryData = {
     "pangkalan_laut": 17,
     "program_luar_angkasa": 35,
     "pertahanan_siber": 35,
-    "anggaran_pertahanan": 61,
-    "personel": 13779,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 61
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const albania: CountryData = {
 
   "sektor_armada": {
     "barak": 22,
-    "infanteri": 18,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 37,
         "apc": 14,
@@ -142,23 +132,20 @@ export const albania: CountryData = {
         "jet_tempur_siluman": 36,
         "helikopter_serang": 15,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 38,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 39,
-      "jaringan_radar": 12,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 9,
           "sepeda_motor": 4,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 23,
           "helikopter_polisi": 1,
@@ -169,10 +156,12 @@ export const albania: CountryData = {
           "kamera_pengawas": 18,
           "pusat_forensik": 1
         },
-        "waktu_respon": 28,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 28,
     "intelijen": 8,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 30,
       "misi_mata_mata": 15,
       "misi_sabotase": 29,
@@ -185,34 +174,24 @@ export const albania: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 16,
-      "sd": 23,
-      "smp": 2,
-      "sma": 36,
+      "prasekolah": 16,
+      "dasar": 23,
+      "menengah": 2,
+      "lanjutan": 36,
       "universitas": 30,
       "lembaga_pendidikan": 33,
       "laboratorium": 16,
       "observatorium": 4,
       "pusat_penelitian": 22,
       "pusat_pengembangan": 12,
-      "literasi": 77,
-      "indeks_penelitian": 0
+      "literasi": 77
     },
     "kesehatan": {
       "rumah_sakit_besar": 37,
       "rumah_sakit_kecil": 39,
       "pusat_diagnostik": 39,
-      "tempat_tidur_rs": 882,
       "harapan_hidup": 10,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 11,
-      "sirkuit_balap": 8,
-      "stadion": 32,
-      "stadion_internasional": 26,
-      "skor_olimpiade": 22,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 16,
@@ -224,6 +203,12 @@ export const albania: CountryData = {
       "indeks_korupsi": 67,
       "indeks_keamanan": 58
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 11,
+      "sirkuit_balap": 8,
+      "stadion": 32,
+      "stadion_internasional": 26
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const albania: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 25,
@@ -345,3 +329,6 @@ export const albania: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

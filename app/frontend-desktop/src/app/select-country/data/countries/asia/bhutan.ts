@@ -39,9 +39,7 @@ export const bhutan: CountryData = {
     "bandara": 14,
     "terminal_bus": 29,
     "helipad": 26,
-    "cakupan_internet": 58,
-    "indeks_teknologi": 66,
-    "akses_air": 74
+    "cakupan_internet": 58
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const bhutan: CountryData = {
     "aluminium": 6,
     "tembaga": 19,
     "logam_tanah_jarang": 2,
-    "bijih_besi": 29,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 29
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const bhutan: CountryData = {
     "farmasi": 1,
     "pupuk": 29,
     "pengolahan_daging": 16,
-    "mie_instan": 23,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 23
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const bhutan: CountryData = {
     "sayur_umbi": 30.0,
     "kedelai": 7,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 23.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 23.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const bhutan: CountryData = {
     "pangkalan_laut": 32,
     "program_luar_angkasa": 8,
     "pertahanan_siber": 1,
-    "anggaran_pertahanan": 7,
-    "personel": 22464,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 7
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const bhutan: CountryData = {
 
   "sektor_armada": {
     "barak": 24,
-    "infanteri": 7,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 8,
         "apc": 22,
@@ -142,23 +132,20 @@ export const bhutan: CountryData = {
         "jet_tempur_siluman": 9,
         "helikopter_serang": 21,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 30,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 27,
-      "jaringan_radar": 28,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 23,
           "sepeda_motor": 29,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 12,
           "helikopter_polisi": 26,
@@ -169,10 +156,12 @@ export const bhutan: CountryData = {
           "kamera_pengawas": 31,
           "pusat_forensik": 1
         },
-        "waktu_respon": 6,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 6,
     "intelijen": 40,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 12,
       "misi_mata_mata": 32,
       "misi_sabotase": 28,
@@ -185,34 +174,24 @@ export const bhutan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 35,
-      "sd": 31,
-      "smp": 30,
-      "sma": 39,
+      "prasekolah": 35,
+      "dasar": 31,
+      "menengah": 30,
+      "lanjutan": 39,
       "universitas": 22,
       "lembaga_pendidikan": 16,
       "laboratorium": 21,
       "observatorium": 16,
       "pusat_penelitian": 11,
       "pusat_pengembangan": 11,
-      "literasi": 54,
-      "indeks_penelitian": 0
+      "literasi": 54
     },
     "kesehatan": {
       "rumah_sakit_besar": 35,
       "rumah_sakit_kecil": 17,
       "pusat_diagnostik": 39,
-      "tempat_tidur_rs": 9290,
       "harapan_hidup": 31,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 20,
-      "sirkuit_balap": 8,
-      "stadion": 16,
-      "stadion_internasional": 28,
-      "skor_olimpiade": 35,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 40,
@@ -224,6 +203,12 @@ export const bhutan: CountryData = {
       "indeks_korupsi": 71,
       "indeks_keamanan": 73
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 20,
+      "sirkuit_balap": 8,
+      "stadion": 16,
+      "stadion_internasional": 28
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const bhutan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 37,
@@ -345,3 +329,6 @@ export const bhutan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

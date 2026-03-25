@@ -39,9 +39,7 @@ export const namibia: CountryData = {
     "jalur_kereta": 16,
     "kualitas_jalan": 80,
     "pelabuhan_laut": 34,
-    "kereta_bawah_tanah": 1,
-    "indeks_teknologi": 84,
-    "akses_air": 74
+    "kereta_bawah_tanah": 1
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const namibia: CountryData = {
     "minyak_bumi": 29,
     "logam_tanah_jarang": 7,
     "garam": 12,
-    "kekuatan": 29.660809349923973,
     "uranium": 22
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const namibia: CountryData = {
     "farmasi": 20,
     "semikonduktor": 38,
     "smelter": 7,
-    "kekuatan": 3.076011687404966,
     "gula": 11,
     "kayu": 10
   },
@@ -98,9 +94,8 @@ export const namibia: CountryData = {
     "sayur_umbi": 12.5,
     "kedelai": 36,
     "kelapa_sawit": 22,
-    "kopi_teh_kakao": 9.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 9.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const namibia: CountryData = {
     "pangkalan_laut": 12,
     "program_luar_angkasa": 30,
     "pertahanan_siber": 4,
-    "anggaran_pertahanan": 36,
-    "personel": 9679,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 36
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const namibia: CountryData = {
 
   "sektor_armada": {
     "barak": 1,
-    "infanteri": 6,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 176,
         "apc": 186,
@@ -142,23 +132,19 @@ export const namibia: CountryData = {
         "jet_tempur_siluman": 153,
         "helikopter_serang": 150,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 29,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 1,
-      "jaringan_radar": 1,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 23,
           "sepeda_motor": 13,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 2,
@@ -170,11 +156,12 @@ export const namibia: CountryData = {
           "kamera_pengawas": 13,
           "pusat_forensik": 1
   },
-        "waktu_respon": 25,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 25,
     "intelijen": 11,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 31,
       "misi_mata_mata": 31,
       "misi_sabotase": 29,
@@ -188,34 +175,24 @@ export const namibia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 15,
-      "sd": 29,
-      "smp": 36,
-      "sma": 39,
+      "prasekolah": 15,
+      "dasar": 29,
+      "menengah": 36,
+      "lanjutan": 39,
       "universitas": 40,
       "lembaga_pendidikan": 29,
       "laboratorium": 28,
       "observatorium": 10,
       "pusat_penelitian": 28,
       "pusat_pengembangan": 27,
-      "literasi": 69,
-      "indeks_penelitian": 0
+      "literasi": 69
   },
     "kesehatan": {
       "rumah_sakit_besar": 37,
       "rumah_sakit_kecil": 19,
       "pusat_diagnostik": 19,
-      "tempat_tidur_rs": 9743,
       "harapan_hidup": 15,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 6,
-      "sirkuit_balap": 4,
-      "stadion": 34,
-      "stadion_internasional": 31,
-      "skor_olimpiade": 15,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 22,
@@ -227,6 +204,12 @@ export const namibia: CountryData = {
       "indeks_korupsi": 51,
       "indeks_keamanan": 64
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 6,
+      "sirkuit_balap": 4,
+      "stadion": 34,
+      "stadion_internasional": 31
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const namibia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 7,
@@ -348,3 +330,6 @@ export const namibia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

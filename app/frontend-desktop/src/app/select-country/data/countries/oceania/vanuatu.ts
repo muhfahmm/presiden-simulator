@@ -39,9 +39,7 @@ export const vanuatu: CountryData = {
     "bandara": 9,
     "terminal_bus": 20,
     "helipad": 14,
-    "cakupan_internet": 62,
-    "indeks_teknologi": 83,
-    "akses_air": 74
+    "cakupan_internet": 62
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const vanuatu: CountryData = {
     "aluminium": 9,
     "tembaga": 12,
     "logam_tanah_jarang": 19,
-    "bijih_besi": 37,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 37
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const vanuatu: CountryData = {
     "farmasi": 22,
     "pupuk": 3,
     "pengolahan_daging": 27,
-    "mie_instan": 35,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 35
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const vanuatu: CountryData = {
     "sayur_umbi": 26.0,
     "kedelai": 8,
     "kelapa_sawit": 26,
-    "kopi_teh_kakao": 23.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 23.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const vanuatu: CountryData = {
     "pangkalan_laut": 19,
     "program_luar_angkasa": 6,
     "pertahanan_siber": 28,
-    "anggaran_pertahanan": 2,
-    "personel": 27037,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 2
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const vanuatu: CountryData = {
 
   "sektor_armada": {
     "barak": 8,
-    "infanteri": 29,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 141,
         "apc": 46,
@@ -142,23 +132,20 @@ export const vanuatu: CountryData = {
         "jet_tempur_siluman": 147,
         "helikopter_serang": 133,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 16,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 0,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 16,
           "sepeda_motor": 26,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 11,
           "helikopter_polisi": 14,
@@ -169,10 +156,12 @@ export const vanuatu: CountryData = {
           "kamera_pengawas": 25,
           "pusat_forensik": 1
         },
-        "waktu_respon": 12,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 12,
     "intelijen": 22,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 34,
       "misi_mata_mata": 39,
       "misi_sabotase": 6,
@@ -185,34 +174,24 @@ export const vanuatu: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 40,
-      "sd": 26,
-      "smp": 25,
-      "sma": 31,
+      "prasekolah": 40,
+      "dasar": 26,
+      "menengah": 25,
+      "lanjutan": 31,
       "universitas": 23,
       "lembaga_pendidikan": 31,
       "laboratorium": 30,
       "observatorium": 36,
       "pusat_penelitian": 18,
       "pusat_pengembangan": 39,
-      "literasi": 87,
-      "indeks_penelitian": 0
+      "literasi": 87
     },
     "kesehatan": {
       "rumah_sakit_besar": 24,
       "rumah_sakit_kecil": 6,
       "pusat_diagnostik": 27,
-      "tempat_tidur_rs": 5109,
       "harapan_hidup": 24,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 29,
-      "stadion": 39,
-      "stadion_internasional": 6,
-      "skor_olimpiade": 22,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 14,
@@ -224,6 +203,12 @@ export const vanuatu: CountryData = {
       "indeks_korupsi": 50,
       "indeks_keamanan": 69
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 24,
+      "sirkuit_balap": 29,
+      "stadion": 39,
+      "stadion_internasional": 6
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const vanuatu: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 4,
@@ -345,3 +329,6 @@ export const vanuatu: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

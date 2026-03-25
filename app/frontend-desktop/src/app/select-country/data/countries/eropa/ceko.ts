@@ -39,9 +39,7 @@ export const ceko: CountryData = {
     "bandara": 38,
     "terminal_bus": 25,
     "helipad": 28,
-    "cakupan_internet": 59,
-    "indeks_teknologi": 65,
-    "akses_air": 74
+    "cakupan_internet": 59
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const ceko: CountryData = {
     "aluminium": 24,
     "tembaga": 30,
     "logam_tanah_jarang": 33,
-    "bijih_besi": 33,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 33
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const ceko: CountryData = {
     "farmasi": 11,
     "pupuk": 16,
     "pengolahan_daging": 5,
-    "mie_instan": 1,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 1
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const ceko: CountryData = {
     "sayur_umbi": 22.0,
     "kedelai": 25,
     "kelapa_sawit": 36,
-    "kopi_teh_kakao": 27.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 27.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const ceko: CountryData = {
     "pangkalan_laut": 34,
     "program_luar_angkasa": 15,
     "pertahanan_siber": 29,
-    "anggaran_pertahanan": 916,
-    "personel": 16863,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 916
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const ceko: CountryData = {
 
   "sektor_armada": {
     "barak": 9,
-    "infanteri": 21,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 33,
         "apc": 15,
@@ -142,23 +132,20 @@ export const ceko: CountryData = {
         "jet_tempur_siluman": 10,
         "helikopter_serang": 5,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 14,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 18,
-      "jaringan_radar": 14,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 9,
           "sepeda_motor": 27,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 24,
           "helikopter_polisi": 21,
@@ -169,10 +156,12 @@ export const ceko: CountryData = {
           "kamera_pengawas": 18,
           "pusat_forensik": 1
         },
-        "waktu_respon": 21,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 21,
     "intelijen": 28,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 8,
       "misi_mata_mata": 24,
       "misi_sabotase": 29,
@@ -185,34 +174,24 @@ export const ceko: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 36,
-      "sd": 30,
-      "smp": 6,
-      "sma": 26,
+      "prasekolah": 36,
+      "dasar": 30,
+      "menengah": 6,
+      "lanjutan": 26,
       "universitas": 12,
       "lembaga_pendidikan": 24,
       "laboratorium": 9,
       "observatorium": 13,
       "pusat_penelitian": 27,
       "pusat_pengembangan": 37,
-      "literasi": 87,
-      "indeks_penelitian": 0
+      "literasi": 87
     },
     "kesehatan": {
       "rumah_sakit_besar": 21,
       "rumah_sakit_kecil": 9,
       "pusat_diagnostik": 31,
-      "tempat_tidur_rs": 1217,
       "harapan_hidup": 19,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 14,
-      "stadion": 29,
-      "stadion_internasional": 10,
-      "skor_olimpiade": 17,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 34,
@@ -224,6 +203,12 @@ export const ceko: CountryData = {
       "indeks_korupsi": 66,
       "indeks_keamanan": 92
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 3,
+      "sirkuit_balap": 14,
+      "stadion": 29,
+      "stadion_internasional": 10
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const ceko: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 2,
@@ -345,3 +329,6 @@ export const ceko: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

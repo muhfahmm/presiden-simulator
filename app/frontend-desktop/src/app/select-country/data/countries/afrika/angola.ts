@@ -39,9 +39,7 @@ export const angola: CountryData = {
     "jalur_kereta": 39,
     "kualitas_jalan": 83,
     "pelabuhan_laut": 6,
-    "kereta_bawah_tanah": 16,
-    "indeks_teknologi": 68,
-    "akses_air": 74
+    "kereta_bawah_tanah": 16
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const angola: CountryData = {
     "minyak_bumi": 80,
     "logam_tanah_jarang": 50,
     "garam": 7,
-    "kekuatan": 29.660809349923973,
     "uranium": 21
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const angola: CountryData = {
     "farmasi": 23,
     "semikonduktor": 1,
     "smelter": 4,
-    "kekuatan": 3.076011687404966,
     "gula": 13,
     "kayu": 22
   },
@@ -98,9 +94,8 @@ export const angola: CountryData = {
     "sayur_umbi": 21.0,
     "kedelai": 5,
     "kelapa_sawit": 39,
-    "kopi_teh_kakao": 22.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 22.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const angola: CountryData = {
     "pangkalan_laut": 32,
     "program_luar_angkasa": 3,
     "pertahanan_siber": 24,
-    "anggaran_pertahanan": 236,
-    "personel": 14025,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 236
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const angola: CountryData = {
 
   "sektor_armada": {
     "barak": 23,
-    "infanteri": 24,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 19,
         "apc": 39,
@@ -142,23 +132,19 @@ export const angola: CountryData = {
         "jet_tempur_siluman": 21,
         "helikopter_serang": 20,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 21,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 24,
-      "jaringan_radar": 30,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 33,
           "sepeda_motor": 33,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 12,
@@ -170,11 +156,12 @@ export const angola: CountryData = {
           "kamera_pengawas": 21,
           "pusat_forensik": 1
   },
-        "waktu_respon": 5,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 5,
     "intelijen": 26,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 8,
       "misi_mata_mata": 17,
       "misi_sabotase": 5,
@@ -188,34 +175,24 @@ export const angola: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 26,
-      "sd": 24,
-      "smp": 27,
-      "sma": 8,
+      "prasekolah": 26,
+      "dasar": 24,
+      "menengah": 27,
+      "lanjutan": 8,
       "universitas": 40,
       "lembaga_pendidikan": 35,
       "laboratorium": 26,
       "observatorium": 17,
       "pusat_penelitian": 36,
       "pusat_pengembangan": 9,
-      "literasi": 93,
-      "indeks_penelitian": 0
+      "literasi": 93
   },
     "kesehatan": {
       "rumah_sakit_besar": 20,
       "rumah_sakit_kecil": 7,
       "pusat_diagnostik": 16,
-      "tempat_tidur_rs": 5342,
       "harapan_hidup": 28,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 30,
-      "sirkuit_balap": 5,
-      "stadion": 36,
-      "stadion_internasional": 40,
-      "skor_olimpiade": 2,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 5,
@@ -227,6 +204,12 @@ export const angola: CountryData = {
       "indeks_korupsi": 74,
       "indeks_keamanan": 61
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 30,
+      "sirkuit_balap": 5,
+      "stadion": 36,
+      "stadion_internasional": 40
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const angola: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 37,
@@ -348,3 +330,6 @@ export const angola: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

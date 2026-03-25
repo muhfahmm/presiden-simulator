@@ -39,9 +39,7 @@ export const samoa: CountryData = {
     "bandara": 34,
     "terminal_bus": 12,
     "helipad": 1,
-    "cakupan_internet": 80,
-    "indeks_teknologi": 87,
-    "akses_air": 74
+    "cakupan_internet": 80
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const samoa: CountryData = {
     "aluminium": 22,
     "tembaga": 2,
     "logam_tanah_jarang": 3,
-    "bijih_besi": 4,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const samoa: CountryData = {
     "farmasi": 21,
     "pupuk": 30,
     "pengolahan_daging": 39,
-    "mie_instan": 13,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 13
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const samoa: CountryData = {
     "sayur_umbi": 18.5,
     "kedelai": 24,
     "kelapa_sawit": 12,
-    "kopi_teh_kakao": 18.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 18.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const samoa: CountryData = {
     "pangkalan_laut": 40,
     "program_luar_angkasa": 37,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 2,
-    "personel": 6753,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 2
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const samoa: CountryData = {
 
   "sektor_armada": {
     "barak": 1,
-    "infanteri": 20,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 170,
         "apc": 162,
@@ -142,23 +132,20 @@ export const samoa: CountryData = {
         "jet_tempur_siluman": 39,
         "helikopter_serang": 30,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 1,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 2,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 37,
           "sepeda_motor": 8,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 33,
           "helikopter_polisi": 32,
@@ -169,10 +156,12 @@ export const samoa: CountryData = {
           "kamera_pengawas": 40,
           "pusat_forensik": 1
         },
-        "waktu_respon": 27,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 27,
     "intelijen": 39,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 10,
       "misi_mata_mata": 38,
       "misi_sabotase": 2,
@@ -185,34 +174,24 @@ export const samoa: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 22,
-      "sd": 12,
-      "smp": 2,
-      "sma": 34,
+      "prasekolah": 22,
+      "dasar": 12,
+      "menengah": 2,
+      "lanjutan": 34,
       "universitas": 31,
       "lembaga_pendidikan": 7,
       "laboratorium": 6,
       "observatorium": 18,
       "pusat_penelitian": 5,
       "pusat_pengembangan": 40,
-      "literasi": 75,
-      "indeks_penelitian": 0
+      "literasi": 75
     },
     "kesehatan": {
       "rumah_sakit_besar": 32,
       "rumah_sakit_kecil": 25,
       "pusat_diagnostik": 36,
-      "tempat_tidur_rs": 5146,
       "harapan_hidup": 27,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 39,
-      "sirkuit_balap": 14,
-      "stadion": 29,
-      "stadion_internasional": 14,
-      "skor_olimpiade": 38,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 33,
@@ -224,6 +203,12 @@ export const samoa: CountryData = {
       "indeks_korupsi": 83,
       "indeks_keamanan": 71
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 39,
+      "sirkuit_balap": 14,
+      "stadion": 29,
+      "stadion_internasional": 14
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const samoa: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 2,
@@ -345,3 +329,6 @@ export const samoa: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

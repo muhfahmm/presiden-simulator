@@ -39,9 +39,7 @@ export const kongo: CountryData = {
     "jalur_kereta": 32,
     "kualitas_jalan": 52,
     "pelabuhan_laut": 38,
-    "kereta_bawah_tanah": 12,
-    "indeks_teknologi": 90,
-    "akses_air": 74
+    "kereta_bawah_tanah": 12
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const kongo: CountryData = {
     "minyak_bumi": 34,
     "logam_tanah_jarang": 4,
     "garam": 11,
-    "kekuatan": 29.660809349923973,
     "uranium": 32
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const kongo: CountryData = {
     "farmasi": 23,
     "semikonduktor": 25,
     "smelter": 10,
-    "kekuatan": 3.076011687404966,
     "gula": 8,
     "kayu": 20
   },
@@ -98,9 +94,8 @@ export const kongo: CountryData = {
     "sayur_umbi": 20.5,
     "kedelai": 28,
     "kelapa_sawit": 16,
-    "kopi_teh_kakao": 37.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 37.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const kongo: CountryData = {
     "pangkalan_laut": 17,
     "program_luar_angkasa": 38,
     "pertahanan_siber": 1,
-    "anggaran_pertahanan": 41,
-    "personel": 7783,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 41
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const kongo: CountryData = {
 
   "sektor_armada": {
     "barak": 36,
-    "infanteri": 23,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 24,
         "apc": 26,
@@ -142,23 +132,19 @@ export const kongo: CountryData = {
         "jet_tempur_siluman": 1,
         "helikopter_serang": 19,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 16,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 14,
-      "jaringan_radar": 38,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 2,
           "sepeda_motor": 31,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 5,
@@ -170,11 +156,12 @@ export const kongo: CountryData = {
           "kamera_pengawas": 31,
           "pusat_forensik": 1
   },
-        "waktu_respon": 19,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 19,
     "intelijen": 26,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 17,
       "misi_mata_mata": 35,
       "misi_sabotase": 21,
@@ -188,34 +175,24 @@ export const kongo: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 17,
-      "sd": 12,
-      "smp": 7,
-      "sma": 19,
+      "prasekolah": 17,
+      "dasar": 12,
+      "menengah": 7,
+      "lanjutan": 19,
       "universitas": 23,
       "lembaga_pendidikan": 13,
       "laboratorium": 26,
       "observatorium": 1,
       "pusat_penelitian": 38,
       "pusat_pengembangan": 33,
-      "literasi": 64,
-      "indeks_penelitian": 0
+      "literasi": 64
   },
     "kesehatan": {
       "rumah_sakit_besar": 13,
       "rumah_sakit_kecil": 23,
       "pusat_diagnostik": 6,
-      "tempat_tidur_rs": 2277,
       "harapan_hidup": 4,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 22,
-      "sirkuit_balap": 6,
-      "stadion": 19,
-      "stadion_internasional": 4,
-      "skor_olimpiade": 32,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 33,
@@ -227,6 +204,12 @@ export const kongo: CountryData = {
       "indeks_korupsi": 88,
       "indeks_keamanan": 86
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 22,
+      "sirkuit_balap": 6,
+      "stadion": 19,
+      "stadion_internasional": 4
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const kongo: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 15,
@@ -348,3 +330,6 @@ export const kongo: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

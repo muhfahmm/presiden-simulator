@@ -39,9 +39,7 @@ export const korea_selatan: CountryData = {
     "bandara": 16,
     "terminal_bus": 25,
     "helipad": 34,
-    "cakupan_internet": 93,
-    "indeks_teknologi": 89,
-    "akses_air": 74
+    "cakupan_internet": 93
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const korea_selatan: CountryData = {
     "aluminium": 15,
     "tembaga": 13,
     "logam_tanah_jarang": 9,
-    "bijih_besi": 4,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const korea_selatan: CountryData = {
     "farmasi": 27,
     "pupuk": 20,
     "pengolahan_daging": 11,
-    "mie_instan": 18,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 18
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const korea_selatan: CountryData = {
     "sayur_umbi": 29.5,
     "kedelai": 33,
     "kelapa_sawit": 13,
-    "kopi_teh_kakao": 8.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 8.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const korea_selatan: CountryData = {
     "pangkalan_laut": 33,
     "program_luar_angkasa": 13,
     "pertahanan_siber": 26,
-    "anggaran_pertahanan": 4889,
-    "personel": 10626,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 4889
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const korea_selatan: CountryData = {
 
   "sektor_armada": {
     "barak": 22,
-    "infanteri": 17,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 5,
         "apc": 5,
@@ -142,23 +132,20 @@ export const korea_selatan: CountryData = {
         "jet_tempur_siluman": 7,
         "helikopter_serang": 34,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 5,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 8,
-      "jaringan_radar": 34,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 28,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 26,
           "helikopter_polisi": 10,
@@ -169,10 +156,12 @@ export const korea_selatan: CountryData = {
           "kamera_pengawas": 40,
           "pusat_forensik": 1
         },
-        "waktu_respon": 6,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 6,
     "intelijen": 35,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 10,
       "misi_mata_mata": 29,
       "misi_sabotase": 37,
@@ -185,34 +174,24 @@ export const korea_selatan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 31,
-      "sd": 28,
-      "smp": 3,
-      "sma": 18,
+      "prasekolah": 31,
+      "dasar": 28,
+      "menengah": 3,
+      "lanjutan": 18,
       "universitas": 26,
       "lembaga_pendidikan": 9,
       "laboratorium": 12,
       "observatorium": 1,
       "pusat_penelitian": 1,
       "pusat_pengembangan": 39,
-      "literasi": 94,
-      "indeks_penelitian": 0
+      "literasi": 94
     },
     "kesehatan": {
       "rumah_sakit_besar": 14,
       "rumah_sakit_kecil": 2,
       "pusat_diagnostik": 17,
-      "tempat_tidur_rs": 1058,
       "harapan_hidup": 39,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 30,
-      "sirkuit_balap": 18,
-      "stadion": 14,
-      "stadion_internasional": 3,
-      "skor_olimpiade": 11,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 40,
@@ -224,6 +203,12 @@ export const korea_selatan: CountryData = {
       "indeks_korupsi": 74,
       "indeks_keamanan": 83
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 30,
+      "sirkuit_balap": 18,
+      "stadion": 14,
+      "stadion_internasional": 3
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const korea_selatan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 33,
@@ -345,3 +329,6 @@ export const korea_selatan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

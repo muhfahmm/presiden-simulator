@@ -39,9 +39,7 @@ export const laos: CountryData = {
     "bandara": 39,
     "terminal_bus": 1,
     "helipad": 20,
-    "cakupan_internet": 65,
-    "indeks_teknologi": 91,
-    "akses_air": 74
+    "cakupan_internet": 65
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const laos: CountryData = {
     "aluminium": 14,
     "tembaga": 22,
     "logam_tanah_jarang": 17,
-    "bijih_besi": 24,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 24
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const laos: CountryData = {
     "farmasi": 23,
     "pupuk": 24,
     "pengolahan_daging": 36,
-    "mie_instan": 33,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 33
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const laos: CountryData = {
     "sayur_umbi": 4.0,
     "kedelai": 18,
     "kelapa_sawit": 19,
-    "kopi_teh_kakao": 9.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 9.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const laos: CountryData = {
     "pangkalan_laut": 22,
     "program_luar_angkasa": 15,
     "pertahanan_siber": 36,
-    "anggaran_pertahanan": 41,
-    "personel": 19871,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 41
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const laos: CountryData = {
 
   "sektor_armada": {
     "barak": 21,
-    "infanteri": 40,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 6,
         "apc": 35,
@@ -142,23 +132,20 @@ export const laos: CountryData = {
         "jet_tempur_siluman": 31,
         "helikopter_serang": 37,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 37,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 16,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 16,
           "sepeda_motor": 2,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 10,
           "helikopter_polisi": 34,
@@ -169,10 +156,12 @@ export const laos: CountryData = {
           "kamera_pengawas": 35,
           "pusat_forensik": 1
         },
-        "waktu_respon": 4,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 4,
     "intelijen": 18,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 36,
       "misi_mata_mata": 16,
       "misi_sabotase": 30,
@@ -185,34 +174,24 @@ export const laos: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 26,
-      "sd": 20,
-      "smp": 34,
-      "sma": 1,
+      "prasekolah": 26,
+      "dasar": 20,
+      "menengah": 34,
+      "lanjutan": 1,
       "universitas": 19,
       "lembaga_pendidikan": 17,
       "laboratorium": 33,
       "observatorium": 27,
       "pusat_penelitian": 9,
       "pusat_pengembangan": 12,
-      "literasi": 77,
-      "indeks_penelitian": 0
+      "literasi": 77
     },
     "kesehatan": {
       "rumah_sakit_besar": 34,
       "rumah_sakit_kecil": 36,
       "pusat_diagnostik": 10,
-      "tempat_tidur_rs": 8126,
       "harapan_hidup": 21,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 40,
-      "sirkuit_balap": 15,
-      "stadion": 12,
-      "stadion_internasional": 10,
-      "skor_olimpiade": 16,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 23,
@@ -224,6 +203,12 @@ export const laos: CountryData = {
       "indeks_korupsi": 75,
       "indeks_keamanan": 55
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 40,
+      "sirkuit_balap": 15,
+      "stadion": 12,
+      "stadion_internasional": 10
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const laos: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 2,
@@ -345,3 +329,6 @@ export const laos: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

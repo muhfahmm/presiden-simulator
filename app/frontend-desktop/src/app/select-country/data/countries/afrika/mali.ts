@@ -39,9 +39,7 @@ export const mali: CountryData = {
     "jalur_kereta": 22,
     "kualitas_jalan": 70,
     "pelabuhan_laut": 3,
-    "kereta_bawah_tanah": 14,
-    "indeks_teknologi": 95,
-    "akses_air": 74
+    "kereta_bawah_tanah": 14
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const mali: CountryData = {
     "minyak_bumi": 29,
     "logam_tanah_jarang": 31,
     "garam": 36,
-    "kekuatan": 29.660809349923973,
     "uranium": 4
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const mali: CountryData = {
     "farmasi": 32,
     "semikonduktor": 20,
     "smelter": 1,
-    "kekuatan": 3.076011687404966,
     "gula": 16,
     "kayu": 1
   },
@@ -98,9 +94,8 @@ export const mali: CountryData = {
     "sayur_umbi": 32.0,
     "kedelai": 5,
     "kelapa_sawit": 8,
-    "kopi_teh_kakao": 31.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 31.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const mali: CountryData = {
     "pangkalan_laut": 37,
     "program_luar_angkasa": 4,
     "pertahanan_siber": 37,
-    "anggaran_pertahanan": 50,
-    "personel": 6980,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 50
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const mali: CountryData = {
 
   "sektor_armada": {
     "barak": 36,
-    "infanteri": 39,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 18,
         "apc": 39,
@@ -142,23 +132,19 @@ export const mali: CountryData = {
         "jet_tempur_siluman": 36,
         "helikopter_serang": 28,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 39,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 25,
-      "jaringan_radar": 15,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 8,
           "sepeda_motor": 8,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 30,
@@ -170,11 +156,12 @@ export const mali: CountryData = {
           "kamera_pengawas": 18,
           "pusat_forensik": 1
   },
-        "waktu_respon": 26,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 26,
     "intelijen": 14,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 5,
       "misi_mata_mata": 30,
       "misi_sabotase": 1,
@@ -188,34 +175,24 @@ export const mali: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 25,
-      "sd": 22,
-      "smp": 5,
-      "sma": 36,
+      "prasekolah": 25,
+      "dasar": 22,
+      "menengah": 5,
+      "lanjutan": 36,
       "universitas": 15,
       "lembaga_pendidikan": 19,
       "laboratorium": 33,
       "observatorium": 17,
       "pusat_penelitian": 20,
       "pusat_pengembangan": 17,
-      "literasi": 80,
-      "indeks_penelitian": 0
+      "literasi": 80
   },
     "kesehatan": {
       "rumah_sakit_besar": 9,
       "rumah_sakit_kecil": 11,
       "pusat_diagnostik": 5,
-      "tempat_tidur_rs": 6075,
       "harapan_hidup": 27,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 21,
-      "sirkuit_balap": 3,
-      "stadion": 7,
-      "stadion_internasional": 40,
-      "skor_olimpiade": 15,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 34,
@@ -227,6 +204,12 @@ export const mali: CountryData = {
       "indeks_korupsi": 53,
       "indeks_keamanan": 93
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 21,
+      "sirkuit_balap": 3,
+      "stadion": 7,
+      "stadion_internasional": 40
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const mali: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 17,
@@ -348,3 +330,6 @@ export const mali: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

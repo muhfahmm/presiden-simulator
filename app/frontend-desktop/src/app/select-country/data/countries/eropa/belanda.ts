@@ -39,9 +39,7 @@ export const belanda: CountryData = {
     "bandara": 20,
     "terminal_bus": 2,
     "helipad": 33,
-    "cakupan_internet": 54,
-    "indeks_teknologi": 73,
-    "akses_air": 74
+    "cakupan_internet": 54
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const belanda: CountryData = {
     "aluminium": 14,
     "tembaga": 36,
     "logam_tanah_jarang": 2,
-    "bijih_besi": 25,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 25
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const belanda: CountryData = {
     "farmasi": 38,
     "pupuk": 5,
     "pengolahan_daging": 30,
-    "mie_instan": 39,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 39
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const belanda: CountryData = {
     "sayur_umbi": 31.0,
     "kedelai": 14,
     "kelapa_sawit": 38,
-    "kopi_teh_kakao": 31.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 31.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const belanda: CountryData = {
     "pangkalan_laut": 18,
     "program_luar_angkasa": 19,
     "pertahanan_siber": 16,
-    "anggaran_pertahanan": 3028,
-    "personel": 25162,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 3028
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const belanda: CountryData = {
 
   "sektor_armada": {
     "barak": 32,
-    "infanteri": 11,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 28,
         "apc": 26,
@@ -142,23 +132,20 @@ export const belanda: CountryData = {
         "jet_tempur_siluman": 35,
         "helikopter_serang": 27,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 11,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 9,
-      "jaringan_radar": 15,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 40,
           "sepeda_motor": 35,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 28,
           "helikopter_polisi": 24,
@@ -169,10 +156,12 @@ export const belanda: CountryData = {
           "kamera_pengawas": 1,
           "pusat_forensik": 1
         },
-        "waktu_respon": 7,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 7,
     "intelijen": 22,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 25,
       "misi_mata_mata": 26,
       "misi_sabotase": 4,
@@ -185,34 +174,24 @@ export const belanda: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 34,
-      "sd": 15,
-      "smp": 28,
-      "sma": 27,
+      "prasekolah": 34,
+      "dasar": 15,
+      "menengah": 28,
+      "lanjutan": 27,
       "universitas": 33,
       "lembaga_pendidikan": 11,
       "laboratorium": 1,
       "observatorium": 40,
       "pusat_penelitian": 34,
       "pusat_pengembangan": 25,
-      "literasi": 74,
-      "indeks_penelitian": 0
+      "literasi": 74
     },
     "kesehatan": {
       "rumah_sakit_besar": 12,
       "rumah_sakit_kecil": 26,
       "pusat_diagnostik": 28,
-      "tempat_tidur_rs": 9546,
       "harapan_hidup": 27,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 38,
-      "sirkuit_balap": 21,
-      "stadion": 35,
-      "stadion_internasional": 13,
-      "skor_olimpiade": 17,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 34,
@@ -224,6 +203,12 @@ export const belanda: CountryData = {
       "indeks_korupsi": 73,
       "indeks_keamanan": 95
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 38,
+      "sirkuit_balap": 21,
+      "stadion": 35,
+      "stadion_internasional": 13
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const belanda: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 36,
@@ -345,3 +329,6 @@ export const belanda: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

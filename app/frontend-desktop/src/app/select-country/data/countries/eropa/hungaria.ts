@@ -39,9 +39,7 @@ export const hungaria: CountryData = {
     "bandara": 37,
     "terminal_bus": 4,
     "helipad": 26,
-    "cakupan_internet": 72,
-    "indeks_teknologi": 67,
-    "akses_air": 74
+    "cakupan_internet": 72
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const hungaria: CountryData = {
     "aluminium": 12,
     "tembaga": 14,
     "logam_tanah_jarang": 1,
-    "bijih_besi": 14,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const hungaria: CountryData = {
     "farmasi": 9,
     "pupuk": 4,
     "pengolahan_daging": 19,
-    "mie_instan": 3,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 3
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const hungaria: CountryData = {
     "sayur_umbi": 23.0,
     "kedelai": 33,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 9.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 9.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const hungaria: CountryData = {
     "pangkalan_laut": 38,
     "program_luar_angkasa": 34,
     "pertahanan_siber": 9,
-    "anggaran_pertahanan": 583,
-    "personel": 7893,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 583
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const hungaria: CountryData = {
 
   "sektor_armada": {
     "barak": 21,
-    "infanteri": 12,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 2,
         "apc": 1,
@@ -142,23 +132,20 @@ export const hungaria: CountryData = {
         "jet_tempur_siluman": 5,
         "helikopter_serang": 39,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 7,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 10,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 14,
           "sepeda_motor": 13,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 31,
           "helikopter_polisi": 32,
@@ -169,10 +156,12 @@ export const hungaria: CountryData = {
           "kamera_pengawas": 10,
           "pusat_forensik": 1
         },
-        "waktu_respon": 27,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 27,
     "intelijen": 20,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 27,
       "misi_mata_mata": 22,
       "misi_sabotase": 2,
@@ -185,34 +174,24 @@ export const hungaria: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 2,
-      "sd": 17,
-      "smp": 34,
-      "sma": 37,
+      "prasekolah": 2,
+      "dasar": 17,
+      "menengah": 34,
+      "lanjutan": 37,
       "universitas": 27,
       "lembaga_pendidikan": 9,
       "laboratorium": 27,
       "observatorium": 36,
       "pusat_penelitian": 15,
       "pusat_pengembangan": 1,
-      "literasi": 74,
-      "indeks_penelitian": 0
+      "literasi": 74
     },
     "kesehatan": {
       "rumah_sakit_besar": 38,
       "rumah_sakit_kecil": 27,
       "pusat_diagnostik": 6,
-      "tempat_tidur_rs": 5851,
       "harapan_hidup": 17,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 27,
-      "sirkuit_balap": 6,
-      "stadion": 25,
-      "stadion_internasional": 30,
-      "skor_olimpiade": 20,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 40,
@@ -224,6 +203,12 @@ export const hungaria: CountryData = {
       "indeks_korupsi": 72,
       "indeks_keamanan": 69
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 27,
+      "sirkuit_balap": 6,
+      "stadion": 25,
+      "stadion_internasional": 30
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const hungaria: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 1,
@@ -345,3 +329,6 @@ export const hungaria: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

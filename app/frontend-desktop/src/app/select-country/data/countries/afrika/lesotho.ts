@@ -39,9 +39,7 @@ export const lesotho: CountryData = {
     "jalur_kereta": 8,
     "kualitas_jalan": 68,
     "pelabuhan_laut": 22,
-    "kereta_bawah_tanah": 7,
-    "indeks_teknologi": 76,
-    "akses_air": 74
+    "kereta_bawah_tanah": 7
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const lesotho: CountryData = {
     "minyak_bumi": 6,
     "logam_tanah_jarang": 22,
     "garam": 37,
-    "kekuatan": 29.660809349923973,
     "uranium": 3
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const lesotho: CountryData = {
     "farmasi": 33,
     "semikonduktor": 36,
     "smelter": 2,
-    "kekuatan": 3.076011687404966,
     "gula": 29,
     "kayu": 22
   },
@@ -98,9 +94,8 @@ export const lesotho: CountryData = {
     "sayur_umbi": 10.5,
     "kedelai": 5,
     "kelapa_sawit": 23,
-    "kopi_teh_kakao": 11.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 11.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const lesotho: CountryData = {
     "pangkalan_laut": 23,
     "program_luar_angkasa": 13,
     "pertahanan_siber": 8,
-    "anggaran_pertahanan": 6,
-    "personel": 9245,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 6
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const lesotho: CountryData = {
 
   "sektor_armada": {
     "barak": 26,
-    "infanteri": 24,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 19,
         "apc": 2,
@@ -142,23 +132,19 @@ export const lesotho: CountryData = {
         "jet_tempur_siluman": 27,
         "helikopter_serang": 8,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 6,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 6,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 6,
           "sepeda_motor": 19,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 22,
@@ -170,11 +156,12 @@ export const lesotho: CountryData = {
           "kamera_pengawas": 1,
           "pusat_forensik": 1
   },
-        "waktu_respon": 34,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 34,
     "intelijen": 21,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 1,
       "misi_mata_mata": 19,
       "misi_sabotase": 21,
@@ -188,34 +175,24 @@ export const lesotho: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 1,
-      "sd": 20,
-      "smp": 22,
-      "sma": 6,
+      "prasekolah": 1,
+      "dasar": 20,
+      "menengah": 22,
+      "lanjutan": 6,
       "universitas": 1,
       "lembaga_pendidikan": 24,
       "laboratorium": 17,
       "observatorium": 6,
       "pusat_penelitian": 14,
       "pusat_pengembangan": 1,
-      "literasi": 67,
-      "indeks_penelitian": 0
+      "literasi": 67
   },
     "kesehatan": {
       "rumah_sakit_besar": 12,
       "rumah_sakit_kecil": 32,
       "pusat_diagnostik": 21,
-      "tempat_tidur_rs": 2889,
       "harapan_hidup": 10,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 15,
-      "sirkuit_balap": 26,
-      "stadion": 34,
-      "stadion_internasional": 12,
-      "skor_olimpiade": 16,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 37,
@@ -227,6 +204,12 @@ export const lesotho: CountryData = {
       "indeks_korupsi": 65,
       "indeks_keamanan": 72
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 15,
+      "sirkuit_balap": 26,
+      "stadion": 34,
+      "stadion_internasional": 12
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const lesotho: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 36,
@@ -348,3 +330,6 @@ export const lesotho: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

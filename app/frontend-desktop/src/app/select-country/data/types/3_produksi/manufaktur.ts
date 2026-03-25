@@ -12,5 +12,4 @@ export interface SektorManufaktur {
   pupuk: number;
   pengolahan_daging: number;
   mie_instan: number;
-  kekuatan: number; // 0-100
 }

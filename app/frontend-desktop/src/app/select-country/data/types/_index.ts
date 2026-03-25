@@ -7,6 +7,7 @@ import { SektorPertahanan, SektorArmada, SektorKeamanan } from "./4_militer/_ind
 import { SektorSosial } from "./5_layanan_sosial/_index";
 import { SektorGeopolitik } from "./6_geopolitik_dan_luar_negeri/_index";
 import { SektorEkstraksi } from "./7_ekstraksi_mineral_kritis/_index";
+import { OlahragaData } from "./8_olahraga/_index";
 import { EkonomiData, PajakData } from "./ekonomi/_index";
 
 export interface CountryData extends EkonomiData {
@@ -31,6 +32,7 @@ export interface CountryData extends EkonomiData {
   sektor_armada: SektorArmada;
   sektor_keamanan: SektorKeamanan;
   sektor_sosial: SektorSosial;
+  sektor_olahraga: OlahragaData;
   geopolitik: SektorGeopolitik;
 
   // Global & Politik
@@ -53,4 +55,5 @@ export * from "./4_militer/_index";
 export * from "./5_layanan_sosial/_index";
 export * from "./6_geopolitik_dan_luar_negeri/_index";
 export * from "./7_ekstraksi_mineral_kritis/_index";
+export * from "./8_olahraga/_index";
 export * from "./ekonomi/_index";

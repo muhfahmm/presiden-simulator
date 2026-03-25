@@ -39,9 +39,7 @@ export const botswana: CountryData = {
     "jalur_kereta": 4,
     "kualitas_jalan": 90,
     "pelabuhan_laut": 15,
-    "kereta_bawah_tanah": 7,
-    "indeks_teknologi": 89,
-    "akses_air": 74
+    "kereta_bawah_tanah": 7
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const botswana: CountryData = {
     "minyak_bumi": 1,
     "logam_tanah_jarang": 21,
     "garam": 40,
-    "kekuatan": 29.660809349923973,
     "uranium": 24
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const botswana: CountryData = {
     "farmasi": 35,
     "semikonduktor": 13,
     "smelter": 7,
-    "kekuatan": 3.076011687404966,
     "gula": 17,
     "kayu": 2
   },
@@ -98,9 +94,8 @@ export const botswana: CountryData = {
     "sayur_umbi": 28.5,
     "kedelai": 39,
     "kelapa_sawit": 28,
-    "kopi_teh_kakao": 12.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 12.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const botswana: CountryData = {
     "pangkalan_laut": 32,
     "program_luar_angkasa": 25,
     "pertahanan_siber": 39,
-    "anggaran_pertahanan": 55,
-    "personel": 5148,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 55
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const botswana: CountryData = {
 
   "sektor_armada": {
     "barak": 16,
-    "infanteri": 28,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 1,
         "apc": 26,
@@ -142,23 +132,19 @@ export const botswana: CountryData = {
         "jet_tempur_siluman": 21,
         "helikopter_serang": 40,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 9,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 9,
-      "jaringan_radar": 10,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 11,
           "sepeda_motor": 4,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 24,
@@ -170,11 +156,12 @@ export const botswana: CountryData = {
           "kamera_pengawas": 8,
           "pusat_forensik": 1
   },
-        "waktu_respon": 19,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 19,
     "intelijen": 22,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 32,
       "misi_mata_mata": 33,
       "misi_sabotase": 8,
@@ -188,34 +175,24 @@ export const botswana: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 39,
-      "sd": 14,
-      "smp": 7,
-      "sma": 24,
+      "prasekolah": 39,
+      "dasar": 14,
+      "menengah": 7,
+      "lanjutan": 24,
       "universitas": 16,
       "lembaga_pendidikan": 24,
       "laboratorium": 2,
       "observatorium": 14,
       "pusat_penelitian": 32,
       "pusat_pengembangan": 35,
-      "literasi": 70,
-      "indeks_penelitian": 0
+      "literasi": 70
   },
     "kesehatan": {
       "rumah_sakit_besar": 11,
       "rumah_sakit_kecil": 24,
       "pusat_diagnostik": 7,
-      "tempat_tidur_rs": 4319,
       "harapan_hidup": 2,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 2,
-      "sirkuit_balap": 2,
-      "stadion": 10,
-      "stadion_internasional": 1,
-      "skor_olimpiade": 19,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 27,
@@ -227,6 +204,12 @@ export const botswana: CountryData = {
       "indeks_korupsi": 66,
       "indeks_keamanan": 72
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 2,
+      "sirkuit_balap": 2,
+      "stadion": 10,
+      "stadion_internasional": 1
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const botswana: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 13,
@@ -348,3 +330,6 @@ export const botswana: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

@@ -39,9 +39,7 @@ export const singapura: CountryData = {
     "bandara": 18,
     "terminal_bus": 30,
     "helipad": 37,
-    "cakupan_internet": 56,
-    "indeks_teknologi": 53,
-    "akses_air": 74
+    "cakupan_internet": 56
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const singapura: CountryData = {
     "aluminium": 23,
     "tembaga": 8,
     "logam_tanah_jarang": 17,
-    "bijih_besi": 13,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 13
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const singapura: CountryData = {
     "farmasi": 12,
     "pupuk": 39,
     "pengolahan_daging": 34,
-    "mie_instan": 9,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 9
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const singapura: CountryData = {
     "sayur_umbi": 23.0,
     "kedelai": 25,
     "kelapa_sawit": 29,
-    "kopi_teh_kakao": 24.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 24.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const singapura: CountryData = {
     "pangkalan_laut": 20,
     "program_luar_angkasa": 23,
     "pertahanan_siber": 20,
-    "anggaran_pertahanan": 1389,
-    "personel": 25079,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1389
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const singapura: CountryData = {
 
   "sektor_armada": {
     "barak": 13,
-    "infanteri": 24,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 139,
         "apc": 31,
@@ -142,23 +132,20 @@ export const singapura: CountryData = {
         "jet_tempur_siluman": 20,
         "helikopter_serang": 40,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 21,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 2,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 25,
           "sepeda_motor": 27,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 29,
           "helikopter_polisi": 35,
@@ -169,10 +156,12 @@ export const singapura: CountryData = {
           "kamera_pengawas": 13,
           "pusat_forensik": 1
         },
-        "waktu_respon": 23,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 23,
     "intelijen": 22,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 21,
       "misi_mata_mata": 19,
       "misi_sabotase": 38,
@@ -185,34 +174,24 @@ export const singapura: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 26,
-      "sd": 40,
-      "smp": 11,
-      "sma": 4,
+      "prasekolah": 26,
+      "dasar": 40,
+      "menengah": 11,
+      "lanjutan": 4,
       "universitas": 15,
       "lembaga_pendidikan": 18,
       "laboratorium": 35,
       "observatorium": 8,
       "pusat_penelitian": 12,
       "pusat_pengembangan": 33,
-      "literasi": 66,
-      "indeks_penelitian": 0
+      "literasi": 66
     },
     "kesehatan": {
       "rumah_sakit_besar": 1,
       "rumah_sakit_kecil": 23,
       "pusat_diagnostik": 23,
-      "tempat_tidur_rs": 4771,
       "harapan_hidup": 25,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 16,
-      "sirkuit_balap": 38,
-      "stadion": 11,
-      "stadion_internasional": 25,
-      "skor_olimpiade": 20,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 2,
@@ -224,6 +203,12 @@ export const singapura: CountryData = {
       "indeks_korupsi": 64,
       "indeks_keamanan": 92
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 16,
+      "sirkuit_balap": 38,
+      "stadion": 11,
+      "stadion_internasional": 25
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const singapura: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 12,
@@ -345,3 +329,6 @@ export const singapura: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

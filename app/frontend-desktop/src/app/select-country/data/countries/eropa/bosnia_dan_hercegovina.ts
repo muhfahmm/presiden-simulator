@@ -39,9 +39,7 @@ export const bosnia_dan_hercegovina: CountryData = {
     "bandara": 14,
     "terminal_bus": 35,
     "helipad": 29,
-    "cakupan_internet": 65,
-    "indeks_teknologi": 82,
-    "akses_air": 74
+    "cakupan_internet": 65
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const bosnia_dan_hercegovina: CountryData = {
     "aluminium": 2,
     "tembaga": 19,
     "logam_tanah_jarang": 16,
-    "bijih_besi": 30,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 30
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const bosnia_dan_hercegovina: CountryData = {
     "farmasi": 5,
     "pupuk": 33,
     "pengolahan_daging": 30,
-    "mie_instan": 22,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 22
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const bosnia_dan_hercegovina: CountryData = {
     "sayur_umbi": 6.0,
     "kedelai": 5,
     "kelapa_sawit": 25,
-    "kopi_teh_kakao": 23.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 23.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const bosnia_dan_hercegovina: CountryData = {
     "pangkalan_laut": 22,
     "program_luar_angkasa": 24,
     "pertahanan_siber": 40,
-    "anggaran_pertahanan": 66,
-    "personel": 21185,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 66
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const bosnia_dan_hercegovina: CountryData = {
 
   "sektor_armada": {
     "barak": 6,
-    "infanteri": 17,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 37,
         "apc": 33,
@@ -142,23 +132,20 @@ export const bosnia_dan_hercegovina: CountryData = {
         "jet_tempur_siluman": 28,
         "helikopter_serang": 20,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 38,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 29,
-      "jaringan_radar": 19,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 9,
           "sepeda_motor": 18,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 13,
           "helikopter_polisi": 11,
@@ -169,10 +156,12 @@ export const bosnia_dan_hercegovina: CountryData = {
           "kamera_pengawas": 7,
           "pusat_forensik": 1
         },
-        "waktu_respon": 29,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 29,
     "intelijen": 9,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 30,
       "misi_mata_mata": 22,
       "misi_sabotase": 11,
@@ -185,34 +174,24 @@ export const bosnia_dan_hercegovina: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 40,
-      "sd": 35,
-      "smp": 34,
-      "sma": 5,
+      "prasekolah": 40,
+      "dasar": 35,
+      "menengah": 34,
+      "lanjutan": 5,
       "universitas": 25,
       "lembaga_pendidikan": 37,
       "laboratorium": 5,
       "observatorium": 6,
       "pusat_penelitian": 1,
       "pusat_pengembangan": 40,
-      "literasi": 81,
-      "indeks_penelitian": 0
+      "literasi": 81
     },
     "kesehatan": {
       "rumah_sakit_besar": 7,
       "rumah_sakit_kecil": 33,
       "pusat_diagnostik": 18,
-      "tempat_tidur_rs": 7434,
       "harapan_hidup": 34,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 16,
-      "stadion": 27,
-      "stadion_internasional": 34,
-      "skor_olimpiade": 18,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 32,
@@ -224,6 +203,12 @@ export const bosnia_dan_hercegovina: CountryData = {
       "indeks_korupsi": 94,
       "indeks_keamanan": 70
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 3,
+      "sirkuit_balap": 16,
+      "stadion": 27,
+      "stadion_internasional": 34
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const bosnia_dan_hercegovina: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 39,
@@ -345,3 +329,6 @@ export const bosnia_dan_hercegovina: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

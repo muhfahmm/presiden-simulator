@@ -39,9 +39,7 @@ export const amerika_serikat: CountryData = {
     "bandara": 6,
     "terminal_bus": 23,
     "helipad": 24,
-    "cakupan_internet": 83,
-    "indeks_teknologi": 51,
-    "akses_air": 74
+    "cakupan_internet": 83
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const amerika_serikat: CountryData = {
     "aluminium": 37,
     "tembaga": 5,
     "logam_tanah_jarang": 24,
-    "bijih_besi": 37,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 37
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const amerika_serikat: CountryData = {
     "farmasi": 19,
     "pupuk": 13,
     "pengolahan_daging": 3,
-    "mie_instan": 16,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 16
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const amerika_serikat: CountryData = {
     "sayur_umbi": 12.0,
     "kedelai": 4,
     "kelapa_sawit": 13,
-    "kopi_teh_kakao": 22.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 22.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const amerika_serikat: CountryData = {
     "pangkalan_laut": 12,
     "program_luar_angkasa": 25,
     "pertahanan_siber": 9,
-    "anggaran_pertahanan": 80006,
-    "personel": 29433,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 80006
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const amerika_serikat: CountryData = {
 
   "sektor_armada": {
     "barak": 4,
-    "infanteri": 33,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 10,
         "apc": 21,
@@ -142,23 +132,20 @@ export const amerika_serikat: CountryData = {
         "jet_tempur_siluman": 14,
         "helikopter_serang": 6,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 13,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 27,
-      "jaringan_radar": 13,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 2,
           "sepeda_motor": 19,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 18,
           "helikopter_polisi": 17,
@@ -169,10 +156,12 @@ export const amerika_serikat: CountryData = {
           "kamera_pengawas": 3,
           "pusat_forensik": 1
         },
-        "waktu_respon": 16,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 16,
     "intelijen": 6,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 39,
       "misi_mata_mata": 39,
       "misi_sabotase": 21,
@@ -185,34 +174,24 @@ export const amerika_serikat: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 31,
-      "sd": 14,
-      "smp": 34,
-      "sma": 12,
+      "prasekolah": 31,
+      "dasar": 14,
+      "menengah": 34,
+      "lanjutan": 12,
       "universitas": 27,
       "lembaga_pendidikan": 24,
       "laboratorium": 16,
       "observatorium": 8,
       "pusat_penelitian": 17,
       "pusat_pengembangan": 31,
-      "literasi": 75,
-      "indeks_penelitian": 0
+      "literasi": 75
     },
     "kesehatan": {
       "rumah_sakit_besar": 1,
       "rumah_sakit_kecil": 5,
       "pusat_diagnostik": 39,
-      "tempat_tidur_rs": 1578,
       "harapan_hidup": 26,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 12,
-      "sirkuit_balap": 10,
-      "stadion": 37,
-      "stadion_internasional": 35,
-      "skor_olimpiade": 33,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 22,
@@ -224,6 +203,12 @@ export const amerika_serikat: CountryData = {
       "indeks_korupsi": 70,
       "indeks_keamanan": 81
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 12,
+      "sirkuit_balap": 10,
+      "stadion": 37,
+      "stadion_internasional": 35
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const amerika_serikat: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 25,
@@ -345,3 +329,6 @@ export const amerika_serikat: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

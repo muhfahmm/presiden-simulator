@@ -39,9 +39,7 @@ export const iran: CountryData = {
     "bandara": 30,
     "terminal_bus": 21,
     "helipad": 33,
-    "cakupan_internet": 83,
-    "indeks_teknologi": 68,
-    "akses_air": 74
+    "cakupan_internet": 83
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const iran: CountryData = {
     "aluminium": 27,
     "tembaga": 14,
     "logam_tanah_jarang": 27,
-    "bijih_besi": 15,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const iran: CountryData = {
     "farmasi": 27,
     "pupuk": 30,
     "pengolahan_daging": 7,
-    "mie_instan": 39,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 39
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const iran: CountryData = {
     "sayur_umbi": 19.5,
     "kedelai": 7,
     "kelapa_sawit": 16,
-    "kopi_teh_kakao": 27.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 27.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const iran: CountryData = {
     "pangkalan_laut": 5,
     "program_luar_angkasa": 1,
     "pertahanan_siber": 13,
-    "anggaran_pertahanan": 1027,
-    "personel": 23614,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1027
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const iran: CountryData = {
 
   "sektor_armada": {
     "barak": 26,
-    "infanteri": 31,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 12,
         "apc": 16,
@@ -142,23 +132,20 @@ export const iran: CountryData = {
         "jet_tempur_siluman": 13,
         "helikopter_serang": 35,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 13,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 39,
-      "jaringan_radar": 26,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 5,
           "sepeda_motor": 8,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 18,
           "helikopter_polisi": 22,
@@ -169,10 +156,12 @@ export const iran: CountryData = {
           "kamera_pengawas": 12,
           "pusat_forensik": 1
         },
-        "waktu_respon": 39,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 39,
     "intelijen": 13,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 28,
       "misi_mata_mata": 19,
       "misi_sabotase": 6,
@@ -185,34 +174,24 @@ export const iran: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 33,
-      "sd": 2,
-      "smp": 13,
-      "sma": 25,
+      "prasekolah": 33,
+      "dasar": 2,
+      "menengah": 13,
+      "lanjutan": 25,
       "universitas": 5,
       "lembaga_pendidikan": 16,
       "laboratorium": 17,
       "observatorium": 6,
       "pusat_penelitian": 12,
       "pusat_pengembangan": 35,
-      "literasi": 71,
-      "indeks_penelitian": 0
+      "literasi": 71
     },
     "kesehatan": {
       "rumah_sakit_besar": 16,
       "rumah_sakit_kecil": 1,
       "pusat_diagnostik": 30,
-      "tempat_tidur_rs": 8403,
       "harapan_hidup": 11,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 39,
-      "sirkuit_balap": 34,
-      "stadion": 33,
-      "stadion_internasional": 36,
-      "skor_olimpiade": 23,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 14,
@@ -224,6 +203,12 @@ export const iran: CountryData = {
       "indeks_korupsi": 74,
       "indeks_keamanan": 86
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 39,
+      "sirkuit_balap": 34,
+      "stadion": 33,
+      "stadion_internasional": 36
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const iran: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 14,
@@ -345,3 +329,6 @@ export const iran: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

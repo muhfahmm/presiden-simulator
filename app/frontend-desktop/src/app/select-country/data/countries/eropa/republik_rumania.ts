@@ -39,9 +39,7 @@ export const republik_rumania: CountryData = {
     "bandara": 3,
     "terminal_bus": 1,
     "helipad": 29,
-    "cakupan_internet": 56,
-    "indeks_teknologi": 77,
-    "akses_air": 74
+    "cakupan_internet": 56
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const republik_rumania: CountryData = {
     "aluminium": 4,
     "tembaga": 10,
     "logam_tanah_jarang": 30,
-    "bijih_besi": 24,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 24
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const republik_rumania: CountryData = {
     "farmasi": 36,
     "pupuk": 3,
     "pengolahan_daging": 40,
-    "mie_instan": 20,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 20
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const republik_rumania: CountryData = {
     "sayur_umbi": 33.5,
     "kedelai": 29,
     "kelapa_sawit": 5,
-    "kopi_teh_kakao": 30.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 30.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const republik_rumania: CountryData = {
     "pangkalan_laut": 30,
     "program_luar_angkasa": 33,
     "pertahanan_siber": 23,
-    "anggaran_pertahanan": 972,
-    "personel": 12938,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 972
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const republik_rumania: CountryData = {
 
   "sektor_armada": {
     "barak": 1,
-    "infanteri": 19,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 49,
         "apc": 53,
@@ -142,23 +132,20 @@ export const republik_rumania: CountryData = {
         "jet_tempur_siluman": 74,
         "helikopter_serang": 192,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 29,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 3,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 30,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 27,
           "helikopter_polisi": 28,
@@ -169,10 +156,12 @@ export const republik_rumania: CountryData = {
           "kamera_pengawas": 10,
           "pusat_forensik": 1
         },
-        "waktu_respon": 30,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 30,
     "intelijen": 22,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 30,
       "misi_mata_mata": 17,
       "misi_sabotase": 11,
@@ -185,34 +174,24 @@ export const republik_rumania: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 1,
-      "sd": 7,
-      "smp": 29,
-      "sma": 10,
+      "prasekolah": 1,
+      "dasar": 7,
+      "menengah": 29,
+      "lanjutan": 10,
       "universitas": 1,
       "lembaga_pendidikan": 32,
       "laboratorium": 6,
       "observatorium": 39,
       "pusat_penelitian": 6,
       "pusat_pengembangan": 29,
-      "literasi": 52,
-      "indeks_penelitian": 0
+      "literasi": 52
     },
     "kesehatan": {
       "rumah_sakit_besar": 36,
       "rumah_sakit_kecil": 13,
       "pusat_diagnostik": 33,
-      "tempat_tidur_rs": 4839,
       "harapan_hidup": 21,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 15,
-      "sirkuit_balap": 39,
-      "stadion": 24,
-      "stadion_internasional": 28,
-      "skor_olimpiade": 16,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 33,
@@ -224,6 +203,12 @@ export const republik_rumania: CountryData = {
       "indeks_korupsi": 62,
       "indeks_keamanan": 83
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 15,
+      "sirkuit_balap": 39,
+      "stadion": 24,
+      "stadion_internasional": 28
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const republik_rumania: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 33,
@@ -345,3 +329,6 @@ export const republik_rumania: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

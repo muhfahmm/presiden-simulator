@@ -39,9 +39,7 @@ export const honduras: CountryData = {
     "bandara": 1,
     "terminal_bus": 21,
     "helipad": 18,
-    "cakupan_internet": 78,
-    "indeks_teknologi": 54,
-    "akses_air": 74
+    "cakupan_internet": 78
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const honduras: CountryData = {
     "aluminium": 21,
     "tembaga": 6,
     "logam_tanah_jarang": 39,
-    "bijih_besi": 31,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 31
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const honduras: CountryData = {
     "farmasi": 19,
     "pupuk": 13,
     "pengolahan_daging": 19,
-    "mie_instan": 22,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 22
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const honduras: CountryData = {
     "sayur_umbi": 20.0,
     "kedelai": 32,
     "kelapa_sawit": 26,
-    "kopi_teh_kakao": 16.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 16.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const honduras: CountryData = {
     "pangkalan_laut": 21,
     "program_luar_angkasa": 29,
     "pertahanan_siber": 4,
-    "anggaran_pertahanan": 88,
-    "personel": 10512,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 88
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const honduras: CountryData = {
 
   "sektor_armada": {
     "barak": 11,
-    "infanteri": 3,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 39,
         "apc": 1,
@@ -142,23 +132,20 @@ export const honduras: CountryData = {
         "jet_tempur_siluman": 4,
         "helikopter_serang": 28,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 27,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 16,
-      "jaringan_radar": 39,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 38,
           "sepeda_motor": 6,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 26,
           "helikopter_polisi": 22,
@@ -169,10 +156,12 @@ export const honduras: CountryData = {
           "kamera_pengawas": 17,
           "pusat_forensik": 1
         },
-        "waktu_respon": 19,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 19,
     "intelijen": 19,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 16,
       "misi_mata_mata": 19,
       "misi_sabotase": 33,
@@ -185,34 +174,24 @@ export const honduras: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 18,
-      "sd": 35,
-      "smp": 7,
-      "sma": 7,
+      "prasekolah": 18,
+      "dasar": 35,
+      "menengah": 7,
+      "lanjutan": 7,
       "universitas": 6,
       "lembaga_pendidikan": 14,
       "laboratorium": 24,
       "observatorium": 29,
       "pusat_penelitian": 39,
       "pusat_pengembangan": 22,
-      "literasi": 90,
-      "indeks_penelitian": 0
+      "literasi": 90
     },
     "kesehatan": {
       "rumah_sakit_besar": 6,
       "rumah_sakit_kecil": 8,
       "pusat_diagnostik": 24,
-      "tempat_tidur_rs": 8854,
       "harapan_hidup": 38,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 19,
-      "sirkuit_balap": 9,
-      "stadion": 11,
-      "stadion_internasional": 13,
-      "skor_olimpiade": 2,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 34,
@@ -224,6 +203,12 @@ export const honduras: CountryData = {
       "indeks_korupsi": 75,
       "indeks_keamanan": 82
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 19,
+      "sirkuit_balap": 9,
+      "stadion": 11,
+      "stadion_internasional": 13
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const honduras: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 35,
@@ -345,3 +329,6 @@ export const honduras: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

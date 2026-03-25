@@ -39,9 +39,7 @@ export const kenya: CountryData = {
     "jalur_kereta": 39,
     "kualitas_jalan": 65,
     "pelabuhan_laut": 1,
-    "kereta_bawah_tanah": 13,
-    "indeks_teknologi": 52,
-    "akses_air": 74
+    "kereta_bawah_tanah": 13
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const kenya: CountryData = {
     "minyak_bumi": 23,
     "logam_tanah_jarang": 28,
     "garam": 20,
-    "kekuatan": 29.660809349923973,
     "uranium": 10
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const kenya: CountryData = {
     "farmasi": 12,
     "semikonduktor": 14,
     "smelter": 29,
-    "kekuatan": 3.076011687404966,
     "gula": 2,
     "kayu": 40
   },
@@ -98,9 +94,8 @@ export const kenya: CountryData = {
     "sayur_umbi": 23.0,
     "kedelai": 35,
     "kelapa_sawit": 4,
-    "kopi_teh_kakao": 52.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 52.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const kenya: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 30,
     "pertahanan_siber": 19,
-    "anggaran_pertahanan": 305,
-    "personel": 22851,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 305
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const kenya: CountryData = {
 
   "sektor_armada": {
     "barak": 15,
-    "infanteri": 11,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 15,
         "apc": 26,
@@ -142,23 +132,19 @@ export const kenya: CountryData = {
         "jet_tempur_siluman": 34,
         "helikopter_serang": 18,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 31,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 20,
-      "jaringan_radar": 2,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 17,
           "sepeda_motor": 24,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 11,
@@ -170,11 +156,12 @@ export const kenya: CountryData = {
           "kamera_pengawas": 9,
           "pusat_forensik": 1
   },
-        "waktu_respon": 16,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 16,
     "intelijen": 32,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 39,
       "misi_mata_mata": 34,
       "misi_sabotase": 39,
@@ -188,34 +175,24 @@ export const kenya: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 17,
-      "sd": 17,
-      "smp": 16,
-      "sma": 12,
+      "prasekolah": 17,
+      "dasar": 17,
+      "menengah": 16,
+      "lanjutan": 12,
       "universitas": 40,
       "lembaga_pendidikan": 35,
       "laboratorium": 27,
       "observatorium": 20,
       "pusat_penelitian": 34,
       "pusat_pengembangan": 18,
-      "literasi": 57,
-      "indeks_penelitian": 0
+      "literasi": 57
   },
     "kesehatan": {
       "rumah_sakit_besar": 36,
       "rumah_sakit_kecil": 6,
       "pusat_diagnostik": 20,
-      "tempat_tidur_rs": 1083,
       "harapan_hidup": 37,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 4,
-      "sirkuit_balap": 35,
-      "stadion": 26,
-      "stadion_internasional": 5,
-      "skor_olimpiade": 30,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 9,
@@ -227,6 +204,12 @@ export const kenya: CountryData = {
       "indeks_korupsi": 69,
       "indeks_keamanan": 93
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 4,
+      "sirkuit_balap": 35,
+      "stadion": 26,
+      "stadion_internasional": 5
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const kenya: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 31,
@@ -348,3 +330,6 @@ export const kenya: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

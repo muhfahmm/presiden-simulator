@@ -39,9 +39,7 @@ export const palestina: CountryData = {
     "bandara": 7,
     "terminal_bus": 11,
     "helipad": 26,
-    "cakupan_internet": 91,
-    "indeks_teknologi": 78,
-    "akses_air": 74
+    "cakupan_internet": 91
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const palestina: CountryData = {
     "aluminium": 12,
     "tembaga": 8,
     "logam_tanah_jarang": 6,
-    "bijih_besi": 18,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 18
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const palestina: CountryData = {
     "farmasi": 29,
     "pupuk": 16,
     "pengolahan_daging": 9,
-    "mie_instan": 2,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 2
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const palestina: CountryData = {
     "sayur_umbi": 15.5,
     "kedelai": 15,
     "kelapa_sawit": 25,
-    "kopi_teh_kakao": 15.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 15.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const palestina: CountryData = {
     "pangkalan_laut": 15,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 23,
-    "anggaran_pertahanan": 55,
-    "personel": 10762,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 55
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const palestina: CountryData = {
 
   "sektor_armada": {
     "barak": 1,
-    "infanteri": 11,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 81,
         "apc": 119,
@@ -142,23 +132,20 @@ export const palestina: CountryData = {
         "jet_tempur_siluman": 177,
         "helikopter_serang": 148,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 29,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 0,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 6,
           "sepeda_motor": 21,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 8,
           "helikopter_polisi": 25,
@@ -169,10 +156,12 @@ export const palestina: CountryData = {
           "kamera_pengawas": 7,
           "pusat_forensik": 1
         },
-        "waktu_respon": 26,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 26,
     "intelijen": 16,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 5,
       "misi_sabotase": 25,
@@ -185,34 +174,24 @@ export const palestina: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 35,
-      "sd": 21,
-      "smp": 33,
-      "sma": 28,
+      "prasekolah": 35,
+      "dasar": 21,
+      "menengah": 33,
+      "lanjutan": 28,
       "universitas": 5,
       "lembaga_pendidikan": 33,
       "laboratorium": 36,
       "observatorium": 1,
       "pusat_penelitian": 26,
       "pusat_pengembangan": 28,
-      "literasi": 64,
-      "indeks_penelitian": 0
+      "literasi": 64
     },
     "kesehatan": {
       "rumah_sakit_besar": 9,
       "rumah_sakit_kecil": 39,
       "pusat_diagnostik": 38,
-      "tempat_tidur_rs": 9919,
       "harapan_hidup": 27,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 20,
-      "stadion": 29,
-      "stadion_internasional": 9,
-      "skor_olimpiade": 15,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 39,
@@ -224,6 +203,12 @@ export const palestina: CountryData = {
       "indeks_korupsi": 72,
       "indeks_keamanan": 90
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 3,
+      "sirkuit_balap": 20,
+      "stadion": 29,
+      "stadion_internasional": 9
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const palestina: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 22,
@@ -345,3 +329,6 @@ export const palestina: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

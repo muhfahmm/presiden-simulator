@@ -39,9 +39,7 @@ export const sao_tome_dan_principe: CountryData = {
     "jalur_kereta": 22,
     "kualitas_jalan": 86,
     "pelabuhan_laut": 23,
-    "kereta_bawah_tanah": 36,
-    "indeks_teknologi": 58,
-    "akses_air": 74
+    "kereta_bawah_tanah": 36
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const sao_tome_dan_principe: CountryData = {
     "minyak_bumi": 16,
     "logam_tanah_jarang": 3,
     "garam": 16,
-    "kekuatan": 29.660809349923973,
     "uranium": 38
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const sao_tome_dan_principe: CountryData = {
     "farmasi": 9,
     "semikonduktor": 31,
     "smelter": 10,
-    "kekuatan": 3.076011687404966,
     "gula": 23,
     "kayu": 8
   },
@@ -98,9 +94,8 @@ export const sao_tome_dan_principe: CountryData = {
     "sayur_umbi": 11.0,
     "kedelai": 26,
     "kelapa_sawit": 36,
-    "kopi_teh_kakao": 27.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 27.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const sao_tome_dan_principe: CountryData = {
     "pangkalan_laut": 20,
     "program_luar_angkasa": 32,
     "pertahanan_siber": 6,
-    "anggaran_pertahanan": 1,
-    "personel": 7538,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const sao_tome_dan_principe: CountryData = {
 
   "sektor_armada": {
     "barak": 1,
-    "infanteri": 25,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 54,
         "apc": 110,
@@ -142,23 +132,19 @@ export const sao_tome_dan_principe: CountryData = {
         "jet_tempur_siluman": 39,
         "helikopter_serang": 38,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 35,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 1,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 28,
           "sepeda_motor": 34,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 5,
@@ -170,11 +156,12 @@ export const sao_tome_dan_principe: CountryData = {
           "kamera_pengawas": 24,
           "pusat_forensik": 1
   },
-        "waktu_respon": 39,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 39,
     "intelijen": 8,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 36,
       "misi_mata_mata": 14,
       "misi_sabotase": 18,
@@ -188,34 +175,24 @@ export const sao_tome_dan_principe: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 11,
-      "sd": 29,
-      "smp": 31,
-      "sma": 12,
+      "prasekolah": 11,
+      "dasar": 29,
+      "menengah": 31,
+      "lanjutan": 12,
       "universitas": 32,
       "lembaga_pendidikan": 22,
       "laboratorium": 39,
       "observatorium": 30,
       "pusat_penelitian": 21,
       "pusat_pengembangan": 26,
-      "literasi": 81,
-      "indeks_penelitian": 0
+      "literasi": 81
   },
     "kesehatan": {
       "rumah_sakit_besar": 21,
       "rumah_sakit_kecil": 27,
       "pusat_diagnostik": 2,
-      "tempat_tidur_rs": 7023,
       "harapan_hidup": 15,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 19,
-      "sirkuit_balap": 10,
-      "stadion": 18,
-      "stadion_internasional": 30,
-      "skor_olimpiade": 26,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 6,
@@ -227,6 +204,12 @@ export const sao_tome_dan_principe: CountryData = {
       "indeks_korupsi": 62,
       "indeks_keamanan": 57
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 19,
+      "sirkuit_balap": 10,
+      "stadion": 18,
+      "stadion_internasional": 30
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const sao_tome_dan_principe: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 37,
@@ -348,3 +330,6 @@ export const sao_tome_dan_principe: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

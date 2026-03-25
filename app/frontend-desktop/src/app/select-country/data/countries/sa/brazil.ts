@@ -39,9 +39,7 @@ export const brazil: CountryData = {
     "bandara": 34,
     "terminal_bus": 11,
     "helipad": 24,
-    "cakupan_internet": 86,
-    "indeks_teknologi": 65,
-    "akses_air": 74
+    "cakupan_internet": 86
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const brazil: CountryData = {
     "aluminium": 14,
     "tembaga": 38,
     "logam_tanah_jarang": 35,
-    "bijih_besi": 7,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 7
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const brazil: CountryData = {
     "farmasi": 14,
     "pupuk": 3,
     "pengolahan_daging": 17,
-    "mie_instan": 34,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 34
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const brazil: CountryData = {
     "sayur_umbi": 33.0,
     "kedelai": 40,
     "kelapa_sawit": 10,
-    "kopi_teh_kakao": 19.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 19.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const brazil: CountryData = {
     "pangkalan_laut": 11,
     "program_luar_angkasa": 24,
     "pertahanan_siber": 39,
-    "anggaran_pertahanan": 6472,
-    "personel": 22445,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 6472
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const brazil: CountryData = {
 
   "sektor_armada": {
     "barak": 20,
-    "infanteri": 31,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 28,
         "apc": 23,
@@ -142,23 +132,20 @@ export const brazil: CountryData = {
         "jet_tempur_siluman": 12,
         "helikopter_serang": 16,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 9,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 19,
-      "jaringan_radar": 20,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 38,
           "sepeda_motor": 34,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 21,
           "helikopter_polisi": 21,
@@ -169,10 +156,12 @@ export const brazil: CountryData = {
           "kamera_pengawas": 39,
           "pusat_forensik": 1
         },
-        "waktu_respon": 39,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 39,
     "intelijen": 30,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 26,
       "misi_mata_mata": 5,
       "misi_sabotase": 10,
@@ -185,34 +174,24 @@ export const brazil: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 22,
-      "sd": 29,
-      "smp": 22,
-      "sma": 1,
+      "prasekolah": 22,
+      "dasar": 29,
+      "menengah": 22,
+      "lanjutan": 1,
       "universitas": 5,
       "lembaga_pendidikan": 38,
       "laboratorium": 8,
       "observatorium": 1,
       "pusat_penelitian": 5,
       "pusat_pengembangan": 27,
-      "literasi": 50,
-      "indeks_penelitian": 0
+      "literasi": 50
     },
     "kesehatan": {
       "rumah_sakit_besar": 25,
       "rumah_sakit_kecil": 37,
       "pusat_diagnostik": 22,
-      "tempat_tidur_rs": 9686,
       "harapan_hidup": 1,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 10,
-      "sirkuit_balap": 12,
-      "stadion": 30,
-      "stadion_internasional": 19,
-      "skor_olimpiade": 34,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 33,
@@ -224,6 +203,12 @@ export const brazil: CountryData = {
       "indeks_korupsi": 67,
       "indeks_keamanan": 95
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 10,
+      "sirkuit_balap": 12,
+      "stadion": 30,
+      "stadion_internasional": 19
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const brazil: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 33,
@@ -345,3 +329,6 @@ export const brazil: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

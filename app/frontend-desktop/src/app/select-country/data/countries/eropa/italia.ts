@@ -39,9 +39,7 @@ export const italia: CountryData = {
     "bandara": 40,
     "terminal_bus": 28,
     "helipad": 2,
-    "cakupan_internet": 91,
-    "indeks_teknologi": 79,
-    "akses_air": 74
+    "cakupan_internet": 91
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const italia: CountryData = {
     "aluminium": 4,
     "tembaga": 31,
     "logam_tanah_jarang": 17,
-    "bijih_besi": 31,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 31
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const italia: CountryData = {
     "farmasi": 35,
     "pupuk": 1,
     "pengolahan_daging": 34,
-    "mie_instan": 4,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 4
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const italia: CountryData = {
     "sayur_umbi": 20.0,
     "kedelai": 29,
     "kelapa_sawit": 11,
-    "kopi_teh_kakao": 30.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 30.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const italia: CountryData = {
     "pangkalan_laut": 16,
     "program_luar_angkasa": 10,
     "pertahanan_siber": 9,
-    "anggaran_pertahanan": 6472,
-    "personel": 10534,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 6472
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const italia: CountryData = {
 
   "sektor_armada": {
     "barak": 5,
-    "infanteri": 12,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 4,
         "apc": 30,
@@ -142,23 +132,20 @@ export const italia: CountryData = {
         "jet_tempur_siluman": 40,
         "helikopter_serang": 29,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 23,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 40,
-      "jaringan_radar": 1,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 38,
           "sepeda_motor": 39,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 34,
           "helikopter_polisi": 10,
@@ -169,10 +156,12 @@ export const italia: CountryData = {
           "kamera_pengawas": 28,
           "pusat_forensik": 1
         },
-        "waktu_respon": 15,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 15,
     "intelijen": 35,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 26,
       "misi_mata_mata": 19,
       "misi_sabotase": 1,
@@ -185,34 +174,24 @@ export const italia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 20,
-      "sd": 25,
-      "smp": 21,
-      "sma": 38,
+      "prasekolah": 20,
+      "dasar": 25,
+      "menengah": 21,
+      "lanjutan": 38,
       "universitas": 34,
       "lembaga_pendidikan": 19,
       "laboratorium": 8,
       "observatorium": 2,
       "pusat_penelitian": 33,
       "pusat_pengembangan": 25,
-      "literasi": 79,
-      "indeks_penelitian": 0
+      "literasi": 79
     },
     "kesehatan": {
       "rumah_sakit_besar": 18,
       "rumah_sakit_kecil": 30,
       "pusat_diagnostik": 9,
-      "tempat_tidur_rs": 6382,
       "harapan_hidup": 2,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 37,
-      "sirkuit_balap": 28,
-      "stadion": 3,
-      "stadion_internasional": 27,
-      "skor_olimpiade": 33,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 11,
@@ -224,6 +203,12 @@ export const italia: CountryData = {
       "indeks_korupsi": 59,
       "indeks_keamanan": 70
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 37,
+      "sirkuit_balap": 28,
+      "stadion": 3,
+      "stadion_internasional": 27
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const italia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 5,
@@ -345,3 +329,6 @@ export const italia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

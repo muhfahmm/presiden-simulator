@@ -39,9 +39,7 @@ export const sudan_selatan: CountryData = {
     "jalur_kereta": 19,
     "kualitas_jalan": 80,
     "pelabuhan_laut": 31,
-    "kereta_bawah_tanah": 10,
-    "indeks_teknologi": 78,
-    "akses_air": 74
+    "kereta_bawah_tanah": 10
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const sudan_selatan: CountryData = {
     "minyak_bumi": 25,
     "logam_tanah_jarang": 38,
     "garam": 10,
-    "kekuatan": 29.660809349923973,
     "uranium": 14
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const sudan_selatan: CountryData = {
     "farmasi": 29,
     "semikonduktor": 38,
     "smelter": 36,
-    "kekuatan": 3.076011687404966,
     "gula": 38,
     "kayu": 1
   },
@@ -98,9 +94,8 @@ export const sudan_selatan: CountryData = {
     "sayur_umbi": 2.5,
     "kedelai": 8,
     "kelapa_sawit": 2,
-    "kopi_teh_kakao": 22.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 22.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const sudan_selatan: CountryData = {
     "pangkalan_laut": 15,
     "program_luar_angkasa": 34,
     "pertahanan_siber": 11,
-    "anggaran_pertahanan": 13,
-    "personel": 27759,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 13
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const sudan_selatan: CountryData = {
 
   "sektor_armada": {
     "barak": 6,
-    "infanteri": 35,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 177,
         "apc": 106,
@@ -142,23 +132,19 @@ export const sudan_selatan: CountryData = {
         "jet_tempur_siluman": 161,
         "helikopter_serang": 103,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 18,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 0,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 20,
           "sepeda_motor": 19,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 38,
@@ -170,11 +156,12 @@ export const sudan_selatan: CountryData = {
           "kamera_pengawas": 23,
           "pusat_forensik": 1
   },
-        "waktu_respon": 29,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 29,
     "intelijen": 13,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 39,
       "misi_mata_mata": 9,
       "misi_sabotase": 30,
@@ -188,34 +175,24 @@ export const sudan_selatan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 35,
-      "sd": 32,
-      "smp": 39,
-      "sma": 12,
+      "prasekolah": 35,
+      "dasar": 32,
+      "menengah": 39,
+      "lanjutan": 12,
       "universitas": 20,
       "lembaga_pendidikan": 38,
       "laboratorium": 39,
       "observatorium": 27,
       "pusat_penelitian": 17,
       "pusat_pengembangan": 14,
-      "literasi": 86,
-      "indeks_penelitian": 0
+      "literasi": 86
   },
     "kesehatan": {
       "rumah_sakit_besar": 4,
       "rumah_sakit_kecil": 38,
       "pusat_diagnostik": 34,
-      "tempat_tidur_rs": 3392,
       "harapan_hidup": 15,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 12,
-      "sirkuit_balap": 21,
-      "stadion": 32,
-      "stadion_internasional": 15,
-      "skor_olimpiade": 27,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 26,
@@ -227,6 +204,12 @@ export const sudan_selatan: CountryData = {
       "indeks_korupsi": 85,
       "indeks_keamanan": 84
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 12,
+      "sirkuit_balap": 21,
+      "stadion": 32,
+      "stadion_internasional": 15
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const sudan_selatan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 24,
@@ -348,3 +330,6 @@ export const sudan_selatan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

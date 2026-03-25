@@ -39,9 +39,7 @@ export const togo: CountryData = {
     "jalur_kereta": 20,
     "kualitas_jalan": 67,
     "pelabuhan_laut": 23,
-    "kereta_bawah_tanah": 3,
-    "indeks_teknologi": 74,
-    "akses_air": 74
+    "kereta_bawah_tanah": 3
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const togo: CountryData = {
     "minyak_bumi": 2,
     "logam_tanah_jarang": 19,
     "garam": 10,
-    "kekuatan": 29.660809349923973,
     "uranium": 10
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const togo: CountryData = {
     "farmasi": 38,
     "semikonduktor": 12,
     "smelter": 16,
-    "kekuatan": 3.076011687404966,
     "gula": 38,
     "kayu": 4
   },
@@ -98,9 +94,8 @@ export const togo: CountryData = {
     "sayur_umbi": 11.0,
     "kedelai": 32,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 13.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 13.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const togo: CountryData = {
     "pangkalan_laut": 39,
     "program_luar_angkasa": 26,
     "pertahanan_siber": 39,
-    "anggaran_pertahanan": 25,
-    "personel": 16018,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 25
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const togo: CountryData = {
 
   "sektor_armada": {
     "barak": 12,
-    "infanteri": 9,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 21,
         "apc": 155,
@@ -142,23 +132,19 @@ export const togo: CountryData = {
         "jet_tempur_siluman": 117,
         "helikopter_serang": 129,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 3,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 4,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 36,
           "sepeda_motor": 16,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 8,
@@ -170,11 +156,12 @@ export const togo: CountryData = {
           "kamera_pengawas": 18,
           "pusat_forensik": 1
   },
-        "waktu_respon": 11,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 11,
     "intelijen": 32,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 19,
       "misi_mata_mata": 23,
       "misi_sabotase": 18,
@@ -188,34 +175,24 @@ export const togo: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 3,
-      "sd": 19,
-      "smp": 11,
-      "sma": 39,
+      "prasekolah": 3,
+      "dasar": 19,
+      "menengah": 11,
+      "lanjutan": 39,
       "universitas": 13,
       "lembaga_pendidikan": 14,
       "laboratorium": 1,
       "observatorium": 5,
       "pusat_penelitian": 39,
       "pusat_pengembangan": 1,
-      "literasi": 54,
-      "indeks_penelitian": 0
+      "literasi": 54
   },
     "kesehatan": {
       "rumah_sakit_besar": 20,
       "rumah_sakit_kecil": 15,
       "pusat_diagnostik": 17,
-      "tempat_tidur_rs": 911,
       "harapan_hidup": 27,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 9,
-      "sirkuit_balap": 19,
-      "stadion": 38,
-      "stadion_internasional": 2,
-      "skor_olimpiade": 26,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 37,
@@ -227,6 +204,12 @@ export const togo: CountryData = {
       "indeks_korupsi": 80,
       "indeks_keamanan": 81
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 9,
+      "sirkuit_balap": 19,
+      "stadion": 38,
+      "stadion_internasional": 2
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const togo: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 35,
@@ -348,3 +330,6 @@ export const togo: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

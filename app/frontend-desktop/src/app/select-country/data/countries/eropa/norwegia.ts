@@ -39,9 +39,7 @@ export const norwegia: CountryData = {
     "bandara": 17,
     "terminal_bus": 16,
     "helipad": 23,
-    "cakupan_internet": 67,
-    "indeks_teknologi": 53,
-    "akses_air": 74
+    "cakupan_internet": 67
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const norwegia: CountryData = {
     "aluminium": 32,
     "tembaga": 40,
     "logam_tanah_jarang": 12,
-    "bijih_besi": 31,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 31
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const norwegia: CountryData = {
     "farmasi": 17,
     "pupuk": 12,
     "pengolahan_daging": 17,
-    "mie_instan": 23,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 23
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const norwegia: CountryData = {
     "sayur_umbi": 27.0,
     "kedelai": 2,
     "kelapa_sawit": 20,
-    "kopi_teh_kakao": 23.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 23.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const norwegia: CountryData = {
     "pangkalan_laut": 7,
     "program_luar_angkasa": 7,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 1611,
-    "personel": 27689,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1611
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const norwegia: CountryData = {
 
   "sektor_armada": {
     "barak": 40,
-    "infanteri": 34,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 122,
         "apc": 72,
@@ -142,23 +132,20 @@ export const norwegia: CountryData = {
         "jet_tempur_siluman": 120,
         "helikopter_serang": 198,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 33,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 2,
-      "jaringan_radar": 0,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 33,
           "sepeda_motor": 25,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 16,
           "helikopter_polisi": 38,
@@ -169,10 +156,12 @@ export const norwegia: CountryData = {
           "kamera_pengawas": 30,
           "pusat_forensik": 1
         },
-        "waktu_respon": 31,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 31,
     "intelijen": 17,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 4,
       "misi_mata_mata": 7,
       "misi_sabotase": 39,
@@ -185,34 +174,24 @@ export const norwegia: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 1,
-      "sd": 26,
-      "smp": 9,
-      "sma": 13,
+      "prasekolah": 1,
+      "dasar": 26,
+      "menengah": 9,
+      "lanjutan": 13,
       "universitas": 1,
       "lembaga_pendidikan": 20,
       "laboratorium": 19,
       "observatorium": 36,
       "pusat_penelitian": 5,
       "pusat_pengembangan": 13,
-      "literasi": 82,
-      "indeks_penelitian": 0
+      "literasi": 82
     },
     "kesehatan": {
       "rumah_sakit_besar": 14,
       "rumah_sakit_kecil": 37,
       "pusat_diagnostik": 22,
-      "tempat_tidur_rs": 2427,
       "harapan_hidup": 27,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 22,
-      "stadion": 40,
-      "stadion_internasional": 25,
-      "skor_olimpiade": 11,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 16,
@@ -224,6 +203,12 @@ export const norwegia: CountryData = {
       "indeks_korupsi": 76,
       "indeks_keamanan": 82
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 24,
+      "sirkuit_balap": 22,
+      "stadion": 40,
+      "stadion_internasional": 25
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const norwegia: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 10,
@@ -345,3 +329,6 @@ export const norwegia: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

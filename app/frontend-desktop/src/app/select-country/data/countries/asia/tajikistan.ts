@@ -39,9 +39,7 @@ export const tajikistan: CountryData = {
     "bandara": 27,
     "terminal_bus": 21,
     "helipad": 15,
-    "cakupan_internet": 76,
-    "indeks_teknologi": 58,
-    "akses_air": 74
+    "cakupan_internet": 76
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const tajikistan: CountryData = {
     "aluminium": 8,
     "tembaga": 31,
     "logam_tanah_jarang": 34,
-    "bijih_besi": 27,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const tajikistan: CountryData = {
     "farmasi": 6,
     "pupuk": 25,
     "pengolahan_daging": 3,
-    "mie_instan": 19,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 19
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const tajikistan: CountryData = {
     "sayur_umbi": 27.0,
     "kedelai": 23,
     "kelapa_sawit": 37,
-    "kopi_teh_kakao": 20.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const tajikistan: CountryData = {
     "pangkalan_laut": 36,
     "program_luar_angkasa": 25,
     "pertahanan_siber": 23,
-    "anggaran_pertahanan": 33,
-    "personel": 26720,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 33
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const tajikistan: CountryData = {
 
   "sektor_armada": {
     "barak": 39,
-    "infanteri": 39,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 47,
         "apc": 146,
@@ -142,23 +132,20 @@ export const tajikistan: CountryData = {
         "jet_tempur_siluman": 198,
         "helikopter_serang": 159,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 5,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 5,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 33,
           "sepeda_motor": 7,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 28,
           "helikopter_polisi": 6,
@@ -169,10 +156,12 @@ export const tajikistan: CountryData = {
           "kamera_pengawas": 30,
           "pusat_forensik": 1
         },
-        "waktu_respon": 6,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 6,
     "intelijen": 9,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 14,
       "misi_mata_mata": 21,
       "misi_sabotase": 24,
@@ -185,34 +174,24 @@ export const tajikistan: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 1,
-      "sd": 25,
-      "smp": 23,
-      "sma": 22,
+      "prasekolah": 1,
+      "dasar": 25,
+      "menengah": 23,
+      "lanjutan": 22,
       "universitas": 28,
       "lembaga_pendidikan": 40,
       "laboratorium": 38,
       "observatorium": 1,
       "pusat_penelitian": 30,
       "pusat_pengembangan": 12,
-      "literasi": 79,
-      "indeks_penelitian": 0
+      "literasi": 79
     },
     "kesehatan": {
       "rumah_sakit_besar": 40,
       "rumah_sakit_kecil": 24,
       "pusat_diagnostik": 27,
-      "tempat_tidur_rs": 2702,
       "harapan_hidup": 15,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 2,
-      "sirkuit_balap": 14,
-      "stadion": 36,
-      "stadion_internasional": 6,
-      "skor_olimpiade": 21,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 35,
@@ -224,6 +203,12 @@ export const tajikistan: CountryData = {
       "indeks_korupsi": 54,
       "indeks_keamanan": 95
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 2,
+      "sirkuit_balap": 14,
+      "stadion": 36,
+      "stadion_internasional": 6
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const tajikistan: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 33,
@@ -345,3 +329,6 @@ export const tajikistan: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

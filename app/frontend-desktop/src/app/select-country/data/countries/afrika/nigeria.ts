@@ -39,9 +39,7 @@ export const nigeria: CountryData = {
     "jalur_kereta": 32,
     "kualitas_jalan": 95,
     "pelabuhan_laut": 25,
-    "kereta_bawah_tanah": 21,
-    "indeks_teknologi": 50,
-    "akses_air": 74
+    "kereta_bawah_tanah": 21
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,7 +57,6 @@ export const nigeria: CountryData = {
     "minyak_bumi": 90,
     "logam_tanah_jarang": 39,
     "garam": 21,
-    "kekuatan": 29.660809349923973,
     "uranium": 3
   },
   // =============================================================
@@ -78,7 +75,6 @@ export const nigeria: CountryData = {
     "farmasi": 28,
     "semikonduktor": 6,
     "smelter": 30,
-    "kekuatan": 3.076011687404966,
     "gula": 15,
     "kayu": 39
   },
@@ -98,9 +94,8 @@ export const nigeria: CountryData = {
     "sayur_umbi": 14.0,
     "kedelai": 13,
     "kelapa_sawit": 5,
-    "kopi_teh_kakao": 10.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 10.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const nigeria: CountryData = {
     "pangkalan_laut": 17,
     "program_luar_angkasa": 15,
     "pertahanan_siber": 5,
-    "anggaran_pertahanan": 1319,
-    "personel": 21640,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 1319
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const nigeria: CountryData = {
 
   "sektor_armada": {
     "barak": 12,
-    "infanteri": 16,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 47,
         "apc": 162,
@@ -142,23 +132,19 @@ export const nigeria: CountryData = {
         "jet_tempur_siluman": 82,
         "helikopter_serang": 128,
         "pesawat_pengintai": 2
-  },
-      "total_unit": 21,
-      "kesiapan": 98
+  }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 4,
-      "jaringan_radar": 4,
-      "operasi_siber": 2
-  },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 40,
           "sepeda_motor": 8,
           "unit_k9": 23
+  
   },
         "taktis_khusus": {
           "swat": 32,
@@ -170,11 +156,12 @@ export const nigeria: CountryData = {
           "kamera_pengawas": 7,
           "pusat_forensik": 1
   },
-        "waktu_respon": 12,
-        "kepercayaan_publik": 50
+    "kepercayaan_publik": 50
   },
+  "waktu_respon": 12,
     "intelijen": 12,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 5,
       "misi_mata_mata": 15,
       "misi_sabotase": 35,
@@ -188,34 +175,24 @@ export const nigeria: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 34,
-      "sd": 11,
-      "smp": 14,
-      "sma": 3,
+      "prasekolah": 34,
+      "dasar": 11,
+      "menengah": 14,
+      "lanjutan": 3,
       "universitas": 10,
       "lembaga_pendidikan": 24,
       "laboratorium": 33,
       "observatorium": 29,
       "pusat_penelitian": 22,
       "pusat_pengembangan": 16,
-      "literasi": 66,
-      "indeks_penelitian": 0
+      "literasi": 66
   },
     "kesehatan": {
       "rumah_sakit_besar": 39,
       "rumah_sakit_kecil": 13,
       "pusat_diagnostik": 8,
-      "tempat_tidur_rs": 7705,
       "harapan_hidup": 1,
       "indeks_kesehatan": 85
-  },
-    "olahraga": {
-      "kolam_renang": 17,
-      "sirkuit_balap": 8,
-      "stadion": 25,
-      "stadion_internasional": 32,
-      "skor_olimpiade": 22,
-      "popularitas": 44
   },
     "hukum": {
       "pusat_bantuan_hukum": 6,
@@ -227,6 +204,12 @@ export const nigeria: CountryData = {
       "indeks_korupsi": 73,
       "indeks_keamanan": 56
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 17,
+      "sirkuit_balap": 8,
+      "stadion": 25,
+      "stadion_internasional": 32
   },
 
   "un_vote": "Pro",
@@ -314,7 +297,6 @@ export const nigeria: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 37,
@@ -348,3 +330,6 @@ export const nigeria: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

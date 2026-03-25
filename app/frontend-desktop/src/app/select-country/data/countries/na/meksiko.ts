@@ -39,9 +39,7 @@ export const meksiko: CountryData = {
     "bandara": 25,
     "terminal_bus": 34,
     "helipad": 7,
-    "cakupan_internet": 88,
-    "indeks_teknologi": 58,
-    "akses_air": 74
+    "cakupan_internet": 88
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const meksiko: CountryData = {
     "aluminium": 10,
     "tembaga": 20,
     "logam_tanah_jarang": 33,
-    "bijih_besi": 33,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 33
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const meksiko: CountryData = {
     "farmasi": 20,
     "pupuk": 16,
     "pengolahan_daging": 17,
-    "mie_instan": 22,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 22
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const meksiko: CountryData = {
     "sayur_umbi": 3.0,
     "kedelai": 34,
     "kelapa_sawit": 24,
-    "kopi_teh_kakao": 15.3,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 15.3
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const meksiko: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 30,
     "pertahanan_siber": 17,
-    "anggaran_pertahanan": 4972,
-    "personel": 17715,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 4972
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const meksiko: CountryData = {
 
   "sektor_armada": {
     "barak": 7,
-    "infanteri": 7,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 122,
         "apc": 37,
@@ -142,23 +132,20 @@ export const meksiko: CountryData = {
         "jet_tempur_siluman": 58,
         "helikopter_serang": 11,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 5,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 0,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 3,
           "sepeda_motor": 8,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 28,
           "helikopter_polisi": 3,
@@ -169,10 +156,12 @@ export const meksiko: CountryData = {
           "kamera_pengawas": 36,
           "pusat_forensik": 1
         },
-        "waktu_respon": 27,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 27,
     "intelijen": 21,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 38,
       "misi_mata_mata": 34,
       "misi_sabotase": 8,
@@ -185,34 +174,24 @@ export const meksiko: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 32,
-      "sd": 12,
-      "smp": 8,
-      "sma": 23,
+      "prasekolah": 32,
+      "dasar": 12,
+      "menengah": 8,
+      "lanjutan": 23,
       "universitas": 18,
       "lembaga_pendidikan": 37,
       "laboratorium": 16,
       "observatorium": 5,
       "pusat_penelitian": 8,
       "pusat_pengembangan": 18,
-      "literasi": 58,
-      "indeks_penelitian": 0
+      "literasi": 58
     },
     "kesehatan": {
       "rumah_sakit_besar": 12,
       "rumah_sakit_kecil": 34,
       "pusat_diagnostik": 27,
-      "tempat_tidur_rs": 6921,
       "harapan_hidup": 33,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 16,
-      "sirkuit_balap": 28,
-      "stadion": 14,
-      "stadion_internasional": 3,
-      "skor_olimpiade": 26,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 30,
@@ -224,6 +203,12 @@ export const meksiko: CountryData = {
       "indeks_korupsi": 86,
       "indeks_keamanan": 92
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 16,
+      "sirkuit_balap": 28,
+      "stadion": 14,
+      "stadion_internasional": 3
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const meksiko: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 17,
@@ -345,3 +329,6 @@ export const meksiko: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

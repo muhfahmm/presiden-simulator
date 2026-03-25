@@ -39,9 +39,7 @@ export const saint_kitts_dan_nevis: CountryData = {
     "bandara": 20,
     "terminal_bus": 29,
     "helipad": 12,
-    "cakupan_internet": 81,
-    "indeks_teknologi": 73,
-    "akses_air": 74
+    "cakupan_internet": 81
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const saint_kitts_dan_nevis: CountryData = {
     "aluminium": 32,
     "tembaga": 21,
     "logam_tanah_jarang": 1,
-    "bijih_besi": 17,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 17
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const saint_kitts_dan_nevis: CountryData = {
     "farmasi": 33,
     "pupuk": 10,
     "pengolahan_daging": 14,
-    "mie_instan": 28,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 28
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const saint_kitts_dan_nevis: CountryData = {
     "sayur_umbi": 21.5,
     "kedelai": 40,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 26.0,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 26.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const saint_kitts_dan_nevis: CountryData = {
     "pangkalan_laut": 6,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 19,
-    "anggaran_pertahanan": 27,
-    "personel": 12081,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const saint_kitts_dan_nevis: CountryData = {
 
   "sektor_armada": {
     "barak": 3,
-    "infanteri": 10,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 71,
         "apc": 84,
@@ -142,23 +132,20 @@ export const saint_kitts_dan_nevis: CountryData = {
         "jet_tempur_siluman": 98,
         "helikopter_serang": 183,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 9,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 3,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 3,
           "sepeda_motor": 15,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 34,
           "helikopter_polisi": 31,
@@ -169,10 +156,12 @@ export const saint_kitts_dan_nevis: CountryData = {
           "kamera_pengawas": 25,
           "pusat_forensik": 1
         },
-        "waktu_respon": 27,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 27,
     "intelijen": 11,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 17,
       "misi_mata_mata": 20,
       "misi_sabotase": 4,
@@ -185,34 +174,24 @@ export const saint_kitts_dan_nevis: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 39,
-      "sd": 1,
-      "smp": 2,
-      "sma": 29,
+      "prasekolah": 39,
+      "dasar": 1,
+      "menengah": 2,
+      "lanjutan": 29,
       "universitas": 2,
       "lembaga_pendidikan": 40,
       "laboratorium": 22,
       "observatorium": 14,
       "pusat_penelitian": 38,
       "pusat_pengembangan": 9,
-      "literasi": 73,
-      "indeks_penelitian": 0
+      "literasi": 73
     },
     "kesehatan": {
       "rumah_sakit_besar": 23,
       "rumah_sakit_kecil": 7,
       "pusat_diagnostik": 20,
-      "tempat_tidur_rs": 3179,
       "harapan_hidup": 17,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 23,
-      "sirkuit_balap": 5,
-      "stadion": 20,
-      "stadion_internasional": 36,
-      "skor_olimpiade": 8,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 7,
@@ -224,6 +203,12 @@ export const saint_kitts_dan_nevis: CountryData = {
       "indeks_korupsi": 83,
       "indeks_keamanan": 81
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 23,
+      "sirkuit_balap": 5,
+      "stadion": 20,
+      "stadion_internasional": 36
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const saint_kitts_dan_nevis: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 16,
@@ -345,3 +329,6 @@ export const saint_kitts_dan_nevis: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

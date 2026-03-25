@@ -39,9 +39,7 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "bandara": 26,
     "terminal_bus": 7,
     "helipad": 7,
-    "cakupan_internet": 50,
-    "indeks_teknologi": 95,
-    "akses_air": 74
+    "cakupan_internet": 50
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "aluminium": 24,
     "tembaga": 33,
     "logam_tanah_jarang": 34,
-    "bijih_besi": 28,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 28
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "farmasi": 11,
     "pupuk": 37,
     "pengolahan_daging": 23,
-    "mie_instan": 40,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 40
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "sayur_umbi": 9.5,
     "kedelai": 36,
     "kelapa_sawit": 29,
-    "kopi_teh_kakao": 20.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 20.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "pangkalan_laut": 40,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 27,
-    "personel": 19964,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const saint_vincent_dan_grenadine: CountryData = {
 
   "sektor_armada": {
     "barak": 6,
-    "infanteri": 9,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 63,
         "apc": 32,
@@ -142,23 +132,20 @@ export const saint_vincent_dan_grenadine: CountryData = {
         "jet_tempur_siluman": 88,
         "helikopter_serang": 105,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 9,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 1,
-      "jaringan_radar": 5,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 39,
           "sepeda_motor": 20,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 39,
           "helikopter_polisi": 21,
@@ -169,10 +156,12 @@ export const saint_vincent_dan_grenadine: CountryData = {
           "kamera_pengawas": 1,
           "pusat_forensik": 1
         },
-        "waktu_respon": 3,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 3,
     "intelijen": 22,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 34,
       "misi_mata_mata": 15,
       "misi_sabotase": 35,
@@ -185,34 +174,24 @@ export const saint_vincent_dan_grenadine: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 21,
-      "sd": 9,
-      "smp": 19,
-      "sma": 16,
+      "prasekolah": 21,
+      "dasar": 9,
+      "menengah": 19,
+      "lanjutan": 16,
       "universitas": 10,
       "lembaga_pendidikan": 40,
       "laboratorium": 1,
       "observatorium": 10,
       "pusat_penelitian": 2,
       "pusat_pengembangan": 15,
-      "literasi": 66,
-      "indeks_penelitian": 0
+      "literasi": 66
     },
     "kesehatan": {
       "rumah_sakit_besar": 23,
       "rumah_sakit_kecil": 2,
       "pusat_diagnostik": 8,
-      "tempat_tidur_rs": 4947,
       "harapan_hidup": 20,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 10,
-      "sirkuit_balap": 25,
-      "stadion": 25,
-      "stadion_internasional": 10,
-      "skor_olimpiade": 9,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 32,
@@ -224,6 +203,12 @@ export const saint_vincent_dan_grenadine: CountryData = {
       "indeks_korupsi": 73,
       "indeks_keamanan": 87
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 10,
+      "sirkuit_balap": 25,
+      "stadion": 25,
+      "stadion_internasional": 10
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const saint_vincent_dan_grenadine: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 23,
@@ -345,3 +329,6 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+

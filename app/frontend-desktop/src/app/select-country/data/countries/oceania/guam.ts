@@ -39,9 +39,7 @@ export const guam: CountryData = {
     "bandara": 5,
     "terminal_bus": 27,
     "helipad": 13,
-    "cakupan_internet": 88,
-    "indeks_teknologi": 59,
-    "akses_air": 74
+    "cakupan_internet": 88
   },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
@@ -59,8 +57,7 @@ export const guam: CountryData = {
     "aluminium": 35,
     "tembaga": 2,
     "logam_tanah_jarang": 26,
-    "bijih_besi": 19,
-    "kekuatan": 29.660809349923973
+    "bijih_besi": 19
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -79,8 +76,7 @@ export const guam: CountryData = {
     "farmasi": 7,
     "pupuk": 33,
     "pengolahan_daging": 20,
-    "mie_instan": 3,
-    "kekuatan": 3.076011687404966
+    "mie_instan": 3
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -98,9 +94,8 @@ export const guam: CountryData = {
     "sayur_umbi": 15.5,
     "kedelai": 27,
     "kelapa_sawit": 4,
-    "kopi_teh_kakao": 14.7,
-    "kekuatan": 20.0
-  },
+    "kopi_teh_kakao": 14.7
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -115,9 +110,7 @@ export const guam: CountryData = {
     "pangkalan_laut": 17,
     "program_luar_angkasa": 31,
     "pertahanan_siber": 12,
-    "anggaran_pertahanan": 27,
-    "personel": 17421,
-    "kekuatan": 16.660809349923973
+    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -125,9 +118,6 @@ export const guam: CountryData = {
 
   "sektor_armada": {
     "barak": 39,
-    "infanteri": 39,
-    "penerjun_payung": 0,
-    "pasukan_khusus": 0,
     "darat": {
         "tank_tempur_utama": 117,
         "apc": 191,
@@ -142,23 +132,20 @@ export const guam: CountryData = {
         "jet_tempur_siluman": 170,
         "helikopter_serang": 187,
         "pesawat_pengintai": 2
-      },
-      "total_unit": 11,
-      "kesiapan": 98
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
   "sektor_keamanan": {
-    "intel_radar": { "sistem_satelit": 1,
-      "jaringan_radar": 4,
-      "operasi_siber": 2 },
-    "armada_polisi": { "patroli_lantas": {
+    "armada_polisi": {
+    "patroli_lantas": {
           "mobil_patroli": 2,
           "sepeda_motor": 7,
           "unit_k9": 23
-        },
+        
+  },
         "taktis_khusus": {
           "swat": 13,
           "helikopter_polisi": 2,
@@ -169,10 +156,12 @@ export const guam: CountryData = {
           "kamera_pengawas": 32,
           "pusat_forensik": 1
         },
-        "waktu_respon": 36,
-        "kepercayaan_publik": 50 },
+    "kepercayaan_publik": 50
+  },
+  "waktu_respon": 36,
     "intelijen": 26,
     "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 12,
       "misi_mata_mata": 22,
       "misi_sabotase": 5,
@@ -185,34 +174,24 @@ export const guam: CountryData = {
 
   "sektor_sosial": {
     "pendidikan": {
-      "tk": 23,
-      "sd": 20,
-      "smp": 15,
-      "sma": 38,
+      "prasekolah": 23,
+      "dasar": 20,
+      "menengah": 15,
+      "lanjutan": 38,
       "universitas": 25,
       "lembaga_pendidikan": 32,
       "laboratorium": 29,
       "observatorium": 5,
       "pusat_penelitian": 37,
       "pusat_pengembangan": 39,
-      "literasi": 69,
-      "indeks_penelitian": 0
+      "literasi": 69
     },
     "kesehatan": {
       "rumah_sakit_besar": 10,
       "rumah_sakit_kecil": 20,
       "pusat_diagnostik": 11,
-      "tempat_tidur_rs": 7481,
       "harapan_hidup": 30,
       "indeks_kesehatan": 85
-    },
-    "olahraga": {
-      "kolam_renang": 39,
-      "sirkuit_balap": 12,
-      "stadion": 11,
-      "stadion_internasional": 4,
-      "skor_olimpiade": 18,
-      "popularitas": 44
     },
     "hukum": {
       "pusat_bantuan_hukum": 37,
@@ -224,6 +203,12 @@ export const guam: CountryData = {
       "indeks_korupsi": 60,
       "indeks_keamanan": 86
   }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 39,
+      "sirkuit_balap": 12,
+      "stadion": 11,
+      "stadion_internasional": 4
   },
 
   "un_vote": "Pro",
@@ -311,7 +296,6 @@ export const guam: CountryData = {
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "musuh": [],
     "sikap": "Netral",
     "pengaruh_internasional": {
       "kekuatan_lunak": 32,
@@ -345,3 +329,6 @@ export const guam: CountryData = {
     "lingkungan": 60
   }
 };
+
+
+
