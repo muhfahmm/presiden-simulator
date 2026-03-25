@@ -318,6 +318,27 @@ export const tajikistan: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 60,
+    "salaryGuru": 70,
+    "salaryMedis": 80,
+    "salaryMiliter": 60
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 75,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 75,
+    "subsidyTransport": 75,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 92,
     "top_demands": [

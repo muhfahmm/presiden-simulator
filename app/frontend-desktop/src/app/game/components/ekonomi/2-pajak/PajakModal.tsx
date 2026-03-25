@@ -15,7 +15,7 @@ interface ModalProps {
 
 export default function PajakModal({ isOpen, onClose }: ModalProps) {
   const session = gameStorage.getSession();
-  const initialCountry = countries.find((c: CountryData) => c.name_en === session?.country) || countries[0];
+  const initialCountry = countries.find((c: CountryData) => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
   
   // Local state for managed taxes and country budget
   const [managedTaxes, setManagedTaxes] = useState<any>(null);

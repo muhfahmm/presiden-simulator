@@ -322,6 +322,27 @@ export const lesotho: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 40,
+    "salaryGuru": 40,
+    "salaryMedis": 50,
+    "salaryMiliter": 60
+  },
+  "subsidies": {
+    "subsidyEnergi": 25,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 25,
+    "subsidyPendidikan": 50,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 25,
+    "subsidyRumah": 25
+  },
+
   "demand": {
     "satisfaction": 69,
     "top_demands": [

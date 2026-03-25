@@ -322,6 +322,27 @@ export const republik_afrika_tengah: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 40,
+    "salaryGuru": 40,
+    "salaryMedis": 40,
+    "salaryMiliter": 40
+  },
+  "subsidies": {
+    "subsidyEnergi": 25,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 25,
+    "subsidyPendidikan": 50,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 50,
+    "subsidyRumah": 25
+  },
+
   "demand": {
     "satisfaction": 76,
     "top_demands": [

@@ -20,52 +20,43 @@ export interface ExpenseData {
 }
 
 export const expenseStorage = {
-  getData: (): ExpenseData => {
-    if (typeof window === 'undefined') return { 
-      subsidyEnergi: 10,
-      subsidyPangan: 10,
-      subsidyKesehatan: 10,
-      subsidyPendidikan: 10,
-      subsidyUmkm: 10,
-      subsidyTransport: 10,
-      subsidyRumah: 10,
-      salaryAsn: 1.0, 
-      salaryGuru: 1.0, 
-      salaryMedis: 1.0, 
-      salaryMiliter: 1.0, 
+  getStorageKey: (countryName: string) => `${EXPENSE_STORAGE_KEY}_${countryName.replace(/\s+/g, '_').toLowerCase()}`,
+
+  getData: (countryName: string, countryData?: any): ExpenseData => {
+    const defaults: ExpenseData = { 
+      subsidyEnergi: countryData?.subsidies?.subsidyEnergi ?? 10,
+      subsidyPangan: countryData?.subsidies?.subsidyPangan ?? 10,
+      subsidyKesehatan: countryData?.subsidies?.subsidyKesehatan ?? 10,
+      subsidyPendidikan: countryData?.subsidies?.subsidyPendidikan ?? 10,
+      subsidyUmkm: countryData?.subsidies?.subsidyUmkm ?? 10,
+      subsidyTransport: countryData?.subsidies?.subsidyTransport ?? 10,
+      subsidyRumah: countryData?.subsidies?.subsidyRumah ?? 10,
+      salaryAsn: countryData?.salaries?.salaryAsn ?? 1.0, 
+      salaryGuru: countryData?.salaries?.salaryGuru ?? 1.0, 
+      salaryMedis: countryData?.salaries?.salaryMedis ?? 1.0, 
+      salaryMiliter: countryData?.salaries?.salaryMiliter ?? 1.0, 
       socialWelfareLevel: 20,
       debtInterestPaid: 0,
       lastUpdated: Date.now() 
     };
+
+    if (typeof window === 'undefined') return defaults;
     
-    const stored = localStorage.getItem(EXPENSE_STORAGE_KEY);
-    return stored ? JSON.parse(stored) : { 
-      subsidyEnergi: 10,
-      subsidyPangan: 10,
-      subsidyKesehatan: 10,
-      subsidyPendidikan: 10,
-      subsidyUmkm: 10,
-      subsidyTransport: 10,
-      subsidyRumah: 10,
-      salaryAsn: 1.0, 
-      salaryGuru: 1.0, 
-      salaryMedis: 1.0, 
-      salaryMiliter: 1.0, 
-      socialWelfareLevel: 20,
-      debtInterestPaid: 0,
-      lastUpdated: Date.now() 
-    };
+    const key = expenseStorage.getStorageKey(countryName);
+    const stored = localStorage.getItem(key);
+    return stored ? JSON.parse(stored) : defaults;
   },
 
-  saveData: (data: ExpenseData) => {
+  saveData: (countryName: string, data: ExpenseData) => {
     if (typeof window === 'undefined') return;
-    localStorage.setItem(EXPENSE_STORAGE_KEY, JSON.stringify({ ...data, lastUpdated: Date.now() }));
+    const key = expenseStorage.getStorageKey(countryName);
+    localStorage.setItem(key, JSON.stringify({ ...data, lastUpdated: Date.now() }));
     window.dispatchEvent(new Event('expense_storage_updated'));
   },
 
-  updateExpense: (key: keyof Omit<ExpenseData, 'lastUpdated'>, value: number) => {
-    const data = expenseStorage.getData();
+  updateExpense: (countryName: string, key: keyof Omit<ExpenseData, 'lastUpdated'>, value: number, countryData?: any) => {
+    const data = expenseStorage.getData(countryName, countryData);
     (data as any)[key] = value;
-    expenseStorage.saveData(data);
+    expenseStorage.saveData(countryName, data);
   }
 };

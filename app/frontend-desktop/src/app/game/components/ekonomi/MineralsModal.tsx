@@ -12,7 +12,7 @@ export default function MineralsModal({ isOpen, onClose }: MineralsModalProps) {
   if (!isOpen) return null;
 
   const session = gameStorage.getSession();
-  const currentData = (countries.find(c => c.name_id === session?.country) || countries[0]) as CountryData;
+  const currentData = (countries.find(c => c.name_id === session?.country || c.name_en === session?.country) || countries[0]) as CountryData;
 
   const minerals = [
     { label: "Nikel", value: currentData.sector_extraction.nickel, color: "bg-orange-400", lightColor: "text-orange-400", icon: <Box size={14} className="text-orange-400" /> },

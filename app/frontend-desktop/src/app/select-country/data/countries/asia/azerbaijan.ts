@@ -318,6 +318,27 @@ export const azerbaijan: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 60,
+    "salaryGuru": 70,
+    "salaryMedis": 70,
+    "salaryMiliter": 50
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 75,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 50,
+    "subsidyRumah": 25
+  },
+
   "demand": {
     "satisfaction": 77,
     "top_demands": [

@@ -322,6 +322,27 @@ export const afrika_selatan: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 30,
+    "salaryGuru": 50,
+    "salaryMedis": 60,
+    "salaryMiliter": 50
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 25,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 50,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 25,
+    "subsidyRumah": 25
+  },
+
   "demand": {
     "satisfaction": 53,
     "top_demands": [

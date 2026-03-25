@@ -322,6 +322,27 @@ export const republik_sudan: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 30,
+    "salaryGuru": 50,
+    "salaryMedis": 50,
+    "salaryMiliter": 50
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 50,
+    "subsidyUmkm": 25,
+    "subsidyTransport": 50,
+    "subsidyRumah": 25
+  },
+
   "demand": {
     "satisfaction": 88,
     "top_demands": [

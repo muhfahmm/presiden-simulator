@@ -322,6 +322,27 @@ export const libya: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 50,
+    "salaryGuru": 50,
+    "salaryMedis": 50,
+    "salaryMiliter": 50
+  },
+  "subsidies": {
+    "subsidyEnergi": 25,
+    "subsidyPangan": 25,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 50,
+    "subsidyUmkm": 25,
+    "subsidyTransport": 50,
+    "subsidyRumah": 25
+  },
+
   "demand": {
     "satisfaction": 95,
     "top_demands": [

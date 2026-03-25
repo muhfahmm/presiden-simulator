@@ -318,6 +318,27 @@ export const palestina: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 70,
+    "salaryGuru": 70,
+    "salaryMedis": 80,
+    "salaryMiliter": 60
+  },
+  "subsidies": {
+    "subsidyEnergi": 75,
+    "subsidyPangan": 75,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 75,
+    "subsidyTransport": 75,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 69,
     "top_demands": [

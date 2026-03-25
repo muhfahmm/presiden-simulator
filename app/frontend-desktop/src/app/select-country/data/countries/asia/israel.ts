@@ -318,6 +318,27 @@ export const israel: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 50,
+    "salaryGuru": 60,
+    "salaryMedis": 70,
+    "salaryMiliter": 70
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 75,
+    "subsidyKesehatan": 75,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 50,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 85,
     "top_demands": [

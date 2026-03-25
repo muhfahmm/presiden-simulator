@@ -318,6 +318,27 @@ export const uzbekistan: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 70,
+    "salaryGuru": 60,
+    "salaryMedis": 80,
+    "salaryMiliter": 70
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 75,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 50,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 65,
     "top_demands": [

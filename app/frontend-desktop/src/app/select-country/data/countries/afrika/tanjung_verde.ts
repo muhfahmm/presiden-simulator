@@ -322,6 +322,27 @@ export const tanjung_verde: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 40,
+    "salaryGuru": 40,
+    "salaryMedis": 50,
+    "salaryMiliter": 40
+  },
+  "subsidies": {
+    "subsidyEnergi": 25,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 25,
+    "subsidyPendidikan": 50,
+    "subsidyUmkm": 25,
+    "subsidyTransport": 25,
+    "subsidyRumah": 0
+  },
+
   "demand": {
     "satisfaction": 58,
     "top_demands": [

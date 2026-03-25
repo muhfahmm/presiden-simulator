@@ -318,6 +318,27 @@ export const myanmar: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 70,
+    "salaryGuru": 70,
+    "salaryMedis": 70,
+    "salaryMiliter": 70
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 75,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 75,
+    "subsidyTransport": 75,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 63,
     "top_demands": [

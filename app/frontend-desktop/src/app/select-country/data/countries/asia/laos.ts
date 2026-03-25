@@ -318,6 +318,27 @@ export const laos: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 50,
+    "salaryGuru": 60,
+    "salaryMedis": 70,
+    "salaryMiliter": 50
+  },
+  "subsidies": {
+    "subsidyEnergi": 75,
+    "subsidyPangan": 75,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 50,
+    "subsidyUmkm": 75,
+    "subsidyTransport": 50,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 67,
     "top_demands": [

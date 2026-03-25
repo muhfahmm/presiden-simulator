@@ -318,6 +318,27 @@ export const spanyol: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 90,
+    "salaryGuru": 90,
+    "salaryMedis": 90,
+    "salaryMiliter": 80
+  },
+  "subsidies": {
+    "subsidyEnergi": 25,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 75,
+    "subsidyPendidikan": 100,
+    "subsidyUmkm": 75,
+    "subsidyTransport": 50,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 83,
     "top_demands": [

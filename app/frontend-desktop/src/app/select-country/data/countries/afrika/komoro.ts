@@ -322,6 +322,27 @@ export const komoro: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 40,
+    "salaryGuru": 60,
+    "salaryMedis": 40,
+    "salaryMiliter": 50
+  },
+  "subsidies": {
+    "subsidyEnergi": 25,
+    "subsidyPangan": 25,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 25,
+    "subsidyUmkm": 25,
+    "subsidyTransport": 25,
+    "subsidyRumah": 0
+  },
+
   "demand": {
     "satisfaction": 78,
     "top_demands": [

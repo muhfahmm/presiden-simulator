@@ -318,6 +318,27 @@ export const honduras: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 90,
+    "salaryGuru": 90,
+    "salaryMedis": 100,
+    "salaryMiliter": 90
+  },
+  "subsidies": {
+    "subsidyEnergi": 25,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 100,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 75,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 52,
     "top_demands": [

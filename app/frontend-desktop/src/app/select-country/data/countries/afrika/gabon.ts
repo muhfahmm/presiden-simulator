@@ -322,6 +322,27 @@ export const gabon: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 30,
+    "salaryGuru": 50,
+    "salaryMedis": 40,
+    "salaryMiliter": 50
+  },
+  "subsidies": {
+    "subsidyEnergi": 25,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 50,
+    "subsidyUmkm": 25,
+    "subsidyTransport": 25,
+    "subsidyRumah": 25
+  },
+
   "demand": {
     "satisfaction": 87,
     "top_demands": [

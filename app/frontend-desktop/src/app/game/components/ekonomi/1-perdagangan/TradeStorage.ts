@@ -10,7 +10,7 @@ export const tradeStorage = {
   },
 
   getCurrentCountry: (session: any): CountryData => {
-    return countries.find((c: CountryData) => c.name_en === session?.country) || countries[0];
+    return countries.find((c: CountryData) => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
   },
 
   saveTrade: (countryName: string, tradeData: any) => {

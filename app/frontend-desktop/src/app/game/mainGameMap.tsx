@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "../select-country/data/countries";
-import { hitungKonsumsiEkstraksi } from "../select-country/data/electricity/comsumtion/ekstraksi";
+import { hitungKonsumsiEkstraksi } from "../select-country/data/electricity/2_konsumsi_listrik";
 interface GameMapCanvasProps {
   userCountry: string;
   targetCountry: string | null;
@@ -165,8 +165,16 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
       // Draw Countries
       geoData.features.forEach((feature: any) => {
         const name = feature.properties.name;
-        const isPlayer = name === userCountry;
-        const isTarget = name === targetCountry;
+        
+        // Name aliases for accurate GeoJSON matching
+        const geoNameMap: { [key: string]: string } = {
+          "United States": "United States of America"
+        };
+        const targetUserCountry = geoNameMap[userCountry] || userCountry;
+        const targetHoverCountry = targetCountry ? (geoNameMap[targetCountry] || targetCountry) : null;
+
+        const isPlayer = name === targetUserCountry;
+        const isTarget = name === targetHoverCountry;
 
         ctx.beginPath();
 

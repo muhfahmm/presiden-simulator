@@ -318,6 +318,27 @@ export const tonga: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 80,
+    "salaryGuru": 80,
+    "salaryMedis": 90,
+    "salaryMiliter": 90
+  },
+  "subsidies": {
+    "subsidyEnergi": 25,
+    "subsidyPangan": 75,
+    "subsidyKesehatan": 75,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 50,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 75,
     "top_demands": [

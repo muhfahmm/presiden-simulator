@@ -322,6 +322,27 @@ export const namibia: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 40,
+    "salaryGuru": 40,
+    "salaryMedis": 50,
+    "salaryMiliter": 40
+  },
+  "subsidies": {
+    "subsidyEnergi": 25,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 25,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 50,
+    "subsidyRumah": 0
+  },
+
   "demand": {
     "satisfaction": 55,
     "top_demands": [

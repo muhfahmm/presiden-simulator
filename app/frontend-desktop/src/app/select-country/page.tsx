@@ -166,6 +166,7 @@ export default function SelectCountry() {
         {/* Selected Country Flag Overlay */}
         <div className="flex items-center gap-2 bg-zinc-800/80 px-4 py-1.5 rounded-lg border border-zinc-700">
           <span className="text-xl">{currentData.flag}</span>
+          <span className="text-xs font-bold text-zinc-100 uppercase tracking-wide">{currentData.name_id}</span>
         </div>
       </header>
 
@@ -764,7 +765,7 @@ export default function SelectCountry() {
       </main>
 
       {/* Map Mode Toggles - High Z-Index to stay on top of all overlays */}
-      <div className="fixed left-1/2 bottom-[140px] -translate-x-1/2 z-[100] flex bg-zinc-900/95 backdrop-blur-2xl p-1.5 rounded-2xl border border-zinc-700/50 shadow-[0_20px_50px_rgba(0,0,0,0.6)] gap-1.5 pointer-events-auto ring-1 ring-white/10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="fixed left-1/2 bottom-[260px] -translate-x-1/2 z-[100] flex bg-zinc-900/95 backdrop-blur-2xl p-1.5 rounded-2xl border border-zinc-700/50 shadow-[0_20px_50px_rgba(0,0,0,0.6)] gap-1.5 pointer-events-auto ring-1 ring-white/10 animate-in fade-in slide-in-from-bottom-4 duration-700">
         <button 
           onClick={() => setMapMode("default")}
           className={`px-6 py-2 text-[11px] font-black uppercase tracking-[0.2em] rounded-xl transition-all cursor-pointer active:scale-95 ${

@@ -318,6 +318,27 @@ export const korea_selatan: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 60,
+    "salaryGuru": 60,
+    "salaryMedis": 70,
+    "salaryMiliter": 70
+  },
+  "subsidies": {
+    "subsidyEnergi": 75,
+    "subsidyPangan": 75,
+    "subsidyKesehatan": 75,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 75,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 78,
     "top_demands": [

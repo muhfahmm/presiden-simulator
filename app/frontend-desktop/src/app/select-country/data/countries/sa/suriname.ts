@@ -318,6 +318,27 @@ export const suriname: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 60,
+    "salaryGuru": 60,
+    "salaryMedis": 70,
+    "salaryMiliter": 60
+  },
+  "subsidies": {
+    "subsidyEnergi": 75,
+    "subsidyPangan": 75,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 75,
+    "subsidyTransport": 50,
+    "subsidyRumah": 25
+  },
+
   "demand": {
     "satisfaction": 72,
     "top_demands": [

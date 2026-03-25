@@ -318,6 +318,27 @@ export const marshall: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 80,
+    "salaryGuru": 90,
+    "salaryMedis": 80,
+    "salaryMiliter": 80
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 75,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 50,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 87,
     "top_demands": [

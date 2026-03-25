@@ -318,6 +318,27 @@ export const brunei: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 60,
+    "salaryGuru": 60,
+    "salaryMedis": 60,
+    "salaryMiliter": 70
+  },
+  "subsidies": {
+    "subsidyEnergi": 75,
+    "subsidyPangan": 75,
+    "subsidyKesehatan": 75,
+    "subsidyPendidikan": 50,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 50,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 91,
     "top_demands": [

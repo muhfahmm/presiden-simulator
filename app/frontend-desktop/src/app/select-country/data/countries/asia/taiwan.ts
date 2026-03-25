@@ -318,6 +318,27 @@ export const taiwan: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 50,
+    "salaryGuru": 60,
+    "salaryMedis": 80,
+    "salaryMiliter": 60
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 75,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 50,
+    "subsidyUmkm": 75,
+    "subsidyTransport": 75,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 59,
     "top_demands": [

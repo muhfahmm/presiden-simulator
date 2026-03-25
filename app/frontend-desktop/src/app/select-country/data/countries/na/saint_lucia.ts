@@ -318,6 +318,27 @@ export const saint_lucia: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 80,
+    "salaryGuru": 90,
+    "salaryMedis": 90,
+    "salaryMiliter": 80
+  },
+  "subsidies": {
+    "subsidyEnergi": 25,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 100,
+    "subsidyPendidikan": 100,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 75,
+    "subsidyRumah": 75
+  },
+
   "demand": {
     "satisfaction": 91,
     "top_demands": [

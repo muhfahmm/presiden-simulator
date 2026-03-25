@@ -81,7 +81,7 @@ export default function GamePage() {
 
       const session = gameStorage.getSession();
       const currentCountryName = session?.country || "Indonesia";
-      const currentCountry = countries.find(c => c.name_en === currentCountryName);
+      const currentCountry = countries.find(c => c.name_id === currentCountryName || c.name_en === currentCountryName);
       
       if (currentCountry) {
         const buildingData = buildingStorage.getData();
@@ -89,7 +89,7 @@ export default function GamePage() {
         setBudgetDelta(delta);
         
         // Update Population Happiness
-        const expData = expenseStorage.getData();
+        const expData = expenseStorage.getData(currentCountry.name_en, currentCountry);
         setHappiness(calculatePopulationHappiness(expData));
       }
     };
@@ -149,7 +149,7 @@ export default function GamePage() {
       .catch(err => console.error("Failed to load map data", err));
   }, []);
 
-  const countryData = countries.find(c => c.name_id === userCountry) || countries[0];
+  const countryData = countries.find(c => c.name_id === userCountry || c.name_en === userCountry) || countries[0];
 
 
 

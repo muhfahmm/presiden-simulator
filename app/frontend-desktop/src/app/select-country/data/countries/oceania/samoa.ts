@@ -318,6 +318,27 @@ export const samoa: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 80,
+    "salaryGuru": 90,
+    "salaryMedis": 80,
+    "salaryMiliter": 80
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 75,
+    "subsidyRumah": 50
+  },
+
   "demand": {
     "satisfaction": 89,
     "top_demands": [

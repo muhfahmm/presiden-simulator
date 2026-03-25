@@ -322,6 +322,27 @@ export const kamerun: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 50,
+    "salaryGuru": 50,
+    "salaryMedis": 50,
+    "salaryMiliter": 60
+  },
+  "subsidies": {
+    "subsidyEnergi": 25,
+    "subsidyPangan": 25,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 25,
+    "subsidyUmkm": 50,
+    "subsidyTransport": 50,
+    "subsidyRumah": 0
+  },
+
   "demand": {
     "satisfaction": 78,
     "top_demands": [

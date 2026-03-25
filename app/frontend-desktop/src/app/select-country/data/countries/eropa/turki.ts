@@ -318,6 +318,27 @@ export const turki: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 80,
+    "salaryGuru": 90,
+    "salaryMedis": 90,
+    "salaryMiliter": 90
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 75,
+    "subsidyPendidikan": 75,
+    "subsidyUmkm": 75,
+    "subsidyTransport": 50,
+    "subsidyRumah": 75
+  },
+
   "demand": {
     "satisfaction": 80,
     "top_demands": [

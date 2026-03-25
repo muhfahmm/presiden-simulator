@@ -322,6 +322,27 @@ export const rwanda: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 40,
+    "salaryGuru": 50,
+    "salaryMedis": 50,
+    "salaryMiliter": 60
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 50,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 25,
+    "subsidyUmkm": 25,
+    "subsidyTransport": 25,
+    "subsidyRumah": 25
+  },
+
   "demand": {
     "satisfaction": 68,
     "top_demands": [

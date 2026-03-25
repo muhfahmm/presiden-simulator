@@ -322,6 +322,27 @@ export const guinea: CountryData = {
   // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
   // =============================================================
 
+  
+  // =============================================================
+  // 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+
+  "salaries": {
+    "salaryAsn": 40,
+    "salaryGuru": 40,
+    "salaryMedis": 50,
+    "salaryMiliter": 50
+  },
+  "subsidies": {
+    "subsidyEnergi": 50,
+    "subsidyPangan": 25,
+    "subsidyKesehatan": 50,
+    "subsidyPendidikan": 50,
+    "subsidyUmkm": 25,
+    "subsidyTransport": 50,
+    "subsidyRumah": 25
+  },
+
   "demand": {
     "satisfaction": 60,
     "top_demands": [

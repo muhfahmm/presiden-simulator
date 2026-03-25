@@ -259,6 +259,21 @@ export interface CountryData {
     transit_non_allied: { rate: number; satisfaction: number; revenue: number }; // Pajak Transit (Tanpa Hubungan)
     other: { rate: number; satisfaction: number; revenue: number }; // Pajak yang lain
   };
+  salaries?: {
+    salaryAsn: number;
+    salaryGuru: number;
+    salaryMedis: number;
+    salaryMiliter: number;
+  };
+  subsidies?: {
+    subsidyEnergi: number;
+    subsidyPangan: number;
+    subsidyKesehatan: number;
+    subsidyPendidikan: number;
+    subsidyUmkm: number;
+    subsidyTransport: number;
+    subsidyRumah: number;
+  };
   demand: {
     satisfaction: number; // 0-100
     top_demands: string[];

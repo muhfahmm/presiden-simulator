@@ -94,7 +94,7 @@ export function calculateDailyBudgetDelta(countryData: CountryData, buildingDelt
   const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue + (incomeData.grants || 0) + (incomeData.investments || 0);
 
   // 2. Expenses
-  const expData = expenseStorage.getData();
+  const expData = expenseStorage.getData(countryData.name_en, countryData);
   
   // Base Maintenance
   const maintenanceExpense = calculateTotalMaintenance(countryData, buildingDeltas);

@@ -27,9 +27,12 @@ interface ModalProps {
 }
 
 export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalProps) {
+  const session = gameStorage.getSession();
+  const initialCountry = countries.find((c: CountryData) => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
+
   const [currentBudget, setCurrentBudget] = useState<number>(0);
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
-  const [expData, setExpData] = useState(expenseStorage.getData());
+  const [expData, setExpData] = useState(() => expenseStorage.getData(initialCountry.name_en, initialCountry));
   const [incData, setIncData] = useState(incomeStorage.getData());
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -40,7 +43,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
       }
     };
 
-    const updateExpense = () => { if (isOpen) setExpData(expenseStorage.getData()); };
+    const updateExpense = () => { if (isOpen) setExpData(expenseStorage.getData(initialCountry.name_en, initialCountry)); };
     const updateIncome = () => { if (isOpen) setIncData(incomeStorage.getData()); };
 
     if (isOpen) {
@@ -59,9 +62,6 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   }, [isOpen]);
 
   if (!isOpen) return null;
-
-  const session = gameStorage.getSession();
-  const initialCountry = countries.find((c: CountryData) => c.name_en === session?.country) || countries[0];
 
   // --- LOGIKA KALKULASI (Unified with economyLogic.ts) ---
 
@@ -250,7 +250,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   const expenseItems = [
      { id: "military", label: "Beban Militer & Pertahanan", value: dailyMilitaryExpense, icon: Shield, color: "text-red-400", desc: "Pemeliharaan alutsista dan gaji personel aktif." },
      { id: "maintenance", label: "Pemeliharaan Infrastruktur", value: dailyBaseMaintenance, icon: Zap, color: "text-amber-400", desc: "Listrik, jalan raya, pelabuhan, dan fasilitas publik." },
-     { id: "salaries", label: "Gaji Pegawai & Birokrasi", value: salaryExpense, icon: Users, color: "text-blue-400", desc: "Gaji ASN, Tenaga Medis, Guru, dan Aparatur Negara.", satisfaction: avgSatisfaction, satisfactionLabel: "Indeks Kepuasan Pegawai" },
+     { id: "salaries", label: "Gaji Pegawai Negeri & Birokrasi", value: salaryExpense, icon: Users, color: "text-blue-400", desc: "Gaji Pegawai Negeri, Tenaga Medis, Guru, dan Aparatur.", satisfaction: avgSatisfaction, satisfactionLabel: "Indeks Kepuasan Pegawai" },
      { id: "subsidies", label: "Subsidi Publik", value: subsidyExpense, icon: Coins, color: "text-green-400", desc: "Bantuan modal dan subsidi harga untuk rakyat.", satisfaction: Math.round(((expData.subsidyEnergi || 0) + (expData.subsidyPangan || 0) + (expData.subsidyKesehatan || 0) + (expData.subsidyPendidikan || 0) + (expData.subsidyUmkm || 0) + (expData.subsidyTransport || 0) + (expData.subsidyRumah || 0)) / 7), satisfactionLabel: "Indeks Kepuasan Publik" },
      ...(expData.debtInterestPaid > 0 ? [{ id: "debt", label: "Bunga Hutang Luar Negeri", value: expData.debtInterestPaid, icon: Landmark, color: "text-rose-500", desc: "Biaya bunga atas pinjaman dana internasional." }] : [])
   ];
@@ -472,7 +472,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                               
                               <div className="grid grid-cols-2 gap-4">
                                  {[
-                                    { key: 'salaryAsn', label: 'Gaji ASN & Birokrasi', icon: Users, color: 'text-blue-400' },
+                                    { key: 'salaryAsn', label: 'Gaji Pegawai Negeri & Birokrasi', icon: Users, color: 'text-blue-400' },
                                     { key: 'salaryGuru', label: 'Gaji Guru & Pengajar', icon: Users, color: 'text-cyan-400' },
                                     { key: 'salaryMedis', label: 'Gaji Tenaga Medis', icon: Activity, color: 'text-rose-400' },
                                     { key: 'salaryMiliter', label: 'Gaji Personel Militer', icon: Shield, color: 'text-red-400' }
@@ -501,7 +501,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                                               return (
                                                  <button key={val} onClick={() => {
                                                     setExpData(prev => ({ ...prev, [s.key]: val }));
-                                                    expenseStorage.updateExpense(s.key as any, val);
+                                                    expenseStorage.updateExpense(initialCountry.name_en, s.key as any, val, initialCountry);
                                                  }} className={`py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-center ${isActive ? 'bg-blue-500 text-white shadow-lg shadow-blue-500/30' : 'bg-zinc-950 border border-zinc-900 text-zinc-500 hover:bg-zinc-800 hover:text-white'}`}>
                                                     {val}%
                                                  </button>
@@ -533,9 +533,9 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                                  {[
                                     { key: 'subsidyEnergi', label: 'Energi (BBM & Listrik)', icon: Zap, color: 'text-yellow-400' },
                                     { key: 'subsidyPangan', label: 'Pangan (Bahan Pokok)', icon: Coins, color: 'text-green-500' },
-                                    { key: 'subsidyKesehatan', label: 'Kesehatan (BPJS)', icon: Activity, color: 'text-rose-400' },
-                                    { key: 'subsidyPendidikan', label: 'Pendidikan (BOS)', icon: Users, color: 'text-cyan-400' },
-                                    { key: 'subsidyUmkm', label: 'Sektor UMKM & Tani', icon: Hammer, color: 'text-orange-400' },
+                                    { key: 'subsidyKesehatan', label: 'Kesehatan', icon: Activity, color: 'text-rose-400' },
+                                    { key: 'subsidyPendidikan', label: 'Pendidikan', icon: Users, color: 'text-cyan-400' },
+                                    { key: 'subsidyUmkm', label: 'Sektor Tani', icon: Hammer, color: 'text-orange-400' },
                                     { key: 'subsidyTransport', label: 'Transportasi Umum', icon: Car, color: 'text-blue-400' },
                                     { key: 'subsidyRumah', label: 'Perumahan Rakyat', icon: Home, color: 'text-indigo-400' }
                                  ].map((s: any) => {
@@ -558,7 +558,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                                               return (
                                                  <button key={val} onClick={() => {
                                                     setExpData(prev => ({ ...prev, [s.key]: val }));
-                                                    expenseStorage.updateExpense(s.key as any, val);
+                                                    expenseStorage.updateExpense(initialCountry.name_en, s.key as any, val, initialCountry);
                                                  }} className={`py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer text-center ${isActive ? 'bg-green-500 text-white shadow-lg shadow-green-500/30' : 'bg-zinc-900 border border-zinc-800 text-zinc-500 hover:bg-zinc-800 hover:text-white'}`}>
                                                     {val}%
                                                  </button>
