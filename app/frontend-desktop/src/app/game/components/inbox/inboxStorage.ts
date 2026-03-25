@@ -12,6 +12,9 @@ export interface InboxItem {
 }
 
 export const inboxStorage = {
+  clear: () => {
+    if (typeof window !== "undefined") localStorage.removeItem("em4_inbox_data");
+  },
   getStorageKey: () => {
     return "em4_inbox_data";
   },

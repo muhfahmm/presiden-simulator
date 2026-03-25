@@ -9,6 +9,9 @@ export interface IncomeData {
 }
 
 export const incomeStorage = {
+  clear: () => {
+    if (typeof window !== "undefined") localStorage.removeItem("em4_income_data");
+  },
   getData: (): IncomeData => {
     if (typeof window === 'undefined') return { grants: 0, investments: 0, lastUpdated: Date.now() };
     const stored = localStorage.getItem(INCOME_STORAGE_KEY);

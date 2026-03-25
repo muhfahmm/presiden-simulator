@@ -1,4 +1,13 @@
 import { countries } from "../select-country/data/countries";
+import { happinessStorage } from "./components/navbar/stats/happines/happinessStorage";
+import { priceStorage } from "./components/ekonomi/8-pasar-domestik/priceStorage";
+import { expenseStorage } from "./components/ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
+import { incomeStorage } from "./components/ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
+import { taxStorage } from "./components/ekonomi/2-pajak/TaxStorage";
+import { tradeStorage } from "./components/ekonomi/1-perdagangan/TradeStorage";
+import { buildingStorage } from "./components/pembangunan/buildingStorage";
+import { inboxStorage } from "./components/inbox/inboxStorage";
+import { budgetStorage } from "./components/navbar/stats/budget";
 
 const STORAGE_KEY = "game_session";
 
@@ -31,21 +40,17 @@ export const gameStorage = {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
     localStorage.setItem("selectedCountry", country);
     localStorage.removeItem("em4_game_date"); // Reset date for new game
-    localStorage.removeItem("em4_budget_data");
-    localStorage.removeItem("em4_building_data");
-    localStorage.removeItem("em4_inbox_data");
-    localStorage.removeItem("em4_happiness_stats");
-    localStorage.removeItem("em4_happiness_stats_v2");
-    localStorage.removeItem("em4_price_data_v3");
-    localStorage.removeItem("em4_expense_data");
-    localStorage.removeItem("em4_income_data");
-    localStorage.removeItem("game_taxes");
-    localStorage.removeItem("game_trades");
-    localStorage.removeItem("em4_last_month_budget");
     
-    // Clear trade agreements for all potential countries
-    const countriesList = ["Indonesia", "Amerika Serikat", "Singapura", "Rusia", "Cina", "Arab Saudi"];
-    countriesList.forEach(c => localStorage.removeItem(`em4_trade_agreements_${c}`));
+    // Modular cleanup
+    happinessStorage.clear();
+    priceStorage.clear();
+    expenseStorage.clear();
+    incomeStorage.clear();
+    taxStorage.clear();
+    tradeStorage.clear();
+    buildingStorage.clear();
+    inboxStorage.clear();
+    budgetStorage.clear();
   },
 
   getSession: (): GameSession | null => {
@@ -87,21 +92,17 @@ export const gameStorage = {
     localStorage.removeItem(STORAGE_KEY);
     localStorage.removeItem("selectedCountry");
     localStorage.removeItem("em4_game_date");
-    localStorage.removeItem("em4_budget_data");
-    localStorage.removeItem("em4_building_data");
-    localStorage.removeItem("em4_inbox_data");
-    localStorage.removeItem("em4_happiness_stats");
-    localStorage.removeItem("em4_happiness_stats_v2");
-    localStorage.removeItem("em4_price_data_v3");
-    localStorage.removeItem("em4_expense_data");
-    localStorage.removeItem("em4_income_data");
-    localStorage.removeItem("game_taxes");
-    localStorage.removeItem("game_trades");
-    localStorage.removeItem("em4_last_month_budget");
-    
-    // Clear trade agreements (TradeStorage uses country name)
-    const countries = ["Indonesia", "Amerika Serikat", "Singapura", "Rusia", "Cina", "Arab Saudi"];
-    countries.forEach(c => localStorage.removeItem(`em4_trade_agreements_${c}`));
+
+    // Modular cleanup
+    happinessStorage.clear();
+    priceStorage.clear();
+    expenseStorage.clear();
+    incomeStorage.clear();
+    taxStorage.clear();
+    tradeStorage.clear();
+    buildingStorage.clear();
+    inboxStorage.clear();
+    budgetStorage.clear();
     
     window.location.href = '/select-country';
   },

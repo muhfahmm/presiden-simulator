@@ -269,7 +269,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
             {/* 1. Category: Minerals */}
             <div className="border-b border-zinc-900/80">
               <div className="p-8 flex items-center justify-between">
-                <h3 className="text-[12px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
+                <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
                   1. Mineral Kritis ({minerals.length})
                 </h3>
                 <button 
@@ -298,7 +298,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                           }`}>
                             {getIcon(key, "h-4 w-4")}
                           </div>
-                          <span className="text-[10px] font-black uppercase tracking-tight">
+                          <span className="text-[12px] font-black uppercase tracking-tight">
                             {labelsMap[key] || key.replace(/_/g, ' ')} ({val})
                           </span>
                         </div>
@@ -312,7 +312,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
              {/* 2. Category: Industry & Economy */}
             <div className="border-b border-zinc-900/80">
               <div className="p-8 flex items-center justify-between">
-                <h3 className="text-[12px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
+                <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
                   2. Produksi & Ekonomi ({industryAndEconomyLen})
                 </h3>
                 <button 
@@ -344,7 +344,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                             }`}>
                               {getIcon(key as string, "h-4 w-4")}
                             </div>
-                            <span className="text-[10px] font-black uppercase tracking-tight">
+                            <span className="text-[12px] font-black uppercase tracking-tight">
                               {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})
                             </span>
                           </div>
@@ -424,7 +424,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                   <h2 className="text-2xl font-black text-white tracking-widest uppercase flex items-center gap-4 leading-none">
                     {selectedName}
                   </h2>
-                  <div className="flex flex-col items-start gap-2 text-[9px] font-black uppercase tracking-[0.2em] text-zinc-500 italic">
+                  <div className="flex flex-col items-start gap-2 text-[12px] font-black uppercase tracking-[0.2em] text-zinc-500 italic">
                     <div className="flex items-center gap-2">
                       <span className="text-zinc-600 not-italic">Harga Tertinggi</span>
                       <span className="text-green-500">
@@ -439,7 +439,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                     </div>
                     <div className="flex items-center gap-2">
                       <span className="text-zinc-600 not-italic">Total Stok</span>
-                      <span className="text-blue-500">
+                      <span className="text-blue-500 font-black">
                         {(() => {
                           const stockKeyMap: Record<string, string> = {
                             gold: "gold_mine", uranium: "uranium_mine", coal: "coal_mine", oil: "oil_well", gas: "gas_well",
@@ -463,28 +463,28 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
 
                 <div className="flex items-center gap-4 xl:gap-6 flex-wrap lg:flex-nowrap">
                   {/* Buy Section */}
-                  <div className="flex flex-col gap-1 flex-shrink-0">
-                    <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1 flex flex-col">
-                      <span className="text-[8px] text-zinc-500 uppercase tracking-widest not-italic">Harga Beli</span>
-                      {importPriceVal.toLocaleString('id-ID')}
-                    </div>
-                    <button 
-                      onClick={() => setExecutionModalItem({ type: "buy" })}
-                      className="px-6 py-3 bg-red-500 text-white font-black uppercase text-[9px] lg:text-[10px] tracking-[0.2em] rounded-xl hover:bg-red-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap"
-                    >
-                      Eksekusi Impor {baseBuyPrice.toLocaleString('id-ID')}
-                    </button>
+                    <div className="flex flex-col gap-1 flex-shrink-0">
+                      <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1 flex flex-col">
+                        <span className="text-[10px] text-zinc-500 uppercase tracking-widest not-italic">Harga Beli</span>
+                        {importPriceVal.toLocaleString('id-ID')}
+                      </div>
+                      <button 
+                        onClick={() => setExecutionModalItem({ type: "buy" })}
+                        className="px-6 py-4 bg-red-500 text-white font-black uppercase text-[11px] lg:text-[12px] tracking-[0.2em] rounded-xl hover:bg-red-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap"
+                      >
+                        Eksekusi Impor {baseBuyPrice.toLocaleString('id-ID')}
+                      </button>
                   </div>
 
                   {/* Sell Section */}
                   <div className="flex flex-col gap-1 flex-shrink-0">
                     <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1 flex flex-col">
-                      <span className="text-[8px] text-zinc-500 uppercase tracking-widest not-italic">Harga Jual</span>
+                      <span className="text-[10px] text-zinc-500 uppercase tracking-widest not-italic">Harga Jual</span>
                       {exportPriceVal.toLocaleString('id-ID')}
                     </div>
                     <button 
                       onClick={() => setExecutionModalItem({ type: "sell" })}
-                      className="px-6 py-3 bg-green-500 text-white font-black uppercase text-[9px] lg:text-[10px] tracking-[0.2em] rounded-xl hover:bg-green-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap"
+                      className="px-6 py-4 bg-green-500 text-white font-black uppercase text-[11px] lg:text-[12px] tracking-[0.2em] rounded-xl hover:bg-green-600 transition-all active:scale-[0.95] cursor-pointer whitespace-nowrap"
                     >
                       Eksekusi Ekspor {baseSellPrice.toLocaleString('id-ID')}
                     </button>
@@ -575,11 +575,11 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
 
               {/* Metrics Section */}
               <div className="pt-8 border-t border-zinc-900/80">
-                <div className="max-w-md bg-zinc-900/40 border border-zinc-800/50 p-6 rounded-[2rem] relative group overflow-hidden">
+                <div className="max-w-md bg-zinc-900/40 border border-zinc-800/50 p-8 rounded-[2rem] relative group overflow-hidden">
                   <div className="absolute top-0 left-0 w-1 h-full bg-blue-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                  <span className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.4em] block mb-3">Metrik Pasokan</span>
+                  <span className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.4em] block mb-3">Metrik Pasokan</span>
                   <div className="flex items-baseline gap-3">
-                    <span className="text-3xl font-black text-white tracking-tighter italic">{selectedUnits}</span>
+                    <span className="text-4xl font-black text-white tracking-tighter italic">{selectedUnits}</span>
                   </div>
                 </div>
               </div>

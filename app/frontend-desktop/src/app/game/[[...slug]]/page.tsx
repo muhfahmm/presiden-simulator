@@ -17,7 +17,6 @@ import { countries } from "../../select-country/data/countries";
 import { CountryData } from "../../select-country/data/types";
 import GameTimeControls from "../components/time/GameTimeControls";
 import { calculateDailyBudgetDelta } from "../data/economy/economyLogic";
-import { expenseStorage } from "@/app/game/components/ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
 import { calculatePopulationHappiness } from "../components/navbar/stats/happines";
 import { stabilityStorage } from "../components/navbar/stats/stability";
 import { populationStorage } from "../components/navbar/stats/population";
@@ -45,7 +44,6 @@ import KementerianModal from "../components/kementerian/KementerianModal";
 import BeritaModal from "../components/berita/BeritaModal";
 import InboxModal from "../components/inbox/InboxModal";
 import KepuasanModal from "../components/navbar/stats/happines/KepuasanModal";
-import NaikkanKepuasanModal from "../components/navbar/stats/happines/NaikkanKepuasanModal";
 import NewMessageToast from "../components/inbox/NewMessageToast";
 import { inboxStorage } from "../components/inbox/inboxStorage";
 import GameNavbar from "../components/navbar";
@@ -54,7 +52,7 @@ export default function GamePage() {
   const [approval, setApproval] = useState(55);
   const [budget, setBudget] = useState(1240.5); // in Trillion
   const [budgetDelta, setBudgetDelta] = useState(0);
-  const [happiness, setHappiness] = useState({ global: 50, salary: 50, subsidy: 50, infrastructure: 85 });
+  const [happiness, setHappiness] = useState({ global: 55 });
   const [stability, setStability] = useState(80); // Static default for SSR
   const [population, setPopulation] = useState(0); // Static default for SSR
   const router = useRouter();
@@ -101,15 +99,14 @@ export default function GamePage() {
       const currentCountryName = session?.country || "Indonesia";
       const currentCountry = countries.find(c => c.name_id === currentCountryName || c.name_en === currentCountryName);
       
-      if (currentCountry) {
-        const buildingData = buildingStorage.getData();
-        const delta = calculateDailyBudgetDelta(currentCountry, buildingData.buildingDeltas);
-        setBudgetDelta(delta);
-        
-        // Update Population Happiness
-        const expData = expenseStorage.getData(currentCountry.name_en, currentCountry);
-        setHappiness(calculatePopulationHappiness(expData));
-      }
+        if (currentCountry) {
+          const buildingData = buildingStorage.getData();
+          const delta = calculateDailyBudgetDelta(currentCountry, buildingData.buildingDeltas);
+          setBudgetDelta(delta);
+          
+          // Update Population Happiness
+          setHappiness(calculatePopulationHappiness());
+        }
     };
 
     updateBudgetAndDelta(); // Immediate calculation on mount
@@ -117,7 +114,7 @@ export default function GamePage() {
 
     // Critical and Game Over Listeners
     const handleCritical = () => {
-      setActiveMenu("Action:NaikkanKepuasan");
+      setActiveMenu("Dashboard:Kepuasan");
     };
     const handleGameOver = () => {
       setIsGameOver(true);
@@ -170,7 +167,6 @@ export default function GamePage() {
     else initialMenu = "Kementerian";
   } else if (category === 'kepuasan') {
     if (subMenu === 'dashboard') initialMenu = "Dashboard:Kepuasan";
-    else if (subMenu === 'naikkan') initialMenu = "Action:NaikkanKepuasan";
     else initialMenu = "Kepuasan";
   } else if (category === 'berita') {
     initialMenu = "Menu:Berita";
@@ -215,8 +211,7 @@ export default function GamePage() {
       "Menu:Berita": "/game/berita",
       "Menu:Inbox": "/game/inbox",
       "Kepuasan": "/game/kepuasan",
-      "Dashboard:Kepuasan": "/game/kepuasan/dashboard",
-      "Action:NaikkanKepuasan": "/game/kepuasan/naikkan"
+      "Dashboard:Kepuasan": "/game/kepuasan/dashboard"
     };
 
     const targetPath = menuToPath[activeMenu] || "/game";
@@ -568,20 +563,6 @@ export default function GamePage() {
               <KepuasanModal
                 isOpen={activeMenu === "Dashboard:Kepuasan" || activeMenu === "Kepuasan"}
                 onClose={() => setActiveMenu("Peta Taktis")}
-              />
-              <NaikkanKepuasanModal
-                isOpen={activeMenu === "Action:NaikkanKepuasan"}
-                onClose={() => setActiveMenu("Peta Taktis")}
-                onAction={(title, impact, cost) => {
-                  if (budget >= cost) {
-                    budgetStorage.updateBudget(-cost);
-                    happinessStorage.updateHappinessDirectly(impact, title);
-                    alert(`${title} berhasil dilaksanakan!`);
-                    setActiveMenu("Peta Taktis");
-                  } else {
-                    alert("Anggaran tidak mencukupi!");
-                  }
-                }}
               />
               <NewMessageToast />
             </>

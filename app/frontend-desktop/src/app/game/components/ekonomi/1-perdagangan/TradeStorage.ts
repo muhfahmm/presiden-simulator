@@ -5,6 +5,13 @@ import { CountryData } from "../../../../select-country/data/types";
 const TRADE_STORAGE_KEY = "game_trades";
 
 export const tradeStorage = {
+  clear: () => {
+    if (typeof window !== "undefined") {
+      localStorage.removeItem("game_trades");
+      const countriesList = ["Indonesia", "Amerika Serikat", "Singapura", "Rusia", "Cina", "Arab Saudi"];
+      countriesList.forEach(c => localStorage.removeItem(`em4_trade_agreements_${c}`));
+    }
+  },
   getSession: () => {
     return gameStorage.getSession();
   },

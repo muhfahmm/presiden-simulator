@@ -105,7 +105,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                 <Icon size={32} style={{ color }} className="relative z-10 group-hover:scale-110 transition-transform duration-500" />
               </div>
               <div>
-                <h3 className="text-sm font-black text-zinc-500 uppercase tracking-[0.4em] leading-tight">Eksekusi Perdagangan</h3>
+                <h3 className="text-base font-black text-zinc-500 uppercase tracking-[0.4em] leading-tight">Eksekusi Perdagangan</h3>
                 <h2 className="text-4xl font-black text-white tracking-tighter italic uppercase">{selectedName}</h2>
               </div>
             </div>
@@ -119,15 +119,15 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
 
           {/* Real-time Production Dashboard */}
           <div className="grid grid-cols-3 gap-4">
-            <div className="bg-zinc-900/50 border border-zinc-800/50 p-5 rounded-[2rem] flex flex-col gap-1 group hover:border-white/10 transition-colors">
-              <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+            <div className="bg-zinc-900/50 border border-zinc-800/50 p-6 rounded-[2rem] flex flex-col gap-1 group hover:border-white/10 transition-colors">
+              <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
                 <Activity size={10} className="text-blue-500" /> Produksi/Hari
               </span>
               <div className="flex items-baseline gap-1">
-                <span className="text-2xl font-black text-white tracking-tighter italic">
+                <span className="text-3xl font-black text-white tracking-tighter italic">
                   {Math.floor(dailyProduction).toLocaleString('id-ID')}
                 </span>
-                <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">{unit}</span>
+                <span className="text-[12px] font-bold text-zinc-600 uppercase tracking-widest">{unit}</span>
               </div>
               <div className="mt-3 w-full h-1 bg-zinc-800 rounded-full overflow-hidden relative">
                 <div 
@@ -137,13 +137,13 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
               </div>
             </div>
 
-            <div className="bg-zinc-900/50 border border-zinc-800/50 p-5 rounded-[2rem] flex flex-col gap-1 group hover:border-white/10 transition-colors">
-              <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+            <div className="bg-zinc-900/50 border border-zinc-800/50 p-6 rounded-[2rem] flex flex-col gap-1 group hover:border-white/10 transition-colors">
+              <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
                 <Package size={10} className="text-green-500" /> Fasilitas
               </span>
               <div className="flex items-baseline gap-1">
-                <span className="text-2xl font-black text-white tracking-tighter italic">{buildingCount}</span>
-                <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">AKTIF</span>
+                <span className="text-3xl font-black text-white tracking-tighter italic">{buildingCount}</span>
+                <span className="text-[12px] font-bold text-zinc-600 uppercase tracking-widest">AKTIF</span>
               </div>
               <div className="mt-3 flex gap-1">
                 {Array.from({ length: 5 }).map((_, i) => (
@@ -156,15 +156,15 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
               </div>
             </div>
 
-            <div className="bg-zinc-900/50 border border-zinc-800/50 p-5 rounded-[2rem] flex flex-col gap-1 group hover:border-white/10 transition-colors">
-              <span className="text-[9px] font-black text-purple-500 uppercase tracking-widest flex items-center gap-2">
+            <div className="bg-zinc-900/50 border border-zinc-800/50 p-6 rounded-[2rem] flex flex-col gap-1 group hover:border-white/10 transition-colors">
+              <span className="text-[11px] font-black text-purple-500 uppercase tracking-widest flex items-center gap-2">
                 <TrendingUp size={10} /> Hasil di Gudang:
               </span>
               <div className="flex items-baseline gap-1">
-                <span className="text-2xl font-black text-white tracking-tighter italic">
+                <span className="text-3xl font-black text-white tracking-tighter italic">
                   {Math.floor(cumulativeStock).toLocaleString('id-ID')}
                 </span>
-                <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">{unit}</span>
+                <span className="text-[12px] font-bold text-zinc-600 uppercase tracking-widest">{unit}</span>
               </div>
               <div className="mt-3 w-full h-1 bg-zinc-800 rounded-full overflow-hidden relative">
                 <div 
@@ -179,7 +179,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
           <div className="space-y-6">
             {/* Partner Selection Dropdown */}
             <div className="relative">
-              <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.3em] block mb-3 px-2">Tujuan / Sumber Transaksi</span>
+              <span className="text-[12px] font-black text-zinc-500 uppercase tracking-[0.3em] block mb-3 px-2">Tujuan / Sumber Transaksi</span>
               <button 
                 onClick={() => setIsPartnerDropdownOpen(!isPartnerDropdownOpen)}
                 className="w-full bg-zinc-900/50 border border-zinc-800 hover:border-blue-500/30 p-5 rounded-2xl flex items-center justify-between group transition-all cursor-pointer"
@@ -252,29 +252,29 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
             <div className="bg-zinc-900/40 border border-zinc-800/80 rounded-[2rem] p-6 flex items-center justify-between group hover:border-blue-500/20 transition-all">
               <div className="flex flex-col gap-1">
                 <div className="flex items-center gap-2">
-                  <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Harga Satuan (Harian)</span>
+                  <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest">Harga Satuan (Harian)</span>
                   <div className="flex items-center gap-1 px-1.5 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20">
                      <TrendingUp size={10} className="text-blue-400" />
-                     <span className="text-[8px] font-black text-blue-400 uppercase tracking-tighter italic">Pasar Aktif</span>
+                     <span className="text-[10px] font-black text-blue-400 uppercase tracking-tighter italic">Pasar Aktif</span>
                   </div>
                 </div>
                 <div className="flex items-baseline gap-1">
-                  <span className="text-2xl font-black text-white tracking-tighter italic">
+                  <span className="text-3xl font-black text-white tracking-tighter italic">
                     {basePrice.toLocaleString('id-ID')}
                   </span>
-                  <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">IDN/UNIT</span>
+                  <span className="text-[12px] font-bold text-zinc-600 uppercase tracking-widest">IDN/UNIT</span>
                 </div>
               </div>
 
               <div className="h-10 w-px bg-zinc-800"></div>
 
               <div className="flex flex-col gap-1 text-right">
-                <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest">Total Estimasi Nilai</span>
+                <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest">Total Estimasi Nilai</span>
                 <div className="flex items-baseline justify-end gap-1">
-                  <span className="text-3xl font-black text-white tracking-tighter italic drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
+                  <span className="text-4xl font-black text-white tracking-tighter italic drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
                     {(quantity * basePrice).toLocaleString('id-ID')}
                   </span>
-                  <span className="text-[10px] font-bold text-blue-500 uppercase tracking-widest leading-none">IDN</span>
+                  <span className="text-[12px] font-bold text-blue-500 uppercase tracking-widest leading-none">IDN</span>
                 </div>
               </div>
             </div>

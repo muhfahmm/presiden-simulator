@@ -35,6 +35,9 @@ export const BASE_PRICES = {
 };
 
 export const priceStorage = {
+  clear: () => {
+    if (typeof window !== "undefined") localStorage.removeItem("em4_price_data_v3");
+  },
   getData: (countryData?: CountryData): PriceData => {
     if (typeof window === 'undefined') return { ...BASE_PRICES, lastUpdated: Date.now() };
 

@@ -20,6 +20,9 @@ export interface ExpenseData {
 }
 
 export const expenseStorage = {
+  clear: () => {
+    if (typeof window !== "undefined") localStorage.removeItem("em4_expense_data");
+  },
   getStorageKey: (countryName: string) => `${EXPENSE_STORAGE_KEY}_${countryName.replace(/\s+/g, '_').toLowerCase()}`,
 
   getData: (countryName: string, countryData?: any): ExpenseData => {

@@ -8,6 +8,9 @@ export interface BuildingData {
 }
 
 export const buildingStorage = {
+  clear: () => {
+    if (typeof window !== "undefined") localStorage.removeItem("em4_building_data");
+  },
   // Get all building data, with migration fallback
   getData: (): BuildingData => {
     if (typeof window === 'undefined') return { constructionQueue: [], buildingDeltas: {} };

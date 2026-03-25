@@ -73,7 +73,7 @@ export default function GameNavbar({
         <StatusBadge 
           icon={<Heart className="h-4 w-4 text-rose-500" />} 
           label="Kepuasan" 
-          value={`${happiness.global}%`} 
+          value={`${happiness.global.toFixed(1)}%`} 
         />
         <StatusBadge 
           icon={<Users className="h-4 w-4 text-blue-500" />} 

@@ -9,6 +9,9 @@ export interface BudgetData {
 }
 
 export const budgetStorage = {
+  clear: () => {
+    if (typeof window !== "undefined") localStorage.removeItem("em4_budget_data");
+  },
   // Get all budget data, with migration fallback
   getData: (): BudgetData => {
     if (typeof window === 'undefined') return { budget: 0, cumulativeProduction: {} };
