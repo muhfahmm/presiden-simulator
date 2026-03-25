@@ -6,6 +6,7 @@ export interface GameSession {
   country: string;
   startTime: number;
   isWelcomeSeen: boolean;
+  cumulativeProduction?: Record<string, number>;
 }
 
 export interface ConstructionItem {

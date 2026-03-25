@@ -345,109 +345,105 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
             <div className="absolute -top-24 -left-24 w-96 h-96 bg-amber-600/10 rounded-full blur-[120px]"></div>
             <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
 
-            {/* Header */}
-            <div className="px-10 py-8 border-b border-zinc-900 flex items-center justify-between bg-zinc-900/30 backdrop-blur-3xl">
-               <div className="flex items-center gap-6">
-                  <div className="p-2 bg-amber-500/10 rounded-xl border border-amber-500/20">
-                     <Zap className="h-6 w-6 text-amber-400" />
+            {/* Header (Synchronized with ProduksiModal) */}
+            <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
+               <div className="flex items-center gap-3">
+                  <div className="p-2 bg-purple-500/10 rounded-xl">
+                     <Zap className="h-6 w-6 text-purple-500" />
                   </div>
                   <div>
-                     <h2 className="text-2xl font-bold text-white tracking-tight uppercase italic">Manajemen Energi Nasional</h2>
-                     <div className="flex items-center gap-2 mt-0.5">
-                        <span className="h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse"></span>
-                        <p className="text-xs text-zinc-500 font-bold uppercase tracking-[0.3em]">National Power Grid & Utilities</p>
-                     </div>
+                     <h2 className="text-2xl font-bold text-white tracking-tight">Manajemen Energi Nasional</h2>
+                     <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Power Grid & Utilities</p>
                   </div>
                </div>
                <div className="flex items-center gap-4">
-                  <div className="p-2 bg-zinc-950 border border-zinc-800 rounded-xl hover:bg-zinc-800 transition-all cursor-pointer">
-                     <Clock className="h-6 w-6 text-cyan-400" />
-                  </div>
-                  <button onClick={onClose} className="px-6 py-2.5 bg-rose-600 hover:bg-rose-500 text-white rounded-2xl flex items-center gap-3 font-black text-sm transition-all shadow-[0_0_20px_rgba(225,29,72,0.3)] active:scale-95 group cursor-pointer">
-                     <span className="uppercase tracking-widest group-hover:mr-1 transition-all">Tutup</span>
-                     <X size={20} className="group-hover:rotate-90 transition-transform" />
+                  <button
+                     className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group relative shadow-[0_0_15px_rgba(8,145,178,0.1)] active:scale-95 flex items-center gap-2"
+                     title="Antrean Pembangunan"
+                  >
+                     <Clock className="h-6 w-6 text-cyan-500 group-hover:scale-110 group-hover:rotate-12 transition-transform" />
+                  </button>
+                  <button
+                     onClick={onClose}
+                     className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
+                  >
+                     <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+                     <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
                   </button>
                </div>
             </div>
 
-            {/* Dashboard Summary */}
-            <div className="px-10 py-6 bg-zinc-900/50 border-b border-zinc-800/50">
-               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                  {/* ... Dashboard items same as before ... */}
-                  <div className="bg-zinc-950/50 border border-zinc-800 p-6 rounded-3xl flex items-center gap-6 group hover:border-amber-500/30 transition-all shadow-lg">
-                     <div className="p-4 bg-amber-500/10 rounded-2xl border border-amber-500/20 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(245,158,11,0.2)]">
-                        <Zap className="h-8 w-8 text-amber-500 font-black" />
+            {/* Dashboard Summary (Synchronized with ProduksiModal Summary Listrik) */}
+            <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50">
+               <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {/* Box 1: Pasokan Listrik */}
+                  <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
+                     <div className="p-3 bg-cyan-500/10 rounded-xl">
+                        <Zap className="h-6 w-6 text-cyan-500" />
                      </div>
                      <div>
-                        <p className="text-[11px] text-zinc-500 font-black uppercase tracking-[0.2em]">{DASHBOARD_LABELS.supply.title.toUpperCase()}</p>
-                        <div className="flex items-baseline gap-2">
-                           <p className="text-2xl font-black text-white leading-tight">{totalCapacityScaled.toLocaleString('id-ID')}</p>
-                           <span className="text-xs text-zinc-500 uppercase font-bold">MW</span>
-                        </div>
+                        <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.supply.title}</p>
+                        <p className="text-xl font-black text-white leading-tight">{totalCapacityScaled.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
                      </div>
                   </div>
 
-                  <div className="bg-zinc-950/50 border border-zinc-800 p-6 rounded-3xl flex items-center gap-6 group hover:border-rose-500/30 transition-all shadow-lg">
-                     <div className="p-4 bg-rose-500/10 rounded-2xl border border-rose-500/20 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(225,29,72,0.2)]">
-                        <Activity className="h-8 w-8 text-rose-500" />
+                  {/* Box 2: Beban Listrik */}
+                  <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
+                     <div className="p-3 bg-rose-500/10 rounded-xl">
+                        <Activity className="h-6 w-6 text-rose-500" />
                      </div>
                      <div>
-                        <p className="text-[11px] text-zinc-500 font-black uppercase tracking-[0.2em]">{DASHBOARD_LABELS.usage.title.toUpperCase()}</p>
-                        <div className="flex items-baseline gap-2">
-                           <p className="text-2xl font-black text-white leading-tight">{totalConsumptionScaled.toLocaleString('id-ID')}</p>
-                           <span className="text-xs text-zinc-500 uppercase font-bold">MW</span>
-                        </div>
+                        <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.usage.title}</p>
+                        <p className="text-xl font-black text-white leading-tight">{totalConsumptionScaled.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
                      </div>
                   </div>
 
-                  <div className="bg-zinc-950/50 border border-zinc-800 p-6 rounded-3xl flex items-center gap-6 group hover:border-emerald-500/30 transition-all shadow-lg relative overflow-hidden">
-                     <div className={`p-4 rounded-2xl border ${surplus >= 0 ? "bg-emerald-500/10 border-emerald-500/20 text-emerald-500" : "bg-rose-500/10 border-rose-500/20 text-rose-500"} group-hover:scale-110 transition-transform shadow-lg`}>
-                        {surplus >= 0 ? <TrendingUp className="h-8 w-8" /> : <TrendingDown className="h-8 w-8" />}
+                  {/* Box 3: Neraca Listrik */}
+                  <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 relative overflow-hidden group">
+                     <div className={`p-3 rounded-xl ${surplus >= 0 ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>
+                        {surplus >= 0 ? <TrendingUp className="h-6 w-6 text-emerald-500" /> : <TrendingDown className="h-6 w-6 text-rose-500" />}
                      </div>
-                     <div>
-                        <p className="text-[11px] text-zinc-500 font-black uppercase tracking-[0.2em]">{DASHBOARD_LABELS.balance.title.toUpperCase()}</p>
-                        <div className="flex items-baseline gap-2">
-                           <p className={`text-2xl font-black leading-tight ${surplus >= 0 ? "text-emerald-500" : "text-rose-500"}`}>
-                              {surplus >= 0 ? '+' : ''}{surplusScaled.toLocaleString('id-ID')}
-                           </p>
-                           <span className="text-xs text-zinc-500 uppercase font-bold">MW</span>
-                        </div>
+                     <div className="relative z-10">
+                        <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.balance.title}</p>
+                        <p className={`text-xl font-black leading-tight ${surplus >= 0 ? "text-emerald-500" : "text-rose-500"}`}>
+                           {surplusScaled.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span>
+                        </p>
                      </div>
                   </div>
                </div>
             </div>
 
             {/* Main Split Content Area */}
-            <div className="flex-1 overflow-y-auto p-10 no-scrollbar bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.03),transparent_40%)]">
+            <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-[radial-gradient(circle_at_top_right,rgba(245,158,11,0.03),transparent_40%)]">
                <div className="grid grid-cols-1 xl:grid-cols-2 gap-12">
 
-                  {/* KOLOM 1: PRODUKSI */}
+                  {/* KOLOM 1: PASOKAN ENERGI NASIONAL */}
                   <div className="space-y-8">
                      <div className="flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-4">
-                           <div className="p-2.5 bg-amber-500/10 border border-amber-500/20 rounded-xl shadow-inner">
-                              <Zap className="h-5 w-5 text-amber-500" />
+                        <div className="flex items-center gap-3">
+                           <div className="p-1.5 rounded-lg bg-zinc-900 border border-zinc-800">
+                              <Zap className="h-4 w-4 text-amber-500" />
                            </div>
-                           <h3 className="text-xl font-black text-white uppercase tracking-tighter italic flex items-center gap-3">
-                              PRODUKSI ENERGI NASIONAL
+                           <h3 className="text-xl font-black text-white uppercase tracking-widest italic flex items-center gap-3">
+                              1. SEKTOR KELISTRIKAN NASIONAL
                            </h3>
                         </div>
                         <div className="flex items-center gap-3">
-                           <span className="text-amber-400 font-black uppercase text-[11px] tracking-widest bg-amber-500/10 px-3 py-1.5 rounded-xl border border-amber-500/20 shadow-[0_0_10px_rgba(245,158,11,0.1)]">
-                              {productionItems.reduce((acc, item) => acc + item.count, 0)} BANGUNAN
+                           <span className="text-amber-400 font-black uppercase text-[10px] tracking-widest bg-amber-500/10 px-3 py-1.5 rounded-xl border border-amber-500/20 shadow-lg">
+                              {productionItems.length} JENIS PRODUKSI
                            </span>
                            <button
                               onClick={() => toggleSector('produksi-nasional')}
                               className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95"
                            >
-                              {collapsedSectors.has('produksi-nasional') ? <EyeOff size={18} /> : <Eye size={18} className="text-amber-500" />}
+                              {collapsedSectors.has('produksi-nasional') ? <EyeOff size={16} /> : <Eye size={16} className="text-amber-500" />}
                            </button>
                         </div>
                      </div>
 
                      <div className={`grid transition-all duration-500 ease-in-out ${collapsedSectors.has('produksi-nasional') ? 'grid-rows-[0fr] opacity-0 invisible' : 'grid-rows-[1fr] opacity-100 mt-8'}`}>
                         <div className="overflow-hidden">
-                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 animate-in fade-in duration-500">
+                           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-in fade-in duration-500">
                               {productionItems.map((item, idx) => (
                                  <CardItem key={idx} item={item} />
                               ))}
@@ -456,18 +452,18 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                      </div>
                   </div>
 
-                  {/* KOLOM 2: PEMAKAIAN */}
+                  {/* KOLOM 2: BEBAN ENERGI NASIONAL */}
                   <div className="space-y-8 border-l border-zinc-900 pl-12 flex flex-col">
 
                      {/* Tab Navigation */}
-                     <div className="flex items-center gap-3 p-1 bg-zinc-900/50 border border-zinc-800 rounded-2xl self-start mb-4">
-                        {(Object.entries(sectorGroups) as [keyof typeof sectorGroups, any][]).map(([key, group]) => {
+                     <div className="flex items-center gap-2 p-1 bg-zinc-900/50 border border-zinc-800 rounded-2xl self-start mb-4">
+                        {(Object.entries(sectorGroups) as [string, any][]).map(([key, group]) => {
                            const TabIcon = group.icon;
                            return (
                               <button
                                  key={key}
-                                 onClick={() => setActiveTab(key)}
-                                 className={`flex items-center gap-3 px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all cursor-pointer ${activeTab === key ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50'}`}
+                                 onClick={() => setActiveTab(key as 'PRODUKSI' | 'EKSTRAKSI' | 'MILITER' | 'UMUM')}
+                                 className={`flex items-center gap-3 px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all cursor-pointer ${activeTab === key ? 'bg-zinc-800 text-white shadow-lg' : 'text-zinc-500 hover:text-zinc-300 hover:bg-zinc-800/50'}`}
                               >
                                  <TabIcon className={`h-4 w-4 ${activeTab === key ? group.color : ''}`} />
                                  {key}
@@ -477,71 +473,51 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                      </div>
 
                      <div className="flex items-center justify-between gap-4">
-                        <div className="flex items-center gap-4">
+                        <div className="flex items-center gap-3">
                            {(() => {
-                              const ActiveIcon = (sectorGroups as any)[activeTab].icon;
-                              const groupColor = (sectorGroups as any)[activeTab].color;
+                              const group = (sectorGroups as any)[activeTab];
+                              const ActiveIcon = group.icon;
+                              const groupColor = group.color;
                               return (
                                  <>
-                                    <div className={`p-2.5 ${groupColor.replace('text-', 'bg-')}/10 border ${groupColor.replace('text-', 'border-')}/20 rounded-xl shadow-inner`}>
-                                       <ActiveIcon className={`h-5 w-5 ${groupColor}`} />
+                                    <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}>
+                                       <ActiveIcon className={`h-4 w-4 ${groupColor}`} />
                                     </div>
-                                    <h3 className="text-xl font-black text-white uppercase tracking-tighter italic">{(sectorGroups as any)[activeTab].title}</h3>
+                                    <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title}</h3>
                                  </>
                               );
                            })()}
                         </div>
-                        <div className="h-px flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-40"></div>
+                        <div className="flex items-center gap-3">
+                           <button
+                              onClick={() => toggleSector(activeTab)}
+                              className="p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95"
+                           >
+                              {collapsedSectors.has(activeTab) ? <EyeOff size={16} /> : <Eye size={16} className="text-cyan-400" />}
+                           </button>
+                        </div>
                      </div>
 
                      <div className="space-y-12 flex-1">
                         {(sectorGroups as any)[activeTab].categories.map((category: any) => {
-                           const totalCount = category.items.reduce((acc: number, item: any) => acc + item.count, 0);
-                           const isCollapsed = collapsedSectors.has(category.id);
-                           const CategoryIcon = category.icon;
+                           const isCollapsed = collapsedSectors.has(category.id) || collapsedSectors.has(activeTab);
 
                            return (
-                              <div key={category.id} className="space-y-8">
-                                 {/* Category Separator */}
-                                 <div className="relative flex items-center justify-center py-4">
-                                    <div className="absolute inset-0 flex items-center">
-                                       <div className="w-full border-t border-zinc-800/50"></div>
-                                    </div>
-                                    <div className="relative bg-[#09090b] px-6 flex items-center gap-4">
-                                       <CategoryIcon className="h-5 w-5 text-zinc-600" />
-                                       <span className="text-[14px] font-black text-zinc-500 uppercase tracking-[0.2em] italic">
-                                          {category.label} ({totalCount})
-                                       </span>
-                                    </div>
+                              <div key={category.id} className="space-y-6">
+                                 {/* Category Label (Identical to 2nd screenshot style) */}
+                                 <div className="col-span-full mt-2 mb-2 flex items-center gap-4">
+                                    <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-800 to-zinc-800"></div>
+                                    <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] whitespace-nowrap bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full shadow-xl">
+                                       {category.label}
+                                    </span>
+                                    <div className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-800 to-zinc-800"></div>
                                  </div>
 
-                                 <div className="flex items-center justify-between gap-4 group">
-                                 <div className="flex items-center gap-4">
-                                    <div className={`p-2.5 rounded-xl bg-zinc-900 border border-zinc-800 group-hover:border-zinc-700 transition-colors shadow-inner`}>
-                                       <CategoryIcon className={`h-5 w-5 text-zinc-400`} />
-                                    </div>
-                                    <div className="flex items-center gap-3">
-                                       <span className="text-[17px] font-black text-zinc-400 uppercase tracking-widest leading-none">Rincian Fasilitas</span>
-                                    </div>
-                                 </div>
-                                    <div className="flex items-center gap-3">
-                                       <span className="text-[11px] font-black text-white bg-zinc-900 px-2.5 py-1 rounded-lg border border-zinc-800 uppercase tracking-tight shadow-lg">
-                                          JUMLAH: {category.items.length} FASILITAS
-                                       </span>
-                                       <button
-                                          onClick={() => toggleSector(category.id)}
-                                          className="p-2 rounded-lg bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95 group-hover:border-zinc-700"
-                                       >
-                                          {isCollapsed ? <EyeOff size={16} /> : <Eye size={16} className="text-amber-500" />}
-                                       </button>
-                                    </div>
-                                 </div>
-
-                                 <div className={`grid transition-all duration-500 ease-in-out ${isCollapsed ? 'grid-rows-[0fr] opacity-0 invisible' : 'grid-rows-[1fr] opacity-100 mt-6'}`}>
+                                 <div className={`grid transition-all duration-500 ease-in-out ${isCollapsed ? 'grid-rows-[0fr] opacity-0 invisible' : 'grid-rows-[1fr] opacity-100'}`}>
                                     <div className="overflow-hidden">
                                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 animate-in fade-in duration-500">
                                           {category.items.map((item: any, idx: number) => (
-                                             <CardItem key={idx} item={{ ...item, isSupply: false }} variant="compact" />
+                                             <CardItem key={idx} item={{ ...item, isSupply: false }} />
                                           ))}
                                        </div>
                                     </div>
@@ -554,8 +530,8 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
 
                </div>
 
-               {/* Footer Global Insight remains at the bottom of the scroll area */}
-               <div className="mt-12 bg-zinc-900/30 border border-zinc-800 p-8 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-8 backdrop-blur-sm relative overflow-hidden group">
+               {/* Footer Global Insight */}
+               <div className="mt-12 bg-zinc-900/30 border border-zinc-800 p-8 rounded-[2rem] flex flex-col md:flex-row items-center justify-between gap-8 backdrop-blur-sm relative overflow-hidden group shadow-2xl">
                   {/* ... same footer code ... */}
                   <div className="flex flex-col gap-3 relative z-10 max-w-2xl">
                      <div className="flex items-center gap-3">
@@ -588,56 +564,83 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
 }
 
 function CardItem({ item, variant = "default" }: { item: any, variant?: "default" | "compact" }) {
+   const [showDetail, setShowDetail] = useState(false);
    const totalVal = Math.floor(item.rate * item.count);
    const isCompact = variant === "compact";
-
+ 
    return (
-      <div className={`bg-zinc-900/40 border border-zinc-800/60 transition-all group flex flex-col relative overflow-hidden h-full hover:border-zinc-700 hover:bg-zinc-900/60 shadow-lg active:scale-95 cursor-default ${isCompact ? 'p-4 rounded-[1.8rem] gap-3' : 'p-5 rounded-[2.5rem] gap-4'}`}>
+      <div className={`bg-zinc-900/40 border border-zinc-800/60 transition-all group flex flex-col p-4 rounded-2xl gap-3 relative overflow-hidden h-full hover:border-zinc-700 hover:bg-zinc-900/60 shadow-lg active:scale-95 cursor-default`}>
          <div className="flex items-start justify-between relative z-10">
-            <div className={`${isCompact ? 'p-2' : 'p-3'} bg-zinc-950/80 rounded-2xl border border-zinc-800 group-hover:scale-110 transition-transform shadow-inner`}>
-               <item.icon className={`${isCompact ? 'h-5 w-5' : 'h-6 w-6'} ${item.isSupply ? 'text-amber-500' : 'text-blue-500'} shadow-[0_0_15px_rgba(245,158,11,0.2)]`} />
+            <div className="flex gap-2">
+               <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform shadow-inner">
+                  <item.icon className={`h-5 w-5 ${item.isSupply ? 'text-amber-500' : 'text-blue-500'} shadow-[0_0_15px_rgba(245,158,11,0.2)]`} />
+               </div>
+               <button 
+                  onClick={() => setShowDetail(!showDetail)}
+                  className={`p-2.5 rounded-xl border transition-all cursor-pointer ${showDetail ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'}`}
+               >
+                  <Info size={16} />
+               </button>
             </div>
-            <div className="flex flex-col items-end gap-1.5">
+            <div className="flex flex-col items-end gap-1">
                {!isCompact && (
-                  <div className="px-3 py-1 rounded-full bg-zinc-950/50 border border-zinc-900 text-[11px] font-black text-zinc-500 uppercase tracking-widest">
-                     {item.desc}
+                  <div className="px-2.5 py-1 rounded-full bg-zinc-950/50 border border-zinc-900 text-[11px] font-bold text-zinc-500 uppercase tracking-widest transition-colors group-hover:text-cyan-400">
+                     {item.desc || "Infrastruktur"}
                   </div>
                )}
-               <div className={`px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 font-black text-emerald-400 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.1)] ${isCompact ? 'text-[10px]' : 'text-[12px]'}`}>
+               <div className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 font-black text-emerald-400 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.1)] text-[12px]">
                   TERBANGUN: {item.count} UNIT
                </div>
             </div>
          </div>
-
-         <div className="flex-1 flex flex-col gap-1 relative z-10">
-            <h4 className={`${isCompact ? 'text-[16px]' : 'text-[19px]'} font-black text-white tracking-tight leading-tight group-hover:text-amber-400 transition-colors uppercase italic`}>{item.label}</h4>
+ 
+         <div className="flex-1 flex flex-col gap-1 relative z-10 mt-1">
+            <h4 className="text-[17px] font-black text-white tracking-tight leading-tight group-hover:text-amber-400 transition-colors uppercase italic">{item.label}</h4>
             <div className="flex flex-col gap-1 mt-1">
-               <div className="flex items-center gap-2">
-                  <Zap size={isCompact ? 11 : 13} className={item.isSupply ? 'text-amber-400' : 'text-rose-500/70'} />
-                  <span className={`${isCompact ? 'text-[11px]' : 'text-[13px]'} font-bold ${item.isSupply ? 'text-amber-400' : 'text-zinc-400'} italic uppercase`}>
-                     {item.isSupply ? 'Produksi' : 'Konsumsi'}: +{item.rate} MW/{item.isSupply ? 'bangunan' : 'unit'}
-                  </span>
-               </div>
-               {item.buildTime && !isCompact && (
-                  <div className="flex items-center gap-2">
-                     <Clock size={13} className="text-zinc-600" />
-                     <span className="text-[12px] font-bold text-zinc-600 italic uppercase">Waktu Konstruksi: {item.buildTime} Hari</span>
+               {showDetail ? (
+                  <div className="mt-2 space-y-2 animate-in fade-in slide-in-from-top-1 duration-300">
+                     <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
+                        <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Pemeliharaan</span>
+                        <span className="text-[15px] font-black text-rose-400 italic">-{item.maintenanceCost || 5}</span>
+                     </div>
+                     <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
+                        <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Beban Sistem</span>
+                        <span className="text-[15px] font-black text-cyan-400 italic">Stable</span>
+                     </div>
+                     <p className="text-[11px] text-zinc-500 italic mt-2 px-1 leading-relaxed">Fasilitas ini membutuhkan anggaran operasional harian agar tetap berfungsi optimal bagi negara.</p>
                   </div>
+               ) : (
+                  <>
+                     <div className="flex items-center gap-2">
+                        <Zap size={13} className={item.isSupply ? 'text-amber-400' : 'text-rose-500/70'} />
+                        <span className="text-[12px] font-bold text-zinc-400 italic uppercase">
+                           {item.isSupply ? 'Produksi' : 'Konsumsi'}: +{item.rate} MW/{item.isSupply ? 'bangunan' : 'unit'}
+                        </span>
+                     </div>
+                     {item.buildTime && !isCompact && (
+                        <div className="flex items-center gap-2">
+                           <Clock size={13} className="text-zinc-600" />
+                           <span className="text-[12px] font-bold text-zinc-600 italic uppercase tracking-tighter">Waktu Konstruksi: {item.buildTime} Hari</span>
+                        </div>
+                     )}
+                  </>
                )}
             </div>
          </div>
-
-         <div className={`mt-2 ${isCompact ? 'pt-3 p-3' : 'pt-4 p-4'} border-t border-zinc-800/40 bg-zinc-950/40 rounded-[1.5rem] flex flex-col gap-2 shadow-inner`}>
-            <div className="flex justify-between items-baseline gap-2">
-               <span className={`${isCompact ? 'text-[10px]' : 'text-[12px]'} font-black text-zinc-500 uppercase tracking-widest`}>{item.isSupply ? 'HASIL PRODUKSI:' : 'BEBAN AKTIF:'}</span>
-               <div className="flex items-baseline gap-1">
-                  <span className={`${isCompact ? 'text-[16px]' : 'text-[19px]'} font-black text-white tracking-tight`}>{totalVal.toLocaleString('id-ID')}</span>
-                  <span className={`${isCompact ? 'text-[10px]' : 'text-[12px]'} font-bold text-zinc-500 uppercase`}>{item.isSupply ? 'MW/Hr' : 'MW'}</span>
+ 
+         <div className="mt-2 pt-3 border-t border-zinc-800/40 bg-zinc-950/40 rounded-[1.2rem] flex flex-col gap-2 shadow-inner p-3">
+            {!item.isSupply && (
+               <div className="flex justify-between items-baseline gap-2">
+                  <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest italic">BEBAN AKTIF:</span>
+                  <div className="flex items-baseline gap-1">
+                     <span className="text-[18px] font-black text-white tracking-tight">{totalVal.toLocaleString('id-ID')}</span>
+                     <span className="text-[11px] font-bold text-zinc-500 uppercase">MW</span>
+                  </div>
                </div>
-            </div>
+            )}
             {item.isSupply && (
-               <div className="flex justify-between items-baseline gap-2 border-t border-zinc-800/20 pt-1.5">
-                  <span className="text-[11px] font-black text-cyan-500 uppercase tracking-widest">TOTAL KAPASITAS:</span>
+               <div className="flex justify-between items-baseline gap-2">
+                  <span className="text-[11px] font-black text-cyan-500 uppercase tracking-widest italic">JUMLAH TOTAL PRODUKSI:</span>
                   <div className="flex items-baseline gap-1">
                      <span className="text-[18px] font-black text-cyan-400 tracking-tight">{totalVal.toLocaleString('id-ID')}</span>
                      <span className="text-[11px] font-bold text-zinc-500 uppercase">MW</span>

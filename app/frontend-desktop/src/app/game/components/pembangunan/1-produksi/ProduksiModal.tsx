@@ -710,7 +710,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
       </div>
 
       <div className="flex-1 flex flex-col gap-1 relative z-10 mt-1">
-        <h4 className="text-[15px] font-black text-zinc-100 tracking-tight group-hover:text-white transition-colors leading-tight">{item.label}</h4>
+        <h4 className="text-[17px] font-black text-zinc-100 tracking-tight group-hover:text-amber-400 transition-colors uppercase italic leading-tight">{item.label}</h4>
 
         <div className="flex flex-col gap-1 mt-1">
           {showDetail ? (
@@ -754,14 +754,10 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
 
           {/* New Total Output Section */}
           <div className="mt-3 pt-3 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-xl p-3">
-            <div className="flex justify-between items-baseline gap-2">
-              <span className="text-[10px] font-black text-zinc-500 uppercase tracking-tighter">Hasil Produksi:</span>
-              <span className="text-[14px] font-black text-white tracking-tight">{(Math.floor(item.rate) * item.count).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}/hr</span></span>
-            </div>
             {/* Cumulative / Total Display for ALL buildings */}
             <div className="flex justify-between items-baseline gap-2 border-t border-zinc-800/10 pt-1.5 mt-1">
-              <span className="text-[10px] font-black text-cyan-500 uppercase tracking-tighter italic">
-                {item.groupId === "kelistrikan" ? "Total Kapasitas:" : "Hasil di Gudang:"}
+              <span className="text-[11px] font-black text-cyan-500 uppercase tracking-widest italic">
+                {item.groupId === "kelistrikan" ? "JUMLAH TOTAL PRODUKSI:" : "Hasil di Gudang:"}
               </span>
               <span className="text-[14px] font-black text-cyan-400 tracking-tight">
                 {item.groupId === "kelistrikan" ? (Math.floor(item.rate) * item.count).toLocaleString('id-ID') : Math.floor(cumulative).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}</span>
