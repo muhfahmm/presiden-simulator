@@ -11,7 +11,7 @@ import { tempatUmum } from "@/app/select-country/data/pembangunan/tempat-umum";
 import { priceStorage } from "@/app/game/components/ekonomi/8-pasar-domestik/priceStorage";
 
 /**
- * Calculates the total daily maintenance cost for all national infrastructure.
+ * Calculates the total daily maintenance cost for all national infrastruktur.
  * Matches the logic used in PemasukkanPengeluaranModal.tsx
  */
 export function calculateBaseMaintenance(countryData: CountryData): number {
@@ -25,16 +25,19 @@ export function calculateBaseMaintenance(countryData: CountryData): number {
 
   let total = 0;
   const sectors = [
-    countryData.sector_electricity,
-    countryData.infrastructure,
-    countryData.sector_extraction,
-    countryData.sector_manufacturing,
-    countryData.sector_livestock,
-    countryData.sector_agriculture,
-    countryData.sector_social?.education,
-    countryData.sector_social?.health,
-    countryData.sector_social?.sports,
-    countryData.sector_social?.law
+    countryData.sektor_listrik,
+    countryData.infrastruktur,
+    countryData.sektor_ekstraksi,
+    countryData.sektor_manufaktur,
+    countryData.sektor_peternakan,
+    countryData.sektor_pertanian,
+    countryData.sektor_sosial?.pendidikan,
+    countryData.sektor_sosial?.kesehatan,
+    countryData.sektor_sosial?.olahraga,
+    countryData.sektor_sosial?.hukum,
+    countryData.sektor_pertahanan,
+    countryData.sektor_armada,
+    countryData.sektor_keamanan
   ];
 
   sectors.forEach(sector => {
@@ -50,7 +53,7 @@ export function calculateBaseMaintenance(countryData: CountryData): number {
 }
 
 /**
- * Calculates maintenance for user-built infrastructure.
+ * Calculates maintenance for user-built infrastruktur.
  */
 export function calculateDeltaMaintenance(buildingDeltas: Record<string, number>): number {
   const allMetadata = [
@@ -84,12 +87,12 @@ export function calculateTotalMaintenance(countryData: CountryData, buildingDelt
  */
 export function calculateDailyBudgetDelta(countryData: CountryData, buildingDeltas: Record<string, number>): number {
   // 1. Income
-  const currentTaxes = taxStorage.getTaxes(countryData.name_en) || countryData.taxes;
-  const domesticTaxes = ["vat", "corporate", "income", "environment", "other"];
-  const tradeTaxes = ["customs", "transit_allied", "transit_non_allied"];
+  const currentTaxes = taxStorage.getTaxes(countryData.name_en) || countryData.pajak;
+  const domesticTaxes = ["ppn", "korporasi", "pendapatan_nasional", "lingkungan", "lainnya"];
+  const tradeTaxes = ["bea_cukai", "transit_sekutu", "transit_non_sekutu"];
 
-  const activeDomesticRevenue = domesticTaxes.reduce((acc, key) => acc + ((currentTaxes as any)[key]?.revenue || 0), 0);
-  const activeTradeRevenue = tradeTaxes.reduce((acc, key) => acc + ((currentTaxes as any)[key]?.revenue || 0), 0);
+  const activeDomesticRevenue = domesticTaxes.reduce((acc, key) => acc + ((currentTaxes as any)[key]?.pendapatan || 0), 0);
+  const activeTradeRevenue = tradeTaxes.reduce((acc, key) => acc + ((currentTaxes as any)[key]?.pendapatan || 0), 0);
   
   const incomeData = incomeStorage.getData();
   const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue + (incomeData.grants || 0) + (incomeData.investments || 0);
@@ -103,36 +106,36 @@ export function calculateDailyBudgetDelta(countryData: CountryData, buildingDelt
   // Military
   const dailyMilitaryExpense = produksiMiliter.reduce((acc, item: any) => acc + (item.maintenance || 0), 0);
 
-  // Subsidies (Percentage of tax revenue - simplified simulation)
-  const totalSubsidiLevel = ((expData.subsidyEnergi || 0) + (expData.subsidyPangan || 0) + (expData.subsidyKesehatan || 0) + (expData.subsidyPendidikan || 0) + (expData.subsidyUmkm || 0) + (expData.subsidyTransport || 0) + (expData.subsidyRumah || 0)) / 7;
+  // Subsidies (Percentage of tax pendapatan - simplified simulation)
+  const totalSubsidiLevel = ((expData.subsidi_energi || 0) + (expData.subsidi_pangan || 0) + (expData.subsidi_kesehatan || 0) + (expData.subsidi_pendidikan || 0) + (expData.subsidi_umkm || 0) + (expData.subsidi_transportasi || 0) + (expData.subsidi_perumahan || 0)) / 7;
   const subsidyExpense = (dailyTaxRevenue * (totalSubsidiLevel / 100));
 
   // Salaries (Linked to maintenance base but scaled by multiplier)
   // Simplified: 10% of total maintenance represents the base salary cost, scaled by user multiplier categories
-  const avgSalaryMultiplier = ((expData.salaryAsn || 1.0) + (expData.salaryGuru || 1.0) + (expData.salaryMedis || 1.0) + (expData.salaryMiliter || 1.0)) / 4;
+  const avgSalaryMultiplier = ((expData.gaji_asn || 1.0) + (expData.gaji_guru || 1.0) + (expData.gaji_medis || 1.0) + (expData.gaji_militer || 1.0)) / 4;
   const salaryExpense = (maintenanceExpense * 0.1) * avgSalaryMultiplier;
 
   // Prices Subsidy Impact
   const priceData = priceStorage.getData();
   const avgPriceMultiplier = (
-    (priceData.priceRice / 15000) + (priceData.priceBeef / 120000) + (priceData.priceChicken / 40000) +
-    (priceData.priceOil / 18000) + (priceData.priceSugar / 16000) + (priceData.priceEgg / 30000) +
-    (priceData.priceFuel / 12500) + (priceData.priceElectric / 1500) + (priceData.priceWater / 5000) +
-    (priceData.priceMedicine / 150000) + (priceData.priceEducation / 500000)
+    (priceData.harga_beras / 15000) + (priceData.harga_daging_sapi / 120000) + (priceData.harga_ayam / 40000) +
+    (priceData.harga_minyak_goreng / 18000) + (priceData.harga_gula / 16000) + (priceData.harga_telur / 30000) +
+    (priceData.harga_bbm / 12500) + (priceData.harga_listrik / 1500) + (priceData.harga_air / 5000) +
+    (priceData.harga_obat / 150000) + (priceData.harga_pendidikan / 500000)
   ) / 11;
-  const priceSubsidyExpense = Math.max(0, (1.0 - avgPriceMultiplier) * 1500); // Max ~750 cost at 0.5x prices
+  const priceSubsidyExpense = Math.max(0, (1.0 - avgPriceMultiplier) * 1500); // Max ~750 cost at 0.5x harga
 
   const totalDailyExpense = maintenanceExpense + dailyMilitaryExpense + subsidyExpense + salaryExpense + (expData.debtInterestPaid || 0) + priceSubsidyExpense;
 
   return dailyTaxRevenue - totalDailyExpense;
 }
 
-export function parseIncomeString(income: string): number {
-  if (!income) return 100;
-  const cleaned = income.replace(/[.,\s]/g, '');
+export function parseIncomeString(pendapatan_nasional: string): number {
+  if (!pendapatan_nasional) return 100;
+  const cleaned = pendapatan_nasional.replace(/[.,\s]/g, '');
   const plainNum = parseFloat(cleaned);
   if (!isNaN(plainNum) && plainNum > 0) return plainNum;
-  const match = income.match(/(\d+[\d.,]*)\s*([TMK])/);
+  const match = pendapatan_nasional.match(/(\d+[\d.,]*)\s*([TMK])/);
   if (match) return parseFloat(match[1].replace(/[.,]/g, ''));
   return 100;
 }

@@ -1,14 +1,14 @@
 export const yamanAgreements = [
 
-      { "partner": "Singapura", "type": "Trade", "status": "Active" },
-      { "partner": "Filipina", "type": "Trade", "status": "Active" },
-      { "partner": "India", "type": "Trade", "status": "Active" },
-      { "partner": "Prancis", "type": "Trade", "status": "Active" },
-      { "partner": "Jerman", "type": "Trade", "status": "Active" },
-      { "partner": "Uni Emirat Arab", "type": "Trade", "status": "Active" },
-      { "partner": "Thailand", "type": "Trade", "status": "Active" },
-      { "partner": "Amerika Serikat", "type": "Trade", "status": "Active" },
-      { "partner": "Vietnam", "type": "Trade", "status": "Active" },
-      { "partner": "Malaysia", "type": "Trade", "status": "Active" }
+      { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Filipina", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Thailand", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Vietnam", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Malaysia", "type": "Perdagangan", "status": "Aktif" }
     
 ];

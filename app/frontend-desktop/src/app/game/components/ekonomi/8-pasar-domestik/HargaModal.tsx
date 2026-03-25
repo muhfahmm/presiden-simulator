@@ -10,7 +10,7 @@ interface HargaModalProps {
 }
 
 export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
-  const [prices, setPrices] = useState<PriceData>(priceStorage.getData());
+  const [harga, setPrices] = useState<PriceData>(priceStorage.getData());
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -23,14 +23,14 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
   if (!isOpen || !isMounted) return null;
 
   const handlePriceChange = (key: keyof Omit<PriceData, 'lastUpdated'>, value: number) => {
-    const newPrices = { ...prices, [key]: value };
+    const newPrices = { ...harga, [key]: value };
     setPrices(newPrices);
     priceStorage.updatePrice(key, value);
   };
 
   const categories = [
     { 
-      key: "priceRice" as const, 
+      key: "harga_beras" as const, 
       label: "Beras Pokok", 
       icon: Wheat, 
       desc: "Kebutuhan karbohidrat utama masyarakat.",
@@ -39,7 +39,7 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
       unit: "kg"
     },
     { 
-      key: "priceBeef" as const, 
+      key: "harga_daging_sapi" as const, 
       label: "Daging Sapi", 
       icon: Beef, 
       desc: "Kebutuhan protein hewani premium masyarakat.",
@@ -48,7 +48,7 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
       unit: "kg"
     },
     { 
-      key: "priceChicken" as const, 
+      key: "harga_ayam" as const, 
       label: "Daging Ayam", 
       icon: Beef, 
       desc: "Protein hewani alternatif yang lebih terjangkau.",
@@ -57,7 +57,7 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
       unit: "kg"
     },
     { 
-      key: "priceOil" as const, 
+      key: "harga_minyak_goreng" as const, 
       label: "Minyak Goreng", 
       icon: Droplet, 
       desc: "Kebutuhan dasar memasak rumah tangga.",
@@ -66,7 +66,7 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
       unit: "liter"
     },
     { 
-      key: "priceSugar" as const, 
+      key: "harga_gula" as const, 
       label: "Gula", 
       icon: Package, 
       desc: "Kebutuhan pemanis untuk konsumsi harian.",
@@ -75,7 +75,7 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
       unit: "kg"
     },
     { 
-      key: "priceEgg" as const, 
+      key: "harga_telur" as const, 
       label: "Telur Ayam", 
       icon: Egg, 
       desc: "Alternatif protein harian warga.",
@@ -84,7 +84,7 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
       unit: "kg"
     },
     { 
-      key: "priceFuel" as const, 
+      key: "harga_bbm" as const, 
       label: "Harga Bahan Bakar", 
       icon: Fuel, 
       desc: "Bensin (Pertalite/Pertamax), Solar, dan Avtur.",
@@ -93,7 +93,7 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
       unit: "liter"
     },
     { 
-      key: "priceElectric" as const, 
+      key: "harga_listrik" as const, 
       label: "Tarif Listrik", 
       icon: Zap, 
       desc: "Tarif per kWh untuk rumah tangga dan industri.",
@@ -102,7 +102,7 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
       unit: "kWh"
     },
     { 
-      key: "priceWater" as const, 
+      key: "harga_air" as const, 
       label: "Tarif Air Bersih", 
       icon: Droplets, 
       desc: "Tarif PDAM untuk kebutuhan air bersih warga.",
@@ -111,7 +111,7 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
       unit: "m³"
     },
     { 
-      key: "priceMedicine" as const, 
+      key: "harga_obat" as const, 
       label: "Obat & Layanan Medis", 
       icon: Pill, 
       desc: "Akses BPJS, obat esensial, dan biaya RS.",
@@ -120,7 +120,7 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
       unit: "kunjungan"
     },
     { 
-      key: "priceEducation" as const, 
+      key: "harga_pendidikan" as const, 
       label: "Biaya Pendidikan", 
       icon: GraduationCap, 
       desc: "Uang sekolah (SPP/UKT) dan buku pelajaran.",
@@ -146,10 +146,10 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
   ];
 
   // Calculate Average Impact
-  const avgPriceMultiplier = categories.reduce((sum, cat) => sum + (prices[cat.key] / cat.basePrice), 0) / 11;
+  const avgPriceMultiplier = categories.reduce((sum, cat) => sum + (harga[cat.key] / cat.basePrice), 0) / 11;
   const happinessImpact = (1.0 - avgPriceMultiplier) * 15; // Max bonus +7.5%, Max penalty -15%
 
-  const totalCartPrice = categories.reduce((sum, cat) => sum + (cat.basePrice * prices[cat.key]), 0);
+  const totalCartPrice = categories.reduce((sum, cat) => sum + (cat.basePrice * harga[cat.key]), 0);
   const totalItems = categories.length;
 
   const getPriceLabel = (val: number) => {
@@ -267,13 +267,13 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
                 <div className="w-1/5 flex flex-col justify-center px-4 relative z-10 border-l border-zinc-800/50">
                   <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest block mb-1">Status Pasar</span>
                   <div className="flex items-baseline gap-1.5">
-                    <span className={`text-sm font-black tracking-tighter ${prices[cat.key] <= cat.basePrice * 0.8 ? "text-emerald-400" : prices[cat.key] >= cat.basePrice * 1.4 ? "text-rose-400" : "text-zinc-300"}`}>
-                      {formatPrice(prices[cat.key])}
+                    <span className={`text-sm font-black tracking-tighter ${harga[cat.key] <= cat.basePrice * 0.8 ? "text-emerald-400" : harga[cat.key] >= cat.basePrice * 1.4 ? "text-rose-400" : "text-zinc-300"}`}>
+                      {formatPrice(harga[cat.key])}
                     </span>
                     <span className="text-[9px] font-bold opacity-40 italic">/{cat.unit}</span>
                   </div>
-                  <span className={`text-[8px] font-black uppercase tracking-widest mt-0.5 ${prices[cat.key] <= cat.basePrice * 0.8 ? "text-emerald-500/70" : prices[cat.key] >= cat.basePrice * 1.4 ? "text-rose-500/70" : "text-zinc-500"}`}>
-                     {getPriceLabel(prices[cat.key] / cat.basePrice)}
+                  <span className={`text-[8px] font-black uppercase tracking-widest mt-0.5 ${harga[cat.key] <= cat.basePrice * 0.8 ? "text-emerald-500/70" : harga[cat.key] >= cat.basePrice * 1.4 ? "text-rose-500/70" : "text-zinc-500"}`}>
+                     {getPriceLabel(harga[cat.key] / cat.basePrice)}
                   </span>
                 </div>
 
@@ -287,12 +287,12 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
                         key={preset.multiplier}
                         onClick={() => handlePriceChange(cat.key, targetPrice)}
                         className={`relative flex flex-col items-center justify-center py-2.5 rounded-lg transition-all cursor-pointer group/btn ${
-                          prices[cat.key] === targetPrice
+                          harga[cat.key] === targetPrice
                             ? 'bg-zinc-800 text-white shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-zinc-700'
                             : 'text-zinc-600 hover:bg-zinc-900 hover:text-zinc-300'
                         }`}
                       >
-                        {prices[cat.key] === targetPrice && (
+                        {harga[cat.key] === targetPrice && (
                           <div className={`absolute top-0 left-0 w-full h-[2px] bg-cyan-500`} />
                         )}
                         <span className="text-[9px] font-black uppercase tracking-tighter decoration-zinc-700 opacity-80">{preset.label}</span>

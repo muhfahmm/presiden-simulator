@@ -5,7 +5,7 @@ export const komoditasPanganRate = {
     production: 4200,
     unit: "ekor",
     desc: "Ayam (Daging)",
-    income: 15,
+    pendapatan_nasional: 15,
     maintenanceCost: 5,
     buildTime: 25
   },
@@ -14,7 +14,7 @@ export const komoditasPanganRate = {
     production: 25000,
     unit: "butir",
     desc: "Ayam (Telur)",
-    income: 5,
+    pendapatan_nasional: 5,
     maintenanceCost: 5,
     buildTime: 20
   },
@@ -23,7 +23,7 @@ export const komoditasPanganRate = {
     production: 8,
     unit: "ton",
     desc: "Ikan Air Tawar",
-    income: 45,
+    pendapatan_nasional: 45,
     maintenanceCost: 5,
     buildTime: 25
   },
@@ -32,7 +32,7 @@ export const komoditasPanganRate = {
     production: 65,
     unit: "ekor",
     desc: "Kambing/Domba",
-    income: 65,
+    pendapatan_nasional: 65,
     buildTime: 40
   },
   pearl_farm: {
@@ -40,7 +40,7 @@ export const komoditasPanganRate = {
     production: 15,
     unit: "kg",
     desc: "Mutiara",
-    income: 1200,
+    pendapatan_nasional: 1200,
     maintenanceCost: 5,
     buildTime: 60
   },
@@ -49,7 +49,7 @@ export const komoditasPanganRate = {
     production: 12000,
     unit: "liter",
     desc: "Sapi Perah",
-    income: 25,
+    pendapatan_nasional: 25,
     maintenanceCost: 5,
     buildTime: 30
   },
@@ -58,7 +58,7 @@ export const komoditasPanganRate = {
     production: 25,
     unit: "ekor",
     desc: "Sapi Potong",
-    income: 150,
+    pendapatan_nasional: 150,
     maintenanceCost: 5,
     buildTime: 45
   },
@@ -67,7 +67,7 @@ export const komoditasPanganRate = {
     production: 3,
     unit: "ton",
     desc: "Udang",
-    income: 280,
+    pendapatan_nasional: 280,
     maintenanceCost: 5,
     buildTime: 30
   },
@@ -78,7 +78,7 @@ export const komoditasPanganRate = {
     production: 8,
     unit: "ton",
     desc: "Gandum",
-    income: 75,
+    pendapatan_nasional: 75,
     maintenanceCost: 5,
     buildTime: 50
   },
@@ -87,7 +87,7 @@ export const komoditasPanganRate = {
     production: 10,
     unit: "ton",
     desc: "Jagung",
-    income: 65,
+    pendapatan_nasional: 65,
     buildTime: 40
   },
   cocoa_plantation: {
@@ -95,7 +95,7 @@ export const komoditasPanganRate = {
     production: 1,
     unit: "ton",
     desc: "Kakao",
-    income: 450,
+    pendapatan_nasional: 450,
     maintenanceCost: 5,
     buildTime: 100
   },
@@ -104,7 +104,7 @@ export const komoditasPanganRate = {
     production: 5,
     unit: "ton",
     desc: "Kedelai",
-    income: 80,
+    pendapatan_nasional: 80,
     maintenanceCost: 5,
     buildTime: 40
   },
@@ -113,7 +113,7 @@ export const komoditasPanganRate = {
     production: 22,
     unit: "ton",
     desc: "Kelapa Sawit",
-    income: 320,
+    pendapatan_nasional: 320,
     maintenanceCost: 5,
     buildTime: 120
   },
@@ -122,7 +122,7 @@ export const komoditasPanganRate = {
     production: 2,
     unit: "ton",
     desc: "Kopi",
-    income: 550,
+    pendapatan_nasional: 550,
     maintenanceCost: 5,
     buildTime: 110
   },
@@ -131,7 +131,7 @@ export const komoditasPanganRate = {
     production: 12,
     unit: "ton",
     desc: "Padi",
-    income: 95,
+    pendapatan_nasional: 95,
     maintenanceCost: 5,
     buildTime: 45
   },
@@ -140,7 +140,7 @@ export const komoditasPanganRate = {
     production: 12,
     unit: "ton",
     desc: "Sayuran",
-    income: 55,
+    pendapatan_nasional: 55,
     maintenanceCost: 5,
     buildTime: 20
   },
@@ -149,7 +149,7 @@ export const komoditasPanganRate = {
     production: 35,
     unit: "ton",
     desc: "Tebu",
-    income: 40,
+    pendapatan_nasional: 40,
     maintenanceCost: 5,
     buildTime: 60
   },
@@ -158,7 +158,7 @@ export const komoditasPanganRate = {
     production: 1,
     unit: "ton",
     desc: "Teh",
-    income: 410,
+    pendapatan_nasional: 410,
     maintenanceCost: 5,
     buildTime: 90
   },
@@ -167,7 +167,7 @@ export const komoditasPanganRate = {
     production: 15,
     unit: "ton",
     desc: "Umbi-umbian",
-    income: 35,
+    pendapatan_nasional: 35,
     maintenanceCost: 5,
     buildTime: 35
   }

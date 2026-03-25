@@ -1,14 +1,14 @@
 export const turkmenistanAgreements = [
 
-      { "partner": "Malaysia", "type": "Trade", "status": "Active" },
-      { "partner": "Prancis", "type": "Trade", "status": "Active" },
-      { "partner": "Indonesia", "type": "Trade", "status": "Active" },
-      { "partner": "Jepang", "type": "Trade", "status": "Active" },
-      { "partner": "China", "type": "Trade", "status": "Active" },
-      { "partner": "Uni Eropa", "type": "Trade", "status": "Active" },
-      { "partner": "Thailand", "type": "Trade", "status": "Active" },
-      { "partner": "India", "type": "Trade", "status": "Active" },
-      { "partner": "Korea Selatan", "type": "Trade", "status": "Active" },
-      { "partner": "Uni Emirat Arab", "type": "Trade", "status": "Active" }
+      { "mitra": "Malaysia", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Indonesia", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Thailand", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" }
     
 ];

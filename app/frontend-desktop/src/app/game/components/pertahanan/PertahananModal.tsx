@@ -12,38 +12,39 @@ interface ModalProps {
 export default function PertahananModal({ isOpen, onClose, data }: ModalProps) {
   if (!isOpen) return null;
 
-  const strat = data.sector_military_strategic;
-  const def = data.sector_defense;
+  const management = data.sektor_pertahanan;
+  const fleet = data.sektor_armada;
+  const security = data.sektor_keamanan;
 
   const sections = [
     {
       title: "Strategi Nasional",
       icon: Target,
       items: [
-        { label: "Serang Negara", icon: Swords, desc: `${strat.strategic_operations.attack_mission} Operasi Aktif`, value: strat.strategic_operations.attack_mission },
-        { label: "Operasi Spionase", icon: Eye, desc: `${strat.strategic_operations.spy_mission} Agen Lapangan`, value: strat.strategic_operations.spy_mission },
-        { label: "Misi Sabotase", icon: Bomb, desc: `${strat.strategic_operations.sabotage_mission} Target Teridentifikasi`, value: strat.strategic_operations.sabotage_mission },
-        { label: "Manajemen Wilayah", icon: MapIcon, desc: `${strat.strategic_operations.territory_management}% Kontrol Wilayah`, value: strat.strategic_operations.territory_management },
-        { label: "Program Nuklir", icon: Radiation, desc: `${strat.strategic_operations.nuclear_program}% Kesiapan`, value: strat.strategic_operations.nuclear_program },
+        { label: "Serang Negara", icon: Swords, desc: `${security.operasi_strategis?.misi_serangan ?? 0} Operasi Aktif`, value: security.operasi_strategis?.misi_serangan ?? 0 },
+        { label: "Operasi Spionase", icon: Eye, desc: `${security.operasi_strategis?.misi_mata_mata ?? 0} Agen Lapangan`, value: security.operasi_strategis?.misi_mata_mata ?? 0 },
+        { label: "Misi Sabotase", icon: Bomb, desc: `${security.operasi_strategis?.misi_sabotase ?? 0} Target Teridentifikasi`, value: security.operasi_strategis?.misi_sabotase ?? 0 },
+        { label: "Manajemen Wilayah", icon: MapIcon, desc: `${security.operasi_strategis?.manajemen_wilayah ?? 0}% Kontrol Wilayah`, value: security.operasi_strategis?.manajemen_wilayah ?? 0 },
+        { label: "Program Nuklir", icon: Radiation, desc: `${security.operasi_strategis?.program_nuklir ?? 0}% Kesiapan`, value: security.operasi_strategis?.program_nuklir ?? 0 },
       ]
     },
     {
       title: "Alutsista & Unit",
       icon: Shield,
       items: [
-        { label: "Divisi Infanteri", icon: Users, desc: `${(data.military.infantry / 1000).toFixed(1)}k Personel`, value: data.military.infantry },
-        { label: "Resimen Tank", icon: Truck, desc: `${def.military_fleet.darat.main_battle_tank} MBT Siaga`, value: def.military_fleet.darat.main_battle_tank },
-        { label: "Armada Laut", icon: Anchor, desc: `${def.military_fleet.laut.kapal_destroyer} Destroyer Aktif`, value: def.military_fleet.laut.kapal_destroyer },
-        { label: "Skuadron Udara", icon: Plane, desc: `${def.military_fleet.udara.jet_tempur_stealth} Jet Stealth Ready`, value: def.military_fleet.udara.jet_tempur_stealth },
+        { label: "Divisi Infanteri", icon: Users, desc: `${(fleet.infanteri / 1000).toFixed(1)}k Personel`, value: fleet.infanteri },
+        { label: "Resimen Tank", icon: Truck, desc: `${fleet.darat.tank_tempur_utama} MBT Siaga`, value: fleet.darat.tank_tempur_utama },
+        { label: "Armada Laut", icon: Anchor, desc: `${fleet.laut.kapal_destroyer} Destroyer Aktif`, value: fleet.laut.kapal_destroyer },
+        { label: "Skuadron Udara", icon: Plane, desc: `${fleet.udara.jet_tempur_siluman} Jet Stealth Ready`, value: fleet.udara.jet_tempur_siluman },
       ]
     },
     {
       title: "Intelijen & Radar",
       icon: Search,
       items: [
-        { label: "Sistem Satelit", icon: Zap, desc: `${strat.intel_radar.satellite_system} Satelit Orbit`, value: strat.intel_radar.satellite_system },
-        { label: "Jaringan Radar", icon: Crosshair, desc: `${strat.intel_radar.radar_network}% Cakupan`, value: strat.intel_radar.radar_network },
-        { label: "Cyber Ops", icon: Eye, desc: `Level ${strat.intel_radar.cyber_ops} Defense`, value: strat.intel_radar.cyber_ops },
+        { label: "Sistem Satelit", icon: Zap, desc: `${security.intel_radar.sistem_satelit} Satelit Orbit`, value: security.intel_radar.sistem_satelit },
+        { label: "Jaringan Radar", icon: Crosshair, desc: `${security.intel_radar.jaringan_radar}% Cakupan`, value: security.intel_radar.jaringan_radar },
+        { label: "Cyber Security", icon: Eye, desc: `Level ${management.pertahanan_siber} Defense`, value: management.pertahanan_siber },
       ]
     }
   ];

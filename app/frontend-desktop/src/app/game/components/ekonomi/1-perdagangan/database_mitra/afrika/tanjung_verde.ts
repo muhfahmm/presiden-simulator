@@ -1,19 +1,19 @@
 export const tanjung_verdeAgreements = [
 
-      { "partner": "India", "type": "Trade", "status": "Active" },
-      { "partner": "Nigeria", "type": "Trade", "status": "Active" },
-      { "partner": "Maroko", "type": "Trade", "status": "Active" },
-      { "partner": "Jepang", "type": "Trade", "status": "Active" },
-      { "partner": "Ghana", "type": "Trade", "status": "Active" },
-      { "partner": "Afrika Selatan", "type": "Trade", "status": "Active" },
-      { "partner": "Ethiopia", "type": "Trade", "status": "Active" },
-      { "partner": "Uni Emirat Arab", "type": "Trade", "status": "Active" },
-      { "partner": "Singapura", "type": "Trade", "status": "Active" },
-      { "partner": "China", "type": "Trade", "status": "Active" },
-      { "partner": "Korea Selatan", "type": "Trade", "status": "Active" },
-      { "partner": "Inggris", "type": "Trade", "status": "Active" },
-      { "partner": "Prancis", "type": "Trade", "status": "Active" },
-      { "partner": "Aljazair", "type": "Trade", "status": "Active" },
-      { "partner": "Jerman", "type": "Trade", "status": "Active" }
+      { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Nigeria", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Maroko", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Ghana", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Afrika Selatan", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Ethiopia", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Aljazair", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" }
     
 ];

@@ -12,7 +12,7 @@ interface ModalProps {
 export default function ArmadaPolisiModal({ isOpen, onClose, data }: ModalProps) {
   if (!isOpen) return null;
 
-  const pol = data.sector_social.law.police_fleet;
+  const pol = data.sektor_keamanan.armada_polisi;
 
   const policeAssets = [
     {
@@ -40,8 +40,8 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: ModalProps)
       icon: Radio,
       color: "text-cyan-500",
       items: [
-        { name: "Stasiun Polisi Regional", count: pol.pusat_komando.stasiun_polisi, active: pol.pusat_komando.stasiun_polisi },
-        { name: "Kamera Surveillance", count: pol.pusat_komando.kamera_surveillance, active: Math.floor(pol.pusat_komando.kamera_surveillance * 0.93) },
+        { name: "Stasiun Polisi Regional", count: pol.pusat_komando.kantor_polisi, active: pol.pusat_komando.kantor_polisi },
+        { name: "Kamera Surveillance", count: pol.pusat_komando.kamera_pengawas, active: Math.floor(pol.pusat_komando.kamera_pengawas * 0.93) },
         { name: "Pusat Forensik Digital", count: pol.pusat_komando.pusat_forensik, active: pol.pusat_komando.pusat_forensik },
       ]
     }
@@ -103,15 +103,15 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: ModalProps)
         <div className="px-8 py-3 bg-zinc-900/50 border-t border-zinc-800/50 flex gap-8">
           <div className="flex flex-col">
             <span className="text-[8px] font-black text-zinc-550 uppercase">Security Index</span>
-            <span className="text-sm font-bold text-white">{data.sector_social.law.security_index}</span>
+            <span className="text-sm font-bold text-white">{data.sektor_sosial.hukum.indeks_keamanan}</span>
           </div>
           <div className="flex flex-col">
             <span className="text-[8px] font-black text-zinc-550 uppercase">Respon Time</span>
-            <span className="text-sm font-bold text-emerald-400">{pol.response_time} Min</span>
+            <span className="text-sm font-bold text-emerald-400">{pol.waktu_respon} Min</span>
           </div>
           <div className="flex flex-col">
             <span className="text-[8px] font-black text-zinc-550 uppercase">Public Trust</span>
-            <span className="text-sm font-bold text-white">{pol.public_trust}%</span>
+            <span className="text-sm font-bold text-white">{pol.kepercayaan_publik}%</span>
           </div>
         </div>
       </div>

@@ -1,16 +1,16 @@
 export const chadAgreements = [
 
-      { "partner": "Nigeria", "type": "Trade", "status": "Active" },
-      { "partner": "Uni Eropa", "type": "Trade", "status": "Active" },
-      { "partner": "Singapura", "type": "Trade", "status": "Active" },
-      { "partner": "Inggris", "type": "Trade", "status": "Active" },
-      { "partner": "Maroko", "type": "Trade", "status": "Active" },
-      { "partner": "Ethiopia", "type": "Trade", "status": "Active" },
-      { "partner": "Amerika Serikat", "type": "Trade", "status": "Active" },
-      { "partner": "Prancis", "type": "Trade", "status": "Active" },
-      { "partner": "China", "type": "Trade", "status": "Active" },
-      { "partner": "Mesir", "type": "Trade", "status": "Active" },
-      { "partner": "India", "type": "Trade", "status": "Active" },
-      { "partner": "Kenya", "type": "Trade", "status": "Active" }
+      { "mitra": "Nigeria", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Maroko", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Ethiopia", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Mesir", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Kenya", "type": "Perdagangan", "status": "Aktif" }
     
 ];

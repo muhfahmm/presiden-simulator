@@ -6,7 +6,7 @@ export const mineralKritisRate = {
     production: 120,
     unit: "ton",
     desc: "Batubara",
-    dataKey: "coal",
+    dataKey: "batu_bara",
     maintenanceCost: 10,
     buildTime: 20
   },
@@ -15,7 +15,7 @@ export const mineralKritisRate = {
     production: 40,
     unit: "ton",
     desc: "Bauksit",
-    dataKey: "aluminum",
+    dataKey: "aluminium",
     maintenanceCost: 10,
     buildTime: 25
   },
@@ -24,7 +24,7 @@ export const mineralKritisRate = {
     production: 210,
     unit: "ton",
     desc: "Biji Besi",
-    dataKey: "iron_ore",
+    dataKey: "bijih_besi",
     maintenanceCost: 10,
     buildTime: 20
   },
@@ -33,7 +33,7 @@ export const mineralKritisRate = {
     production: 5,
     unit: "kg",
     desc: "Emas",
-    dataKey: "gold",
+    dataKey: "emas",
     maintenanceCost: 10,
     buildTime: 30
   },
@@ -42,7 +42,7 @@ export const mineralKritisRate = {
     production: 45,
     unit: "ton",
     desc: "Garam",
-    dataKey: "salt",
+    dataKey: "garam",
     maintenanceCost: 10,
     buildTime: 15
   },
@@ -51,7 +51,7 @@ export const mineralKritisRate = {
     production: 150,
     unit: "mcf",
     desc: "Gas Alam",
-    dataKey: "gas",
+    dataKey: "gas_alam",
     maintenanceCost: 10,
     buildTime: 35
   },
@@ -60,7 +60,7 @@ export const mineralKritisRate = {
     production: 25,
     unit: "ton",
     desc: "Lithium",
-    dataKey: "lithium",
+    dataKey: "litium",
     maintenanceCost: 10,
     buildTime: 35
   },
@@ -69,7 +69,7 @@ export const mineralKritisRate = {
     production: 85,
     unit: "barrel",
     desc: "Minyak Bumi",
-    dataKey: "oil",
+    dataKey: "minyak_bumi",
     maintenanceCost: 10,
     buildTime: 40
   },
@@ -78,7 +78,7 @@ export const mineralKritisRate = {
     production: 35,
     unit: "ton",
     desc: "Nikel",
-    dataKey: "nickel",
+    dataKey: "nikel",
     maintenanceCost: 10,
     buildTime: 25
   },
@@ -87,7 +87,7 @@ export const mineralKritisRate = {
     production: 1,
     unit: "ton",
     desc: "Tanah Jarang",
-    dataKey: "rare_earth",
+    dataKey: "logam_tanah_jarang",
     maintenanceCost: 10,
     buildTime: 60
   },
@@ -96,7 +96,7 @@ export const mineralKritisRate = {
     production: 28,
     unit: "ton",
     desc: "Tembaga",
-    dataKey: "copper",
+    dataKey: "tembaga",
     maintenanceCost: 10,
     buildTime: 25
   },

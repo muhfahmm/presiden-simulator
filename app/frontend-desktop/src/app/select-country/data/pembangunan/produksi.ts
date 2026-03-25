@@ -22,7 +22,7 @@ export const produksi: ProduksiItem[] = [
   { id: "thermal_power_plant", name: "Pembangkit Listrik Tenaga Uap (PLTU)", category: "Ekstraksi & Energi" },
   { id: "gas_power_plant", name: "Pembangkit Listrik Tenaga Gas (PLTG)", category: "Ekstraksi & Energi" },
   { id: "wind_power_plant", name: "Pembangkit Listrik Tenaga Bayu (PLTB)", category: "Ekstraksi & Energi" },
-  { id: "power_grid", name: "Infrastruktur Kelistrikan & Jaringan Transmisi", category: "Ekstraksi & Energi" },
+  { id: "jaringan_listrik", name: "Infrastruktur Kelistrikan & Jaringan Transmisi", category: "Ekstraksi & Energi" },
 
   // Sektor Pengolahan & Manufaktur
   { id: "electronics_factory", name: "Pabrik Elektronik & Semikonduktor", category: "Pengolahan & Manufaktur" },

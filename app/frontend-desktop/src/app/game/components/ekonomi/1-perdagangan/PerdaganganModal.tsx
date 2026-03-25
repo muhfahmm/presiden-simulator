@@ -36,13 +36,13 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
       if (savedTrades) {
         setManagedTrades(savedTrades);
       } else {
-        // Use predefined agreements from database
+        // Use predefined perjanjian from database
         const defaults = getInitialAgreements(currentCountry.name_en, currentCountry.name_id);
         if (defaults.length > 0) {
           setManagedTrades(defaults);
         } else {
-          // Fallback to initial agreements from countries data
-          setManagedTrades(currentCountry.geopolitics?.agreements || []);
+          // Fallback to initial perjanjian from countries data
+          setManagedTrades(currentCountry.geopolitik?.perjanjian || []);
         }
       }
     }
@@ -50,9 +50,9 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
 
   const handleAddProposal = (target: CountryData, waitDays: number, chance: number) => {
     const newAgreement = {
-      partner: target.name_id,
-      type: 'Trade',
-      status: 'Pending',
+      mitra: target.name_id,
+      type: 'Perdagangan',
+      status: 'Tertunda',
       startDate: getStoredGameDate().toISOString(),
       targetDate: new Date(getStoredGameDate().getTime() + waitDays * 24 * 60 * 60 * 1000).toISOString(),
       chance: chance,
@@ -80,7 +80,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
     const today = getStoredGameDate();
     
     const newTrades = managedTrades.map((t: any) => {
-      if (t.status === 'Pending' && t.targetDate) {
+      if (t.status === 'Tertunda' && t.targetDate) {
         const targetDate = new Date(t.targetDate);
         if (today >= targetDate) {
           changed = true;
@@ -91,15 +91,15 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
           inboxStorage.addMessage({
             source: 'Diplomasi Internasional',
             subject: isAccepted 
-              ? `Kabar Baik! Pengajuan Perdagangan dengan ${t.partner} DISETUJUI`
-              : `Sayang Sekali, Pengajuan Perdagangan dengan ${t.partner} DITOLAK`,
+              ? `Kabar Baik! Pengajuan Perdagangan dengan ${t.mitra} DISETUJUI`
+              : `Sayang Sekali, Pengajuan Perdagangan dengan ${t.mitra} DITOLAK`,
             time: 'Baru saja',
             priority: isAccepted ? 'medium' : 'high'
           });
 
           return {
             ...t,
-            status: isAccepted ? 'Active' : 'Rejected',
+            status: isAccepted ? 'Aktif' : 'Rejected',
             details: isAccepted ? 'Strategic Trade Partnership' : 'Pengajuan Ditolak'
           };
         }
@@ -125,15 +125,15 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
   };
 
   // Logic for 12 Minerals
-  const minerals = (Object.entries(currentCountry.sector_extraction)
-    .filter(([key]) => key !== 'strength' && typeof currentCountry.sector_extraction[key as keyof typeof currentCountry.sector_extraction] === 'number')
+  const minerals = (Object.entries(currentCountry.sektor_ekstraksi)
+    .filter(([key]) => key !== 'strength' && typeof currentCountry.sektor_ekstraksi[key as keyof typeof currentCountry.sektor_ekstraksi] === 'number')
     .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || 0) as number)])
     .sort((a, b) => (b[1] as number) - (a[1] as number))) as [string, number][];
 
   // Category 2: Sektor Produksi & Ekonomi (Splits into 3 Sub-groups like Produksi Hub)
   const manufakturKeys = ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill", "bottled_water_factory", "sugar_factory", "bakery_factory", "pharma_factory", "fertilizer_factory", "meat_processing_factory", "noodle_factory"];
   
-  const manufakturItems = Object.entries(currentCountry.sector_manufacturing)
+  const manufakturItems = Object.entries(currentCountry.sektor_manufaktur)
     .filter(([key]) => manufakturKeys.includes(key) || manufakturKeys.some(mk => mk.replace('_factory', '') === key))
     .map(([key, val]) => {
       // Find the factory key for delta lookup
@@ -142,19 +142,19 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
     })
     .sort((a, b) => (b[1] as number) - (a[1] as number)) as [string, number][];
 
-  const peternakanItems = Object.entries(currentCountry.sector_livestock)
+  const peternakanItems = Object.entries(currentCountry.sektor_peternakan)
     .filter(([key]) => key !== 'strength')
     .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || 0) as number)])
     .sort((a, b) => (b[1] as number) - (a[1] as number)) as [string, number][];
 
-  const pertanianItems = Object.entries(currentCountry.sector_agriculture)
+  const pertanianItems = Object.entries(currentCountry.sektor_pertanian)
     .filter(([key]) => key !== 'strength')
     .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || buildingDeltas[key + '_field'] || 0) as number)])
     .sort((a, b) => (b[1] as number) - (a[1] as number)) as [string, number][];
 
   const industryAndEconomyLen = manufakturItems.length + peternakanItems.length + pertanianItems.length;
 
-  const [selectedKey, setSelectedKey] = useState<string>(minerals[0]?.[0] || 'gold');
+  const [selectedKey, setSelectedKey] = useState<string>(minerals[0]?.[0] || 'emas');
   const [showMinerals, setShowMinerals] = useState(true);
   const [showIndustry, setShowIndustry] = useState(false);
   const [selectedTimeframe, setSelectedTimeframe] = useState<string>("1w");
@@ -168,15 +168,15 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
   if (!isOpen) return null;
 
   const iconMap: Record<string, any> = {
-    gold: Gem, uranium: Radio, coal: Layers, oil: Droplets, gas: Flame, salt: Waves,
-    nickel: Box, lithium: Battery, copper: Pickaxe, aluminum: Layers, rare_earth: Cpu, iron_ore: Mountain,
-    semiconductor: Cpu, car: Car, motorcycle: Bike, smelter: FlaskConical, concrete_cement: Construction, 
-    wood: TreePine, mineral_water: Droplet, sugar: Cookie, bread: Croissant, pharmacy: Pill, 
-    fertilizer: FlaskConical, meat_processing: Beef, instant_noodle: Soup,
-    chicken: Bird, poultry: Bird, dairy_cow: Milk, beef_cow: Beef, sheep_goat: Leaf,
-    shrimp: Shell, fish: Fish, shellfish: Shell,
-    rice: Sprout, wheat: Utensils, corn: Utensils, tubers: Utensils, soy: Bean, 
-    palm_oil: Droplets, tea: Leaf, coffee: Coffee, cocoa: Apple, sugarcane: Leaf, vegetables: Carrot
+    emas: Gem, uranium: Radio, batu_bara: Layers, minyak_bumi: Droplets, gas_alam: Flame, garam: Waves,
+    nikel: Box, litium: Battery, tembaga: Pickaxe, aluminium: Layers, logam_tanah_jarang: Cpu, bijih_besi: Mountain,
+    semikonduktor: Cpu, mobil: Car, sepeda_motor: Bike, smelter: FlaskConical, semen_beton: Construction, 
+    kayu: TreePine, air_mineral: Droplet, gula: Cookie, roti: Croissant, farmasi: Pill, 
+    pupuk: FlaskConical, pengolahan_daging: Beef, mie_instan: Soup,
+    ayam: Bird, unggas: Bird, sapi_perah: Milk, sapi_potong: Beef, domba_kambing: Leaf,
+    udang: Shell, ikan: Fish, kerang: Shell,
+    beras: Sprout, gandum: Utensils, jagung: Utensils, umbi_umbian: Utensils, kedelai: Bean, 
+    kelapa_sawit: Droplets, teh: Leaf, kopi: Coffee, cokelat: Apple, tebu: Leaf, sayur_sayuran: Carrot
   };
 
 
@@ -195,30 +195,30 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
   const selectedName = labelsMap[selectedKey] || selectedKey.charAt(0).toUpperCase() + selectedKey.slice(1).replace(/_/g, ' ');
   const selectedUnits = selectedItem ? (selectedItem[1] as number) : 0;
   
-  // Dynamic pricing (per unit) - including market factor for the "live" rate
+  // Dynamic pricing (per unit) - including market factor for the "live" tarif
   const marketFactor = 1.0; 
   const exportPriceVal = baseSellPrice * marketFactor;
   const importPriceVal = baseBuyPrice * marketFactor;
 
   const activePartnersList = (managedTrades?.filter((a: any) => 
-    a.type === 'Trade' && 
-    a.partner.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
-    a.partner.toLowerCase() !== currentCountry.name_en.toLowerCase()
+    a.jenis === 'Perdagangan' && 
+    a.mitra.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
+    a.mitra.toLowerCase() !== currentCountry.name_en.toLowerCase()
   ).length > 0 
     ? managedTrades
         .filter((a: any) => 
-          a.type === 'Trade' && 
-          a.partner.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
-          a.partner.toLowerCase() !== currentCountry.name_en.toLowerCase()
+          a.jenis === 'Perdagangan' && 
+          a.mitra.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
+          a.mitra.toLowerCase() !== currentCountry.name_en.toLowerCase()
         )
-        .sort((a: any, b: any) => a.partner.localeCompare(b.partner))
+        .sort((a: any, b: any) => a.mitra.localeCompare(b.mitra))
     : getInitialAgreements(currentCountry.name_en, currentCountry.name_id).length > 0
       ? getInitialAgreements(currentCountry.name_en, currentCountry.name_id)
       : [
-          { partner: "Afrika Selatan", status: "Active" },
-          { partner: "Tiongkok", status: "Active" },
-          { partner: "Uni Emirat Arab", status: "Active" },
-          { partner: "Vietnam", status: "Active" }
+          { mitra: "Afrika Selatan", status: "Aktif" },
+          { mitra: "Tiongkok", status: "Aktif" },
+          { mitra: "Uni Emirat Arab", status: "Aktif" },
+          { mitra: "Vietnam", status: "Aktif" }
         ]
   );
 
@@ -442,14 +442,14 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                       <span className="text-blue-500 font-black">
                         {(() => {
                           const stockKeyMap: Record<string, string> = {
-                            gold: "gold_mine", uranium: "uranium_mine", coal: "coal_mine", oil: "oil_well", gas: "gas_well",
-                            salt: "salt_mine", nickel: "nickel_mine", lithium: "lithium_mine", copper: "copper_mine",
-                            aluminum: "aluminum_mine", rare_earth: "rare_earth_mine", iron_ore: "iron_ore_mine",
-                            chicken: "livestock_poultry", poultry: "livestock_poultry", dairy_cow: "livestock_dairy",
-                            beef_cow: "livestock_beef", sheep_goat: "livestock_sheep", shrimp: "livestock_shrimp",
-                            shellfish: "livestock_shrimp", fish: "livestock_fish", rice: "agri_rice",
-                            wheat: "agri_grains", corn: "agri_grains", vegetables: "agri_veg", tubers: "agri_veg",
-                            soy: "agri_soy", palm_oil: "agri_palm", coffee: "agri_luxury", tea: "agri_luxury", cocoa: "agri_luxury"
+                            emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", minyak_bumi: "oil_well", gas_alam: "gas_well",
+                            garam: "salt_mine", nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine",
+                            aluminium: "aluminum_mine", logam_tanah_jarang: "rare_earth_mine", bijih_besi: "iron_ore_mine",
+                            ayam: "livestock_poultry", unggas: "livestock_poultry", sapi_perah: "livestock_dairy",
+                            sapi_potong: "livestock_beef", domba_kambing: "livestock_sheep", udang: "livestock_shrimp",
+                            kerang: "livestock_shrimp", ikan: "livestock_fish", beras: "agri_rice",
+                            gandum: "agri_grains", jagung: "agri_grains", sayur_sayuran: "agri_veg", umbi_umbian: "agri_veg",
+                            kedelai: "agri_soy", kelapa_sawit: "agri_palm", kopi: "agri_luxury", teh: "agri_luxury", cokelat: "agri_luxury"
                           };
                           const mfgKey = Object.keys(baseKeyMapping).find(k => baseKeyMapping[k] === selectedKey);
                           const stockKey = stockKeyMap[selectedKey] || mfgKey || selectedKey;
@@ -614,16 +614,16 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                             <Globe className="h-5 w-5 text-zinc-500 group-hover:text-blue-400" />
                           </div>
                           <div>
-                            <div className="text-xs font-black text-white uppercase tracking-wider">{agreement.partner}</div>
+                            <div className="text-xs font-black text-white uppercase tracking-wider">{agreement.mitra}</div>
                           </div>
                         </div>
                         <div className="flex flex-col items-end gap-1">
-                          {agreement.status === 'Active' && (
+                          {agreement.status === 'Aktif' && (
                             <span className="px-2 py-1 bg-green-500/10 text-green-500 text-[8px] font-black uppercase tracking-widest rounded-md border border-green-500/20">
                               Terverifikasi
                             </span>
                           )}
-                          {agreement.status === 'Pending' && (
+                          {agreement.status === 'Tertunda' && (
                             <span className="px-2 py-1 bg-yellow-500/10 text-yellow-500 text-[8px] font-black uppercase tracking-widest rounded-md border border-yellow-500/20">
                               Diproses
                             </span>
@@ -633,10 +633,10 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                               Ditolak
                             </span>
                           )}
-                          {agreement.status === 'Active' && (
+                          {agreement.status === 'Aktif' && (
                             <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">1.250 / bln</span>
                           )}
-                          {agreement.status === 'Pending' && agreement.targetDate && (
+                          {agreement.status === 'Tertunda' && agreement.targetDate && (
                             <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">
                               {Math.max(0, Math.ceil((new Date(agreement.targetDate).getTime() - getStoredGameDate().getTime()) / (1000 * 60 * 60 * 24)))} Hari Lagi
                             </span>
@@ -673,7 +673,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
         existingPartners={[
           currentCountry.name_id,
           currentCountry.name_en,
-          ...((managedTrades || []).map((t: any) => t.partner))
+          ...((managedTrades || []).map((t: any) => t.mitra))
         ]}
       />
     </div>

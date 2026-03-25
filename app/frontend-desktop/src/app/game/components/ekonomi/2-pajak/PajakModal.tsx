@@ -17,7 +17,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
   const session = gameStorage.getSession();
   const initialCountry = countries.find((c: CountryData) => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
   
-  // Local state for managed taxes and country budget
+  // Local state for managed pajak and country budget
   const [managedTaxes, setManagedTaxes] = useState<any>(null);
   const [currentBudget, setCurrentBudget] = useState<number>(0);
 
@@ -35,7 +35,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
       if (savedTaxes) {
         setManagedTaxes(savedTaxes);
       } else {
-        setManagedTaxes(JSON.parse(JSON.stringify(initialCountry.taxes)));
+        setManagedTaxes(JSON.parse(JSON.stringify(initialCountry.pajak)));
       }
     }
   }, [initialCountry, isOpen]);
@@ -43,22 +43,22 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
   if (!isOpen || !managedTaxes) return null;
 
   const domesticTaxes = [
-    { label: "Pajak Pertambahan Nilai (PPN)", key: "vat", color: "text-purple-400", accent: "bg-purple-500", info: "Pajak atas konsumsi barang dan jasa. Menaikkan PPN menambah pendapatan besar tapi menurunkan daya beli rakyat secara luas." },
-    { label: "Pajak Korporasi", key: "corporate", color: "text-cyan-400", accent: "bg-cyan-500", info: "Pajak atas keuntungan perusahaan. Tarif tinggi menghambat investasi namun sangat efektif untuk kas negara dari sektor industri." },
-    { label: "Pajak Penghasilan Pribadi", key: "income", color: "text-green-400", accent: "bg-green-500", info: "Pajak langsung dari pendapatan warga. Sangat sensitif bagi popularitas pemerintah; kenaikan kecil berdampak besar pada sentimen." },
-    { label: "Pajak Lingkungan", key: "environment", color: "text-emerald-400", accent: "bg-emerald-500", info: "Dikenakan pada polusi dan limbah. Mendukung target ekologi tapi bisa menaikkan biaya operasional bisnis." },
-    { label: "Pajak yang Lain", key: "other", color: "text-zinc-400", accent: "bg-zinc-500", info: "Pajak administratif dan retribusi lainnya. Dampak ekonomi moderat." }
+    { label: "Pajak Pertambahan Nilai (PPN)", key: "ppn", color: "text-purple-400", accent: "bg-purple-500", info: "Pajak atas konsumsi barang dan jasa. Menaikkan PPN menambah pendapatan besar tapi menurunkan daya beli rakyat secara luas." },
+    { label: "Pajak Korporasi", key: "korporasi", color: "text-cyan-400", accent: "bg-cyan-500", info: "Pajak atas keuntungan perusahaan. Tarif tinggi menghambat investasi namun sangat efektif untuk kas negara dari sektor industri." },
+    { label: "Pajak Penghasilan Pribadi", key: "pendapatan_nasional", color: "text-green-400", accent: "bg-green-500", info: "Pajak langsung dari pendapatan warga. Sangat sensitif bagi popularitas pemerintah; kenaikan kecil berdampak besar pada sentimen." },
+    { label: "Pajak Lingkungan", key: "lingkungan", color: "text-emerald-400", accent: "bg-emerald-500", info: "Dikenakan pada polusi dan limbah. Mendukung target ekologi tapi bisa menaikkan biaya operasional bisnis." },
+    { label: "Pajak yang Lain", key: "lainnya", color: "text-zinc-400", accent: "bg-zinc-500", info: "Pajak administratif dan retribusi lainnya. Dampak ekonomi moderat." }
   ];
 
   const tradeTaxes = [
-    { label: "Bea Cukai (Customs)", key: "customs", color: "text-amber-400", accent: "bg-amber-500", info: "Pajak impor/ekspor barang. Melindungi industri dalam negeri tapi bisa memicu perang tarif dagang." },
-    { label: "Transit (Mitra Dagang)", key: "transit_allied", color: "text-blue-400", accent: "bg-blue-500", info: "Biaya masuk jalur logistik untuk sekutu. Tarif tinggi merusak kepercayaan diplomatik dengan mitra dekat." },
-    { label: "Transit (Non-Mitra)", key: "transit_non_allied", color: "text-rose-400", accent: "bg-rose-500", info: "Biaya lintas untuk negara non-aliansi. Sumber pendapatan strategis tapi sangat berisiko memicu ketegangan geopolitik." }
+    { label: "Bea Cukai (Customs)", key: "bea_cukai", color: "text-amber-400", accent: "bg-amber-500", info: "Pajak impor/ekspor barang. Melindungi industri dalam negeri tapi bisa memicu perang tarif dagang." },
+    { label: "Transit (Mitra Dagang)", key: "transit_sekutu", color: "text-blue-400", accent: "bg-blue-500", info: "Biaya masuk jalur logistik untuk sekutu. Tarif tinggi merusak kepercayaan diplomatik dengan mitra dekat." },
+    { label: "Transit (Non-Mitra)", key: "transit_non_sekutu", color: "text-rose-400", accent: "bg-rose-500", info: "Biaya lintas untuk negara non-aliansi. Sumber pendapatan strategis tapi sangat berisiko memicu ketegangan geopolitik." }
   ];
 
   const handleRateChange = (key: string, newRate: number) => {
-    const oldData = (initialCountry.taxes as any)[key];
-    const baseRevenue = oldData.revenue / (oldData.rate || 1);
+    const oldData = (initialCountry.pajak as any)[key];
+    const baseRevenue = oldData.pendapatan / (oldData.tarif || 1);
     const newRevenue = Math.floor(baseRevenue * newRate);
     
     // Satisfaction/Diplomacy impact
@@ -66,19 +66,19 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
     const impactMultiplier = isTradeTax ? 2.0 : 1.5; 
     
     let specializedImpact = 0;
-    if (key === 'transit_allied' && newRate > 10) specializedImpact = (newRate - 10) * 1.5;
-    if (key === 'transit_non_allied' && newRate > 25) specializedImpact = (newRate - 25) * 1.0;
+    if (key === 'transit_sekutu' && newRate > 10) specializedImpact = (newRate - 10) * 1.5;
+    if (key === 'transit_non_sekutu' && newRate > 25) specializedImpact = (newRate - 25) * 1.0;
 
-    const totalImpact = ((newRate - oldData.rate) * impactMultiplier) + specializedImpact;
-    const newSatisfaction = Math.max(0, Math.min(100, Math.floor(oldData.satisfaction - totalImpact)));
+    const totalImpact = ((newRate - oldData.tarif) * impactMultiplier) + specializedImpact;
+    const newSatisfaction = Math.max(0, Math.min(100, Math.floor(oldData.kepuasan - totalImpact)));
 
     setManagedTaxes((prev: any) => ({
       ...prev,
       [key]: {
         ...prev[key],
-        rate: newRate,
-        revenue: newRevenue,
-        satisfaction: newSatisfaction
+        tarif: newRate,
+        pendapatan: newRevenue,
+        kepuasan: newSatisfaction
       }
     }));
   };
@@ -99,16 +99,16 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
   };
 
   const allTaxItems = [...domesticTaxes, ...tradeTaxes];
-  const totalRevenue = allTaxItems.reduce((acc, item) => acc + (managedTaxes[item.key]?.revenue || 0), 0);
-  const initialTaxes = taxStorage.getTaxes(initialCountry.name_en) || initialCountry.taxes;
-  const activeTotalRevenue = allTaxItems.reduce((acc, item) => acc + ((initialTaxes as any)[item.key]?.revenue || 0), 0);
+  const totalRevenue = allTaxItems.reduce((acc, item) => acc + (managedTaxes[item.key]?.pendapatan || 0), 0);
+  const initialTaxes = taxStorage.getTaxes(initialCountry.name_en) || initialCountry.pajak;
+  const activeTotalRevenue = allTaxItems.reduce((acc, item) => acc + ((initialTaxes as any)[item.key]?.pendapatan || 0), 0);
   const revenueDelta = totalRevenue - activeTotalRevenue;
   const revenueDeltaDaily = revenueDelta / 365;
   const newDailyTax = totalRevenue / 365;
   const projectedBudget = currentBudget + revenueDelta;
 
   // H-Index Integration (Domestic Taxes Only)
-  const avgDomesticSat = domesticTaxes.reduce((sum, item) => sum + (managedTaxes[item.key]?.satisfaction ?? 50), 0) / domesticTaxes.length;
+  const avgDomesticSat = domesticTaxes.reduce((sum, item) => sum + (managedTaxes[item.key]?.kepuasan ?? 50), 0) / domesticTaxes.length;
   const taxImpact = avgDomesticSat >= 50 
     ? ((avgDomesticSat - 50) / 50) * 5 
     : ((avgDomesticSat - 50) / 50) * 10;
@@ -143,9 +143,9 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
             <h3 className="text-sm font-black text-white leading-tight uppercase tracking-tight">{item.label}</h3>
           </div>
           <div className={`${item.accent}/10 ${item.color} text-[10px] font-black px-2.5 py-1.5 rounded-xl border border-white/5 shadow-inner flex items-center gap-2 tracking-tighter`}>
-            <span>{data.rate}%</span>
+            <span>{data.tarif}%</span>
             <span className="opacity-30">|</span>
-            <span className="text-white">+{data.revenue?.toLocaleString('id-ID')}</span>
+            <span className="text-white">+{data.pendapatan?.toLocaleString('id-ID')}</span>
           </div>
         </div>
 
@@ -160,9 +160,9 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
           <div className="flex flex-col gap-2">
             <div className="flex justify-between text-[10px] font-bold uppercase tracking-tighter">
               <span className="text-zinc-500">Penyesuaian Tarif</span>
-              <span className="text-white font-black">{data.rate}%</span>
+              <span className="text-white font-black">{data.tarif}%</span>
             </div>
-            <input type="range" min="0" max="100" value={data.rate} onChange={(e) => handleRateChange(item.key, parseInt(e.target.value))}
+            <input type="range" min="0" max="100" value={data.tarif} onChange={(e) => handleRateChange(item.key, parseInt(e.target.value))}
               className={`w-full h-1.5 bg-zinc-800 rounded-full appearance-none cursor-pointer accent-green-500 hover:accent-green-400 transition-all ${isTrade ? 'accent-amber-500 hover:accent-amber-400' : ''}`}
             />
           </div>
@@ -171,20 +171,20 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
                 <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-tighter">Penerimaan</span>
                 <div className="flex items-center gap-2">
                   <Coins size={14} className="text-yellow-500" />
-                  <span className="text-xs font-black text-white">{data.revenue?.toLocaleString('id-ID')}</span>
+                  <span className="text-xs font-black text-white">{data.pendapatan?.toLocaleString('id-ID')}</span>
                 </div>
              </div>
              <div className="flex flex-col gap-1 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-900 items-end">
                 <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-tighter text-right">{isTrade ? 'Hubungan Negara' : 'Sentimen Publik'}</span>
                 <div className="flex items-center gap-2">
-                  {getSatisfactionIcon(data.satisfaction, isTrade)}
-                  <span className={`text-xs font-black ${isTrade ? 'text-amber-400/80' : 'text-zinc-300'}`}>{data.satisfaction}%</span>
+                  {getSatisfactionIcon(data.kepuasan, isTrade)}
+                  <span className={`text-xs font-black ${isTrade ? 'text-amber-400/80' : 'text-zinc-300'}`}>{data.kepuasan}%</span>
                 </div>
              </div>
           </div>
         </div>
         <div className="h-1 w-full bg-zinc-800/50 rounded-full overflow-hidden relative z-10">
-          <div className="h-full transition-all duration-300 bg-green-500" style={{ width: `${data.satisfaction}%` }} />
+          <div className="h-full transition-all duration-300 bg-green-500" style={{ width: `${data.kepuasan}%` }} />
         </div>
       </div>
     );

@@ -1,15 +1,15 @@
 export const surinameAgreements = [
 
-      { "partner": "India", "type": "Trade", "status": "Active" },
-      { "partner": "Kolombia", "type": "Trade", "status": "Active" },
-      { "partner": "Korea Selatan", "type": "Trade", "status": "Active" },
-      { "partner": "Venezuela", "type": "Trade", "status": "Active" },
-      { "partner": "Uni Eropa", "type": "Trade", "status": "Active" },
-      { "partner": "Peru", "type": "Trade", "status": "Active" },
-      { "partner": "Chile", "type": "Trade", "status": "Active" },
-      { "partner": "Jerman", "type": "Trade", "status": "Active" },
-      { "partner": "China", "type": "Trade", "status": "Active" },
-      { "partner": "Amerika Serikat", "type": "Trade", "status": "Active" },
-      { "partner": "Uni Emirat Arab", "type": "Trade", "status": "Active" }
+      { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Kolombia", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Venezuela", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Peru", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Chile", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" }
     
 ];

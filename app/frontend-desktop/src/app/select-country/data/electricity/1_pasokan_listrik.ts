@@ -1,7 +1,7 @@
 import { CountryData } from "../types";
 
 export const KAPASITAS_LISTRIK_METADATA = {
-  solar_plant: {
+  pembangkit_surya: {
     no: 1,
     production: 20,
     unit: "MW",
@@ -9,7 +9,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     maintenanceCost: 2,
     buildTime: 30
   },
-  wind_plant: {
+  pembangkit_angin: {
     no: 2,
     production: 10,
     unit: "MW",
@@ -17,7 +17,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     maintenanceCost: 3,
     buildTime: 45
   },
-  hydro_plant: {
+  pembangkit_air: {
     no: 3,
     production: 100,
     unit: "MW",
@@ -25,7 +25,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     maintenanceCost: 15,
     buildTime: 180
   },
-  nuclear_plant: {
+  pembangkit_nuklir: {
     no: 4,
     production: 1000,
     unit: "MW",
@@ -33,7 +33,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     maintenanceCost: 80,
     buildTime: 365
   },
-  thermal_plant: {
+  pembangkit_termal: {
     no: 5,
     production: 500,
     unit: "MW",
@@ -41,7 +41,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     maintenanceCost: 40,
     buildTime: 120
   },
-  gas_plant: {
+  pembangkit_gas: {
     no: 6,
     production: 300,
     unit: "MW",
@@ -55,17 +55,17 @@ export const KAPASITAS_LISTRIK = Object.fromEntries(
   Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]) => [key, val.production])
 ) as Record<keyof typeof KAPASITAS_LISTRIK_METADATA, number>;
 
-export function hitungTotalKapasitas(electricity: CountryData["sector_electricity"]) {
+export function hitungTotalKapasitas(electricity: CountryData["sektor_listrik"]) {
   return (
-    (electricity.nuclear_plant ?? 0) * KAPASITAS_LISTRIK.nuclear_plant +
-    (electricity.hydro_plant ?? 0) * KAPASITAS_LISTRIK.hydro_plant +
-    (electricity.solar_plant ?? 0) * KAPASITAS_LISTRIK.solar_plant +
-    (electricity.thermal_plant ?? 0) * KAPASITAS_LISTRIK.thermal_plant +
-    (electricity.gas_plant ?? 0) * KAPASITAS_LISTRIK.gas_plant +
-    (electricity.wind_plant ?? 0) * KAPASITAS_LISTRIK.wind_plant
+    (electricity.pembangkit_nuklir ?? 0) * KAPASITAS_LISTRIK.pembangkit_nuklir +
+    (electricity.pembangkit_air ?? 0) * KAPASITAS_LISTRIK.pembangkit_air +
+    (electricity.pembangkit_surya ?? 0) * KAPASITAS_LISTRIK.pembangkit_surya +
+    (electricity.pembangkit_termal ?? 0) * KAPASITAS_LISTRIK.pembangkit_termal +
+    (electricity.pembangkit_gas ?? 0) * KAPASITAS_LISTRIK.pembangkit_gas +
+    (electricity.pembangkit_angin ?? 0) * KAPASITAS_LISTRIK.pembangkit_angin
   );
 }
 
-export function hitungOutputPLTN(electricity: CountryData["sector_electricity"]) {
-  return (electricity.nuclear_plant ?? 0) * KAPASITAS_LISTRIK.nuclear_plant;
+export function hitungOutputPLTN(electricity: CountryData["sektor_listrik"]) {
+  return (electricity.pembangkit_nuklir ?? 0) * KAPASITAS_LISTRIK.pembangkit_nuklir;
 }

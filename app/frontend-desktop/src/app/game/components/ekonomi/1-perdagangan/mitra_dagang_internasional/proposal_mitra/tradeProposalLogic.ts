@@ -1,4 +1,4 @@
-import { CountryData } from "../../../../../select-country/data/types";
+import { CountryData } from "@/app/select-country/data/types";
 
 export const BASE_CHANCE = 40;
 export const SAME_IDEOLOGY_BONUS = 30;

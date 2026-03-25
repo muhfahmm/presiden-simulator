@@ -49,9 +49,9 @@ export const populationStorage = {
       const countryName = session.country || "Indonesia";
       const countryData = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
       
-      const basePop = typeof countryData.pop === 'string' 
-        ? parseInt(countryData.pop.replace(/\./g, '')) 
-        : (typeof countryData.pop === 'number' ? countryData.pop : 0);
+      const basePop = typeof countryData.jumlah_penduduk === 'string' 
+        ? parseInt(countryData.jumlah_penduduk.replace(/\./g, '')) 
+        : (typeof countryData.jumlah_penduduk === 'number' ? countryData.jumlah_penduduk : 0);
 
       const initialData: PopulationData = {
         population: basePop,
@@ -76,9 +76,9 @@ export const populationStorage = {
 
   // Helper dedicated to fetching from country file data
   getDataFromCountry: (countryData: any): PopulationData => {
-    const basePop = typeof countryData.pop === 'string' 
-      ? parseInt(countryData.pop.replace(/\./g, '')) 
-      : (typeof countryData.pop === 'number' ? countryData.pop : 0);
+    const basePop = typeof countryData.jumlah_penduduk === 'string' 
+      ? parseInt(countryData.jumlah_penduduk.replace(/\./g, '')) 
+      : (typeof countryData.jumlah_penduduk === 'number' ? countryData.jumlah_penduduk : 0);
 
     const initialData: PopulationData = {
       population: basePop,

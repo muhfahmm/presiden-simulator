@@ -114,28 +114,28 @@ export const happinessStorage = {
     
     const priceData = priceStorage.getData();
     const avgPriceMultiplier = (
-      (priceData.priceRice / BASE_PRICES.priceRice) + 
-      (priceData.priceBeef / BASE_PRICES.priceBeef) + 
-      (priceData.priceChicken / BASE_PRICES.priceChicken) +
-      (priceData.priceOil / BASE_PRICES.priceOil) + 
-      (priceData.priceSugar / BASE_PRICES.priceSugar) + 
-      (priceData.priceEgg / BASE_PRICES.priceEgg) +
-      (priceData.priceFuel / BASE_PRICES.priceFuel) + 
-      (priceData.priceElectric / BASE_PRICES.priceElectric) + 
-      (priceData.priceWater / BASE_PRICES.priceWater) +
-      (priceData.priceMedicine / BASE_PRICES.priceMedicine) + 
-      (priceData.priceEducation / BASE_PRICES.priceEducation)
+      (priceData.harga_beras / BASE_PRICES.harga_beras) + 
+      (priceData.harga_daging_sapi / BASE_PRICES.harga_daging_sapi) + 
+      (priceData.harga_ayam / BASE_PRICES.harga_ayam) +
+      (priceData.harga_minyak_goreng / BASE_PRICES.harga_minyak_goreng) + 
+      (priceData.harga_gula / BASE_PRICES.harga_gula) + 
+      (priceData.harga_telur / BASE_PRICES.harga_telur) +
+      (priceData.harga_bbm / BASE_PRICES.harga_bbm) + 
+      (priceData.harga_listrik / BASE_PRICES.harga_listrik) + 
+      (priceData.harga_air / BASE_PRICES.harga_air) +
+      (priceData.harga_obat / BASE_PRICES.harga_obat) + 
+      (priceData.harga_pendidikan / BASE_PRICES.harga_pendidikan)
     ) / 11;
     const priceImpact = Number(((1.0 - avgPriceMultiplier) * 15).toFixed(1));
 
     // Tax Impact
-    const taxData = taxStorage.getTaxes(country.name_en) || country.taxes;
-    const domesticTaxes = ["vat", "corporate", "income", "environment", "other"];
+    const taxData = taxStorage.getTaxes(country.name_en) || country.pajak;
+    const domesticTaxes = ["ppn", "korporasi", "pendapatan_nasional", "lingkungan", "lainnya"];
     let totalTaxSat = 0;
     domesticTaxes.forEach(key => {
        const currentTax = (taxData as any)[key];
-       const baseTax = (country.taxes as any)[key];
-       totalTaxSat += currentTax?.satisfaction ?? baseTax?.satisfaction ?? 50;
+       const baseTax = (country.pajak as any)[key];
+       totalTaxSat += currentTax?.kepuasan ?? baseTax?.kepuasan ?? 50;
     });
     const avgTaxSat = totalTaxSat / domesticTaxes.length;
     const taxImpact = Number((avgTaxSat >= 50 

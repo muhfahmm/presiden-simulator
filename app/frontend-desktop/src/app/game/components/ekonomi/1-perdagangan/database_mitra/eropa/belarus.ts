@@ -1,16 +1,16 @@
 export const belarusAgreements = [
 
-      { "partner": "Belanda", "type": "Trade", "status": "Active" },
-      { "partner": "Spanyol", "type": "Trade", "status": "Active" },
-      { "partner": "Amerika Serikat", "type": "Trade", "status": "Active" },
-      { "partner": "Korea Selatan", "type": "Trade", "status": "Active" },
-      { "partner": "Jerman", "type": "Trade", "status": "Active" },
-      { "partner": "Swiss", "type": "Trade", "status": "Active" },
-      { "partner": "China", "type": "Trade", "status": "Active" },
-      { "partner": "India", "type": "Trade", "status": "Active" },
-      { "partner": "Uni Emirat Arab", "type": "Trade", "status": "Active" },
-      { "partner": "Jepang", "type": "Trade", "status": "Active" },
-      { "partner": "Prancis", "type": "Trade", "status": "Active" },
-      { "partner": "Turki", "type": "Trade", "status": "Active" }
+      { "mitra": "Belanda", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Spanyol", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Swiss", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Turki", "type": "Perdagangan", "status": "Aktif" }
     
 ];

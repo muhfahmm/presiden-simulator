@@ -10,7 +10,7 @@ export function calculateDailyProductionTotals(countryData: CountryData, buildin
 
   // 1. Ekstraksi & Energi
   Object.entries(mineralKritisRate).forEach(([key, val]: [string, any]) => {
-    const baseCount = (countryData.sector_extraction[val.dataKey as keyof typeof countryData.sector_extraction] || 0);
+    const baseCount = (countryData.sektor_ekstraksi[val.dataKey as keyof typeof countryData.sektor_ekstraksi] || 0);
     const totalCount = Number(baseCount) + (Number(buildingDeltas[key]) || 0);
     deltas[key] = totalCount * Math.floor(val.production || 0);
   });
@@ -19,23 +19,23 @@ export function calculateDailyProductionTotals(countryData: CountryData, buildin
   Object.entries(produkIndustriRate).forEach(([key, val]: [string, any]) => {
     // Robust mapping similar to ProduksiModal
     const baseKeyMapping: Record<string, string> = {
-      "electronics_factory": "semiconductor",
-      "car_factory": "car",
-      "motorcycle_factory": "motorcycle",
-      "cement_factory": "concrete_cement",
+      "electronics_factory": "semikonduktor",
+      "car_factory": "mobil",
+      "motorcycle_factory": "sepeda_motor",
+      "cement_factory": "semen_beton",
       "smelter": "smelter",
-      "bottled_water_factory": "mineral_water",
-      "sugar_factory": "sugar",
-      "pharma_factory": "pharmacy",
-      "noodle_factory": "instant_noodle",
-      "meat_processing_factory": "meat_processing",
-      "sawmill": "wood",
-      "fertilizer_factory": "fertilizer",
-      "bakery_factory": "bread"
+      "bottled_water_factory": "air_mineral",
+      "sugar_factory": "gula",
+      "pharma_factory": "farmasi",
+      "noodle_factory": "mie_instan",
+      "meat_processing_factory": "pengolahan_daging",
+      "sawmill": "kayu",
+      "fertilizer_factory": "pupuk",
+      "bakery_factory": "roti"
     };
     const baseKey = baseKeyMapping[key] || key.replace('_factory', '');
-    const baseCount = (countryData.sector_manufacturing && typeof (countryData.sector_manufacturing as any)[baseKey] === 'number')
-      ? (countryData.sector_manufacturing as any)[baseKey]
+    const baseCount = (countryData.sektor_manufaktur && typeof (countryData.sektor_manufaktur as any)[baseKey] === 'number')
+      ? (countryData.sektor_manufaktur as any)[baseKey]
       : 0;
     const totalCount = baseCount + (Number(buildingDeltas[key]) || 0);
     deltas[key] = totalCount * Math.floor(val.production || 0);
@@ -43,18 +43,18 @@ export function calculateDailyProductionTotals(countryData: CountryData, buildin
 
   // 3. Pangan & Komoditas (Grouped for UI Alignment)
   const panganGroups = [
-    { key: "livestock_poultry", base: ["chicken", "poultry"], deltas: ["poultry_farm", "egg_farm"], sector: "sector_livestock" },
-    { key: "livestock_dairy", base: ["dairy_cow"], deltas: ["dairy_farm"], sector: "sector_livestock" },
-    { key: "livestock_beef", base: ["beef_cow"], deltas: ["cattle_farm"], sector: "sector_livestock" },
-    { key: "livestock_sheep", base: ["sheep_goat"], deltas: ["sheep_farm"], sector: "sector_livestock" },
-    { key: "livestock_shrimp", base: ["shrimp", "shellfish"], deltas: ["shrimp_farm"], sector: "sector_livestock" },
-    { key: "livestock_fish", base: ["fish"], deltas: ["freshwater_fish_farm"], sector: "sector_livestock" },
-    { key: "agri_rice", base: ["rice"], deltas: ["paddy_field"], sector: "sector_agriculture" },
-    { key: "agri_grains", base: ["wheat", "corn"], deltas: ["wheat_field", "corn_field"], sector: "sector_agriculture" },
-    { key: "agri_veg", base: ["vegetables", "tubers"], deltas: ["vegetable_farm", "tuber_field"], sector: "sector_agriculture" },
-    { key: "agri_soy", base: ["soy"], deltas: ["soybean_field"], sector: "sector_agriculture" },
-    { key: "agri_palm", base: ["palm_oil"], deltas: ["palm_oil_plantation"], sector: "sector_agriculture" },
-    { key: "agri_luxury", base: ["coffee", "tea", "cocoa"], deltas: ["coffee_plantation", "tea_plantation", "cocoa_plantation"], sector: "sector_agriculture" },
+    { key: "livestock_poultry", base: ["ayam", "unggas"], deltas: ["poultry_farm", "egg_farm"], sector: "sektor_peternakan" },
+    { key: "livestock_dairy", base: ["sapi_perah"], deltas: ["dairy_farm"], sector: "sektor_peternakan" },
+    { key: "livestock_beef", base: ["sapi_potong"], deltas: ["cattle_farm"], sector: "sektor_peternakan" },
+    { key: "livestock_sheep", base: ["domba_kambing"], deltas: ["sheep_farm"], sector: "sektor_peternakan" },
+    { key: "livestock_shrimp", base: ["udang", "kerang"], deltas: ["shrimp_farm"], sector: "sektor_peternakan" },
+    { key: "livestock_fish", base: ["ikan"], deltas: ["freshwater_fish_farm"], sector: "sektor_peternakan" },
+    { key: "agri_rice", base: ["beras"], deltas: ["paddy_field"], sector: "sektor_pertanian" },
+    { key: "agri_grains", base: ["gandum", "jagung"], deltas: ["wheat_field", "corn_field"], sector: "sektor_pertanian" },
+    { key: "agri_veg", base: ["sayur_sayuran", "umbi_umbian"], deltas: ["vegetable_farm", "tuber_field"], sector: "sektor_pertanian" },
+    { key: "agri_soy", base: ["kedelai"], deltas: ["soybean_field"], sector: "sektor_pertanian" },
+    { key: "agri_palm", base: ["kelapa_sawit"], deltas: ["palm_oil_plantation"], sector: "sektor_pertanian" },
+    { key: "agri_luxury", base: ["kopi", "teh", "cokelat"], deltas: ["coffee_plantation", "tea_plantation", "cocoa_plantation"], sector: "sektor_pertanian" },
   ];
 
   panganGroups.forEach(group => {
@@ -66,7 +66,7 @@ export function calculateDailyProductionTotals(countryData: CountryData, buildin
     let deltaCount = 0;
     group.deltas.forEach(d => deltaCount += (Number(buildingDeltas[d]) || 0));
     
-    // For these grouped items, rate is effectively 1 per count in the UI
+    // For these grouped items, tarif is effectively 1 per count in the UI
     deltas[group.key] = baseCount + deltaCount;
   });
 

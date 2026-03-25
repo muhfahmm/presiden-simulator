@@ -1,16 +1,16 @@
 export const selandia_baruAgreements = [
 
-      { "partner": "Uni Emirat Arab", "type": "Trade", "status": "Active" },
-      { "partner": "China", "type": "Trade", "status": "Active" },
-      { "partner": "Jepang", "type": "Trade", "status": "Active" },
-      { "partner": "India", "type": "Trade", "status": "Active" },
-      { "partner": "Fiji", "type": "Trade", "status": "Active" },
-      { "partner": "Inggris", "type": "Trade", "status": "Active" },
-      { "partner": "Prancis", "type": "Trade", "status": "Active" },
-      { "partner": "Australia", "type": "Trade", "status": "Active" },
-      { "partner": "Uni Eropa", "type": "Trade", "status": "Active" },
-      { "partner": "Amerika Serikat", "type": "Trade", "status": "Active" },
-      { "partner": "Korea Selatan", "type": "Trade", "status": "Active" },
-      { "partner": "Singapura", "type": "Trade", "status": "Active" }
+      { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Fiji", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Australia", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
+      { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" }
     
 ];

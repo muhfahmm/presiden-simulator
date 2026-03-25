@@ -35,13 +35,13 @@ export default function MineralsModal({ isOpen, onClose }: MineralsModalProps) {
   const buildingDeltas = buildingStorage.getBuildingDeltas();
 
   const minerals = Object.entries(mineralKritisRate).map(([key, val]) => {
-    const initialCount = (currentData.sector_extraction[val.dataKey as keyof typeof currentData.sector_extraction] || 0) as number;
+    const initialCount = (currentData.sektor_ekstraksi[val.dataKey as keyof typeof currentData.sektor_ekstraksi] || 0) as number;
     const extraCount = (buildingDeltas[key] || 0) as number;
     const totalCount = initialCount + extraCount;
     const totalProduction = totalCount * val.production;
 
     // Icon mapping
-    const Icon = key.includes("uranium") ? Radiation : (key.includes("oil") ? Droplets : (key.includes("gas") ? Flame : (key.includes("gold") ? Coins : Pickaxe)));
+    const Icon = key.includes("uranium") ? Radiation : (key.includes("minyak_bumi") ? Droplets : (key.includes("gas_alam") ? Flame : (key.includes("emas") ? Coins : Pickaxe)));
     
     // Color mapping based on label
     let color = "text-teal-400";

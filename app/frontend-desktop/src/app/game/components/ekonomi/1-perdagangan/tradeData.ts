@@ -1,65 +1,65 @@
 // SEPARATE PRICE MAPS (1-1,000,000 scale - Integers only)
 export const buyPriceMap: Record<string, number> = {
   // Minerals
-  "gold": 2580, "uranium": 110, "coal": 150, "oil": 95,
-  "gas": 300, "salt": 200, "nickel": 20600, "lithium": 16200,
-  "copper": 10600, "aluminum": 2940, "rare_earth": 768, "iron_ore": 132,
+  "emas": 2580, "uranium": 110, "batu_bara": 150, "minyak_bumi": 95,
+  "gas_alam": 300, "garam": 200, "nikel": 20600, "litium": 16200,
+  "tembaga": 10600, "aluminium": 2940, "logam_tanah_jarang": 768, "bijih_besi": 132,
   // Industry & Others
-  "semiconductor": 1020, "car": 54000, "motorcycle": 4200, "smelter": 144000,
-  "concrete_cement": 150, "wood": 102, "mineral_water": 80, "sugar": 250,
-  "bread": 180, "pharmacy": 65, "fertilizer": 35, "meat_processing": 18,
-  "instant_noodle": 50, "chicken": 650, "poultry": 850, "dairy_cow": 2100,
-  "beef_cow": 3200, "sheep_goat": 450, "shrimp": 180, "fish": 65,
-  "shellfish": 125, "rice": 210, "wheat": 180, "corn": 120, "tubers": 90,
-  "soy": 210, "palm_oil": 350, "tea": 650, "coffee": 1250, "cocoa": 950,
-  "sugarcane": 180, "vegetables": 150
+  "semikonduktor": 1020, "mobil": 54000, "sepeda_motor": 4200, "smelter": 144000,
+  "semen_beton": 150, "kayu": 102, "air_mineral": 80, "gula": 250,
+  "roti": 180, "farmasi": 65, "pupuk": 35, "pengolahan_daging": 18,
+  "mie_instan": 50, "ayam": 650, "unggas": 850, "sapi_perah": 2100,
+  "sapi_potong": 3200, "domba_kambing": 450, "udang": 180, "ikan": 65,
+  "kerang": 125, "beras": 210, "gandum": 180, "jagung": 120, "umbi_umbian": 90,
+  "kedelai": 210, "kelapa_sawit": 350, "teh": 650, "kopi": 1250, "cokelat": 950,
+  "tebu": 180, "sayur_sayuran": 150
 };
 
 export const sellPriceMap: Record<string, number> = {
   // Minerals
-  "gold": 2150, "uranium": 92, "coal": 125, "oil": 78,
-  "gas": 245, "salt": 150, "nickel": 17200, "lithium": 13500,
-  "copper": 8900, "aluminum": 2450, "rare_earth": 640, "iron_ore": 110,
+  "emas": 2150, "uranium": 92, "batu_bara": 125, "minyak_bumi": 78,
+  "gas_alam": 245, "garam": 150, "nikel": 17200, "litium": 13500,
+  "tembaga": 8900, "aluminium": 2450, "logam_tanah_jarang": 640, "bijih_besi": 110,
   // Industry & Others
-  "semiconductor": 850, "car": 45000, "motorcycle": 3500, "smelter": 120000,
-  "concrete_cement": 125, "wood": 85, "mineral_water": 50, "sugar": 180,
-  "bread": 120, "pharmacy": 45, "fertilizer": 25, "meat_processing": 12,
-  "instant_noodle": 35, "chicken": 450, "poultry": 550, "dairy_cow": 1800,
-  "beef_cow": 2500, "sheep_goat": 350, "shrimp": 120, "fish": 45,
-  "shellfish": 85, "rice": 140, "wheat": 120, "corn": 80, "tubers": 60,
-  "soy": 150, "palm_oil": 250, "tea": 450, "coffee": 850, "cocoa": 650,
-  "sugarcane": 120, "vegetables": 100
+  "semikonduktor": 850, "mobil": 45000, "sepeda_motor": 3500, "smelter": 120000,
+  "semen_beton": 125, "kayu": 85, "air_mineral": 50, "gula": 180,
+  "roti": 120, "farmasi": 45, "pupuk": 25, "pengolahan_daging": 12,
+  "mie_instan": 35, "ayam": 450, "unggas": 550, "sapi_perah": 1800,
+  "sapi_potong": 2500, "domba_kambing": 350, "udang": 120, "ikan": 45,
+  "kerang": 85, "beras": 140, "gandum": 120, "jagung": 80, "umbi_umbian": 60,
+  "kedelai": 150, "kelapa_sawit": 250, "teh": 450, "kopi": 850, "cokelat": 650,
+  "tebu": 120, "sayur_sayuran": 100
 };
 
 export const labelsMap: Record<string, string> = {
-  gold: "Emas", uranium: "Uranium", coal: "Batu Bara", oil: "Minyak Bumi", gas: "Gas Alam", 
-  salt: "Garam", nickel: "Nikel", lithium: "Litium", copper: "Tembaga", aluminum: "Aluminium", 
-  rare_earth: "Rare Earth", iron_ore: "Bijih Besi",
-  semiconductor: "Semikonduktor", car: "Mobil", motorcycle: "Sepeda Motor", smelter: "Pengolahan Smelter",
-  concrete_cement: "Beton & Semen", wood: "Kayu", mineral_water: "Air Mineral", sugar: "Gula",
-  bread: "Roti", pharmacy: "Farmasi", fertilizer: "Pupuk", meat_processing: "Pengolahan Daging",
-  instant_noodle: "Mie Instan",
-  chicken: "Ayam", poultry: "Unggas", dairy_cow: "Sapi Perah", beef_cow: "Sapi Potong",
-  sheep_goat: "Domba/Kambing", shrimp: "Udang", fish: "Ikan", shellfish: "Kerang",
-  rice: "Padi", wheat: "Gandum", corn: "Jagung", tubers: "Umbi-umbian", soy: "Kedelai",
-  palm_oil: "Kelapa Sawit", tea: "Teh", coffee: "Kopi", cocoa: "Kakao", sugarcane: "Tebu",
-  vegetables: "Sayur-mayur"
+  emas: "Emas", uranium: "Uranium", batu_bara: "Batu Bara", minyak_bumi: "Minyak Bumi", gas_alam: "Gas Alam", 
+  garam: "Garam", nikel: "Nikel", litium: "Litium", tembaga: "Tembaga", aluminium: "Aluminium", 
+  logam_tanah_jarang: "Rare Earth", bijih_besi: "Bijih Besi",
+  semikonduktor: "Semikonduktor", mobil: "Mobil", sepeda_motor: "Sepeda Motor", smelter: "Pengolahan Smelter",
+  semen_beton: "Beton & Semen", kayu: "Kayu", air_mineral: "Air Mineral", gula: "Gula",
+  roti: "Roti", farmasi: "Farmasi", pupuk: "Pupuk", pengolahan_daging: "Pengolahan Daging",
+  mie_instan: "Mie Instan",
+  ayam: "Ayam", unggas: "Unggas", sapi_perah: "Sapi Perah", sapi_potong: "Sapi Potong",
+  domba_kambing: "Domba/Kambing", udang: "Udang", ikan: "Ikan", kerang: "Kerang",
+  beras: "Padi", gandum: "Gandum", jagung: "Jagung", umbi_umbian: "Umbi-umbian", kedelai: "Kedelai",
+  kelapa_sawit: "Kelapa Sawit", teh: "Teh", kopi: "Kopi", cokelat: "Kakao", tebu: "Tebu",
+  sayur_sayuran: "Sayur-mayur"
 };
 
 export const baseKeyMapping: Record<string, string> = {
-  "electronics_factory": "semiconductor",
-  "car_factory": "car",
-  "motorcycle_factory": "motorcycle",
-  "cement_factory": "concrete_cement",
+  "electronics_factory": "semikonduktor",
+  "car_factory": "mobil",
+  "motorcycle_factory": "sepeda_motor",
+  "cement_factory": "semen_beton",
   "smelter": "smelter",
-  "bottled_water_factory": "mineral_water",
-  "sugar_factory": "sugar",
-  "pharma_factory": "pharmacy",
-  "noodle_factory": "instant_noodle",
-  "meat_processing_factory": "meat_processing",
-  "sawmill": "wood",
-  "fertilizer_factory": "fertilizer",
-  "bakery_factory": "bread"
+  "bottled_water_factory": "air_mineral",
+  "sugar_factory": "gula",
+  "pharma_factory": "farmasi",
+  "noodle_factory": "mie_instan",
+  "meat_processing_factory": "pengolahan_daging",
+  "sawmill": "kayu",
+  "fertilizer_factory": "pupuk",
+  "bakery_factory": "roti"
 };
 
 // DYNAMIC PRICE GENERATOR

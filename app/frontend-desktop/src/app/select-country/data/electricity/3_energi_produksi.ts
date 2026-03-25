@@ -4,18 +4,18 @@ export const energiProduksiRate = {
     production: 300,
     unit: "MW",
     desc: "Gas Alam (Energi)",
-    income: 0,
-    dataKey: "gas_plant",
+    pendapatan_nasional: 0,
+    dataKey: "pembangkit_gas",
     isInfrastructure: true,
     buildTime: 90
   },
-  power_grid: {
+  jaringan_listrik: {
     no: 14,
     production: 0,
     unit: "static",
     desc: "Jaringan Listrik",
-    income: 0,
-    dataKey: "power_grid",
+    pendapatan_nasional: 0,
+    dataKey: "jaringan_listrik",
     isInfrastructure: true,
     buildTime: 60
   }

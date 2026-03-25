@@ -6,32 +6,32 @@ import { countries } from "../../../../select-country/data/countries";
 const STORAGE_KEY = "em4_price_data_v3";
 
 export interface PriceData {
-  priceRice: number;
-  priceBeef: number;
-  priceChicken: number;
-  priceOil: number;
-  priceSugar: number;
-  priceEgg: number;
-  priceFuel: number;
-  priceElectric: number;
-  priceWater: number;
-  priceMedicine: number;
-  priceEducation: number;
+  harga_beras: number;
+  harga_daging_sapi: number;
+  harga_ayam: number;
+  harga_minyak_goreng: number;
+  harga_gula: number;
+  harga_telur: number;
+  harga_bbm: number;
+  harga_listrik: number;
+  harga_air: number;
+  harga_obat: number;
+  harga_pendidikan: number;
   lastUpdated: number;
 }
 
 export const BASE_PRICES = {
-  priceRice: 16000,
-  priceBeef: 104100,
-  priceChicken: 41000,
-  priceOil: 15400,
-  priceSugar: 14400,
-  priceEgg: 31100,
-  priceFuel: 10700,
-  priceElectric: 1600,
-  priceWater: 5200,
-  priceMedicine: 157900,
-  priceEducation: 483900
+  harga_beras: 16000,
+  harga_daging_sapi: 104100,
+  harga_ayam: 41000,
+  harga_minyak_goreng: 15400,
+  harga_gula: 14400,
+  harga_telur: 31100,
+  harga_bbm: 10700,
+  harga_listrik: 1600,
+  harga_air: 5200,
+  harga_obat: 157900,
+  harga_pendidikan: 483900
 };
 
 export const priceStorage = {
@@ -49,7 +49,7 @@ export const priceStorage = {
     }
 
     const defaultState: PriceData = {
-      ...(countryData?.prices ? countryData.prices : BASE_PRICES),
+      ...(countryData?.harga ? countryData.harga : BASE_PRICES),
       lastUpdated: Date.now()
     };
 
@@ -62,7 +62,7 @@ export const priceStorage = {
     const parsed = JSON.parse(stored);
     
     // Migration: If the old data used decimals (<= 10 for Rice), clear it and use nominal
-    if (parsed.priceRice && parsed.priceRice <= 10) {
+    if (parsed.harga_beras && parsed.harga_beras <= 10) {
        priceStorage.saveData(defaultState);
        return defaultState;
     }
@@ -89,7 +89,7 @@ export const priceStorage = {
     const session = gameStorage.getSession();
     const countryData = countries.find(c => c.name_en === session?.country || c.name_id === session?.country);
     priceStorage.saveData({
-      ...(countryData?.prices ? countryData.prices : BASE_PRICES),
+      ...(countryData?.harga ? countryData.harga : BASE_PRICES),
       lastUpdated: Date.now()
     });
   }

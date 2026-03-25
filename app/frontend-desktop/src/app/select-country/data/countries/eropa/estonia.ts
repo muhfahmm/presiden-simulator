@@ -7,137 +7,143 @@ export const estonia: CountryData = {
   "lon": 26,
   "lat": 59,
   "flag": "🇪🇪",
-  "pop": 1321977,
-  "budget": 389,
-  "income": "1111",
+  "jumlah_penduduk": 1321977,
+  "anggaran": 389,
+  "pendapatan_nasional": "1111",
   "religion": "Protestan",
   "ideology": "Demokrasi",
-
   // =============================================================
-  // 1. ⚡ SEKTOR KELISTRIKAN (7 Jenis)
+  // 1. ⚡ SEKTOR KELISTRIKAN
   // =============================================================
 
-  "sector_electricity": {
-    "nuclear_plant": 32,
-    "hydro_plant": 40,
-    "solar_plant": 2,
-    "thermal_plant": 27,
-    "gas_plant": 8,
-    "wind_plant": 35,
-    "power_grid": 91,
+  "sektor_listrik": {
+    "pembangkit_nuklir": 32,
+    "pembangkit_air": 40,
+    "pembangkit_surya": 2,
+    "pembangkit_termal": 27,
+    "pembangkit_gas": 8,
+    "pembangkit_angin": 35,
+    "jaringan_listrik": 91
   },
-
   // =============================================================
-  // 2. 🏗️ SEKTOR INFRASTRUKTUR (12 Jenis)
+  // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
 
-  "infrastructure": {
-    "bicycle_path": 26,
-    "subway": 32,
-    "railway": 39,
-    "highway": 35,
-    "road_quality": 51,
-    "sea_port": 18,
-    "airport": 14,
-    "bus_terminal": 2,
+  "infrastruktur": {
+    "jalur_sepeda": 26,
+    "kereta_bawah_tanah": 32,
+    "jalur_kereta": 39,
+    "jalan_tol": 35,
+    "kualitas_jalan": 51,
+    "pelabuhan_laut": 18,
+    "bandara": 14,
+    "terminal_bus": 2,
     "helipad": 19,
-    "internet_coverage": 59,
-    "tech_stack": 78,
-    "water_access": 74
+    "cakupan_internet": 59,
+    "indeks_teknologi": 78,
+    "akses_air": 74
   },
-
   // =============================================================
-  // 7. ⛏️ EKSTRAKSI & ENERGI (14 Jenis)
+  // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
-  "sector_extraction": {
-    "gold": 35,
+  "sektor_ekstraksi": {
+    "emas": 35,
     "uranium": 9,
-    "coal": 7,
-    "oil": 13,
-    "gas": 8,
-    "salt": 30,
-    "nickel": 21,
-    "lithium": 15,
-    "aluminum": 33,
-    "copper": 40,
-    "rare_earth": 27,
-    "iron_ore": 14,
-    "strength": 29.660809349923973
+    "batu_bara": 7,
+    "minyak_bumi": 13,
+    "gas_alam": 8,
+    "garam": 30,
+    "nikel": 21,
+    "litium": 15,
+    "aluminium": 33,
+    "tembaga": 40,
+    "logam_tanah_jarang": 27,
+    "bijih_besi": 14,
+    "kekuatan": 29.660809349923973
   },
-
   // =============================================================
-  // 3. 🏭 PENGOLAHAN & MANUFAKTUR (15 Jenis)
+  // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sector_manufacturing": {
-    "semiconductor": 9,
-    "car": 15,
-    "motorcycle": 6,
+  "sektor_manufaktur": {
+    "semikonduktor": 9,
+    "mobil": 15,
+    "sepeda_motor": 6,
     "smelter": 23,
-    "concrete_cement": 18,
-    "wood": 19,
-    "mineral_water": 14,
-    "sugar": 3,
-    "bread": 25,
-    "pharmacy": 12,
-    "fertilizer": 11,
-    "meat_processing": 27,
-    "instant_noodle": 27,
-    "strength": 3.076011687404966
+    "semen_beton": 18,
+    "kayu": 19,
+    "air_mineral": 14,
+    "gula": 3,
+    "roti": 25,
+    "farmasi": 12,
+    "pupuk": 11,
+    "pengolahan_daging": 27,
+    "mie_instan": 27,
+    "kekuatan": 3.076011687404966
   },
-
   // =============================================================
-  // 3. 🐄 PETERNAKAN & PERIKANAN (10 Jenis)
+  // 5. 🐄 PETERNAKAN & PERIKANAN
   // =============================================================
 
-  "sector_livestock": {
-    "chicken": 29,
-    "poultry": 26,
-    "dairy_cow": 34,
-    "beef_cow": 5,
-    "sheep_goat": 28,
-    "shrimp": 14,
-    "fish": 1,
-    "shellfish": 9,
-    "strength": 18.24560701244298
+  "sektor_peternakan": {
+    "ayam": 29,
+    "unggas": 26,
+    "sapi_perah": 34,
+    "sapi_potong": 5,
+    "domba_kambing": 28,
+    "udang": 14,
+    "ikan": 1,
+    "kerang": 9,
+    "kekuatan": 18.24560701244298
   },
-
   // =============================================================
-  // 3. 🌾 PERTANIAN & PERKEBUNAN (13 Jenis)
+  // 6. 🌾 PERTANIAN & PERKEBUNAN
   // =============================================================
 
-  "sector_agriculture": {
-    "rice": 40,
-    "wheat": 38,
-    "corn": 38,
-    "tubers": 34,
-    "soy": 14,
-    "palm_oil": 29,
-    "tea": 19,
-    "coffee": 26,
-    "cocoa": 1,
-    "sugarcane": 34,
-    "vegetables": 23,
-    "strength": 20.660809349923973
+  "sektor_pertanian": {
+    "beras": 40,
+    "gandum": 38,
+    "jagung": 38,
+    "umbi_umbian": 34,
+    "kedelai": 14,
+    "kelapa_sawit": 29,
+    "teh": 19,
+    "kopi": 26,
+    "cokelat": 1,
+    "tebu": 34,
+    "sayur_sayuran": 23,
+    "kekuatan": 20.660809349923973
   },
-
   // =============================================================
-  // 4. 🛡️ PERTAHANAN & KEAMANAN (24 Jenis)
+  // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
 
-  "sector_defense": {
-    "prison": 40,
-    "barracks": 31,
-    "armory": 8,
-    "tank_hangar": 11,
-    "military_academy": 33,
-    "budget": 111,
-    "personnel": 21911,
-    "strength": 16.660809349923973,
-    "military_fleet": {
-      "darat": {
-        "main_battle_tank": 22,
+  "sektor_pertahanan": {
+    "penjara": 40,
+    "gudang_senjata": 8,
+    "hangar_tank": 11,
+    "akademi_militer": 33,
+    "pusat_komando": 33,
+    "pangkalan_udara": 18,
+    "pangkalan_laut": 23,
+    "program_luar_angkasa": 27,
+    "pertahanan_siber": 7,
+    "anggaran_pertahanan": 111,
+    "personel": 21911,
+    "kekuatan": 16.660809349923973
+  },
+  // =============================================================
+  // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
+  // =============================================================
+
+  "sektor_armada": {
+    "barak": 31,
+    "infanteri": 16,
+    "penerjun_payung": 0,
+    "pasukan_khusus": 0,
+    "darat": {
+        "tank_tempur_utama": 22,
         "apc": 13,
         "artileri_berat": 26
       },
@@ -147,87 +153,22 @@ export const estonia: CountryData = {
         "kapal_selam_nuklir": 0
       },
       "udara": {
-        "jet_tempur_stealth": 4,
+        "jet_tempur_siluman": 4,
         "helikopter_serang": 37,
         "pesawat_pengintai": 2
       },
       "total_unit": 5,
-      "readiness": 98
-    }
+      "kesiapan": 98
   },
-
   // =============================================================
-  // 4. 🛰️ STRATEGIS MILITER (19 Jenis)
-  // =============================================================
-
-  "sector_military_strategic": {
-    "command_center": 33,
-    "military_air_base": 18,
-    "military_naval_base": 23,
-    "nuclear_status": false,
-    "space_program": 27,
-    "cyber_defense": 7,
-    "intelligence": 16,
-    "strategic_operations": {
-      "attack_mission": 7,
-      "spy_mission": 19,
-      "sabotage_mission": 8,
-      "territory_management": 1,
-      "nuclear_program": 0
-    },
-    "intel_radar": {
-      "satellite_system": 9,
-      "radar_network": 8,
-      "cyber_ops": 2
-    }
-  },
-
-  // =============================================================
-  // 5. 🏥 SOSIAL & PELAYANAN PUBLIK (52 Jenis)
+  // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  "sector_social": {
-    "education": {
-      "kindergarten": 20,
-      "elementary_school": 1,
-      "middle_school": 8,
-      "high_school": 19,
-      "university": 27,
-      "education_institute": 12,
-      "laboratory": 8,
-      "observatory": 9,
-      "research_center": 13,
-      "development_center": 20,
-      "literacy": 88,
-      "research_index": 0
-    },
-    "health": {
-      "large_hospital": 8,
-      "small_hospital": 18,
-      "diagnostic_center": 10,
-      "hospital_beds": 7708,
-      "life_expectancy": 32,
-      "healthcare_index": 85
-    },
-    "sports": {
-      "swimming_pool": 14,
-      "racing_circuit": 21,
-      "stadium": 20,
-      "international_stadium": 30,
-      "olympic_score": 10,
-      "popularity": 44
-    },
-    "law": {
-      "legal_aid_center": 22,
-      "court": 12,
-      "prosecution_office": 36,
-      "police_station": 22,
-      "police_car_fleet": 2522,
-      "police_academy": 4,
-      "corruption_index": 57,
-      "security_index": 95,
-      "police_fleet": {
-        "patroli_lantas": {
+  "sektor_keamanan": {
+    "intel_radar": { "sistem_satelit": 9,
+      "jaringan_radar": 8,
+      "operasi_siber": 2 },
+    "armada_polisi": { "patroli_lantas": {
           "mobil_patroli": 25,
           "sepeda_motor": 15,
           "unit_k9": 23
@@ -238,176 +179,196 @@ export const estonia: CountryData = {
           "anti_huru_hara": 62
         },
         "pusat_komando": {
-          "stasiun_polisi": 6,
-          "kamera_surveillance": 25,
+          "kantor_polisi": 6,
+          "kamera_pengawas": 25,
           "pusat_forensik": 1
         },
-        "response_time": 17,
-        "public_trust": 50
-      }
-    }
+        "waktu_respon": 17,
+        "kepercayaan_publik": 50 },
+    "intelijen": 16,
+    "status_nuklir": false,
+    "operasi_strategis": { "misi_serangan": 7,
+      "misi_mata_mata": 19,
+      "misi_sabotase": 8,
+      "manajemen_wilayah": 1,
+      "program_nuklir": 0 }
+  },
+  // =============================================================
+  // 10. 🏥 SOSIAL & PELAYANAN PUBLIK
+  // =============================================================
+
+  "sektor_sosial": {
+    "pendidikan": {
+      "tk": 20,
+      "sd": 1,
+      "smp": 8,
+      "sma": 19,
+      "universitas": 27,
+      "lembaga_pendidikan": 12,
+      "laboratorium": 8,
+      "observatorium": 9,
+      "pusat_penelitian": 13,
+      "pusat_pengembangan": 20,
+      "literasi": 88,
+      "indeks_penelitian": 0
+    },
+    "kesehatan": {
+      "rumah_sakit_besar": 8,
+      "rumah_sakit_kecil": 18,
+      "pusat_diagnostik": 10,
+      "tempat_tidur_rs": 7708,
+      "harapan_hidup": 32,
+      "indeks_kesehatan": 85
+    },
+    "olahraga": {
+      "kolam_renang": 14,
+      "sirkuit_balap": 21,
+      "stadion": 20,
+      "stadion_internasional": 30,
+      "skor_olimpiade": 10,
+      "popularitas": 44
+    },
+    "hukum": {
+      "pusat_bantuan_hukum": 22,
+      "pengadilan": 12,
+      "kejaksaan": 36,
+      "pos_polisi": 22,
+      "armada_mobil_polisi": 2522,
+      "akademi_polisi": 4,
+      "indeks_korupsi": 57,
+      "indeks_keamanan": 95
+  }
   },
 
-  // =============================================================
-  // ⚔️ KEKUATAN ARMADA MILITER (10 Jenis)
-  // =============================================================
-
-  "military": {
-    "infantry": 16,
-    "tanks": 12,
-    "aircraft": 34,
-    "naval": 13,
-    "air_base": 5,
-    "naval_base": 32,
-    "military_base": 13,
-    "nuclear": false,
-    "strength": 10
-  },
   "un_vote": "Pro",
-
   // =============================================================
-  // 🚢 PERDAGANGAN INTERNASIONAL (3 Jenis)
-  // =============================================================
-
-  "trade": {
-    "buy_commodity": 18,
-    "sell_commodity": 409
-  },
-
-  // =============================================================
-  // 💰 PAJAK & EKONOMI (19 Jenis)
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
 
-  "taxes": {
-    "vat": {
-      "rate": 15,
-      "satisfaction": 67,
-      "revenue": 16
+  "pajak": {
+    "ppn": {
+      "tarif": 15,
+      "kepuasan": 67,
+      "pendapatan": 16
     },
-    "corporate": {
-      "rate": 40,
-      "satisfaction": 52,
-      "revenue": 23
+    "korporasi": {
+      "tarif": 40,
+      "kepuasan": 52,
+      "pendapatan": 23
     },
-    "income": {
-      "rate": 1,
-      "satisfaction": 61,
-      "revenue": 0
+    "penghasilan": {
+      "tarif": 1,
+      "kepuasan": 61,
+      "pendapatan": 0
     },
-    "customs": {
-      "rate": 10,
-      "satisfaction": 86,
-      "revenue": 10
+    "bea_cukai": {
+      "tarif": 10,
+      "kepuasan": 86,
+      "pendapatan": 10
     },
-    "environment": {
-      "rate": 31,
-      "satisfaction": 88,
-      "revenue": 31
+    "lingkungan": {
+      "tarif": 31,
+      "kepuasan": 88,
+      "pendapatan": 31
     },
-    "transit_allied": { "rate": 5, "satisfaction": 85, "revenue": 2 },
-    "transit_non_allied": { "rate": 15, "satisfaction": 75, "revenue": 6 },
-    "other": {
-      "rate": 22,
-      "satisfaction": 93,
-      "revenue": 19
+    "transit_sekutu": { "tarif": 5, "kepuasan": 85, "pendapatan": 2 },
+    "transit_non_sekutu": { "tarif": 15, "kepuasan": 75, "pendapatan": 6 },
+    "lainnya": {
+      "tarif": 22,
+      "kepuasan": 93,
+      "pendapatan": 19
     }
   },
-
   // =============================================================
-  // 📊 PERMINTAAN & KEBUTUHAN RAKYAT (6 Jenis)
-  // =============================================================
-
-  
-  // =============================================================
-  // 💰 GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
 
-  "salaries": {
-    "salaryAsn": 90,
-    "salaryGuru": 90,
-    "salaryMedis": 100,
-    "salaryMiliter": 80
+  "gaji": {
+    "gaji_asn": 90,
+    "gaji_guru": 90,
+    "gaji_medis": 100,
+    "gaji_militer": 80
   },
-  "subsidies": {
-    "subsidyEnergi": 50,
-    "subsidyPangan": 50,
-    "subsidyKesehatan": 75,
-    "subsidyPendidikan": 75,
-    "subsidyUmkm": 75,
-    "subsidyTransport": 75,
-    "subsidyRumah": 75
+  "subsidi": {
+    "subsidi_energi": 50,
+    "subsidi_pangan": 50,
+    "subsidi_kesehatan": 75,
+    "subsidi_pendidikan": 75,
+    "subsidi_umkm": 75,
+    "subsidi_transportasi": 75,
+    "subsidi_perumahan": 75
   },
-
   // =============================================================
-  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
 
-  "prices": {
-    "priceRice": 8000,
-    "priceBeef": 208200,
-    "priceChicken": 32800,
-    "priceOil": 30800,
-    "priceSugar": 7200,
-    "priceEgg": 62200,
-    "priceFuel": 8560,
-    "priceElectric": 1600,
-    "priceWater": 10400,
-    "priceMedicine": 157900,
-    "priceEducation": 387120
+  "harga": {
+    "harga_beras": 8000,
+    "harga_daging_sapi": 208200,
+    "harga_ayam": 32800,
+    "harga_minyak_goreng": 30800,
+    "harga_gula": 7200,
+    "harga_telur": 62200,
+    "harga_bbm": 8560,
+    "harga_listrik": 1600,
+    "harga_air": 10400,
+    "harga_obat": 157900,
+    "harga_pendidikan": 387120
   },
+  // =============================================================
+  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
+  // =============================================================
 
-  "demand": {
-    "satisfaction": 67,
-    "top_demands": [
+  "permintaan": {
+    "kepuasan": 67,
+    "permintaan_utama": [
       "Bantuan Sembako",
       "Penyediaan Lapangan Kerja"
     ],
-    "residential": 24,
-    "commercial": 18,
-    "industrial": 53
+    "perumahan": 24,
+    "komersial": 18,
+    "industri": 53
   },
-
   // =============================================================
-  // 6. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL (16 Jenis)
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 
-  "geopolitics": {
-    "allies": [
+  "geopolitik": {
+    "sekutu": [
       "Amerika Serikat",
       "Uni Eropa"
     ],
-    "enemies": [],
-    "stance": "Neutral",
-    "international_influence": {
-      "soft_power": 38,
-      "hard_power": 21,
-      "diplomatic_prestige": 57
+    "musuh": [],
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 38,
+      "kekuatan_keras": 21,
+      "prestise_diplomatik": 57
     },
-    "international_orgs": [
+    "organisasi_internasional": [
       {
         "name": "PBB (UN)",
-        "role": "Member"
+        "role": "Anggota"
       },
       {
         "name": "WHO",
-        "role": "Member"
+        "role": "Anggota"
       },
       {
         "name": "WTO",
-        "role": "Member"
+        "role": "Anggota"
       }
-    ],
-    },
-
+    ]
+  },
   // =============================================================
-  // 🏛️ KEMENTERIAN NEGARA (6 Jenis)
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
 
-  "ministries": {
-    "health": 2,
-    "education": 23,
-    "security": 14,
-    "finance": 12,
-    "environment": 60
+  "kementerian": {
+    "kesehatan": 2,
+    "pendidikan": 23,
+    "keamanan": 14,
+    "keuangan": 12,
+    "lingkungan": 60
   }
 };

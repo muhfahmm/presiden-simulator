@@ -46,17 +46,17 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
 
       try {
          if (sector === "produksi") {
-            const m = c.sector_manufacturing as any;
-            const a = c.sector_agriculture as any;
-            const l = c.sector_livestock as any;
+            const m = c.sektor_manufaktur as any;
+            const a = c.sektor_pertanian as any;
+            const l = c.sektor_peternakan as any;
 
             // Manufaktur mapping
             const manufacturingMap: Record<string, string> = {
-               electronics_factory: "semiconductor", car_factory: "car", motorcycle_factory: "motorcycle",
-               cement_factory: "concrete_cement", smelter: "smelter", bottled_water_factory: "mineral_water",
-               pharma_factory: "pharmacy", sugar_factory: "sugar", noodle_factory: "instant_noodle",
-               meat_processing_factory: "meat_processing", sawmill: "wood", fertilizer_factory: "fertilizer",
-               bakery_factory: "bread"
+               electronics_factory: "semikonduktor", car_factory: "mobil", motorcycle_factory: "sepeda_motor",
+               cement_factory: "semen_beton", smelter: "smelter", bottled_water_factory: "air_mineral",
+               pharma_factory: "farmasi", sugar_factory: "gula", noodle_factory: "mie_instan",
+               meat_processing_factory: "pengolahan_daging", sawmill: "kayu", fertilizer_factory: "pupuk",
+               bakery_factory: "roti"
             };
             
             let baseCount = 0;
@@ -64,10 +64,10 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
             else if (a[key] !== undefined) baseCount = a[key] || 0;
             else if (l[key] !== undefined) baseCount = l[key] || 0;
             else {
-               const agriKeys: Record<string, string> = { paddy_field: "rice", wheat_field: "wheat", corn_field: "corn", palm_oil_plantation: "palm_oil", cocoa_plantation: "cocoa", coffee_plantation: "coffee", tea_plantation: "tea", sugarcane_plantation: "sugarcane", vegetable_farm: "vegetables", tuber_field: "tubers", soybean_field: "soy" };
+               const agriKeys: Record<string, string> = { paddy_field: "beras", wheat_field: "gandum", corn_field: "jagung", palm_oil_plantation: "kelapa_sawit", cocoa_plantation: "cokelat", coffee_plantation: "kopi", tea_plantation: "teh", sugarcane_plantation: "tebu", vegetable_farm: "sayur_sayuran", tuber_field: "umbi_umbian", soybean_field: "kedelai" };
                if (agriKeys[key]) baseCount = a[agriKeys[key]] || 0;
                else {
-                  const liveKeys: Record<string, string> = { poultry_farm: "poultry", egg_farm: "egg", freshwater_fish_farm: "fish", sheep_farm: "sheep_goat", dairy_farm: "dairy_cow", cattle_farm: "beef_cow", shrimp_farm: "shrimp", pearl_farm: "shellfish" };
+                  const liveKeys: Record<string, string> = { poultry_farm: "unggas", egg_farm: "egg", freshwater_fish_farm: "ikan", sheep_farm: "domba_kambing", dairy_farm: "sapi_perah", cattle_farm: "sapi_potong", shrimp_farm: "udang", pearl_farm: "kerang" };
                   if (liveKeys[key]) baseCount = l[liveKeys[key]] || 0;
                }
             }
@@ -75,7 +75,7 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
          }
 
          if (sector === "ekstraksi") {
-            const e = c.sector_extraction as any;
+            const e = c.sektor_ekstraksi as any;
             let baseCount = 0;
             if (key.endsWith("_mine") || key.endsWith("_well")) {
                const eKey = key.replace("_mine", "").replace("_well", "");
@@ -97,10 +97,10 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
       .filter(([key]) => ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill", "bottled_water_factory", "sugar_factory", "bakery_factory", "pharma_factory", "fertilizer_factory", "meat_processing_factory", "noodle_factory"].includes(key))
       .map(([key, val]: [string, any]) => ({
          key, label: val.desc,
-         icon: key.includes("electronics") ? Cpu : (key.includes("car") ? Car : (key.includes("motorcycle") ? Bike : (key.includes("smelter") ? Flame : (key.includes("cement") ? Construction : (key.includes("sawmill") ? TreePine : (key.includes("water") ? Droplets : (key.includes("sugar") ? Cookie : (key.includes("bakery") ? Croissant : (key.includes("pharma") ? Pill : (key.includes("fertilizer") ? FlaskConical : (key.includes("meat") ? Beef : Soup))))))))))),
+         icon: key.includes("electronics") ? Cpu : (key.includes("mobil") ? Car : (key.includes("sepeda_motor") ? Bike : (key.includes("smelter") ? Flame : (key.includes("cement") ? Construction : (key.includes("sawmill") ? TreePine : (key.includes("water") ? Droplets : (key.includes("gula") ? Cookie : (key.includes("bakery") ? Croissant : (key.includes("pharma") ? Pill : (key.includes("pupuk") ? FlaskConical : (key.includes("meat") ? Beef : Soup))))))))))),
          desc: "Manufaktur",
          count: getBuildingCountTotal(initialCountry, key, "produksi"),
-         rate: val.production,
+         tarif: val.production,
          unit: val.unit,
          buildTime: val.buildTime
       }));
@@ -115,7 +115,7 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
    ].map(item => ({
       ...item, desc: "Pertanian",
       count: getBuildingCountTotal(initialCountry, item.key, "produksi"),
-      rate: 1, unit: "Unit", buildTime: 20
+      tarif: 1, unit: "Unit", buildTime: 20
    }));
 
    const livestockItems = [
@@ -128,16 +128,16 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
    ].map(item => ({
       ...item, desc: "Peternakan",
       count: getBuildingCountTotal(initialCountry, item.key, "produksi"),
-      rate: 1, unit: "Unit", buildTime: 20
+      tarif: 1, unit: "Unit", buildTime: 20
    }));
 
    // 2. Mineral Kritis & Strategis
    const extractionItems = Object.entries(mineralKritisRate).map(([key, val]: [string, any]) => ({
       key, label: val.desc,
-      icon: key.includes("uranium") ? Radiation : (key.includes("oil") ? Droplets : (key.includes("gas") ? Flame : (key.includes("gold") ? Coins : Pickaxe))),
+      icon: key.includes("uranium") ? Radiation : (key.includes("minyak_bumi") ? Droplets : (key.includes("gas_alam") ? Flame : (key.includes("emas") ? Coins : Pickaxe))),
       desc: "Ekstraksi",
       count: getBuildingCountTotal(initialCountry, key, "ekstraksi"),
-      rate: val.production,
+      tarif: val.production,
       unit: val.unit,
       buildTime: val.buildTime
    }));
@@ -350,7 +350,7 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
 
 function CardItem({ item }: { item: any }) {
    const [showDetail, setShowDetail] = useState(false);
-   const totalVal = Math.floor(item.rate * item.count);
+   const totalVal = Math.floor(item.tarif * item.count);
 
    return (
       <div className={`bg-zinc-900/40 border border-zinc-800/60 transition-all group flex flex-col p-4 rounded-2xl gap-3 relative overflow-hidden h-full hover:border-zinc-700 hover:bg-zinc-900/60 shadow-lg active:scale-95 cursor-default`}>
@@ -383,7 +383,7 @@ function CardItem({ item }: { item: any }) {
                   <div className="mt-2 space-y-2 animate-in fade-in slide-in-from-top-1 duration-300">
                      <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
                         <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Rate Produksi</span>
-                        <span className="text-[15px] font-black text-emerald-400 italic">+{item.rate} {item.unit}</span>
+                        <span className="text-[15px] font-black text-emerald-400 italic">+{item.tarif} {item.unit}</span>
                      </div>
                      <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
                         <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Waktu Bangun</span>
@@ -395,7 +395,7 @@ function CardItem({ item }: { item: any }) {
                      <div className="flex items-center gap-2">
                         <TrendingUp size={13} className="text-emerald-500" />
                         <span className="text-[12px] font-bold text-zinc-400 italic uppercase">
-                           Output: +{item.rate} {item.unit}/unit
+                           Output: +{item.tarif} {item.unit}/unit
                         </span>
                      </div>
                      {item.buildTime && (

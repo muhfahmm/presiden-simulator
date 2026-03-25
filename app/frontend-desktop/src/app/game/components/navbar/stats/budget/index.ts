@@ -4,7 +4,7 @@ import { countries } from "@/app/select-country/data/countries";
 const BUDGET_STORAGE_KEY = "em4_budget_data";
 
 export interface BudgetData {
-  budget: number;
+  anggaran: number;
   cumulativeProduction: Record<string, number>;
 }
 
@@ -14,14 +14,14 @@ export const budgetStorage = {
   },
   // Get all budget data, with migration fallback
   getData: (): BudgetData => {
-    if (typeof window === 'undefined') return { budget: 0, cumulativeProduction: {} };
+    if (typeof window === 'undefined') return { anggaran: 0, cumulativeProduction: {} };
     
     const stored = localStorage.getItem(BUDGET_STORAGE_KEY);
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
         return {
-          budget: typeof parsed.budget === 'number' ? parsed.budget : 0,
+          anggaran: typeof parsed.anggaran === 'number' ? parsed.anggaran : 0,
           cumulativeProduction: parsed.cumulativeProduction || {}
         };
       } catch (e) {
@@ -33,10 +33,10 @@ export const budgetStorage = {
     const session = gameStorage.getSession() as any;
     if (session) {
       const countryData = countries.find(c => c.name_en === session.country || c.name_id === session.country) || countries[0];
-      const defaultBudget = typeof countryData.budget === 'number' ? countryData.budget : 1240;
+      const defaultBudget = typeof countryData.anggaran === 'number' ? countryData.anggaran : 1240;
 
       const migratedData: BudgetData = {
-        budget: typeof session.budget === 'number' ? session.budget : defaultBudget,
+        anggaran: typeof session.anggaran === 'number' ? session.anggaran : defaultBudget,
         cumulativeProduction: session.cumulativeProduction || {}
       };
       
@@ -45,7 +45,7 @@ export const budgetStorage = {
       return migratedData;
     }
 
-    return { budget: 0, cumulativeProduction: {} };
+    return { anggaran: 0, cumulativeProduction: {} };
   },
 
   saveData: (data: BudgetData) => {
@@ -57,14 +57,14 @@ export const budgetStorage = {
   },
 
   getBudget: (): number => {
-    return budgetStorage.getData().budget;
+    return budgetStorage.getData().anggaran;
   },
 
   updateBudget: (delta: number) => {
     const data = budgetStorage.getData();
-    data.budget = (data.budget || 0) + delta;
+    data.anggaran = (data.anggaran || 0) + delta;
     budgetStorage.saveData(data);
-    return data.budget;
+    return data.anggaran;
   },
 
   getCumulativeProduction: (): Record<string, number> => {

@@ -3,17 +3,17 @@ import { gameStorage } from "@/app/game/gamestorage";
 const EXPENSE_STORAGE_KEY = "em4_expense_data";
 
 export interface ExpenseData {
-  subsidyEnergi: number; // 0-100% alokasi per sektor dari total dana subsidi
-  subsidyPangan: number;
-  subsidyKesehatan: number;
-  subsidyPendidikan: number;
-  subsidyUmkm: number;
-  subsidyTransport: number;
-  subsidyRumah: number;
-  salaryAsn: number; // 0.5 - 2.0x base
-  salaryGuru: number; 
-  salaryMedis: number;
-  salaryMiliter: number;
+  subsidi_energi: number; // 0-100% alokasi per sektor dari total dana subsidi
+  subsidi_pangan: number;
+  subsidi_kesehatan: number;
+  subsidi_pendidikan: number;
+  subsidi_umkm: number;
+  subsidi_transportasi: number;
+  subsidi_perumahan: number;
+  gaji_asn: number; // 0.5 - 2.0x base
+  gaji_guru: number; 
+  gaji_medis: number;
+  gaji_militer: number;
   socialWelfareLevel: number; // 0-100
   debtInterestPaid: number;
   lastUpdated: number;
@@ -27,17 +27,17 @@ export const expenseStorage = {
 
   getData: (countryName: string, countryData?: any): ExpenseData => {
     const defaults: ExpenseData = { 
-      subsidyEnergi: countryData?.subsidies?.subsidyEnergi ?? 10,
-      subsidyPangan: countryData?.subsidies?.subsidyPangan ?? 10,
-      subsidyKesehatan: countryData?.subsidies?.subsidyKesehatan ?? 10,
-      subsidyPendidikan: countryData?.subsidies?.subsidyPendidikan ?? 10,
-      subsidyUmkm: countryData?.subsidies?.subsidyUmkm ?? 10,
-      subsidyTransport: countryData?.subsidies?.subsidyTransport ?? 10,
-      subsidyRumah: countryData?.subsidies?.subsidyRumah ?? 10,
-      salaryAsn: countryData?.salaries?.salaryAsn ?? 1.0, 
-      salaryGuru: countryData?.salaries?.salaryGuru ?? 1.0, 
-      salaryMedis: countryData?.salaries?.salaryMedis ?? 1.0, 
-      salaryMiliter: countryData?.salaries?.salaryMiliter ?? 1.0, 
+      subsidi_energi: countryData?.subsidi?.subsidi_energi ?? 10,
+      subsidi_pangan: countryData?.subsidi?.subsidi_pangan ?? 10,
+      subsidi_kesehatan: countryData?.subsidi?.subsidi_kesehatan ?? 10,
+      subsidi_pendidikan: countryData?.subsidi?.subsidi_pendidikan ?? 10,
+      subsidi_umkm: countryData?.subsidi?.subsidi_umkm ?? 10,
+      subsidi_transportasi: countryData?.subsidi?.subsidi_transportasi ?? 10,
+      subsidi_perumahan: countryData?.subsidi?.subsidi_perumahan ?? 10,
+      gaji_asn: countryData?.gaji?.gaji_asn ?? 1.0, 
+      gaji_guru: countryData?.gaji?.gaji_guru ?? 1.0, 
+      gaji_medis: countryData?.gaji?.gaji_medis ?? 1.0, 
+      gaji_militer: countryData?.gaji?.gaji_militer ?? 1.0, 
       socialWelfareLevel: 20,
       debtInterestPaid: 0,
       lastUpdated: Date.now() 

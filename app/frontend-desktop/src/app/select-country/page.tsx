@@ -34,7 +34,7 @@ export default function SelectCountry() {
   const [showSelectionWarning, setShowSelectionWarning] = useState(false);
   const [isCentered, setIsCentered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [geoTab, setGeoTab] = useState<"overview" | "orgs" | "agreements">("overview");
+  const [geoTab, setGeoTab] = useState<"overview" | "orgs" | "perjanjian">("overview");
   const containerRef = useRef<HTMLDivElement>(null);
   const buttonRefs = useRef<{ [key: string]: HTMLButtonElement | null }>({});
   const [leftWidth, setLeftWidth] = useState(360);
@@ -187,8 +187,8 @@ export default function SelectCountry() {
           
           <div className="flex items-center gap-4">
             <StatItem label="Ibukota" value={hasSelection ? currentData.capital : "-"} icon={<Landmark size={14} className="text-amber-400" />} />
-            <StatItem label="Populasi" value={hasSelection ? currentData.pop : "-"} icon={<Users size={14} className="text-blue-400" />} />
-            <StatItem label="Kas Negara" value={hasSelection ? currentData.budget : "-"} icon={<Coins size={14} className="text-yellow-400" />} />
+            <StatItem label="Populasi" value={hasSelection ? currentData.jumlah_penduduk : "-"} icon={<Users size={14} className="text-blue-400" />} />
+            <StatItem label="Kas Negara" value={hasSelection ? currentData.anggaran : "-"} icon={<Coins size={14} className="text-yellow-400" />} />
             <StatItem label="Total Negara" value={`${countries.length}`} icon={<Globe size={14} className="text-teal-400" />} />
           </div>
         </div>
@@ -205,7 +205,7 @@ export default function SelectCountry() {
             <span className={`text-xs font-black px-1.5 py-0.5 rounded ${
               !hasSelection ? 'bg-zinc-800 text-zinc-600' :
               currentData.un_vote === 'Pro' ? 'bg-emerald-500/20 text-emerald-400' :
-              currentData.un_vote === 'Contra' ? 'bg-red-500/20 text-red-400' :
+              currentData.un_vote === 'Kontra' ? 'bg-red-500/20 text-red-400' :
               'bg-zinc-700/50 text-zinc-300'
             }`}>
               {hasSelection ? currentData.un_vote : "-"}
@@ -268,21 +268,21 @@ export default function SelectCountry() {
             <div className="flex flex-col gap-3 overflow-y-auto max-h-[400px] no-scrollbar pr-1">
               <div className="flex flex-col gap-1.5">
                 <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1"><Zap size={8}/> Jaringan Energi</span>
-                <ProgressStat label="Power Grid" value={currentData.sector_electricity.power_grid} color="bg-amber-500" icon={<Zap size={10}/>} />
+                <ProgressStat label="Power Grid" value={currentData.sektor_listrik.jaringan_listrik} color="bg-amber-500" icon={<Zap size={10}/>} />
                 <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1.5 shadow-inner">
                   <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500"/> Total Daya</span>
                   <span className="text-amber-500 text-sm">
-                    {hitungTotalKapasitas(currentData.sector_electricity).toLocaleString('id-ID')} MW 
-                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sector_electricity.nuclear_plant + currentData.sector_electricity.hydro_plant + currentData.sector_electricity.solar_plant + currentData.sector_electricity.thermal_plant + currentData.sector_electricity.gas_plant + currentData.sector_electricity.wind_plant} Unit)</span>
+                    {hitungTotalKapasitas(currentData.sektor_listrik).toLocaleString('id-ID')} MW 
+                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_listrik.pembangkit_nuklir + currentData.sektor_listrik.pembangkit_air + currentData.sektor_listrik.pembangkit_surya + currentData.sektor_listrik.pembangkit_termal + currentData.sektor_listrik.pembangkit_gas + currentData.sektor_listrik.pembangkit_angin} Unit)</span>
                   </span>
                 </div>
                 <div className={`grid ${getGridCols(leftWidth)} gap-x-3 gap-y-2 mt-2`}>
-                  <DetailStat icon={<Radio size={12} className="text-cyan-400"/>} label="PLTN" value={`${currentData.sector_electricity.nuclear_plant} (${(currentData.sector_electricity.nuclear_plant * KAPASITAS_LISTRIK.nuclear_plant).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Waves size={12} className="text-blue-400"/>} label="PLTA" value={`${currentData.sector_electricity.hydro_plant} (${(currentData.sector_electricity.hydro_plant * KAPASITAS_LISTRIK.hydro_plant).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Sun size={12} className="text-yellow-400"/>} label="PLTS" value={`${currentData.sector_electricity.solar_plant} (${(currentData.sector_electricity.solar_plant * KAPASITAS_LISTRIK.solar_plant).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Flame size={12} className="text-orange-400"/>} label="PLTU" value={`${currentData.sector_electricity.thermal_plant} (${(currentData.sector_electricity.thermal_plant * KAPASITAS_LISTRIK.thermal_plant).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Flame size={12} className="text-red-400"/>} label="PLTG" value={`${currentData.sector_electricity.gas_plant} (${(currentData.sector_electricity.gas_plant * KAPASITAS_LISTRIK.gas_plant).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Wind size={12} className="text-emerald-400"/>} label="PLTB" value={`${currentData.sector_electricity.wind_plant} (${(currentData.sector_electricity.wind_plant * KAPASITAS_LISTRIK.wind_plant).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Radio size={12} className="text-cyan-400"/>} label="PLTN" value={`${currentData.sektor_listrik.pembangkit_nuklir} (${(currentData.sektor_listrik.pembangkit_nuklir * KAPASITAS_LISTRIK.pembangkit_nuklir).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Waves size={12} className="text-blue-400"/>} label="PLTA" value={`${currentData.sektor_listrik.pembangkit_air} (${(currentData.sektor_listrik.pembangkit_air * KAPASITAS_LISTRIK.pembangkit_air).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Sun size={12} className="text-yellow-400"/>} label="PLTS" value={`${currentData.sektor_listrik.pembangkit_surya} (${(currentData.sektor_listrik.pembangkit_surya * KAPASITAS_LISTRIK.pembangkit_surya).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Flame size={12} className="text-orange-400"/>} label="PLTU" value={`${currentData.sektor_listrik.pembangkit_termal} (${(currentData.sektor_listrik.pembangkit_termal * KAPASITAS_LISTRIK.pembangkit_termal).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Flame size={12} className="text-red-400"/>} label="PLTG" value={`${currentData.sektor_listrik.pembangkit_gas} (${(currentData.sektor_listrik.pembangkit_gas * KAPASITAS_LISTRIK.pembangkit_gas).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Wind size={12} className="text-emerald-400"/>} label="PLTB" value={`${currentData.sektor_listrik.pembangkit_angin} (${(currentData.sektor_listrik.pembangkit_angin * KAPASITAS_LISTRIK.pembangkit_angin).toLocaleString('id-ID')} MW)`} />
                 </div>
               </div>
             </div>
@@ -304,18 +304,18 @@ export default function SelectCountry() {
               <div className="flex flex-col gap-2">
                 <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1"><Ship size={8}/> Transportasi & Digital</span>
                 <div className="space-y-2">
-                  <ProgressStat label="Kualitas Jalan" value={currentData.infrastructure.road_quality} color="bg-zinc-400" icon={<Map size={10}/>} />
-                  <ProgressStat label="Cakupan Internet" value={currentData.infrastructure.internet_coverage} color="bg-blue-500" icon={<Wifi size={10}/>} />
+                  <ProgressStat label="Kualitas Jalan" value={currentData.infrastruktur.kualitas_jalan} color="bg-zinc-400" icon={<Map size={10}/>} />
+                  <ProgressStat label="Cakupan Internet" value={currentData.infrastruktur.cakupan_internet} color="bg-blue-500" icon={<Wifi size={10}/>} />
                 </div>
                 <div className={`grid ${getGridCols(leftWidth)} gap-3 mt-1`}>
-                  <DetailStat icon={<Bike size={12} className="text-emerald-400"/>} label="Jalur Sepeda" value={`${currentData.infrastructure.bicycle_path ?? 0} (${((currentData.infrastructure.bicycle_path ?? 0) * KONSUMSI_TRANSPORTASI.bicycle_path).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<TrainFront size={12} className="text-blue-500"/>} label="Kereta Bawah Tanah" value={`${currentData.infrastructure.subway ?? 0} (${((currentData.infrastructure.subway ?? 0) * KONSUMSI_TRANSPORTASI.subway).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<TrainFront size={12} className="text-zinc-400"/>} label="Kereta Api" value={`${currentData.infrastructure.railway ?? 0} (${((currentData.infrastructure.railway ?? 0) * KONSUMSI_TRANSPORTASI.railway).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Map size={12} className="text-zinc-300"/>} label="Jalan Raya" value={`${currentData.infrastructure.highway ?? 0} (${((currentData.infrastructure.highway ?? 0) * KONSUMSI_TRANSPORTASI.highway).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Ship size={12} className="text-blue-400"/>} label="Pelabuhan" value={`${currentData.infrastructure.sea_port} (${(currentData.infrastructure.sea_port * KONSUMSI_TRANSPORTASI.sea_port).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Plane size={12} className="text-cyan-400"/>} label="Bandara" value={`${currentData.infrastructure.airport} (${(currentData.infrastructure.airport * KONSUMSI_TRANSPORTASI.airport).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Bus size={12} className="text-amber-400"/>} label="Terminal Bus" value={`${currentData.infrastructure.bus_terminal ?? 0} (${((currentData.infrastructure.bus_terminal ?? 0) * KONSUMSI_TRANSPORTASI.bus_terminal).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Plane size={12} className="text-pink-400"/>} label="Helipad" value={`${currentData.infrastructure.helipad ?? 0} (${((currentData.infrastructure.helipad ?? 0) * KONSUMSI_TRANSPORTASI.helipad).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Bike size={12} className="text-emerald-400"/>} label="Jalur Sepeda" value={`${currentData.infrastruktur.jalur_sepeda ?? 0} (${((currentData.infrastruktur.jalur_sepeda ?? 0) * KONSUMSI_TRANSPORTASI.jalur_sepeda).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<TrainFront size={12} className="text-blue-500"/>} label="Kereta Bawah Tanah" value={`${currentData.infrastruktur.kereta_bawah_tanah ?? 0} (${((currentData.infrastruktur.kereta_bawah_tanah ?? 0) * KONSUMSI_TRANSPORTASI.kereta_bawah_tanah).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<TrainFront size={12} className="text-zinc-400"/>} label="Kereta Api" value={`${currentData.infrastruktur.jalur_kereta ?? 0} (${((currentData.infrastruktur.jalur_kereta ?? 0) * KONSUMSI_TRANSPORTASI.jalur_kereta).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Map size={12} className="text-zinc-300"/>} label="Jalan Raya" value={`${currentData.infrastruktur.jalan_tol ?? 0} (${((currentData.infrastruktur.jalan_tol ?? 0) * KONSUMSI_TRANSPORTASI.jalan_tol).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Ship size={12} className="text-blue-400"/>} label="Pelabuhan" value={`${currentData.infrastruktur.pelabuhan_laut} (${(currentData.infrastruktur.pelabuhan_laut * KONSUMSI_TRANSPORTASI.pelabuhan_laut).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Plane size={12} className="text-cyan-400"/>} label="Bandara" value={`${currentData.infrastruktur.bandara} (${(currentData.infrastruktur.bandara * KONSUMSI_TRANSPORTASI.bandara).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Bus size={12} className="text-amber-400"/>} label="Terminal Bus" value={`${currentData.infrastruktur.terminal_bus ?? 0} (${((currentData.infrastruktur.terminal_bus ?? 0) * KONSUMSI_TRANSPORTASI.terminal_bus).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Plane size={12} className="text-pink-400"/>} label="Helipad" value={`${currentData.infrastruktur.helipad ?? 0} (${((currentData.infrastruktur.helipad ?? 0) * KONSUMSI_TRANSPORTASI.helipad).toLocaleString('id-ID')} MW)`} />
                 </div>
               </div>
             </div>
@@ -336,30 +336,30 @@ export default function SelectCountry() {
                 <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1 shadow-inner">
                   <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500"/> Beban Listrik</span>
                   <span className="text-amber-500 text-sm">
-                    {hitungKonsumsiProduksi(currentData.sector_manufacturing).toLocaleString('id-ID')} MW 
-                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sector_manufacturing.semiconductor + currentData.sector_manufacturing.car + currentData.sector_manufacturing.motorcycle + currentData.sector_manufacturing.smelter + currentData.sector_manufacturing.concrete_cement + currentData.sector_manufacturing.wood + currentData.sector_manufacturing.mineral_water + currentData.sector_manufacturing.sugar + currentData.sector_manufacturing.bread + currentData.sector_manufacturing.pharmacy + currentData.sector_manufacturing.fertilizer + currentData.sector_manufacturing.meat_processing + currentData.sector_manufacturing.instant_noodle} Unit)</span>
+                    {hitungKonsumsiProduksi(currentData.sektor_manufaktur).toLocaleString('id-ID')} MW 
+                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_manufaktur.semikonduktor + currentData.sektor_manufaktur.mobil + currentData.sektor_manufaktur.sepeda_motor + currentData.sektor_manufaktur.smelter + currentData.sektor_manufaktur.semen_beton + currentData.sektor_manufaktur.kayu + currentData.sektor_manufaktur.air_mineral + currentData.sektor_manufaktur.gula + currentData.sektor_manufaktur.roti + currentData.sektor_manufaktur.farmasi + currentData.sektor_manufaktur.pupuk + currentData.sektor_manufaktur.pengolahan_daging + currentData.sektor_manufaktur.mie_instan} Unit)</span>
                   </span>
                 </div>
                 {/* Manufacturing */}
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Factory size={10}/> Manufaktur & Industri</span>
-                  <span className="text-xs font-black text-blue-400">{Math.floor(currentData.sector_manufacturing.strength)}%</span>
+                  <span className="text-xs font-black text-blue-400">{Math.floor(currentData.sektor_manufaktur.kekuatan)}%</span>
                 </div>
                 <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
-                  <SectorStat icon={<Cpu size={10} className="text-purple-400"/>} label="Pabrik Semikonduktor" value={`${currentData.sector_manufacturing.semiconductor} (${(currentData.sector_manufacturing.semiconductor * KONSUMSI_PRODUKSI.semiconductor).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Car size={10} className="text-zinc-300"/>} label="Pabrik Mobil" value={`${currentData.sector_manufacturing.car} (${(currentData.sector_manufacturing.car * KONSUMSI_PRODUKSI.car).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Bike size={10} className="text-zinc-300"/>} label="Pabrik Motor" value={`${currentData.sector_manufacturing.motorcycle} (${(currentData.sector_manufacturing.motorcycle * KONSUMSI_PRODUKSI.motorcycle).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Flame size={10} className="text-red-400"/>} label="Pengolahan Smelter" value={`${currentData.sector_manufacturing.smelter} (${(currentData.sector_manufacturing.smelter * KONSUMSI_PRODUKSI.smelter).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Construction size={10} className="text-zinc-400"/>} label="Pabrik Beton & Semen" value={`${currentData.sector_manufacturing.concrete_cement} (${(currentData.sector_manufacturing.concrete_cement * KONSUMSI_PRODUKSI.concrete_cement).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<TreePine size={10} className="text-emerald-600"/>} label="Pabrik Kayu" value={`${currentData.sector_manufacturing.wood} (${(currentData.sector_manufacturing.wood * KONSUMSI_PRODUKSI.wood).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Droplet size={10} className="text-blue-400"/>} label="Pabrik Air Mineral" value={`${currentData.sector_manufacturing.mineral_water} (${(currentData.sector_manufacturing.mineral_water * KONSUMSI_PRODUKSI.mineral_water).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Cookie size={10} className="text-yellow-600"/>} label="Pabrik Gula" value={`${currentData.sector_manufacturing.sugar} (${(currentData.sector_manufacturing.sugar * KONSUMSI_PRODUKSI.sugar).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Croissant size={10} className="text-amber-400"/>} label="Pabrik Roti" value={`${currentData.sector_manufacturing.bread} (${(currentData.sector_manufacturing.bread * KONSUMSI_PRODUKSI.bread).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Pill size={10} className="text-pink-400"/>} label="Pabrik Farmasi" value={`${currentData.sector_manufacturing.pharmacy} (${(currentData.sector_manufacturing.pharmacy * KONSUMSI_PRODUKSI.pharmacy).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<FlaskConical size={10} className="text-emerald-400"/>} label="Pabrik Pupuk" value={`${currentData.sector_manufacturing.fertilizer} (${(currentData.sector_manufacturing.fertilizer * KONSUMSI_PRODUKSI.fertilizer).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Beef size={10} className="text-red-400"/>} label="Pengolahan Daging" value={`${currentData.sector_manufacturing.meat_processing} (${(currentData.sector_manufacturing.meat_processing * KONSUMSI_PRODUKSI.meat_processing).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Soup size={10} className="text-orange-400"/>} label="Pabrik Mie Instan" value={`${currentData.sector_manufacturing.instant_noodle} (${(currentData.sector_manufacturing.instant_noodle * KONSUMSI_PRODUKSI.instant_noodle).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Cpu size={10} className="text-purple-400"/>} label="Pabrik Semikonduktor" value={`${currentData.sektor_manufaktur.semikonduktor} (${(currentData.sektor_manufaktur.semikonduktor * KONSUMSI_PRODUKSI.semikonduktor).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Car size={10} className="text-zinc-300"/>} label="Pabrik Mobil" value={`${currentData.sektor_manufaktur.mobil} (${(currentData.sektor_manufaktur.mobil * KONSUMSI_PRODUKSI.mobil).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Bike size={10} className="text-zinc-300"/>} label="Pabrik Motor" value={`${currentData.sektor_manufaktur.sepeda_motor} (${(currentData.sektor_manufaktur.sepeda_motor * KONSUMSI_PRODUKSI.sepeda_motor).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Flame size={10} className="text-red-400"/>} label="Pengolahan Smelter" value={`${currentData.sektor_manufaktur.smelter} (${(currentData.sektor_manufaktur.smelter * KONSUMSI_PRODUKSI.smelter).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Construction size={10} className="text-zinc-400"/>} label="Pabrik Beton & Semen" value={`${currentData.sektor_manufaktur.semen_beton} (${(currentData.sektor_manufaktur.semen_beton * KONSUMSI_PRODUKSI.semen_beton).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<TreePine size={10} className="text-emerald-600"/>} label="Pabrik Kayu" value={`${currentData.sektor_manufaktur.kayu} (${(currentData.sektor_manufaktur.kayu * KONSUMSI_PRODUKSI.kayu).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Droplet size={10} className="text-blue-400"/>} label="Pabrik Air Mineral" value={`${currentData.sektor_manufaktur.air_mineral} (${(currentData.sektor_manufaktur.air_mineral * KONSUMSI_PRODUKSI.air_mineral).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Cookie size={10} className="text-yellow-600"/>} label="Pabrik Gula" value={`${currentData.sektor_manufaktur.gula} (${(currentData.sektor_manufaktur.gula * KONSUMSI_PRODUKSI.gula).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Croissant size={10} className="text-amber-400"/>} label="Pabrik Roti" value={`${currentData.sektor_manufaktur.roti} (${(currentData.sektor_manufaktur.roti * KONSUMSI_PRODUKSI.roti).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Pill size={10} className="text-pink-400"/>} label="Pabrik Farmasi" value={`${currentData.sektor_manufaktur.farmasi} (${(currentData.sektor_manufaktur.farmasi * KONSUMSI_PRODUKSI.farmasi).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<FlaskConical size={10} className="text-emerald-400"/>} label="Pabrik Pupuk" value={`${currentData.sektor_manufaktur.pupuk} (${(currentData.sektor_manufaktur.pupuk * KONSUMSI_PRODUKSI.pupuk).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Beef size={10} className="text-red-400"/>} label="Pengolahan Daging" value={`${currentData.sektor_manufaktur.pengolahan_daging} (${(currentData.sektor_manufaktur.pengolahan_daging * KONSUMSI_PRODUKSI.pengolahan_daging).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Soup size={10} className="text-orange-400"/>} label="Pabrik Mie Instan" value={`${currentData.sektor_manufaktur.mie_instan} (${(currentData.sektor_manufaktur.mie_instan * KONSUMSI_PRODUKSI.mie_instan).toLocaleString('id-ID')} MW)`} />
                 </div>
               </div>
 
@@ -369,29 +369,29 @@ export default function SelectCountry() {
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Sprout size={10}/> Agri & Peternakan</span>
-                  <span className="text-xs font-black text-orange-400">{Math.floor((currentData.sector_agriculture.strength + currentData.sector_livestock.strength)/2)}%</span>
+                  <span className="text-xs font-black text-orange-400">{Math.floor((currentData.sektor_pertanian.kekuatan + currentData.sektor_peternakan.kekuatan)/2)}%</span>
                 </div>
                 
                 {/* Livestock Subgrid */}
                 <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
-                  <SectorStat icon={<Bird size={10} className="text-amber-500"/>} label="Ayam/Unggas" value={`${currentData.sector_livestock.chicken + currentData.sector_livestock.poultry} (${((currentData.sector_livestock.chicken * KONSUMSI_PETERNAKAN.chicken) + (currentData.sector_livestock.poultry * KONSUMSI_PETERNAKAN.poultry)).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Milk size={10} className="text-zinc-200"/>} label="Sapi Perah" value={`${currentData.sector_livestock.dairy_cow} (${(currentData.sector_livestock.dairy_cow * KONSUMSI_PETERNAKAN.dairy_cow).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Beef size={10} className="text-red-500"/>} label="Sapi Potong" value={`${currentData.sector_livestock.beef_cow} (${(currentData.sector_livestock.beef_cow * KONSUMSI_PETERNAKAN.beef_cow).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Leaf size={10} className="text-emerald-300"/>} label="Domba/Kambing" value={`${currentData.sector_livestock.sheep_goat} (${(currentData.sector_livestock.sheep_goat * KONSUMSI_PETERNAKAN.sheep_goat).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Shell size={10} className="text-pink-300"/>} label="Udang/Kerang" value={`${currentData.sector_livestock.shrimp + currentData.sector_livestock.shellfish} (${((currentData.sector_livestock.shrimp * KONSUMSI_PETERNAKAN.shrimp) + (currentData.sector_livestock.shellfish * KONSUMSI_PETERNAKAN.shellfish)).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Fish size={10} className="text-blue-400"/>} label="Ikan" value={`${currentData.sector_livestock.fish} (${(currentData.sector_livestock.fish * KONSUMSI_PETERNAKAN.fish).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Bird size={10} className="text-amber-500"/>} label="Ayam/Unggas" value={`${currentData.sektor_peternakan.ayam + currentData.sektor_peternakan.unggas} (${((currentData.sektor_peternakan.ayam * KONSUMSI_PETERNAKAN.ayam) + (currentData.sektor_peternakan.unggas * KONSUMSI_PETERNAKAN.unggas)).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Milk size={10} className="text-zinc-200"/>} label="Sapi Perah" value={`${currentData.sektor_peternakan.sapi_perah} (${(currentData.sektor_peternakan.sapi_perah * KONSUMSI_PETERNAKAN.sapi_perah).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Beef size={10} className="text-red-500"/>} label="Sapi Potong" value={`${currentData.sektor_peternakan.sapi_potong} (${(currentData.sektor_peternakan.sapi_potong * KONSUMSI_PETERNAKAN.sapi_potong).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Leaf size={10} className="text-emerald-300"/>} label="Domba/Kambing" value={`${currentData.sektor_peternakan.domba_kambing} (${(currentData.sektor_peternakan.domba_kambing * KONSUMSI_PETERNAKAN.domba_kambing).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Shell size={10} className="text-pink-300"/>} label="Udang/Kerang" value={`${currentData.sektor_peternakan.udang + currentData.sektor_peternakan.kerang} (${((currentData.sektor_peternakan.udang * KONSUMSI_PETERNAKAN.udang) + (currentData.sektor_peternakan.kerang * KONSUMSI_PETERNAKAN.kerang)).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Fish size={10} className="text-blue-400"/>} label="Ikan" value={`${currentData.sektor_peternakan.ikan} (${(currentData.sektor_peternakan.ikan * KONSUMSI_PETERNAKAN.ikan).toLocaleString('id-ID')} MW)`} />
                 </div>
 
                 <div className="h-px bg-zinc-800/30 w-1/2 self-center my-1" />
 
                 {/* Agri Subgrid */}
                 <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
-                  <SectorStat icon={<Sprout size={10} className="text-green-500"/>} label="Padi" value={`${currentData.sector_agriculture.rice} (${(currentData.sector_agriculture.rice * KONSUMSI_AGRI.rice).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Utensils size={10} className="text-amber-600"/>} label="Gandum/Jagung" value={`${currentData.sector_agriculture.wheat + currentData.sector_agriculture.corn} (${((currentData.sector_agriculture.wheat * KONSUMSI_AGRI.wheat) + (currentData.sector_agriculture.corn * KONSUMSI_AGRI.corn)).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Apple size={10} className="text-red-500"/>} label="Sayur/Umbi" value={`${currentData.sector_agriculture.vegetables + currentData.sector_agriculture.tubers} (${((currentData.sector_agriculture.vegetables * KONSUMSI_AGRI.vegetables) + (currentData.sector_agriculture.tubers * KONSUMSI_AGRI.tubers)).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Bean size={10} className="text-emerald-700"/>} label="Kedelai" value={`${currentData.sector_agriculture.soy} (${(currentData.sector_agriculture.soy * KONSUMSI_AGRI.soy).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Droplet size={10} className="text-amber-500"/>} label="Kelapa Sawit" value={`${currentData.sector_agriculture.palm_oil} (${(currentData.sector_agriculture.palm_oil * KONSUMSI_AGRI.palm_oil).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Coffee size={10} className="text-amber-900"/>} label="Kopi/Teh/Kakao" value={`${currentData.sector_agriculture.coffee + currentData.sector_agriculture.tea + currentData.sector_agriculture.cocoa} (${((currentData.sector_agriculture.coffee * KONSUMSI_AGRI.coffee) + (currentData.sector_agriculture.tea * KONSUMSI_AGRI.tea) + (currentData.sector_agriculture.cocoa * KONSUMSI_AGRI.cocoa)).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Sprout size={10} className="text-green-500"/>} label="Padi" value={`${currentData.sektor_pertanian.beras} (${(currentData.sektor_pertanian.beras * KONSUMSI_AGRI.beras).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Utensils size={10} className="text-amber-600"/>} label="Gandum/Jagung" value={`${currentData.sektor_pertanian.gandum + currentData.sektor_pertanian.jagung} (${((currentData.sektor_pertanian.gandum * KONSUMSI_AGRI.gandum) + (currentData.sektor_pertanian.jagung * KONSUMSI_AGRI.jagung)).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Apple size={10} className="text-red-500"/>} label="Sayur/Umbi" value={`${currentData.sektor_pertanian.sayur_sayuran + currentData.sektor_pertanian.umbi_umbian} (${((currentData.sektor_pertanian.sayur_sayuran * KONSUMSI_AGRI.sayur_sayuran) + (currentData.sektor_pertanian.umbi_umbian * KONSUMSI_AGRI.umbi_umbian)).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Bean size={10} className="text-emerald-700"/>} label="Kedelai" value={`${currentData.sektor_pertanian.kedelai} (${(currentData.sektor_pertanian.kedelai * KONSUMSI_AGRI.kedelai).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Droplet size={10} className="text-amber-500"/>} label="Kelapa Sawit" value={`${currentData.sektor_pertanian.kelapa_sawit} (${(currentData.sektor_pertanian.kelapa_sawit * KONSUMSI_AGRI.kelapa_sawit).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Coffee size={10} className="text-amber-900"/>} label="Kopi/Teh/Kakao" value={`${currentData.sektor_pertanian.kopi + currentData.sektor_pertanian.teh + currentData.sektor_pertanian.cokelat} (${((currentData.sektor_pertanian.kopi * KONSUMSI_AGRI.kopi) + (currentData.sektor_pertanian.teh * KONSUMSI_AGRI.teh) + (currentData.sektor_pertanian.cokelat * KONSUMSI_AGRI.cokelat)).toLocaleString('id-ID')} MW)`} />
                 </div>
               </div>
             </div>
@@ -416,23 +416,23 @@ export default function SelectCountry() {
                 <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1 shadow-inner">
                   <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500"/> Beban Listrik</span>
                   <span className="text-amber-500 text-sm">
-                    {hitungKonsumsiPertahanan(currentData.sector_defense).toLocaleString('id-ID')} MW 
-                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sector_defense.prison + currentData.sector_defense.barracks + currentData.sector_defense.armory + currentData.sector_defense.tank_hangar + currentData.sector_defense.military_academy} Unit)</span>
+                    {hitungKonsumsiPertahanan(currentData.sektor_pertahanan, currentData.sektor_armada, currentData.sektor_keamanan).toLocaleString('id-ID')} MW 
+                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_pertahanan.penjara + currentData.sektor_armada.barak + currentData.sektor_pertahanan.gudang_senjata + currentData.sektor_pertahanan.hangar_tank + currentData.sektor_pertahanan.akademi_militer} Unit)</span>
                   </span>
                 </div>
               {/* Defense Assets */}
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><ShieldCheck size={10}/> Sektor Pertahanan</span>
-                  <span className="text-xs font-black text-red-400">{Math.floor(currentData.sector_defense.strength)}%</span>
+                  <span className="text-xs font-black text-red-400">{Math.floor(currentData.sektor_pertahanan.kekuatan)}%</span>
                 </div>
                 <div className={`grid ${getGridCols(rightWidth)} gap-2 mt-1`}>
-                  <SectorStat icon={<Gavel size={10} className="text-zinc-400"/>} label="Penjara" value={`${currentData.sector_defense.prison} (${(currentData.sector_defense.prison * KONSUMSI_PERTAHANAN.prison).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Home size={10} className="text-zinc-300"/>} label="Barak" value={`${currentData.sector_defense.barracks} (${(currentData.sector_defense.barracks * KONSUMSI_PERTAHANAN.barracks).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Archive size={10} className="text-orange-400"/>} label="Gudang Senjata" value={`${currentData.sector_defense.armory} (${(currentData.sector_defense.armory * KONSUMSI_PERTAHANAN.armory).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Warehouse size={10} className="text-zinc-500"/>} label="Hangar Tank" value={`${currentData.sector_defense.tank_hangar} (${(currentData.sector_defense.tank_hangar * KONSUMSI_PERTAHANAN.tank_hangar).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<GraduationCap size={10} className="text-zinc-200"/>} label="Akademi Militer" value={`${currentData.sector_defense.military_academy} (${(currentData.sector_defense.military_academy * KONSUMSI_PERTAHANAN.military_academy).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Landmark size={10} className="text-red-400"/>} label="Budget" value={currentData.sector_defense.budget} />
+                  <SectorStat icon={<Gavel size={10} className="text-zinc-400"/>} label="Penjara" value={`${currentData.sektor_pertahanan.penjara} (${(currentData.sektor_pertahanan.penjara * KONSUMSI_PERTAHANAN.penjara).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Home size={10} className="text-zinc-300"/>} label="Barak" value={`${currentData.sektor_armada.barak} (${(currentData.sektor_armada.barak * KONSUMSI_PERTAHANAN.barak).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Archive size={10} className="text-orange-400"/>} label="Gudang Senjata" value={`${currentData.sektor_pertahanan.gudang_senjata} (${(currentData.sektor_pertahanan.gudang_senjata * KONSUMSI_PERTAHANAN.gudang_senjata).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Warehouse size={10} className="text-zinc-500"/>} label="Hangar Tank" value={`${currentData.sektor_pertahanan.hangar_tank} (${(currentData.sektor_pertahanan.hangar_tank * KONSUMSI_PERTAHANAN.hangar_tank).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<GraduationCap size={10} className="text-zinc-200"/>} label="Akademi Militer" value={`${currentData.sektor_pertahanan.akademi_militer} (${(currentData.sektor_pertahanan.akademi_militer * KONSUMSI_PERTAHANAN.akademi_militer).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Landmark size={10} className="text-red-400"/>} label="Budget" value={currentData.sektor_pertahanan.anggaran_pertahanan} />
                 </div>
               </div>
 
@@ -442,22 +442,22 @@ export default function SelectCountry() {
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Truck size={10}/> Armada Militer</span>
-                  <span className="text-xs font-black text-amber-500">{currentData.sector_defense.military_fleet.readiness}% Ready</span>
+                  <span className="text-xs font-black text-amber-500">{currentData.sektor_armada.kesiapan}% Ready</span>
                 </div>
                 
                 {/* Darat */}
                 <div className="grid grid-cols-3 gap-1.5">
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Tank</span>
-                    <span className="text-xs font-black text-white leading-none">{currentData.sector_defense.military_fleet.darat.main_battle_tank}</span>
+                    <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.darat.tank_tempur_utama}</span>
                   </div>
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">APC</span>
-                    <span className="text-xs font-black text-white leading-none">{currentData.sector_defense.military_fleet.darat.apc}</span>
+                    <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.darat.apc}</span>
                   </div>
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Artileri</span>
-                    <span className="text-xs font-black text-white leading-none">{currentData.sector_defense.military_fleet.darat.artileri_berat}</span>
+                    <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.darat.artileri_berat}</span>
                   </div>
                 </div>
 
@@ -465,15 +465,15 @@ export default function SelectCountry() {
                 <div className="grid grid-cols-3 gap-1.5">
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Induk</span>
-                    <span className="text-xs font-black text-white leading-none">{currentData.sector_defense.military_fleet.laut.kapal_induk}</span>
+                    <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.laut.kapal_induk}</span>
                   </div>
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Destroyer</span>
-                    <span className="text-xs font-black text-white leading-none">{currentData.sector_defense.military_fleet.laut.kapal_destroyer}</span>
+                    <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.laut.kapal_destroyer}</span>
                   </div>
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Selam N</span>
-                    <span className="text-xs font-black text-white leading-none">{currentData.sector_defense.military_fleet.laut.kapal_selam_nuklir}</span>
+                    <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.laut.kapal_selam_nuklir}</span>
                   </div>
                 </div>
 
@@ -481,15 +481,15 @@ export default function SelectCountry() {
                 <div className="grid grid-cols-3 gap-1.5">
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Stealth</span>
-                    <span className="text-xs font-black text-white leading-none">{currentData.sector_defense.military_fleet.udara.jet_tempur_stealth}</span>
+                    <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.udara.jet_tempur_siluman}</span>
                   </div>
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Heli Ser</span>
-                    <span className="text-xs font-black text-white leading-none">{currentData.sector_defense.military_fleet.udara.helikopter_serang}</span>
+                    <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.udara.helikopter_serang}</span>
                   </div>
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Intai</span>
-                    <span className="text-xs font-black text-white leading-none">{currentData.sector_defense.military_fleet.udara.pesawat_pengintai}</span>
+                    <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.udara.pesawat_pengintai}</span>
                   </div>
                 </div>
               </div>
@@ -500,15 +500,14 @@ export default function SelectCountry() {
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Crosshair size={10}/> Militer Strategis</span>
-                  <span className="text-xs font-black text-indigo-400">{Math.floor(currentData.sector_military_strategic.cyber_defense)}% Cyber</span>
+                  <span className="text-xs font-black text-indigo-400">{Math.floor(currentData.sektor_pertahanan.pertahanan_siber)}% Cyber</span>
                 </div>
                 <div className={`grid ${getGridCols(rightWidth)} gap-2 mt-1`}>
-                  <SectorStat icon={<TowerControl size={10} className="text-zinc-100"/>} label="Pusat Komando" value={`${currentData.sector_military_strategic.command_center} (${(currentData.sector_military_strategic.command_center * KONSUMSI_STRATEGIC.command_center).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Plane size={10} className="text-cyan-400"/>} label="Pangkalan Udara" value={`${currentData.sector_military_strategic.military_air_base} (${(currentData.sector_military_strategic.military_air_base * KONSUMSI_STRATEGIC.military_air_base).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Anchor size={10} className="text-blue-400"/>} label="Pangkalan Laut" value={`${currentData.sector_military_strategic.military_naval_base} (${(currentData.sector_military_strategic.military_naval_base * KONSUMSI_STRATEGIC.military_naval_base).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Factory size={10} className="text-red-500"/>} label="Pabrik Alutsista" value={`${currentData.sector_military_strategic.arms_factory} (${(currentData.sector_military_strategic.arms_factory * KONSUMSI_STRATEGIC.arms_factory).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<RadioTower size={10} className="text-purple-400"/>} label="Lintas Antariksa" value={`${currentData.sector_military_strategic.space_program} (${(currentData.sector_military_strategic.space_program * KONSUMSI_STRATEGIC.space_program).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Radio size={10} className="text-red-400"/>} label="Status Nuklir" value={currentData.sector_military_strategic.nuclear_status ? "Aktif" : "Mati"} />
+                  <SectorStat icon={<TowerControl size={10} className="text-zinc-100"/>} label="Pusat Komando" value={`${currentData.sektor_pertahanan.pusat_komando} (${(currentData.sektor_pertahanan.pusat_komando * KONSUMSI_STRATEGIC.pusat_komando).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Plane size={10} className="text-cyan-400"/>} label="Pangkalan Udara" value={`${currentData.sektor_pertahanan.pangkalan_udara} (${(currentData.sektor_pertahanan.pangkalan_udara * KONSUMSI_STRATEGIC.pangkalan_udara).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Anchor size={10} className="text-blue-400"/>} label="Pangkalan Laut" value={`${currentData.sektor_pertahanan.pangkalan_laut} (${(currentData.sektor_pertahanan.pangkalan_laut * KONSUMSI_STRATEGIC.pangkalan_laut).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<RadioTower size={10} className="text-purple-400"/>} label="Lintas Antariksa" value={`${currentData.sektor_pertahanan.program_luar_angkasa} (${(currentData.sektor_pertahanan.program_luar_angkasa * KONSUMSI_STRATEGIC.program_luar_angkasa).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Radio size={10} className="text-red-400"/>} label="Status Nuklir" value={currentData.sektor_keamanan.status_nuklir ? "Aktif" : "Mati"} />
                 </div>
 
               </div>
@@ -519,37 +518,37 @@ export default function SelectCountry() {
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-black text-blue-400 uppercase tracking-widest flex items-center gap-1.5"><Shield size={10}/> Armada Kepolisian</span>
-                  <span className="text-xs font-bold text-emerald-400">{currentData.sector_social.law.police_fleet.public_trust}% Trust</span>
+                  <span className="text-xs font-bold text-emerald-400">{currentData.sektor_keamanan.armada_polisi.kepercayaan_publik}% Trust</span>
                 </div>
                 
                 {/* Patrol & Taktis */}
                 <div className="grid grid-cols-3 gap-1.5">
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Patroli</span>
-                    <span className="text-xs font-black text-white leading-none">{currentData.sector_social.law.police_fleet.patroli_lantas.mobil_patroli}</span>
+                    <span className="text-xs font-black text-white leading-none">{currentData.sektor_keamanan.armada_polisi.patroli_lantas.mobil_patroli}</span>
                   </div>
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Motor</span>
-                    <span className="text-xs font-black text-white">{currentData.sector_social.law.police_fleet.patroli_lantas.sepeda_motor}</span>
+                    <span className="text-xs font-black text-white">{currentData.sektor_keamanan.armada_polisi.patroli_lantas.sepeda_motor}</span>
                   </div>
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">K-9</span>
-                    <span className="text-xs font-black text-white">{currentData.sector_social.law.police_fleet.patroli_lantas.unit_k9}</span>
+                    <span className="text-xs font-black text-white">{currentData.sektor_keamanan.armada_polisi.patroli_lantas.unit_k9}</span>
                   </div>
                 </div>
 
                 <div className="grid grid-cols-3 gap-1.5">
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">SWAT</span>
-                    <span className="text-xs font-black text-white leading-none">{currentData.sector_social.law.police_fleet.taktis_khusus.swat}</span>
+                    <span className="text-xs font-black text-white leading-none">{currentData.sektor_keamanan.armada_polisi.taktis_khusus.swat}</span>
                   </div>
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Heli Pol</span>
-                    <span className="text-xs font-black text-white">{currentData.sector_social.law.police_fleet.taktis_khusus.helikopter_polisi}</span>
+                    <span className="text-xs font-black text-white">{currentData.sektor_keamanan.armada_polisi.taktis_khusus.helikopter_polisi}</span>
                   </div>
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">HuruHara</span>
-                    <span className="text-xs font-black text-white">{currentData.sector_social.law.police_fleet.taktis_khusus.anti_huru_hara}</span>
+                    <span className="text-xs font-black text-white">{currentData.sektor_keamanan.armada_polisi.taktis_khusus.anti_huru_hara}</span>
                   </div>
                 </div>
 
@@ -557,15 +556,15 @@ export default function SelectCountry() {
                 <div className="grid grid-cols-3 gap-1.5">
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Stasiun</span>
-                    <span className="text-xs font-black text-white tracking-tighter">{currentData.sector_social.law.police_fleet.pusat_komando.stasiun_polisi}</span>
+                    <span className="text-xs font-black text-white tracking-tighter">{currentData.sektor_keamanan.armada_polisi.pusat_komando.kantor_polisi}</span>
                   </div>
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">CCTV</span>
-                    <span className="text-xs font-black text-white tracking-tighter">{currentData.sector_social.law.police_fleet.pusat_komando.kamera_surveillance}</span>
+                    <span className="text-xs font-black text-white tracking-tighter">{currentData.sektor_keamanan.armada_polisi.pusat_komando.kamera_pengawas}</span>
                   </div>
                   <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                     <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Forensik</span>
-                    <span className="text-xs font-black text-white tracking-tighter">{currentData.sector_social.law.police_fleet.pusat_komando.pusat_forensik}</span>
+                    <span className="text-xs font-black text-white tracking-tighter">{currentData.sektor_keamanan.armada_polisi.pusat_komando.pusat_forensik}</span>
                   </div>
                 </div>
               </div>
@@ -588,23 +587,23 @@ export default function SelectCountry() {
                 <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1 shadow-inner">
                   <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500"/> Beban Listrik</span>
                   <span className="text-amber-500 text-sm">
-                    {hitungKonsumsiSosial(currentData.sector_social).toLocaleString('id-ID')} MW 
-                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sector_social.education.kindergarten + currentData.sector_social.education.elementary_school + currentData.sector_social.education.middle_school + currentData.sector_social.education.high_school + currentData.sector_social.education.university + currentData.sector_social.education.education_institute + currentData.sector_social.education.laboratory + currentData.sector_social.education.observatory + currentData.sector_social.education.research_center + currentData.sector_social.education.development_center + currentData.sector_social.health.large_hospital + currentData.sector_social.health.small_hospital + currentData.sector_social.health.diagnostic_center + currentData.sector_social.sports.swimming_pool + currentData.sector_social.sports.racing_circuit + currentData.sector_social.sports.stadium + currentData.sector_social.sports.international_stadium} Unit)</span>
+                    {hitungKonsumsiSosial(currentData.sektor_sosial).toLocaleString('id-ID')} MW 
+                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_sosial.pendidikan.tk + currentData.sektor_sosial.pendidikan.sd + currentData.sektor_sosial.pendidikan.smp + currentData.sektor_sosial.pendidikan.sma + currentData.sektor_sosial.pendidikan.universitas + currentData.sektor_sosial.pendidikan.lembaga_pendidikan + currentData.sektor_sosial.pendidikan.laboratorium + currentData.sektor_sosial.pendidikan.observatorium + currentData.sektor_sosial.pendidikan.pusat_penelitian + currentData.sektor_sosial.pendidikan.pusat_pengembangan + currentData.sektor_sosial.kesehatan.rumah_sakit_besar + currentData.sektor_sosial.kesehatan.rumah_sakit_kecil + currentData.sektor_sosial.kesehatan.pusat_diagnostik + currentData.sektor_sosial.olahraga.kolam_renang + currentData.sektor_sosial.olahraga.sirkuit_balap + currentData.sektor_sosial.olahraga.stadion + currentData.sektor_sosial.olahraga.stadion_internasional} Unit)</span>
                   </span>
                 </div>
               {/* Education & Research */}
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><GraduationCap size={10}/> Pendidikan & Riset</span>
-                  <span className="text-xs font-black text-blue-400">{currentData.sector_social.education.literacy}% LT</span>
+                  <span className="text-xs font-black text-blue-400">{currentData.sektor_sosial.pendidikan.literasi}% LT</span>
                 </div>
                 <div className={`grid ${getGridCols(rightWidth)} gap-2 mt-1`}>
-                  <SectorStat icon={<Building2 size={10} className="text-zinc-400"/>} label="TK/SD" value={`${currentData.sector_social.education.kindergarten + currentData.sector_social.education.elementary_school} (${(currentData.sector_social.education.kindergarten * KONSUMSI_SOSIAL.education.kindergarten + currentData.sector_social.education.elementary_school * KONSUMSI_SOSIAL.education.elementary_school).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Library size={10} className="text-zinc-300"/>} label="SMP/SMA" value={`${currentData.sector_social.education.middle_school + currentData.sector_social.education.high_school} (${(currentData.sector_social.education.middle_school * KONSUMSI_SOSIAL.education.middle_school + currentData.sector_social.education.high_school * KONSUMSI_SOSIAL.education.high_school).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Library size={10} className="text-zinc-200"/>} label="PT/Lembaga" value={`${currentData.sector_social.education.university + currentData.sector_social.education.education_institute} (${(currentData.sector_social.education.university * KONSUMSI_SOSIAL.education.university + currentData.sector_social.education.education_institute * KONSUMSI_SOSIAL.education.education_institute).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Microscope size={10} className="text-emerald-400"/>} label="Lab & Riset" value={`${currentData.sector_social.education.laboratory + currentData.sector_social.education.research_center} (${(currentData.sector_social.education.laboratory * KONSUMSI_SOSIAL.education.laboratory + currentData.sector_social.education.research_center * KONSUMSI_SOSIAL.education.research_center).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Eye size={10} className="text-purple-300"/>} label="Observatorium" value={`${currentData.sector_social.education.observatory} (${(currentData.sector_social.education.observatory * KONSUMSI_SOSIAL.education.observatory).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Lightbulb size={10} className="text-yellow-400"/>} label="Pengembangan" value={`${currentData.sector_social.education.development_center} (${(currentData.sector_social.education.development_center * KONSUMSI_SOSIAL.education.development_center).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Building2 size={10} className="text-zinc-400"/>} label="TK/SD" value={`${currentData.sektor_sosial.pendidikan.tk + currentData.sektor_sosial.pendidikan.sd} (${(currentData.sektor_sosial.pendidikan.tk * KONSUMSI_SOSIAL.pendidikan.tk + currentData.sektor_sosial.pendidikan.sd * KONSUMSI_SOSIAL.pendidikan.sd).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Library size={10} className="text-zinc-300"/>} label="SMP/SMA" value={`${currentData.sektor_sosial.pendidikan.smp + currentData.sektor_sosial.pendidikan.sma} (${(currentData.sektor_sosial.pendidikan.smp * KONSUMSI_SOSIAL.pendidikan.smp + currentData.sektor_sosial.pendidikan.sma * KONSUMSI_SOSIAL.pendidikan.sma).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Library size={10} className="text-zinc-200"/>} label="PT/Lembaga" value={`${currentData.sektor_sosial.pendidikan.universitas + currentData.sektor_sosial.pendidikan.lembaga_pendidikan} (${(currentData.sektor_sosial.pendidikan.universitas * KONSUMSI_SOSIAL.pendidikan.universitas + currentData.sektor_sosial.pendidikan.lembaga_pendidikan * KONSUMSI_SOSIAL.pendidikan.lembaga_pendidikan).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Microscope size={10} className="text-emerald-400"/>} label="Lab & Riset" value={`${currentData.sektor_sosial.pendidikan.laboratorium + currentData.sektor_sosial.pendidikan.pusat_penelitian} (${(currentData.sektor_sosial.pendidikan.laboratorium * KONSUMSI_SOSIAL.pendidikan.laboratorium + currentData.sektor_sosial.pendidikan.pusat_penelitian * KONSUMSI_SOSIAL.pendidikan.pusat_penelitian).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Eye size={10} className="text-purple-300"/>} label="Observatorium" value={`${currentData.sektor_sosial.pendidikan.observatorium} (${(currentData.sektor_sosial.pendidikan.observatorium * KONSUMSI_SOSIAL.pendidikan.observatorium).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Lightbulb size={10} className="text-yellow-400"/>} label="Pengembangan" value={`${currentData.sektor_sosial.pendidikan.pusat_pengembangan} (${(currentData.sektor_sosial.pendidikan.pusat_pengembangan * KONSUMSI_SOSIAL.pendidikan.pusat_pengembangan).toLocaleString('id-ID')} MW)`} />
                 </div>
               </div>
 
@@ -614,15 +613,15 @@ export default function SelectCountry() {
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><HeartPulse size={10}/> Kesehatan & Olahraga</span>
-                  <span className="text-xs font-black text-emerald-400">{currentData.sector_social.health.healthcare_index}% IX</span>
+                  <span className="text-xs font-black text-emerald-400">{currentData.sektor_sosial.kesehatan.indeks_kesehatan}% IX</span>
                 </div>
                 <div className={`grid ${getGridCols(rightWidth)} gap-2 mt-1`}>
-                  <SectorStat icon={<Building2 size={10} className="text-emerald-500"/>} label="RS Besar/Kecil" value={`${currentData.sector_social.health.large_hospital + currentData.sector_social.health.small_hospital} (${(currentData.sector_social.health.large_hospital * KONSUMSI_SOSIAL.health.large_hospital + currentData.sector_social.health.small_hospital * KONSUMSI_SOSIAL.health.small_hospital).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Search size={10} className="text-cyan-400"/>} label="Diagnostik" value={`${currentData.sector_social.health.diagnostic_center} (${(currentData.sector_social.health.diagnostic_center * KONSUMSI_SOSIAL.health.diagnostic_center).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Waves size={10} className="text-blue-400"/>} label="Kolam Renang" value={`${currentData.sector_social.sports.swimming_pool} (${(currentData.sector_social.sports.swimming_pool * KONSUMSI_SOSIAL.sports.swimming_pool).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Flame size={10} className="text-orange-500"/>} label="Sirkuit Balap" value={`${currentData.sector_social.sports.racing_circuit} (${(currentData.sector_social.sports.racing_circuit * KONSUMSI_SOSIAL.sports.racing_circuit).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Trophy size={10} className="text-yellow-500"/>} label="Stadion" value={`${currentData.sector_social.sports.stadium + currentData.sector_social.sports.international_stadium} (${(currentData.sector_social.sports.stadium * KONSUMSI_SOSIAL.sports.stadium + currentData.sector_social.sports.international_stadium * KONSUMSI_SOSIAL.sports.international_stadium).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Beef size={10} className="text-red-400"/>} label="Harapan Hidup" value={currentData.sector_social.health.life_expectancy} />
+                  <SectorStat icon={<Building2 size={10} className="text-emerald-500"/>} label="RS Besar/Kecil" value={`${currentData.sektor_sosial.kesehatan.rumah_sakit_besar + currentData.sektor_sosial.kesehatan.rumah_sakit_kecil} (${(currentData.sektor_sosial.kesehatan.rumah_sakit_besar * KONSUMSI_SOSIAL.kesehatan.rumah_sakit_besar + currentData.sektor_sosial.kesehatan.rumah_sakit_kecil * KONSUMSI_SOSIAL.kesehatan.rumah_sakit_kecil).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Search size={10} className="text-cyan-400"/>} label="Diagnostik" value={`${currentData.sektor_sosial.kesehatan.pusat_diagnostik} (${(currentData.sektor_sosial.kesehatan.pusat_diagnostik * KONSUMSI_SOSIAL.kesehatan.pusat_diagnostik).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Waves size={10} className="text-blue-400"/>} label="Kolam Renang" value={`${currentData.sektor_sosial.olahraga.kolam_renang} (${(currentData.sektor_sosial.olahraga.kolam_renang * KONSUMSI_SOSIAL.olahraga.kolam_renang).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Flame size={10} className="text-orange-500"/>} label="Sirkuit Balap" value={`${currentData.sektor_sosial.olahraga.sirkuit_balap} (${(currentData.sektor_sosial.olahraga.sirkuit_balap * KONSUMSI_SOSIAL.olahraga.sirkuit_balap).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Trophy size={10} className="text-yellow-500"/>} label="Stadion" value={`${currentData.sektor_sosial.olahraga.stadion + currentData.sektor_sosial.olahraga.stadion_internasional} (${(currentData.sektor_sosial.olahraga.stadion * KONSUMSI_SOSIAL.olahraga.stadion + currentData.sektor_sosial.olahraga.stadion_internasional * KONSUMSI_SOSIAL.olahraga.stadion_internasional).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Beef size={10} className="text-red-400"/>} label="Harapan Hidup" value={currentData.sektor_sosial.kesehatan.harapan_hidup} />
                 </div>
               </div>
 
@@ -632,15 +631,15 @@ export default function SelectCountry() {
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Gavel size={10}/> Hukum & Keamanan</span>
-                  <span className="text-xs font-black text-orange-400">{currentData.sector_social.law.security_index}% SEC</span>
+                  <span className="text-xs font-black text-orange-400">{currentData.sektor_sosial.hukum.indeks_keamanan}% SEC</span>
                 </div>
                 <div className={`grid ${getGridCols(rightWidth)} gap-2 mt-1`}>
-                  <SectorStat icon={<GraduationCap size={10} className="text-zinc-200"/>} label="Akademi Polisi" value={`${currentData.sector_social.law.police_academy} (${(currentData.sector_social.law.police_academy * KONSUMSI_SOSIAL.law.police_academy).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<ShieldAlert size={10} className="text-blue-500"/>} label="Kepolisian" value={`${currentData.sector_social.law.police_station} (${(currentData.sector_social.law.police_station * KONSUMSI_SOSIAL.law.police_station).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Car size={10} className="text-zinc-400"/>} label="Armada Mobil" value={`${currentData.sector_social.law.police_car_fleet} (${(currentData.sector_social.law.police_car_fleet * KONSUMSI_SOSIAL.law.police_car_fleet).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Gavel size={10} className="text-orange-400"/>} label="Kejaksaan/Court" value={`${currentData.sector_social.law.prosecution_office + currentData.sector_social.law.court} (${(currentData.sector_social.law.prosecution_office * KONSUMSI_SOSIAL.law.prosecution_office + currentData.sector_social.law.court * KONSUMSI_SOSIAL.law.court).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Scale size={10} className="text-yellow-500"/>} label="Bantuan Hukum" value={`${currentData.sector_social.law.legal_aid_center} (${(currentData.sector_social.law.legal_aid_center * KONSUMSI_SOSIAL.law.legal_aid_center).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<TrendingUp size={10} className="text-zinc-400"/>} label="Indeks Korupsi" value={currentData.sector_social.law.corruption_index} />
+                  <SectorStat icon={<GraduationCap size={10} className="text-zinc-200"/>} label="Akademi Polisi" value={`${currentData.sektor_sosial.hukum.akademi_polisi} (${(currentData.sektor_sosial.hukum.akademi_polisi * KONSUMSI_SOSIAL.hukum.akademi_polisi).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<ShieldAlert size={10} className="text-blue-500"/>} label="Kepolisian" value={`${currentData.sektor_sosial.hukum.pos_polisi} (${(currentData.sektor_sosial.hukum.pos_polisi * KONSUMSI_SOSIAL.hukum.pos_polisi).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Car size={10} className="text-zinc-400"/>} label="Armada Mobil" value={`${currentData.sektor_sosial.hukum.armada_mobil_polisi} (${(currentData.sektor_sosial.hukum.armada_mobil_polisi * KONSUMSI_SOSIAL.hukum.armada_mobil_polisi).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Gavel size={10} className="text-orange-400"/>} label="Kejaksaan/Court" value={`${currentData.sektor_sosial.hukum.kejaksaan + currentData.sektor_sosial.hukum.pengadilan} (${(currentData.sektor_sosial.hukum.kejaksaan * KONSUMSI_SOSIAL.hukum.kejaksaan + currentData.sektor_sosial.hukum.pengadilan * KONSUMSI_SOSIAL.hukum.pengadilan).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Scale size={10} className="text-yellow-500"/>} label="Bantuan Hukum" value={`${currentData.sektor_sosial.hukum.pusat_bantuan_hukum} (${(currentData.sektor_sosial.hukum.pusat_bantuan_hukum * KONSUMSI_SOSIAL.hukum.pusat_bantuan_hukum).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<TrendingUp size={10} className="text-zinc-400"/>} label="Indeks Korupsi" value={currentData.sektor_sosial.hukum.indeks_korupsi} />
                 </div>
               </div>
             </div>
@@ -653,7 +652,7 @@ export default function SelectCountry() {
             <div className="flex items-center justify-between w-full">
               <h3 className="text-xs font-black text-blue-500 uppercase tracking-[0.2em]">6. Geopolitik & Luar Negeri (16 Jenis)</h3>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-black bg-indigo-500/20 text-indigo-400 px-1.5 py-0.5 rounded uppercase">{currentData.geopolitics.stance}</span>
+                <span className="text-xs font-black bg-indigo-500/20 text-indigo-400 px-1.5 py-0.5 rounded uppercase">{currentData.geopolitik.sikap}</span>
                 <button onClick={() => setIsGeopoliticsOpen(!isGeopoliticsOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                   {isGeopoliticsOpen ? <Eye size={12} className="text-blue-500"/> : <EyeOff size={12} className="text-zinc-500"/>}
                 </button>
@@ -665,7 +664,7 @@ export default function SelectCountry() {
 
             {/* Sub-Tabs */}
             <div className="flex gap-1 p-1 bg-zinc-800/50 rounded-lg">
-              {(["overview", "orgs", "agreements"] as const).map(tab => (
+              {(["overview", "orgs", "perjanjian"] as const).map(tab => (
                 <button
                   key={tab}
                   onClick={() => setGeoTab(tab)}
@@ -683,12 +682,8 @@ export default function SelectCountry() {
                 <div className="flex flex-col gap-3 animate-in fade-in slide-in-from-right-1 duration-300">
                   <div className={`grid ${getGridCols(rightWidth)} gap-4`}>
                     <div className="flex flex-col gap-1">
-                      <span className="text-xs font-bold text-zinc-500 uppercase">Surplus Dagang</span>
-                      <span className="text-sm font-black text-green-400">Rp {(Number(currentData.trade.sell_commodity) - Number(currentData.trade.buy_commodity)).toLocaleString('id-ID')}</span>
-                    </div>
-                    <div className="flex flex-col gap-1">
                       <span className="text-xs font-bold text-zinc-500 uppercase">Diplomacy</span>
-                      <span className="text-sm font-black text-blue-400">{currentData.geopolitics.international_influence.diplomatic_prestige} IX</span>
+                      <span className="text-sm font-black text-blue-400">{currentData.geopolitik.pengaruh_internasional.prestise_diplomatik} IX</span>
                     </div>
                   </div>
 
@@ -696,19 +691,19 @@ export default function SelectCountry() {
                     <div className="flex flex-col gap-1">
                       <div className="flex justify-between text-xs font-bold uppercase">
                         <span className="text-zinc-500">Soft Power</span>
-                        <span className="text-indigo-400">{currentData.geopolitics.international_influence.soft_power}%</span>
+                        <span className="text-indigo-400">{currentData.geopolitik.pengaruh_internasional.kekuatan_lunak}%</span>
                       </div>
                       <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
-                        <div className="h-full bg-indigo-500 transition-all duration-500" style={{ width: `${currentData.geopolitics.international_influence.soft_power}%` }} />
+                        <div className="h-full bg-indigo-500 transition-all duration-500" style={{ width: `${currentData.geopolitik.pengaruh_internasional.kekuatan_lunak}%` }} />
                       </div>
                     </div>
                     <div className="flex flex-col gap-1">
                       <div className="flex justify-between text-xs font-bold uppercase">
                         <span className="text-zinc-500">Hard Power</span>
-                        <span className="text-red-400">{currentData.geopolitics.international_influence.hard_power}%</span>
+                        <span className="text-red-400">{currentData.geopolitik.pengaruh_internasional.kekuatan_keras}%</span>
                       </div>
                       <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
-                        <div className="h-full bg-red-500 transition-all duration-500" style={{ width: `${currentData.geopolitics.international_influence.hard_power}%` }} />
+                        <div className="h-full bg-red-500 transition-all duration-500" style={{ width: `${currentData.geopolitik.pengaruh_internasional.kekuatan_keras}%` }} />
                       </div>
                     </div>
                   </div>
@@ -716,7 +711,7 @@ export default function SelectCountry() {
                   <div className="flex flex-col gap-1.5 scroll-area max-h-[60px] no-scrollbar overflow-y-auto">
                     <span className="text-xs font-bold text-zinc-500 uppercase">Sekutu Utama</span>
                     <div className="flex flex-wrap gap-1">
-                      {currentData.geopolitics.allies.map((a, i) => (
+                      {currentData.geopolitik.sekutu.map((a, i) => (
                         <span key={i} className="text-xs font-bold text-zinc-300 bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700/50">{a}</span>
                       ))}
                     </div>
@@ -728,14 +723,14 @@ export default function SelectCountry() {
                 <div className="flex flex-col gap-2 animate-in fade-in slide-in-from-right-1 duration-300">
                   <span className="text-xs font-bold text-zinc-500 uppercase">Keanggotaan Organisasi</span>
                   <div className="flex flex-col gap-1.5">
-                    {currentData.geopolitics.international_orgs.map((org, i) => (
+                    {currentData.geopolitik.organisasi_internasional.map((org, i) => (
                       <div key={i} className="flex items-center justify-between p-2 bg-zinc-800/40 rounded-lg border border-zinc-700/30">
                         <div className="flex items-center gap-2">
                           <Globe2 size={10} className="text-blue-400"/>
                           <span className="text-xs font-bold text-white">{org.name}</span>
                         </div>
                         <span className={`text-xs font-black px-1.5 py-0.5 rounded ${
-                          org.role === "Leader" ? "bg-amber-500/20 text-amber-400" : "bg-zinc-700/50 text-zinc-400"
+                          org.role === "Pemimpin" ? "bg-amber-500/20 text-amber-400" : "bg-zinc-700/50 text-zinc-400"
                         }`}>{org.role}</span>
                       </div>
                     ))}
@@ -743,17 +738,17 @@ export default function SelectCountry() {
                 </div>
               )}
 
-              {geoTab === "agreements" && (
+              {geoTab === "perjanjian" && (
                 <div className="flex flex-col gap-2 animate-in fade-in slide-in-from-right-1 duration-300">
                   <span className="text-xs font-bold text-zinc-500 uppercase">Perjanjian Internasional</span>
                   <div className="flex flex-col gap-1.5">
-                    {currentData.geopolitics.agreements?.map((agr, i) => (
+                    {currentData.geopolitik.perjanjian?.map((agr, i) => (
                       <div key={i} className="flex flex-col gap-1 p-2 bg-zinc-800/40 rounded-lg border border-zinc-700/30">
                         <div className="flex justify-between items-center text-xs font-black">
-                          <span className="text-white">{agr.partner}</span>
+                          <span className="text-white">{agr.mitra}</span>
                           <span className={`text-xs uppercase ${
-                            agr.type === "Military" ? "text-red-400" : agr.type === "Trade" ? "text-emerald-400" : "text-blue-400"
-                          }`}>{agr.type}</span>
+                            agr.jenis === "Militer" ? "text-red-400" : agr.jenis === "Perdagangan" ? "text-emerald-400" : "text-blue-400"
+                          }`}>{agr.jenis}</span>
                         </div>
                         <div className="flex justify-between items-center">
                           <span className="text-xs text-zinc-500">{agr.status}</span>
@@ -786,7 +781,7 @@ export default function SelectCountry() {
                 <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1 shadow-inner mb-1">
                   <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500"/> Beban Listrik</span>
                   <span className="text-amber-500 text-sm">
-                    {hitungKonsumsiEkstraksi(currentData.sector_extraction).toLocaleString('id-ID')} MW 
+                    {hitungKonsumsiEkstraksi(currentData.sektor_ekstraksi).toLocaleString('id-ID')} MW 
                   </span>
                 </div>
             <div className="flex items-center justify-between mb-1">
@@ -795,18 +790,18 @@ export default function SelectCountry() {
             </div>
             
             <div className={`grid ${getGridCols(rightWidth)} gap-2`}>
-              <SectorStat icon={<Layers size={10} className="text-blue-200"/>} label="Alumunium" value={`${currentData.sector_extraction.aluminum} (${(currentData.sector_extraction.aluminum * KONSUMSI_EKSTRAKSI.aluminum).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Layers size={10} className="text-zinc-400"/>} label="Batubara" value={`${currentData.sector_extraction.coal} (${(currentData.sector_extraction.coal * KONSUMSI_EKSTRAKSI.coal).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Mountain size={10} className="text-zinc-500"/>} label="Biji Besi" value={`${currentData.sector_extraction.iron_ore} (${(currentData.sector_extraction.iron_ore * KONSUMSI_EKSTRAKSI.iron_ore).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Gem size={10} className="text-yellow-400"/>} label="Emas" value={`${currentData.sector_extraction.gold} (${(currentData.sector_extraction.gold * KONSUMSI_EKSTRAKSI.gold).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Waves size={10} className="text-blue-200"/>} label="Garam" value={`${currentData.sector_extraction.salt} (${(currentData.sector_extraction.salt * KONSUMSI_EKSTRAKSI.salt).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Flame size={10} className="text-orange-400"/>} label="Gas" value={`${currentData.sector_extraction.gas} (${(currentData.sector_extraction.gas * KONSUMSI_EKSTRAKSI.gas).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Battery size={10} className="text-cyan-400"/>} label="Litium" value={`${currentData.sector_extraction.lithium} (${(currentData.sector_extraction.lithium * KONSUMSI_EKSTRAKSI.lithium).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Droplets size={10} className="text-blue-400"/>} label="Minyak" value={`${currentData.sector_extraction.oil} (${(currentData.sector_extraction.oil * KONSUMSI_EKSTRAKSI.oil).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Box size={10} className="text-orange-400"/>} label="Nikel" value={`${currentData.sector_extraction.nickel} (${(currentData.sector_extraction.nickel * KONSUMSI_EKSTRAKSI.nickel).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Cpu size={10} className="text-purple-400"/>} label="Tanah Jarang" value={`${currentData.sector_extraction.rare_earth} (${(currentData.sector_extraction.rare_earth * KONSUMSI_EKSTRAKSI.rare_earth).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Pickaxe size={10} className="text-orange-300"/>} label="Tembaga" value={`${currentData.sector_extraction.copper} (${(currentData.sector_extraction.copper * KONSUMSI_EKSTRAKSI.copper).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Radio size={10} className="text-emerald-400"/>} label="Uranium" value={`${currentData.sector_extraction.uranium} (${(currentData.sector_extraction.uranium * KONSUMSI_EKSTRAKSI.uranium).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Layers size={10} className="text-blue-200"/>} label="Alumunium" value={`${currentData.sektor_ekstraksi.aluminium} (${(currentData.sektor_ekstraksi.aluminium * KONSUMSI_EKSTRAKSI.aluminium).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Layers size={10} className="text-zinc-400"/>} label="Batubara" value={`${currentData.sektor_ekstraksi.batu_bara} (${(currentData.sektor_ekstraksi.batu_bara * KONSUMSI_EKSTRAKSI.batu_bara).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Mountain size={10} className="text-zinc-500"/>} label="Biji Besi" value={`${currentData.sektor_ekstraksi.bijih_besi} (${(currentData.sektor_ekstraksi.bijih_besi * KONSUMSI_EKSTRAKSI.bijih_besi).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Gem size={10} className="text-yellow-400"/>} label="Emas" value={`${currentData.sektor_ekstraksi.emas} (${(currentData.sektor_ekstraksi.emas * KONSUMSI_EKSTRAKSI.emas).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Waves size={10} className="text-blue-200"/>} label="Garam" value={`${currentData.sektor_ekstraksi.garam} (${(currentData.sektor_ekstraksi.garam * KONSUMSI_EKSTRAKSI.garam).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Flame size={10} className="text-orange-400"/>} label="Gas" value={`${currentData.sektor_ekstraksi.gas_alam} (${(currentData.sektor_ekstraksi.gas_alam * KONSUMSI_EKSTRAKSI.gas_alam).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Battery size={10} className="text-cyan-400"/>} label="Litium" value={`${currentData.sektor_ekstraksi.litium} (${(currentData.sektor_ekstraksi.litium * KONSUMSI_EKSTRAKSI.litium).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Droplets size={10} className="text-blue-400"/>} label="Minyak" value={`${currentData.sektor_ekstraksi.minyak_bumi} (${(currentData.sektor_ekstraksi.minyak_bumi * KONSUMSI_EKSTRAKSI.minyak_bumi).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Box size={10} className="text-orange-400"/>} label="Nikel" value={`${currentData.sektor_ekstraksi.nikel} (${(currentData.sektor_ekstraksi.nikel * KONSUMSI_EKSTRAKSI.nikel).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Cpu size={10} className="text-purple-400"/>} label="Tanah Jarang" value={`${currentData.sektor_ekstraksi.logam_tanah_jarang} (${(currentData.sektor_ekstraksi.logam_tanah_jarang * KONSUMSI_EKSTRAKSI.logam_tanah_jarang).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Pickaxe size={10} className="text-orange-300"/>} label="Tembaga" value={`${currentData.sektor_ekstraksi.tembaga} (${(currentData.sektor_ekstraksi.tembaga * KONSUMSI_EKSTRAKSI.tembaga).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Radio size={10} className="text-emerald-400"/>} label="Uranium" value={`${currentData.sektor_ekstraksi.uranium} (${(currentData.sektor_ekstraksi.uranium * KONSUMSI_EKSTRAKSI.uranium).toLocaleString('id-ID')} MW)`} />
             </div>
             </div>
             </div>

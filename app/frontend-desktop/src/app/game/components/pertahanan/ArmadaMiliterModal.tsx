@@ -12,7 +12,7 @@ interface ModalProps {
 export default function ArmadaMiliterModal({ isOpen, onClose, data }: ModalProps) {
   if (!isOpen) return null;
 
-  const mil = data.sector_defense.military_fleet;
+  const mil = data.sektor_armada;
 
   const fleetCategories = [
     {
@@ -20,9 +20,9 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: ModalProps
       icon: Truck,
       color: "text-amber-500",
       items: [
-        { name: "Main Battle Tank", count: mil.darat.main_battle_tank, status: "Siaga", health: Math.min(100, mil.readiness + 2) },
-        { name: "Armored Personnel Carrier", count: mil.darat.apc, status: "Patroli", health: Math.min(100, mil.readiness - 5) },
-        { name: "Artileri Berat", count: mil.darat.artileri_berat, status: "Siaga", health: mil.readiness },
+        { name: "Main Battle Tank", count: mil.darat.tank_tempur_utama, status: "Siaga", kesehatan: Math.min(100, mil.kesiapan + 2) },
+        { name: "Armored Personnel Carrier", count: mil.darat.apc, status: "Patroli", kesehatan: Math.min(100, mil.kesiapan - 5) },
+        { name: "Artileri Berat", count: mil.darat.artileri_berat, status: "Siaga", kesehatan: mil.kesiapan },
       ]
     },
     {
@@ -30,9 +30,9 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: ModalProps
       icon: Anchor,
       color: "text-blue-500",
       items: [
-        { name: "Kapal Induk", count: mil.laut.kapal_induk, status: "Dermaga", health: Math.min(100, mil.readiness + 5) },
-        { name: "Kapal Destroyer", count: mil.laut.kapal_destroyer, status: "Laut Lepas", health: Math.min(100, mil.readiness - 3) },
-        { name: "Kapal Selam Nuklir", count: mil.laut.kapal_selam_nuklir, status: "Rahasia", health: mil.readiness },
+        { name: "Kapal Induk", count: mil.laut.kapal_induk, status: "Dermaga", kesehatan: Math.min(100, mil.kesiapan + 5) },
+        { name: "Kapal Destroyer", count: mil.laut.kapal_destroyer, status: "Laut Lepas", kesehatan: Math.min(100, mil.kesiapan - 3) },
+        { name: "Kapal Selam Nuklir", count: mil.laut.kapal_selam_nuklir, status: "Rahasia", kesehatan: mil.kesiapan },
       ]
     },
     {
@@ -40,9 +40,9 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: ModalProps
       icon: Plane,
       color: "text-cyan-500",
       items: [
-        { name: "Jet Tempur Stealth", count: mil.udara.jet_tempur_stealth, status: "Hanggar", health: Math.min(100, mil.readiness + 4) },
-        { name: "Helikopter Serang", count: mil.udara.helikopter_serang, status: "Siaga", health: Math.min(100, mil.readiness - 8) },
-        { name: "Pesawat Pengintai", count: mil.udara.pesawat_pengintai, status: "Misi", health: mil.readiness },
+        { name: "Jet Tempur Stealth", count: mil.udara.jet_tempur_siluman, status: "Hanggar", kesehatan: Math.min(100, mil.kesiapan + 4) },
+        { name: "Helikopter Serang", count: mil.udara.helikopter_serang, status: "Siaga", kesehatan: Math.min(100, mil.kesiapan - 8) },
+        { name: "Pesawat Pengintai", count: mil.udara.pesawat_pengintai, status: "Misi", kesehatan: mil.kesiapan },
       ]
     }
   ];
@@ -90,12 +90,12 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: ModalProps
                       <div className="space-y-1.5">
                         <div className="flex justify-between text-[9px] font-bold text-zinc-500 uppercase">
                           <span>Combat Readiness</span>
-                          <span>{item.health}%</span>
+                          <span>{item.kesehatan}%</span>
                         </div>
                         <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
                           <div 
                             className="h-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" 
-                            style={{ width: `${item.health}%` }}
+                            style={{ width: `${item.kesehatan}%` }}
                           />
                         </div>
                       </div>
@@ -111,7 +111,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: ModalProps
         <div className="px-8 py-4 bg-zinc-900/50 border-t border-zinc-800/50 flex justify-between items-center text-[10px]">
           <div className="flex gap-6">
             <span className="text-zinc-500 font-bold uppercase tracking-widest">Total Unit: <span className="text-white">{mil.total_unit.toLocaleString()}</span></span>
-            <span className="text-zinc-500 font-bold uppercase tracking-widest">Kesiapan Global: <span className="text-emerald-400">{mil.readiness}%</span></span>
+            <span className="text-zinc-500 font-bold uppercase tracking-widest">Kesiapan Global: <span className="text-emerald-400">{mil.kesiapan}%</span></span>
           </div>
           <p className="text-zinc-600 italic">Data diperbarui secara real-time dari Pusat Komando Strategis</p>
         </div>

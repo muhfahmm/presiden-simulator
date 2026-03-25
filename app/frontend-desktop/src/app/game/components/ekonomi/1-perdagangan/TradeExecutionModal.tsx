@@ -27,21 +27,21 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
   // Mapping trade keys to production buildings
   const productionMapping: Record<string, string> = {
     // Minerals
-    gold: "gold_mine", uranium: "uranium_mine", coal: "coal_mine", oil: "oil_well",
-    gas: "gas_well", salt: "salt_mine", nickel: "nickel_mine", lithium: "lithium_mine",
-    copper: "copper_mine", aluminum: "aluminum_mine", rare_earth: "rare_earth_mine", iron_ore: "iron_ore_mine",
+    emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", minyak_bumi: "oil_well",
+    gas_alam: "gas_well", garam: "salt_mine", nikel: "nickel_mine", litium: "lithium_mine",
+    tembaga: "copper_mine", aluminium: "aluminum_mine", logam_tanah_jarang: "rare_earth_mine", bijih_besi: "iron_ore_mine",
     // Industry
-    semiconductor: "electronics_factory", car: "car_factory", motorcycle: "motorcycle_factory", 
-    smelter: "smelter", concrete_cement: "cement_factory", wood: "sawmill",
-    mineral_water: "bottled_water_factory", sugar: "sugar_factory", pharmacy: "pharma_factory",
-    fertilizer: "fertilizer_factory", meat_processing: "meat_processing_factory", instant_noodle: "noodle_factory",
-    bread: "bakery_factory",
+    semikonduktor: "electronics_factory", mobil: "car_factory", sepeda_motor: "motorcycle_factory", 
+    smelter: "smelter", semen_beton: "cement_factory", kayu: "sawmill",
+    air_mineral: "bottled_water_factory", gula: "sugar_factory", farmasi: "pharma_factory",
+    pupuk: "fertilizer_factory", pengolahan_daging: "meat_processing_factory", mie_instan: "noodle_factory",
+    roti: "bakery_factory",
     // Food
-    chicken: "poultry_farm", poultry: "poultry_farm", dairy_cow: "dairy_farm", beef_cow: "cattle_farm",
-    sheep_goat: "sheep_farm", shrimp: "shrimp_farm", fish: "freshwater_fish_farm", shellfish: "pearl_farm",
-    rice: "paddy_field", wheat: "wheat_field", corn: "corn_field", tubers: "tuber_field", soy: "soybean_field",
-    palm_oil: "palm_oil_plantation", tea: "tea_plantation", coffee: "coffee_plantation", cocoa: "cocoa_plantation",
-    sugarcane: "sugarcane_plantation", vegetables: "vegetable_farm"
+    ayam: "poultry_farm", unggas: "poultry_farm", sapi_perah: "dairy_farm", sapi_potong: "cattle_farm",
+    domba_kambing: "sheep_farm", udang: "shrimp_farm", ikan: "freshwater_fish_farm", kerang: "pearl_farm",
+    beras: "paddy_field", gandum: "wheat_field", jagung: "corn_field", umbi_umbian: "tuber_field", kedelai: "soybean_field",
+    kelapa_sawit: "palm_oil_plantation", teh: "tea_plantation", kopi: "coffee_plantation", cokelat: "cocoa_plantation",
+    tebu: "sugarcane_plantation", sayur_sayuran: "vegetable_farm"
   };
 
   const buildingKey = productionMapping[selectedKey];
@@ -229,15 +229,15 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                     <button 
                       key={i}
                       onClick={() => {
-                        setSelectedPartner(p.partner);
+                        setSelectedPartner(p.mitra);
                         setIsPartnerDropdownOpen(false);
                       }}
-                      className={`w-full p-4 flex items-center gap-4 hover:bg-zinc-900 transition-all text-left ${selectedPartner === p.partner ? 'bg-blue-500/5' : ''}`}
+                      className={`w-full p-4 flex items-center gap-4 hover:bg-zinc-900 transition-all text-left ${selectedPartner === p.mitra ? 'bg-blue-500/5' : ''}`}
                     >
                       <div className="w-8 h-8 rounded-lg bg-zinc-900 flex items-center justify-center text-blue-400">
                         <Globe size={14} />
                       </div>
-                      <span className="text-xs font-black text-zinc-300 uppercase tracking-widest">{p.partner}</span>
+                      <span className="text-xs font-black text-zinc-300 uppercase tracking-widest">{p.mitra}</span>
                     </button>
                   ))}
                 </div>

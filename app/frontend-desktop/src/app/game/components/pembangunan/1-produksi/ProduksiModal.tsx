@@ -67,7 +67,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
               buildingStorage.removeFromQueue(finishItem.id);
             }
           });
-          // Dispatch event to sync other components
+          // Dispatch event to sync lainnya components
           window.dispatchEvent(new Event('building_storage_updated'));
         }
 
@@ -93,30 +93,30 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   const buildingData = buildingStorage.getData();
   const buildingDeltas = buildingData.buildingDeltas;
 
-  const totalPasokan = hitungTotalKapasitas(currentData.sector_electricity);
+  const totalPasokan = hitungTotalKapasitas(currentData.sektor_listrik);
   const totalBeban = hitungTotalKonsumsiNasional(currentData);
 
   // Robust mapping for manufacturing keys
   const getManufacturingCount = (key: string) => {
     const baseKeyMapping: Record<string, string> = {
-      "electronics_factory": "semiconductor",
-      "car_factory": "car",
-      "motorcycle_factory": "motorcycle",
-      "cement_factory": "concrete_cement",
+      "electronics_factory": "semikonduktor",
+      "car_factory": "mobil",
+      "motorcycle_factory": "sepeda_motor",
+      "cement_factory": "semen_beton",
       "smelter": "smelter",
-      "bottled_water_factory": "mineral_water",
-      "sugar_factory": "sugar",
-      "pharma_factory": "pharmacy",
-      "noodle_factory": "instant_noodle",
-      "meat_processing_factory": "meat_processing",
-      "sawmill": "wood",
-      "fertilizer_factory": "fertilizer",
-      "bakery_factory": "bread"
+      "bottled_water_factory": "air_mineral",
+      "sugar_factory": "gula",
+      "pharma_factory": "farmasi",
+      "noodle_factory": "mie_instan",
+      "meat_processing_factory": "pengolahan_daging",
+      "sawmill": "kayu",
+      "fertilizer_factory": "pupuk",
+      "bakery_factory": "roti"
     };
 
     const baseKey = baseKeyMapping[key] || key.replace('_factory', '');
-    const baseCount = (currentData?.sector_manufacturing && typeof (currentData.sector_manufacturing as any)[baseKey] === 'number')
-      ? (currentData.sector_manufacturing as any)[baseKey]
+    const baseCount = (currentData?.sektor_manufaktur && typeof (currentData.sektor_manufaktur as any)[baseKey] === 'number')
+      ? (currentData.sektor_manufaktur as any)[baseKey]
       : 0;
     const deltaCount = (buildingDeltas[key] && typeof buildingDeltas[key] === 'number')
       ? buildingDeltas[key]
@@ -190,12 +190,12 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         key,
         groupId: "kelistrikan",
         label: val.desc,
-        icon: key === "hydro_plant" ? Droplets : (key === "nuclear_plant" ? Radiation : (key === "thermal_plant" ? Flame : Zap)),
+        icon: key === "pembangkit_air" ? Droplets : (key === "pembangkit_nuklir" ? Radiation : (key === "pembangkit_termal" ? Flame : Zap)),
         desc: "Energi Listrik",
-        rate: val.production,
+        tarif: val.production,
         unit: val.unit,
-        count: (currentData.sector_electricity[key as keyof typeof currentData.sector_electricity] || 0) + ((buildingDeltas[key] as number) || 0),
-        income: 0,
+        count: (currentData.sektor_listrik[key as keyof typeof currentData.sektor_listrik] || 0) + ((buildingDeltas[key] as number) || 0),
+        pendapatan_nasional: 0,
         cost: 35,
         buildTime: val.buildTime || 90
       }))
@@ -213,12 +213,12 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
             key,
             groupId: "manufaktur",
             label: val.desc,
-            icon: key.includes("electronics") ? Cpu : (key.includes("car") ? Car : (key.includes("motorcycle") ? Bike : (key.includes("smelter") ? Flame : (key.includes("cement") ? Construction : (key.includes("sawmill") ? TreePine : (key.includes("water") ? Droplets : (key.includes("sugar") ? Cookie : (key.includes("bakery") ? Croissant : (key.includes("pharma") ? Pill : (key.includes("fertilizer") ? FlaskConical : (key.includes("meat") ? Beef : Soup))))))))))),
+            icon: key.includes("electronics") ? Cpu : (key.includes("mobil") ? Car : (key.includes("sepeda_motor") ? Bike : (key.includes("smelter") ? Flame : (key.includes("cement") ? Construction : (key.includes("sawmill") ? TreePine : (key.includes("water") ? Droplets : (key.includes("gula") ? Cookie : (key.includes("bakery") ? Croissant : (key.includes("pharma") ? Pill : (key.includes("pupuk") ? FlaskConical : (key.includes("meat") ? Beef : Soup))))))))))),
             desc: "Manufaktur",
-            rate: val.production,
+            tarif: val.production,
             unit: val.unit,
             count: getManufacturingCount(key),
-            income: val.income,
+            pendapatan_nasional: val.pendapatan_nasional,
             cost: 45,
             buildTime: val.buildTime || 45
           })),
@@ -230,10 +230,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           label: "Ayam/Unggas",
           icon: Bird,
           desc: "Peternakan",
-          rate: 1,
+          tarif: 1,
           unit: "Unit",
-          count: (currentData.sector_livestock.chicken + currentData.sector_livestock.poultry) + ((buildingDeltas["egg_farm"] as number) || 0) + ((buildingDeltas["poultry_farm"] as number) || 0),
-          income: 15, cost: 8, buildTime: 20
+          count: (currentData.sektor_peternakan.ayam + currentData.sektor_peternakan.unggas) + ((buildingDeltas["egg_farm"] as number) || 0) + ((buildingDeltas["poultry_farm"] as number) || 0),
+          pendapatan_nasional: 15, cost: 8, buildTime: 20
         },
         {
           key: "livestock_dairy",
@@ -241,10 +241,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           label: "Sapi Perah",
           icon: Milk,
           desc: "Peternakan",
-          rate: 1,
+          tarif: 1,
           unit: "Unit",
-          count: (currentData.sector_livestock.dairy_cow) + ((buildingDeltas["dairy_farm"] as number) || 0),
-          income: 25, cost: 8, buildTime: 20
+          count: (currentData.sektor_peternakan.sapi_perah) + ((buildingDeltas["dairy_farm"] as number) || 0),
+          pendapatan_nasional: 25, cost: 8, buildTime: 20
         },
         {
           key: "livestock_beef",
@@ -252,10 +252,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           label: "Sapi Potong",
           icon: Beef,
           desc: "Peternakan",
-          rate: 1,
+          tarif: 1,
           unit: "Unit",
-          count: (currentData.sector_livestock.beef_cow) + ((buildingDeltas["cattle_farm"] as number) || 0),
-          income: 150, cost: 8, buildTime: 20
+          count: (currentData.sektor_peternakan.sapi_potong) + ((buildingDeltas["cattle_farm"] as number) || 0),
+          pendapatan_nasional: 150, cost: 8, buildTime: 20
         },
         {
           key: "livestock_sheep",
@@ -263,10 +263,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           label: "Domba/Kambing",
           icon: Leaf,
           desc: "Peternakan",
-          rate: 1,
+          tarif: 1,
           unit: "Unit",
-          count: (currentData.sector_livestock.sheep_goat) + ((buildingDeltas["sheep_farm"] as number) || 0),
-          income: 65, cost: 8, buildTime: 20
+          count: (currentData.sektor_peternakan.domba_kambing) + ((buildingDeltas["sheep_farm"] as number) || 0),
+          pendapatan_nasional: 65, cost: 8, buildTime: 20
         },
         {
           key: "livestock_shrimp",
@@ -274,10 +274,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           label: "Udang/Kerang",
           icon: Shell,
           desc: "Peternakan",
-          rate: 1,
+          tarif: 1,
           unit: "Unit",
-          count: (currentData.sector_livestock.shrimp + currentData.sector_livestock.shellfish) + ((buildingDeltas["shrimp_farm"] as number) || 0) + ((buildingDeltas["pearl_farm"] as number) || 0),
-          income: 280, cost: 8, buildTime: 20
+          count: (currentData.sektor_peternakan.udang + currentData.sektor_peternakan.kerang) + ((buildingDeltas["shrimp_farm"] as number) || 0) + ((buildingDeltas["pearl_farm"] as number) || 0),
+          pendapatan_nasional: 280, cost: 8, buildTime: 20
         },
         {
           key: "livestock_fish",
@@ -285,10 +285,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           label: "Ikan",
           icon: Fish,
           desc: "Perikanan",
-          rate: 1,
+          tarif: 1,
           unit: "Unit",
-          count: (currentData.sector_livestock.fish) + ((buildingDeltas["freshwater_fish_farm"] as number) || 0),
-          income: 45, cost: 8, buildTime: 20
+          count: (currentData.sektor_peternakan.ikan) + ((buildingDeltas["freshwater_fish_farm"] as number) || 0),
+          pendapatan_nasional: 45, cost: 8, buildTime: 20
         },
 
         // --- 6 PERTANIAN (Grouped) ---
@@ -298,10 +298,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           label: "Padi",
           icon: Sprout,
           desc: "Pertanian",
-          rate: 1,
+          tarif: 1,
           unit: "Unit",
-          count: (currentData.sector_agriculture.rice) + ((buildingDeltas["paddy_field"] as number) || 0),
-          income: 95, cost: 5, buildTime: 20
+          count: (currentData.sektor_pertanian.beras) + ((buildingDeltas["paddy_field"] as number) || 0),
+          pendapatan_nasional: 95, cost: 5, buildTime: 20
         },
         {
           key: "agri_grains",
@@ -309,10 +309,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           label: "Gandum/Jagung",
           icon: Utensils,
           desc: "Pertanian",
-          rate: 1,
+          tarif: 1,
           unit: "Unit",
-          count: (currentData.sector_agriculture.wheat + currentData.sector_agriculture.corn) + ((buildingDeltas["wheat_field"] as number) || 0) + ((buildingDeltas["corn_field"] as number) || 0),
-          income: 70, cost: 5, buildTime: 20
+          count: (currentData.sektor_pertanian.gandum + currentData.sektor_pertanian.jagung) + ((buildingDeltas["wheat_field"] as number) || 0) + ((buildingDeltas["corn_field"] as number) || 0),
+          pendapatan_nasional: 70, cost: 5, buildTime: 20
         },
         {
           key: "agri_veg",
@@ -320,10 +320,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           label: "Sayur/Umbi",
           icon: Apple,
           desc: "Pertanian",
-          rate: 1,
+          tarif: 1,
           unit: "Unit",
-          count: (currentData.sector_agriculture.vegetables + currentData.sector_agriculture.tubers) + ((buildingDeltas["vegetable_farm"] as number) || 0) + ((buildingDeltas["tuber_field"] as number) || 0),
-          income: 45, cost: 5, buildTime: 20
+          count: (currentData.sektor_pertanian.sayur_sayuran + currentData.sektor_pertanian.umbi_umbian) + ((buildingDeltas["vegetable_farm"] as number) || 0) + ((buildingDeltas["tuber_field"] as number) || 0),
+          pendapatan_nasional: 45, cost: 5, buildTime: 20
         },
         {
           key: "agri_soy",
@@ -331,10 +331,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           label: "Kedelai",
           icon: Bean,
           desc: "Pertanian",
-          rate: 1,
+          tarif: 1,
           unit: "Unit",
-          count: (currentData.sector_agriculture.soy) + ((buildingDeltas["soybean_field"] as number) || 0),
-          income: 80, cost: 5, buildTime: 20
+          count: (currentData.sektor_pertanian.kedelai) + ((buildingDeltas["soybean_field"] as number) || 0),
+          pendapatan_nasional: 80, cost: 5, buildTime: 20
         },
         {
           key: "agri_palm",
@@ -342,10 +342,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           label: "Kelapa Sawit",
           icon: Droplets,
           desc: "Perkebunan",
-          rate: 1,
+          tarif: 1,
           unit: "Unit",
-          count: (currentData.sector_agriculture.palm_oil) + ((buildingDeltas["palm_oil_plantation"] as number) || 0),
-          income: 320, cost: 5, buildTime: 20
+          count: (currentData.sektor_pertanian.kelapa_sawit) + ((buildingDeltas["palm_oil_plantation"] as number) || 0),
+          pendapatan_nasional: 320, cost: 5, buildTime: 20
         },
         {
           key: "agri_luxury",
@@ -353,10 +353,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           label: "Kopi/Teh/Kakao",
           icon: Coffee,
           desc: "Perkebunan",
-          rate: 1,
+          tarif: 1,
           unit: "Unit",
-          count: (currentData.sector_agriculture.coffee + currentData.sector_agriculture.tea + currentData.sector_agriculture.cocoa) + ((buildingDeltas["coffee_plantation"] as number) || 0) + ((buildingDeltas["tea_plantation"] as number) || 0) + ((buildingDeltas["cocoa_plantation"] as number) || 0),
-          income: 470, cost: 5, buildTime: 20
+          count: (currentData.sektor_pertanian.kopi + currentData.sektor_pertanian.teh + currentData.sektor_pertanian.cokelat) + ((buildingDeltas["coffee_plantation"] as number) || 0) + ((buildingDeltas["tea_plantation"] as number) || 0) + ((buildingDeltas["cocoa_plantation"] as number) || 0),
+          pendapatan_nasional: 470, cost: 5, buildTime: 20
         }
       ]
     },
@@ -366,17 +366,17 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       icon: Pickaxe,
       color: "text-orange-500",
       items: Object.entries(mineralKritisRate).map(([key, val]: [string, any]) => {
-        const count = (currentData.sector_extraction[val.dataKey as keyof typeof currentData.sector_extraction] || 0);
+        const count = (currentData.sektor_ekstraksi[val.dataKey as keyof typeof currentData.sektor_ekstraksi] || 0);
         return {
           key,
           groupId: "ekstraksi",
           label: val.desc,
-          icon: key.includes("uranium") ? Radiation : (key.includes("oil") ? Droplets : (key.includes("gas") ? Flame : (key.includes("gold") ? Coins : Pickaxe))),
+          icon: key.includes("uranium") ? Radiation : (key.includes("minyak_bumi") ? Droplets : (key.includes("gas_alam") ? Flame : (key.includes("emas") ? Coins : Pickaxe))),
           desc: "Sumber Daya Alam",
-          rate: val.production,
+          tarif: val.production,
           unit: val.unit,
           count: count + ((buildingDeltas[key] as number) || 0),
-          income: 0,
+          pendapatan_nasional: 0,
           cost: 30,
           buildTime: val.buildTime || 30
         };
@@ -730,7 +730,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
               <div className="flex items-center gap-2">
                 <TrendingUp size={12} className="text-amber-500" />
                 <span className="text-[12px] font-bold text-amber-500/90">
-                  Produksi: +{Math.floor(item.rate)} {item.unit}/bangunan
+                  Produksi: +{Math.floor(item.tarif)} {item.unit}/bangunan
                 </span>
               </div>
 
@@ -760,7 +760,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
                 {item.groupId === "kelistrikan" ? "JUMLAH TOTAL PRODUKSI:" : "Hasil di Gudang:"}
               </span>
               <span className="text-[14px] font-black text-cyan-400 tracking-tight">
-                {item.groupId === "kelistrikan" ? (Math.floor(item.rate) * item.count).toLocaleString('id-ID') : Math.floor(cumulative).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}</span>
+                {item.groupId === "kelistrikan" ? (Math.floor(item.tarif) * item.count).toLocaleString('id-ID') : Math.floor(cumulative).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}</span>
               </span>
             </div>
           </div>

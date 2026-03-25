@@ -35,7 +35,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
    };
 
    // --- LOGIKA KALKULASI ---
-   const totalCapacity = hitungTotalKapasitas(initialCountry.sector_electricity);
+   const totalCapacity = hitungTotalKapasitas(initialCountry.sektor_listrik);
    const totalConsumption = hitungTotalKonsumsiNasional(initialCountry);
    const surplus = totalCapacity - totalConsumption;
    const reservePercentage = totalCapacity > 0 ? (surplus / totalCapacity) * 100 : 0;
@@ -50,10 +50,10 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
    const productionItems = Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]: [string, any]) => ({
       key,
       label: val.desc,
-      icon: key === "hydro_plant" ? Droplets : (key === "nuclear_plant" ? Radiation : (key === "thermal_plant" ? Flame : Zap)),
+      icon: key === "pembangkit_air" ? Droplets : (key === "pembangkit_nuklir" ? Radiation : (key === "pembangkit_termal" ? Flame : Zap)),
       desc: "Energi Listrik",
-      count: (initialCountry.sector_electricity as any)[key] || 0,
-      rate: val.production,
+      count: (initialCountry.sektor_listrik as any)[key] || 0,
+      tarif: val.production,
       unit: "MW",
       isSupply: true,
       buildTime: val.buildTime
@@ -63,18 +63,18 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
    const getBuildingCount = (c: CountryData, key: string, sector: string): number => {
       try {
          if (sector === "produksi") {
-            const m = c.sector_manufacturing as any;
-            const e = c.sector_extraction as any;
-            const a = c.sector_agriculture as any;
-            const l = c.sector_livestock as any;
+            const m = c.sektor_manufaktur as any;
+            const e = c.sektor_ekstraksi as any;
+            const a = c.sektor_pertanian as any;
+            const l = c.sektor_peternakan as any;
 
             // Manufaktur mapping
             const manufacturingMap: Record<string, string> = {
-               electronics_factory: "semiconductor", car_factory: "car", motorcycle_factory: "motorcycle",
-               cement_factory: "concrete_cement", smelter: "smelter", bottled_water_factory: "mineral_water",
-               pharma_factory: "pharmacy", sugar_factory: "sugar", noodle_factory: "instant_noodle",
-               meat_processing_factory: "meat_processing", sawmill: "wood", fertilizer_factory: "fertilizer",
-               bakery_factory: "bread"
+               electronics_factory: "semikonduktor", car_factory: "mobil", motorcycle_factory: "sepeda_motor",
+               cement_factory: "semen_beton", smelter: "smelter", bottled_water_factory: "air_mineral",
+               pharma_factory: "farmasi", sugar_factory: "gula", noodle_factory: "mie_instan",
+               meat_processing_factory: "pengolahan_daging", sawmill: "kayu", fertilizer_factory: "pupuk",
+               bakery_factory: "roti"
             };
             if (manufacturingMap[key]) return m[manufacturingMap[key]] || 0;
 
@@ -86,70 +86,80 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
 
             // Agrikultur mapping
             if (a[key] !== undefined) return a[key] || 0;
-            const agriKeys: Record<string, string> = { paddy_field: "rice", wheat_field: "wheat", corn_field: "corn", palm_oil_plantation: "palm_oil", cocoa_plantation: "cocoa", coffee_plantation: "coffee", tea_plantation: "tea", sugarcane_plantation: "sugarcane", vegetable_farm: "vegetables", tuber_field: "tubers", soybean_field: "soy" };
+            const agriKeys: Record<string, string> = { paddy_field: "beras", wheat_field: "gandum", corn_field: "jagung", palm_oil_plantation: "kelapa_sawit", cocoa_plantation: "cokelat", coffee_plantation: "kopi", tea_plantation: "teh", sugarcane_plantation: "tebu", vegetable_farm: "sayur_sayuran", tuber_field: "umbi_umbian", soybean_field: "kedelai" };
             if (agriKeys[key]) return a[agriKeys[key]] || 0;
 
             // Peternakan mapping
             if (l[key] !== undefined) return l[key] || 0;
-            const liveKeys: Record<string, string> = { poultry_farm: "poultry", egg_farm: "egg", freshwater_fish_farm: "fish", sheep_farm: "sheep_goat", dairy_farm: "dairy_cow", cattle_farm: "beef_cow", shrimp_farm: "shrimp", pearl_farm: "shellfish" };
+            const liveKeys: Record<string, string> = { poultry_farm: "unggas", egg_farm: "egg", freshwater_fish_farm: "ikan", sheep_farm: "domba_kambing", dairy_farm: "sapi_perah", cattle_farm: "sapi_potong", shrimp_farm: "udang", pearl_farm: "kerang" };
             if (liveKeys[key]) return l[liveKeys[key]] || 0;
          }
 
          if (sector === "militer") {
-            const d = c.sector_defense as any;
-            const s = c.sector_military_strategic as any;
-            if (["prison", "barracks", "armory", "tank_hangar", "military_academy"].includes(key)) return d[key] || 0;
-            if (["command_center", "military_air_base", "military_naval_base", "arms_factory", "cyber_defense", "space_program", "intelligence"].includes(key)) return s[key] || 0;
-            if (key === "strategic_command") return s.command_center || 0;
-            if (key === "air_base") return s.military_air_base || 0;
-            if (key === "naval_base") return s.military_naval_base || 0;
+            const m = c.sektor_pertahanan as any;
+            const f = c.sektor_armada as any;
+            const s = c.sektor_keamanan as any;
+            
+            if (["penjara", "gudang_senjata", "hangar_tank", "akademi_militer", "pusat_komando", "pangkalan_udara", "pangkalan_laut", "program_luar_angkasa", "pertahanan_siber"].includes(key)) return m[key] || 0;
+            
+            if (key === "strategic_command") return m.pusat_komando || 0;
+            if (key === "air_base") return m.pangkalan_udara || 0;
+            if (key === "naval_base") return m.pangkalan_laut || 0;
 
             if (s.intel_radar) {
-               if (["satellite", "satellite_system"].includes(key)) return s.intel_radar.satellite_system || 0;
-               if (["radar", "radar_network"].includes(key)) return s.intel_radar.radar_network || 0;
-               if (key === "cyber_ops") return s.intel_radar.cyber_ops || 0;
+               if (["satellite", "sistem_satelit"].includes(key)) return s.intel_radar.sistem_satelit || 0;
+               if (["radar", "jaringan_radar"].includes(key)) return s.intel_radar.jaringan_radar || 0;
+               if (key === "operasi_siber") return s.intel_radar.operasi_siber || 0;
             }
 
-            if (d.military_fleet) {
-               const darat = d.military_fleet.darat;
-               const laut = d.military_fleet.laut;
-               const udara = d.military_fleet.udara;
-               if (key === "tank") return darat.main_battle_tank || 0;
-               if (key === "apc") return darat.apc || 0;
-               if (key === "artileri") return darat.artileri_berat || 0;
-               if (key === "carrier") return laut.kapal_induk || 0;
-               if (key === "destroyer") return laut.kapal_destroyer || 0;
-               if (key === "submarine") return laut.kapal_selam_nuklir || 0;
-               if (key === "stealth_jet") return udara.jet_tempur_stealth || 0;
-               if (key === "heli_attack") return udara.helikopter_serang || 0;
-               if (key === "recon_plane") return udara.pesawat_pengintai || 0;
+            if (key === "barak") return f.barak || 0;
+            if (key === "infanteri") return f.infanteri || 0;
+            if (key === "penerjun_payung") return f.penerjun_payung || 0;
+            if (key === "pasukan_khusus") return f.pasukan_khusus || 0;
+
+            if (f.darat) {
+               if (key === "tank") return f.darat.tank_tempur_utama || 0;
+               if (key === "apc") return f.darat.apc || 0;
+               if (key === "artileri") return f.darat.artileri_berat || 0;
+            }
+            if (f.laut) {
+               if (key === "carrier") return f.laut.kapal_induk || 0;
+               if (key === "destroyer") return f.laut.kapal_destroyer || 0;
+               if (key === "submarine") return f.laut.kapal_selam_nuklir || 0;
+            }
+            if (f.udara) {
+               if (key === "stealth_jet") return f.udara.jet_tempur_siluman || 0;
+               if (key === "heli_attack") return f.udara.helikopter_serang || 0;
+               if (key === "recon_plane") return f.udara.pesawat_pengintai || 0;
             }
          }
 
          if (sector === "umum") {
-            const i = c.infrastructure as any;
-            const s = c.sector_social;
+            const i = c.infrastruktur as any;
+            const s = c.sektor_sosial;
+            const sec = c.sektor_keamanan;
+            
             if (i[key] !== undefined) return i[key] || 0;
-            if (key === "bike_lane") return i.bicycle_path || 0;
-            if (key === "seaport") return i.sea_port || 0;
+            if (key === "bike_lane") return i.jalur_sepeda || 0;
+            if (key === "seaport") return i.pelabuhan_laut || 0;
 
-            if (s.education) {
-               const edu = s.education as any;
+            if (s.pendidikan) {
+               const edu = s.pendidikan as any;
                if (edu[key] !== undefined) return edu[key] || 0;
-               if (key === "elem_school") return edu.elementary_school || 0;
-               if (key === "mid_school") return edu.middle_school || 0;
-               if (key === "high_school") return edu.high_school || 0;
+               if (key === "elem_school") return edu.sd || 0;
+               if (key === "mid_school") return edu.smp || 0;
+               if (key === "sma") return edu.sma || 0;
             }
 
-            if (s.health) {
-               const h = s.health as any;
+            if (s.kesehatan) {
+               const h = s.kesehatan as any;
                if (h[key] !== undefined) return h[key] || 0;
             }
 
-            if (s.law) {
-               if (key === "police_station") return s.law.police_station || (s.law.police_fleet?.pusat_komando?.stasiun_polisi) || 0;
-               if (s.law.police_fleet) {
-                  const p = s.law.police_fleet;
+            if (s.hukum) {
+               if (key === "pos_polisi") return s.hukum.pos_polisi || (sec.armada_polisi?.pusat_komando?.kantor_polisi) || 0;
+               if (sec.armada_polisi) {
+                  const p = sec.armada_polisi;
                   if (key === "police_car") return p.patroli_lantas.mobil_patroli || 0;
                   if (key === "police_bike") return p.patroli_lantas.sepeda_motor || 0;
                   if (key === "unit_k9") return p.patroli_lantas.unit_k9 || 0;
@@ -159,7 +169,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                   if (key === "forensik") return p.pusat_komando.pusat_forensik || 0;
                }
             }
-            if (["market", "shophouse", "mall", "offices", "entertainment"].includes(key)) return c.demand.commercial || 0;
+            if (["market", "shophouse", "mall", "offices", "entertainment"].includes(key)) return c.permintaan.komersial || 0;
          }
       } catch (err) { }
       return 0;
@@ -180,10 +190,10 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                   .filter(([key]) => ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill", "bottled_water_factory", "sugar_factory", "bakery_factory", "pharma_factory", "fertilizer_factory", "meat_processing_factory", "noodle_factory"].includes(key))
                   .map(([key, val]: [string, any]) => ({
                      key, label: val.desc,
-                     icon: key.includes("electronics") ? Cpu : (key.includes("car") ? Car : (key.includes("motorcycle") ? Bike : (key.includes("smelter") ? Flame : (key.includes("cement") ? Construction : (key.includes("sawmill") ? TreePine : (key.includes("water") ? Droplets : (key.includes("sugar") ? Cookie : (key.includes("bakery") ? Croissant : (key.includes("pharma") ? Pill : (key.includes("fertilizer") ? FlaskConical : (key.includes("meat") ? Beef : Soup))))))))))),
+                     icon: key.includes("electronics") ? Cpu : (key.includes("mobil") ? Car : (key.includes("sepeda_motor") ? Bike : (key.includes("smelter") ? Flame : (key.includes("cement") ? Construction : (key.includes("sawmill") ? TreePine : (key.includes("water") ? Droplets : (key.includes("gula") ? Cookie : (key.includes("bakery") ? Croissant : (key.includes("pharma") ? Pill : (key.includes("pupuk") ? FlaskConical : (key.includes("meat") ? Beef : Soup))))))))))),
                      desc: "Manufaktur",
                      count: getBuildingCount(initialCountry, key, "produksi"),
-                     rate: (KONSUMSI_PRODUKSI as any)[key.replace('_factory', '')] || 5,
+                     tarif: (KONSUMSI_PRODUKSI as any)[key.replace('_factory', '')] || 5,
                      unit: "MW", buildTime: val.buildTime
                   }))
             },
@@ -201,7 +211,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                ].map(item => ({
                   ...item, desc: "Peternakan",
                   count: getBuildingCount(initialCountry, item.key, "produksi"),
-                  rate: (KONSUMSI_PETERNAKAN as any)[item.key] || 0.1,
+                  tarif: (KONSUMSI_PETERNAKAN as any)[item.key] || 0.1,
                   unit: "MW", buildTime: 20
                }))
             },
@@ -219,7 +229,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                ].map(item => ({
                   ...item, desc: "Pertanian",
                   count: getBuildingCount(initialCountry, item.key, "produksi"),
-                  rate: (KONSUMSI_AGRI as any)[item.key] || 0.1,
+                  tarif: (KONSUMSI_AGRI as any)[item.key] || 0.1,
                   unit: "MW", buildTime: 20
                }))
             }
@@ -236,10 +246,10 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                icon: Pickaxe,
                items: Object.entries(mineralKritisRate).map(([key, val]: [string, any]) => ({
                   key, label: val.desc,
-                  icon: key.includes("uranium") ? Radiation : (key.includes("oil") ? Droplets : (key.includes("gas") ? Flame : (key.includes("gold") ? Coins : Pickaxe))),
+                  icon: key.includes("uranium") ? Radiation : (key.includes("minyak_bumi") ? Droplets : (key.includes("gas_alam") ? Flame : (key.includes("emas") ? Coins : Pickaxe))),
                   desc: "Ekstraksi",
                   count: getBuildingCount(initialCountry, key, "produksi"),
-                  rate: (KONSUMSI_EKSTRAKSI as any)[val.dataKey] || 5,
+                  tarif: (KONSUMSI_EKSTRAKSI as any)[val.dataKey] || 5,
                   unit: "MW", buildTime: val.buildTime
                }))
             }
@@ -257,7 +267,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                items: produksiMiliter.filter(i => i.category === "Pertahanan").map(item => ({
                   key: item.key, label: item.label, icon: Shield, desc: "Infrastruktur",
                   count: getBuildingCount(initialCountry, item.key, "militer"),
-                  rate: (KONSUMSI_PERTAHANAN as any)[item.key] || 1,
+                  tarif: (KONSUMSI_PERTAHANAN as any)[item.key] || 1,
                   unit: "MW", buildTime: item.buildTime
                }))
             },
@@ -268,7 +278,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                items: produksiMiliter.filter(i => i.category === "Armada").map(item => ({
                   key: item.key, label: item.label, icon: Ship, desc: "Unit Armada",
                   count: getBuildingCount(initialCountry, item.key, "militer"),
-                  rate: (KONSUMSI_FLEET as any)[item.key] || 2,
+                  tarif: (KONSUMSI_FLEET as any)[item.key] || 2,
                   unit: "MW", buildTime: item.buildTime
                }))
             },
@@ -279,7 +289,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                items: produksiMiliter.filter(i => ["Intelijen"].includes(i.category) || (i as any).category === "Strategis").map(item => ({
                   key: item.key, label: item.label, icon: Radio, desc: "Teknologi",
                   count: getBuildingCount(initialCountry, item.key, "militer"),
-                  rate: (KONSUMSI_STRATEGIC as any)[item.key] || 3,
+                  tarif: (KONSUMSI_STRATEGIC as any)[item.key] || 3,
                   unit: "MW", buildTime: item.buildTime
                }))
             },
@@ -290,7 +300,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                items: produksiMiliter.filter(i => i.category === "Polisi").map(item => ({
                   key: item.key, label: item.label, icon: Siren, desc: "Keamanan",
                   count: getBuildingCount(initialCountry, item.key, "militer"),
-                  rate: 1, unit: "MW", buildTime: item.buildTime
+                  tarif: 1, unit: "MW", buildTime: item.buildTime
                }))
             }
          ]
@@ -307,7 +317,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                items: tempatUmum.filter(i => i.category === "Transportasi").map(item => ({
                   key: item.id, label: item.name, icon: TrainFront, desc: "Transportasi",
                   count: getBuildingCount(initialCountry, item.id, "umum"),
-                  rate: (KONSUMSI_TRANSPORTASI as any)[item.id] || 5,
+                  tarif: (KONSUMSI_TRANSPORTASI as any)[item.id] || 5,
                   unit: "MW", buildTime: item.buildTime
                }))
             },
@@ -318,7 +328,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                items: tempatUmum.filter(i => ["Pendidikan", "Kesehatan", "Hukum"].includes(i.category)).map(item => ({
                   key: item.id, label: item.name, icon: Landmark, desc: item.category,
                   count: getBuildingCount(initialCountry, item.id, "umum"),
-                  rate: (KONSUMSI_SOSIAL as any)[item.id] || 2,
+                  tarif: (KONSUMSI_SOSIAL as any)[item.id] || 2,
                   unit: "MW", buildTime: item.buildTime
                }))
             },
@@ -329,7 +339,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                items: tempatUmum.filter(i => i.category === "Komersial").map(item => ({
                   key: item.id, label: item.name, icon: Store, desc: "Komersial",
                   count: getBuildingCount(initialCountry, item.id, "umum"),
-                  rate: 4, unit: "MW", buildTime: item.buildTime
+                  tarif: 4, unit: "MW", buildTime: item.buildTime
                }))
             }
          ]
@@ -565,7 +575,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
 
 function CardItem({ item, variant = "default" }: { item: any, variant?: "default" | "compact" }) {
    const [showDetail, setShowDetail] = useState(false);
-   const totalVal = Math.floor(item.rate * item.count);
+   const totalVal = Math.floor(item.tarif * item.count);
    const isCompact = variant === "compact";
  
    return (
@@ -614,7 +624,7 @@ function CardItem({ item, variant = "default" }: { item: any, variant?: "default
                      <div className="flex items-center gap-2">
                         <Zap size={13} className={item.isSupply ? 'text-amber-400' : 'text-rose-500/70'} />
                         <span className="text-[12px] font-bold text-zinc-400 italic uppercase">
-                           {item.isSupply ? 'Produksi' : 'Konsumsi'}: +{item.rate} MW/{item.isSupply ? 'bangunan' : 'unit'}
+                           {item.isSupply ? 'Produksi' : 'Konsumsi'}: +{item.tarif} MW/{item.isSupply ? 'bangunan' : 'unit'}
                         </span>
                      </div>
                      {item.buildTime && !isCompact && (

@@ -12,18 +12,18 @@ export interface ProduksiMiliterItem {
 
 export const produksiMiliter: ProduksiMiliterItem[] = [
   // Sektor Pertahanan
-  { id: "prison", key: "prison", label: "Penjara", name: "Penjara", desc: "Lembaga Pemasyarakatan", category: "Pertahanan", maintenanceCost: 20, cost: 25, buildTime: 60 },
-  { id: "barracks", key: "barracks", label: "Barak Militer", name: "Barak", desc: "Hunian Tentara", category: "Pertahanan", maintenanceCost: 15, cost: 40, buildTime: 45 },
-  { id: "armory", key: "armory", label: "Gudang Senjata", name: "Gudang Senjata", desc: "Penyimpanan Amunisi", category: "Pertahanan", maintenanceCost: 10, cost: 30, buildTime: 30 },
-  { id: "tank_hangar", key: "tank_hangar", label: "Hangar Tank", name: "Hangar Tank", desc: "Garasi Tempur", category: "Pertahanan", maintenanceCost: 35, cost: 50, buildTime: 60 },
-  { id: "military_academy", key: "military_academy", label: "Akademi Militer", name: "Akademi Militer", desc: "Pendidikan Perwira", category: "Pertahanan", maintenanceCost: 40, cost: 150, buildTime: 180 },
-  { id: "space_program", key: "space_program", label: "Lintas Antariksa", name: "Lintas Antariksa", desc: "Program Satelit", category: "Pertahanan", maintenanceCost: 250, cost: 600, buildTime: 365 },
+  { id: "penjara", key: "penjara", label: "Penjara", name: "Penjara", desc: "Lembaga Pemasyarakatan", category: "Pertahanan", maintenanceCost: 20, cost: 25, buildTime: 60 },
+  { id: "barak", key: "barak", label: "Barak Militer", name: "Barak", desc: "Hunian Tentara", category: "Pertahanan", maintenanceCost: 15, cost: 40, buildTime: 45 },
+  { id: "gudang_senjata", key: "gudang_senjata", label: "Gudang Senjata", name: "Gudang Senjata", desc: "Penyimpanan Amunisi", category: "Pertahanan", maintenanceCost: 10, cost: 30, buildTime: 30 },
+  { id: "hangar_tank", key: "hangar_tank", label: "Hangar Tank", name: "Hangar Tank", desc: "Garasi Tempur", category: "Pertahanan", maintenanceCost: 35, cost: 50, buildTime: 60 },
+  { id: "akademi_militer", key: "akademi_militer", label: "Akademi Militer", name: "Akademi Militer", desc: "Pendidikan Perwira", category: "Pertahanan", maintenanceCost: 40, cost: 150, buildTime: 180 },
+  { id: "program_luar_angkasa", key: "program_luar_angkasa", label: "Lintas Antariksa", name: "Lintas Antariksa", desc: "Program Satelit", category: "Pertahanan", maintenanceCost: 250, cost: 600, buildTime: 365 },
   { id: "cyber_shield", key: "cyber_shield", label: "Cyber Defense", name: "Cyber Defense", desc: "Keamanan Digital", category: "Pertahanan", maintenanceCost: 50, cost: 180, buildTime: 120 },
 
   // Sektor Militer
-  { id: "strategic_command", key: "command_center", label: "Pusat Komando", name: "Pusat Komando Strategis", desc: "Komando Tertinggi", category: "Militer", maintenanceCost: 150, cost: 450, buildTime: 240 },
-  { id: "air_base", key: "military_air_base", label: "Pangkalan Udara", name: "Pangkalan Udara", desc: "Fasilitas Dirgantara", category: "Militer", maintenanceCost: 80, cost: 280, buildTime: 180 },
-  { id: "naval_base", key: "military_naval_base", label: "Pangkalan Laut", name: "Pangkalan Laut", desc: "Fasilitas Maritim", category: "Militer", maintenanceCost: 100, cost: 320, buildTime: 210 },
+  { id: "strategic_command", key: "pusat_komando", label: "Pusat Komando", name: "Pusat Komando Strategis", desc: "Komando Tertinggi", category: "Militer", maintenanceCost: 150, cost: 450, buildTime: 240 },
+  { id: "air_base", key: "pangkalan_udara", label: "Pangkalan Udara", name: "Pangkalan Udara", desc: "Fasilitas Dirgantara", category: "Militer", maintenanceCost: 80, cost: 280, buildTime: 180 },
+  { id: "naval_base", key: "pangkalan_laut", label: "Pangkalan Laut", name: "Pangkalan Laut", desc: "Fasilitas Maritim", category: "Militer", maintenanceCost: 100, cost: 320, buildTime: 210 },
   { id: "arms_factory", key: "arms_factory", label: "Pabrik Alutsista", name: "Pabrik Alutsista", desc: "Manufaktur Senjata", category: "Militer", maintenanceCost: 120, cost: 350, buildTime: 240 },
 
   // Sektor Armada
@@ -40,10 +40,10 @@ export const produksiMiliter: ProduksiMiliterItem[] = [
   // Sektor Intelijen
   { id: "satellite", key: "satellite", label: "Sistem Satelit", name: "Sistem Satelit", desc: "Orbit Intelijen", category: "Intelijen", maintenanceCost: 100, cost: 350, buildTime: 180 },
   { id: "radar", key: "radar", label: "Jaringan Radar", name: "Jaringan Radar", desc: "Deteksi Dini", category: "Intelijen", maintenanceCost: 30, cost: 120, buildTime: 90 },
-  { id: "cyber_ops", key: "cyber_ops", label: "Operasi Cyber", name: "Operasi Cyber", desc: "Perang Digital", category: "Intelijen", maintenanceCost: 40, cost: 180, buildTime: 120 },
+  { id: "operasi_siber", key: "operasi_siber", label: "Operasi Cyber", name: "Operasi Cyber", desc: "Perang Digital", category: "Intelijen", maintenanceCost: 40, cost: 180, buildTime: 120 },
 
   // Sektor Polisi
-  { id: "police_station", key: "police_station", label: "Stasiun Polisi", name: "Stasiun Polisi", desc: "Komando Wilayah", category: "Polisi", maintenanceCost: 15, cost: 25, buildTime: 60 },
+  { id: "pos_polisi", key: "pos_polisi", label: "Stasiun Polisi", name: "Stasiun Polisi", desc: "Komando Wilayah", category: "Polisi", maintenanceCost: 15, cost: 25, buildTime: 60 },
   { id: "police_car", key: "police_car", label: "Mobil Patroli", name: "Mobil Patroli", desc: "Patroli Lantas", category: "Polisi", maintenanceCost: 2, cost: 2, buildTime: 7 },
   { id: "police_bike", key: "police_bike", label: "Sepeda Motor", name: "Sepeda Motor", desc: "Patroli Cepat", category: "Polisi", maintenanceCost: 1, cost: 1, buildTime: 5 },
   { id: "unit_k9", key: "unit_k9", label: "Unit K-9", name: "Unit K-9", desc: "Pelacakan", category: "Polisi", maintenanceCost: 1, cost: 1, buildTime: 5 },

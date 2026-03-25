@@ -5,17 +5,17 @@ import { countries as centersData } from "../../../select-country/data/countries
 import { Layers, Mountain, Gem, Waves, Flame, Battery, Droplets, Box, Cpu, Pickaxe, Radio } from "lucide-react";
 
 export const sdaIcons: { [key: string]: { icon: any, color: string, label: string } } = {
-  aluminum: { icon: Layers, color: "text-blue-200", label: "Alumunium" },
-  coal: { icon: Layers, color: "text-zinc-400", label: "Batubara" },
-  iron_ore: { icon: Mountain, color: "text-zinc-500", label: "Biji Besi" },
-  gold: { icon: Gem, color: "text-yellow-400", label: "Emas" },
-  salt: { icon: Waves, color: "text-blue-200", label: "Garam" },
-  gas: { icon: Flame, color: "text-orange-400", label: "Gas" },
-  lithium: { icon: Battery, color: "text-cyan-400", label: "Litium" },
-  oil: { icon: Droplets, color: "text-blue-400", label: "Minyak" },
-  nickel: { icon: Box, color: "text-orange-400", label: "Nikel" },
-  rare_earth: { icon: Cpu, color: "text-purple-400", label: "Tanah Jarang" },
-  copper: { icon: Pickaxe, color: "text-orange-300", label: "Tembaga" },
+  aluminium: { icon: Layers, color: "text-blue-200", label: "Alumunium" },
+  batu_bara: { icon: Layers, color: "text-zinc-400", label: "Batubara" },
+  bijih_besi: { icon: Mountain, color: "text-zinc-500", label: "Biji Besi" },
+  emas: { icon: Gem, color: "text-yellow-400", label: "Emas" },
+  garam: { icon: Waves, color: "text-blue-200", label: "Garam" },
+  gas_alam: { icon: Flame, color: "text-orange-400", label: "Gas" },
+  litium: { icon: Battery, color: "text-cyan-400", label: "Litium" },
+  minyak_bumi: { icon: Droplets, color: "text-blue-400", label: "Minyak" },
+  nikel: { icon: Box, color: "text-orange-400", label: "Nikel" },
+  logam_tanah_jarang: { icon: Cpu, color: "text-purple-400", label: "Tanah Jarang" },
+  tembaga: { icon: Pickaxe, color: "text-orange-300", label: "Tembaga" },
   uranium: { icon: Radio, color: "text-emerald-400", label: "Uranium" }
 };
 
@@ -312,7 +312,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
              const x = ((center.lon + 180) / 360) * mapWidth + (offsetIdx * mapWidth);
              const y = ((90 - center.lat) / 180) * mapHeight;
              
-             const resources = center.sector_extraction || {};
+             const resources = center.sektor_ekstraksi || {};
              const activeResources = Object.entries(resources).filter(([_, v]) => (v as number) > 0);
              
              if (activeResources.length === 0) return null;

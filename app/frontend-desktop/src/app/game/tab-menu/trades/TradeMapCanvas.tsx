@@ -128,7 +128,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
   const [selectedWp, setSelectedWp] = useState<string | null>(null);
   // Line hitting cache ref
-  const drawnPathsRef = useRef<{ pts: { rtX: number, rtY: number }[], origin: string, partner: string, originId: string, partnerId: string }[]>([]);
+  const drawnPathsRef = useRef<{ pts: { rtX: number, rtY: number }[], origin: string, mitra: string, originId: string, partnerId: string }[]>([]);
 
   // Higher resolution for more detail and less "narrow" feel
   // 3:1 or 2.5:1 aspect ratio can feel more panoramic
@@ -362,7 +362,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
           ctx.shadowBlur = 0;
         };
 
-        const activeAgreements = [...(uCenter.geopolitics?.agreements || [])];
+        const activeAgreements = [...(uCenter.geopolitik?.perjanjian || [])];
 
         // Forcefully inject custom routes into the rendering pipeline so the user can immediately see their manually created paths!
         const uNameEn = uCenter.name_en?.trim();
@@ -370,11 +370,11 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         const activeCustoms = customTradeRoutes[uNameEn] || customTradeRoutes[uNameId] || {};
 
         Object.keys(activeCustoms).forEach(dest => {
-          const existingIdx = activeAgreements.findIndex(a => a.partner?.trim() === dest.trim() || a.partner?.trim() === centersData.find(c => c.name_en === dest)?.name_id?.trim());
+          const existingIdx = activeAgreements.findIndex(a => a.mitra?.trim() === dest.trim() || a.mitra?.trim() === centersData.find(c => c.name_en === dest)?.name_id?.trim());
           if (existingIdx !== -1) {
-            activeAgreements[existingIdx] = { partner: dest, type: "Trade", status: "Active" };
+            activeAgreements[existingIdx] = { mitra: dest, jenis: "Perdagangan", status: "Aktif" };
           } else {
-            activeAgreements.push({ partner: dest, type: "Trade", status: "Active" });
+            activeAgreements.push({ mitra: dest, jenis: "Perdagangan", status: "Aktif" });
           }
         });
 
@@ -383,21 +383,21 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         const seenPartners = new Set<string>();
 
         activeAgreements.forEach(agr => {
-          const pName = agr.partner?.trim();
-          if (pName && !seenPartners.has(pName) && (agr.type === "Trade" || (agr as any).type === "Maritime") && agr.status === "Active") {
+          const pName = agr.mitra?.trim();
+          if (pName && !seenPartners.has(pName) && (agr.jenis === "Perdagangan" || (agr as any).type === "Maritime") && agr.status === "Aktif") {
             seenPartners.add(pName);
             uniqueAgreements.push(agr);
           }
         });
 
-        // 1. Collect all intended geographic segments from all active (unique) agreements
-        const uniqueSegments = new Map<string, { start: any, end: any, isFinal: boolean, partner: string, origin?: string, originId?: string, partnerId?: string }>();
+        // 1. Collect all intended geographic segments from all active (unique) perjanjian
+        const uniqueSegments = new Map<string, { start: any, end: any, isFinal: boolean, mitra: string, origin?: string, originId?: string, partnerId?: string }>();
 
         uniqueAgreements.forEach((agr: any) => {
           if (!uCenter) return;
-          const pMatch = centersData.find(c => c.name_en?.trim() === agr.partner?.trim() || c.name_id?.trim() === agr.partner?.trim());
-          const partnerEn = pMatch ? pMatch.name_en : agr.partner;
-          const partnerId = pMatch ? pMatch.name_id : agr.partner;
+          const pMatch = centersData.find(c => c.name_en?.trim() === agr.mitra?.trim() || c.name_id?.trim() === agr.mitra?.trim());
+          const partnerEn = pMatch ? pMatch.name_en : agr.mitra;
+          const partnerId = pMatch ? pMatch.name_id : agr.mitra;
 
           const uNameEn = uCenter.name_en?.trim();
           const uNameId = uCenter.name_id?.trim();
@@ -429,9 +429,9 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                 if (isAtlanticCrossing) {
                   const midAtlantic = { lon: -40.0, lat: 45.0 };
                   const key1 = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->-40.0,45.0`;
-                  uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: midAtlantic, isFinal: false, partner: "Mid-Atlantic Trunk", origin: uNameEn });
+                  uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: midAtlantic, isFinal: false, mitra: "Mid-Atlantic Trunk", origin: uNameEn });
                   const key2 = `-40.0,45.0->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
-                  uniqueSegments.set(key2, { start: midAtlantic, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, partner: wpName, origin: uNameEn });
+                  uniqueSegments.set(key2, { start: midAtlantic, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, mitra: wpName, origin: uNameEn });
                   currentPos = { lon: nextWpLon, lat: nextWpLat };
                   return;
                 }
@@ -440,16 +440,16 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                 if (isPanamaCrossing) {
                   const panamaNode = { lon: -79.53, lat: 8.96 };
                   const key1 = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->-79.5,9.0`;
-                  uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: panamaNode, isFinal: false, partner: "Panama Trunk", origin: uNameEn });
+                  uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: panamaNode, isFinal: false, mitra: "Panama Trunk", origin: uNameEn });
                   const key2 = `-79.5,9.0->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
-                  uniqueSegments.set(key2, { start: panamaNode, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, partner: wpName, origin: uNameEn });
+                  uniqueSegments.set(key2, { start: panamaNode, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, mitra: wpName, origin: uNameEn });
                   currentPos = { lon: nextWpLon, lat: nextWpLat };
                   return;
                 }
 
                 const key = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
                 if (!uniqueSegments.has(key) || isFinal) {
-                  uniqueSegments.set(key, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: { lon: nextWpLon, lat: nextWpLat }, isFinal, partner: wpName, origin: uNameEn });
+                  uniqueSegments.set(key, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: { lon: nextWpLon, lat: nextWpLat }, isFinal, mitra: wpName, origin: uNameEn });
                 }
                 currentPos = { lon: nextWpLon, lat: nextWpLat };
               }
@@ -488,9 +488,9 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                 if (isAtlanticCrossing) {
                   const midAtlantic = { lon: -40.0, lat: 45.0 };
                   const key1 = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->-40.0,45.0`;
-                  uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: midAtlantic, isFinal: false, partner: "Mid-Atlantic Trunk", origin: originName });
+                  uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: midAtlantic, isFinal: false, mitra: "Mid-Atlantic Trunk", origin: originName });
                   const key2 = `-40.0,45.0->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
-                  uniqueSegments.set(key2, { start: midAtlantic, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, partner: wpName, origin: originName });
+                  uniqueSegments.set(key2, { start: midAtlantic, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, mitra: wpName, origin: originName });
                   currentPos = { lon: nextWpLon, lat: nextWpLat };
                   return;
                 }
@@ -499,16 +499,16 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                 if (isPanamaCrossing) {
                   const panamaNode = { lon: -79.53, lat: 8.96 };
                   const key1 = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->-79.5,9.0`;
-                  uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: panamaNode, isFinal: false, partner: "Panama Trunk", origin: originName });
+                  uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: panamaNode, isFinal: false, mitra: "Panama Trunk", origin: originName });
                   const key2 = `-79.5,9.0->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
-                  uniqueSegments.set(key2, { start: panamaNode, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, partner: wpName, origin: originName });
+                  uniqueSegments.set(key2, { start: panamaNode, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, mitra: wpName, origin: originName });
                   currentPos = { lon: nextWpLon, lat: nextWpLat };
                   return;
                 }
 
                 const key = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
                 if (!uniqueSegments.has(key) || isFinal) {
-                  uniqueSegments.set(key, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: { lon: nextWpLon, lat: nextWpLat }, isFinal, partner: wpName, origin: originName });
+                  uniqueSegments.set(key, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: { lon: nextWpLon, lat: nextWpLat }, isFinal, mitra: wpName, origin: originName });
                 }
                 currentPos = { lon: nextWpLon, lat: nextWpLat };
               }
@@ -522,7 +522,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
           try {
             // path = aiPathfinder.findPath(seg.start.lon, seg.start.lat, seg.end.lon, seg.end.lat);
           } catch (err) {
-            console.warn(`Pathfinding error for ${seg.partner}:`, err);
+            console.warn(`Pathfinding error for ${seg.mitra}:`, err);
           }
           let rawNormalized: { rtX: number, rtY: number }[] = [];
 
@@ -558,18 +558,18 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               return smoothed;
             };
 
-            const normalized = (seg.partner === "Panama Trunk" || seg.partner === "Mid-Atlantic Trunk") ? rawNormalized : smoothPath(rawNormalized);
+            const normalized = (seg.mitra === "Panama Trunk" || seg.mitra === "Mid-Atlantic Trunk") ? rawNormalized : smoothPath(rawNormalized);
 
             // Style
             const isSelected = selectedWp && (
               seg.origin?.trim().toLowerCase() === selectedWp.trim().toLowerCase() ||
-              seg.partner?.trim().toLowerCase() === selectedWp.trim().toLowerCase() ||
+              seg.mitra?.trim().toLowerCase() === selectedWp.trim().toLowerCase() ||
               (seg.originId && seg.originId.trim().toLowerCase() === selectedWp.trim().toLowerCase()) ||
               (seg.partnerId && seg.partnerId.trim().toLowerCase() === selectedWp.trim().toLowerCase())
             );
 
             if (selectedWp && Math.random() < 0.05) {
-              console.log("[Draw Debug] selectedWp:", selectedWp, "seg.origin:", seg.origin, "seg.partner:", seg.partner, "originId:", seg.originId, "partnerId:", seg.partnerId, "isSelected:", isSelected);
+              console.log("[Draw Debug] selectedWp:", selectedWp, "seg.origin:", seg.origin, "seg.mitra:", seg.mitra, "originId:", seg.originId, "partnerId:", seg.partnerId, "isSelected:", isSelected);
             }
             ctx.lineWidth = isSelected ? 4.5 : 3.5;
             ctx.strokeStyle = selectedWp ? (isSelected ? "#00e5ff" : "rgba(239, 68, 68, 0.25)") : "#ef4444";
@@ -580,7 +580,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
             const sy = ((90 - seg.start.lat) / 180) * mapHeight;
             ctx.moveTo(sx, sy);
 
-            drawnPathsRef.current.push({ pts: normalized, origin: seg.origin || "", partner: seg.partner || "", originId: seg.originId || "", partnerId: seg.partnerId || "" });
+            drawnPathsRef.current.push({ pts: normalized, origin: seg.origin || "", mitra: seg.mitra || "", originId: seg.originId || "", partnerId: seg.partnerId || "" });
             normalized.forEach((p, idx) => {
               let nextX = p.rtX * mapWidth;
               let nextY = p.rtY * mapHeight;
@@ -599,8 +599,8 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
             const nodeY = destP.rtY * mapHeight;
 
             // Override logic for specific country sizes
-            const isSmallForced = ["Bangladesh", "Filipina", "Sri Lanka", "Myanmar", "India", "Pakistan", "Iran", "Oman", "United Arab Emirates", "Bahrain", "Qatar", "Kuwait", "Yemen", "Saudi Arabia"].includes(seg.partner);
-            const isLargeForced = ["Malaysia"].includes(seg.partner);
+            const isSmallForced = ["Bangladesh", "Filipina", "Sri Lanka", "Myanmar", "India", "Pakistan", "Iran", "Oman", "United Arab Emirates", "Bahrain", "Qatar", "Kuwait", "Yemen", "Saudi Arabia"].includes(seg.mitra);
+            const isLargeForced = ["Malaysia"].includes(seg.mitra);
 
             if ((seg.isFinal || isLargeForced) && !isSmallForced) {
               drawNode(nodeX, nodeY);
@@ -618,7 +618,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
                 ctx.stroke();
                 ctx.setLineDash([]);
               }
-            } else if (!hiddenWaypoints.includes(seg.partner)) {
+            } else if (!hiddenWaypoints.includes(seg.mitra)) {
               ctx.beginPath();
               ctx.arc(nodeX, nodeY, 3.2, 0, Math.PI * 2);
               ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
@@ -666,7 +666,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               drawnPathsRef.current.push({
                 pts: normalizedPts,
                 origin: origin,
-                partner: dest,
+                mitra: dest,
                 originId: "",
                 partnerId: ""
               });
@@ -750,7 +750,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               drawnPathsRef.current.push({
                 pts: normalizedPts,
                 origin: origin,
-                partner: dest,
+                mitra: dest,
                 originId: "",
                 partnerId: ""
               });

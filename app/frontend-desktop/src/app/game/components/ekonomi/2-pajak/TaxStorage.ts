@@ -4,10 +4,10 @@ export const taxStorage = {
   clear: () => {
     if (typeof window !== "undefined") localStorage.removeItem("game_taxes");
   },
-  saveTaxes: (countryName: string, taxes: any) => {
+  saveTaxes: (countryName: string, pajak: any) => {
     if (typeof window === 'undefined') return;
     const allTaxes = taxStorage.getAllTaxes();
-    allTaxes[countryName] = taxes;
+    allTaxes[countryName] = pajak;
     localStorage.setItem(TAX_STORAGE_KEY, JSON.stringify(allTaxes));
     window.dispatchEvent(new Event('tax_updated'));
   },

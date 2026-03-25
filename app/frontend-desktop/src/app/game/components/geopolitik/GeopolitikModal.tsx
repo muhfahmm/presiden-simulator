@@ -120,17 +120,17 @@ export default function GeopolitikModal({ isOpen, onClose, data }: ModalProps) {
                 </div>
 
                 <div className="grid grid-cols-2 gap-6">
-                  <InfluenceMeter label="Soft Power" value={data.geopolitics.international_influence.soft_power} color="from-blue-500 to-indigo-500" icon={<Star size={14}/>} description="Diplomasi, Budaya, & Ekonomi" />
-                  <InfluenceMeter label="Hard Power" value={data.geopolitics.international_influence.hard_power} color="from-red-500 to-orange-500" icon={<Shield size={14}/>} description="Kekuatan Militer & Geostrategis" />
+                  <InfluenceMeter label="Soft Power" value={data.geopolitik.pengaruh_internasional.kekuatan_lunak} color="from-blue-500 to-indigo-500" icon={<Star size={14}/>} description="Diplomasi, Budaya, & Ekonomi" />
+                  <InfluenceMeter label="Hard Power" value={data.geopolitik.pengaruh_internasional.kekuatan_keras} color="from-red-500 to-orange-500" icon={<Shield size={14}/>} description="Kekuatan Militer & Geostrategis" />
                 </div>
 
                 <div className="p-6 bg-indigo-500/5 border border-indigo-500/10 rounded-2xl">
                   <div className="flex justify-between items-center mb-2">
                     <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Diplomatic Prestige</span>
-                    <span className="text-xl font-black text-indigo-400">{data.geopolitics.international_influence.diplomatic_prestige} IX</span>
+                    <span className="text-xl font-black text-indigo-400">{data.geopolitik.pengaruh_internasional.prestise_diplomatik} IX</span>
                   </div>
                   <div className="h-2 bg-zinc-800 rounded-full overflow-hidden">
-                    <div className="h-full bg-indigo-500 transition-all duration-1000" style={{ width: `${data.geopolitics.international_influence.diplomatic_prestige}%` }} />
+                    <div className="h-full bg-indigo-500 transition-all duration-1000" style={{ width: `${data.geopolitik.pengaruh_internasional.prestise_diplomatik}%` }} />
                   </div>
                   <p className="text-[10px] text-zinc-500 mt-2 italic font-medium">Pengaruh global Anda sangat bergantung pada kepercayaan internasional dan stabilitas aliansi.</p>
                 </div>
@@ -143,11 +143,11 @@ export default function GeopolitikModal({ isOpen, onClose, data }: ModalProps) {
                     <Landmark className="h-5 w-5 text-indigo-400" />
                     <h3 className="text-sm font-black text-zinc-100 uppercase tracking-widest">Organisasi Internasional</h3>
                   </div>
-                  <span className="text-[10px] font-black text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">{data.geopolitics.international_orgs.length} GRUP</span>
+                  <span className="text-[10px] font-black text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/20">{data.geopolitik.organisasi_internasional.length} GRUP</span>
                 </div>
 
                 <div className="space-y-3 max-h-[400px] overflow-y-auto pr-2 no-scrollbar">
-                  {data.geopolitics.international_orgs.map((org, i) => (
+                  {data.geopolitik.organisasi_internasional.map((org, i) => (
                     <div key={i} className="flex items-center justify-between p-4 bg-zinc-900/60 border border-zinc-800 rounded-2xl hover:border-indigo-500/30 transition-all group shadow-inner">
                       <div className="flex items-center gap-4">
                         <div className="p-2 bg-zinc-800 rounded-xl group-hover:bg-indigo-500/10 transition-colors">
@@ -158,7 +158,7 @@ export default function GeopolitikModal({ isOpen, onClose, data }: ModalProps) {
                           <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">{org.role}</p>
                         </div>
                       </div>
-                      <div className={`h-2 w-2 rounded-full ${org.role === 'Leader' ? 'bg-amber-400 animate-pulse' : 'bg-zinc-700'}`}></div>
+                      <div className={`h-2 w-2 rounded-full ${org.role === 'Pemimpin' ? 'bg-amber-400 animate-pulse' : 'bg-zinc-700'}`}></div>
                     </div>
                   ))}
                 </div>
@@ -175,18 +175,18 @@ export default function GeopolitikModal({ isOpen, onClose, data }: ModalProps) {
                   <h3 className="text-sm font-black text-zinc-100 uppercase tracking-widest">Perjanjian Aktif</h3>
                 </div>
                 <div className="grid grid-cols-1 gap-4">
-                  {data.geopolitics.agreements.map((agr, i) => (
+                  {data.geopolitik.perjanjian?.map((agr, i) => (
                     <div key={i} className="p-5 bg-zinc-900/40 border border-zinc-800 rounded-3xl hover:border-indigo-500/40 transition-all flex flex-col gap-4 group shadow-inner">
                       <div className="flex items-center justify-between">
                         <div className="flex items-baseline gap-2">
                           <span className="text-xs font-black text-zinc-400 uppercase">Partner:</span>
-                          <span className="text-lg font-black text-white group-hover:text-indigo-400 transition-colors">{agr.partner}</span>
+                          <span className="text-lg font-black text-white group-hover:text-indigo-400 transition-colors">{agr.mitra}</span>
                         </div>
                         <span className={`text-[10px] font-black px-3 py-1 rounded-full border ${
-                          agr.type === 'Military' ? 'bg-red-500/10 text-red-400 border-red-500/20' : 
-                          agr.type === 'Trade' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 
+                          agr.jenis === 'Militer' ? 'bg-red-500/10 text-red-400 border-red-500/20' : 
+                          agr.jenis === 'Perdagangan' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 
                           'bg-indigo-500/10 text-indigo-400 border-indigo-500/20'
-                        } uppercase tracking-widest`}>{agr.type} Pact</span>
+                        } uppercase tracking-widest`}>{agr.jenis} Pact</span>
                       </div>
                       <div className="flex items-center justify-between pt-2 border-t border-zinc-800/50">
                         <div className="flex items-center gap-2">
@@ -219,7 +219,7 @@ export default function GeopolitikModal({ isOpen, onClose, data }: ModalProps) {
                         <HelpingHand size={12}/> Sekutu Strategis
                       </h4>
                       <div className="flex flex-wrap gap-2">
-                        {data.geopolitics.allies.map((a, i) => (
+                        {data.geopolitik.sekutu.map((a, i) => (
                           <span key={i} className="px-4 py-2 bg-emerald-500/5 border border-emerald-500/20 rounded-xl text-xs font-bold text-zinc-200 hover:border-emerald-500/40 transition-all cursor-pointer">
                             {a}
                           </span>
@@ -231,7 +231,7 @@ export default function GeopolitikModal({ isOpen, onClose, data }: ModalProps) {
                         <Users size={12}/> Rival Geopolitik
                       </h4>
                       <div className="flex flex-wrap gap-2">
-                        {data.geopolitics.enemies.length > 0 ? data.geopolitics.enemies.map((e, i) => (
+                        {data.geopolitik.musuh.length > 0 ? data.geopolitik.musuh.map((e, i) => (
                           <span key={i} className="px-4 py-2 bg-red-500/5 border border-red-500/20 rounded-xl text-xs font-bold text-zinc-200 hover:border-red-500/40 transition-all cursor-pointer">
                             {e}
                           </span>
@@ -252,19 +252,19 @@ export default function GeopolitikModal({ isOpen, onClose, data }: ModalProps) {
           <div className="text-center group cursor-pointer">
             <p className="text-[9px] text-zinc-500 font-black uppercase tracking-widest mb-1 group-hover:text-zinc-400 transition-colors">Status Internasional</p>
             <p className="text-lg font-black text-indigo-400 uppercase tracking-tighter">
-              {data.geopolitics.international_influence.diplomatic_prestige > 70 ? "NEGARA BERPENGARUH" : 
-               data.geopolitics.international_influence.diplomatic_prestige > 40 ? "PEMAIN REGIONAL" : "NEGARA BERKEMBANG"}
+              {data.geopolitik.pengaruh_internasional.prestise_diplomatik > 70 ? "NEGARA BERPENGARUH" : 
+               data.geopolitik.pengaruh_internasional.prestise_diplomatik > 40 ? "PEMAIN REGIONAL" : "NEGARA BERKEMBANG"}
             </p>
           </div>
           <div className="h-8 w-[1px] bg-zinc-800"></div>
           <div className="text-center group cursor-pointer">
             <p className="text-[9px] text-zinc-500 font-black uppercase tracking-widest mb-1 group-hover:text-zinc-400 transition-colors">Anggota Organisasi</p>
-            <p className="text-lg font-black text-indigo-400 uppercase tracking-tighter">{data.geopolitics.international_orgs.length} BLOK</p>
+            <p className="text-lg font-black text-indigo-400 uppercase tracking-tighter">{data.geopolitik.organisasi_internasional.length} BLOK</p>
           </div>
           <div className="h-8 w-[1px] bg-zinc-800"></div>
           <div className="text-center group cursor-pointer">
             <p className="text-[9px] text-zinc-500 font-black uppercase tracking-widest mb-1 group-hover:text-zinc-400 transition-colors">Peringkat Diplomasi</p>
-            <p className="text-lg font-black text-indigo-400 uppercase tracking-tighter">TOP {Math.max(1, 40 - Math.floor(data.geopolitics.international_influence.diplomatic_prestige / 2.5))}</p>
+            <p className="text-lg font-black text-indigo-400 uppercase tracking-tighter">TOP {Math.max(1, 40 - Math.floor(data.geopolitik.pengaruh_internasional.prestise_diplomatik / 2.5))}</p>
           </div>
         </div>
       </div>
