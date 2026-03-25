@@ -339,6 +339,24 @@ export const swedia: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 32800,
+    "priceOil": 30800,
+    "priceSugar": 11520,
+    "priceEgg": 62200,
+    "priceFuel": 5350,
+    "priceElectric": 3200,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 80,
     "top_demands": [

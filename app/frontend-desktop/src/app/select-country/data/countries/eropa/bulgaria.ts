@@ -339,6 +339,24 @@ export const bulgaria: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 12320,
+    "priceSugar": 11520,
+    "priceEgg": 62200,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 61,
     "top_demands": [

@@ -339,6 +339,24 @@ export const italia: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 83280,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 28800,
+    "priceEgg": 24880,
+    "priceFuel": 21400,
+    "priceElectric": 800,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 57,
     "top_demands": [

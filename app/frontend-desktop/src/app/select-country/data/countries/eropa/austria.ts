@@ -339,6 +339,24 @@ export const austria: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 20500,
+    "priceOil": 7700,
+    "priceSugar": 20160,
+    "priceEgg": 31100,
+    "priceFuel": 14980,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 315800,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 50,
     "top_demands": [

@@ -339,6 +339,24 @@ export const fiji: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 52050,
+    "priceChicken": 82000,
+    "priceOil": 21560,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 8560,
+    "priceElectric": 2240,
+    "priceWater": 7280,
+    "priceMedicine": 157900,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 85,
     "top_demands": [

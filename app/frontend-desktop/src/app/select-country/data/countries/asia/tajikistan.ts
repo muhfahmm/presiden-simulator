@@ -339,6 +339,24 @@ export const tajikistan: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 208200,
+    "priceChicken": 20500,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 157900,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 92,
     "top_demands": [

@@ -339,6 +339,24 @@ export const puerto_rico: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 104100,
+    "priceChicken": 82000,
+    "priceOil": 15400,
+    "priceSugar": 20160,
+    "priceEgg": 24880,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 2600,
+    "priceMedicine": 221060,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 76,
     "top_demands": [

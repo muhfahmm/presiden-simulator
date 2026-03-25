@@ -343,6 +343,24 @@ export const libya: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 145740,
+    "priceChicken": 57400,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 15550,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 4160,
+    "priceMedicine": 221060,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 95,
     "top_demands": [

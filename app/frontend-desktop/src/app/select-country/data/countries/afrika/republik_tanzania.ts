@@ -343,6 +343,24 @@ export const republik_tanzania: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 83280,
+    "priceChicken": 20500,
+    "priceOil": 30800,
+    "priceSugar": 14400,
+    "priceEgg": 15550,
+    "priceFuel": 5350,
+    "priceElectric": 800,
+    "priceWater": 4160,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 90,
     "top_demands": [

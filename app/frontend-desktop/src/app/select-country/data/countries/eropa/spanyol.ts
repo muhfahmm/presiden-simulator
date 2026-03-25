@@ -339,6 +339,24 @@ export const spanyol: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 83280,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 31100,
+    "priceFuel": 8560,
+    "priceElectric": 1600,
+    "priceWater": 10400,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 83,
     "top_demands": [

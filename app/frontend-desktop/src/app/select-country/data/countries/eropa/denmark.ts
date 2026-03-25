@@ -339,6 +339,24 @@ export const denmark: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 208200,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 24880,
+    "priceFuel": 5350,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 78950,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 54,
     "top_demands": [

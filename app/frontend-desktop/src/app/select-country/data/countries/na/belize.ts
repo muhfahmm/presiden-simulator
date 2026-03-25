@@ -339,6 +339,24 @@ export const belize: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 83280,
+    "priceChicken": 57400,
+    "priceOil": 12320,
+    "priceSugar": 11520,
+    "priceEgg": 24880,
+    "priceFuel": 14980,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 56,
     "top_demands": [

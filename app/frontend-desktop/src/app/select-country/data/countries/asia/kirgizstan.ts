@@ -339,6 +339,24 @@ export const kirgizstan: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 800,
+    "priceWater": 5200,
+    "priceMedicine": 315800,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 94,
     "top_demands": [

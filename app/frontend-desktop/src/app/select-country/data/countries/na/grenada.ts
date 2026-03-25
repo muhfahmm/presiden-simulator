@@ -339,6 +339,24 @@ export const grenada: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 83280,
+    "priceChicken": 82000,
+    "priceOil": 15400,
+    "priceSugar": 20160,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 315800,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 64,
     "top_demands": [

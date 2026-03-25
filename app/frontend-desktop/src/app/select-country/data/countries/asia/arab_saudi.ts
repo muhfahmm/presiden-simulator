@@ -339,6 +339,24 @@ export const arab_saudi: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 20160,
+    "priceEgg": 62200,
+    "priceFuel": 21400,
+    "priceElectric": 2240,
+    "priceWater": 10400,
+    "priceMedicine": 315800,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 53,
     "top_demands": [

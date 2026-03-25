@@ -339,6 +339,24 @@ export const guiana_prancis: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 145740,
+    "priceChicken": 82000,
+    "priceOil": 12320,
+    "priceSugar": 28800,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 800,
+    "priceWater": 4160,
+    "priceMedicine": 315800,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 95,
     "top_demands": [

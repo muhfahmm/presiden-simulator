@@ -339,6 +339,24 @@ export const ceko: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 83280,
+    "priceChicken": 41000,
+    "priceOil": 12320,
+    "priceSugar": 28800,
+    "priceEgg": 43540,
+    "priceFuel": 8560,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 221060,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 75,
     "top_demands": [

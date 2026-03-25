@@ -343,6 +343,24 @@ export const republik_sudan: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 8000,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 24880,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 88,
     "top_demands": [

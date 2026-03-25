@@ -343,6 +343,24 @@ export const niger: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 104100,
+    "priceChicken": 82000,
+    "priceOil": 15400,
+    "priceSugar": 7200,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 4160,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 65,
     "top_demands": [

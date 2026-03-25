@@ -343,6 +343,24 @@ export const angola: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 30800,
+    "priceSugar": 20160,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 78950,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 91,
     "top_demands": [

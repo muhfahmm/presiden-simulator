@@ -339,6 +339,24 @@ export const selandia_baru: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 208200,
+    "priceChicken": 57400,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 1280,
+    "priceWater": 10400,
+    "priceMedicine": 78950,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 60,
     "top_demands": [

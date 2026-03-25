@@ -339,6 +339,24 @@ export const republik_timor_leste: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 8000,
+    "priceBeef": 104100,
+    "priceChicken": 57400,
+    "priceOil": 7700,
+    "priceSugar": 11520,
+    "priceEgg": 62200,
+    "priceFuel": 21400,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 78950,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 73,
     "top_demands": [

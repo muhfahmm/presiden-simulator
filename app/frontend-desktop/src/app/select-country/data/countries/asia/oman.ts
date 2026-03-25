@@ -339,6 +339,24 @@ export const oman: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 32800,
+    "priceOil": 7700,
+    "priceSugar": 28800,
+    "priceEgg": 24880,
+    "priceFuel": 14980,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 86,
     "top_demands": [

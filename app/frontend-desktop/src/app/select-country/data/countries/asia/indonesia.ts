@@ -339,6 +339,24 @@ export const indonesia: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 20160,
+    "priceEgg": 62200,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 2600,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 83,
     "top_demands": [

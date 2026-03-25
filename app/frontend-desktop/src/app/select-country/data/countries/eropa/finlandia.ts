@@ -339,6 +339,24 @@ export const finlandia: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 8000,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 12320,
+    "priceSugar": 20160,
+    "priceEgg": 24880,
+    "priceFuel": 8560,
+    "priceElectric": 1600,
+    "priceWater": 7280,
+    "priceMedicine": 157900,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 81,
     "top_demands": [

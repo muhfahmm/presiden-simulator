@@ -339,6 +339,24 @@ export const liechtenstein: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 83280,
+    "priceChicken": 41000,
+    "priceOil": 21560,
+    "priceSugar": 28800,
+    "priceEgg": 31100,
+    "priceFuel": 8560,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 56,
     "top_demands": [

@@ -343,6 +343,24 @@ export const chad: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 83280,
+    "priceChicken": 57400,
+    "priceOil": 21560,
+    "priceSugar": 11520,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 78,
     "top_demands": [

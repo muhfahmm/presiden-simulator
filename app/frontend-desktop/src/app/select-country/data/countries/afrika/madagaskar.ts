@@ -343,6 +343,24 @@ export const madagaskar: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 208200,
+    "priceChicken": 57400,
+    "priceOil": 21560,
+    "priceSugar": 20160,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 800,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 60,
     "top_demands": [

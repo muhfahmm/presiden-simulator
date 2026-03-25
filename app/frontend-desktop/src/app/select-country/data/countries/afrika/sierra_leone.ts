@@ -343,6 +343,24 @@ export const sierra_leone: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 145740,
+    "priceChicken": 41000,
+    "priceOil": 30800,
+    "priceSugar": 20160,
+    "priceEgg": 62200,
+    "priceFuel": 5350,
+    "priceElectric": 3200,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 67,
     "top_demands": [

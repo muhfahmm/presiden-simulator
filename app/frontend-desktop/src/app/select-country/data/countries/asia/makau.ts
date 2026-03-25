@@ -339,6 +339,24 @@ export const makau: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 7700,
+    "priceSugar": 7200,
+    "priceEgg": 24880,
+    "priceFuel": 8560,
+    "priceElectric": 2240,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 56,
     "top_demands": [

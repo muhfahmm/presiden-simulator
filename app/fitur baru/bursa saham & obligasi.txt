@@ -1,0 +1,4 @@
+### FITUR: BURSA SAHAM & OBLIGASI ###
+- Memasukkan perusahaan nasional/BUMN ke bursa saham.
+- User dapat melakukan IPO atau buyback saham.
+- Saham dapat dibeli atau dijual untuk menambah kas negara secara cepat.

@@ -339,6 +339,24 @@ export const andorra: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 43540,
+    "priceFuel": 14980,
+    "priceElectric": 800,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 62,
     "top_demands": [

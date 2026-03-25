@@ -339,6 +339,24 @@ export const yunani: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 83280,
+    "priceChicken": 20500,
+    "priceOil": 21560,
+    "priceSugar": 14400,
+    "priceEgg": 24880,
+    "priceFuel": 5350,
+    "priceElectric": 1280,
+    "priceWater": 4160,
+    "priceMedicine": 315800,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 58,
     "top_demands": [

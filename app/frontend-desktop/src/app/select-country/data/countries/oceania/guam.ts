@@ -339,6 +339,24 @@ export const guam: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 208200,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 20160,
+    "priceEgg": 31100,
+    "priceFuel": 8560,
+    "priceElectric": 1600,
+    "priceWater": 7280,
+    "priceMedicine": 315800,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 83,
     "top_demands": [

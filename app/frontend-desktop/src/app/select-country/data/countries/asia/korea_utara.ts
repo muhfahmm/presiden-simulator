@@ -339,6 +339,24 @@ export const korea_utara: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 15550,
+    "priceFuel": 8560,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 157900,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 62,
     "top_demands": [

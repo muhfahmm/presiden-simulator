@@ -339,6 +339,24 @@ export const dominika: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 145740,
+    "priceChicken": 82000,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 5350,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 126320,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 79,
     "top_demands": [

@@ -339,6 +339,24 @@ export const laos: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 104100,
+    "priceChicken": 20500,
+    "priceOil": 12320,
+    "priceSugar": 11520,
+    "priceEgg": 24880,
+    "priceFuel": 5350,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 315800,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 67,
     "top_demands": [

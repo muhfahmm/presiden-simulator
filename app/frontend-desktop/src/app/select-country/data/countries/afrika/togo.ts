@@ -343,6 +343,24 @@ export const togo: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 52050,
+    "priceChicken": 82000,
+    "priceOil": 12320,
+    "priceSugar": 20160,
+    "priceEgg": 31100,
+    "priceFuel": 8560,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 78950,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 85,
     "top_demands": [

@@ -339,6 +339,24 @@ export const greenland: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 14980,
+    "priceElectric": 2240,
+    "priceWater": 4160,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 60,
     "top_demands": [

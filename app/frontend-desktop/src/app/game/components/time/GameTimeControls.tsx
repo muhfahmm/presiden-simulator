@@ -9,6 +9,7 @@ import { buildingStorage } from "../pembangunan/buildingStorage";
 import { countries } from "../../../select-country/data/countries";
 import { calculateDailyProductionTotals } from "../../data/production/productionLogic";
 import { calculateDailyBudgetDelta } from "../../data/economy/economyLogic";
+import { happinessStorage } from "../navbar/stats/happines/happinessStorage";
 
 export default function GameTimeControls() {
   const [gameDate, setGameDate] = useState<Date>(INITIAL_GAME_DATE);
@@ -55,6 +56,9 @@ export default function GameTimeControls() {
 
       const budgetDelta = calculateDailyBudgetDelta(currentData, buildingData.buildingDeltas);
       budgetStorage.updateBudget(budgetDelta);
+      
+      // Real-time & Monthly Happiness Sync
+      happinessStorage.recalculateMonthlyHappiness(gameDate);
     }
   }, [gameDate]);
 

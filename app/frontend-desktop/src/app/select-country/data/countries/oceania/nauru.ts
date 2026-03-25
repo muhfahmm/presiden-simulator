@@ -339,6 +339,24 @@ export const nauru: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 21560,
+    "priceSugar": 11520,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 95,
     "top_demands": [

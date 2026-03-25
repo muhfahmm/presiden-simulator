@@ -339,6 +339,24 @@ export const moldova: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 104100,
+    "priceChicken": 32800,
+    "priceOil": 12320,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 1280,
+    "priceWater": 2600,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 83,
     "top_demands": [

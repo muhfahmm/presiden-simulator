@@ -339,6 +339,24 @@ export const thailand: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 15550,
+    "priceFuel": 8560,
+    "priceElectric": 3200,
+    "priceWater": 10400,
+    "priceMedicine": 126320,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 59,
     "top_demands": [

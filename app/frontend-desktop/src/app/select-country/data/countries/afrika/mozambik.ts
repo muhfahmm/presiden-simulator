@@ -343,6 +343,24 @@ export const mozambik: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 7700,
+    "priceSugar": 14400,
+    "priceEgg": 24880,
+    "priceFuel": 14980,
+    "priceElectric": 2240,
+    "priceWater": 7280,
+    "priceMedicine": 157900,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 77,
     "top_demands": [

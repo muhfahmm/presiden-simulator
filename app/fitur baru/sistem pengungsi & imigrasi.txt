@@ -1,0 +1,4 @@
+### FITUR: SISTEM PENGUNGSI & IMIGRASI ###
+- Penanganan arus pengungsi dari negara lain yang sedang dilanda konflik.
+- Mempengaruhi jumlah populasi secara mendadak.
+- User harus memutuskan kebijakan: Menampung (Bansos naik) atau Menutup Perbatasan (Rating turun).

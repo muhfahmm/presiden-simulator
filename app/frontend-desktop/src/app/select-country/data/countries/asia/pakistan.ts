@@ -339,6 +339,24 @@ export const pakistan: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 104100,
+    "priceChicken": 57400,
+    "priceOil": 12320,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 65,
     "top_demands": [

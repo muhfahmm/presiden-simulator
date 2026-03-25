@@ -339,6 +339,24 @@ export const san_marino: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 104100,
+    "priceChicken": 20500,
+    "priceOil": 30800,
+    "priceSugar": 11520,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 78,
     "top_demands": [

@@ -339,6 +339,24 @@ export const republik_rumania: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 83280,
+    "priceChicken": 20500,
+    "priceOil": 15400,
+    "priceSugar": 20160,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 56,
     "top_demands": [

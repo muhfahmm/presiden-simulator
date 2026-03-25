@@ -343,6 +343,24 @@ export const eritrea: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 83280,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 7200,
+    "priceEgg": 43540,
+    "priceFuel": 21400,
+    "priceElectric": 2240,
+    "priceWater": 5200,
+    "priceMedicine": 315800,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 85,
     "top_demands": [

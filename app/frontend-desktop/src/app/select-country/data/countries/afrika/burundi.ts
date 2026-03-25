@@ -343,6 +343,24 @@ export const burundi: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 104100,
+    "priceChicken": 57400,
+    "priceOil": 21560,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 21400,
+    "priceElectric": 1280,
+    "priceWater": 10400,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 55,
     "top_demands": [

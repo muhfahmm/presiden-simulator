@@ -343,6 +343,24 @@ export const pantai_gading: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 145740,
+    "priceChicken": 41000,
+    "priceOil": 7700,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 4160,
+    "priceMedicine": 126320,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 73,
     "top_demands": [

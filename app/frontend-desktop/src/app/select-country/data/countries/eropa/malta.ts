@@ -339,6 +339,24 @@ export const malta: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 145740,
+    "priceChicken": 20500,
+    "priceOil": 12320,
+    "priceSugar": 20160,
+    "priceEgg": 15550,
+    "priceFuel": 8560,
+    "priceElectric": 1280,
+    "priceWater": 4160,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 50,
     "top_demands": [

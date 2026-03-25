@@ -339,6 +339,24 @@ export const vietnam: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 7700,
+    "priceSugar": 28800,
+    "priceEgg": 24880,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 2600,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 93,
     "top_demands": [

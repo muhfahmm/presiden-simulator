@@ -343,6 +343,24 @@ export const maroko: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 104100,
+    "priceChicken": 82000,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 8560,
+    "priceElectric": 1600,
+    "priceWater": 2600,
+    "priceMedicine": 78950,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 67,
     "top_demands": [

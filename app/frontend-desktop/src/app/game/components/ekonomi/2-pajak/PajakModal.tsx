@@ -107,6 +107,12 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
   const newDailyTax = totalRevenue / 365;
   const projectedBudget = currentBudget + revenueDelta;
 
+  // H-Index Integration (Domestic Taxes Only)
+  const avgDomesticSat = domesticTaxes.reduce((sum, item) => sum + (managedTaxes[item.key]?.satisfaction ?? 50), 0) / domesticTaxes.length;
+  const taxImpact = avgDomesticSat >= 50 
+    ? ((avgDomesticSat - 50) / 50) * 5 
+    : ((avgDomesticSat - 50) / 50) * 10;
+
   const handleApplyReform = () => {
     setIsSaving(true);
     setTimeout(() => {
@@ -231,6 +237,16 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
               <span className={`text-2xl font-black ${revenueDelta >= 0 ? 'text-white' : 'text-red-400'}`}>
                 {revenueDelta >= 0 ? '+' : ''}{revenueDelta.toLocaleString('id-ID')}
               </span>
+            </div>
+            <div className="flex flex-col border-l border-zinc-800 pl-8 relative">
+               <div className={`absolute top-0 left-0 w-1 h-full ${taxImpact >= 0 ? "bg-emerald-500" : "bg-rose-500"}`} />
+               <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Dampak Kepuasan</span>
+               <div className="flex items-end gap-2">
+                 <span className={`text-3xl font-black italic ${taxImpact >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
+                   {taxImpact >= 0 ? "+" : ""}{taxImpact.toFixed(1)}%
+                 </span>
+                 <span className="pb-1 text-zinc-600 font-bold text-[10px] uppercase tracking-tighter">Per Bulan</span>
+               </div>
             </div>
           </div>
           <button onClick={handleApplyReform} disabled={isSaving} className="px-10 py-5 bg-green-600 hover:bg-green-500 text-white text-[11px] font-black uppercase tracking-[0.3em] rounded-2xl transition-all shadow-lg active:scale-95 disabled:opacity-50">

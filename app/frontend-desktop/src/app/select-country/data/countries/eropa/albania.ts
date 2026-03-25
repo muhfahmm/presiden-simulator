@@ -339,6 +339,24 @@ export const albania: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 145740,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 24880,
+    "priceFuel": 14980,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 93,
     "top_demands": [

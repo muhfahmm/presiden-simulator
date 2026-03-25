@@ -339,6 +339,24 @@ export const nikaragua: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 31100,
+    "priceFuel": 21400,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 54,
     "top_demands": [

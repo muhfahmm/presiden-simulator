@@ -339,6 +339,24 @@ export const belarus: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 8000,
+    "priceBeef": 208200,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 20160,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 62,
     "top_demands": [

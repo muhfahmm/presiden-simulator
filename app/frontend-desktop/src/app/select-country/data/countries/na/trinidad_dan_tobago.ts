@@ -339,6 +339,24 @@ export const trinidad_dan_tobago: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 7700,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 14980,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 95,
     "top_demands": [

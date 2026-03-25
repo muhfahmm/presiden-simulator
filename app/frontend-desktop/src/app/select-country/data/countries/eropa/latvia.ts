@@ -339,6 +339,24 @@ export const latvia: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 104100,
+    "priceChicken": 20500,
+    "priceOil": 30800,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 5200,
+    "priceMedicine": 315800,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 63,
     "top_demands": [

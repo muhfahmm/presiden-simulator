@@ -343,6 +343,24 @@ export const gabon: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 104100,
+    "priceChicken": 57400,
+    "priceOil": 15400,
+    "priceSugar": 20160,
+    "priceEgg": 24880,
+    "priceFuel": 14980,
+    "priceElectric": 800,
+    "priceWater": 10400,
+    "priceMedicine": 78950,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 87,
     "top_demands": [

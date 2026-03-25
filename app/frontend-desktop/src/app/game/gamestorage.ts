@@ -34,6 +34,14 @@ export const gameStorage = {
     localStorage.removeItem("em4_budget_data");
     localStorage.removeItem("em4_building_data");
     localStorage.removeItem("em4_inbox_data");
+    localStorage.removeItem("em4_happiness_stats");
+    localStorage.removeItem("em4_happiness_stats_v2");
+    localStorage.removeItem("em4_price_data_v3");
+    localStorage.removeItem("em4_expense_data");
+    localStorage.removeItem("em4_income_data");
+    localStorage.removeItem("game_taxes");
+    localStorage.removeItem("game_trades");
+    localStorage.removeItem("em4_last_month_budget");
     
     // Clear trade agreements for all potential countries
     const countriesList = ["Indonesia", "Amerika Serikat", "Singapura", "Rusia", "Cina", "Arab Saudi"];
@@ -82,6 +90,14 @@ export const gameStorage = {
     localStorage.removeItem("em4_budget_data");
     localStorage.removeItem("em4_building_data");
     localStorage.removeItem("em4_inbox_data");
+    localStorage.removeItem("em4_happiness_stats");
+    localStorage.removeItem("em4_happiness_stats_v2");
+    localStorage.removeItem("em4_price_data_v3");
+    localStorage.removeItem("em4_expense_data");
+    localStorage.removeItem("em4_income_data");
+    localStorage.removeItem("game_taxes");
+    localStorage.removeItem("game_trades");
+    localStorage.removeItem("em4_last_month_budget");
     
     // Clear trade agreements (TradeStorage uses country name)
     const countries = ["Indonesia", "Amerika Serikat", "Singapura", "Rusia", "Cina", "Arab Saudi"];

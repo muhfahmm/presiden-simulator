@@ -339,6 +339,24 @@ export const suriah: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 104100,
+    "priceChicken": 32800,
+    "priceOil": 7700,
+    "priceSugar": 11520,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 84,
     "top_demands": [

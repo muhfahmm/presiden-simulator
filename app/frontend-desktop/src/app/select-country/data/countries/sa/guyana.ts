@@ -339,6 +339,24 @@ export const guyana: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 104100,
+    "priceChicken": 32800,
+    "priceOil": 30800,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 4160,
+    "priceMedicine": 78950,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 67,
     "top_demands": [

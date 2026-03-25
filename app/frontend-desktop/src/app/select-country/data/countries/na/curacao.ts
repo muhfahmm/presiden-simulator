@@ -339,6 +339,24 @@ export const curacao: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 208200,
+    "priceChicken": 57400,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 15550,
+    "priceFuel": 14980,
+    "priceElectric": 3200,
+    "priceWater": 4160,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 79,
     "top_demands": [

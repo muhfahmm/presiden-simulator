@@ -343,6 +343,24 @@ export const republik_demokratik_kongo: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 145740,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 7200,
+    "priceEgg": 15550,
+    "priceFuel": 10700,
+    "priceElectric": 3200,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 90,
     "top_demands": [

@@ -339,6 +339,24 @@ export const kepulauan_faroe: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 104100,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 28800,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 50,
     "top_demands": [

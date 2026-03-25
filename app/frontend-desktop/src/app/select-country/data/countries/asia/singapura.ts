@@ -339,6 +339,24 @@ export const singapura: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 208200,
+    "priceChicken": 20500,
+    "priceOil": 21560,
+    "priceSugar": 11520,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 800,
+    "priceWater": 10400,
+    "priceMedicine": 221060,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 54,
     "top_demands": [

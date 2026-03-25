@@ -343,6 +343,24 @@ export const tanjung_verde: CountryData = {
     "subsidyRumah": 0
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 52050,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 8560,
+    "priceElectric": 3200,
+    "priceWater": 4160,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 58,
     "top_demands": [

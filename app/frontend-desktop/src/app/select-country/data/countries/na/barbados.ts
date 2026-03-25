@@ -339,6 +339,24 @@ export const barbados: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 104100,
+    "priceChicken": 20500,
+    "priceOil": 12320,
+    "priceSugar": 28800,
+    "priceEgg": 31100,
+    "priceFuel": 21400,
+    "priceElectric": 1600,
+    "priceWater": 10400,
+    "priceMedicine": 78950,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 95,
     "top_demands": [

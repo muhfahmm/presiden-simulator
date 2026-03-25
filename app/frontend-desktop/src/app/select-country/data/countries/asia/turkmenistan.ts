@@ -339,6 +339,24 @@ export const turkmenistan: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 83280,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 31100,
+    "priceFuel": 14980,
+    "priceElectric": 800,
+    "priceWater": 5200,
+    "priceMedicine": 315800,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 53,
     "top_demands": [

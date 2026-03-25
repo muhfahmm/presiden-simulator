@@ -339,6 +339,24 @@ export const paraguay: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 82000,
+    "priceOil": 12320,
+    "priceSugar": 11520,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 4160,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 62,
     "top_demands": [

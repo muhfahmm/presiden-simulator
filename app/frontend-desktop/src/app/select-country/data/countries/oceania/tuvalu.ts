@@ -339,6 +339,24 @@ export const tuvalu: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 83280,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 24880,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 10400,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 62,
     "top_demands": [

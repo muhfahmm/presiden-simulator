@@ -343,6 +343,24 @@ export const mauritania: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 8000,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 12320,
+    "priceSugar": 28800,
+    "priceEgg": 31100,
+    "priceFuel": 5350,
+    "priceElectric": 1600,
+    "priceWater": 7280,
+    "priceMedicine": 78950,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 77,
     "top_demands": [

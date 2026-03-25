@@ -339,6 +339,24 @@ export const estonia: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 8000,
+    "priceBeef": 208200,
+    "priceChicken": 32800,
+    "priceOil": 30800,
+    "priceSugar": 7200,
+    "priceEgg": 62200,
+    "priceFuel": 8560,
+    "priceElectric": 1600,
+    "priceWater": 10400,
+    "priceMedicine": 157900,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 67,
     "top_demands": [

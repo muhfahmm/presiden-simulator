@@ -1,0 +1,4 @@
+### FITUR: INTELIJEN & ESPIONASE ###
+- Menu khusus untuk melatih agen intelijen.
+- Agen dapat dikirim ke negara saingan.
+- Misi: Mencuri teknologi, sabotase pabrik, atau menyebar disinformasi untuk menurunkan stabilitas lawan.

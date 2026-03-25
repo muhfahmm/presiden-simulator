@@ -339,6 +339,24 @@ export const swiss: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 83280,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 14980,
+    "priceElectric": 1600,
+    "priceWater": 10400,
+    "priceMedicine": 78950,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 75,
     "top_demands": [

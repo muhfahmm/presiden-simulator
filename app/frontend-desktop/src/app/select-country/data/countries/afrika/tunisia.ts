@@ -343,6 +343,24 @@ export const tunisia: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 208200,
+    "priceChicken": 20500,
+    "priceOil": 15400,
+    "priceSugar": 7200,
+    "priceEgg": 43540,
+    "priceFuel": 8560,
+    "priceElectric": 2240,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 62,
     "top_demands": [

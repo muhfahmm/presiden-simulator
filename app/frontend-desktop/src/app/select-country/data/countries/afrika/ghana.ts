@@ -343,6 +343,24 @@ export const ghana: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 83280,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 14980,
+    "priceElectric": 1600,
+    "priceWater": 7280,
+    "priceMedicine": 315800,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 63,
     "top_demands": [

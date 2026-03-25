@@ -339,6 +339,24 @@ export const bhutan: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 83280,
+    "priceChicken": 82000,
+    "priceOil": 12320,
+    "priceSugar": 14400,
+    "priceEgg": 62200,
+    "priceFuel": 8560,
+    "priceElectric": 3200,
+    "priceWater": 10400,
+    "priceMedicine": 126320,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 64,
     "top_demands": [

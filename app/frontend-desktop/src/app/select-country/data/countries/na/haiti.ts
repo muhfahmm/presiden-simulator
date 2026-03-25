@@ -339,6 +339,24 @@ export const haiti: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 104100,
+    "priceChicken": 82000,
+    "priceOil": 15400,
+    "priceSugar": 20160,
+    "priceEgg": 15550,
+    "priceFuel": 8560,
+    "priceElectric": 2240,
+    "priceWater": 7280,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 69,
     "top_demands": [

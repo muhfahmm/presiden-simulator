@@ -339,6 +339,24 @@ export const kiribati: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 145740,
+    "priceChicken": 57400,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 89,
     "top_demands": [

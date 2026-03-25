@@ -339,6 +339,24 @@ export const qatar: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 15550,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 7280,
+    "priceMedicine": 126320,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 57,
     "top_demands": [

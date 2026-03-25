@@ -339,6 +339,24 @@ export const irak: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 208200,
+    "priceChicken": 57400,
+    "priceOil": 30800,
+    "priceSugar": 11520,
+    "priceEgg": 31100,
+    "priceFuel": 5350,
+    "priceElectric": 1600,
+    "priceWater": 10400,
+    "priceMedicine": 126320,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 58,
     "top_demands": [

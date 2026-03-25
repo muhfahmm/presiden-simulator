@@ -339,6 +339,24 @@ export const korea_selatan: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 8000,
+    "priceBeef": 83280,
+    "priceChicken": 41000,
+    "priceOil": 21560,
+    "priceSugar": 11520,
+    "priceEgg": 24880,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 78,
     "top_demands": [

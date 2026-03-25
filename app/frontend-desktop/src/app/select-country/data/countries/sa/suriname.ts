@@ -339,6 +339,24 @@ export const suriname: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 104100,
+    "priceChicken": 20500,
+    "priceOil": 30800,
+    "priceSugar": 14400,
+    "priceEgg": 24880,
+    "priceFuel": 10700,
+    "priceElectric": 1280,
+    "priceWater": 7280,
+    "priceMedicine": 126320,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 72,
     "top_demands": [

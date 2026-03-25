@@ -343,6 +343,24 @@ export const guinea_bissau: CountryData = {
     "subsidyRumah": 0
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 57400,
+    "priceOil": 12320,
+    "priceSugar": 11520,
+    "priceEgg": 31100,
+    "priceFuel": 14980,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 75,
     "top_demands": [

@@ -1,4 +1,5 @@
 import { ExpenseData } from "@/app/game/components/ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
+import { happinessStorage } from "./happinessStorage";
 
 export interface HappinessBreakdown {
   global: number;
@@ -27,11 +28,11 @@ export const calculatePopulationHappiness = (expData: ExpenseData): HappinessBre
   // 3. Pemeliharaan Infrastruktur (Static until linked to deficit ratio)
   const infraSat = 85; // Default healthy baseline
 
-  // Weighted Average
-  const globalSat = Math.round((salarySat * 0.45) + (subsidySat * 0.45) + (infraSat * 0.1));
+  // Dynamic Global Value from Storage (Monthly updated engine)
+  const storedValue = happinessStorage.getStats().value;
 
   return {
-    global: Math.max(0, Math.min(100, globalSat)),
+    global: storedValue,
     salary: salarySat,
     subsidy: subsidySat,
     infrastructure: infraSat

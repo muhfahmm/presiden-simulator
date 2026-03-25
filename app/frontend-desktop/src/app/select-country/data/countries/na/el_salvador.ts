@@ -339,6 +339,24 @@ export const el_salvador: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 52050,
+    "priceChicken": 82000,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 14980,
+    "priceElectric": 2240,
+    "priceWater": 4160,
+    "priceMedicine": 126320,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 67,
     "top_demands": [

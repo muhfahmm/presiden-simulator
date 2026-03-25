@@ -343,6 +343,24 @@ export const sao_tome_dan_principe: CountryData = {
     "subsidyRumah": 0
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 145740,
+    "priceChicken": 82000,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 62200,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 7280,
+    "priceMedicine": 157900,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 56,
     "top_demands": [

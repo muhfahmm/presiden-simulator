@@ -339,6 +339,24 @@ export const china: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 208200,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 15550,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 2600,
+    "priceMedicine": 315800,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 84,
     "top_demands": [

@@ -1,0 +1,4 @@
+### FITUR: MANAJEMEN KRISIS ###
+- Munculnya kejadian darurat acak (Pandemi global, Gempa bumi, Tsunami).
+- Membutuhkan respon cepat dalam 24-48 jam game.
+- Alokasi anggaran darurat diperlukan untuk memitigasi penurunan kepuasan rakyat.

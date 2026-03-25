@@ -274,6 +274,19 @@ export interface CountryData {
     subsidyTransport: number;
     subsidyRumah: number;
   };
+  prices?: {
+    priceRice: number;
+    priceBeef: number;
+    priceChicken: number;
+    priceOil: number;
+    priceSugar: number;
+    priceEgg: number;
+    priceFuel: number;
+    priceElectric: number;
+    priceWater: number;
+    priceMedicine: number;
+    priceEducation: number;
+  };
   demand: {
     satisfaction: number; // 0-100
     top_demands: string[];

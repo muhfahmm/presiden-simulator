@@ -339,6 +339,24 @@ export const uruguay: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 208200,
+    "priceChicken": 41000,
+    "priceOil": 12320,
+    "priceSugar": 14400,
+    "priceEgg": 62200,
+    "priceFuel": 21400,
+    "priceElectric": 3200,
+    "priceWater": 4160,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 52,
     "top_demands": [

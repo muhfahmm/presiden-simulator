@@ -339,6 +339,24 @@ export const azerbaijan: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 52050,
+    "priceChicken": 57400,
+    "priceOil": 21560,
+    "priceSugar": 20160,
+    "priceEgg": 15550,
+    "priceFuel": 8560,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 77,
     "top_demands": [

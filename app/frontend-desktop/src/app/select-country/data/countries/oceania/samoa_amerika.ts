@@ -339,6 +339,24 @@ export const samoa_amerika: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 31100,
+    "priceFuel": 8560,
+    "priceElectric": 2240,
+    "priceWater": 7280,
+    "priceMedicine": 221060,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 86,
     "top_demands": [

@@ -339,6 +339,24 @@ export const ekuador: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 145740,
+    "priceChicken": 41000,
+    "priceOil": 12320,
+    "priceSugar": 7200,
+    "priceEgg": 24880,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 7280,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 78,
     "top_demands": [

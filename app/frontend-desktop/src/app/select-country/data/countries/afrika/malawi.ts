@@ -343,6 +343,24 @@ export const malawi: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 62200,
+    "priceFuel": 5350,
+    "priceElectric": 800,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 55,
     "top_demands": [

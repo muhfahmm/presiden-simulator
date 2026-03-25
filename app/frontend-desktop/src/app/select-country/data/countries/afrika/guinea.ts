@@ -343,6 +343,24 @@ export const guinea: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 57400,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 43540,
+    "priceFuel": 14980,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 60,
     "top_demands": [

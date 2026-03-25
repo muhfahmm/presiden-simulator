@@ -339,6 +339,24 @@ export const vatikan: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 52050,
+    "priceChicken": 20500,
+    "priceOil": 30800,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 14980,
+    "priceElectric": 3200,
+    "priceWater": 4160,
+    "priceMedicine": 157900,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 60,
     "top_demands": [

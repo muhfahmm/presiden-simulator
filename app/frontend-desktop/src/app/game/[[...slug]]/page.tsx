@@ -21,6 +21,7 @@ import { expenseStorage } from "@/app/game/components/ekonomi/4-pemasukkanpengel
 import { calculatePopulationHappiness } from "../components/navbar/stats/happines";
 import { stabilityStorage } from "../components/navbar/stats/stability";
 import { populationStorage } from "../components/navbar/stats/population";
+import { happinessStorage } from "../components/navbar/stats/happines/happinessStorage";
 
 // Bottom Nav Modals
 // Ekonomi Modals
@@ -31,6 +32,7 @@ import PemasukkanPengeluaranModal from "../components/ekonomi/4-pemasukkanpengel
 import EnergiModal from "../components/ekonomi/5-energi/EnergiModal";
 import ProduksiBarangModal from "../components/ekonomi/6-produksi-barang/ProduksiBarangModal";
 import MineralsModal from "../components/ekonomi/7-minerals/MineralsModal";
+import HargaModal from "../components/ekonomi/8-pasar-domestik/HargaModal";
 // Other Modals
 import ProduksiHubV3 from "../components/pembangunan/1-produksi/ProduksiModal";
 import ProduksiMiliterModal from "../components/pembangunan/2-produksi-militer/ProduksiMiliterModal";
@@ -49,18 +51,19 @@ import { inboxStorage } from "../components/inbox/inboxStorage";
 import GameNavbar from "../components/navbar";
 
 export default function GamePage() {
-  const [approval, setApproval] = useState(65);
+  const [approval, setApproval] = useState(55);
   const [budget, setBudget] = useState(1240.5); // in Trillion
   const [budgetDelta, setBudgetDelta] = useState(0);
   const [happiness, setHappiness] = useState({ global: 50, salary: 50, subsidy: 50, infrastructure: 85 });
-  const [stability, setStability] = useState(() => stabilityStorage.getStability());
-  const [population, setPopulation] = useState(() => populationStorage.getPopulation());
+  const [stability, setStability] = useState(80); // Static default for SSR
+  const [population, setPopulation] = useState(0); // Static default for SSR
   const router = useRouter();
   const params = useParams();
   const [userCountry, setUserCountry] = useState("Indonesia");
   const [isMounted, setIsMounted] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
   const [targetCountry, setTargetCountry] = useState<string | null>(null);
+  const [isGameOver, setIsGameOver] = useState(false);
   
   useEffect(() => {
     setIsMounted(true);
@@ -68,6 +71,12 @@ export default function GamePage() {
     if (session?.country) {
       setUserCountry(session.country);
       setBudget(budgetStorage.getBudget());
+      setStability(stabilityStorage.getStability());
+      setPopulation(populationStorage.getPopulation());
+    } else {
+      // Defaults if no session
+      setStability(stabilityStorage.getStability());
+      setPopulation(populationStorage.getPopulation());
     }
     if (session?.isWelcomeSeen) {
       setShowWelcome(false);
@@ -106,7 +115,22 @@ export default function GamePage() {
     updateBudgetAndDelta(); // Immediate calculation on mount
     const interval = setInterval(updateBudgetAndDelta, 1000);
 
-    return () => clearInterval(interval);
+    // Critical and Game Over Listeners
+    const handleCritical = () => {
+      setActiveMenu("Action:NaikkanKepuasan");
+    };
+    const handleGameOver = () => {
+      setIsGameOver(true);
+    };
+
+    window.addEventListener('happiness_critical', handleCritical);
+    window.addEventListener('happiness_gameover', handleGameOver);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('happiness_critical', handleCritical);
+      window.removeEventListener('happiness_gameover', handleGameOver);
+    };
   }, []);
   const [selectedCountrySDA, setSelectedCountrySDA] = useState<{ name: string; flag: string; resources: any } | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -126,6 +150,7 @@ export default function GamePage() {
     else if (subMenu === 'energi') initialMenu = "Menu:Energi";
     else if (subMenu === 'produksi-barang') initialMenu = "Menu:ProduksiBarang";
     else if (subMenu === 'minerals') initialMenu = "Menu:Minerals";
+    else if (subMenu === 'harga') initialMenu = "Menu:Harga";
     else initialMenu = "Ekonomi";
   } else if (category === 'pembangunan') {
     if (subMenu === 'produksi') initialMenu = "Menu:Produksi";
@@ -169,6 +194,7 @@ export default function GamePage() {
       "Menu:Energi": "/game/ekonomi/energi",
       "Menu:ProduksiBarang": "/game/ekonomi/produksi-barang",
       "Menu:Minerals": "/game/ekonomi/minerals",
+      "Menu:Harga": "/game/ekonomi/harga",
       // Pembangunan
       "Pembangunan": "/game/pembangunan",
       "Menu:Produksi": "/game/pembangunan/produksi",
@@ -491,6 +517,10 @@ export default function GamePage() {
                 isOpen={activeMenu === "Menu:Minerals"} 
                 onClose={() => setActiveMenu("Ekonomi")} 
               />
+              <HargaModal 
+                isOpen={activeMenu === "Menu:Harga"} 
+                onClose={() => setActiveMenu("Ekonomi")} 
+              />
               <ProduksiHubV3 
                 isOpen={activeMenu === "Menu:Produksi"} 
                 onClose={() => setActiveMenu("Pembangunan")} 
@@ -538,7 +568,6 @@ export default function GamePage() {
               <KepuasanModal
                 isOpen={activeMenu === "Dashboard:Kepuasan" || activeMenu === "Kepuasan"}
                 onClose={() => setActiveMenu("Peta Taktis")}
-                happiness={happiness.global}
               />
               <NaikkanKepuasanModal
                 isOpen={activeMenu === "Action:NaikkanKepuasan"}
@@ -546,8 +575,7 @@ export default function GamePage() {
                 onAction={(title, impact, cost) => {
                   if (budget >= cost) {
                     budgetStorage.updateBudget(-cost);
-                    // We don't have a direct happiness setter here yet, but we can trigger a refresh
-                    // or simulate it if the user wants. For now, just close and subtract budget.
+                    happinessStorage.updateHappinessDirectly(impact, title);
                     alert(`${title} berhasil dilaksanakan!`);
                     setActiveMenu("Peta Taktis");
                   } else {
@@ -560,6 +588,30 @@ export default function GamePage() {
           )}
         </div>
       </main>
+
+      {/* 6. GAME OVER OVERLAY */}
+      {isGameOver && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center bg-black/95 backdrop-blur-3xl animate-in fade-in duration-1000">
+          <div className="max-w-md w-full p-12 bg-zinc-900 border border-red-500/30 rounded-[40px] text-center shadow-[0_0_100px_rgba(239,68,68,0.2)] animate-in zoom-in-95 duration-500">
+            <div className="h-24 w-24 bg-red-500/10 border-2 border-red-500/30 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse">
+              <span className="text-4xl text-red-500 font-black">!</span>
+            </div>
+            <h1 className="text-4xl font-black text-white tracking-tighter uppercase mb-4 italic leading-tight">DEMONSTRASI MASSA BERJALAN ANARKIS</h1>
+            <p className="text-zinc-400 text-sm leading-relaxed mb-10 font-medium">
+              "Rakyat telah kehilangan kepercayaan sepenuhnya. Gelombang protes besar-besaran telah melumpuhkan pemerintahan dan memaksa Anda turun dari jabatan Presiden {countryData.name_id}."
+            </p>
+            <button 
+              onClick={() => {
+                gameStorage.clearSession();
+                router.push("/select-country");
+              }}
+              className="w-full bg-red-600 hover:bg-red-500 text-white font-black py-5 rounded-2xl shadow-xl transition-all cursor-pointer active:scale-95 text-xs uppercase tracking-[0.3em]"
+            >
+              Kembali ke Menu Utama
+            </button>
+          </div>
+        </div>
+      )}
 
       {/* 5. WELCOME OVERLAY */}
       {isMounted && showWelcome && (

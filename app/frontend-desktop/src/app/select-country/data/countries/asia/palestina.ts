@@ -339,6 +339,24 @@ export const palestina: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 104100,
+    "priceChicken": 57400,
+    "priceOil": 12320,
+    "priceSugar": 20160,
+    "priceEgg": 24880,
+    "priceFuel": 8560,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 315800,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 69,
     "top_demands": [

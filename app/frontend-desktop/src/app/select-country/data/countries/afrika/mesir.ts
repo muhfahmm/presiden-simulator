@@ -343,6 +343,24 @@ export const mesir: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 83280,
+    "priceChicken": 57400,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 62200,
+    "priceFuel": 14980,
+    "priceElectric": 2240,
+    "priceWater": 7280,
+    "priceMedicine": 126320,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 92,
     "top_demands": [

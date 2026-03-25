@@ -339,6 +339,24 @@ export const turki: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 28800,
+    "priceEgg": 31100,
+    "priceFuel": 8560,
+    "priceElectric": 3200,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 80,
     "top_demands": [

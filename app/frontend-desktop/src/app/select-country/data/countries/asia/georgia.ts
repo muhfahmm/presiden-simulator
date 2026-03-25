@@ -339,6 +339,24 @@ export const georgia: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 21560,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 1280,
+    "priceWater": 7280,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 82,
     "top_demands": [

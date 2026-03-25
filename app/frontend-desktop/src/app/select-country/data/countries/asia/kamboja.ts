@@ -339,6 +339,24 @@ export const kamboja: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 208200,
+    "priceChicken": 41000,
+    "priceOil": 12320,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 21400,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 315800,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 83,
     "top_demands": [

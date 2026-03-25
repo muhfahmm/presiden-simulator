@@ -339,6 +339,24 @@ export const kolombia: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 21560,
+    "priceSugar": 20160,
+    "priceEgg": 24880,
+    "priceFuel": 21400,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 78950,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 52,
     "top_demands": [

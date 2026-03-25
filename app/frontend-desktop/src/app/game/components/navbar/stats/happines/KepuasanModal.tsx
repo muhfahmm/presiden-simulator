@@ -1,6 +1,8 @@
 "use client"
 
-import { X, Users, Heart, Star, Info, TrendingUp, BarChart, Smile } from "lucide-react";
+import { useState, useEffect } from "react";
+import { X, Users, Heart, Star, Info, TrendingUp, BarChart, Smile, TrendingDown, Minus } from "lucide-react";
+import { happinessStorage, HappinessStats } from "./happinessStorage";
 
 interface KepuasanModalProps {
   isOpen: boolean;
@@ -8,8 +10,18 @@ interface KepuasanModalProps {
   happiness: number;
 }
 
-export default function KepuasanModal({ isOpen, onClose, happiness }: KepuasanModalProps) {
+export default function KepuasanModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
+  const [stats, setStats] = useState<HappinessStats>(() => happinessStorage.getStats());
+
+  useEffect(() => {
+    const handleUpdate = () => setStats(happinessStorage.getStats());
+    window.addEventListener("happiness_updated", handleUpdate);
+    return () => window.removeEventListener("happiness_updated", handleUpdate);
+  }, []);
+
   if (!isOpen) return null;
+
+  const happiness = stats.value;
 
   const getStatus = (val: number) => {
     if (val >= 80) return { label: "Sangat Puas", color: "text-emerald-400", bg: "bg-emerald-500/10", border: "border-emerald-500/20" };
@@ -87,18 +99,29 @@ export default function KepuasanModal({ isOpen, onClose, happiness }: KepuasanMo
               <div className="text-sm font-semibold text-zinc-300">Real-time Sync</div>
             </div>
             <div className="p-4 rounded-2xl bg-zinc-950/50 border border-zinc-800/50 flex flex-col items-center text-center space-y-2">
-              <TrendingUp className="h-5 w-5 text-zinc-500" />
+              {stats.trend === "up" ? (
+                <TrendingUp className="h-5 w-5 text-emerald-400" />
+              ) : stats.trend === "down" ? (
+                <TrendingDown className="h-5 w-5 text-rose-400" />
+              ) : (
+                <Minus className="h-5 w-5 text-zinc-500" />
+              )}
               <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Tren Terakhir</div>
-              <div className="text-sm font-semibold text-emerald-400">Stabil</div>
+              <div className={`text-sm font-semibold ${stats.trend === "up" ? "text-emerald-400" : stats.trend === "down" ? "text-rose-400" : "text-zinc-300"}`}>
+                {stats.trend === "up" ? "Meningkat" : stats.trend === "down" ? "Menurun" : "Stabil"}
+              </div>
             </div>
           </div>
 
-          {/* Footer Info */}
-          <div className="flex items-start gap-3 p-4 bg-zinc-950/80 rounded-2xl border border-zinc-800/80">
+          {/* Footer Info / Reasoning */}
+          <div className="flex items-start gap-4 p-5 bg-cyan-500/5 rounded-2xl border border-cyan-500/20 shadow-inner">
             <Info className="h-5 w-5 text-cyan-500 shrink-0 mt-0.5" />
-            <p className="text-xs text-zinc-400 leading-relaxed font-medium">
-              Kepuasan rakyat dipengaruhi oleh kebijakan fiskal, ketersediaan energi, dan layanan publik. Tingkat kepuasan yang rendah dapat memicu instabilitas nasional.
-            </p>
+            <div className="space-y-1">
+              <div className="text-[10px] font-bold text-cyan-500 uppercase tracking-widest">Analisis Rakyat</div>
+              <p className="text-xs text-zinc-300 leading-relaxed font-medium">
+                {stats.reasoning}
+              </p>
+            </div>
           </div>
         </div>
 

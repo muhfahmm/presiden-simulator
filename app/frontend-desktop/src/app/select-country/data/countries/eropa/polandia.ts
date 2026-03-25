@@ -339,6 +339,24 @@ export const polandia: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 145740,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 15550,
+    "priceFuel": 10700,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 72,
     "top_demands": [

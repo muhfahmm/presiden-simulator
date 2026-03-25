@@ -343,6 +343,24 @@ export const kenya: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 52050,
+    "priceChicken": 57400,
+    "priceOil": 30800,
+    "priceSugar": 28800,
+    "priceEgg": 43540,
+    "priceFuel": 14980,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 53,
     "top_demands": [

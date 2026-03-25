@@ -339,6 +339,24 @@ export const irlandia: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 145740,
+    "priceChicken": 20500,
+    "priceOil": 12320,
+    "priceSugar": 20160,
+    "priceEgg": 31100,
+    "priceFuel": 8560,
+    "priceElectric": 3200,
+    "priceWater": 10400,
+    "priceMedicine": 157900,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 66,
     "top_demands": [

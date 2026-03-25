@@ -339,6 +339,24 @@ export const malaysia: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 8000,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 7700,
+    "priceSugar": 14400,
+    "priceEgg": 15550,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 10400,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 78,
     "top_demands": [

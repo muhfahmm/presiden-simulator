@@ -339,6 +339,24 @@ export const jepang: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 82000,
+    "priceOil": 21560,
+    "priceSugar": 7200,
+    "priceEgg": 31100,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 2600,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 70,
     "top_demands": [

@@ -339,6 +339,24 @@ export const armenia: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 83280,
+    "priceChicken": 57400,
+    "priceOil": 21560,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 1280,
+    "priceWater": 7280,
+    "priceMedicine": 221060,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 81,
     "top_demands": [

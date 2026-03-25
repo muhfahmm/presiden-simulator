@@ -339,6 +339,24 @@ export const uzbekistan: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 208200,
+    "priceChicken": 57400,
+    "priceOil": 30800,
+    "priceSugar": 14400,
+    "priceEgg": 24880,
+    "priceFuel": 5350,
+    "priceElectric": 2240,
+    "priceWater": 10400,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 65,
     "top_demands": [

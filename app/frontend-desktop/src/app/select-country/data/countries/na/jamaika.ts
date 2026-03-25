@@ -339,6 +339,24 @@ export const jamaika: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 8000,
+    "priceBeef": 104100,
+    "priceChicken": 57400,
+    "priceOil": 12320,
+    "priceSugar": 20160,
+    "priceEgg": 24880,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 7280,
+    "priceMedicine": 221060,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 55,
     "top_demands": [

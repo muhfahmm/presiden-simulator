@@ -339,6 +339,24 @@ export const rusia: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 145740,
+    "priceChicken": 41000,
+    "priceOil": 21560,
+    "priceSugar": 14400,
+    "priceEgg": 15550,
+    "priceFuel": 21400,
+    "priceElectric": 1280,
+    "priceWater": 4160,
+    "priceMedicine": 126320,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 62,
     "top_demands": [

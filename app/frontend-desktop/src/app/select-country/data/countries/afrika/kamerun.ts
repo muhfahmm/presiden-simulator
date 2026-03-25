@@ -343,6 +343,24 @@ export const kamerun: CountryData = {
     "subsidyRumah": 0
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 7200,
+    "priceEgg": 43540,
+    "priceFuel": 8560,
+    "priceElectric": 2240,
+    "priceWater": 7280,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 78,
     "top_demands": [

@@ -339,6 +339,24 @@ export const bosnia_dan_hercegovina: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 7700,
+    "priceSugar": 28800,
+    "priceEgg": 62200,
+    "priceFuel": 8560,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 59,
     "top_demands": [

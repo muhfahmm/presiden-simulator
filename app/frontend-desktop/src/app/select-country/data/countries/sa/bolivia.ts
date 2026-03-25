@@ -339,6 +339,24 @@ export const bolivia: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 104100,
+    "priceChicken": 57400,
+    "priceOil": 15400,
+    "priceSugar": 28800,
+    "priceEgg": 31100,
+    "priceFuel": 14980,
+    "priceElectric": 2240,
+    "priceWater": 4160,
+    "priceMedicine": 126320,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 65,
     "top_demands": [

@@ -7,7 +7,8 @@ export interface InboxItem {
   time: string; // Stored as a formatted string or game date
   read: boolean;
   priority: 'low' | 'medium' | 'high';
-  timestamp: number; // For sorting purposes
+  timestamp: number;
+  content?: string;
 }
 
 export const inboxStorage = {

@@ -343,6 +343,24 @@ export const burkina_faso: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 83280,
+    "priceChicken": 82000,
+    "priceOil": 7700,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 8560,
+    "priceElectric": 1280,
+    "priceWater": 10400,
+    "priceMedicine": 221060,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 50,
     "top_demands": [

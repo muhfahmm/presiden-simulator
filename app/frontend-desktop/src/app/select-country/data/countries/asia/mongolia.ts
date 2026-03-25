@@ -339,6 +339,24 @@ export const mongolia: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 83280,
+    "priceChicken": 32800,
+    "priceOil": 30800,
+    "priceSugar": 28800,
+    "priceEgg": 24880,
+    "priceFuel": 10700,
+    "priceElectric": 1280,
+    "priceWater": 2600,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 54,
     "top_demands": [

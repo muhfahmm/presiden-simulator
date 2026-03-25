@@ -339,6 +339,24 @@ export const kosovo: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 12320,
+    "priceSugar": 28800,
+    "priceEgg": 31100,
+    "priceFuel": 8560,
+    "priceElectric": 2240,
+    "priceWater": 10400,
+    "priceMedicine": 315800,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 72,
     "top_demands": [

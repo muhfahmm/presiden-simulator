@@ -339,6 +339,24 @@ export const hungaria: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 145740,
+    "priceChicken": 57400,
+    "priceOil": 15400,
+    "priceSugar": 20160,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 50,
     "top_demands": [

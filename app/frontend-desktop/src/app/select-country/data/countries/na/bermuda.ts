@@ -339,6 +339,24 @@ export const bermuda: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 8000,
+    "priceBeef": 52050,
+    "priceChicken": 41000,
+    "priceOil": 12320,
+    "priceSugar": 20160,
+    "priceEgg": 31100,
+    "priceFuel": 8560,
+    "priceElectric": 3200,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 63,
     "top_demands": [

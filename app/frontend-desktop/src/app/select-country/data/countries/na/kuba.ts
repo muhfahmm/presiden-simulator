@@ -339,6 +339,24 @@ export const kuba: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 208200,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 5350,
+    "priceElectric": 1280,
+    "priceWater": 7280,
+    "priceMedicine": 221060,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 55,
     "top_demands": [

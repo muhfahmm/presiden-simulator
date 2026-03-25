@@ -339,6 +339,24 @@ export const sri_lanka: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 83280,
+    "priceChicken": 57400,
+    "priceOil": 15400,
+    "priceSugar": 7200,
+    "priceEgg": 43540,
+    "priceFuel": 21400,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 83,
     "top_demands": [

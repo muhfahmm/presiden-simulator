@@ -339,6 +339,24 @@ export const gibraltar: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 145740,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 7200,
+    "priceEgg": 24880,
+    "priceFuel": 14980,
+    "priceElectric": 1280,
+    "priceWater": 10400,
+    "priceMedicine": 78950,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 66,
     "top_demands": [

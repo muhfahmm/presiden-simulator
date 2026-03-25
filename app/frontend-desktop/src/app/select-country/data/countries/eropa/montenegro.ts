@@ -339,6 +339,24 @@ export const montenegro: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 145740,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 62200,
+    "priceFuel": 14980,
+    "priceElectric": 1600,
+    "priceWater": 7280,
+    "priceMedicine": 126320,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 84,
     "top_demands": [

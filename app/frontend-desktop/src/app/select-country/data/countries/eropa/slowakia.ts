@@ -339,6 +339,24 @@ export const slowakia: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 145740,
+    "priceChicken": 41000,
+    "priceOil": 12320,
+    "priceSugar": 20160,
+    "priceEgg": 43540,
+    "priceFuel": 14980,
+    "priceElectric": 2240,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 77,
     "top_demands": [

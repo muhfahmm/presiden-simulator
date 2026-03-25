@@ -339,6 +339,24 @@ export const vanuatu: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 12320,
+    "priceSugar": 14400,
+    "priceEgg": 24880,
+    "priceFuel": 5350,
+    "priceElectric": 3200,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 87,
     "top_demands": [

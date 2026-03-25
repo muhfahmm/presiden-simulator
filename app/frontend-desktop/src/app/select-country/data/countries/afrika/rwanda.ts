@@ -343,6 +343,24 @@ export const rwanda: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 208200,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 8560,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 78950,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 68,
     "top_demands": [

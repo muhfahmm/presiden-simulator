@@ -339,6 +339,24 @@ export const taiwan: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 83280,
+    "priceChicken": 20500,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 24880,
+    "priceFuel": 8560,
+    "priceElectric": 1600,
+    "priceWater": 7280,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 59,
     "top_demands": [

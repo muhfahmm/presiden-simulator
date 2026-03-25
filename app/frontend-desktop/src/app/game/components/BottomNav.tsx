@@ -35,6 +35,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
       { id: "Menu:Energi", label: "Statistik Energi", icon: Zap },
       { id: "Menu:ProduksiBarang", label: "Produksi Barang", icon: Package },
       { id: "Menu:Minerals", label: "Mineral Kritis & Strategis", icon: Gem },
+      { id: "Menu:Harga", label: "Kontrol Harga Rakyat", icon: Tag },
     ],
     "Pembangunan": [
       { id: "Menu:Produksi", label: "Produksi", icon: Hammer },

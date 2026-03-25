@@ -339,6 +339,24 @@ export const belanda: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 12320,
+    "priceSugar": 7200,
+    "priceEgg": 24880,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 315800,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 95,
     "top_demands": [

@@ -1,0 +1,59 @@
+# ANALISIS HUBUNGAN EVENT & ARSITEKTUR FOLDER #
+
+Berikut adalah pemetaan antara 20 Ide Event dengan folder/modul yang ada di dalam proyek EM4:
+
+### A. EVENT PENAMBAH KEPUASAN (RATING NAIK)
+1.  Surplus Ekspor Non-Migas:
+    - Lokasi: src/app/game/components/ekonomi/1-perdagangan/
+    - Hubungan: Data neraca ekspor barang ke luar negeri.
+2.  Kemenangan Turnamen Olahraga:
+    - Data belum ditemukan. (Rekomendasi: Tambahkan di folder 'berita' atau 'geopolitik').
+3.  Modernisasi Alutsista Mandiri:
+    - Lokasi: src/app/game/components/pertahanan/
+    - Hubungan: Terkait unit militer dan riset pertahanan lokal.
+4.  Penurunan Tarif Pajak UMKM:
+    - Lokasi: src/app/game/components/ekonomi/2-pajak/
+    - Hubungan: Kebijakan persentase pajak usaha.
+5.  Program Makan Siang Gratis:
+    - Lokasi: src/app/game/components/ekonomi/4-pemasukkanpengeluaran/
+    - Hubungan: Penambahan pos pengeluaran bansos/sosial.
+6.  Penurunan Harga BBM:
+    - Lokasi: src/app/game/components/ekonomi/4-pemasukkanpengeluaran/
+    - Hubungan: Variabel beban subsidi energi di Pengeluaran.
+7.  Sukses Diplomasi Damai:
+    - Lokasi: src/app/game/components/geopolitik/
+    - Hubungan: Status hubungan internasional antar negara.
+8.  Digitalisasi Layanan Publik:
+    - Data belum ditemukan.
+9.  Reformasi Pendidikan:
+    - Lokasi: src/app/game/components/ekonomi/4-pemasukkanpengeluaran/
+    - Hubungan: Alokasi anggaran pendidikan di Pengeluaran Sosial.
+10. Festival Budaya Nasional:
+    - Data belum ditemukan.
+
+### B. EVENT PENGURANG KEPUASAN (RATING TURUN)
+1.  Kelangkaan Bahan Pokok:
+    - Lokasi: src/app/game/components/ekonomi/1-perdagangan/ & 6-produksi-barang/
+    - Hubungan: Defisit stok barang di gudang nasional.
+2.  Skandal Korupsi Pejabat:
+    - Data belum ditemukan. (Rekomendasi: Sinkronisasi dengan folder 'navbar/stats/stability').
+3.  Defisit Neraca Perdagangan:
+    - Lokasi: src/app/game/components/ekonomi/1-perdagangan/
+    - Hubungan: Tingginya volume impor dibandingkan ekspor.
+4.  Kenaikan PPN/Pajak:
+    - Lokasi: src/app/game/components/ekonomi/2-pajak/
+    - Hubungan: Kebijakan persentase pajak yang diatur user.
+5.  Serangan Siber Nasional:
+    - Data belum ditemukan.
+6.  Bencana Alam Besar:
+    - Data belum ditemukan.
+7.  Kenaikan Beban Utang Luar Negeri:
+    - Lokasi: src/app/game/components/ekonomi/3-hutang/
+    - Hubungan: Peningkatan cicilan pokok dan bunga utang.
+8.  Isu Lingkungan Hidup:
+    - Data belum ditemukan.
+9.  Melemahnya Nilai Tukar:
+    - Data belum ditemukan. (Indikator pasar global belum ada modal khusus).
+10. Konflik Perbatasan:
+    - Lokasi: src/app/game/components/pertahanan/
+    - Hubungan: Status siaga militer dan pengeluaran pertahanan.

@@ -339,6 +339,24 @@ export const saint_kitts_dan_nevis: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 104100,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 8560,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 65,
     "top_demands": [

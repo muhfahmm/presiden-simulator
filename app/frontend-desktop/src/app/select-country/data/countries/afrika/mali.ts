@@ -343,6 +343,24 @@ export const mali: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 104100,
+    "priceChicken": 32800,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 14980,
+    "priceElectric": 1280,
+    "priceWater": 10400,
+    "priceMedicine": 78950,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 73,
     "top_demands": [

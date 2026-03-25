@@ -339,6 +339,24 @@ export const kanada: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 82000,
+    "priceOil": 21560,
+    "priceSugar": 20160,
+    "priceEgg": 24880,
+    "priceFuel": 8560,
+    "priceElectric": 1280,
+    "priceWater": 10400,
+    "priceMedicine": 157900,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 59,
     "top_demands": [

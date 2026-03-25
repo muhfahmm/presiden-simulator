@@ -343,6 +343,24 @@ export const liberia: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 104100,
+    "priceChicken": 82000,
+    "priceOil": 7700,
+    "priceSugar": 20160,
+    "priceEgg": 62200,
+    "priceFuel": 14980,
+    "priceElectric": 2240,
+    "priceWater": 5200,
+    "priceMedicine": 78950,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 85,
     "top_demands": [

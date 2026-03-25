@@ -343,6 +343,24 @@ export const republik_zambia: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 208200,
+    "priceChicken": 82000,
+    "priceOil": 15400,
+    "priceSugar": 28800,
+    "priceEgg": 24880,
+    "priceFuel": 14980,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 157900,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 51,
     "top_demands": [

@@ -339,6 +339,24 @@ export const india: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 8000,
+    "priceBeef": 145740,
+    "priceChicken": 57400,
+    "priceOil": 21560,
+    "priceSugar": 20160,
+    "priceEgg": 31100,
+    "priceFuel": 8560,
+    "priceElectric": 2240,
+    "priceWater": 4160,
+    "priceMedicine": 126320,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 73,
     "top_demands": [

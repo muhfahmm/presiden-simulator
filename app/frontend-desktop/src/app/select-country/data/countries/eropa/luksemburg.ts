@@ -339,6 +339,24 @@ export const luksemburg: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 57400,
+    "priceOil": 12320,
+    "priceSugar": 11520,
+    "priceEgg": 62200,
+    "priceFuel": 5350,
+    "priceElectric": 1600,
+    "priceWater": 10400,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 56,
     "top_demands": [

@@ -339,6 +339,24 @@ export const chile: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 145740,
+    "priceChicken": 32800,
+    "priceOil": 12320,
+    "priceSugar": 11520,
+    "priceEgg": 15550,
+    "priceFuel": 5350,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 79,
     "top_demands": [

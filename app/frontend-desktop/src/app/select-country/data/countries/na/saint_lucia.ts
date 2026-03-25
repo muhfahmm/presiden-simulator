@@ -339,6 +339,24 @@ export const saint_lucia: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 145740,
+    "priceChicken": 57400,
+    "priceOil": 21560,
+    "priceSugar": 28800,
+    "priceEgg": 15550,
+    "priceFuel": 14980,
+    "priceElectric": 1280,
+    "priceWater": 7280,
+    "priceMedicine": 126320,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 91,
     "top_demands": [

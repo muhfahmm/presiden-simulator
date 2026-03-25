@@ -343,6 +343,24 @@ export const botswana: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 20160,
+    "priceEgg": 24880,
+    "priceFuel": 21400,
+    "priceElectric": 1280,
+    "priceWater": 7280,
+    "priceMedicine": 221060,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 68,
     "top_demands": [

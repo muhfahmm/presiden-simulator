@@ -343,6 +343,24 @@ export const komoro: CountryData = {
     "subsidyRumah": 0
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 145740,
+    "priceChicken": 82000,
+    "priceOil": 15400,
+    "priceSugar": 7200,
+    "priceEgg": 31100,
+    "priceFuel": 21400,
+    "priceElectric": 1600,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 78,
     "top_demands": [

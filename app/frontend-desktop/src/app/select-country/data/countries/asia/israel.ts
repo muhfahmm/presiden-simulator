@@ -339,6 +339,24 @@ export const israel: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 145740,
+    "priceChicken": 32800,
+    "priceOil": 12320,
+    "priceSugar": 28800,
+    "priceEgg": 62200,
+    "priceFuel": 10700,
+    "priceElectric": 800,
+    "priceWater": 7280,
+    "priceMedicine": 126320,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 85,
     "top_demands": [

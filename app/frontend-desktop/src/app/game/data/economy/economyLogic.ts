@@ -8,6 +8,7 @@ import { produkIndustriRate } from "@/app/select-country/data/pembangunan/laju-p
 import { komoditasPanganRate } from "@/app/select-country/data/pembangunan/laju-produksi/3_komoditas_pangan";
 import { produksiMiliter } from "@/app/select-country/data/pembangunan/produksi-militer";
 import { tempatUmum } from "@/app/select-country/data/pembangunan/tempat-umum";
+import { priceStorage } from "@/app/game/components/ekonomi/8-pasar-domestik/priceStorage";
 
 /**
  * Calculates the total daily maintenance cost for all national infrastructure.
@@ -111,7 +112,17 @@ export function calculateDailyBudgetDelta(countryData: CountryData, buildingDelt
   const avgSalaryMultiplier = ((expData.salaryAsn || 1.0) + (expData.salaryGuru || 1.0) + (expData.salaryMedis || 1.0) + (expData.salaryMiliter || 1.0)) / 4;
   const salaryExpense = (maintenanceExpense * 0.1) * avgSalaryMultiplier;
 
-  const totalDailyExpense = maintenanceExpense + dailyMilitaryExpense + subsidyExpense + salaryExpense + (expData.debtInterestPaid || 0);
+  // Prices Subsidy Impact
+  const priceData = priceStorage.getData();
+  const avgPriceMultiplier = (
+    (priceData.priceRice / 15000) + (priceData.priceBeef / 120000) + (priceData.priceChicken / 40000) +
+    (priceData.priceOil / 18000) + (priceData.priceSugar / 16000) + (priceData.priceEgg / 30000) +
+    (priceData.priceFuel / 12500) + (priceData.priceElectric / 1500) + (priceData.priceWater / 5000) +
+    (priceData.priceMedicine / 150000) + (priceData.priceEducation / 500000)
+  ) / 11;
+  const priceSubsidyExpense = Math.max(0, (1.0 - avgPriceMultiplier) * 1500); // Max ~750 cost at 0.5x prices
+
+  const totalDailyExpense = maintenanceExpense + dailyMilitaryExpense + subsidyExpense + salaryExpense + (expData.debtInterestPaid || 0) + priceSubsidyExpense;
 
   return dailyTaxRevenue - totalDailyExpense;
 }

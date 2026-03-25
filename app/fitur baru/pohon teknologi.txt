@@ -1,0 +1,4 @@
+### FITUR: POHON TEKNOLOGI (R&D TREE) ###
+- Riset berkelanjutan menggunakan poin Riset atau Dana.
+- Membuka gedung-gedung canggih (PLTN generasi terbaru, Laboratorium AI).
+- Memberikan buff pasif: Efisiensi produksi barang meningkat 10-20%.

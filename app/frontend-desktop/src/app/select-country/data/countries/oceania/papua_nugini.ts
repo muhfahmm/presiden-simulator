@@ -339,6 +339,24 @@ export const papua_nugini: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 104100,
+    "priceChicken": 20500,
+    "priceOil": 15400,
+    "priceSugar": 11520,
+    "priceEgg": 43540,
+    "priceFuel": 8560,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 157900,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 90,
     "top_demands": [

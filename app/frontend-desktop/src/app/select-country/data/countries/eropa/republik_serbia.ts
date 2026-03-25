@@ -339,6 +339,24 @@ export const republik_serbia: CountryData = {
     "subsidyRumah": 75
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 12800,
+    "priceBeef": 104100,
+    "priceChicken": 57400,
+    "priceOil": 21560,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 14980,
+    "priceElectric": 2240,
+    "priceWater": 10400,
+    "priceMedicine": 157900,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 55,
     "top_demands": [

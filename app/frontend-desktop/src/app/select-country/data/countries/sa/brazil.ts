@@ -339,6 +339,24 @@ export const brazil: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 145740,
+    "priceChicken": 57400,
+    "priceOil": 12320,
+    "priceSugar": 14400,
+    "priceEgg": 31100,
+    "priceFuel": 21400,
+    "priceElectric": 1600,
+    "priceWater": 4160,
+    "priceMedicine": 126320,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 92,
     "top_demands": [

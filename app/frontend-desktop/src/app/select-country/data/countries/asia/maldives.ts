@@ -339,6 +339,24 @@ export const maldives: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 208200,
+    "priceChicken": 57400,
+    "priceOil": 15400,
+    "priceSugar": 20160,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 3200,
+    "priceWater": 2600,
+    "priceMedicine": 78950,
+    "priceEducation": 387120
+  },
+
   "demand": {
     "satisfaction": 94,
     "top_demands": [

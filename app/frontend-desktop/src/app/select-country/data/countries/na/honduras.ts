@@ -339,6 +339,24 @@ export const honduras: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 145740,
+    "priceChicken": 41000,
+    "priceOil": 15400,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 14980,
+    "priceElectric": 3200,
+    "priceWater": 5200,
+    "priceMedicine": 221060,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 52,
     "top_demands": [

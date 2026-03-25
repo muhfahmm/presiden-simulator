@@ -339,6 +339,24 @@ export const bahrain: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 104100,
+    "priceChicken": 20500,
+    "priceOil": 30800,
+    "priceSugar": 20160,
+    "priceEgg": 31100,
+    "priceFuel": 5350,
+    "priceElectric": 3200,
+    "priceWater": 10400,
+    "priceMedicine": 157900,
+    "priceEducation": 677460
+  },
+
   "demand": {
     "satisfaction": 56,
     "top_demands": [

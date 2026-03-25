@@ -339,6 +339,24 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 32000,
+    "priceBeef": 208200,
+    "priceChicken": 32800,
+    "priceOil": 12320,
+    "priceSugar": 20160,
+    "priceEgg": 24880,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 5200,
+    "priceMedicine": 78950,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 66,
     "top_demands": [

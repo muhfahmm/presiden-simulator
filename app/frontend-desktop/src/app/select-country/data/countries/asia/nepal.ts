@@ -339,6 +339,24 @@ export const nepal: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 104100,
+    "priceChicken": 20500,
+    "priceOil": 7700,
+    "priceSugar": 14400,
+    "priceEgg": 62200,
+    "priceFuel": 10700,
+    "priceElectric": 1280,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 61,
     "top_demands": [

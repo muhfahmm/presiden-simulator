@@ -339,6 +339,24 @@ export const brunei: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 145740,
+    "priceChicken": 20500,
+    "priceOil": 7700,
+    "priceSugar": 14400,
+    "priceEgg": 43540,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 5200,
+    "priceMedicine": 78950,
+    "priceEducation": 967800
+  },
+
   "demand": {
     "satisfaction": 91,
     "top_demands": [

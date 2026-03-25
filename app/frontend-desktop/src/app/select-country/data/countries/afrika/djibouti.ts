@@ -343,6 +343,24 @@ export const djibouti: CountryData = {
     "subsidyRumah": 25
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 22400,
+    "priceBeef": 208200,
+    "priceChicken": 32800,
+    "priceOil": 30800,
+    "priceSugar": 20160,
+    "priceEgg": 62200,
+    "priceFuel": 10700,
+    "priceElectric": 1600,
+    "priceWater": 7280,
+    "priceMedicine": 221060,
+    "priceEducation": 483900
+  },
+
   "demand": {
     "satisfaction": 72,
     "top_demands": [

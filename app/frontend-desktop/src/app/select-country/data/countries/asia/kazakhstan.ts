@@ -339,6 +339,24 @@ export const kazakhstan: CountryData = {
     "subsidyRumah": 50
   },
 
+  // =============================================================
+  // 🛒 HARGA PASAR DOMESTIK (11 Jenis)
+  // =============================================================
+
+  "prices": {
+    "priceRice": 16000,
+    "priceBeef": 208200,
+    "priceChicken": 41000,
+    "priceOil": 7700,
+    "priceSugar": 28800,
+    "priceEgg": 24880,
+    "priceFuel": 10700,
+    "priceElectric": 2240,
+    "priceWater": 5200,
+    "priceMedicine": 126320,
+    "priceEducation": 241950
+  },
+
   "demand": {
     "satisfaction": 76,
     "top_demands": [
