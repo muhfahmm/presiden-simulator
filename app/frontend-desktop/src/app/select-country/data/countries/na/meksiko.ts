@@ -7,7 +7,7 @@ export const meksiko: CountryData = {
   "lon": -102,
   "lat": 23,
   "flag": "🇲🇽",
-  "pop": "10M",
+  "pop": 126190788,
   "budget": 17404,
   "income": "49726",
   "religion": "Katolik",

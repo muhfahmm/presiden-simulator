@@ -7,7 +7,7 @@ export const guinea_bissau: CountryData = {
   "lon": -15,
   "lat": 12,
   "flag": "🇬🇼",
-  "pop": "10M",
+  "pop": 1874309,
   "budget": 18,
   "income": "50",
   "religion": "Islam",

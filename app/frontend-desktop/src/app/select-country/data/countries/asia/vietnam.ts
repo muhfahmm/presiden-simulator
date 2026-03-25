@@ -7,7 +7,7 @@ export const vietnam: CountryData = {
   "lon": 107.83333333,
   "lat": 16.16666666,
   "flag": "🇻🇳",
-  "pop": "10M",
+  "pop": 95540395,
   "budget": 4181,
   "income": "11945",
   "religion": "Ateisme",

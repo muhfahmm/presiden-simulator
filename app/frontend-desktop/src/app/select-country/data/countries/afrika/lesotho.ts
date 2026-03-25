@@ -7,7 +7,7 @@ export const lesotho: CountryData = {
   "lon": 28.5,
   "lat": -29.5,
   "flag": "🇱🇸",
-  "pop": "10M",
+  "pop": 2108132,
   "budget": 24,
   "income": "69",
   "religion": "Katolik",

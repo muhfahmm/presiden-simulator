@@ -7,7 +7,7 @@ export const nepal: CountryData = {
   "lon": 84,
   "lat": 28,
   "flag": "🇳🇵",
-  "pop": "10M",
+  "pop": 28087871,
   "budget": 389,
   "income": "1111",
   "religion": "Hindu",

@@ -7,7 +7,7 @@ export const senegal: CountryData = {
   "lon": -14,
   "lat": 14,
   "flag": "🇸🇳",
-  "pop": "10M",
+  "pop": 15854360,
   "budget": 272,
   "income": "778",
   "religion": "Islam",

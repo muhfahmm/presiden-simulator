@@ -7,7 +7,7 @@ export const republik_zimbabwe: CountryData = {
   "lon": 30,
   "lat": -20,
   "flag": "🇿🇼",
-  "pop": "10M",
+  "pop": 14439018,
   "budget": 194,
   "income": "556",
   "religion": "Protestan",

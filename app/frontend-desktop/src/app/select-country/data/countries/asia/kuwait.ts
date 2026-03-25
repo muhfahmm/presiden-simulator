@@ -7,7 +7,7 @@ export const kuwait: CountryData = {
   "lon": 45.75,
   "lat": 29.5,
   "flag": "🇰🇼",
-  "pop": "10M",
+  "pop": 4137309,
   "budget": 1507,
   "income": "4306",
   "religion": "Islam",

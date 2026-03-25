@@ -7,7 +7,7 @@ export const lebanon: CountryData = {
   "lon": 35.83333333,
   "lat": 33.83333333,
   "flag": "🇱🇧",
-  "pop": "10M",
+  "pop": 6848925,
   "budget": 175,
   "income": "500",
   "religion": "Islam",

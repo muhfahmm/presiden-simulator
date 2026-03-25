@@ -7,7 +7,7 @@ export const malawi: CountryData = {
   "lon": 33.47,
   "lat": -13.59,
   "flag": "🇲🇼",
-  "pop": "10M",
+  "pop": 18143315,
   "budget": 117,
   "income": "333",
   "religion": "Protestan",

@@ -7,7 +7,7 @@ export const albania: CountryData = {
   "lon": 19.81,
   "lat": 41.32,
   "flag": "🇦🇱",
-  "pop": "33M",
+  "pop": 2866376,
   "budget": 214,
   "income": "611",
   "religion": "Islam",

@@ -7,7 +7,7 @@ export const nikaragua: CountryData = {
   "lon": -85,
   "lat": 13,
   "flag": "🇳🇮",
-  "pop": "10M",
+  "pop": 6465513,
   "budget": 165,
   "income": "472",
   "religion": "Katolik",

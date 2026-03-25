@@ -7,7 +7,7 @@ export const maldives: CountryData = {
   "lon": 73.3,
   "lat": 4.1,
   "flag": "🇲🇻",
-  "pop": "10M",
+  "pop": 515696,
   "budget": 63,
   "income": "181",
   "religion": "Katolik",

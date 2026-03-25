@@ -7,7 +7,7 @@ export const fiji: CountryData = {
   "lon": 175,
   "lat": -18,
   "flag": "🇫🇯",
-  "pop": "10M",
+  "pop": 883483,
   "budget": 49,
   "income": "139",
   "religion": "Protestan",

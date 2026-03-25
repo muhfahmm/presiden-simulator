@@ -7,7 +7,7 @@ export const panama: CountryData = {
   "lon": -80,
   "lat": 9,
   "flag": "🇵🇦",
-  "pop": "10M",
+  "pop": 4176873,
   "budget": 739,
   "income": "2111",
   "religion": "Katolik",

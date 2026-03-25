@@ -7,7 +7,7 @@ export const polandia: CountryData = {
   "lon": 20,
   "lat": 52,
   "flag": "🇵🇱",
-  "pop": "10M",
+  "pop": 37974750,
   "budget": 8167,
   "income": "23335",
   "religion": "Katolik",

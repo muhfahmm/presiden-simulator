@@ -7,7 +7,7 @@ export const kenya: CountryData = {
   "lon": 38,
   "lat": 1,
   "flag": "🇰🇪",
-  "pop": "57M",
+  "pop": 51393010,
   "budget": 1070,
   "income": "3056",
   "religion": "Protestan",

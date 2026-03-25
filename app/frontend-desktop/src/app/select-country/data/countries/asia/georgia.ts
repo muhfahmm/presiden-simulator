@@ -7,7 +7,7 @@ export const georgia: CountryData = {
   "lon": 43.5,
   "lat": 42,
   "flag": "🇬🇪",
-  "pop": "10M",
+  "pop": 3726549,
   "budget": 243,
   "income": "694",
   "religion": "Kristen Ortodoks",

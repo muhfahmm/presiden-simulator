@@ -7,7 +7,7 @@ export const kiribati: CountryData = {
   "lon": 173,
   "lat": 1.41666666,
   "flag": "🇰🇮",
-  "pop": "10M",
+  "pop": 115847,
   "budget": 10,
   "income": "15",
   "religion": "Protestan",

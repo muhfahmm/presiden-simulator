@@ -7,7 +7,7 @@ export const kanada: CountryData = {
   "lon": -95,
   "lat": 60,
   "flag": "🇨🇦",
-  "pop": "10M",
+  "pop": 37057765,
   "budget": 21780,
   "income": "62227",
   "religion": "Protestan",

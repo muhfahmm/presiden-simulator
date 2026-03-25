@@ -7,7 +7,7 @@ export const ekuador: CountryData = {
   "lon": -77.5,
   "lat": -2,
   "flag": "🇪🇨",
-  "pop": "10M",
+  "pop": 17084357,
   "budget": 1118,
   "income": "3195",
   "religion": "Katolik",

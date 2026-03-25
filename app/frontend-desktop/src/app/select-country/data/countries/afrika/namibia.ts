@@ -7,7 +7,7 @@ export const namibia: CountryData = {
   "lon": 17,
   "lat": -22,
   "flag": "🇳🇦",
-  "pop": "10M",
+  "pop": 2448255,
   "budget": 126,
   "income": "361",
   "religion": "Protestan",

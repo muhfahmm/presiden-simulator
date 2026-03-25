@@ -7,7 +7,7 @@ export const burkina_faso: CountryData = {
   "lon": -2,
   "lat": 13,
   "flag": "🇧🇫",
-  "pop": "10M",
+  "pop": 19751535,
   "budget": 175,
   "income": "500",
   "religion": "Islam",

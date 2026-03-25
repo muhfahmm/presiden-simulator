@@ -7,7 +7,7 @@ export const saint_kitts_dan_nevis: CountryData = {
   "lon": -62.75,
   "lat": 17.33333333,
   "flag": "🇰🇳",
-  "pop": "10M",
+  "pop": 52441,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

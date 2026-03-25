@@ -7,7 +7,7 @@ export const republik_serbia: CountryData = {
   "lon": 21,
   "lat": 44,
   "flag": "🇷🇸",
-  "pop": "10M",
+  "pop": 6963764,
   "budget": 661,
   "income": "1889",
   "religion": "Katolik",

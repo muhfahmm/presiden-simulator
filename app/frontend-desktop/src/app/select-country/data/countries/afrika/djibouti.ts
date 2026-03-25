@@ -7,7 +7,7 @@ export const djibouti: CountryData = {
   "lon": 43,
   "lat": 11.5,
   "flag": "🇩🇯",
-  "pop": "10M",
+  "pop": 958920,
   "budget": 39,
   "income": "111",
   "religion": "Islam",

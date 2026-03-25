@@ -7,7 +7,7 @@ export const belarus: CountryData = {
   "lon": 28,
   "lat": 53,
   "flag": "🇧🇾",
-  "pop": "10M",
+  "pop": 9483499,
   "budget": 681,
   "income": "1945",
   "religion": "Kristen Ortodoks",

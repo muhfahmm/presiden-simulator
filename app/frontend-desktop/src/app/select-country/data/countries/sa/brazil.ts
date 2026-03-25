@@ -7,7 +7,7 @@ export const brazil: CountryData = {
   "lon": -55,
   "lat": -10,
   "flag": "🇧🇷",
-  "pop": "10M",
+  "pop": 209469333,
   "budget": 22655,
   "income": "64727",
   "religion": "Katolik",

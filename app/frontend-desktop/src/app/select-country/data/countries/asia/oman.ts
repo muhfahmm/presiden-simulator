@@ -7,7 +7,7 @@ export const oman: CountryData = {
   "lon": 57,
   "lat": 21,
   "flag": "🇴🇲",
-  "pop": "10M",
+  "pop": 4829483,
   "budget": 1021,
   "income": "2917",
   "religion": "Islam",

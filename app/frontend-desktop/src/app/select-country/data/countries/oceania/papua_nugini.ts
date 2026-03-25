@@ -7,7 +7,7 @@ export const papua_nugini: CountryData = {
   "lon": 147,
   "lat": -6,
   "flag": "🇵🇬",
-  "pop": "10M",
+  "pop": 8606316,
   "budget": 292,
   "income": "833",
   "religion": "Protestan",

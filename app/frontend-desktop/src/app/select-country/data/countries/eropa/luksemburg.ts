@@ -7,7 +7,7 @@ export const luksemburg: CountryData = {
   "lon": 6.07,
   "lat": 49.36,
   "flag": "🇱🇺",
-  "pop": "10M",
+  "pop": 607950,
   "budget": 846,
   "income": "2417",
   "religion": "Katolik",

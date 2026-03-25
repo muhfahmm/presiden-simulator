@@ -7,7 +7,7 @@ export const yaman: CountryData = {
   "lon": 48,
   "lat": 15,
   "flag": "🇾🇪",
-  "pop": "10M",
+  "pop": 28498687,
   "budget": 214,
   "income": "611",
   "religion": "Islam",

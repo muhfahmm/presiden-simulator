@@ -7,7 +7,7 @@ export const bolivia: CountryData = {
   "lon": -65,
   "lat": -17,
   "flag": "🇧🇴",
-  "pop": "10M",
+  "pop": 11353142,
   "budget": 428,
   "income": "1222",
   "religion": "Katolik",

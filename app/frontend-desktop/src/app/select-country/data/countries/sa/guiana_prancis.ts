@@ -7,7 +7,7 @@ export const guiana_prancis: CountryData = {
   "lon": -53,
   "lat": 4,
   "flag": "🇬🇫",
-  "pop": "10M",
+  "pop": 290691,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

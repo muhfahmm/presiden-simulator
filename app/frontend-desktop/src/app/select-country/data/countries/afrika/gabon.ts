@@ -7,7 +7,7 @@ export const gabon: CountryData = {
   "lon": 11.75,
   "lat": -1,
   "flag": "🇬🇦",
-  "pop": "10M",
+  "pop": 2119275,
   "budget": 194,
   "income": "556",
   "religion": "Katolik",

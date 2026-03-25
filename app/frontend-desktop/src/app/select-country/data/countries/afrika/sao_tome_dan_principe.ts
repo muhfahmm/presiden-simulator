@@ -7,7 +7,7 @@ export const sao_tome_dan_principe: CountryData = {
   "lon": 7,
   "lat": 1,
   "flag": "🇸🇹",
-  "pop": "10M",
+  "pop": 211028,
   "budget": 10,
   "income": "17",
   "religion": "Katolik",

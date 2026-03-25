@@ -7,7 +7,7 @@ export const amerika_serikat: CountryData = {
   "lon": -97,
   "lat": 38,
   "flag": "🇺🇸",
-  "pop": "36M",
+  "pop": 326687501,
   "budget": 280022,
   "income": "800064",
   "religion": "Protestan",

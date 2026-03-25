@@ -7,7 +7,7 @@ export const malaysia: CountryData = {
   "lon": 101.42,
   "lat": 3.1,
   "flag": "🇲🇾",
-  "pop": "10M",
+  "pop": 31528585,
   "budget": 3889,
   "income": "11112",
   "religion": "Islam",

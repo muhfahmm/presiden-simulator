@@ -7,7 +7,7 @@ export const aljazair: CountryData = {
   "lon": 3.08,
   "lat": 36.73,
   "flag": "🇩🇿",
-  "pop": "47M",
+  "pop": 42228429,
   "budget": 2334,
   "income": "6667",
   "religion": "Islam",

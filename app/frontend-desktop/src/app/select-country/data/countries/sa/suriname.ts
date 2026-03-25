@@ -7,7 +7,7 @@ export const suriname: CountryData = {
   "lon": -56,
   "lat": 4,
   "flag": "🇸🇷",
-  "pop": "10M",
+  "pop": 575991,
   "budget": 34,
   "income": "97",
   "religion": "Protestan",

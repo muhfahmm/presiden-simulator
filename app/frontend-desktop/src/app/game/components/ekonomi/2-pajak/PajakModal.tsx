@@ -5,7 +5,7 @@ import { X, FileText, Scale, Coins, Smile, Meh, Frown, Angry, AlertCircle, Trend
 import { countries } from "../../../../select-country/data/countries"
 import { CountryData } from "../../../../select-country/data/types"
 import { gameStorage } from "../../../gamestorage"
-import { budgetStorage } from "../budgetStorage"
+import { budgetStorage } from "@/app/game/components/navbar/stats/budget"
 import { taxStorage } from "./TaxStorage"
 
 interface ModalProps {

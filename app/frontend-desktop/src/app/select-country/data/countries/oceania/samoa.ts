@@ -7,7 +7,7 @@ export const samoa: CountryData = {
   "lon": -172.33333333,
   "lat": -13.58333333,
   "flag": "🇼🇸",
-  "pop": "10M",
+  "pop": 196130,
   "budget": 10,
   "income": "25",
   "religion": "Protestan",

@@ -7,7 +7,7 @@ export const pakistan: CountryData = {
   "lon": 70,
   "lat": 30,
   "flag": "🇵🇰",
-  "pop": "10M",
+  "pop": 212215030,
   "budget": 3306,
   "income": "9445",
   "religion": "Islam",

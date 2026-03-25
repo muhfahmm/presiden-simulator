@@ -7,7 +7,7 @@ export const swiss: CountryData = {
   "lon": 8,
   "lat": 47,
   "flag": "🇨🇭",
-  "pop": "10M",
+  "pop": 8513227,
   "budget": 8848,
   "income": "25280",
   "religion": "Katolik",

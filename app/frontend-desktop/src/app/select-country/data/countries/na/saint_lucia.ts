@@ -7,7 +7,7 @@ export const saint_lucia: CountryData = {
   "lon": -60.96666666,
   "lat": 13.88333333,
   "flag": "🇱🇨",
-  "pop": "10M",
+  "pop": 181889,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

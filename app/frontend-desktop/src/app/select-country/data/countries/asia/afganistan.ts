@@ -7,7 +7,7 @@ export const afganistan: CountryData = {
   "lon": 69.16,
   "lat": 34.54,
   "flag": "🇦🇫",
-  "pop": "34M",
+  "pop": 37172386,
   "budget": 146,
   "income": "417",
   "religion": "Islam",

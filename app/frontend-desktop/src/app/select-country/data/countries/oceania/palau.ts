@@ -7,7 +7,7 @@ export const palau: CountryData = {
   "lon": 134.5,
   "lat": 7.5,
   "flag": "🇵🇼",
-  "pop": "10M",
+  "pop": 17907,
   "budget": 10,
   "income": "15",
   "religion": "Protestan",

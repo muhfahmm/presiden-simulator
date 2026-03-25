@@ -7,7 +7,7 @@ export const thailand: CountryData = {
   "lon": 100,
   "lat": 15,
   "flag": "🇹🇭",
-  "pop": "10M",
+  "pop": 69428524,
   "budget": 4959,
   "income": "14168",
   "religion": "Buddha",

@@ -7,7 +7,7 @@ export const republik_rumania: CountryData = {
   "lon": 25,
   "lat": 46,
   "flag": "🇷🇴",
-  "pop": "10M",
+  "pop": 19466145,
   "budget": 3403,
   "income": "9723",
   "religion": "Katolik",

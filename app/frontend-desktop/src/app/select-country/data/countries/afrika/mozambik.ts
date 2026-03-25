@@ -7,7 +7,7 @@ export const mozambik: CountryData = {
   "lon": 35,
   "lat": -18.25,
   "flag": "🇲🇿",
-  "pop": "10M",
+  "pop": 29495962,
   "budget": 175,
   "income": "500",
   "religion": "Katolik",

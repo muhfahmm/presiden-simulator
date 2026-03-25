@@ -7,7 +7,7 @@ export const libya: CountryData = {
   "lon": 13.1,
   "lat": 32.53,
   "flag": "🇱🇾",
-  "pop": "10M",
+  "pop": 6678567,
   "budget": 408,
   "income": "1167",
   "religion": "Islam",

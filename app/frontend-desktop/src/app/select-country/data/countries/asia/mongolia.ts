@@ -7,7 +7,7 @@ export const mongolia: CountryData = {
   "lon": 105,
   "lat": 46,
   "flag": "🇲🇳",
-  "pop": "10M",
+  "pop": 3170208,
   "budget": 175,
   "income": "500",
   "religion": "Buddha",

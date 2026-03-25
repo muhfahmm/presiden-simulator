@@ -7,7 +7,7 @@ export const uni_emirat_arab: CountryData = {
   "lon": 54,
   "lat": 24,
   "flag": "🇦🇪",
-  "pop": "10M",
+  "pop": 9630959,
   "budget": 4959,
   "income": "14168",
   "religion": "Islam",

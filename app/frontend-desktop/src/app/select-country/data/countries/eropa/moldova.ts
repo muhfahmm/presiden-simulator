@@ -7,7 +7,7 @@ export const moldova: CountryData = {
   "lon": 29,
   "lat": 47,
   "flag": "🇲🇩",
-  "pop": "10M",
+  "pop": 2706049,
   "budget": 156,
   "income": "444",
   "religion": "Kristen Ortodoks",

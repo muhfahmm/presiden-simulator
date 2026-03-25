@@ -7,7 +7,7 @@ export const kepulauan_faroe: CountryData = {
   "lon": -7,
   "lat": 62,
   "flag": "🇫🇴",
-  "pop": "10M",
+  "pop": 48497,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

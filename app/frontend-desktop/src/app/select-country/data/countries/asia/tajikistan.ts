@@ -7,7 +7,7 @@ export const tajikistan: CountryData = {
   "lon": 71,
   "lat": 39,
   "flag": "🇹🇯",
-  "pop": "10M",
+  "pop": 9100837,
   "budget": 117,
   "income": "333",
   "religion": "Islam",

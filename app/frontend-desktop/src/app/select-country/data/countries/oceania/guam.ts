@@ -7,7 +7,7 @@ export const guam: CountryData = {
   "lon": 144.78333333,
   "lat": 13.46666666,
   "flag": "🇬🇺",
-  "pop": "10M",
+  "pop": 165768,
   "budget": 97,
   "income": "278",
   "religion": "Protestan",

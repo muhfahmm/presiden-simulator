@@ -7,7 +7,7 @@ export const austria: CountryData = {
   "lon": 13.33333333,
   "lat": 47.33333333,
   "flag": "🇦🇹",
-  "pop": "42M",
+  "pop": 8840521,
   "budget": 4959,
   "income": "14168",
   "religion": "Katolik",

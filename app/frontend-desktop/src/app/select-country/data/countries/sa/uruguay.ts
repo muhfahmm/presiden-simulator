@@ -7,7 +7,7 @@ export const uruguay: CountryData = {
   "lon": -56,
   "lat": -33,
   "flag": "🇺🇾",
-  "pop": "10M",
+  "pop": 3449299,
   "budget": 700,
   "income": "2000",
   "religion": "Katolik",

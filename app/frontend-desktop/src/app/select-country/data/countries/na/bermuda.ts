@@ -7,7 +7,7 @@ export const bermuda: CountryData = {
   "lon": -64.75,
   "lat": 32.33333333,
   "flag": "🇧🇲",
-  "pop": "10M",
+  "pop": 63973,
   "budget": 97,
   "income": "278",
   "religion": "Protestan",

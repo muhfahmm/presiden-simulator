@@ -7,7 +7,7 @@ export const eswatini: CountryData = {
   "lon": 31.5,
   "lat": -26.5,
   "flag": "🇸🇿",
-  "pop": "10M",
+  "pop": 1136191,
   "budget": 44,
   "income": "125",
   "religion": "Protestan",

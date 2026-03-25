@@ -7,7 +7,7 @@ export const montenegro: CountryData = {
   "lon": 19.3,
   "lat": 42.5,
   "flag": "🇲🇪",
-  "pop": "10M",
+  "pop": 631219,
   "budget": 68,
   "income": "194",
   "religion": "Kristen Ortodoks",

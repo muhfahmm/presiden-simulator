@@ -7,7 +7,7 @@ export const hungaria: CountryData = {
   "lon": 20,
   "lat": 47,
   "flag": "🇭🇺",
-  "pop": "10M",
+  "pop": 9775564,
   "budget": 2042,
   "income": "5834",
   "religion": "Katolik",

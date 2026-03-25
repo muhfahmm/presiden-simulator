@@ -7,7 +7,7 @@ export const liberia: CountryData = {
   "lon": -9.5,
   "lat": 6.5,
   "flag": "🇱🇷",
-  "pop": "10M",
+  "pop": 4818977,
   "budget": 39,
   "income": "111",
   "religion": "Protestan",

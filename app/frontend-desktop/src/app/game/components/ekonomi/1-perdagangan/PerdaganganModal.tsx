@@ -15,7 +15,7 @@ import { getStoredGameDate } from "../../../data/time/gameTime"
 import { getInitialAgreements } from "./database_mitra/agreementsRegistry"
 import { inboxStorage } from "../../inbox/inboxStorage"
 import { buildingStorage } from "../../pembangunan/buildingStorage"
-import { budgetStorage } from "../budgetStorage"
+import { budgetStorage } from "@/app/game/components/navbar/stats/budget"
 
 interface ModalProps {
   isOpen: boolean;

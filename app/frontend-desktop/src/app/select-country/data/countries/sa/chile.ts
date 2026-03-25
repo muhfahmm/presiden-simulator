@@ -7,7 +7,7 @@ export const chile: CountryData = {
   "lon": -71,
   "lat": -30,
   "flag": "🇨🇱",
-  "pop": "10M",
+  "pop": 18729160,
   "budget": 3257,
   "income": "9306",
   "religion": "Katolik",

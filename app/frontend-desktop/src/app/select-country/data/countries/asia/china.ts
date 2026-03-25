@@ -7,7 +7,7 @@ export const china: CountryData = {
   "lon": 105,
   "lat": 35,
   "flag": "🇨🇳",
-  "pop": "10M",
+  "pop": 1392730000,
   "budget": 180167,
   "income": "514763",
   "religion": "Katolik",

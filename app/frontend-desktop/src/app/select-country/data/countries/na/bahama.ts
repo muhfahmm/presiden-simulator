@@ -7,7 +7,7 @@ export const bahama: CountryData = {
   "lon": -76,
   "lat": 24.25,
   "flag": "🇧🇸",
-  "pop": "10M",
+  "pop": 385640,
   "budget": 136,
   "income": "389",
   "religion": "Protestan",

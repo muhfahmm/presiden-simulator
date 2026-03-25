@@ -1,5 +1,5 @@
-import { gameStorage, GameSession } from "../../gamestorage";
-import { countries } from "../../../select-country/data/countries";
+import { gameStorage, GameSession } from "@/app/game/gamestorage";
+import { countries } from "@/app/select-country/data/countries";
 
 const BUDGET_STORAGE_KEY = "em4_budget_data";
 

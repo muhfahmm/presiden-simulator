@@ -7,7 +7,7 @@ export const sierra_leone: CountryData = {
   "lon": -11.5,
   "lat": 8.5,
   "flag": "🇸🇱",
-  "pop": "10M",
+  "pop": 7650154,
   "budget": 39,
   "income": "111",
   "religion": "Islam",

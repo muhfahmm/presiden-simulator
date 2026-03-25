@@ -7,7 +7,7 @@ export const gambia: CountryData = {
   "lon": -16.56666666,
   "lat": 13.46666666,
   "flag": "🇬🇲",
-  "pop": "10M",
+  "pop": 2280102,
   "budget": 21,
   "income": "61",
   "religion": "Islam",

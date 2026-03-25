@@ -7,7 +7,7 @@ export const brunei: CountryData = {
   "lon": 114.66666666,
   "lat": 4.5,
   "flag": "🇧🇳",
-  "pop": "10M",
+  "pop": 428962,
   "budget": 146,
   "income": "417",
   "religion": "Islam",

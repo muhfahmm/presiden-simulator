@@ -7,7 +7,7 @@ export const norwegia: CountryData = {
   "lon": 10,
   "lat": 62,
   "flag": "🇳🇴",
-  "pop": "10M",
+  "pop": 5311916,
   "budget": 5639,
   "income": "16112",
   "religion": "Protestan",

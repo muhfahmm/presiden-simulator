@@ -7,7 +7,7 @@ export const kuba: CountryData = {
   "lon": -80,
   "lat": 21.5,
   "flag": "🇨🇺",
-  "pop": "10M",
+  "pop": 11338138,
   "budget": 1021,
   "income": "2917",
   "religion": "Katolik",

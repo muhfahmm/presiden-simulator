@@ -7,7 +7,7 @@ export const islandia: CountryData = {
   "lon": -18,
   "lat": 65,
   "flag": "🇮🇸",
-  "pop": "10M",
+  "pop": 352721,
   "budget": 292,
   "income": "833",
   "religion": "Protestan",

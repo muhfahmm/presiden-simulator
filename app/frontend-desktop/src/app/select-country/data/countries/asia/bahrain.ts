@@ -7,7 +7,7 @@ export const bahrain: CountryData = {
   "lon": 50.55,
   "lat": 26,
   "flag": "🇧🇭",
-  "pop": "10M",
+  "pop": 1569439,
   "budget": 428,
   "income": "1222",
   "religion": "Islam",

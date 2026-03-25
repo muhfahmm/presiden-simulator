@@ -7,7 +7,7 @@ export const seychelles: CountryData = {
   "lon": 55.66666666,
   "lat": -4.58333333,
   "flag": "🇸🇨",
-  "pop": "10M",
+  "pop": 96762,
   "budget": 19,
   "income": "56",
   "religion": "Katolik",

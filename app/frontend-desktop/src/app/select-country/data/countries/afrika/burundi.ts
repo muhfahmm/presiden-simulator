@@ -7,7 +7,7 @@ export const burundi: CountryData = {
   "lon": 30,
   "lat": -3.5,
   "flag": "🇧🇮",
-  "pop": "10M",
+  "pop": 11175378,
   "budget": 34,
   "income": "97",
   "religion": "Katolik",

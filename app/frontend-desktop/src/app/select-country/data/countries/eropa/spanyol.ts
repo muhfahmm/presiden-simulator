@@ -7,7 +7,7 @@ export const spanyol: CountryData = {
   "lon": -4,
   "lat": 40,
   "flag": "🇪🇸",
-  "pop": "10M",
+  "pop": 46796540,
   "budget": 15362,
   "income": "43892",
   "religion": "Katolik",

@@ -7,7 +7,7 @@ export const estonia: CountryData = {
   "lon": 26,
   "lat": 59,
   "flag": "🇪🇪",
-  "pop": "10M",
+  "pop": 1321977,
   "budget": 389,
   "income": "1111",
   "religion": "Protestan",

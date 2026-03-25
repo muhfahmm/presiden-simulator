@@ -7,7 +7,7 @@ export const republik_sudan: CountryData = {
   "lon": 30,
   "lat": 15,
   "flag": "🇸🇩",
-  "pop": "10M",
+  "pop": 41801533,
   "budget": 243,
   "income": "694",
   "religion": "Islam",

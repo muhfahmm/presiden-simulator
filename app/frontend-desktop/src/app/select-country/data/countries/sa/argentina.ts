@@ -7,7 +7,7 @@ export const argentina: CountryData = {
   "lon": -58.38,
   "lat": -34.6,
   "flag": "🇦🇷",
-  "pop": "123M",
+  "pop": 44494502,
   "budget": 6223,
   "income": "17779",
   "religion": "Katolik",

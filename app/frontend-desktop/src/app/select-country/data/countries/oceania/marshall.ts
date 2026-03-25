@@ -7,7 +7,7 @@ export const marshall: CountryData = {
   "lon": 168,
   "lat": 9,
   "flag": "🇲🇭",
-  "pop": "10M",
+  "pop": 58413,
   "budget": 10,
   "income": "15",
   "religion": "Protestan",

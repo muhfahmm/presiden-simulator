@@ -7,7 +7,7 @@ export const trinidad_dan_tobago: CountryData = {
   "lon": -61,
   "lat": 11,
   "flag": "🇹🇹",
-  "pop": "10M",
+  "pop": 1389858,
   "budget": 243,
   "income": "694",
   "religion": "Katolik",

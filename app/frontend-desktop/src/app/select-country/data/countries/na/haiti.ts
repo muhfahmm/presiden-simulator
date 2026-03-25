@@ -7,7 +7,7 @@ export const haiti: CountryData = {
   "lon": -72.41666666,
   "lat": 19,
   "flag": "🇭🇹",
-  "pop": "10M",
+  "pop": 11123176,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

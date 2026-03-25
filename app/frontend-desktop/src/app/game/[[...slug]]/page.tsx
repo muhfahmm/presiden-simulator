@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { Heart, Coins, Shield, LogOut, Users, Newspaper, Mail } from "lucide-react";
+import { Heart, Coins, Shield, Users, Newspaper, Mail } from "lucide-react";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import GameMapCanvas from "../mainGameMap";
 import TradeMapCanvas from "../tab-menu/trades/TradeMapCanvas";
@@ -11,18 +11,18 @@ import MapHubungan from "../tab-menu/Hubungan/mapHubungan";
 import StrategyModal from "../components/StrategyModal";
 import BottomNav from "../components/BottomNav";
 import { gameStorage } from "../gamestorage";
-import { budgetStorage } from "../components/ekonomi/budgetStorage";
+import { budgetStorage } from "../components/navbar/stats/budget";
 import { buildingStorage } from "../components/pembangunan/buildingStorage";
 import { countries } from "../../select-country/data/countries";
 import { CountryData } from "../../select-country/data/types";
 import GameTimeControls from "../components/time/GameTimeControls";
 import { calculateDailyBudgetDelta } from "../data/economy/economyLogic";
 import { expenseStorage } from "@/app/game/components/ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
-import { calculatePopulationHappiness } from "../data/social/HappinessStorage";
+import { calculatePopulationHappiness } from "../components/navbar/stats/happines";
+import { stabilityStorage } from "../components/navbar/stats/stability";
+import { populationStorage } from "../components/navbar/stats/population";
 
 // Bottom Nav Modals
-import RatingPresidenModal from "../components/rating-presiden/RatingPresidenModal";
-import NaikkanRatingModal from "../components/rating-presiden/NaikkanRatingModal";
 // Ekonomi Modals
 import PerdaganganModal from "../components/ekonomi/1-perdagangan/PerdaganganModal";
 import PajakModal from "../components/ekonomi/2-pajak/PajakModal";
@@ -42,15 +42,19 @@ import GeopolitikModal from "../components/geopolitik/GeopolitikModal";
 import KementerianModal from "../components/kementerian/KementerianModal";
 import BeritaModal from "../components/berita/BeritaModal";
 import InboxModal from "../components/inbox/InboxModal";
+import KepuasanModal from "../components/navbar/stats/happines/KepuasanModal";
+import NaikkanKepuasanModal from "../components/navbar/stats/happines/NaikkanKepuasanModal";
 import NewMessageToast from "../components/inbox/NewMessageToast";
 import { inboxStorage } from "../components/inbox/inboxStorage";
+import GameNavbar from "../components/navbar";
 
 export default function GamePage() {
   const [approval, setApproval] = useState(65);
   const [budget, setBudget] = useState(1240.5); // in Trillion
   const [budgetDelta, setBudgetDelta] = useState(0);
   const [happiness, setHappiness] = useState({ global: 50, salary: 50, subsidy: 50, infrastructure: 85 });
-  const [stability, setStability] = useState(82);
+  const [stability, setStability] = useState(() => stabilityStorage.getStability());
+  const [population, setPopulation] = useState(() => populationStorage.getPopulation());
   const router = useRouter();
   const params = useParams();
   const [userCountry, setUserCountry] = useState("Indonesia");
@@ -77,6 +81,12 @@ export default function GamePage() {
     const updateBudgetAndDelta = () => {
       const currentBudget = budgetStorage.getBudget();
       setBudget(currentBudget);
+      
+      const currentStability = stabilityStorage.getStability();
+      setStability(currentStability);
+
+      const currentPopulation = populationStorage.getPopulation();
+      setPopulation(currentPopulation);
 
       const session = gameStorage.getSession();
       const currentCountryName = session?.country || "Indonesia";
@@ -108,11 +118,7 @@ export default function GamePage() {
   const category = slug[0];
   const subMenu = slug[1];
 
-  if (category === 'rating-presiden') {
-    if (subMenu === 'rating-dashboard') initialMenu = "Dashboard:Rating";
-    else if (subMenu === 'naikkan-rating') initialMenu = "Action:NaikkanRating";
-    else initialMenu = "Rating Presiden";
-  } else if (category === 'ekonomi') {
+  if (category === 'ekonomi') {
     if (subMenu === 'perdagangan') initialMenu = "Menu:Perdagangan";
     else if (subMenu === 'pajak') initialMenu = "Menu:Pajak";
     else if (subMenu === 'hutang') initialMenu = "Menu:Hutang";
@@ -137,6 +143,10 @@ export default function GamePage() {
   } else if (category === 'kementrian') {
     if (subMenu === 'kementrian-dashboard') initialMenu = "Dashboard:Kementerian";
     else initialMenu = "Kementerian";
+  } else if (category === 'kepuasan') {
+    if (subMenu === 'dashboard') initialMenu = "Dashboard:Kepuasan";
+    else if (subMenu === 'naikkan') initialMenu = "Action:NaikkanKepuasan";
+    else initialMenu = "Kepuasan";
   } else if (category === 'berita') {
     initialMenu = "Menu:Berita";
   } else if (category === 'inbox') {
@@ -150,10 +160,6 @@ export default function GamePage() {
 
   useEffect(() => {
     const menuToPath: Record<string, string> = {
-      // Rating Presiden
-      "Rating Presiden": "/game/rating-presiden",
-      "Dashboard:Rating": "/game/rating-presiden/rating-dashboard",
-      "Action:NaikkanRating": "/game/rating-presiden/naikkan-rating",
       // Ekonomi
       "Ekonomi": "/game/ekonomi",
       "Menu:Perdagangan": "/game/ekonomi/perdagangan",
@@ -181,7 +187,10 @@ export default function GamePage() {
       "Dashboard:Kementerian": "/game/kementrian/kementrian-dashboard",
       // Sidebar Utilities
       "Menu:Berita": "/game/berita",
-      "Menu:Inbox": "/game/inbox"
+      "Menu:Inbox": "/game/inbox",
+      "Kepuasan": "/game/kepuasan",
+      "Dashboard:Kepuasan": "/game/kepuasan/dashboard",
+      "Action:NaikkanKepuasan": "/game/kepuasan/naikkan"
     };
 
     const targetPath = menuToPath[activeMenu] || "/game";
@@ -261,44 +270,20 @@ export default function GamePage() {
         </div>
 
         {/* Top Header / Status bar */}
-        <header className="relative z-[300] bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/80 px-8 py-4 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-          <div className="flex items-center gap-4">
-            {countryData && (
-              <div className="flex items-center gap-2 bg-zinc-800/40 px-3 py-1.5 rounded-xl border border-zinc-700/50 shadow-sm backdrop-blur-md">
-                <span className="text-base">{countryData.flag}</span>
-                <span className="text-xs font-bold text-zinc-200 tracking-wide uppercase">{countryData.name_id}</span>
-              </div>
-            )}
-          </div>
-          <div className="flex items-center gap-6">
-            <StatusBadge 
-              icon={<Heart className="h-4 w-4 text-rose-500" />} 
-              label="Kepuasan" 
-              value={`${happiness.global}%`} 
-            />
-            <StatusBadge icon={<Users className="h-4 w-4 text-blue-500" />} label="Populasi" value={countryData?.pop || 0} />
-            <StatusBadge 
-              icon={<Coins className="h-4 w-4 text-yellow-500" />} 
-              label="Kas Negara" 
-              value={`${Math.round(budget).toLocaleString('id-ID')}`} 
-              delta={budgetDelta}
-            />
-            <StatusBadge icon={<Shield className="h-4 w-4 text-green-500" />} label="Stabilitas" value={`${stability}%`} />
-            
-            <button 
-              onClick={() => {
-                if (confirm("Apakah Anda yakin ingin mengakhiri sesi simulasi ini? Semua kemajuan akan hilang.")) {
-                  gameStorage.clearSession();
-                  router.push("/select-country");
-                }
-              }}
-              className="ml-4 p-2 rounded-lg bg-zinc-800/50 hover:bg-red-500/20 text-zinc-400 hover:text-red-400 transition-all border border-zinc-700/50 group"
-              title="Akhiri Sesi"
-            >
-              <LogOut className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-            </button>
-          </div>
-        </header>
+        <GameNavbar 
+          countryData={countryData}
+          happiness={happiness}
+          budget={budget}
+          budgetDelta={budgetDelta}
+          stability={stability}
+          population={population}
+          onLogout={() => {
+            if (confirm("Apakah Anda yakin ingin mengakhiri sesi simulasi ini? Semua kemajuan akan hilang.")) {
+              gameStorage.clearSession();
+              router.push("/select-country");
+            }
+          }}
+        />
 
         {/* Main interactive map background viewport */}
         <div className="flex-1 relative w-full overflow-hidden bg-[#070b13]">
@@ -478,14 +463,6 @@ export default function GamePage() {
           {/* Categorical Modals */}
           {isMounted && (
             <>
-              <RatingPresidenModal 
-                isOpen={activeMenu === "Dashboard:Rating"} 
-                onClose={() => setActiveMenu("Rating Presiden")} 
-              />
-              <NaikkanRatingModal 
-                isOpen={activeMenu === "Action:NaikkanRating"} 
-                onClose={() => setActiveMenu("Rating Presiden")} 
-              />
               <PerdaganganModal 
                 isOpen={activeMenu === "Menu:Perdagangan"} 
                 onClose={() => setActiveMenu("Ekonomi")} 
@@ -557,6 +534,26 @@ export default function GamePage() {
               <InboxModal 
                 isOpen={activeMenu === "Menu:Inbox"} 
                 onClose={() => setActiveMenu("Peta Taktis")} 
+              />
+              <KepuasanModal
+                isOpen={activeMenu === "Dashboard:Kepuasan" || activeMenu === "Kepuasan"}
+                onClose={() => setActiveMenu("Peta Taktis")}
+                happiness={happiness.global}
+              />
+              <NaikkanKepuasanModal
+                isOpen={activeMenu === "Action:NaikkanKepuasan"}
+                onClose={() => setActiveMenu("Peta Taktis")}
+                onAction={(title, impact, cost) => {
+                  if (budget >= cost) {
+                    budgetStorage.updateBudget(-cost);
+                    // We don't have a direct happiness setter here yet, but we can trigger a refresh
+                    // or simulate it if the user wants. For now, just close and subtract budget.
+                    alert(`${title} berhasil dilaksanakan!`);
+                    setActiveMenu("Peta Taktis");
+                  } else {
+                    alert("Anggaran tidak mencukupi!");
+                  }
+                }}
               />
               <NewMessageToast />
             </>
@@ -630,30 +627,6 @@ export default function GamePage() {
           </div>
         </div>
       )}
-    </div>
-  );
-}
-
-function StatusBadge({ icon, label, value, delta }: { icon: React.ReactNode, label: string, value: string | number, delta?: number }) {
-  const displayValue = typeof value === 'number' ? value.toLocaleString('id-ID') : value;
-  
-  return (
-    <div className="flex items-center gap-2 bg-zinc-900/80 px-3 py-1.5 rounded-lg border border-zinc-800 relative group overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-      {icon}
-      <div className="text-left leading-tight relative z-10">
-        <p className="text-[10px] text-zinc-500 font-semibold uppercase">{label}</p>
-        <div className="flex items-center gap-1.5">
-          <p className="text-xs font-black text-zinc-100 italic tracking-wide">
-            {displayValue}
-          </p>
-          {delta !== undefined && delta !== 0 && (
-            <span className={`text-[9px] font-black px-1 rounded-sm ${delta > 0 ? 'text-emerald-400 bg-emerald-500/10' : 'text-red-400 bg-red-500/10'}`}>
-              {delta > 0 ? '+' : ''}{Math.round(delta).toLocaleString('id-ID')}
-            </span>
-          )}
-        </div>
-      </div>
     </div>
   );
 }

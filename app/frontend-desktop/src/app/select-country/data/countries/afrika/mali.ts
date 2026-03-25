@@ -7,7 +7,7 @@ export const mali: CountryData = {
   "lon": -8,
   "lat": 12.39,
   "flag": "🇲🇱",
-  "pop": "10M",
+  "pop": 19077690,
   "budget": 175,
   "income": "500",
   "religion": "Islam",

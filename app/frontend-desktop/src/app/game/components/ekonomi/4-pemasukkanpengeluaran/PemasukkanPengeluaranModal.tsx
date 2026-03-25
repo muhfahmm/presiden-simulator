@@ -5,7 +5,7 @@ import { X, BarChart3, TrendingUp, TrendingDown, Landmark, PieChart, Coins, Shie
 import { countries } from "@/app/select-country/data/countries"
 import { CountryData } from "@/app/select-country/data/types"
 import { gameStorage } from "@/app/game/gamestorage"
-import { budgetStorage } from "@/app/game/components/ekonomi/budgetStorage"
+import { budgetStorage } from "@/app/game/components/navbar/stats/budget"
 import { buildingStorage } from "@/app/game/components/pembangunan/buildingStorage"
 import { taxStorage } from "@/app/game/components/ekonomi/2-pajak/TaxStorage"
 

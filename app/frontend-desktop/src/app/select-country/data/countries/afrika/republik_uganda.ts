@@ -7,7 +7,7 @@ export const republik_uganda: CountryData = {
   "lon": 32,
   "lat": 1,
   "flag": "🇺🇬",
-  "pop": "10M",
+  "pop": 42723139,
   "budget": 486,
   "income": "1389",
   "religion": "Katolik",

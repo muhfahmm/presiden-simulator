@@ -7,7 +7,7 @@ export const republik_demokratik_kongo: CountryData = {
   "lon": 25,
   "lat": 0,
   "flag": "🇨🇩",
-  "pop": "112M",
+  "pop": 5244363,
   "budget": 603,
   "income": "1722",
   "religion": "Katolik",

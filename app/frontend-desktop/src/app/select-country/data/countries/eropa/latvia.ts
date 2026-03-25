@@ -7,7 +7,7 @@ export const latvia: CountryData = {
   "lon": 25,
   "lat": 57,
   "flag": "🇱🇻",
-  "pop": "10M",
+  "pop": 1927174,
   "budget": 418,
   "income": "1195",
   "religion": "Protestan",

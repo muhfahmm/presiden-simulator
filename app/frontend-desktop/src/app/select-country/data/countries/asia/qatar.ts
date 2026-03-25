@@ -7,7 +7,7 @@ export const qatar: CountryData = {
   "lon": 51.25,
   "lat": 25.5,
   "flag": "🇶🇦",
-  "pop": "10M",
+  "pop": 2781677,
   "budget": 2139,
   "income": "6112",
   "religion": "Islam",

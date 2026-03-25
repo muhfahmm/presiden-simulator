@@ -7,7 +7,7 @@ export const antigua_dan_barbuda: CountryData = {
   "lon": -61.84,
   "lat": 17.11,
   "flag": "🇦🇬",
-  "pop": "6M",
+  "pop": 96286,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

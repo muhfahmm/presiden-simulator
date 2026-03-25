@@ -7,7 +7,7 @@ export const kazakhstan: CountryData = {
   "lon": 68,
   "lat": 48,
   "flag": "🇰🇿",
-  "pop": "10M",
+  "pop": 18272430,
   "budget": 2528,
   "income": "7223",
   "religion": "Islam",

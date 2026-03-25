@@ -7,7 +7,7 @@ export const laos: CountryData = {
   "lon": 105,
   "lat": 18,
   "flag": "🇱🇦",
-  "pop": "10M",
+  "pop": 7061507,
   "budget": 146,
   "income": "417",
   "religion": "Buddha",

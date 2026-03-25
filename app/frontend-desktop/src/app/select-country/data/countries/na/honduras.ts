@@ -7,7 +7,7 @@ export const honduras: CountryData = {
   "lon": -86.5,
   "lat": 15,
   "flag": "🇭🇳",
-  "pop": "10M",
+  "pop": 9587522,
   "budget": 311,
   "income": "889",
   "religion": "Katolik",

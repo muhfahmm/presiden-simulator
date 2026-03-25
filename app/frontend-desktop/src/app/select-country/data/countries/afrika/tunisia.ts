@@ -7,7 +7,7 @@ export const tunisia: CountryData = {
   "lon": 9,
   "lat": 34,
   "flag": "🇹🇳",
-  "pop": "10M",
+  "pop": 11565204,
   "budget": 457,
   "income": "1306",
   "religion": "Islam",

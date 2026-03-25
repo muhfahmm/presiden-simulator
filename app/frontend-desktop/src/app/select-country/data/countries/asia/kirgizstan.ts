@@ -7,7 +7,7 @@ export const kirgizstan: CountryData = {
   "lon": 75,
   "lat": 41,
   "flag": "🇰🇬",
-  "pop": "10M",
+  "pop": 6322800,
   "budget": 117,
   "income": "333",
   "religion": "Islam",

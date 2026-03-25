@@ -7,7 +7,7 @@ export const republik_zambia: CountryData = {
   "lon": 30,
   "lat": -15,
   "flag": "🇿🇲",
-  "pop": "10M",
+  "pop": 17351822,
   "budget": 272,
   "income": "778",
   "religion": "Protestan",

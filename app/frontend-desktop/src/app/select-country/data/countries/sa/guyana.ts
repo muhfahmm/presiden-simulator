@@ -7,7 +7,7 @@ export const guyana: CountryData = {
   "lon": -59,
   "lat": 5,
   "flag": "🇬🇾",
-  "pop": "10M",
+  "pop": 779004,
   "budget": 146,
   "income": "417",
   "religion": "Protestan",

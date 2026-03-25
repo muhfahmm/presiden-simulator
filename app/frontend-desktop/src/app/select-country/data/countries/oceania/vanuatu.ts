@@ -7,7 +7,7 @@ export const vanuatu: CountryData = {
   "lon": 167,
   "lat": -16,
   "flag": "🇻🇺",
-  "pop": "10M",
+  "pop": 292680,
   "budget": 10,
   "income": "28",
   "religion": "Protestan",

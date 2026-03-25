@@ -7,7 +7,7 @@ export const singapura: CountryData = {
   "lon": 103.8,
   "lat": 1.36666666,
   "flag": "🇸🇬",
-  "pop": "10M",
+  "pop": 5638676,
   "budget": 4862,
   "income": "13890",
   "religion": "Buddha",

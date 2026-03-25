@@ -7,7 +7,7 @@ export const uzbekistan: CountryData = {
   "lon": 64,
   "lat": 41,
   "flag": "🇺🇿",
-  "pop": "10M",
+  "pop": 32955400,
   "budget": 875,
   "income": "2500",
   "religion": "Islam",

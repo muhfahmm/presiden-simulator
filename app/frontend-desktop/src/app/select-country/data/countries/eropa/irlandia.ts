@@ -7,7 +7,7 @@ export const irlandia: CountryData = {
   "lon": -8,
   "lat": 53,
   "flag": "🇮🇪",
-  "pop": "10M",
+  "pop": 4867309,
   "budget": 5153,
   "income": "14723",
   "religion": "Katolik",

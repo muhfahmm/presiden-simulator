@@ -7,7 +7,7 @@ export const selandia_baru: CountryData = {
   "lon": 174,
   "lat": -41,
   "flag": "🇳🇿",
-  "pop": "10M",
+  "pop": 4841000,
   "budget": 2431,
   "income": "6945",
   "religion": "Protestan",

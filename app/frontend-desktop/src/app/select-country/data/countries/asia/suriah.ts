@@ -7,7 +7,7 @@ export const suriah: CountryData = {
   "lon": 38,
   "lat": 35,
   "flag": "🇸🇾",
-  "pop": "10M",
+  "pop": 16906283,
   "budget": 117,
   "income": "333",
   "religion": "Islam",

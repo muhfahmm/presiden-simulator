@@ -7,7 +7,7 @@ export const greenland: CountryData = {
   "lon": -40,
   "lat": 72,
   "flag": "🇬🇱",
-  "pop": "10M",
+  "pop": 56025,
   "budget": 97,
   "income": "278",
   "religion": "Protestan",

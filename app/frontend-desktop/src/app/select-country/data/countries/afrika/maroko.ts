@@ -7,7 +7,7 @@ export const maroko: CountryData = {
   "lon": -5,
   "lat": 32,
   "flag": "🇲🇦",
-  "pop": "38M",
+  "pop": 36029138,
   "budget": 1313,
   "income": "3750",
   "religion": "Islam",

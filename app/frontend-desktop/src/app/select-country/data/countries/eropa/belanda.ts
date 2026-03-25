@@ -7,7 +7,7 @@ export const belanda: CountryData = {
   "lon": 5.75,
   "lat": 52.5,
   "flag": "🇳🇱",
-  "pop": "10M",
+  "pop": 17231624,
   "budget": 10598,
   "income": "30280",
   "religion": "Protestan",

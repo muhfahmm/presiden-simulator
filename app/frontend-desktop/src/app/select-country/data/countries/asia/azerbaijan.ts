@@ -7,7 +7,7 @@ export const azerbaijan: CountryData = {
   "lon": 47.5,
   "lat": 40.5,
   "flag": "🇦🇿",
-  "pop": "48M",
+  "pop": 9939800,
   "budget": 535,
   "income": "1528",
   "religion": "Islam",

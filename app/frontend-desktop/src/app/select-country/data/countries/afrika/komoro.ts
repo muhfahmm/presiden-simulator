@@ -7,7 +7,7 @@ export const komoro: CountryData = {
   "lon": 44.25,
   "lat": -12.16666666,
   "flag": "🇰🇲",
-  "pop": "10M",
+  "pop": 832322,
   "budget": 13,
   "income": "36",
   "religion": "Islam",

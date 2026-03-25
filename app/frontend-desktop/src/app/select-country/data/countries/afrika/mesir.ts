@@ -7,7 +7,7 @@ export const mesir: CountryData = {
   "lon": 30,
   "lat": 27,
   "flag": "🇪🇬",
-  "pop": "118M",
+  "pop": 98423595,
   "budget": 3841,
   "income": "10973",
   "religion": "Islam",

@@ -7,7 +7,7 @@ export const mikronesia: CountryData = {
   "lon": 158.25,
   "lat": 6.91666666,
   "flag": "🇫🇲",
-  "pop": "10M",
+  "pop": 112640,
   "budget": 10,
   "income": "15",
   "religion": "Protestan",

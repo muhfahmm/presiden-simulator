@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { X, Play, Package, TrendingUp, Activity, ArrowRightLeft, Zap, Box, Factory, Pickaxe, Tractor, Ship, Globe, ChevronDown } from "lucide-react";
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "../../../../select-country/data/pembangunan/laju-produksi";
 import { gameStorage } from "../../../../game/gamestorage";
-import { budgetStorage } from "../../ekonomi/budgetStorage";
+import { budgetStorage } from "@/app/game/components/navbar/stats/budget";
 import { buildingStorage } from "../../pembangunan/buildingStorage";
 
 interface TradeExecutionModalProps {

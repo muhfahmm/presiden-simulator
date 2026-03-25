@@ -7,7 +7,7 @@ export const kamboja: CountryData = {
   "lon": 105,
   "lat": 13,
   "flag": "🇰🇭",
-  "pop": "10M",
+  "pop": 16249798,
   "budget": 292,
   "income": "833",
   "religion": "Buddha",

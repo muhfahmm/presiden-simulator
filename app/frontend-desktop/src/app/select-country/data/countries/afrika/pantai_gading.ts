@@ -7,7 +7,7 @@ export const pantai_gading: CountryData = {
   "lon": -5,
   "lat": 8,
   "flag": "🇨🇮",
-  "pop": "10M",
+  "pop": 25069229,
   "budget": 681,
   "income": "1945",
   "religion": "Islam",

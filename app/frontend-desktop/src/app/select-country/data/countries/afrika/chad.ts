@@ -7,7 +7,7 @@ export const chad: CountryData = {
   "lon": 19,
   "lat": 15,
   "flag": "🇹🇩",
-  "pop": "10M",
+  "pop": 15477751,
   "budget": 117,
   "income": "333",
   "religion": "Islam",

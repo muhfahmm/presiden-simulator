@@ -7,7 +7,7 @@ export const botswana: CountryData = {
   "lon": 24,
   "lat": -22,
   "flag": "🇧🇼",
-  "pop": "10M",
+  "pop": 2254126,
   "budget": 194,
   "income": "556",
   "religion": "Protestan",

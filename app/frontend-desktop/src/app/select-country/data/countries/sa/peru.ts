@@ -7,7 +7,7 @@ export const peru: CountryData = {
   "lon": -76,
   "lat": -10,
   "flag": "🇵🇪",
-  "pop": "10M",
+  "pop": 31989256,
   "budget": 2528,
   "income": "7223",
   "religion": "Katolik",

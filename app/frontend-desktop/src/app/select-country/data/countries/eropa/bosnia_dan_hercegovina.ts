@@ -7,7 +7,7 @@ export const bosnia_dan_hercegovina: CountryData = {
   "lon": 18,
   "lat": 44,
   "flag": "🇧🇦",
-  "pop": "10M",
+  "pop": 3323929,
   "budget": 233,
   "income": "667",
   "religion": "Islam",

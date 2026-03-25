@@ -7,7 +7,7 @@ export const tahiti: CountryData = {
   "lon": -140,
   "lat": -15,
   "flag": "🇵🇫",
-  "pop": "10M",
+  "pop": 277679,
   "budget": 97,
   "income": "278",
   "religion": "Protestan",

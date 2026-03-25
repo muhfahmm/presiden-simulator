@@ -7,7 +7,7 @@ export const kamerun: CountryData = {
   "lon": 12,
   "lat": 6,
   "flag": "🇨🇲",
-  "pop": "10M",
+  "pop": 25216237,
   "budget": 438,
   "income": "1250",
   "religion": "Katolik",

@@ -7,7 +7,7 @@ export const jepang: CountryData = {
   "lon": 138,
   "lat": 36,
   "flag": "🇯🇵",
-  "pop": "10M",
+  "pop": 126529100,
   "budget": 39962,
   "income": "114176",
   "religion": "Shinto",

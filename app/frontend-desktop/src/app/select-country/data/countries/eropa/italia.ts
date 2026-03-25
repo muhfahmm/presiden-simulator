@@ -7,7 +7,7 @@ export const italia: CountryData = {
   "lon": 12.83333333,
   "lat": 42.83333333,
   "flag": "🇮🇹",
-  "pop": "10M",
+  "pop": 60421760,
   "budget": 22655,
   "income": "64727",
   "religion": "Katolik",

@@ -7,7 +7,7 @@ export const mauritius: CountryData = {
   "lon": 57.55,
   "lat": -20.28333333,
   "flag": "🇲🇺",
-  "pop": "10M",
+  "pop": 1265303,
   "budget": 136,
   "income": "389",
   "religion": "Hindu",

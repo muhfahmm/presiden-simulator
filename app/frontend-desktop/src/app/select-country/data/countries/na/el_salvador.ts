@@ -7,7 +7,7 @@ export const el_salvador: CountryData = {
   "lon": -88.91666666,
   "lat": 13.83333333,
   "flag": "🇸🇻",
-  "pop": "10M",
+  "pop": 6420744,
   "budget": 311,
   "income": "889",
   "religion": "Katolik",

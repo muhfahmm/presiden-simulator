@@ -7,7 +7,7 @@ export const hong_kong: CountryData = {
   "lon": 114.188,
   "lat": 22.267,
   "flag": "🇭🇰",
-  "pop": "10M",
+  "pop": 7451000,
   "budget": 97,
   "income": "278",
   "religion": "Buddha",

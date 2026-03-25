@@ -5,7 +5,7 @@ import { CountryData } from "@/app/select-country/data/types";
 import { countries } from "@/app/select-country/data/countries";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/pembangunan/buildingStorage";
-import { budgetStorage } from "@/app/game/components/ekonomi/budgetStorage";
+import { budgetStorage } from "@/app/game/components/navbar/stats/budget";
 import { mineralKritisRate } from "@/app/select-country/data/pembangunan/laju-produksi";
 import { useState, useEffect } from "react";
 

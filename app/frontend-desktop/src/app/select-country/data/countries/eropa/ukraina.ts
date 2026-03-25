@@ -7,7 +7,7 @@ export const ukraina: CountryData = {
   "lon": 32,
   "lat": 49,
   "flag": "🇺🇦",
-  "pop": "10M",
+  "pop": 44622516,
   "budget": 1556,
   "income": "4445",
   "religion": "Kristen Ortodoks",

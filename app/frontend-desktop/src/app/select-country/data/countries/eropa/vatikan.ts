@@ -7,7 +7,7 @@ export const vatikan: CountryData = {
   "lon": 12.45,
   "lat": 41.9,
   "flag": "🇻🇦",
-  "pop": "10M",
+  "pop": 825,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

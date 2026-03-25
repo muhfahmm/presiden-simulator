@@ -7,7 +7,7 @@ export const iran: CountryData = {
   "lon": 53,
   "lat": 32,
   "flag": "🇮🇷",
-  "pop": "10M",
+  "pop": 81800269,
   "budget": 3598,
   "income": "10279",
   "religion": "Islam",

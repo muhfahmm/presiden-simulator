@@ -7,7 +7,7 @@ export const belize: CountryData = {
   "lon": -88.75,
   "lat": 17.25,
   "flag": "🇧🇿",
-  "pop": "10M",
+  "pop": 383071,
   "budget": 24,
   "income": "69",
   "religion": "Katolik",

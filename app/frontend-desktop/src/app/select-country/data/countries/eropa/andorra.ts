@@ -7,7 +7,7 @@ export const andorra: CountryData = {
   "lon": 1.52,
   "lat": 42.5,
   "flag": "🇦🇩",
-  "pop": "19M",
+  "pop": 77006,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

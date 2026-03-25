@@ -7,7 +7,7 @@ export const belgia: CountryData = {
   "lon": 4,
   "lat": 50.83333333,
   "flag": "🇧🇪",
-  "pop": "10M",
+  "pop": 11433256,
   "budget": 6077,
   "income": "17362",
   "religion": "Katolik",

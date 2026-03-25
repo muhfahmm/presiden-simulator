@@ -7,7 +7,7 @@ export const togo: CountryData = {
   "lon": 1.16666666,
   "lat": 8,
   "flag": "🇹🇬",
-  "pop": "10M",
+  "pop": 7889094,
   "budget": 88,
   "income": "250",
   "religion": "Katolik",

@@ -7,7 +7,7 @@ export const niger: CountryData = {
   "lon": 8,
   "lat": 16,
   "flag": "🇳🇪",
-  "pop": "10M",
+  "pop": 22442948,
   "budget": 146,
   "income": "417",
   "religion": "Islam",

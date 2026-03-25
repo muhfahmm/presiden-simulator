@@ -7,7 +7,7 @@ export const grenada: CountryData = {
   "lon": -61.66666666,
   "lat": 12.11666666,
   "flag": "🇬🇩",
-  "pop": "10M",
+  "pop": 111454,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

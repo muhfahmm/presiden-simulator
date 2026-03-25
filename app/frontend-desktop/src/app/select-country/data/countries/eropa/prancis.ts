@@ -7,7 +7,7 @@ export const prancis: CountryData = {
   "lon": 2,
   "lat": 46,
   "flag": "🇫🇷",
-  "pop": "10M",
+  "pop": 66977107,
   "budget": 30433,
   "income": "86951",
   "religion": "Katolik",

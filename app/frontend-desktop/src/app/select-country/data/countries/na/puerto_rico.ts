@@ -7,7 +7,7 @@ export const puerto_rico: CountryData = {
   "lon": -66.5,
   "lat": 18.25,
   "flag": "🇵🇷",
-  "pop": "10M",
+  "pop": 3195153,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

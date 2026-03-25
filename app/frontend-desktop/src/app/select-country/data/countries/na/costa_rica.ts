@@ -7,7 +7,7 @@ export const costa_rica: CountryData = {
   "lon": -84,
   "lat": 10,
   "flag": "🇨🇷",
-  "pop": "10M",
+  "pop": 4999441,
   "budget": 681,
   "income": "1945",
   "religion": "Katolik",

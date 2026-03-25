@@ -7,7 +7,7 @@ export const arab_saudi: CountryData = {
   "lon": 46.74,
   "lat": 24.77,
   "flag": "🇸🇦",
-  "pop": "10M",
+  "pop": 33699947,
   "budget": 10793,
   "income": "30836",
   "religion": "Islam",

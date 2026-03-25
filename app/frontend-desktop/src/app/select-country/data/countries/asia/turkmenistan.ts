@@ -7,7 +7,7 @@ export const turkmenistan: CountryData = {
   "lon": 60,
   "lat": 40,
   "flag": "🇹🇲",
-  "pop": "10M",
+  "pop": 5850908,
   "budget": 438,
   "income": "1250",
   "religion": "Islam",

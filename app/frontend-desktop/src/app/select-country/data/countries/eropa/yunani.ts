@@ -7,7 +7,7 @@ export const yunani: CountryData = {
   "lon": 22,
   "lat": 39,
   "flag": "🇬🇷",
-  "pop": "10M",
+  "pop": 10731726,
   "budget": 2236,
   "income": "6389",
   "religion": "Kristen Ortodoks",

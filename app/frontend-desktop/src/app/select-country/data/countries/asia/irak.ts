@@ -7,7 +7,7 @@ export const irak: CountryData = {
   "lon": 44,
   "lat": 33,
   "flag": "🇮🇶",
-  "pop": "10M",
+  "pop": 38433600,
   "budget": 2606,
   "income": "7445",
   "religion": "Islam",

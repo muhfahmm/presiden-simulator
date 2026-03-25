@@ -7,7 +7,7 @@ export const bhutan: CountryData = {
   "lon": 90.5,
   "lat": 27.5,
   "flag": "🇧🇹",
-  "pop": "10M",
+  "pop": 754394,
   "budget": 27,
   "income": "78",
   "religion": "Buddha",

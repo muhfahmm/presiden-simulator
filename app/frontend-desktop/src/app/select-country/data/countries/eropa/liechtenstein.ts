@@ -7,7 +7,7 @@ export const liechtenstein: CountryData = {
   "lon": 9.31,
   "lat": 47.08,
   "flag": "🇱🇮",
-  "pop": "10M",
+  "pop": 37910,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

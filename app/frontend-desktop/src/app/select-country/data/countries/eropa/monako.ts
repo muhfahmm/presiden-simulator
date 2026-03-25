@@ -7,7 +7,7 @@ export const monako: CountryData = {
   "lon": 7.4,
   "lat": 43.73333333,
   "flag": "🇲🇨",
-  "pop": "10M",
+  "pop": 38682,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

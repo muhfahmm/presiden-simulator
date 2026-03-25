@@ -7,7 +7,7 @@ export const san_marino: CountryData = {
   "lon": 12.41666666,
   "lat": 43.76666666,
   "flag": "🇸🇲",
-  "pop": "10M",
+  "pop": 33785,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

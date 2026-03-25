@@ -7,7 +7,7 @@ export const nauru: CountryData = {
   "lon": 166.91666666,
   "lat": -0.53333333,
   "flag": "🇳🇷",
-  "pop": "10M",
+  "pop": 12704,
   "budget": 10,
   "income": "15",
   "religion": "Protestan",

@@ -7,7 +7,7 @@ export const ghana: CountryData = {
   "lon": -2,
   "lat": 8,
   "flag": "🇬🇭",
-  "pop": "35M",
+  "pop": 29767108,
   "budget": 739,
   "income": "2111",
   "religion": "Protestan",

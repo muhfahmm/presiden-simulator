@@ -7,7 +7,7 @@ export const paraguay: CountryData = {
   "lon": -58,
   "lat": -23,
   "flag": "🇵🇾",
-  "pop": "10M",
+  "pop": 6956071,
   "budget": 428,
   "income": "1222",
   "religion": "Katolik",

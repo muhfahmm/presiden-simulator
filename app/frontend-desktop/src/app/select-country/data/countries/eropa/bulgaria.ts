@@ -7,7 +7,7 @@ export const bulgaria: CountryData = {
   "lon": 25,
   "lat": 43,
   "flag": "🇧🇬",
-  "pop": "10M",
+  "pop": 7025037,
   "budget": 1021,
   "income": "2917",
   "religion": "Kristen Ortodoks",

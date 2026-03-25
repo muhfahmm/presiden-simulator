@@ -7,7 +7,7 @@ export const saint_vincent_dan_grenadine: CountryData = {
   "lon": -61.2,
   "lat": 13.25,
   "flag": "🇻🇨",
-  "pop": "10M",
+  "pop": 110210,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

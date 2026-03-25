@@ -7,7 +7,7 @@ export const sudan_selatan: CountryData = {
   "lon": 30,
   "lat": 7,
   "flag": "🇸🇸",
-  "pop": "10M",
+  "pop": 10975920,
   "budget": 49,
   "income": "139",
   "religion": "Katolik",

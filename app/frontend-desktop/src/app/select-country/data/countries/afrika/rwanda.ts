@@ -7,7 +7,7 @@ export const rwanda: CountryData = {
   "lon": 30,
   "lat": -2,
   "flag": "🇷🇼",
-  "pop": "10M",
+  "pop": 12301939,
   "budget": 126,
   "income": "361",
   "religion": "Katolik",

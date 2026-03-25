@@ -7,7 +7,7 @@ export const republik_tanzania: CountryData = {
   "lon": 35,
   "lat": -6,
   "flag": "🇹🇿",
-  "pop": "10M",
+  "pop": 56318348,
   "budget": 729,
   "income": "2084",
   "religion": "Katolik",

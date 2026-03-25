@@ -7,7 +7,7 @@ export const ethiopia: CountryData = {
   "lon": 38,
   "lat": 8,
   "flag": "🇪🇹",
-  "pop": "135M",
+  "pop": 109224559,
   "budget": 1507,
   "income": "4306",
   "religion": "Kristen Ortodoks",

@@ -7,7 +7,7 @@ export const somalia: CountryData = {
   "lon": 49,
   "lat": 10,
   "flag": "🇸🇴",
-  "pop": "10M",
+  "pop": 15008154,
   "budget": 78,
   "income": "222",
   "religion": "Islam",

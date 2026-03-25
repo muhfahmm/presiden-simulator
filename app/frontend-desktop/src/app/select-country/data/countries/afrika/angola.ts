@@ -7,7 +7,7 @@ export const angola: CountryData = {
   "lon": 13.23,
   "lat": -8.83,
   "flag": "🇦🇴",
-  "pop": "39M",
+  "pop": 30809762,
   "budget": 826,
   "income": "2361",
   "religion": "Katolik",

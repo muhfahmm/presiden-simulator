@@ -7,7 +7,7 @@ export const myanmar: CountryData = {
   "lon": 98,
   "lat": 22,
   "flag": "🇲🇲",
-  "pop": "10M",
+  "pop": 53708395,
   "budget": 583,
   "income": "1667",
   "religion": "Buddha",

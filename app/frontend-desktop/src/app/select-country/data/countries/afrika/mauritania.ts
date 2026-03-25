@@ -7,7 +7,7 @@ export const mauritania: CountryData = {
   "lon": -12,
   "lat": 20,
   "flag": "🇲🇷",
-  "pop": "10M",
+  "pop": 4403319,
   "budget": 97,
   "income": "278",
   "religion": "Islam",

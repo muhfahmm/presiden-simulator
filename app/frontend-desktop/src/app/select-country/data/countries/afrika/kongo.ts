@@ -7,7 +7,7 @@ export const kongo: CountryData = {
   "lon": 15,
   "lat": -1,
   "flag": "🇨🇬",
-  "pop": "10M",
+  "pop": 5244363,
   "budget": 146,
   "income": "417",
   "religion": "Katolik",

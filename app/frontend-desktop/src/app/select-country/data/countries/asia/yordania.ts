@@ -7,7 +7,7 @@ export const yordania: CountryData = {
   "lon": 36,
   "lat": 31,
   "flag": "🇯🇴",
-  "pop": "10M",
+  "pop": 9956011,
   "budget": 457,
   "income": "1306",
   "religion": "Islam",

@@ -7,7 +7,7 @@ export const barbados: CountryData = {
   "lon": -59.53333333,
   "lat": 13.16666666,
   "flag": "🇧🇧",
-  "pop": "10M",
+  "pop": 286641,
   "budget": 53,
   "income": "153",
   "religion": "Protestan",

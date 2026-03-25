@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Play, Pause, Calendar } from "lucide-react";
 import { INITIAL_GAME_DATE, formatGameDate, addDays, saveGameDate, getStoredGameDate } from "../../data/time/gameTime";
 import { gameStorage } from "../../gamestorage";
-import { budgetStorage } from "../ekonomi/budgetStorage";
+import { budgetStorage } from "../navbar/stats/budget";
 import { buildingStorage } from "../pembangunan/buildingStorage";
 import { countries } from "../../../select-country/data/countries";
 import { calculateDailyProductionTotals } from "../../data/production/productionLogic";

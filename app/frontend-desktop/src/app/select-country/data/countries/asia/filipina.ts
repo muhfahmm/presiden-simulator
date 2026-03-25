@@ -7,7 +7,7 @@ export const filipina: CountryData = {
   "lon": 122,
   "lat": 13,
   "flag": "🇵🇭",
-  "pop": "10M",
+  "pop": 106651922,
   "budget": 4230,
   "income": "12084",
   "religion": "Katolik",

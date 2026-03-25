@@ -7,7 +7,7 @@ export const israel: CountryData = {
   "lon": 35.13,
   "lat": 31.47,
   "flag": "🇮🇱",
-  "pop": "10M",
+  "pop": 8882800,
   "budget": 5056,
   "income": "14446",
   "religion": "Yahudi",

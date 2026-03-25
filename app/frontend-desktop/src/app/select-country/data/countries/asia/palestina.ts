@@ -7,7 +7,7 @@ export const palestina: CountryData = {
   "lon": 35.2,
   "lat": 31.9,
   "flag": "🇵🇸",
-  "pop": "10M",
+  "pop": 4569087,
   "budget": 194,
   "income": "556",
   "religion": "Islam",

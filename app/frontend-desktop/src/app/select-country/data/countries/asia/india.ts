@@ -7,7 +7,7 @@ export const india: CountryData = {
   "lon": 77,
   "lat": 20,
   "flag": "🇮🇳",
-  "pop": "10M",
+  "pop": 1352617328,
   "budget": 38309,
   "income": "109453",
   "religion": "Hindu",

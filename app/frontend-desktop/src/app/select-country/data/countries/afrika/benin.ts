@@ -7,7 +7,7 @@ export const benin: CountryData = {
   "lon": 2.25,
   "lat": 9.5,
   "flag": "🇧🇯",
-  "pop": "10M",
+  "pop": 11485048,
   "budget": 185,
   "income": "528",
   "religion": "Katolik",

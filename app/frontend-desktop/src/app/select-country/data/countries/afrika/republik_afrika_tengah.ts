@@ -7,7 +7,7 @@ export const republik_afrika_tengah: CountryData = {
   "lon": 21,
   "lat": 7,
   "flag": "🇨🇫",
-  "pop": "10M",
+  "pop": 4666377,
   "budget": 24,
   "income": "69",
   "religion": "Protestan",

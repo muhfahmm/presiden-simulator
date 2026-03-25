@@ -7,7 +7,7 @@ export const gibraltar: CountryData = {
   "lon": -5.35,
   "lat": 36.13333333,
   "flag": "🇬🇮",
-  "pop": "10M",
+  "pop": 33718,
   "budget": 97,
   "income": "278",
   "religion": "Katolik",

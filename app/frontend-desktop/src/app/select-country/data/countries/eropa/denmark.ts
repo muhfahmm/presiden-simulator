@@ -7,7 +7,7 @@ export const denmark: CountryData = {
   "lon": 10,
   "lat": 56,
   "flag": "🇩🇰",
-  "pop": "10M",
+  "pop": 5793636,
   "budget": 3986,
   "income": "11390",
   "religion": "Protestan",

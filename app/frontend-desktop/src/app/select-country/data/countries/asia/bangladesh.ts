@@ -7,7 +7,7 @@ export const bangladesh: CountryData = {
   "lon": 90,
   "lat": 24,
   "flag": "🇧🇩",
-  "pop": "10M",
+  "pop": 161356039,
   "budget": 4473,
   "income": "12779",
   "religion": "Islam",

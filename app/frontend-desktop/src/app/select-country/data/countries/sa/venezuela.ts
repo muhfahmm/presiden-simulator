@@ -7,7 +7,7 @@ export const venezuela: CountryData = {
   "lon": -66,
   "lat": 8,
   "flag": "🇻🇪",
-  "pop": "10M",
+  "pop": 28870195,
   "budget": 924,
   "income": "2639",
   "religion": "Katolik",

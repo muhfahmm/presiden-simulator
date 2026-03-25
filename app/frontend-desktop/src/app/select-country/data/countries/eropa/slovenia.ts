@@ -7,7 +7,7 @@ export const slovenia: CountryData = {
   "lon": 14.81666666,
   "lat": 46.11666666,
   "flag": "🇸🇮",
-  "pop": "10M",
+  "pop": 2073894,
   "budget": 632,
   "income": "1806",
   "religion": "Katolik",

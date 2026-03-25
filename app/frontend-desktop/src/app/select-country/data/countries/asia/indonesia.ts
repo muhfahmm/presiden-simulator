@@ -7,7 +7,7 @@ export const indonesia: CountryData = {
   "lon": 120,
   "lat": -5,
   "flag": "🇮🇩",
-  "pop": 278360115,
+  "pop": 267663435,
   "budget": 13807,
   "income": "39448",
   "religion": "Islam",

@@ -7,7 +7,7 @@ export const kroasia: CountryData = {
   "lon": 15.5,
   "lat": 45.16666666,
   "flag": "🇭🇷",
-  "pop": "10M",
+  "pop": 4087843,
   "budget": 758,
   "income": "2167",
   "religion": "Katolik",

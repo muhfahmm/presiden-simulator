@@ -7,7 +7,7 @@ export const guatemala: CountryData = {
   "lon": -90.25,
   "lat": 15.5,
   "flag": "🇬🇹",
-  "pop": "10M",
+  "pop": 17247807,
   "budget": 924,
   "income": "2639",
   "religion": "Katolik",

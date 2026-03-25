@@ -7,7 +7,7 @@ export const afrika_selatan: CountryData = {
   "lon": 24,
   "lat": -29,
   "flag": "🇿🇦",
-  "pop": "64M",
+  "pop": 57779622,
   "budget": 3938,
   "income": "11251",
   "religion": "Protestan",

@@ -7,7 +7,7 @@ export const siprus: CountryData = {
   "lon": 33,
   "lat": 35,
   "flag": "🇨🇾",
-  "pop": "10M",
+  "pop": 1189265,
   "budget": 292,
   "income": "833",
   "religion": "Kristen Ortodoks",

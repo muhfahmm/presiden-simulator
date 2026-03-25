@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { 
   Star, Wallet, Wrench, Shield, Globe, Landmark, LayoutGrid, ChevronLeft,
   Hammer, Swords as MilitaryIcon, Users2, BarChart3, TrendingUp,
-  ArrowRightLeft, FileText, CreditCard, Zap, Package, Home, ShieldAlert, Gem, Tag
+  ArrowRightLeft, FileText, CreditCard, Zap, Package, Home, ShieldAlert, Gem, Tag, Smile
 } from "lucide-react";
 
 interface BottomNavProps {
@@ -14,7 +14,7 @@ interface BottomNavProps {
 
 export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps) {
   const menuItems = [
-    { id: "Rating Presiden", icon: Star, label: "Rating Presiden" },
+    { id: "Kepuasan", icon: Smile, label: "Kepuasan" },
     { id: "Ekonomi", icon: Wallet, label: "Ekonomi" },
     { id: "Pembangunan", icon: Wrench, label: "Pembangunan" },
     { id: "Pertahanan", icon: Shield, label: "Pertahanan" },
@@ -23,9 +23,9 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
   ];
 
   const subMenuItems: Record<string, any> = {
-    "Rating Presiden": [
-      { id: "Dashboard:Rating", label: "Statistik Dashboard", icon: BarChart3 },
-      { id: "Action:NaikkanRating", label: "Naikkan Rating", icon: TrendingUp },
+    "Kepuasan": [
+      { id: "Dashboard:Kepuasan", label: "Statistik Kepuasan", icon: BarChart3 },
+      { id: "Action:NaikkanKepuasan", label: "Naikkan Kepuasan", icon: TrendingUp },
     ],
     "Ekonomi": [
       { id: "Menu:Perdagangan", label: "Perdagangan", icon: ArrowRightLeft },

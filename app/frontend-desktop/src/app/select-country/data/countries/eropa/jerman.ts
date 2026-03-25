@@ -7,7 +7,7 @@ export const jerman: CountryData = {
   "lon": 9,
   "lat": 51,
   "flag": "🇩🇪",
-  "pop": "10M",
+  "pop": 82905782,
   "budget": 44629,
   "income": "127510",
   "religion": "Protestan",

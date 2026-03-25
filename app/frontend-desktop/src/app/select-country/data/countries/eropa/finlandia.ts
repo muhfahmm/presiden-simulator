@@ -7,7 +7,7 @@ export const finlandia: CountryData = {
   "lon": 26,
   "lat": 64,
   "flag": "🇫🇮",
-  "pop": "10M",
+  "pop": 5515525,
   "budget": 2917,
   "income": "8334",
   "religion": "Protestan",

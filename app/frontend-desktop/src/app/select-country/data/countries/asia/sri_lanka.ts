@@ -7,7 +7,7 @@ export const sri_lanka: CountryData = {
   "lon": 81,
   "lat": 7,
   "flag": "🇱🇰",
-  "pop": "10M",
+  "pop": 21670000,
   "budget": 729,
   "income": "2084",
   "religion": "Buddha",

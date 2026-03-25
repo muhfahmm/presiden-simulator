@@ -7,7 +7,7 @@ export const republik_dominika: CountryData = {
   "lon": -70.66666666,
   "lat": 19,
   "flag": "🇩🇴",
-  "pop": "10M",
+  "pop": 10627165,
   "budget": 1070,
   "income": "3056",
   "religion": "Katolik",

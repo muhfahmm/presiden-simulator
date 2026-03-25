@@ -7,7 +7,7 @@ export const madagaskar: CountryData = {
   "lon": 47.31,
   "lat": -18.55,
   "flag": "🇲🇬",
-  "pop": "10M",
+  "pop": 26262368,
   "budget": 146,
   "income": "417",
   "religion": "Protestan",

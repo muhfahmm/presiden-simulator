@@ -7,7 +7,7 @@ export const jamaika: CountryData = {
   "lon": -77.5,
   "lat": 18.25,
   "flag": "🇯🇲",
-  "pop": "10M",
+  "pop": 2934855,
   "budget": 175,
   "income": "500",
   "religion": "Protestan",

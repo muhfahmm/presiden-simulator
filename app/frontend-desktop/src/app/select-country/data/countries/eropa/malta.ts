@@ -7,7 +7,7 @@ export const malta: CountryData = {
   "lon": 14.3,
   "lat": 35.53,
   "flag": "🇲🇹",
-  "pop": "10M",
+  "pop": 484630,
   "budget": 194,
   "income": "556",
   "religion": "Katolik",

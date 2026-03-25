@@ -7,7 +7,7 @@ export const kolombia: CountryData = {
   "lon": -72,
   "lat": 4,
   "flag": "🇨🇴",
-  "pop": "10M",
+  "pop": 49648685,
   "budget": 3306,
   "income": "9445",
   "religion": "Katolik",
