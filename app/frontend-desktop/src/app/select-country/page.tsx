@@ -322,11 +322,48 @@ export default function SelectCountry() {
               </div>
             </div>
           </div>
-          {/* 2. Sektor Produksi & Ekonomi Detailed */}
+
+          {/* 3. Mineral Kritis & Strategis */}
+          <div style={{ width: `${leftWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel mb-4">
+            <div onMouseDown={startResizeLeft} className="absolute inset-y-0 -right-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
+            <h3 className="text-xs font-black text-pink-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
+              <span>3. Mineral Kritis & Strategis (12 Jenis)</span>
+              <button onClick={() => setIsMineralsOpen(!isMineralsOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
+                {isMineralsOpen ? <Eye size={12} className="text-pink-500" /> : <EyeOff size={12} className="text-zinc-500" />}
+              </button>
+            </h3>
+
+            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isMineralsOpen ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0 pointer-events-none"}`}>
+              <div className="flex flex-col gap-4 overflow-y-auto max-h-[500px] no-scrollbar pr-1">
+                <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1 shadow-inner mb-1">
+                  <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500" /> Beban Listrik</span>
+                  <span className="text-amber-500 text-sm">
+                    {hitungKonsumsiEkstraksi(currentData.sektor_ekstraksi).toLocaleString('id-ID')} MW
+                  </span>
+                </div>
+                <div className={`grid ${getGridCols(leftWidth)} gap-2`}>
+                  <SectorStat icon={<Gem size={10} className="text-yellow-400" />} label="Emas" value={`${currentData.sektor_ekstraksi.emas} (${(currentData.sektor_ekstraksi.emas * KONSUMSI_EKSTRAKSI.emas).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Radio size={10} className="text-emerald-400" />} label="Uranium" value={`${currentData.sektor_ekstraksi.uranium} (${(currentData.sektor_ekstraksi.uranium * KONSUMSI_EKSTRAKSI.uranium).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Layers size={10} className="text-zinc-400" />} label="Batubara" value={`${currentData.sektor_ekstraksi.batu_bara} (${(currentData.sektor_ekstraksi.batu_bara * KONSUMSI_EKSTRAKSI.batu_bara).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Droplets size={10} className="text-blue-400" />} label="Minyak" value={`${currentData.sektor_ekstraksi.minyak_bumi} (${(currentData.sektor_ekstraksi.minyak_bumi * KONSUMSI_EKSTRAKSI.minyak_bumi).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Flame size={10} className="text-orange-400" />} label="Gas" value={`${currentData.sektor_ekstraksi.gas_alam} (${(currentData.sektor_ekstraksi.gas_alam * KONSUMSI_EKSTRAKSI.gas_alam).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Waves size={10} className="text-blue-200" />} label="Garam" value={`${currentData.sektor_ekstraksi.garam} (${(currentData.sektor_ekstraksi.garam * KONSUMSI_EKSTRAKSI.garam).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Box size={10} className="text-orange-400" />} label="Nikel" value={`${currentData.sektor_ekstraksi.nikel} (${(currentData.sektor_ekstraksi.nikel * KONSUMSI_EKSTRAKSI.nikel).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Battery size={10} className="text-cyan-400" />} label="Litium" value={`${currentData.sektor_ekstraksi.litium} (${(currentData.sektor_ekstraksi.litium * KONSUMSI_EKSTRAKSI.litium).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Pickaxe size={10} className="text-orange-300" />} label="Tembaga" value={`${currentData.sektor_ekstraksi.tembaga} (${(currentData.sektor_ekstraksi.tembaga * KONSUMSI_EKSTRAKSI.tembaga).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Layers size={10} className="text-blue-200" />} label="Alumunium" value={`${currentData.sektor_ekstraksi.aluminium} (${(currentData.sektor_ekstraksi.aluminium * KONSUMSI_EKSTRAKSI.aluminium).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Cpu size={10} className="text-purple-400" />} label="Tanah Jarang" value={`${currentData.sektor_ekstraksi.logam_tanah_jarang} (${(currentData.sektor_ekstraksi.logam_tanah_jarang * KONSUMSI_EKSTRAKSI.logam_tanah_jarang).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Mountain size={10} className="text-zinc-500" />} label="Bijih Besi" value={`${currentData.sektor_ekstraksi.bijih_besi} (${(currentData.sektor_ekstraksi.bijih_besi * KONSUMSI_EKSTRAKSI.bijih_besi).toLocaleString('id-ID')} MW)`} />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* 4. Sektor Produksi & Ekonomi Detailed */}
           <div style={{ width: `${leftWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeLeft} className="absolute inset-y-0 -right-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-emerald-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>3. Produksi & Ekonomi Nasional (25 Jenis)</span>
+              <span>4. Produksi & Ekonomi Nasional (25 Jenis)</span>
               <button onClick={() => setIsEconomyOpen(!isEconomyOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isEconomyOpen ? <Eye size={12} className="text-emerald-500" /> : <EyeOff size={12} className="text-zinc-500" />}
               </button>
@@ -400,11 +437,11 @@ export default function SelectCountry() {
         {/* --- RIGHT SIDE PANELS --- */}
         <div className={`absolute top-4 right-4 flex flex-col gap-3 z-20 pointer-events-none max-h-[calc(100vh-160px)] overflow-y-auto no-scrollbar pr-1 pb-10 transition-all duration-[900ms] ease-in-out ${selectedCountry ? "opacity-100 translate-x-0" : "opacity-0 translate-x-40 pointer-events-none"}`}>
 
-          {/* 4. Pertahanan & Militer Strategis Detailed */}
+          {/* 5. Pertahanan & Militer Strategis Detailed */}
           <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-red-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>4. Pertahanan & Strategis (32 Jenis)</span>
+              <span>5. Pertahanan & Strategis (32 Jenis)</span>
               <button onClick={() => setIsDefenseOpen(!isDefenseOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isDefenseOpen ? <Eye size={12} className="text-red-500" /> : <EyeOff size={12} className="text-zinc-500" />}
               </button>
@@ -415,8 +452,8 @@ export default function SelectCountry() {
                 <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1 shadow-inner">
                   <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500" /> Beban Listrik</span>
                   <span className="text-amber-500 text-sm">
-                    {hitungKonsumsiPertahanan(currentData.sektor_pertahanan, currentData.sektor_armada, currentData.sektor_keamanan).toLocaleString('id-ID')} MW
-                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_pertahanan.penjara + currentData.sektor_armada.barak + currentData.sektor_pertahanan.gudang_senjata + currentData.sektor_pertahanan.hangar_tank + currentData.sektor_pertahanan.akademi_militer} Unit)</span>
+                    {hitungKonsumsiPertahanan(currentData.sektor_pertahanan, currentData.armada_militer, currentData.militer_strategis, currentData.armada_kepolisian).toLocaleString('id-ID')} MW
+                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_pertahanan.penjara + currentData.armada_militer.barak + currentData.sektor_pertahanan.gudang_senjata + currentData.sektor_pertahanan.hangar_tank + currentData.sektor_pertahanan.akademi_militer} Unit)</span>
                   </span>
                 </div>
                 {/* Defense Assets */}
@@ -426,7 +463,7 @@ export default function SelectCountry() {
                   </div>
                   <div className={`grid ${getGridCols(rightWidth)} gap-2 mt-1`}>
                     <SectorStat icon={<Gavel size={10} className="text-zinc-400" />} label="Penjara" value={`${currentData.sektor_pertahanan.penjara} (${(currentData.sektor_pertahanan.penjara * KONSUMSI_PERTAHANAN.penjara).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Home size={10} className="text-zinc-300" />} label="Barak" value={`${currentData.sektor_armada.barak} (${(currentData.sektor_armada.barak * KONSUMSI_PERTAHANAN.barak).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Home size={10} className="text-zinc-300" />} label="Barak" value={`${currentData.armada_militer.barak} (${(currentData.armada_militer.barak * KONSUMSI_PERTAHANAN.barak).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Archive size={10} className="text-orange-400" />} label="Gudang Senjata" value={`${currentData.sektor_pertahanan.gudang_senjata} (${(currentData.sektor_pertahanan.gudang_senjata * KONSUMSI_PERTAHANAN.gudang_senjata).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Warehouse size={10} className="text-zinc-500" />} label="Hangar Tank" value={`${currentData.sektor_pertahanan.hangar_tank} (${(currentData.sektor_pertahanan.hangar_tank * KONSUMSI_PERTAHANAN.hangar_tank).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<GraduationCap size={10} className="text-zinc-200" />} label="Akademi Militer" value={`${currentData.sektor_pertahanan.akademi_militer} (${(currentData.sektor_pertahanan.akademi_militer * KONSUMSI_PERTAHANAN.akademi_militer).toLocaleString('id-ID')} MW)`} />
@@ -439,54 +476,102 @@ export default function SelectCountry() {
                 {/* Military Fleet */}
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Truck size={10} /> Armada Militer (9)</span>
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Truck size={10} /> Armada Militer (21 Jenis)</span>
                   </div>
 
                   {/* Darat */}
                   <div className="grid grid-cols-3 gap-1.5">
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Tank</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.darat.tank_tempur_utama}</span>
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">MBT</span>
+                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.darat.tank_tempur_utama}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">APC</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.darat.apc}</span>
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">APC/IFV</span>
+                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.darat.apc_ifv}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Artileri</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.darat.artileri_berat}</span>
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Artileri</span>
+                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.darat.artileri_berat}</span>
+                    </div>
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">MLRS</span>
+                      <span className="text-xs font-black text-orange-400 leading-none">{currentData.armada_militer.darat.sistem_peluncur_roket}</span>
+                    </div>
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">SAM</span>
+                      <span className="text-xs font-black text-blue-400 leading-none">{currentData.armada_militer.darat.pertahanan_udara_mobile}</span>
+                    </div>
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Taktis</span>
+                      <span className="text-xs font-black text-zinc-400 leading-none">{currentData.armada_militer.darat.kendaraan_taktis}</span>
                     </div>
                   </div>
 
                   {/* Laut */}
                   <div className="grid grid-cols-3 gap-1.5">
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Induk</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.laut.kapal_induk}</span>
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Induk</span>
+                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.laut.kapal_induk}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Destroyer</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.laut.kapal_destroyer}</span>
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Destroyer</span>
+                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.laut.kapal_destroyer}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Selam N</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.laut.kapal_selam_nuklir}</span>
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Korvet</span>
+                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.laut.kapal_korvet}</span>
+                    </div>
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Selam N</span>
+                      <span className="text-xs font-black text-emerald-400 leading-none">{currentData.armada_militer.laut.kapal_selam_nuklir}</span>
+                    </div>
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Selam R</span>
+                      <span className="text-xs font-black text-zinc-300 leading-none">{currentData.armada_militer.laut.kapal_selam_regular}</span>
+                    </div>
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Ranjau</span>
+                      <span className="text-xs font-black text-red-400 leading-none">{currentData.armada_militer.laut.kapal_ranjau}</span>
+                    </div>
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Logistik</span>
+                      <span className="text-xs font-black text-blue-300 leading-none">{currentData.armada_militer.laut.kapal_logistik}</span>
                     </div>
                   </div>
 
                   {/* Udara */}
                   <div className="grid grid-cols-3 gap-1.5">
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Stealth</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.udara.jet_tempur_siluman}</span>
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Stealth</span>
+                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.jet_tempur_siluman}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Heli Ser</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.udara.helikopter_serang}</span>
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Intercept</span>
+                      <span className="text-xs font-black text-blue-400 leading-none">{currentData.armada_militer.udara.jet_tempur_interceptor}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Intai</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.sektor_armada.udara.pesawat_pengintai}</span>
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Bomber</span>
+                      <span className="text-xs font-black text-red-500 leading-none">{currentData.armada_militer.udara.pesawat_pengebom}</span>
+                    </div>
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Heli Ser</span>
+                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.helikopter_serang}</span>
+                    </div>
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Intai</span>
+                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.pesawat_pengintai}</span>
+                    </div>
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">UAV</span>
+                      <span className="text-xs font-black text-emerald-400 leading-none">{currentData.armada_militer.udara.drone_intai_uav}</span>
+                    </div>
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Kamikaze</span>
+                      <span className="text-xs font-black text-orange-400 leading-none">{currentData.armada_militer.udara.drone_kamikaze}</span>
+                    </div>
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Angkut</span>
+                      <span className="text-xs font-black text-zinc-400 leading-none">{currentData.armada_militer.udara.pesawat_angkut}</span>
                     </div>
                   </div>
                 </div>
@@ -504,7 +589,7 @@ export default function SelectCountry() {
                     <SectorStat icon={<Plane size={10} className="text-cyan-400" />} label="Pangkalan Udara" value={`${currentData.sektor_pertahanan.pangkalan_udara} (${(currentData.sektor_pertahanan.pangkalan_udara * KONSUMSI_STRATEGIC.pangkalan_udara).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Anchor size={10} className="text-blue-400" />} label="Pangkalan Laut" value={`${currentData.sektor_pertahanan.pangkalan_laut} (${(currentData.sektor_pertahanan.pangkalan_laut * KONSUMSI_STRATEGIC.pangkalan_laut).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<RadioTower size={10} className="text-purple-400" />} label="Lintas Antariksa" value={`${currentData.sektor_pertahanan.program_luar_angkasa} (${(currentData.sektor_pertahanan.program_luar_angkasa * KONSUMSI_STRATEGIC.program_luar_angkasa).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Radio size={10} className="text-red-400" />} label="Status Nuklir" value={currentData.sektor_keamanan.status_nuklir ? "Aktif" : "Mati"} />
+                    <SectorStat icon={<Radio size={10} className="text-red-400" />} label="Status Nuklir" value={currentData.militer_strategis.status_nuklir ? "Aktif" : "Mati"} />
                   </div>
 
                 </div>
@@ -515,37 +600,37 @@ export default function SelectCountry() {
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-black text-blue-400 uppercase tracking-widest flex items-center gap-1.5"><Shield size={10} /> Armada Kepolisian (9)</span>
-                    <span className="text-xs font-bold text-emerald-400">{currentData.sektor_keamanan.armada_polisi.kepercayaan_publik}% Trust</span>
+                    <span className="text-xs font-bold text-emerald-400">{currentData.armada_kepolisian.armada_polisi.kepercayaan_publik}% Trust</span>
                   </div>
 
                   {/* Patrol & Taktis */}
                   <div className="grid grid-cols-3 gap-1.5">
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                       <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Patroli</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.sektor_keamanan.armada_polisi.patroli_lantas.mobil_patroli}</span>
+                      <span className="text-xs font-black text-white leading-none">{currentData.armada_kepolisian.armada_polisi.patroli_lantas.mobil_patroli}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                       <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Motor</span>
-                      <span className="text-xs font-black text-white">{currentData.sektor_keamanan.armada_polisi.patroli_lantas.sepeda_motor}</span>
+                      <span className="text-xs font-black text-white">{currentData.armada_kepolisian.armada_polisi.patroli_lantas.sepeda_motor}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                       <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">K-9</span>
-                      <span className="text-xs font-black text-white">{currentData.sektor_keamanan.armada_polisi.patroli_lantas.unit_k9}</span>
+                      <span className="text-xs font-black text-white">{currentData.armada_kepolisian.armada_polisi.patroli_lantas.unit_k9}</span>
                     </div>
                   </div>
 
                   <div className="grid grid-cols-3 gap-1.5">
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                       <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">SWAT</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.sektor_keamanan.armada_polisi.taktis_khusus.swat}</span>
+                      <span className="text-xs font-black text-white leading-none">{currentData.armada_kepolisian.armada_polisi.taktis_khusus.swat}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                       <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Heli Pol</span>
-                      <span className="text-xs font-black text-white">{currentData.sektor_keamanan.armada_polisi.taktis_khusus.helikopter_polisi}</span>
+                      <span className="text-xs font-black text-white">{currentData.armada_kepolisian.armada_polisi.taktis_khusus.helikopter_polisi}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                       <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">HuruHara</span>
-                      <span className="text-xs font-black text-white">{currentData.sektor_keamanan.armada_polisi.taktis_khusus.anti_huru_hara}</span>
+                      <span className="text-xs font-black text-white">{currentData.armada_kepolisian.armada_polisi.taktis_khusus.anti_huru_hara}</span>
                     </div>
                   </div>
 
@@ -553,15 +638,15 @@ export default function SelectCountry() {
                   <div className="grid grid-cols-3 gap-1.5">
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                       <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Stasiun</span>
-                      <span className="text-xs font-black text-white tracking-tighter">{currentData.sektor_keamanan.armada_polisi.pusat_komando.kantor_polisi}</span>
+                      <span className="text-xs font-black text-white tracking-tighter">{currentData.armada_kepolisian.armada_polisi.pusat_komando.kantor_polisi}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                       <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">CCTV</span>
-                      <span className="text-xs font-black text-white tracking-tighter">{currentData.sektor_keamanan.armada_polisi.pusat_komando.kamera_pengawas}</span>
+                      <span className="text-xs font-black text-white tracking-tighter">{currentData.armada_kepolisian.armada_polisi.pusat_komando.kamera_pengawas}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                       <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Forensik</span>
-                      <span className="text-xs font-black text-white tracking-tighter">{currentData.sektor_keamanan.armada_polisi.pusat_komando.pusat_forensik}</span>
+                      <span className="text-xs font-black text-white tracking-tighter">{currentData.armada_kepolisian.armada_polisi.pusat_komando.pusat_forensik}</span>
                     </div>
                   </div>
                 </div>
@@ -569,11 +654,11 @@ export default function SelectCountry() {
             </div>
           </div>
 
-          {/* 5. Layanan Sosial & Publik Detailed */}
+          {/* 6. Layanan Sosial & Publik Detailed */}
           <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-cyan-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>5. Layanan Sosial & Publik (15 Jenis)</span>
+              <span>6. Layanan Sosial & Publik (15 Jenis)</span>
               <button onClick={() => setIsSocialOpen(!isSocialOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isSocialOpen ? <Eye size={12} className="text-cyan-500" /> : <EyeOff size={12} className="text-zinc-500" />}
               </button>
@@ -585,7 +670,7 @@ export default function SelectCountry() {
                   <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500" /> Beban Listrik</span>
                   <span className="text-amber-500 text-sm">
                     {hitungKonsumsiSosial(currentData.sektor_sosial).toLocaleString('id-ID')} MW
-                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_sosial.pendidikan.tk + currentData.sektor_sosial.pendidikan.sd + currentData.sektor_sosial.pendidikan.smp + currentData.sektor_sosial.pendidikan.sma + currentData.sektor_sosial.pendidikan.universitas + currentData.sektor_sosial.pendidikan.lembaga_pendidikan + currentData.sektor_sosial.pendidikan.laboratorium + currentData.sektor_sosial.pendidikan.observatorium + currentData.sektor_sosial.pendidikan.pusat_penelitian + currentData.sektor_sosial.pendidikan.pusat_pengembangan + currentData.sektor_sosial.kesehatan.rumah_sakit_besar + currentData.sektor_sosial.kesehatan.rumah_sakit_kecil + currentData.sektor_sosial.kesehatan.pusat_diagnostik} Unit)</span>
+                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_sosial.pendidikan.prasekolah + currentData.sektor_sosial.pendidikan.dasar + currentData.sektor_sosial.pendidikan.menengah + currentData.sektor_sosial.pendidikan.lanjutan + currentData.sektor_sosial.pendidikan.universitas + currentData.sektor_sosial.pendidikan.lembaga_pendidikan + currentData.sektor_sosial.pendidikan.laboratorium + currentData.sektor_sosial.pendidikan.observatorium + currentData.sektor_sosial.pendidikan.pusat_penelitian + currentData.sektor_sosial.pendidikan.pusat_pengembangan + currentData.sektor_sosial.kesehatan.rumah_sakit_besar + currentData.sektor_sosial.kesehatan.rumah_sakit_kecil + currentData.sektor_sosial.kesehatan.pusat_diagnostik} Unit)</span>
                   </span>
                 </div>
                 {/* Education & Research */}
@@ -595,8 +680,8 @@ export default function SelectCountry() {
                     <span className="text-xs font-black text-blue-400">{currentData.sektor_sosial.pendidikan.literasi}% LT</span>
                   </div>
                   <div className={`grid ${getGridCols(rightWidth)} gap-2 mt-1`}>
-                    <SectorStat icon={<Building2 size={10} className="text-zinc-400" />} label="TK/SD" value={`${currentData.sektor_sosial.pendidikan.tk + currentData.sektor_sosial.pendidikan.sd} (${(currentData.sektor_sosial.pendidikan.tk * KONSUMSI_SOSIAL.pendidikan.tk + currentData.sektor_sosial.pendidikan.sd * KONSUMSI_SOSIAL.pendidikan.sd).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Library size={10} className="text-zinc-300" />} label="SMP/SMA" value={`${currentData.sektor_sosial.pendidikan.smp + currentData.sektor_sosial.pendidikan.sma} (${(currentData.sektor_sosial.pendidikan.smp * KONSUMSI_SOSIAL.pendidikan.smp + currentData.sektor_sosial.pendidikan.sma * KONSUMSI_SOSIAL.pendidikan.sma).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Building2 size={10} className="text-zinc-400" />} label="Pra/Dasar" value={`${currentData.sektor_sosial.pendidikan.prasekolah + currentData.sektor_sosial.pendidikan.dasar} (${(currentData.sektor_sosial.pendidikan.prasekolah * KONSUMSI_SOSIAL.pendidikan.tk + currentData.sektor_sosial.pendidikan.dasar * KONSUMSI_SOSIAL.pendidikan.sd).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Library size={10} className="text-zinc-300" />} label="Men/Lanjut" value={`${currentData.sektor_sosial.pendidikan.menengah + currentData.sektor_sosial.pendidikan.lanjutan} (${(currentData.sektor_sosial.pendidikan.menengah * KONSUMSI_SOSIAL.pendidikan.smp + currentData.sektor_sosial.pendidikan.lanjutan * KONSUMSI_SOSIAL.pendidikan.sma).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Library size={10} className="text-zinc-200" />} label="PT/Lembaga" value={`${currentData.sektor_sosial.pendidikan.universitas + currentData.sektor_sosial.pendidikan.lembaga_pendidikan} (${(currentData.sektor_sosial.pendidikan.universitas * KONSUMSI_SOSIAL.pendidikan.universitas + currentData.sektor_sosial.pendidikan.lembaga_pendidikan * KONSUMSI_SOSIAL.pendidikan.lembaga_pendidikan).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Microscope size={10} className="text-emerald-400" />} label="Lab & Riset" value={`${currentData.sektor_sosial.pendidikan.laboratorium + currentData.sektor_sosial.pendidikan.pusat_penelitian} (${(currentData.sektor_sosial.pendidikan.laboratorium * KONSUMSI_SOSIAL.pendidikan.laboratorium + currentData.sektor_sosial.pendidikan.pusat_penelitian * KONSUMSI_SOSIAL.pendidikan.pusat_penelitian).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Eye size={10} className="text-purple-300" />} label="Observatorium" value={`${currentData.sektor_sosial.pendidikan.observatorium} (${(currentData.sektor_sosial.pendidikan.observatorium * KONSUMSI_SOSIAL.pendidikan.observatorium).toLocaleString('id-ID')} MW)`} />
@@ -640,11 +725,11 @@ export default function SelectCountry() {
             </div>
           </div>
 
-          {/* 6. Ekonomi & Geopolitik (Expanded) */}
+          {/* 7. Ekonomi & Geopolitik (Expanded) */}
           <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-3 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <div className="flex items-center justify-between w-full">
-              <h3 className="text-xs font-black text-blue-500 uppercase tracking-[0.2em]">6. Geopolitik & Luar Negeri (16 Jenis)</h3>
+              <h3 className="text-xs font-black text-blue-500 uppercase tracking-[0.2em]">7. Geopolitik & Luar Negeri (16 Jenis)</h3>
               <div className="flex items-center gap-2">
                 <span className="text-xs font-black bg-indigo-500/20 text-indigo-400 px-1.5 py-0.5 rounded uppercase">{currentData.geopolitik.sikap}</span>
                 <button onClick={() => setIsGeopoliticsOpen(!isGeopoliticsOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
@@ -757,41 +842,6 @@ export default function SelectCountry() {
             </div>
           </div>
 
-          {/* 7. Mineral Kritis & Strategis */}
-          <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
-            <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
-            <h3 className="text-xs font-black text-pink-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>7. Mineral Kritis & Strategis (12 Jenis)</span>
-              <button onClick={() => setIsMineralsOpen(!isMineralsOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
-                {isMineralsOpen ? <Eye size={12} className="text-pink-500" /> : <EyeOff size={12} className="text-zinc-500" />}
-              </button>
-            </h3>
-
-            <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isMineralsOpen ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0 pointer-events-none"}`}>
-              <div className="flex flex-col gap-4">
-                <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1 shadow-inner mb-1">
-                  <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500" /> Beban Listrik</span>
-                  <span className="text-amber-500 text-sm">
-                    {hitungKonsumsiEkstraksi(currentData.sektor_ekstraksi).toLocaleString('id-ID')} MW
-                  </span>
-                </div>
-                <div className={`grid ${getGridCols(rightWidth)} gap-2`}>
-                  <SectorStat icon={<Gem size={10} className="text-yellow-400" />} label="Emas" value={`${currentData.sektor_ekstraksi.emas} (${(currentData.sektor_ekstraksi.emas * KONSUMSI_EKSTRAKSI.emas).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Radio size={10} className="text-emerald-400" />} label="Uranium" value={`${currentData.sektor_ekstraksi.uranium} (${(currentData.sektor_ekstraksi.uranium * KONSUMSI_EKSTRAKSI.uranium).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Layers size={10} className="text-zinc-400" />} label="Batubara" value={`${currentData.sektor_ekstraksi.batu_bara} (${(currentData.sektor_ekstraksi.batu_bara * KONSUMSI_EKSTRAKSI.batu_bara).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Droplets size={10} className="text-blue-400" />} label="Minyak" value={`${currentData.sektor_ekstraksi.minyak_bumi} (${(currentData.sektor_ekstraksi.minyak_bumi * KONSUMSI_EKSTRAKSI.minyak_bumi).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Flame size={10} className="text-orange-400" />} label="Gas" value={`${currentData.sektor_ekstraksi.gas_alam} (${(currentData.sektor_ekstraksi.gas_alam * KONSUMSI_EKSTRAKSI.gas_alam).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Waves size={10} className="text-blue-200" />} label="Garam" value={`${currentData.sektor_ekstraksi.garam} (${(currentData.sektor_ekstraksi.garam * KONSUMSI_EKSTRAKSI.garam).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Box size={10} className="text-orange-400" />} label="Nikel" value={`${currentData.sektor_ekstraksi.nikel} (${(currentData.sektor_ekstraksi.nikel * KONSUMSI_EKSTRAKSI.nikel).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Battery size={10} className="text-cyan-400" />} label="Litium" value={`${currentData.sektor_ekstraksi.litium} (${(currentData.sektor_ekstraksi.litium * KONSUMSI_EKSTRAKSI.litium).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Pickaxe size={10} className="text-orange-300" />} label="Tembaga" value={`${currentData.sektor_ekstraksi.tembaga} (${(currentData.sektor_ekstraksi.tembaga * KONSUMSI_EKSTRAKSI.tembaga).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Layers size={10} className="text-blue-200" />} label="Alumunium" value={`${currentData.sektor_ekstraksi.aluminium} (${(currentData.sektor_ekstraksi.aluminium * KONSUMSI_EKSTRAKSI.aluminium).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Cpu size={10} className="text-purple-400" />} label="Tanah Jarang" value={`${currentData.sektor_ekstraksi.logam_tanah_jarang} (${(currentData.sektor_ekstraksi.logam_tanah_jarang * KONSUMSI_EKSTRAKSI.logam_tanah_jarang).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Mountain size={10} className="text-zinc-500" />} label="Bijih Besi" value={`${currentData.sektor_ekstraksi.bijih_besi} (${(currentData.sektor_ekstraksi.bijih_besi * KONSUMSI_EKSTRAKSI.bijih_besi).toLocaleString('id-ID')} MW)`} />
-                </div>
-              </div>
-            </div>
-          </div>
 
           {/* 8. Olahraga */}
           <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
@@ -825,59 +875,65 @@ export default function SelectCountry() {
         </div>
       </main>
 
-      {/* Map Mode Toggles - High Z-Index to stay on top of all overlays */}
-      <div className="fixed left-1/2 bottom-[320px] -translate-x-1/2 z-[100] flex bg-zinc-900/95 backdrop-blur-2xl p-1.5 rounded-2xl border border-zinc-700/50 shadow-[0_20px_50px_rgba(0,0,0,0.6)] gap-1.5 pointer-events-auto ring-1 ring-white/10 animate-in fade-in slide-in-from-bottom-4 duration-700">
-        <button
-          onClick={() => setMapMode("default")}
-          className={`px-6 py-2 text-[11px] font-black uppercase tracking-[0.2em] rounded-xl transition-all cursor-pointer active:scale-95 ${mapMode === "default"
-              ? "bg-zinc-100 text-zinc-950 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
-              : "text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800/80"
-            }`}
-        >
-          PETA UTAMA
-        </button>
-        <button
-          onClick={() => setMapMode("hubungan")}
-          className={`px-6 py-2 text-[11px] font-black uppercase tracking-[0.2em] rounded-xl transition-all cursor-pointer active:scale-95 flex items-center gap-2 ${mapMode === "hubungan"
-              ? "bg-amber-500 text-zinc-950 shadow-[0_0_25px_rgba(245,158,11,0.5)]"
-              : "text-zinc-500 hover:text-amber-500 hover:bg-amber-500/10"
-            }`}
-        >
-          HUBUNGAN
-        </button>
-      </div>
+      {/* Consolidated Map Controls & Search */}
+      <div className="fixed left-1/2 bottom-[230px] -translate-x-1/2 z-[100] flex items-center gap-8 pointer-events-none w-max max-w-[90vw]">
+        
+        {/* Map Mode Toggles */}
+        <div className="flex bg-zinc-900/95 backdrop-blur-2xl p-1.5 rounded-2xl border border-zinc-700/50 shadow-[0_20px_50px_rgba(0,0,0,0.6)] gap-1.5 pointer-events-auto ring-1 ring-white/10 animate-in fade-in slide-in-from-bottom-4 duration-700 h-fit">
+          <button
+            onClick={() => setMapMode("default")}
+            className={`px-6 py-2 text-[11px] font-black uppercase tracking-[0.2em] rounded-xl transition-all cursor-pointer active:scale-95 ${mapMode === "default"
+                ? "bg-zinc-100 text-zinc-950 shadow-[0_0_20px_rgba(255,255,255,0.3)]"
+                : "text-zinc-500 hover:text-zinc-100 hover:bg-zinc-800/80"
+              }`}
+          >
+            PETA UTAMA
+          </button>
+          <button
+            onClick={() => setMapMode("hubungan")}
+            className={`px-6 py-2 text-[11px] font-black uppercase tracking-[0.2em] rounded-xl transition-all cursor-pointer active:scale-95 flex items-center gap-2 ${mapMode === "hubungan"
+                ? "bg-amber-500 text-zinc-950 shadow-[0_0_25px_rgba(245,158,11,0.5)]"
+                : "text-zinc-500 hover:text-amber-500 hover:bg-amber-500/10"
+              }`}
+          >
+            HUBUNGAN
+          </button>
+        </div>
 
-      <div className="fixed left-1/2 bottom-[210px] -translate-x-1/2 z-[100] w-full max-w-sm animate-in fade-in slide-in-from-bottom-2 duration-1000">
-        <div className="relative group">
-          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-            <Search size={16} className="text-zinc-500 group-focus-within:text-amber-500 transition-colors" />
+        {/* Search Input */}
+        <div className="w-80 animate-in fade-in slide-in-from-bottom-2 duration-1000 pointer-events-auto">
+          <div className="relative group">
+            <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+              <Search size={16} className="text-zinc-500 group-focus-within:text-amber-500 transition-colors" />
+            </div>
+            <input
+              type="text"
+              placeholder="Cari Negara atau Ibukota..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full bg-black/40 backdrop-blur-3xl border border-zinc-800/50 rounded-2xl py-3.5 pl-12 pr-12 text-sm font-bold text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500/30 transition-all shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery("")}
+                className="absolute inset-y-0 right-4 flex items-center text-zinc-500 hover:text-white transition-colors cursor-pointer"
+              >
+                <div className="bg-zinc-800/80 p-1.5 rounded-lg hover:bg-zinc-700 transition-colors">
+                  <X size={14} />
+                </div>
+              </button>
+            )}
           </div>
-          <input
-            type="text"
-            placeholder="Cari Negara atau Ibukota..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full bg-black/40 backdrop-blur-3xl border border-zinc-800/50 rounded-2xl py-3.5 pl-12 pr-12 text-sm font-bold text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500/30 transition-all shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
-          />
+
           {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              className="absolute inset-y-0 right-4 flex items-center text-zinc-500 hover:text-white transition-colors cursor-pointer"
-            >
-              <div className="bg-zinc-800/80 p-1.5 rounded-lg hover:bg-zinc-700 transition-colors">
-                <X size={14} />
-              </div>
-            </button>
+            <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
+              <span className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-500/80 bg-amber-500/5 px-3 py-1 rounded-full border border-amber-500/10">
+                Ditemukan {filteredCountries.length} Negara
+              </span>
+            </div>
           )}
         </div>
 
-        {searchQuery && (
-          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-500/80 bg-amber-500/5 px-3 py-1 rounded-full border border-amber-500/10">
-              Ditemukan {filteredCountries.length} Negara
-            </span>
-          </div>
-        )}
       </div>
 
 

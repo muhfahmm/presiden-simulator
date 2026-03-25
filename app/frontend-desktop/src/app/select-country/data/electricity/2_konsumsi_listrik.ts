@@ -1,4 +1,4 @@
-import { CountryData } from "../types/_index";
+import { CountryData, SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian } from "../types/_index";
 
 // 1. Konsumsi Ekstraksi (Mining)
 export const KONSUMSI_EKSTRAKSI = {
@@ -73,15 +73,40 @@ export const KONSUMSI_STRATEGIC = {
 };
 
 export const KONSUMSI_FLEET = {
-  darat: { tank_tempur_utama: 0.5, apc: 0.2, artileri_berat: 0.3 },
-  laut: { kapal_induk: 100, kapal_destroyer: 30, kapal_selam_nuklir: 80 },
-  udara: { jet_tempur_siluman: 5, helikopter_serang: 2, pesawat_pengintai: 3 }
+  darat: { 
+    tank_tempur_utama: 0.5, 
+    apc_ifv: 0.2, 
+    artileri_berat: 0.3,
+    sistem_peluncur_roket: 0.8,
+    pertahanan_udara_mobile: 0.6,
+    kendaraan_taktis: 0.1
+  },
+  laut: { 
+    kapal_induk: 100, 
+    kapal_destroyer: 30, 
+    kapal_korvet: 15,
+    kapal_selam_nuklir: 80, 
+    kapal_selam_regular: 20,
+    kapal_ranjau: 10,
+    kapal_logistik: 12
+  },
+  udara: { 
+    jet_tempur_siluman: 5, 
+    jet_tempur_interceptor: 4,
+    pesawat_pengebom: 8,
+    helikopter_serang: 2, 
+    pesawat_pengintai: 3,
+    drone_intai_uav: 0.5,
+    drone_kamikaze: 0.2,
+    pesawat_angkut: 3
+  }
 };
 
 export function hitungKonsumsiPertahanan(
-  management: CountryData["sektor_pertahanan"],
-  fleet: CountryData["sektor_armada"],
-  security: CountryData["sektor_keamanan"]
+  management: SektorPertahanan,
+  fleet: SektorArmadaMiliter,
+  strategis: SektorMiliterStrategis,
+  police: SektorArmadaKepolisian
 ) {
   const base = (
     (management.penjara ?? 0) * KONSUMSI_PERTAHANAN.penjara +
@@ -93,22 +118,34 @@ export function hitungKonsumsiPertahanan(
     (management.pangkalan_laut ?? 0) * KONSUMSI_STRATEGIC.pangkalan_laut
   );
 
+  const daratCons = Object.keys(KONSUMSI_FLEET.darat).reduce((total, key) => 
+    total + ((fleet.darat as any)[key] ?? 0) * (KONSUMSI_FLEET.darat as any)[key], 0);
+
+  const lautCons = Object.keys(KONSUMSI_FLEET.laut).reduce((total, key) => 
+    total + ((fleet.laut as any)[key] ?? 0) * (KONSUMSI_FLEET.laut as any)[key], 0);
+
+  const udaraCons = Object.keys(KONSUMSI_FLEET.udara).reduce((total, key) => 
+    total + ((fleet.udara as any)[key] ?? 0) * (KONSUMSI_FLEET.udara as any)[key], 0);
+
   const fleetCons = (
     (fleet.barak ?? 0) * KONSUMSI_PERTAHANAN.barak +
-    Object.values(fleet.darat).reduce((a: number, b: number) => a + b, 0) * 0.5 + // Simplification
-    Object.values(fleet.laut).reduce((a: number, b: number) => a + b, 0) * 50 +
-    Object.values(fleet.udara).reduce((a: number, b: number) => a + b, 0) * 5
+    daratCons + lautCons + udaraCons
   );
 
   const securityCons = (
-    (security.intelijen ?? 0) * 10
+    (strategis.intelijen ?? 0) * 10
   );
 
   const managementCons = (
     (management.pertahanan_siber ?? 0) * 5
   );
 
-  return base + fleetCons + securityCons + managementCons;
+  const policeCons = (
+    (police.armada_polisi.patroli_lantas.mobil_patroli ?? 0) * 0.1 +
+    (police.armada_polisi.taktis_khusus.helikopter_polisi ?? 0) * 2
+  );
+
+  return base + fleetCons + securityCons + managementCons + policeCons;
 }
 
 // 5. Konsumsi Sosial
@@ -169,7 +206,7 @@ export function hitungTotalKonsumsiNasional(data: CountryData) {
     hitungKonsumsiEkstraksi(data.sektor_ekstraksi) +
     hitungKonsumsiProduksi(data.sektor_manufaktur) +
     hitungKonsumsiPangan(data.sektor_agri_peternakan) +
-    hitungKonsumsiPertahanan(data.sektor_pertahanan, data.sektor_armada, data.sektor_keamanan) +
+    hitungKonsumsiPertahanan(data.sektor_pertahanan, data.armada_militer, data.militer_strategis, data.armada_kepolisian) +
     hitungKonsumsiSosial(data.sektor_sosial) +
     hitungKonsumsiOlahraga(data.sektor_olahraga) +
     hitungKonsumsiTransportasi(data.infrastruktur)

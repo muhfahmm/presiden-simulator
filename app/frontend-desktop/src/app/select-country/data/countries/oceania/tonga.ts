@@ -116,29 +116,53 @@ export const tonga: CountryData = {
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
 
-  "sektor_armada": {
+  "armada_militer": {
     "barak": 38,
     "darat": {
         "tank_tempur_utama": 150,
-        "apc": 147,
-        "artileri_berat": 26
+        "apc_ifv": 147,
+        "artileri_berat": 26,
+        "sistem_peluncur_roket": 0,
+        "pertahanan_udara_mobile": 0,
+        "kendaraan_taktis": 0
       },
       "laut": {
         "kapal_induk": 16,
         "kapal_destroyer": 48,
-        "kapal_selam_nuklir": 0
+        "kapal_korvet": 0,
+        "kapal_selam_nuklir": 0,
+        "kapal_selam_regular": 0,
+        "kapal_ranjau": 0,
+        "kapal_logistik": 0
       },
       "udara": {
         "jet_tempur_siluman": 174,
+        "jet_tempur_interceptor": 0,
+        "pesawat_pengebom": 0,
         "helikopter_serang": 167,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
+        "drone_intai_uav": 0,
+        "drone_kamikaze": 0,
+        "pesawat_angkut": 0
       }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  "sektor_keamanan": {
+  
+  "militer_strategis": {
+    "waktu_respon": 11,
+    "intelijen": 3,
+    "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
+    "operasi_strategis": { "misi_serangan": 5,
+      "misi_mata_mata": 19,
+      "misi_sabotase": 15,
+      "manajemen_wilayah": 21,
+      "program_nuklir": 0 }
+  },
+  "armada_kepolisian": {
     "armada_polisi": {
     "patroli_lantas": {
           "mobil_patroli": 2,
@@ -157,16 +181,7 @@ export const tonga: CountryData = {
           "pusat_forensik": 1
         },
     "kepercayaan_publik": 50
-  },
-  "waktu_respon": 11,
-    "intelijen": 3,
-    "status_nuklir": false,
-    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
-    "operasi_strategis": { "misi_serangan": 5,
-      "misi_mata_mata": 19,
-      "misi_sabotase": 15,
-      "manajemen_wilayah": 21,
-      "program_nuklir": 0 }
+  }
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

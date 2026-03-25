@@ -1,4 +1,4 @@
-export interface SektorKeamanan {
+export interface SektorArmadaKepolisian {
   armada_polisi: {
     patroli_lantas: {
       mobil_patroli: number;
@@ -16,20 +16,5 @@ export interface SektorKeamanan {
       pusat_forensik: number;
     };
     kepercayaan_publik: number; // 0-100%
-  };
-  waktu_respon?: number;
-  intelijen?: number;
-  status_nuklir?: boolean;
-  operasi_strategis?: {
-    misi_serangan: number;
-    misi_mata_mata: number;
-    misi_sabotase: number;
-    manajemen_wilayah: number;
-    program_nuklir: number;
-  };
-  intel_radar?: {
-    sistem_satelit: number;
-    jaringan_radar: number;
-    operasi_siber: number;
   };
 }

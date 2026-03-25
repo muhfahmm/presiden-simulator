@@ -116,29 +116,54 @@ export const rwanda: CountryData = {
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
 
-  "sektor_armada": {
+  "armada_militer": {
     "barak": 25,
     "darat": {
         "tank_tempur_utama": 193,
-        "apc": 168,
-        "artileri_berat": 26
+        "apc_ifv": 168,
+        "artileri_berat": 26,
+        "sistem_peluncur_roket": 0,
+        "pertahanan_udara_mobile": 0,
+        "kendaraan_taktis": 0
   },
       "laut": {
         "kapal_induk": 33,
         "kapal_destroyer": 53,
-        "kapal_selam_nuklir": 0
+        "kapal_korvet": 0,
+        "kapal_selam_nuklir": 0,
+        "kapal_selam_regular": 0,
+        "kapal_ranjau": 0,
+        "kapal_logistik": 0
   },
       "udara": {
         "jet_tempur_siluman": 52,
+        "jet_tempur_interceptor": 0,
+        "pesawat_pengebom": 0,
         "helikopter_serang": 80,
-        "pesawat_pengintai": 2
+        "pesawat_pengintai": 2,
+        "drone_intai_uav": 0,
+        "drone_kamikaze": 0,
+        "pesawat_angkut": 0
   }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  "sektor_keamanan": {
+  
+  "militer_strategis": {
+    "waktu_respon": 27,
+    "intelijen": 40,
+    "status_nuklir": false,
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
+    "operasi_strategis": { "misi_serangan": 34,
+      "misi_mata_mata": 29,
+      "misi_sabotase": 24,
+      "manajemen_wilayah": 15,
+      "program_nuklir": 0
+  }
+  },
+  "armada_kepolisian": {
     "armada_polisi": {
     "patroli_lantas": {
           "mobil_patroli": 38,
@@ -157,16 +182,6 @@ export const rwanda: CountryData = {
           "pusat_forensik": 1
   },
     "kepercayaan_publik": 50
-  },
-  "waktu_respon": 27,
-    "intelijen": 40,
-    "status_nuklir": false,
-    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
-    "operasi_strategis": { "misi_serangan": 34,
-      "misi_mata_mata": 29,
-      "misi_sabotase": 24,
-      "manajemen_wilayah": 15,
-      "program_nuklir": 0
   }
   },
   // =============================================================
