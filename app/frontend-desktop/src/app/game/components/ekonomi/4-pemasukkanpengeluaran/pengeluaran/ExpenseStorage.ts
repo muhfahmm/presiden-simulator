@@ -1,4 +1,4 @@
-import { gameStorage } from "../../../../gamestorage";
+import { gameStorage } from "@/app/game/gamestorage";
 
 const EXPENSE_STORAGE_KEY = "em4_expense_data";
 

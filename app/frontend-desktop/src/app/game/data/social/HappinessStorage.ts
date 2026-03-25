@@ -1,4 +1,4 @@
-import { ExpenseData } from "../../components/ekonomi/3-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
+import { ExpenseData } from "@/app/game/components/ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
 
 export interface HappinessBreakdown {
   global: number;

@@ -2,22 +2,22 @@
 
 import { useState, useEffect } from "react"
 import { X, BarChart3, TrendingUp, TrendingDown, Landmark, PieChart, Coins, Shield, Zap, Building2, Activity, Info, Wallet, ArrowRight, Hammer, Users, Eye, ChevronLeft, Car, Home, Search } from "lucide-react"
-import { countries } from "../../../../select-country/data/countries"
-import { CountryData } from "../../../../select-country/data/types"
-import { gameStorage } from "../../../gamestorage"
-import { budgetStorage } from "../budgetStorage"
-import { buildingStorage } from "../../pembangunan/buildingStorage"
-import { taxStorage } from "../2-pajak/TaxStorage"
+import { countries } from "@/app/select-country/data/countries"
+import { CountryData } from "@/app/select-country/data/types"
+import { gameStorage } from "@/app/game/gamestorage"
+import { budgetStorage } from "@/app/game/components/ekonomi/budgetStorage"
+import { buildingStorage } from "@/app/game/components/pembangunan/buildingStorage"
+import { taxStorage } from "@/app/game/components/ekonomi/2-pajak/TaxStorage"
 
-import { KAPASITAS_LISTRIK_METADATA } from "../../../../select-country/data/electricity"
-import { mineralKritisRate } from "../../../../select-country/data/pembangunan/laju-produksi/1_mineral_kritis"
-import { produkIndustriRate } from "../../../../select-country/data/pembangunan/laju-produksi/2_produk_industri"
-import { komoditasPanganRate } from "../../../../select-country/data/pembangunan/laju-produksi/3_komoditas_pangan"
-import { produksiMiliter } from "../../../../select-country/data/pembangunan/produksi-militer"
-import { tempatUmum } from "../../../../select-country/data/pembangunan/tempat-umum"
-import { produksi } from "../../../../select-country/data/pembangunan/produksi"
+import { KAPASITAS_LISTRIK_METADATA } from "@/app/select-country/data/electricity"
+import { mineralKritisRate } from "@/app/select-country/data/pembangunan/laju-produksi/1_mineral_kritis"
+import { produkIndustriRate } from "@/app/select-country/data/pembangunan/laju-produksi/2_produk_industri"
+import { komoditasPanganRate } from "@/app/select-country/data/pembangunan/laju-produksi/3_komoditas_pangan"
+import { produksiMiliter } from "@/app/select-country/data/pembangunan/produksi-militer"
+import { tempatUmum } from "@/app/select-country/data/pembangunan/tempat-umum"
+import { produksi } from "@/app/select-country/data/pembangunan/produksi"
 
-import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMaintenance } from "../../../data/economy/economyLogic"
+import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMaintenance } from "@/app/game/data/economy/economyLogic"
 import { incomeStorage } from "./pemasukkan/IncomeStorage"
 import { expenseStorage } from "./pengeluaran/ExpenseStorage"
 
@@ -264,28 +264,30 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-purple-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
 
-        <div className="px-10 py-8 border-b border-zinc-900 flex items-center justify-between bg-zinc-900/30 backdrop-blur-3xl">
-          <div className="flex items-center gap-6">
-            <div className="p-2 bg-purple-500/10 rounded-xl border border-purple-500/20">
-              <BarChart3 className="h-6 w-6 text-purple-400" />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-white tracking-tight uppercase italic">Pemasukkan & Pengeluaran</h2>
-              <div className="flex items-center gap-2 mt-0.5">
-                <span className="h-1.5 w-1.5 rounded-full bg-purple-500 animate-pulse"></span>
-                <p className="text-xs text-zinc-500 font-bold uppercase tracking-[0.3em]">Treasury & National Fiscal v1.0</p>
+        {/* Header (Synchronized with EnergiModal) */}
+        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
+           <div className="flex items-center gap-3">
+              <div className="p-2 bg-purple-500/10 rounded-xl">
+                 <BarChart3 className="h-6 w-6 text-purple-500" />
               </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-4">
-            <div className="px-4 py-2 bg-zinc-900/50 border border-zinc-800 rounded-xl flex items-center gap-3">
-               <Activity className="h-4 w-4 text-emerald-400" />
-               <span className="text-xs font-black text-zinc-300 uppercase tracking-widest">Kesehatan Fiskal: <span className="text-emerald-400 ml-1">Optimis</span></span>
-            </div>
-            <button onClick={onClose} className="p-3 rounded-2xl hover:bg-zinc-800 transition-all text-zinc-400 hover:text-white cursor-pointer group">
-              <X className="h-7 w-7 group-hover:rotate-90 transition-transform" />
-            </button>
-          </div>
+              <div>
+                 <h2 className="text-2xl font-bold text-white tracking-tight">Pemasukkan & Pengeluaran</h2>
+                 <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">Treasury & National Fiscal Management</p>
+              </div>
+           </div>
+           <div className="flex items-center gap-4">
+              <div className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-white flex items-center gap-3 shadow-[0_0_15px_rgba(16,185,129,0.1)] transition-all">
+                 <Activity className="h-6 w-6 text-emerald-500" />
+                 <span className="text-[10px] font-black text-zinc-300 uppercase tracking-widest">Kesehatan Fiskal: <span className="text-emerald-500 ml-1">Optimis</span></span>
+              </div>
+              <button
+                 onClick={onClose}
+                 className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
+              >
+                 <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+                 <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+              </button>
+           </div>
         </div>
         
         <div className="flex-1 overflow-y-auto p-10 no-scrollbar space-y-8 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.03),transparent_40%)]">

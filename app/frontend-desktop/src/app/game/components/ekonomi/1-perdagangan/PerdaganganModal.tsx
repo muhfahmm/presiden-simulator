@@ -223,30 +223,43 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
   );
 
   return (
-    <div className="fixed inset-0 bg-black/95 z-[100] flex items-center justify-center animate-in fade-in zoom-in-95 duration-300 p-4 lg:p-12 backdrop-blur-md">
-      <div className="bg-zinc-950 border border-zinc-800/50 rounded-[3rem] w-full max-w-6xl h-[85vh] overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.8)] flex flex-col relative">
+    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[92vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
         
+        {/* Glow Effects */}
+        <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-blue-500/50 to-transparent blur-sm"></div>
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
+
         {/* Decorative Grid Overlay */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
 
-        {/* Top Header */}
-        <div className="px-10 py-8 border-b border-zinc-900 flex items-center justify-between bg-zinc-950/80 backdrop-blur-xl relative z-10">
-          <div className="flex items-center gap-6">
-            <div className="p-4 bg-blue-500/10 rounded-[1.5rem] border border-blue-500/20 shadow-[0_0_30px_rgba(59,130,246,0.15)] group hover:scale-110 transition-transform">
-              <ArrowRightLeft className="h-8 w-8 text-blue-400" />
-            </div>
-            <div>
-              <h2 className="text-3xl font-black text-white tracking-tighter uppercase italic flex items-center gap-3">
-                HUB PERDAGANGAN STRATEGIS <span className="text-blue-500">— {currentCountry.flag} {currentCountry.name_id}</span>
-              </h2>
-              <div className="flex items-center gap-2 mt-1">
-                <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]"></span>
+        {/* Header (Synchronized with EnergiModal) */}
+        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30 relative z-10">
+           <div className="flex items-center gap-3">
+              <div className="p-2 bg-blue-500/10 rounded-xl">
+                 <ArrowRightLeft className="h-6 w-6 text-blue-500" />
               </div>
-            </div>
-          </div>
-          <button onClick={onClose} className="p-4 rounded-2xl hover:bg-zinc-900 transition-all text-zinc-500 hover:text-white cursor-pointer group border border-transparent hover:border-zinc-800">
-            <X className="h-8 w-8 group-hover:rotate-90 transition-transform" />
-          </button>
+              <div>
+                 <h2 className="text-2xl font-bold text-white tracking-tight leading-none">Hub Perdagangan Strategis</h2>
+                 <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-1">{currentCountry.flag} {currentCountry.name_id} — Strategic Trade Terminal</p>
+              </div>
+           </div>
+           <div className="flex items-center gap-4">
+              <button
+                 className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group relative shadow-[0_0_15px_rgba(59,130,246,0.1)] active:scale-95 flex items-center gap-2"
+                 title="Logistik Internasional"
+              >
+                 <Ship className="h-6 w-6 text-blue-500 group-hover:scale-110 transition-transform" />
+              </button>
+              <button
+                 onClick={onClose}
+                 className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
+              >
+                 <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+                 <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+              </button>
+           </div>
         </div>
 
         <div className="flex-1 flex overflow-hidden relative z-10">

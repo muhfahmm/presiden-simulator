@@ -185,19 +185,39 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
   };
 
   return (
-    <div className="absolute inset-0 bg-black/80 z-50 flex items-center justify-center animate-in fade-in duration-200 p-8">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-3xl w-full max-w-6xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col relative">
-        <div className="px-10 py-8 border-b border-zinc-900 flex items-center justify-between bg-zinc-900/30">
-          <div className="flex items-center gap-4">
-            <div className="p-3 bg-green-500/10 rounded-2xl border border-green-500/20"><FileText className="h-7 w-7 text-green-500" /></div>
-            <div>
-              <h2 className="text-3xl font-black text-white tracking-tighter uppercase italic">Manajemen Pajak</h2>
-              <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.3em] mt-1">Taxation & Revenue Center</p>
-            </div>
-          </div>
-          <button onClick={onClose} className="p-3 rounded-2xl hover:bg-zinc-800 transition-all text-zinc-400 hover:text-white cursor-pointer group">
-            <X className="h-7 w-7 group-hover:rotate-90 transition-transform" />
-          </button>
+    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[92vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+        
+        {/* Glow Effects */}
+        <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent blur-sm"></div>
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-emerald-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
+        {/* Header (Synchronized with EnergiModal) */}
+        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
+           <div className="flex items-center gap-3">
+              <div className="p-2 bg-emerald-500/10 rounded-xl">
+                 <FileText className="h-6 w-6 text-emerald-500" />
+              </div>
+              <div>
+                 <h2 className="text-2xl font-bold text-white tracking-tight">Manajemen Pajak Nasional</h2>
+                 <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Taxation & Revenue Center</p>
+              </div>
+           </div>
+           <div className="flex items-center gap-4">
+              <button
+                 className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group relative shadow-[0_0_15px_rgba(16,185,129,0.1)] active:scale-95 flex items-center gap-2"
+                 title="Audit & Kepatuhan"
+              >
+                 <Scale className="h-6 w-6 text-emerald-500 group-hover:scale-110 transition-transform" />
+              </button>
+              <button
+                 onClick={onClose}
+                 className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
+              >
+                 <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+                 <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+              </button>
+           </div>
         </div>
         
         <div className="px-10 py-6 bg-zinc-900/10 border-b border-zinc-900 flex items-center justify-between">

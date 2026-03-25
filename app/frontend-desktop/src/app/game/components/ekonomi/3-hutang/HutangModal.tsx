@@ -17,22 +17,39 @@ export default function HutangModal({ isOpen, onClose }: ModalProps) {
   ];
 
   return (
-    <div className="absolute inset-0 bg-black/80 z-50 flex items-center justify-center animate-in fade-in duration-200 p-8">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-3xl w-full max-w-4xl max-h-[85vh] overflow-hidden shadow-2xl flex flex-col">
-        {/* Header */}
+    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[92vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+        
+        {/* Glow Effects */}
+        <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-rose-500/50 to-transparent blur-sm"></div>
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-rose-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
+        {/* Header (Synchronized with EnergiModal) */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-red-500/10 rounded-xl">
-              <CreditCard className="h-6 w-6 text-red-500" />
-            </div>
-            <div>
-              <h2 className="text-2xl font-bold text-white tracking-tight">Pinjaman & Hutang</h2>
-              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Debt & Financing</p>
-            </div>
-          </div>
-          <button onClick={onClose} className="p-2 rounded-xl hover:bg-zinc-800 transition-all text-zinc-400 hover:text-white cursor-pointer group">
-            <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
-          </button>
+           <div className="flex items-center gap-3">
+              <div className="p-2 bg-rose-500/10 rounded-xl">
+                 <Landmark className="h-6 w-6 text-rose-500" />
+              </div>
+              <div>
+                 <h2 className="text-2xl font-bold text-white tracking-tight">Hutang Luar Negeri</h2>
+                 <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Debt & Strategic Financing</p>
+              </div>
+           </div>
+           <div className="flex items-center gap-4">
+              <button
+                 className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group relative shadow-[0_0_15px_rgba(225,29,72,0.1)] active:scale-95 flex items-center gap-2"
+                 title="Manajemen Resiko"
+              >
+                 <ShieldAlert className="h-6 w-6 text-rose-500 group-hover:scale-110 transition-transform" />
+              </button>
+              <button
+                 onClick={onClose}
+                 className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
+              >
+                 <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+                 <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+              </button>
+           </div>
         </div>
         
         {/* Content */}

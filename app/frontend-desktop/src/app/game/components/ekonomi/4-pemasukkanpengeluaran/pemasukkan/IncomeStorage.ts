@@ -1,4 +1,4 @@
-import { gameStorage } from "../../../../gamestorage";
+import { gameStorage } from "@/app/game/gamestorage";
 
 const INCOME_STORAGE_KEY = "em4_income_data";
 

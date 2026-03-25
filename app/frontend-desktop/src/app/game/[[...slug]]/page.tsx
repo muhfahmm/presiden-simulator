@@ -17,7 +17,7 @@ import { countries } from "../../select-country/data/countries";
 import { CountryData } from "../../select-country/data/types";
 import GameTimeControls from "../components/time/GameTimeControls";
 import { calculateDailyBudgetDelta } from "../data/economy/economyLogic";
-import { expenseStorage } from "../components/ekonomi/3-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
+import { expenseStorage } from "@/app/game/components/ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
 import { calculatePopulationHappiness } from "../data/social/HappinessStorage";
 
 // Bottom Nav Modals
@@ -26,12 +26,11 @@ import NaikkanRatingModal from "../components/rating-presiden/NaikkanRatingModal
 // Ekonomi Modals
 import PerdaganganModal from "../components/ekonomi/1-perdagangan/PerdaganganModal";
 import PajakModal from "../components/ekonomi/2-pajak/PajakModal";
-import HutangModal from "../components/ekonomi/HutangModal";
-import PemasukkanPengeluaranModal from "../components/ekonomi/3-pemasukkanpengeluaran/PemasukkanPengeluaranModal";
-import EnergiModal from "../components/ekonomi/4-energi/EnergiModal";
-import ProduksiBarangModal from "../components/ekonomi/5-produksi-barang/ProduksiBarangModal";
-import MineralsModal from "../components/ekonomi/MineralsModal";
-import HargaBarangModal from "../components/ekonomi/HargaBarangModal";
+import HutangModal from "../components/ekonomi/3-hutang/HutangModal";
+import PemasukkanPengeluaranModal from "../components/ekonomi/4-pemasukkanpengeluaran/PemasukkanPengeluaranModal";
+import EnergiModal from "../components/ekonomi/5-energi/EnergiModal";
+import ProduksiBarangModal from "../components/ekonomi/6-produksi-barang/ProduksiBarangModal";
+import MineralsModal from "../components/ekonomi/7-minerals/MineralsModal";
 // Other Modals
 import ProduksiHubV3 from "../components/pembangunan/1-produksi/ProduksiModal";
 import ProduksiMiliterModal from "../components/pembangunan/2-produksi-militer/ProduksiMiliterModal";
@@ -104,31 +103,85 @@ export default function GamePage() {
   const [isCentered, setIsCentered] = useState(false);
   const slug = params?.slug || [];
   let initialMenu = "Peta Taktis";
-  if (slug[0] === 'produksi') initialMenu = "Menu:Produksi";
-  else if (slug[0] === 'produksi-militer') initialMenu = "Menu:ProduksiMiliter";
-  else if (slug[0] === 'tempat-umum') initialMenu = "Menu:TempatUmum";
-  else if (slug[0] === 'perdagangan') initialMenu = "Menu:Perdagangan";
-  else if (slug[0] === 'harga-barang') initialMenu = "Menu:HargaBarang";
-  else if (slug[0] === 'pajak') initialMenu = "Menu:Pajak";
-  else if (slug[0] === 'hutang') initialMenu = "Menu:Hutang";
-  else if (slug[0] === 'pemasukkan-pengeluaran') initialMenu = "Menu:Budget";
-  else if (slug[0] === 'energi') initialMenu = "Menu:Energi";
-  else if (slug[0] === 'produksi-barang') initialMenu = "Menu:ProduksiBarang";
+
+  // Hierarchical Mapping Logic
+  const category = slug[0];
+  const subMenu = slug[1];
+
+  if (category === 'rating-presiden') {
+    if (subMenu === 'rating-dashboard') initialMenu = "Dashboard:Rating";
+    else if (subMenu === 'naikkan-rating') initialMenu = "Action:NaikkanRating";
+    else initialMenu = "Rating Presiden";
+  } else if (category === 'ekonomi') {
+    if (subMenu === 'perdagangan') initialMenu = "Menu:Perdagangan";
+    else if (subMenu === 'pajak') initialMenu = "Menu:Pajak";
+    else if (subMenu === 'hutang') initialMenu = "Menu:Hutang";
+    else if (subMenu === 'pemasukkan-pengeluaran') initialMenu = "Menu:Budget";
+    else if (subMenu === 'energi') initialMenu = "Menu:Energi";
+    else if (subMenu === 'produksi-barang') initialMenu = "Menu:ProduksiBarang";
+    else if (subMenu === 'minerals') initialMenu = "Menu:Minerals";
+    else initialMenu = "Ekonomi";
+  } else if (category === 'pembangunan') {
+    if (subMenu === 'produksi') initialMenu = "Menu:Produksi";
+    else if (subMenu === 'produksi-militer') initialMenu = "Menu:ProduksiMiliter";
+    else if (subMenu === 'tempat-umum') initialMenu = "Menu:TempatUmum";
+    else initialMenu = "Pembangunan";
+  } else if (category === 'pertahanan') {
+    if (subMenu === 'komando-pertahanan') initialMenu = "Komando Pertahanan";
+    else if (subMenu === 'armada-militer') initialMenu = "Menu:ArmadaMiliter";
+    else if (subMenu === 'armada-polisi') initialMenu = "Menu:ArmadaPolisi";
+    else initialMenu = "Pertahanan";
+  } else if (category === 'geopolitik') {
+    if (subMenu === 'geopolitik-luar-negeri') initialMenu = "Geopolitik & Luar Negeri";
+    else initialMenu = "Geopolitik";
+  } else if (category === 'kementrian') {
+    if (subMenu === 'kementrian-dashboard') initialMenu = "Dashboard:Kementerian";
+    else initialMenu = "Kementerian";
+  } else if (category === 'berita') {
+    initialMenu = "Menu:Berita";
+  } else if (category === 'inbox') {
+    initialMenu = "Menu:Inbox";
+  } else if (category === 'minerals') {
+    // Backward compatibility for flat minerals slug
+    initialMenu = "Menu:Minerals";
+  }
   
   const [activeMenu, setActiveMenu] = useState<string>(initialMenu);
 
   useEffect(() => {
     const menuToPath: Record<string, string> = {
-      "Menu:Produksi": "/game/produksi",
-      "Menu:ProduksiMiliter": "/game/produksi-militer",
-      "Menu:TempatUmum": "/game/tempat-umum",
-      "Menu:Perdagangan": "/game/perdagangan",
-      "Menu:HargaBarang": "/game/harga-barang",
-      "Menu:Pajak": "/game/pajak",
-      "Menu:Hutang": "/game/hutang",
-      "Menu:Budget": "/game/pemasukkan-pengeluaran",
-      "Menu:Energi": "/game/energi",
-      "Menu:ProduksiBarang": "/game/produksi-barang"
+      // Rating Presiden
+      "Rating Presiden": "/game/rating-presiden",
+      "Dashboard:Rating": "/game/rating-presiden/rating-dashboard",
+      "Action:NaikkanRating": "/game/rating-presiden/naikkan-rating",
+      // Ekonomi
+      "Ekonomi": "/game/ekonomi",
+      "Menu:Perdagangan": "/game/ekonomi/perdagangan",
+      "Menu:Pajak": "/game/ekonomi/pajak",
+      "Menu:Hutang": "/game/ekonomi/hutang",
+      "Menu:Budget": "/game/ekonomi/pemasukkan-pengeluaran",
+      "Menu:Energi": "/game/ekonomi/energi",
+      "Menu:ProduksiBarang": "/game/ekonomi/produksi-barang",
+      "Menu:Minerals": "/game/ekonomi/minerals",
+      // Pembangunan
+      "Pembangunan": "/game/pembangunan",
+      "Menu:Produksi": "/game/pembangunan/produksi",
+      "Menu:ProduksiMiliter": "/game/pembangunan/produksi-militer",
+      "Menu:TempatUmum": "/game/pembangunan/tempat-umum",
+      // Pertahanan
+      "Pertahanan": "/game/pertahanan",
+      "Komando Pertahanan": "/game/pertahanan/komando-pertahanan",
+      "Menu:ArmadaMiliter": "/game/pertahanan/armada-militer",
+      "Menu:ArmadaPolisi": "/game/pertahanan/armada-polisi",
+      // Geopolitik
+      "Geopolitik": "/game/geopolitik",
+      "Geopolitik & Luar Negeri": "/game/geopolitik/geopolitik-luar-negeri",
+      // Kementerian
+      "Kementerian": "/game/kementrian",
+      "Dashboard:Kementerian": "/game/kementrian/kementrian-dashboard",
+      // Sidebar Utilities
+      "Menu:Berita": "/game/berita",
+      "Menu:Inbox": "/game/inbox"
     };
 
     const targetPath = menuToPath[activeMenu] || "/game";
@@ -457,13 +510,9 @@ export default function GamePage() {
                 isOpen={activeMenu === "Menu:ProduksiBarang"} 
                 onClose={() => setActiveMenu("Ekonomi")} 
               />
-              <HargaBarangModal 
-                isOpen={activeMenu === "Menu:HargaBarang"} 
-                onClose={() => setActiveMenu("Ekonomi")} 
-              />
               <MineralsModal 
-                isOpen={activeMenu === "Minerals"} 
-                onClose={() => setActiveMenu("Peta Taktis")} 
+                isOpen={activeMenu === "Menu:Minerals"} 
+                onClose={() => setActiveMenu("Ekonomi")} 
               />
               <ProduksiHubV3 
                 isOpen={activeMenu === "Menu:Produksi"} 

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { getStoredGameDate } from "../../../data/time/gameTime";
 import { getDynamicPrice } from "./tradeData";
 
@@ -18,6 +18,12 @@ export const TradePriceChart: React.FC<TradePriceChartProps> = ({
   color = "#3b82f6"
 }) => {
   const [hoverData, setHoverData] = useState<{ x: number; y: number; val: number; index: number } | null>(null);
+  const [tick, setTick] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => setTick(t => t + 1), 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   // Generate consistent chart data matching getDynamicPrice with fixed interval alignment
   const chartData = useMemo(() => {
@@ -41,12 +47,17 @@ export const TradePriceChart: React.FC<TradePriceChartProps> = ({
     const nowMs = currentDate.getTime();
     const intervalRoundedNow = Math.floor(nowMs / config.stepMs) * config.stepMs;
     
+    // Real-time jitter seed for visual "life" even when paused
+    const realTimeSeed = Math.floor(Date.now() / 1000);
+    
     // To ensure consistency, previous points (0 to points-2) are pinned to fixed intervals
     // Point points-1 is Exactly Now.
     
     for (let i = 0; i < points; i++) {
       if (i === points - 1) {
-        data[i] = basePrice;
+        // Apply microscopic live jitter to the current price
+        const liveJitter = (Math.sin(realTimeSeed + i) * 1000) % 1;
+        data[i] = basePrice * (1 + (liveJitter * 0.002)); // 0.2% live jitter
       } else {
         const pointMs = intervalRoundedNow - (points - 2 - i) * config.stepMs;
         const pointDate = new Date(pointMs);
@@ -62,8 +73,10 @@ export const TradePriceChart: React.FC<TradePriceChartProps> = ({
           const noise = (Math.sin(hourlySeed + hourStamp) * 10000) % 1;
           val = Math.round(val * (1 + noise * 0.05));
         }
-        
-        data[i] = val;
+
+        // Apply microscopic "historical breathing" jitter
+        const histJitter = (Math.sin(realTimeSeed + i) * 1000) % 1;
+        data[i] = val * (1 + (histJitter * 0.001)); // 0.1% breathing
       }
     }
 
@@ -106,7 +119,7 @@ export const TradePriceChart: React.FC<TradePriceChartProps> = ({
       points: pathPoints.map((p, i) => ({ ...p, val: smoothedData[i] })),
       labels: finalLabels
     };
-  }, [selectedKey, selectedTimeframe, basePrice, type]);
+  }, [selectedKey, selectedTimeframe, basePrice, type, tick]);
 
   const handleMouseMove = (e: React.MouseEvent<SVGSVGElement>) => {
     const svg = e.currentTarget;

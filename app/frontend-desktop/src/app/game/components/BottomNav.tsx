@@ -20,7 +20,6 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
     { id: "Pertahanan", icon: Shield, label: "Pertahanan" },
     { id: "Geopolitik", icon: Globe, label: "Geopolitik" },
     { id: "Kementerian", icon: Landmark, label: "Kementerian" },
-    { id: "Minerals", icon: Gem, label: "Minerals" },
   ];
 
   const subMenuItems: Record<string, any> = {
@@ -30,12 +29,12 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
     ],
     "Ekonomi": [
       { id: "Menu:Perdagangan", label: "Perdagangan", icon: ArrowRightLeft },
-      { id: "Menu:HargaBarang", label: "Harga Barang", icon: Tag },
       { id: "Menu:Pajak", label: "Manajemen Pajak", icon: FileText },
       { id: "Menu:Hutang", label: "Pinjaman & Hutang", icon: CreditCard },
       { id: "Menu:Budget", label: "Pemasukkan & Pengeluaran", icon: BarChart3 },
       { id: "Menu:Energi", label: "Statistik Energi", icon: Zap },
       { id: "Menu:ProduksiBarang", label: "Produksi Barang", icon: Package },
+      { id: "Menu:Minerals", label: "Mineral Kritis & Strategis", icon: Gem },
     ],
     "Pembangunan": [
       { id: "Menu:Produksi", label: "Produksi", icon: Hammer },
@@ -83,11 +82,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
       setActiveMenu("Peta Taktis");
     } else {
       setActiveTab(id);
-      // For simple menus, auto-select the sub-item to open modal
-      // EXCEPT for Rating Presiden which now has two interactive options
-      if (id !== "Pembangunan" && id !== "Rating Presiden") {
-        setActiveMenu(id);
-      }
+      setActiveMenu(id);
     }
   };
 
