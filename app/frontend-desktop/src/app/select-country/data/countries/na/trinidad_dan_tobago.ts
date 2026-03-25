@@ -145,6 +145,12 @@ export const trinidad_dan_tobago: CountryData = {
         "drone_kamikaze": 0,
         "pesawat_angkut": 0
       }
+  ,
+    "personel": {
+        "infanteri_reguler": 290000,
+        "pasukan_khusus": 0,
+        "pasukan_cadangan": 0
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK

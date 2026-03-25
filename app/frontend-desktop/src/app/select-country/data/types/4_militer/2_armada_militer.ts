@@ -27,4 +27,9 @@ export interface SektorArmadaMiliter {
     drone_kamikaze: number;
     pesawat_angkut: number;
   };
+  personel: {
+    infanteri_reguler: number;
+    pasukan_khusus: number;
+    pasukan_cadangan: number;
+  };
 }

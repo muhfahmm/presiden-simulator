@@ -145,6 +145,12 @@ export const jepang: CountryData = {
         "drone_kamikaze": 0,
         "pesawat_angkut": 0
       }
+  ,
+    "personel": {
+        "infanteri_reguler": 320000,
+        "pasukan_khusus": 10000,
+        "pasukan_cadangan": 56000
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK

@@ -10,6 +10,14 @@ import { countries } from "./data/countries/_index";
 import { gameStorage } from "../game/gamestorage";
 import { CountryData } from "./data/types/_index";
 import {
+  calculateTotalInfantry, calculateInfantryPower, calculateTankPower, calculateApcPower,
+  calculateArtilleryPower, calculateRocketPower, calculateSamPower, calculateTacticalPower,
+  calculateCarrierPower, calculateDestroyerPower, calculateCorvettePower, calculateSubmarinePower,
+  calculateRegularSubPower, calculateMineShipPower, calculateLogisticsPower, calculateStealthPower,
+  calculateInterceptorPower, calculateBomberPower, calculateAttackHeliPower, calculateReconPower,
+  calculateUavPower, calculateKamikazePower, calculateTransportPower
+} from "../game/components/pembangunan/2-produksi-militer/militaryLogic";
+import {
   hitungTotalKapasitas, KAPASITAS_LISTRIK,
   hitungKonsumsiProduksi, KONSUMSI_PRODUKSI, KONSUMSI_PANGAN,
   hitungKonsumsiPertahanan, KONSUMSI_PERTAHANAN, KONSUMSI_FLEET, KONSUMSI_STRATEGIC,
@@ -474,104 +482,210 @@ export default function SelectCountry() {
                 <div className="h-px bg-zinc-800/50" />
 
                 {/* Military Fleet */}
-                <div className="flex flex-col gap-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Truck size={10} /> Armada Militer (21 Jenis)</span>
-                  </div>
-
-                  {/* Darat */}
-                  <div className="grid grid-cols-3 gap-1.5">
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">MBT</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.darat.tank_tempur_utama}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">APC/IFV</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.darat.apc_ifv}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Artileri</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.darat.artileri_berat}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">MLRS</span>
-                      <span className="text-xs font-black text-orange-400 leading-none">{currentData.armada_militer.darat.sistem_peluncur_roket}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">SAM</span>
-                      <span className="text-xs font-black text-blue-400 leading-none">{currentData.armada_militer.darat.pertahanan_udara_mobile}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Taktis</span>
-                      <span className="text-xs font-black text-zinc-400 leading-none">{currentData.armada_militer.darat.kendaraan_taktis}</span>
-                    </div>
-                  </div>
-
-                  {/* Laut */}
-                  <div className="grid grid-cols-3 gap-1.5">
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Induk</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.laut.kapal_induk}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Destroyer</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.laut.kapal_destroyer}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Korvet</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.laut.kapal_korvet}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Selam N</span>
-                      <span className="text-xs font-black text-emerald-400 leading-none">{currentData.armada_militer.laut.kapal_selam_nuklir}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Selam R</span>
-                      <span className="text-xs font-black text-zinc-300 leading-none">{currentData.armada_militer.laut.kapal_selam_regular}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Ranjau</span>
-                      <span className="text-xs font-black text-red-400 leading-none">{currentData.armada_militer.laut.kapal_ranjau}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Logistik</span>
-                      <span className="text-xs font-black text-blue-300 leading-none">{currentData.armada_militer.laut.kapal_logistik}</span>
+                <div className="flex flex-col gap-4">
+                  
+                  {/* Armada Darat */}
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                      <Truck size={12} className="text-zinc-500" /> Armada Darat (7 Jenis)
+                    </span>
+                    <div className="grid grid-cols-3 gap-1.5">
+                      {/* Infanteri - Baru dipindah kesini */}
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Infanteri</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateInfantryPower(currentData.armada_militer.barak).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-white leading-none">{(currentData.armada_militer.barak * 10000 / 1000).toFixed(0)}K</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Tank Baja</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateTankPower(currentData.armada_militer.darat.tank_tempur_utama).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.darat.tank_tempur_utama}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">APC / IFV</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateApcPower(currentData.armada_militer.darat.apc_ifv).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.darat.apc_ifv}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Artileri</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateArtilleryPower(currentData.armada_militer.darat.artileri_berat).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.darat.artileri_berat}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Sistem Roket</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateRocketPower(currentData.armada_militer.darat.sistem_peluncur_roket).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-orange-400 leading-none">{currentData.armada_militer.darat.sistem_peluncur_roket}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Sistem SAM</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateSamPower(currentData.armada_militer.darat.pertahanan_udara_mobile).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-blue-400 leading-none">{currentData.armada_militer.darat.pertahanan_udara_mobile}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kend. Taktis</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateTacticalPower(currentData.armada_militer.darat.kendaraan_taktis).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-zinc-400 leading-none">{currentData.armada_militer.darat.kendaraan_taktis}</span>
+                      </div>
                     </div>
                   </div>
 
-                  {/* Udara */}
-                  <div className="grid grid-cols-3 gap-1.5">
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Stealth</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.jet_tempur_siluman}</span>
+                  <div className="h-px bg-zinc-800/30" />
+
+                  {/* Armada Laut */}
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                      <Anchor size={12} className="text-blue-500" /> Armada Laut (7 Jenis)
+                    </span>
+                    <div className="grid grid-cols-3 gap-1.5">
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kapal Induk</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateCarrierPower(currentData.armada_militer.laut.kapal_induk).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.laut.kapal_induk}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Destroyer</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateDestroyerPower(currentData.armada_militer.laut.kapal_destroyer).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.laut.kapal_destroyer}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Korvet</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateCorvettePower(currentData.armada_militer.laut.kapal_korvet).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.laut.kapal_korvet}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">K. Selam Nuklir</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateSubmarinePower(currentData.armada_militer.laut.kapal_selam_nuklir).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-emerald-400 leading-none">{currentData.armada_militer.laut.kapal_selam_nuklir}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">K. Selam Reguler</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateRegularSubPower(currentData.armada_militer.laut.kapal_selam_regular).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-zinc-300 leading-none">{currentData.armada_militer.laut.kapal_selam_regular}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kapal Ranjau</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateMineShipPower(currentData.armada_militer.laut.kapal_ranjau).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-red-400 leading-none">{currentData.armada_militer.laut.kapal_ranjau}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Logistik</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateLogisticsPower(currentData.armada_militer.laut.kapal_logistik).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-blue-300 leading-none">{currentData.armada_militer.laut.kapal_logistik}</span>
+                      </div>
                     </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Intercept</span>
-                      <span className="text-xs font-black text-blue-400 leading-none">{currentData.armada_militer.udara.jet_tempur_interceptor}</span>
+                  </div>
+
+                  <div className="h-px bg-zinc-800/30" />
+
+                  {/* Armada Udara */}
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                      <Plane size={12} className="text-cyan-500" /> Armada Udara (8 Jenis)
+                    </span>
+                    <div className="grid grid-cols-3 gap-1.5">
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Jet Stealth</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateStealthPower(currentData.armada_militer.udara.jet_tempur_siluman).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.jet_tempur_siluman}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Interceptor</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateInterceptorPower(currentData.armada_militer.udara.jet_tempur_interceptor).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-blue-400 leading-none">{currentData.armada_militer.udara.jet_tempur_interceptor}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Bomber</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateBomberPower(currentData.armada_militer.udara.pesawat_pengebom).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-red-500 leading-none">{currentData.armada_militer.udara.pesawat_pengebom}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Heli Serang</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateAttackHeliPower(currentData.armada_militer.udara.helikopter_serang).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.helikopter_serang}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">P. Intai</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateReconPower(currentData.armada_militer.udara.pesawat_pengintai).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.pesawat_pengintai}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">UAV Intai</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateUavPower(currentData.armada_militer.udara.drone_intai_uav).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-emerald-400 leading-none">{currentData.armada_militer.udara.drone_intai_uav}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kamikaze</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateKamikazePower(currentData.armada_militer.udara.drone_kamikaze).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-orange-400 leading-none">{currentData.armada_militer.udara.drone_kamikaze}</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <div className="flex items-center justify-between mb-1">
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">P. Angkut</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateTransportPower(currentData.armada_militer.udara.pesawat_angkut).toLocaleString('id-ID')}</span>
+                        </div>
+                        <span className="text-xs font-black text-zinc-400 leading-none">{currentData.armada_militer.udara.pesawat_angkut}</span>
+                      </div>
                     </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Bomber</span>
-                      <span className="text-xs font-black text-red-500 leading-none">{currentData.armada_militer.udara.pesawat_pengebom}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Heli Ser</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.helikopter_serang}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Intai</span>
-                      <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.pesawat_pengintai}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">UAV</span>
-                      <span className="text-xs font-black text-emerald-400 leading-none">{currentData.armada_militer.udara.drone_intai_uav}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Kamikaze</span>
-                      <span className="text-xs font-black text-orange-400 leading-none">{currentData.armada_militer.udara.drone_kamikaze}</span>
-                    </div>
-                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-[10px] text-zinc-500 font-bold uppercase leading-none mb-1">Angkut</span>
-                      <span className="text-xs font-black text-zinc-400 leading-none">{currentData.armada_militer.udara.pesawat_angkut}</span>
+                  </div>
+
+                  <div className="h-px bg-zinc-800/30" />
+
+                  {/* Special Forces & Reserves */}
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                      <Users size={12} className="text-zinc-500" /> Personel Spesialis & Cadangan
+                    </span>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none mb-1">Pasukan Khusus</span>
+                        <span className="text-xs font-black text-white leading-none">{(currentData.armada_militer.personel.pasukan_khusus / 1000).toFixed(1)}K</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none mb-1">Pasu. Cadangan</span>
+                        <span className="text-xs font-black text-white leading-none">{(currentData.armada_militer.personel.pasukan_cadangan / 1000).toFixed(1)}K</span>
+                      </div>
                     </div>
                   </div>
                 </div>

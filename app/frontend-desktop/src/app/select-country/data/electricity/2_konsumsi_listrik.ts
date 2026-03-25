@@ -99,6 +99,11 @@ export const KONSUMSI_FLEET = {
     drone_intai_uav: 0.5,
     drone_kamikaze: 0.2,
     pesawat_angkut: 3
+  },
+  personel: {
+    infanteri_reguler: 0.0001,
+    pasukan_khusus: 0.0002,
+    pasukan_cadangan: 0.00002
   }
 };
 
@@ -127,9 +132,12 @@ export function hitungKonsumsiPertahanan(
   const udaraCons = Object.keys(KONSUMSI_FLEET.udara).reduce((total, key) => 
     total + ((fleet.udara as any)[key] ?? 0) * (KONSUMSI_FLEET.udara as any)[key], 0);
 
+  const personnelCons = Object.keys(KONSUMSI_FLEET.personel).reduce((total, key) => 
+    total + ((fleet.personel as any)[key] ?? 0) * (KONSUMSI_FLEET.personel as any)[key], 0);
+
   const fleetCons = (
     (fleet.barak ?? 0) * KONSUMSI_PERTAHANAN.barak +
-    daratCons + lautCons + udaraCons
+    daratCons + lautCons + udaraCons + personnelCons
   );
 
   const securityCons = (

@@ -145,6 +145,12 @@ export const indonesia: CountryData = {
         "drone_kamikaze": 0,
         "pesawat_angkut": 0
       }
+  ,
+    "personel": {
+        "infanteri_reguler": 340000,
+        "pasukan_khusus": 30000,
+        "pasukan_cadangan": 400000
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK

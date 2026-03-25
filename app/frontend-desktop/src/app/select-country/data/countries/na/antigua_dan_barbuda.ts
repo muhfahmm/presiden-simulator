@@ -145,6 +145,12 @@ export const antigua_dan_barbuda: CountryData = {
         "drone_kamikaze": 0,
         "pesawat_angkut": 0
       }
+  ,
+    "personel": {
+        "infanteri_reguler": 40000,
+        "pasukan_khusus": 0,
+        "pasukan_cadangan": 0
+      }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
