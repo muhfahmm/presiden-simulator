@@ -82,13 +82,15 @@ export const costa_rica: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 17.5,
     "sapi_perah": 16,
     "sapi_potong": 22,
     "domba_kambing": 33,
     "udang_kerang": 11.5,
-    "ikan": 10,
+    "ikan": 10
+  },
+  "sektor_agrikultur": {
     "padi": 19,
     "gandum_jagung": 24.5,
     "sayur_umbi": 9.5,
@@ -110,7 +112,6 @@ export const costa_rica: CountryData = {
     "pangkalan_laut": 2,
     "program_luar_angkasa": 23,
     "pertahanan_siber": 2,
-    "anggaran_pertahanan": 194
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const costa_rica: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

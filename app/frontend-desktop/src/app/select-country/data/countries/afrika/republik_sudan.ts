@@ -82,13 +82,15 @@ export const republik_sudan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 22.0,
     "sapi_perah": 19,
     "sapi_potong": 21,
     "domba_kambing": 22,
     "udang_kerang": 11.0,
-    "ikan": 22,
+    "ikan": 22
+  },
+  "sektor_agrikultur": {
     "padi": 18,
     "gandum_jagung": 35.0,
     "sayur_umbi": 24.0,
@@ -110,7 +112,6 @@ export const republik_sudan: CountryData = {
     "pangkalan_laut": 17,
     "program_luar_angkasa": 12,
     "pertahanan_siber": 7,
-    "anggaran_pertahanan": 69
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const republik_sudan: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

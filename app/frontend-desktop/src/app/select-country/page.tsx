@@ -15,16 +15,35 @@ import {
   calculateCarrierPower, calculateDestroyerPower, calculateCorvettePower, calculateSubmarinePower,
   calculateRegularSubPower, calculateMineShipPower, calculateLogisticsPower, calculateStealthPower,
   calculateInterceptorPower, calculateBomberPower, calculateAttackHeliPower, calculateReconPower,
-  calculateUavPower, calculateKamikazePower, calculateTransportPower
+  calculateUavPower, calculateKamikazePower, calculateTransportPower,
+  calculatePrisonCapacity, calculateArmoryCapacity, calculateTankHangarCapacity, calculateAcademyCapacity,
+  calculateAirBaseCapacity, calculateNavalBaseCapacity,
+  PRISON_POWER,
+  BARRACKS_POWER,
+  ARMORY_POWER,
+  TANK_HANGAR_POWER,
+  ACADEMY_POWER,
+  COMMAND_CENTER_POWER,
+  AIRBASE_POWER,
+  NAVALBASE_POWER,
+  SPACE_PROGRAM_POWER,
+  CYBER_DEFENSE_POWER,
+  NUCLEAR_SYSTEM_POWER,
+  DRONE_FACTORY_POWER,
+  AMMO_FACTORY_POWER,
+  VEHICLE_FACTORY_POWER,
+  HEAVY_WEAPON_FACTORY_POWER
 } from "../game/components/pembangunan/2-produksi-militer/militaryLogic";
 import {
   hitungTotalKapasitas, KAPASITAS_LISTRIK,
-  hitungKonsumsiProduksi, KONSUMSI_PRODUKSI, KONSUMSI_PANGAN,
+  hitungKonsumsiProduksi, KONSUMSI_PRODUKSI, hitungKonsumsiPangan, KONSUMSI_PANGAN,
   hitungKonsumsiPertahanan, KONSUMSI_PERTAHANAN, KONSUMSI_FLEET, KONSUMSI_STRATEGIC,
+  hitungKonsumsiBangunanMiliter, hitungKonsumsiPabrikMiliter,
   hitungKonsumsiSosial, KONSUMSI_SOSIAL,
   hitungKonsumsiOlahraga,
   hitungKonsumsiTransportasi, KONSUMSI_TRANSPORTASI,
-  hitungKonsumsiEkstraksi, KONSUMSI_EKSTRAKSI
+  hitungKonsumsiEkstraksi, KONSUMSI_EKSTRAKSI,
+  hitungTotalKonsumsiNasional
 } from "./data/electricity";
 import {
   Sword, Anchor, Plane, ShieldCheck, Globe2, TrendingUp, Gem, Droplets, Beef, TreePine, Mountain,
@@ -33,7 +52,7 @@ import {
   Syringe, GraduationCap, Crosshair, RadioTower, Landmark, Fish, Construction, Pill, Car, Bike,
   Utensils, Apple, Coffee, Milk, Bird, Egg, Leaf, Shell, Bean, Carrot, Cookie, Croissant, Soup,
   HeartPulse, Search, Library, Lightbulb, Archive, ShieldAlert, Warehouse, Lock, Scale,
-  Truck, Shield, Users, Coins, Globe, Church, Battery, Pickaxe, FlaskConical, Bus
+  Truck, Shield, Users, Coins, Globe, Church, Battery, Pickaxe, FlaskConical, Bus, Wheat
 } from "lucide-react";
 
 export default function SelectCountry() {
@@ -276,14 +295,32 @@ export default function SelectCountry() {
             <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isElectricityOpen ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0 pointer-events-none"}`}>
               <div className="flex flex-col gap-3 overflow-y-auto max-h-[400px] no-scrollbar pr-1">
                 <div className="flex flex-col gap-1.5">
-                  <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1"><Zap size={8} /> Jaringan Energi</span>
+                  <div className="flex items-center justify-between w-full">
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1"><Zap size={8} /> Jaringan Energi</span>
+                    {hasSelection && (
+                      <span className={`text-[10px] font-black uppercase tracking-tighter ${
+                        (hitungTotalKapasitas(currentData.sektor_listrik) - hitungTotalKonsumsiNasional(currentData)) >= 0 
+                        ? 'text-emerald-500/80' : 'text-red-500/80'
+                      }`}>
+                        {(hitungTotalKapasitas(currentData.sektor_listrik) - hitungTotalKonsumsiNasional(currentData)) >= 0 ? 'Surplus' : 'Defisit'}: {Math.abs(hitungTotalKapasitas(currentData.sektor_listrik) - hitungTotalKonsumsiNasional(currentData)).toLocaleString('id-ID')} MW
+                      </span>
+                    )}
+                  </div>
                   <ProgressStat label="Power Grid" value={currentData.sektor_listrik.jaringan_listrik} color="bg-amber-500" icon={<Zap size={10} />} />
-                  <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1.5 shadow-inner">
-                    <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500" /> Total Daya</span>
-                    <span className="text-amber-500 text-sm">
-                      {hitungTotalKapasitas(currentData.sektor_listrik).toLocaleString('id-ID')} MW
-                      <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_listrik.pembangkit_nuklir + currentData.sektor_listrik.pembangkit_air + currentData.sektor_listrik.pembangkit_surya + currentData.sektor_listrik.pembangkit_termal + currentData.sektor_listrik.pembangkit_gas + currentData.sektor_listrik.pembangkit_angin} Unit)</span>
-                    </span>
+                  <div className="flex flex-col gap-2 mt-1.5">
+                    <div className="flex items-center justify-between text-[11px] font-black bg-emerald-500/10 p-2 rounded-xl border border-emerald-500/20 shadow-inner">
+                      <span className="text-emerald-400 flex items-center gap-1.5"><Zap size={12} /> 1. Produksi Listrik</span>
+                      <span className="text-emerald-400 text-sm">
+                        {hitungTotalKapasitas(currentData.sektor_listrik).toLocaleString('id-ID')} MW
+                        <span className="text-emerald-500/60 text-[10px] font-bold font-sans ml-1">({currentData.sektor_listrik.pembangkit_nuklir + currentData.sektor_listrik.pembangkit_air + currentData.sektor_listrik.pembangkit_surya + currentData.sektor_listrik.pembangkit_termal + currentData.sektor_listrik.pembangkit_gas + currentData.sektor_listrik.pembangkit_angin} Unit)</span>
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between text-[11px] font-black bg-amber-500/10 p-2 rounded-xl border border-amber-500/20 shadow-inner">
+                      <span className="text-amber-400 flex items-center gap-1.5"><Zap size={12} /> 2. Pengeluaran Listrik</span>
+                      <span className="text-amber-400 text-sm">
+                        {hitungTotalKonsumsiNasional(currentData).toLocaleString('id-ID')} MW
+                      </span>
+                    </div>
                   </div>
                   <div className={`grid ${getGridCols(leftWidth)} gap-x-3 gap-y-2 mt-2`}>
                     <DetailStat icon={<Radio size={12} className="text-cyan-400" />} label="PLTN" value={`${currentData.sektor_listrik.pembangkit_nuklir} (${(currentData.sektor_listrik.pembangkit_nuklir * KAPASITAS_LISTRIK.pembangkit_nuklir).toLocaleString('id-ID')} MW)`} />
@@ -310,6 +347,12 @@ export default function SelectCountry() {
 
             <div className={`transition-all duration-300 ease-in-out overflow-hidden ${isInfraOpen ? "max-h-[500px] opacity-100 mt-2" : "max-h-0 opacity-0 pointer-events-none"}`}>
               <div className="flex flex-col gap-3 overflow-y-auto max-h-[400px] no-scrollbar pr-1">
+                <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1 shadow-inner mb-1">
+                  <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500" /> Beban Listrik</span>
+                  <span className="text-amber-500 text-sm">
+                    {hitungKonsumsiTransportasi(currentData.infrastruktur).toLocaleString('id-ID')} MW
+                  </span>
+                </div>
                 <div className="flex flex-col gap-2">
                   <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1"><Ship size={8} /> Transportasi & Digital</span>
                   <div className="space-y-2">
@@ -382,7 +425,7 @@ export default function SelectCountry() {
                 <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1 shadow-inner">
                   <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500" /> Beban Listrik</span>
                   <span className="text-amber-500 text-sm">
-                    {hitungKonsumsiProduksi(currentData.sektor_manufaktur).toLocaleString('id-ID')} MW
+                    {(hitungKonsumsiProduksi(currentData.sektor_manufaktur) + hitungKonsumsiPangan(currentData.sektor_peternakan, currentData.sektor_agrikultur)).toLocaleString('id-ID')} MW
                     <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_manufaktur.semikonduktor + currentData.sektor_manufaktur.mobil + currentData.sektor_manufaktur.sepeda_motor + currentData.sektor_manufaktur.smelter + currentData.sektor_manufaktur.semen_beton + currentData.sektor_manufaktur.kayu + currentData.sektor_manufaktur.air_mineral + currentData.sektor_manufaktur.gula + currentData.sektor_manufaktur.roti + currentData.sektor_manufaktur.farmasi + currentData.sektor_manufaktur.pupuk + currentData.sektor_manufaktur.pengolahan_daging + currentData.sektor_manufaktur.mie_instan} Unit)</span>
                   </span>
                 </div>
@@ -410,32 +453,37 @@ export default function SelectCountry() {
 
                 <div className="h-px bg-zinc-800/50" />
 
-                {/* Agri & Livestock */}
+                {/* Peternakan & Perikanan */}
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Sprout size={10} /> Agri & Peternakan (12)</span>
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Beef size={10} /> Peternakan & Perikanan (6)</span>
                   </div>
 
-                  {/* Livestock Subgrid */}
                   <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
-                    <SectorStat icon={<Bird size={10} className="text-amber-500" />} label="Ayam/Unggas" value={`${currentData.sektor_agri_peternakan.ayam_unggas} (${(currentData.sektor_agri_peternakan.ayam_unggas * KONSUMSI_PANGAN.ayam_unggas).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Milk size={10} className="text-zinc-200" />} label="Sapi Perah" value={`${currentData.sektor_agri_peternakan.sapi_perah} (${(currentData.sektor_agri_peternakan.sapi_perah * KONSUMSI_PANGAN.sapi_perah).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Beef size={10} className="text-red-500" />} label="Sapi Potong" value={`${currentData.sektor_agri_peternakan.sapi_potong} (${(currentData.sektor_agri_peternakan.sapi_potong * KONSUMSI_PANGAN.sapi_potong).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Leaf size={10} className="text-emerald-300" />} label="Domba/Kambing" value={`${currentData.sektor_agri_peternakan.domba_kambing} (${(currentData.sektor_agri_peternakan.domba_kambing * KONSUMSI_PANGAN.domba_kambing).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Shell size={10} className="text-pink-300" />} label="Udang/Kerang" value={`${currentData.sektor_agri_peternakan.udang_kerang} (${(currentData.sektor_agri_peternakan.udang_kerang * KONSUMSI_PANGAN.udang_kerang).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Fish size={10} className="text-blue-400" />} label="Ikan" value={`${currentData.sektor_agri_peternakan.ikan} (${(currentData.sektor_agri_peternakan.ikan * KONSUMSI_PANGAN.ikan).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Bird size={10} className="text-amber-500" />} label="Ayam/Unggas" value={`${currentData.sektor_peternakan.ayam_unggas} (${(currentData.sektor_peternakan.ayam_unggas * KONSUMSI_PANGAN.ayam_unggas).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Milk size={10} className="text-zinc-200" />} label="Sapi Perah" value={`${currentData.sektor_peternakan.sapi_perah} (${(currentData.sektor_peternakan.sapi_perah * KONSUMSI_PANGAN.sapi_perah).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Beef size={10} className="text-red-500" />} label="Sapi Potong" value={`${currentData.sektor_peternakan.sapi_potong} (${(currentData.sektor_peternakan.sapi_potong * KONSUMSI_PANGAN.sapi_potong).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Leaf size={10} className="text-emerald-300" />} label="Domba/Kambing" value={`${currentData.sektor_peternakan.domba_kambing} (${(currentData.sektor_peternakan.domba_kambing * KONSUMSI_PANGAN.domba_kambing).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Shell size={10} className="text-pink-300" />} label="Udang/Kerang" value={`${currentData.sektor_peternakan.udang_kerang} (${(currentData.sektor_peternakan.udang_kerang * KONSUMSI_PANGAN.udang_kerang).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Fish size={10} className="text-blue-400" />} label="Ikan" value={`${currentData.sektor_peternakan.ikan} (${(currentData.sektor_peternakan.ikan * KONSUMSI_PANGAN.ikan).toLocaleString('id-ID')} MW)`} />
+                  </div>
+                </div>
+
+                <div className="h-px bg-zinc-800/50" />
+
+                {/* Agrikultur & Pertanian */}
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Wheat size={10} /> Agrikultur & Pertanian (6)</span>
                   </div>
 
-                  <div className="h-px bg-zinc-800/30 w-1/2 self-center my-1" />
-
-                  {/* Agri Subgrid */}
                   <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
-                    <SectorStat icon={<Sprout size={10} className="text-green-500" />} label="Padi" value={`${currentData.sektor_agri_peternakan.padi} (${(currentData.sektor_agri_peternakan.padi * KONSUMSI_PANGAN.padi).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Utensils size={10} className="text-amber-600" />} label="Gandum/Jagung" value={`${currentData.sektor_agri_peternakan.gandum_jagung} (${(currentData.sektor_agri_peternakan.gandum_jagung * KONSUMSI_PANGAN.gandum_jagung).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Apple size={10} className="text-red-500" />} label="Sayur/Umbi" value={`${currentData.sektor_agri_peternakan.sayur_umbi} (${(currentData.sektor_agri_peternakan.sayur_umbi * KONSUMSI_PANGAN.sayur_umbi).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Bean size={10} className="text-emerald-700" />} label="Kedelai" value={`${currentData.sektor_agri_peternakan.kedelai} (${(currentData.sektor_agri_peternakan.kedelai * KONSUMSI_PANGAN.kedelai).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Droplet size={10} className="text-amber-500" />} label="Kelapa Sawit" value={`${currentData.sektor_agri_peternakan.kelapa_sawit} (${(currentData.sektor_agri_peternakan.kelapa_sawit * KONSUMSI_PANGAN.kelapa_sawit).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Coffee size={10} className="text-amber-900" />} label="Kopi/Teh/Kakao" value={`${currentData.sektor_agri_peternakan.kopi_teh_kakao} (${(currentData.sektor_agri_peternakan.kopi_teh_kakao * KONSUMSI_PANGAN.kopi_teh_kakao).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Sprout size={10} className="text-green-500" />} label="Padi" value={`${currentData.sektor_agrikultur.padi} (${(currentData.sektor_agrikultur.padi * KONSUMSI_PANGAN.padi).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Utensils size={10} className="text-amber-600" />} label="Gandum/Jagung" value={`${currentData.sektor_agrikultur.gandum_jagung} (${(currentData.sektor_agrikultur.gandum_jagung * KONSUMSI_PANGAN.gandum_jagung).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Apple size={10} className="text-red-500" />} label="Sayur/Umbi" value={`${currentData.sektor_agrikultur.sayur_umbi} (${(currentData.sektor_agrikultur.sayur_umbi * KONSUMSI_PANGAN.sayur_umbi).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Bean size={10} className="text-emerald-700" />} label="Kedelai" value={`${currentData.sektor_agrikultur.kedelai} (${(currentData.sektor_agrikultur.kedelai * KONSUMSI_PANGAN.kedelai).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Droplet size={10} className="text-amber-500" />} label="Kelapa Sawit" value={`${currentData.sektor_agrikultur.kelapa_sawit} (${(currentData.sektor_agrikultur.kelapa_sawit * KONSUMSI_PANGAN.kelapa_sawit).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Coffee size={10} className="text-amber-900" />} label="Kopi/Teh/Kakao" value={`${currentData.sektor_agrikultur.kopi_teh_kakao} (${(currentData.sektor_agrikultur.kopi_teh_kakao * KONSUMSI_PANGAN.kopi_teh_kakao).toLocaleString('id-ID')} MW)`} />
                   </div>
                 </div>
               </div>
@@ -449,7 +497,7 @@ export default function SelectCountry() {
           <div style={{ width: `${rightWidth}px` }} className="bg-zinc-900/80 backdrop-blur-xl border border-zinc-700/50 p-4 rounded-2xl shadow-2xl flex flex-col gap-4 pointer-events-auto relative group/panel">
             <div onMouseDown={startResizeRight} className="absolute inset-y-0 -left-1 w-2 cursor-col-resize hover:bg-cyan-500/20 active:bg-cyan-400/40 transition-all z-30 flex items-center justify-center"><div className="w-0.5 h-8 bg-zinc-700/40 rounded-full group-hover/panel:bg-cyan-500/60" /></div>
             <h3 className="text-xs font-black text-red-500 uppercase tracking-[0.2em] mb-1 flex items-center justify-between w-full">
-              <span>5. Pertahanan & Strategis (32 Jenis)</span>
+              <span>5. Pertahanan & Strategis (35 Jenis)</span>
               <button onClick={() => setIsDefenseOpen(!isDefenseOpen)} className="p-1 hover:bg-zinc-800 rounded-md cursor-pointer pointer-events-auto">
                 {isDefenseOpen ? <Eye size={12} className="text-red-500" /> : <EyeOff size={12} className="text-zinc-500" />}
               </button>
@@ -460,22 +508,176 @@ export default function SelectCountry() {
                 <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1 shadow-inner">
                   <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500" /> Beban Listrik</span>
                   <span className="text-amber-500 text-sm">
-                    {hitungKonsumsiPertahanan(currentData.sektor_pertahanan, currentData.armada_militer, currentData.militer_strategis, currentData.armada_kepolisian).toLocaleString('id-ID')} MW
+                    {hitungKonsumsiPertahanan(currentData.sektor_pertahanan, currentData.armada_militer, currentData.militer_strategis, currentData.armada_kepolisian, currentData.pabrik_militer).toLocaleString('id-ID')} MW
                     <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_pertahanan.penjara + currentData.armada_militer.barak + currentData.sektor_pertahanan.gudang_senjata + currentData.sektor_pertahanan.hangar_tank + currentData.sektor_pertahanan.akademi_militer} Unit)</span>
                   </span>
                 </div>
-                {/* Defense Assets */}
+                {/* Management & Strategic Infrastructure */}
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><ShieldCheck size={10} /> Sektor Pertahanan (6)</span>
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><ShieldCheck size={10} /> Sektor Manajemen & Strategis (11)</span>
+                    <span className="text-[10px] font-bold text-amber-500/80 flex items-center gap-1">
+                      <Zap size={10} /> {hitungKonsumsiBangunanMiliter(currentData.sektor_pertahanan, currentData.armada_militer.barak, currentData.militer_strategis.status_nuklir ?? false).toLocaleString('id-ID')} MW
+                    </span>
                   </div>
-                  <div className={`grid ${getGridCols(rightWidth)} gap-2 mt-1`}>
-                    <SectorStat icon={<Gavel size={10} className="text-zinc-400" />} label="Penjara" value={`${currentData.sektor_pertahanan.penjara} (${(currentData.sektor_pertahanan.penjara * KONSUMSI_PERTAHANAN.penjara).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Home size={10} className="text-zinc-300" />} label="Barak" value={`${currentData.armada_militer.barak} (${(currentData.armada_militer.barak * KONSUMSI_PERTAHANAN.barak).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Archive size={10} className="text-orange-400" />} label="Gudang Senjata" value={`${currentData.sektor_pertahanan.gudang_senjata} (${(currentData.sektor_pertahanan.gudang_senjata * KONSUMSI_PERTAHANAN.gudang_senjata).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Warehouse size={10} className="text-zinc-500" />} label="Hangar Tank" value={`${currentData.sektor_pertahanan.hangar_tank} (${(currentData.sektor_pertahanan.hangar_tank * KONSUMSI_PERTAHANAN.hangar_tank).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<GraduationCap size={10} className="text-zinc-200" />} label="Akademi Militer" value={`${currentData.sektor_pertahanan.akademi_militer} (${(currentData.sektor_pertahanan.akademi_militer * KONSUMSI_PERTAHANAN.akademi_militer).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Landmark size={10} className="text-red-400" />} label="Budget" value={currentData.sektor_pertahanan.anggaran_pertahanan} />
+                  <div className="grid grid-cols-3 gap-1.5 mt-1">
+                    {/* 1. Penjara */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Penjara</span>
+                        <span className="text-[8px] text-zinc-400 font-bold leading-none">{calculatePrisonCapacity(currentData.sektor_pertahanan.penjara).toLocaleString('id-ID')} Slot</span>
+                      </div>
+                      <span className="text-xs font-black text-white leading-none">
+                        {currentData.sektor_pertahanan.penjara} <span className="text-[10px] font-black text-zinc-200 ml-1">({(currentData.sektor_pertahanan.penjara * PRISON_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 2. Gudang Senjata */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Gudang Senjata</span>
+                        <span className="text-[8px] text-zinc-400 font-bold leading-none">{calculateArmoryCapacity(currentData.sektor_pertahanan.gudang_senjata).toLocaleString('id-ID')} Unit</span>
+                      </div>
+                      <span className="text-xs font-black text-white leading-none">
+                        {currentData.sektor_pertahanan.gudang_senjata} <span className="text-[10px] font-black text-zinc-200 ml-1">({(currentData.sektor_pertahanan.gudang_senjata * ARMORY_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 3. Hangar Tank */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Hangar Tank</span>
+                        <span className="text-[8px] text-zinc-400 font-bold leading-none">{calculateTankHangarCapacity(currentData.sektor_pertahanan.hangar_tank).toLocaleString('id-ID')} Unit</span>
+                      </div>
+                      <span className="text-xs font-black text-white leading-none">
+                        {currentData.sektor_pertahanan.hangar_tank} <span className="text-[10px] font-black text-zinc-200 ml-1">({(currentData.sektor_pertahanan.hangar_tank * TANK_HANGAR_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 4. Akademi Militer */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Akademi Militer</span>
+                        <span className="text-[8px] text-zinc-400 font-bold leading-none">{calculateAcademyCapacity(currentData.sektor_pertahanan.akademi_militer).toLocaleString('id-ID')} Slot</span>
+                      </div>
+                      <span className="text-xs font-black text-white leading-none">
+                        {currentData.sektor_pertahanan.akademi_militer} <span className="text-[10px] font-black text-zinc-200 ml-1">({(currentData.sektor_pertahanan.akademi_militer * ACADEMY_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 5. Pusat Komando */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Pusat Komando</span>
+                      </div>
+                      <span className="text-xs font-black text-white leading-none">
+                        {currentData.sektor_pertahanan.pusat_komando} <span className="text-[10px] font-black text-zinc-200 ml-1">({(currentData.sektor_pertahanan.pusat_komando * COMMAND_CENTER_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 6. Pangkalan Udara */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Pangkalan Udara</span>
+                        <span className="text-[8px] text-zinc-400 font-bold leading-none">{calculateAirBaseCapacity(currentData.sektor_pertahanan.pangkalan_udara).toLocaleString('id-ID')} Slot</span>
+                      </div>
+                      <span className="text-xs font-black text-cyan-400 leading-none">
+                        {currentData.sektor_pertahanan.pangkalan_udara} <span className="text-[10px] font-black text-cyan-400/80 ml-1">({(currentData.sektor_pertahanan.pangkalan_udara * AIRBASE_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 7. Pangkalan Laut */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Pangkalan Laut</span>
+                        <span className="text-[8px] text-zinc-400 font-bold leading-none">{calculateNavalBaseCapacity(currentData.sektor_pertahanan.pangkalan_laut).toLocaleString('id-ID')} Slot</span>
+                      </div>
+                      <span className="text-xs font-black text-blue-400 leading-none">
+                        {currentData.sektor_pertahanan.pangkalan_laut} <span className="text-[10px] font-black text-blue-400/80 ml-1">({(currentData.sektor_pertahanan.pangkalan_laut * NAVALBASE_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 8. Program Luar Angkasa */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Program Antariksa</span>
+                      </div>
+                      <span className="text-xs font-black text-purple-400 leading-none">
+                        {currentData.sektor_pertahanan.program_luar_angkasa} <span className="text-[10px] font-black text-purple-400/80 ml-1">({(currentData.sektor_pertahanan.program_luar_angkasa * SPACE_PROGRAM_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 9. Pertahanan Siber */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Pertahanan Siber</span>
+                        <span className="text-[8px] text-indigo-400 font-bold leading-none">LEVEL {Math.floor(currentData.sektor_pertahanan.pertahanan_siber / 10)}</span>
+                      </div>
+                      <span className="text-xs font-black text-indigo-400 leading-none">
+                        {currentData.sektor_pertahanan.pertahanan_siber}% Power <span className="text-[10px] font-black text-indigo-400/80 ml-1">({((currentData.sektor_pertahanan.pertahanan_siber / 100) * CYBER_DEFENSE_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 10. Barak (Logic required for infantry) */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Barak Militer</span>
+                        <span className="text-[8px] text-zinc-400 font-bold leading-none">{calculateTotalInfantry(currentData.armada_militer.barak).toLocaleString('id-ID')} Militer</span>
+                      </div>
+                      <span className="text-xs font-black text-white leading-none">
+                        {currentData.armada_militer.barak} <span className="text-[10px] font-black text-zinc-200 ml-1">({(currentData.armada_militer.barak * BARRACKS_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 11. Status Nuklir */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20 cursor-help" title="Status Senjata Pemusnah Massal">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Sistem Nuklir</span>
+                      </div>
+                      <span className={`text-[10px] font-black leading-none ${currentData.militer_strategis.status_nuklir ? "text-red-500" : "text-zinc-500"}`}>
+                        {currentData.militer_strategis.status_nuklir ? "SIAGA / AKTIF" : "MATI / TIDAK ADA"} <span className={`text-[10px] font-black ml-1 ${currentData.militer_strategis.status_nuklir ? "text-red-400/80" : "text-zinc-500"}`}>({(currentData.militer_strategis.status_nuklir ? NUCLEAR_SYSTEM_POWER : 0).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="h-px bg-zinc-800/50" />
+
+                {/* Military Production Assets */}
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Zap size={10} /> Sektor Produksi Militer (4)</span>
+                    <span className="text-[10px] font-bold text-amber-500/80 flex items-center gap-1">
+                      <Zap size={10} /> {hitungKonsumsiPabrikMiliter(currentData.pabrik_militer).toLocaleString('id-ID')} MW
+                    </span>
+                  </div>
+                  <div className="grid grid-cols-3 gap-1.5 mt-1">
+                    {/* 1. Pabrik Drone Kamikaze */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Pabrik Drone Kamikaze</span>
+                      </div>
+                      <span className="text-xs font-black text-white leading-none">
+                        {currentData.pabrik_militer.pabrik_drone_kamikaze} Pabrik <span className="text-[10px] font-black text-zinc-200 ml-1">({(currentData.pabrik_militer.pabrik_drone_kamikaze * DRONE_FACTORY_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 2. Pabrik Amunisi */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Pabrik Amunisi</span>
+                      </div>
+                      <span className="text-xs font-black text-white leading-none">
+                        {currentData.pabrik_militer.pabrik_amunisi} Kompleks <span className="text-[10px] font-black text-zinc-200 ml-1">({(currentData.pabrik_militer.pabrik_amunisi * AMMO_FACTORY_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 3. Pabrik Kendaraan Tempur */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Pabrik Kendaraan</span>
+                      </div>
+                      <span className="text-xs font-black text-white leading-none">
+                        {currentData.pabrik_militer.pabrik_kendaraan_tempur} Unit <span className="text-[10px] font-black text-zinc-200 ml-1">({(currentData.pabrik_militer.pabrik_kendaraan_tempur * VEHICLE_FACTORY_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
+                    {/* 4. Pabrik Senjata Berat */}
+                    <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex items-center justify-between mb-1">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Pabrik Senjata Berat</span>
+                      </div>
+                      <span className="text-xs font-black text-white leading-none">
+                        {currentData.pabrik_militer.pabrik_senjata_berat} Kompleks <span className="text-[10px] font-black text-zinc-200 ml-1">({(currentData.pabrik_militer.pabrik_senjata_berat * HEAVY_WEAPON_FACTORY_POWER).toLocaleString('id-ID')} MW)</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -484,6 +686,25 @@ export default function SelectCountry() {
                 {/* Military Fleet */}
                 <div className="flex flex-col gap-4">
                   
+                  {/* Special Forces & Reserves */}
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                      <Users size={12} className="text-zinc-500" /> Personel Spesialis & Cadangan
+                    </span>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none mb-1">Pasukan Khusus</span>
+                        <span className="text-xs font-black text-white leading-none">{(currentData.armada_militer.personel.pasukan_khusus / 1000).toFixed(1)}K</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none mb-1">Pasukan Cadangan</span>
+                        <span className="text-xs font-black text-white leading-none">{(currentData.armada_militer.personel.pasukan_cadangan / 1000).toFixed(1)}K</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="h-px bg-zinc-800/30" />
+
                   {/* Armada Darat */}
                   <div className="flex flex-col gap-2">
                     <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
@@ -535,10 +756,29 @@ export default function SelectCountry() {
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kend. Taktis</span>
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kendaraan Taktis</span>
                           <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateTacticalPower(currentData.armada_militer.darat.kendaraan_taktis).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-zinc-400 leading-none">{currentData.armada_militer.darat.kendaraan_taktis}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="h-px bg-zinc-800/30" />
+
+                  {/* Special Forces & Reserves */}
+                  <div className="flex flex-col gap-2">
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
+                      <Users size={12} className="text-zinc-500" /> Personel Spesialis & Cadangan
+                    </span>
+                    <div className="grid grid-cols-2 gap-1.5">
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none mb-1">Pasukan Khusus</span>
+                        <span className="text-xs font-black text-white leading-none">{(currentData.armada_militer.personel.pasukan_khusus / 1000).toFixed(1)}K</span>
+                      </div>
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none mb-1">Pasukan Cadangan</span>
+                        <span className="text-xs font-black text-white leading-none">{(currentData.armada_militer.personel.pasukan_cadangan / 1000).toFixed(1)}K</span>
                       </div>
                     </div>
                   </div>
@@ -574,14 +814,14 @@ export default function SelectCountry() {
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">K. Selam Nuklir</span>
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kapal Selam Nuklir</span>
                           <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateSubmarinePower(currentData.armada_militer.laut.kapal_selam_nuklir).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-emerald-400 leading-none">{currentData.armada_militer.laut.kapal_selam_nuklir}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">K. Selam Reguler</span>
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kapal Selam Reguler</span>
                           <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateRegularSubPower(currentData.armada_militer.laut.kapal_selam_regular).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-zinc-300 leading-none">{currentData.armada_militer.laut.kapal_selam_regular}</span>
@@ -641,7 +881,7 @@ export default function SelectCountry() {
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">P. Intai</span>
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Pesawat Intai</span>
                           <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateReconPower(currentData.armada_militer.udara.pesawat_pengintai).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.pesawat_pengintai}</span>
@@ -662,7 +902,7 @@ export default function SelectCountry() {
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
-                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">P. Angkut</span>
+                          <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Pesawat Angkut</span>
                           <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateTransportPower(currentData.armada_militer.udara.pesawat_angkut).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-zinc-400 leading-none">{currentData.armada_militer.udara.pesawat_angkut}</span>
@@ -670,45 +910,9 @@ export default function SelectCountry() {
                     </div>
                   </div>
 
-                  <div className="h-px bg-zinc-800/30" />
-
-                  {/* Special Forces & Reserves */}
-                  <div className="flex flex-col gap-2">
-                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                      <Users size={12} className="text-zinc-500" /> Personel Spesialis & Cadangan
-                    </span>
-                    <div className="grid grid-cols-2 gap-1.5">
-                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none mb-1">Pasukan Khusus</span>
-                        <span className="text-xs font-black text-white leading-none">{(currentData.armada_militer.personel.pasukan_khusus / 1000).toFixed(1)}K</span>
-                      </div>
-                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                        <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none mb-1">Pasu. Cadangan</span>
-                        <span className="text-xs font-black text-white leading-none">{(currentData.armada_militer.personel.pasukan_cadangan / 1000).toFixed(1)}K</span>
-                      </div>
-                    </div>
-                  </div>
                 </div>
 
-                <div className="h-px bg-zinc-800/50" />
-
-                {/* Strategic Assets */}
-                <div className="flex flex-col gap-2">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Crosshair size={10} /> Militer Strategis (5)</span>
-                    <span className="text-xs font-black text-indigo-400">{Math.floor(currentData.sektor_pertahanan.pertahanan_siber)}% Cyber</span>
-                  </div>
-                  <div className={`grid ${getGridCols(rightWidth)} gap-2 mt-1`}>
-                    <SectorStat icon={<TowerControl size={10} className="text-zinc-100" />} label="Pusat Komando" value={`${currentData.sektor_pertahanan.pusat_komando} (${(currentData.sektor_pertahanan.pusat_komando * KONSUMSI_STRATEGIC.pusat_komando).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Plane size={10} className="text-cyan-400" />} label="Pangkalan Udara" value={`${currentData.sektor_pertahanan.pangkalan_udara} (${(currentData.sektor_pertahanan.pangkalan_udara * KONSUMSI_STRATEGIC.pangkalan_udara).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Anchor size={10} className="text-blue-400" />} label="Pangkalan Laut" value={`${currentData.sektor_pertahanan.pangkalan_laut} (${(currentData.sektor_pertahanan.pangkalan_laut * KONSUMSI_STRATEGIC.pangkalan_laut).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<RadioTower size={10} className="text-purple-400" />} label="Lintas Antariksa" value={`${currentData.sektor_pertahanan.program_luar_angkasa} (${(currentData.sektor_pertahanan.program_luar_angkasa * KONSUMSI_STRATEGIC.program_luar_angkasa).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Radio size={10} className="text-red-400" />} label="Status Nuklir" value={currentData.militer_strategis.status_nuklir ? "Aktif" : "Mati"} />
-                  </div>
-
-                </div>
-
-                <div className="h-px bg-zinc-800/50" />
+                {/* Police Fleet Details */}
 
                 {/* Police Fleet Details */}
                 <div className="flex flex-col gap-2">
@@ -739,11 +943,11 @@ export default function SelectCountry() {
                       <span className="text-xs font-black text-white leading-none">{currentData.armada_kepolisian.armada_polisi.taktis_khusus.swat}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Heli Pol</span>
+                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Helikopter Polisi</span>
                       <span className="text-xs font-black text-white">{currentData.armada_kepolisian.armada_polisi.taktis_khusus.helikopter_polisi}</span>
                     </div>
                     <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
-                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">HuruHara</span>
+                      <span className="text-xs text-zinc-500 font-bold uppercase leading-none mb-1">Anti Huru-Hara</span>
                       <span className="text-xs font-black text-white">{currentData.armada_kepolisian.armada_polisi.taktis_khusus.anti_huru_hara}</span>
                     </div>
                   </div>
@@ -794,8 +998,8 @@ export default function SelectCountry() {
                     <span className="text-xs font-black text-blue-400">{currentData.sektor_sosial.pendidikan.literasi}% LT</span>
                   </div>
                   <div className={`grid ${getGridCols(rightWidth)} gap-2 mt-1`}>
-                    <SectorStat icon={<Building2 size={10} className="text-zinc-400" />} label="Pra/Dasar" value={`${currentData.sektor_sosial.pendidikan.prasekolah + currentData.sektor_sosial.pendidikan.dasar} (${(currentData.sektor_sosial.pendidikan.prasekolah * KONSUMSI_SOSIAL.pendidikan.tk + currentData.sektor_sosial.pendidikan.dasar * KONSUMSI_SOSIAL.pendidikan.sd).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Library size={10} className="text-zinc-300" />} label="Men/Lanjut" value={`${currentData.sektor_sosial.pendidikan.menengah + currentData.sektor_sosial.pendidikan.lanjutan} (${(currentData.sektor_sosial.pendidikan.menengah * KONSUMSI_SOSIAL.pendidikan.smp + currentData.sektor_sosial.pendidikan.lanjutan * KONSUMSI_SOSIAL.pendidikan.sma).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Building2 size={10} className="text-zinc-400" />} label="Pra/Dasar" value={`${currentData.sektor_sosial.pendidikan.prasekolah + currentData.sektor_sosial.pendidikan.dasar} (${(currentData.sektor_sosial.pendidikan.prasekolah * KONSUMSI_SOSIAL.pendidikan.prasekolah + currentData.sektor_sosial.pendidikan.dasar * KONSUMSI_SOSIAL.pendidikan.dasar).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Library size={10} className="text-zinc-300" />} label="Men/Lanjut" value={`${currentData.sektor_sosial.pendidikan.menengah + currentData.sektor_sosial.pendidikan.lanjutan} (${(currentData.sektor_sosial.pendidikan.menengah * KONSUMSI_SOSIAL.pendidikan.menengah + currentData.sektor_sosial.pendidikan.lanjutan * KONSUMSI_SOSIAL.pendidikan.lanjutan).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Library size={10} className="text-zinc-200" />} label="PT/Lembaga" value={`${currentData.sektor_sosial.pendidikan.universitas + currentData.sektor_sosial.pendidikan.lembaga_pendidikan} (${(currentData.sektor_sosial.pendidikan.universitas * KONSUMSI_SOSIAL.pendidikan.universitas + currentData.sektor_sosial.pendidikan.lembaga_pendidikan * KONSUMSI_SOSIAL.pendidikan.lembaga_pendidikan).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Microscope size={10} className="text-emerald-400" />} label="Lab & Riset" value={`${currentData.sektor_sosial.pendidikan.laboratorium + currentData.sektor_sosial.pendidikan.pusat_penelitian} (${(currentData.sektor_sosial.pendidikan.laboratorium * KONSUMSI_SOSIAL.pendidikan.laboratorium + currentData.sektor_sosial.pendidikan.pusat_penelitian * KONSUMSI_SOSIAL.pendidikan.pusat_penelitian).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Eye size={10} className="text-purple-300" />} label="Observatorium" value={`${currentData.sektor_sosial.pendidikan.observatorium} (${(currentData.sektor_sosial.pendidikan.observatorium * KONSUMSI_SOSIAL.pendidikan.observatorium).toLocaleString('id-ID')} MW)`} />

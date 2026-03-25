@@ -82,13 +82,15 @@ export const nepal: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 20.0,
     "sapi_perah": 29,
     "sapi_potong": 8,
     "domba_kambing": 14,
     "udang_kerang": 28.0,
-    "ikan": 7,
+    "ikan": 7
+  },
+  "sektor_agrikultur": {
     "padi": 22,
     "gandum_jagung": 18.0,
     "sayur_umbi": 12.0,
@@ -110,7 +112,6 @@ export const nepal: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 40,
     "pertahanan_siber": 35,
-    "anggaran_pertahanan": 111
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const nepal: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

@@ -82,13 +82,15 @@ export const estonia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 27.5,
     "sapi_perah": 34,
     "sapi_potong": 5,
     "domba_kambing": 28,
     "udang_kerang": 11.5,
-    "ikan": 1,
+    "ikan": 1
+  },
+  "sektor_agrikultur": {
     "padi": 40,
     "gandum_jagung": 38.0,
     "sayur_umbi": 28.5,
@@ -110,7 +112,6 @@ export const estonia: CountryData = {
     "pangkalan_laut": 23,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 7,
-    "anggaran_pertahanan": 111
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const estonia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

@@ -82,13 +82,15 @@ export const indonesia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 3.0,
     "sapi_perah": 14,
     "sapi_potong": 17,
     "domba_kambing": 10,
     "udang_kerang": 30.5,
-    "ikan": 13,
+    "ikan": 13
+  },
+  "sektor_agrikultur": {
     "padi": 29,
     "gandum_jagung": 15.0,
     "sayur_umbi": 19.5,
@@ -110,7 +112,6 @@ export const indonesia: CountryData = {
     "pangkalan_laut": 11,
     "program_luar_angkasa": 13,
     "pertahanan_siber": 39,
-    "anggaran_pertahanan": 3944
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const indonesia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

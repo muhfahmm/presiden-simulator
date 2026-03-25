@@ -4,6 +4,7 @@ import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "../.
 import { produksiMiliter } from "../../../../select-country/data/pembangunan/produksi-militer";
 import { tempatUmum } from "../../../../select-country/data/pembangunan/tempat-umum";
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "../../../../select-country/data/electricity";
+import { KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PANGAN } from "../../../../select-country/data/electricity";
 import { gameStorage } from "../../../gamestorage";
 import { buildingStorage } from "../buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate } from "../../../data/time/gameTime";
@@ -81,61 +82,61 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
 
   if (!isOpen) return null;
 
-  // Data retrieval for UI rendering
   const session = gameStorage.getSession();
-  const currentCountryCode = session?.country || "Indonesia";
-  const currentData = countries.find((c: any) =>
-    c.name_id === currentCountryCode ||
-    c.name_en === currentCountryCode ||
-    (c.id && c.id === currentCountryCode)
-  ) || countries[79] || countries[0]; // countries[79] is Indonesia
+  const currentCountryName = session?.country || "Indonesia";
+  const searchName = currentCountryName.toLowerCase().trim();
+  const selectedData = countries.find((c: any) =>
+    c.name_id.toLowerCase() === searchName ||
+    c.name_en.toLowerCase() === searchName
+  );
+  const currentData = selectedData || countries[0];
 
   const buildingData = buildingStorage.getData();
-  const buildingDeltas = buildingData.buildingDeltas;
+  const buildingDeltas = buildingData.buildingDeltas || {};
 
-  const totalPasokan = hitungTotalKapasitas(currentData.sektor_listrik);
-  const totalBeban = hitungTotalKonsumsiNasional(currentData);
-
-  // Robust mapping for manufacturing keys
-  const getManufacturingCount = (key: string) => {
-    const baseKeyMapping: Record<string, string> = {
-      "electronics_factory": "semikonduktor",
-      "car_factory": "mobil",
-      "motorcycle_factory": "sepeda_motor",
-      "cement_factory": "semen_beton",
-      "smelter": "smelter",
-      "bottled_water_factory": "air_mineral",
-      "sugar_factory": "gula",
-      "pharma_factory": "farmasi",
-      "noodle_factory": "mie_instan",
-      "meat_processing_factory": "pengolahan_daging",
-      "sawmill": "kayu",
-      "fertilizer_factory": "pupuk",
-      "bakery_factory": "roti"
-    };
-
-    const baseKey = baseKeyMapping[key] || key.replace('_factory', '');
-    const baseCount = (currentData?.sektor_manufaktur && typeof (currentData.sektor_manufaktur as any)[baseKey] === 'number')
-      ? (currentData.sektor_manufaktur as any)[baseKey]
-      : 0;
-    const deltaCount = (buildingDeltas[key] && typeof buildingDeltas[key] === 'number')
-      ? buildingDeltas[key]
-      : 0;
-
-    return baseCount + deltaCount;
+  // --- ENERGY DASHBOARD SYNCHRONIZATION ---
+  // Apply construction deltas to a temporary country object to get accurate supply/usage
+  const currentDataWithDeltas = {
+    ...currentData,
+    sektor_listrik: { ...currentData.sektor_listrik },
+    sektor_manufaktur: { ...currentData.sektor_manufaktur },
+    sektor_peternakan: { ...currentData.sektor_peternakan },
+    sektor_agrikultur: { ...currentData.sektor_agrikultur },
+    sektor_ekstraksi: { ...currentData.sektor_ekstraksi },
   };
 
-  let adjustedTotalPasokan = totalPasokan;
-  let adjustedTotalBeban = totalBeban;
+  Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
+    if (typeof deltaValue !== 'number' || deltaValue === 0) return;
 
-  const deltaEntries = Object.entries(buildingDeltas);
-  deltaEntries.forEach(([key, deltaValue]) => {
-    const meta = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA];
-    if (meta && typeof deltaValue === 'number') {
-      adjustedTotalPasokan += (deltaValue * meta.production);
+    // 1. Electricity Sector
+    if (KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA]) {
+      (currentDataWithDeltas.sektor_listrik as any)[key] = ((currentDataWithDeltas.sektor_listrik as any)[key] || 0) + deltaValue;
+    }
+    // 2. Critical Minerals
+    else if ((mineralKritisRate as any)[key]) {
+      const dataKey = (mineralKritisRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] = ((currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] || 0) + deltaValue;
+    }
+    // 3. Industrial Products
+    else if ((produkIndustriRate as any)[key]) {
+      const dataKey = (produkIndustriRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_manufaktur as any)[dataKey] = ((currentDataWithDeltas.sektor_manufaktur as any)[dataKey] || 0) + deltaValue;
+    }
+    // 4. Food Commodities
+    else if ((komoditasPanganRate as any)[key]) {
+      const dataKey = (komoditasPanganRate as any)[key].dataKey;
+      if (dataKey) {
+        if (currentDataWithDeltas.sektor_peternakan && (currentDataWithDeltas.sektor_peternakan as any)[dataKey] !== undefined) {
+          (currentDataWithDeltas.sektor_peternakan as any)[dataKey] = ((currentDataWithDeltas.sektor_peternakan as any)[dataKey] || 0) + deltaValue;
+        } else if (currentDataWithDeltas.sektor_agrikultur && (currentDataWithDeltas.sektor_agrikultur as any)[dataKey] !== undefined) {
+          (currentDataWithDeltas.sektor_agrikultur as any)[dataKey] = ((currentDataWithDeltas.sektor_agrikultur as any)[dataKey] || 0) + deltaValue;
+        }
+      }
     }
   });
 
+  const adjustedTotalPasokan = hitungTotalKapasitas(currentDataWithDeltas.sektor_listrik);
+  const adjustedTotalBeban = hitungTotalKonsumsiNasional(currentDataWithDeltas);
   const surplus = adjustedTotalPasokan - adjustedTotalBeban;
 
   const handleBuildRequest = (item: any) => {
@@ -180,6 +181,40 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
     }
   };
 
+  // Helper for icons based on key
+  const getIcon = (key: string) => {
+    if (key.includes("uranium")) return Radiation;
+    if (key.includes("minyak_bumi") || key.includes("oil_well")) return Droplets;
+    if (key.includes("gas_alam") || key.includes("gas_well")) return Flame;
+    if (key.includes("emas") || key.includes("gold_mine")) return Coins;
+    if (key.includes("electronics")) return Cpu;
+    if (key.includes("mobil") || key.includes("car")) return Car;
+    if (key.includes("sepeda_motor") || key.includes("motorcycle")) return Bike;
+    if (key.includes("smelter")) return Flame;
+    if (key.includes("cement")) return Construction;
+    if (key.includes("sawmill") || key.includes("kayu")) return TreePine;
+    if (key.includes("water")) return Droplets;
+    if (key.includes("gula") || key.includes("sugar")) return Cookie;
+    if (key.includes("bakery") || key.includes("roti")) return Croissant;
+    if (key.includes("pharma") || key.includes("farmasi")) return Pill;
+    if (key.includes("pupuk") || key.includes("fertilizer")) return FlaskConical;
+    if (key.includes("meat") || key.includes("pengolahan_daging")) return Beef;
+    if (key.includes("mie_instan") || key.includes("noodle")) return Soup;
+    if (key.includes("poultry") || key.includes("egg") || key.includes("ayam")) return Bird;
+    if (key.includes("fish") || key.includes("ikan")) return Fish;
+    if (key.includes("sheep") || key.includes("domba") || key.includes("kambing")) return Leaf;
+    if (key.includes("shrimp") || key.includes("udang") || key.includes("pearl") || key.includes("kerang")) return Shell;
+    if (key.includes("dairy") || key.includes("sapi_perah")) return Milk;
+    if (key.includes("cattle") || key.includes("sapi_potong")) return Beef;
+    if (key.includes("rice") || key.includes("padi") || key.includes("sprout")) return Sprout;
+    if (key.includes("wheat") || key.includes("gandum") || key.includes("corn") || key.includes("jagung")) return Utensils;
+    if (key.includes("veg") || key.includes("sayur") || key.includes("apple")) return Apple;
+    if (key.includes("soy") || key.includes("kedelai")) return Bean;
+    if (key.includes("palm") || key.includes("sawit")) return Droplets;
+    if (key.includes("coffee") || key.includes("tea") || key.includes("kopi") || key.includes("teh") || key.includes("kakao")) return Coffee;
+    return Pickaxe;
+  };
+
   const productionGroups = [
     {
       id: "kelistrikan",
@@ -190,7 +225,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         key,
         groupId: "kelistrikan",
         label: val.desc,
-        icon: key === "pembangkit_air" ? Droplets : (key === "pembangkit_nuklir" ? Radiation : (key === "pembangkit_termal" ? Flame : Zap)),
+        icon: getIcon(key),
         desc: "Energi Listrik",
         tarif: val.production,
         unit: val.unit,
@@ -206,181 +241,97 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       icon: Factory,
       color: "text-emerald-500",
       items: [
-        // --- 13 MANUFAKTUR ---
+        // --- INDUSTRI (Grouped) ---
         ...Object.entries(produkIndustriRate)
-          .filter(([key]) => ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill", "bottled_water_factory", "sugar_factory", "bakery_factory", "pharma_factory", "fertilizer_factory", "meat_processing_factory", "noodle_factory"].includes(key))
+          .sort((a, b) => {
+            const order = ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu", "air_mineral", "gula", "roti", "farmasi", "pupuk", "pengolahan_daging", "mie_instan"];
+            const idxA = order.indexOf(a[1].dataKey);
+            const idxB = order.indexOf(b[1].dataKey);
+            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB) || a[1].no - b[1].no;
+          })
           .map(([key, val]: [string, any]) => ({
             key,
             groupId: "manufaktur",
             label: val.desc,
-            icon: key.includes("electronics") ? Cpu : (key.includes("mobil") ? Car : (key.includes("sepeda_motor") ? Bike : (key.includes("smelter") ? Flame : (key.includes("cement") ? Construction : (key.includes("sawmill") ? TreePine : (key.includes("water") ? Droplets : (key.includes("gula") ? Cookie : (key.includes("bakery") ? Croissant : (key.includes("pharma") ? Pill : (key.includes("pupuk") ? FlaskConical : (key.includes("meat") ? Beef : Soup))))))))))),
+            icon: getIcon(key),
             desc: "Manufaktur",
             tarif: val.production,
             unit: val.unit,
-            count: getManufacturingCount(key),
+            count: (currentData.sektor_manufaktur[val.dataKey as keyof typeof currentData.sektor_manufaktur] || 0) + ((buildingDeltas[key] as number) || 0),
+            powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
             pendapatan_nasional: val.pendapatan_nasional,
             cost: 45,
             buildTime: val.buildTime || 45
           })),
 
-        // --- 6 PETERNAKAN & PERIKANAN (Grouped) ---
-        {
-          key: "livestock_poultry",
-          groupId: "peternakan",
-          label: "Ayam/Unggas",
-          icon: Bird,
-          desc: "Peternakan",
-          tarif: 1,
-          unit: "Unit",
-          count: (currentData.sektor_agri_peternakan.ayam_unggas) + ((buildingDeltas["egg_farm"] as number) || 0) + ((buildingDeltas["poultry_farm"] as number) || 0),
-          pendapatan_nasional: 15, cost: 8, buildTime: 20
-        },
-        {
-          key: "livestock_dairy",
-          groupId: "peternakan",
-          label: "Sapi Perah",
-          icon: Milk,
-          desc: "Peternakan",
-          tarif: 1,
-          unit: "Unit",
-          count: (currentData.sektor_agri_peternakan.sapi_perah) + ((buildingDeltas["dairy_farm"] as number) || 0),
-          pendapatan_nasional: 25, cost: 8, buildTime: 20
-        },
-        {
-          key: "livestock_beef",
-          groupId: "peternakan",
-          label: "Sapi Potong",
-          icon: Beef,
-          desc: "Peternakan",
-          tarif: 1,
-          unit: "Unit",
-          count: (currentData.sektor_agri_peternakan.sapi_potong) + ((buildingDeltas["cattle_farm"] as number) || 0),
-          pendapatan_nasional: 150, cost: 8, buildTime: 20
-        },
-        {
-          key: "livestock_sheep",
-          groupId: "peternakan",
-          label: "Domba/Kambing",
-          icon: Leaf,
-          desc: "Peternakan",
-          tarif: 1,
-          unit: "Unit",
-          count: (currentData.sektor_agri_peternakan.domba_kambing) + ((buildingDeltas["sheep_farm"] as number) || 0),
-          pendapatan_nasional: 65, cost: 8, buildTime: 20
-        },
-        {
-          key: "livestock_shrimp",
-          groupId: "peternakan",
-          label: "Udang/Kerang",
-          icon: Shell,
-          desc: "Peternakan",
-          tarif: 1,
-          unit: "Unit",
-          count: (currentData.sektor_agri_peternakan.udang_kerang) + ((buildingDeltas["shrimp_farm"] as number) || 0) + ((buildingDeltas["pearl_farm"] as number) || 0),
-          pendapatan_nasional: 280, cost: 8, buildTime: 20
-        },
-        {
-          key: "livestock_fish",
-          groupId: "peternakan",
-          label: "Ikan",
-          icon: Fish,
-          desc: "Perikanan",
-          tarif: 1,
-          unit: "Unit",
-          count: (currentData.sektor_agri_peternakan.ikan) + ((buildingDeltas["freshwater_fish_farm"] as number) || 0),
-          pendapatan_nasional: 45, cost: 8, buildTime: 20
-        },
+        // --- PETERNAKAN & PERIKANAN (Grouped) ---
+        ...Object.entries(komoditasPanganRate)
+          .filter(([key]) => ["poultry_farm", "egg_farm", "freshwater_fish_farm", "sheep_farm", "pearl_farm", "dairy_farm", "cattle_farm", "shrimp_farm"].includes(key))
+          .sort((a, b) => {
+            const order = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing", "udang_kerang", "ikan"];
+            const idxA = order.indexOf(a[1].dataKey);
+            const idxB = order.indexOf(b[1].dataKey);
+            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB) || a[1].no - b[1].no;
+          })
+          .map(([key, val]: [string, any]) => ({
+            key,
+            groupId: "peternakan",
+            label: val.desc,
+            icon: getIcon(key),
+            desc: "Peternakan & Perikanan",
+            tarif: val.production,
+            unit: val.unit,
+            count: (currentData.sektor_peternakan[val.dataKey as keyof typeof currentData.sektor_peternakan] || 0) + ((buildingDeltas[key] as number) || 0),
+            powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
+            pendapatan_nasional: val.pendapatan_nasional,
+            cost: 15,
+            buildTime: val.buildTime || 25
+          })),
 
-        // --- 6 PERTANIAN (Grouped) ---
-        {
-          key: "agri_rice",
-          groupId: "pertanian",
-          label: "Padi",
-          icon: Sprout,
-          desc: "Pertanian",
-          tarif: 1,
-          unit: "Unit",
-          count: (currentData.sektor_agri_peternakan.padi) + ((buildingDeltas["paddy_field"] as number) || 0),
-          pendapatan_nasional: 95, cost: 5, buildTime: 20
-        },
-        {
-          key: "agri_grains",
-          groupId: "pertanian",
-          label: "Gandum/Jagung",
-          icon: Utensils,
-          desc: "Pertanian",
-          tarif: 1,
-          unit: "Unit",
-          count: (currentData.sektor_agri_peternakan.gandum_jagung) + ((buildingDeltas["wheat_field"] as number) || 0) + ((buildingDeltas["corn_field"] as number) || 0),
-          pendapatan_nasional: 70, cost: 5, buildTime: 20
-        },
-        {
-          key: "agri_veg",
-          groupId: "pertanian",
-          label: "Sayur/Umbi",
-          icon: Apple,
-          desc: "Pertanian",
-          tarif: 1,
-          unit: "Unit",
-          count: (currentData.sektor_agri_peternakan.sayur_umbi) + ((buildingDeltas["vegetable_farm"] as number) || 0) + ((buildingDeltas["tuber_field"] as number) || 0),
-          pendapatan_nasional: 45, cost: 5, buildTime: 20
-        },
-        {
-          key: "agri_soy",
-          groupId: "pertanian",
-          label: "Kedelai",
-          icon: Bean,
-          desc: "Pertanian",
-          tarif: 1,
-          unit: "Unit",
-          count: (currentData.sektor_agri_peternakan.kedelai) + ((buildingDeltas["soybean_field"] as number) || 0),
-          pendapatan_nasional: 80, cost: 5, buildTime: 20
-        },
-        {
-          key: "agri_palm",
-          groupId: "pertanian",
-          label: "Kelapa Sawit",
-          icon: Droplets,
-          desc: "Perkebunan",
-          tarif: 1,
-          unit: "Unit",
-          count: (currentData.sektor_agri_peternakan.kelapa_sawit) + ((buildingDeltas["palm_oil_plantation"] as number) || 0),
-          pendapatan_nasional: 320, cost: 5, buildTime: 20
-        },
-        {
-          key: "agri_luxury",
-          groupId: "pertanian",
-          label: "Kopi/Teh/Kakao",
-          icon: Coffee,
-          desc: "Perkebunan",
-          tarif: 1,
-          unit: "Unit",
-          count: (currentData.sektor_agri_peternakan.kopi_teh_kakao) + ((buildingDeltas["coffee_plantation"] as number) || 0) + ((buildingDeltas["tea_plantation"] as number) || 0) + ((buildingDeltas["cocoa_plantation"] as number) || 0),
-          pendapatan_nasional: 470, cost: 5, buildTime: 20
-        }
+        // --- PERTANIAN & PERKEBUNAN (Grouped) ---
+        ...Object.entries(komoditasPanganRate)
+          .filter(([key]) => ["wheat_field", "corn_field", "cocoa_plantation", "soybean_field", "palm_oil_plantation", "coffee_plantation", "paddy_field", "vegetable_farm", "sugarcane_plantation", "tea_plantation", "tuber_field"].includes(key))
+          .sort((a, b) => {
+            const order = ["padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"];
+            const idxA = order.indexOf(a[1].dataKey);
+            const idxB = order.indexOf(b[1].dataKey);
+            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB) || a[1].no - b[1].no;
+          })
+          .map(([key, val]: [string, any]) => ({
+            key,
+            groupId: "pertanian",
+            label: val.desc,
+            icon: getIcon(key),
+            desc: "Pertanian & Perkebunan",
+            tarif: val.production,
+            unit: val.unit,
+            count: (currentData.sektor_agrikultur[val.dataKey as keyof typeof currentData.sektor_agrikultur] || 0) + ((buildingDeltas[key] as number) || 0),
+            powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
+            pendapatan_nasional: val.pendapatan_nasional,
+            cost: 10,
+            buildTime: val.buildTime || 30
+          }))
       ]
     },
     {
       id: "ekstraksi",
-      title: "3. Mineral Kritis & Strategis",
+      title: "5. Mineral Kritis & Strategis",
       icon: Pickaxe,
       color: "text-orange-500",
-      items: Object.entries(mineralKritisRate).map(([key, val]: [string, any]) => {
-        const count = (currentData.sektor_ekstraksi[val.dataKey as keyof typeof currentData.sektor_ekstraksi] || 0);
-        return {
-          key,
-          groupId: "ekstraksi",
-          label: val.desc,
-          icon: key.includes("uranium") ? Radiation : (key.includes("minyak_bumi") ? Droplets : (key.includes("gas_alam") ? Flame : (key.includes("emas") ? Coins : Pickaxe))),
-          desc: "Sumber Daya Alam",
-          tarif: val.production,
-          unit: val.unit,
-          count: count + ((buildingDeltas[key] as number) || 0),
-          pendapatan_nasional: 0,
-          cost: 30,
-          buildTime: val.buildTime || 30
-        };
-      })
+      items: Object.entries(mineralKritisRate).map(([key, val]: [string, any]) => ({
+        key,
+        groupId: "ekstraksi",
+        label: val.desc,
+        icon: getIcon(key),
+        desc: "Sumber Daya Alam",
+        tarif: val.production,
+        unit: val.unit,
+        count: (currentData.sektor_ekstraksi[val.dataKey as keyof typeof currentData.sektor_ekstraksi] || 0) + ((buildingDeltas[key] as number) || 0),
+        powerUsage: (KONSUMSI_EKSTRAKSI as any)[val.dataKey] || 5,
+        pendapatan_nasional: 0,
+        cost: 30,
+        buildTime: val.buildTime || 30
+      }))
     }
   ];
 
@@ -391,7 +342,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-purple-500/10 rounded-xl">
-              <Wrench className="h-6 w-6 text-purple-500" />
+               <Wrench className="h-6 w-6 text-purple-500" />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white tracking-tight">Produksi Hub</h2>
@@ -400,9 +351,9 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           </div>
           <div className="flex items-center gap-4">
             <button
-              onClick={() => setShowQueue(true)}
-              className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group flex items-center gap-2 relative shadow-[0_0_15px_rgba(8,145,178,0.1)] active:scale-95"
-              title="Antrean Pembangunan"
+               onClick={() => setShowQueue(true)}
+               className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group flex items-center gap-2 relative shadow-[0_0_15px_rgba(8,145,178,0.1)] active:scale-95"
+               title="Antrean Pembangunan"
             >
               <Clock className="h-6 w-6 text-cyan-500 group-hover:scale-110 group-hover:rotate-12 transition-transform" />
               {activeConstructions.length > 0 && (
@@ -423,31 +374,27 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
 
         {/* Dashboard Summary Listrik */}
         <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50">
-          {/* Dashboard: Electricity Stats */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Box 1: Pasokan Listrik */}
             <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
               <div className="p-3 bg-cyan-500/10 rounded-xl">
                 <Zap className="h-6 w-6 text-cyan-500" />
               </div>
               <div>
                 <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.supply.title}</p>
-                <p className="text-xl font-black text-white leading-tight">{(adjustedTotalPasokan * 10).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
+                <p className="text-xl font-black text-white leading-tight">{adjustedTotalPasokan.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
               </div>
             </div>
 
-            {/* Box 2: Beban Listrik */}
             <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
               <div className="p-3 bg-rose-500/10 rounded-xl">
                 <Activity className="h-6 w-6 text-rose-500" />
               </div>
               <div>
                 <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.usage.title}</p>
-                <p className="text-xl font-black text-white leading-tight">{(adjustedTotalBeban * 10).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
+                <p className="text-xl font-black text-white leading-tight">{adjustedTotalBeban.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
               </div>
             </div>
 
-            {/* Box 3: Neraca Listrik */}
             <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 relative overflow-hidden group">
               <div className={`p-3 rounded-xl ${surplus >= 0 ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>
                 {surplus >= 0 ? <TrendingUp className="h-6 w-6 text-emerald-500" /> : <TrendingDown className="h-6 w-6 text-rose-500" />}
@@ -455,12 +402,11 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
               <div className="relative z-10">
                 <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.balance.title}</p>
                 <p className={`text-xl font-black leading-tight ${surplus >= 0 ? "text-emerald-500" : "text-rose-500"}`}>
-                  {(surplus * 10).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span>
+                  {surplus.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span>
                 </p>
               </div>
             </div>
           </div>
-
         </div>
 
         {/* Content */}
@@ -496,26 +442,39 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                       {group.items.map((item, idx) => {
                         const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
                         const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
-
-                        const subGroupLabels: Record<string, string> = {
-                          manufaktur: "Manufaktur & Industri",
-                          peternakan: "Peternakan & Perikanan",
-                          pertanian: "Agrikultur & Pertanian"
-                        };
-
-                        const showSubHeader = item.groupId && item.groupId !== prevGroupId;
+                        const showManufakturHeader = item.groupId === "manufaktur" && prevGroupId !== "manufaktur" && group.id === "produksi_ekonomi";
+                        const showPeternakanHeader = item.groupId === "peternakan" && prevGroupId !== "peternakan";
+                        const showPertanianHeader = item.groupId === "pertanian" && prevGroupId !== "pertanian";
 
                         return (
                           <Fragment key={item.key || idx}>
-                            {showSubHeader && subGroupLabels[item.groupId] && (
-                              <div className="col-span-full mt-6 mb-2 flex items-center gap-4">
-                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-800 to-zinc-800"></div>
-                                <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] whitespace-nowrap bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full shadow-xl">
-                                  {subGroupLabels[item.groupId]}
+                            {showManufakturHeader && (
+                              <div className="col-span-full mb-4 flex items-center gap-3 mt-2">
+                                <Factory className="h-4 w-4 text-zinc-500" />
+                                <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
+                                  MANUFAKTUR & INDUSTRI (13)
                                 </span>
-                                <div className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-800 to-zinc-800"></div>
                               </div>
                             )}
+
+                            {showPeternakanHeader && (
+                              <div className="col-span-full mt-8 mb-4 flex items-center gap-3">
+                                <Beef className="h-4 w-4 text-zinc-500" />
+                                <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
+                                  PETERNAKAN & PERIKANAN (8)
+                                </span>
+                              </div>
+                            )}
+                            
+                            {showPertanianHeader && (
+                              <div className="col-span-full mt-8 mb-4 flex items-center gap-3">
+                                <Sprout className="h-4 w-4 text-zinc-500" />
+                                <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
+                                  PERTANIAN & PERKEBUNAN (11)
+                                </span>
+                              </div>
+                            )}
+
                             <BuildingCard
                               item={item}
                               onBuild={handleBuildRequest}
@@ -704,7 +663,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
             {item.desc || "Infrastruktur"}
           </div>
           <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-            Terbangun: {item.count} Unit
+            Terbangun: {item.count} Unit {item.groupId !== "kelistrikan" && item.powerUsage && `(${item.count * item.powerUsage} MW)`}
           </div>
         </div>
       </div>
@@ -721,7 +680,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
                </div>
                <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
                   <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Beban Listrik</span>
-                  <span className="text-[15px] font-black text-amber-500">{item.groupId === "kelistrikan" ? "Supply" : "5 MW"}</span>
+                  <span className="text-[15px] font-black text-amber-500">{item.groupId === "kelistrikan" ? "Supply" : `${item.powerUsage} MW`}</span>
                </div>
                <p className="text-[12px] text-zinc-400 italic mt-2 px-1 leading-relaxed">Fasilitas ini membutuhkan anggaran operasional harian agar tetap berfungsi optimal.</p>
             </div>
@@ -738,7 +697,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
                 <div className="flex items-center gap-2">
                   <Zap size={12} className="text-rose-500/90" />
                   <span className="text-[12px] font-bold text-rose-500/80">
-                    Konsumsi Listrik: 5 MW/bangunan
+                    Konsumsi Listrik: {item.powerUsage} MW/bangunan
                   </span>
                 </div>
               )}

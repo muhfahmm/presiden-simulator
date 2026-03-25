@@ -82,13 +82,15 @@ export const venezuela: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 10.5,
     "sapi_perah": 6,
     "sapi_potong": 11,
     "domba_kambing": 33,
     "udang_kerang": 33.5,
-    "ikan": 22,
+    "ikan": 22
+  },
+  "sektor_agrikultur": {
     "padi": 22,
     "gandum_jagung": 12.5,
     "sayur_umbi": 11.0,
@@ -110,7 +112,6 @@ export const venezuela: CountryData = {
     "pangkalan_laut": 16,
     "program_luar_angkasa": 32,
     "pertahanan_siber": 11,
-    "anggaran_pertahanan": 263
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const venezuela: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

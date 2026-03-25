@@ -82,13 +82,15 @@ export const uzbekistan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 16.5,
     "sapi_perah": 8,
     "sapi_potong": 20,
     "domba_kambing": 38,
     "udang_kerang": 24.0,
-    "ikan": 13,
+    "ikan": 13
+  },
+  "sektor_agrikultur": {
     "padi": 3,
     "gandum_jagung": 9.0,
     "sayur_umbi": 7.5,
@@ -110,7 +112,6 @@ export const uzbekistan: CountryData = {
     "pangkalan_laut": 33,
     "program_luar_angkasa": 23,
     "pertahanan_siber": 12,
-    "anggaran_pertahanan": 250
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const uzbekistan: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

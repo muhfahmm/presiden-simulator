@@ -82,13 +82,15 @@ export const azerbaijan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 11.5,
     "sapi_perah": 12,
     "sapi_potong": 26,
     "domba_kambing": 17,
     "udang_kerang": 12.0,
-    "ikan": 18,
+    "ikan": 18
+  },
+  "sektor_agrikultur": {
     "padi": 31,
     "gandum_jagung": 23.0,
     "sayur_umbi": 17.5,
@@ -110,7 +112,6 @@ export const azerbaijan: CountryData = {
     "pangkalan_laut": 24,
     "program_luar_angkasa": 2,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 152
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const azerbaijan: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

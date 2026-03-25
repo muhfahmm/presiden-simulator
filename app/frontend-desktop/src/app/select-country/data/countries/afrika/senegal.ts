@@ -82,13 +82,15 @@ export const senegal: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 28.5,
     "sapi_perah": 23,
     "sapi_potong": 18,
     "domba_kambing": 35,
     "udang_kerang": 29.5,
-    "ikan": 15,
+    "ikan": 15
+  },
+  "sektor_agrikultur": {
     "padi": 28,
     "gandum_jagung": 25.0,
     "sayur_umbi": 22.5,
@@ -110,7 +112,6 @@ export const senegal: CountryData = {
     "pangkalan_laut": 33,
     "program_luar_angkasa": 28,
     "pertahanan_siber": 36,
-    "anggaran_pertahanan": 77
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const senegal: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

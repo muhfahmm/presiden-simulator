@@ -82,13 +82,15 @@ export const ekuador: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 21.5,
     "sapi_perah": 35,
     "sapi_potong": 14,
     "domba_kambing": 11,
     "udang_kerang": 5.0,
-    "ikan": 35,
+    "ikan": 35
+  },
+  "sektor_agrikultur": {
     "padi": 38,
     "gandum_jagung": 18.5,
     "sayur_umbi": 26.0,
@@ -110,7 +112,6 @@ export const ekuador: CountryData = {
     "pangkalan_laut": 6,
     "program_luar_angkasa": 39,
     "pertahanan_siber": 22,
-    "anggaran_pertahanan": 319
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const ekuador: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

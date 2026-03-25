@@ -82,13 +82,15 @@ export const denmark: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 27.5,
     "sapi_perah": 15,
     "sapi_potong": 16,
     "domba_kambing": 16,
     "udang_kerang": 3.5,
-    "ikan": 27,
+    "ikan": 27
+  },
+  "sektor_agrikultur": {
     "padi": 31,
     "gandum_jagung": 15.5,
     "sayur_umbi": 15.5,
@@ -110,7 +112,6 @@ export const denmark: CountryData = {
     "pangkalan_laut": 11,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 1,
-    "anggaran_pertahanan": 1139
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const denmark: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

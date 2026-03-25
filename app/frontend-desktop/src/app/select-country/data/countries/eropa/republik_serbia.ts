@@ -82,13 +82,15 @@ export const republik_serbia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 14.5,
     "sapi_perah": 30,
     "sapi_potong": 3,
     "domba_kambing": 22,
     "udang_kerang": 28.0,
-    "ikan": 16,
+    "ikan": 16
+  },
+  "sektor_agrikultur": {
     "padi": 9,
     "gandum_jagung": 18.5,
     "sayur_umbi": 6.0,
@@ -110,7 +112,6 @@ export const republik_serbia: CountryData = {
     "pangkalan_laut": 29,
     "program_luar_angkasa": 9,
     "pertahanan_siber": 2,
-    "anggaran_pertahanan": 188
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const republik_serbia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

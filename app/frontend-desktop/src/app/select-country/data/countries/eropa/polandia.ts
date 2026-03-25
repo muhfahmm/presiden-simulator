@@ -82,13 +82,15 @@ export const polandia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 22.5,
     "sapi_perah": 6,
     "sapi_potong": 14,
     "domba_kambing": 10,
     "udang_kerang": 24.5,
-    "ikan": 29,
+    "ikan": 29
+  },
+  "sektor_agrikultur": {
     "padi": 5,
     "gandum_jagung": 15.5,
     "sayur_umbi": 22.0,
@@ -110,7 +112,6 @@ export const polandia: CountryData = {
     "pangkalan_laut": 36,
     "program_luar_angkasa": 25,
     "pertahanan_siber": 16,
-    "anggaran_pertahanan": 2333
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const polandia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

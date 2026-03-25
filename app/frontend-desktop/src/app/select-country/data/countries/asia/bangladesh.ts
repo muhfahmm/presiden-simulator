@@ -82,13 +82,15 @@ export const bangladesh: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 7.5,
     "sapi_perah": 1,
     "sapi_potong": 4,
     "domba_kambing": 31,
     "udang_kerang": 23.5,
-    "ikan": 32,
+    "ikan": 32
+  },
+  "sektor_agrikultur": {
     "padi": 9,
     "gandum_jagung": 19.5,
     "sayur_umbi": 24.5,
@@ -110,7 +112,6 @@ export const bangladesh: CountryData = {
     "pangkalan_laut": 14,
     "program_luar_angkasa": 40,
     "pertahanan_siber": 7,
-    "anggaran_pertahanan": 1277
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const bangladesh: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

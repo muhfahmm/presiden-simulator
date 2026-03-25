@@ -1,4 +1,4 @@
-import { CountryData, SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian } from "../types/_index";
+import { CountryData, SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian, SektorPabrikMiliter } from "../types/_index";
 
 // 1. Konsumsi Ekstraksi (Mining)
 export const KONSUMSI_EKSTRAKSI = {
@@ -55,11 +55,21 @@ export const KONSUMSI_PANGAN = {
   sayur_umbi: 0.15, kedelai: 0.1, kelapa_sawit: 1, kopi_teh_kakao: 0.2
 };
 
-export function hitungKonsumsiPangan(pangan: CountryData["sektor_agri_peternakan"]) {
-  if (!pangan) return 0;
-  return Object.keys(KONSUMSI_PANGAN).reduce((total, key) => {
-    return total + ((pangan as any)[key] ?? 0) * (KONSUMSI_PANGAN as any)[key];
-  }, 0);
+export function hitungKonsumsiPangan(peternakan: CountryData["sektor_peternakan"], agrikultur: CountryData["sektor_agrikultur"]) {
+  let total = 0;
+  if (peternakan) {
+    total += Object.keys(peternakan).reduce((sum, key) => {
+      const consumptionRate = (KONSUMSI_PANGAN as any)[key] ?? 0;
+      return sum + ((peternakan as any)[key] ?? 0) * consumptionRate;
+    }, 0);
+  }
+  if (agrikultur) {
+    total += Object.keys(agrikultur).reduce((sum, key) => {
+      const consumptionRate = (KONSUMSI_PANGAN as any)[key] ?? 0;
+      return sum + ((agrikultur as any)[key] ?? 0) * consumptionRate;
+    }, 0);
+  }
+  return total;
 }
 
 // 4. Konsumsi Pertahanan (Defense)
@@ -107,11 +117,19 @@ export const KONSUMSI_FLEET = {
   }
 };
 
+export const KONSUMSI_PABRIK_MILITER = {
+  pabrik_drone_kamikaze: 5,
+  pabrik_amunisi: 8,
+  pabrik_kendaraan_tempur: 20,
+  pabrik_senjata_berat: 25
+};
+
 export function hitungKonsumsiPertahanan(
   management: SektorPertahanan,
   fleet: SektorArmadaMiliter,
   strategis: SektorMiliterStrategis,
-  police: SektorArmadaKepolisian
+  police: SektorArmadaKepolisian,
+  pabrik: SektorPabrikMiliter
 ) {
   const base = (
     (management.penjara ?? 0) * KONSUMSI_PERTAHANAN.penjara +
@@ -153,13 +171,55 @@ export function hitungKonsumsiPertahanan(
     (police.armada_polisi.taktis_khusus.helikopter_polisi ?? 0) * 2
   );
 
-  return base + fleetCons + securityCons + managementCons + policeCons;
+  const pabrikCons = (
+    (pabrik.pabrik_drone_kamikaze ?? 0) * KONSUMSI_PABRIK_MILITER.pabrik_drone_kamikaze +
+    (pabrik.pabrik_amunisi ?? 0) * KONSUMSI_PABRIK_MILITER.pabrik_amunisi +
+    (pabrik.pabrik_kendaraan_tempur ?? 0) * KONSUMSI_PABRIK_MILITER.pabrik_kendaraan_tempur +
+    (pabrik.pabrik_senjata_berat ?? 0) * KONSUMSI_PABRIK_MILITER.pabrik_senjata_berat
+  );
+
+  return base + fleetCons + securityCons + managementCons + policeCons + pabrikCons;
+}
+
+/**
+ * Kalkulasi konsumsi listrik hanya untuk bangunan manajemen & strategis.
+ */
+export function hitungKonsumsiBangunanMiliter(
+  management: SektorPertahanan,
+  barak: number,
+  status_nuklir: boolean
+) {
+  return (
+    (management.penjara ?? 0) * KONSUMSI_PERTAHANAN.penjara +
+    (management.gudang_senjata ?? 0) * KONSUMSI_PERTAHANAN.gudang_senjata +
+    (management.hangar_tank ?? 0) * KONSUMSI_PERTAHANAN.hangar_tank +
+    (management.akademi_militer ?? 0) * KONSUMSI_PERTAHANAN.akademi_militer +
+    (management.pusat_komando ?? 0) * KONSUMSI_STRATEGIC.pusat_komando +
+    (management.pangkalan_udara ?? 0) * KONSUMSI_STRATEGIC.pangkalan_udara +
+    (management.pangkalan_laut ?? 0) * KONSUMSI_STRATEGIC.pangkalan_laut +
+    (management.program_luar_angkasa ?? 0) * KONSUMSI_STRATEGIC.program_luar_angkasa +
+    (management.pertahanan_siber ?? 0) * 5 + // Progress based
+    (barak ?? 0) * KONSUMSI_PERTAHANAN.barak +
+    (status_nuklir ? 50 : 0) // System power
+  );
+}
+
+/**
+ * Kalkulasi konsumsi listrik hanya untuk pabrik militer.
+ */
+export function hitungKonsumsiPabrikMiliter(pabrik: SektorPabrikMiliter) {
+  return (
+    (pabrik.pabrik_drone_kamikaze ?? 0) * KONSUMSI_PABRIK_MILITER.pabrik_drone_kamikaze +
+    (pabrik.pabrik_amunisi ?? 0) * KONSUMSI_PABRIK_MILITER.pabrik_amunisi +
+    (pabrik.pabrik_kendaraan_tempur ?? 0) * KONSUMSI_PABRIK_MILITER.pabrik_kendaraan_tempur +
+    (pabrik.pabrik_senjata_berat ?? 0) * KONSUMSI_PABRIK_MILITER.pabrik_senjata_berat
+  );
 }
 
 // 5. Konsumsi Sosial
 export const KONSUMSI_SOSIAL = {
   pendidikan: {
-    tk: 0.5, sd: 1, smp: 2, sma: 3,
+    prasekolah: 0.5, dasar: 1, menengah: 2, lanjutan: 3,
     universitas: 10, lembaga_pendidikan: 5, laboratorium: 15, observatorium: 8,
     pusat_penelitian: 20, pusat_pengembangan: 15
   },
@@ -213,8 +273,8 @@ export function hitungTotalKonsumsiNasional(data: CountryData) {
   return (
     hitungKonsumsiEkstraksi(data.sektor_ekstraksi) +
     hitungKonsumsiProduksi(data.sektor_manufaktur) +
-    hitungKonsumsiPangan(data.sektor_agri_peternakan) +
-    hitungKonsumsiPertahanan(data.sektor_pertahanan, data.armada_militer, data.militer_strategis, data.armada_kepolisian) +
+    hitungKonsumsiPangan(data.sektor_peternakan, data.sektor_agrikultur) +
+    hitungKonsumsiPertahanan(data.sektor_pertahanan, data.armada_militer, data.militer_strategis, data.armada_kepolisian, data.pabrik_militer) +
     hitungKonsumsiSosial(data.sektor_sosial) +
     hitungKonsumsiOlahraga(data.sektor_olahraga) +
     hitungKonsumsiTransportasi(data.infrastruktur)

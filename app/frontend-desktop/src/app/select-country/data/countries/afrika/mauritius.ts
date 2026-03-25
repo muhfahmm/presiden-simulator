@@ -82,13 +82,15 @@ export const mauritius: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 16.5,
     "sapi_perah": 16,
     "sapi_potong": 30,
     "domba_kambing": 15,
     "udang_kerang": 32.0,
-    "ikan": 10,
+    "ikan": 10
+  },
+  "sektor_agrikultur": {
     "padi": 8,
     "gandum_jagung": 11.0,
     "sayur_umbi": 2.5,
@@ -110,7 +112,6 @@ export const mauritius: CountryData = {
     "pangkalan_laut": 15,
     "program_luar_angkasa": 5,
     "pertahanan_siber": 40,
-    "anggaran_pertahanan": 38
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const mauritius: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

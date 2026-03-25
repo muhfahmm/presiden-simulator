@@ -29,14 +29,15 @@ export function calculateBaseMaintenance(countryData: CountryData): number {
     countryData.infrastruktur,
     countryData.sektor_ekstraksi,
     countryData.sektor_manufaktur,
-    countryData.sektor_agri_peternakan,
+    countryData.sektor_peternakan,
+    countryData.sektor_agrikultur,
     countryData.sektor_sosial?.pendidikan,
     countryData.sektor_sosial?.kesehatan,
-    countryData.sektor_sosial?.olahraga,
+    countryData.sektor_olahraga,
     countryData.sektor_sosial?.hukum,
     countryData.sektor_pertahanan,
-    countryData.sektor_armada,
-    countryData.sektor_keamanan
+    countryData.armada_militer,
+    countryData.armada_kepolisian
   ];
 
   sectors.forEach(sector => {

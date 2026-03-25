@@ -82,13 +82,15 @@ export const palestina: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 21.5,
     "sapi_perah": 4,
     "sapi_potong": 10,
     "domba_kambing": 35,
     "udang_kerang": 5.5,
-    "ikan": 14,
+    "ikan": 14
+  },
+  "sektor_agrikultur": {
     "padi": 21,
     "gandum_jagung": 9.0,
     "sayur_umbi": 15.5,
@@ -110,7 +112,6 @@ export const palestina: CountryData = {
     "pangkalan_laut": 15,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 23,
-    "anggaran_pertahanan": 55
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const palestina: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

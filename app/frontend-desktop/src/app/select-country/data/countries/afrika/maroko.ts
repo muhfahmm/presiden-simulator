@@ -82,13 +82,15 @@ export const maroko: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 27.5,
     "sapi_perah": 16,
     "sapi_potong": 18,
     "domba_kambing": 1,
     "udang_kerang": 7.5,
-    "ikan": 1,
+    "ikan": 1
+  },
+  "sektor_agrikultur": {
     "padi": 32,
     "gandum_jagung": 9.0,
     "sayur_umbi": 42.5,
@@ -110,7 +112,6 @@ export const maroko: CountryData = {
     "pangkalan_laut": 31,
     "program_luar_angkasa": 13,
     "pertahanan_siber": 15,
-    "anggaran_pertahanan": 375
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const maroko: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

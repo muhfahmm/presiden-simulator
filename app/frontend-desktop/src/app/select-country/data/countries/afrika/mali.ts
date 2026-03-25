@@ -82,13 +82,15 @@ export const mali: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 19.0,
     "sapi_perah": 14,
     "sapi_potong": 40,
     "domba_kambing": 17,
     "udang_kerang": 16.0,
-    "ikan": 11,
+    "ikan": 11
+  },
+  "sektor_agrikultur": {
     "padi": 1,
     "gandum_jagung": 10.5,
     "sayur_umbi": 32.0,
@@ -110,7 +112,6 @@ export const mali: CountryData = {
     "pangkalan_laut": 37,
     "program_luar_angkasa": 4,
     "pertahanan_siber": 37,
-    "anggaran_pertahanan": 50
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const mali: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

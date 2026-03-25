@@ -82,13 +82,15 @@ export const puerto_rico: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 21.5,
     "sapi_perah": 35,
     "sapi_potong": 5,
     "domba_kambing": 2,
     "udang_kerang": 13.5,
-    "ikan": 31,
+    "ikan": 31
+  },
+  "sektor_agrikultur": {
     "padi": 4,
     "gandum_jagung": 31.0,
     "sayur_umbi": 20.5,
@@ -110,7 +112,6 @@ export const puerto_rico: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 1,
     "pertahanan_siber": 38,
-    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const puerto_rico: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

@@ -82,13 +82,15 @@ export const mikronesia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 7.0,
     "sapi_perah": 32,
     "sapi_potong": 31,
     "domba_kambing": 14,
     "udang_kerang": 40.0,
-    "ikan": 34,
+    "ikan": 34
+  },
+  "sektor_agrikultur": {
     "padi": 3,
     "gandum_jagung": 28.0,
     "sayur_umbi": 27.5,
@@ -110,7 +112,6 @@ export const mikronesia: CountryData = {
     "pangkalan_laut": 27,
     "program_luar_angkasa": 6,
     "pertahanan_siber": 22,
-    "anggaran_pertahanan": 1
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const mikronesia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

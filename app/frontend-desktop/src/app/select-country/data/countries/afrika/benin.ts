@@ -82,13 +82,15 @@ export const benin: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 18.0,
     "sapi_perah": 12,
     "sapi_potong": 31,
     "domba_kambing": 27,
     "udang_kerang": 31.0,
-    "ikan": 11,
+    "ikan": 11
+  },
+  "sektor_agrikultur": {
     "padi": 17,
     "gandum_jagung": 5.5,
     "sayur_umbi": 20.5,
@@ -110,7 +112,6 @@ export const benin: CountryData = {
     "pangkalan_laut": 5,
     "program_luar_angkasa": 36,
     "pertahanan_siber": 32,
-    "anggaran_pertahanan": 52
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const benin: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

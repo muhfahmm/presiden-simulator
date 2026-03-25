@@ -82,13 +82,15 @@ export const swedia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 23.0,
     "sapi_perah": 19,
     "sapi_potong": 4,
     "domba_kambing": 30,
     "udang_kerang": 29.0,
-    "ikan": 33,
+    "ikan": 33
+  },
+  "sektor_agrikultur": {
     "padi": 37,
     "gandum_jagung": 23.0,
     "sayur_umbi": 18.0,
@@ -110,7 +112,6 @@ export const swedia: CountryData = {
     "pangkalan_laut": 26,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 30,
-    "anggaran_pertahanan": 1666
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const swedia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

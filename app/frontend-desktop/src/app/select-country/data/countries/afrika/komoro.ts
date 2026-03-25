@@ -82,13 +82,15 @@ export const komoro: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 28.0,
     "sapi_perah": 21,
     "sapi_potong": 10,
     "domba_kambing": 12,
     "udang_kerang": 11.0,
-    "ikan": 32,
+    "ikan": 32
+  },
+  "sektor_agrikultur": {
     "padi": 17,
     "gandum_jagung": 10.5,
     "sayur_umbi": 18.0,
@@ -110,7 +112,6 @@ export const komoro: CountryData = {
     "pangkalan_laut": 6,
     "program_luar_angkasa": 25,
     "pertahanan_siber": 25,
-    "anggaran_pertahanan": 3
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const komoro: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

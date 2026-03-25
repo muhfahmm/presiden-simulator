@@ -82,13 +82,15 @@ export const amerika_serikat: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 15.0,
     "sapi_perah": 9,
     "sapi_potong": 13,
     "domba_kambing": 38,
     "udang_kerang": 11.0,
-    "ikan": 19,
+    "ikan": 19
+  },
+  "sektor_agrikultur": {
     "padi": 35,
     "gandum_jagung": 23.5,
     "sayur_umbi": 12.0,
@@ -110,7 +112,6 @@ export const amerika_serikat: CountryData = {
     "pangkalan_laut": 12,
     "program_luar_angkasa": 25,
     "pertahanan_siber": 9,
-    "anggaran_pertahanan": 80006
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const amerika_serikat: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

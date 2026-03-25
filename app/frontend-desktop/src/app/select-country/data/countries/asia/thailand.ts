@@ -82,13 +82,15 @@ export const thailand: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 20.0,
     "sapi_perah": 30,
     "sapi_potong": 33,
     "domba_kambing": 23,
     "udang_kerang": 26.5,
-    "ikan": 24,
+    "ikan": 24
+  },
+  "sektor_agrikultur": {
     "padi": 26,
     "gandum_jagung": 22.5,
     "sayur_umbi": 18.5,
@@ -110,7 +112,6 @@ export const thailand: CountryData = {
     "pangkalan_laut": 19,
     "program_luar_angkasa": 10,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 1416
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const thailand: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

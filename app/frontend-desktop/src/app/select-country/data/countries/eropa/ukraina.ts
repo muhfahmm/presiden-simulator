@@ -82,13 +82,15 @@ export const ukraina: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 28.0,
     "sapi_perah": 29,
     "sapi_potong": 30,
     "domba_kambing": 19,
     "udang_kerang": 21.0,
-    "ikan": 17,
+    "ikan": 17
+  },
+  "sektor_agrikultur": {
     "padi": 19,
     "gandum_jagung": 26.0,
     "sayur_umbi": 39.0,
@@ -110,7 +112,6 @@ export const ukraina: CountryData = {
     "pangkalan_laut": 18,
     "program_luar_angkasa": 30,
     "pertahanan_siber": 12,
-    "anggaran_pertahanan": 444
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const ukraina: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

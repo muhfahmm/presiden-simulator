@@ -82,13 +82,15 @@ export const australia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 23.5,
     "sapi_perah": 13,
     "sapi_potong": 6,
     "domba_kambing": 30,
     "udang_kerang": 11.5,
-    "ikan": 17,
+    "ikan": 17
+  },
+  "sektor_agrikultur": {
     "padi": 27,
     "gandum_jagung": 20.5,
     "sayur_umbi": 3.0,
@@ -110,7 +112,6 @@ export const australia: CountryData = {
     "pangkalan_laut": 26,
     "program_luar_angkasa": 11,
     "pertahanan_siber": 25,
-    "anggaran_pertahanan": 4778
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const australia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

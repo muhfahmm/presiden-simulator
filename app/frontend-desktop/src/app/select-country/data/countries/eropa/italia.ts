@@ -82,13 +82,15 @@ export const italia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 17.5,
     "sapi_perah": 33,
     "sapi_potong": 29,
     "domba_kambing": 32,
     "udang_kerang": 25.0,
-    "ikan": 26,
+    "ikan": 26
+  },
+  "sektor_agrikultur": {
     "padi": 34,
     "gandum_jagung": 14.5,
     "sayur_umbi": 20.0,
@@ -110,7 +112,6 @@ export const italia: CountryData = {
     "pangkalan_laut": 16,
     "program_luar_angkasa": 10,
     "pertahanan_siber": 9,
-    "anggaran_pertahanan": 6472
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const italia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

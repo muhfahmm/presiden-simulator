@@ -82,13 +82,15 @@ export const gabon: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 31.5,
     "sapi_perah": 32,
     "sapi_potong": 1,
     "domba_kambing": 7,
     "udang_kerang": 32.0,
-    "ikan": 31,
+    "ikan": 31
+  },
+  "sektor_agrikultur": {
     "padi": 5,
     "gandum_jagung": 25.0,
     "sayur_umbi": 10.0,
@@ -110,7 +112,6 @@ export const gabon: CountryData = {
     "pangkalan_laut": 5,
     "program_luar_angkasa": 10,
     "pertahanan_siber": 5,
-    "anggaran_pertahanan": 55
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const gabon: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

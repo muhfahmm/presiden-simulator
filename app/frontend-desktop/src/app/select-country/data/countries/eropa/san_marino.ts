@@ -82,13 +82,15 @@ export const san_marino: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 15.5,
     "sapi_perah": 29,
     "sapi_potong": 19,
     "domba_kambing": 24,
     "udang_kerang": 10.0,
-    "ikan": 25,
+    "ikan": 25
+  },
+  "sektor_agrikultur": {
     "padi": 1,
     "gandum_jagung": 24.0,
     "sayur_umbi": 21.0,
@@ -110,7 +112,6 @@ export const san_marino: CountryData = {
     "pangkalan_laut": 35,
     "program_luar_angkasa": 22,
     "pertahanan_siber": 39,
-    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const san_marino: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

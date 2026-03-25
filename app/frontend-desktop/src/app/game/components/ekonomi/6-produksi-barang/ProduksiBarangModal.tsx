@@ -47,7 +47,8 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
       try {
          if (sector === "produksi") {
             const m = c.sektor_manufaktur as any;
-            const p = c.sektor_agri_peternakan as any;
+            const p_peternakan = (c.sektor_peternakan || {}) as any;
+            const p_agrikultur = (c.sektor_agrikultur || {}) as any;
 
             // Manufaktur mapping
             const manufacturingMap: Record<string, string> = {
@@ -76,7 +77,7 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
             };
 
             if (panganMap[key]) {
-               const baseCount = p[panganMap[key]] || 0;
+               const baseCount = (p_peternakan[panganMap[key]] || 0) + (p_agrikultur[panganMap[key]] || 0);
                // If it's a grouped key, we need to handle delta specifically like in ProduksiModal
                // but for simplicity in this modal we'll return base + delta
                return baseCount + delta;

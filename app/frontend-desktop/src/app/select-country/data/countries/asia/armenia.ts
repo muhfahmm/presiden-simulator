@@ -82,13 +82,15 @@ export const armenia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 35.0,
     "sapi_perah": 29,
     "sapi_potong": 32,
     "domba_kambing": 38,
     "udang_kerang": 8.0,
-    "ikan": 6,
+    "ikan": 6
+  },
+  "sektor_agrikultur": {
     "padi": 35,
     "gandum_jagung": 11.5,
     "sayur_umbi": 24.5,
@@ -110,7 +112,6 @@ export const armenia: CountryData = {
     "pangkalan_laut": 17,
     "program_luar_angkasa": 36,
     "pertahanan_siber": 11,
-    "anggaran_pertahanan": 61
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const armenia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

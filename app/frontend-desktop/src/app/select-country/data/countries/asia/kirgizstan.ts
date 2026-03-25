@@ -82,13 +82,15 @@ export const kirgizstan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 25.0,
     "sapi_perah": 17,
     "sapi_potong": 31,
     "domba_kambing": 39,
     "udang_kerang": 26.5,
-    "ikan": 19,
+    "ikan": 19
+  },
+  "sektor_agrikultur": {
     "padi": 37,
     "gandum_jagung": 8.5,
     "sayur_umbi": 7.0,
@@ -110,7 +112,6 @@ export const kirgizstan: CountryData = {
     "pangkalan_laut": 9,
     "program_luar_angkasa": 29,
     "pertahanan_siber": 29,
-    "anggaran_pertahanan": 33
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const kirgizstan: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

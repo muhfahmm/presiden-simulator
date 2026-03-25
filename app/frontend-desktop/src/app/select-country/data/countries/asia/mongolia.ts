@@ -82,13 +82,15 @@ export const mongolia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 19.5,
     "sapi_perah": 4,
     "sapi_potong": 20,
     "domba_kambing": 30,
     "udang_kerang": 28.0,
-    "ikan": 33,
+    "ikan": 33
+  },
+  "sektor_agrikultur": {
     "padi": 20,
     "gandum_jagung": 16.5,
     "sayur_umbi": 37.5,
@@ -110,7 +112,6 @@ export const mongolia: CountryData = {
     "pangkalan_laut": 13,
     "program_luar_angkasa": 31,
     "pertahanan_siber": 16,
-    "anggaran_pertahanan": 50
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const mongolia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

@@ -13,8 +13,8 @@ export default function PertahananModal({ isOpen, onClose, data }: ModalProps) {
   if (!isOpen) return null;
 
   const management = data.sektor_pertahanan;
-  const fleet = data.sektor_armada;
-  const security = data.sektor_keamanan;
+  const fleet = data.armada_militer;
+  const security = data.militer_strategis;
 
   const sections = [
     {
@@ -32,7 +32,7 @@ export default function PertahananModal({ isOpen, onClose, data }: ModalProps) {
       title: "Alutsista & Unit",
       icon: Shield,
       items: [
-        { label: "Divisi Infanteri", icon: Users, desc: `${(fleet.infanteri / 1000).toFixed(1)}k Personel`, value: fleet.infanteri },
+        { label: "Divisi Infanteri", icon: Users, desc: `${((fleet.personel?.infanteri_reguler || 0) / 1000).toFixed(1)}k Personel`, value: fleet.personel?.infanteri_reguler || 0 },
         { label: "Resimen Tank", icon: Truck, desc: `${fleet.darat.tank_tempur_utama} MBT Siaga`, value: fleet.darat.tank_tempur_utama },
         { label: "Armada Laut", icon: Anchor, desc: `${fleet.laut.kapal_destroyer} Destroyer Aktif`, value: fleet.laut.kapal_destroyer },
         { label: "Skuadron Udara", icon: Plane, desc: `${fleet.udara.jet_tempur_siluman} Jet Stealth Ready`, value: fleet.udara.jet_tempur_siluman },
@@ -42,8 +42,8 @@ export default function PertahananModal({ isOpen, onClose, data }: ModalProps) {
       title: "Intelijen & Radar",
       icon: Search,
       items: [
-        { label: "Sistem Satelit", icon: Zap, desc: `${security.intel_radar.sistem_satelit} Satelit Orbit`, value: security.intel_radar.sistem_satelit },
-        { label: "Jaringan Radar", icon: Crosshair, desc: `${security.intel_radar.jaringan_radar}% Cakupan`, value: security.intel_radar.jaringan_radar },
+        { label: "Sistem Satelit", icon: Zap, desc: `${security.intel_radar?.sistem_satelit ?? 0} Satelit Orbit`, value: security.intel_radar?.sistem_satelit ?? 0 },
+        { label: "Jaringan Radar", icon: Crosshair, desc: `${security.intel_radar?.jaringan_radar ?? 0}% Cakupan`, value: security.intel_radar?.jaringan_radar ?? 0 },
         { label: "Cyber Security", icon: Eye, desc: `Level ${management.pertahanan_siber} Defense`, value: management.pertahanan_siber },
       ]
     }

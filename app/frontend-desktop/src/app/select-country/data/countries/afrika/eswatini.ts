@@ -82,13 +82,15 @@ export const eswatini: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 28.0,
     "sapi_perah": 2,
     "sapi_potong": 28,
     "domba_kambing": 3,
     "udang_kerang": 7.5,
-    "ikan": 6,
+    "ikan": 6
+  },
+  "sektor_agrikultur": {
     "padi": 28,
     "gandum_jagung": 10.5,
     "sayur_umbi": 5.0,
@@ -110,7 +112,6 @@ export const eswatini: CountryData = {
     "pangkalan_laut": 4,
     "program_luar_angkasa": 16,
     "pertahanan_siber": 6,
-    "anggaran_pertahanan": 12
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const eswatini: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

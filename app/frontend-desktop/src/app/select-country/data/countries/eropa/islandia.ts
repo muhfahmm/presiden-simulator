@@ -82,13 +82,15 @@ export const islandia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 23.5,
     "sapi_perah": 22,
     "sapi_potong": 9,
     "domba_kambing": 16,
     "udang_kerang": 23.5,
-    "ikan": 14,
+    "ikan": 14
+  },
+  "sektor_agrikultur": {
     "padi": 27,
     "gandum_jagung": 28.5,
     "sayur_umbi": 30.5,
@@ -110,7 +112,6 @@ export const islandia: CountryData = {
     "pangkalan_laut": 22,
     "program_luar_angkasa": 32,
     "pertahanan_siber": 6,
-    "anggaran_pertahanan": 83
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const islandia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

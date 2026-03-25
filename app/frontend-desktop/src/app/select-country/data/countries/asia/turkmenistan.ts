@@ -82,13 +82,15 @@ export const turkmenistan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 16.5,
     "sapi_perah": 34,
     "sapi_potong": 2,
     "domba_kambing": 35,
     "udang_kerang": 18.0,
-    "ikan": 21,
+    "ikan": 21
+  },
+  "sektor_agrikultur": {
     "padi": 29,
     "gandum_jagung": 28.0,
     "sayur_umbi": 22.0,
@@ -110,7 +112,6 @@ export const turkmenistan: CountryData = {
     "pangkalan_laut": 35,
     "program_luar_angkasa": 19,
     "pertahanan_siber": 40,
-    "anggaran_pertahanan": 125
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const turkmenistan: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

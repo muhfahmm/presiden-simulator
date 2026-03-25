@@ -82,13 +82,15 @@ export const republik_afrika_tengah: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 11.5,
     "sapi_perah": 18,
     "sapi_potong": 38,
     "domba_kambing": 23,
     "udang_kerang": 31.0,
-    "ikan": 28,
+    "ikan": 28
+  },
+  "sektor_agrikultur": {
     "padi": 12,
     "gandum_jagung": 20.5,
     "sayur_umbi": 34.5,
@@ -110,7 +112,6 @@ export const republik_afrika_tengah: CountryData = {
     "pangkalan_laut": 18,
     "program_luar_angkasa": 31,
     "pertahanan_siber": 24,
-    "anggaran_pertahanan": 6
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const republik_afrika_tengah: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

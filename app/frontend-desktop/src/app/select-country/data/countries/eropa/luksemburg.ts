@@ -82,13 +82,15 @@ export const luksemburg: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 7.0,
     "sapi_perah": 34,
     "sapi_potong": 39,
     "domba_kambing": 18,
     "udang_kerang": 15.5,
-    "ikan": 1,
+    "ikan": 1
+  },
+  "sektor_agrikultur": {
     "padi": 3,
     "gandum_jagung": 21.5,
     "sayur_umbi": 3.5,
@@ -110,7 +112,6 @@ export const luksemburg: CountryData = {
     "pangkalan_laut": 30,
     "program_luar_angkasa": 40,
     "pertahanan_siber": 5,
-    "anggaran_pertahanan": 241
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const luksemburg: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

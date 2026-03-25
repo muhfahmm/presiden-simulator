@@ -82,13 +82,15 @@ export const swiss: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 30.0,
     "sapi_perah": 14,
     "sapi_potong": 11,
     "domba_kambing": 32,
     "udang_kerang": 17.0,
-    "ikan": 8,
+    "ikan": 8
+  },
+  "sektor_agrikultur": {
     "padi": 40,
     "gandum_jagung": 15.5,
     "sayur_umbi": 20.5,
@@ -110,7 +112,6 @@ export const swiss: CountryData = {
     "pangkalan_laut": 30,
     "program_luar_angkasa": 4,
     "pertahanan_siber": 29,
-    "anggaran_pertahanan": 2528
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const swiss: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

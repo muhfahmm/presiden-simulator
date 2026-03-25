@@ -82,13 +82,15 @@ export const rwanda: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 29.5,
     "sapi_perah": 38,
     "sapi_potong": 22,
     "domba_kambing": 13,
     "udang_kerang": 14.5,
-    "ikan": 2,
+    "ikan": 2
+  },
+  "sektor_agrikultur": {
     "padi": 21,
     "gandum_jagung": 7.5,
     "sayur_umbi": 28.0,
@@ -110,7 +112,6 @@ export const rwanda: CountryData = {
     "pangkalan_laut": 29,
     "program_luar_angkasa": 24,
     "pertahanan_siber": 12,
-    "anggaran_pertahanan": 36
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const rwanda: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

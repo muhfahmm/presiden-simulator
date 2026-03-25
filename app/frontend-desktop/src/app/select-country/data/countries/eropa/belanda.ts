@@ -82,13 +82,15 @@ export const belanda: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 25.0,
     "sapi_perah": 38,
     "sapi_potong": 31,
     "domba_kambing": 12,
     "udang_kerang": 13.0,
-    "ikan": 37,
+    "ikan": 37
+  },
+  "sektor_agrikultur": {
     "padi": 32,
     "gandum_jagung": 19.5,
     "sayur_umbi": 31.0,
@@ -110,7 +112,6 @@ export const belanda: CountryData = {
     "pangkalan_laut": 18,
     "program_luar_angkasa": 19,
     "pertahanan_siber": 16,
-    "anggaran_pertahanan": 3028
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const belanda: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

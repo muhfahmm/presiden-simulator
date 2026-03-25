@@ -82,13 +82,15 @@ export const bermuda: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 20.5,
     "sapi_perah": 10,
     "sapi_potong": 33,
     "domba_kambing": 13,
     "udang_kerang": 28.5,
-    "ikan": 15,
+    "ikan": 15
+  },
+  "sektor_agrikultur": {
     "padi": 33,
     "gandum_jagung": 36.0,
     "sayur_umbi": 14.0,
@@ -110,7 +112,6 @@ export const bermuda: CountryData = {
     "pangkalan_laut": 39,
     "program_luar_angkasa": 39,
     "pertahanan_siber": 37,
-    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const bermuda: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

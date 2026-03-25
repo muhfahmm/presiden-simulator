@@ -82,13 +82,15 @@ export const tahiti: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 15.5,
     "sapi_perah": 37,
     "sapi_potong": 19,
     "domba_kambing": 18,
     "udang_kerang": 10.0,
-    "ikan": 14,
+    "ikan": 14
+  },
+  "sektor_agrikultur": {
     "padi": 35,
     "gandum_jagung": 4.5,
     "sayur_umbi": 13.0,
@@ -110,7 +112,6 @@ export const tahiti: CountryData = {
     "pangkalan_laut": 11,
     "program_luar_angkasa": 39,
     "pertahanan_siber": 2,
-    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const tahiti: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

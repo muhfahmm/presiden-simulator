@@ -82,13 +82,15 @@ export const kongo: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 30.5,
     "sapi_perah": 34,
     "sapi_potong": 29,
     "domba_kambing": 18,
     "udang_kerang": 28.5,
-    "ikan": 20,
+    "ikan": 20
+  },
+  "sektor_agrikultur": {
     "padi": 13,
     "gandum_jagung": 21.5,
     "sayur_umbi": 20.5,
@@ -110,7 +112,6 @@ export const kongo: CountryData = {
     "pangkalan_laut": 17,
     "program_luar_angkasa": 38,
     "pertahanan_siber": 1,
-    "anggaran_pertahanan": 41
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const kongo: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

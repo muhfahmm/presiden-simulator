@@ -82,13 +82,15 @@ export const myanmar: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 28.0,
     "sapi_perah": 21,
     "sapi_potong": 7,
     "domba_kambing": 26,
     "udang_kerang": 18.5,
-    "ikan": 22,
+    "ikan": 22
+  },
+  "sektor_agrikultur": {
     "padi": 22,
     "gandum_jagung": 2.0,
     "sayur_umbi": 12.0,
@@ -110,7 +112,6 @@ export const myanmar: CountryData = {
     "pangkalan_laut": 23,
     "program_luar_angkasa": 1,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 166
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const myanmar: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

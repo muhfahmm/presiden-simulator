@@ -82,13 +82,15 @@ export const yordania: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 16.5,
     "sapi_perah": 8,
     "sapi_potong": 14,
     "domba_kambing": 26,
     "udang_kerang": 28.0,
-    "ikan": 37,
+    "ikan": 37
+  },
+  "sektor_agrikultur": {
     "padi": 20,
     "gandum_jagung": 27.0,
     "sayur_umbi": 31.5,
@@ -110,7 +112,6 @@ export const yordania: CountryData = {
     "pangkalan_laut": 26,
     "program_luar_angkasa": 3,
     "pertahanan_siber": 24,
-    "anggaran_pertahanan": 130
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const yordania: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

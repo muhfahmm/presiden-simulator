@@ -82,13 +82,15 @@ export const pakistan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 14.0,
     "sapi_perah": 20,
     "sapi_potong": 37,
     "domba_kambing": 11,
     "udang_kerang": 6.5,
-    "ikan": 29,
+    "ikan": 29
+  },
+  "sektor_agrikultur": {
     "padi": 30,
     "gandum_jagung": 10.5,
     "sayur_umbi": 20.5,
@@ -110,7 +112,6 @@ export const pakistan: CountryData = {
     "pangkalan_laut": 21,
     "program_luar_angkasa": 2,
     "pertahanan_siber": 18,
-    "anggaran_pertahanan": 944
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const pakistan: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

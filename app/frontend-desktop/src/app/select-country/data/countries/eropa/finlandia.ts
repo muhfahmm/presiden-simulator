@@ -82,13 +82,15 @@ export const finlandia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 27.0,
     "sapi_perah": 15,
     "sapi_potong": 5,
     "domba_kambing": 21,
     "udang_kerang": 26.0,
-    "ikan": 29,
+    "ikan": 29
+  },
+  "sektor_agrikultur": {
     "padi": 32,
     "gandum_jagung": 18.5,
     "sayur_umbi": 36.5,
@@ -110,7 +112,6 @@ export const finlandia: CountryData = {
     "pangkalan_laut": 35,
     "program_luar_angkasa": 40,
     "pertahanan_siber": 15,
-    "anggaran_pertahanan": 833
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const finlandia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

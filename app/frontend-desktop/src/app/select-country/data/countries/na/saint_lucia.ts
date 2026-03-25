@@ -82,13 +82,15 @@ export const saint_lucia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 11.5,
     "sapi_perah": 31,
     "sapi_potong": 8,
     "domba_kambing": 9,
     "udang_kerang": 21.5,
-    "ikan": 40,
+    "ikan": 40
+  },
+  "sektor_agrikultur": {
     "padi": 22,
     "gandum_jagung": 30.5,
     "sayur_umbi": 15.5,
@@ -110,7 +112,6 @@ export const saint_lucia: CountryData = {
     "pangkalan_laut": 12,
     "program_luar_angkasa": 2,
     "pertahanan_siber": 33,
-    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const saint_lucia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

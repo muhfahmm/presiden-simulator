@@ -44,6 +44,7 @@ import KementerianModal from "../components/kementerian/KementerianModal";
 import BeritaModal from "../components/berita/BeritaModal";
 import InboxModal from "../components/inbox/InboxModal";
 import KepuasanModal from "../components/navbar/stats/happines/KepuasanModal";
+import AcaraModal from "../components/navbar/stats/happines/acara/AcaraModal";
 import NewMessageToast from "../components/inbox/NewMessageToast";
 import { inboxStorage } from "../components/inbox/inboxStorage";
 import GameNavbar from "../components/navbar";
@@ -167,6 +168,7 @@ export default function GamePage() {
     else initialMenu = "Kementerian";
   } else if (category === 'kepuasan') {
     if (subMenu === 'dashboard') initialMenu = "Dashboard:Kepuasan";
+    else if (subMenu === 'naikkan') initialMenu = "Action:NaikkanKepuasan";
     else initialMenu = "Kepuasan";
   } else if (category === 'berita') {
     initialMenu = "Menu:Berita";
@@ -211,7 +213,8 @@ export default function GamePage() {
       "Menu:Berita": "/game/berita",
       "Menu:Inbox": "/game/inbox",
       "Kepuasan": "/game/kepuasan",
-      "Dashboard:Kepuasan": "/game/kepuasan/dashboard"
+      "Dashboard:Kepuasan": "/game/kepuasan/dashboard",
+      "Action:NaikkanKepuasan": "/game/kepuasan/naikkan"
     };
 
     const targetPath = menuToPath[activeMenu] || "/game";
@@ -528,6 +531,10 @@ export default function GamePage() {
                 isOpen={activeMenu === "Menu:TempatUmum"} 
                 onClose={() => setActiveMenu("Pembangunan")} 
               />
+              <AcaraModal
+                isOpen={activeMenu === "Action:NaikkanKepuasan"}
+                onClose={() => setActiveMenu("Kepuasan")}
+              />
               <PertahananModal 
                 isOpen={activeMenu === "Komando Pertahanan"} 
                 onClose={() => setActiveMenu("Pertahanan")} 
@@ -561,8 +568,8 @@ export default function GamePage() {
                 onClose={() => setActiveMenu("Peta Taktis")} 
               />
               <KepuasanModal
-                isOpen={activeMenu === "Dashboard:Kepuasan" || activeMenu === "Kepuasan"}
-                onClose={() => setActiveMenu("Peta Taktis")}
+                isOpen={activeMenu === "Dashboard:Kepuasan"}
+                onClose={() => setActiveMenu("Kepuasan")}
               />
               <NewMessageToast />
             </>

@@ -82,13 +82,15 @@ export const el_salvador: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 18.5,
     "sapi_perah": 33,
     "sapi_potong": 7,
     "domba_kambing": 6,
     "udang_kerang": 23.0,
-    "ikan": 28,
+    "ikan": 28
+  },
+  "sektor_agrikultur": {
     "padi": 25,
     "gandum_jagung": 26.5,
     "sayur_umbi": 28.0,
@@ -110,7 +112,6 @@ export const el_salvador: CountryData = {
     "pangkalan_laut": 11,
     "program_luar_angkasa": 29,
     "pertahanan_siber": 18,
-    "anggaran_pertahanan": 88
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const el_salvador: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

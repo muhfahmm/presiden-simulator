@@ -82,13 +82,15 @@ export const spanyol: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 26.5,
     "sapi_perah": 31,
     "sapi_potong": 12,
     "domba_kambing": 12,
     "udang_kerang": 4.5,
-    "ikan": 5,
+    "ikan": 5
+  },
+  "sektor_agrikultur": {
     "padi": 29,
     "gandum_jagung": 9.5,
     "sayur_umbi": 14.5,
@@ -110,7 +112,6 @@ export const spanyol: CountryData = {
     "pangkalan_laut": 37,
     "program_luar_angkasa": 4,
     "pertahanan_siber": 35,
-    "anggaran_pertahanan": 4389
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const spanyol: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

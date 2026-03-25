@@ -124,11 +124,27 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
     return baseVal + delta;
   };
 
+  // Standard Database Orders
+  const mineralOrder = ["emas", "uranium", "batu_bara", "minyak_bumi", "gas_alam", "garam", "nikel", "litium", "tembaga", "aluminium", "logam_tanah_jarang", "bijih_besi"];
+  const manufakturOrder = ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu", "air_mineral", "gula", "roti", "farmasi", "pupuk", "pengolahan_daging", "mie_instan"];
+  const panganOrder = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing", "udang_kerang", "ikan", "padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"];
+
   // Logic for 12 Minerals
+  const mineralDataToBuildingKey: Record<string, string> = {
+    emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", 
+    minyak_bumi: "oil_well", gas_alam: "gas_well", garam: "salt_mine", 
+    nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine", 
+    aluminium: "aluminum_mine", logam_tanah_jarang: "rare_earth_mine", 
+    bijih_besi: "iron_ore_mine"
+  };
+
   const minerals = (Object.entries(currentCountry.sektor_ekstraksi)
     .filter(([key]) => key !== 'strength' && typeof currentCountry.sektor_ekstraksi[key as keyof typeof currentCountry.sektor_ekstraksi] === 'number')
-    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || 0) as number)])
-    .sort((a, b) => (b[1] as number) - (a[1] as number))) as [string, number][];
+    .map(([key, val]) => {
+      const buildingKey = mineralDataToBuildingKey[key] || key;
+      return [key, (val as number) + ((buildingDeltas[buildingKey] || 0) as number)];
+    })
+    .sort((a, b) => mineralOrder.indexOf(a[0] as string) - mineralOrder.indexOf(b[0] as string))) as [string, number][];
 
   // Category 2: Sektor Produksi & Ekonomi (Splits into 3 Sub-groups like Produksi Hub)
   const manufakturKeys = ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill", "bottled_water_factory", "sugar_factory", "bakery_factory", "pharma_factory", "fertilizer_factory", "meat_processing_factory", "noodle_factory"];
@@ -140,12 +156,17 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
       const factoryKey = manufakturKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
       return [key, getManufacturingCount(factoryKey, val as number)];
     })
-    .sort((a, b) => (b[1] as number) - (a[1] as number)) as [string, number][];
+    .sort((a, b) => manufakturOrder.indexOf(a[0] as string) - manufakturOrder.indexOf(b[0] as string)) as [string, number][];
 
-  const panganItems = Object.entries(currentCountry.sektor_agri_peternakan)
-    .filter(([key]) => key !== 'kekuatan')
+  const peternakanItems = Object.entries(currentCountry.sektor_peternakan)
     .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number)])
-    .sort((a, b) => (b[1] as number) - (a[1] as number)) as [string, number][];
+    .sort((a, b) => panganOrder.indexOf(a[0] as string) - panganOrder.indexOf(b[0] as string)) as [string, number][];
+
+  const agrikulturItems = Object.entries(currentCountry.sektor_agrikultur)
+    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number)])
+    .sort((a, b) => panganOrder.indexOf(a[0] as string) - panganOrder.indexOf(b[0] as string)) as [string, number][];
+
+  const panganItems = [...peternakanItems, ...agrikulturItems];
 
   const industryAndEconomyLen = manufakturItems.length + panganItems.length;
 

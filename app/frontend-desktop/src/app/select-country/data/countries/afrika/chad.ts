@@ -82,13 +82,15 @@ export const chad: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 20.5,
     "sapi_perah": 6,
     "sapi_potong": 38,
     "domba_kambing": 35,
     "udang_kerang": 12.5,
-    "ikan": 2,
+    "ikan": 2
+  },
+  "sektor_agrikultur": {
     "padi": 4,
     "gandum_jagung": 34.0,
     "sayur_umbi": 24.0,
@@ -110,7 +112,6 @@ export const chad: CountryData = {
     "pangkalan_laut": 22,
     "program_luar_angkasa": 3,
     "pertahanan_siber": 36,
-    "anggaran_pertahanan": 33
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const chad: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

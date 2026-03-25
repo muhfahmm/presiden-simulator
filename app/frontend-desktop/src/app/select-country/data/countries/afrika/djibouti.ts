@@ -82,13 +82,15 @@ export const djibouti: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 13.5,
     "sapi_perah": 7,
     "sapi_potong": 29,
     "domba_kambing": 17,
     "udang_kerang": 32.5,
-    "ikan": 2,
+    "ikan": 2
+  },
+  "sektor_agrikultur": {
     "padi": 8,
     "gandum_jagung": 15.5,
     "sayur_umbi": 21.0,
@@ -110,7 +112,6 @@ export const djibouti: CountryData = {
     "pangkalan_laut": 12,
     "program_luar_angkasa": 26,
     "pertahanan_siber": 29,
-    "anggaran_pertahanan": 11
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const djibouti: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

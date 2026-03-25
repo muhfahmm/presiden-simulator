@@ -82,13 +82,15 @@ export const sao_tome_dan_principe: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 19.5,
     "sapi_perah": 12,
     "sapi_potong": 20,
     "domba_kambing": 37,
     "udang_kerang": 15.0,
-    "ikan": 10,
+    "ikan": 10
+  },
+  "sektor_agrikultur": {
     "padi": 37,
     "gandum_jagung": 26.0,
     "sayur_umbi": 11.0,
@@ -110,7 +112,6 @@ export const sao_tome_dan_principe: CountryData = {
     "pangkalan_laut": 20,
     "program_luar_angkasa": 32,
     "pertahanan_siber": 6,
-    "anggaran_pertahanan": 1
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const sao_tome_dan_principe: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

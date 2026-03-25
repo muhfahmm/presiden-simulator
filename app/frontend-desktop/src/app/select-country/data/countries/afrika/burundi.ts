@@ -82,13 +82,15 @@ export const burundi: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 9.5,
     "sapi_perah": 8,
     "sapi_potong": 29,
     "domba_kambing": 26,
     "udang_kerang": 4.0,
-    "ikan": 13,
+    "ikan": 13
+  },
+  "sektor_agrikultur": {
     "padi": 11,
     "gandum_jagung": 27.5,
     "sayur_umbi": 22.0,
@@ -110,7 +112,6 @@ export const burundi: CountryData = {
     "pangkalan_laut": 37,
     "program_luar_angkasa": 10,
     "pertahanan_siber": 40,
-    "anggaran_pertahanan": 9
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const burundi: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

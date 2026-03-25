@@ -82,13 +82,15 @@ export const slowakia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 16.5,
     "sapi_perah": 14,
     "sapi_potong": 33,
     "domba_kambing": 14,
     "udang_kerang": 24.0,
-    "ikan": 5,
+    "ikan": 5
+  },
+  "sektor_agrikultur": {
     "padi": 7,
     "gandum_jagung": 27.0,
     "sayur_umbi": 24.0,
@@ -110,7 +112,6 @@ export const slowakia: CountryData = {
     "pangkalan_laut": 27,
     "program_luar_angkasa": 24,
     "pertahanan_siber": 34,
-    "anggaran_pertahanan": 361
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const slowakia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

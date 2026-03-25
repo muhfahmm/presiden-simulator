@@ -9,5 +9,4 @@ export interface SektorPertahanan {
   program_luar_angkasa: number;
   lisensi_siber?: boolean;
   pertahanan_siber: number;
-  anggaran_pertahanan: number;
 }

@@ -82,13 +82,15 @@ export const portugal: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 24.5,
     "sapi_perah": 18,
     "sapi_potong": 16,
     "domba_kambing": 21,
     "udang_kerang": 18.0,
-    "ikan": 34,
+    "ikan": 34
+  },
+  "sektor_agrikultur": {
     "padi": 20,
     "gandum_jagung": 21.0,
     "sayur_umbi": 15.0,
@@ -110,7 +112,6 @@ export const portugal: CountryData = {
     "pangkalan_laut": 25,
     "program_luar_angkasa": 23,
     "pertahanan_siber": 20,
-    "anggaran_pertahanan": 777
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const portugal: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

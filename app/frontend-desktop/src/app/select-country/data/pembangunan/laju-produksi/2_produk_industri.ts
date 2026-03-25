@@ -5,6 +5,7 @@ export const produkIndustriRate = {
     production: 450,
     unit: "unit",
     desc: "Industri Semikonduktor",
+    dataKey: "semikonduktor",
     pendapatan_nasional: 450,
     maintenanceCost: 25,
     buildTime: 45
@@ -14,6 +15,7 @@ export const produkIndustriRate = {
     production: 12,
     unit: "unit",
     desc: "Pabrik Mobil",
+    dataKey: "mobil",
     pendapatan_nasional: 800,
     maintenanceCost: 25,
     buildTime: 60
@@ -23,6 +25,7 @@ export const produkIndustriRate = {
     production: 45,
     unit: "unit",
     desc: "Pabrik Motor",
+    dataKey: "sepeda_motor",
     pendapatan_nasional: 250,
     maintenanceCost: 25,
     buildTime: 40
@@ -32,6 +35,7 @@ export const produkIndustriRate = {
     production: 350,
     unit: "ton",
     desc: "Pabrik Semen",
+    dataKey: "semen_beton",
     pendapatan_nasional: 120,
     maintenanceCost: 25,
     buildTime: 45
@@ -41,6 +45,7 @@ export const produkIndustriRate = {
     production: 25,
     unit: "ton",
     desc: "Smelter Logam",
+    dataKey: "smelter",
     pendapatan_nasional: 600,
     maintenanceCost: 25,
     buildTime: 90
@@ -52,6 +57,7 @@ export const produkIndustriRate = {
     production: 15000,
     unit: "liter",
     desc: "Pabrik Air Minum",
+    dataKey: "air_mineral",
     pendapatan_nasional: 35,
     maintenanceCost: 10,
     buildTime: 15
@@ -61,6 +67,7 @@ export const produkIndustriRate = {
     production: 8500,
     unit: "box",
     desc: "Industri Farmasi",
+    dataKey: "farmasi",
     pendapatan_nasional: 350,
     maintenanceCost: 15,
     buildTime: 45
@@ -70,6 +77,7 @@ export const produkIndustriRate = {
     production: 42,
     unit: "ton",
     desc: "Pabrik Gula",
+    dataKey: "gula",
     pendapatan_nasional: 85,
     maintenanceCost: 10,
     buildTime: 30
@@ -79,6 +87,7 @@ export const produkIndustriRate = {
     production: 32000,
     unit: "pcs",
     desc: "Pabrik Mie Instan",
+    dataKey: "mie_instan",
     pendapatan_nasional: 25,
     maintenanceCost: 10,
   },
@@ -87,6 +96,7 @@ export const produkIndustriRate = {
     production: 18,
     unit: "ton",
     desc: "Pengolahan Daging",
+    dataKey: "pengolahan_daging",
     pendapatan_nasional: 110,
     maintenanceCost: 10,
     buildTime: 25
@@ -96,6 +106,7 @@ export const produkIndustriRate = {
     production: 85,
     unit: "m3",
     desc: "Pengolahan Kayu",
+    dataKey: "kayu",
     pendapatan_nasional: 65,
     maintenanceCost: 10,
     buildTime: 20
@@ -105,6 +116,7 @@ export const produkIndustriRate = {
     production: 120,
     unit: "ton",
     desc: "Pabrik Pupuk",
+    dataKey: "pupuk",
     pendapatan_nasional: 140,
     maintenanceCost: 15,
     buildTime: 35
@@ -114,6 +126,7 @@ export const produkIndustriRate = {
     production: 2500,
     unit: "lot",
     desc: "Pabrik Roti",
+    dataKey: "roti",
     pendapatan_nasional: 45,
     maintenanceCost: 10,
     buildTime: 15

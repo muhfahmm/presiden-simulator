@@ -82,13 +82,15 @@ export const turki: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 11.5,
     "sapi_perah": 33,
     "sapi_potong": 38,
     "domba_kambing": 2,
     "udang_kerang": 23.5,
-    "ikan": 18,
+    "ikan": 18
+  },
+  "sektor_agrikultur": {
     "padi": 27,
     "gandum_jagung": 22.0,
     "sayur_umbi": 6.0,
@@ -110,7 +112,6 @@ export const turki: CountryData = {
     "pangkalan_laut": 12,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 36,
-    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const turki: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

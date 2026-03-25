@@ -82,13 +82,15 @@ export const botswana: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 20.0,
     "sapi_perah": 13,
     "sapi_potong": 11,
     "domba_kambing": 30,
     "udang_kerang": 22.0,
-    "ikan": 34,
+    "ikan": 34
+  },
+  "sektor_agrikultur": {
     "padi": 15,
     "gandum_jagung": 22.5,
     "sayur_umbi": 28.5,
@@ -110,7 +112,6 @@ export const botswana: CountryData = {
     "pangkalan_laut": 32,
     "program_luar_angkasa": 25,
     "pertahanan_siber": 39,
-    "anggaran_pertahanan": 55
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const botswana: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

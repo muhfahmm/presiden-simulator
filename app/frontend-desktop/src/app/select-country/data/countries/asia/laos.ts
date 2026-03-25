@@ -82,13 +82,15 @@ export const laos: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 17.0,
     "sapi_perah": 17,
     "sapi_potong": 11,
     "domba_kambing": 3,
     "udang_kerang": 11.5,
-    "ikan": 13,
+    "ikan": 13
+  },
+  "sektor_agrikultur": {
     "padi": 34,
     "gandum_jagung": 16.0,
     "sayur_umbi": 4.0,
@@ -110,7 +112,6 @@ export const laos: CountryData = {
     "pangkalan_laut": 22,
     "program_luar_angkasa": 15,
     "pertahanan_siber": 36,
-    "anggaran_pertahanan": 41
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const laos: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

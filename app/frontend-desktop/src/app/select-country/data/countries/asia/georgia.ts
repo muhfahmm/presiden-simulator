@@ -82,13 +82,15 @@ export const georgia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 32.5,
     "sapi_perah": 39,
     "sapi_potong": 11,
     "domba_kambing": 5,
     "udang_kerang": 19.5,
-    "ikan": 1,
+    "ikan": 1
+  },
+  "sektor_agrikultur": {
     "padi": 34,
     "gandum_jagung": 17.0,
     "sayur_umbi": 10.0,
@@ -110,7 +112,6 @@ export const georgia: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 19,
     "pertahanan_siber": 24,
-    "anggaran_pertahanan": 69
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const georgia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

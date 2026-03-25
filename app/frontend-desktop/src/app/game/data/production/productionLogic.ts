@@ -43,18 +43,18 @@ export function calculateDailyProductionTotals(countryData: CountryData, buildin
 
   // 3. Pangan & Komoditas (Grouped for UI Alignment)
   const panganGroups = [
-    { key: "livestock_poultry", base: ["ayam_unggas"], deltas: ["poultry_farm", "egg_farm"], sector: "sektor_agri_peternakan" },
-    { key: "livestock_dairy", base: ["sapi_perah"], deltas: ["dairy_farm"], sector: "sektor_agri_peternakan" },
-    { key: "livestock_beef", base: ["sapi_potong"], deltas: ["cattle_farm"], sector: "sektor_agri_peternakan" },
-    { key: "livestock_sheep", base: ["domba_kambing"], deltas: ["sheep_farm"], sector: "sektor_agri_peternakan" },
-    { key: "livestock_shrimp", base: ["udang_kerang"], deltas: ["shrimp_farm"], sector: "sektor_agri_peternakan" },
-    { key: "livestock_fish", base: ["ikan"], deltas: ["freshwater_fish_farm"], sector: "sektor_agri_peternakan" },
-    { key: "agri_rice", base: ["padi"], deltas: ["paddy_field"], sector: "sektor_agri_peternakan" },
-    { key: "agri_grains", base: ["gandum_jagung"], deltas: ["wheat_field", "corn_field"], sector: "sektor_agri_peternakan" },
-    { key: "agri_veg", base: ["sayur_umbi"], deltas: ["vegetable_farm", "tuber_field"], sector: "sektor_agri_peternakan" },
-    { key: "agri_soy", base: ["kedelai"], deltas: ["soybean_field"], sector: "sektor_agri_peternakan" },
-    { key: "agri_palm", base: ["kelapa_sawit"], deltas: ["palm_oil_plantation"], sector: "sektor_agri_peternakan" },
-    { key: "agri_luxury", base: ["kopi_teh_kakao"], deltas: ["coffee_plantation", "tea_plantation", "cocoa_plantation"], sector: "sektor_agri_peternakan" },
+    { key: "livestock_poultry", base: ["ayam_unggas"], deltas: ["poultry_farm", "egg_farm"], sector: "sektor_peternakan" },
+    { key: "livestock_dairy", base: ["sapi_perah"], deltas: ["dairy_farm"], sector: "sektor_peternakan" },
+    { key: "livestock_beef", base: ["sapi_potong"], deltas: ["cattle_farm"], sector: "sektor_peternakan" },
+    { key: "livestock_sheep", base: ["domba_kambing"], deltas: ["sheep_farm"], sector: "sektor_peternakan" },
+    { key: "livestock_shrimp", base: ["udang_kerang"], deltas: ["shrimp_farm"], sector: "sektor_peternakan" },
+    { key: "livestock_fish", base: ["ikan"], deltas: ["freshwater_fish_farm"], sector: "sektor_peternakan" },
+    { key: "agri_rice", base: ["padi"], deltas: ["paddy_field"], sector: "sektor_agrikultur" },
+    { key: "agri_grains", base: ["gandum_jagung"], deltas: ["wheat_field", "corn_field"], sector: "sektor_agrikultur" },
+    { key: "agri_veg", base: ["sayur_umbi"], deltas: ["vegetable_farm", "tuber_field"], sector: "sektor_agrikultur" },
+    { key: "agri_soy", base: ["kedelai"], deltas: ["soybean_field"], sector: "sektor_agrikultur" },
+    { key: "agri_palm", base: ["kelapa_sawit"], deltas: ["palm_oil_plantation"], sector: "sektor_agrikultur" },
+    { key: "agri_luxury", base: ["kopi_teh_kakao"], deltas: ["coffee_plantation", "tea_plantation", "cocoa_plantation"], sector: "sektor_agrikultur" },
   ];
 
   panganGroups.forEach(group => {

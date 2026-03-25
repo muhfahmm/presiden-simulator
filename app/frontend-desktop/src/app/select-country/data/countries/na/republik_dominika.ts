@@ -82,13 +82,15 @@ export const republik_dominika: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 35.0,
     "sapi_perah": 22,
     "sapi_potong": 15,
     "domba_kambing": 27,
     "udang_kerang": 27.5,
-    "ikan": 14,
+    "ikan": 14
+  },
+  "sektor_agrikultur": {
     "padi": 20,
     "gandum_jagung": 34.0,
     "sayur_umbi": 14.0,
@@ -110,7 +112,6 @@ export const republik_dominika: CountryData = {
     "pangkalan_laut": 8,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 7,
-    "anggaran_pertahanan": 305
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const republik_dominika: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

@@ -82,13 +82,15 @@ export const filipina: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 9.0,
     "sapi_perah": 10,
     "sapi_potong": 18,
     "domba_kambing": 34,
     "udang_kerang": 36.5,
-    "ikan": 2,
+    "ikan": 2
+  },
+  "sektor_agrikultur": {
     "padi": 14,
     "gandum_jagung": 16.0,
     "sayur_umbi": 34.5,
@@ -110,7 +112,6 @@ export const filipina: CountryData = {
     "pangkalan_laut": 36,
     "program_luar_angkasa": 16,
     "pertahanan_siber": 23,
-    "anggaran_pertahanan": 1208
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const filipina: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

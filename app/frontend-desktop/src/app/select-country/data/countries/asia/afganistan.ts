@@ -82,13 +82,15 @@ export const afganistan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 15.5,
     "sapi_perah": 32,
     "sapi_potong": 24,
     "domba_kambing": 4,
     "udang_kerang": 4.0,
-    "ikan": 35,
+    "ikan": 35
+  },
+  "sektor_agrikultur": {
     "padi": 26,
     "gandum_jagung": 1.5,
     "sayur_umbi": 8.5,
@@ -110,7 +112,6 @@ export const afganistan: CountryData = {
     "pangkalan_laut": 14,
     "program_luar_angkasa": 38,
     "pertahanan_siber": 22,
-    "anggaran_pertahanan": 41
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const afganistan: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

@@ -82,13 +82,15 @@ export const malta: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 23.0,
     "sapi_perah": 3,
     "sapi_potong": 20,
     "domba_kambing": 24,
     "udang_kerang": 15.5,
-    "ikan": 5,
+    "ikan": 5
+  },
+  "sektor_agrikultur": {
     "padi": 6,
     "gandum_jagung": 24.0,
     "sayur_umbi": 19.5,
@@ -110,7 +112,6 @@ export const malta: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 32,
     "pertahanan_siber": 22,
-    "anggaran_pertahanan": 55
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const malta: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

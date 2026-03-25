@@ -82,13 +82,15 @@ export const bosnia_dan_hercegovina: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 12.5,
     "sapi_perah": 10,
     "sapi_potong": 19,
     "domba_kambing": 34,
     "udang_kerang": 19.0,
-    "ikan": 35,
+    "ikan": 35
+  },
+  "sektor_agrikultur": {
     "padi": 39,
     "gandum_jagung": 34.5,
     "sayur_umbi": 6.0,
@@ -110,7 +112,6 @@ export const bosnia_dan_hercegovina: CountryData = {
     "pangkalan_laut": 22,
     "program_luar_angkasa": 24,
     "pertahanan_siber": 40,
-    "anggaran_pertahanan": 66
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const bosnia_dan_hercegovina: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

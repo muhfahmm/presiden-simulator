@@ -82,13 +82,15 @@ export const saint_kitts_dan_nevis: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 5.0,
     "sapi_perah": 5,
     "sapi_potong": 2,
     "domba_kambing": 23,
     "udang_kerang": 11.5,
-    "ikan": 33,
+    "ikan": 33
+  },
+  "sektor_agrikultur": {
     "padi": 23,
     "gandum_jagung": 19.5,
     "sayur_umbi": 21.5,
@@ -110,7 +112,6 @@ export const saint_kitts_dan_nevis: CountryData = {
     "pangkalan_laut": 6,
     "program_luar_angkasa": 14,
     "pertahanan_siber": 19,
-    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const saint_kitts_dan_nevis: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

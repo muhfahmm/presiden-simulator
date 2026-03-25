@@ -82,13 +82,15 @@ export const sri_lanka: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 33.5,
     "sapi_perah": 7,
     "sapi_potong": 6,
     "domba_kambing": 39,
     "udang_kerang": 28.5,
-    "ikan": 38,
+    "ikan": 38
+  },
+  "sektor_agrikultur": {
     "padi": 27,
     "gandum_jagung": 22.5,
     "sayur_umbi": 31.5,
@@ -110,7 +112,6 @@ export const sri_lanka: CountryData = {
     "pangkalan_laut": 9,
     "program_luar_angkasa": 35,
     "pertahanan_siber": 13,
-    "anggaran_pertahanan": 208
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const sri_lanka: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

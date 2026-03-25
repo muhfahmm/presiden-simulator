@@ -82,13 +82,15 @@ export const mesir: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 32.0,
     "sapi_perah": 17,
     "sapi_potong": 2,
     "domba_kambing": 26,
     "udang_kerang": 2.0,
-    "ikan": 22,
+    "ikan": 22
+  },
+  "sektor_agrikultur": {
     "padi": 5,
     "gandum_jagung": 48.0,
     "sayur_umbi": 40.0,
@@ -110,7 +112,6 @@ export const mesir: CountryData = {
     "pangkalan_laut": 40,
     "program_luar_angkasa": 2,
     "pertahanan_siber": 17,
-    "anggaran_pertahanan": 1097
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const mesir: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

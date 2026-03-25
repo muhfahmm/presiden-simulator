@@ -1,40 +1,32 @@
-import { CountryData } from "../types";
+import { CountryData } from "../types/_index";
 
 export const KAPASITAS_LISTRIK_METADATA = {
-  pembangkit_surya: {
-    no: 1,
-    production: 20,
-    unit: "MW",
-    desc: "PLTS (Panel Surya)",
-    maintenanceCost: 2,
-    buildTime: 30
-  },
-  pembangkit_angin: {
-    no: 2,
-    production: 10,
-    unit: "MW",
-    desc: "PLTB (Angin)",
-    maintenanceCost: 3,
-    buildTime: 45
-  },
-  pembangkit_air: {
-    no: 3,
-    production: 100,
-    unit: "MW",
-    desc: "PLTA (Hidroelektrik)",
-    maintenanceCost: 15,
-    buildTime: 180
-  },
   pembangkit_nuklir: {
-    no: 4,
+    no: 1,
     production: 1000,
     unit: "MW",
     desc: "PLTN (Fisi Nuklir)",
     maintenanceCost: 80,
     buildTime: 365
   },
+  pembangkit_air: {
+    no: 2,
+    production: 100,
+    unit: "MW",
+    desc: "PLTA (Hidroelektrik)",
+    maintenanceCost: 15,
+    buildTime: 180
+  },
+  pembangkit_surya: {
+    no: 3,
+    production: 20,
+    unit: "MW",
+    desc: "PLTS (Panel Surya)",
+    maintenanceCost: 2,
+    buildTime: 30
+  },
   pembangkit_termal: {
-    no: 5,
+    no: 4,
     production: 500,
     unit: "MW",
     desc: "PLT Thermal",
@@ -42,12 +34,20 @@ export const KAPASITAS_LISTRIK_METADATA = {
     buildTime: 120
   },
   pembangkit_gas: {
-    no: 6,
+    no: 5,
     production: 300,
     unit: "MW",
     desc: "PLTG (Gas Alam)",
     maintenanceCost: 25,
     buildTime: 90
+  },
+  pembangkit_angin: {
+    no: 6,
+    production: 10,
+    unit: "MW",
+    desc: "PLTB (Angin)",
+    maintenanceCost: 3,
+    buildTime: 45
   }
 };
 

@@ -82,13 +82,15 @@ export const andorra: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 12.5,
     "sapi_perah": 30,
     "sapi_potong": 32,
     "domba_kambing": 4,
     "udang_kerang": 8.0,
-    "ikan": 23,
+    "ikan": 23
+  },
+  "sektor_agrikultur": {
     "padi": 13,
     "gandum_jagung": 37.5,
     "sayur_umbi": 24.0,
@@ -110,7 +112,6 @@ export const andorra: CountryData = {
     "pangkalan_laut": 4,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 31,
-    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const andorra: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

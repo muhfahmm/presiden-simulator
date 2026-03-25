@@ -231,7 +231,7 @@ export default function GeopolitikModal({ isOpen, onClose, data }: ModalProps) {
                         <Users size={12}/> Rival Geopolitik
                       </h4>
                       <div className="flex flex-wrap gap-2">
-                        {data.geopolitik.musuh.length > 0 ? data.geopolitik.musuh.map((e, i) => (
+                        {data.geopolitik.musuh && data.geopolitik.musuh.length > 0 ? data.geopolitik.musuh.map((e, i) => (
                           <span key={i} className="px-4 py-2 bg-red-500/5 border border-red-500/20 rounded-xl text-xs font-bold text-zinc-200 hover:border-red-500/40 transition-all cursor-pointer">
                             {e}
                           </span>

@@ -82,13 +82,15 @@ export const panama: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 19.0,
     "sapi_perah": 24,
     "sapi_potong": 40,
     "domba_kambing": 4,
     "udang_kerang": 19.5,
-    "ikan": 14,
+    "ikan": 14
+  },
+  "sektor_agrikultur": {
     "padi": 8,
     "gandum_jagung": 31.0,
     "sayur_umbi": 14.5,
@@ -110,7 +112,6 @@ export const panama: CountryData = {
     "pangkalan_laut": 3,
     "program_luar_angkasa": 17,
     "pertahanan_siber": 40,
-    "anggaran_pertahanan": 211
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const panama: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

@@ -82,13 +82,15 @@ export const vanuatu: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 11.0,
     "sapi_perah": 21,
     "sapi_potong": 9,
     "domba_kambing": 4,
     "udang_kerang": 21.0,
-    "ikan": 25,
+    "ikan": 25
+  },
+  "sektor_agrikultur": {
     "padi": 32,
     "gandum_jagung": 32.0,
     "sayur_umbi": 26.0,
@@ -110,7 +112,6 @@ export const vanuatu: CountryData = {
     "pangkalan_laut": 19,
     "program_luar_angkasa": 6,
     "pertahanan_siber": 28,
-    "anggaran_pertahanan": 2
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const vanuatu: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

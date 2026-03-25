@@ -12,7 +12,7 @@ interface ModalProps {
 export default function ArmadaPolisiModal({ isOpen, onClose, data }: ModalProps) {
   if (!isOpen) return null;
 
-  const pol = data.sektor_keamanan.armada_polisi;
+  const pol = data.armada_kepolisian.armada_polisi;
 
   const policeAssets = [
     {
@@ -106,8 +106,8 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: ModalProps)
             <span className="text-sm font-bold text-white">{data.sektor_sosial.hukum.indeks_keamanan}</span>
           </div>
           <div className="flex flex-col">
-            <span className="text-[8px] font-black text-zinc-550 uppercase">Respon Time</span>
-            <span className="text-sm font-bold text-emerald-400">{pol.waktu_respon} Min</span>
+            <span className="text-[8px] font-black text-zinc-550 uppercase">Personel Kepercayaan</span>
+            <span className="text-sm font-bold text-emerald-400">{pol.kepercayaan_publik}%</span>
           </div>
           <div className="flex flex-col">
             <span className="text-[8px] font-black text-zinc-550 uppercase">Public Trust</span>

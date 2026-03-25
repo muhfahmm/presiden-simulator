@@ -82,13 +82,15 @@ export const brunei: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 23.5,
     "sapi_perah": 2,
     "sapi_potong": 23,
     "domba_kambing": 29,
     "udang_kerang": 15.0,
-    "ikan": 29,
+    "ikan": 29
+  },
+  "sektor_agrikultur": {
     "padi": 39,
     "gandum_jagung": 8.0,
     "sayur_umbi": 17.0,
@@ -110,7 +112,6 @@ export const brunei: CountryData = {
     "pangkalan_laut": 27,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 34,
-    "anggaran_pertahanan": 41
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const brunei: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

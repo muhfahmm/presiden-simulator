@@ -82,13 +82,15 @@ export const curacao: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 32.5,
     "sapi_perah": 9,
     "sapi_potong": 14,
     "domba_kambing": 9,
     "udang_kerang": 19.0,
-    "ikan": 11,
+    "ikan": 11
+  },
+  "sektor_agrikultur": {
     "padi": 31,
     "gandum_jagung": 27.0,
     "sayur_umbi": 24.5,
@@ -110,7 +112,6 @@ export const curacao: CountryData = {
     "pangkalan_laut": 8,
     "program_luar_angkasa": 1,
     "pertahanan_siber": 18,
-    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const curacao: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

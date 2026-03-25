@@ -82,13 +82,15 @@ export const burkina_faso: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 4.5,
     "sapi_perah": 9,
     "sapi_potong": 2,
     "domba_kambing": 39,
     "udang_kerang": 19.0,
-    "ikan": 17,
+    "ikan": 17
+  },
+  "sektor_agrikultur": {
     "padi": 38,
     "gandum_jagung": 29.5,
     "sayur_umbi": 14.0,
@@ -110,7 +112,6 @@ export const burkina_faso: CountryData = {
     "pangkalan_laut": 19,
     "program_luar_angkasa": 18,
     "pertahanan_siber": 21,
-    "anggaran_pertahanan": 50
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const burkina_faso: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

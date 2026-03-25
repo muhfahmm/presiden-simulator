@@ -82,13 +82,15 @@ export const kenya: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 20.5,
     "sapi_perah": 33,
     "sapi_potong": 16,
     "domba_kambing": 36,
     "udang_kerang": 28.5,
-    "ikan": 7,
+    "ikan": 7
+  },
+  "sektor_agrikultur": {
     "padi": 26,
     "gandum_jagung": 10.5,
     "sayur_umbi": 23.0,
@@ -110,7 +112,6 @@ export const kenya: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 30,
     "pertahanan_siber": 19,
-    "anggaran_pertahanan": 305
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const kenya: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

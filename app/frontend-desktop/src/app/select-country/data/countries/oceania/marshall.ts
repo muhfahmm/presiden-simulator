@@ -82,13 +82,15 @@ export const marshall: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 33.0,
     "sapi_perah": 37,
     "sapi_potong": 23,
     "domba_kambing": 6,
     "udang_kerang": 16.5,
-    "ikan": 29,
+    "ikan": 29
+  },
+  "sektor_agrikultur": {
     "padi": 12,
     "gandum_jagung": 11.0,
     "sayur_umbi": 30.0,
@@ -110,7 +112,6 @@ export const marshall: CountryData = {
     "pangkalan_laut": 28,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 15,
-    "anggaran_pertahanan": 1
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const marshall: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

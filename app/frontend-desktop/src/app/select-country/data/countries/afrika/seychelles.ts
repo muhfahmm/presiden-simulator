@@ -82,13 +82,15 @@ export const seychelles: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 13.0,
     "sapi_perah": 2,
     "sapi_potong": 27,
     "domba_kambing": 40,
     "udang_kerang": 30.5,
-    "ikan": 25,
+    "ikan": 25
+  },
+  "sektor_agrikultur": {
     "padi": 23,
     "gandum_jagung": 10.0,
     "sayur_umbi": 24.0,
@@ -110,7 +112,6 @@ export const seychelles: CountryData = {
     "pangkalan_laut": 23,
     "program_luar_angkasa": 19,
     "pertahanan_siber": 13,
-    "anggaran_pertahanan": 5
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const seychelles: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

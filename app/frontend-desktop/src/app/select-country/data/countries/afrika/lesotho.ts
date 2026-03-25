@@ -82,13 +82,15 @@ export const lesotho: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 21.0,
     "sapi_perah": 31,
     "sapi_potong": 8,
     "domba_kambing": 27,
     "udang_kerang": 17.0,
-    "ikan": 31,
+    "ikan": 31
+  },
+  "sektor_agrikultur": {
     "padi": 36,
     "gandum_jagung": 23.5,
     "sayur_umbi": 10.5,
@@ -110,7 +112,6 @@ export const lesotho: CountryData = {
     "pangkalan_laut": 23,
     "program_luar_angkasa": 13,
     "pertahanan_siber": 8,
-    "anggaran_pertahanan": 6
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const lesotho: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

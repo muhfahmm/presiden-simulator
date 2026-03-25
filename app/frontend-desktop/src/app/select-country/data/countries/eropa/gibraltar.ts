@@ -82,13 +82,15 @@ export const gibraltar: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 7.0,
     "sapi_perah": 31,
     "sapi_potong": 30,
     "domba_kambing": 17,
     "udang_kerang": 32.0,
-    "ikan": 27,
+    "ikan": 27
+  },
+  "sektor_agrikultur": {
     "padi": 15,
     "gandum_jagung": 3.0,
     "sayur_umbi": 18.5,
@@ -110,7 +112,6 @@ export const gibraltar: CountryData = {
     "pangkalan_laut": 15,
     "program_luar_angkasa": 6,
     "pertahanan_siber": 30,
-    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const gibraltar: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

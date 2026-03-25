@@ -143,6 +143,30 @@ export const happinessStorage = {
       : ((avgTaxSat - 50) / 50) * 10).toFixed(1));
 
     return { priceImpact, taxImpact };
+  },
+
+  addDirectHappiness: (amount: number, reason: string) => {
+    const stats = happinessStorage.getStats();
+    let newValue = Number((stats.value + amount).toFixed(1));
+    newValue = Math.max(1, Math.min(100, newValue));
+    
+    const updatedStats: HappinessStats = {
+      ...stats,
+      value: newValue,
+      reasoning: reason,
+      trend: amount > 0 ? "up" : amount < 0 ? "down" : stats.trend
+    };
+    
+    happinessStorage.saveStats(updatedStats);
+    
+    // Notify via Inbox
+    inboxStorage.addMessage({
+      source: "Sekretariat Negara",
+      subject: "Update Kepuasan Rakyat",
+      content: reason,
+      time: formatGameDate(new Date()), // Should ideally use current game date
+      priority: amount > 5 ? "high" : "medium"
+    });
   }
 };
 

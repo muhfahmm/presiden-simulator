@@ -82,13 +82,15 @@ export const suriname: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 9.5,
     "sapi_perah": 37,
     "sapi_potong": 4,
     "domba_kambing": 32,
     "udang_kerang": 15.5,
-    "ikan": 23,
+    "ikan": 23
+  },
+  "sektor_agrikultur": {
     "padi": 22,
     "gandum_jagung": 20.0,
     "sayur_umbi": 14.5,
@@ -110,7 +112,6 @@ export const suriname: CountryData = {
     "pangkalan_laut": 3,
     "program_luar_angkasa": 31,
     "pertahanan_siber": 31,
-    "anggaran_pertahanan": 9
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const suriname: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

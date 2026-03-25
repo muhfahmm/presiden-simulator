@@ -82,13 +82,15 @@ export const guam: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 23.5,
     "sapi_perah": 13,
     "sapi_potong": 17,
     "domba_kambing": 5,
     "udang_kerang": 35.5,
-    "ikan": 1,
+    "ikan": 1
+  },
+  "sektor_agrikultur": {
     "padi": 20,
     "gandum_jagung": 19.0,
     "sayur_umbi": 15.5,
@@ -110,7 +112,6 @@ export const guam: CountryData = {
     "pangkalan_laut": 17,
     "program_luar_angkasa": 31,
     "pertahanan_siber": 12,
-    "anggaran_pertahanan": 27
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const guam: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

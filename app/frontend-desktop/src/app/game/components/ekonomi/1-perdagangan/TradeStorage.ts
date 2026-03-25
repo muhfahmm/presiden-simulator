@@ -13,11 +13,23 @@ export const tradeStorage = {
     }
   },
   getSession: () => {
-    return gameStorage.getSession();
+    if (typeof window === 'undefined') return null;
+    const data = window.localStorage.getItem("game_session");
+    if (!data) return null;
+    try {
+      return JSON.parse(data);
+    } catch (e) {
+      return null;
+    }
   },
 
   getCurrentCountry: (session: any): CountryData => {
-    return countries.find((c: CountryData) => c.name_id === session?.country || c.name_en === session?.country) || countries[0];
+    if (!session?.country) return countries[0];
+    const searchName = session.country.toLowerCase().trim();
+    return countries.find((c: CountryData) => 
+      c.name_id.toLowerCase() === searchName || 
+      c.name_en.toLowerCase() === searchName
+    ) || countries[0];
   },
 
   saveTrade: (countryName: string, tradeData: any) => {

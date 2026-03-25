@@ -82,13 +82,15 @@ export const sierra_leone: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 24.0,
     "sapi_perah": 4,
     "sapi_potong": 30,
     "domba_kambing": 33,
     "udang_kerang": 10.5,
-    "ikan": 28,
+    "ikan": 28
+  },
+  "sektor_agrikultur": {
     "padi": 20,
     "gandum_jagung": 16.0,
     "sayur_umbi": 30.0,
@@ -110,7 +112,6 @@ export const sierra_leone: CountryData = {
     "pangkalan_laut": 11,
     "program_luar_angkasa": 38,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 11
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const sierra_leone: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

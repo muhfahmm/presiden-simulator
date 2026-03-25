@@ -82,13 +82,15 @@ export const aljazair: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 20.0,
     "sapi_perah": 2,
     "sapi_potong": 16,
     "domba_kambing": 26,
     "udang_kerang": 15.5,
-    "ikan": 36,
+    "ikan": 36
+  },
+  "sektor_agrikultur": {
     "padi": 2,
     "gandum_jagung": 9.0,
     "sayur_umbi": 29.0,
@@ -110,7 +112,6 @@ export const aljazair: CountryData = {
     "pangkalan_laut": 18,
     "program_luar_angkasa": 21,
     "pertahanan_siber": 11,
-    "anggaran_pertahanan": 666
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const aljazair: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

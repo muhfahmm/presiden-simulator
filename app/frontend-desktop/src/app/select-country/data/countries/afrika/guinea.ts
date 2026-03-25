@@ -82,13 +82,15 @@ export const guinea: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 23.5,
     "sapi_perah": 29,
     "sapi_potong": 5,
     "domba_kambing": 30,
     "udang_kerang": 21.5,
-    "ikan": 1,
+    "ikan": 1
+  },
+  "sektor_agrikultur": {
     "padi": 17,
     "gandum_jagung": 15.5,
     "sayur_umbi": 15.5,
@@ -110,7 +112,6 @@ export const guinea: CountryData = {
     "pangkalan_laut": 10,
     "program_luar_angkasa": 39,
     "pertahanan_siber": 29,
-    "anggaran_pertahanan": 50
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const guinea: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

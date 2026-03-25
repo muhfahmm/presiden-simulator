@@ -82,13 +82,15 @@ export const kiribati: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 16.5,
     "sapi_perah": 29,
     "sapi_potong": 26,
     "domba_kambing": 17,
     "udang_kerang": 13.5,
-    "ikan": 26,
+    "ikan": 26
+  },
+  "sektor_agrikultur": {
     "padi": 14,
     "gandum_jagung": 32.0,
     "sayur_umbi": 18.5,
@@ -110,7 +112,6 @@ export const kiribati: CountryData = {
     "pangkalan_laut": 28,
     "program_luar_angkasa": 25,
     "pertahanan_siber": 31,
-    "anggaran_pertahanan": 1
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const kiribati: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

@@ -82,13 +82,15 @@ export const nikaragua: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 37.5,
     "sapi_perah": 33,
     "sapi_potong": 12,
     "domba_kambing": 40,
     "udang_kerang": 13.5,
-    "ikan": 13,
+    "ikan": 13
+  },
+  "sektor_agrikultur": {
     "padi": 2,
     "gandum_jagung": 25.5,
     "sayur_umbi": 20.5,
@@ -110,7 +112,6 @@ export const nikaragua: CountryData = {
     "pangkalan_laut": 5,
     "program_luar_angkasa": 33,
     "pertahanan_siber": 14,
-    "anggaran_pertahanan": 47
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const nikaragua: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

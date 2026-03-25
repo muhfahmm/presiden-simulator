@@ -82,13 +82,15 @@ export const irak: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 22.0,
     "sapi_perah": 8,
     "sapi_potong": 15,
     "domba_kambing": 30,
     "udang_kerang": 23.0,
-    "ikan": 7,
+    "ikan": 7
+  },
+  "sektor_agrikultur": {
     "padi": 29,
     "gandum_jagung": 2.0,
     "sayur_umbi": 19.0,
@@ -110,7 +112,6 @@ export const irak: CountryData = {
     "pangkalan_laut": 8,
     "program_luar_angkasa": 29,
     "pertahanan_siber": 18,
-    "anggaran_pertahanan": 744
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const irak: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

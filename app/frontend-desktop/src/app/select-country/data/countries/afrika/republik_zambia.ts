@@ -82,13 +82,15 @@ export const republik_zambia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 17.5,
     "sapi_perah": 31,
     "sapi_potong": 11,
     "domba_kambing": 2,
     "udang_kerang": 14.5,
-    "ikan": 9,
+    "ikan": 9
+  },
+  "sektor_agrikultur": {
     "padi": 11,
     "gandum_jagung": 21.5,
     "sayur_umbi": 10.5,
@@ -110,7 +112,6 @@ export const republik_zambia: CountryData = {
     "pangkalan_laut": 31,
     "program_luar_angkasa": 40,
     "pertahanan_siber": 10,
-    "anggaran_pertahanan": 77
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const republik_zambia: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

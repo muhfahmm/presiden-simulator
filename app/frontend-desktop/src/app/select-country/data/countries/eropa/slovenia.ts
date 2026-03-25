@@ -82,13 +82,15 @@ export const slovenia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 25.0,
     "sapi_perah": 35,
     "sapi_potong": 14,
     "domba_kambing": 16,
     "udang_kerang": 36.5,
-    "ikan": 18,
+    "ikan": 18
+  },
+  "sektor_agrikultur": {
     "padi": 15,
     "gandum_jagung": 5.0,
     "sayur_umbi": 33.5,
@@ -110,7 +112,6 @@ export const slovenia: CountryData = {
     "pangkalan_laut": 18,
     "program_luar_angkasa": 17,
     "pertahanan_siber": 33,
-    "anggaran_pertahanan": 180
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const slovenia: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

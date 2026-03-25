@@ -65,7 +65,8 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
          if (sector === "produksi") {
             const m = c.sektor_manufaktur as any;
             const e = c.sektor_ekstraksi as any;
-            const p = c.sektor_agri_peternakan as any;
+            const peternakan = (c.sektor_peternakan || {}) as any;
+            const agrikultur = (c.sektor_agrikultur || {}) as any;
 
             // Manufaktur mapping
             const manufacturingMap: Record<string, string> = {
@@ -99,13 +100,13 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                freshwater_fish_farm: "ikan", livestock_fish: "ikan"
             };
 
-            if (panganMap[key]) return p[panganMap[key]] || 0;
+            if (panganMap[key]) return (peternakan[panganMap[key]] || 0) + (agrikultur[panganMap[key]] || 0);
          }
 
          if (sector === "militer") {
             const m = c.sektor_pertahanan as any;
-            const f = c.sektor_armada as any;
-            const s = c.sektor_keamanan as any;
+            const f = c.armada_militer as any;
+            const s = c.militer_strategis as any;
             
             if (["penjara", "gudang_senjata", "hangar_tank", "akademi_militer", "pusat_komando", "pangkalan_udara", "pangkalan_laut", "program_luar_angkasa", "pertahanan_siber"].includes(key)) return m[key] || 0;
             
@@ -144,7 +145,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
          if (sector === "umum") {
             const i = c.infrastruktur as any;
             const s = c.sektor_sosial;
-            const sec = c.sektor_keamanan;
+            const sec = c.armada_kepolisian as any;
             
             if (i[key] !== undefined) return i[key] || 0;
             if (key === "bike_lane") return i.jalur_sepeda || 0;
@@ -176,7 +177,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                   if (key === "forensik") return p.pusat_komando.pusat_forensik || 0;
                }
             }
-            if (["market", "shophouse", "mall", "offices", "entertainment"].includes(key)) return c.permintaan.komersial || 0;
+            if (["market", "shophouse", "mall", "offices", "entertainment"].includes(key)) return 0;
          }
       } catch (err) { }
       return 0;

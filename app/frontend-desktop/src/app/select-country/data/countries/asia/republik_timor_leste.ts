@@ -82,13 +82,15 @@ export const republik_timor_leste: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 19.0,
     "sapi_perah": 17,
     "sapi_potong": 6,
     "domba_kambing": 2,
     "udang_kerang": 29.5,
-    "ikan": 35,
+    "ikan": 35
+  },
+  "sektor_agrikultur": {
     "padi": 9,
     "gandum_jagung": 24.0,
     "sayur_umbi": 29.5,
@@ -110,7 +112,6 @@ export const republik_timor_leste: CountryData = {
     "pangkalan_laut": 31,
     "program_luar_angkasa": 28,
     "pertahanan_siber": 32,
-    "anggaran_pertahanan": 5
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const republik_timor_leste: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

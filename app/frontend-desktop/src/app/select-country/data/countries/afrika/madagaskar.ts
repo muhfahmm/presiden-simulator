@@ -82,13 +82,15 @@ export const madagaskar: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 10.5,
     "sapi_perah": 13,
     "sapi_potong": 32,
     "domba_kambing": 2,
     "udang_kerang": 11.5,
-    "ikan": 26,
+    "ikan": 26
+  },
+  "sektor_agrikultur": {
     "padi": 37,
     "gandum_jagung": 17.5,
     "sayur_umbi": 14.5,
@@ -110,7 +112,6 @@ export const madagaskar: CountryData = {
     "pangkalan_laut": 17,
     "program_luar_angkasa": 8,
     "pertahanan_siber": 31,
-    "anggaran_pertahanan": 41
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -189,6 +190,12 @@ export const madagaskar: CountryData = {
   },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

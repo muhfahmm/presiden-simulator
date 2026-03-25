@@ -82,13 +82,15 @@ export const india: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 29.5,
     "sapi_perah": 31,
     "sapi_potong": 29,
     "domba_kambing": 4,
     "udang_kerang": 31.5,
-    "ikan": 9,
+    "ikan": 9
+  },
+  "sektor_agrikultur": {
     "padi": 6,
     "gandum_jagung": 22.0,
     "sayur_umbi": 14.5,
@@ -110,7 +112,6 @@ export const india: CountryData = {
     "pangkalan_laut": 14,
     "program_luar_angkasa": 15,
     "pertahanan_siber": 40,
-    "anggaran_pertahanan": 10945
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const india: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK

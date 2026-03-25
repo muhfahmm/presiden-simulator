@@ -82,13 +82,15 @@ export const china: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_agri_peternakan": {
+  "sektor_peternakan": {
     "ayam_unggas": 10.5,
     "sapi_perah": 13,
     "sapi_potong": 37,
     "domba_kambing": 36,
     "udang_kerang": 23.5,
-    "ikan": 2,
+    "ikan": 2
+  },
+  "sektor_agrikultur": {
     "padi": 30,
     "gandum_jagung": 4.0,
     "sayur_umbi": 25.0,
@@ -110,7 +112,6 @@ export const china: CountryData = {
     "pangkalan_laut": 9,
     "program_luar_angkasa": 27,
     "pertahanan_siber": 28,
-    "anggaran_pertahanan": 51476
   },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
@@ -188,6 +189,12 @@ export const china: CountryData = {
         },
     "kepercayaan_publik": 50
   }
+  },
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
   },
   // =============================================================
   // 10. 🏥 SOSIAL & PELAYANAN PUBLIK
