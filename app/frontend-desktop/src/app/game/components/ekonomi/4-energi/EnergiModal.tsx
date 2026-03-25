@@ -2,13 +2,13 @@
 
 import { useState, useEffect, Fragment } from "react"
 import { X, Zap, Battery, Activity, AlertTriangle, TrendingUp, TrendingDown, Info, Shield, Droplets, Sun, Wind, Flame, Radio, Search, ChevronLeft, Eye, Gauge, Factory, Pickaxe, Landmark, GraduationCap, HeartPulse, TrainFront, ShieldCheck, Bird, Sprout, Cpu, Car, Bike, Construction, TreePine, Cookie, Croissant, Pill, FlaskConical, Beef, Soup, Radiation, Coins, Ship, Plane, Crosshair, Library, Scale, Siren, Home, Store, Map, Coffee, Milk, Fish, Shell, Leaf, Utensils, Apple, Bean, Wifi, Bus, Warehouse, Archive, HardHat, ShieldAlert, Clock, Loader2, EyeOff, Hammer, Swords, Users } from "lucide-react"
-import { countries } from "../../../select-country/data/countries"
-import { CountryData } from "../../../select-country/data/types"
-import { gameStorage } from "../../gamestorage"
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_FLEET, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_AGRI, KONSUMSI_PETERNAKAN } from "../../../select-country/data/electricity"
-import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "../../../select-country/data/pembangunan/laju-produksi"
-import { produksiMiliter } from "../../../select-country/data/pembangunan/produksi-militer"
-import { tempatUmum } from "../../../select-country/data/pembangunan/tempat-umum"
+import { countries } from "@/app/select-country/data/countries"
+import { CountryData } from "@/app/select-country/data/types"
+import { gameStorage } from "@/app/game/gamestorage"
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_FLEET, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_AGRI, KONSUMSI_PETERNAKAN } from "@/app/select-country/data/electricity"
+import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/select-country/data/pembangunan/laju-produksi"
+import { produksiMiliter } from "@/app/select-country/data/pembangunan/produksi-militer"
+import { tempatUmum } from "@/app/select-country/data/pembangunan/tempat-umum"
 
 interface ModalProps {
    isOpen: boolean;

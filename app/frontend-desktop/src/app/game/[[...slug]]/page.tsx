@@ -28,8 +28,8 @@ import PerdaganganModal from "../components/ekonomi/1-perdagangan/PerdaganganMod
 import PajakModal from "../components/ekonomi/2-pajak/PajakModal";
 import HutangModal from "../components/ekonomi/HutangModal";
 import PemasukkanPengeluaranModal from "../components/ekonomi/3-pemasukkanpengeluaran/PemasukkanPengeluaranModal";
-import EnergiModal from "../components/ekonomi/EnergiModal";
-import ProduksiBarangModal from "../components/ekonomi/ProduksiBarangModal";
+import EnergiModal from "../components/ekonomi/4-energi/EnergiModal";
+import ProduksiBarangModal from "../components/ekonomi/5-produksi-barang/ProduksiBarangModal";
 import MineralsModal from "../components/ekonomi/MineralsModal";
 import HargaBarangModal from "../components/ekonomi/HargaBarangModal";
 // Other Modals
