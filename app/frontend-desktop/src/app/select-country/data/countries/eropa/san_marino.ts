@@ -82,13 +82,10 @@ export const san_marino: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 15.5,
+  "sektor_peternakan": { "ayam_unggas": 15.5,
     "sapi_perah": 29,
     "sapi_potong": 19,
-    "domba_kambing": 24,
-    "udang_kerang": 10.0,
-    "ikan": 25
+    "domba_kambing": 24
   },
   "sektor_agrikultur": {
     "padi": 1,
@@ -97,6 +94,10 @@ export const san_marino: CountryData = {
     "kedelai": 15,
     "kelapa_sawit": 21,
     "kopi_teh_kakao": 17.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 10.0,
+    "ikan": 25
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

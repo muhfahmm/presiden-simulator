@@ -82,13 +82,10 @@ export const finlandia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 27.0,
+  "sektor_peternakan": { "ayam_unggas": 27.0,
     "sapi_perah": 15,
     "sapi_potong": 5,
-    "domba_kambing": 21,
-    "udang_kerang": 26.0,
-    "ikan": 29
+    "domba_kambing": 21
   },
   "sektor_agrikultur": {
     "padi": 32,
@@ -97,6 +94,10 @@ export const finlandia: CountryData = {
     "kedelai": 9,
     "kelapa_sawit": 19,
     "kopi_teh_kakao": 13.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 26.0,
+    "ikan": 29
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

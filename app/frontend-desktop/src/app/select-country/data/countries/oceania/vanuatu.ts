@@ -82,13 +82,10 @@ export const vanuatu: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 11.0,
+  "sektor_peternakan": { "ayam_unggas": 11.0,
     "sapi_perah": 21,
     "sapi_potong": 9,
-    "domba_kambing": 4,
-    "udang_kerang": 21.0,
-    "ikan": 25
+    "domba_kambing": 4
   },
   "sektor_agrikultur": {
     "padi": 32,
@@ -97,6 +94,10 @@ export const vanuatu: CountryData = {
     "kedelai": 8,
     "kelapa_sawit": 26,
     "kopi_teh_kakao": 23.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 21.0,
+    "ikan": 25
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

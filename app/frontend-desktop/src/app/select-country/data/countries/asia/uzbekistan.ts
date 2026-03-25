@@ -82,13 +82,10 @@ export const uzbekistan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 16.5,
+  "sektor_peternakan": { "ayam_unggas": 16.5,
     "sapi_perah": 8,
     "sapi_potong": 20,
-    "domba_kambing": 38,
-    "udang_kerang": 24.0,
-    "ikan": 13
+    "domba_kambing": 38
   },
   "sektor_agrikultur": {
     "padi": 3,
@@ -97,6 +94,10 @@ export const uzbekistan: CountryData = {
     "kedelai": 25,
     "kelapa_sawit": 16,
     "kopi_teh_kakao": 19.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 24.0,
+    "ikan": 13
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const tahiti: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 15.5,
+  "sektor_peternakan": { "ayam_unggas": 15.5,
     "sapi_perah": 37,
     "sapi_potong": 19,
-    "domba_kambing": 18,
-    "udang_kerang": 10.0,
-    "ikan": 14
+    "domba_kambing": 18
   },
   "sektor_agrikultur": {
     "padi": 35,
@@ -97,6 +94,10 @@ export const tahiti: CountryData = {
     "kedelai": 34,
     "kelapa_sawit": 24,
     "kopi_teh_kakao": 14.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 10.0,
+    "ikan": 14
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

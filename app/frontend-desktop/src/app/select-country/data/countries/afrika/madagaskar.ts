@@ -82,13 +82,10 @@ export const madagaskar: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 10.5,
+  "sektor_peternakan": { "ayam_unggas": 10.5,
     "sapi_perah": 13,
     "sapi_potong": 32,
-    "domba_kambing": 2,
-    "udang_kerang": 11.5,
-    "ikan": 26
+    "domba_kambing": 2
   },
   "sektor_agrikultur": {
     "padi": 37,
@@ -97,6 +94,10 @@ export const madagaskar: CountryData = {
     "kedelai": 32,
     "kelapa_sawit": 23,
     "kopi_teh_kakao": 18.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 11.5,
+    "ikan": 26
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

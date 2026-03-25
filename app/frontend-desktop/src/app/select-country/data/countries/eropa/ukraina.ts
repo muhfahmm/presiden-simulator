@@ -82,13 +82,10 @@ export const ukraina: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 28.0,
+  "sektor_peternakan": { "ayam_unggas": 28.0,
     "sapi_perah": 29,
     "sapi_potong": 30,
-    "domba_kambing": 19,
-    "udang_kerang": 21.0,
-    "ikan": 17
+    "domba_kambing": 19
   },
   "sektor_agrikultur": {
     "padi": 19,
@@ -97,6 +94,10 @@ export const ukraina: CountryData = {
     "kedelai": 38,
     "kelapa_sawit": 6,
     "kopi_teh_kakao": 28.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 21.0,
+    "ikan": 17
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -66,6 +66,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
             const m = c.sektor_manufaktur as any;
             const e = c.sektor_ekstraksi as any;
             const peternakan = (c.sektor_peternakan || {}) as any;
+            const perikanan = (c.sektor_perikanan || {}) as any;
             const agrikultur = (c.sektor_agrikultur || {}) as any;
 
             // Manufaktur mapping
@@ -84,23 +85,24 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                return e[eKey] || 0;
             }
 
-            // Pangan mapping
+            // Pangan mapping (Building Key -> Database Key)
             const panganMap: Record<string, string> = {
-               paddy_field: "padi", agri_rice: "padi",
-               wheat_field: "gandum_jagung", corn_field: "gandum_jagung", agri_grains: "gandum_jagung",
-               vegetable_farm: "sayur_umbi", tuber_field: "sayur_umbi", agri_veg: "sayur_umbi",
-               soybean_field: "kedelai", agri_soy: "kedelai",
-               palm_oil_plantation: "kelapa_sawit", agri_palm: "kelapa_sawit",
-               coffee_plantation: "kopi_teh_kakao", tea_plantation: "kopi_teh_kakao", cocoa_plantation: "kopi_teh_kakao", agri_luxury: "kopi_teh_kakao",
-               poultry_farm: "ayam_unggas", egg_farm: "ayam_unggas", livestock_poultry: "ayam_unggas",
-               dairy_farm: "sapi_perah", livestock_dairy: "sapi_perah",
-               cattle_farm: "sapi_potong", livestock_beef: "sapi_potong",
-               sheep_farm: "domba_kambing", livestock_sheep: "domba_kambing",
-               shrimp_farm: "udang_kerang", pearl_farm: "udang_kerang", livestock_shrimp: "udang_kerang",
-               freshwater_fish_farm: "ikan", livestock_fish: "ikan"
+               ayam_unggas: "ayam_unggas",
+               sapi_perah: "sapi_perah",
+               sapi_potong: "sapi_potong",
+               domba_kambing: "domba_kambing",
+               udang_kerang: "udang_kerang",
+               ikan: "ikan",
+               padi: "padi",
+               gandum_jagung: "gandum_jagung",
+               sayur_umbi: "sayur_umbi",
+               kedelai: "kedelai",
+               kelapa_sawit: "kelapa_sawit",
+               kopi_teh_kakao: "kopi_teh_kakao",
+               sugarcane_plantation: "gula"
             };
 
-            if (panganMap[key]) return (peternakan[panganMap[key]] || 0) + (agrikultur[panganMap[key]] || 0);
+            if (panganMap[key]) return (peternakan[panganMap[key]] || 0) + (perikanan[panganMap[key]] || 0) + (agrikultur[panganMap[key]] || 0);
          }
 
          if (sector === "militer") {

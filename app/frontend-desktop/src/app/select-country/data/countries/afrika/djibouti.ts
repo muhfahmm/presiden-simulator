@@ -82,13 +82,10 @@ export const djibouti: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 13.5,
+  "sektor_peternakan": { "ayam_unggas": 13.5,
     "sapi_perah": 7,
     "sapi_potong": 29,
-    "domba_kambing": 17,
-    "udang_kerang": 32.5,
-    "ikan": 2
+    "domba_kambing": 17
   },
   "sektor_agrikultur": {
     "padi": 8,
@@ -97,6 +94,10 @@ export const djibouti: CountryData = {
     "kedelai": 25,
     "kelapa_sawit": 15,
     "kopi_teh_kakao": 4.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 32.5,
+    "ikan": 2
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

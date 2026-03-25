@@ -82,13 +82,10 @@ export const republik_tanzania: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 18.5,
+  "sektor_peternakan": { "ayam_unggas": 18.5,
     "sapi_perah": 26,
     "sapi_potong": 21,
-    "domba_kambing": 38,
-    "udang_kerang": 25.5,
-    "ikan": 30
+    "domba_kambing": 38
   },
   "sektor_agrikultur": {
     "padi": 19,
@@ -97,6 +94,10 @@ export const republik_tanzania: CountryData = {
     "kedelai": 11,
     "kelapa_sawit": 6,
     "kopi_teh_kakao": 11.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 25.5,
+    "ikan": 30
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const mauritius: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 16.5,
+  "sektor_peternakan": { "ayam_unggas": 16.5,
     "sapi_perah": 16,
     "sapi_potong": 30,
-    "domba_kambing": 15,
-    "udang_kerang": 32.0,
-    "ikan": 10
+    "domba_kambing": 15
   },
   "sektor_agrikultur": {
     "padi": 8,
@@ -97,6 +94,10 @@ export const mauritius: CountryData = {
     "kedelai": 35,
     "kelapa_sawit": 15,
     "kopi_teh_kakao": 15.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 32.0,
+    "ikan": 10
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const mozambik: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 18.0,
+  "sektor_peternakan": { "ayam_unggas": 18.0,
     "sapi_perah": 2,
     "sapi_potong": 11,
-    "domba_kambing": 7,
-    "udang_kerang": 12.0,
-    "ikan": 9
+    "domba_kambing": 7
   },
   "sektor_agrikultur": {
     "padi": 2,
@@ -97,6 +94,10 @@ export const mozambik: CountryData = {
     "kedelai": 16,
     "kelapa_sawit": 27,
     "kopi_teh_kakao": 13.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 12.0,
+    "ikan": 9
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

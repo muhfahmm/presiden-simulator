@@ -82,13 +82,10 @@ export const guatemala: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 18.5,
+  "sektor_peternakan": { "ayam_unggas": 18.5,
     "sapi_perah": 7,
     "sapi_potong": 9,
-    "domba_kambing": 11,
-    "udang_kerang": 7.0,
-    "ikan": 22
+    "domba_kambing": 11
   },
   "sektor_agrikultur": {
     "padi": 27,
@@ -97,6 +94,10 @@ export const guatemala: CountryData = {
     "kedelai": 25,
     "kelapa_sawit": 30,
     "kopi_teh_kakao": 19.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 7.0,
+    "ikan": 22
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

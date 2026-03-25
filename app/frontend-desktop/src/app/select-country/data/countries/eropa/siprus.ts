@@ -82,13 +82,10 @@ export const siprus: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 34.0,
+  "sektor_peternakan": { "ayam_unggas": 34.0,
     "sapi_perah": 7,
     "sapi_potong": 12,
-    "domba_kambing": 5,
-    "udang_kerang": 33.5,
-    "ikan": 17
+    "domba_kambing": 5
   },
   "sektor_agrikultur": {
     "padi": 8,
@@ -97,6 +94,10 @@ export const siprus: CountryData = {
     "kedelai": 32,
     "kelapa_sawit": 3,
     "kopi_teh_kakao": 11.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 33.5,
+    "ikan": 17
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

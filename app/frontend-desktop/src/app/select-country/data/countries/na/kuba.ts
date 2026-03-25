@@ -82,13 +82,10 @@ export const kuba: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 7.5,
+  "sektor_peternakan": { "ayam_unggas": 7.5,
     "sapi_perah": 39,
     "sapi_potong": 27,
-    "domba_kambing": 10,
-    "udang_kerang": 33.0,
-    "ikan": 7
+    "domba_kambing": 10
   },
   "sektor_agrikultur": {
     "padi": 29,
@@ -97,6 +94,10 @@ export const kuba: CountryData = {
     "kedelai": 6,
     "kelapa_sawit": 25,
     "kopi_teh_kakao": 27.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 33.0,
+    "ikan": 7
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -2,7 +2,7 @@ import { Religion } from "../religions";
 import { Ideology } from "../ideologies";
 import { SektorListrik } from "./1_kelistrikan/_index";
 import { SektorInfrastruktur } from "./2_infrastruktur/_index";
-import { SektorManufaktur, SektorPeternakan, SektorAgrikultur } from "./3_produksi/_index";
+import { SektorManufaktur, SektorPeternakan, SektorAgrikultur, SektorPerikanan } from "./3_produksi/_index";
 import { SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian, SektorPabrikMiliter } from "./4_militer/_index";
 import { SektorSosial } from "./5_layanan_sosial/_index";
 import { SektorGeopolitik } from "./6_geopolitik_dan_luar_negeri/_index";
@@ -29,6 +29,7 @@ export interface CountryData extends EkonomiData {
   sektor_manufaktur: SektorManufaktur;
   sektor_peternakan: SektorPeternakan;
   sektor_agrikultur: SektorAgrikultur;
+  sektor_perikanan: SektorPerikanan;
   sektor_pertahanan: SektorPertahanan;
   armada_militer: SektorArmadaMiliter;
   militer_strategis: SektorMiliterStrategis;

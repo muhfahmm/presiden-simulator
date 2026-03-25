@@ -82,13 +82,10 @@ export const portugal: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 24.5,
+  "sektor_peternakan": { "ayam_unggas": 24.5,
     "sapi_perah": 18,
     "sapi_potong": 16,
-    "domba_kambing": 21,
-    "udang_kerang": 18.0,
-    "ikan": 34
+    "domba_kambing": 21
   },
   "sektor_agrikultur": {
     "padi": 20,
@@ -97,6 +94,10 @@ export const portugal: CountryData = {
     "kedelai": 15,
     "kelapa_sawit": 28,
     "kopi_teh_kakao": 20.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 18.0,
+    "ikan": 34
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

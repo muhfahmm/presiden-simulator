@@ -82,13 +82,10 @@ export const singapura: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 6.0,
+  "sektor_peternakan": { "ayam_unggas": 6.0,
     "sapi_perah": 35,
     "sapi_potong": 3,
-    "domba_kambing": 37,
-    "udang_kerang": 22.5,
-    "ikan": 29
+    "domba_kambing": 37
   },
   "sektor_agrikultur": {
     "padi": 8,
@@ -97,6 +94,10 @@ export const singapura: CountryData = {
     "kedelai": 25,
     "kelapa_sawit": 29,
     "kopi_teh_kakao": 24.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 22.5,
+    "ikan": 29
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

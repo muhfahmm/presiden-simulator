@@ -1,56 +1,17 @@
 export const komoditasPanganRate = {
-  // Peternakan & Perikanan (A-Z)
-  poultry_farm: {
+  // PETERNAKAN (4)
+  ayam_unggas: {
     no: 1,
-    production: 4200,
+    production: 5000,
     unit: "ekor",
-    desc: "Ayam (Daging)",
+    desc: "Ayam & Unggas",
     dataKey: "ayam_unggas",
     pendapatan_nasional: 15,
     maintenanceCost: 5,
     buildTime: 25
   },
-  egg_farm: {
+  sapi_perah: {
     no: 2,
-    production: 25000,
-    unit: "butir",
-    desc: "Ayam (Telur)",
-    dataKey: "ayam_unggas",
-    pendapatan_nasional: 5,
-    maintenanceCost: 5,
-    buildTime: 20
-  },
-  freshwater_fish_farm: {
-    no: 3,
-    production: 8,
-    unit: "ton",
-    desc: "Ikan Air Tawar",
-    dataKey: "ikan",
-    pendapatan_nasional: 45,
-    maintenanceCost: 5,
-    buildTime: 25
-  },
-  sheep_farm: {
-    no: 4,
-    production: 65,
-    unit: "ekor",
-    desc: "Kambing/Domba",
-    dataKey: "domba_kambing",
-    pendapatan_nasional: 65,
-    buildTime: 40
-  },
-  pearl_farm: {
-    no: 5,
-    production: 15,
-    unit: "kg",
-    desc: "Mutiara",
-    dataKey: "udang_kerang",
-    pendapatan_nasional: 1200,
-    maintenanceCost: 5,
-    buildTime: 60
-  },
-  dairy_farm: {
-    no: 6,
     production: 12000,
     unit: "liter",
     desc: "Sapi Perah",
@@ -59,8 +20,8 @@ export const komoditasPanganRate = {
     maintenanceCost: 5,
     buildTime: 30
   },
-  cattle_farm: {
-    no: 7,
+  sapi_potong: {
+    no: 3,
     production: 25,
     unit: "ekor",
     desc: "Sapi Potong",
@@ -69,49 +30,72 @@ export const komoditasPanganRate = {
     maintenanceCost: 5,
     buildTime: 45
   },
-  shrimp_farm: {
-    no: 8,
-    production: 3,
+  domba_kambing: {
+    no: 4,
+    production: 65,
+    unit: "ekor",
+    desc: "Kambing & Domba",
+    dataKey: "domba_kambing",
+    pendapatan_nasional: 65,
+    maintenanceCost: 5,
+    buildTime: 40
+  },
+
+  // PERIKANAN (2)
+  udang_kerang: {
+    no: 5,
+    production: 5,
     unit: "ton",
-    desc: "Udang",
+    desc: "Udang & Kerang",
     dataKey: "udang_kerang",
     pendapatan_nasional: 280,
+    maintenanceCost: 5,
+    buildTime: 40
+  },
+  ikan: {
+    no: 6,
+    production: 10,
+    unit: "ton",
+    desc: "Ikan & Perikanan",
+    dataKey: "ikan",
+    pendapatan_nasional: 45,
     maintenanceCost: 5,
     buildTime: 30
   },
 
-  // Pertanian & Perkebunan (A-Z)
-  wheat_field: {
-    no: 9,
-    production: 8,
+  // AGRIKULTUR (6)
+  padi: {
+    no: 7,
+    production: 12,
     unit: "ton",
-    desc: "Gandum",
+    desc: "Padi & Beras",
+    dataKey: "padi",
+    pendapatan_nasional: 95,
+    maintenanceCost: 5,
+    buildTime: 45
+  },
+  gandum_jagung: {
+    no: 8,
+    production: 10,
+    unit: "ton",
+    desc: "Gandum & Jagung",
     dataKey: "gandum_jagung",
     pendapatan_nasional: 75,
     maintenanceCost: 5,
     buildTime: 50
   },
-  corn_field: {
-    no: 10,
-    production: 10,
+  sayur_umbi: {
+    no: 9,
+    production: 15,
     unit: "ton",
-    desc: "Jagung",
-    dataKey: "gandum_jagung",
-    pendapatan_nasional: 65,
-    buildTime: 40
-  },
-  cocoa_plantation: {
-    no: 11,
-    production: 1,
-    unit: "ton",
-    desc: "Kakao",
-    dataKey: "kopi_teh_kakao",
-    pendapatan_nasional: 450,
+    desc: "Sayuran & Umbi",
+    dataKey: "sayur_umbi",
+    pendapatan_nasional: 55,
     maintenanceCost: 5,
-    buildTime: 100
+    buildTime: 25
   },
-  soybean_field: {
-    no: 12,
+  kedelai: {
+    no: 10,
     production: 5,
     unit: "ton",
     desc: "Kedelai",
@@ -120,8 +104,8 @@ export const komoditasPanganRate = {
     maintenanceCost: 5,
     buildTime: 40
   },
-  palm_oil_plantation: {
-    no: 13,
+  kelapa_sawit: {
+    no: 11,
     production: 22,
     unit: "ton",
     desc: "Kelapa Sawit",
@@ -130,64 +114,15 @@ export const komoditasPanganRate = {
     maintenanceCost: 5,
     buildTime: 120
   },
-  coffee_plantation: {
-    no: 14,
+  kopi_teh_kakao: {
+    no: 12,
     production: 2,
     unit: "ton",
-    desc: "Kopi",
+    desc: "Kopi, Teh & Kakao",
     dataKey: "kopi_teh_kakao",
-    pendapatan_nasional: 550,
+    pendapatan_nasional: 500,
     maintenanceCost: 5,
-    buildTime: 110
+    buildTime: 100
   },
-  paddy_field: {
-    no: 15,
-    production: 12,
-    unit: "ton",
-    desc: "Padi",
-    dataKey: "padi",
-    pendapatan_nasional: 95,
-    maintenanceCost: 5,
-    buildTime: 45
-  },
-  vegetable_farm: {
-    no: 16,
-    production: 12,
-    unit: "ton",
-    desc: "Sayuran",
-    dataKey: "sayur_umbi",
-    pendapatan_nasional: 55,
-    maintenanceCost: 5,
-    buildTime: 20
-  },
-  sugarcane_plantation: {
-    no: 17,
-    production: 35,
-    unit: "ton",
-    desc: "Tebu",
-    dataKey: "gula",
-    pendapatan_nasional: 40,
-    maintenanceCost: 5,
-    buildTime: 60
-  },
-  tea_plantation: {
-    no: 18,
-    production: 1,
-    unit: "ton",
-    desc: "Teh",
-    dataKey: "kopi_teh_kakao",
-    pendapatan_nasional: 410,
-    maintenanceCost: 5,
-    buildTime: 90
-  },
-  tuber_field: {
-    no: 19,
-    production: 15,
-    unit: "ton",
-    desc: "Umbi-umbian",
-    dataKey: "sayur_umbi",
-    pendapatan_nasional: 35,
-    maintenanceCost: 5,
-    buildTime: 35
-  }
+
 };

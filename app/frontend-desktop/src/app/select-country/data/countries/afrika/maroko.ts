@@ -82,13 +82,10 @@ export const maroko: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 27.5,
+  "sektor_peternakan": { "ayam_unggas": 27.5,
     "sapi_perah": 16,
     "sapi_potong": 18,
-    "domba_kambing": 1,
-    "udang_kerang": 7.5,
-    "ikan": 1
+    "domba_kambing": 1
   },
   "sektor_agrikultur": {
     "padi": 32,
@@ -97,6 +94,10 @@ export const maroko: CountryData = {
     "kedelai": 22,
     "kelapa_sawit": 25,
     "kopi_teh_kakao": 9.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 7.5,
+    "ikan": 1
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

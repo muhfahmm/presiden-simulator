@@ -82,13 +82,10 @@ export const kuwait: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 14.5,
+  "sektor_peternakan": { "ayam_unggas": 14.5,
     "sapi_perah": 32,
     "sapi_potong": 18,
-    "domba_kambing": 7,
-    "udang_kerang": 28.0,
-    "ikan": 18
+    "domba_kambing": 7
   },
   "sektor_agrikultur": {
     "padi": 37,
@@ -97,6 +94,10 @@ export const kuwait: CountryData = {
     "kedelai": 27,
     "kelapa_sawit": 30,
     "kopi_teh_kakao": 30.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 28.0,
+    "ikan": 18
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

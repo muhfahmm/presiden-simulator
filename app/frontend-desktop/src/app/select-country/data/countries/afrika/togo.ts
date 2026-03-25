@@ -82,13 +82,10 @@ export const togo: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 21.5,
+  "sektor_peternakan": { "ayam_unggas": 21.5,
     "sapi_perah": 7,
     "sapi_potong": 18,
-    "domba_kambing": 2,
-    "udang_kerang": 13.0,
-    "ikan": 28
+    "domba_kambing": 2
   },
   "sektor_agrikultur": {
     "padi": 35,
@@ -97,6 +94,10 @@ export const togo: CountryData = {
     "kedelai": 32,
     "kelapa_sawit": 27,
     "kopi_teh_kakao": 13.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 13.0,
+    "ikan": 28
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

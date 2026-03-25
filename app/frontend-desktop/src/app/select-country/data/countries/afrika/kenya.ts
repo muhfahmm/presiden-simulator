@@ -82,13 +82,10 @@ export const kenya: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 20.5,
+  "sektor_peternakan": { "ayam_unggas": 20.5,
     "sapi_perah": 33,
     "sapi_potong": 16,
-    "domba_kambing": 36,
-    "udang_kerang": 28.5,
-    "ikan": 7
+    "domba_kambing": 36
   },
   "sektor_agrikultur": {
     "padi": 26,
@@ -97,6 +94,10 @@ export const kenya: CountryData = {
     "kedelai": 35,
     "kelapa_sawit": 4,
     "kopi_teh_kakao": 52.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 28.5,
+    "ikan": 7
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

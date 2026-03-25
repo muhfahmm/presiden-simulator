@@ -82,13 +82,10 @@ export const saint_vincent_dan_grenadine: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 30.0,
+  "sektor_peternakan": { "ayam_unggas": 30.0,
     "sapi_perah": 19,
     "sapi_potong": 26,
-    "domba_kambing": 29,
-    "udang_kerang": 15.5,
-    "ikan": 22
+    "domba_kambing": 29
   },
   "sektor_agrikultur": {
     "padi": 35,
@@ -97,6 +94,10 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "kedelai": 36,
     "kelapa_sawit": 29,
     "kopi_teh_kakao": 20.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 15.5,
+    "ikan": 22
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

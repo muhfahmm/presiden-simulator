@@ -82,13 +82,10 @@ export const mali: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 19.0,
+  "sektor_peternakan": { "ayam_unggas": 19.0,
     "sapi_perah": 14,
     "sapi_potong": 40,
-    "domba_kambing": 17,
-    "udang_kerang": 16.0,
-    "ikan": 11
+    "domba_kambing": 17
   },
   "sektor_agrikultur": {
     "padi": 1,
@@ -97,6 +94,10 @@ export const mali: CountryData = {
     "kedelai": 5,
     "kelapa_sawit": 8,
     "kopi_teh_kakao": 31.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 16.0,
+    "ikan": 11
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

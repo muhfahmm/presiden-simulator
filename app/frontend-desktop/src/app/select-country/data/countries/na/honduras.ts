@@ -82,13 +82,10 @@ export const honduras: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 22.0,
+  "sektor_peternakan": { "ayam_unggas": 22.0,
     "sapi_perah": 13,
     "sapi_potong": 11,
-    "domba_kambing": 10,
-    "udang_kerang": 10.5,
-    "ikan": 6
+    "domba_kambing": 10
   },
   "sektor_agrikultur": {
     "padi": 9,
@@ -97,6 +94,10 @@ export const honduras: CountryData = {
     "kedelai": 32,
     "kelapa_sawit": 26,
     "kopi_teh_kakao": 16.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 10.5,
+    "ikan": 6
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

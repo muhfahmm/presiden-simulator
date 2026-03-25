@@ -82,13 +82,10 @@ export const belgia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 10.0,
+  "sektor_peternakan": { "ayam_unggas": 10.0,
     "sapi_perah": 31,
     "sapi_potong": 10,
-    "domba_kambing": 24,
-    "udang_kerang": 26.5,
-    "ikan": 39
+    "domba_kambing": 24
   },
   "sektor_agrikultur": {
     "padi": 23,
@@ -97,6 +94,10 @@ export const belgia: CountryData = {
     "kedelai": 14,
     "kelapa_sawit": 27,
     "kopi_teh_kakao": 12.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 26.5,
+    "ikan": 39
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

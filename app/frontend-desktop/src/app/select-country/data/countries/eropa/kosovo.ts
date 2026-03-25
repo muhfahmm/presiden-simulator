@@ -82,13 +82,10 @@ export const kosovo: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 15.5,
+  "sektor_peternakan": { "ayam_unggas": 15.5,
     "sapi_perah": 22,
     "sapi_potong": 33,
-    "domba_kambing": 7,
-    "udang_kerang": 28.5,
-    "ikan": 26
+    "domba_kambing": 7
   },
   "sektor_agrikultur": {
     "padi": 26,
@@ -97,6 +94,10 @@ export const kosovo: CountryData = {
     "kedelai": 33,
     "kelapa_sawit": 1,
     "kopi_teh_kakao": 31.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 28.5,
+    "ikan": 26
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

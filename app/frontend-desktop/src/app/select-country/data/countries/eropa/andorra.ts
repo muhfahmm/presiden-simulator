@@ -82,13 +82,10 @@ export const andorra: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 12.5,
+  "sektor_peternakan": { "ayam_unggas": 12.5,
     "sapi_perah": 30,
     "sapi_potong": 32,
-    "domba_kambing": 4,
-    "udang_kerang": 8.0,
-    "ikan": 23
+    "domba_kambing": 4
   },
   "sektor_agrikultur": {
     "padi": 13,
@@ -97,6 +94,10 @@ export const andorra: CountryData = {
     "kedelai": 38,
     "kelapa_sawit": 30,
     "kopi_teh_kakao": 17.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 8.0,
+    "ikan": 23
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

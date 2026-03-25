@@ -82,13 +82,10 @@ export const antigua_dan_barbuda: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 27.5,
+  "sektor_peternakan": { "ayam_unggas": 27.5,
     "sapi_perah": 7,
     "sapi_potong": 40,
-    "domba_kambing": 3,
-    "udang_kerang": 23.5,
-    "ikan": 4
+    "domba_kambing": 3
   },
   "sektor_agrikultur": {
     "padi": 36,
@@ -97,6 +94,10 @@ export const antigua_dan_barbuda: CountryData = {
     "kedelai": 29,
     "kelapa_sawit": 34,
     "kopi_teh_kakao": 16.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 23.5,
+    "ikan": 4
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

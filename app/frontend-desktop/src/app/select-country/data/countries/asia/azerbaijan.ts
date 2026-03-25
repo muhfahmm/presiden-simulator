@@ -82,13 +82,10 @@ export const azerbaijan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 11.5,
+  "sektor_peternakan": { "ayam_unggas": 11.5,
     "sapi_perah": 12,
     "sapi_potong": 26,
-    "domba_kambing": 17,
-    "udang_kerang": 12.0,
-    "ikan": 18
+    "domba_kambing": 17
   },
   "sektor_agrikultur": {
     "padi": 31,
@@ -97,6 +94,10 @@ export const azerbaijan: CountryData = {
     "kedelai": 2,
     "kelapa_sawit": 5,
     "kopi_teh_kakao": 31.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 12.0,
+    "ikan": 18
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const turki: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 11.5,
+  "sektor_peternakan": { "ayam_unggas": 11.5,
     "sapi_perah": 33,
     "sapi_potong": 38,
-    "domba_kambing": 2,
-    "udang_kerang": 23.5,
-    "ikan": 18
+    "domba_kambing": 2
   },
   "sektor_agrikultur": {
     "padi": 27,
@@ -97,6 +94,10 @@ export const turki: CountryData = {
     "kedelai": 32,
     "kelapa_sawit": 35,
     "kopi_teh_kakao": 21.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 23.5,
+    "ikan": 18
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

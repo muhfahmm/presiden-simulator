@@ -82,13 +82,10 @@ export const belarus: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 22.5,
+  "sektor_peternakan": { "ayam_unggas": 22.5,
     "sapi_perah": 38,
     "sapi_potong": 35,
-    "domba_kambing": 37,
-    "udang_kerang": 8.0,
-    "ikan": 14
+    "domba_kambing": 37
   },
   "sektor_agrikultur": {
     "padi": 5,
@@ -97,6 +94,10 @@ export const belarus: CountryData = {
     "kedelai": 2,
     "kelapa_sawit": 33,
     "kopi_teh_kakao": 17.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 8.0,
+    "ikan": 14
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const guinea: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 23.5,
+  "sektor_peternakan": { "ayam_unggas": 23.5,
     "sapi_perah": 29,
     "sapi_potong": 5,
-    "domba_kambing": 30,
-    "udang_kerang": 21.5,
-    "ikan": 1
+    "domba_kambing": 30
   },
   "sektor_agrikultur": {
     "padi": 17,
@@ -97,6 +94,10 @@ export const guinea: CountryData = {
     "kedelai": 22,
     "kelapa_sawit": 33,
     "kopi_teh_kakao": 29.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 21.5,
+    "ikan": 1
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const tajikistan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 3.5,
+  "sektor_peternakan": { "ayam_unggas": 3.5,
     "sapi_perah": 34,
     "sapi_potong": 25,
-    "domba_kambing": 36,
-    "udang_kerang": 21.0,
-    "ikan": 33
+    "domba_kambing": 36
   },
   "sektor_agrikultur": {
     "padi": 19,
@@ -97,6 +94,10 @@ export const tajikistan: CountryData = {
     "kedelai": 23,
     "kelapa_sawit": 37,
     "kopi_teh_kakao": 20.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 21.0,
+    "ikan": 33
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const kepulauan_faroe: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 13.5,
+  "sektor_peternakan": { "ayam_unggas": 13.5,
     "sapi_perah": 2,
     "sapi_potong": 13,
-    "domba_kambing": 29,
-    "udang_kerang": 22.5,
-    "ikan": 2
+    "domba_kambing": 29
   },
   "sektor_agrikultur": {
     "padi": 3,
@@ -97,6 +94,10 @@ export const kepulauan_faroe: CountryData = {
     "kedelai": 27,
     "kelapa_sawit": 31,
     "kopi_teh_kakao": 16.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 22.5,
+    "ikan": 2
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

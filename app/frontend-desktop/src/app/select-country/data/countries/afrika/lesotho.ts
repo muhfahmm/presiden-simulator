@@ -82,13 +82,10 @@ export const lesotho: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 21.0,
+  "sektor_peternakan": { "ayam_unggas": 21.0,
     "sapi_perah": 31,
     "sapi_potong": 8,
-    "domba_kambing": 27,
-    "udang_kerang": 17.0,
-    "ikan": 31
+    "domba_kambing": 27
   },
   "sektor_agrikultur": {
     "padi": 36,
@@ -97,6 +94,10 @@ export const lesotho: CountryData = {
     "kedelai": 5,
     "kelapa_sawit": 23,
     "kopi_teh_kakao": 11.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 17.0,
+    "ikan": 31
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

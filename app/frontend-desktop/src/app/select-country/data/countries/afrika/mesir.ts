@@ -82,13 +82,10 @@ export const mesir: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 32.0,
+  "sektor_peternakan": { "ayam_unggas": 32.0,
     "sapi_perah": 17,
     "sapi_potong": 2,
-    "domba_kambing": 26,
-    "udang_kerang": 2.0,
-    "ikan": 22
+    "domba_kambing": 26
   },
   "sektor_agrikultur": {
     "padi": 5,
@@ -97,6 +94,10 @@ export const mesir: CountryData = {
     "kedelai": 4,
     "kelapa_sawit": 34,
     "kopi_teh_kakao": 16.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 2.0,
+    "ikan": 22
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

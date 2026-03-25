@@ -82,13 +82,10 @@ export const bahama: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 10.5,
+  "sektor_peternakan": { "ayam_unggas": 10.5,
     "sapi_perah": 13,
     "sapi_potong": 17,
-    "domba_kambing": 13,
-    "udang_kerang": 14.5,
-    "ikan": 40
+    "domba_kambing": 13
   },
   "sektor_agrikultur": {
     "padi": 14,
@@ -97,6 +94,10 @@ export const bahama: CountryData = {
     "kedelai": 23,
     "kelapa_sawit": 9,
     "kopi_teh_kakao": 21.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 14.5,
+    "ikan": 40
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

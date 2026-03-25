@@ -82,13 +82,10 @@ export const yaman: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 20.5,
+  "sektor_peternakan": { "ayam_unggas": 20.5,
     "sapi_perah": 5,
     "sapi_potong": 1,
-    "domba_kambing": 20,
-    "udang_kerang": 16.5,
-    "ikan": 24
+    "domba_kambing": 20
   },
   "sektor_agrikultur": {
     "padi": 21,
@@ -97,6 +94,10 @@ export const yaman: CountryData = {
     "kedelai": 15,
     "kelapa_sawit": 38,
     "kopi_teh_kakao": 32.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 16.5,
+    "ikan": 24
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

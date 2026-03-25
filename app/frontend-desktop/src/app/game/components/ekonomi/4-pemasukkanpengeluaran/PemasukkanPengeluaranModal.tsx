@@ -105,6 +105,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
     { label: "Ekstraksi", data: initialCountry.sektor_ekstraksi },
     { label: "Manufaktur", data: initialCountry.sektor_manufaktur },
     { label: "Peternakan", data: initialCountry.sektor_peternakan },
+    { label: "Perikanan", data: initialCountry.sektor_perikanan },
     { label: "Agrikultur", data: initialCountry.sektor_agrikultur },
     { label: "Pendidikan", data: initialCountry.sektor_sosial?.pendidikan },
     { label: "Kesehatan", data: initialCountry.sektor_sosial?.kesehatan },

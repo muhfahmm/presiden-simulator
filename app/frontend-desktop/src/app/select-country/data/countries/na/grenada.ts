@@ -82,13 +82,10 @@ export const grenada: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 21.5,
+  "sektor_peternakan": { "ayam_unggas": 21.5,
     "sapi_perah": 16,
     "sapi_potong": 29,
-    "domba_kambing": 7,
-    "udang_kerang": 34.0,
-    "ikan": 8
+    "domba_kambing": 7
   },
   "sektor_agrikultur": {
     "padi": 39,
@@ -97,6 +94,10 @@ export const grenada: CountryData = {
     "kedelai": 37,
     "kelapa_sawit": 34,
     "kopi_teh_kakao": 28.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 34.0,
+    "ikan": 8
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const armenia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 35.0,
+  "sektor_peternakan": { "ayam_unggas": 35.0,
     "sapi_perah": 29,
     "sapi_potong": 32,
-    "domba_kambing": 38,
-    "udang_kerang": 8.0,
-    "ikan": 6
+    "domba_kambing": 38
   },
   "sektor_agrikultur": {
     "padi": 35,
@@ -97,6 +94,10 @@ export const armenia: CountryData = {
     "kedelai": 8,
     "kelapa_sawit": 18,
     "kopi_teh_kakao": 18.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 8.0,
+    "ikan": 6
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

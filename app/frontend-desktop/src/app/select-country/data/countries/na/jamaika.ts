@@ -82,13 +82,10 @@ export const jamaika: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 33.0,
+  "sektor_peternakan": { "ayam_unggas": 33.0,
     "sapi_perah": 39,
     "sapi_potong": 5,
-    "domba_kambing": 12,
-    "udang_kerang": 17.0,
-    "ikan": 10
+    "domba_kambing": 12
   },
   "sektor_agrikultur": {
     "padi": 35,
@@ -97,6 +94,10 @@ export const jamaika: CountryData = {
     "kedelai": 14,
     "kelapa_sawit": 12,
     "kopi_teh_kakao": 9.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 17.0,
+    "ikan": 10
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

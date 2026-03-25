@@ -82,13 +82,10 @@ export const republik_demokratik_kongo: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 6.5,
+  "sektor_peternakan": { "ayam_unggas": 6.5,
     "sapi_perah": 13,
     "sapi_potong": 37,
-    "domba_kambing": 25,
-    "udang_kerang": 35.5,
-    "ikan": 34
+    "domba_kambing": 25
   },
   "sektor_agrikultur": {
     "padi": 11,
@@ -97,6 +94,10 @@ export const republik_demokratik_kongo: CountryData = {
     "kedelai": 32,
     "kelapa_sawit": 32,
     "kopi_teh_kakao": 27.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 35.5,
+    "ikan": 34
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const kroasia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 30.0,
+  "sektor_peternakan": { "ayam_unggas": 30.0,
     "sapi_perah": 7,
     "sapi_potong": 25,
-    "domba_kambing": 10,
-    "udang_kerang": 33.0,
-    "ikan": 29
+    "domba_kambing": 10
   },
   "sektor_agrikultur": {
     "padi": 39,
@@ -97,6 +94,10 @@ export const kroasia: CountryData = {
     "kedelai": 32,
     "kelapa_sawit": 23,
     "kopi_teh_kakao": 19.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 33.0,
+    "ikan": 29
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const kamerun: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 19.0,
+  "sektor_peternakan": { "ayam_unggas": 19.0,
     "sapi_perah": 7,
     "sapi_potong": 21,
-    "domba_kambing": 40,
-    "udang_kerang": 24.5,
-    "ikan": 6
+    "domba_kambing": 40
   },
   "sektor_agrikultur": {
     "padi": 25,
@@ -97,6 +94,10 @@ export const kamerun: CountryData = {
     "kedelai": 4,
     "kelapa_sawit": 26,
     "kopi_teh_kakao": 26.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 24.5,
+    "ikan": 6
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

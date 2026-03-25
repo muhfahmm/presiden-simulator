@@ -82,13 +82,10 @@ export const prancis: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 16.0,
+  "sektor_peternakan": { "ayam_unggas": 16.0,
     "sapi_perah": 29,
     "sapi_potong": 19,
-    "domba_kambing": 9,
-    "udang_kerang": 27.0,
-    "ikan": 36
+    "domba_kambing": 9
   },
   "sektor_agrikultur": {
     "padi": 7,
@@ -97,6 +94,10 @@ export const prancis: CountryData = {
     "kedelai": 15,
     "kelapa_sawit": 21,
     "kopi_teh_kakao": 10.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 27.0,
+    "ikan": 36
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

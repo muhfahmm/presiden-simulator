@@ -82,13 +82,10 @@ export const fiji: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 13.0,
+  "sektor_peternakan": { "ayam_unggas": 13.0,
     "sapi_perah": 26,
     "sapi_potong": 16,
-    "domba_kambing": 12,
-    "udang_kerang": 12.0,
-    "ikan": 9
+    "domba_kambing": 12
   },
   "sektor_agrikultur": {
     "padi": 6,
@@ -97,6 +94,10 @@ export const fiji: CountryData = {
     "kedelai": 15,
     "kelapa_sawit": 22,
     "kopi_teh_kakao": 29.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 12.0,
+    "ikan": 9
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

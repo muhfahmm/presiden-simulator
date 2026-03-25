@@ -82,13 +82,10 @@ export const hong_kong: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 27.5,
+  "sektor_peternakan": { "ayam_unggas": 27.5,
     "sapi_perah": 14,
     "sapi_potong": 36,
-    "domba_kambing": 15,
-    "udang_kerang": 32.0,
-    "ikan": 11
+    "domba_kambing": 15
   },
   "sektor_agrikultur": {
     "padi": 4,
@@ -97,6 +94,10 @@ export const hong_kong: CountryData = {
     "kedelai": 30,
     "kelapa_sawit": 11,
     "kopi_teh_kakao": 18.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 32.0,
+    "ikan": 11
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

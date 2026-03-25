@@ -82,13 +82,10 @@ export const albania: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 6.5,
+  "sektor_peternakan": { "ayam_unggas": 6.5,
     "sapi_perah": 40,
     "sapi_potong": 15,
-    "domba_kambing": 28,
-    "udang_kerang": 17.5,
-    "ikan": 23
+    "domba_kambing": 28
   },
   "sektor_agrikultur": {
     "padi": 20,
@@ -97,6 +94,10 @@ export const albania: CountryData = {
     "kedelai": 37,
     "kelapa_sawit": 29,
     "kopi_teh_kakao": 21.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 17.5,
+    "ikan": 23
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const slovenia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 25.0,
+  "sektor_peternakan": { "ayam_unggas": 25.0,
     "sapi_perah": 35,
     "sapi_potong": 14,
-    "domba_kambing": 16,
-    "udang_kerang": 36.5,
-    "ikan": 18
+    "domba_kambing": 16
   },
   "sektor_agrikultur": {
     "padi": 15,
@@ -97,6 +94,10 @@ export const slovenia: CountryData = {
     "kedelai": 21,
     "kelapa_sawit": 1,
     "kopi_teh_kakao": 15.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 36.5,
+    "ikan": 18
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

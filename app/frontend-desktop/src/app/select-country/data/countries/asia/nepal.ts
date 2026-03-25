@@ -82,13 +82,10 @@ export const nepal: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 20.0,
+  "sektor_peternakan": { "ayam_unggas": 20.0,
     "sapi_perah": 29,
     "sapi_potong": 8,
-    "domba_kambing": 14,
-    "udang_kerang": 28.0,
-    "ikan": 7
+    "domba_kambing": 14
   },
   "sektor_agrikultur": {
     "padi": 22,
@@ -97,6 +94,10 @@ export const nepal: CountryData = {
     "kedelai": 24,
     "kelapa_sawit": 27,
     "kopi_teh_kakao": 17.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 28.0,
+    "ikan": 7
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

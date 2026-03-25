@@ -82,13 +82,10 @@ export const puerto_rico: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 21.5,
+  "sektor_peternakan": { "ayam_unggas": 21.5,
     "sapi_perah": 35,
     "sapi_potong": 5,
-    "domba_kambing": 2,
-    "udang_kerang": 13.5,
-    "ikan": 31
+    "domba_kambing": 2
   },
   "sektor_agrikultur": {
     "padi": 4,
@@ -97,6 +94,10 @@ export const puerto_rico: CountryData = {
     "kedelai": 17,
     "kelapa_sawit": 20,
     "kopi_teh_kakao": 10.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 13.5,
+    "ikan": 31
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

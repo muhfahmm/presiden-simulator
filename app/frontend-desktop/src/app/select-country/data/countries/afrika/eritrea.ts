@@ -82,13 +82,10 @@ export const eritrea: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 28.0,
+  "sektor_peternakan": { "ayam_unggas": 28.0,
     "sapi_perah": 3,
     "sapi_potong": 35,
-    "domba_kambing": 28,
-    "udang_kerang": 17.0,
-    "ikan": 24
+    "domba_kambing": 28
   },
   "sektor_agrikultur": {
     "padi": 11,
@@ -97,6 +94,10 @@ export const eritrea: CountryData = {
     "kedelai": 28,
     "kelapa_sawit": 24,
     "kopi_teh_kakao": 13.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 17.0,
+    "ikan": 24
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

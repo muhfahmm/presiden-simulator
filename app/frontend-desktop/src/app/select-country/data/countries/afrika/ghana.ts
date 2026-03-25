@@ -82,13 +82,10 @@ export const ghana: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 17.5,
+  "sektor_peternakan": { "ayam_unggas": 17.5,
     "sapi_perah": 33,
     "sapi_potong": 15,
-    "domba_kambing": 4,
-    "udang_kerang": 26.5,
-    "ikan": 35
+    "domba_kambing": 4
   },
   "sektor_agrikultur": {
     "padi": 39,
@@ -97,6 +94,10 @@ export const ghana: CountryData = {
     "kedelai": 11,
     "kelapa_sawit": 22,
     "kopi_teh_kakao": 52.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 26.5,
+    "ikan": 35
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

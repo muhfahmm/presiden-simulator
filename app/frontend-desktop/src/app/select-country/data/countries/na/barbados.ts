@@ -82,13 +82,10 @@ export const barbados: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 34.5,
+  "sektor_peternakan": { "ayam_unggas": 34.5,
     "sapi_perah": 5,
     "sapi_potong": 22,
-    "domba_kambing": 37,
-    "udang_kerang": 33.5,
-    "ikan": 10
+    "domba_kambing": 37
   },
   "sektor_agrikultur": {
     "padi": 34,
@@ -97,6 +94,10 @@ export const barbados: CountryData = {
     "kedelai": 13,
     "kelapa_sawit": 34,
     "kopi_teh_kakao": 22.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 33.5,
+    "ikan": 10
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const botswana: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 20.0,
+  "sektor_peternakan": { "ayam_unggas": 20.0,
     "sapi_perah": 13,
     "sapi_potong": 11,
-    "domba_kambing": 30,
-    "udang_kerang": 22.0,
-    "ikan": 34
+    "domba_kambing": 30
   },
   "sektor_agrikultur": {
     "padi": 15,
@@ -97,6 +94,10 @@ export const botswana: CountryData = {
     "kedelai": 39,
     "kelapa_sawit": 28,
     "kopi_teh_kakao": 12.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 22.0,
+    "ikan": 34
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

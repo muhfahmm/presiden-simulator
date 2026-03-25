@@ -82,13 +82,10 @@ export const republik_afrika_tengah: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 11.5,
+  "sektor_peternakan": { "ayam_unggas": 11.5,
     "sapi_perah": 18,
     "sapi_potong": 38,
-    "domba_kambing": 23,
-    "udang_kerang": 31.0,
-    "ikan": 28
+    "domba_kambing": 23
   },
   "sektor_agrikultur": {
     "padi": 12,
@@ -97,6 +94,10 @@ export const republik_afrika_tengah: CountryData = {
     "kedelai": 10,
     "kelapa_sawit": 1,
     "kopi_teh_kakao": 30.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 31.0,
+    "ikan": 28
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

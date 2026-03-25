@@ -82,13 +82,10 @@ export const chad: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 20.5,
+  "sektor_peternakan": { "ayam_unggas": 20.5,
     "sapi_perah": 6,
     "sapi_potong": 38,
-    "domba_kambing": 35,
-    "udang_kerang": 12.5,
-    "ikan": 2
+    "domba_kambing": 35
   },
   "sektor_agrikultur": {
     "padi": 4,
@@ -97,6 +94,10 @@ export const chad: CountryData = {
     "kedelai": 27,
     "kelapa_sawit": 8,
     "kopi_teh_kakao": 15.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 12.5,
+    "ikan": 2
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

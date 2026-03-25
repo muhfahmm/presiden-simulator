@@ -82,13 +82,10 @@ export const somalia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 24.5,
+  "sektor_peternakan": { "ayam_unggas": 24.5,
     "sapi_perah": 24,
     "sapi_potong": 9,
-    "domba_kambing": 23,
-    "udang_kerang": 17.0,
-    "ikan": 39
+    "domba_kambing": 23
   },
   "sektor_agrikultur": {
     "padi": 31,
@@ -97,6 +94,10 @@ export const somalia: CountryData = {
     "kedelai": 15,
     "kelapa_sawit": 22,
     "kopi_teh_kakao": 23.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 17.0,
+    "ikan": 39
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

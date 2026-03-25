@@ -82,13 +82,10 @@ export const tanjung_verde: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 17.5,
+  "sektor_peternakan": { "ayam_unggas": 17.5,
     "sapi_perah": 37,
     "sapi_potong": 18,
-    "domba_kambing": 33,
-    "udang_kerang": 27.5,
-    "ikan": 27
+    "domba_kambing": 33
   },
   "sektor_agrikultur": {
     "padi": 19,
@@ -97,6 +94,10 @@ export const tanjung_verde: CountryData = {
     "kedelai": 11,
     "kelapa_sawit": 9,
     "kopi_teh_kakao": 19.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 27.5,
+    "ikan": 27
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

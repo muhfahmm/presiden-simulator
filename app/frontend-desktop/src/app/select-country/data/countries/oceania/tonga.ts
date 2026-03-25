@@ -82,13 +82,10 @@ export const tonga: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 24.5,
+  "sektor_peternakan": { "ayam_unggas": 24.5,
     "sapi_perah": 23,
     "sapi_potong": 22,
-    "domba_kambing": 19,
-    "udang_kerang": 5.0,
-    "ikan": 29
+    "domba_kambing": 19
   },
   "sektor_agrikultur": {
     "padi": 13,
@@ -97,6 +94,10 @@ export const tonga: CountryData = {
     "kedelai": 15,
     "kelapa_sawit": 8,
     "kopi_teh_kakao": 18.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 5.0,
+    "ikan": 29
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

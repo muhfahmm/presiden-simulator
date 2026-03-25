@@ -82,13 +82,10 @@ export const republik_zimbabwe: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 9.5,
+  "sektor_peternakan": { "ayam_unggas": 9.5,
     "sapi_perah": 34,
     "sapi_potong": 40,
-    "domba_kambing": 32,
-    "udang_kerang": 24.0,
-    "ikan": 1
+    "domba_kambing": 32
   },
   "sektor_agrikultur": {
     "padi": 19,
@@ -97,6 +94,10 @@ export const republik_zimbabwe: CountryData = {
     "kedelai": 14,
     "kelapa_sawit": 12,
     "kopi_teh_kakao": 12.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 24.0,
+    "ikan": 1
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const spanyol: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 26.5,
+  "sektor_peternakan": { "ayam_unggas": 26.5,
     "sapi_perah": 31,
     "sapi_potong": 12,
-    "domba_kambing": 12,
-    "udang_kerang": 4.5,
-    "ikan": 5
+    "domba_kambing": 12
   },
   "sektor_agrikultur": {
     "padi": 29,
@@ -97,6 +94,10 @@ export const spanyol: CountryData = {
     "kedelai": 23,
     "kelapa_sawit": 18,
     "kopi_teh_kakao": 22.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 4.5,
+    "ikan": 5
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

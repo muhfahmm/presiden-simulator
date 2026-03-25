@@ -30,6 +30,7 @@ export function calculateBaseMaintenance(countryData: CountryData): number {
     countryData.sektor_ekstraksi,
     countryData.sektor_manufaktur,
     countryData.sektor_peternakan,
+    countryData.sektor_perikanan,
     countryData.sektor_agrikultur,
     countryData.sektor_sosial?.pendidikan,
     countryData.sektor_sosial?.kesehatan,

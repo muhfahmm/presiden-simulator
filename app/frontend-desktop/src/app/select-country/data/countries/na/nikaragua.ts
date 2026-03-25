@@ -82,13 +82,10 @@ export const nikaragua: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 37.5,
+  "sektor_peternakan": { "ayam_unggas": 37.5,
     "sapi_perah": 33,
     "sapi_potong": 12,
-    "domba_kambing": 40,
-    "udang_kerang": 13.5,
-    "ikan": 13
+    "domba_kambing": 40
   },
   "sektor_agrikultur": {
     "padi": 2,
@@ -97,6 +94,10 @@ export const nikaragua: CountryData = {
     "kedelai": 22,
     "kelapa_sawit": 13,
     "kopi_teh_kakao": 24.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 13.5,
+    "ikan": 13
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

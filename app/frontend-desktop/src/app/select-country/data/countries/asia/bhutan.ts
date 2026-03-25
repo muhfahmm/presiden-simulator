@@ -82,13 +82,10 @@ export const bhutan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 20.5,
+  "sektor_peternakan": { "ayam_unggas": 20.5,
     "sapi_perah": 23,
     "sapi_potong": 25,
-    "domba_kambing": 12,
-    "udang_kerang": 22.0,
-    "ikan": 25
+    "domba_kambing": 12
   },
   "sektor_agrikultur": {
     "padi": 30,
@@ -97,6 +94,10 @@ export const bhutan: CountryData = {
     "kedelai": 7,
     "kelapa_sawit": 18,
     "kopi_teh_kakao": 23.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 22.0,
+    "ikan": 25
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

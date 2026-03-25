@@ -82,13 +82,10 @@ export const laos: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 17.0,
+  "sektor_peternakan": { "ayam_unggas": 17.0,
     "sapi_perah": 17,
     "sapi_potong": 11,
-    "domba_kambing": 3,
-    "udang_kerang": 11.5,
-    "ikan": 13
+    "domba_kambing": 3
   },
   "sektor_agrikultur": {
     "padi": 34,
@@ -97,6 +94,10 @@ export const laos: CountryData = {
     "kedelai": 18,
     "kelapa_sawit": 19,
     "kopi_teh_kakao": 9.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 11.5,
+    "ikan": 13
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

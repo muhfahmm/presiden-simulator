@@ -82,13 +82,10 @@ export const moldova: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 26.0,
+  "sektor_peternakan": { "ayam_unggas": 26.0,
     "sapi_perah": 31,
     "sapi_potong": 2,
-    "domba_kambing": 3,
-    "udang_kerang": 24.5,
-    "ikan": 30
+    "domba_kambing": 3
   },
   "sektor_agrikultur": {
     "padi": 40,
@@ -97,6 +94,10 @@ export const moldova: CountryData = {
     "kedelai": 16,
     "kelapa_sawit": 20,
     "kopi_teh_kakao": 12.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 24.5,
+    "ikan": 30
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

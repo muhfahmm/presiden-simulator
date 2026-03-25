@@ -82,13 +82,10 @@ export const benin: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 18.0,
+  "sektor_peternakan": { "ayam_unggas": 18.0,
     "sapi_perah": 12,
     "sapi_potong": 31,
-    "domba_kambing": 27,
-    "udang_kerang": 31.0,
-    "ikan": 11
+    "domba_kambing": 27
   },
   "sektor_agrikultur": {
     "padi": 17,
@@ -97,6 +94,10 @@ export const benin: CountryData = {
     "kedelai": 39,
     "kelapa_sawit": 35,
     "kopi_teh_kakao": 11.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 31.0,
+    "ikan": 11
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

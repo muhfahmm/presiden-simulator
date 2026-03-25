@@ -82,13 +82,10 @@ export const suriname: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 9.5,
+  "sektor_peternakan": { "ayam_unggas": 9.5,
     "sapi_perah": 37,
     "sapi_potong": 4,
-    "domba_kambing": 32,
-    "udang_kerang": 15.5,
-    "ikan": 23
+    "domba_kambing": 32
   },
   "sektor_agrikultur": {
     "padi": 22,
@@ -97,6 +94,10 @@ export const suriname: CountryData = {
     "kedelai": 29,
     "kelapa_sawit": 5,
     "kopi_teh_kakao": 20.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 15.5,
+    "ikan": 23
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

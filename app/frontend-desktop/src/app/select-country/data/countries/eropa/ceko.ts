@@ -82,13 +82,10 @@ export const ceko: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 35.0,
+  "sektor_peternakan": { "ayam_unggas": 35.0,
     "sapi_perah": 4,
     "sapi_potong": 15,
-    "domba_kambing": 12,
-    "udang_kerang": 4.5,
-    "ikan": 30
+    "domba_kambing": 12
   },
   "sektor_agrikultur": {
     "padi": 5,
@@ -97,6 +94,10 @@ export const ceko: CountryData = {
     "kedelai": 25,
     "kelapa_sawit": 36,
     "kopi_teh_kakao": 27.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 4.5,
+    "ikan": 30
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

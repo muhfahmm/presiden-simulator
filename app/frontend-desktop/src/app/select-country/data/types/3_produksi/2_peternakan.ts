@@ -3,6 +3,4 @@ export interface SektorPeternakan {
   sapi_perah: number;
   sapi_potong: number;
   domba_kambing: number;
-  udang_kerang: number;
-  ikan: number;
 }

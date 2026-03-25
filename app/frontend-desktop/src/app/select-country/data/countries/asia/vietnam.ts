@@ -82,13 +82,10 @@ export const vietnam: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 34.5,
+  "sektor_peternakan": { "ayam_unggas": 34.5,
     "sapi_perah": 4,
     "sapi_potong": 38,
-    "domba_kambing": 5,
-    "udang_kerang": 20.5,
-    "ikan": 9
+    "domba_kambing": 5
   },
   "sektor_agrikultur": {
     "padi": 32,
@@ -97,6 +94,10 @@ export const vietnam: CountryData = {
     "kedelai": 5,
     "kelapa_sawit": 35,
     "kopi_teh_kakao": 23.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 20.5,
+    "ikan": 9
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const kamboja: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 22.0,
+  "sektor_peternakan": { "ayam_unggas": 22.0,
     "sapi_perah": 24,
     "sapi_potong": 29,
-    "domba_kambing": 33,
-    "udang_kerang": 17.0,
-    "ikan": 27
+    "domba_kambing": 33
   },
   "sektor_agrikultur": {
     "padi": 12,
@@ -97,6 +94,10 @@ export const kamboja: CountryData = {
     "kedelai": 5,
     "kelapa_sawit": 17,
     "kopi_teh_kakao": 18.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 17.0,
+    "ikan": 27
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const afrika_selatan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 21.5,
+  "sektor_peternakan": { "ayam_unggas": 21.5,
     "sapi_perah": 35,
     "sapi_potong": 36,
-    "domba_kambing": 37,
-    "udang_kerang": 28.0,
-    "ikan": 39
+    "domba_kambing": 37
   },
   "sektor_agrikultur": {
     "padi": 5,
@@ -97,6 +94,10 @@ export const afrika_selatan: CountryData = {
     "kedelai": 8,
     "kelapa_sawit": 18,
     "kopi_teh_kakao": 11.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 28.0,
+    "ikan": 39
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

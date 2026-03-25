@@ -82,13 +82,10 @@ export const guam: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 23.5,
+  "sektor_peternakan": { "ayam_unggas": 23.5,
     "sapi_perah": 13,
     "sapi_potong": 17,
-    "domba_kambing": 5,
-    "udang_kerang": 35.5,
-    "ikan": 1
+    "domba_kambing": 5
   },
   "sektor_agrikultur": {
     "padi": 20,
@@ -97,6 +94,10 @@ export const guam: CountryData = {
     "kedelai": 27,
     "kelapa_sawit": 4,
     "kopi_teh_kakao": 14.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 35.5,
+    "ikan": 1
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

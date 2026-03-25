@@ -82,13 +82,10 @@ export const sao_tome_dan_principe: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 19.5,
+  "sektor_peternakan": { "ayam_unggas": 19.5,
     "sapi_perah": 12,
     "sapi_potong": 20,
-    "domba_kambing": 37,
-    "udang_kerang": 15.0,
-    "ikan": 10
+    "domba_kambing": 37
   },
   "sektor_agrikultur": {
     "padi": 37,
@@ -97,6 +94,10 @@ export const sao_tome_dan_principe: CountryData = {
     "kedelai": 26,
     "kelapa_sawit": 36,
     "kopi_teh_kakao": 27.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 15.0,
+    "ikan": 10
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

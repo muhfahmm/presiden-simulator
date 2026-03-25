@@ -82,13 +82,10 @@ export const kirgizstan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 25.0,
+  "sektor_peternakan": { "ayam_unggas": 25.0,
     "sapi_perah": 17,
     "sapi_potong": 31,
-    "domba_kambing": 39,
-    "udang_kerang": 26.5,
-    "ikan": 19
+    "domba_kambing": 39
   },
   "sektor_agrikultur": {
     "padi": 37,
@@ -97,6 +94,10 @@ export const kirgizstan: CountryData = {
     "kedelai": 36,
     "kelapa_sawit": 2,
     "kopi_teh_kakao": 28.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 26.5,
+    "ikan": 19
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -453,10 +453,10 @@ export default function SelectCountry() {
 
                 <div className="h-px bg-zinc-800/50" />
 
-                {/* Peternakan & Perikanan */}
+                {/* Peternakan */}
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Beef size={10} /> Peternakan & Perikanan (6)</span>
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Beef size={10} /> Peternakan (4)</span>
                   </div>
 
                   <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
@@ -464,8 +464,20 @@ export default function SelectCountry() {
                     <SectorStat icon={<Milk size={10} className="text-zinc-200" />} label="Sapi Perah" value={`${currentData.sektor_peternakan.sapi_perah} (${(currentData.sektor_peternakan.sapi_perah * KONSUMSI_PANGAN.sapi_perah).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Beef size={10} className="text-red-500" />} label="Sapi Potong" value={`${currentData.sektor_peternakan.sapi_potong} (${(currentData.sektor_peternakan.sapi_potong * KONSUMSI_PANGAN.sapi_potong).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Leaf size={10} className="text-emerald-300" />} label="Domba/Kambing" value={`${currentData.sektor_peternakan.domba_kambing} (${(currentData.sektor_peternakan.domba_kambing * KONSUMSI_PANGAN.domba_kambing).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Shell size={10} className="text-pink-300" />} label="Udang/Kerang" value={`${currentData.sektor_peternakan.udang_kerang} (${(currentData.sektor_peternakan.udang_kerang * KONSUMSI_PANGAN.udang_kerang).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Fish size={10} className="text-blue-400" />} label="Ikan" value={`${currentData.sektor_peternakan.ikan} (${(currentData.sektor_peternakan.ikan * KONSUMSI_PANGAN.ikan).toLocaleString('id-ID')} MW)`} />
+                  </div>
+                </div>
+
+                <div className="h-px bg-zinc-800/50" />
+
+                {/* Perikanan */}
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Fish size={10} /> Perikanan & Kelautan (2)</span>
+                  </div>
+
+                  <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
+                    <SectorStat icon={<Shell size={10} className="text-pink-300" />} label="Udang/Kerang" value={`${currentData.sektor_perikanan.udang_kerang} (${(currentData.sektor_perikanan.udang_kerang * KONSUMSI_PANGAN.udang_kerang).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Fish size={10} className="text-blue-400" />} label="Ikan" value={`${currentData.sektor_perikanan.ikan} (${(currentData.sektor_perikanan.ikan * KONSUMSI_PANGAN.ikan).toLocaleString('id-ID')} MW)`} />
                   </div>
                 </div>
 

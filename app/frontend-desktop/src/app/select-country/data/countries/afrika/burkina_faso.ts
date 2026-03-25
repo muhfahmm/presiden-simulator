@@ -82,13 +82,10 @@ export const burkina_faso: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 4.5,
+  "sektor_peternakan": { "ayam_unggas": 4.5,
     "sapi_perah": 9,
     "sapi_potong": 2,
-    "domba_kambing": 39,
-    "udang_kerang": 19.0,
-    "ikan": 17
+    "domba_kambing": 39
   },
   "sektor_agrikultur": {
     "padi": 38,
@@ -97,6 +94,10 @@ export const burkina_faso: CountryData = {
     "kedelai": 28,
     "kelapa_sawit": 39,
     "kopi_teh_kakao": 20.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 19.0,
+    "ikan": 17
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const montenegro: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 31.5,
+  "sektor_peternakan": { "ayam_unggas": 31.5,
     "sapi_perah": 1,
     "sapi_potong": 25,
-    "domba_kambing": 1,
-    "udang_kerang": 27.0,
-    "ikan": 12
+    "domba_kambing": 1
   },
   "sektor_agrikultur": {
     "padi": 23,
@@ -97,6 +94,10 @@ export const montenegro: CountryData = {
     "kedelai": 29,
     "kelapa_sawit": 20,
     "kopi_teh_kakao": 20.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 27.0,
+    "ikan": 12
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

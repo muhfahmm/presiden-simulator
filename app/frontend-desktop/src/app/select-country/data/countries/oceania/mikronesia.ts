@@ -82,13 +82,10 @@ export const mikronesia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 7.0,
+  "sektor_peternakan": { "ayam_unggas": 7.0,
     "sapi_perah": 32,
     "sapi_potong": 31,
-    "domba_kambing": 14,
-    "udang_kerang": 40.0,
-    "ikan": 34
+    "domba_kambing": 14
   },
   "sektor_agrikultur": {
     "padi": 3,
@@ -97,6 +94,10 @@ export const mikronesia: CountryData = {
     "kedelai": 21,
     "kelapa_sawit": 7,
     "kopi_teh_kakao": 25.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 40.0,
+    "ikan": 34
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

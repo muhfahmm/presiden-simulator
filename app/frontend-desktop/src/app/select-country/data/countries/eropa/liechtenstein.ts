@@ -82,13 +82,10 @@ export const liechtenstein: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 18.5,
+  "sektor_peternakan": { "ayam_unggas": 18.5,
     "sapi_perah": 15,
     "sapi_potong": 22,
-    "domba_kambing": 3,
-    "udang_kerang": 5.5,
-    "ikan": 2
+    "domba_kambing": 3
   },
   "sektor_agrikultur": {
     "padi": 7,
@@ -97,6 +94,10 @@ export const liechtenstein: CountryData = {
     "kedelai": 16,
     "kelapa_sawit": 22,
     "kopi_teh_kakao": 15.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 5.5,
+    "ikan": 2
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

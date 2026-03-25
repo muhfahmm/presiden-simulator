@@ -82,13 +82,10 @@ export const swedia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 23.0,
+  "sektor_peternakan": { "ayam_unggas": 23.0,
     "sapi_perah": 19,
     "sapi_potong": 4,
-    "domba_kambing": 30,
-    "udang_kerang": 29.0,
-    "ikan": 33
+    "domba_kambing": 30
   },
   "sektor_agrikultur": {
     "padi": 37,
@@ -97,6 +94,10 @@ export const swedia: CountryData = {
     "kedelai": 33,
     "kelapa_sawit": 23,
     "kopi_teh_kakao": 25.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 29.0,
+    "ikan": 33
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

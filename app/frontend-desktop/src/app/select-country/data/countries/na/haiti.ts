@@ -82,13 +82,10 @@ export const haiti: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 27.5,
+  "sektor_peternakan": { "ayam_unggas": 27.5,
     "sapi_perah": 6,
     "sapi_potong": 13,
-    "domba_kambing": 15,
-    "udang_kerang": 20.5,
-    "ikan": 5
+    "domba_kambing": 15
   },
   "sektor_agrikultur": {
     "padi": 33,
@@ -97,6 +94,10 @@ export const haiti: CountryData = {
     "kedelai": 19,
     "kelapa_sawit": 19,
     "kopi_teh_kakao": 26.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 20.5,
+    "ikan": 5
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

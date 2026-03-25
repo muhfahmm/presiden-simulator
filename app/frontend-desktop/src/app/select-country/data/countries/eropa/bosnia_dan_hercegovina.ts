@@ -82,13 +82,10 @@ export const bosnia_dan_hercegovina: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 12.5,
+  "sektor_peternakan": { "ayam_unggas": 12.5,
     "sapi_perah": 10,
     "sapi_potong": 19,
-    "domba_kambing": 34,
-    "udang_kerang": 19.0,
-    "ikan": 35
+    "domba_kambing": 34
   },
   "sektor_agrikultur": {
     "padi": 39,
@@ -97,6 +94,10 @@ export const bosnia_dan_hercegovina: CountryData = {
     "kedelai": 5,
     "kelapa_sawit": 25,
     "kopi_teh_kakao": 23.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 19.0,
+    "ikan": 35
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

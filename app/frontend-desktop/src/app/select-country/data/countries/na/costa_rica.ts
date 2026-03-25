@@ -82,13 +82,10 @@ export const costa_rica: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 17.5,
+  "sektor_peternakan": { "ayam_unggas": 17.5,
     "sapi_perah": 16,
     "sapi_potong": 22,
-    "domba_kambing": 33,
-    "udang_kerang": 11.5,
-    "ikan": 10
+    "domba_kambing": 33
   },
   "sektor_agrikultur": {
     "padi": 19,
@@ -97,6 +94,10 @@ export const costa_rica: CountryData = {
     "kedelai": 34,
     "kelapa_sawit": 6,
     "kopi_teh_kakao": 32.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 11.5,
+    "ikan": 10
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

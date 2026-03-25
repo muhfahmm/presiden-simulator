@@ -82,13 +82,10 @@ export const india: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 29.5,
+  "sektor_peternakan": { "ayam_unggas": 29.5,
     "sapi_perah": 31,
     "sapi_potong": 29,
-    "domba_kambing": 4,
-    "udang_kerang": 31.5,
-    "ikan": 9
+    "domba_kambing": 4
   },
   "sektor_agrikultur": {
     "padi": 6,
@@ -97,6 +94,10 @@ export const india: CountryData = {
     "kedelai": 32,
     "kelapa_sawit": 9,
     "kopi_teh_kakao": 19.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 31.5,
+    "ikan": 9
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

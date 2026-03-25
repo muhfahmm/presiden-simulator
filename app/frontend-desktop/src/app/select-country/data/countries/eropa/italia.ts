@@ -82,13 +82,10 @@ export const italia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 17.5,
+  "sektor_peternakan": { "ayam_unggas": 17.5,
     "sapi_perah": 33,
     "sapi_potong": 29,
-    "domba_kambing": 32,
-    "udang_kerang": 25.0,
-    "ikan": 26
+    "domba_kambing": 32
   },
   "sektor_agrikultur": {
     "padi": 34,
@@ -97,6 +94,10 @@ export const italia: CountryData = {
     "kedelai": 29,
     "kelapa_sawit": 11,
     "kopi_teh_kakao": 30.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 25.0,
+    "ikan": 26
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

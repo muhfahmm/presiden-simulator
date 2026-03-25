@@ -82,13 +82,10 @@ export const turkmenistan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 16.5,
+  "sektor_peternakan": { "ayam_unggas": 16.5,
     "sapi_perah": 34,
     "sapi_potong": 2,
-    "domba_kambing": 35,
-    "udang_kerang": 18.0,
-    "ikan": 21
+    "domba_kambing": 35
   },
   "sektor_agrikultur": {
     "padi": 29,
@@ -97,6 +94,10 @@ export const turkmenistan: CountryData = {
     "kedelai": 5,
     "kelapa_sawit": 2,
     "kopi_teh_kakao": 15.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 18.0,
+    "ikan": 21
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -101,6 +101,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
     sektor_listrik: { ...currentData.sektor_listrik },
     sektor_manufaktur: { ...currentData.sektor_manufaktur },
     sektor_peternakan: { ...currentData.sektor_peternakan },
+    sektor_perikanan: { ...currentData.sektor_perikanan },
     sektor_agrikultur: { ...currentData.sektor_agrikultur },
     sektor_ekstraksi: { ...currentData.sektor_ekstraksi },
   };
@@ -128,6 +129,8 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       if (dataKey) {
         if (currentDataWithDeltas.sektor_peternakan && (currentDataWithDeltas.sektor_peternakan as any)[dataKey] !== undefined) {
           (currentDataWithDeltas.sektor_peternakan as any)[dataKey] = ((currentDataWithDeltas.sektor_peternakan as any)[dataKey] || 0) + deltaValue;
+        } else if (currentDataWithDeltas.sektor_perikanan && (currentDataWithDeltas.sektor_perikanan as any)[dataKey] !== undefined) {
+          (currentDataWithDeltas.sektor_perikanan as any)[dataKey] = ((currentDataWithDeltas.sektor_perikanan as any)[dataKey] || 0) + deltaValue;
         } else if (currentDataWithDeltas.sektor_agrikultur && (currentDataWithDeltas.sektor_agrikultur as any)[dataKey] !== undefined) {
           (currentDataWithDeltas.sektor_agrikultur as any)[dataKey] = ((currentDataWithDeltas.sektor_agrikultur as any)[dataKey] || 0) + deltaValue;
         }
@@ -264,21 +267,21 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
             buildTime: val.buildTime || 45
           })),
 
-        // --- PETERNAKAN & PERIKANAN (Grouped) ---
+        // --- PETERNAKAN (Grouped) ---
         ...Object.entries(komoditasPanganRate)
-          .filter(([key]) => ["poultry_farm", "egg_farm", "freshwater_fish_farm", "sheep_farm", "pearl_farm", "dairy_farm", "cattle_farm", "shrimp_farm"].includes(key))
+          .filter(([key]) => ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"].includes(key))
           .sort((a, b) => {
-            const order = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing", "udang_kerang", "ikan"];
-            const idxA = order.indexOf(a[1].dataKey);
-            const idxB = order.indexOf(b[1].dataKey);
-            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB) || a[1].no - b[1].no;
+            const order = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"];
+            const idxA = order.indexOf(a[0]);
+            const idxB = order.indexOf(b[0]);
+            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
           })
           .map(([key, val]: [string, any]) => ({
             key,
             groupId: "peternakan",
             label: val.desc,
             icon: getIcon(key),
-            desc: "Peternakan & Perikanan",
+            desc: "Peternakan Nasional",
             tarif: val.production,
             unit: val.unit,
             count: (currentData.sektor_peternakan[val.dataKey as keyof typeof currentData.sektor_peternakan] || 0) + ((buildingDeltas[key] as number) || 0),
@@ -288,14 +291,38 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
             buildTime: val.buildTime || 25
           })),
 
+        // --- PERIKANAN & KELAUTAN (Grouped) ---
+        ...Object.entries(komoditasPanganRate)
+          .filter(([key]) => ["udang_kerang", "ikan"].includes(key))
+          .sort((a, b) => {
+            const order = ["udang_kerang", "ikan"];
+            const idxA = order.indexOf(a[0]);
+            const idxB = order.indexOf(b[0]);
+            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
+          })
+          .map(([key, val]: [string, any]) => ({
+            key,
+            groupId: "perikanan",
+            label: val.desc,
+            icon: getIcon(key),
+            desc: "Perikanan & Kelautan",
+            tarif: val.production,
+            unit: val.unit,
+            count: (currentData.sektor_perikanan[val.dataKey as keyof typeof currentData.sektor_perikanan] || 0) + ((buildingDeltas[key] as number) || 0),
+            powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
+            pendapatan_nasional: val.pendapatan_nasional,
+            cost: 20,
+            buildTime: val.buildTime || 30
+          })),
+
         // --- PERTANIAN & PERKEBUNAN (Grouped) ---
         ...Object.entries(komoditasPanganRate)
-          .filter(([key]) => ["wheat_field", "corn_field", "cocoa_plantation", "soybean_field", "palm_oil_plantation", "coffee_plantation", "paddy_field", "vegetable_farm", "sugarcane_plantation", "tea_plantation", "tuber_field"].includes(key))
+          .filter(([key]) => ["padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"].includes(key))
           .sort((a, b) => {
             const order = ["padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"];
-            const idxA = order.indexOf(a[1].dataKey);
-            const idxB = order.indexOf(b[1].dataKey);
-            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB) || a[1].no - b[1].no;
+            const idxA = order.indexOf(a[0]);
+            const idxB = order.indexOf(b[0]);
+            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
           })
           .map(([key, val]: [string, any]) => ({
             key,
@@ -342,7 +369,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-purple-500/10 rounded-xl">
-               <Wrench className="h-6 w-6 text-purple-500" />
+              <Wrench className="h-6 w-6 text-purple-500" />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white tracking-tight">Produksi Hub</h2>
@@ -351,9 +378,9 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           </div>
           <div className="flex items-center gap-4">
             <button
-               onClick={() => setShowQueue(true)}
-               className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group flex items-center gap-2 relative shadow-[0_0_15px_rgba(8,145,178,0.1)] active:scale-95"
-               title="Antrean Pembangunan"
+              onClick={() => setShowQueue(true)}
+              className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group flex items-center gap-2 relative shadow-[0_0_15px_rgba(8,145,178,0.1)] active:scale-95"
+              title="Antrean Pembangunan"
             >
               <Clock className="h-6 w-6 text-cyan-500 group-hover:scale-110 group-hover:rotate-12 transition-transform" />
               {activeConstructions.length > 0 && (
@@ -444,6 +471,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                         const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
                         const showManufakturHeader = item.groupId === "manufaktur" && prevGroupId !== "manufaktur" && group.id === "produksi_ekonomi";
                         const showPeternakanHeader = item.groupId === "peternakan" && prevGroupId !== "peternakan";
+                        const showPerikananHeader = item.groupId === "perikanan" && prevGroupId !== "perikanan";
                         const showPertanianHeader = item.groupId === "pertanian" && prevGroupId !== "pertanian";
 
                         return (
@@ -461,16 +489,25 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                               <div className="col-span-full mt-8 mb-4 flex items-center gap-3">
                                 <Beef className="h-4 w-4 text-zinc-500" />
                                 <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
-                                  PETERNAKAN & PERIKANAN (8)
+                                  PETERNAKAN NASIONAL (4)
                                 </span>
                               </div>
                             )}
-                            
+
+                            {showPerikananHeader && (
+                              <div className="col-span-full mt-8 mb-4 flex items-center gap-3">
+                                <Fish className="h-4 w-4 text-zinc-500" />
+                                <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
+                                  PERIKANAN & KELAUTAN (2)
+                                </span>
+                              </div>
+                            )}
+
                             {showPertanianHeader && (
                               <div className="col-span-full mt-8 mb-4 flex items-center gap-3">
                                 <Sprout className="h-4 w-4 text-zinc-500" />
                                 <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
-                                  PERTANIAN & PERKEBUNAN (11)
+                                   PERTANIAN & PERKEBUNAN (6)
                                 </span>
                               </div>
                             )}
@@ -651,7 +688,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
           <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform">
             <item.icon className={`h-5 w-5 ${progress ? 'text-white' : 'text-cyan-500'} shadow-[0_0_10px_rgba(6,182,212,0.3)]`} />
           </div>
-          <button 
+          <button
             onClick={() => setShowDetail(!showDetail)}
             className={`p-2.5 rounded-xl border transition-all cursor-pointer ${showDetail ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'}`}
           >
@@ -674,15 +711,15 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
         <div className="flex flex-col gap-1 mt-1">
           {showDetail ? (
             <div className="mt-2 space-y-2 animate-in fade-in slide-in-from-top-1 duration-300">
-               <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
-                  <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Pemeliharaan</span>
-                  <span className="text-[15px] font-black text-rose-400">-{item.maintenanceCost || 5} / hari</span>
-               </div>
-               <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
-                  <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Beban Listrik</span>
-                  <span className="text-[15px] font-black text-amber-500">{item.groupId === "kelistrikan" ? "Supply" : `${item.powerUsage} MW`}</span>
-               </div>
-               <p className="text-[12px] text-zinc-400 italic mt-2 px-1 leading-relaxed">Fasilitas ini membutuhkan anggaran operasional harian agar tetap berfungsi optimal.</p>
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
+                <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Pemeliharaan</span>
+                <span className="text-[15px] font-black text-rose-400">-{item.maintenanceCost || 5} / hari</span>
+              </div>
+              <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
+                <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Beban Listrik</span>
+                <span className="text-[15px] font-black text-amber-500">{item.groupId === "kelistrikan" ? "Supply" : `${item.powerUsage} MW`}</span>
+              </div>
+              <p className="text-[12px] text-zinc-400 italic mt-2 px-1 leading-relaxed">Fasilitas ini membutuhkan anggaran operasional harian agar tetap berfungsi optimal.</p>
             </div>
           ) : (
             <>

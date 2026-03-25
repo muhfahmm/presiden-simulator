@@ -82,13 +82,10 @@ export const maldives: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 15.0,
+  "sektor_peternakan": { "ayam_unggas": 15.0,
     "sapi_perah": 26,
     "sapi_potong": 7,
-    "domba_kambing": 33,
-    "udang_kerang": 7.0,
-    "ikan": 12
+    "domba_kambing": 33
   },
   "sektor_agrikultur": {
     "padi": 36,
@@ -97,6 +94,10 @@ export const maldives: CountryData = {
     "kedelai": 17,
     "kelapa_sawit": 7,
     "kopi_teh_kakao": 20.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 7.0,
+    "ikan": 12
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const papua_nugini: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 20.5,
+  "sektor_peternakan": { "ayam_unggas": 20.5,
     "sapi_perah": 34,
     "sapi_potong": 3,
-    "domba_kambing": 22,
-    "udang_kerang": 14.0,
-    "ikan": 1
+    "domba_kambing": 22
   },
   "sektor_agrikultur": {
     "padi": 12,
@@ -97,6 +94,10 @@ export const papua_nugini: CountryData = {
     "kedelai": 9,
     "kelapa_sawit": 23,
     "kopi_teh_kakao": 11.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 14.0,
+    "ikan": 1
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

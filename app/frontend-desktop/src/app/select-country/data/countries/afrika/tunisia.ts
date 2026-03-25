@@ -82,13 +82,10 @@ export const tunisia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 18.0,
+  "sektor_peternakan": { "ayam_unggas": 18.0,
     "sapi_perah": 35,
     "sapi_potong": 8,
-    "domba_kambing": 20,
-    "udang_kerang": 14.0,
-    "ikan": 7
+    "domba_kambing": 20
   },
   "sektor_agrikultur": {
     "padi": 4,
@@ -97,6 +94,10 @@ export const tunisia: CountryData = {
     "kedelai": 15,
     "kelapa_sawit": 33,
     "kopi_teh_kakao": 24.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 14.0,
+    "ikan": 7
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

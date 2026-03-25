@@ -82,13 +82,10 @@ export const taiwan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 26.0,
+  "sektor_peternakan": { "ayam_unggas": 26.0,
     "sapi_perah": 24,
     "sapi_potong": 35,
-    "domba_kambing": 40,
-    "udang_kerang": 33.0,
-    "ikan": 2
+    "domba_kambing": 40
   },
   "sektor_agrikultur": {
     "padi": 5,
@@ -97,6 +94,10 @@ export const taiwan: CountryData = {
     "kedelai": 39,
     "kelapa_sawit": 13,
     "kopi_teh_kakao": 16.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 33.0,
+    "ikan": 2
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

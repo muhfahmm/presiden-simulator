@@ -82,13 +82,10 @@ export const latvia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 14.5,
+  "sektor_peternakan": { "ayam_unggas": 14.5,
     "sapi_perah": 1,
     "sapi_potong": 28,
-    "domba_kambing": 24,
-    "udang_kerang": 20.5,
-    "ikan": 28
+    "domba_kambing": 24
   },
   "sektor_agrikultur": {
     "padi": 14,
@@ -97,6 +94,10 @@ export const latvia: CountryData = {
     "kedelai": 21,
     "kelapa_sawit": 10,
     "kopi_teh_kakao": 31.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 20.5,
+    "ikan": 28
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

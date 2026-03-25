@@ -82,13 +82,10 @@ export const aljazair: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 20.0,
+  "sektor_peternakan": { "ayam_unggas": 20.0,
     "sapi_perah": 2,
     "sapi_potong": 16,
-    "domba_kambing": 26,
-    "udang_kerang": 15.5,
-    "ikan": 36
+    "domba_kambing": 26
   },
   "sektor_agrikultur": {
     "padi": 2,
@@ -97,6 +94,10 @@ export const aljazair: CountryData = {
     "kedelai": 28,
     "kelapa_sawit": 18,
     "kopi_teh_kakao": 27.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 15.5,
+    "ikan": 36
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

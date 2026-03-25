@@ -82,13 +82,10 @@ export const georgia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 32.5,
+  "sektor_peternakan": { "ayam_unggas": 32.5,
     "sapi_perah": 39,
     "sapi_potong": 11,
-    "domba_kambing": 5,
-    "udang_kerang": 19.5,
-    "ikan": 1
+    "domba_kambing": 5
   },
   "sektor_agrikultur": {
     "padi": 34,
@@ -97,6 +94,10 @@ export const georgia: CountryData = {
     "kedelai": 36,
     "kelapa_sawit": 11,
     "kopi_teh_kakao": 24.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 19.5,
+    "ikan": 1
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

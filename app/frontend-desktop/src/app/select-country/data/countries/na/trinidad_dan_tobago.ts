@@ -82,13 +82,10 @@ export const trinidad_dan_tobago: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 14.0,
+  "sektor_peternakan": { "ayam_unggas": 14.0,
     "sapi_perah": 20,
     "sapi_potong": 15,
-    "domba_kambing": 31,
-    "udang_kerang": 12.0,
-    "ikan": 28
+    "domba_kambing": 31
   },
   "sektor_agrikultur": {
     "padi": 35,
@@ -97,6 +94,10 @@ export const trinidad_dan_tobago: CountryData = {
     "kedelai": 8,
     "kelapa_sawit": 34,
     "kopi_teh_kakao": 27.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 12.0,
+    "ikan": 28
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

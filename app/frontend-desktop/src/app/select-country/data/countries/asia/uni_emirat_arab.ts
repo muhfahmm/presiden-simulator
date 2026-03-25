@@ -82,13 +82,10 @@ export const uni_emirat_arab: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 24.5,
+  "sektor_peternakan": { "ayam_unggas": 24.5,
     "sapi_perah": 27,
     "sapi_potong": 35,
-    "domba_kambing": 13,
-    "udang_kerang": 33.0,
-    "ikan": 26
+    "domba_kambing": 13
   },
   "sektor_agrikultur": {
     "padi": 20,
@@ -97,6 +94,10 @@ export const uni_emirat_arab: CountryData = {
     "kedelai": 6,
     "kelapa_sawit": 7,
     "kopi_teh_kakao": 26.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 33.0,
+    "ikan": 26
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

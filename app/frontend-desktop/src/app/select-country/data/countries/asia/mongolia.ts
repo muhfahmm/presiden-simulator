@@ -82,13 +82,10 @@ export const mongolia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 19.5,
+  "sektor_peternakan": { "ayam_unggas": 19.5,
     "sapi_perah": 4,
     "sapi_potong": 20,
-    "domba_kambing": 30,
-    "udang_kerang": 28.0,
-    "ikan": 33
+    "domba_kambing": 30
   },
   "sektor_agrikultur": {
     "padi": 20,
@@ -97,6 +94,10 @@ export const mongolia: CountryData = {
     "kedelai": 23,
     "kelapa_sawit": 18,
     "kopi_teh_kakao": 30.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 28.0,
+    "ikan": 33
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

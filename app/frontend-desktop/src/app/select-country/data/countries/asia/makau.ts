@@ -82,13 +82,10 @@ export const makau: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 6.0,
+  "sektor_peternakan": { "ayam_unggas": 6.0,
     "sapi_perah": 29,
     "sapi_potong": 22,
-    "domba_kambing": 19,
-    "udang_kerang": 22.5,
-    "ikan": 14
+    "domba_kambing": 19
   },
   "sektor_agrikultur": {
     "padi": 12,
@@ -97,6 +94,10 @@ export const makau: CountryData = {
     "kedelai": 1,
     "kelapa_sawit": 13,
     "kopi_teh_kakao": 15.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 22.5,
+    "ikan": 14
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

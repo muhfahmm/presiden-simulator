@@ -82,13 +82,10 @@ export const kolombia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 19.5,
+  "sektor_peternakan": { "ayam_unggas": 19.5,
     "sapi_perah": 1,
     "sapi_potong": 4,
-    "domba_kambing": 36,
-    "udang_kerang": 23.5,
-    "ikan": 15
+    "domba_kambing": 36
   },
   "sektor_agrikultur": {
     "padi": 13,
@@ -97,6 +94,10 @@ export const kolombia: CountryData = {
     "kedelai": 27,
     "kelapa_sawit": 22,
     "kopi_teh_kakao": 12.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 23.5,
+    "ikan": 15
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const venezuela: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 10.5,
+  "sektor_peternakan": { "ayam_unggas": 10.5,
     "sapi_perah": 6,
     "sapi_potong": 11,
-    "domba_kambing": 33,
-    "udang_kerang": 33.5,
-    "ikan": 22
+    "domba_kambing": 33
   },
   "sektor_agrikultur": {
     "padi": 22,
@@ -97,6 +94,10 @@ export const venezuela: CountryData = {
     "kedelai": 18,
     "kelapa_sawit": 10,
     "kopi_teh_kakao": 21.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 33.5,
+    "ikan": 22
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

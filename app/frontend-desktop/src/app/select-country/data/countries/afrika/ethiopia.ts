@@ -82,13 +82,10 @@ export const ethiopia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 16.0,
+  "sektor_peternakan": { "ayam_unggas": 16.0,
     "sapi_perah": 7,
     "sapi_potong": 11,
-    "domba_kambing": 10,
-    "udang_kerang": 11.5,
-    "ikan": 7
+    "domba_kambing": 10
   },
   "sektor_agrikultur": {
     "padi": 38,
@@ -97,6 +94,10 @@ export const ethiopia: CountryData = {
     "kedelai": 27,
     "kelapa_sawit": 26,
     "kopi_teh_kakao": 48.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 11.5,
+    "ikan": 7
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

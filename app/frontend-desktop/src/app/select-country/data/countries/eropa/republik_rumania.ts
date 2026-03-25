@@ -82,13 +82,10 @@ export const republik_rumania: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 20.5,
+  "sektor_peternakan": { "ayam_unggas": 20.5,
     "sapi_perah": 35,
     "sapi_potong": 13,
-    "domba_kambing": 10,
-    "udang_kerang": 14.0,
-    "ikan": 12
+    "domba_kambing": 10
   },
   "sektor_agrikultur": {
     "padi": 4,
@@ -97,6 +94,10 @@ export const republik_rumania: CountryData = {
     "kedelai": 29,
     "kelapa_sawit": 5,
     "kopi_teh_kakao": 30.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 14.0,
+    "ikan": 12
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

@@ -82,13 +82,10 @@ export const kanada: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 18.0,
+  "sektor_peternakan": { "ayam_unggas": 18.0,
     "sapi_perah": 17,
     "sapi_potong": 32,
-    "domba_kambing": 22,
-    "udang_kerang": 35.5,
-    "ikan": 38
+    "domba_kambing": 22
   },
   "sektor_agrikultur": {
     "padi": 2,
@@ -97,6 +94,10 @@ export const kanada: CountryData = {
     "kedelai": 30,
     "kelapa_sawit": 33,
     "kopi_teh_kakao": 28.0
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 35.5,
+    "ikan": 38
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

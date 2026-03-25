@@ -82,13 +82,10 @@ export const niger: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 31.0,
+  "sektor_peternakan": { "ayam_unggas": 31.0,
     "sapi_perah": 30,
     "sapi_potong": 10,
-    "domba_kambing": 2,
-    "udang_kerang": 36.0,
-    "ikan": 25
+    "domba_kambing": 2
   },
   "sektor_agrikultur": {
     "padi": 1,
@@ -97,6 +94,10 @@ export const niger: CountryData = {
     "kedelai": 24,
     "kelapa_sawit": 37,
     "kopi_teh_kakao": 16.7
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 36.0,
+    "ikan": 25
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

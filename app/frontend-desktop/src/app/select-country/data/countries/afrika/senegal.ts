@@ -82,13 +82,10 @@ export const senegal: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 28.5,
+  "sektor_peternakan": { "ayam_unggas": 28.5,
     "sapi_perah": 23,
     "sapi_potong": 18,
-    "domba_kambing": 35,
-    "udang_kerang": 29.5,
-    "ikan": 15
+    "domba_kambing": 35
   },
   "sektor_agrikultur": {
     "padi": 28,
@@ -97,6 +94,10 @@ export const senegal: CountryData = {
     "kedelai": 23,
     "kelapa_sawit": 21,
     "kopi_teh_kakao": 21.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 29.5,
+    "ikan": 15
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN

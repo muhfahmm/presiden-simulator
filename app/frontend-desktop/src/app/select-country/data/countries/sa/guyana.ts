@@ -82,13 +82,10 @@ export const guyana: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam_unggas": 8.5,
+  "sektor_peternakan": { "ayam_unggas": 8.5,
     "sapi_perah": 35,
     "sapi_potong": 15,
-    "domba_kambing": 17,
-    "udang_kerang": 10.5,
-    "ikan": 22
+    "domba_kambing": 17
   },
   "sektor_agrikultur": {
     "padi": 6,
@@ -97,6 +94,10 @@ export const guyana: CountryData = {
     "kedelai": 23,
     "kelapa_sawit": 34,
     "kopi_teh_kakao": 17.3
+  },
+  "sektor_perikanan": {
+    "udang_kerang": 10.5,
+    "ikan": 22
   },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
