@@ -6,7 +6,7 @@ import { INITIAL_GAME_DATE, formatGameDate, addDays, saveGameDate, getStoredGame
 import { gameStorage } from "../../gamestorage";
 import { budgetStorage } from "../navbar/stats/budget";
 import { buildingStorage } from "../pembangunan/buildingStorage";
-import { countries } from "../../../select-country/data/countries";
+import { countries } from "../../../select-country/data/countries/_index";
 import { calculateDailyProductionTotals } from "../../data/production/productionLogic";
 import { calculateDailyBudgetDelta } from "../../data/economy/economyLogic";
 import { happinessStorage } from "../navbar/stats/happines/happinessStorage";

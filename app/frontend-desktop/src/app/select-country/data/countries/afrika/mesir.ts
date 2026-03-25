@@ -1,4 +1,4 @@
-import { CountryData } from "../../types";
+import { CountryData } from "../../types/_index";
 
 export const mesir: CountryData = {
   "name_en": "Egypt",
@@ -83,38 +83,24 @@ export const mesir: CountryData = {
     "kayu": 21
   },
   // =============================================================
-  // 5. 🐄 PETERNAKAN & PERIKANAN
+  // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "sapi_potong": 2,
-    "ayam": 28,
+  "sektor_agri_peternakan": {
+    "ayam_unggas": 32.0,
     "sapi_perah": 17,
-    "ikan": 22,
-    "unggas": 36,
+    "sapi_potong": 2,
     "domba_kambing": 26,
-    "kerang": 2,
-    "udang": 2,
-    "kekuatan": 18.24560701244298
-  },
-  // =============================================================
-  // 6. 🌾 PERTANIAN & PERKEBUNAN
-  // =============================================================
-
-  "sektor_pertanian": {
-    "cokelat": 5,
-    "kopi": 39,
-    "jagung": 26,
-    "kelapa_sawit": 34,
-    "beras": 5,
+    "udang_kerang": 2.0,
+    "ikan": 22,
+    "padi": 5,
+    "gandum_jagung": 48.0,
+    "sayur_umbi": 40.0,
     "kedelai": 4,
-    "kekuatan": 20.660809349923973,
-    "tebu": 28,
-    "teh": 5,
-    "umbi_umbian": 20,
-    "sayur_sayuran": 60,
-    "gandum": 70
-  },
+    "kelapa_sawit": 34,
+    "kopi_teh_kakao": 16.3,
+    "kekuatan": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -318,21 +304,8 @@ export const mesir: CountryData = {
     "harga_obat": 126320,
     "harga_pendidikan": 677460
   },
-  // =============================================================
-  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
-  // =============================================================
 
-  "permintaan": {
-    "kepuasan": 92,
-    "permintaan_utama": [
-      "Bantuan Sembako",
-      "Penyediaan Lapangan Kerja"
-    ],
-    "perumahan": 31,
-    "komersial": 2,
-    "industri": 53
-  },
-  // =============================================================
+    // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

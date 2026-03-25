@@ -1,9 +1,9 @@
 "use client"
 
 import { useState, useEffect, Fragment } from "react"
-import { X, Package, Factory, Pickaxe, TrendingUp, TrendingDown, Info, Clock, Activity, Zap, Droplets, Flame, Radiation, Coins, Cpu, Car, Bike, Construction, TreePine, Cookie, Croissant, Pill, FlaskConical, Beef, Soup, Milk, Fish, Shell, Sprout, Utensils, Coffee, Apple, Bean, Eye, EyeOff, Hammer, Users, Warehouse, Search, Bird } from "lucide-react"
-import { countries } from "@/app/select-country/data/countries"
-import { CountryData } from "@/app/select-country/data/types"
+import { X, Package, Factory, Pickaxe, TrendingUp, TrendingDown, Info, Clock, Activity, Zap, Droplets, Flame, Radiation, Coins, Cpu, Car, Bike, Construction, TreePine, Cookie, Croissant, Pill, FlaskConical, Beef, Soup, Milk, Fish, Shell, Sprout, Utensils, Coffee, Apple, Bean, Eye, EyeOff, Hammer, Users, Warehouse, Search, Bird, Leaf } from "lucide-react"
+import { countries } from "@/app/select-country/data/countries/_index"
+import { CountryData } from "@/app/select-country/data/types/_index"
 import { gameStorage } from "@/app/game/gamestorage"
 import { buildingStorage } from "@/app/game/components/pembangunan/buildingStorage"
 import { mineralKritisRate, produkIndustriRate } from "@/app/select-country/data/pembangunan/laju-produksi"
@@ -47,8 +47,7 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
       try {
          if (sector === "produksi") {
             const m = c.sektor_manufaktur as any;
-            const a = c.sektor_pertanian as any;
-            const l = c.sektor_peternakan as any;
+            const p = c.sektor_agri_peternakan as any;
 
             // Manufaktur mapping
             const manufacturingMap: Record<string, string> = {
@@ -59,19 +58,29 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
                bakery_factory: "roti"
             };
             
-            let baseCount = 0;
-            if (manufacturingMap[key]) baseCount = m[manufacturingMap[key]] || 0;
-            else if (a[key] !== undefined) baseCount = a[key] || 0;
-            else if (l[key] !== undefined) baseCount = l[key] || 0;
-            else {
-               const agriKeys: Record<string, string> = { paddy_field: "beras", wheat_field: "gandum", corn_field: "jagung", palm_oil_plantation: "kelapa_sawit", cocoa_plantation: "cokelat", coffee_plantation: "kopi", tea_plantation: "teh", sugarcane_plantation: "tebu", vegetable_farm: "sayur_sayuran", tuber_field: "umbi_umbian", soybean_field: "kedelai" };
-               if (agriKeys[key]) baseCount = a[agriKeys[key]] || 0;
-               else {
-                  const liveKeys: Record<string, string> = { poultry_farm: "unggas", egg_farm: "egg", freshwater_fish_farm: "ikan", sheep_farm: "domba_kambing", dairy_farm: "sapi_perah", cattle_farm: "sapi_potong", shrimp_farm: "udang", pearl_farm: "kerang" };
-                  if (liveKeys[key]) baseCount = l[liveKeys[key]] || 0;
-               }
+            if (manufacturingMap[key]) return (m[manufacturingMap[key]] || 0) + delta;
+
+            const panganMap: Record<string, string> = {
+               paddy_field: "padi", agri_rice: "padi",
+               wheat_field: "gandum_jagung", corn_field: "gandum_jagung", agri_grains: "gandum_jagung",
+               vegetable_farm: "sayur_umbi", tuber_field: "sayur_umbi", agri_veg: "sayur_umbi",
+               soybean_field: "kedelai", agri_soy: "kedelai",
+               palm_oil_plantation: "kelapa_sawit", agri_palm: "kelapa_sawit",
+               coffee_plantation: "kopi_teh_kakao", tea_plantation: "kopi_teh_kakao", cocoa_plantation: "kopi_teh_kakao", agri_luxury: "kopi_teh_kakao",
+               poultry_farm: "ayam_unggas", egg_farm: "ayam_unggas", livestock_poultry: "ayam_unggas",
+               dairy_farm: "sapi_perah", livestock_dairy: "sapi_perah",
+               cattle_farm: "sapi_potong", livestock_beef: "sapi_potong",
+               sheep_farm: "domba_kambing", livestock_sheep: "domba_kambing",
+               shrimp_farm: "udang_kerang", pearl_farm: "udang_kerang", livestock_shrimp: "udang_kerang",
+               freshwater_fish_farm: "ikan", livestock_fish: "ikan"
+            };
+
+            if (panganMap[key]) {
+               const baseCount = p[panganMap[key]] || 0;
+               // If it's a grouped key, we need to handle delta specifically like in ProduksiModal
+               // but for simplicity in this modal we'll return base + delta
+               return baseCount + delta;
             }
-            return baseCount + delta;
          }
 
          if (sector === "ekstraksi") {
@@ -105,13 +114,13 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
          buildTime: val.buildTime
       }));
 
-   const agricultureItems = [
-      { key: "paddy_field", label: "Padi", icon: Sprout },
-      { key: "wheat_field", label: "Gandum", icon: Utensils },
-      { key: "corn_field", label: "Jagung", icon: Utensils },
-      { key: "palm_oil_plantation", label: "Kelapa Sawit", icon: Droplets },
-      { key: "sugarcane_plantation", label: "Tebu", icon: Utensils },
-      { key: "coffee_plantation", label: "Kopi/Teh/Kakao", icon: Coffee }
+   const agriItems = [
+      { key: "agri_rice", label: "Padi", icon: Sprout },
+      { key: "agri_grains", label: "Gandum/Jagung", icon: Utensils },
+      { key: "agri_veg", label: "Sayur/Umbi", icon: Apple },
+      { key: "agri_palm", label: "Kelapa Sawit", icon: Droplets },
+      { key: "agri_soy", label: "Kedelai", icon: Bean },
+      { key: "agri_luxury", label: "Kopi/Teh/Kakao", icon: Coffee }
    ].map(item => ({
       ...item, desc: "Pertanian",
       count: getBuildingCountTotal(initialCountry, item.key, "produksi"),
@@ -119,12 +128,12 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
    }));
 
    const livestockItems = [
-      { key: "poultry_farm", label: "Ayam/Unggas", icon: Bird },
-      { key: "egg_farm", label: "Telur", icon: Cookie },
-      { key: "dairy_farm", label: "Sapi Perah", icon: Milk },
-      { key: "cattle_farm", label: "Sapi Potong", icon: Beef },
-      { key: "shrimp_farm", label: "Tambak Udang", icon: Shell },
-      { key: "pearl_farm", label: "Budidaya Kerang", icon: Fish }
+      { key: "livestock_poultry", label: "Ayam/Unggas", icon: Bird },
+      { key: "livestock_dairy", label: "Sapi Perah", icon: Milk },
+      { key: "livestock_beef", label: "Sapi Potong", icon: Beef },
+      { key: "livestock_sheep", label: "Domba/Kambing", icon: Leaf },
+      { key: "livestock_shrimp", label: "Udang/Kerang", icon: Shell },
+      { key: "livestock_fish", label: "Ikan", icon: Fish }
    ].map(item => ({
       ...item, desc: "Peternakan",
       count: getBuildingCountTotal(initialCountry, item.key, "produksi"),
@@ -142,9 +151,9 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
       buildTime: val.buildTime
    }));
 
-   const totalManufacturingCount = manufacturingItems.reduce((acc, item) => acc + item.count, 0);
-   const totalExtractionCount = extractionItems.reduce((acc, item) => acc + item.count, 0);
-   const totalAgriCount = agricultureItems.reduce((acc, item) => acc + item.count, 0) + livestockItems.reduce((acc, item) => acc + item.count, 0);
+   const totalManufacturingCount = manufacturingItems.reduce((acc: number, item: any) => acc + item.count, 0);
+   const totalExtractionCount = extractionItems.reduce((acc: number, item: any) => acc + item.count, 0);
+   const totalAgriCount = agriItems.reduce((acc: number, item: any) => acc + item.count, 0) + livestockItems.reduce((acc: number, item: any) => acc + item.count, 0);
 
    return (
       <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
@@ -259,7 +268,7 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
                               ))}
                            </div>
 
-                           {/* Pertanian Subheader */}
+                           {/* Agri Subheader */}
                            <div className="flex items-center gap-4">
                               <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-800 to-zinc-800"></div>
                               <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] whitespace-nowrap bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full shadow-xl">
@@ -268,7 +277,7 @@ export default function ProduksiBarangModal({ isOpen, onClose }: ModalProps) {
                               <div className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-800 to-zinc-800"></div>
                            </div>
                            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                              {agricultureItems.map((item, idx) => (
+                              {agriItems.map((item, idx) => (
                                  <CardItem key={idx} item={item} />
                               ))}
                            </div>

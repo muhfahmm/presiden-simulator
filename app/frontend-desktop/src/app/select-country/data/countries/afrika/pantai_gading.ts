@@ -1,4 +1,4 @@
-import { CountryData } from "../../types";
+import { CountryData } from "../../types/_index";
 
 export const pantai_gading: CountryData = {
   "name_en": "Ivory Coast",
@@ -83,38 +83,24 @@ export const pantai_gading: CountryData = {
     "kayu": 21
   },
   // =============================================================
-  // 5. 🐄 PETERNAKAN & PERIKANAN
+  // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "sapi_potong": 29,
-    "ayam": 22,
+  "sektor_agri_peternakan": {
+    "ayam_unggas": 30.0,
     "sapi_perah": 4,
-    "ikan": 39,
-    "unggas": 38,
+    "sapi_potong": 29,
     "domba_kambing": 23,
-    "kerang": 27,
-    "udang": 10,
-    "kekuatan": 18.24560701244298
-  },
-  // =============================================================
-  // 6. 🌾 PERTANIAN & PERKEBUNAN
-  // =============================================================
-
-  "sektor_pertanian": {
-    "cokelat": 37,
-    "kopi": 15,
-    "jagung": 18,
-    "kelapa_sawit": 31,
-    "beras": 32,
+    "udang_kerang": 18.5,
+    "ikan": 39,
+    "padi": 32,
+    "gandum_jagung": 19.5,
+    "sayur_umbi": 31.5,
     "kedelai": 2,
-    "kekuatan": 20.660809349923973,
-    "tebu": 30,
-    "teh": 36,
-    "umbi_umbian": 34,
-    "sayur_sayuran": 29,
-    "gandum": 21
-  },
+    "kelapa_sawit": 31,
+    "kopi_teh_kakao": 29.3,
+    "kekuatan": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -318,21 +304,8 @@ export const pantai_gading: CountryData = {
     "harga_obat": 126320,
     "harga_pendidikan": 483900
   },
-  // =============================================================
-  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
-  // =============================================================
 
-  "permintaan": {
-    "kepuasan": 73,
-    "permintaan_utama": [
-      "Bantuan Sembako",
-      "Penyediaan Lapangan Kerja"
-    ],
-    "perumahan": 17,
-    "komersial": 20,
-    "industri": 53
-  },
-  // =============================================================
+    // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

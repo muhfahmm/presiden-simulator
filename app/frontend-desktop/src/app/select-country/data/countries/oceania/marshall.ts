@@ -1,4 +1,4 @@
-import { CountryData } from "../../types";
+import { CountryData } from "../../types/_index";
 
 export const marshall: CountryData = {
   "name_en": "Marshall Islands",
@@ -83,38 +83,24 @@ export const marshall: CountryData = {
     "kekuatan": 3.076011687404966
   },
   // =============================================================
-  // 5. 🐄 PETERNAKAN & PERIKANAN
+  // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam": 37,
-    "unggas": 29,
+  "sektor_agri_peternakan": {
+    "ayam_unggas": 33.0,
     "sapi_perah": 37,
     "sapi_potong": 23,
     "domba_kambing": 6,
-    "udang": 1,
+    "udang_kerang": 16.5,
     "ikan": 29,
-    "kerang": 32,
-    "kekuatan": 18.24560701244298
-  },
-  // =============================================================
-  // 6. 🌾 PERTANIAN & PERKEBUNAN
-  // =============================================================
-
-  "sektor_pertanian": {
-    "beras": 12,
-    "gandum": 17,
-    "jagung": 5,
-    "umbi_umbian": 38,
+    "padi": 12,
+    "gandum_jagung": 11.0,
+    "sayur_umbi": 30.0,
     "kedelai": 35,
     "kelapa_sawit": 15,
-    "teh": 20,
-    "kopi": 33,
-    "cokelat": 9,
-    "tebu": 1,
-    "sayur_sayuran": 22,
-    "kekuatan": 20.660809349923973
-  },
+    "kopi_teh_kakao": 20.7,
+    "kekuatan": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -315,21 +301,8 @@ export const marshall: CountryData = {
     "harga_obat": 157900,
     "harga_pendidikan": 483900
   },
-  // =============================================================
-  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
-  // =============================================================
 
-  "permintaan": {
-    "kepuasan": 87,
-    "permintaan_utama": [
-      "Bantuan Sembako",
-      "Penyediaan Lapangan Kerja"
-    ],
-    "perumahan": 24,
-    "komersial": 28,
-    "industri": 53
-  },
-  // =============================================================
+    // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

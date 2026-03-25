@@ -1,7 +1,7 @@
 "use client"
-import { CountryData } from "../../../../select-country/data/types";
+import { CountryData } from "../../../../select-country/data/types/_index";
 import { gameStorage } from "../../../gamestorage";
-import { countries } from "../../../../select-country/data/countries";
+import { countries } from "../../../../select-country/data/countries/_index";
 
 const STORAGE_KEY = "em4_price_data_v3";
 

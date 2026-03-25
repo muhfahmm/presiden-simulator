@@ -1,4 +1,4 @@
-import { countries } from "../select-country/data/countries";
+import { countries } from "../select-country/data/countries/_index";
 import { happinessStorage } from "./components/navbar/stats/happines/happinessStorage";
 import { priceStorage } from "./components/ekonomi/8-pasar-domestik/priceStorage";
 import { expenseStorage } from "./components/ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";

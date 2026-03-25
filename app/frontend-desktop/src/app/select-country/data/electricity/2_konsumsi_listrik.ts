@@ -49,26 +49,17 @@ export function hitungKonsumsiProduksi(manufacturing: CountryData["sektor_manufa
 }
 
 // 3. Konsumsi Pertanian & Peternakan
-export const KONSUMSI_AGRI = {
-  beras: 0.2, gandum: 0.1, jagung: 0.1, umbi_umbian: 0.1, kedelai: 0.1, kelapa_sawit: 1,
-  teh: 0.1, kopi: 0.3, cokelat: 0.2, tebu: 1, sayur_sayuran: 0.2
+export const KONSUMSI_PANGAN = {
+  ayam_unggas: 0.05, sapi_perah: 0.5, sapi_potong: 0.2, domba_kambing: 0.1,
+  udang_kerang: 0.65, ikan: 0.5, padi: 0.2, gandum_jagung: 0.1,
+  sayur_umbi: 0.15, kedelai: 0.1, kelapa_sawit: 1, kopi_teh_kakao: 0.2
 };
 
-export const KONSUMSI_PETERNAKAN = {
-  ayam: 0.05, unggas: 0.05, sapi_perah: 0.5, sapi_potong: 0.2,
-  domba_kambing: 0.1, udang: 1, ikan: 0.5, kerang: 0.3
-};
-
-export function hitungKonsumsiPangan(agriculture: CountryData["sektor_pertanian"], livestock: CountryData["sektor_peternakan"]) {
-  const totalAgri = Object.keys(KONSUMSI_AGRI).reduce((total, key) => {
-    return total + ((agriculture as any)[key] ?? 0) * (KONSUMSI_AGRI as any)[key];
+export function hitungKonsumsiPangan(pangan: CountryData["sektor_agri_peternakan"]) {
+  if (!pangan) return 0;
+  return Object.keys(KONSUMSI_PANGAN).reduce((total, key) => {
+    return total + ((pangan as any)[key] ?? 0) * (KONSUMSI_PANGAN as any)[key];
   }, 0);
-  
-  const totalLivestock = Object.keys(KONSUMSI_PETERNAKAN).reduce((total, key) => {
-    return total + ((livestock as any)[key] ?? 0) * (KONSUMSI_PETERNAKAN as any)[key];
-  }, 0);
-
-  return totalAgri + totalLivestock;
 }
 
 // 4. Konsumsi Pertahanan (Defense)
@@ -175,7 +166,7 @@ export function hitungTotalKonsumsiNasional(data: CountryData) {
   return (
     hitungKonsumsiEkstraksi(data.sektor_ekstraksi) +
     hitungKonsumsiProduksi(data.sektor_manufaktur) +
-    hitungKonsumsiPangan(data.sektor_pertanian, data.sektor_peternakan) +
+    hitungKonsumsiPangan(data.sektor_agri_peternakan) +
     hitungKonsumsiPertahanan(data.sektor_pertahanan, data.sektor_armada, data.sektor_keamanan) +
     hitungKonsumsiSosial(data.sektor_sosial) +
     hitungKonsumsiTransportasi(data.infrastruktur)

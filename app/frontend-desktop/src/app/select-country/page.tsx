@@ -6,12 +6,12 @@ import { HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight, Eye, Ey
 import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch";
 import WorldMapCanvas from "./selectcountrymap";
 import MapHubungan from "../game/tab-menu/Hubungan/mapHubungan";
-import { countries } from "./data/countries";
+import { countries } from "./data/countries/_index";
 import { gameStorage } from "../game/gamestorage";
-import { CountryData } from "./data/types";
+import { CountryData } from "./data/types/_index";
 import { 
   hitungTotalKapasitas, KAPASITAS_LISTRIK,
-  hitungKonsumsiProduksi, KONSUMSI_PRODUKSI, KONSUMSI_AGRI, KONSUMSI_PETERNAKAN,
+  hitungKonsumsiProduksi, KONSUMSI_PRODUKSI, KONSUMSI_PANGAN,
   hitungKonsumsiPertahanan, KONSUMSI_PERTAHANAN, KONSUMSI_FLEET, KONSUMSI_STRATEGIC,
   hitungKonsumsiSosial, KONSUMSI_SOSIAL,
   hitungKonsumsiTransportasi, KONSUMSI_TRANSPORTASI,
@@ -311,7 +311,7 @@ export default function SelectCountry() {
                   <DetailStat icon={<Bike size={12} className="text-emerald-400"/>} label="Jalur Sepeda" value={`${currentData.infrastruktur.jalur_sepeda ?? 0} (${((currentData.infrastruktur.jalur_sepeda ?? 0) * KONSUMSI_TRANSPORTASI.jalur_sepeda).toLocaleString('id-ID')} MW)`} />
                   <DetailStat icon={<TrainFront size={12} className="text-blue-500"/>} label="Kereta Bawah Tanah" value={`${currentData.infrastruktur.kereta_bawah_tanah ?? 0} (${((currentData.infrastruktur.kereta_bawah_tanah ?? 0) * KONSUMSI_TRANSPORTASI.kereta_bawah_tanah).toLocaleString('id-ID')} MW)`} />
                   <DetailStat icon={<TrainFront size={12} className="text-zinc-400"/>} label="Kereta Api" value={`${currentData.infrastruktur.jalur_kereta ?? 0} (${((currentData.infrastruktur.jalur_kereta ?? 0) * KONSUMSI_TRANSPORTASI.jalur_kereta).toLocaleString('id-ID')} MW)`} />
-                  <DetailStat icon={<Map size={12} className="text-zinc-300"/>} label="Jalan Raya" value={`${currentData.infrastruktur.jalan_tol ?? 0} (${((currentData.infrastruktur.jalan_tol ?? 0) * KONSUMSI_TRANSPORTASI.jalan_tol).toLocaleString('id-ID')} MW)`} />
+                  <DetailStat icon={<Map size={12} className="text-zinc-300"/>} label="Jalan Tol" value={`${currentData.infrastruktur.jalan_tol ?? 0} (${((currentData.infrastruktur.jalan_tol ?? 0) * KONSUMSI_TRANSPORTASI.jalan_tol).toLocaleString('id-ID')} MW)`} />
                   <DetailStat icon={<Ship size={12} className="text-blue-400"/>} label="Pelabuhan" value={`${currentData.infrastruktur.pelabuhan_laut} (${(currentData.infrastruktur.pelabuhan_laut * KONSUMSI_TRANSPORTASI.pelabuhan_laut).toLocaleString('id-ID')} MW)`} />
                   <DetailStat icon={<Plane size={12} className="text-cyan-400"/>} label="Bandara" value={`${currentData.infrastruktur.bandara} (${(currentData.infrastruktur.bandara * KONSUMSI_TRANSPORTASI.bandara).toLocaleString('id-ID')} MW)`} />
                   <DetailStat icon={<Bus size={12} className="text-amber-400"/>} label="Terminal Bus" value={`${currentData.infrastruktur.terminal_bus ?? 0} (${((currentData.infrastruktur.terminal_bus ?? 0) * KONSUMSI_TRANSPORTASI.terminal_bus).toLocaleString('id-ID')} MW)`} />
@@ -369,29 +369,29 @@ export default function SelectCountry() {
               <div className="flex flex-col gap-2">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Sprout size={10}/> Agri & Peternakan</span>
-                  <span className="text-xs font-black text-orange-400">{Math.floor((currentData.sektor_pertanian.kekuatan + currentData.sektor_peternakan.kekuatan)/2)}%</span>
+                  <span className="text-xs font-black text-orange-400">{Math.floor(currentData.sektor_agri_peternakan.kekuatan)}%</span>
                 </div>
                 
                 {/* Livestock Subgrid */}
                 <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
-                  <SectorStat icon={<Bird size={10} className="text-amber-500"/>} label="Ayam/Unggas" value={`${currentData.sektor_peternakan.ayam + currentData.sektor_peternakan.unggas} (${((currentData.sektor_peternakan.ayam * KONSUMSI_PETERNAKAN.ayam) + (currentData.sektor_peternakan.unggas * KONSUMSI_PETERNAKAN.unggas)).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Milk size={10} className="text-zinc-200"/>} label="Sapi Perah" value={`${currentData.sektor_peternakan.sapi_perah} (${(currentData.sektor_peternakan.sapi_perah * KONSUMSI_PETERNAKAN.sapi_perah).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Beef size={10} className="text-red-500"/>} label="Sapi Potong" value={`${currentData.sektor_peternakan.sapi_potong} (${(currentData.sektor_peternakan.sapi_potong * KONSUMSI_PETERNAKAN.sapi_potong).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Leaf size={10} className="text-emerald-300"/>} label="Domba/Kambing" value={`${currentData.sektor_peternakan.domba_kambing} (${(currentData.sektor_peternakan.domba_kambing * KONSUMSI_PETERNAKAN.domba_kambing).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Shell size={10} className="text-pink-300"/>} label="Udang/Kerang" value={`${currentData.sektor_peternakan.udang + currentData.sektor_peternakan.kerang} (${((currentData.sektor_peternakan.udang * KONSUMSI_PETERNAKAN.udang) + (currentData.sektor_peternakan.kerang * KONSUMSI_PETERNAKAN.kerang)).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Fish size={10} className="text-blue-400"/>} label="Ikan" value={`${currentData.sektor_peternakan.ikan} (${(currentData.sektor_peternakan.ikan * KONSUMSI_PETERNAKAN.ikan).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Bird size={10} className="text-amber-500"/>} label="Ayam/Unggas" value={`${currentData.sektor_agri_peternakan.ayam_unggas} (${(currentData.sektor_agri_peternakan.ayam_unggas * KONSUMSI_PANGAN.ayam_unggas).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Milk size={10} className="text-zinc-200"/>} label="Sapi Perah" value={`${currentData.sektor_agri_peternakan.sapi_perah} (${(currentData.sektor_agri_peternakan.sapi_perah * KONSUMSI_PANGAN.sapi_perah).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Beef size={10} className="text-red-500"/>} label="Sapi Potong" value={`${currentData.sektor_agri_peternakan.sapi_potong} (${(currentData.sektor_agri_peternakan.sapi_potong * KONSUMSI_PANGAN.sapi_potong).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Leaf size={10} className="text-emerald-300"/>} label="Domba/Kambing" value={`${currentData.sektor_agri_peternakan.domba_kambing} (${(currentData.sektor_agri_peternakan.domba_kambing * KONSUMSI_PANGAN.domba_kambing).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Shell size={10} className="text-pink-300"/>} label="Udang/Kerang" value={`${currentData.sektor_agri_peternakan.udang_kerang} (${(currentData.sektor_agri_peternakan.udang_kerang * KONSUMSI_PANGAN.udang_kerang).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Fish size={10} className="text-blue-400"/>} label="Ikan" value={`${currentData.sektor_agri_peternakan.ikan} (${(currentData.sektor_agri_peternakan.ikan * KONSUMSI_PANGAN.ikan).toLocaleString('id-ID')} MW)`} />
                 </div>
 
                 <div className="h-px bg-zinc-800/30 w-1/2 self-center my-1" />
 
                 {/* Agri Subgrid */}
                 <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
-                  <SectorStat icon={<Sprout size={10} className="text-green-500"/>} label="Padi" value={`${currentData.sektor_pertanian.beras} (${(currentData.sektor_pertanian.beras * KONSUMSI_AGRI.beras).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Utensils size={10} className="text-amber-600"/>} label="Gandum/Jagung" value={`${currentData.sektor_pertanian.gandum + currentData.sektor_pertanian.jagung} (${((currentData.sektor_pertanian.gandum * KONSUMSI_AGRI.gandum) + (currentData.sektor_pertanian.jagung * KONSUMSI_AGRI.jagung)).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Apple size={10} className="text-red-500"/>} label="Sayur/Umbi" value={`${currentData.sektor_pertanian.sayur_sayuran + currentData.sektor_pertanian.umbi_umbian} (${((currentData.sektor_pertanian.sayur_sayuran * KONSUMSI_AGRI.sayur_sayuran) + (currentData.sektor_pertanian.umbi_umbian * KONSUMSI_AGRI.umbi_umbian)).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Bean size={10} className="text-emerald-700"/>} label="Kedelai" value={`${currentData.sektor_pertanian.kedelai} (${(currentData.sektor_pertanian.kedelai * KONSUMSI_AGRI.kedelai).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Droplet size={10} className="text-amber-500"/>} label="Kelapa Sawit" value={`${currentData.sektor_pertanian.kelapa_sawit} (${(currentData.sektor_pertanian.kelapa_sawit * KONSUMSI_AGRI.kelapa_sawit).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Coffee size={10} className="text-amber-900"/>} label="Kopi/Teh/Kakao" value={`${currentData.sektor_pertanian.kopi + currentData.sektor_pertanian.teh + currentData.sektor_pertanian.cokelat} (${((currentData.sektor_pertanian.kopi * KONSUMSI_AGRI.kopi) + (currentData.sektor_pertanian.teh * KONSUMSI_AGRI.teh) + (currentData.sektor_pertanian.cokelat * KONSUMSI_AGRI.cokelat)).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Sprout size={10} className="text-green-500"/>} label="Padi" value={`${currentData.sektor_agri_peternakan.padi} (${(currentData.sektor_agri_peternakan.padi * KONSUMSI_PANGAN.padi).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Utensils size={10} className="text-amber-600"/>} label="Gandum/Jagung" value={`${currentData.sektor_agri_peternakan.gandum_jagung} (${(currentData.sektor_agri_peternakan.gandum_jagung * KONSUMSI_PANGAN.gandum_jagung).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Apple size={10} className="text-red-500"/>} label="Sayur/Umbi" value={`${currentData.sektor_agri_peternakan.sayur_umbi} (${(currentData.sektor_agri_peternakan.sayur_umbi * KONSUMSI_PANGAN.sayur_umbi).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Bean size={10} className="text-emerald-700"/>} label="Kedelai" value={`${currentData.sektor_agri_peternakan.kedelai} (${(currentData.sektor_agri_peternakan.kedelai * KONSUMSI_PANGAN.kedelai).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Droplet size={10} className="text-amber-500"/>} label="Kelapa Sawit" value={`${currentData.sektor_agri_peternakan.kelapa_sawit} (${(currentData.sektor_agri_peternakan.kelapa_sawit * KONSUMSI_PANGAN.kelapa_sawit).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Coffee size={10} className="text-amber-900"/>} label="Kopi/Teh/Kakao" value={`${currentData.sektor_agri_peternakan.kopi_teh_kakao} (${(currentData.sektor_agri_peternakan.kopi_teh_kakao * KONSUMSI_PANGAN.kopi_teh_kakao).toLocaleString('id-ID')} MW)`} />
                 </div>
               </div>
             </div>
@@ -790,18 +790,18 @@ export default function SelectCountry() {
             </div>
             
             <div className={`grid ${getGridCols(rightWidth)} gap-2`}>
-              <SectorStat icon={<Layers size={10} className="text-blue-200"/>} label="Alumunium" value={`${currentData.sektor_ekstraksi.aluminium} (${(currentData.sektor_ekstraksi.aluminium * KONSUMSI_EKSTRAKSI.aluminium).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Layers size={10} className="text-zinc-400"/>} label="Batubara" value={`${currentData.sektor_ekstraksi.batu_bara} (${(currentData.sektor_ekstraksi.batu_bara * KONSUMSI_EKSTRAKSI.batu_bara).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Mountain size={10} className="text-zinc-500"/>} label="Biji Besi" value={`${currentData.sektor_ekstraksi.bijih_besi} (${(currentData.sektor_ekstraksi.bijih_besi * KONSUMSI_EKSTRAKSI.bijih_besi).toLocaleString('id-ID')} MW)`} />
               <SectorStat icon={<Gem size={10} className="text-yellow-400"/>} label="Emas" value={`${currentData.sektor_ekstraksi.emas} (${(currentData.sektor_ekstraksi.emas * KONSUMSI_EKSTRAKSI.emas).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Waves size={10} className="text-blue-200"/>} label="Garam" value={`${currentData.sektor_ekstraksi.garam} (${(currentData.sektor_ekstraksi.garam * KONSUMSI_EKSTRAKSI.garam).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Flame size={10} className="text-orange-400"/>} label="Gas" value={`${currentData.sektor_ekstraksi.gas_alam} (${(currentData.sektor_ekstraksi.gas_alam * KONSUMSI_EKSTRAKSI.gas_alam).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Battery size={10} className="text-cyan-400"/>} label="Litium" value={`${currentData.sektor_ekstraksi.litium} (${(currentData.sektor_ekstraksi.litium * KONSUMSI_EKSTRAKSI.litium).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Droplets size={10} className="text-blue-400"/>} label="Minyak" value={`${currentData.sektor_ekstraksi.minyak_bumi} (${(currentData.sektor_ekstraksi.minyak_bumi * KONSUMSI_EKSTRAKSI.minyak_bumi).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Box size={10} className="text-orange-400"/>} label="Nikel" value={`${currentData.sektor_ekstraksi.nikel} (${(currentData.sektor_ekstraksi.nikel * KONSUMSI_EKSTRAKSI.nikel).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Cpu size={10} className="text-purple-400"/>} label="Tanah Jarang" value={`${currentData.sektor_ekstraksi.logam_tanah_jarang} (${(currentData.sektor_ekstraksi.logam_tanah_jarang * KONSUMSI_EKSTRAKSI.logam_tanah_jarang).toLocaleString('id-ID')} MW)`} />
-              <SectorStat icon={<Pickaxe size={10} className="text-orange-300"/>} label="Tembaga" value={`${currentData.sektor_ekstraksi.tembaga} (${(currentData.sektor_ekstraksi.tembaga * KONSUMSI_EKSTRAKSI.tembaga).toLocaleString('id-ID')} MW)`} />
               <SectorStat icon={<Radio size={10} className="text-emerald-400"/>} label="Uranium" value={`${currentData.sektor_ekstraksi.uranium} (${(currentData.sektor_ekstraksi.uranium * KONSUMSI_EKSTRAKSI.uranium).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Layers size={10} className="text-zinc-400"/>} label="Batubara" value={`${currentData.sektor_ekstraksi.batu_bara} (${(currentData.sektor_ekstraksi.batu_bara * KONSUMSI_EKSTRAKSI.batu_bara).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Droplets size={10} className="text-blue-400"/>} label="Minyak" value={`${currentData.sektor_ekstraksi.minyak_bumi} (${(currentData.sektor_ekstraksi.minyak_bumi * KONSUMSI_EKSTRAKSI.minyak_bumi).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Flame size={10} className="text-orange-400"/>} label="Gas" value={`${currentData.sektor_ekstraksi.gas_alam} (${(currentData.sektor_ekstraksi.gas_alam * KONSUMSI_EKSTRAKSI.gas_alam).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Waves size={10} className="text-blue-200"/>} label="Garam" value={`${currentData.sektor_ekstraksi.garam} (${(currentData.sektor_ekstraksi.garam * KONSUMSI_EKSTRAKSI.garam).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Box size={10} className="text-orange-400"/>} label="Nikel" value={`${currentData.sektor_ekstraksi.nikel} (${(currentData.sektor_ekstraksi.nikel * KONSUMSI_EKSTRAKSI.nikel).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Battery size={10} className="text-cyan-400"/>} label="Litium" value={`${currentData.sektor_ekstraksi.litium} (${(currentData.sektor_ekstraksi.litium * KONSUMSI_EKSTRAKSI.litium).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Pickaxe size={10} className="text-orange-300"/>} label="Tembaga" value={`${currentData.sektor_ekstraksi.tembaga} (${(currentData.sektor_ekstraksi.tembaga * KONSUMSI_EKSTRAKSI.tembaga).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Layers size={10} className="text-blue-200"/>} label="Alumunium" value={`${currentData.sektor_ekstraksi.aluminium} (${(currentData.sektor_ekstraksi.aluminium * KONSUMSI_EKSTRAKSI.aluminium).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Cpu size={10} className="text-purple-400"/>} label="Tanah Jarang" value={`${currentData.sektor_ekstraksi.logam_tanah_jarang} (${(currentData.sektor_ekstraksi.logam_tanah_jarang * KONSUMSI_EKSTRAKSI.logam_tanah_jarang).toLocaleString('id-ID')} MW)`} />
+              <SectorStat icon={<Mountain size={10} className="text-zinc-500"/>} label="Biji Besi" value={`${currentData.sektor_ekstraksi.bijih_besi} (${(currentData.sektor_ekstraksi.bijih_besi * KONSUMSI_EKSTRAKSI.bijih_besi).toLocaleString('id-ID')} MW)`} />
             </div>
             </div>
             </div>

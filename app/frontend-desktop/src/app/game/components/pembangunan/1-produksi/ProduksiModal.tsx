@@ -8,7 +8,7 @@ import { gameStorage } from "../../../gamestorage";
 import { buildingStorage } from "../buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate } from "../../../data/time/gameTime";
 import { calculateConstructionProgress, getStatusText } from "../../../data/construction/constructionLogic";
-import { countries } from "../../../../select-country/data/countries";
+import { countries } from "../../../../select-country/data/countries/_index";
 
 interface ModalProps {
   isOpen: boolean;
@@ -232,7 +232,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Peternakan",
           tarif: 1,
           unit: "Unit",
-          count: (currentData.sektor_peternakan.ayam + currentData.sektor_peternakan.unggas) + ((buildingDeltas["egg_farm"] as number) || 0) + ((buildingDeltas["poultry_farm"] as number) || 0),
+          count: (currentData.sektor_agri_peternakan.ayam_unggas) + ((buildingDeltas["egg_farm"] as number) || 0) + ((buildingDeltas["poultry_farm"] as number) || 0),
           pendapatan_nasional: 15, cost: 8, buildTime: 20
         },
         {
@@ -243,7 +243,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Peternakan",
           tarif: 1,
           unit: "Unit",
-          count: (currentData.sektor_peternakan.sapi_perah) + ((buildingDeltas["dairy_farm"] as number) || 0),
+          count: (currentData.sektor_agri_peternakan.sapi_perah) + ((buildingDeltas["dairy_farm"] as number) || 0),
           pendapatan_nasional: 25, cost: 8, buildTime: 20
         },
         {
@@ -254,7 +254,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Peternakan",
           tarif: 1,
           unit: "Unit",
-          count: (currentData.sektor_peternakan.sapi_potong) + ((buildingDeltas["cattle_farm"] as number) || 0),
+          count: (currentData.sektor_agri_peternakan.sapi_potong) + ((buildingDeltas["cattle_farm"] as number) || 0),
           pendapatan_nasional: 150, cost: 8, buildTime: 20
         },
         {
@@ -265,7 +265,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Peternakan",
           tarif: 1,
           unit: "Unit",
-          count: (currentData.sektor_peternakan.domba_kambing) + ((buildingDeltas["sheep_farm"] as number) || 0),
+          count: (currentData.sektor_agri_peternakan.domba_kambing) + ((buildingDeltas["sheep_farm"] as number) || 0),
           pendapatan_nasional: 65, cost: 8, buildTime: 20
         },
         {
@@ -276,7 +276,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Peternakan",
           tarif: 1,
           unit: "Unit",
-          count: (currentData.sektor_peternakan.udang + currentData.sektor_peternakan.kerang) + ((buildingDeltas["shrimp_farm"] as number) || 0) + ((buildingDeltas["pearl_farm"] as number) || 0),
+          count: (currentData.sektor_agri_peternakan.udang_kerang) + ((buildingDeltas["shrimp_farm"] as number) || 0) + ((buildingDeltas["pearl_farm"] as number) || 0),
           pendapatan_nasional: 280, cost: 8, buildTime: 20
         },
         {
@@ -287,7 +287,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Perikanan",
           tarif: 1,
           unit: "Unit",
-          count: (currentData.sektor_peternakan.ikan) + ((buildingDeltas["freshwater_fish_farm"] as number) || 0),
+          count: (currentData.sektor_agri_peternakan.ikan) + ((buildingDeltas["freshwater_fish_farm"] as number) || 0),
           pendapatan_nasional: 45, cost: 8, buildTime: 20
         },
 
@@ -300,7 +300,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Pertanian",
           tarif: 1,
           unit: "Unit",
-          count: (currentData.sektor_pertanian.beras) + ((buildingDeltas["paddy_field"] as number) || 0),
+          count: (currentData.sektor_agri_peternakan.padi) + ((buildingDeltas["paddy_field"] as number) || 0),
           pendapatan_nasional: 95, cost: 5, buildTime: 20
         },
         {
@@ -311,7 +311,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Pertanian",
           tarif: 1,
           unit: "Unit",
-          count: (currentData.sektor_pertanian.gandum + currentData.sektor_pertanian.jagung) + ((buildingDeltas["wheat_field"] as number) || 0) + ((buildingDeltas["corn_field"] as number) || 0),
+          count: (currentData.sektor_agri_peternakan.gandum_jagung) + ((buildingDeltas["wheat_field"] as number) || 0) + ((buildingDeltas["corn_field"] as number) || 0),
           pendapatan_nasional: 70, cost: 5, buildTime: 20
         },
         {
@@ -322,7 +322,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Pertanian",
           tarif: 1,
           unit: "Unit",
-          count: (currentData.sektor_pertanian.sayur_sayuran + currentData.sektor_pertanian.umbi_umbian) + ((buildingDeltas["vegetable_farm"] as number) || 0) + ((buildingDeltas["tuber_field"] as number) || 0),
+          count: (currentData.sektor_agri_peternakan.sayur_umbi) + ((buildingDeltas["vegetable_farm"] as number) || 0) + ((buildingDeltas["tuber_field"] as number) || 0),
           pendapatan_nasional: 45, cost: 5, buildTime: 20
         },
         {
@@ -333,7 +333,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Pertanian",
           tarif: 1,
           unit: "Unit",
-          count: (currentData.sektor_pertanian.kedelai) + ((buildingDeltas["soybean_field"] as number) || 0),
+          count: (currentData.sektor_agri_peternakan.kedelai) + ((buildingDeltas["soybean_field"] as number) || 0),
           pendapatan_nasional: 80, cost: 5, buildTime: 20
         },
         {
@@ -344,7 +344,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Perkebunan",
           tarif: 1,
           unit: "Unit",
-          count: (currentData.sektor_pertanian.kelapa_sawit) + ((buildingDeltas["palm_oil_plantation"] as number) || 0),
+          count: (currentData.sektor_agri_peternakan.kelapa_sawit) + ((buildingDeltas["palm_oil_plantation"] as number) || 0),
           pendapatan_nasional: 320, cost: 5, buildTime: 20
         },
         {
@@ -355,7 +355,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           desc: "Perkebunan",
           tarif: 1,
           unit: "Unit",
-          count: (currentData.sektor_pertanian.kopi + currentData.sektor_pertanian.teh + currentData.sektor_pertanian.cokelat) + ((buildingDeltas["coffee_plantation"] as number) || 0) + ((buildingDeltas["tea_plantation"] as number) || 0) + ((buildingDeltas["cocoa_plantation"] as number) || 0),
+          count: (currentData.sektor_agri_peternakan.kopi_teh_kakao) + ((buildingDeltas["coffee_plantation"] as number) || 0) + ((buildingDeltas["tea_plantation"] as number) || 0) + ((buildingDeltas["cocoa_plantation"] as number) || 0),
           pendapatan_nasional: 470, cost: 5, buildTime: 20
         }
       ]

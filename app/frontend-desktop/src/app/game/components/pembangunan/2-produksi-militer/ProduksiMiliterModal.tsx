@@ -8,7 +8,7 @@ import { gameStorage } from "../../../gamestorage";
 import { buildingStorage } from "../buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate } from "../../../data/time/gameTime";
 import { calculateConstructionProgress, getStatusText } from "../../../data/construction/constructionLogic";
-import { countries } from "../../../../select-country/data/countries";
+import { countries } from "../../../../select-country/data/countries/_index";
 import { 
   calculateTotalInfantry, 
   calculateInfantryPower,

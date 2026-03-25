@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/select-country/data/types";
+import { CountryData } from "@/app/select-country/data/types/_index";
 import { taxStorage } from "@/app/game/components/ekonomi/2-pajak/TaxStorage";
 import { incomeStorage } from "@/app/game/components/ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
 import { expenseStorage } from "@/app/game/components/ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
@@ -29,8 +29,7 @@ export function calculateBaseMaintenance(countryData: CountryData): number {
     countryData.infrastruktur,
     countryData.sektor_ekstraksi,
     countryData.sektor_manufaktur,
-    countryData.sektor_peternakan,
-    countryData.sektor_pertanian,
+    countryData.sektor_agri_peternakan,
     countryData.sektor_sosial?.pendidikan,
     countryData.sektor_sosial?.kesehatan,
     countryData.sektor_sosial?.olahraga,

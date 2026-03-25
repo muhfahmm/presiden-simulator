@@ -2,10 +2,10 @@
 
 import { useState, useEffect, Fragment } from "react"
 import { X, Zap, Battery, Activity, AlertTriangle, TrendingUp, TrendingDown, Info, Shield, Droplets, Sun, Wind, Flame, Radio, Search, ChevronLeft, Eye, Gauge, Factory, Pickaxe, Landmark, GraduationCap, HeartPulse, TrainFront, ShieldCheck, Bird, Sprout, Cpu, Car, Bike, Construction, TreePine, Cookie, Croissant, Pill, FlaskConical, Beef, Soup, Radiation, Coins, Ship, Plane, Crosshair, Library, Scale, Siren, Home, Store, Map, Coffee, Milk, Fish, Shell, Leaf, Utensils, Apple, Bean, Wifi, Bus, Warehouse, Archive, HardHat, ShieldAlert, Clock, Loader2, EyeOff, Hammer, Swords, Users } from "lucide-react"
-import { countries } from "@/app/select-country/data/countries"
-import { CountryData } from "@/app/select-country/data/types"
+import { countries } from "@/app/select-country/data/countries/_index"
+import { CountryData } from "@/app/select-country/data/types/_index"
 import { gameStorage } from "@/app/game/gamestorage"
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_FLEET, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_AGRI, KONSUMSI_PETERNAKAN } from "@/app/select-country/data/electricity"
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_FLEET, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_PANGAN } from "@/app/select-country/data/electricity"
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/select-country/data/pembangunan/laju-produksi"
 import { produksiMiliter } from "@/app/select-country/data/pembangunan/produksi-militer"
 import { tempatUmum } from "@/app/select-country/data/pembangunan/tempat-umum"
@@ -65,8 +65,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
          if (sector === "produksi") {
             const m = c.sektor_manufaktur as any;
             const e = c.sektor_ekstraksi as any;
-            const a = c.sektor_pertanian as any;
-            const l = c.sektor_peternakan as any;
+            const p = c.sektor_agri_peternakan as any;
 
             // Manufaktur mapping
             const manufacturingMap: Record<string, string> = {
@@ -84,15 +83,23 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                return e[eKey] || 0;
             }
 
-            // Agrikultur mapping
-            if (a[key] !== undefined) return a[key] || 0;
-            const agriKeys: Record<string, string> = { paddy_field: "beras", wheat_field: "gandum", corn_field: "jagung", palm_oil_plantation: "kelapa_sawit", cocoa_plantation: "cokelat", coffee_plantation: "kopi", tea_plantation: "teh", sugarcane_plantation: "tebu", vegetable_farm: "sayur_sayuran", tuber_field: "umbi_umbian", soybean_field: "kedelai" };
-            if (agriKeys[key]) return a[agriKeys[key]] || 0;
+            // Pangan mapping
+            const panganMap: Record<string, string> = {
+               paddy_field: "padi", agri_rice: "padi",
+               wheat_field: "gandum_jagung", corn_field: "gandum_jagung", agri_grains: "gandum_jagung",
+               vegetable_farm: "sayur_umbi", tuber_field: "sayur_umbi", agri_veg: "sayur_umbi",
+               soybean_field: "kedelai", agri_soy: "kedelai",
+               palm_oil_plantation: "kelapa_sawit", agri_palm: "kelapa_sawit",
+               coffee_plantation: "kopi_teh_kakao", tea_plantation: "kopi_teh_kakao", cocoa_plantation: "kopi_teh_kakao", agri_luxury: "kopi_teh_kakao",
+               poultry_farm: "ayam_unggas", egg_farm: "ayam_unggas", livestock_poultry: "ayam_unggas",
+               dairy_farm: "sapi_perah", livestock_dairy: "sapi_perah",
+               cattle_farm: "sapi_potong", livestock_beef: "sapi_potong",
+               sheep_farm: "domba_kambing", livestock_sheep: "domba_kambing",
+               shrimp_farm: "udang_kerang", pearl_farm: "udang_kerang", livestock_shrimp: "udang_kerang",
+               freshwater_fish_farm: "ikan", livestock_fish: "ikan"
+            };
 
-            // Peternakan mapping
-            if (l[key] !== undefined) return l[key] || 0;
-            const liveKeys: Record<string, string> = { poultry_farm: "unggas", egg_farm: "egg", freshwater_fish_farm: "ikan", sheep_farm: "domba_kambing", dairy_farm: "sapi_perah", cattle_farm: "sapi_potong", shrimp_farm: "udang", pearl_farm: "kerang" };
-            if (liveKeys[key]) return l[liveKeys[key]] || 0;
+            if (panganMap[key]) return p[panganMap[key]] || 0;
          }
 
          if (sector === "militer") {
@@ -198,38 +205,26 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                   }))
             },
             {
-               id: "peternakan",
-               label: "PETERNAKAN & PERIKANAN",
-               icon: Bird,
+               id: "pangan",
+               label: "AGRIKTULTUR & PETERNAKAN",
+               icon: Utensils,
                items: [
-                  { key: "poultry_farm", label: "Ayam/Unggas", icon: Bird },
-                  { key: "egg_farm", label: "Telur", icon: Cookie },
-                  { key: "dairy_farm", label: "Sapi Perah", icon: Milk },
-                  { key: "cattle_farm", label: "Sapi Potong", icon: Beef },
-                  { key: "shrimp_farm", label: "Tambak Udang", icon: Shell },
-                  { key: "pearl_farm", label: "Budidaya Kerang", icon: Fish }
+                  { key: "agri_rice", label: "Padi", icon: Sprout },
+                  { key: "agri_grains", label: "Gandum/Jagung", icon: Utensils },
+                  { key: "agri_veg", label: "Sayur/Umbi", icon: Apple },
+                  { key: "agri_soy", label: "Kedelai", icon: Bean },
+                  { key: "agri_palm", label: "Kelapa Sawit", icon: Droplets },
+                  { key: "agri_luxury", label: "Kopi/Teh/Kakao", icon: Coffee },
+                  { key: "livestock_poultry", label: "Ayam/Unggas", icon: Bird },
+                  { key: "livestock_dairy", label: "Sapi Perah", icon: Milk },
+                  { key: "livestock_beef", label: "Sapi Potong", icon: Beef },
+                  { key: "livestock_sheep", label: "Domba/Kambing", icon: Leaf },
+                  { key: "livestock_shrimp", label: "Udang/Kerang", icon: Shell },
+                  { key: "livestock_fish", label: "Ikan", icon: Fish }
                ].map(item => ({
-                  ...item, desc: "Peternakan",
+                  ...item, desc: "Pangan",
                   count: getBuildingCount(initialCountry, item.key, "produksi"),
-                  tarif: (KONSUMSI_PETERNAKAN as any)[item.key] || 0.1,
-                  unit: "MW", buildTime: 20
-               }))
-            },
-            {
-               id: "pertanian",
-               label: "AGRIKULTUR & PERTANIAN",
-               icon: Sprout,
-               items: [
-                  { key: "paddy_field", label: "Padi", icon: Sprout },
-                  { key: "wheat_field", label: "Gandum", icon: Utensils },
-                  { key: "corn_field", label: "Jagung", icon: Utensils },
-                  { key: "palm_oil_plantation", label: "Kelapa Sawit", icon: Droplets },
-                  { key: "sugarcane_plantation", label: "Tebu", icon: Utensils },
-                  { key: "coffee_plantation", label: "Kopi/Teh/Kakao", icon: Coffee }
-               ].map(item => ({
-                  ...item, desc: "Pertanian",
-                  count: getBuildingCount(initialCountry, item.key, "produksi"),
-                  tarif: (KONSUMSI_AGRI as any)[item.key] || 0.1,
+                  tarif: (KONSUMSI_PANGAN as any)[item.key] || 0.1,
                   unit: "MW", buildTime: 20
                }))
             }

@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 import { allRelations } from "../../select-country/data/relations";
-import { countries as centersData } from "../../select-country/data/countries";
+import { countries as centersData } from "../../select-country/data/countries/_index";
 
 interface StrategyModalProps {
   isOpen: boolean;

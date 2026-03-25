@@ -1,4 +1,4 @@
-import { CountryData } from "../../types";
+import { CountryData } from "../../types/_index";
 
 export const republik_demokratik_kongo: CountryData = {
   "name_en": "DR Congo",
@@ -83,38 +83,24 @@ export const republik_demokratik_kongo: CountryData = {
     "kayu": 37
   },
   // =============================================================
-  // 5. 🐄 PETERNAKAN & PERIKANAN
+  // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "sapi_potong": 37,
-    "ayam": 11,
+  "sektor_agri_peternakan": {
+    "ayam_unggas": 6.5,
     "sapi_perah": 13,
-    "ikan": 34,
-    "unggas": 2,
+    "sapi_potong": 37,
     "domba_kambing": 25,
-    "kerang": 40,
-    "udang": 31,
-    "kekuatan": 18.24560701244298
-  },
-  // =============================================================
-  // 6. 🌾 PERTANIAN & PERKEBUNAN
-  // =============================================================
-
-  "sektor_pertanian": {
-    "cokelat": 37,
-    "kopi": 14,
-    "jagung": 26,
-    "kelapa_sawit": 32,
-    "beras": 11,
+    "udang_kerang": 35.5,
+    "ikan": 34,
+    "padi": 11,
+    "gandum_jagung": 26.0,
+    "sayur_umbi": 33.0,
     "kedelai": 32,
-    "kekuatan": 20.660809349923973,
-    "tebu": 9,
-    "teh": 30,
-    "umbi_umbian": 32,
-    "sayur_sayuran": 34,
-    "gandum": 26
-  },
+    "kelapa_sawit": 32,
+    "kopi_teh_kakao": 27.0,
+    "kekuatan": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -318,21 +304,8 @@ export const republik_demokratik_kongo: CountryData = {
     "harga_obat": 221060,
     "harga_pendidikan": 483900
   },
-  // =============================================================
-  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
-  // =============================================================
 
-  "permintaan": {
-    "kepuasan": 90,
-    "permintaan_utama": [
-      "Bantuan Sembako",
-      "Penyediaan Lapangan Kerja"
-    ],
-    "perumahan": 28,
-    "komersial": 37,
-    "industri": 53
-  },
-  // =============================================================
+    // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

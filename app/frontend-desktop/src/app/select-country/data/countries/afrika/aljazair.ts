@@ -1,4 +1,4 @@
-import { CountryData } from "../../types";
+import { CountryData } from "../../types/_index";
 
 export const aljazair: CountryData = {
   "name_en": "Algeria",
@@ -83,38 +83,24 @@ export const aljazair: CountryData = {
     "kayu": 13
   },
   // =============================================================
-  // 5. 🐄 PETERNAKAN & PERIKANAN
+  // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "sapi_potong": 16,
-    "ayam": 38,
+  "sektor_agri_peternakan": {
+    "ayam_unggas": 20.0,
     "sapi_perah": 2,
-    "ikan": 36,
-    "unggas": 2,
+    "sapi_potong": 16,
     "domba_kambing": 26,
-    "kerang": 15,
-    "udang": 16,
-    "kekuatan": 18.24560701244298
-  },
-  // =============================================================
-  // 6. 🌾 PERTANIAN & PERKEBUNAN
-  // =============================================================
-
-  "sektor_pertanian": {
-    "cokelat": 8,
-    "kopi": 38,
-    "jagung": 8,
-    "kelapa_sawit": 18,
-    "beras": 2,
+    "udang_kerang": 15.5,
+    "ikan": 36,
+    "padi": 2,
+    "gandum_jagung": 9.0,
+    "sayur_umbi": 29.0,
     "kedelai": 28,
-    "kekuatan": 20.660809349923973,
-    "tebu": 33,
-    "teh": 37,
-    "umbi_umbian": 24,
-    "sayur_sayuran": 34,
-    "gandum": 10
-  },
+    "kelapa_sawit": 18,
+    "kopi_teh_kakao": 27.7,
+    "kekuatan": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -318,21 +304,8 @@ export const aljazair: CountryData = {
     "harga_obat": 157900,
     "harga_pendidikan": 387120
   },
-  // =============================================================
-  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
-  // =============================================================
 
-  "permintaan": {
-    "kepuasan": 72,
-    "permintaan_utama": [
-      "Bantuan Sembako",
-      "Penyediaan Lapangan Kerja"
-    ],
-    "perumahan": 3,
-    "komersial": 36,
-    "industri": 53
-  },
-  // =============================================================
+    // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

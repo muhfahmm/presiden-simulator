@@ -1,4 +1,4 @@
-import { CountryData } from "../../types";
+import { CountryData } from "../../types/_index";
 
 export const tahiti: CountryData = {
   "name_en": "French Polynesia",
@@ -83,38 +83,24 @@ export const tahiti: CountryData = {
     "kekuatan": 3.076011687404966
   },
   // =============================================================
-  // 5. 🐄 PETERNAKAN & PERIKANAN
+  // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam": 27,
-    "unggas": 4,
+  "sektor_agri_peternakan": {
+    "ayam_unggas": 15.5,
     "sapi_perah": 37,
     "sapi_potong": 19,
     "domba_kambing": 18,
-    "udang": 4,
+    "udang_kerang": 10.0,
     "ikan": 14,
-    "kerang": 16,
-    "kekuatan": 18.24560701244298
-  },
-  // =============================================================
-  // 6. 🌾 PERTANIAN & PERKEBUNAN
-  // =============================================================
-
-  "sektor_pertanian": {
-    "beras": 35,
-    "gandum": 6,
-    "jagung": 3,
-    "umbi_umbian": 16,
+    "padi": 35,
+    "gandum_jagung": 4.5,
+    "sayur_umbi": 13.0,
     "kedelai": 34,
     "kelapa_sawit": 24,
-    "teh": 5,
-    "kopi": 9,
-    "cokelat": 29,
-    "tebu": 20,
-    "sayur_sayuran": 10,
-    "kekuatan": 20.660809349923973
-  },
+    "kopi_teh_kakao": 14.3,
+    "kekuatan": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -315,21 +301,8 @@ export const tahiti: CountryData = {
     "harga_obat": 157900,
     "harga_pendidikan": 677460
   },
-  // =============================================================
-  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
-  // =============================================================
 
-  "permintaan": {
-    "kepuasan": 66,
-    "permintaan_utama": [
-      "Bantuan Sembako",
-      "Penyediaan Lapangan Kerja"
-    ],
-    "perumahan": 2,
-    "komersial": 27,
-    "industri": 53
-  },
-  // =============================================================
+    // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

@@ -1,4 +1,4 @@
-import { CountryData } from "../../types";
+import { CountryData } from "../../types/_index";
 
 export const kepulauan_faroe: CountryData = {
   "name_en": "Faroe Islands",
@@ -83,38 +83,24 @@ export const kepulauan_faroe: CountryData = {
     "kekuatan": 3.076011687404966
   },
   // =============================================================
-  // 5. 🐄 PETERNAKAN & PERIKANAN
+  // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam": 1,
-    "unggas": 26,
+  "sektor_agri_peternakan": {
+    "ayam_unggas": 13.5,
     "sapi_perah": 2,
     "sapi_potong": 13,
     "domba_kambing": 29,
-    "udang": 30,
+    "udang_kerang": 22.5,
     "ikan": 2,
-    "kerang": 15,
-    "kekuatan": 18.24560701244298
-  },
-  // =============================================================
-  // 6. 🌾 PERTANIAN & PERKEBUNAN
-  // =============================================================
-
-  "sektor_pertanian": {
-    "beras": 3,
-    "gandum": 36,
-    "jagung": 28,
-    "umbi_umbian": 2,
+    "padi": 3,
+    "gandum_jagung": 32.0,
+    "sayur_umbi": 17.0,
     "kedelai": 27,
     "kelapa_sawit": 31,
-    "teh": 19,
-    "kopi": 6,
-    "cokelat": 23,
-    "tebu": 19,
-    "sayur_sayuran": 32,
-    "kekuatan": 20.660809349923973
-  },
+    "kopi_teh_kakao": 16.0,
+    "kekuatan": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -315,21 +301,8 @@ export const kepulauan_faroe: CountryData = {
     "harga_obat": 221060,
     "harga_pendidikan": 483900
   },
-  // =============================================================
-  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
-  // =============================================================
 
-  "permintaan": {
-    "kepuasan": 50,
-    "permintaan_utama": [
-      "Bantuan Sembako",
-      "Penyediaan Lapangan Kerja"
-    ],
-    "perumahan": 37,
-    "komersial": 33,
-    "industri": 53
-  },
-  // =============================================================
+    // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

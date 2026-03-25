@@ -1,4 +1,4 @@
-import { CountryData } from "../../types";
+import { CountryData } from "../../types/_index";
 
 export const saint_vincent_dan_grenadine: CountryData = {
   "name_en": "Saint Vincent and the Grenadines",
@@ -83,38 +83,24 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "kekuatan": 3.076011687404966
   },
   // =============================================================
-  // 5. 🐄 PETERNAKAN & PERIKANAN
+  // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam": 25,
-    "unggas": 35,
+  "sektor_agri_peternakan": {
+    "ayam_unggas": 30.0,
     "sapi_perah": 19,
     "sapi_potong": 26,
     "domba_kambing": 29,
-    "udang": 28,
+    "udang_kerang": 15.5,
     "ikan": 22,
-    "kerang": 3,
-    "kekuatan": 18.24560701244298
-  },
-  // =============================================================
-  // 6. 🌾 PERTANIAN & PERKEBUNAN
-  // =============================================================
-
-  "sektor_pertanian": {
-    "beras": 35,
-    "gandum": 10,
-    "jagung": 31,
-    "umbi_umbian": 1,
+    "padi": 35,
+    "gandum_jagung": 20.5,
+    "sayur_umbi": 9.5,
     "kedelai": 36,
     "kelapa_sawit": 29,
-    "teh": 12,
-    "kopi": 21,
-    "cokelat": 29,
-    "tebu": 26,
-    "sayur_sayuran": 18,
-    "kekuatan": 20.660809349923973
-  },
+    "kopi_teh_kakao": 20.7,
+    "kekuatan": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -315,21 +301,8 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "harga_obat": 78950,
     "harga_pendidikan": 967800
   },
-  // =============================================================
-  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
-  // =============================================================
 
-  "permintaan": {
-    "kepuasan": 66,
-    "permintaan_utama": [
-      "Bantuan Sembako",
-      "Penyediaan Lapangan Kerja"
-    ],
-    "perumahan": 32,
-    "komersial": 15,
-    "industri": 53
-  },
-  // =============================================================
+    // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

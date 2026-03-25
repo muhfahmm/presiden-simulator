@@ -1,4 +1,4 @@
-import { CountryData } from "../../types";
+import { CountryData } from "../../types/_index";
 
 export const liechtenstein: CountryData = {
   "name_en": "Liechtenstein",
@@ -83,38 +83,24 @@ export const liechtenstein: CountryData = {
     "kekuatan": 3.076011687404966
   },
   // =============================================================
-  // 5. 🐄 PETERNAKAN & PERIKANAN
+  // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam": 14,
-    "unggas": 23,
+  "sektor_agri_peternakan": {
+    "ayam_unggas": 18.5,
     "sapi_perah": 15,
     "sapi_potong": 22,
     "domba_kambing": 3,
-    "udang": 1,
+    "udang_kerang": 5.5,
     "ikan": 2,
-    "kerang": 10,
-    "kekuatan": 18.24560701244298
-  },
-  // =============================================================
-  // 6. 🌾 PERTANIAN & PERKEBUNAN
-  // =============================================================
-
-  "sektor_pertanian": {
-    "beras": 7,
-    "gandum": 13,
-    "jagung": 32,
-    "umbi_umbian": 18,
+    "padi": 7,
+    "gandum_jagung": 22.5,
+    "sayur_umbi": 14.5,
     "kedelai": 16,
     "kelapa_sawit": 22,
-    "teh": 16,
-    "kopi": 27,
-    "cokelat": 4,
-    "tebu": 19,
-    "sayur_sayuran": 11,
-    "kekuatan": 20.660809349923973
-  },
+    "kopi_teh_kakao": 15.7,
+    "kekuatan": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -315,21 +301,8 @@ export const liechtenstein: CountryData = {
     "harga_obat": 126320,
     "harga_pendidikan": 387120
   },
-  // =============================================================
-  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
-  // =============================================================
 
-  "permintaan": {
-    "kepuasan": 56,
-    "permintaan_utama": [
-      "Bantuan Sembako",
-      "Penyediaan Lapangan Kerja"
-    ],
-    "perumahan": 21,
-    "komersial": 15,
-    "industri": 53
-  },
-  // =============================================================
+    // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

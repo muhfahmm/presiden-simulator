@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "../../../select-country/data/countries";
+import { countries as centersData } from "../../../select-country/data/countries/_index";
 import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "../../../select-country/data/trades/tradeRoutes";
 
 import { regionalRoutes } from "../../../select-country/data/trades/regional/AsianRoutes";

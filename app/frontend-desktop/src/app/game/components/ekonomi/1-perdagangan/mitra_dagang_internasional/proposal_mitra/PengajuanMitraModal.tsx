@@ -1,6 +1,6 @@
 import React from "react";
 import { X, Globe, ShieldQuestion, Send, Clock, AlertTriangle } from "lucide-react";
-import { CountryData } from "@/app/select-country/data/types";
+import { CountryData } from "@/app/select-country/data/types/_index";
 import { calculateTradeProposal } from "./tradeProposalLogic";
 
 interface PengajuanMitraModalProps {

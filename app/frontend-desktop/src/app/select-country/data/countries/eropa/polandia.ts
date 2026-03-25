@@ -1,4 +1,4 @@
-import { CountryData } from "../../types";
+import { CountryData } from "../../types/_index";
 
 export const polandia: CountryData = {
   "name_en": "Poland",
@@ -83,38 +83,24 @@ export const polandia: CountryData = {
     "kekuatan": 3.076011687404966
   },
   // =============================================================
-  // 5. 🐄 PETERNAKAN & PERIKANAN
+  // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam": 31,
-    "unggas": 14,
+  "sektor_agri_peternakan": {
+    "ayam_unggas": 22.5,
     "sapi_perah": 6,
     "sapi_potong": 14,
     "domba_kambing": 10,
-    "udang": 37,
+    "udang_kerang": 24.5,
     "ikan": 29,
-    "kerang": 12,
-    "kekuatan": 18.24560701244298
-  },
-  // =============================================================
-  // 6. 🌾 PERTANIAN & PERKEBUNAN
-  // =============================================================
-
-  "sektor_pertanian": {
-    "beras": 5,
-    "gandum": 13,
-    "jagung": 18,
-    "umbi_umbian": 22,
+    "padi": 5,
+    "gandum_jagung": 15.5,
+    "sayur_umbi": 22.0,
     "kedelai": 6,
     "kelapa_sawit": 7,
-    "teh": 3,
-    "kopi": 24,
-    "cokelat": 6,
-    "tebu": 16,
-    "sayur_sayuran": 22,
-    "kekuatan": 20.660809349923973
-  },
+    "kopi_teh_kakao": 11.0,
+    "kekuatan": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -315,21 +301,8 @@ export const polandia: CountryData = {
     "harga_obat": 157900,
     "harga_pendidikan": 387120
   },
-  // =============================================================
-  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
-  // =============================================================
 
-  "permintaan": {
-    "kepuasan": 72,
-    "permintaan_utama": [
-      "Bantuan Sembako",
-      "Penyediaan Lapangan Kerja"
-    ],
-    "perumahan": 11,
-    "komersial": 18,
-    "industri": 53
-  },
-  // =============================================================
+    // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { X, FileText, Scale, Coins, Smile, Meh, Frown, Angry, AlertCircle, TrendingUp, RefreshCw, Wallet, Globe, Shield, ShieldAlert, Info } from "lucide-react"
-import { countries } from "../../../../select-country/data/countries"
-import { CountryData } from "../../../../select-country/data/types"
+import { countries } from "../../../../select-country/data/countries/_index"
+import { CountryData } from "../../../../select-country/data/types/_index"
 import { gameStorage } from "../../../gamestorage"
 import { budgetStorage } from "@/app/game/components/navbar/stats/budget"
 import { taxStorage } from "./TaxStorage"

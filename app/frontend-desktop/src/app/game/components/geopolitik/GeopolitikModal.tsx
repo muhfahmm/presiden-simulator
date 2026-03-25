@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { X, Globe, Users, Handshake, Shield, Globe2, Landmark, Star, BarChart3, HelpingHand, MapPin } from "lucide-react"
-import { CountryData } from "../../../select-country/data/types"
+import { CountryData } from "../../../select-country/data/types/_index"
 
 interface ModalProps {
   isOpen: boolean;

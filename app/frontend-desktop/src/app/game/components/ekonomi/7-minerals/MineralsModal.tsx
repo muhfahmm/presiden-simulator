@@ -1,8 +1,8 @@
 "use client"
 
 import { X, Box, Battery, Layers, Pickaxe, TrendingUp, Activity, Info, Search, Eye, ChevronLeft, Radiation, Droplets, Flame, Coins, Loader2, Database, Clock } from "lucide-react";
-import { CountryData } from "@/app/select-country/data/types";
-import { countries } from "@/app/select-country/data/countries";
+import { CountryData } from "@/app/select-country/data/types/_index";
+import { countries } from "@/app/select-country/data/countries/_index";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/pembangunan/buildingStorage";
 import { budgetStorage } from "@/app/game/components/navbar/stats/budget";

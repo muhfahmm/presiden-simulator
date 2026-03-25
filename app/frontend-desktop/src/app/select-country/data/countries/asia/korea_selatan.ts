@@ -1,4 +1,4 @@
-import { CountryData } from "../../types";
+import { CountryData } from "../../types/_index";
 
 export const korea_selatan: CountryData = {
   "name_en": "South Korea",
@@ -83,38 +83,24 @@ export const korea_selatan: CountryData = {
     "kekuatan": 3.076011687404966
   },
   // =============================================================
-  // 5. 🐄 PETERNAKAN & PERIKANAN
+  // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam": 28,
-    "unggas": 9,
+  "sektor_agri_peternakan": {
+    "ayam_unggas": 18.5,
     "sapi_perah": 23,
     "sapi_potong": 1,
     "domba_kambing": 27,
-    "udang": 3,
+    "udang_kerang": 6.0,
     "ikan": 19,
-    "kerang": 9,
-    "kekuatan": 18.24560701244298
-  },
-  // =============================================================
-  // 6. 🌾 PERTANIAN & PERKEBUNAN
-  // =============================================================
-
-  "sektor_pertanian": {
-    "beras": 39,
-    "gandum": 10,
-    "jagung": 40,
-    "umbi_umbian": 32,
+    "padi": 39,
+    "gandum_jagung": 25.0,
+    "sayur_umbi": 29.5,
     "kedelai": 33,
     "kelapa_sawit": 13,
-    "teh": 5,
-    "kopi": 17,
-    "cokelat": 3,
-    "tebu": 26,
-    "sayur_sayuran": 27,
-    "kekuatan": 20.660809349923973
-  },
+    "kopi_teh_kakao": 8.3,
+    "kekuatan": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -315,21 +301,8 @@ export const korea_selatan: CountryData = {
     "harga_obat": 157900,
     "harga_pendidikan": 677460
   },
-  // =============================================================
-  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
-  // =============================================================
 
-  "permintaan": {
-    "kepuasan": 78,
-    "permintaan_utama": [
-      "Bantuan Sembako",
-      "Penyediaan Lapangan Kerja"
-    ],
-    "perumahan": 7,
-    "komersial": 9,
-    "industri": 53
-  },
-  // =============================================================
+    // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

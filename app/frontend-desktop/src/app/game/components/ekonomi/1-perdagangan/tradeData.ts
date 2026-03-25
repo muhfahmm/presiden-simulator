@@ -8,11 +8,10 @@ export const buyPriceMap: Record<string, number> = {
   "semikonduktor": 1020, "mobil": 54000, "sepeda_motor": 4200, "smelter": 144000,
   "semen_beton": 150, "kayu": 102, "air_mineral": 80, "gula": 250,
   "roti": 180, "farmasi": 65, "pupuk": 35, "pengolahan_daging": 18,
-  "mie_instan": 50, "ayam": 650, "unggas": 850, "sapi_perah": 2100,
-  "sapi_potong": 3200, "domba_kambing": 450, "udang": 180, "ikan": 65,
-  "kerang": 125, "beras": 210, "gandum": 180, "jagung": 120, "umbi_umbian": 90,
-  "kedelai": 210, "kelapa_sawit": 350, "teh": 650, "kopi": 1250, "cokelat": 950,
-  "tebu": 180, "sayur_sayuran": 150
+  mie_instan: 50, ayam_unggas: 750, sapi_perah: 2100, sapi_potong: 3200,
+  domba_kambing: 450, udang_kerang: 150, ikan: 65,
+  padi: 210, gandum_jagung: 150, sayur_umbi: 120, kedelai: 210,
+  kelapa_sawit: 350, kopi_teh_kakao: 950, tebu: 180
 };
 
 export const sellPriceMap: Record<string, number> = {
@@ -24,11 +23,10 @@ export const sellPriceMap: Record<string, number> = {
   "semikonduktor": 850, "mobil": 45000, "sepeda_motor": 3500, "smelter": 120000,
   "semen_beton": 125, "kayu": 85, "air_mineral": 50, "gula": 180,
   "roti": 120, "farmasi": 45, "pupuk": 25, "pengolahan_daging": 12,
-  "mie_instan": 35, "ayam": 450, "unggas": 550, "sapi_perah": 1800,
-  "sapi_potong": 2500, "domba_kambing": 350, "udang": 120, "ikan": 45,
-  "kerang": 85, "beras": 140, "gandum": 120, "jagung": 80, "umbi_umbian": 60,
-  "kedelai": 150, "kelapa_sawit": 250, "teh": 450, "kopi": 850, "cokelat": 650,
-  "tebu": 120, "sayur_sayuran": 100
+  "mie_instan": 35, ayam_unggas: 500, sapi_perah: 1800, sapi_potong: 2500,
+  domba_kambing: 350, udang_kerang: 100, ikan: 45,
+  padi: 140, gandum_jagung: 100, sayur_umbi: 80, kedelai: 150,
+  kelapa_sawit: 250, kopi_teh_kakao: 650, tebu: 120
 };
 
 export const labelsMap: Record<string, string> = {
@@ -39,11 +37,10 @@ export const labelsMap: Record<string, string> = {
   semen_beton: "Beton & Semen", kayu: "Kayu", air_mineral: "Air Mineral", gula: "Gula",
   roti: "Roti", farmasi: "Farmasi", pupuk: "Pupuk", pengolahan_daging: "Pengolahan Daging",
   mie_instan: "Mie Instan",
-  ayam: "Ayam", unggas: "Unggas", sapi_perah: "Sapi Perah", sapi_potong: "Sapi Potong",
-  domba_kambing: "Domba/Kambing", udang: "Udang", ikan: "Ikan", kerang: "Kerang",
-  beras: "Padi", gandum: "Gandum", jagung: "Jagung", umbi_umbian: "Umbi-umbian", kedelai: "Kedelai",
-  kelapa_sawit: "Kelapa Sawit", teh: "Teh", kopi: "Kopi", cokelat: "Kakao", tebu: "Tebu",
-  sayur_sayuran: "Sayur-mayur"
+  ayam_unggas: "Ayam/Unggas", sapi_perah: "Sapi Perah", sapi_potong: "Sapi Potong",
+  domba_kambing: "Domba/Kambing", udang_kerang: "Udang/Kerang", ikan: "Ikan",
+  padi: "Padi", gandum_jagung: "Gandum/Jagung", sayur_umbi: "Sayur/Umbi", kedelai: "Kedelai",
+  kelapa_sawit: "Kelapa Sawit", kopi_teh_kakao: "Kopi/Teh/Kakao", tebu: "Tebu"
 };
 
 export const baseKeyMapping: Record<string, string> = {

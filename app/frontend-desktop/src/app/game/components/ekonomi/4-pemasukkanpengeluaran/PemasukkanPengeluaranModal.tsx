@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { X, BarChart3, TrendingUp, TrendingDown, Landmark, PieChart, Coins, Shield, Zap, Building2, Activity, Info, Wallet, ArrowRight, Hammer, Users, Eye, ChevronLeft, Car, Home, Search } from "lucide-react"
-import { countries } from "@/app/select-country/data/countries"
-import { CountryData } from "@/app/select-country/data/types"
+import { countries } from "@/app/select-country/data/countries/_index"
+import { CountryData } from "@/app/select-country/data/types/_index"
 import { gameStorage } from "@/app/game/gamestorage"
 import { budgetStorage } from "@/app/game/components/navbar/stats/budget"
 import { buildingStorage } from "@/app/game/components/pembangunan/buildingStorage"
@@ -104,8 +104,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
     { label: "Infrastruktur", data: initialCountry.infrastruktur },
     { label: "Ekstraksi", data: initialCountry.sektor_ekstraksi },
     { label: "Manufaktur", data: initialCountry.sektor_manufaktur },
-    { label: "Peternakan", data: initialCountry.sektor_peternakan },
-    { label: "Pertanian", data: initialCountry.sektor_pertanian },
+    { label: "Pangan (Agri & Ternak)", data: initialCountry.sektor_agri_peternakan },
     { label: "Pendidikan", data: initialCountry.sektor_sosial?.pendidikan },
     { label: "Kesehatan", data: initialCountry.sektor_sosial?.kesehatan },
     { label: "Olahraga", data: initialCountry.sektor_sosial?.olahraga },

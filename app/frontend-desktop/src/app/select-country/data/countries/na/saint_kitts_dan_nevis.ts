@@ -1,4 +1,4 @@
-import { CountryData } from "../../types";
+import { CountryData } from "../../types/_index";
 
 export const saint_kitts_dan_nevis: CountryData = {
   "name_en": "Saint Kitts and Nevis",
@@ -83,38 +83,24 @@ export const saint_kitts_dan_nevis: CountryData = {
     "kekuatan": 3.076011687404966
   },
   // =============================================================
-  // 5. 🐄 PETERNAKAN & PERIKANAN
+  // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": {
-    "ayam": 3,
-    "unggas": 7,
+  "sektor_agri_peternakan": {
+    "ayam_unggas": 5.0,
     "sapi_perah": 5,
     "sapi_potong": 2,
     "domba_kambing": 23,
-    "udang": 20,
+    "udang_kerang": 11.5,
     "ikan": 33,
-    "kerang": 3,
-    "kekuatan": 18.24560701244298
-  },
-  // =============================================================
-  // 6. 🌾 PERTANIAN & PERKEBUNAN
-  // =============================================================
-
-  "sektor_pertanian": {
-    "beras": 23,
-    "gandum": 26,
-    "jagung": 13,
-    "umbi_umbian": 12,
+    "padi": 23,
+    "gandum_jagung": 19.5,
+    "sayur_umbi": 21.5,
     "kedelai": 40,
     "kelapa_sawit": 30,
-    "teh": 14,
-    "kopi": 34,
-    "cokelat": 30,
-    "tebu": 12,
-    "sayur_sayuran": 31,
-    "kekuatan": 20.660809349923973
-  },
+    "kopi_teh_kakao": 26.0,
+    "kekuatan": 20.0
+  },
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
@@ -315,21 +301,8 @@ export const saint_kitts_dan_nevis: CountryData = {
     "harga_obat": 126320,
     "harga_pendidikan": 241950
   },
-  // =============================================================
-  // 14. 📊 PERMINTAAN & KEBUTUHAN RAKYAT
-  // =============================================================
 
-  "permintaan": {
-    "kepuasan": 65,
-    "permintaan_utama": [
-      "Bantuan Sembako",
-      "Penyediaan Lapangan Kerja"
-    ],
-    "perumahan": 37,
-    "komersial": 33,
-    "industri": 53
-  },
-  // =============================================================
+    // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

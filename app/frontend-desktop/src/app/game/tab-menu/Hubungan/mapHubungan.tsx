@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "../../../select-country/data/countries";
+import { countries as centersData } from "../../../select-country/data/countries/_index";
 import { allRelations } from "../../../select-country/data/relations";
 
 interface MapHubunganProps {

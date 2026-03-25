@@ -1,7 +1,7 @@
 "use client"
 
 import { gameStorage } from "../../../../gamestorage";
-import { countries } from "../../../../../select-country/data/countries";
+import { countries } from "../../../../../select-country/data/countries/_index";
 import { inboxStorage } from "../../../inbox/inboxStorage";
 import { formatGameDate } from "../../../../data/time/gameTime";
 import { priceStorage, BASE_PRICES } from "../../../ekonomi/8-pasar-domestik/priceStorage";

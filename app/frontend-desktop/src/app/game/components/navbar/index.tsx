@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Heart, Users, Coins, Shield, LogOut } from "lucide-react";
-import { CountryData } from "@/app/select-country/data/types";
+import { CountryData } from "@/app/select-country/data/types/_index";
 import { HappinessBreakdown } from "./stats/happines";
 
 // --- Sub-component: StatusBadge ---

@@ -6,7 +6,7 @@ import {
   Battery, Droplets, Box, Pickaxe, Radio, Coffee, Carrot, Eye, ChevronRight, Plus
 } from "lucide-react"
 import { AddTradePartnerModal } from "./mitra_dagang_internasional/AddTradePartnerModal"
-import { CountryData } from "../../../../select-country/data/types"
+import { CountryData } from "../../../../select-country/data/types/_index"
 import { tradeStorage } from "./TradeStorage"
 import { buyPriceMap, sellPriceMap, labelsMap, baseKeyMapping, getDynamicPrice } from "./tradeData"
 import { TradePriceChart } from "./TradePriceChart"
@@ -142,17 +142,12 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
     })
     .sort((a, b) => (b[1] as number) - (a[1] as number)) as [string, number][];
 
-  const peternakanItems = Object.entries(currentCountry.sektor_peternakan)
-    .filter(([key]) => key !== 'strength')
-    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || 0) as number)])
+  const panganItems = Object.entries(currentCountry.sektor_agri_peternakan)
+    .filter(([key]) => key !== 'kekuatan')
+    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number)])
     .sort((a, b) => (b[1] as number) - (a[1] as number)) as [string, number][];
 
-  const pertanianItems = Object.entries(currentCountry.sektor_pertanian)
-    .filter(([key]) => key !== 'strength')
-    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || buildingDeltas[key + '_field'] || 0) as number)])
-    .sort((a, b) => (b[1] as number) - (a[1] as number)) as [string, number][];
-
-  const industryAndEconomyLen = manufakturItems.length + peternakanItems.length + pertanianItems.length;
+  const industryAndEconomyLen = manufakturItems.length + panganItems.length;
 
   const [selectedKey, setSelectedKey] = useState<string>(minerals[0]?.[0] || 'emas');
   const [showMinerals, setShowMinerals] = useState(true);
@@ -173,10 +168,10 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
     semikonduktor: Cpu, mobil: Car, sepeda_motor: Bike, smelter: FlaskConical, semen_beton: Construction, 
     kayu: TreePine, air_mineral: Droplet, gula: Cookie, roti: Croissant, farmasi: Pill, 
     pupuk: FlaskConical, pengolahan_daging: Beef, mie_instan: Soup,
-    ayam: Bird, unggas: Bird, sapi_perah: Milk, sapi_potong: Beef, domba_kambing: Leaf,
-    udang: Shell, ikan: Fish, kerang: Shell,
-    beras: Sprout, gandum: Utensils, jagung: Utensils, umbi_umbian: Utensils, kedelai: Bean, 
-    kelapa_sawit: Droplets, teh: Leaf, kopi: Coffee, cokelat: Apple, tebu: Leaf, sayur_sayuran: Carrot
+    ayam_unggas: Bird, sapi_perah: Milk, sapi_potong: Beef, domba_kambing: Leaf,
+    udang_kerang: Shell, ikan: Fish,
+    padi: Sprout, gandum_jagung: Utensils, sayur_umbi: Apple, kedelai: Bean, 
+    kelapa_sawit: Droplets, kopi_teh_kakao: Coffee, tebu: Leaf
   };
 
 
@@ -188,8 +183,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
   const selectedItem = [
     ...minerals,
     ...manufakturItems,
-    ...peternakanItems,
-    ...pertanianItems
+    ...panganItems
   ].find(m => m[0] === selectedKey);
 
   const selectedName = labelsMap[selectedKey] || selectedKey.charAt(0).toUpperCase() + selectedKey.slice(1).replace(/_/g, ' ');
@@ -352,37 +346,10 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                       ))}
                     </div>
 
-                    {/* Sub-group: Peternakan */}
+                    {/* Sub-group: Pangan */}
                     <div className="space-y-2">
-                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">Peternakan & Perikanan</p>
-                      {peternakanItems.map(([key, val]) => (
-                        <button
-                          key={key}
-                          onClick={() => setSelectedKey(key as string)}
-                          className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all group relative cursor-pointer overflow-hidden ${
-                            selectedKey === key 
-                            ? 'bg-blue-600/10 border border-blue-500/40 text-white' 
-                            : 'text-zinc-500 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800'
-                          }`}
-                        >
-                          <div className="flex items-center gap-4 relative z-10">
-                            <div className={`p-2 rounded-xl transition-all duration-300 ${
-                              selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'
-                            }`}>
-                              {getIcon(key as string, "h-4 w-4")}
-                            </div>
-                            <span className="text-[10px] font-black uppercase tracking-tight">
-                              {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})
-                            </span>
-                          </div>
-                        </button>
-                      ))}
-                    </div>
-
-                    {/* Sub-group: Pertanian */}
-                    <div className="space-y-2">
-                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">Agrikultur & Pertanian</p>
-                      {pertanianItems.map(([key, val]) => (
+                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">Agrikultur & Peternakan</p>
+                      {panganItems.map(([key, val]) => (
                         <button
                           key={key}
                           onClick={() => setSelectedKey(key as string)}
@@ -445,11 +412,11 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                             emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", minyak_bumi: "oil_well", gas_alam: "gas_well",
                             garam: "salt_mine", nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine",
                             aluminium: "aluminum_mine", logam_tanah_jarang: "rare_earth_mine", bijih_besi: "iron_ore_mine",
-                            ayam: "livestock_poultry", unggas: "livestock_poultry", sapi_perah: "livestock_dairy",
-                            sapi_potong: "livestock_beef", domba_kambing: "livestock_sheep", udang: "livestock_shrimp",
-                            kerang: "livestock_shrimp", ikan: "livestock_fish", beras: "agri_rice",
-                            gandum: "agri_grains", jagung: "agri_grains", sayur_sayuran: "agri_veg", umbi_umbian: "agri_veg",
-                            kedelai: "agri_soy", kelapa_sawit: "agri_palm", kopi: "agri_luxury", teh: "agri_luxury", cokelat: "agri_luxury"
+                            ayam_unggas: "livestock_poultry", sapi_perah: "livestock_dairy",
+                            sapi_potong: "livestock_beef", domba_kambing: "livestock_sheep", udang_kerang: "livestock_shrimp",
+                            ikan: "livestock_fish", padi: "agri_rice",
+                            gandum_jagung: "agri_grains", sayur_umbi: "agri_veg",
+                            kedelai: "agri_soy", kelapa_sawit: "agri_palm", kopi_teh_kakao: "agri_luxury"
                           };
                           const mfgKey = Object.keys(baseKeyMapping).find(k => baseKeyMapping[k] === selectedKey);
                           const stockKey = stockKeyMap[selectedKey] || mfgKey || selectedKey;

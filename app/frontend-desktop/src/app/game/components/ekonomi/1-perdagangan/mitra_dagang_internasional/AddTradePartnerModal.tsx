@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { X, Globe, Search, Plus } from 'lucide-react';
 import { countries } from './countriesList';
-import { CountryData } from '../../../../../select-country/data/types';
+import { CountryData } from '../../../../../select-country/data/types/_index';
 import { PengajuanMitraModal } from './proposal_mitra/PengajuanMitraModal';
 
 interface AddTradePartnerModalProps {
