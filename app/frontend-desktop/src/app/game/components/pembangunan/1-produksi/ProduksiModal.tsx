@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from "react";
-import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info } from "lucide-react"
+import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain } from "lucide-react"
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "../../../../select-country/data/pembangunan/laju-produksi";
 import { produksiMiliter } from "../../../../select-country/data/pembangunan/produksi-militer";
 import { tempatUmum } from "../../../../select-country/data/pembangunan/tempat-umum";
@@ -186,10 +186,17 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
 
   // Helper for icons based on key
   const getIcon = (key: string) => {
-    if (key.includes("uranium")) return Radiation;
+    if (key.includes("uranium")) return Radio;
     if (key.includes("minyak_bumi") || key.includes("oil_well")) return Droplets;
     if (key.includes("gas_alam") || key.includes("gas_well")) return Flame;
-    if (key.includes("emas") || key.includes("gold_mine")) return Coins;
+    if (key.includes("emas") || key.includes("gold_mine")) return Gem;
+    if (key.includes("coal_mine")) return Layers;
+    if (key.includes("aluminum_mine")) return Layers;
+    if (key.includes("iron_ore_mine")) return Mountain;
+    if (key.includes("salt_mine")) return Waves;
+    if (key.includes("lithium_mine")) return Battery;
+    if (key.includes("nickel_mine")) return Box;
+    if (key.includes("rare_earth_mine")) return Cpu;
     if (key.includes("electronics")) return Cpu;
     if (key.includes("mobil") || key.includes("car")) return Car;
     if (key.includes("sepeda_motor") || key.includes("motorcycle")) return Bike;
@@ -345,20 +352,27 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       title: "5. Mineral Kritis & Strategis",
       icon: Pickaxe,
       color: "text-orange-500",
-      items: Object.entries(mineralKritisRate).map(([key, val]: [string, any]) => ({
-        key,
-        groupId: "ekstraksi",
-        label: val.desc,
-        icon: getIcon(key),
-        desc: "Sumber Daya Alam",
-        tarif: val.production,
-        unit: val.unit,
-        count: (currentData.sektor_ekstraksi[val.dataKey as keyof typeof currentData.sektor_ekstraksi] || 0) + ((buildingDeltas[key] as number) || 0),
-        powerUsage: (KONSUMSI_EKSTRAKSI as any)[val.dataKey] || 5,
-        pendapatan_nasional: 0,
-        cost: 30,
-        buildTime: val.buildTime || 30
-      }))
+      items: Object.entries(mineralKritisRate)
+        .sort((a, b) => {
+          const order = ["emas", "uranium", "batu_bara", "minyak_bumi", "gas_alam", "garam", "nikel", "litium", "tembaga", "aluminium", "logam_tanah_jarang", "bijih_besi"];
+          const idxA = order.indexOf(a[1].dataKey);
+          const idxB = order.indexOf(b[1].dataKey);
+          return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
+        })
+        .map(([key, val]: [string, any]) => ({
+          key,
+          groupId: "ekstraksi",
+          label: val.desc,
+          icon: getIcon(key),
+          desc: "Sumber Daya Alam",
+          tarif: val.production,
+          unit: val.unit,
+          count: (currentData.sektor_ekstraksi[val.dataKey as keyof typeof currentData.sektor_ekstraksi] || 0) + ((buildingDeltas[key] as number) || 0),
+          powerUsage: (KONSUMSI_EKSTRAKSI as any)[val.dataKey] || 5,
+          pendapatan_nasional: 0,
+          cost: 30,
+          buildTime: val.buildTime || 30
+        }))
     }
   ];
 

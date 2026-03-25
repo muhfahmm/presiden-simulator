@@ -14,7 +14,7 @@ export const mineralKritisRate = {
     no: 2,
     production: 40,
     unit: "ton",
-    desc: "Bauksit",
+    desc: "Alumunium",
     dataKey: "aluminium",
     maintenanceCost: 10,
     buildTime: 25
@@ -23,7 +23,7 @@ export const mineralKritisRate = {
     no: 3,
     production: 210,
     unit: "ton",
-    desc: "Biji Besi",
+    desc: "Bijih Besi",
     dataKey: "bijih_besi",
     maintenanceCost: 10,
     buildTime: 20
@@ -50,7 +50,7 @@ export const mineralKritisRate = {
     no: 6,
     production: 150,
     unit: "mcf",
-    desc: "Gas Alam",
+    desc: "Gas",
     dataKey: "gas_alam",
     maintenanceCost: 10,
     buildTime: 35
@@ -59,7 +59,7 @@ export const mineralKritisRate = {
     no: 7,
     production: 25,
     unit: "ton",
-    desc: "Lithium",
+    desc: "Litium",
     dataKey: "litium",
     maintenanceCost: 10,
     buildTime: 35
@@ -68,7 +68,7 @@ export const mineralKritisRate = {
     no: 8,
     production: 85,
     unit: "barrel",
-    desc: "Minyak Bumi",
+    desc: "Minyak",
     dataKey: "minyak_bumi",
     maintenanceCost: 10,
     buildTime: 40
