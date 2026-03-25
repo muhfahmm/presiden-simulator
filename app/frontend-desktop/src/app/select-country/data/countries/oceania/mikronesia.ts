@@ -164,7 +164,6 @@ export const mikronesia: CountryData = {
     "command_center": 13,
     "military_air_base": 25,
     "military_naval_base": 27,
-    "arms_factory": 18,
     "nuclear_status": false,
     "space_program": 6,
     "cyber_defense": 22,

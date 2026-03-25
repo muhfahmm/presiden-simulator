@@ -164,7 +164,6 @@ export const bermuda: CountryData = {
     "command_center": 28,
     "military_air_base": 10,
     "military_naval_base": 39,
-    "arms_factory": 14,
     "nuclear_status": false,
     "space_program": 39,
     "cyber_defense": 37,

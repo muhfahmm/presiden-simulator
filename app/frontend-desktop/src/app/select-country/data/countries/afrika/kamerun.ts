@@ -168,7 +168,6 @@ export const kamerun: CountryData = {
     "command_center": 5,
     "military_air_base": 12,
     "military_naval_base": 27,
-    "arms_factory": 21,
     "nuclear_status": false,
     "space_program": 37,
     "cyber_defense": 18,

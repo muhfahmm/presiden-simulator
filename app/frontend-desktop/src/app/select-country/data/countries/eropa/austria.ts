@@ -164,7 +164,6 @@ export const austria: CountryData = {
     "command_center": 1,
     "military_air_base": 21,
     "military_naval_base": 4,
-    "arms_factory": 37,
     "nuclear_status": false,
     "space_program": 12,
     "cyber_defense": 30,

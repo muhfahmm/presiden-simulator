@@ -168,7 +168,6 @@ export const kenya: CountryData = {
     "command_center": 9,
     "military_air_base": 17,
     "military_naval_base": 10,
-    "arms_factory": 6,
     "nuclear_status": false,
     "space_program": 30,
     "cyber_defense": 19,

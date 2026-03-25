@@ -168,7 +168,6 @@ export const guinea: CountryData = {
     "command_center": 27,
     "military_air_base": 26,
     "military_naval_base": 10,
-    "arms_factory": 34,
     "nuclear_status": false,
     "space_program": 39,
     "cyber_defense": 29,

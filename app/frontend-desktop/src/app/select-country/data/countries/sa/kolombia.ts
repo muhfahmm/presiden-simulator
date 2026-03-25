@@ -164,7 +164,6 @@ export const kolombia: CountryData = {
     "command_center": 10,
     "military_air_base": 11,
     "military_naval_base": 32,
-    "arms_factory": 6,
     "nuclear_status": false,
     "space_program": 40,
     "cyber_defense": 39,

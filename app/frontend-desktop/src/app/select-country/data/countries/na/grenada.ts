@@ -164,7 +164,6 @@ export const grenada: CountryData = {
     "command_center": 14,
     "military_air_base": 25,
     "military_naval_base": 11,
-    "arms_factory": 28,
     "nuclear_status": false,
     "space_program": 6,
     "cyber_defense": 36,

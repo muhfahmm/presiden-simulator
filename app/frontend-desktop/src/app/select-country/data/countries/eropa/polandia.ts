@@ -164,7 +164,6 @@ export const polandia: CountryData = {
     "command_center": 13,
     "military_air_base": 26,
     "military_naval_base": 36,
-    "arms_factory": 1,
     "nuclear_status": false,
     "space_program": 25,
     "cyber_defense": 16,

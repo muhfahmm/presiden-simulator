@@ -9,6 +9,29 @@ import { buildingStorage } from "../buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate } from "../../../data/time/gameTime";
 import { calculateConstructionProgress, getStatusText } from "../../../data/construction/constructionLogic";
 import { countries } from "../../../../select-country/data/countries";
+import { 
+  calculateTotalInfantry, 
+  calculateInfantryPower,
+  calculatePrisonCapacity,
+  calculateArmoryCapacity,
+  calculateTankHangarCapacity,
+  calculateAcademyCapacity,
+  calculateAirBaseCapacity,
+  calculateNavalBaseCapacity,
+  calculateTankPower,
+  calculateApcPower,
+  calculateArtilleryPower,
+  calculateCarrierPower,
+  calculateDestroyerPower,
+  calculateSubmarinePower,
+  INFANTRY_POWER_PER_UNIT,
+  TANK_POWER_PER_UNIT,
+  APC_POWER_PER_UNIT,
+  ARTILLERY_POWER_PER_UNIT,
+  CARRIER_POWER_PER_UNIT,
+  DESTROYER_POWER_PER_UNIT,
+  SUBMARINE_POWER_PER_UNIT
+} from "./militaryLogic";
 
 interface ModalProps {
   isOpen: boolean;
@@ -136,20 +159,18 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
   const militaryGroups = [
     {
       id: "pertahanan_alutsista",
-      title: "1. Sektor Pertahanan & Alutsista",
+      title: "1. Manajemen Pertahanan",
       icon: Shield,
       color: "text-red-500",
       items: [
         { key: "prison", groupId: "pertahanan", label: "Penjara", icon: Gavel, desc: "Lembaga Pemasyarakatan", cost: 25, buildTime: 60, maintenanceCost: 20, count: (currentData.sector_defense.prison || 0) + ((buildingDeltas["prison"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.prison },
-        { key: "barracks", groupId: "pertahanan", label: "Barak Militer", icon: MilitaryIcon, desc: "Hunian Tentara", cost: 40, buildTime: 45, maintenanceCost: 15, count: (currentData.sector_defense.barracks || 0) + ((buildingDeltas["barracks"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.barracks },
         { key: "armory", groupId: "pertahanan", label: "Gudang Senjata", icon: Archive, desc: "Penyimpanan Amunisi", cost: 30, buildTime: 30, maintenanceCost: 10, count: (currentData.sector_defense.armory || 0) + ((buildingDeltas["armory"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.armory },
         { key: "tank_hangar", groupId: "pertahanan", label: "Hangar Tank", icon: Truck, desc: "Garasi Tempur", cost: 50, buildTime: 60, maintenanceCost: 35, count: (currentData.sector_defense.tank_hangar || 0) + ((buildingDeltas["tank_hangar"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.tank_hangar },
         { key: "military_academy", groupId: "pertahanan", label: "Akademi Militer", icon: Landmark, desc: "Pendidikan Perwira", cost: 150, buildTime: 180, maintenanceCost: 40, count: (currentData.sector_defense.military_academy || 0) + ((buildingDeltas["military_academy"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.military_academy },
         { key: "command_center", groupId: "pertahanan", label: "Pusat Komando", icon: TowerControl, desc: "Komando Tertinggi", cost: 450, buildTime: 240, maintenanceCost: 150, count: (currentData.sector_military_strategic.command_center || 0) + ((buildingDeltas["command_center"] as number) || 0), consumption: KONSUMSI_STRATEGIC.command_center },
         { key: "military_air_base", groupId: "pertahanan", label: "Pangkalan Udara", icon: MapPin, desc: "Fasilitas Dirgantara", cost: 280, buildTime: 180, maintenanceCost: 80, count: (currentData.sector_military_strategic.military_air_base || 0) + ((buildingDeltas["military_air_base"] as number) || 0), consumption: KONSUMSI_STRATEGIC.military_air_base },
         { key: "military_naval_base", groupId: "pertahanan", label: "Pangkalan Laut", icon: Ship, desc: "Fasilitas Maritim", cost: 320, buildTime: 210, maintenanceCost: 100, count: (currentData.sector_military_strategic.military_naval_base || 0) + ((buildingDeltas["military_naval_base"] as number) || 0), consumption: KONSUMSI_STRATEGIC.military_naval_base },
-        { key: "arms_factory", groupId: "pertahanan", label: "Pabrik Alutsista", icon: HardHat, desc: "Manufaktur Senjata", cost: 350, buildTime: 240, maintenanceCost: 120, count: (currentData.sector_military_strategic.arms_factory || 0) + ((buildingDeltas["arms_factory"] as number) || 0), consumption: KONSUMSI_STRATEGIC.arms_factory },
-        { key: "space_program", groupId: "pertahanan", label: "Lintas Antariksa", icon: Rocket, desc: "Program Satelit", cost: 600, buildTime: 365, maintenanceCost: 250, count: (currentData.sector_military_strategic.space_program || 0) + ((buildingDeltas["space_program"] as number) || 0), consumption: KONSUMSI_STRATEGIC.space_program },
+        { key: "space_program", groupId: "pertahanan", label: "Program luar angkasa", icon: Rocket, desc: "Program Satelit", cost: 600, buildTime: 365, maintenanceCost: 250, count: (currentData.sector_military_strategic.space_program || 0) + ((buildingDeltas["space_program"] as number) || 0), consumption: KONSUMSI_STRATEGIC.space_program },
         { key: "cyber_shield", groupId: "pertahanan", label: "Cyber Defense", icon: ShieldAlert, desc: "Keamanan Digital", cost: 180, buildTime: 120, maintenanceCost: 50, count: Math.floor(currentData.sector_military_strategic.cyber_defense), consumption: 50 }
       ]
     },
@@ -160,6 +181,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
       color: "text-orange-500",
       items: [
         // ARMADA DARAT
+        { key: "barracks", groupId: "darat", label: "Barak Militer", icon: MilitaryIcon, desc: "Hunian Tentara", cost: 40, buildTime: 45, maintenanceCost: 15, count: (currentData.sector_defense.barracks || 0) + ((buildingDeltas["barracks"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.barracks },
         { key: "tank", groupId: "darat", label: "Main Battle Tank", icon: Truck, desc: "Kavaleri Darat", cost: 20, buildTime: 30, maintenanceCost: 10, count: (currentData.sector_defense.military_fleet.darat.main_battle_tank || 0), consumption: KONSUMSI_FLEET.darat.main_battle_tank },
         { key: "apc", groupId: "darat", label: "APC / Rantis", icon: Truck, desc: "Transportasi Taktis", cost: 8, buildTime: 15, maintenanceCost: 4, count: (currentData.sector_defense.military_fleet.darat.apc || 0), consumption: KONSUMSI_FLEET.darat.apc },
         { key: "artileri", groupId: "darat", label: "Artileri Berat", icon: Target, desc: "Pukulan Jarak Jauh", cost: 15, buildTime: 45, maintenanceCost: 8, count: (currentData.sector_defense.military_fleet.darat.artileri_berat || 0), consumption: KONSUMSI_FLEET.darat.artileri_berat },
@@ -182,7 +204,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
       color: "text-indigo-400",
       items: [
         // INTELIJEN
-        { key: "satellite", groupId: "intel", label: "Sistem Satelit", icon: Satellite, desc: "Orbit Intelijen", cost: 350, buildTime: 180, maintenanceCost: 100, count: 1, consumption: 80 },
+        { key: "satellite", groupId: "intel", label: "Sistem Satelit", icon: Satellite, desc: "Orbit Intelijen", cost: 350, buildTime: 180, maintenanceCost: 100, count: (currentData.sector_military_strategic.intel_radar.satellite_system || 0) + ((buildingDeltas["satellite"] as number) || 0), consumption: 80 },
         { key: "radar", groupId: "intel", label: "Jaringan Radar", icon: Radar, desc: "Deteksi Dini", cost: 120, buildTime: 90, maintenanceCost: 30, count: (currentData.sector_military_strategic.intel_radar.radar_network || 0), consumption: 25 },
         { key: "cyber_ops", groupId: "intel", label: "Operasi Cyber", icon: Cpu, desc: "Perang Digital", cost: 180, buildTime: 120, maintenanceCost: 40, count: (currentData.sector_military_strategic.intel_radar.cyber_ops || 0), consumption: 40 },
         
@@ -411,6 +433,242 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
                   <span className="text-[15px] font-black text-amber-500">{item.consumption} MW</span>
                </div>
                <p className="text-[12px] text-zinc-400 italic mt-2 px-1 leading-relaxed">Alutsista dan fasilitas militer membutuhkan perawatan intensif untuk kesiapan tempur.</p>
+               
+               {item.key === "barracks" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-cyan-500/5 border border-cyan-500/20">
+                       <div className="flex items-center gap-2">
+                          <UserCheck size={14} className="text-cyan-400" />
+                          <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Total Infanteri</span>
+                       </div>
+                       <span className="text-[15px] font-black text-cyan-400">{calculateTotalInfantry(item.count).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Jiwa</span></span>
+                    </div>
+                     <div className="flex items-center justify-between p-2.5 rounded-xl bg-cyan-700/5 border border-cyan-700/20">
+                        <div className="flex items-center gap-2">
+                           <MilitaryIcon size={14} className="text-zinc-500" />
+                           <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Kekuatan Satuan</span>
+                        </div>
+                        <span className="text-[15px] font-black text-zinc-400">+{INFANTRY_POWER_PER_UNIT.toLocaleString('id-ID')}</span>
+                     </div>
+                     <div className="flex items-center justify-between p-2.5 rounded-xl bg-amber-500/5 border border-amber-500/20">
+                        <div className="flex items-center gap-2">
+                           <Shield size={14} className="text-amber-400" />
+                           <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kekuatan Tempur</span>
+                        </div>
+                        <span className="text-[15px] font-black text-amber-400">+{calculateInfantryPower(item.count).toLocaleString('id-ID')}</span>
+                     </div>
+                 </div>
+               )}
+
+               {item.key === "prison" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-orange-500/5 border border-orange-500/20">
+                       <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kapasitas Tahanan</span>
+                       <span className="text-[15px] font-black text-orange-400">{calculatePrisonCapacity(item.count).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Jiwa</span></span>
+                    </div>
+                 </div>
+               )}
+
+               {item.key === "armory" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-amber-500/5 border border-amber-500/20">
+                       <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kapasitas Amunisi</span>
+                       <span className="text-[15px] font-black text-amber-400">{calculateArmoryCapacity(item.count).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Unit</span></span>
+                    </div>
+                 </div>
+               )}
+
+               {item.key === "tank_hangar" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-emerald-500/5 border border-emerald-500/20">
+                       <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kapasitas Unit</span>
+                       <span className="text-[15px] font-black text-emerald-400">{calculateTankHangarCapacity(item.count).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Pilar</span></span>
+                    </div>
+                 </div>
+               )}
+
+               {item.key === "military_academy" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-blue-500/5 border border-blue-500/20">
+                       <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kapasitas Siswa</span>
+                       <span className="text-[15px] font-black text-blue-400">{calculateAcademyCapacity(item.count).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Kadet</span></span>
+                    </div>
+                 </div>
+               )}
+
+               {item.key === "military_air_base" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-sky-500/5 border border-sky-500/20">
+                       <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kapasitas Pesawat</span>
+                       <span className="text-[15px] font-black text-sky-400">{calculateAirBaseCapacity(item.count).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Unit</span></span>
+                    </div>
+                 </div>
+               )}
+
+               {item.key === "military_naval_base" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-indigo-500/5 border border-indigo-500/20">
+                       <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kapasitas Kapal</span>
+                       <span className="text-[15px] font-black text-indigo-400">{calculateNavalBaseCapacity(item.count).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Unit</span></span>
+                    </div>
+                 </div>
+               )}
+
+               {item.key === "tank" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-orange-500/5 border border-orange-500/20">
+                        <div className="flex items-center gap-2">
+                           <Truck size={14} className="text-orange-400" />
+                           <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Total Unit Tank</span>
+                        </div>
+                        <span className="text-[15px] font-black text-orange-400">{item.count.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Unit</span></span>
+                     </div>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-orange-700/5 border border-orange-700/20">
+                        <div className="flex items-center gap-2">
+                           <MilitaryIcon size={14} className="text-zinc-500" />
+                           <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Kekuatan Satuan</span>
+                        </div>
+                        <span className="text-[15px] font-black text-zinc-400">+{TANK_POWER_PER_UNIT.toLocaleString('id-ID')}</span>
+                     </div>
+                     <div className="flex items-center justify-between p-2.5 rounded-xl bg-orange-500/5 border border-orange-500/20">
+                        <div className="flex items-center gap-2">
+                           <Shield size={14} className="text-orange-400" />
+                           <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kekuatan Tempur</span>
+                        </div>
+                        <span className="text-[15px] font-black text-orange-400">+{calculateTankPower(item.count).toLocaleString('id-ID')}</span>
+                     </div>
+                 </div>
+               )}
+
+               {item.key === "apc" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-cyan-500/5 border border-cyan-500/20">
+                        <div className="flex items-center gap-2">
+                           <Truck size={14} className="text-cyan-400" />
+                           <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Total Unit APC</span>
+                        </div>
+                        <span className="text-[15px] font-black text-cyan-400">{item.count.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Unit</span></span>
+                     </div>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-cyan-700/5 border border-cyan-700/20">
+                        <div className="flex items-center gap-2">
+                           <MilitaryIcon size={14} className="text-zinc-500" />
+                           <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Kekuatan Satuan</span>
+                        </div>
+                        <span className="text-[15px] font-black text-zinc-400">+{APC_POWER_PER_UNIT.toLocaleString('id-ID')}</span>
+                     </div>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-cyan-500/5 border border-cyan-500/20">
+                       <div className="flex items-center gap-2">
+                          <Shield size={14} className="text-cyan-400" />
+                          <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kekuatan Tempur</span>
+                       </div>
+                       <span className="text-[15px] font-black text-cyan-400">+{calculateApcPower(item.count).toLocaleString('id-ID')}</span>
+                    </div>
+                 </div>
+               )}
+
+               {item.key === "artileri" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-amber-500/5 border border-amber-500/20">
+                        <div className="flex items-center gap-2">
+                           <Target size={14} className="text-amber-400" />
+                           <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Total Unit Artileri</span>
+                        </div>
+                        <span className="text-[15px] font-black text-amber-400">{item.count.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Unit</span></span>
+                     </div>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-amber-700/5 border border-amber-700/20">
+                        <div className="flex items-center gap-2">
+                           <MilitaryIcon size={14} className="text-zinc-500" />
+                           <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Kekuatan Satuan</span>
+                        </div>
+                        <span className="text-[15px] font-black text-zinc-400">+{ARTILLERY_POWER_PER_UNIT.toLocaleString('id-ID')}</span>
+                     </div>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-amber-500/5 border border-amber-500/20">
+                       <div className="flex items-center gap-2">
+                          <Shield size={14} className="text-amber-400" />
+                          <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kekuatan Tempur</span>
+                       </div>
+                       <span className="text-[15px] font-black text-amber-400">+{calculateArtilleryPower(item.count).toLocaleString('id-ID')}</span>
+                    </div>
+                 </div>
+               )}
+
+               {item.key === "carrier" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-blue-600/5 border border-blue-600/20">
+                        <div className="flex items-center gap-2">
+                           <Ship size={14} className="text-blue-400" />
+                           <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Total Unit Carrier</span>
+                        </div>
+                        <span className="text-[15px] font-black text-blue-400">{item.count.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Unit</span></span>
+                     </div>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-blue-700/5 border border-blue-700/20">
+                        <div className="flex items-center gap-2">
+                           <MilitaryIcon size={14} className="text-zinc-500" />
+                           <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Kekuatan Satuan</span>
+                        </div>
+                        <span className="text-[15px] font-black text-zinc-400">+{CARRIER_POWER_PER_UNIT.toLocaleString('id-ID')}</span>
+                     </div>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-blue-600/5 border border-blue-600/20">
+                       <div className="flex items-center gap-2">
+                          <Shield size={14} className="text-blue-400" />
+                          <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kekuatan Tempur</span>
+                       </div>
+                       <span className="text-[15px] font-black text-blue-400">+{calculateCarrierPower(item.count).toLocaleString('id-ID')}</span>
+                    </div>
+                 </div>
+               )}
+
+               {item.key === "destroyer" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-sky-600/5 border border-sky-600/20">
+                        <div className="flex items-center gap-2">
+                           <Waves size={14} className="text-sky-400" />
+                           <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Total Unit Destroyer</span>
+                        </div>
+                        <span className="text-[15px] font-black text-sky-400">{item.count.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Unit</span></span>
+                     </div>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-sky-700/5 border border-sky-700/20">
+                        <div className="flex items-center gap-2">
+                           <MilitaryIcon size={14} className="text-zinc-500" />
+                           <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Kekuatan Satuan</span>
+                        </div>
+                        <span className="text-[15px] font-black text-zinc-400">+{DESTROYER_POWER_PER_UNIT.toLocaleString('id-ID')}</span>
+                     </div>
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-sky-600/5 border border-sky-600/20">
+                       <div className="flex items-center gap-2">
+                          <Shield size={14} className="text-sky-400" />
+                          <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kekuatan Tempur</span>
+                       </div>
+                       <span className="text-[15px] font-black text-sky-400">+{calculateDestroyerPower(item.count).toLocaleString('id-ID')}</span>
+                    </div>
+                 </div>
+               )}
+
+               {item.key === "submarine" && (
+                 <div className="mt-4 pt-4 border-t border-zinc-800/50 space-y-1 animate-in slide-in-from-bottom-2 duration-500">
+                    <div className="flex items-center justify-between p-2.5 rounded-xl bg-indigo-600/5 border border-indigo-600/20">
+                        <div className="flex items-center gap-2">
+                           <RadioTower size={14} className="text-indigo-400" />
+                           <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Total Unit Submarine</span>
+                        </div>
+                        <span className="text-[15px] font-black text-indigo-400">{item.count.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500 font-normal">Unit</span></span>
+                     </div>
+                     <div className="flex items-center justify-between p-2.5 rounded-xl bg-indigo-700/5 border border-indigo-700/20">
+                        <div className="flex items-center gap-2">
+                           <MilitaryIcon size={14} className="text-zinc-500" />
+                           <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kekuatan Satuan</span>
+                        </div>
+                        <span className="text-[15px] font-black text-zinc-400">+{SUBMARINE_POWER_PER_UNIT.toLocaleString('id-ID')}</span>
+                     </div>
+                     <div className="flex items-center justify-between p-2.5 rounded-xl bg-indigo-600/5 border border-indigo-600/20">
+                        <div className="flex items-center gap-2">
+                           <Shield size={14} className="text-indigo-400" />
+                           <span className="text-[12px] font-bold text-zinc-400 uppercase tracking-widest">Kekuatan Tempur</span>
+                        </div>
+                        <span className="text-[15px] font-black text-indigo-400">+{calculateSubmarinePower(item.count).toLocaleString('id-ID')}</span>
+                     </div>
+                 </div>
+               )}
             </div>
           ) : (
             <>

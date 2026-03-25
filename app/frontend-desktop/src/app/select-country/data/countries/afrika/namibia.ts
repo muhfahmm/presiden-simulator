@@ -168,7 +168,6 @@ export const namibia: CountryData = {
     "command_center": 34,
     "military_air_base": 40,
     "military_naval_base": 12,
-    "arms_factory": 7,
     "nuclear_status": false,
     "space_program": 30,
     "cyber_defense": 4,

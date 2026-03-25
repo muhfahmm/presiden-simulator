@@ -164,7 +164,6 @@ export const kirgizstan: CountryData = {
     "command_center": 8,
     "military_air_base": 15,
     "military_naval_base": 9,
-    "arms_factory": 32,
     "nuclear_status": false,
     "space_program": 29,
     "cyber_defense": 29,

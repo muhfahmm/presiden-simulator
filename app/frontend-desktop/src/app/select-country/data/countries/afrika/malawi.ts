@@ -168,7 +168,6 @@ export const malawi: CountryData = {
     "command_center": 5,
     "military_air_base": 39,
     "military_naval_base": 34,
-    "arms_factory": 19,
     "nuclear_status": false,
     "space_program": 40,
     "cyber_defense": 10,

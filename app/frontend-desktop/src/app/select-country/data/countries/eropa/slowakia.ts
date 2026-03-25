@@ -164,7 +164,6 @@ export const slowakia: CountryData = {
     "command_center": 15,
     "military_air_base": 5,
     "military_naval_base": 27,
-    "arms_factory": 29,
     "nuclear_status": false,
     "space_program": 24,
     "cyber_defense": 34,

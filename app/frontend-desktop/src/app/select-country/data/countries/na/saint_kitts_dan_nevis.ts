@@ -164,7 +164,6 @@ export const saint_kitts_dan_nevis: CountryData = {
     "command_center": 23,
     "military_air_base": 40,
     "military_naval_base": 6,
-    "arms_factory": 37,
     "nuclear_status": false,
     "space_program": 14,
     "cyber_defense": 19,

@@ -164,7 +164,6 @@ export const greenland: CountryData = {
     "command_center": 23,
     "military_air_base": 40,
     "military_naval_base": 31,
-    "arms_factory": 1,
     "nuclear_status": false,
     "space_program": 26,
     "cyber_defense": 19,

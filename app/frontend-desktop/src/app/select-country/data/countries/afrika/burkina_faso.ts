@@ -168,7 +168,6 @@ export const burkina_faso: CountryData = {
     "command_center": 27,
     "military_air_base": 34,
     "military_naval_base": 19,
-    "arms_factory": 27,
     "nuclear_status": false,
     "space_program": 18,
     "cyber_defense": 21,

@@ -164,7 +164,6 @@ export const belize: CountryData = {
     "command_center": 39,
     "military_air_base": 36,
     "military_naval_base": 32,
-    "arms_factory": 4,
     "nuclear_status": false,
     "space_program": 30,
     "cyber_defense": 17,

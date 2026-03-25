@@ -164,7 +164,6 @@ export const qatar: CountryData = {
     "command_center": 21,
     "military_air_base": 30,
     "military_naval_base": 11,
-    "arms_factory": 30,
     "nuclear_status": false,
     "space_program": 7,
     "cyber_defense": 24,

@@ -164,7 +164,6 @@ export const malaysia: CountryData = {
     "command_center": 6,
     "military_air_base": 18,
     "military_naval_base": 31,
-    "arms_factory": 25,
     "nuclear_status": false,
     "space_program": 40,
     "cyber_defense": 25,

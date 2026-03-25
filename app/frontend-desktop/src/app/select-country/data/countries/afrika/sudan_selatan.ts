@@ -168,7 +168,6 @@ export const sudan_selatan: CountryData = {
     "command_center": 28,
     "military_air_base": 22,
     "military_naval_base": 15,
-    "arms_factory": 2,
     "nuclear_status": false,
     "space_program": 34,
     "cyber_defense": 11,

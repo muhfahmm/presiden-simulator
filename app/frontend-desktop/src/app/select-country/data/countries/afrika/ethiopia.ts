@@ -168,7 +168,6 @@ export const ethiopia: CountryData = {
     "command_center": 40,
     "military_air_base": 10,
     "military_naval_base": 33,
-    "arms_factory": 18,
     "nuclear_status": false,
     "space_program": 22,
     "cyber_defense": 26,

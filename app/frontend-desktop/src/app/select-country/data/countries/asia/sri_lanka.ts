@@ -164,7 +164,6 @@ export const sri_lanka: CountryData = {
     "command_center": 35,
     "military_air_base": 28,
     "military_naval_base": 9,
-    "arms_factory": 37,
     "nuclear_status": false,
     "space_program": 35,
     "cyber_defense": 13,

@@ -164,7 +164,6 @@ export const moldova: CountryData = {
     "command_center": 29,
     "military_air_base": 9,
     "military_naval_base": 31,
-    "arms_factory": 23,
     "nuclear_status": false,
     "space_program": 7,
     "cyber_defense": 6,

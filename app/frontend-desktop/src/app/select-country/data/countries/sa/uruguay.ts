@@ -164,7 +164,6 @@ export const uruguay: CountryData = {
     "command_center": 25,
     "military_air_base": 24,
     "military_naval_base": 39,
-    "arms_factory": 5,
     "nuclear_status": false,
     "space_program": 32,
     "cyber_defense": 32,

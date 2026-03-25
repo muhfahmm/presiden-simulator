@@ -164,7 +164,6 @@ export const mongolia: CountryData = {
     "command_center": 29,
     "military_air_base": 21,
     "military_naval_base": 13,
-    "arms_factory": 7,
     "nuclear_status": false,
     "space_program": 31,
     "cyber_defense": 16,

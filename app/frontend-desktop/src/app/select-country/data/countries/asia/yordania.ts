@@ -164,7 +164,6 @@ export const yordania: CountryData = {
     "command_center": 32,
     "military_air_base": 28,
     "military_naval_base": 26,
-    "arms_factory": 27,
     "nuclear_status": false,
     "space_program": 3,
     "cyber_defense": 24,

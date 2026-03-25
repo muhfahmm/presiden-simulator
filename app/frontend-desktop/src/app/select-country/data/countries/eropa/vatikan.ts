@@ -164,7 +164,6 @@ export const vatikan: CountryData = {
     "command_center": 2,
     "military_air_base": 1,
     "military_naval_base": 27,
-    "arms_factory": 17,
     "nuclear_status": false,
     "space_program": 2,
     "cyber_defense": 6,

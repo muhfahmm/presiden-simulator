@@ -164,7 +164,6 @@ export const kanada: CountryData = {
     "command_center": 6,
     "military_air_base": 13,
     "military_naval_base": 12,
-    "arms_factory": 34,
     "nuclear_status": false,
     "space_program": 37,
     "cyber_defense": 33,

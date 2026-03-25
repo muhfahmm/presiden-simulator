@@ -164,7 +164,6 @@ export const china: CountryData = {
     "command_center": 19,
     "military_air_base": 1,
     "military_naval_base": 9,
-    "arms_factory": 17,
     "nuclear_status": false,
     "space_program": 27,
     "cyber_defense": 28,

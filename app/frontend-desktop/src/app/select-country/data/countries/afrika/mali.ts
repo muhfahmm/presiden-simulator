@@ -168,7 +168,6 @@ export const mali: CountryData = {
     "command_center": 4,
     "military_air_base": 2,
     "military_naval_base": 37,
-    "arms_factory": 33,
     "nuclear_status": false,
     "space_program": 4,
     "cyber_defense": 37,

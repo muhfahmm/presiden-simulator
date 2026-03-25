@@ -164,7 +164,6 @@ export const puerto_rico: CountryData = {
     "command_center": 18,
     "military_air_base": 19,
     "military_naval_base": 10,
-    "arms_factory": 31,
     "nuclear_status": false,
     "space_program": 1,
     "cyber_defense": 38,

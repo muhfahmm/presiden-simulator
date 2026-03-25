@@ -164,7 +164,6 @@ export const kuwait: CountryData = {
     "command_center": 24,
     "military_air_base": 3,
     "military_naval_base": 4,
-    "arms_factory": 10,
     "nuclear_status": false,
     "space_program": 12,
     "cyber_defense": 34,

@@ -164,7 +164,6 @@ export const irlandia: CountryData = {
     "command_center": 6,
     "military_air_base": 19,
     "military_naval_base": 26,
-    "arms_factory": 21,
     "nuclear_status": false,
     "space_program": 17,
     "cyber_defense": 13,

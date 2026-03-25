@@ -164,7 +164,6 @@ export const india: CountryData = {
     "command_center": 29,
     "military_air_base": 39,
     "military_naval_base": 14,
-    "arms_factory": 15,
     "nuclear_status": false,
     "space_program": 15,
     "cyber_defense": 40,

@@ -164,7 +164,6 @@ export const irak: CountryData = {
     "command_center": 35,
     "military_air_base": 18,
     "military_naval_base": 8,
-    "arms_factory": 16,
     "nuclear_status": false,
     "space_program": 29,
     "cyber_defense": 18,

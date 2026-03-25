@@ -164,7 +164,6 @@ export const tajikistan: CountryData = {
     "command_center": 1,
     "military_air_base": 23,
     "military_naval_base": 36,
-    "arms_factory": 2,
     "nuclear_status": false,
     "space_program": 25,
     "cyber_defense": 23,

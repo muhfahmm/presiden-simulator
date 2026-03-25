@@ -164,7 +164,6 @@ export const yunani: CountryData = {
     "command_center": 4,
     "military_air_base": 20,
     "military_naval_base": 10,
-    "arms_factory": 13,
     "nuclear_status": false,
     "space_program": 6,
     "cyber_defense": 28,

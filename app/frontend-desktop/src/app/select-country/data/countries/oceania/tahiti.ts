@@ -164,7 +164,6 @@ export const tahiti: CountryData = {
     "command_center": 5,
     "military_air_base": 31,
     "military_naval_base": 11,
-    "arms_factory": 27,
     "nuclear_status": false,
     "space_program": 39,
     "cyber_defense": 2,

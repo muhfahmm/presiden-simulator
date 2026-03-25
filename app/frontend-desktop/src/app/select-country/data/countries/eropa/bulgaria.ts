@@ -164,7 +164,6 @@ export const bulgaria: CountryData = {
     "command_center": 15,
     "military_air_base": 31,
     "military_naval_base": 16,
-    "arms_factory": 23,
     "nuclear_status": false,
     "space_program": 20,
     "cyber_defense": 19,

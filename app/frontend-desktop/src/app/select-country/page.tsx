@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
-import { HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight, Eye, EyeOff } from "lucide-react";
-import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight, Eye, EyeOff, X } from "lucide-react";
+import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch";
 import WorldMapCanvas from "./selectcountrymap";
 import MapHubungan from "../game/tab-menu/Hubungan/mapHubungan";
 import { countries } from "./data/countries";
@@ -30,6 +30,8 @@ import {
 export default function SelectCountry() {
   const router = useRouter();
   const [selectedCountry, setSelectedCountry] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [showSelectionWarning, setShowSelectionWarning] = useState(false);
   const [isCentered, setIsCentered] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [geoTab, setGeoTab] = useState<"overview" | "orgs" | "agreements">("overview");
@@ -124,7 +126,54 @@ export default function SelectCountry() {
     }
   };
 
-  const currentData = (countries.find(c => c.name_en === selectedCountry) || countries[0]) as CountryData;
+  const selectedData = countries.find(c => c.name_en === selectedCountry);
+  const currentData = (selectedData || countries[0]) as CountryData;
+  const transformRef = useRef<ReactZoomPanPinchRef>(null);
+  const isInternalSelection = useRef(false);
+  const hasSelection = !!selectedData;
+
+  const filteredCountries = countries.filter(c => 
+    c.name_id.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    c.name_en.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    c.capital.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
+  // AUTO-FOCUS ON SELECTED COUNTRY
+  useEffect(() => {
+    if (selectedCountry && transformRef.current && isInternalSelection.current) {
+      isInternalSelection.current = false; // Reset
+      const country = countries.find(c => c.name_en === selectedCountry);
+      if (country) {
+        const mapWidth = 4000;
+        const mapHeight = 2000;
+        const scale = 4; // Higher zoom for focus level
+
+        // Equirectangular Projection Math (matching WorldMapCanvas)
+        const x = ((country.lon + 180) / 360) * mapWidth;
+        const y = ((90 - country.lat) / 180) * mapHeight;
+        
+        // We focus on the middle segment (offset 4000)
+        const centerX = x + mapWidth;
+        const centerY = y;
+
+        const wrapper = transformRef.current.instance.wrapperComponent;
+        const content = transformRef.current.instance.contentComponent;
+        if (wrapper && content) {
+          const { offsetWidth: wrapperWidth, offsetHeight: wrapperHeight } = wrapper;
+          const { offsetWidth: contentWidth, offsetHeight: contentHeight } = content;
+
+          // Map canvas-space coordinates to DOM-space coordinates
+          const px = (centerX / (mapWidth * 3)) * contentWidth;
+          const py = (centerY / mapHeight) * contentHeight;
+
+          const targetX = wrapperWidth / 2 - px * scale;
+          const targetY = wrapperHeight / 2 - py * scale;
+          
+          transformRef.current.setTransform(targetX, targetY, scale, 1200, "easeOut");
+        }
+      }
+    }
+  }, [selectedCountry]);
 
   return (
     <div className="flex flex-col h-screen w-screen bg-zinc-950 text-white font-sans relative overflow-hidden select-none">
@@ -137,16 +186,16 @@ export default function SelectCountry() {
           </button>
           
           <div className="flex items-center gap-4">
-            <StatItem label="Ibukota" value={currentData.capital} icon={<Landmark size={14} className="text-amber-400" />} />
-            <StatItem label="Populasi" value={currentData.pop} icon={<Users size={14} className="text-blue-400" />} />
-            <StatItem label="Kas Negara" value={currentData.budget} icon={<Coins size={14} className="text-yellow-400" />} />
+            <StatItem label="Ibukota" value={hasSelection ? currentData.capital : "-"} icon={<Landmark size={14} className="text-amber-400" />} />
+            <StatItem label="Populasi" value={hasSelection ? currentData.pop : "-"} icon={<Users size={14} className="text-blue-400" />} />
+            <StatItem label="Kas Negara" value={hasSelection ? currentData.budget : "-"} icon={<Coins size={14} className="text-yellow-400" />} />
             <StatItem label="Total Negara" value={`${countries.length}`} icon={<Globe size={14} className="text-teal-400" />} />
           </div>
         </div>
 
         <div className="flex items-center gap-6">
-          <StatItem label="Agama Mayoritas" value={currentData.religion} icon={<Church size={14} className="text-purple-400" />} />
-          <StatItem label="Ideologi" value={currentData.ideology} icon={<Scale size={14} className="text-orange-400" />} />
+          <StatItem label="Agama Mayoritas" value={hasSelection ? currentData.religion : "-"} icon={<Church size={14} className="text-purple-400" />} />
+          <StatItem label="Ideologi" value={hasSelection ? currentData.ideology : "-"} icon={<Scale size={14} className="text-orange-400" />} />
           
           <div className="h-4 w-px bg-zinc-800" />
           
@@ -154,25 +203,27 @@ export default function SelectCountry() {
             <Globe2 size={12} className="text-blue-400" />
             <span className="text-xs text-zinc-500 font-medium uppercase tracking-wider">Suara PBB</span>
             <span className={`text-xs font-black px-1.5 py-0.5 rounded ${
+              !hasSelection ? 'bg-zinc-800 text-zinc-600' :
               currentData.un_vote === 'Pro' ? 'bg-emerald-500/20 text-emerald-400' :
               currentData.un_vote === 'Contra' ? 'bg-red-500/20 text-red-400' :
               'bg-zinc-700/50 text-zinc-300'
             }`}>
-              {currentData.un_vote}
+              {hasSelection ? currentData.un_vote : "-"}
             </span>
           </div>
         </div>
 
         {/* Selected Country Flag Overlay */}
         <div className="flex items-center gap-2 bg-zinc-800/80 px-4 py-1.5 rounded-lg border border-zinc-700">
-          <span className="text-xl">{currentData.flag}</span>
-          <span className="text-xs font-bold text-zinc-100 uppercase tracking-wide">{currentData.name_id}</span>
+          <span className="text-xl">{hasSelection ? currentData.flag : "🌍"}</span>
+          <span className="text-xs font-bold text-zinc-100 uppercase tracking-wide">{hasSelection ? currentData.name_id : "Pilih Negara"}</span>
         </div>
       </header>
 
       {/* 2. MAIN MAP DISPLAY area with Zoom/Pan */}
       <main className="flex-1 relative w-full h-full z-10 overflow-hidden">
         <TransformWrapper
+          ref={transformRef}
           initialScale={1}
           minScale={1}
           maxScale={8}
@@ -765,7 +816,7 @@ export default function SelectCountry() {
       </main>
 
       {/* Map Mode Toggles - High Z-Index to stay on top of all overlays */}
-      <div className="fixed left-1/2 bottom-[260px] -translate-x-1/2 z-[100] flex bg-zinc-900/95 backdrop-blur-2xl p-1.5 rounded-2xl border border-zinc-700/50 shadow-[0_20px_50px_rgba(0,0,0,0.6)] gap-1.5 pointer-events-auto ring-1 ring-white/10 animate-in fade-in slide-in-from-bottom-4 duration-700">
+      <div className="fixed left-1/2 bottom-[320px] -translate-x-1/2 z-[100] flex bg-zinc-900/95 backdrop-blur-2xl p-1.5 rounded-2xl border border-zinc-700/50 shadow-[0_20px_50px_rgba(0,0,0,0.6)] gap-1.5 pointer-events-auto ring-1 ring-white/10 animate-in fade-in slide-in-from-bottom-4 duration-700">
         <button 
           onClick={() => setMapMode("default")}
           className={`px-6 py-2 text-[11px] font-black uppercase tracking-[0.2em] rounded-xl transition-all cursor-pointer active:scale-95 ${
@@ -788,6 +839,40 @@ export default function SelectCountry() {
         </button>
       </div>
 
+      <div className="fixed left-1/2 bottom-[210px] -translate-x-1/2 z-[100] w-full max-w-sm animate-in fade-in slide-in-from-bottom-2 duration-1000">
+        <div className="relative group">
+          <div className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
+            <Search size={16} className="text-zinc-500 group-focus-within:text-amber-500 transition-colors" />
+          </div>
+          <input 
+            type="text"
+            placeholder="Cari Negara atau Ibukota..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-black/40 backdrop-blur-3xl border border-zinc-800/50 rounded-2xl py-3.5 pl-12 pr-12 text-sm font-bold text-white placeholder:text-zinc-600 focus:outline-none focus:ring-2 focus:ring-amber-500/30 focus:border-amber-500/30 transition-all shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+          />
+          {searchQuery && (
+            <button 
+              onClick={() => setSearchQuery("")}
+              className="absolute inset-y-0 right-4 flex items-center text-zinc-500 hover:text-white transition-colors cursor-pointer"
+            >
+              <div className="bg-zinc-800/80 p-1.5 rounded-lg hover:bg-zinc-700 transition-colors">
+                <X size={14} />
+              </div>
+            </button>
+          )}
+        </div>
+        
+        {searchQuery && (
+          <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 whitespace-nowrap">
+            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-amber-500/80 bg-amber-500/5 px-3 py-1 rounded-full border border-amber-500/10">
+              Ditemukan {filteredCountries.length} Negara
+            </span>
+          </div>
+        )}
+      </div>
+
+
       {/* 3. FOOTER CAROUSEL & CONTROLS */}
       <footer className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black via-black/80 to-transparent p-6 flex items-end justify-between z-20">
         <div className="flex flex-col gap-3">
@@ -798,7 +883,7 @@ export default function SelectCountry() {
         </div>
 
         {/* Carousel with Chevrons */}
-        <div className="absolute left-1/2 bottom-8 -translate-x-1/2 flex items-center gap-2 w-full max-w-xl z-30">
+        <div className="absolute left-1/2 bottom-8 -translate-x-1/2 flex items-center gap-4 w-full max-w-6xl z-30">
           <button 
             onClick={() => scrollByAmount('left')}
             className="p-1 px-2 rounded-full bg-zinc-900/80 border border-zinc-700/60 text-zinc-400 hover:bg-zinc-800 hover:text-white transition cursor-pointer active:scale-95"
@@ -806,16 +891,19 @@ export default function SelectCountry() {
             <ChevronLeft size={16} />
           </button>
 
-          <div ref={scrollRef} className="flex flex-1 gap-6 overflow-x-auto pt-10 pb-2 no-scrollbar">
-            {countries.map((c, i) => (
+          <div ref={scrollRef} className="flex flex-1 gap-10 overflow-x-auto pt-10 pb-4 no-scrollbar">
+            {filteredCountries.map((c, i) => (
               <button 
                 key={i} 
                 ref={el => { buttonRefs.current[c.name_en] = el; }}
-                onClick={() => setSelectedCountry(c.name_en)}
-                className={`relative flex flex-col items-center gap-1 p-2 rounded-xl border transition-all cursor-pointer min-w-[95px] h-[80px] justify-center ${
+                onClick={() => {
+                  isInternalSelection.current = true;
+                  setSelectedCountry(c.name_en);
+                }}
+                className={`relative flex flex-col items-center gap-2 p-4 rounded-2xl border transition-all cursor-pointer min-w-[150px] h-[100px] justify-center ${
                   selectedCountry === c.name_en 
-                    ? 'bg-amber-500/10 border-amber-500 shadow-md shadow-amber-500/20' 
-                    : 'bg-zinc-900/60 border-zinc-800 hover:bg-zinc-800/80 hover:border-zinc-700'
+                    ? 'bg-amber-500/10 border-amber-500 shadow-[0_0_30px_rgba(245,158,11,0.2)] scale-105 z-10' 
+                    : 'bg-zinc-900/60 border-zinc-800 hover:bg-zinc-800/80 hover:border-zinc-700 hover:scale-[1.02]'
                 }`}
               >
                 {selectedCountry === c.name_en && (
@@ -824,10 +912,15 @@ export default function SelectCountry() {
                     <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-l-transparent border-r-transparent border-t-amber-500" />
                   </div>
                 )}
-                <span className="text-xl">{c.flag}</span>
-                <span className="text-xs font-bold text-zinc-300 text-center line-clamp-2 mt-1 px-1 uppercase tracking-tighter">
-                  {c.name_id}
-                </span>
+                <span className="text-3xl filter drop-shadow-lg">{c.flag}</span>
+                <div className="flex flex-col items-center gap-0.5 mt-1">
+                  <span className="text-[11px] font-black text-white text-center line-clamp-1 px-1 uppercase tracking-wider">
+                    {c.name_id}
+                  </span>
+                  <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-[0.2em]">
+                    {c.capital}
+                  </span>
+                </div>
               </button>
             ))}
           </div>
@@ -852,6 +945,10 @@ export default function SelectCountry() {
 
           <button 
             onClick={() => {
+              if (!hasSelection) {
+                setShowSelectionWarning(true);
+                return;
+              }
               setIsLoading(true);
               gameStorage.saveSession(selectedCountry);
               setTimeout(() => {
@@ -862,7 +959,7 @@ export default function SelectCountry() {
             className={`flex items-center gap-2 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold px-8 py-4 rounded-xl shadow-lg shadow-cyan-500/10 hover:shadow-cyan-500/30 transition-all cursor-pointer group scale-100 hover:scale-[1.02] active:scale-[0.98] ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
           >
             <Play className="h-4 w-4" />
-            {isLoading ? "Memproses..." : "Mulai Simulasi"}
+            {isLoading ? "Memproses..." : "Mulai"}
           </button>
         </div>
       </footer>
@@ -884,6 +981,32 @@ export default function SelectCountry() {
               Menyiapkan Simulasi
             </h2>
             <p className="text-zinc-500 text-xs animate-pulse uppercase tracking-tight">Sedang memproses data negara {currentData.name_id}...</p>
+          </div>
+        </div>
+      )}
+
+      {/* 5. SELECTION WARNING MODAL */}
+      {showSelectionWarning && (
+        <div className="fixed inset-0 z-[110] bg-black/60 backdrop-blur-sm flex items-center justify-center animate-in fade-in duration-300">
+          <div className="bg-zinc-900 border border-zinc-800 rounded-[2rem] p-8 max-w-sm w-full shadow-2xl animate-in zoom-in-95 duration-300 flex flex-col items-center text-center gap-6">
+            <div className="h-20 w-20 rounded-full bg-amber-500/10 border border-amber-500/20 flex items-center justify-center">
+              <ShieldAlert size={40} className="text-amber-500 animate-pulse" />
+            </div>
+            
+            <div className="flex flex-col gap-2">
+              <h2 className="text-xl font-black text-white uppercase tracking-wider">Akses Ditolak</h2>
+              <p className="text-zinc-400 text-sm leading-relaxed">
+                Anda belum memilih kedaulatan negara. <br/>
+                Silakan pilih satu negara pada peta atau daftar dibawah untuk memulai simulasi.
+              </p>
+            </div>
+
+            <button 
+              onClick={() => setShowSelectionWarning(false)}
+              className="w-full py-4 bg-zinc-100 text-zinc-950 font-black uppercase tracking-widest rounded-2xl hover:bg-white active:scale-95 transition-all cursor-pointer"
+            >
+              Saya Mengerti
+            </button>
           </div>
         </div>
       )}

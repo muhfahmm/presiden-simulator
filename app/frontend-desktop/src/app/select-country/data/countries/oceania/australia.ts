@@ -164,7 +164,6 @@ export const australia: CountryData = {
     "command_center": 15,
     "military_air_base": 10,
     "military_naval_base": 26,
-    "arms_factory": 14,
     "nuclear_status": false,
     "space_program": 11,
     "cyber_defense": 25,

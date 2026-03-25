@@ -168,7 +168,6 @@ export const kongo: CountryData = {
     "command_center": 5,
     "military_air_base": 27,
     "military_naval_base": 17,
-    "arms_factory": 11,
     "nuclear_status": false,
     "space_program": 38,
     "cyber_defense": 1,

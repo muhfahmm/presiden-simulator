@@ -164,7 +164,6 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "command_center": 8,
     "military_air_base": 39,
     "military_naval_base": 40,
-    "arms_factory": 23,
     "nuclear_status": false,
     "space_program": 14,
     "cyber_defense": 14,

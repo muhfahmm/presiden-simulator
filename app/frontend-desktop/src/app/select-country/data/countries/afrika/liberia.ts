@@ -168,7 +168,6 @@ export const liberia: CountryData = {
     "command_center": 10,
     "military_air_base": 33,
     "military_naval_base": 1,
-    "arms_factory": 27,
     "nuclear_status": false,
     "space_program": 30,
     "cyber_defense": 34,

@@ -168,7 +168,6 @@ export const ghana: CountryData = {
     "command_center": 19,
     "military_air_base": 3,
     "military_naval_base": 19,
-    "arms_factory": 29,
     "nuclear_status": false,
     "space_program": 33,
     "cyber_defense": 18,

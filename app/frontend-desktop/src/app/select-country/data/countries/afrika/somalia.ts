@@ -168,7 +168,6 @@ export const somalia: CountryData = {
     "command_center": 33,
     "military_air_base": 30,
     "military_naval_base": 13,
-    "arms_factory": 22,
     "nuclear_status": false,
     "space_program": 31,
     "cyber_defense": 18,

@@ -164,7 +164,6 @@ export const bangladesh: CountryData = {
     "command_center": 12,
     "military_air_base": 23,
     "military_naval_base": 14,
-    "arms_factory": 27,
     "nuclear_status": false,
     "space_program": 40,
     "cyber_defense": 7,

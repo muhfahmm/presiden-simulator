@@ -164,7 +164,6 @@ export const vietnam: CountryData = {
     "command_center": 18,
     "military_air_base": 19,
     "military_naval_base": 34,
-    "arms_factory": 38,
     "nuclear_status": false,
     "space_program": 20,
     "cyber_defense": 5,

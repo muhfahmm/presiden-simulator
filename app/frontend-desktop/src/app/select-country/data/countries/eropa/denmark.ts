@@ -164,7 +164,6 @@ export const denmark: CountryData = {
     "command_center": 9,
     "military_air_base": 9,
     "military_naval_base": 11,
-    "arms_factory": 31,
     "nuclear_status": false,
     "space_program": 14,
     "cyber_defense": 1,

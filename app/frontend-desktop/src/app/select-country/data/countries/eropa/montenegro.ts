@@ -164,7 +164,6 @@ export const montenegro: CountryData = {
     "command_center": 3,
     "military_air_base": 37,
     "military_naval_base": 21,
-    "arms_factory": 17,
     "nuclear_status": false,
     "space_program": 38,
     "cyber_defense": 12,

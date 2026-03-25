@@ -164,7 +164,6 @@ export const suriname: CountryData = {
     "command_center": 27,
     "military_air_base": 14,
     "military_naval_base": 3,
-    "arms_factory": 7,
     "nuclear_status": false,
     "space_program": 31,
     "cyber_defense": 31,

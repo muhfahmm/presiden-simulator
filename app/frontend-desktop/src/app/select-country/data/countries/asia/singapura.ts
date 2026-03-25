@@ -164,7 +164,6 @@ export const singapura: CountryData = {
     "command_center": 35,
     "military_air_base": 36,
     "military_naval_base": 20,
-    "arms_factory": 34,
     "nuclear_status": false,
     "space_program": 23,
     "cyber_defense": 20,

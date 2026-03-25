@@ -164,7 +164,6 @@ export const albania: CountryData = {
     "command_center": 32,
     "military_air_base": 3,
     "military_naval_base": 17,
-    "arms_factory": 8,
     "nuclear_status": false,
     "space_program": 35,
     "cyber_defense": 35,

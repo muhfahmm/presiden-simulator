@@ -164,7 +164,6 @@ export const slovenia: CountryData = {
     "command_center": 3,
     "military_air_base": 29,
     "military_naval_base": 18,
-    "arms_factory": 29,
     "nuclear_status": false,
     "space_program": 17,
     "cyber_defense": 33,

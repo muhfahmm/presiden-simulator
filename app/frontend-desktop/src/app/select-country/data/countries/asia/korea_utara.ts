@@ -164,7 +164,6 @@ export const korea_utara: CountryData = {
     "command_center": 9,
     "military_air_base": 15,
     "military_naval_base": 30,
-    "arms_factory": 32,
     "nuclear_status": false,
     "space_program": 38,
     "cyber_defense": 17,

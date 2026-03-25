@@ -164,7 +164,6 @@ export const costa_rica: CountryData = {
     "command_center": 17,
     "military_air_base": 33,
     "military_naval_base": 2,
-    "arms_factory": 28,
     "nuclear_status": false,
     "space_program": 23,
     "cyber_defense": 2,

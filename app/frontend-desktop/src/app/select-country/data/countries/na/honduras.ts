@@ -164,7 +164,6 @@ export const honduras: CountryData = {
     "command_center": 30,
     "military_air_base": 26,
     "military_naval_base": 21,
-    "arms_factory": 1,
     "nuclear_status": false,
     "space_program": 29,
     "cyber_defense": 4,

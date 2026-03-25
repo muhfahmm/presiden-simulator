@@ -164,7 +164,6 @@ export const bahama: CountryData = {
     "command_center": 16,
     "military_air_base": 17,
     "military_naval_base": 10,
-    "arms_factory": 36,
     "nuclear_status": false,
     "space_program": 36,
     "cyber_defense": 34,

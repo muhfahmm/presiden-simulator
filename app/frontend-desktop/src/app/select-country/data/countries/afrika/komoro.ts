@@ -168,7 +168,6 @@ export const komoro: CountryData = {
     "command_center": 38,
     "military_air_base": 32,
     "military_naval_base": 6,
-    "arms_factory": 19,
     "nuclear_status": false,
     "space_program": 25,
     "cyber_defense": 25,

@@ -164,7 +164,6 @@ export const paraguay: CountryData = {
     "command_center": 26,
     "military_air_base": 9,
     "military_naval_base": 14,
-    "arms_factory": 31,
     "nuclear_status": false,
     "space_program": 36,
     "cyber_defense": 5,

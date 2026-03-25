@@ -168,7 +168,6 @@ export const republik_zambia: CountryData = {
     "command_center": 3,
     "military_air_base": 21,
     "military_naval_base": 31,
-    "arms_factory": 18,
     "nuclear_status": false,
     "space_program": 40,
     "cyber_defense": 10,

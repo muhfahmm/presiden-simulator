@@ -168,7 +168,6 @@ export const eritrea: CountryData = {
     "command_center": 25,
     "military_air_base": 6,
     "military_naval_base": 16,
-    "arms_factory": 5,
     "nuclear_status": false,
     "space_program": 22,
     "cyber_defense": 40,

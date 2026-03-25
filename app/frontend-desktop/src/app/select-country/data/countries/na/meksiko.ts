@@ -164,7 +164,6 @@ export const meksiko: CountryData = {
     "command_center": 22,
     "military_air_base": 12,
     "military_naval_base": 10,
-    "arms_factory": 7,
     "nuclear_status": false,
     "space_program": 30,
     "cyber_defense": 17,

@@ -164,7 +164,6 @@ export const samoa: CountryData = {
     "command_center": 17,
     "military_air_base": 38,
     "military_naval_base": 40,
-    "arms_factory": 37,
     "nuclear_status": false,
     "space_program": 37,
     "cyber_defense": 14,

@@ -168,7 +168,6 @@ export const tanjung_verde: CountryData = {
     "command_center": 2,
     "military_air_base": 2,
     "military_naval_base": 30,
-    "arms_factory": 7,
     "nuclear_status": false,
     "space_program": 14,
     "cyber_defense": 4,

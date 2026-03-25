@@ -168,7 +168,6 @@ export const pantai_gading: CountryData = {
     "command_center": 37,
     "military_air_base": 26,
     "military_naval_base": 31,
-    "arms_factory": 36,
     "nuclear_status": false,
     "space_program": 38,
     "cyber_defense": 22,

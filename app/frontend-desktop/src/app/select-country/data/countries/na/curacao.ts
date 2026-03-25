@@ -164,7 +164,6 @@ export const curacao: CountryData = {
     "command_center": 36,
     "military_air_base": 33,
     "military_naval_base": 8,
-    "arms_factory": 37,
     "nuclear_status": false,
     "space_program": 1,
     "cyber_defense": 18,

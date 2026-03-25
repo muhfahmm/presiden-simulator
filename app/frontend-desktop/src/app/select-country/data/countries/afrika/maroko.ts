@@ -168,7 +168,6 @@ export const maroko: CountryData = {
     "command_center": 13,
     "military_air_base": 17,
     "military_naval_base": 31,
-    "arms_factory": 24,
     "nuclear_status": false,
     "space_program": 13,
     "cyber_defense": 15,

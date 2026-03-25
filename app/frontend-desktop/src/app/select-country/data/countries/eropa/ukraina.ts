@@ -164,7 +164,6 @@ export const ukraina: CountryData = {
     "command_center": 1,
     "military_air_base": 19,
     "military_naval_base": 18,
-    "arms_factory": 25,
     "nuclear_status": false,
     "space_program": 30,
     "cyber_defense": 12,

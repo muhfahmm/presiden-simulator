@@ -168,7 +168,6 @@ export const djibouti: CountryData = {
     "command_center": 21,
     "military_air_base": 9,
     "military_naval_base": 12,
-    "arms_factory": 4,
     "nuclear_status": false,
     "space_program": 26,
     "cyber_defense": 29,

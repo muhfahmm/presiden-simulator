@@ -168,7 +168,6 @@ export const togo: CountryData = {
     "command_center": 9,
     "military_air_base": 34,
     "military_naval_base": 39,
-    "arms_factory": 40,
     "nuclear_status": false,
     "space_program": 26,
     "cyber_defense": 39,

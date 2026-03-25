@@ -164,7 +164,6 @@ export const hong_kong: CountryData = {
     "command_center": 31,
     "military_air_base": 2,
     "military_naval_base": 37,
-    "arms_factory": 27,
     "nuclear_status": false,
     "space_program": 26,
     "cyber_defense": 1,

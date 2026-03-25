@@ -164,7 +164,6 @@ export const suriah: CountryData = {
     "command_center": 31,
     "military_air_base": 33,
     "military_naval_base": 16,
-    "arms_factory": 19,
     "nuclear_status": false,
     "space_program": 20,
     "cyber_defense": 9,

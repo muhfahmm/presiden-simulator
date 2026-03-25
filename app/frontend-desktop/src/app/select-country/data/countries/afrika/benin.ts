@@ -168,7 +168,6 @@ export const benin: CountryData = {
     "command_center": 33,
     "military_air_base": 16,
     "military_naval_base": 5,
-    "arms_factory": 27,
     "nuclear_status": false,
     "space_program": 36,
     "cyber_defense": 32,

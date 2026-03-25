@@ -164,7 +164,6 @@ export const pakistan: CountryData = {
     "command_center": 11,
     "military_air_base": 28,
     "military_naval_base": 21,
-    "arms_factory": 36,
     "nuclear_status": false,
     "space_program": 2,
     "cyber_defense": 18,

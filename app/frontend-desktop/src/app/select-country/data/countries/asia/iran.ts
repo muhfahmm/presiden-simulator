@@ -164,7 +164,6 @@ export const iran: CountryData = {
     "command_center": 15,
     "military_air_base": 16,
     "military_naval_base": 5,
-    "arms_factory": 36,
     "nuclear_status": false,
     "space_program": 1,
     "cyber_defense": 13,

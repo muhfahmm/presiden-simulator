@@ -164,7 +164,6 @@ export const lebanon: CountryData = {
     "command_center": 18,
     "military_air_base": 8,
     "military_naval_base": 31,
-    "arms_factory": 23,
     "nuclear_status": false,
     "space_program": 17,
     "cyber_defense": 16,

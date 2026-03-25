@@ -164,7 +164,6 @@ export const indonesia: CountryData = {
     "command_center": 7,
     "military_air_base": 37,
     "military_naval_base": 11,
-    "arms_factory": 21,
     "nuclear_status": false,
     "space_program": 13,
     "cyber_defense": 39,

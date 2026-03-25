@@ -164,7 +164,6 @@ export const guyana: CountryData = {
     "command_center": 4,
     "military_air_base": 35,
     "military_naval_base": 9,
-    "arms_factory": 39,
     "nuclear_status": false,
     "space_program": 30,
     "cyber_defense": 19,

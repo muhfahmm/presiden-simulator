@@ -164,7 +164,6 @@ export const argentina: CountryData = {
     "command_center": 4,
     "military_air_base": 18,
     "military_naval_base": 5,
-    "arms_factory": 34,
     "nuclear_status": false,
     "space_program": 22,
     "cyber_defense": 32,

@@ -164,7 +164,6 @@ export const ceko: CountryData = {
     "command_center": 23,
     "military_air_base": 1,
     "military_naval_base": 34,
-    "arms_factory": 18,
     "nuclear_status": false,
     "space_program": 15,
     "cyber_defense": 29,

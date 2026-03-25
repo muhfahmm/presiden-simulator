@@ -164,7 +164,6 @@ export const bhutan: CountryData = {
     "command_center": 20,
     "military_air_base": 33,
     "military_naval_base": 32,
-    "arms_factory": 9,
     "nuclear_status": false,
     "space_program": 8,
     "cyber_defense": 1,

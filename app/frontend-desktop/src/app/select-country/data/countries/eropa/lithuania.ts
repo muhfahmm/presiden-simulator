@@ -164,7 +164,6 @@ export const lithuania: CountryData = {
     "command_center": 3,
     "military_air_base": 13,
     "military_naval_base": 5,
-    "arms_factory": 31,
     "nuclear_status": false,
     "space_program": 4,
     "cyber_defense": 15,

@@ -164,7 +164,6 @@ export const kosovo: CountryData = {
     "command_center": 33,
     "military_air_base": 38,
     "military_naval_base": 34,
-    "arms_factory": 13,
     "nuclear_status": false,
     "space_program": 33,
     "cyber_defense": 9,

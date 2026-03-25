@@ -164,7 +164,6 @@ export const hungaria: CountryData = {
     "command_center": 13,
     "military_air_base": 37,
     "military_naval_base": 38,
-    "arms_factory": 39,
     "nuclear_status": false,
     "space_program": 34,
     "cyber_defense": 9,

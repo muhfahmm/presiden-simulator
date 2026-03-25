@@ -168,7 +168,6 @@ export const mesir: CountryData = {
     "command_center": 29,
     "military_air_base": 32,
     "military_naval_base": 40,
-    "arms_factory": 9,
     "nuclear_status": false,
     "space_program": 2,
     "cyber_defense": 17,

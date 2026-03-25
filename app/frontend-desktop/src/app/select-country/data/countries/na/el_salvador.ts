@@ -164,7 +164,6 @@ export const el_salvador: CountryData = {
     "command_center": 13,
     "military_air_base": 22,
     "military_naval_base": 11,
-    "arms_factory": 11,
     "nuclear_status": false,
     "space_program": 29,
     "cyber_defense": 18,

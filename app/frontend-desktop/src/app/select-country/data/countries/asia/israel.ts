@@ -164,7 +164,6 @@ export const israel: CountryData = {
     "command_center": 36,
     "military_air_base": 14,
     "military_naval_base": 21,
-    "arms_factory": 37,
     "nuclear_status": false,
     "space_program": 17,
     "cyber_defense": 18,

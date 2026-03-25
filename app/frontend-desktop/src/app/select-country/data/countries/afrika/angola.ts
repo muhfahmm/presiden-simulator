@@ -168,7 +168,6 @@ export const angola: CountryData = {
     "command_center": 14,
     "military_air_base": 7,
     "military_naval_base": 32,
-    "arms_factory": 15,
     "nuclear_status": false,
     "space_program": 3,
     "cyber_defense": 24,

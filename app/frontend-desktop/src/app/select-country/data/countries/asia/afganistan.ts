@@ -164,7 +164,6 @@ export const afganistan: CountryData = {
     "command_center": 34,
     "military_air_base": 28,
     "military_naval_base": 14,
-    "arms_factory": 5,
     "nuclear_status": false,
     "space_program": 38,
     "cyber_defense": 22,

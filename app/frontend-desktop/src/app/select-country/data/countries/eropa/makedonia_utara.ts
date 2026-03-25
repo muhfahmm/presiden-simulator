@@ -164,7 +164,6 @@ export const makedonia_utara: CountryData = {
     "command_center": 31,
     "military_air_base": 3,
     "military_naval_base": 14,
-    "arms_factory": 13,
     "nuclear_status": false,
     "space_program": 39,
     "cyber_defense": 25,

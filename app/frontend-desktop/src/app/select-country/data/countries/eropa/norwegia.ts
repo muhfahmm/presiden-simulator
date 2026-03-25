@@ -164,7 +164,6 @@ export const norwegia: CountryData = {
     "command_center": 24,
     "military_air_base": 5,
     "military_naval_base": 7,
-    "arms_factory": 12,
     "nuclear_status": false,
     "space_program": 7,
     "cyber_defense": 14,

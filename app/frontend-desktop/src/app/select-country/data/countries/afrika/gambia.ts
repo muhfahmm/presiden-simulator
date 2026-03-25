@@ -168,7 +168,6 @@ export const gambia: CountryData = {
     "command_center": 2,
     "military_air_base": 15,
     "military_naval_base": 2,
-    "arms_factory": 6,
     "nuclear_status": false,
     "space_program": 7,
     "cyber_defense": 18,

@@ -168,7 +168,6 @@ export const mauritania: CountryData = {
     "command_center": 13,
     "military_air_base": 31,
     "military_naval_base": 26,
-    "arms_factory": 15,
     "nuclear_status": false,
     "space_program": 19,
     "cyber_defense": 17,

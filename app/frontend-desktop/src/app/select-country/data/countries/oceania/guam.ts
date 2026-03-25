@@ -164,7 +164,6 @@ export const guam: CountryData = {
     "command_center": 26,
     "military_air_base": 32,
     "military_naval_base": 17,
-    "arms_factory": 3,
     "nuclear_status": false,
     "space_program": 31,
     "cyber_defense": 12,

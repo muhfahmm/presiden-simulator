@@ -164,7 +164,6 @@ export const saint_lucia: CountryData = {
     "command_center": 11,
     "military_air_base": 37,
     "military_naval_base": 12,
-    "arms_factory": 40,
     "nuclear_status": false,
     "space_program": 2,
     "cyber_defense": 33,

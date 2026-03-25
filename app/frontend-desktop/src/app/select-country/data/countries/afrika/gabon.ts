@@ -168,7 +168,6 @@ export const gabon: CountryData = {
     "command_center": 6,
     "military_air_base": 30,
     "military_naval_base": 5,
-    "arms_factory": 5,
     "nuclear_status": false,
     "space_program": 10,
     "cyber_defense": 5,

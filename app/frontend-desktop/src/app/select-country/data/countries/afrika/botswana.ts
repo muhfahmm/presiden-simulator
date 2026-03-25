@@ -168,7 +168,6 @@ export const botswana: CountryData = {
     "command_center": 38,
     "military_air_base": 18,
     "military_naval_base": 32,
-    "arms_factory": 24,
     "nuclear_status": false,
     "space_program": 25,
     "cyber_defense": 39,

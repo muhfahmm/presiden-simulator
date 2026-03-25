@@ -164,7 +164,6 @@ export const inggris: CountryData = {
     "command_center": 25,
     "military_air_base": 15,
     "military_naval_base": 27,
-    "arms_factory": 19,
     "nuclear_status": false,
     "space_program": 28,
     "cyber_defense": 30,

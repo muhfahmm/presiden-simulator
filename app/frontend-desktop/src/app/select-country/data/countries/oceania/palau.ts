@@ -164,7 +164,6 @@ export const palau: CountryData = {
     "command_center": 4,
     "military_air_base": 5,
     "military_naval_base": 13,
-    "arms_factory": 30,
     "nuclear_status": false,
     "space_program": 14,
     "cyber_defense": 14,

@@ -168,7 +168,6 @@ export const republik_uganda: CountryData = {
     "command_center": 20,
     "military_air_base": 22,
     "military_naval_base": 26,
-    "arms_factory": 12,
     "nuclear_status": false,
     "space_program": 30,
     "cyber_defense": 35,

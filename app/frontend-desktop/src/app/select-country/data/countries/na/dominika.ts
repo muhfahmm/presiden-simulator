@@ -164,7 +164,6 @@ export const dominika: CountryData = {
     "command_center": 22,
     "military_air_base": 40,
     "military_naval_base": 16,
-    "arms_factory": 28,
     "nuclear_status": false,
     "space_program": 37,
     "cyber_defense": 21,

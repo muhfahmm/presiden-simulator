@@ -168,7 +168,6 @@ export const afrika_selatan: CountryData = {
     "command_center": 15,
     "military_air_base": 38,
     "military_naval_base": 9,
-    "arms_factory": 7,
     "nuclear_status": false,
     "space_program": 13,
     "cyber_defense": 23,

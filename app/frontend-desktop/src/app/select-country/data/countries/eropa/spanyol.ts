@@ -164,7 +164,6 @@ export const spanyol: CountryData = {
     "command_center": 21,
     "military_air_base": 39,
     "military_naval_base": 37,
-    "arms_factory": 24,
     "nuclear_status": false,
     "space_program": 4,
     "cyber_defense": 35,

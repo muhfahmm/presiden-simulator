@@ -164,7 +164,6 @@ export const estonia: CountryData = {
     "command_center": 33,
     "military_air_base": 18,
     "military_naval_base": 23,
-    "arms_factory": 8,
     "nuclear_status": false,
     "space_program": 27,
     "cyber_defense": 7,

@@ -164,7 +164,6 @@ export const laos: CountryData = {
     "command_center": 30,
     "military_air_base": 20,
     "military_naval_base": 22,
-    "arms_factory": 23,
     "nuclear_status": false,
     "space_program": 15,
     "cyber_defense": 36,

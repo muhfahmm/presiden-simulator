@@ -164,7 +164,6 @@ export const chile: CountryData = {
     "command_center": 14,
     "military_air_base": 37,
     "military_naval_base": 25,
-    "arms_factory": 31,
     "nuclear_status": false,
     "space_program": 32,
     "cyber_defense": 27,

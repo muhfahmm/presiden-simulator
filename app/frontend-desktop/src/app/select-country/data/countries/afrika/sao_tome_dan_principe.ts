@@ -168,7 +168,6 @@ export const sao_tome_dan_principe: CountryData = {
     "command_center": 22,
     "military_air_base": 28,
     "military_naval_base": 20,
-    "arms_factory": 10,
     "nuclear_status": false,
     "space_program": 32,
     "cyber_defense": 6,

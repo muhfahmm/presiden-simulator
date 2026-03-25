@@ -168,7 +168,6 @@ export const republik_tanzania: CountryData = {
     "command_center": 9,
     "military_air_base": 22,
     "military_naval_base": 19,
-    "arms_factory": 15,
     "nuclear_status": false,
     "space_program": 11,
     "cyber_defense": 14,

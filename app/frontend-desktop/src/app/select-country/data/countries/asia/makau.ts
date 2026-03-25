@@ -164,7 +164,6 @@ export const makau: CountryData = {
     "command_center": 29,
     "military_air_base": 33,
     "military_naval_base": 40,
-    "arms_factory": 37,
     "nuclear_status": false,
     "space_program": 9,
     "cyber_defense": 37,

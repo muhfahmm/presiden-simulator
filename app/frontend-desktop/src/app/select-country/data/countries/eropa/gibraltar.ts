@@ -164,7 +164,6 @@ export const gibraltar: CountryData = {
     "command_center": 28,
     "military_air_base": 7,
     "military_naval_base": 15,
-    "arms_factory": 8,
     "nuclear_status": false,
     "space_program": 6,
     "cyber_defense": 30,

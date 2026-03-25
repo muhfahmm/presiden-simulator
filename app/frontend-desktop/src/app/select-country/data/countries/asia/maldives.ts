@@ -164,7 +164,6 @@ export const maldives: CountryData = {
     "command_center": 37,
     "military_air_base": 19,
     "military_naval_base": 18,
-    "arms_factory": 31,
     "nuclear_status": false,
     "space_program": 28,
     "cyber_defense": 33,

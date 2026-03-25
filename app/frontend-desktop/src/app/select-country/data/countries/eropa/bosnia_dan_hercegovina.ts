@@ -164,7 +164,6 @@ export const bosnia_dan_hercegovina: CountryData = {
     "command_center": 35,
     "military_air_base": 16,
     "military_naval_base": 22,
-    "arms_factory": 33,
     "nuclear_status": false,
     "space_program": 24,
     "cyber_defense": 40,

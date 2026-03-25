@@ -164,7 +164,6 @@ export const luksemburg: CountryData = {
     "command_center": 22,
     "military_air_base": 9,
     "military_naval_base": 30,
-    "arms_factory": 9,
     "nuclear_status": false,
     "space_program": 40,
     "cyber_defense": 5,

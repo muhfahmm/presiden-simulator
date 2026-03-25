@@ -164,7 +164,6 @@ export const amerika_serikat: CountryData = {
     "command_center": 39,
     "military_air_base": 28,
     "military_naval_base": 12,
-    "arms_factory": 32,
     "nuclear_status": false,
     "space_program": 25,
     "cyber_defense": 9,

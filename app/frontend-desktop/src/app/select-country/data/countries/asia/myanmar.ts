@@ -164,7 +164,6 @@ export const myanmar: CountryData = {
     "command_center": 19,
     "military_air_base": 31,
     "military_naval_base": 23,
-    "arms_factory": 28,
     "nuclear_status": false,
     "space_program": 1,
     "cyber_defense": 14,

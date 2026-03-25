@@ -168,7 +168,6 @@ export const tunisia: CountryData = {
     "command_center": 24,
     "military_air_base": 10,
     "military_naval_base": 36,
-    "arms_factory": 12,
     "nuclear_status": false,
     "space_program": 1,
     "cyber_defense": 26,

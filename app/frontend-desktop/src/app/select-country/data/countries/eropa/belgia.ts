@@ -164,7 +164,6 @@ export const belgia: CountryData = {
     "command_center": 23,
     "military_air_base": 6,
     "military_naval_base": 28,
-    "arms_factory": 22,
     "nuclear_status": false,
     "space_program": 31,
     "cyber_defense": 6,

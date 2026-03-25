@@ -164,7 +164,6 @@ export const filipina: CountryData = {
     "command_center": 22,
     "military_air_base": 28,
     "military_naval_base": 36,
-    "arms_factory": 13,
     "nuclear_status": false,
     "space_program": 16,
     "cyber_defense": 23,

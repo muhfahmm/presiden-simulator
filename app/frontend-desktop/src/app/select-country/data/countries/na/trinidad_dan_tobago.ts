@@ -164,7 +164,6 @@ export const trinidad_dan_tobago: CountryData = {
     "command_center": 32,
     "military_air_base": 7,
     "military_naval_base": 15,
-    "arms_factory": 19,
     "nuclear_status": false,
     "space_program": 1,
     "cyber_defense": 14,

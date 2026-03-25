@@ -164,7 +164,6 @@ export const panama: CountryData = {
     "command_center": 33,
     "military_air_base": 8,
     "military_naval_base": 3,
-    "arms_factory": 37,
     "nuclear_status": false,
     "space_program": 17,
     "cyber_defense": 40,

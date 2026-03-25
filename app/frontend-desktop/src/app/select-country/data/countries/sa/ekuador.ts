@@ -164,7 +164,6 @@ export const ekuador: CountryData = {
     "command_center": 7,
     "military_air_base": 6,
     "military_naval_base": 6,
-    "arms_factory": 29,
     "nuclear_status": false,
     "space_program": 39,
     "cyber_defense": 22,

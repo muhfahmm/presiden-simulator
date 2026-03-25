@@ -164,7 +164,6 @@ export const palestina: CountryData = {
     "command_center": 36,
     "military_air_base": 19,
     "military_naval_base": 15,
-    "arms_factory": 36,
     "nuclear_status": false,
     "space_program": 14,
     "cyber_defense": 23,

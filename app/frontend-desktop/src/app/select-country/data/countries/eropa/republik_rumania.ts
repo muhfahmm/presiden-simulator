@@ -164,7 +164,6 @@ export const republik_rumania: CountryData = {
     "command_center": 7,
     "military_air_base": 28,
     "military_naval_base": 30,
-    "arms_factory": 9,
     "nuclear_status": false,
     "space_program": 33,
     "cyber_defense": 23,

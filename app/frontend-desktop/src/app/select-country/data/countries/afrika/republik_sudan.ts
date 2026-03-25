@@ -168,7 +168,6 @@ export const republik_sudan: CountryData = {
     "command_center": 16,
     "military_air_base": 17,
     "military_naval_base": 17,
-    "arms_factory": 33,
     "nuclear_status": false,
     "space_program": 12,
     "cyber_defense": 7,

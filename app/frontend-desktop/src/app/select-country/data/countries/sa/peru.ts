@@ -164,7 +164,6 @@ export const peru: CountryData = {
     "command_center": 37,
     "military_air_base": 34,
     "military_naval_base": 16,
-    "arms_factory": 33,
     "nuclear_status": false,
     "space_program": 34,
     "cyber_defense": 10,

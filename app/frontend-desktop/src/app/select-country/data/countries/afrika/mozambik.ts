@@ -168,7 +168,6 @@ export const mozambik: CountryData = {
     "command_center": 12,
     "military_air_base": 11,
     "military_naval_base": 27,
-    "arms_factory": 32,
     "nuclear_status": false,
     "space_program": 1,
     "cyber_defense": 40,

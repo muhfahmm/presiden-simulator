@@ -168,7 +168,6 @@ export const nigeria: CountryData = {
     "command_center": 16,
     "military_air_base": 27,
     "military_naval_base": 17,
-    "arms_factory": 36,
     "nuclear_status": false,
     "space_program": 15,
     "cyber_defense": 5,

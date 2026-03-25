@@ -164,7 +164,6 @@ export const rusia: CountryData = {
     "command_center": 22,
     "military_air_base": 22,
     "military_naval_base": 18,
-    "arms_factory": 13,
     "nuclear_status": false,
     "space_program": 32,
     "cyber_defense": 20,

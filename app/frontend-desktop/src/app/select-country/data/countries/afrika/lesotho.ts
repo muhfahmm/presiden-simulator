@@ -168,7 +168,6 @@ export const lesotho: CountryData = {
     "command_center": 32,
     "military_air_base": 24,
     "military_naval_base": 23,
-    "arms_factory": 28,
     "nuclear_status": false,
     "space_program": 13,
     "cyber_defense": 8,

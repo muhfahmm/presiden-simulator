@@ -164,7 +164,6 @@ export const tonga: CountryData = {
     "command_center": 23,
     "military_air_base": 31,
     "military_naval_base": 31,
-    "arms_factory": 6,
     "nuclear_status": false,
     "space_program": 16,
     "cyber_defense": 39,

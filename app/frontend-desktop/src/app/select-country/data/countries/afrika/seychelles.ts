@@ -168,7 +168,6 @@ export const seychelles: CountryData = {
     "command_center": 24,
     "military_air_base": 4,
     "military_naval_base": 23,
-    "arms_factory": 29,
     "nuclear_status": false,
     "space_program": 19,
     "cyber_defense": 13,

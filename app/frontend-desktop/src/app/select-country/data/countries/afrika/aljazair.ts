@@ -168,7 +168,6 @@ export const aljazair: CountryData = {
     "command_center": 31,
     "military_air_base": 23,
     "military_naval_base": 18,
-    "arms_factory": 34,
     "nuclear_status": false,
     "space_program": 21,
     "cyber_defense": 11,

@@ -168,7 +168,6 @@ export const guinea_bissau: CountryData = {
     "command_center": 31,
     "military_air_base": 18,
     "military_naval_base": 40,
-    "arms_factory": 32,
     "nuclear_status": false,
     "space_program": 24,
     "cyber_defense": 19,

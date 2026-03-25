@@ -164,7 +164,6 @@ export const nepal: CountryData = {
     "command_center": 2,
     "military_air_base": 15,
     "military_naval_base": 10,
-    "arms_factory": 38,
     "nuclear_status": false,
     "space_program": 40,
     "cyber_defense": 35,

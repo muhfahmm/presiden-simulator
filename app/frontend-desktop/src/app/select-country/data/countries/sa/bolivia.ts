@@ -164,7 +164,6 @@ export const bolivia: CountryData = {
     "command_center": 24,
     "military_air_base": 21,
     "military_naval_base": 26,
-    "arms_factory": 19,
     "nuclear_status": false,
     "space_program": 4,
     "cyber_defense": 26,

@@ -164,7 +164,6 @@ export const republik_timor_leste: CountryData = {
     "command_center": 35,
     "military_air_base": 2,
     "military_naval_base": 31,
-    "arms_factory": 15,
     "nuclear_status": false,
     "space_program": 28,
     "cyber_defense": 32,

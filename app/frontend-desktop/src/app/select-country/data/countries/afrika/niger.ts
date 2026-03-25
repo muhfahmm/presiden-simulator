@@ -168,7 +168,6 @@ export const niger: CountryData = {
     "command_center": 32,
     "military_air_base": 24,
     "military_naval_base": 25,
-    "arms_factory": 29,
     "nuclear_status": false,
     "space_program": 39,
     "cyber_defense": 16,

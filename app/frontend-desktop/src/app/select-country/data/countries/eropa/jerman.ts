@@ -164,7 +164,6 @@ export const jerman: CountryData = {
     "command_center": 37,
     "military_air_base": 9,
     "military_naval_base": 7,
-    "arms_factory": 8,
     "nuclear_status": false,
     "space_program": 26,
     "cyber_defense": 29,

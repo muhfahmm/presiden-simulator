@@ -164,7 +164,6 @@ export const guatemala: CountryData = {
     "command_center": 8,
     "military_air_base": 38,
     "military_naval_base": 12,
-    "arms_factory": 14,
     "nuclear_status": false,
     "space_program": 32,
     "cyber_defense": 39,

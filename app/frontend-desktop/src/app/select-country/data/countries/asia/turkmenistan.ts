@@ -164,7 +164,6 @@ export const turkmenistan: CountryData = {
     "command_center": 37,
     "military_air_base": 23,
     "military_naval_base": 35,
-    "arms_factory": 39,
     "nuclear_status": false,
     "space_program": 19,
     "cyber_defense": 40,

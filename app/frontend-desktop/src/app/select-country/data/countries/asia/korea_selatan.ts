@@ -164,7 +164,6 @@ export const korea_selatan: CountryData = {
     "command_center": 11,
     "military_air_base": 2,
     "military_naval_base": 33,
-    "arms_factory": 24,
     "nuclear_status": false,
     "space_program": 13,
     "cyber_defense": 26,

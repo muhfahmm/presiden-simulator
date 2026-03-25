@@ -164,7 +164,6 @@ export const armenia: CountryData = {
     "command_center": 37,
     "military_air_base": 37,
     "military_naval_base": 17,
-    "arms_factory": 28,
     "nuclear_status": false,
     "space_program": 36,
     "cyber_defense": 11,

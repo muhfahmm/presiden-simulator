@@ -164,7 +164,6 @@ export const venezuela: CountryData = {
     "command_center": 13,
     "military_air_base": 10,
     "military_naval_base": 16,
-    "arms_factory": 35,
     "nuclear_status": false,
     "space_program": 32,
     "cyber_defense": 11,

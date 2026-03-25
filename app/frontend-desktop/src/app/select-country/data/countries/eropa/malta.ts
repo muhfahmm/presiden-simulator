@@ -164,7 +164,6 @@ export const malta: CountryData = {
     "command_center": 1,
     "military_air_base": 2,
     "military_naval_base": 10,
-    "arms_factory": 35,
     "nuclear_status": false,
     "space_program": 32,
     "cyber_defense": 22,

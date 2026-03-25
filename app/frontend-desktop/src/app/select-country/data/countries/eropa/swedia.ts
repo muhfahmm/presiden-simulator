@@ -164,7 +164,6 @@ export const swedia: CountryData = {
     "command_center": 22,
     "military_air_base": 15,
     "military_naval_base": 26,
-    "arms_factory": 16,
     "nuclear_status": false,
     "space_program": 14,
     "cyber_defense": 30,

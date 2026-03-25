@@ -164,7 +164,6 @@ export const jepang: CountryData = {
     "command_center": 33,
     "military_air_base": 15,
     "military_naval_base": 31,
-    "arms_factory": 14,
     "nuclear_status": false,
     "space_program": 30,
     "cyber_defense": 19,

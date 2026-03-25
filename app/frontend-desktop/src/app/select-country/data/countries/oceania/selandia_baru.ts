@@ -164,7 +164,6 @@ export const selandia_baru: CountryData = {
     "command_center": 1,
     "military_air_base": 2,
     "military_naval_base": 12,
-    "arms_factory": 19,
     "nuclear_status": false,
     "space_program": 8,
     "cyber_defense": 36,

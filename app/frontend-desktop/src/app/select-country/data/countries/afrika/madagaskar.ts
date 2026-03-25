@@ -168,7 +168,6 @@ export const madagaskar: CountryData = {
     "command_center": 3,
     "military_air_base": 26,
     "military_naval_base": 17,
-    "arms_factory": 16,
     "nuclear_status": false,
     "space_program": 8,
     "cyber_defense": 31,

@@ -168,7 +168,6 @@ export const republik_demokratik_kongo: CountryData = {
     "command_center": 11,
     "military_air_base": 2,
     "military_naval_base": 15,
-    "arms_factory": 38,
     "nuclear_status": false,
     "space_program": 32,
     "cyber_defense": 5,

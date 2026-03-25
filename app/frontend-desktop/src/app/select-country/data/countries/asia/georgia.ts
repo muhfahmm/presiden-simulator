@@ -164,7 +164,6 @@ export const georgia: CountryData = {
     "command_center": 4,
     "military_air_base": 13,
     "military_naval_base": 10,
-    "arms_factory": 2,
     "nuclear_status": false,
     "space_program": 19,
     "cyber_defense": 24,

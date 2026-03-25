@@ -164,7 +164,6 @@ export const monako: CountryData = {
     "command_center": 30,
     "military_air_base": 22,
     "military_naval_base": 15,
-    "arms_factory": 33,
     "nuclear_status": false,
     "space_program": 24,
     "cyber_defense": 28,

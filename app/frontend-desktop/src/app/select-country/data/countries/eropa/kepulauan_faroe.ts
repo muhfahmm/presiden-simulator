@@ -164,7 +164,6 @@ export const kepulauan_faroe: CountryData = {
     "command_center": 8,
     "military_air_base": 2,
     "military_naval_base": 40,
-    "arms_factory": 40,
     "nuclear_status": false,
     "space_program": 30,
     "cyber_defense": 3,

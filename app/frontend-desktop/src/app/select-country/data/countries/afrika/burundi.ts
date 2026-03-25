@@ -168,7 +168,6 @@ export const burundi: CountryData = {
     "command_center": 7,
     "military_air_base": 28,
     "military_naval_base": 37,
-    "arms_factory": 37,
     "nuclear_status": false,
     "space_program": 10,
     "cyber_defense": 40,

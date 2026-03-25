@@ -164,7 +164,6 @@ export const turki: CountryData = {
     "command_center": 19,
     "military_air_base": 16,
     "military_naval_base": 12,
-    "arms_factory": 2,
     "nuclear_status": false,
     "space_program": 27,
     "cyber_defense": 36,

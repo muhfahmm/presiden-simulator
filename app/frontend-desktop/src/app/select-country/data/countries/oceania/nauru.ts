@@ -164,7 +164,6 @@ export const nauru: CountryData = {
     "command_center": 18,
     "military_air_base": 1,
     "military_naval_base": 5,
-    "arms_factory": 11,
     "nuclear_status": false,
     "space_program": 23,
     "cyber_defense": 1,

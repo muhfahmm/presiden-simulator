@@ -164,7 +164,6 @@ export const kroasia: CountryData = {
     "command_center": 34,
     "military_air_base": 30,
     "military_naval_base": 13,
-    "arms_factory": 34,
     "nuclear_status": false,
     "space_program": 16,
     "cyber_defense": 37,

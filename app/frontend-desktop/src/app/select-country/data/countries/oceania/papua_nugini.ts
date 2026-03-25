@@ -164,7 +164,6 @@ export const papua_nugini: CountryData = {
     "command_center": 35,
     "military_air_base": 33,
     "military_naval_base": 21,
-    "arms_factory": 23,
     "nuclear_status": false,
     "space_program": 13,
     "cyber_defense": 34,

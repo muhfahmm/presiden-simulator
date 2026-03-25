@@ -168,7 +168,6 @@ export const senegal: CountryData = {
     "command_center": 20,
     "military_air_base": 34,
     "military_naval_base": 33,
-    "arms_factory": 30,
     "nuclear_status": false,
     "space_program": 28,
     "cyber_defense": 36,

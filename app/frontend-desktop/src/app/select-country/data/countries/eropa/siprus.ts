@@ -164,7 +164,6 @@ export const siprus: CountryData = {
     "command_center": 32,
     "military_air_base": 19,
     "military_naval_base": 27,
-    "arms_factory": 8,
     "nuclear_status": false,
     "space_program": 4,
     "cyber_defense": 32,

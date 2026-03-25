@@ -168,7 +168,6 @@ export const eswatini: CountryData = {
     "command_center": 28,
     "military_air_base": 19,
     "military_naval_base": 4,
-    "arms_factory": 37,
     "nuclear_status": false,
     "space_program": 16,
     "cyber_defense": 6,

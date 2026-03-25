@@ -164,7 +164,6 @@ export const prancis: CountryData = {
     "command_center": 7,
     "military_air_base": 5,
     "military_naval_base": 35,
-    "arms_factory": 22,
     "nuclear_status": false,
     "space_program": 37,
     "cyber_defense": 25,

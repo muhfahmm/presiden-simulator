@@ -164,7 +164,6 @@ export const kiribati: CountryData = {
     "command_center": 12,
     "military_air_base": 19,
     "military_naval_base": 28,
-    "arms_factory": 35,
     "nuclear_status": false,
     "space_program": 25,
     "cyber_defense": 31,

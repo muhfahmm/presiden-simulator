@@ -164,7 +164,6 @@ export const tuvalu: CountryData = {
     "command_center": 32,
     "military_air_base": 25,
     "military_naval_base": 4,
-    "arms_factory": 25,
     "nuclear_status": false,
     "space_program": 5,
     "cyber_defense": 31,

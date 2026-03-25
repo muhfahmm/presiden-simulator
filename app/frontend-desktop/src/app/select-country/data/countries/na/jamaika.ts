@@ -164,7 +164,6 @@ export const jamaika: CountryData = {
     "command_center": 26,
     "military_air_base": 39,
     "military_naval_base": 33,
-    "arms_factory": 21,
     "nuclear_status": false,
     "space_program": 2,
     "cyber_defense": 10,

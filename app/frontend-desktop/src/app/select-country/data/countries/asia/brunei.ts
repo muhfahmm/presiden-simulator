@@ -164,7 +164,6 @@ export const brunei: CountryData = {
     "command_center": 2,
     "military_air_base": 24,
     "military_naval_base": 27,
-    "arms_factory": 32,
     "nuclear_status": false,
     "space_program": 27,
     "cyber_defense": 34,

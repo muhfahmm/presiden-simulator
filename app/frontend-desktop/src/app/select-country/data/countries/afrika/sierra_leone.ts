@@ -168,7 +168,6 @@ export const sierra_leone: CountryData = {
     "command_center": 4,
     "military_air_base": 27,
     "military_naval_base": 11,
-    "arms_factory": 30,
     "nuclear_status": false,
     "space_program": 38,
     "cyber_defense": 14,

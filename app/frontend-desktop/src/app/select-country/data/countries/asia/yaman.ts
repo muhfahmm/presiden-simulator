@@ -164,7 +164,6 @@ export const yaman: CountryData = {
     "command_center": 5,
     "military_air_base": 32,
     "military_naval_base": 36,
-    "arms_factory": 8,
     "nuclear_status": false,
     "space_program": 16,
     "cyber_defense": 19,

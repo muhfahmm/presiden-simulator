@@ -164,7 +164,6 @@ export const arab_saudi: CountryData = {
     "command_center": 13,
     "military_air_base": 10,
     "military_naval_base": 14,
-    "arms_factory": 34,
     "nuclear_status": false,
     "space_program": 26,
     "cyber_defense": 21,

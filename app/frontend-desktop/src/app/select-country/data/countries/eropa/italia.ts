@@ -164,7 +164,6 @@ export const italia: CountryData = {
     "command_center": 25,
     "military_air_base": 20,
     "military_naval_base": 16,
-    "arms_factory": 5,
     "nuclear_status": false,
     "space_program": 10,
     "cyber_defense": 9,

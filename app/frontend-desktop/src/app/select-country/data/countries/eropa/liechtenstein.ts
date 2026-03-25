@@ -164,7 +164,6 @@ export const liechtenstein: CountryData = {
     "command_center": 21,
     "military_air_base": 35,
     "military_naval_base": 10,
-    "arms_factory": 12,
     "nuclear_status": false,
     "space_program": 22,
     "cyber_defense": 16,

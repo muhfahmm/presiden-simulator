@@ -164,7 +164,6 @@ export const vanuatu: CountryData = {
     "command_center": 34,
     "military_air_base": 20,
     "military_naval_base": 19,
-    "arms_factory": 23,
     "nuclear_status": false,
     "space_program": 6,
     "cyber_defense": 28,

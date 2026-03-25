@@ -164,7 +164,6 @@ export const taiwan: CountryData = {
     "command_center": 2,
     "military_air_base": 26,
     "military_naval_base": 30,
-    "arms_factory": 25,
     "nuclear_status": false,
     "space_program": 19,
     "cyber_defense": 12,

@@ -164,7 +164,6 @@ export const fiji: CountryData = {
     "command_center": 32,
     "military_air_base": 25,
     "military_naval_base": 28,
-    "arms_factory": 40,
     "nuclear_status": false,
     "space_program": 8,
     "cyber_defense": 21,

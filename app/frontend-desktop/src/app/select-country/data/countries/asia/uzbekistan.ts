@@ -164,7 +164,6 @@ export const uzbekistan: CountryData = {
     "command_center": 37,
     "military_air_base": 11,
     "military_naval_base": 33,
-    "arms_factory": 3,
     "nuclear_status": false,
     "space_program": 23,
     "cyber_defense": 12,

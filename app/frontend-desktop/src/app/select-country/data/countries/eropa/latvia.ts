@@ -164,7 +164,6 @@ export const latvia: CountryData = {
     "command_center": 29,
     "military_air_base": 22,
     "military_naval_base": 1,
-    "arms_factory": 18,
     "nuclear_status": false,
     "space_program": 20,
     "cyber_defense": 28,

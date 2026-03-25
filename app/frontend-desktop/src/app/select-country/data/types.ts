@@ -147,7 +147,6 @@ export interface CountryData {
     command_center: number;
     military_air_base: number;
     military_naval_base: number;
-    arms_factory: number;
     nuclear_status: boolean;
     space_program: number; // 0-100
     cyber_defense: number;

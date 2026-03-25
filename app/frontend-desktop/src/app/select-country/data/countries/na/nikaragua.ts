@@ -164,7 +164,6 @@ export const nikaragua: CountryData = {
     "command_center": 25,
     "military_air_base": 10,
     "military_naval_base": 5,
-    "arms_factory": 1,
     "nuclear_status": false,
     "space_program": 33,
     "cyber_defense": 14,

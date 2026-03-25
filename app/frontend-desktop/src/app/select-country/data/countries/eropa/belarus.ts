@@ -164,7 +164,6 @@ export const belarus: CountryData = {
     "command_center": 17,
     "military_air_base": 6,
     "military_naval_base": 36,
-    "arms_factory": 38,
     "nuclear_status": false,
     "space_program": 13,
     "cyber_defense": 10,

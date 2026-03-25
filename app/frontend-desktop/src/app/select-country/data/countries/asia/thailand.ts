@@ -164,7 +164,6 @@ export const thailand: CountryData = {
     "command_center": 26,
     "military_air_base": 22,
     "military_naval_base": 19,
-    "arms_factory": 19,
     "nuclear_status": false,
     "space_program": 10,
     "cyber_defense": 14,

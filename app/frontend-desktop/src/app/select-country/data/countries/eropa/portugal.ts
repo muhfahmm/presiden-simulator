@@ -164,7 +164,6 @@ export const portugal: CountryData = {
     "command_center": 39,
     "military_air_base": 3,
     "military_naval_base": 25,
-    "arms_factory": 28,
     "nuclear_status": false,
     "space_program": 23,
     "cyber_defense": 20,

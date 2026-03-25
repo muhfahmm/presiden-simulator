@@ -164,7 +164,6 @@ export const bahrain: CountryData = {
     "command_center": 25,
     "military_air_base": 33,
     "military_naval_base": 25,
-    "arms_factory": 39,
     "nuclear_status": false,
     "space_program": 1,
     "cyber_defense": 17,

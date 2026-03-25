@@ -164,7 +164,6 @@ export const haiti: CountryData = {
     "command_center": 18,
     "military_air_base": 25,
     "military_naval_base": 35,
-    "arms_factory": 23,
     "nuclear_status": false,
     "space_program": 3,
     "cyber_defense": 8,

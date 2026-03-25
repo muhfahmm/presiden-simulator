@@ -164,7 +164,6 @@ export const uni_emirat_arab: CountryData = {
     "command_center": 6,
     "military_air_base": 15,
     "military_naval_base": 28,
-    "arms_factory": 12,
     "nuclear_status": false,
     "space_program": 21,
     "cyber_defense": 24,

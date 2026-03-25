@@ -164,7 +164,6 @@ export const kazakhstan: CountryData = {
     "command_center": 38,
     "military_air_base": 1,
     "military_naval_base": 23,
-    "arms_factory": 18,
     "nuclear_status": false,
     "space_program": 20,
     "cyber_defense": 6,

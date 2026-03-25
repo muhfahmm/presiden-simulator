@@ -168,7 +168,6 @@ export const rwanda: CountryData = {
     "command_center": 34,
     "military_air_base": 40,
     "military_naval_base": 29,
-    "arms_factory": 15,
     "nuclear_status": false,
     "space_program": 24,
     "cyber_defense": 12,

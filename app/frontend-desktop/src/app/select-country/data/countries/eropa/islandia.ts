@@ -164,7 +164,6 @@ export const islandia: CountryData = {
     "command_center": 19,
     "military_air_base": 19,
     "military_naval_base": 22,
-    "arms_factory": 1,
     "nuclear_status": false,
     "space_program": 32,
     "cyber_defense": 6,

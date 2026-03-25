@@ -164,7 +164,6 @@ export const san_marino: CountryData = {
     "command_center": 7,
     "military_air_base": 7,
     "military_naval_base": 35,
-    "arms_factory": 29,
     "nuclear_status": false,
     "space_program": 22,
     "cyber_defense": 39,

@@ -164,7 +164,6 @@ export const guiana_prancis: CountryData = {
     "command_center": 4,
     "military_air_base": 27,
     "military_naval_base": 15,
-    "arms_factory": 39,
     "nuclear_status": false,
     "space_program": 29,
     "cyber_defense": 16,

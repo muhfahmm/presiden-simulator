@@ -164,7 +164,6 @@ export const antigua_dan_barbuda: CountryData = {
     "command_center": 40,
     "military_air_base": 21,
     "military_naval_base": 33,
-    "arms_factory": 4,
     "nuclear_status": false,
     "space_program": 31,
     "cyber_defense": 22,

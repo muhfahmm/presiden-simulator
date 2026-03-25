@@ -168,7 +168,6 @@ export const republik_afrika_tengah: CountryData = {
     "command_center": 39,
     "military_air_base": 3,
     "military_naval_base": 18,
-    "arms_factory": 37,
     "nuclear_status": false,
     "space_program": 31,
     "cyber_defense": 24,

@@ -164,7 +164,6 @@ export const brazil: CountryData = {
     "command_center": 33,
     "military_air_base": 6,
     "military_naval_base": 11,
-    "arms_factory": 9,
     "nuclear_status": false,
     "space_program": 24,
     "cyber_defense": 39,

@@ -168,7 +168,6 @@ export const chad: CountryData = {
     "command_center": 4,
     "military_air_base": 30,
     "military_naval_base": 22,
-    "arms_factory": 25,
     "nuclear_status": false,
     "space_program": 3,
     "cyber_defense": 36,

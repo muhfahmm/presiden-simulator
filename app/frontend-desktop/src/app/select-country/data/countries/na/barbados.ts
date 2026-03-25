@@ -164,7 +164,6 @@ export const barbados: CountryData = {
     "command_center": 36,
     "military_air_base": 9,
     "military_naval_base": 27,
-    "arms_factory": 19,
     "nuclear_status": false,
     "space_program": 12,
     "cyber_defense": 28,

@@ -168,7 +168,6 @@ export const mauritius: CountryData = {
     "command_center": 17,
     "military_air_base": 28,
     "military_naval_base": 15,
-    "arms_factory": 36,
     "nuclear_status": false,
     "space_program": 5,
     "cyber_defense": 40,

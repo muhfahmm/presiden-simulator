@@ -164,7 +164,6 @@ export const finlandia: CountryData = {
     "command_center": 18,
     "military_air_base": 15,
     "military_naval_base": 35,
-    "arms_factory": 18,
     "nuclear_status": false,
     "space_program": 40,
     "cyber_defense": 15,
