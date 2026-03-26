@@ -1,5 +1,5 @@
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/countries/region/_index";
+import { countries } from "@/app/database/data/countries/region/index";
 
 const POPULATION_STORAGE_KEY = "em4_population_data";
 

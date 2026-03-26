@@ -1,4 +1,4 @@
-import { CountryData } from "../../types/_index";
+import { CountryData } from "../../../types";
 
 export const saint_vincent_dan_grenadine: CountryData = {
   "name_en": "Saint Vincent and the Grenadines",

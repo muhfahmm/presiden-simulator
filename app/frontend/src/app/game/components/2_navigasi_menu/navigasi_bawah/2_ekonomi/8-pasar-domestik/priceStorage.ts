@@ -1,7 +1,7 @@
 "use client"
-import { CountryData } from "@/app/database/data/types/_index";
+import { CountryData } from "@/app/database/data/types/index";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/countries/region/_index";
+import { countries } from "@/app/database/data/countries/region/index";
 
 const STORAGE_KEY = "em4_price_data_v3";
 

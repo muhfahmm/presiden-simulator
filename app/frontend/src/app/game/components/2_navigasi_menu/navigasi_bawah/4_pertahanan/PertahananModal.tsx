@@ -1,7 +1,7 @@
 "use client"
 
 import { X, Shield, Swords, Eye, Bomb, Map as MapIcon, Radiation, Users, Zap, Truck, Anchor, Plane, Search, Crosshair, Target } from "lucide-react"
-import { CountryData } from "@/app/database/data/types/_index";
+import { CountryData } from "@/app/database/data/types/index";
 
 interface ModalProps {
   isOpen: boolean;

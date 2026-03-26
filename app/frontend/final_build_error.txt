@@ -1,0 +1,5925 @@
+﻿
+> frontend@0.1.0 build
+> next build
+
+npm : ÔÜá Warning: Next.js
+ inferred your workspace r
+oot, but it may not be cor
+rect.
+At line:1 char:1
++ npm run build 2>&1 | Out
+-File -FilePath final_buil
+d_error.txt -Encodi ...
++ ~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (Ô  
+  Üá Warning: Ne...not    
+ be correct.:String) [    
+], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+ We detected multiple lock
+files and selected the dir
+ectory of C:\fhm\EM\app\pa
+ckage-lock.json as the roo
+t directory.
+ To silence this warning, 
+set `turbopack.root` in yo
+ur Next.js config, or cons
+ider removing one of the l
+ockfiles if it's not neede
+d.
+   See https://nextjs.org/
+docs/app/api-reference/con
+fig/next-config-js/turbopa
+ck#root-directory for more
+ information.
+ Detected additional lockf
+iles: 
+   * C:\fhm\EM\app\fronten
+d\package-lock.json
+
+Ôû▓ Next.js 16.1.7 (Turbopack)
+
+  Creating an optimized production build ...
+
+> Build error occurred
+Error: Turbopack build fai
+led with 26 errors:
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/4-
+pemasukkanpengeluaran/Pema
+sukkanPengeluaranModal.tsx
+:12:1
+Module not found: Can't re
+solve '@/app/database/data
+/1_kelistrikan'
+[0m [90m 10 |[39m [36m
+import[39m { taxStorage }
+ [36mfrom[39m [32m"@/ap
+p/game/components/2_naviga
+si_menu/navigasi_bawah/2_e
+konomi/2-pajak/TaxStorage"
+[39m
+ [90m 11 |[39m
+[31m[1m>[22m[39m[90m 
+12 |[39m [36mimport[39m
+ { [33mKAPASITAS_LISTRIK_
+METADATA[39m } [36mfrom
+[39m [32m"@/app/database/
+data/1_kelistrikan"[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m
+ [90m 13 |[39m [36mimpo
+rt[39m { mineralKritisRat
+e } [36mfrom[39m [32m"@
+/app/database/data/4_produ
+ksi_ekonomi_nasional/2_pem
+bangunan/laju-produksi/1_m
+ineral_kritis"[39m
+ [90m 14 |[39m [36mimpo
+rt[39m { produkIndustriRa
+te } [36mfrom[39m [32m"
+@/app/database/data/4_prod
+uksi_ekonomi_nasional/2_pe
+mbangunan/laju-produksi/2_
+produk_industri"[39m
+ [90m 15 |[39m [36mimpo
+rt[39m { komoditasPanganR
+ate } [36mfrom[39m [32m
+"@/app/database/data/4_pro
+duksi_ekonomi_nasional/2_p
+embangunan/laju-produksi/3
+_komoditas_pangan"[39m[0
+m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/1_kelistrikan' inside
+ of [project]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/4-pemasukkanpengeluaran/
+PemasukkanPengeluaranModal
+.tsx [Client Component Bro
+wser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/4-pemasukkanpengeluaran/
+PemasukkanPengeluaranModal
+.tsx [Client Component SSR
+]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/5-
+energi/EnergiModal.tsx:8:1
+Module not found: Can't re
+solve '@/app/database/data
+/1_kelistrikan'
+[0m [90m  6 |[39m [36m
+import[39m { [33mCountry
+Data[39m } [36mfrom[39m
+ [32m"@/app/database/data
+/types/_index"[39m
+ [90m  7 |[39m [36mimpo
+rt[39m { gameStorage } [
+36mfrom[39m [32m"@/app/g
+ame/gamestorage"[39m
+[31m[1m>[22m[39m[90m 
+ 8 |[39m [36mimport[39m
+ { hitungTotalKapasitas[3
+3m,[39m hitungTotalKonsum
+siNasional[33m,[39m [33
+mKAPASITAS_LISTRIK_METADAT
+A[39m[33m,[39m [33mKON
+SUMSI_EKSTRAKSI[39m[33m,
+[39m [33mKONSUMSI_PRODUK
+SI[39m[33m,[39m [33mKO
+NSUMSI_PERTAHANAN[39m[33
+m,[39m [33mKONSUMSI_STRA
+TEGIC[39m[33m,[39m [33
+mKONSUMSI_FLEET[39m[33m,
+[39m [33mKONSUMSI_SOSIAL
+[39m[33m,[39m [33mKONS
+UMSI_TRANSPORTASI[39m[33
+m,[39m [33mDASHBOARD_LAB
+ELS[39m[33m,[39m [33mK
+ONSUMSI_PANGAN[39m } [36
+mfrom[39m [32m"@/app/dat
+abase/data/1_kelistrikan"
+[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m
+ [90m  9 |[39m [36mimpo
+rt[39m { mineralKritisRat
+e[33m,[39m produkIndustr
+iRate[33m,[39m komoditas
+PanganRate } [36mfrom[39
+m [32m"@/app/database/dat
+a/4_produksi_ekonomi_nasio
+nal/2_pembangunan/laju-pro
+duksi"[39m
+ [90m 10 |[39m [36mimpo
+rt[39m { produksiMiliter 
+} [36mfrom[39m [32m"@/a
+pp/database/data/4_produks
+i_ekonomi_nasional/2_pemba
+ngunan/produksi-militer"[
+39m
+ [90m 11 |[39m [36mimpo
+rt[39m { tempatUmum } [3
+6mfrom[39m [32m"@/app/da
+tabase/data/4_produksi_eko
+nomi_nasional/2_pembanguna
+n/tempat-umum"[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/1_kelistrikan' inside
+ of [project]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/5-energi/EnergiModal.tsx
+ [Client Component Browser
+]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/5-energi/EnergiModal.tsx
+ [Client Component SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/3_pembanguna
+n/1-produksi/ProduksiModal
+.tsx:6:1
+Module not found: Can't re
+solve '@/app/database/data
+/1_kelistrikan'
+[0m [90m 4 |[39m [36mi
+mport[39m { produksiMilit
+er } [36mfrom[39m [32m"
+@/app/database/data/4_prod
+uksi_ekonomi_nasional/2_pe
+mbangunan/produksi-militer
+"[39m[33m;[39m
+ [90m 5 |[39m [36mimpor
+t[39m { tempatUmum } [36
+mfrom[39m [32m"@/app/dat
+abase/data/4_produksi_ekon
+omi_nasional/2_pembangunan
+/tempat-umum"[39m[33m;[
+39m
+[31m[1m>[22m[39m[90m 
+6 |[39m [36mimport[39m 
+{ hitungTotalKapasitas[33
+m,[39m hitungTotalKonsums
+iNasional[33m,[39m [33m
+DASHBOARD_LABELS[39m[33m
+,[39m [33mKAPASITAS_LIST
+RIK_METADATA[39m } [36mf
+rom[39m [32m"@/app/datab
+ase/data/1_kelistrikan"[3
+9m[33m;[39m
+ [90m   |[39m [31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m
+ [90m 7 |[39m [36mimpor
+t[39m { [33mKONSUMSI_EKS
+TRAKSI[39m[33m,[39m [3
+3mKONSUMSI_PRODUKSI[39m[
+33m,[39m [33mKONSUMSI_PA
+NGAN[39m } [36mfrom[39m
+ [32m"@/app/database/data
+/1_kelistrikan"[39m[33m;
+[39m
+ [90m 8 |[39m [36mimpor
+t[39m { gameStorage } [3
+6mfrom[39m [32m"@/app/ga
+me/gamestorage"[39m[33m;
+[39m
+ [90m 9 |[39m [36mimpor
+t[39m { buildingStorage }
+ [36mfrom[39m [32m"@/ap
+p/game/components/2_naviga
+si_menu/navigasi_bawah/3_p
+embangunan/buildingStorage
+"[39m[33m;[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/1_kelistrikan' inside
+ of [project]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/3_pemban
+gunan/1-produksi/ProduksiM
+odal.tsx [Client Component
+ Browser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/3_pemban
+gunan/1-produksi/ProduksiM
+odal.tsx [Client Component
+ SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/3_pembanguna
+n/1-produksi/ProduksiModal
+.tsx:7:1
+Module not found: Can't re
+solve '@/app/database/data
+/1_kelistrikan'
+[0m [90m  5 |[39m [36m
+import[39m { tempatUmum }
+ [36mfrom[39m [32m"@/ap
+p/database/data/4_produksi
+_ekonomi_nasional/2_pemban
+gunan/tempat-umum"[39m[3
+3m;[39m
+ [90m  6 |[39m [36mimpo
+rt[39m { hitungTotalKapas
+itas[33m,[39m hitungTota
+lKonsumsiNasional[33m,[3
+9m [33mDASHBOARD_LABELS[
+39m[33m,[39m [33mKAPASI
+TAS_LISTRIK_METADATA[39m 
+} [36mfrom[39m [32m"@/a
+pp/database/data/1_kelistr
+ikan"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 
+ 7 |[39m [36mimport[39m
+ { [33mKONSUMSI_EKSTRAKSI
+[39m[33m,[39m [33mKONS
+UMSI_PRODUKSI[39m[33m,[
+39m [33mKONSUMSI_PANGAN[
+39m } [36mfrom[39m [32m
+"@/app/database/data/1_kel
+istrikan"[39m[33m;[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+ [90m  8 |[39m [36mimpo
+rt[39m { gameStorage } [
+36mfrom[39m [32m"@/app/g
+ame/gamestorage"[39m[33m
+;[39m
+ [90m  9 |[39m [36mimpo
+rt[39m { buildingStorage 
+} [36mfrom[39m [32m"@/a
+pp/game/components/2_navig
+asi_menu/navigasi_bawah/3_
+pembangunan/buildingStorag
+e"[39m[33m;[39m
+ [90m 10 |[39m [36mimpo
+rt[39m { formatGameDate[
+33m,[39m addDays[33m,[3
+9m getStoredGameDate } [3
+6mfrom[39m [32m"@/app/ga
+me/data/time/gameTime"[39
+m[33m;[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/1_kelistrikan' inside
+ of [project]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/3_pemban
+gunan/1-produksi/ProduksiM
+odal.tsx [Client Component
+ Browser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/3_pemban
+gunan/1-produksi/ProduksiM
+odal.tsx [Client Component
+ SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/3_pembanguna
+n/2-produksi-militer/Produ
+ksiMiliterModal.tsx:4:419
+Module not found: Can't re
+solve '@/app/database/data
+/1_kelistrikan'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimpor
+t[39m { useState[33m,[3
+9m useEffect[33m,[39m [
+33mFragment[39m } [36mfr
+om[39m [32m"react"[39m
+[33m;[39m
+[31m[1m>[22m[39m[90m 
+4 |[39m [36mimport[39m 
+{ [33mX[39m[33m,[39m 
+[33mWrench[39m[33m,[39m
+ [33mZap[39m[33m,[39m 
+[33mShield[39m[33m,[39
+m [33mTruck[39m[33m,[3
+9m [33mMapPin[39m[33m,
+[39m [33mRadiation[39m[
+33m,[39m [33mEye[39m[3
+3m,[39m [33mGavel[39m[
+33m,[39m [33mUserCheck[
+39m[33m,[39m [33mLandma
+rk[39m[33m,[39m [33mSw
+ords[39m [36mas[39m [3
+3mMilitaryIcon[39m[33m,
+[39m [33mHardHat[39m[33
+m,[39m [33mBuilding2[39
+m[33m,[39m [33mTowerCon
+trol[39m[33m,[39m [33m
+Ship[39m[33m,[39m [33m
+Plane[39m[33m,[39m [33
+mRocket[39m[33m,[39m [
+33mCrosshair[39m[33m,[3
+9m [33mActivity[39m[33m
+,[39m [33mWifi[39m[33m
+,[39m [33mRadio[39m[33
+m,[39m [33mCctv[39m[33
+m,[39m [33mSearch[39m[
+33m,[39m [33mSiren[39m
+[33m,[39m [33mCar[39m[
+33m,[39m [33mBike[39m[
+33m,[39m [33mDog[39m[3
+3m,[39m [33mShieldAlert
+[39m[33m,[39m [33mAncho
+r[39m[33m,[39m [33mWav
+es[39m[33m,[39m [33mSa
+tellite[39m[33m,[39m [
+33mRadioTower[39m[33m,[
+39m [33mCpu[39m[33m,[3
+9m [33mTarget[39m[33m,
+[39m [33mRadar[39m[33m,
+[39m [33mTrendingUp[39m
+[33m,[39m [33mTrendingD
+own[39m[33m,[39m [33mC
+lock[39m[33m,[39m [33m
+Loader2[39m[33m,[39m [
+33mRefreshCw[39m[33m,[3
+9m [33mEyeOff[39m[33m,
+[39m [33mBuilding[39m[3
+3m,[39m [33mArchive[39m
+[33m,[39m [33mInfo[39m
+ } [36mfrom[39m [32m"lu
+cide-react"[39m
+ [90m   |[39m           
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                  [31m[1
+m^[22m[39m
+[31m[1m>[22m[39m[90m 
+5 |[39m [36mimport[39m 
+{ hitungTotalKapasitas[33
+m,[39m hitungTotalKonsums
+iNasional[33m,[39m [33m
+DASHBOARD_LABELS[39m[33m
+,[39m [33mKAPASITAS_LIST
+RIK_METADATA[39m } [36mf
+rom[39m [32m"@/app/datab
+ase/data/1_kelistrikan"[3
+9m[33m;[39m
+ [90m   |[39m [31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+ [90m 6 |[39m [36mimpor
+t[39m { [33mKONSUMSI_PER
+TAHANAN[39m[33m,[39m [
+33mKONSUMSI_STRATEGIC[39m
+[33m,[39m [33mKONSUMSI_
+FLEET[39m[33m,[39m [33
+mKONSUMSI_SOSIAL[39m } [
+36mfrom[39m [32m"@/app/d
+atabase/data/1_kelistrikan
+/2_konsumsi_listrik"[39m
+[33m;[39m
+ [90m 7 |[39m [36mimpor
+t[39m { gameStorage } [3
+6mfrom[39m [32m"@/app/ga
+me/gamestorage"[39m[33m;
+[39m
+ [90m 8 |[39m [36mimpor
+t[39m { buildingStorage }
+ [36mfrom[39m [32m"@/ap
+p/game/components/2_naviga
+si_menu/navigasi_bawah/3_p
+embangunan/buildingStorage
+"[39m[33m;[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/1_kelistrikan' inside
+ of [project]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/3_pemban
+gunan/2-produksi-militer/P
+roduksiMiliterModal.tsx [C
+lient Component Browser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/3_pemban
+gunan/2-produksi-militer/P
+roduksiMiliterModal.tsx [C
+lient Component SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/3_pembanguna
+n/3-tempat-umum/TempatUmum
+Modal.tsx:4:680
+Module not found: Can't re
+solve '@/app/database/data
+/1_kelistrikan'
+[0m [90m 2 |[39m
+ [90m 3 |[39m [36mimpor
+t[39m { useState[33m,[3
+9m useEffect[33m,[39m [
+33mFragment[39m } [36mfr
+om[39m [32m"react"[39m
+[33m;[39m
+[31m[1m>[22m[39m[90m 
+4 |[39m [36mimport[39m 
+{ [33mX[39m[33m,[39m 
+[33mWrench[39m[33m,[39m
+ [33mZap[39m[33m,[39m 
+[33mPickaxe[39m[33m,[3
+9m [33mFactory[39m[33m,
+[39m [33mConstruction[3
+9m[33m,[39m [33mStore[
+39m[33m,[39m [33mBeef[
+39m[33m,[39m [33mWheat
+[39m[33m,[39m [33mRadia
+tion[39m[33m,[39m [33m
+Coins[39m[33m,[39m [33
+mFlame[39m[33m,[39m [3
+3mDroplets[39m[33m,[39m
+ [33mFlaskConical[39m[3
+3m,[39m [33mShovel[39m
+[33m,[39m [33mContainer
+[39m[33m,[39m [33mCar[
+39m[33m,[39m [33mBike[
+39m[33m,[39m [33mHammer
+[39m[33m,[39m [33mTree
+s[39m[33m,[39m [33mCof
+fee[39m[33m,[39m [33mC
+ookie[39m[33m,[39m [33
+mMilk[39m[33m,[39m [33
+mFish[39m[33m,[39m [33
+mWaves[39m[33m,[39m [3
+3mShell[39m[33m,[39m [
+33mSprout[39m[33m,[39m 
+[33mActivity[39m[33m,[
+39m [33mTrendingUp[39m[
+33m,[39m [33mTrendingDow
+n[39m[33m,[39m [33mClo
+ck[39m[33m,[39m [33mLo
+ader2[39m[33m,[39m [33
+mRefreshCw[39m[33m,[39m
+ [33mEye[39m[33m,[39m 
+[33mEyeOff[39m[33m,[39
+m [33mPill[39m[33m,[39
+m [33mUtensils[39m[33m,
+[39m [33mApple[39m[33m
+,[39m [33mBird[39m[33m
+,[39m [33mBean[39m[33m
+,[39m [33mShip[39m[33m
+,[39m [33mMap[39m[33m,
+[39m [33mWifi[39m[33m,
+[39m [33mPlane[39m[33m
+,[39m [33mBus[39m[33m,
+[39m [33mShieldCheck[39
+m[33m,[39m [33mHome[39
+m[33m,[39m [33mArchive
+[39m[33m,[39m [33mWareh
+ouse[39m[33m,[39m [33m
+GraduationCap[39m[33m,[
+39m [33mLandmark[39m[33
+m,[39m [33mCrosshair[39
+m[33m,[39m [33mHeartPul
+se[39m[33m,[39m [33mLi
+brary[39m[33m,[39m [33
+mTrainFront[39m[33m,[39
+m [33mHardHat[39m[33m,
+[39m [33mShieldAlert[39m
+[33m,[39m [33mScale[39
+m[33m,[39m [33mSiren[3
+9m[33m,[39m [33mCpu[39
+m[33m,[39m [33mTreePine
+[39m[33m,[39m [33mCroi
+ssant[39m[33m,[39m [33
+mSoup[39m[33m,[39m [33
+mLeaf[39m[33m,[39m [33
+mBuilding2[39m[33m,[39m
+ [33mMicroscope[39m[33m
+,[39m [33mSearch[39m[3
+3m,[39m [33mTrophy[39m
+[33m,[39m [33mGavel[39m
+[33m,[39m [33mSiren[39
+m [36mas[39m [33mPolice
+Icon[39m[33m,[39m [33m
+Home[39m [36mas[39m [3
+3mHomeIcon[39m[33m,[39m
+ [33mTruck[39m[33m,[39
+m [33mSchool[39m[33m,[
+39m [33mLightbulb[39m[3
+3m,[39m [33mInfo[39m } 
+[36mfrom[39m [32m"lucid
+e-react"[39m
+ [90m   |[39m           
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                          
+                   [31m[
+1m^[22m[39m
+[31m[1m>[22m[39m[90m 
+5 |[39m [36mimport[39m 
+{ hitungTotalKapasitas[33
+m,[39m hitungTotalKonsums
+iNasional[33m,[39m [33m
+DASHBOARD_LABELS[39m[33m
+,[39m [33mKAPASITAS_LIST
+RIK_METADATA[39m[33m,[3
+9m [33mKONSUMSI_SOSIAL[3
+9m[33m,[39m [33mKONSUMS
+I_TRANSPORTASI[39m } [36
+mfrom[39m [32m"@/app/dat
+abase/data/1_kelistrikan"
+[39m[33m;[39m
+ [90m   |[39m [31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m
+ [90m 6 |[39m [36mimpor
+t[39m { gameStorage } [3
+6mfrom[39m [32m"@/app/ga
+me/gamestorage"[39m[33m;
+[39m
+ [90m 7 |[39m [36mimpor
+t[39m { buildingStorage }
+ [36mfrom[39m [32m"@/ap
+p/game/components/2_naviga
+si_menu/navigasi_bawah/3_p
+embangunan/buildingStorage
+"[39m[33m;[39m
+ [90m 8 |[39m [36mimpor
+t[39m { formatGameDate[3
+3m,[39m addDays[33m,[39
+m getStoredGameDate } [36
+mfrom[39m [32m"@/app/gam
+e/data/time/gameTime"[39m
+[33m;[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/1_kelistrikan' inside
+ of [project]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/3_pemban
+gunan/3-tempat-umum/Tempat
+UmumModal.tsx [Client Comp
+onent Browser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/3_pemban
+gunan/3-tempat-umum/Tempat
+UmumModal.tsx [Client Comp
+onent SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/da
+ta/economy/BudgetDeltaLogi
+c.ts:5:1
+Module not found: Can't re
+solve '@/app/database/data
+/1_kelistrikan/1_pasokan_l
+istrik'
+[0m [90m 3 |[39m [36mi
+mport[39m { incomeStorage
+ } [36mfrom[39m [32m"@/
+app/game/components/2_navi
+gasi_menu/navigasi_bawah/2
+_ekonomi/4-pemasukkanpenge
+luaran/pemasukkan/IncomeSt
+orage"[39m[33m;[39m
+ [90m 4 |[39m [36mimpor
+t[39m { expenseStorage } 
+[36mfrom[39m [32m"@/app
+/game/components/2_navigas
+i_menu/navigasi_bawah/2_ek
+onomi/4-pemasukkanpengelua
+ran/pengeluaran/ExpenseSto
+rage"[39m[33m;[39m
+[31m[1m>[22m[39m[90m 
+5 |[39m [36mimport[39m 
+{ [33mKAPASITAS_LISTRIK_M
+ETADATA[39m } [36mfrom[
+39m [32m"@/app/database/d
+ata/1_kelistrikan/1_pasoka
+n_listrik"[39m[33m;[39m
+ [90m   |[39m [31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m
+ [90m 6 |[39m [36mimpor
+t[39m { mineralKritisRate
+ } [36mfrom[39m [32m"@/
+app/database/data/4_produk
+si_ekonomi_nasional/2_pemb
+angunan/laju-produksi/1_mi
+neral_kritis"[39m[33m;[
+39m
+ [90m 7 |[39m [36mimpor
+t[39m { produkIndustriRat
+e } [36mfrom[39m [32m"@
+/app/database/data/4_produ
+ksi_ekonomi_nasional/2_pem
+bangunan/laju-produksi/2_p
+roduk_industri"[39m[33m;
+[39m
+ [90m 8 |[39m [36mimpor
+t[39m { komoditasPanganRa
+te } [36mfrom[39m [32m"
+@/app/database/data/4_prod
+uksi_ekonomi_nasional/2_pe
+mbangunan/laju-produksi/3_
+komoditas_pangan"[39m[33
+m;[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/1_kelistrikan/1_pasok
+an_listrik' inside of [pro
+ject]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/data/economy/BudgetDelta
+Logic.ts [Client Component
+ Browser]
+    ./frontend/src/app/gam
+e/hooks/useGameState.ts [C
+lient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/data/economy/BudgetDelta
+Logic.ts [Client Component
+ SSR]
+    ./frontend/src/app/gam
+e/hooks/useGameState.ts [C
+lient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/3_pembanguna
+n/2-produksi-militer/Produ
+ksiMiliterModal.tsx:5:148
+Module not found: Can't re
+solve '@/app/database/data
+/1_kelistrikan/2_konsumsi_
+listrik'
+[0m [90m 3 |[39m [36mi
+mport[39m { useState[33m
+,[39m useEffect[33m,[39
+m [33mFragment[39m } [3
+6mfrom[39m [32m"react"[
+39m[33m;[39m
+ [90m 4 |[39m [36mimpor
+t[39m { [33mX[39m[33m,
+[39m [33mWrench[39m[33
+m,[39m [33mZap[39m[33m
+,[39m [33mShield[39m[3
+3m,[39m [33mTruck[39m[
+33m,[39m [33mMapPin[39m
+[33m,[39m [33mRadiation
+[39m[33m,[39m [33mEye
+[39m[33m,[39m [33mGavel
+[39m[33m,[39m [33mUser
+Check[39m[33m,[39m [33
+mLandmark[39m[33m,[39m 
+[33mSwords[39m [36mas[
+39m [33mMilitaryIcon[39m
+[33m,[39m [33mHardHat[
+39m[33m,[39m [33mBuildi
+ng2[39m[33m,[39m [33mT
+owerControl[39m[33m,[39
+m [33mShip[39m[33m,[39
+m [33mPlane[39m[33m,[3
+9m [33mRocket[39m[33m,
+[39m [33mCrosshair[39m[
+33m,[39m [33mActivity[3
+9m[33m,[39m [33mWifi[3
+9m[33m,[39m [33mRadio[
+39m[33m,[39m [33mCctv[
+39m[33m,[39m [33mSearch
+[39m[33m,[39m [33mSire
+n[39m[33m,[39m [33mCar
+[39m[33m,[39m [33mBike
+[39m[33m,[39m [33mDog
+[39m[33m,[39m [33mShiel
+dAlert[39m[33m,[39m [3
+3mAnchor[39m[33m,[39m 
+[33mWaves[39m[33m,[39m 
+[33mSatellite[39m[33m,
+[39m [33mRadioTower[39m
+[33m,[39m [33mCpu[39m[
+33m,[39m [33mTarget[39m
+[33m,[39m [33mRadar[39
+m[33m,[39m [33mTrending
+Up[39m[33m,[39m [33mTr
+endingDown[39m[33m,[39m
+ [33mClock[39m[33m,[39
+m [33mLoader2[39m[33m,
+[39m [33mRefreshCw[39m[
+33m,[39m [33mEyeOff[39m
+[33m,[39m [33mBuilding
+[39m[33m,[39m [33mArchi
+ve[39m[33m,[39m [33mIn
+fo[39m } [36mfrom[39m 
+[32m"lucide-react"[39m
+[31m[1m>[22m[39m[90m 
+5 |[39m [36mimport[39m 
+{ hitungTotalKapasitas[33
+m,[39m hitungTotalKonsums
+iNasional[33m,[39m [33m
+DASHBOARD_LABELS[39m[33m
+,[39m [33mKAPASITAS_LIST
+RIK_METADATA[39m } [36mf
+rom[39m [32m"@/app/datab
+ase/data/1_kelistrikan"[3
+9m[33m;[39m
+ [90m   |[39m           
+                          
+                          
+                          
+                          
+                          
+       [31m[1m^[22m[39
+m
+[31m[1m>[22m[39m[90m 
+6 |[39m [36mimport[39m 
+{ [33mKONSUMSI_PERTAHANAN
+[39m[33m,[39m [33mKONS
+UMSI_STRATEGIC[39m[33m,
+[39m [33mKONSUMSI_FLEET[
+39m[33m,[39m [33mKONSUM
+SI_SOSIAL[39m } [36mfrom
+[39m [32m"@/app/database
+/data/1_kelistrikan/2_kons
+umsi_listrik"[39m[33m;[
+39m
+ [90m   |[39m [31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m
+ [90m 7 |[39m [36mimpor
+t[39m { gameStorage } [3
+6mfrom[39m [32m"@/app/ga
+me/gamestorage"[39m[33m;
+[39m
+ [90m 8 |[39m [36mimpor
+t[39m { buildingStorage }
+ [36mfrom[39m [32m"@/ap
+p/game/components/2_naviga
+si_menu/navigasi_bawah/3_p
+embangunan/buildingStorage
+"[39m[33m;[39m
+ [90m 9 |[39m [36mimpor
+t[39m { formatGameDate[3
+3m,[39m addDays[33m,[39
+m getStoredGameDate } [36
+mfrom[39m [32m"@/app/gam
+e/data/time/gameTime"[39m
+[33m;[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/1_kelistrikan/2_konsu
+msi_listrik' inside of [pr
+oject]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/3_pemban
+gunan/2-produksi-militer/P
+roduksiMiliterModal.tsx [C
+lient Component Browser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/3_pemban
+gunan/2-produksi-militer/P
+roduksiMiliterModal.tsx [C
+lient Component SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/1-
+perdagangan/TradeExecution
+Modal.tsx:3:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/laju-prod
+uksi'
+[0m [90m 1 |[39m [36mi
+mport[39m [33mReact[39m
+[33m,[39m { useState[33
+m,[39m useEffect } [36mf
+rom[39m [32m"react"[39m
+[33m;[39m
+ [90m 2 |[39m [36mimpor
+t[39m { [33mX[39m[33m,
+[39m [33mPlay[39m[33m,
+[39m [33mPackage[39m[3
+3m,[39m [33mTrendingUp[
+39m[33m,[39m [33mActivi
+ty[39m[33m,[39m [33mAr
+rowRightLeft[39m[33m,[3
+9m [33mZap[39m[33m,[39
+m [33mBox[39m[33m,[39m
+ [33mFactory[39m[33m,[
+39m [33mPickaxe[39m[33m
+,[39m [33mTractor[39m[
+33m,[39m [33mShip[39m[
+33m,[39m [33mGlobe[39m
+[33m,[39m [33mChevronDow
+n[39m } [36mfrom[39m [
+32m"lucide-react"[39m[33
+m;[39m
+[31m[1m>[22m[39m[90m 
+3 |[39m [36mimport[39m 
+{ mineralKritisRate[33m,
+[39m produkIndustriRate[3
+3m,[39m komoditasPanganRa
+te } [36mfrom[39m [32m"
+@/app/database/data/4_prod
+uksi_ekonomi_nasional/2_pe
+mbangunan/laju-produksi"[
+39m[33m;[39m
+ [90m   |[39m [31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m
+ [90m 4 |[39m [36mimpor
+t[39m { gameStorage } [3
+6mfrom[39m [32m"@/app/ga
+me/gamestorage"[39m[33m;
+[39m
+ [90m 5 |[39m [36mimpor
+t[39m { budgetStorage } 
+[36mfrom[39m [32m"@/app/
+game/components/1_navbar/3
+_kas_negara"[39m[33m;[3
+9m
+ [90m 6 |[39m [36mimpor
+t[39m { buildingStorage }
+ [36mfrom[39m [32m"@/ap
+p/game/components/2_naviga
+si_menu/navigasi_bawah/3_p
+embangunan/buildingStorage
+"[39m[33m;[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/laju-
+produksi' inside of [proje
+ct]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/1-perdagangan/TradeExecu
+tionModal.tsx [Client Comp
+onent Browser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/1-perdagangan/Perdaganga
+nModal.tsx [Client Compone
+nt Browser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/1-perdagangan/TradeExecu
+tionModal.tsx [Client Comp
+onent SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/1-perdagangan/Perdaganga
+nModal.tsx [Client Compone
+nt SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/5-
+energi/EnergiModal.tsx:9:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/laju-prod
+uksi'
+[0m [90m  7 |[39m [36m
+import[39m { gameStorage 
+} [36mfrom[39m [32m"@/a
+pp/game/gamestorage"[39m
+ [90m  8 |[39m [36mimpo
+rt[39m { hitungTotalKapas
+itas[33m,[39m hitungTota
+lKonsumsiNasional[33m,[3
+9m [33mKAPASITAS_LISTRIK_
+METADATA[39m[33m,[39m 
+[33mKONSUMSI_EKSTRAKSI[39
+m[33m,[39m [33mKONSUMSI
+_PRODUKSI[39m[33m,[39m 
+[33mKONSUMSI_PERTAHANAN[
+39m[33m,[39m [33mKONSUM
+SI_STRATEGIC[39m[33m,[3
+9m [33mKONSUMSI_FLEET[39
+m[33m,[39m [33mKONSUMSI
+_SOSIAL[39m[33m,[39m [
+33mKONSUMSI_TRANSPORTASI[
+39m[33m,[39m [33mDASHBO
+ARD_LABELS[39m[33m,[39m
+ [33mKONSUMSI_PANGAN[39m
+ } [36mfrom[39m [32m"@/
+app/database/data/1_kelist
+rikan"[39m
+[31m[1m>[22m[39m[90m 
+ 9 |[39m [36mimport[39m
+ { mineralKritisRate[33m,
+[39m produkIndustriRate[
+33m,[39m komoditasPanganR
+ate } [36mfrom[39m [32m
+"@/app/database/data/4_pro
+duksi_ekonomi_nasional/2_p
+embangunan/laju-produksi"
+[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m
+ [90m 10 |[39m [36mimpo
+rt[39m { produksiMiliter 
+} [36mfrom[39m [32m"@/a
+pp/database/data/4_produks
+i_ekonomi_nasional/2_pemba
+ngunan/produksi-militer"[
+39m
+ [90m 11 |[39m [36mimpo
+rt[39m { tempatUmum } [3
+6mfrom[39m [32m"@/app/da
+tabase/data/4_produksi_eko
+nomi_nasional/2_pembanguna
+n/tempat-umum"[39m
+ [90m 12 |[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/laju-
+produksi' inside of [proje
+ct]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/5-energi/EnergiModal.tsx
+ [Client Component Browser
+]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/5-energi/EnergiModal.tsx
+ [Client Component SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/6-
+produksi-barang/ProduksiBa
+rangModal.tsx:9:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/laju-prod
+uksi'
+[0m [90m  7 |[39m [36m
+import[39m { gameStorage 
+} [36mfrom[39m [32m"@/a
+pp/game/gamestorage"[39m
+ [90m  8 |[39m [36mimpo
+rt[39m { buildingStorage 
+} [36mfrom[39m [32m"@/a
+pp/game/components/2_navig
+asi_menu/navigasi_bawah/3_
+pembangunan/buildingStorag
+e"[39m
+[31m[1m>[22m[39m[90m 
+ 9 |[39m [36mimport[39m
+ { mineralKritisRate[33m,
+[39m produkIndustriRate }
+ [36mfrom[39m [32m"@/ap
+p/database/data/4_produksi
+_ekonomi_nasional/2_pemban
+gunan/laju-produksi"[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m
+ [90m 10 |[39m
+ [90m 11 |[39m [36minte
+rface[39m [33mModalProps
+[39m {
+ [90m 12 |[39m    isOpen
+[33m:[39m boolean[33m;
+[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/laju-
+produksi' inside of [proje
+ct]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/6-produksi-barang/Produk
+siBarangModal.tsx [Client 
+Component Browser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/6-produksi-barang/Produk
+siBarangModal.tsx [Client 
+Component SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/7-
+minerals/MineralsModal.tsx
+:9:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/laju-prod
+uksi'
+[0m [90m  7 |[39m [36m
+import[39m { buildingStor
+age } [36mfrom[39m [32m
+"@/app/game/components/2_n
+avigasi_menu/navigasi_bawa
+h/3_pembangunan/buildingSt
+orage"[39m[33m;[39m
+ [90m  8 |[39m [36mimpo
+rt[39m { budgetStorage } 
+[36mfrom[39m [32m"@/app
+/game/components/1_navbar/
+3_kas_negara"[39m[33m;[
+39m
+[31m[1m>[22m[39m[90m 
+ 9 |[39m [36mimport[39m
+ { mineralKritisRate } [3
+6mfrom[39m [32m"@/app/da
+tabase/data/4_produksi_eko
+nomi_nasional/2_pembanguna
+n/laju-produksi"[39m[33m
+;[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m
+ [90m 10 |[39m [36mimpo
+rt[39m { useState[33m,[
+39m useEffect } [36mfrom
+[39m [32m"react"[39m[33
+m;[39m
+ [90m 11 |[39m
+ [90m 12 |[39m [36minte
+rface[39m [33mMineralsMo
+dalProps[39m {[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/laju-
+produksi' inside of [proje
+ct]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/7-minerals/MineralsModal
+.tsx [Client Component Bro
+wser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/7-minerals/MineralsModal
+.tsx [Client Component SSR
+]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/3_pembanguna
+n/1-produksi/ProduksiModal
+.tsx:3:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/laju-prod
+uksi'
+[0m [90m 1 |[39m [36mi
+mport[39m { useState[33m
+,[39m useEffect[33m,[39
+m [33mFragment[39m } [3
+6mfrom[39m [32m"react"[
+39m[33m;[39m
+ [90m 2 |[39m [36mimpor
+t[39m { [33mX[39m[33m,
+[39m [33mWrench[39m[33
+m,[39m [33mZap[39m[33m
+,[39m [33mPickaxe[39m[
+33m,[39m [33mFactory[39
+m[33m,[39m [33mConstruc
+tion[39m[33m,[39m [33m
+Store[39m[33m,[39m [33
+mBeef[39m[33m,[39m [33
+mWheat[39m[33m,[39m [3
+3mRadiation[39m[33m,[39
+m [33mCoins[39m[33m,[3
+9m [33mFlame[39m[33m,[
+39m [33mDroplets[39m[33
+m,[39m [33mFlaskConical
+[39m[33m,[39m [33mShove
+l[39m[33m,[39m [33mCon
+tainer[39m[33m,[39m [3
+3mCar[39m[33m,[39m [33
+mBike[39m[33m,[39m [33
+mHammer[39m[33m,[39m [
+33mTrees[39m[33m,[39m 
+[33mCoffee[39m[33m,[39m
+ [33mCookie[39m[33m,[3
+9m [33mMilk[39m[33m,[3
+9m [33mFish[39m[33m,[3
+9m [33mWaves[39m[33m,[
+39m [33mShell[39m[33m,
+[39m [33mSprout[39m[33m
+,[39m [33mActivity[39m
+[33m,[39m [33mTrendingUp
+[39m[33m,[39m [33mTren
+dingDown[39m[33m,[39m 
+[33mClock[39m[33m,[39m 
+[33mLoader2[39m[33m,[3
+9m [33mRefreshCw[39m[33
+m,[39m [33mEye[39m[33m
+,[39m [33mEyeOff[39m[3
+3m,[39m [33mPill[39m[3
+3m,[39m [33mUtensils[39
+m[33m,[39m [33mApple[3
+9m[33m,[39m [33mBird[3
+9m[33m,[39m [33mBean[3
+9m[33m,[39m [33mShip[3
+9m[33m,[39m [33mMap[39
+m[33m,[39m [33mWifi[39
+m[33m,[39m [33mPlane[3
+9m[33m,[39m [33mBus[39
+m[33m,[39m [33mShieldCh
+eck[39m[33m,[39m [33mH
+ome[39m[33m,[39m [33mA
+rchive[39m[33m,[39m [3
+3mWarehouse[39m[33m,[39
+m [33mGraduationCap[39m
+[33m,[39m [33mLandmark[
+39m[33m,[39m [33mCrossh
+air[39m[33m,[39m [33mH
+eartPulse[39m[33m,[39m 
+[33mLibrary[39m[33m,[3
+9m [33mTrainFront[39m[3
+3m,[39m [33mHardHat[39m
+[33m,[39m [33mShieldAle
+rt[39m[33m,[39m [33mSc
+ale[39m[33m,[39m [33mS
+iren[39m[33m,[39m [33m
+Cpu[39m[33m,[39m [33mT
+reePine[39m[33m,[39m [
+33mCroissant[39m[33m,[3
+9m [33mSoup[39m[33m,[3
+9m [33mLeaf[39m[33m,[3
+9m [33mInfo[39m[33m,[3
+9m [33mGem[39m[33m,[39
+m [33mRadio[39m[33m,[3
+9m [33mLayers[39m[33m,
+[39m [33mBox[39m[33m,[
+39m [33mBattery[39m[33m
+,[39m [33mMountain[39m 
+} [36mfrom[39m [32m"luc
+ide-react"[39m
+[31m[1m>[22m[39m[90m 
+3 |[39m [36mimport[39m 
+{ mineralKritisRate[33m,
+[39m produkIndustriRate[3
+3m,[39m komoditasPanganRa
+te } [36mfrom[39m [32m"
+@/app/database/data/4_prod
+uksi_ekonomi_nasional/2_pe
+mbangunan/laju-produksi"[
+39m[33m;[39m
+ [90m   |[39m [31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m
+ [90m 4 |[39m [36mimpor
+t[39m { produksiMiliter }
+ [36mfrom[39m [32m"@/ap
+p/database/data/4_produksi
+_ekonomi_nasional/2_pemban
+gunan/produksi-militer"[3
+9m[33m;[39m
+ [90m 5 |[39m [36mimpor
+t[39m { tempatUmum } [36
+mfrom[39m [32m"@/app/dat
+abase/data/4_produksi_ekon
+omi_nasional/2_pembangunan
+/tempat-umum"[39m[33m;[
+39m
+ [90m 6 |[39m [36mimpor
+t[39m { hitungTotalKapasi
+tas[33m,[39m hitungTotal
+KonsumsiNasional[33m,[39
+m [33mDASHBOARD_LABELS[3
+9m[33m,[39m [33mKAPASIT
+AS_LISTRIK_METADATA[39m }
+ [36mfrom[39m [32m"@/ap
+p/database/data/1_kelistri
+kan"[39m[33m;[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/laju-
+produksi' inside of [proje
+ct]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/3_pemban
+gunan/1-produksi/ProduksiM
+odal.tsx [Client Component
+ Browser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/3_pemban
+gunan/1-produksi/ProduksiM
+odal.tsx [Client Component
+ SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/da
+ta/production/productionLo
+gic.ts:1:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/laju-prod
+uksi'
+[0m[31m[1m>[22m[39m[
+90m 1 |[39m [36mimport[
+39m { mineralKritisRate[3
+3m,[39m produkIndustriRat
+e[33m,[39m komoditasPang
+anRate } [36mfrom[39m [
+32m"@/app/database/data/4_
+produksi_ekonomi_nasional/
+2_pembangunan/laju-produks
+i"[39m[33m;[39m
+ [90m   |[39m [31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m
+ [90m 2 |[39m [36mimpor
+t[39m { [33mCountryData
+[39m } [36mfrom[39m [32
+m"@/app/database/data/type
+s/_index"[39m[33m;[39m
+ [90m 3 |[39m
+ [90m 4 |[39m [90m/**[
+39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/laju-
+produksi' inside of [proje
+ct]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/data/production/producti
+onLogic.ts [Client Compone
+nt Browser]
+    ./frontend/src/app/gam
+e/components/time/GameTime
+Controls.tsx [Client Compo
+nent Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/data/production/producti
+onLogic.ts [Client Compone
+nt SSR]
+    ./frontend/src/app/gam
+e/components/time/GameTime
+Controls.tsx [Client Compo
+nent SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/4-
+pemasukkanpengeluaran/Pema
+sukkanPengeluaranModal.tsx
+:13:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/laju-prod
+uksi/1_mineral_kritis'
+[0m [90m 11 |[39m
+ [90m 12 |[39m [36mimpo
+rt[39m { [33mKAPASITAS_L
+ISTRIK_METADATA[39m } [3
+6mfrom[39m [32m"@/app/da
+tabase/data/1_kelistrikan"
+[39m
+[31m[1m>[22m[39m[90m 
+13 |[39m [36mimport[39m
+ { mineralKritisRate } [3
+6mfrom[39m [32m"@/app/da
+tabase/data/4_produksi_eko
+nomi_nasional/2_pembanguna
+n/laju-produksi/1_mineral_
+kritis"[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m
+ [90m 14 |[39m [36mimpo
+rt[39m { produkIndustriRa
+te } [36mfrom[39m [32m"
+@/app/database/data/4_prod
+uksi_ekonomi_nasional/2_pe
+mbangunan/laju-produksi/2_
+produk_industri"[39m
+ [90m 15 |[39m [36mimpo
+rt[39m { komoditasPanganR
+ate } [36mfrom[39m [32m
+"@/app/database/data/4_pro
+duksi_ekonomi_nasional/2_p
+embangunan/laju-produksi/3
+_komoditas_pangan"[39m
+ [90m 16 |[39m [36mimpo
+rt[39m { produksiMiliter 
+} [36mfrom[39m [32m"@/a
+pp/database/data/4_produks
+i_ekonomi_nasional/2_pemba
+ngunan/produksi-militer"[
+39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/laju-
+produksi/1_mineral_kritis'
+ inside of [project]/front
+end
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/4-pemasukkanpengeluaran/
+PemasukkanPengeluaranModal
+.tsx [Client Component Bro
+wser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/4-pemasukkanpengeluaran/
+PemasukkanPengeluaranModal
+.tsx [Client Component SSR
+]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/da
+ta/economy/BudgetDeltaLogi
+c.ts:6:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/laju-prod
+uksi/1_mineral_kritis'
+[0m [90m 4 |[39m [36mi
+mport[39m { expenseStorag
+e } [36mfrom[39m [32m"@
+/app/game/components/2_nav
+igasi_menu/navigasi_bawah/
+2_ekonomi/4-pemasukkanpeng
+eluaran/pengeluaran/Expens
+eStorage"[39m[33m;[39m
+ [90m 5 |[39m [36mimpor
+t[39m { [33mKAPASITAS_LI
+STRIK_METADATA[39m } [36
+mfrom[39m [32m"@/app/dat
+abase/data/1_kelistrikan/1
+_pasokan_listrik"[39m[33
+m;[39m
+[31m[1m>[22m[39m[90m 
+6 |[39m [36mimport[39m 
+{ mineralKritisRate } [36
+mfrom[39m [32m"@/app/dat
+abase/data/4_produksi_ekon
+omi_nasional/2_pembangunan
+/laju-produksi/1_mineral_k
+ritis"[39m[33m;[39m
+ [90m   |[39m [31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m[31
+m[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m[
+31m[1m^[22m[39m[31m[1
+m^[22m[39m[31m[1m^[22
+m[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^[
+22m[39m[31m[1m^[22m[3
+9m[31m[1m^[22m[39m
+ [90m 7 |[39m [36mimpor
+t[39m { produkIndustriRat
+e } [36mfrom[39m [32m"@
+/app/database/data/4_produ
+ksi_ekonomi_nasional/2_pem
+bangunan/laju-produksi/2_p
+roduk_industri"[39m[33m;
+[39m
+ [90m 8 |[39m [36mimpor
+t[39m { komoditasPanganRa
+te } [36mfrom[39m [32m"
+@/app/database/data/4_prod
+uksi_ekonomi_nasional/2_pe
+mbangunan/laju-produksi/3_
+komoditas_pangan"[39m[33
+m;[39m
+ [90m 9 |[39m [36mimpor
+t[39m { produksiMiliter }
+ [36mfrom[39m [32m"@/ap
+p/database/data/4_produksi
+_ekonomi_nasional/2_pemban
+gunan/produksi-militer"[3
+9m[33m;[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/laju-
+produksi/1_mineral_kritis'
+ inside of [project]/front
+end
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/data/economy/BudgetDelta
+Logic.ts [Client Component
+ Browser]
+    ./frontend/src/app/gam
+e/hooks/useGameState.ts [C
+lient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/data/economy/BudgetDelta
+Logic.ts [Client Component
+ SSR]
+    ./frontend/src/app/gam
+e/hooks/useGameState.ts [C
+lient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/4-
+pemasukkanpengeluaran/Pema
+sukkanPengeluaranModal.tsx
+:14:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/laju-prod
+uksi/2_produk_industri'
+[0m [90m 12 |[39m [36m
+import[39m { [33mKAPASIT
+AS_LISTRIK_METADATA[39m }
+ [36mfrom[39m [32m"@/ap
+p/database/data/1_kelistri
+kan"[39m
+ [90m 13 |[39m [36mimpo
+rt[39m { mineralKritisRat
+e } [36mfrom[39m [32m"@
+/app/database/data/4_produ
+ksi_ekonomi_nasional/2_pem
+bangunan/laju-produksi/1_m
+ineral_kritis"[39m
+[31m[1m>[22m[39m[90m 
+14 |[39m [36mimport[39m
+ { produkIndustriRate } [
+36mfrom[39m [32m"@/app/d
+atabase/data/4_produksi_ek
+onomi_nasional/2_pembangun
+an/laju-produksi/2_produk_
+industri"[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m
+ [90m 15 |[39m [36mimpo
+rt[39m { komoditasPanganR
+ate } [36mfrom[39m [32m
+"@/app/database/data/4_pro
+duksi_ekonomi_nasional/2_p
+embangunan/laju-produksi/3
+_komoditas_pangan"[39m
+ [90m 16 |[39m [36mimpo
+rt[39m { produksiMiliter 
+} [36mfrom[39m [32m"@/a
+pp/database/data/4_produks
+i_ekonomi_nasional/2_pemba
+ngunan/produksi-militer"[
+39m
+ [90m 17 |[39m [36mimpo
+rt[39m { tempatUmum } [3
+6mfrom[39m [32m"@/app/da
+tabase/data/4_produksi_eko
+nomi_nasional/2_pembanguna
+n/tempat-umum"[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/laju-
+produksi/2_produk_industri
+' inside of [project]/fron
+tend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/4-pemasukkanpengeluaran/
+PemasukkanPengeluaranModal
+.tsx [Client Component Bro
+wser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/4-pemasukkanpengeluaran/
+PemasukkanPengeluaranModal
+.tsx [Client Component SSR
+]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/da
+ta/economy/BudgetDeltaLogi
+c.ts:7:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/laju-prod
+uksi/2_produk_industri'
+[0m [90m  5 |[39m [36m
+import[39m { [33mKAPASIT
+AS_LISTRIK_METADATA[39m }
+ [36mfrom[39m [32m"@/ap
+p/database/data/1_kelistri
+kan/1_pasokan_listrik"[39
+m[33m;[39m
+ [90m  6 |[39m [36mimpo
+rt[39m { mineralKritisRat
+e } [36mfrom[39m [32m"@
+/app/database/data/4_produ
+ksi_ekonomi_nasional/2_pem
+bangunan/laju-produksi/1_m
+ineral_kritis"[39m[33m;
+[39m
+[31m[1m>[22m[39m[90m 
+ 7 |[39m [36mimport[39m
+ { produkIndustriRate } [
+36mfrom[39m [32m"@/app/d
+atabase/data/4_produksi_ek
+onomi_nasional/2_pembangun
+an/laju-produksi/2_produk_
+industri"[39m[33m;[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m
+ [90m  8 |[39m [36mimpo
+rt[39m { komoditasPanganR
+ate } [36mfrom[39m [32m
+"@/app/database/data/4_pro
+duksi_ekonomi_nasional/2_p
+embangunan/laju-produksi/3
+_komoditas_pangan"[39m[3
+3m;[39m
+ [90m  9 |[39m [36mimpo
+rt[39m { produksiMiliter 
+} [36mfrom[39m [32m"@/a
+pp/database/data/4_produks
+i_ekonomi_nasional/2_pemba
+ngunan/produksi-militer"[
+39m[33m;[39m
+ [90m 10 |[39m [36mimpo
+rt[39m { tempatUmum } [3
+6mfrom[39m [32m"@/app/da
+tabase/data/4_produksi_eko
+nomi_nasional/2_pembanguna
+n/tempat-umum"[39m[33m;
+[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/laju-
+produksi/2_produk_industri
+' inside of [project]/fron
+tend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/data/economy/BudgetDelta
+Logic.ts [Client Component
+ Browser]
+    ./frontend/src/app/gam
+e/hooks/useGameState.ts [C
+lient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/data/economy/BudgetDelta
+Logic.ts [Client Component
+ SSR]
+    ./frontend/src/app/gam
+e/hooks/useGameState.ts [C
+lient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/4-
+pemasukkanpengeluaran/Pema
+sukkanPengeluaranModal.tsx
+:15:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/laju-prod
+uksi/3_komoditas_pangan'
+[0m [90m 13 |[39m [36m
+import[39m { mineralKriti
+sRate } [36mfrom[39m [3
+2m"@/app/database/data/4_p
+roduksi_ekonomi_nasional/2
+_pembangunan/laju-produksi
+/1_mineral_kritis"[39m
+ [90m 14 |[39m [36mimpo
+rt[39m { produkIndustriRa
+te } [36mfrom[39m [32m"
+@/app/database/data/4_prod
+uksi_ekonomi_nasional/2_pe
+mbangunan/laju-produksi/2_
+produk_industri"[39m
+[31m[1m>[22m[39m[90m 
+15 |[39m [36mimport[39m
+ { komoditasPanganRate } 
+[36mfrom[39m [32m"@/app/
+database/data/4_produksi_e
+konomi_nasional/2_pembangu
+nan/laju-produksi/3_komodi
+tas_pangan"[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m
+ [90m 16 |[39m [36mimpo
+rt[39m { produksiMiliter 
+} [36mfrom[39m [32m"@/a
+pp/database/data/4_produks
+i_ekonomi_nasional/2_pemba
+ngunan/produksi-militer"[
+39m
+ [90m 17 |[39m [36mimpo
+rt[39m { tempatUmum } [3
+6mfrom[39m [32m"@/app/da
+tabase/data/4_produksi_eko
+nomi_nasional/2_pembanguna
+n/tempat-umum"[39m
+ [90m 18 |[39m [36mimpo
+rt[39m { produksi } [36m
+from[39m [32m"@/app/data
+base/data/4_produksi_ekono
+mi_nasional/2_pembangunan/
+produksi"[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/laju-
+produksi/3_komoditas_panga
+n' inside of [project]/fro
+ntend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/4-pemasukkanpengeluaran/
+PemasukkanPengeluaranModal
+.tsx [Client Component Bro
+wser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/4-pemasukkanpengeluaran/
+PemasukkanPengeluaranModal
+.tsx [Client Component SSR
+]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/da
+ta/economy/BudgetDeltaLogi
+c.ts:8:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/laju-prod
+uksi/3_komoditas_pangan'
+[0m [90m  6 |[39m [36m
+import[39m { mineralKriti
+sRate } [36mfrom[39m [3
+2m"@/app/database/data/4_p
+roduksi_ekonomi_nasional/2
+_pembangunan/laju-produksi
+/1_mineral_kritis"[39m[3
+3m;[39m
+ [90m  7 |[39m [36mimpo
+rt[39m { produkIndustriRa
+te } [36mfrom[39m [32m"
+@/app/database/data/4_prod
+uksi_ekonomi_nasional/2_pe
+mbangunan/laju-produksi/2_
+produk_industri"[39m[33m
+;[39m
+[31m[1m>[22m[39m[90m 
+ 8 |[39m [36mimport[39m
+ { komoditasPanganRate } 
+[36mfrom[39m [32m"@/app/
+database/data/4_produksi_e
+konomi_nasional/2_pembangu
+nan/laju-produksi/3_komodi
+tas_pangan"[39m[33m;[39
+m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+ [90m  9 |[39m [36mimpo
+rt[39m { produksiMiliter 
+} [36mfrom[39m [32m"@/a
+pp/database/data/4_produks
+i_ekonomi_nasional/2_pemba
+ngunan/produksi-militer"[
+39m[33m;[39m
+ [90m 10 |[39m [36mimpo
+rt[39m { tempatUmum } [3
+6mfrom[39m [32m"@/app/da
+tabase/data/4_produksi_eko
+nomi_nasional/2_pembanguna
+n/tempat-umum"[39m[33m;
+[39m
+ [90m 11 |[39m [36mimpo
+rt[39m { priceStorage } 
+[36mfrom[39m [32m"@/app/
+game/components/2_navigasi
+_menu/navigasi_bawah/2_eko
+nomi/8-pasar-domestik/pric
+eStorage"[39m[33m;[39m
+[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/laju-
+produksi/3_komoditas_panga
+n' inside of [project]/fro
+ntend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/data/economy/BudgetDelta
+Logic.ts [Client Component
+ Browser]
+    ./frontend/src/app/gam
+e/hooks/useGameState.ts [C
+lient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/data/economy/BudgetDelta
+Logic.ts [Client Component
+ SSR]
+    ./frontend/src/app/gam
+e/hooks/useGameState.ts [C
+lient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/4-
+pemasukkanpengeluaran/Pema
+sukkanPengeluaranModal.tsx
+:16:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/produksi-
+militer'
+[0m [90m 14 |[39m [36m
+import[39m { produkIndust
+riRate } [36mfrom[39m [
+32m"@/app/database/data/4_
+produksi_ekonomi_nasional/
+2_pembangunan/laju-produks
+i/2_produk_industri"[39m
+ [90m 15 |[39m [36mimpo
+rt[39m { komoditasPanganR
+ate } [36mfrom[39m [32m
+"@/app/database/data/4_pro
+duksi_ekonomi_nasional/2_p
+embangunan/laju-produksi/3
+_komoditas_pangan"[39m
+[31m[1m>[22m[39m[90m 
+16 |[39m [36mimport[39m
+ { produksiMiliter } [36m
+from[39m [32m"@/app/data
+base/data/4_produksi_ekono
+mi_nasional/2_pembangunan/
+produksi-militer"[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m
+ [90m 17 |[39m [36mimpo
+rt[39m { tempatUmum } [3
+6mfrom[39m [32m"@/app/da
+tabase/data/4_produksi_eko
+nomi_nasional/2_pembanguna
+n/tempat-umum"[39m
+ [90m 18 |[39m [36mimpo
+rt[39m { produksi } [36m
+from[39m [32m"@/app/data
+base/data/4_produksi_ekono
+mi_nasional/2_pembangunan/
+produksi"[39m
+ [90m 19 |[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/produ
+ksi-militer' inside of [pr
+oject]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/4-pemasukkanpengeluaran/
+PemasukkanPengeluaranModal
+.tsx [Client Component Bro
+wser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/4-pemasukkanpengeluaran/
+PemasukkanPengeluaranModal
+.tsx [Client Component SSR
+]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/5-
+energi/EnergiModal.tsx:10:
+1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/produksi-
+militer'
+[0m [90m  8 |[39m [36m
+import[39m { hitungTotalK
+apasitas[33m,[39m hitung
+TotalKonsumsiNasional[33m
+,[39m [33mKAPASITAS_LIST
+RIK_METADATA[39m[33m,[3
+9m [33mKONSUMSI_EKSTRAKSI
+[39m[33m,[39m [33mKONS
+UMSI_PRODUKSI[39m[33m,[
+39m [33mKONSUMSI_PERTAHAN
+AN[39m[33m,[39m [33mKO
+NSUMSI_STRATEGIC[39m[33m
+,[39m [33mKONSUMSI_FLEET
+[39m[33m,[39m [33mKONS
+UMSI_SOSIAL[39m[33m,[39
+m [33mKONSUMSI_TRANSPORTA
+SI[39m[33m,[39m [33mDA
+SHBOARD_LABELS[39m[33m,
+[39m [33mKONSUMSI_PANGAN
+[39m } [36mfrom[39m [32
+m"@/app/database/data/1_ke
+listrikan"[39m
+ [90m  9 |[39m [36mimpo
+rt[39m { mineralKritisRat
+e[33m,[39m produkIndustr
+iRate[33m,[39m komoditas
+PanganRate } [36mfrom[39
+m [32m"@/app/database/dat
+a/4_produksi_ekonomi_nasio
+nal/2_pembangunan/laju-pro
+duksi"[39m
+[31m[1m>[22m[39m[90m 
+10 |[39m [36mimport[39m
+ { produksiMiliter } [36m
+from[39m [32m"@/app/data
+base/data/4_produksi_ekono
+mi_nasional/2_pembangunan/
+produksi-militer"[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimpo
+rt[39m { tempatUmum } [3
+6mfrom[39m [32m"@/app/da
+tabase/data/4_produksi_eko
+nomi_nasional/2_pembanguna
+n/tempat-umum"[39m
+ [90m 12 |[39m
+ [90m 13 |[39m [36minte
+rface[39m [33mModalProps
+[39m {[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/produ
+ksi-militer' inside of [pr
+oject]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/5-energi/EnergiModal.tsx
+ [Client Component Browser
+]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/5-energi/EnergiModal.tsx
+ [Client Component SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/da
+ta/economy/BudgetDeltaLogi
+c.ts:9:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/produksi-
+militer'
+[0m [90m  7 |[39m [36m
+import[39m { produkIndust
+riRate } [36mfrom[39m [
+32m"@/app/database/data/4_
+produksi_ekonomi_nasional/
+2_pembangunan/laju-produks
+i/2_produk_industri"[39m
+[33m;[39m
+ [90m  8 |[39m [36mimpo
+rt[39m { komoditasPanganR
+ate } [36mfrom[39m [32m
+"@/app/database/data/4_pro
+duksi_ekonomi_nasional/2_p
+embangunan/laju-produksi/3
+_komoditas_pangan"[39m[3
+3m;[39m
+[31m[1m>[22m[39m[90m 
+ 9 |[39m [36mimport[39m
+ { produksiMiliter } [36m
+from[39m [32m"@/app/data
+base/data/4_produksi_ekono
+mi_nasional/2_pembangunan/
+produksi-militer"[39m[33
+m;[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m
+ [90m 10 |[39m [36mimpo
+rt[39m { tempatUmum } [3
+6mfrom[39m [32m"@/app/da
+tabase/data/4_produksi_eko
+nomi_nasional/2_pembanguna
+n/tempat-umum"[39m[33m;
+[39m
+ [90m 11 |[39m [36mimpo
+rt[39m { priceStorage } 
+[36mfrom[39m [32m"@/app/
+game/components/2_navigasi
+_menu/navigasi_bawah/2_eko
+nomi/8-pasar-domestik/pric
+eStorage"[39m[33m;[39m
+ [90m 12 |[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/produ
+ksi-militer' inside of [pr
+oject]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/data/economy/BudgetDelta
+Logic.ts [Client Component
+ Browser]
+    ./frontend/src/app/gam
+e/hooks/useGameState.ts [C
+lient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/data/economy/BudgetDelta
+Logic.ts [Client Component
+ SSR]
+    ./frontend/src/app/gam
+e/hooks/useGameState.ts [C
+lient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/4-
+pemasukkanpengeluaran/Pema
+sukkanPengeluaranModal.tsx
+:17:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/tempat-um
+um'
+[0m [90m 15 |[39m [36m
+import[39m { komoditasPan
+ganRate } [36mfrom[39m 
+[32m"@/app/database/data/4
+_produksi_ekonomi_nasional
+/2_pembangunan/laju-produk
+si/3_komoditas_pangan"[39
+m
+ [90m 16 |[39m [36mimpo
+rt[39m { produksiMiliter 
+} [36mfrom[39m [32m"@/a
+pp/database/data/4_produks
+i_ekonomi_nasional/2_pemba
+ngunan/produksi-militer"[
+39m
+[31m[1m>[22m[39m[90m 
+17 |[39m [36mimport[39m
+ { tempatUmum } [36mfrom
+[39m [32m"@/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/tempa
+t-umum"[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m
+ [90m 18 |[39m [36mimpo
+rt[39m { produksi } [36m
+from[39m [32m"@/app/data
+base/data/4_produksi_ekono
+mi_nasional/2_pembangunan/
+produksi"[39m
+ [90m 19 |[39m
+ [90m 20 |[39m [36mimpo
+rt[39m { calculateDailyBu
+dgetDelta[33m,[39m calcu
+lateBaseMaintenance[33m,
+[39m calculateDeltaMainten
+ance } [36mfrom[39m [32
+m"@/app/game/data/economy/
+BudgetDeltaLogic"[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/tempa
+t-umum' inside of [project
+]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/4-pemasukkanpengeluaran/
+PemasukkanPengeluaranModal
+.tsx [Client Component Bro
+wser]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/4-pemasukkanpengeluaran/
+PemasukkanPengeluaranModal
+.tsx [Client Component SSR
+]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/co
+mponents/2_navigasi_menu/n
+avigasi_bawah/2_ekonomi/5-
+energi/EnergiModal.tsx:11:
+1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/tempat-um
+um'
+[0m [90m  9 |[39m [36m
+import[39m { mineralKriti
+sRate[33m,[39m produkInd
+ustriRate[33m,[39m komod
+itasPanganRate } [36mfrom
+[39m [32m"@/app/database
+/data/4_produksi_ekonomi_n
+asional/2_pembangunan/laju
+-produksi"[39m
+ [90m 10 |[39m [36mimpo
+rt[39m { produksiMiliter 
+} [36mfrom[39m [32m"@/a
+pp/database/data/4_produks
+i_ekonomi_nasional/2_pemba
+ngunan/produksi-militer"[
+39m
+[31m[1m>[22m[39m[90m 
+11 |[39m [36mimport[39m
+ { tempatUmum } [36mfrom
+[39m [32m"@/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/tempa
+t-umum"[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m
+ [90m 12 |[39m
+ [90m 13 |[39m [36minte
+rface[39m [33mModalProps
+[39m {
+ [90m 14 |[39m    isOpen
+[33m:[39m boolean[33m;
+[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/tempa
+t-umum' inside of [project
+]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/5-energi/EnergiModal.tsx
+ [Client Component Browser
+]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/2_ekonom
+i/5-energi/EnergiModal.tsx
+ [Client Component SSR]
+    ./frontend/src/app/gam
+e/components/2_navigasi_me
+nu/navigasi_bawah/ModalsMa
+nager.tsx [Client Componen
+t SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+./frontend/src/app/game/da
+ta/economy/BudgetDeltaLogi
+c.ts:10:1
+Module not found: Can't re
+solve '@/app/database/data
+/4_produksi_ekonomi_nasion
+al/2_pembangunan/tempat-um
+um'
+[0m [90m  8 |[39m [36m
+import[39m { komoditasPan
+ganRate } [36mfrom[39m 
+[32m"@/app/database/data/4
+_produksi_ekonomi_nasional
+/2_pembangunan/laju-produk
+si/3_komoditas_pangan"[39
+m[33m;[39m
+ [90m  9 |[39m [36mimpo
+rt[39m { produksiMiliter 
+} [36mfrom[39m [32m"@/a
+pp/database/data/4_produks
+i_ekonomi_nasional/2_pemba
+ngunan/produksi-militer"[
+39m[33m;[39m
+[31m[1m>[22m[39m[90m 
+10 |[39m [36mimport[39m
+ { tempatUmum } [36mfrom
+[39m [32m"@/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/tempa
+t-umum"[39m[33m;[39m
+ [90m    |[39m [31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m[3
+1m[1m^[22m[39m[31m[1m
+^[22m[39m[31m[1m^[22m
+[39m[31m[1m^[22m[39m
+[31m[1m^[22m[39m[31m[
+1m^[22m[39m[31m[1m^[2
+2m[39m[31m[1m^[22m[39
+m[31m[1m^[22m[39m[31m
+[1m^[22m[39m[31m[1m^
+[22m[39m[31m[1m^[22m[
+39m[31m[1m^[22m[39m
+ [90m 11 |[39m [36mimpo
+rt[39m { priceStorage } 
+[36mfrom[39m [32m"@/app/
+game/components/2_navigasi
+_menu/navigasi_bawah/2_eko
+nomi/8-pasar-domestik/pric
+eStorage"[39m[33m;[39m
+ [90m 12 |[39m
+ [90m 13 |[39m [90m/**
+[39m[0m
+
+Import map: aliased to rel
+ative './src/app/database/
+data/4_produksi_ekonomi_na
+sional/2_pembangunan/tempa
+t-umum' inside of [project
+]/frontend
+
+
+Import traces:
+  Client Component Browser
+:
+    ./frontend/src/app/gam
+e/data/economy/BudgetDelta
+Logic.ts [Client Component
+ Browser]
+    ./frontend/src/app/gam
+e/hooks/useGameState.ts [C
+lient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component Browser]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+  Client Component SSR:
+    ./frontend/src/app/gam
+e/data/economy/BudgetDelta
+Logic.ts [Client Component
+ SSR]
+    ./frontend/src/app/gam
+e/hooks/useGameState.ts [C
+lient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Cl
+ient Component SSR]
+    ./frontend/src/app/gam
+e/[[...path]]/page.tsx [Se
+rver Component]
+
+https://nextjs.org/docs/me
+ssages/module-not-found
+
+
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/4-pemasukk
+anpengeluaran/PemasukkanPe
+ngeluaranModal.tsx:12:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/5-energi/E
+nergiModal.tsx:8:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/3_pembangunan/1-prod
+uksi/ProduksiModal.tsx:6:1
+)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/3_pembangunan/1-prod
+uksi/ProduksiModal.tsx:7:1
+)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/3_pembangunan/2-prod
+uksi-militer/ProduksiMilit
+erModal.tsx:4:419)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/3_pembangunan/3-temp
+at-umum/TempatUmumModal.ts
+x:4:680)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/data/econo
+my/BudgetDeltaLogic.ts:5:1
+)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/3_pembangunan/2-prod
+uksi-militer/ProduksiMilit
+erModal.tsx:5:148)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/1-perdagan
+gan/TradeExecutionModal.ts
+x:3:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/5-energi/E
+nergiModal.tsx:9:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/6-produksi
+-barang/ProduksiBarangModa
+l.tsx:9:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/7-minerals
+/MineralsModal.tsx:9:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/3_pembangunan/1-prod
+uksi/ProduksiModal.tsx:3:1
+)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/data/produ
+ction/productionLogic.ts:1
+:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/4-pemasukk
+anpengeluaran/PemasukkanPe
+ngeluaranModal.tsx:13:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/data/econo
+my/BudgetDeltaLogic.ts:6:1
+)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/4-pemasukk
+anpengeluaran/PemasukkanPe
+ngeluaranModal.tsx:14:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/data/econo
+my/BudgetDeltaLogic.ts:7:1
+)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/4-pemasukk
+anpengeluaran/PemasukkanPe
+ngeluaranModal.tsx:15:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/data/econo
+my/BudgetDeltaLogic.ts:8:1
+)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/4-pemasukk
+anpengeluaran/PemasukkanPe
+ngeluaranModal.tsx:16:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/5-energi/E
+nergiModal.tsx:10:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/data/econo
+my/BudgetDeltaLogic.ts:9:1
+)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/4-pemasukk
+anpengeluaran/PemasukkanPe
+ngeluaranModal.tsx:17:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/components
+/2_navigasi_menu/navigasi_
+bawah/2_ekonomi/5-energi/E
+nergiModal.tsx:11:1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)
+    at <unknown> (./fronte
+nd/src/app/game/data/econo
+my/BudgetDeltaLogic.ts:10:
+1)
+    at <unknown> (https://
+nextjs.org/docs/messages/m
+odule-not-found)

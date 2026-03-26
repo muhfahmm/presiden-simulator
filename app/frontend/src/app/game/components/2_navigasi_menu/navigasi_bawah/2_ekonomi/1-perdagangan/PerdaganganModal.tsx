@@ -7,7 +7,7 @@ import {
   Target, Shield, Sword, Navigation
 } from "lucide-react"
 import { AddTradePartnerModal } from "./mitra_dagang_internasional/AddTradePartnerModal"
-import { CountryData } from "@/app/database/data/types/_index"
+import { CountryData } from "@/app/database/data/types/index"
 import { tradeStorage } from "./TradeStorage"
 import { buyPriceMap, sellPriceMap, labelsMap, baseKeyMapping, getDynamicPrice } from "./tradeData"
 import { TradePriceChart } from "./TradePriceChart"

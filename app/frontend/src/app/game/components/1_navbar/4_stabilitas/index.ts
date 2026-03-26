@@ -1,5 +1,5 @@
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/countries/region/_index";
+import { countries } from "@/app/database/data/countries/region/index";
 
 const STABILITY_STORAGE_KEY = "em4_stability_data";
 

@@ -1,9 +1,9 @@
-import * as asia from "./asia/_index";
-import * as afrika from "./afrika/_index";
-import * as eropa from "./eropa/_index";
-import * as na from "./na/_index";
-import * as oceania from "./oceania/_index";
-import * as sa from "./sa/_index";
+import * as asia from "./asia/index";
+import * as afrika from "./afrika/index";
+import * as eropa from "./eropa/index";
+import * as na from "./na/index";
+import * as oceania from "./oceania/index";
+import * as sa from "./sa/index";
 
 // Combine all perjanjian into a single registry
 const allAgreements: Record<string, any[]> = {

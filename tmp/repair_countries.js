@@ -91,6 +91,6 @@ function processDir(dir) {
     }
 }
 
-const targetDir = path.resolve('c:/fhm/EM4/app/frontend-desktop/src/app/select-country/data/countries');
+const targetDir = path.resolve('c:/fhm/EM4/app/frontend-desktop/src/app/database/data/countries');
 processDir(targetDir);
 console.log('Finished global repair.');

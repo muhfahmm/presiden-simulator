@@ -1,4 +1,4 @@
-import { CountryData } from "../../types/_index";
+import { CountryData } from "../../../types";
 
 export const selandia_baru: CountryData = {
   "name_en": "New Zealand",

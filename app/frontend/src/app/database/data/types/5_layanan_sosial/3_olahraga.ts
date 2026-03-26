@@ -1,4 +1,4 @@
-export interface OlahragaData {
+export interface OlahragaSosialData {
   kolam_renang: number;
   sirkuit_balap: number;
   stadion: number;

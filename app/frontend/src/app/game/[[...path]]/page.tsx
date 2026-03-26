@@ -14,7 +14,7 @@ import ModalsManager from "@/app/game/components/2_navigasi_menu/navigasi_bawah/
 import GameOverOverlay from "@/app/game/components/6_overlays/GameOverOverlay";
 import WelcomeOverlay from "@/app/game/components/6_overlays/WelcomeOverlay";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/countries/region/_index";
+import { countries } from "@/app/database/data/countries/region/index";
 import GameTimeControls from "@/app/game/components/time/GameTimeControls";
 import GameNavbar from "@/app/game/components/1_navbar";
 

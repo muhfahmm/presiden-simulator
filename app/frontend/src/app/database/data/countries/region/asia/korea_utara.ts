@@ -1,4 +1,4 @@
-import { CountryData } from "../../types/_index";
+import { CountryData } from "../../../types";
 
 export const korea_utara: CountryData = {
   "name_en": "North Korea",

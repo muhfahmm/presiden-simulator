@@ -16,27 +16,27 @@ function processDir(dir) {
             let modified = false;
 
             // Pattern 1: data/types
-            if (content.match(/from\s+["']@\/app\/select-country\/data\/types["']/)) {
-                content = content.replace(/from\s+["']@\/app\/select-country\/data\/types["']/g, 'from "@/app/select-country/data/types/_index"');
+            if (content.match(/from\s+["']@\/app\/database\/data\/types["']/)) {
+                content = content.replace(/from\s+["']@\/app\/database\/data\/types["']/g, 'from "@/app/database/data/types/_index"');
                 modified = true;
             }
-            if (content.match(/from\s+["'](\.\.\/)+select-country\/data\/types["']/)) {
-                content = content.replace(/(from\s+["'](\.\.\/)+select-country\/data\/types)(["'])/g, '$1/_index$3');
+            if (content.match(/from\s+["'](\.\.\/)+database\/data\/types["']/)) {
+                content = content.replace(/(from\s+["'](\.\.\/)+database\/data\/types)(["'])/g, '$1/_index$3');
                 modified = true;
             }
-            // Add case for local relative imports in select-country folder
+            // Add case for local relative imports in database folder
             if (content.match(/from\s+["']\.\/data\/types["']/)) {
                 content = content.replace(/from\s+["']\.\/data\/types["']/g, 'from "./data/types/_index"');
                 modified = true;
             }
 
             // Pattern 2: data/countries
-            if (content.match(/from\s+["']@\/app\/select-country\/data\/countries["']/)) {
-                content = content.replace(/from\s+["']@\/app\/select-country\/data\/countries["']/g, 'from "@/app/select-country/data/countries/_index"');
+            if (content.match(/from\s+["']@\/app\/database\/data\/countries["']/)) {
+                content = content.replace(/from\s+["']@\/app\/database\/data\/countries["']/g, 'from "@/app/database/data/countries/_index"');
                 modified = true;
             }
-            if (content.match(/from\s+["'](\.\.\/)+select-country\/data\/countries["']/)) {
-                content = content.replace(/(from\s+["'](\.\.\/)+select-country\/data\/countries)(["'])/g, '$1/_index$3');
+            if (content.match(/from\s+["'](\.\.\/)+database\/data\/countries["']/)) {
+                content = content.replace(/(from\s+["'](\.\.\/)+database\/data\/countries)(["'])/g, '$1/_index$3');
                 modified = true;
             }
              if (content.match(/from\s+["']\.\/data\/countries["']/)) {

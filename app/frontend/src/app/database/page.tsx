@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
@@ -6,9 +6,9 @@ import { HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight, Eye, Ey
 import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch";
 import WorldMapCanvas from "./databasemap";
 import MapHubungan from "../game/components/2_navigasi_menu/navigasi_atas/Hubungan/mapHubungan";
-import { countries } from "./data/countries/region/_index";
+import { countries } from "./data/countries/region/index";
 import { gameStorage } from "../game/gamestorage";
-import { CountryData } from "./data/types/_index";
+import { CountryData } from "./data/types/index";
 import {
   calculateTotalInfantry, calculateInfantryPower, calculateTankPower, calculateApcPower,
   calculateArtilleryPower, calculateRocketPower, calculateSamPower, calculateTacticalPower,
@@ -34,19 +34,20 @@ import {
   VEHICLE_FACTORY_POWER,
   HEAVY_WEAPON_FACTORY_POWER
 } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/2-produksi-militer/militaryLogic";
-import { getInfraQuality } from "./data/2_insfratuktur/1_kualitas_infrastruktur";
-import { getExtractionData } from "./data/3_ekstraksi_mineral/1_kualitas_ekstraksi";
+import { getInfraQuality } from "./data/types/2_infrastruktur";
+import { getExtractionData } from "./data/types/7_ekstraksi_mineral_kritis";
+import { getManufakturData, getPeternakanData, getPerikananData, getAgrikulturData } from "./data/types/3_produksi";
 import {
   hitungTotalKapasitas, KAPASITAS_LISTRIK,
   hitungKonsumsiProduksi, hitungKonsumsiOlahanPangan, hitungKonsumsiFarmasi, KONSUMSI_PRODUKSI, hitungKonsumsiPangan, KONSUMSI_PANGAN,
-  hitungKonsumsiPertahanan, KONSUMSI_PERTAHANAN, KONSUMSI_FLEET, KONSUMSI_STRATEGIC,
+  hitungKonsumsiPertahanan, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC,
   hitungKonsumsiBangunanMiliter, hitungKonsumsiPabrikMiliter,
   hitungKonsumsiSosial, KONSUMSI_SOSIAL,
   hitungKonsumsiOlahraga,
   hitungKonsumsiTransportasi, KONSUMSI_TRANSPORTASI,
   hitungKonsumsiEkstraksi, KONSUMSI_EKSTRAKSI,
   hitungTotalKonsumsiNasional
-} from "./data/1_kelistrikan";
+} from "./data/types/1_kelistrikan";
 import {
   Sword, Anchor, Plane, ShieldCheck, Globe2, TrendingUp, Gem, Droplets, Beef, TreePine, Mountain,
   Zap, Waves, Sun, Flame, Wind, Building2, TowerControl, Ship, Radio, Home, Store, Factory, Map,
@@ -166,12 +167,40 @@ export default function DatabasePage() {
   // Modernized Dynamic Data Merging
   const extractionData = getExtractionData(selectedCountry);
   const infraData = getInfraQuality(selectedCountry);
+  const manufData = getManufakturData(selectedCountry);
+  const peternakanData = getPeternakanData(selectedCountry);
+  const perikananData = getPerikananData(selectedCountry);
+  const agriData = getAgrikulturData(selectedCountry);
   
   const currentData: CountryData = {
     ...baseData,
     sektor_ekstraksi: {
       ...extractionData,
       ...baseData.sektor_ekstraksi
+    },
+    sektor_manufaktur: {
+      ...manufData,
+      ...baseData.sektor_manufaktur
+    },
+    sektor_olahan_pangan: {
+      ...manufData,
+      ...baseData.sektor_olahan_pangan
+    },
+    sektor_farmasi: {
+      ...manufData,
+      ...baseData.sektor_farmasi
+    },
+    sektor_peternakan: {
+      ...peternakanData,
+      ...baseData.sektor_peternakan
+    },
+    sektor_perikanan: {
+      ...perikananData,
+      ...baseData.sektor_perikanan
+    },
+    sektor_agrikultur: {
+      ...agriData,
+      ...baseData.sektor_agrikultur
     }
   };
 

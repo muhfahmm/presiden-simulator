@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { X, Play, Package, TrendingUp, Activity, ArrowRightLeft, Zap, Box, Factory, Pickaxe, Tractor, Ship, Globe, ChevronDown } from "lucide-react";
-import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi";
+import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/database/data/types";
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage";

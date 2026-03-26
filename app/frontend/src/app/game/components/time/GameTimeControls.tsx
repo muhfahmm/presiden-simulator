@@ -6,7 +6,7 @@ import { INITIAL_GAME_DATE, formatGameDate, addDays, saveGameDate, getStoredGame
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage";
-import { countries } from "@/app/database/data/countries/region/_index";
+import { countries } from "@/app/database/data/countries/region/index";
 import { calculateDailyProductionTotals } from "@/app/game/data/production/productionLogic";
 import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLogic";
 import { happinessStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/1_kepuasan/happinessStorage";

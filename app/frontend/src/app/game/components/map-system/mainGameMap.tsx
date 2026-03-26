@@ -1,8 +1,8 @@
-﻿"use client"
+"use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "@/app/database/data/countries/region/_index";
-import { hitungKonsumsiEkstraksi } from "@/app/database/data/1_kelistrikan/2_konsumsi_listrik";
+import { countries as centersData } from "@/app/database/data/countries/region/index";
+import { hitungTotalKonsumsiNasional } from "@/app/database/data/types/1_kelistrikan";
 interface GameMapCanvasProps {
   userCountry: string;
   targetCountry: string | null;

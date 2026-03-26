@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const baseDir = 'c:/fhm/EM4/app/frontend-desktop/src/app/select-country/data/countries';
+const baseDir = 'c:/fhm/EM4/app/frontend-desktop/src/app/database/data/countries';
 
 function walk(dir) {
     const files = fs.readdirSync(dir);

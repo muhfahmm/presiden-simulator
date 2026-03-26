@@ -2,13 +2,11 @@
 
 import { useState, useEffect, Fragment } from "react"
 import { X, Zap, Battery, Activity, AlertTriangle, TrendingUp, TrendingDown, Info, Shield, Droplets, Sun, Wind, Flame, Radio, Search, ChevronLeft, Eye, Gauge, Factory, Pickaxe, Landmark, GraduationCap, HeartPulse, TrainFront, ShieldCheck, Bird, Sprout, Cpu, Car, Bike, Construction, TreePine, Cookie, Croissant, Pill, FlaskConical, Beef, Soup, Radiation, Coins, Ship, Plane, Crosshair, Library, Scale, Siren, Home, Store, Map, Coffee, Milk, Fish, Shell, Leaf, Utensils, Apple, Bean, Wifi, Bus, Warehouse, Archive, HardHat, ShieldAlert, Clock, Loader2, EyeOff, Hammer, Swords, Users } from "lucide-react"
-import { countries } from "@/app/database/data/countries/region/_index"
-import { CountryData } from "@/app/database/data/types/_index"
+import { countries } from "@/app/database/data/countries/region/index"
+import { CountryData } from "@/app/database/data/types/index"
 import { gameStorage } from "@/app/game/gamestorage"
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_FLEET, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_PANGAN } from "@/app/database/data/1_kelistrikan"
-import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi"
-import { produksiMiliter } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/produksi-militer"
-import { tempatUmum } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/tempat-umum"
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_PANGAN } from "@/app/database/data/types/1_kelistrikan"
+import { mineralKritisRate, produkIndustriRate, komoditasPanganRate, produksiMiliter, tempatUmum } from "@/app/database/data/types"
 
 interface ModalProps {
    isOpen: boolean;
@@ -276,7 +274,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                items: produksiMiliter.filter(i => i.category === "Armada").map(item => ({
                   key: item.key, label: item.label, icon: Ship, desc: "Unit Armada",
                   count: getBuildingCount(initialCountry, item.key, "militer"),
-                  tarif: (KONSUMSI_FLEET as any)[item.key] || 2,
+                  tarif: 0,
                   unit: "MW", buildTime: item.buildTime
                }))
             },

@@ -1,6 +1,6 @@
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/countries/region/_index";
-import { CountryData } from "@/app/database/data/types/_index";
+import { countries } from "@/app/database/data/countries/region/index";
+import { CountryData } from "@/app/database/data/types/index";
 
 const TRADE_STORAGE_KEY = "game_trades";
 

@@ -1,4 +1,4 @@
-import { CountryData } from "../../types/_index";
+import { CountryData } from "../../../types";
 
 export const sudan_selatan: CountryData = {
   "name_en": "South Sudan",

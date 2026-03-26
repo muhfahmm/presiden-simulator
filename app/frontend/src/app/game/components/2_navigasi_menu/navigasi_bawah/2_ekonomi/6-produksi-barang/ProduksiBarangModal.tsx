@@ -2,11 +2,11 @@
 
 import { useState, useEffect, Fragment } from "react"
 import { X, Package, Factory, Pickaxe, TrendingUp, TrendingDown, Info, Clock, Activity, Zap, Droplets, Flame, Radiation, Coins, Cpu, Car, Bike, Construction, TreePine, Cookie, Croissant, Pill, FlaskConical, Beef, Soup, Milk, Fish, Shell, Sprout, Utensils, Coffee, Apple, Bean, Eye, EyeOff, Hammer, Users, Warehouse, Search, Bird, Leaf } from "lucide-react"
-import { countries } from "@/app/database/data/countries/region/_index"
-import { CountryData } from "@/app/database/data/types/_index"
+import { countries } from "@/app/database/data/countries/region/index"
+import { CountryData } from "@/app/database/data/types/index"
 import { gameStorage } from "@/app/game/gamestorage"
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage"
-import { mineralKritisRate, produkIndustriRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi"
+import { mineralKritisRate, produkIndustriRate } from "@/app/database/data/types"
 
 interface ModalProps {
    isOpen: boolean;

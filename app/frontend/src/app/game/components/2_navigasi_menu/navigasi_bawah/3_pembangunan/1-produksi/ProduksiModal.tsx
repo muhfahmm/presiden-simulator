@@ -1,15 +1,12 @@
 import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain } from "lucide-react"
-import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi";
-import { produksiMiliter } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/produksi-militer";
-import { tempatUmum } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/tempat-umum";
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/1_kelistrikan";
-import { KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PANGAN } from "@/app/database/data/1_kelistrikan";
+import { mineralKritisRate, produkIndustriRate, komoditasPanganRate, produksiMiliter, tempatUmum } from "@/app/database/data/types";
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PANGAN, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI } from "@/app/database/data/types/1_kelistrikan"
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate } from "@/app/game/data/time/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
-import { countries } from "@/app/database/data/countries/region/_index";
+import { countries } from "@/app/database/data/countries/region/index";
 
 interface ModalProps {
   isOpen: boolean;
@@ -257,7 +254,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
             const order = ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu", "air_mineral", "gula", "roti", "farmasi", "pupuk", "pengolahan_daging", "mie_instan"];
             const idxA = order.indexOf(a[1].dataKey);
             const idxB = order.indexOf(b[1].dataKey);
-            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB) || a[1].no - b[1].no;
+            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
           })
           .map(([key, val]: [string, any]) => ({
             key,

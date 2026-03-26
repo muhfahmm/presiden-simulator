@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Heart, Users, Coins, Shield, LogOut } from "lucide-react";
-import { CountryData } from "@/app/database/data/types/_index";
+import { CountryData } from "@/app/database/data/types/index";
 import { HappinessBreakdown } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/1_kepuasan";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";

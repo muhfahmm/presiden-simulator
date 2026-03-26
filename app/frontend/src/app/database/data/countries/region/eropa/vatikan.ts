@@ -1,4 +1,4 @@
-import { CountryData } from "../../types/_index";
+import { CountryData } from "../../../types";
 
 export const vatikan: CountryData = {
   "name_en": "Vatican City",

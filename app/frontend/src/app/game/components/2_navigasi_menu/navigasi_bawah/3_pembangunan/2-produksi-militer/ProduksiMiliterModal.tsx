@@ -1,14 +1,14 @@
-﻿"use client"
+"use client"
 
 import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Shield, Truck, MapPin, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship, Plane, Rocket, Crosshair, Activity, Wifi, Radio, Cctv, Search, Siren, Car, Bike, Dog, ShieldAlert, Anchor, Waves, Satellite, RadioTower, Cpu, Target, Radar, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, EyeOff, Building, Archive, Info } from "lucide-react"
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/1_kelistrikan";
-import { KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_FLEET, KONSUMSI_SOSIAL } from "@/app/database/data/1_kelistrikan/2_konsumsi_listrik";
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/types/1_kelistrikan";
+import { KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL } from "@/app/database/data/types/1_kelistrikan/2_konsumsi_listrik";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate } from "@/app/game/data/time/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
-import { countries } from "@/app/database/data/countries/region/_index";
+import { countries } from "@/app/database/data/countries/region/index";
 import { 
   calculateTotalInfantry, 
   calculateInfantryPower,
@@ -212,31 +212,31 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
       items: [
         // ARMADA DARAT
         { key: "barak", groupId: "darat", label: "Barak Militer", icon: MilitaryIcon, desc: "Hunian Tentara", cost: 40, buildTime: 45, maintenanceCost: 15, count: (currentData.armada_militer.barak || 0) + ((buildingDeltas["barak"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.barak },
-        { key: "tank", groupId: "darat", label: "Main Battle Tank", icon: Truck, desc: "Kavaleri Darat", cost: 20, buildTime: 30, maintenanceCost: 10, count: (currentData.armada_militer.darat.tank_tempur_utama || 0), consumption: KONSUMSI_FLEET.darat.tank_tempur_utama },
-        { key: "apc", groupId: "darat", label: "APC / IFV", icon: Truck, desc: "Transportasi Taktis", cost: 8, buildTime: 15, maintenanceCost: 4, count: (currentData.armada_militer.darat.apc_ifv || 0), consumption: KONSUMSI_FLEET.darat.apc_ifv },
-        { key: "artileri", groupId: "darat", label: "Artileri Berat", icon: Target, desc: "Pukulan Jarak Jauh", cost: 15, buildTime: 45, maintenanceCost: 8, count: (currentData.armada_militer.darat.artileri_berat || 0), consumption: KONSUMSI_FLEET.darat.artileri_berat },
-        { key: "rocket", groupId: "darat", label: "MLRS Rocket", icon: Rocket, desc: "Sistem Roket", cost: 18, buildTime: 50, maintenanceCost: 12, count: (currentData.armada_militer.darat.sistem_peluncur_roket || 0), consumption: KONSUMSI_FLEET.darat.sistem_peluncur_roket },
-        { key: "sam", groupId: "darat", label: "Mobile SAM", icon: ShieldAlert, desc: "Hulu Ledak", cost: 25, buildTime: 60, maintenanceCost: 15, count: (currentData.armada_militer.darat.pertahanan_udara_mobile || 0), consumption: KONSUMSI_FLEET.darat.pertahanan_udara_mobile },
-        { key: "tactical", groupId: "darat", label: "Kendaraan Taktis", icon: Car, desc: "Patroli Tempur", cost: 5, buildTime: 10, maintenanceCost: 2, count: (currentData.armada_militer.darat.kendaraan_taktis || 0), consumption: KONSUMSI_FLEET.darat.kendaraan_taktis },
+        { key: "tank", groupId: "darat", label: "Main Battle Tank", icon: Truck, desc: "Kavaleri Darat", cost: 20, buildTime: 30, maintenanceCost: 10, count: (currentData.armada_militer.darat.tank_tempur_utama || 0), consumption: 0 },
+        { key: "apc", groupId: "darat", label: "APC / IFV", icon: Truck, desc: "Transportasi Taktis", cost: 8, buildTime: 15, maintenanceCost: 4, count: (currentData.armada_militer.darat.apc_ifv || 0), consumption: 0 },
+        { key: "artileri", groupId: "darat", label: "Artileri Berat", icon: Target, desc: "Pukulan Jarak Jauh", cost: 15, buildTime: 45, maintenanceCost: 8, count: (currentData.armada_militer.darat.artileri_berat || 0), consumption: 0 },
+        { key: "rocket", groupId: "darat", label: "MLRS Rocket", icon: Rocket, desc: "Sistem Roket", cost: 18, buildTime: 50, maintenanceCost: 12, count: (currentData.armada_militer.darat.sistem_peluncur_roket || 0), consumption: 0 },
+        { key: "sam", groupId: "darat", label: "Mobile SAM", icon: ShieldAlert, desc: "Hulu Ledak", cost: 25, buildTime: 60, maintenanceCost: 15, count: (currentData.armada_militer.darat.pertahanan_udara_mobile || 0), consumption: 0 },
+        { key: "tactical", groupId: "darat", label: "Kendaraan Taktis", icon: Car, desc: "Patroli Tempur", cost: 5, buildTime: 10, maintenanceCost: 2, count: (currentData.armada_militer.darat.kendaraan_taktis || 0), consumption: 0 },
         
         // ARMADA LAUT
-        { key: "carrier", groupId: "laut", label: "Kapal Induk", icon: Ship, desc: "Pangkalan Apung", cost: 750, buildTime: 480, maintenanceCost: 200, count: (currentData.armada_militer.laut.kapal_induk || 0), consumption: KONSUMSI_FLEET.laut.kapal_induk },
-        { key: "destroyer", groupId: "laut", label: "Kapal Destroyer", icon: Waves, desc: "Perusak Maritim", cost: 280, buildTime: 360, maintenanceCost: 100, count: (currentData.armada_militer.laut.kapal_destroyer || 0), consumption: KONSUMSI_FLEET.laut.kapal_destroyer },
-        { key: "corvette", groupId: "laut", label: "Kapal Korvet", icon: Anchor, desc: "Kapal Kawal", cost: 120, buildTime: 180, maintenanceCost: 45, count: (currentData.armada_militer.laut.kapal_korvet || 0), consumption: KONSUMSI_FLEET.laut.kapal_korvet },
-        { key: "submarine", groupId: "laut", label: "Kapal Selam N", icon: RadioTower, desc: "Siluman Bawah Air", cost: 420, buildTime: 420, maintenanceCost: 150, count: (currentData.armada_militer.laut.kapal_selam_nuklir || 0), consumption: KONSUMSI_FLEET.laut.kapal_selam_nuklir },
-        { key: "reg_sub", groupId: "laut", label: "Kapal Selam R", icon: RadioTower, desc: "Selam Reguler", cost: 150, buildTime: 240, maintenanceCost: 60, count: (currentData.armada_militer.laut.kapal_selam_regular || 0), consumption: KONSUMSI_FLEET.laut.kapal_selam_regular },
-        { key: "mine_ship", groupId: "laut", label: "Kapal Ranjau", icon: Ship, desc: "Penyapu Ranjau", cost: 45, buildTime: 90, maintenanceCost: 15, count: (currentData.armada_militer.laut.kapal_ranjau || 0), consumption: KONSUMSI_FLEET.laut.kapal_ranjau },
-        { key: "logistics", groupId: "laut", label: "Kapal Logistik", icon: Truck, desc: "Suplai Maritim", cost: 60, buildTime: 120, maintenanceCost: 25, count: (currentData.armada_militer.laut.kapal_logistik || 0), consumption: KONSUMSI_FLEET.laut.kapal_logistik },
+        { key: "carrier", groupId: "laut", label: "Kapal Induk", icon: Ship, desc: "Pangkalan Apung", cost: 750, buildTime: 480, maintenanceCost: 200, count: (currentData.armada_militer.laut.kapal_induk || 0), consumption: 0 },
+        { key: "destroyer", groupId: "laut", label: "Kapal Destroyer", icon: Waves, desc: "Perusak Maritim", cost: 280, buildTime: 360, maintenanceCost: 100, count: (currentData.armada_militer.laut.kapal_destroyer || 0), consumption: 0 },
+        { key: "corvette", groupId: "laut", label: "Kapal Korvet", icon: Anchor, desc: "Kapal Kawal", cost: 120, buildTime: 180, maintenanceCost: 45, count: (currentData.armada_militer.laut.kapal_korvet || 0), consumption: 0 },
+        { key: "submarine", groupId: "laut", label: "Kapal Selam N", icon: RadioTower, desc: "Siluman Bawah Air", cost: 420, buildTime: 420, maintenanceCost: 150, count: (currentData.armada_militer.laut.kapal_selam_nuklir || 0), consumption: 0 },
+        { key: "reg_sub", groupId: "laut", label: "Kapal Selam R", icon: RadioTower, desc: "Selam Reguler", cost: 150, buildTime: 240, maintenanceCost: 60, count: (currentData.armada_militer.laut.kapal_selam_regular || 0), consumption: 0 },
+        { key: "mine_ship", groupId: "laut", label: "Kapal Ranjau", icon: Ship, desc: "Penyapu Ranjau", cost: 45, buildTime: 90, maintenanceCost: 15, count: (currentData.armada_militer.laut.kapal_ranjau || 0), consumption: 0 },
+        { key: "logistics", groupId: "laut", label: "Kapal Logistik", icon: Truck, desc: "Suplai Maritim", cost: 60, buildTime: 120, maintenanceCost: 25, count: (currentData.armada_militer.laut.kapal_logistik || 0), consumption: 0 },
         
         // ARMADA UDARA
-        { key: "stealth_jet", groupId: "udara", label: "Jet Stealth", icon: Plane, desc: "Supremasi Udara", cost: 250, buildTime: 300, maintenanceCost: 120, count: (currentData.armada_militer.udara.jet_tempur_siluman || 0), consumption: KONSUMSI_FLEET.udara.jet_tempur_siluman },
-        { key: "interceptor", groupId: "udara", label: "Jet Interceptor", icon: Plane, desc: "Satu Pencegat", cost: 120, buildTime: 180, maintenanceCost: 55, count: (currentData.armada_militer.udara.jet_tempur_interceptor || 0), consumption: KONSUMSI_FLEET.udara.jet_tempur_interceptor },
-        { key: "bomber", groupId: "udara", label: "Pesawat Pengebom", icon: Radio, desc: "Serangan Udara", cost: 350, buildTime: 360, maintenanceCost: 180, count: (currentData.armada_militer.udara.pesawat_pengebom || 0), consumption: KONSUMSI_FLEET.udara.pesawat_pengebom },
-        { key: "heli_attack", groupId: "udara", label: "Heli Serang", icon: Radio, desc: "Bantuan Udara", cost: 40, buildTime: 90, maintenanceCost: 25, count: (currentData.armada_militer.udara.helikopter_serang || 0), consumption: KONSUMSI_FLEET.udara.helikopter_serang },
-        { key: "recon_plane", groupId: "udara", label: "Pesawat Intai", icon: Search, desc: "Intelijen Udara", cost: 80, buildTime: 120, maintenanceCost: 20, count: (currentData.armada_militer.udara.pesawat_pengintai || 0), consumption: KONSUMSI_FLEET.udara.pesawat_pengintai },
-        { key: "uav", groupId: "udara", label: "Drone UAV", icon: Satellite, desc: "Intai Tanpa Awak", cost: 15, buildTime: 30, maintenanceCost: 5, count: (currentData.armada_militer.udara.drone_intai_uav || 0), consumption: KONSUMSI_FLEET.udara.drone_intai_uav },
-        { key: "kamikaze", groupId: "udara", label: "Drone Kamikaze", icon: Target, desc: "Serangan Bunuh Diri", cost: 5, buildTime: 7, maintenanceCost: 1, count: (currentData.armada_militer.udara.drone_kamikaze || 0), consumption: KONSUMSI_FLEET.udara.drone_kamikaze },
-        { key: "transport", groupId: "udara", label: "Pesawat Angkut", icon: Truck, desc: "Logistik Udara", cost: 45, buildTime: 90, maintenanceCost: 15, count: (currentData.armada_militer.udara.pesawat_angkut || 0), consumption: KONSUMSI_FLEET.udara.pesawat_angkut }
+        { key: "stealth_jet", groupId: "udara", label: "Jet Stealth", icon: Plane, desc: "Supremasi Udara", cost: 250, buildTime: 300, maintenanceCost: 120, count: (currentData.armada_militer.udara.jet_tempur_siluman || 0), consumption: 0 },
+        { key: "interceptor", groupId: "udara", label: "Jet Interceptor", icon: Plane, desc: "Satu Pencegat", cost: 120, buildTime: 180, maintenanceCost: 55, count: (currentData.armada_militer.udara.jet_tempur_interceptor || 0), consumption: 0 },
+        { key: "bomber", groupId: "udara", label: "Pesawat Pengebom", icon: Radio, desc: "Serangan Udara", cost: 350, buildTime: 360, maintenanceCost: 180, count: (currentData.armada_militer.udara.pesawat_pengebom || 0), consumption: 0 },
+        { key: "heli_attack", groupId: "udara", label: "Heli Serang", icon: Radio, desc: "Bantuan Udara", cost: 40, buildTime: 90, maintenanceCost: 25, count: (currentData.armada_militer.udara.helikopter_serang || 0), consumption: 0 },
+        { key: "recon_plane", groupId: "udara", label: "Pesawat Intai", icon: Search, desc: "Intelijen Udara", cost: 80, buildTime: 120, maintenanceCost: 20, count: (currentData.armada_militer.udara.pesawat_pengintai || 0), consumption: 0 },
+        { key: "uav", groupId: "udara", label: "Drone UAV", icon: Satellite, desc: "Intai Tanpa Awak", cost: 15, buildTime: 30, maintenanceCost: 5, count: (currentData.armada_militer.udara.drone_intai_uav || 0), consumption: 0 },
+        { key: "kamikaze", groupId: "udara", label: "Drone Kamikaze", icon: Target, desc: "Serangan Bunuh Diri", cost: 5, buildTime: 7, maintenanceCost: 1, count: (currentData.armada_militer.udara.drone_kamikaze || 0), consumption: 0 },
+        { key: "transport", groupId: "udara", label: "Pesawat Angkut", icon: Truck, desc: "Logistik Udara", cost: 45, buildTime: 90, maintenanceCost: 15, count: (currentData.armada_militer.udara.pesawat_angkut || 0), consumption: 0 }
       ]
     },
     {

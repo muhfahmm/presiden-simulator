@@ -16,7 +16,7 @@ const walk = (dir) => {
   return results;
 };
 
-const baseDir = path.join(process.cwd(), 'src/app/select-country/data/countries');
+const baseDir = path.join(process.cwd(), 'src/app/database/data/countries');
 const files = walk(baseDir);
 
 console.log(`Processing ${files.length} files...`);

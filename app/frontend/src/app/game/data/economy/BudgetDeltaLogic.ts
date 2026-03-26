@@ -1,13 +1,15 @@
-import { CountryData } from "@/app/database/data/types/_index";
+import { CountryData } from "@/app/database/data/types/index";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { incomeStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
 import { expenseStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
-import { KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/1_kelistrikan/1_pasokan_listrik";
-import { mineralKritisRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi/1_mineral_kritis";
-import { produkIndustriRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi/2_produk_industri";
-import { komoditasPanganRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi/3_komoditas_pangan";
-import { produksiMiliter } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/produksi-militer";
-import { tempatUmum } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/tempat-umum";
+import { 
+  KAPASITAS_LISTRIK_METADATA, 
+  mineralKritisRate, 
+  produkIndustriRate, 
+  komoditasPanganRate, 
+  produksiMiliter, 
+  tempatUmum 
+} from "@/app/database/data/types"
 import { priceStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 
 /**
@@ -19,7 +21,7 @@ export function calculateBaseMaintenance(countryData: CountryData): number {
     ...Object.values(mineralKritisRate),
     ...Object.values(produkIndustriRate),
     ...Object.values(komoditasPanganRate),
-    ...Object.values(tempatUmum)
+    ...tempatUmum
   ];
 
   let total = 0;
@@ -61,7 +63,7 @@ export function calculateDeltaMaintenance(buildingDeltas: Record<string, number>
     ...Object.values(mineralKritisRate),
     ...Object.values(produkIndustriRate),
     ...Object.values(komoditasPanganRate),
-    ...Object.values(tempatUmum)
+    ...tempatUmum
   ];
 
   let total = 0;
