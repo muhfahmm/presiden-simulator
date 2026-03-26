@@ -24,18 +24,19 @@ export const UAV_POWER_PER_UNIT = 100;
 export const KAMIKAZE_POWER_PER_UNIT = 150;
 export const TRANSPORT_POWER_PER_UNIT = 300;
 
-// KONSTANTA KONSUMSI LISTRIK (MW per Unit Bangunan)
-export const PRISON_POWER = 0.5;
-export const BARRACKS_POWER = 0.8;
-export const ARMORY_POWER = 1.2;
-export const TANK_HANGAR_POWER = 2.5;
-export const ACADEMY_POWER = 5.0;
-export const COMMAND_CENTER_POWER = 15.0;
-export const AIRBASE_POWER = 25.0;
-export const NAVALBASE_POWER = 35.0;
-export const SPACE_PROGRAM_POWER = 100.0;
-export const CYBER_DEFENSE_POWER = 50.0;
-export const NUCLEAR_SYSTEM_POWER = 50.0;
+// KONSTANTA KONSUMSI LISTRIK (MW per Unit Bangunan) - Sesuai dengan 2_konsumsi_listrik.ts
+export const PRISON_POWER = 2;
+export const BARRACKS_POWER = 5;
+export const ARMORY_POWER = 2;
+export const TANK_HANGAR_POWER = 5;
+export const ACADEMY_POWER = 10;
+export const COMMAND_CENTER_POWER = 15;
+export const AIRBASE_POWER = 30;
+export const NAVALBASE_POWER = 35;
+export const SPACE_PROGRAM_POWER = 80;
+export const CYBER_DEFENSE_POWER = 5; // Per point (pertahanan_siber * 5)
+export const INTEL_POWER = 10; // Per point (intelijen * 10)
+export const NUCLEAR_SYSTEM_POWER = 50;
 export const DRONE_FACTORY_POWER = 5.0;
 export const AMMO_FACTORY_POWER = 8.0;
 export const VEHICLE_FACTORY_POWER = 20.0;
@@ -148,7 +149,8 @@ export const calculateMilitaryPowerConsumption = (
     total += sektor_pertahanan.pangkalan_udara * AIRBASE_POWER;
     total += sektor_pertahanan.pangkalan_laut * NAVALBASE_POWER;
     total += sektor_pertahanan.program_luar_angkasa * SPACE_PROGRAM_POWER;
-    total += (sektor_pertahanan.pertahanan_siber / 100) * CYBER_DEFENSE_POWER; // Progress based
+    total += sektor_pertahanan.pertahanan_siber * CYBER_DEFENSE_POWER; // Progress based
+    total += 0; // Placeholder for other management items if needed
     
     // Pabrik Militer
     total += pabrik_militer.pabrik_drone_kamikaze * DRONE_FACTORY_POWER;
