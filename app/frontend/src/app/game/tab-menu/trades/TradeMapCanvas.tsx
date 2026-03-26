@@ -1,12 +1,12 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "../../../select-country/data/countries/_index";
-import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "../../../select-country/data/trades/tradeRoutes";
+import { countries as centersData } from "@/app/select-country/data/countries/_index";
+import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "@/app/select-country/data/trades/tradeRoutes";
 
-import { regionalRoutes } from "../../../select-country/data/trades/regional/AsianRoutes";
-import { internationalHubs } from "../../../select-country/data/trades/international/hubs";
-import { internationalRoutes } from "../../../select-country/data/trades/international/routes";
+import { regionalRoutes } from "@/app/select-country/data/trades/regional/AsianRoutes";
+import { internationalHubs } from "@/app/select-country/data/trades/international/hubs";
+import { internationalRoutes } from "@/app/select-country/data/trades/international/routes";
 
 interface TradeMapCanvasProps {
   userCountry: string;

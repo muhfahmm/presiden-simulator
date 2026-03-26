@@ -33,7 +33,7 @@ import {
   AMMO_FACTORY_POWER,
   VEHICLE_FACTORY_POWER,
   HEAVY_WEAPON_FACTORY_POWER
-} from "../game/components/pembangunan/2-produksi-militer/militaryLogic";
+} from "@/app/game/components/2_navigasi_menu/3_pembangunan/2-produksi-militer/militaryLogic";
 import {
   hitungTotalKapasitas, KAPASITAS_LISTRIK,
   hitungKonsumsiProduksi, KONSUMSI_PRODUKSI, hitungKonsumsiPangan, KONSUMSI_PANGAN,
