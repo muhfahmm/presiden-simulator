@@ -4,7 +4,7 @@ import { mineralKritisRate, produkIndustriRate, komoditasPanganRate, produksiMil
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PANGAN, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI } from "@/app/database/data/types/1_kelistrikan"
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { formatGameDate, addDays, getStoredGameDate } from "@/app/game/components/2_navigasi_menu/3_navigasi_waktu/gameTime";
+import { formatGameDate, addDays, getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
 

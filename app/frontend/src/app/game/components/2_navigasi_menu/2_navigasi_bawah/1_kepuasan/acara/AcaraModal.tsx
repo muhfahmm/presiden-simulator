@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { DATA_ACARA, acaraStorage, Acara } from "./acaraStorage";
 import { happinessStorage } from "../happinessStorage";
-import { getStoredGameDate, formatGameDate } from "@/app/game/components/2_navigasi_menu/3_navigasi_waktu/gameTime";
+import { getStoredGameDate, formatGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 
 interface AcaraModalProps {

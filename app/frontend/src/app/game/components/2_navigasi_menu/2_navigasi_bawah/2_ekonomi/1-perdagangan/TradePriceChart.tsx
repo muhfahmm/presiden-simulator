@@ -1,5 +1,5 @@
 import React, { useMemo, useState, useEffect } from "react";
-import { getStoredGameDate } from "@/app/game/components/2_navigasi_menu/3_navigasi_waktu/gameTime";
+import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { getDynamicPrice } from "./tradeData";
 
 interface TradePriceChartProps {

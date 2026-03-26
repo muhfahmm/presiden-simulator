@@ -1,7 +1,7 @@
 "use client"
 
 import { gameStorage } from "@/app/game/gamestorage";
-import { formatGameDate } from "@/app/game/components/2_navigasi_menu/3_navigasi_waktu/gameTime";
+import { formatGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 

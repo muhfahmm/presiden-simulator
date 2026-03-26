@@ -1,4 +1,4 @@
-import { Globe } from "lucide-react"
+import { Factory } from "lucide-react"
 import { Ministry } from "../types"
 
 const TIERS = [
@@ -10,14 +10,14 @@ const TIERS = [
   { eff: 50, cost: 1500000, title: "Elit Legendary" }
 ];
 
-export const luar_negeri_options: Ministry[] = TIERS.map((tier, i) => ({
-  id: 8,
-  name: "MENTERI LUAR NEGERI",
+export const pembangunan_options: Ministry[] = TIERS.map((tier, i) => ({
+  id: 13,
+  name: "MENTERI PEMBANGUNAN",
   status: "Kosong",
-  minister: `Diplomat ${tier.title}`,
-  icon: Globe,
-  impact: "Diplomasi Global",
-  description: `Utusan tingkat ${tier.title} untuk posisi tawar internasional yang kuat.`,
+  minister: `Planolog ${tier.title}`,
+  icon: Factory,
+  impact: "Pertumbuhan Wilayah",
+  description: `Perencana wilayah tingkat ${tier.title} untuk kemajuan daerah tertinggal.`,
   skill: `Effectiveness: +${tier.eff}%`,
   effectiveness: tier.eff,
   cost: tier.cost,

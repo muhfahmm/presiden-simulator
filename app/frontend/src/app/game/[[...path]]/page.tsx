@@ -15,7 +15,6 @@ import GameOverOverlay from "@/app/game/components/6_overlays/GameOverOverlay";
 import WelcomeOverlay from "@/app/game/components/6_overlays/WelcomeOverlay";
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/countries/region/index";
-import GameTimeControls from "@/app/game/components/2_navigasi_menu/3_navigasi_waktu/GameTimeControls";
 import GameNavbar from "@/app/game/components/1_navbar";
 
 import { useGameState } from "../hooks/useGameState";
@@ -83,11 +82,6 @@ export default function GamePage() {
         <div className="flex-1 relative w-full overflow-hidden bg-[#070b13]">
           {/* Floating Bottom Navigation Menu */}
           <BottomNav activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
-
-          {/* Game Time Control - Bottom Right */}
-          <div className="absolute bottom-12 right-8 z-[200]">
-            <GameTimeControls />
-          </div>
 
           {/* Map Mode Toggles */}
           <MapCategorySelector mapMode={mapMode} setMapMode={setMapMode} />

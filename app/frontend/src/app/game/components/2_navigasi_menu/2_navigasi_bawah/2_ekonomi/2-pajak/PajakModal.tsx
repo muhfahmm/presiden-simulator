@@ -91,7 +91,8 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
       label: autoLabel(k),
       info: autoInfo(k, true),
       ...TRADE_PALETTES[i % TRADE_PALETTES.length]
-    }));
+    }));
+
 
   const handleRateChange = (key: string, newRate: number) => {
     const oldData = (initialCountry.pajak as any)[key];
@@ -164,7 +165,8 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
     return -0.00008;
   };
   const dailyGrowthRate = getPopulationGrowthRate(avgDomesticTaxRate);
-  const monthlyGrowthPercent = dailyGrowthRate * 30 * 100; // % per bulan
+  const monthlyGrowthPercent = dailyGrowthRate * 30 * 100; // % per bulan
+
 
   // Daily Happiness Delta (dari kebijakan pajak — sama dengan applyDailyHappinessDecay)
   const getDailyHappinessDelta = (rate: number): number => {

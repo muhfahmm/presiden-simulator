@@ -8,6 +8,8 @@ import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
 
+import GameTimeControls from "@/app/game/components/1_navbar/5_navigasi_waktu/GameTimeControls";
+
 // --- Sub-component: StatusBadge ---
 interface StatusBadgeProps {
   icon: React.ReactNode;
@@ -97,6 +99,7 @@ export default function GameNavbar({
           label="Stabilitas" 
           value={`${stability}%`} 
         />
+        <GameTimeControls />
         
         <button 
           onClick={onLogout}

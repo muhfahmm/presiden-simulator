@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { X, Landmark, Shield, Star, Zap, User, RefreshCw, ChevronRight, Info } from "lucide-react"
 import { INITIAL_KEMENTERIAN, Ministry, KEMENTERIAN_FULL_DATABASE } from "./database_menteri"
+import { budgetStorage } from "../../../1_navbar/3_kas_negara"
 
 interface ModalProps {
   isOpen: boolean;
@@ -14,19 +15,47 @@ export default function KementerianModal({ isOpen, onClose }: ModalProps) {
 
   if (!isOpen) return null;
 
+  const ID_TO_SLUG: Record<number, string> = {
+    1: "infrastruktur", 2: "pendidikan", 3: "sains-penelitian", 4: "kesehatan", 
+    5: "olahraga", 6: "kehakiman", 7: "pertahanan", 8: "luar-negeri", 
+    9: "kebudayaan", 10: "pariwisata", 11: "lingkungan-hidup", 12: "perumahan", 
+    13: "pembangunan", 14: "perdagangan", 15: "keuangan"
+  };
+
   const handleReshuffle = (ministryId: number) => {
     setSelectingFor(ministryId);
+    const slug = ID_TO_SLUG[ministryId] || ministryId;
+    // Push state for URL path synchronization
+    window.history.pushState({}, '', `/game/kementrian/${slug}`);
   };
 
   const selectCandidate = (candidate: Ministry) => {
-    if (selectingFor === null) return;
+    if (selectingFor === null || !candidate.cost) return;
+
+    // Check budget
+    const currentBudget = budgetStorage.getBudget();
+    if (currentBudget < candidate.cost) {
+      alert("Anggaran tidak cukup untuk merekrut menteri ini!");
+      return;
+    }
+
+    // Deduct budget
+    budgetStorage.updateBudget(-candidate.cost);
 
     setMinistries(prev => prev.map(m => 
       m.id === selectingFor 
-        ? { ...m, status: "Terisi", minister: candidate.minister, stats: candidate.stats, candidate_id: candidate.candidate_id }
+        ? { 
+            ...m, 
+            status: "Terisi", 
+            minister: candidate.minister, 
+            candidate_id: candidate.candidate_id,
+            cost: candidate.cost,
+            effectiveness: candidate.effectiveness
+          }
         : m
     ));
     setSelectingFor(null);
+    window.history.pushState({}, '', '/game/kementrian');
   };
 
   const getCandidates = () => {
@@ -36,7 +65,7 @@ export default function KementerianModal({ isOpen, onClose }: ModalProps) {
 
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[92vh] overflow-hidden shadow-2xl flex flex-col relative">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[90vh] overflow-hidden shadow-2xl flex flex-col relative">
         {/* Header */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
@@ -45,7 +74,6 @@ export default function KementerianModal({ isOpen, onClose }: ModalProps) {
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white tracking-tight">Kabinet Kementerian</h2>
-              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Cabinet of Ministries (5-5-5 Layout)</p>
             </div>
           </div>
           <button
@@ -58,8 +86,8 @@ export default function KementerianModal({ isOpen, onClose }: ModalProps) {
         </div>
         
         {/* Content - Main Cabinet Grid */}
-        <div className="flex-1 overflow-y-auto p-6 no-scrollbar bg-zinc-950/20">
-          <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4">
+        <div className="flex-1 overflow-y-auto p-6 pb-12 no-scrollbar bg-zinc-950/20">
+          <div className="grid grid-cols-5 gap-4">
             {ministries.map((slot) => (
               <div 
                 key={slot.id}
@@ -87,23 +115,27 @@ export default function KementerianModal({ isOpen, onClose }: ModalProps) {
                 </div>
 
                 <div className="space-y-1 relative z-10">
-                  <h3 className="text-[11px] font-black text-white leading-tight group-hover:text-purple-400 transition-colors uppercase italic min-h-[2rem] flex items-center">
+                  <h3 className="text-sm font-black text-white leading-tight group-hover:text-purple-400 transition-colors uppercase italic min-h-[3rem] flex items-center">
                     {slot.name}
                   </h3>
                   {slot.status === "Terisi" && (
-                    <p className="text-[10px] font-bold text-zinc-400 italic truncate">{slot.minister}</p>
+                    <div className="flex flex-col gap-1">
+                      <p className="text-sm font-bold text-zinc-400 italic truncate">{slot.minister}</p>
+                      <p className="text-xs font-black text-emerald-500/80 uppercase tracking-widest">Harga: {(slot.cost || 0).toLocaleString()}</p>
+                    </div>
                   )}
                 </div>
 
                 {slot.status === "Terisi" && (
                   <div className="space-y-3 pt-1 relative z-10">
-                    <StatBar label="Loyalitas" value={slot.stats.loyalty} icon={<Shield className="h-3 w-3" />} color="bg-blue-500" />
-                    <StatBar label="Kompetensi" value={slot.stats.competence} icon={<Zap className="h-3 w-3" />} color="bg-amber-500" />
-                    <StatBar label="Popularitas" value={slot.stats.popularity} icon={<Star className="h-3 w-3" />} color="bg-rose-500" />
-                    
-                    <div className="mt-3 p-3 bg-purple-500/5 rounded-xl border border-purple-500/10 flex items-center gap-2.5 group-hover:bg-purple-500/10 transition-colors">
-                      <Zap className="h-3.5 w-3.5 text-purple-400 shrink-0" />
-                      <p className="text-[10px] font-bold text-white leading-tight uppercase italic">{slot.impact}</p>
+                    <div className="mt-3 p-3 bg-purple-500/5 rounded-xl border border-purple-500/10 flex items-center justify-between group-hover:bg-purple-500/10 transition-colors">
+                      <div className="flex items-center gap-2.5">
+                        <Zap className="h-3.5 w-3.5 text-purple-400 shrink-0" />
+                        <p className="text-[10px] font-bold text-white leading-tight uppercase italic">{slot.impact}</p>
+                      </div>
+                      <span className="text-[10px] font-black text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-md border border-emerald-500/20">
+                        +{slot.effectiveness || 0}%
+                      </span>
                     </div>
                   </div>
                 )}
@@ -163,46 +195,55 @@ export default function KementerianModal({ isOpen, onClose }: ModalProps) {
             <div className="bg-zinc-950 border border-zinc-800 w-full max-w-6xl rounded-[40px] overflow-hidden shadow-2xl animate-in zoom-in-95 duration-300 flex flex-col max-h-[90vh]">
               <div className="px-8 py-6 border-b border-zinc-800 flex items-center justify-between bg-zinc-900/50">
                 <div>
-                  <h3 className="text-xl font-black text-white uppercase italic tracking-tight">Seleksi Kandidat Khusus</h3>
-                  <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Pilih satu dari 20 ahli terbaik untuk mengisi portofolio ini</p>
+                  <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">Seleksi Kandidat Khusus</h3>
+                  <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest">Pilih satu dari 20 ahli terbaik untuk mengisi portofolio ini</p>
                 </div>
                 <button onClick={() => setSelectingFor(null)} className="p-3 bg-rose-600/10 border border-rose-500/50 rounded-2xl text-rose-500 hover:bg-rose-500 hover:text-white transition-all cursor-pointer">
                   <X className="h-6 w-6" />
                 </button>
               </div>
               
-              <div className="p-8 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-4 overflow-y-auto no-scrollbar flex-1 bg-zinc-900/10">
+              <div className="p-8 pb-12 grid grid-cols-3 gap-8 h-[calc(90vh-180px)] overflow-y-auto content-start custom-scrollbar">
                 {getCandidates().map((candidate) => (
-                  <button
+                  <div
                     key={candidate.candidate_id}
                     onClick={() => selectCandidate(candidate)}
-                    className="bg-zinc-900/40 border border-zinc-800 p-4 rounded-2xl hover:border-purple-500 hover:bg-purple-500/10 transition-all flex flex-col gap-3 group text-left cursor-pointer relative overflow-hidden"
+                    className="bg-black/40 border border-white/10 rounded-2xl p-8 hover:border-emerald-500/50 transition-all group cursor-pointer flex flex-col justify-between min-h-[400px]"
                   >
-                    <div className="flex items-start justify-between">
-                      <div className="w-10 h-10 bg-zinc-950 border border-zinc-800 rounded-lg flex items-center justify-center group-hover:bg-purple-500/20 transition-colors">
-                        <User className="h-5 w-5 text-zinc-600 group-hover:text-purple-400" />
+                    <div className="flex justify-between items-start mb-6">
+                      <div className="w-14 h-14 rounded-xl bg-emerald-500/10 flex items-center justify-center border border-emerald-500/20 group-hover:bg-emerald-500/20 transition-colors">
+                        <candidate.icon className="w-8 h-8 text-emerald-500" />
                       </div>
-                      <div className="text-[9px] font-black px-2 py-0.5 rounded-full bg-zinc-800 text-zinc-400 border border-zinc-700 uppercase tracking-widest">
+                      <div className="text-sm font-bold text-white/30 uppercase tracking-widest">
                         Option #{candidate.candidate_id}
                       </div>
                     </div>
-                    
-                    <div>
-                      <h4 className="text-[10px] font-black text-white uppercase italic truncate">
-                        Kandidat #{candidate.candidate_id}
-                      </h4>
-                      <div className="mt-2 space-y-1.5">
-                        <CompactStat label="Loy" value={candidate.stats.loyalty} color="bg-blue-500" />
-                        <CompactStat label="Kom" value={candidate.stats.competence} color="bg-amber-500" />
-                        <CompactStat label="Pop" value={candidate.stats.popularity} color="bg-rose-500" />
+
+                    <div className="mb-6">
+                      <div className="text-xl font-black text-white group-hover:text-emerald-400 transition-colors mb-2 line-clamp-1 uppercase tracking-tight">
+                        {candidate.minister}
+                      </div>
+                      <div className="text-sm text-zinc-500 leading-relaxed line-clamp-3 italic">
+                        "{candidate.description}"
                       </div>
                     </div>
-
-                    <div className="mt-2 pt-2 border-t border-zinc-800/50 flex items-center justify-between">
-                      <span className="text-[9px] font-black text-purple-400 uppercase italic">Avg: {Math.round((candidate.stats.loyalty + candidate.stats.competence + candidate.stats.popularity)/3)}%</span>
-                      <ChevronRight className="h-3 w-3 text-zinc-700 group-hover:text-purple-500 group-hover:translate-x-1 transition-all" />
+                    <div className="mt-2 space-y-2">
+                      <CompactStat value={candidate.effectiveness || 0} color="bg-emerald-500" />
                     </div>
-                  </button>
+                    <div className="mt-6 pt-6 border-t border-white/5 flex flex-col gap-3">
+                      <div className="flex justify-between items-center text-lg font-black italic">
+                        <span className="text-zinc-500 uppercase">Harga:</span>
+                        <span className="text-emerald-400 font-mono">{(candidate.cost || 0).toLocaleString()}</span>
+                      </div>
+                      <div className="flex justify-between items-center text-lg font-black italic">
+                        <span className="text-zinc-500 uppercase">efektivitas:</span>
+                        <span className="text-emerald-400">+{candidate.effectiveness || 0}%</span>
+                      </div>
+                      <div className="flex items-center justify-end mt-2">
+                        <ChevronRight className="h-6 w-6 text-zinc-700 group-hover:text-purple-500 group-hover:translate-x-2 transition-all" />
+                      </div>
+                    </div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -213,33 +254,13 @@ export default function KementerianModal({ isOpen, onClose }: ModalProps) {
   )
 }
 
-function StatBar({ label, value, icon, color }: { label: string, value: number, icon: any, color: string }) {
+function CompactStat({ value, color }: { value: number, color: string }) {
   return (
-    <div className="space-y-1.5">
-      <div className="flex justify-between text-[10px] font-black uppercase tracking-tighter text-zinc-500">
-        <span className="flex items-center gap-1.5 italic">
-          {icon} {label}
-        </span>
-        <span className="text-white">{value}%</span>
-      </div>
-      <div className="h-1.5 w-full bg-zinc-950 rounded-full overflow-hidden border border-zinc-800/50">
-        <div 
-          className={`h-full ${color} transition-all duration-1000 shadow-[0_0_10px_rgba(168,85,247,0.2)]`}
-          style={{ width: `${value}%` }}
-        />
-      </div>
-    </div>
-  )
-}
-
-function CompactStat({ label, value, color }: { label: string, value: number, color: string }) {
-  return (
-    <div className="flex items-center gap-2">
-      <span className="text-[8px] font-black text-zinc-500 uppercase w-6">{label}</span>
-      <div className="flex-1 h-1 bg-zinc-950 rounded-full overflow-hidden">
+    <div className="flex items-center gap-3">
+      <div className="flex-1 h-2.5 bg-zinc-950 rounded-full overflow-hidden">
         <div className={`h-full ${color}`} style={{ width: `${value}%` }} />
       </div>
-      <span className="text-[8px] font-bold text-white w-5 text-right">{value}%</span>
+      <span className="text-sm font-black text-white w-10 text-right">{value}%</span>
     </div>
   )
 }
