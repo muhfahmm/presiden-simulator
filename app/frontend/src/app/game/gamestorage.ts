@@ -1,15 +1,15 @@
-import { countries } from "../database/data/countries/index";
-import { happinessStorage } from "./components/2_navigasi_menu/navigasi_bawah/1_kepuasan/happinessStorage";
-import { priceStorage } from "./components/2_navigasi_menu/navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
-import { expenseStorage } from "./components/2_navigasi_menu/navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
-import { incomeStorage } from "./components/2_navigasi_menu/navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
-import { taxStorage } from "./components/2_navigasi_menu/navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
-import { tradeStorage } from "./components/2_navigasi_menu/navigasi_bawah/2_ekonomi/1-perdagangan/TradeStorage";
-import { buildingStorage } from "./components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage";
+import { countries } from "../database/data/countries/region/index";
+import { happinessStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/happinessStorage";
+import { priceStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
+import { expenseStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
+import { incomeStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
+import { taxStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
+import { tradeStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/TradeStorage";
+import { buildingStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { inboxStorage } from "./components/sidemenu/2_kotak_masuk/inboxStorage";
 import { budgetStorage } from "./components/1_navbar/3_kas_negara";
 import { budgetDeltaStorage } from "./components/1_navbar/3_kas_negara/BudgetDeltaStorage";
-import { acaraStorage } from "./components/2_navigasi_menu/navigasi_bawah/1_kepuasan/acara/acaraStorage";
+import { acaraStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/acara/acaraStorage";
 
 const STORAGE_KEY = "game_session";
 

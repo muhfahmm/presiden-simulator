@@ -3,19 +3,19 @@
 import { useRouter, useParams } from "next/navigation";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import MapRenderer from "@/app/game/components/map-system/MapRenderer";
-import MapCategorySelector from "../components/2_navigasi_menu/navigasi_atas/MapCategorySelector";
-import TradeRouteLegend from "../components/2_navigasi_menu/navigasi_atas/TradeRouteLegend";
-import SDADetailsModal from "../components/2_navigasi_menu/navigasi_atas/SDA/SDADetailsModal";
-import { sdaIcons } from "../components/2_navigasi_menu/navigasi_atas/SDA/mapSDA";
+import MapCategorySelector from "../components/2_navigasi_menu/1_navigasi_atas/MapCategorySelector";
+import TradeRouteLegend from "../components/2_navigasi_menu/1_navigasi_atas/TradeRouteLegend";
+import SDADetailsModal from "../components/2_navigasi_menu/1_navigasi_atas/SDA/SDADetailsModal";
+import { sdaIcons } from "../components/2_navigasi_menu/1_navigasi_atas/SDA/mapSDA";
 import StrategyModal from "@/app/game/components/StrategyModal";
-import BottomNav from "@/app/game/components/2_navigasi_menu/navigasi_bawah/BottomNav";
+import BottomNav from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/BottomNav";
 import SideMenu from "@/app/game/components/sidemenu/SideMenu";
-import ModalsManager from "@/app/game/components/2_navigasi_menu/navigasi_bawah/ModalsManager";
+import ModalsManager from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/ModalsManager";
 import GameOverOverlay from "@/app/game/components/6_overlays/GameOverOverlay";
 import WelcomeOverlay from "@/app/game/components/6_overlays/WelcomeOverlay";
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/countries/region/index";
-import GameTimeControls from "@/app/game/components/time/GameTimeControls";
+import GameTimeControls from "@/app/game/components/2_navigasi_menu/3_navigasi_waktu/GameTimeControls";
 import GameNavbar from "@/app/game/components/1_navbar";
 
 import { useGameState } from "../hooks/useGameState";
@@ -28,7 +28,7 @@ export default function GamePage() {
   const { activeMenu, setActiveMenu } = useGamePath((params?.path as string[]) || []);
   
   const {
-    approval, budget, budgetDelta, happiness, stability, population,
+    approval, budget, budgetDelta, happiness, stability, population, populationDelta,
     userCountry, isMounted, unreadCount, targetCountry, setTargetCountry,
     isGameOver, showWelcome, setShowWelcome, selectedCountrySDA, setSelectedCountrySDA
   } = useGameState(setActiveMenu);
@@ -70,6 +70,7 @@ export default function GamePage() {
           budgetDelta={budgetDelta}
           stability={stability}
           population={population}
+          populationDelta={populationDelta}
           onLogout={() => {
             if (confirm("Apakah Anda yakin ingin mengakhiri sesi simulasi ini? Semua kemajuan akan hilang.")) {
               gameStorage.clearSession();

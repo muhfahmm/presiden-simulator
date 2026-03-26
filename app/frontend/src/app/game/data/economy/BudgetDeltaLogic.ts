@@ -1,7 +1,7 @@
 import { CountryData } from "@/app/database/data/types/index";
-import { taxStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
-import { incomeStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
-import { expenseStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
+import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
+import { incomeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
+import { expenseStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
 import { 
   KAPASITAS_LISTRIK_METADATA, 
   mineralKritisRate, 
@@ -10,7 +10,7 @@ import {
   produksiMiliter, 
   tempatUmum 
 } from "@/app/database/data/types"
-import { priceStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
+import { priceStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 
 /**
  * Calculates the total daily maintenance cost for all national infrastruktur.

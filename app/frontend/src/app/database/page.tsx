@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 import { HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight, Eye, EyeOff, X } from "lucide-react";
 import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch";
 import WorldMapCanvas from "./databasemap";
-import MapHubungan from "../game/components/2_navigasi_menu/navigasi_atas/Hubungan/mapHubungan";
+import MapHubungan from "../game/components/2_navigasi_menu/1_navigasi_atas/Hubungan/mapHubungan";
 import { countries } from "./data/countries/region/index";
 import { gameStorage } from "../game/gamestorage";
 import { CountryData } from "./data/types/index";
@@ -33,7 +33,7 @@ import {
   AMMO_FACTORY_POWER,
   VEHICLE_FACTORY_POWER,
   HEAVY_WEAPON_FACTORY_POWER
-} from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/2-produksi-militer/militaryLogic";
+} from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/2-produksi-militer/militaryLogic";
 import { getInfraQuality } from "./data/types/2_infrastruktur";
 import { getExtractionData } from "./data/types/7_ekstraksi_mineral_kritis";
 import { getManufakturData, getPeternakanData, getPerikananData, getAgrikulturData } from "./data/types/3_produksi";

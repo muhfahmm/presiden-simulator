@@ -230,5 +230,6 @@ const DEFAULT_EXTRACTION: ExtractionData = {
 };
 
 export function getExtractionData(countryId: string): ExtractionData {
-  return EXTRACTION_DATA[countryId.toLowerCase()] || DEFAULT_EXTRACTION;
+  const key = countryId.toLowerCase().replace(/ /g, "_");
+  return EXTRACTION_DATA[key] || DEFAULT_EXTRACTION;
 }

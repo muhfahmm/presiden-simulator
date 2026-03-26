@@ -41,6 +41,9 @@ export function useGamePath(path: string[]) {
     initialMenu = "Menu:Berita";
   } else if (category === 'inbox') {
     initialMenu = "Menu:Inbox";
+  } else if (category === 'kependudukan') {
+    if (subMenu === 'dashboard') initialMenu = "Dashboard:Populasi";
+    else initialMenu = "Populasi";
   } else if (category === 'minerals') {
     initialMenu = "Menu:Minerals";
   }
@@ -74,7 +77,9 @@ export function useGamePath(path: string[]) {
       "Menu:Inbox": "/game/inbox",
       "Kepuasan": "/game/kepuasan",
       "Dashboard:Kepuasan": "/game/kepuasan/dashboard",
-      "Action:NaikkanKepuasan": "/game/kepuasan/naikkan"
+      "Action:NaikkanKepuasan": "/game/kepuasan/naikkan",
+      "Populasi": "/game/kependudukan",
+      "Dashboard:Populasi": "/game/kependudukan/dashboard"
     };
 
     const targetPath = menuToPath[activeMenu] || "/game";

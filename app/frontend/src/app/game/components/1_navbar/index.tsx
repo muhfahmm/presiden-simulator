@@ -3,7 +3,7 @@
 import React from "react";
 import { Heart, Users, Coins, Shield, LogOut } from "lucide-react";
 import { CountryData } from "@/app/database/data/types/index";
-import { HappinessBreakdown } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/1_kepuasan";
+import { HappinessBreakdown } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
@@ -48,6 +48,7 @@ interface GameNavbarProps {
   budgetDelta: number;
   stability: number;
   population: number;
+  populationDelta: number;
   onLogout: () => void;
 }
 
@@ -58,6 +59,7 @@ export default function GameNavbar({
   budgetDelta,
   stability,
   population,
+  populationDelta,
   onLogout
 }: GameNavbarProps) {
   return (
@@ -82,6 +84,7 @@ export default function GameNavbar({
           icon={<Users className="h-4 w-4 text-blue-500" />} 
           label="Populasi" 
           value={population} 
+          delta={populationDelta}
         />
         <StatusBadge 
           icon={<Coins className="h-4 w-4 text-yellow-500" />} 
