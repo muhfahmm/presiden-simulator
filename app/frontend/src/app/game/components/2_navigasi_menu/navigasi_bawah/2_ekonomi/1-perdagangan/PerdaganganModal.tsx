@@ -3,7 +3,8 @@ import {
   X, ArrowRightLeft, TrendingUp, TrendingDown, Globe, Ship, Landmark, BarChart3,
   Cpu, Car, Bike, Construction, TreePine, Droplet, Cookie, Croissant, Pill, FlaskConical, Beef, Soup, 
   Bird, Milk, Leaf, Shell, Fish, Sprout, Utensils, Apple, Bean, Layers, Mountain, Gem, Waves, Flame, 
-  Battery, Droplets, Box, Pickaxe, Radio, Coffee, Carrot, Eye, ChevronRight, Plus
+  Battery, Droplets, Box, Pickaxe, Radio, Coffee, Carrot, Eye, ChevronRight, Plus,
+  Target, Shield, Sword, Navigation
 } from "lucide-react"
 import { AddTradePartnerModal } from "./mitra_dagang_internasional/AddTradePartnerModal"
 import { CountryData } from "@/app/select-country/data/types/_index"
@@ -128,6 +129,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
   const mineralOrder = ["emas", "uranium", "batu_bara", "minyak_bumi", "gas_alam", "garam", "nikel", "litium", "tembaga", "aluminium", "logam_tanah_jarang", "bijih_besi"];
   const manufakturOrder = ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu", "air_mineral", "gula", "roti", "farmasi", "pupuk", "pengolahan_daging", "mie_instan"];
   const panganOrder = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing", "udang_kerang", "ikan", "padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"];
+  const militerOrder = ["pabrik_drone_kamikaze", "pabrik_amunisi", "pabrik_kendaraan_tempur", "pabrik_senjata_berat"];
 
   // Logic for 12 Minerals
   const mineralDataToBuildingKey: Record<string, string> = {
@@ -168,11 +170,21 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
 
   const panganItems = [...peternakanItems, ...agrikulturItems];
 
-  const industryAndEconomyLen = manufakturItems.length + panganItems.length;
+  const perikananItems = Object.entries(currentCountry.sektor_perikanan)
+    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || 0) as number)])
+    .sort((a, b) => panganOrder.indexOf(a[0] as string) - panganOrder.indexOf(b[0] as string)) as [string, number][];
+
+  const militerItems = Object.entries(currentCountry.pabrik_militer)
+    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || 0) as number)])
+    .sort((a, b) => militerOrder.indexOf(a[0] as string) - militerOrder.indexOf(b[0] as string)) as [string, number][];
+
+  const panganLen = peternakanItems.length + perikananItems.length + agrikulturItems.length;
 
   const [selectedKey, setSelectedKey] = useState<string>(minerals[0]?.[0] || 'emas');
   const [showMinerals, setShowMinerals] = useState(true);
-  const [showIndustry, setShowIndustry] = useState(false);
+  const [showManufaktur, setShowManufaktur] = useState(false);
+  const [showPangan, setShowPangan] = useState(false);
+  const [showMiliter, setShowMiliter] = useState(false);
   const [selectedTimeframe, setSelectedTimeframe] = useState<string>("1w");
   const [activeChartTab, setActiveChartTab] = useState<"buy" | "sell">("buy");
   const [executionModalItem, setExecutionModalItem] = useState<{ type: "buy" | "sell" } | null>(null);
@@ -192,7 +204,9 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
     ayam_unggas: Bird, sapi_perah: Milk, sapi_potong: Beef, domba_kambing: Leaf,
     udang_kerang: Shell, ikan: Fish,
     padi: Sprout, gandum_jagung: Utensils, sayur_umbi: Apple, kedelai: Bean, 
-    kelapa_sawit: Droplets, kopi_teh_kakao: Coffee, tebu: Leaf
+    kelapa_sawit: Droplets, kopi_teh_kakao: Coffee, tebu: Leaf,
+    pabrik_drone_kamikaze: Target, pabrik_amunisi: Box, 
+    pabrik_kendaraan_tempur: Navigation, pabrik_senjata_berat: Sword
   };
 
 
@@ -204,7 +218,10 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
   const selectedItem = [
     ...minerals,
     ...manufakturItems,
-    ...panganItems
+    ...peternakanItems,
+    ...perikananItems,
+    ...agrikulturItems,
+    ...militerItems
   ].find(m => m[0] === selectedKey);
 
   const selectedName = labelsMap[selectedKey] || selectedKey.charAt(0).toUpperCase() + selectedKey.slice(1).replace(/_/g, ' ');
@@ -324,26 +341,69 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
               </div>
             </div>
 
-             {/* 2. Category: Industry & Economy */}
+            {/* 2. Category: Manufacturing & Industry */}
             <div className="border-b border-zinc-900/80">
               <div className="p-8 flex items-center justify-between">
                 <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
-                  2. Produksi & Ekonomi ({industryAndEconomyLen})
+                  2. Manufaktur ({manufakturItems.length})
                 </h3>
                 <button 
-                   onClick={() => setShowIndustry(!showIndustry)}
+                   onClick={() => setShowManufaktur(!showManufaktur)}
                   className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 hover:text-blue-500 transition-all cursor-pointer group"
                 >
-                  <Eye className={`h-4 w-4 group-hover:scale-110 transition-all duration-500 ${!showIndustry ? 'rotate-180 opacity-50' : ''}`} />
+                  <Eye className={`h-4 w-4 group-hover:scale-110 transition-all duration-500 ${!showManufaktur ? 'rotate-180 opacity-50' : ''}`} />
                 </button>
               </div>
-              <div className={`grid transition-all duration-700 ease-in-out ${showIndustry ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+              <div className={`grid transition-all duration-700 ease-in-out ${showManufaktur ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                <div className="overflow-hidden no-scrollbar">
+                  <div className="px-4 pb-8 space-y-2">
+                    {manufakturItems.map(([key, val]) => (
+                      <button
+                        key={key}
+                        onClick={() => setSelectedKey(key as string)}
+                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all group relative cursor-pointer overflow-hidden ${
+                          selectedKey === key 
+                          ? 'bg-blue-600/10 border border-blue-500/40 text-white' 
+                          : 'text-zinc-500 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800'
+                        }`}
+                      >
+                        <div className="flex items-center gap-4 relative z-10">
+                          <div className={`p-2 rounded-xl transition-all duration-300 ${
+                            selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'
+                          }`}>
+                            {getIcon(key as string, "h-4 w-4")}
+                          </div>
+                          <span className="text-[12px] font-black uppercase tracking-tight">
+                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})
+                          </span>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Category: Food Production */}
+            <div className="border-b border-zinc-900/80">
+              <div className="p-8 flex items-center justify-between">
+                <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
+                  3. Produksi Pangan ({panganLen})
+                </h3>
+                <button 
+                   onClick={() => setShowPangan(!showPangan)}
+                  className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 hover:text-green-500 transition-all cursor-pointer group"
+                >
+                  <Eye className={`h-4 w-4 group-hover:scale-110 transition-all duration-500 ${!showPangan ? 'rotate-180 opacity-50' : ''}`} />
+                </button>
+              </div>
+              <div className={`grid transition-all duration-700 ease-in-out ${showPangan ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
                 <div className="overflow-hidden no-scrollbar">
                   <div className="px-4 pb-8 space-y-6">
-                    {/* Sub-group: Manufaktur */}
+                    {/* Sub-group: Peternakan */}
                     <div className="space-y-2">
-                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">Manufaktur & Industri</p>
-                      {manufakturItems.map(([key, val]) => (
+                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">1. Peternakan</p>
+                      {peternakanItems.map(([key, val]) => (
                         <button
                           key={key}
                           onClick={() => setSelectedKey(key as string)}
@@ -359,7 +419,7 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                             }`}>
                               {getIcon(key as string, "h-4 w-4")}
                             </div>
-                            <span className="text-[12px] font-black uppercase tracking-tight">
+                            <span className="text-[10px] font-black uppercase tracking-tight">
                               {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})
                             </span>
                           </div>
@@ -367,10 +427,10 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                       ))}
                     </div>
 
-                    {/* Sub-group: Pangan */}
+                    {/* Sub-group: Perikanan */}
                     <div className="space-y-2">
-                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">Agrikultur & Peternakan</p>
-                      {panganItems.map(([key, val]) => (
+                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">2. Perikanan</p>
+                      {perikananItems.map(([key, val]) => (
                         <button
                           key={key}
                           onClick={() => setSelectedKey(key as string)}
@@ -383,6 +443,80 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
                           <div className="flex items-center gap-4 relative z-10">
                             <div className={`p-2 rounded-xl transition-all duration-300 ${
                               selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'
+                            }`}>
+                              {getIcon(key as string, "h-4 w-4")}
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-tight">
+                              {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})
+                            </span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+
+                    {/* Sub-group: Agrikultur */}
+                    <div className="space-y-2">
+                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">3. Agrikultur</p>
+                      {agrikulturItems.map(([key, val]) => (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedKey(key as string)}
+                          className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all group relative cursor-pointer overflow-hidden ${
+                            selectedKey === key 
+                            ? 'bg-blue-600/10 border border-blue-500/40 text-white' 
+                            : 'text-zinc-500 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800'
+                          }`}
+                        >
+                          <div className="flex items-center gap-4 relative z-10">
+                            <div className={`p-2 rounded-xl transition-all duration-300 ${
+                              selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'
+                            }`}>
+                              {getIcon(key as string, "h-4 w-4")}
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-tight">
+                              {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})
+                            </span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Category: Military Production */}
+            <div className="border-b border-zinc-900/80">
+              <div className="p-8 flex items-center justify-between">
+                <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
+                  4. Produksi Militer ({militerItems.length})
+                </h3>
+                <button 
+                   onClick={() => setShowMiliter(!showMiliter)}
+                  className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 hover:text-red-500 transition-all cursor-pointer group"
+                >
+                  <Eye className={`h-4 w-4 group-hover:scale-110 transition-all duration-500 ${!showMiliter ? 'rotate-180 opacity-50' : ''}`} />
+                </button>
+              </div>
+              <div className={`grid transition-all duration-700 ease-in-out ${showMiliter ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                <div className="overflow-hidden no-scrollbar">
+                  <div className="px-4 pb-8 space-y-6">
+                    {/* Sub-group: Militer */}
+                    <div className="space-y-2">
+                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">1. Produksi Militer</p>
+                      {militerItems.map(([key, val]) => (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedKey(key as string)}
+                          className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all group relative cursor-pointer overflow-hidden ${
+                            selectedKey === key 
+                            ? 'bg-red-600/10 border border-red-500/40 text-white' 
+                            : 'text-zinc-500 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800'
+                          }`}
+                        >
+                          <div className="flex items-center gap-4 relative z-10">
+                            <div className={`p-2 rounded-xl transition-all duration-300 ${
+                              selectedKey === key ? 'bg-red-500 text-white' : 'bg-zinc-900 text-zinc-600'
                             }`}>
                               {getIcon(key as string, "h-4 w-4")}
                             </div>
