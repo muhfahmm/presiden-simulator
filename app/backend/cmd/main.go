@@ -9,7 +9,7 @@ import (
 func main() {
 	r := gin.Default()
 
-	// r.Use(cors.Default()) // Add CORS if needed later for frontend-desktop
+	// r.Use(cors.Default()) // Add CORS if needed later for frontend
 
 	r.GET("/ping", func(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{

@@ -1,19 +1,10 @@
-===ADMINPANEL===
-server Go
-cd "c:\fhm\EM4\admin\backend"
-go run cmd/main.go
-
-frontend
-cd "c:\fhm\EM4\admin\frontend"
-npm run dev
-
 ===USERPAGE===
 frontend-desktop (Web - port 4000)
-cd "c:\fhm\EM4\app\frontend-desktop"
+cd "c:\fhm\EM4\app\frontend"
 npm run dev
 
 frontend-desktop (Desktop - Tauri)
-cd "c:\fhm\EM4\app\frontend-desktop"
+cd "c:\fhm\EM4\app\frontend"
 npx tauri dev
 
 server Go (User Game Server - port 4001)
