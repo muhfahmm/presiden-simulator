@@ -6,7 +6,7 @@ import { tempatUmum } from "@/app/select-country/data/pembangunan/tempat-umum";
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/select-country/data/electricity";
 import { KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PANGAN } from "@/app/select-country/data/electricity";
 import { gameStorage } from "@/app/game/gamestorage";
-import { buildingStorage } from "@/app/game/components/2_navigasi_menu/3_pembangunan/buildingStorage";
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate } from "@/app/game/data/time/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/select-country/data/countries/_index";

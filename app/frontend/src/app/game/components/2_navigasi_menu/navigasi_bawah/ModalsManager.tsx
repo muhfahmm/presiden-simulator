@@ -1,28 +1,28 @@
 "use client"
 
 // Ekonomi Modals
-import PerdaganganModal from "@/app/game/components/2_navigasi_menu/2_ekonomi/1-perdagangan/PerdaganganModal";
-import PajakModal from "@/app/game/components/2_navigasi_menu/2_ekonomi/2-pajak/PajakModal";
-import HutangModal from "@/app/game/components/2_navigasi_menu/2_ekonomi/3-hutang/HutangModal";
-import PemasukkanPengeluaranModal from "@/app/game/components/2_navigasi_menu/2_ekonomi/4-pemasukkanpengeluaran/PemasukkanPengeluaranModal";
-import EnergiModal from "@/app/game/components/2_navigasi_menu/2_ekonomi/5-energi/EnergiModal";
-import ProduksiBarangModal from "@/app/game/components/2_navigasi_menu/2_ekonomi/6-produksi-barang/ProduksiBarangModal";
-import MineralsModal from "@/app/game/components/2_navigasi_menu/2_ekonomi/7-minerals/MineralsModal";
-import HargaModal from "@/app/game/components/2_navigasi_menu/2_ekonomi/8-pasar-domestik/HargaModal";
+import PerdaganganModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/1-perdagangan/PerdaganganModal";
+import PajakModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/2-pajak/PajakModal";
+import HutangModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/3-hutang/HutangModal";
+import PemasukkanPengeluaranModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/PemasukkanPengeluaranModal";
+import EnergiModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/5-energi/EnergiModal";
+import ProduksiBarangModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/6-produksi-barang/ProduksiBarangModal";
+import MineralsModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/7-minerals/MineralsModal";
+import HargaModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/8-pasar-domestik/HargaModal";
 
 // Other Modals
-import ProduksiHubV3 from "@/app/game/components/2_navigasi_menu/3_pembangunan/1-produksi/ProduksiModal";
-import ProduksiMiliterModal from "@/app/game/components/2_navigasi_menu/3_pembangunan/2-produksi-militer/ProduksiMiliterModal";
-import TempatUmumModal from "@/app/game/components/2_navigasi_menu/3_pembangunan/3-tempat-umum/TempatUmumModal";
-import PertahananModal from "@/app/game/components/2_navigasi_menu/4_pertahanan/PertahananModal";
-import ArmadaMiliterModal from "@/app/game/components/2_navigasi_menu/4_pertahanan/ArmadaMiliterModal";
-import ArmadaPolisiModal from "@/app/game/components/2_navigasi_menu/4_pertahanan/ArmadaPolisiModal";
-import GeopolitikModal from "@/app/game/components/2_navigasi_menu/5_geopolitik/GeopolitikModal";
-import KementerianModal from "@/app/game/components/2_navigasi_menu/6_kementrian/KementerianModal";
+import ProduksiHubV3 from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/1-produksi/ProduksiModal";
+import ProduksiMiliterModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/2-produksi-militer/ProduksiMiliterModal";
+import TempatUmumModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/3-tempat-umum/TempatUmumModal";
+import PertahananModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/4_pertahanan/PertahananModal";
+import ArmadaMiliterModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/4_pertahanan/ArmadaMiliterModal";
+import ArmadaPolisiModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/4_pertahanan/ArmadaPolisiModal";
+import GeopolitikModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/5_geopolitik/GeopolitikModal";
+import KementerianModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/6_kementrian/KementerianModal";
 import BeritaModal from "@/app/game/components/sidemenu/1_berita/BeritaModal";
 import InboxModal from "@/app/game/components/sidemenu/2_kotak_masuk/InboxModal";
-import KepuasanModal from "@/app/game/components/2_navigasi_menu/1_kepuasan/KepuasanModal";
-import AcaraModal from "@/app/game/components/2_navigasi_menu/1_kepuasan/acara/AcaraModal";
+import KepuasanModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/1_kepuasan/KepuasanModal";
+import AcaraModal from "@/app/game/components/2_navigasi_menu/navigasi_bawah/1_kepuasan/acara/AcaraModal";
 import NewMessageToast from "@/app/game/components/sidemenu/2_kotak_masuk/NewMessageToast";
 
 interface ModalsManagerProps {

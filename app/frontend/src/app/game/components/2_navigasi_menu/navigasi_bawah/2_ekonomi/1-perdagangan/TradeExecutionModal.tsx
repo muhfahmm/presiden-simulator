@@ -3,7 +3,7 @@ import { X, Play, Package, TrendingUp, Activity, ArrowRightLeft, Zap, Box, Facto
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/select-country/data/pembangunan/laju-produksi";
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
-import { buildingStorage } from "@/app/game/components/2_navigasi_menu/3_pembangunan/buildingStorage";
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage";
 
 interface TradeExecutionModalProps {
   isOpen: boolean;

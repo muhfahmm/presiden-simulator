@@ -1,9 +1,9 @@
 "use client"
 
-import GameMapCanvas from "../mainGameMap";
-import TradeMapCanvas from "../tab-menu/trades/TradeMapCanvas";
-import MapSDA from "../tab-menu/SDA/mapSDA";
-import MapHubungan from "../tab-menu/Hubungan/mapHubungan";
+import GameMapCanvas from "./mainGameMap";
+import TradeMapCanvas from "../2_navigasi_menu/navigasi_atas/trades/TradeMapCanvas";
+import MapSDA from "../2_navigasi_menu/navigasi_atas/SDA/mapSDA";
+import MapHubungan from "../2_navigasi_menu/navigasi_atas/Hubungan/mapHubungan";
 
 interface MapRendererProps {
   mapMode: "default" | "sda" | "hubungan" | "trade";

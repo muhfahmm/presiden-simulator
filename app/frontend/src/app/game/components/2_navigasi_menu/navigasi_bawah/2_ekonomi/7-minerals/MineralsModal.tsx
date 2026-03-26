@@ -4,7 +4,7 @@ import { X, Box, Battery, Layers, Pickaxe, TrendingUp, Activity, Info, Search, E
 import { CountryData } from "@/app/select-country/data/types/_index";
 import { countries } from "@/app/select-country/data/countries/_index";
 import { gameStorage } from "@/app/game/gamestorage";
-import { buildingStorage } from "@/app/game/components/2_navigasi_menu/3_pembangunan/buildingStorage";
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { mineralKritisRate } from "@/app/select-country/data/pembangunan/laju-produksi";
 import { useState, useEffect } from "react";

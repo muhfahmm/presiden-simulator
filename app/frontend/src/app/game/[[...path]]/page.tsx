@@ -2,15 +2,15 @@
 
 import { useRouter, useParams } from "next/navigation";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
-import MapRenderer from "@/app/game/components/MapRenderer";
-import MapCategorySelector from "../tab-menu/MapCategorySelector";
-import TradeRouteLegend from "../tab-menu/TradeRouteLegend";
-import SDADetailsModal from "../tab-menu/SDA/SDADetailsModal";
-import { sdaIcons } from "../tab-menu/SDA/mapSDA";
+import MapRenderer from "@/app/game/components/map-system/MapRenderer";
+import MapCategorySelector from "../components/2_navigasi_menu/navigasi_atas/MapCategorySelector";
+import TradeRouteLegend from "../components/2_navigasi_menu/navigasi_atas/TradeRouteLegend";
+import SDADetailsModal from "../components/2_navigasi_menu/navigasi_atas/SDA/SDADetailsModal";
+import { sdaIcons } from "../components/2_navigasi_menu/navigasi_atas/SDA/mapSDA";
 import StrategyModal from "@/app/game/components/StrategyModal";
-import BottomNav from "@/app/game/components/BottomNav";
+import BottomNav from "@/app/game/components/2_navigasi_menu/navigasi_bawah/BottomNav";
 import SideMenu from "@/app/game/components/sidemenu/SideMenu";
-import ModalsManager from "@/app/game/components/2_navigasi_menu/ModalsManager";
+import ModalsManager from "@/app/game/components/2_navigasi_menu/navigasi_bawah/ModalsManager";
 import GameOverOverlay from "@/app/game/components/6_overlays/GameOverOverlay";
 import WelcomeOverlay from "@/app/game/components/6_overlays/WelcomeOverlay";
 import { gameStorage } from "@/app/game/gamestorage";

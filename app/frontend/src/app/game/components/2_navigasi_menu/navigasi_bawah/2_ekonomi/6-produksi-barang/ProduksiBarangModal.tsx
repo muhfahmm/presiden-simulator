@@ -5,7 +5,7 @@ import { X, Package, Factory, Pickaxe, TrendingUp, TrendingDown, Info, Clock, Ac
 import { countries } from "@/app/select-country/data/countries/_index"
 import { CountryData } from "@/app/select-country/data/types/_index"
 import { gameStorage } from "@/app/game/gamestorage"
-import { buildingStorage } from "@/app/game/components/2_navigasi_menu/3_pembangunan/buildingStorage"
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage"
 import { mineralKritisRate, produkIndustriRate } from "@/app/select-country/data/pembangunan/laju-produksi"
 
 interface ModalProps {

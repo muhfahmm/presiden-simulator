@@ -1,14 +1,14 @@
 import { CountryData } from "@/app/select-country/data/types/_index";
-import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_ekonomi/2-pajak/TaxStorage";
-import { incomeStorage } from "@/app/game/components/2_navigasi_menu/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
-import { expenseStorage } from "@/app/game/components/2_navigasi_menu/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
+import { taxStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
+import { incomeStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
+import { expenseStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
 import { KAPASITAS_LISTRIK_METADATA } from "@/app/select-country/data/electricity/1_pasokan_listrik";
 import { mineralKritisRate } from "@/app/select-country/data/pembangunan/laju-produksi/1_mineral_kritis";
 import { produkIndustriRate } from "@/app/select-country/data/pembangunan/laju-produksi/2_produk_industri";
 import { komoditasPanganRate } from "@/app/select-country/data/pembangunan/laju-produksi/3_komoditas_pangan";
 import { produksiMiliter } from "@/app/select-country/data/pembangunan/produksi-militer";
 import { tempatUmum } from "@/app/select-country/data/pembangunan/tempat-umum";
-import { priceStorage } from "@/app/game/components/2_navigasi_menu/2_ekonomi/8-pasar-domestik/priceStorage";
+import { priceStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 
 /**
  * Calculates the total daily maintenance cost for all national infrastruktur.

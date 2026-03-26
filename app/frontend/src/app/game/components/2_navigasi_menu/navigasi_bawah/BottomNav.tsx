@@ -113,17 +113,22 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
               <div key={item.id} className="group relative">
                 <button
                   onClick={() => isMap ? handleFullReset() : handleMainClick(item.id)}
-                  className={`p-3 rounded-xl cursor-pointer transition-all duration-300 flex items-center justify-center ${
+                  className={`px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 flex items-center gap-2.5 justify-center ${
                     isActive 
-                      ? 'bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-md scale-105 min-w-[3.5rem]' 
+                      ? "bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg scale-105 min-w-[7rem]" 
                       : isMap
-                        ? 'text-zinc-400 hover:text-white hover:bg-zinc-800/60'
-                        : 'text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/40'
+                        ? "text-zinc-400 hover:text-white hover:bg-zinc-800/60"
+                        : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/40"
                   }`}
                 >
-                  <Icon className={`h-5 w-5 ${isActive ? 'animate-pulse' : ''}`} />
+                  <Icon className={`h-5 w-5 ${isActive ? "animate-pulse" : ""}`} />
+                  {isActive && (
+                    <span className="text-[11px] font-black uppercase tracking-widest whitespace-nowrap animate-in fade-in slide-in-from-left-2 duration-300">
+                      {item.label}
+                    </span>
+                  )}
                 </button>
-                <Tooltip label={item.label} />
+                {!isActive && <Tooltip label={item.label} />}
               </div>
             );
           })}

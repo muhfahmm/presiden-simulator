@@ -4,8 +4,8 @@ import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/select-country/data/countries/_index";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { formatGameDate } from "@/app/game/data/time/gameTime";
-import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_ekonomi/8-pasar-domestik/priceStorage";
-import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_ekonomi/2-pajak/TaxStorage";
+import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
+import { taxStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 
 export interface HappinessStats {
   value: number; // 0-100

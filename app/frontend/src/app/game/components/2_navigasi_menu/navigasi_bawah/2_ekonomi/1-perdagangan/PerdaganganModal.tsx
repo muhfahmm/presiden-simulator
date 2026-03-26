@@ -14,7 +14,7 @@ import { TradeExecutionModal } from "./TradeExecutionModal"
 import { getStoredGameDate } from "@/app/game/data/time/gameTime"
 import { getInitialAgreements } from "./database_mitra/agreementsRegistry"
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage"
-import { buildingStorage } from "@/app/game/components/2_navigasi_menu/3_pembangunan/buildingStorage"
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
 
 interface ModalProps {
