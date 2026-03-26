@@ -17,13 +17,12 @@ export const burundi: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 14,
-    "pembangkit_air": 33,
-    "pembangkit_nuklir": 29,
-    "jaringan_listrik": 72,
-    "pembangkit_surya": 31,
-    "pembangkit_termal": 31,
-    "pembangkit_angin": 17
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const burundi: CountryData = {
     "terminal_bus": 32,
     "helipad": 2,
     "jalan_tol": 24,
-    "cakupan_internet": 52,
     "jalur_kereta": 5,
-    "kualitas_jalan": 66,
     "pelabuhan_laut": 14,
     "kereta_bawah_tanah": 24
   },
@@ -46,37 +43,15 @@ export const burundi: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 16,
-    "batu_bara": 21,
-    "tembaga": 27,
-    "gas_alam": 40,
-    "emas": 7,
-    "bijih_besi": 15,
-    "litium": 16,
-    "nikel": 38,
-    "minyak_bumi": 21,
-    "logam_tanah_jarang": 13,
-    "garam": 16,
-    "uranium": 18
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 28,
-    "mobil": 13,
+  "sektor_manufaktur": {    "mobil": 13,
     "semen_beton": 1,
-    "pupuk": 18,
-    "mie_instan": 1,
-    "pengolahan_daging": 35,
-    "air_mineral": 16,
-    "sepeda_motor": 2,
-    "farmasi": 38,
-    "semikonduktor": 27,
-    "smelter": 14,
-    "gula": 15,
-    "kayu": 37
+    "pengolahan_daging": 35,    "sepeda_motor": 2,    "semikonduktor": 27,
+    "smelter": 14,    "kayu": 37
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const burundi: CountryData = {
     "udang_kerang": 4.0,
     "ikan": 13
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 16,
+    "gula": 15,
+    "roti": 28,
+    "pengolahan_daging": 35,
+    "mie_instan": 1
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 38
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 39,
     "gudang_senjata": 20,
     "hangar_tank": 8,
@@ -112,8 +102,8 @@ export const burundi: CountryData = {
     "pangkalan_udara": 28,
     "pangkalan_laut": 37,
     "program_luar_angkasa": 10,
-    "pertahanan_siber": 40,
-  },
+    "pertahanan_siber": 40
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const burundi: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 13,
     "intelijen": 18,
@@ -171,13 +160,12 @@ export const burundi: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 1,
-          "sepeda_motor": 32,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 1,
+        "sepeda_motor": 32,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 3,
@@ -188,9 +176,8 @@ export const burundi: CountryData = {
           "kantor_polisi": 34,
           "kamera_pengawas": 28,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const burundi: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

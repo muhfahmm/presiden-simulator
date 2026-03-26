@@ -17,14 +17,13 @@ export const bangladesh: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 13,
-    "pembangkit_air": 12,
-    "pembangkit_surya": 32,
-    "pembangkit_termal": 39,
-    "pembangkit_gas": 1,
-    "pembangkit_angin": 2,
-    "jaringan_listrik": 51
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const bangladesh: CountryData = {
     "kereta_bawah_tanah": 25,
     "jalur_kereta": 30,
     "jalan_tol": 15,
-    "kualitas_jalan": 85,
     "pelabuhan_laut": 31,
     "bandara": 34,
     "terminal_bus": 13,
-    "helipad": 28,
-    "cakupan_internet": 66
-  },
+    "helipad": 28
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 31,
-    "uranium": 24,
-    "batu_bara": 28,
-    "minyak_bumi": 16,
-    "gas_alam": 38,
-    "garam": 40,
-    "nikel": 32,
-    "litium": 3,
-    "aluminium": 30,
-    "tembaga": 24,
-    "logam_tanah_jarang": 20,
-    "bijih_besi": 23
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const bangladesh: CountryData = {
     "sepeda_motor": 30,
     "smelter": 18,
     "semen_beton": 19,
-    "kayu": 3,
-    "air_mineral": 29,
-    "gula": 26,
-    "roti": 22,
-    "farmasi": 28,
-    "pupuk": 1,
-    "pengolahan_daging": 4,
-    "mie_instan": 5
-  },
+    "kayu": 3
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const bangladesh: CountryData = {
     "udang_kerang": 23.5,
     "ikan": 32
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 29,
+    "gula": 26,
+    "roti": 22,
+    "pengolahan_daging": 4,
+    "mie_instan": 5
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 28
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 35,
     "gudang_senjata": 38,
     "hangar_tank": 18,
@@ -112,8 +105,8 @@ export const bangladesh: CountryData = {
     "pangkalan_udara": 23,
     "pangkalan_laut": 14,
     "program_luar_angkasa": 40,
-    "pertahanan_siber": 7,
-  },
+    "pertahanan_siber": 7
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const bangladesh: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 27,
     "intelijen": 1,
@@ -170,13 +162,12 @@ export const bangladesh: CountryData = {
       "manajemen_wilayah": 19,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 25,
-          "sepeda_motor": 30,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 25,
+        "sepeda_motor": 30,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 6,
@@ -187,9 +178,8 @@ export const bangladesh: CountryData = {
           "kantor_polisi": 23,
           "kamera_pengawas": 34,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const bangladesh: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

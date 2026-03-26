@@ -17,13 +17,12 @@ export const aljazair: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 7,
-    "pembangkit_air": 3,
-    "pembangkit_nuklir": 35,
-    "jaringan_listrik": 95,
-    "pembangkit_surya": 21,
-    "pembangkit_termal": 8,
-    "pembangkit_angin": 22
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const aljazair: CountryData = {
     "terminal_bus": 17,
     "helipad": 2,
     "jalan_tol": 30,
-    "cakupan_internet": 78,
     "jalur_kereta": 12,
-    "kualitas_jalan": 90,
     "pelabuhan_laut": 15,
     "kereta_bawah_tanah": 34
   },
@@ -46,37 +43,15 @@ export const aljazair: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 15,
-    "batu_bara": 39,
-    "tembaga": 3,
-    "gas_alam": 80,
-    "emas": 27,
-    "bijih_besi": 21,
-    "litium": 38,
-    "nikel": 3,
-    "minyak_bumi": 75,
-    "logam_tanah_jarang": 12,
-    "garam": 12,
-    "uranium": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 3,
-    "mobil": 2,
+  "sektor_manufaktur": {    "mobil": 2,
     "semen_beton": 21,
-    "pupuk": 11,
-    "mie_instan": 21,
-    "pengolahan_daging": 36,
-    "air_mineral": 19,
-    "sepeda_motor": 2,
-    "farmasi": 36,
-    "semikonduktor": 29,
-    "smelter": 12,
-    "gula": 2,
-    "kayu": 13
+    "pengolahan_daging": 36,    "sepeda_motor": 2,    "semikonduktor": 29,
+    "smelter": 12,    "kayu": 13
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const aljazair: CountryData = {
     "udang_kerang": 15.5,
     "ikan": 36
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 19,
+    "gula": 2,
+    "roti": 3,
+    "pengolahan_daging": 36,
+    "mie_instan": 21
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 36
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 3,
     "gudang_senjata": 16,
     "hangar_tank": 20,
@@ -112,8 +102,8 @@ export const aljazair: CountryData = {
     "pangkalan_udara": 23,
     "pangkalan_laut": 18,
     "program_luar_angkasa": 21,
-    "pertahanan_siber": 11,
-  },
+    "pertahanan_siber": 11
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const aljazair: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 15,
     "intelijen": 1,
@@ -171,13 +160,12 @@ export const aljazair: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 26,
-          "sepeda_motor": 33,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 26,
+        "sepeda_motor": 33,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 38,
@@ -188,9 +176,8 @@ export const aljazair: CountryData = {
           "kantor_polisi": 1,
           "kamera_pengawas": 25,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const aljazair: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

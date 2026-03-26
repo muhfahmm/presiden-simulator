@@ -17,14 +17,13 @@ export const republik_serbia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 29,
-    "pembangkit_air": 32,
-    "pembangkit_surya": 28,
-    "pembangkit_termal": 22,
-    "pembangkit_gas": 19,
-    "pembangkit_angin": 5,
-    "jaringan_listrik": 59
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const republik_serbia: CountryData = {
     "kereta_bawah_tanah": 25,
     "jalur_kereta": 17,
     "jalan_tol": 6,
-    "kualitas_jalan": 63,
     "pelabuhan_laut": 16,
     "bandara": 3,
     "terminal_bus": 2,
-    "helipad": 26,
-    "cakupan_internet": 93
-  },
+    "helipad": 26
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 27,
-    "uranium": 22,
-    "batu_bara": 34,
-    "minyak_bumi": 8,
-    "gas_alam": 11,
-    "garam": 36,
-    "nikel": 23,
-    "litium": 38,
-    "aluminium": 16,
-    "tembaga": 21,
-    "logam_tanah_jarang": 2,
-    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const republik_serbia: CountryData = {
     "sepeda_motor": 20,
     "smelter": 15,
     "semen_beton": 35,
-    "kayu": 4,
-    "air_mineral": 39,
-    "gula": 27,
-    "roti": 31,
-    "farmasi": 20,
-    "pupuk": 21,
-    "pengolahan_daging": 30,
-    "mie_instan": 25
-  },
+    "kayu": 4
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const republik_serbia: CountryData = {
     "udang_kerang": 28.0,
     "ikan": 16
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 39,
+    "gula": 27,
+    "roti": 31,
+    "pengolahan_daging": 30,
+    "mie_instan": 25
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 20
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 20,
     "gudang_senjata": 8,
     "hangar_tank": 14,
@@ -112,8 +105,8 @@ export const republik_serbia: CountryData = {
     "pangkalan_udara": 39,
     "pangkalan_laut": 29,
     "program_luar_angkasa": 9,
-    "pertahanan_siber": 2,
-  },
+    "pertahanan_siber": 2
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const republik_serbia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 28,
     "intelijen": 33,
@@ -170,13 +162,12 @@ export const republik_serbia: CountryData = {
       "manajemen_wilayah": 14,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 21,
-          "sepeda_motor": 14,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 21,
+        "sepeda_motor": 14,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 6,
@@ -187,9 +178,8 @@ export const republik_serbia: CountryData = {
           "kantor_polisi": 16,
           "kamera_pengawas": 15,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const republik_serbia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

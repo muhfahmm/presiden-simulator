@@ -17,14 +17,13 @@ export const nikaragua: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 33,
-    "pembangkit_air": 29,
-    "pembangkit_surya": 32,
-    "pembangkit_termal": 10,
-    "pembangkit_gas": 23,
-    "pembangkit_angin": 11,
-    "jaringan_listrik": 63
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const nikaragua: CountryData = {
     "kereta_bawah_tanah": 18,
     "jalur_kereta": 5,
     "jalan_tol": 20,
-    "kualitas_jalan": 51,
     "pelabuhan_laut": 17,
     "bandara": 5,
     "terminal_bus": 27,
-    "helipad": 11,
-    "cakupan_internet": 68
-  },
+    "helipad": 11
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 38,
-    "uranium": 28,
-    "batu_bara": 35,
-    "minyak_bumi": 19,
-    "gas_alam": 15,
-    "garam": 18,
-    "nikel": 36,
-    "litium": 19,
-    "aluminium": 1,
-    "tembaga": 36,
-    "logam_tanah_jarang": 28,
-    "bijih_besi": 26
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const nikaragua: CountryData = {
     "sepeda_motor": 32,
     "smelter": 18,
     "semen_beton": 39,
-    "kayu": 36,
-    "air_mineral": 1,
-    "gula": 39,
-    "roti": 6,
-    "farmasi": 2,
-    "pupuk": 25,
-    "pengolahan_daging": 10,
-    "mie_instan": 33
-  },
+    "kayu": 36
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const nikaragua: CountryData = {
     "udang_kerang": 13.5,
     "ikan": 13
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 1,
+    "gula": 39,
+    "roti": 6,
+    "pengolahan_daging": 10,
+    "mie_instan": 33
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 2
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 32,
     "gudang_senjata": 27,
     "hangar_tank": 20,
@@ -112,8 +105,8 @@ export const nikaragua: CountryData = {
     "pangkalan_udara": 10,
     "pangkalan_laut": 5,
     "program_luar_angkasa": 33,
-    "pertahanan_siber": 14,
-  },
+    "pertahanan_siber": 14
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const nikaragua: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 36,
     "intelijen": 24,
@@ -170,13 +162,12 @@ export const nikaragua: CountryData = {
       "manajemen_wilayah": 40,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 8,
-          "sepeda_motor": 7,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 8,
+        "sepeda_motor": 7,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 36,
@@ -187,9 +178,8 @@ export const nikaragua: CountryData = {
           "kantor_polisi": 19,
           "kamera_pengawas": 22,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const nikaragua: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

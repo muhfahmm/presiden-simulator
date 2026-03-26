@@ -17,13 +17,12 @@ export const republik_demokratik_kongo: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 29,
-    "pembangkit_air": 36,
-    "pembangkit_nuklir": 25,
-    "jaringan_listrik": 81,
-    "pembangkit_surya": 16,
-    "pembangkit_termal": 26,
-    "pembangkit_angin": 14
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const republik_demokratik_kongo: CountryData = {
     "terminal_bus": 30,
     "helipad": 3,
     "jalan_tol": 4,
-    "cakupan_internet": 50,
     "jalur_kereta": 29,
-    "kualitas_jalan": 62,
     "pelabuhan_laut": 34,
     "kereta_bawah_tanah": 21
   },
@@ -46,37 +43,15 @@ export const republik_demokratik_kongo: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 29,
-    "batu_bara": 40,
-    "tembaga": 90,
-    "gas_alam": 7,
-    "emas": 60,
-    "bijih_besi": 26,
-    "litium": 38,
-    "nikel": 35,
-    "minyak_bumi": 19,
-    "logam_tanah_jarang": 85,
-    "garam": 30,
-    "uranium": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 38,
-    "mobil": 20,
+  "sektor_manufaktur": {    "mobil": 20,
     "semen_beton": 25,
-    "pupuk": 34,
-    "mie_instan": 9,
-    "pengolahan_daging": 21,
-    "air_mineral": 6,
-    "sepeda_motor": 39,
-    "farmasi": 38,
-    "semikonduktor": 1,
-    "smelter": 13,
-    "gula": 38,
-    "kayu": 37
+    "pengolahan_daging": 21,    "sepeda_motor": 39,    "semikonduktor": 1,
+    "smelter": 13,    "kayu": 37
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const republik_demokratik_kongo: CountryData = {
     "udang_kerang": 35.5,
     "ikan": 34
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 6,
+    "gula": 38,
+    "roti": 38,
+    "pengolahan_daging": 21,
+    "mie_instan": 9
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 38
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 21,
     "gudang_senjata": 21,
     "hangar_tank": 22,
@@ -112,8 +102,8 @@ export const republik_demokratik_kongo: CountryData = {
     "pangkalan_udara": 2,
     "pangkalan_laut": 15,
     "program_luar_angkasa": 32,
-    "pertahanan_siber": 5,
-  },
+    "pertahanan_siber": 5
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const republik_demokratik_kongo: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 32,
     "intelijen": 26,
@@ -171,13 +160,12 @@ export const republik_demokratik_kongo: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 11,
-          "sepeda_motor": 32,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 11,
+        "sepeda_motor": 32,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 36,
@@ -188,9 +176,8 @@ export const republik_demokratik_kongo: CountryData = {
           "kantor_polisi": 16,
           "kamera_pengawas": 37,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const republik_demokratik_kongo: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

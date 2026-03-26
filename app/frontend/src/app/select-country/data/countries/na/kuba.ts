@@ -17,14 +17,13 @@ export const kuba: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 15,
-    "pembangkit_air": 33,
-    "pembangkit_surya": 26,
-    "pembangkit_termal": 22,
-    "pembangkit_gas": 23,
-    "pembangkit_angin": 30,
-    "jaringan_listrik": 53
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const kuba: CountryData = {
     "kereta_bawah_tanah": 16,
     "jalur_kereta": 19,
     "jalan_tol": 26,
-    "kualitas_jalan": 60,
     "pelabuhan_laut": 25,
     "bandara": 23,
     "terminal_bus": 8,
-    "helipad": 29,
-    "cakupan_internet": 66
-  },
+    "helipad": 29
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 9,
-    "uranium": 34,
-    "batu_bara": 25,
-    "minyak_bumi": 31,
-    "gas_alam": 10,
-    "garam": 7,
-    "nikel": 40,
-    "litium": 28,
-    "aluminium": 9,
-    "tembaga": 6,
-    "logam_tanah_jarang": 17,
-    "bijih_besi": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const kuba: CountryData = {
     "sepeda_motor": 31,
     "smelter": 30,
     "semen_beton": 7,
-    "kayu": 8,
-    "air_mineral": 3,
-    "gula": 29,
-    "roti": 16,
-    "farmasi": 10,
-    "pupuk": 23,
-    "pengolahan_daging": 35,
-    "mie_instan": 19
-  },
+    "kayu": 8
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const kuba: CountryData = {
     "udang_kerang": 33.0,
     "ikan": 7
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 3,
+    "gula": 29,
+    "roti": 16,
+    "pengolahan_daging": 35,
+    "mie_instan": 19
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 10
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 13,
     "gudang_senjata": 37,
     "hangar_tank": 18,
@@ -112,8 +105,8 @@ export const kuba: CountryData = {
     "pangkalan_udara": 7,
     "pangkalan_laut": 4,
     "program_luar_angkasa": 27,
-    "pertahanan_siber": 15,
-  },
+    "pertahanan_siber": 15
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const kuba: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 34,
     "intelijen": 30,
@@ -170,13 +162,12 @@ export const kuba: CountryData = {
       "manajemen_wilayah": 20,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 23,
-          "sepeda_motor": 29,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 23,
+        "sepeda_motor": 29,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 28,
@@ -187,9 +178,8 @@ export const kuba: CountryData = {
           "kantor_polisi": 7,
           "kamera_pengawas": 9,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const kuba: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

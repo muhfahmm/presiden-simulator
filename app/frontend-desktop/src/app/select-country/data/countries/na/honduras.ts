@@ -17,14 +17,13 @@ export const honduras: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 13,
-    "pembangkit_air": 5,
-    "pembangkit_surya": 33,
-    "pembangkit_termal": 2,
-    "pembangkit_gas": 16,
-    "pembangkit_angin": 36,
-    "jaringan_listrik": 92
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const honduras: CountryData = {
     "kereta_bawah_tanah": 36,
     "jalur_kereta": 7,
     "jalan_tol": 13,
-    "kualitas_jalan": 91,
     "pelabuhan_laut": 17,
     "bandara": 1,
     "terminal_bus": 21,
-    "helipad": 18,
-    "cakupan_internet": 78
-  },
+    "helipad": 18
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 31,
-    "uranium": 25,
-    "batu_bara": 23,
-    "minyak_bumi": 29,
-    "gas_alam": 5,
-    "garam": 32,
-    "nikel": 11,
-    "litium": 33,
-    "aluminium": 21,
-    "tembaga": 6,
-    "logam_tanah_jarang": 39,
-    "bijih_besi": 31
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const honduras: CountryData = {
     "sepeda_motor": 27,
     "smelter": 20,
     "semen_beton": 23,
-    "kayu": 27,
-    "air_mineral": 27,
-    "gula": 38,
-    "roti": 23,
-    "farmasi": 19,
-    "pupuk": 13,
-    "pengolahan_daging": 19,
-    "mie_instan": 22
-  },
+    "kayu": 27
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const honduras: CountryData = {
     "udang_kerang": 10.5,
     "ikan": 6
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 27,
+    "gula": 38,
+    "roti": 23,
+    "pengolahan_daging": 19,
+    "mie_instan": 22
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 19
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 4,
     "gudang_senjata": 37,
     "hangar_tank": 12,
@@ -112,8 +105,8 @@ export const honduras: CountryData = {
     "pangkalan_udara": 26,
     "pangkalan_laut": 21,
     "program_luar_angkasa": 29,
-    "pertahanan_siber": 4,
-  },
+    "pertahanan_siber": 4
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const honduras: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 19,
     "intelijen": 19,
@@ -170,13 +162,12 @@ export const honduras: CountryData = {
       "manajemen_wilayah": 38,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 38,
-          "sepeda_motor": 6,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 38,
+        "sepeda_motor": 6,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 26,
@@ -187,9 +178,8 @@ export const honduras: CountryData = {
           "kantor_polisi": 27,
           "kamera_pengawas": 17,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const honduras: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

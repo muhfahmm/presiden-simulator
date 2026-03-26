@@ -17,13 +17,12 @@ export const benin: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 9,
-    "pembangkit_air": 32,
-    "pembangkit_nuklir": 5,
-    "jaringan_listrik": 79,
-    "pembangkit_surya": 25,
-    "pembangkit_termal": 13,
-    "pembangkit_angin": 16
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const benin: CountryData = {
     "terminal_bus": 15,
     "helipad": 6,
     "jalan_tol": 1,
-    "cakupan_internet": 74,
     "jalur_kereta": 29,
-    "kualitas_jalan": 86,
     "pelabuhan_laut": 6,
     "kereta_bawah_tanah": 32
   },
@@ -46,37 +43,15 @@ export const benin: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 19,
-    "batu_bara": 29,
-    "tembaga": 5,
-    "gas_alam": 34,
-    "emas": 8,
-    "bijih_besi": 4,
-    "litium": 12,
-    "nikel": 19,
-    "minyak_bumi": 5,
-    "logam_tanah_jarang": 4,
-    "garam": 23,
-    "uranium": 34
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 32,
-    "mobil": 31,
+  "sektor_manufaktur": {    "mobil": 31,
     "semen_beton": 10,
-    "pupuk": 26,
-    "mie_instan": 5,
-    "pengolahan_daging": 21,
-    "air_mineral": 32,
-    "sepeda_motor": 2,
-    "farmasi": 1,
-    "semikonduktor": 23,
-    "smelter": 14,
-    "gula": 9,
-    "kayu": 23
+    "pengolahan_daging": 21,    "sepeda_motor": 2,    "semikonduktor": 23,
+    "smelter": 14,    "kayu": 23
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const benin: CountryData = {
     "udang_kerang": 31.0,
     "ikan": 11
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 32,
+    "gula": 9,
+    "roti": 32,
+    "pengolahan_daging": 21,
+    "mie_instan": 5
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 1
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 30,
     "gudang_senjata": 27,
     "hangar_tank": 12,
@@ -112,8 +102,8 @@ export const benin: CountryData = {
     "pangkalan_udara": 16,
     "pangkalan_laut": 5,
     "program_luar_angkasa": 36,
-    "pertahanan_siber": 32,
-  },
+    "pertahanan_siber": 32
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const benin: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 5,
     "intelijen": 16,
@@ -171,13 +160,12 @@ export const benin: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 37,
-          "sepeda_motor": 8,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 37,
+        "sepeda_motor": 8,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 27,
@@ -188,9 +176,8 @@ export const benin: CountryData = {
           "kantor_polisi": 32,
           "kamera_pengawas": 30,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const benin: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

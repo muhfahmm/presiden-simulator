@@ -17,14 +17,13 @@ export const andorra: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 38,
-    "pembangkit_air": 10,
-    "pembangkit_surya": 30,
-    "pembangkit_termal": 8,
-    "pembangkit_gas": 19,
-    "pembangkit_angin": 36,
-    "jaringan_listrik": 69
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const andorra: CountryData = {
     "kereta_bawah_tanah": 29,
     "jalur_kereta": 9,
     "jalan_tol": 38,
-    "kualitas_jalan": 84,
     "pelabuhan_laut": 8,
     "bandara": 18,
     "terminal_bus": 29,
-    "helipad": 27,
-    "cakupan_internet": 75
-  },
+    "helipad": 27
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 26,
-    "uranium": 33,
-    "batu_bara": 40,
-    "minyak_bumi": 12,
-    "gas_alam": 6,
-    "garam": 12,
-    "nikel": 28,
-    "litium": 6,
-    "aluminium": 32,
-    "tembaga": 32,
-    "logam_tanah_jarang": 28,
-    "bijih_besi": 34
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const andorra: CountryData = {
     "sepeda_motor": 6,
     "smelter": 10,
     "semen_beton": 9,
-    "kayu": 11,
-    "air_mineral": 28,
-    "gula": 18,
-    "roti": 36,
-    "farmasi": 23,
-    "pupuk": 35,
-    "pengolahan_daging": 7,
-    "mie_instan": 26
-  },
+    "kayu": 11
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const andorra: CountryData = {
     "udang_kerang": 8.0,
     "ikan": 23
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 28,
+    "gula": 18,
+    "roti": 36,
+    "pengolahan_daging": 7,
+    "mie_instan": 26
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 23
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 30,
     "gudang_senjata": 18,
     "hangar_tank": 31,
@@ -112,8 +105,8 @@ export const andorra: CountryData = {
     "pangkalan_udara": 25,
     "pangkalan_laut": 4,
     "program_luar_angkasa": 27,
-    "pertahanan_siber": 31,
-  },
+    "pertahanan_siber": 31
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const andorra: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 6,
     "intelijen": 31,
@@ -170,13 +162,12 @@ export const andorra: CountryData = {
       "manajemen_wilayah": 5,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 33,
-          "sepeda_motor": 12,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 33,
+        "sepeda_motor": 12,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -187,9 +178,8 @@ export const andorra: CountryData = {
           "kantor_polisi": 39,
           "kamera_pengawas": 19,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const andorra: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

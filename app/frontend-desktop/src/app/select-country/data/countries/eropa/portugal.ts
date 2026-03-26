@@ -17,14 +17,13 @@ export const portugal: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 32,
-    "pembangkit_air": 30,
-    "pembangkit_surya": 24,
-    "pembangkit_termal": 30,
-    "pembangkit_gas": 17,
-    "pembangkit_angin": 37,
-    "jaringan_listrik": 82
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const portugal: CountryData = {
     "kereta_bawah_tanah": 1,
     "jalur_kereta": 16,
     "jalan_tol": 6,
-    "kualitas_jalan": 70,
     "pelabuhan_laut": 11,
     "bandara": 5,
     "terminal_bus": 23,
-    "helipad": 19,
-    "cakupan_internet": 59
-  },
+    "helipad": 19
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 1,
-    "uranium": 17,
-    "batu_bara": 30,
-    "minyak_bumi": 10,
-    "gas_alam": 17,
-    "garam": 23,
-    "nikel": 31,
-    "litium": 23,
-    "aluminium": 26,
-    "tembaga": 23,
-    "logam_tanah_jarang": 9,
-    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const portugal: CountryData = {
     "sepeda_motor": 8,
     "smelter": 32,
     "semen_beton": 14,
-    "kayu": 1,
-    "air_mineral": 6,
-    "gula": 1,
-    "roti": 19,
-    "farmasi": 5,
-    "pupuk": 35,
-    "pengolahan_daging": 34,
-    "mie_instan": 33
-  },
+    "kayu": 1
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const portugal: CountryData = {
     "udang_kerang": 18.0,
     "ikan": 34
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 6,
+    "gula": 1,
+    "roti": 19,
+    "pengolahan_daging": 34,
+    "mie_instan": 33
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 5
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 26,
     "gudang_senjata": 9,
     "hangar_tank": 8,
@@ -112,8 +105,8 @@ export const portugal: CountryData = {
     "pangkalan_udara": 3,
     "pangkalan_laut": 25,
     "program_luar_angkasa": 23,
-    "pertahanan_siber": 20,
-  },
+    "pertahanan_siber": 20
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const portugal: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 10,
     "intelijen": 23,
@@ -170,13 +162,12 @@ export const portugal: CountryData = {
       "manajemen_wilayah": 31,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 11,
-          "sepeda_motor": 18,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 11,
+        "sepeda_motor": 18,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 31,
@@ -187,9 +178,8 @@ export const portugal: CountryData = {
           "kantor_polisi": 37,
           "kamera_pengawas": 25,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const portugal: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

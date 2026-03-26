@@ -17,14 +17,13 @@ export const samoa_amerika: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 21,
-    "pembangkit_air": 10,
-    "pembangkit_surya": 17,
-    "pembangkit_termal": 25,
-    "pembangkit_gas": 32,
-    "pembangkit_angin": 6,
-    "jaringan_listrik": 86
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const samoa_amerika: CountryData = {
     "kereta_bawah_tanah": 24,
     "jalur_kereta": 20,
     "jalan_tol": 18,
-    "kualitas_jalan": 79,
     "pelabuhan_laut": 35,
     "bandara": 8,
     "terminal_bus": 8,
-    "helipad": 10,
-    "cakupan_internet": 84
-  },
+    "helipad": 10
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 15,
-    "uranium": 1,
-    "batu_bara": 6,
-    "minyak_bumi": 39,
-    "gas_alam": 18,
-    "garam": 38,
-    "nikel": 21,
-    "litium": 38,
-    "aluminium": 35,
-    "tembaga": 25,
-    "logam_tanah_jarang": 35,
-    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const samoa_amerika: CountryData = {
     "sepeda_motor": 30,
     "smelter": 10,
     "semen_beton": 24,
-    "kayu": 37,
-    "air_mineral": 14,
-    "gula": 4,
-    "roti": 15,
-    "farmasi": 33,
-    "pupuk": 36,
-    "pengolahan_daging": 35,
-    "mie_instan": 36
-  },
+    "kayu": 37
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const samoa_amerika: CountryData = {
     "udang_kerang": 22.5,
     "ikan": 5
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 14,
+    "gula": 4,
+    "roti": 15,
+    "pengolahan_daging": 35,
+    "mie_instan": 36
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 33
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 19,
     "gudang_senjata": 31,
     "hangar_tank": 12,
@@ -112,8 +105,8 @@ export const samoa_amerika: CountryData = {
     "pangkalan_udara": 18,
     "pangkalan_laut": 30,
     "program_luar_angkasa": 9,
-    "pertahanan_siber": 10,
-  },
+    "pertahanan_siber": 10
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const samoa_amerika: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 7,
     "intelijen": 16,
@@ -170,13 +162,12 @@ export const samoa_amerika: CountryData = {
       "manajemen_wilayah": 32,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 4,
-          "sepeda_motor": 33,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 4,
+        "sepeda_motor": 33,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 7,
@@ -187,9 +178,8 @@ export const samoa_amerika: CountryData = {
           "kantor_polisi": 25,
           "kamera_pengawas": 11,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const samoa_amerika: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

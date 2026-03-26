@@ -17,13 +17,12 @@ export const maroko: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 27,
-    "pembangkit_air": 28,
-    "pembangkit_nuklir": 9,
-    "jaringan_listrik": 72,
-    "pembangkit_surya": 28,
-    "pembangkit_termal": 6,
-    "pembangkit_angin": 9
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const maroko: CountryData = {
     "terminal_bus": 19,
     "helipad": 26,
     "jalan_tol": 6,
-    "cakupan_internet": 89,
     "jalur_kereta": 16,
-    "kualitas_jalan": 63,
     "pelabuhan_laut": 36,
     "kereta_bawah_tanah": 39
   },
@@ -46,37 +43,15 @@ export const maroko: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 10,
-    "batu_bara": 35,
-    "tembaga": 18,
-    "gas_alam": 23,
-    "emas": 20,
-    "bijih_besi": 3,
-    "litium": 36,
-    "nikel": 18,
-    "minyak_bumi": 29,
-    "logam_tanah_jarang": 38,
-    "garam": 2,
-    "uranium": 6
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 34,
-    "mobil": 23,
+  "sektor_manufaktur": {    "mobil": 23,
     "semen_beton": 37,
-    "pupuk": 31,
-    "mie_instan": 31,
-    "pengolahan_daging": 1,
-    "air_mineral": 37,
-    "sepeda_motor": 13,
-    "farmasi": 24,
-    "semikonduktor": 33,
-    "smelter": 11,
-    "gula": 18,
-    "kayu": 35
+    "pengolahan_daging": 1,    "sepeda_motor": 13,    "semikonduktor": 33,
+    "smelter": 11,    "kayu": 35
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const maroko: CountryData = {
     "udang_kerang": 7.5,
     "ikan": 1
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 37,
+    "gula": 18,
+    "roti": 34,
+    "pengolahan_daging": 1,
+    "mie_instan": 31
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 24
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 11,
     "gudang_senjata": 17,
     "hangar_tank": 22,
@@ -112,8 +102,8 @@ export const maroko: CountryData = {
     "pangkalan_udara": 17,
     "pangkalan_laut": 31,
     "program_luar_angkasa": 13,
-    "pertahanan_siber": 15,
-  },
+    "pertahanan_siber": 15
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const maroko: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 39,
     "intelijen": 38,
@@ -171,13 +160,12 @@ export const maroko: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 29,
-          "sepeda_motor": 23,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 29,
+        "sepeda_motor": 23,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 28,
@@ -188,9 +176,8 @@ export const maroko: CountryData = {
           "kantor_polisi": 10,
           "kamera_pengawas": 40,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const maroko: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

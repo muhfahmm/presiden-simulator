@@ -17,14 +17,13 @@ export const belarus: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 36,
-    "pembangkit_air": 1,
-    "pembangkit_surya": 22,
-    "pembangkit_termal": 28,
-    "pembangkit_gas": 34,
-    "pembangkit_angin": 38,
-    "jaringan_listrik": 73
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const belarus: CountryData = {
     "kereta_bawah_tanah": 21,
     "jalur_kereta": 1,
     "jalan_tol": 22,
-    "kualitas_jalan": 76,
     "pelabuhan_laut": 13,
     "bandara": 22,
     "terminal_bus": 10,
-    "helipad": 31,
-    "cakupan_internet": 92
-  },
+    "helipad": 31
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 7,
-    "uranium": 37,
-    "batu_bara": 12,
-    "minyak_bumi": 3,
-    "gas_alam": 14,
-    "garam": 32,
-    "nikel": 18,
-    "litium": 13,
-    "aluminium": 33,
-    "tembaga": 28,
-    "logam_tanah_jarang": 28,
-    "bijih_besi": 36
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const belarus: CountryData = {
     "sepeda_motor": 18,
     "smelter": 35,
     "semen_beton": 18,
-    "kayu": 3,
-    "air_mineral": 29,
-    "gula": 21,
-    "roti": 37,
-    "farmasi": 35,
-    "pupuk": 36,
-    "pengolahan_daging": 20,
-    "mie_instan": 20
-  },
+    "kayu": 3
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const belarus: CountryData = {
     "udang_kerang": 8.0,
     "ikan": 14
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 29,
+    "gula": 21,
+    "roti": 37,
+    "pengolahan_daging": 20,
+    "mie_instan": 20
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 35
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 28,
     "gudang_senjata": 36,
     "hangar_tank": 1,
@@ -112,8 +105,8 @@ export const belarus: CountryData = {
     "pangkalan_udara": 6,
     "pangkalan_laut": 36,
     "program_luar_angkasa": 13,
-    "pertahanan_siber": 10,
-  },
+    "pertahanan_siber": 10
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const belarus: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 1,
     "intelijen": 24,
@@ -170,13 +162,12 @@ export const belarus: CountryData = {
       "manajemen_wilayah": 26,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 34,
-          "sepeda_motor": 6,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 34,
+        "sepeda_motor": 6,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 26,
@@ -187,9 +178,8 @@ export const belarus: CountryData = {
           "kantor_polisi": 38,
           "kamera_pengawas": 10,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const belarus: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

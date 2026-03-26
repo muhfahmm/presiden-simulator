@@ -17,14 +17,13 @@ export const uzbekistan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 8,
-    "pembangkit_air": 24,
-    "pembangkit_surya": 1,
-    "pembangkit_termal": 11,
-    "pembangkit_gas": 5,
-    "pembangkit_angin": 24,
-    "jaringan_listrik": 83
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const uzbekistan: CountryData = {
     "kereta_bawah_tanah": 8,
     "jalur_kereta": 37,
     "jalan_tol": 13,
-    "kualitas_jalan": 57,
     "pelabuhan_laut": 2,
     "bandara": 28,
     "terminal_bus": 34,
-    "helipad": 29,
-    "cakupan_internet": 55
-  },
+    "helipad": 29
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 22,
-    "uranium": 26,
-    "batu_bara": 12,
-    "minyak_bumi": 36,
-    "gas_alam": 38,
-    "garam": 6,
-    "nikel": 24,
-    "litium": 40,
-    "aluminium": 7,
-    "tembaga": 12,
-    "logam_tanah_jarang": 29,
-    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const uzbekistan: CountryData = {
     "sepeda_motor": 34,
     "smelter": 3,
     "semen_beton": 19,
-    "kayu": 12,
-    "air_mineral": 32,
-    "gula": 1,
-    "roti": 10,
-    "farmasi": 10,
-    "pupuk": 25,
-    "pengolahan_daging": 12,
-    "mie_instan": 40
-  },
+    "kayu": 12
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const uzbekistan: CountryData = {
     "udang_kerang": 24.0,
     "ikan": 13
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 32,
+    "gula": 1,
+    "roti": 10,
+    "pengolahan_daging": 12,
+    "mie_instan": 40
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 10
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 15,
     "gudang_senjata": 30,
     "hangar_tank": 14,
@@ -112,8 +105,8 @@ export const uzbekistan: CountryData = {
     "pangkalan_udara": 11,
     "pangkalan_laut": 33,
     "program_luar_angkasa": 23,
-    "pertahanan_siber": 12,
-  },
+    "pertahanan_siber": 12
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const uzbekistan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 18,
     "intelijen": 22,
@@ -170,13 +162,12 @@ export const uzbekistan: CountryData = {
       "manajemen_wilayah": 24,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 6,
-          "sepeda_motor": 25,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 6,
+        "sepeda_motor": 25,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 21,
@@ -187,9 +178,8 @@ export const uzbekistan: CountryData = {
           "kantor_polisi": 4,
           "kamera_pengawas": 9,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const uzbekistan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

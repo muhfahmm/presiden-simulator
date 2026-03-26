@@ -17,13 +17,12 @@ export const botswana: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 35,
-    "pembangkit_air": 16,
-    "pembangkit_nuklir": 29,
-    "jaringan_listrik": 70,
-    "pembangkit_surya": 36,
-    "pembangkit_termal": 3,
-    "pembangkit_angin": 16
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const botswana: CountryData = {
     "terminal_bus": 23,
     "helipad": 10,
     "jalan_tol": 1,
-    "cakupan_internet": 86,
     "jalur_kereta": 4,
-    "kualitas_jalan": 90,
     "pelabuhan_laut": 15,
     "kereta_bawah_tanah": 7
   },
@@ -46,37 +43,15 @@ export const botswana: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 30,
-    "batu_bara": 40,
-    "tembaga": 28,
-    "gas_alam": 19,
-    "emas": 14,
-    "bijih_besi": 1,
-    "litium": 17,
-    "nikel": 30,
-    "minyak_bumi": 1,
-    "logam_tanah_jarang": 21,
-    "garam": 40,
-    "uranium": 24
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 8,
-    "mobil": 19,
+  "sektor_manufaktur": {    "mobil": 19,
     "semen_beton": 22,
-    "pupuk": 15,
-    "mie_instan": 38,
-    "pengolahan_daging": 32,
-    "air_mineral": 15,
-    "sepeda_motor": 36,
-    "farmasi": 35,
-    "semikonduktor": 13,
-    "smelter": 7,
-    "gula": 17,
-    "kayu": 2
+    "pengolahan_daging": 32,    "sepeda_motor": 36,    "semikonduktor": 13,
+    "smelter": 7,    "kayu": 2
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const botswana: CountryData = {
     "udang_kerang": 22.0,
     "ikan": 34
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 15,
+    "gula": 17,
+    "roti": 8,
+    "pengolahan_daging": 32,
+    "mie_instan": 38
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 35
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 24,
     "gudang_senjata": 32,
     "hangar_tank": 30,
@@ -112,8 +102,8 @@ export const botswana: CountryData = {
     "pangkalan_udara": 18,
     "pangkalan_laut": 32,
     "program_luar_angkasa": 25,
-    "pertahanan_siber": 39,
-  },
+    "pertahanan_siber": 39
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const botswana: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 19,
     "intelijen": 22,
@@ -171,13 +160,12 @@ export const botswana: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 11,
-          "sepeda_motor": 4,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 11,
+        "sepeda_motor": 4,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -188,9 +176,8 @@ export const botswana: CountryData = {
           "kantor_polisi": 7,
           "kamera_pengawas": 8,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const botswana: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

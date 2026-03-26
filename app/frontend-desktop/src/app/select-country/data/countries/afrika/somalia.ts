@@ -17,13 +17,12 @@ export const somalia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 22,
-    "pembangkit_air": 17,
-    "pembangkit_nuklir": 35,
-    "jaringan_listrik": 84,
-    "pembangkit_surya": 33,
-    "pembangkit_termal": 9,
-    "pembangkit_angin": 2
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const somalia: CountryData = {
     "terminal_bus": 34,
     "helipad": 40,
     "jalan_tol": 39,
-    "cakupan_internet": 93,
     "jalur_kereta": 28,
-    "kualitas_jalan": 66,
     "pelabuhan_laut": 2,
     "kereta_bawah_tanah": 17
   },
@@ -46,37 +43,15 @@ export const somalia: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 23,
-    "batu_bara": 23,
-    "tembaga": 6,
-    "gas_alam": 28,
-    "emas": 2,
-    "bijih_besi": 39,
-    "litium": 13,
-    "nikel": 6,
-    "minyak_bumi": 25,
-    "logam_tanah_jarang": 20,
-    "garam": 10,
-    "uranium": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 9,
-    "mobil": 5,
+  "sektor_manufaktur": {    "mobil": 5,
     "semen_beton": 12,
-    "pupuk": 8,
-    "mie_instan": 8,
-    "pengolahan_daging": 34,
-    "air_mineral": 9,
-    "sepeda_motor": 13,
-    "farmasi": 36,
-    "semikonduktor": 16,
-    "smelter": 39,
-    "gula": 28,
-    "kayu": 33
+    "pengolahan_daging": 34,    "sepeda_motor": 13,    "semikonduktor": 16,
+    "smelter": 39,    "kayu": 33
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const somalia: CountryData = {
     "udang_kerang": 17.0,
     "ikan": 39
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 9,
+    "gula": 28,
+    "roti": 9,
+    "pengolahan_daging": 34,
+    "mie_instan": 8
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 36
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 8,
     "gudang_senjata": 25,
     "hangar_tank": 11,
@@ -112,8 +102,8 @@ export const somalia: CountryData = {
     "pangkalan_udara": 30,
     "pangkalan_laut": 13,
     "program_luar_angkasa": 31,
-    "pertahanan_siber": 18,
-  },
+    "pertahanan_siber": 18
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const somalia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 35,
     "intelijen": 16,
@@ -171,13 +160,12 @@ export const somalia: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 29,
-          "sepeda_motor": 17,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 29,
+        "sepeda_motor": 17,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 22,
@@ -188,9 +176,8 @@ export const somalia: CountryData = {
           "kantor_polisi": 10,
           "kamera_pengawas": 38,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const somalia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

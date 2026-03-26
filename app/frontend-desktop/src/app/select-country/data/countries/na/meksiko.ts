@@ -17,14 +17,13 @@ export const meksiko: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 3,
-    "pembangkit_air": 23,
-    "pembangkit_surya": 8,
-    "pembangkit_termal": 38,
-    "pembangkit_gas": 16,
-    "pembangkit_angin": 30,
-    "jaringan_listrik": 76
-  },
+    "pembangkit_listrik_tenaga_nuklir": 2,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const meksiko: CountryData = {
     "kereta_bawah_tanah": 21,
     "jalur_kereta": 30,
     "jalan_tol": 5,
-    "kualitas_jalan": 56,
     "pelabuhan_laut": 32,
     "bandara": 25,
     "terminal_bus": 34,
-    "helipad": 7,
-    "cakupan_internet": 88
-  },
+    "helipad": 7
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 38,
-    "uranium": 23,
-    "batu_bara": 33,
-    "minyak_bumi": 9,
-    "gas_alam": 8,
-    "garam": 11,
-    "nikel": 22,
-    "litium": 6,
-    "aluminium": 10,
-    "tembaga": 20,
-    "logam_tanah_jarang": 33,
-    "bijih_besi": 33
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const meksiko: CountryData = {
     "sepeda_motor": 15,
     "smelter": 19,
     "semen_beton": 38,
-    "kayu": 6,
-    "air_mineral": 17,
-    "gula": 13,
-    "roti": 8,
-    "farmasi": 20,
-    "pupuk": 16,
-    "pengolahan_daging": 17,
-    "mie_instan": 22
-  },
+    "kayu": 6
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const meksiko: CountryData = {
     "udang_kerang": 13.5,
     "ikan": 19
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 17,
+    "gula": 13,
+    "roti": 8,
+    "pengolahan_daging": 17,
+    "mie_instan": 22
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 20
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 5,
     "gudang_senjata": 20,
     "hangar_tank": 4,
@@ -112,8 +105,8 @@ export const meksiko: CountryData = {
     "pangkalan_udara": 12,
     "pangkalan_laut": 10,
     "program_luar_angkasa": 30,
-    "pertahanan_siber": 17,
-  },
+    "pertahanan_siber": 17
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const meksiko: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 27,
     "intelijen": 21,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 38,
       "misi_mata_mata": 34,
       "misi_sabotase": 8,
       "manajemen_wilayah": 12,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 3,
-          "sepeda_motor": 8,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 3,
+        "sepeda_motor": 8,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 28,
@@ -187,9 +178,8 @@ export const meksiko: CountryData = {
           "kantor_polisi": 37,
           "kamera_pengawas": 36,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const meksiko: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

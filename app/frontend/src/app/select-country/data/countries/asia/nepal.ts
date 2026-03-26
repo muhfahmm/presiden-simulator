@@ -17,14 +17,13 @@ export const nepal: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 6,
-    "pembangkit_air": 30,
-    "pembangkit_surya": 29,
-    "pembangkit_termal": 34,
-    "pembangkit_gas": 32,
-    "pembangkit_angin": 33,
-    "jaringan_listrik": 80
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 99,
+    "pembangkit_listrik_tenaga_surya": 1,
+    "pembangkit_listrik_tenaga_uap": 0,
+    "pembangkit_listrik_tenaga_gas": 0,
+    "pembangkit_listrik_tenaga_angin": 0
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const nepal: CountryData = {
     "kereta_bawah_tanah": 5,
     "jalur_kereta": 32,
     "jalan_tol": 17,
-    "kualitas_jalan": 89,
     "pelabuhan_laut": 8,
     "bandara": 39,
     "terminal_bus": 21,
-    "helipad": 33,
-    "cakupan_internet": 91
-  },
+    "helipad": 33
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 29,
-    "uranium": 12,
-    "batu_bara": 1,
-    "minyak_bumi": 6,
-    "gas_alam": 36,
-    "garam": 16,
-    "nikel": 21,
-    "litium": 3,
-    "aluminium": 31,
-    "tembaga": 4,
-    "logam_tanah_jarang": 17,
-    "bijih_besi": 30
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const nepal: CountryData = {
     "sepeda_motor": 18,
     "smelter": 19,
     "semen_beton": 2,
-    "kayu": 14,
-    "air_mineral": 4,
-    "gula": 10,
-    "roti": 9,
-    "farmasi": 16,
-    "pupuk": 29,
-    "pengolahan_daging": 11,
-    "mie_instan": 26
-  },
+    "kayu": 14
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const nepal: CountryData = {
     "udang_kerang": 28.0,
     "ikan": 7
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 4,
+    "gula": 10,
+    "roti": 9,
+    "pengolahan_daging": 11,
+    "mie_instan": 26
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 16
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 27,
     "gudang_senjata": 2,
     "hangar_tank": 5,
@@ -112,8 +105,8 @@ export const nepal: CountryData = {
     "pangkalan_udara": 15,
     "pangkalan_laut": 10,
     "program_luar_angkasa": 40,
-    "pertahanan_siber": 35,
-  },
+    "pertahanan_siber": 35
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const nepal: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 23,
     "intelijen": 38,
@@ -170,13 +162,12 @@ export const nepal: CountryData = {
       "manajemen_wilayah": 40,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 40,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 40,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 3,
@@ -187,9 +178,8 @@ export const nepal: CountryData = {
           "kantor_polisi": 37,
           "kamera_pengawas": 22,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const nepal: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

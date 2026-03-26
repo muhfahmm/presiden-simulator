@@ -17,14 +17,13 @@ export const venezuela: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 9,
-    "pembangkit_air": 3,
-    "pembangkit_surya": 24,
-    "pembangkit_termal": 3,
-    "pembangkit_gas": 18,
-    "pembangkit_angin": 38,
-    "jaringan_listrik": 93
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 60,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 15,
+    "pembangkit_listrik_tenaga_angin": 4
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const venezuela: CountryData = {
     "kereta_bawah_tanah": 18,
     "jalur_kereta": 39,
     "jalan_tol": 30,
-    "kualitas_jalan": 74,
     "pelabuhan_laut": 30,
     "bandara": 21,
     "terminal_bus": 25,
-    "helipad": 37,
-    "cakupan_internet": 51
-  },
+    "helipad": 37
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 33,
-    "uranium": 26,
-    "batu_bara": 13,
-    "minyak_bumi": 23,
-    "gas_alam": 10,
-    "garam": 27,
-    "nikel": 24,
-    "litium": 34,
-    "aluminium": 17,
-    "tembaga": 37,
-    "logam_tanah_jarang": 23,
-    "bijih_besi": 2
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const venezuela: CountryData = {
     "sepeda_motor": 33,
     "smelter": 39,
     "semen_beton": 40,
-    "kayu": 32,
-    "air_mineral": 5,
-    "gula": 34,
-    "roti": 39,
-    "farmasi": 21,
-    "pupuk": 25,
-    "pengolahan_daging": 19,
-    "mie_instan": 11
-  },
+    "kayu": 32
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const venezuela: CountryData = {
     "udang_kerang": 33.5,
     "ikan": 22
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 5,
+    "gula": 34,
+    "roti": 39,
+    "pengolahan_daging": 19,
+    "mie_instan": 11
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 21
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 5,
     "gudang_senjata": 6,
     "hangar_tank": 7,
@@ -112,8 +105,8 @@ export const venezuela: CountryData = {
     "pangkalan_udara": 10,
     "pangkalan_laut": 16,
     "program_luar_angkasa": 32,
-    "pertahanan_siber": 11,
-  },
+    "pertahanan_siber": 11
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const venezuela: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 28,
     "intelijen": 11,
@@ -170,13 +162,12 @@ export const venezuela: CountryData = {
       "manajemen_wilayah": 34,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 14,
-          "sepeda_motor": 25,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 14,
+        "sepeda_motor": 25,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 20,
@@ -187,9 +178,8 @@ export const venezuela: CountryData = {
           "kantor_polisi": 21,
           "kamera_pengawas": 27,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const venezuela: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const kirgizstan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 17,
-    "pembangkit_air": 34,
-    "pembangkit_surya": 9,
-    "pembangkit_termal": 2,
-    "pembangkit_gas": 1,
-    "pembangkit_angin": 27,
-    "jaringan_listrik": 67
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const kirgizstan: CountryData = {
     "kereta_bawah_tanah": 23,
     "jalur_kereta": 1,
     "jalan_tol": 30,
-    "kualitas_jalan": 86,
     "pelabuhan_laut": 7,
     "bandara": 23,
     "terminal_bus": 23,
-    "helipad": 27,
-    "cakupan_internet": 53
-  },
+    "helipad": 27
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 14,
-    "uranium": 38,
-    "batu_bara": 14,
-    "minyak_bumi": 39,
-    "gas_alam": 38,
-    "garam": 17,
-    "nikel": 19,
-    "litium": 15,
-    "aluminium": 24,
-    "tembaga": 32,
-    "logam_tanah_jarang": 18,
-    "bijih_besi": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const kirgizstan: CountryData = {
     "sepeda_motor": 14,
     "smelter": 23,
     "semen_beton": 34,
-    "kayu": 21,
-    "air_mineral": 20,
-    "gula": 14,
-    "roti": 36,
-    "farmasi": 34,
-    "pupuk": 8,
-    "pengolahan_daging": 38,
-    "mie_instan": 13
-  },
+    "kayu": 21
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const kirgizstan: CountryData = {
     "udang_kerang": 26.5,
     "ikan": 19
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 20,
+    "gula": 14,
+    "roti": 36,
+    "pengolahan_daging": 38,
+    "mie_instan": 13
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 34
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 34,
     "gudang_senjata": 18,
     "hangar_tank": 30,
@@ -112,8 +105,8 @@ export const kirgizstan: CountryData = {
     "pangkalan_udara": 15,
     "pangkalan_laut": 9,
     "program_luar_angkasa": 29,
-    "pertahanan_siber": 29,
-  },
+    "pertahanan_siber": 29
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const kirgizstan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 36,
     "intelijen": 24,
@@ -170,13 +162,12 @@ export const kirgizstan: CountryData = {
       "manajemen_wilayah": 21,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 12,
-          "sepeda_motor": 29,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 12,
+        "sepeda_motor": 29,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 9,
@@ -187,9 +178,8 @@ export const kirgizstan: CountryData = {
           "kantor_polisi": 24,
           "kamera_pengawas": 17,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const kirgizstan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const israel: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 40,
-    "pembangkit_air": 33,
-    "pembangkit_surya": 39,
-    "pembangkit_termal": 31,
-    "pembangkit_gas": 35,
-    "pembangkit_angin": 26,
-    "jaringan_listrik": 74
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const israel: CountryData = {
     "kereta_bawah_tanah": 29,
     "jalur_kereta": 10,
     "jalan_tol": 32,
-    "kualitas_jalan": 69,
     "pelabuhan_laut": 7,
     "bandara": 3,
     "terminal_bus": 31,
-    "helipad": 11,
-    "cakupan_internet": 72
-  },
+    "helipad": 11
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 16,
-    "uranium": 39,
-    "batu_bara": 18,
-    "minyak_bumi": 27,
-    "gas_alam": 26,
-    "garam": 11,
-    "nikel": 34,
-    "litium": 12,
-    "aluminium": 10,
-    "tembaga": 31,
-    "logam_tanah_jarang": 17,
-    "bijih_besi": 20
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const israel: CountryData = {
     "sepeda_motor": 32,
     "smelter": 21,
     "semen_beton": 39,
-    "kayu": 12,
-    "air_mineral": 14,
-    "gula": 27,
-    "roti": 10,
-    "farmasi": 16,
-    "pupuk": 13,
-    "pengolahan_daging": 18,
-    "mie_instan": 29
-  },
+    "kayu": 12
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const israel: CountryData = {
     "udang_kerang": 15.5,
     "ikan": 16
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 14,
+    "gula": 27,
+    "roti": 10,
+    "pengolahan_daging": 18,
+    "mie_instan": 29
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 16
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 5,
     "gudang_senjata": 5,
     "hangar_tank": 36,
@@ -112,8 +105,8 @@ export const israel: CountryData = {
     "pangkalan_udara": 14,
     "pangkalan_laut": 21,
     "program_luar_angkasa": 17,
-    "pertahanan_siber": 18,
-  },
+    "pertahanan_siber": 18
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const israel: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 37,
     "intelijen": 27,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 3,
       "misi_mata_mata": 14,
       "misi_sabotase": 27,
       "manajemen_wilayah": 26,
-      "program_nuklir": 0 }
+      "program_nuklir": 100 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 23,
-          "sepeda_motor": 30,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 23,
+        "sepeda_motor": 30,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 9,
@@ -187,9 +178,8 @@ export const israel: CountryData = {
           "kantor_polisi": 30,
           "kamera_pengawas": 24,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const israel: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

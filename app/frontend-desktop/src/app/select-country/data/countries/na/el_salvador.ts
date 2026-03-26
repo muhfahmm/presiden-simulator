@@ -17,14 +17,13 @@ export const el_salvador: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 6,
-    "pembangkit_air": 4,
-    "pembangkit_surya": 7,
-    "pembangkit_termal": 13,
-    "pembangkit_gas": 4,
-    "pembangkit_angin": 15,
-    "jaringan_listrik": 65
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const el_salvador: CountryData = {
     "kereta_bawah_tanah": 1,
     "jalur_kereta": 12,
     "jalan_tol": 19,
-    "kualitas_jalan": 52,
     "pelabuhan_laut": 26,
     "bandara": 30,
     "terminal_bus": 27,
-    "helipad": 39,
-    "cakupan_internet": 59
-  },
+    "helipad": 39
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 20,
-    "uranium": 16,
-    "batu_bara": 1,
-    "minyak_bumi": 30,
-    "gas_alam": 27,
-    "garam": 32,
-    "nikel": 38,
-    "litium": 11,
-    "aluminium": 16,
-    "tembaga": 39,
-    "logam_tanah_jarang": 10,
-    "bijih_besi": 23
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const el_salvador: CountryData = {
     "sepeda_motor": 35,
     "smelter": 3,
     "semen_beton": 33,
-    "kayu": 36,
-    "air_mineral": 16,
-    "gula": 34,
-    "roti": 22,
-    "farmasi": 21,
-    "pupuk": 19,
-    "pengolahan_daging": 15,
-    "mie_instan": 20
-  },
+    "kayu": 36
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const el_salvador: CountryData = {
     "udang_kerang": 23.0,
     "ikan": 28
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 16,
+    "gula": 34,
+    "roti": 22,
+    "pengolahan_daging": 15,
+    "mie_instan": 20
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 21
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 18,
     "gudang_senjata": 7,
     "hangar_tank": 3,
@@ -112,8 +105,8 @@ export const el_salvador: CountryData = {
     "pangkalan_udara": 22,
     "pangkalan_laut": 11,
     "program_luar_angkasa": 29,
-    "pertahanan_siber": 18,
-  },
+    "pertahanan_siber": 18
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const el_salvador: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 3,
     "intelijen": 22,
@@ -170,13 +162,12 @@ export const el_salvador: CountryData = {
       "manajemen_wilayah": 2,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 28,
-          "sepeda_motor": 28,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 28,
+        "sepeda_motor": 28,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 21,
@@ -187,9 +178,8 @@ export const el_salvador: CountryData = {
           "kantor_polisi": 11,
           "kamera_pengawas": 13,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const el_salvador: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

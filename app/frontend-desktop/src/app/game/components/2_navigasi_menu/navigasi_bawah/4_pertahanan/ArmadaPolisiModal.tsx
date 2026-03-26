@@ -105,14 +105,6 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: ModalProps)
             <span className="text-[8px] font-black text-zinc-550 uppercase">Security Index</span>
             <span className="text-sm font-bold text-white">{data.sektor_sosial.hukum.indeks_keamanan}</span>
           </div>
-          <div className="flex flex-col">
-            <span className="text-[8px] font-black text-zinc-550 uppercase">Personel Kepercayaan</span>
-            <span className="text-sm font-bold text-emerald-400">{pol.kepercayaan_publik}%</span>
-          </div>
-          <div className="flex flex-col">
-            <span className="text-[8px] font-black text-zinc-550 uppercase">Public Trust</span>
-            <span className="text-sm font-bold text-white">{pol.kepercayaan_publik}%</span>
-          </div>
         </div>
       </div>
     </div>

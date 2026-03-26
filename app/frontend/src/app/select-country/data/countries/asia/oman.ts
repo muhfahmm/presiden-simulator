@@ -17,14 +17,13 @@ export const oman: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 19,
-    "pembangkit_air": 1,
-    "pembangkit_surya": 22,
-    "pembangkit_termal": 38,
-    "pembangkit_gas": 26,
-    "pembangkit_angin": 1,
-    "jaringan_listrik": 85
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const oman: CountryData = {
     "kereta_bawah_tanah": 10,
     "jalur_kereta": 15,
     "jalan_tol": 10,
-    "kualitas_jalan": 77,
     "pelabuhan_laut": 4,
     "bandara": 40,
     "terminal_bus": 9,
-    "helipad": 6,
-    "cakupan_internet": 77
-  },
+    "helipad": 6
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 30,
-    "uranium": 39,
-    "batu_bara": 8,
-    "minyak_bumi": 12,
-    "gas_alam": 31,
-    "garam": 34,
-    "nikel": 20,
-    "litium": 2,
-    "aluminium": 37,
-    "tembaga": 31,
-    "logam_tanah_jarang": 11,
-    "bijih_besi": 6
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const oman: CountryData = {
     "sepeda_motor": 14,
     "smelter": 21,
     "semen_beton": 23,
-    "kayu": 30,
-    "air_mineral": 30,
-    "gula": 23,
-    "roti": 37,
-    "farmasi": 36,
-    "pupuk": 22,
-    "pengolahan_daging": 15,
-    "mie_instan": 15
-  },
+    "kayu": 30
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const oman: CountryData = {
     "udang_kerang": 4.0,
     "ikan": 21
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 30,
+    "gula": 23,
+    "roti": 37,
+    "pengolahan_daging": 15,
+    "mie_instan": 15
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 36
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 8,
     "gudang_senjata": 24,
     "hangar_tank": 1,
@@ -112,8 +105,8 @@ export const oman: CountryData = {
     "pangkalan_udara": 37,
     "pangkalan_laut": 20,
     "program_luar_angkasa": 4,
-    "pertahanan_siber": 20,
-  },
+    "pertahanan_siber": 20
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const oman: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 6,
     "intelijen": 8,
@@ -170,13 +162,12 @@ export const oman: CountryData = {
       "manajemen_wilayah": 26,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 22,
-          "sepeda_motor": 18,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 22,
+        "sepeda_motor": 18,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -187,9 +178,8 @@ export const oman: CountryData = {
           "kantor_polisi": 18,
           "kamera_pengawas": 33,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const oman: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

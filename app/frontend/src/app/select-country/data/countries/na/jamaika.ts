@@ -17,14 +17,13 @@ export const jamaika: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 5,
-    "pembangkit_air": 15,
-    "pembangkit_surya": 30,
-    "pembangkit_termal": 18,
-    "pembangkit_gas": 40,
-    "pembangkit_angin": 33,
-    "jaringan_listrik": 67
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const jamaika: CountryData = {
     "kereta_bawah_tanah": 3,
     "jalur_kereta": 20,
     "jalan_tol": 21,
-    "kualitas_jalan": 52,
     "pelabuhan_laut": 24,
     "bandara": 11,
     "terminal_bus": 22,
-    "helipad": 30,
-    "cakupan_internet": 52
-  },
+    "helipad": 30
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 24,
-    "uranium": 21,
-    "batu_bara": 23,
-    "minyak_bumi": 20,
-    "gas_alam": 40,
-    "garam": 26,
-    "nikel": 4,
-    "litium": 40,
-    "aluminium": 24,
-    "tembaga": 34,
-    "logam_tanah_jarang": 17,
-    "bijih_besi": 10
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const jamaika: CountryData = {
     "sepeda_motor": 30,
     "smelter": 36,
     "semen_beton": 5,
-    "kayu": 21,
-    "air_mineral": 21,
-    "gula": 30,
-    "roti": 36,
-    "farmasi": 32,
-    "pupuk": 19,
-    "pengolahan_daging": 9,
-    "mie_instan": 26
-  },
+    "kayu": 21
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const jamaika: CountryData = {
     "udang_kerang": 17.0,
     "ikan": 10
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 21,
+    "gula": 30,
+    "roti": 36,
+    "pengolahan_daging": 9,
+    "mie_instan": 26
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 32
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 37,
     "gudang_senjata": 19,
     "hangar_tank": 30,
@@ -112,8 +105,8 @@ export const jamaika: CountryData = {
     "pangkalan_udara": 39,
     "pangkalan_laut": 33,
     "program_luar_angkasa": 2,
-    "pertahanan_siber": 10,
-  },
+    "pertahanan_siber": 10
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const jamaika: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 32,
     "intelijen": 39,
@@ -170,13 +162,12 @@ export const jamaika: CountryData = {
       "manajemen_wilayah": 20,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 40,
-          "sepeda_motor": 18,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 40,
+        "sepeda_motor": 18,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 19,
@@ -187,9 +178,8 @@ export const jamaika: CountryData = {
           "kantor_polisi": 16,
           "kamera_pengawas": 19,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const jamaika: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

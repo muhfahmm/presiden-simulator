@@ -17,13 +17,12 @@ export const kongo: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 18,
-    "pembangkit_air": 26,
-    "pembangkit_nuklir": 32,
-    "jaringan_listrik": 53,
-    "pembangkit_surya": 12,
-    "pembangkit_termal": 8,
-    "pembangkit_angin": 29
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const kongo: CountryData = {
     "terminal_bus": 40,
     "helipad": 18,
     "jalan_tol": 21,
-    "cakupan_internet": 62,
     "jalur_kereta": 32,
-    "kualitas_jalan": 52,
     "pelabuhan_laut": 38,
     "kereta_bawah_tanah": 12
   },
@@ -46,37 +43,15 @@ export const kongo: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 20,
-    "batu_bara": 31,
-    "tembaga": 36,
-    "gas_alam": 9,
-    "emas": 16,
-    "bijih_besi": 16,
-    "litium": 24,
-    "nikel": 31,
-    "minyak_bumi": 34,
-    "logam_tanah_jarang": 4,
-    "garam": 11,
-    "uranium": 32
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 25,
-    "mobil": 24,
+  "sektor_manufaktur": {    "mobil": 24,
     "semen_beton": 9,
-    "pupuk": 25,
-    "mie_instan": 35,
-    "pengolahan_daging": 18,
-    "air_mineral": 26,
-    "sepeda_motor": 34,
-    "farmasi": 23,
-    "semikonduktor": 25,
-    "smelter": 10,
-    "gula": 8,
-    "kayu": 20
+    "pengolahan_daging": 18,    "sepeda_motor": 34,    "semikonduktor": 25,
+    "smelter": 10,    "kayu": 20
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const kongo: CountryData = {
     "udang_kerang": 28.5,
     "ikan": 20
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 26,
+    "gula": 8,
+    "roti": 25,
+    "pengolahan_daging": 18,
+    "mie_instan": 35
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 23
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 28,
     "gudang_senjata": 3,
     "hangar_tank": 19,
@@ -112,8 +102,8 @@ export const kongo: CountryData = {
     "pangkalan_udara": 27,
     "pangkalan_laut": 17,
     "program_luar_angkasa": 38,
-    "pertahanan_siber": 1,
-  },
+    "pertahanan_siber": 1
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const kongo: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 19,
     "intelijen": 26,
@@ -171,13 +160,12 @@ export const kongo: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 2,
-          "sepeda_motor": 31,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 2,
+        "sepeda_motor": 31,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 5,
@@ -188,9 +176,8 @@ export const kongo: CountryData = {
           "kantor_polisi": 12,
           "kamera_pengawas": 31,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const kongo: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const norwegia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 40,
-    "pembangkit_air": 7,
-    "pembangkit_surya": 10,
-    "pembangkit_termal": 24,
-    "pembangkit_gas": 8,
-    "pembangkit_angin": 5,
-    "jaringan_listrik": 78
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 92,
+    "pembangkit_listrik_tenaga_surya": 0,
+    "pembangkit_listrik_tenaga_uap": 2,
+    "pembangkit_listrik_tenaga_gas": 1,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const norwegia: CountryData = {
     "kereta_bawah_tanah": 31,
     "jalur_kereta": 7,
     "jalan_tol": 9,
-    "kualitas_jalan": 87,
     "pelabuhan_laut": 39,
     "bandara": 17,
     "terminal_bus": 16,
-    "helipad": 23,
-    "cakupan_internet": 67
-  },
+    "helipad": 23
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 11,
-    "uranium": 11,
-    "batu_bara": 12,
-    "minyak_bumi": 24,
-    "gas_alam": 6,
-    "garam": 8,
-    "nikel": 24,
-    "litium": 10,
-    "aluminium": 32,
-    "tembaga": 40,
-    "logam_tanah_jarang": 12,
-    "bijih_besi": 31
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const norwegia: CountryData = {
     "sepeda_motor": 16,
     "smelter": 21,
     "semen_beton": 5,
-    "kayu": 30,
-    "air_mineral": 33,
-    "gula": 37,
-    "roti": 12,
-    "farmasi": 17,
-    "pupuk": 12,
-    "pengolahan_daging": 17,
-    "mie_instan": 23
-  },
+    "kayu": 30
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const norwegia: CountryData = {
     "udang_kerang": 28.5,
     "ikan": 11
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 33,
+    "gula": 37,
+    "roti": 12,
+    "pengolahan_daging": 17,
+    "mie_instan": 23
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 17
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 15,
     "gudang_senjata": 10,
     "hangar_tank": 9,
@@ -112,8 +105,8 @@ export const norwegia: CountryData = {
     "pangkalan_udara": 5,
     "pangkalan_laut": 7,
     "program_luar_angkasa": 7,
-    "pertahanan_siber": 14,
-  },
+    "pertahanan_siber": 14
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const norwegia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 31,
     "intelijen": 17,
@@ -170,13 +162,12 @@ export const norwegia: CountryData = {
       "manajemen_wilayah": 4,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 33,
-          "sepeda_motor": 25,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 33,
+        "sepeda_motor": 25,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 16,
@@ -187,9 +178,8 @@ export const norwegia: CountryData = {
           "kantor_polisi": 8,
           "kamera_pengawas": 30,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const norwegia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

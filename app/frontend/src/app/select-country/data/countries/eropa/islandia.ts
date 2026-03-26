@@ -17,14 +17,13 @@ export const islandia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 6,
-    "pembangkit_air": 22,
-    "pembangkit_surya": 20,
-    "pembangkit_termal": 17,
-    "pembangkit_gas": 30,
-    "pembangkit_angin": 8,
-    "jaringan_listrik": 71
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 30,
+    "pembangkit_listrik_tenaga_surya": 0,
+    "pembangkit_listrik_tenaga_uap": 70,
+    "pembangkit_listrik_tenaga_gas": 0,
+    "pembangkit_listrik_tenaga_angin": 0
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const islandia: CountryData = {
     "kereta_bawah_tanah": 8,
     "jalur_kereta": 21,
     "jalan_tol": 18,
-    "kualitas_jalan": 72,
     "pelabuhan_laut": 22,
     "bandara": 16,
     "terminal_bus": 34,
-    "helipad": 23,
-    "cakupan_internet": 80
-  },
+    "helipad": 23
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 9,
-    "uranium": 31,
-    "batu_bara": 21,
-    "minyak_bumi": 17,
-    "gas_alam": 4,
-    "garam": 4,
-    "nikel": 5,
-    "litium": 14,
-    "aluminium": 15,
-    "tembaga": 12,
-    "logam_tanah_jarang": 23,
-    "bijih_besi": 7
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const islandia: CountryData = {
     "sepeda_motor": 38,
     "smelter": 18,
     "semen_beton": 32,
-    "kayu": 5,
-    "air_mineral": 2,
-    "gula": 37,
-    "roti": 25,
-    "farmasi": 24,
-    "pupuk": 16,
-    "pengolahan_daging": 12,
-    "mie_instan": 25
-  },
+    "kayu": 5
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const islandia: CountryData = {
     "udang_kerang": 23.5,
     "ikan": 14
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 2,
+    "gula": 37,
+    "roti": 25,
+    "pengolahan_daging": 12,
+    "mie_instan": 25
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 24
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 35,
     "gudang_senjata": 12,
     "hangar_tank": 15,
@@ -112,8 +105,8 @@ export const islandia: CountryData = {
     "pangkalan_udara": 19,
     "pangkalan_laut": 22,
     "program_luar_angkasa": 32,
-    "pertahanan_siber": 6,
-  },
+    "pertahanan_siber": 6
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const islandia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 37,
     "intelijen": 28,
@@ -170,13 +162,12 @@ export const islandia: CountryData = {
       "manajemen_wilayah": 13,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 36,
-          "sepeda_motor": 4,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 36,
+        "sepeda_motor": 4,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 25,
@@ -187,9 +178,8 @@ export const islandia: CountryData = {
           "kantor_polisi": 37,
           "kamera_pengawas": 2,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const islandia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

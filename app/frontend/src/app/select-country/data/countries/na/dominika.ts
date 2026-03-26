@@ -17,14 +17,13 @@ export const dominika: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 19,
-    "pembangkit_air": 32,
-    "pembangkit_surya": 34,
-    "pembangkit_termal": 4,
-    "pembangkit_gas": 23,
-    "pembangkit_angin": 24,
-    "jaringan_listrik": 94
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const dominika: CountryData = {
     "kereta_bawah_tanah": 40,
     "jalur_kereta": 22,
     "jalan_tol": 8,
-    "kualitas_jalan": 80,
     "pelabuhan_laut": 3,
     "bandara": 30,
     "terminal_bus": 17,
-    "helipad": 16,
-    "cakupan_internet": 87
-  },
+    "helipad": 16
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 33,
-    "uranium": 15,
-    "batu_bara": 40,
-    "minyak_bumi": 7,
-    "gas_alam": 6,
-    "garam": 22,
-    "nikel": 39,
-    "litium": 19,
-    "aluminium": 37,
-    "tembaga": 1,
-    "logam_tanah_jarang": 6,
-    "bijih_besi": 24
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const dominika: CountryData = {
     "sepeda_motor": 10,
     "smelter": 19,
     "semen_beton": 36,
-    "kayu": 25,
-    "air_mineral": 17,
-    "gula": 25,
-    "roti": 18,
-    "farmasi": 12,
-    "pupuk": 33,
-    "pengolahan_daging": 24,
-    "mie_instan": 26
-  },
+    "kayu": 25
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const dominika: CountryData = {
     "udang_kerang": 35.5,
     "ikan": 2
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 17,
+    "gula": 25,
+    "roti": 18,
+    "pengolahan_daging": 24,
+    "mie_instan": 26
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 12
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 26,
     "gudang_senjata": 36,
     "hangar_tank": 27,
@@ -112,8 +105,8 @@ export const dominika: CountryData = {
     "pangkalan_udara": 40,
     "pangkalan_laut": 16,
     "program_luar_angkasa": 37,
-    "pertahanan_siber": 21,
-  },
+    "pertahanan_siber": 21
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const dominika: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 2,
     "intelijen": 16,
@@ -170,13 +162,12 @@ export const dominika: CountryData = {
       "manajemen_wilayah": 24,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 19,
-          "sepeda_motor": 9,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 19,
+        "sepeda_motor": 9,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 19,
@@ -187,9 +178,8 @@ export const dominika: CountryData = {
           "kantor_polisi": 7,
           "kamera_pengawas": 8,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const dominika: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,13 +17,12 @@ export const republik_sudan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 37,
-    "pembangkit_air": 17,
-    "pembangkit_nuklir": 26,
-    "jaringan_listrik": 61,
-    "pembangkit_surya": 39,
-    "pembangkit_termal": 37,
-    "pembangkit_angin": 27
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const republik_sudan: CountryData = {
     "terminal_bus": 9,
     "helipad": 30,
     "jalan_tol": 38,
-    "cakupan_internet": 80,
     "jalur_kereta": 16,
-    "kualitas_jalan": 58,
     "pelabuhan_laut": 11,
     "kereta_bawah_tanah": 12
   },
@@ -46,37 +43,15 @@ export const republik_sudan: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 4,
-    "batu_bara": 3,
-    "tembaga": 35,
-    "gas_alam": 35,
-    "emas": 26,
-    "bijih_besi": 17,
-    "litium": 21,
-    "nikel": 6,
-    "minyak_bumi": 34,
-    "logam_tanah_jarang": 3,
-    "garam": 36,
-    "uranium": 37
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 38,
-    "mobil": 27,
+  "sektor_manufaktur": {    "mobil": 27,
     "semen_beton": 16,
-    "pupuk": 16,
-    "mie_instan": 35,
-    "pengolahan_daging": 17,
-    "air_mineral": 20,
-    "sepeda_motor": 21,
-    "farmasi": 12,
-    "semikonduktor": 20,
-    "smelter": 37,
-    "gula": 35,
-    "kayu": 30
+    "pengolahan_daging": 17,    "sepeda_motor": 21,    "semikonduktor": 20,
+    "smelter": 37,    "kayu": 30
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const republik_sudan: CountryData = {
     "udang_kerang": 11.0,
     "ikan": 22
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 20,
+    "gula": 35,
+    "roti": 38,
+    "pengolahan_daging": 17,
+    "mie_instan": 35
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 12
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 31,
     "gudang_senjata": 26,
     "hangar_tank": 27,
@@ -112,8 +102,8 @@ export const republik_sudan: CountryData = {
     "pangkalan_udara": 17,
     "pangkalan_laut": 17,
     "program_luar_angkasa": 12,
-    "pertahanan_siber": 7,
-  },
+    "pertahanan_siber": 7
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const republik_sudan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 27,
     "intelijen": 6,
@@ -171,13 +160,12 @@ export const republik_sudan: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 23,
-          "sepeda_motor": 9,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 23,
+        "sepeda_motor": 9,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 13,
@@ -188,9 +176,8 @@ export const republik_sudan: CountryData = {
           "kantor_polisi": 14,
           "kamera_pengawas": 30,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const republik_sudan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

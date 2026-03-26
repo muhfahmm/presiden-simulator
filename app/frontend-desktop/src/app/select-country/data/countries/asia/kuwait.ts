@@ -17,14 +17,13 @@ export const kuwait: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 25,
-    "pembangkit_air": 8,
-    "pembangkit_surya": 40,
-    "pembangkit_termal": 21,
-    "pembangkit_gas": 7,
-    "pembangkit_angin": 24,
-    "jaringan_listrik": 85
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 0,
+    "pembangkit_listrik_tenaga_surya": 1,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_gas": 59,
+    "pembangkit_listrik_tenaga_angin": 0
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const kuwait: CountryData = {
     "kereta_bawah_tanah": 35,
     "jalur_kereta": 12,
     "jalan_tol": 37,
-    "kualitas_jalan": 79,
     "pelabuhan_laut": 27,
     "bandara": 17,
     "terminal_bus": 18,
-    "helipad": 5,
-    "cakupan_internet": 58
-  },
+    "helipad": 5
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 10,
-    "uranium": 13,
-    "batu_bara": 39,
-    "minyak_bumi": 15,
-    "gas_alam": 24,
-    "garam": 14,
-    "nikel": 9,
-    "litium": 31,
-    "aluminium": 16,
-    "tembaga": 33,
-    "logam_tanah_jarang": 29,
-    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const kuwait: CountryData = {
     "sepeda_motor": 27,
     "smelter": 28,
     "semen_beton": 18,
-    "kayu": 27,
-    "air_mineral": 28,
-    "gula": 11,
-    "roti": 6,
-    "farmasi": 6,
-    "pupuk": 25,
-    "pengolahan_daging": 34,
-    "mie_instan": 22
-  },
+    "kayu": 27
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const kuwait: CountryData = {
     "udang_kerang": 28.0,
     "ikan": 18
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 28,
+    "gula": 11,
+    "roti": 6,
+    "pengolahan_daging": 34,
+    "mie_instan": 22
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 6
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 32,
     "gudang_senjata": 18,
     "hangar_tank": 32,
@@ -112,8 +105,8 @@ export const kuwait: CountryData = {
     "pangkalan_udara": 3,
     "pangkalan_laut": 4,
     "program_luar_angkasa": 12,
-    "pertahanan_siber": 34,
-  },
+    "pertahanan_siber": 34
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const kuwait: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 37,
     "intelijen": 27,
@@ -170,13 +162,12 @@ export const kuwait: CountryData = {
       "manajemen_wilayah": 14,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 36,
-          "sepeda_motor": 18,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 36,
+        "sepeda_motor": 18,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 13,
@@ -187,9 +178,8 @@ export const kuwait: CountryData = {
           "kantor_polisi": 8,
           "kamera_pengawas": 19,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const kuwait: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

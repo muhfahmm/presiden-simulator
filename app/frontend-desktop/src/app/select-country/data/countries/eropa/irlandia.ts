@@ -17,14 +17,13 @@ export const irlandia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 27,
-    "pembangkit_air": 30,
-    "pembangkit_surya": 30,
-    "pembangkit_termal": 3,
-    "pembangkit_gas": 16,
-    "pembangkit_angin": 32,
-    "jaringan_listrik": 64
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const irlandia: CountryData = {
     "kereta_bawah_tanah": 32,
     "jalur_kereta": 20,
     "jalan_tol": 28,
-    "kualitas_jalan": 91,
     "pelabuhan_laut": 11,
     "bandara": 23,
     "terminal_bus": 10,
-    "helipad": 1,
-    "cakupan_internet": 86
-  },
+    "helipad": 1
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 39,
-    "uranium": 20,
-    "batu_bara": 9,
-    "minyak_bumi": 17,
-    "gas_alam": 3,
-    "garam": 4,
-    "nikel": 14,
-    "litium": 20,
-    "aluminium": 1,
-    "tembaga": 37,
-    "logam_tanah_jarang": 19,
-    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const irlandia: CountryData = {
     "sepeda_motor": 24,
     "smelter": 12,
     "semen_beton": 34,
-    "kayu": 35,
-    "air_mineral": 27,
-    "gula": 39,
-    "roti": 15,
-    "farmasi": 12,
-    "pupuk": 24,
-    "pengolahan_daging": 23,
-    "mie_instan": 29
-  },
+    "kayu": 35
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const irlandia: CountryData = {
     "udang_kerang": 16.5,
     "ikan": 31
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 27,
+    "gula": 39,
+    "roti": 15,
+    "pengolahan_daging": 23,
+    "mie_instan": 29
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 12
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 34,
     "gudang_senjata": 15,
     "hangar_tank": 3,
@@ -112,8 +105,8 @@ export const irlandia: CountryData = {
     "pangkalan_udara": 19,
     "pangkalan_laut": 26,
     "program_luar_angkasa": 17,
-    "pertahanan_siber": 13,
-  },
+    "pertahanan_siber": 13
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const irlandia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 36,
     "intelijen": 27,
@@ -170,13 +162,12 @@ export const irlandia: CountryData = {
       "manajemen_wilayah": 19,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 28,
-          "sepeda_motor": 24,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 28,
+        "sepeda_motor": 24,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 21,
@@ -187,9 +178,8 @@ export const irlandia: CountryData = {
           "kantor_polisi": 22,
           "kamera_pengawas": 12,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const irlandia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

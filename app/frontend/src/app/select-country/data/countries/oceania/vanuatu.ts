@@ -17,14 +17,13 @@ export const vanuatu: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 8,
-    "pembangkit_air": 35,
-    "pembangkit_surya": 16,
-    "pembangkit_termal": 5,
-    "pembangkit_gas": 11,
-    "pembangkit_angin": 7,
-    "jaringan_listrik": 50
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const vanuatu: CountryData = {
     "kereta_bawah_tanah": 20,
     "jalur_kereta": 38,
     "jalan_tol": 1,
-    "kualitas_jalan": 76,
     "pelabuhan_laut": 38,
     "bandara": 9,
     "terminal_bus": 20,
-    "helipad": 14,
-    "cakupan_internet": 62
-  },
+    "helipad": 14
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 28,
-    "uranium": 5,
-    "batu_bara": 16,
-    "minyak_bumi": 15,
-    "gas_alam": 31,
-    "garam": 38,
-    "nikel": 28,
-    "litium": 30,
-    "aluminium": 9,
-    "tembaga": 12,
-    "logam_tanah_jarang": 19,
-    "bijih_besi": 37
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const vanuatu: CountryData = {
     "sepeda_motor": 2,
     "smelter": 35,
     "semen_beton": 7,
-    "kayu": 23,
-    "air_mineral": 4,
-    "gula": 4,
-    "roti": 23,
-    "farmasi": 22,
-    "pupuk": 3,
-    "pengolahan_daging": 27,
-    "mie_instan": 35
-  },
+    "kayu": 23
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const vanuatu: CountryData = {
     "udang_kerang": 21.0,
     "ikan": 25
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 4,
+    "gula": 4,
+    "roti": 23,
+    "pengolahan_daging": 27,
+    "mie_instan": 35
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 22
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 32,
     "gudang_senjata": 36,
     "hangar_tank": 36,
@@ -112,8 +105,8 @@ export const vanuatu: CountryData = {
     "pangkalan_udara": 20,
     "pangkalan_laut": 19,
     "program_luar_angkasa": 6,
-    "pertahanan_siber": 28,
-  },
+    "pertahanan_siber": 28
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const vanuatu: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 12,
     "intelijen": 22,
@@ -170,13 +162,12 @@ export const vanuatu: CountryData = {
       "manajemen_wilayah": 14,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 16,
-          "sepeda_motor": 26,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 16,
+        "sepeda_motor": 26,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 11,
@@ -187,9 +178,8 @@ export const vanuatu: CountryData = {
           "kantor_polisi": 4,
           "kamera_pengawas": 25,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const vanuatu: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

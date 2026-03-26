@@ -17,13 +17,12 @@ export const republik_zambia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 1,
-    "pembangkit_air": 28,
-    "pembangkit_nuklir": 25,
-    "jaringan_listrik": 69,
-    "pembangkit_surya": 27,
-    "pembangkit_termal": 37,
-    "pembangkit_angin": 32
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const republik_zambia: CountryData = {
     "terminal_bus": 4,
     "helipad": 5,
     "jalan_tol": 40,
-    "cakupan_internet": 76,
     "jalur_kereta": 24,
-    "kualitas_jalan": 63,
     "pelabuhan_laut": 7,
     "kereta_bawah_tanah": 37
   },
@@ -46,37 +43,15 @@ export const republik_zambia: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 3,
-    "batu_bara": 39,
-    "tembaga": 32,
-    "gas_alam": 18,
-    "emas": 3,
-    "bijih_besi": 5,
-    "litium": 21,
-    "nikel": 6,
-    "minyak_bumi": 12,
-    "logam_tanah_jarang": 14,
-    "garam": 24,
-    "uranium": 16
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 38,
-    "mobil": 32,
+  "sektor_manufaktur": {    "mobil": 32,
     "semen_beton": 37,
-    "pupuk": 36,
-    "mie_instan": 3,
-    "pengolahan_daging": 5,
-    "air_mineral": 27,
-    "sepeda_motor": 8,
-    "farmasi": 25,
-    "semikonduktor": 28,
-    "smelter": 35,
-    "gula": 21,
-    "kayu": 39
+    "pengolahan_daging": 5,    "sepeda_motor": 8,    "semikonduktor": 28,
+    "smelter": 35,    "kayu": 39
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const republik_zambia: CountryData = {
     "udang_kerang": 14.5,
     "ikan": 9
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 27,
+    "gula": 21,
+    "roti": 38,
+    "pengolahan_daging": 5,
+    "mie_instan": 3
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 25
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 1,
     "gudang_senjata": 28,
     "hangar_tank": 35,
@@ -112,8 +102,8 @@ export const republik_zambia: CountryData = {
     "pangkalan_udara": 21,
     "pangkalan_laut": 31,
     "program_luar_angkasa": 40,
-    "pertahanan_siber": 10,
-  },
+    "pertahanan_siber": 10
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const republik_zambia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 16,
     "intelijen": 3,
@@ -171,13 +160,12 @@ export const republik_zambia: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 35,
-          "sepeda_motor": 21,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 35,
+        "sepeda_motor": 21,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 36,
@@ -188,9 +176,8 @@ export const republik_zambia: CountryData = {
           "kantor_polisi": 9,
           "kamera_pengawas": 18,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const republik_zambia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

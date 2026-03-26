@@ -17,14 +17,13 @@ export const arab_saudi: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 38,
-    "pembangkit_air": 40,
-    "pembangkit_surya": 19,
-    "pembangkit_termal": 35,
-    "pembangkit_gas": 25,
-    "pembangkit_angin": 25,
-    "jaringan_listrik": 79
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 0,
+    "pembangkit_listrik_tenaga_surya": 1,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_gas": 59,
+    "pembangkit_listrik_tenaga_angin": 0
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const arab_saudi: CountryData = {
     "kereta_bawah_tanah": 28,
     "jalur_kereta": 33,
     "jalan_tol": 37,
-    "kualitas_jalan": 93,
     "pelabuhan_laut": 20,
     "bandara": 2,
     "terminal_bus": 16,
-    "helipad": 23,
-    "cakupan_internet": 85
-  },
+    "helipad": 23
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 2,
-    "uranium": 9,
-    "batu_bara": 21,
-    "minyak_bumi": 19,
-    "gas_alam": 5,
-    "garam": 4,
-    "nikel": 36,
-    "litium": 17,
-    "aluminium": 8,
-    "tembaga": 10,
-    "logam_tanah_jarang": 35,
-    "bijih_besi": 19
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const arab_saudi: CountryData = {
     "sepeda_motor": 31,
     "smelter": 15,
     "semen_beton": 24,
-    "kayu": 6,
-    "air_mineral": 31,
-    "gula": 33,
-    "roti": 38,
-    "farmasi": 9,
-    "pupuk": 14,
-    "pengolahan_daging": 19,
-    "mie_instan": 18
-  },
+    "kayu": 6
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const arab_saudi: CountryData = {
     "udang_kerang": 30.0,
     "ikan": 23
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 31,
+    "gula": 33,
+    "roti": 38,
+    "pengolahan_daging": 19,
+    "mie_instan": 18
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 9
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 28,
     "gudang_senjata": 27,
     "hangar_tank": 15,
@@ -112,8 +105,8 @@ export const arab_saudi: CountryData = {
     "pangkalan_udara": 10,
     "pangkalan_laut": 14,
     "program_luar_angkasa": 26,
-    "pertahanan_siber": 21,
-  },
+    "pertahanan_siber": 21
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const arab_saudi: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 31,
     "intelijen": 15,
@@ -170,13 +162,12 @@ export const arab_saudi: CountryData = {
       "manajemen_wilayah": 27,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 33,
-          "sepeda_motor": 24,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 33,
+        "sepeda_motor": 24,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 37,
@@ -187,9 +178,8 @@ export const arab_saudi: CountryData = {
           "kantor_polisi": 27,
           "kamera_pengawas": 16,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const arab_saudi: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,13 +17,12 @@ export const guinea_bissau: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 28,
-    "pembangkit_air": 33,
-    "pembangkit_nuklir": 22,
-    "jaringan_listrik": 56,
-    "pembangkit_surya": 21,
-    "pembangkit_termal": 31,
-    "pembangkit_angin": 22
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const guinea_bissau: CountryData = {
     "terminal_bus": 15,
     "helipad": 15,
     "jalan_tol": 26,
-    "cakupan_internet": 68,
     "jalur_kereta": 22,
-    "kualitas_jalan": 93,
     "pelabuhan_laut": 25,
     "kereta_bawah_tanah": 1
   },
@@ -46,37 +43,15 @@ export const guinea_bissau: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 15,
-    "batu_bara": 38,
-    "tembaga": 3,
-    "gas_alam": 3,
-    "emas": 19,
-    "bijih_besi": 22,
-    "litium": 15,
-    "nikel": 35,
-    "minyak_bumi": 21,
-    "logam_tanah_jarang": 29,
-    "garam": 6,
-    "uranium": 34
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 29,
-    "mobil": 29,
+  "sektor_manufaktur": {    "mobil": 29,
     "semen_beton": 3,
-    "pupuk": 24,
-    "mie_instan": 9,
-    "pengolahan_daging": 36,
-    "air_mineral": 22,
-    "sepeda_motor": 18,
-    "farmasi": 19,
-    "semikonduktor": 30,
-    "smelter": 40,
-    "gula": 1,
-    "kayu": 27
+    "pengolahan_daging": 36,    "sepeda_motor": 18,    "semikonduktor": 30,
+    "smelter": 40,    "kayu": 27
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const guinea_bissau: CountryData = {
     "udang_kerang": 10.5,
     "ikan": 9
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 22,
+    "gula": 1,
+    "roti": 29,
+    "pengolahan_daging": 36,
+    "mie_instan": 9
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 19
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 6,
     "gudang_senjata": 9,
     "hangar_tank": 11,
@@ -112,8 +102,8 @@ export const guinea_bissau: CountryData = {
     "pangkalan_udara": 18,
     "pangkalan_laut": 40,
     "program_luar_angkasa": 24,
-    "pertahanan_siber": 19,
-  },
+    "pertahanan_siber": 19
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const guinea_bissau: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 20,
     "intelijen": 13,
@@ -171,13 +160,12 @@ export const guinea_bissau: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 33,
-          "sepeda_motor": 27,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 33,
+        "sepeda_motor": 27,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 11,
@@ -188,9 +176,8 @@ export const guinea_bissau: CountryData = {
           "kantor_polisi": 12,
           "kamera_pengawas": 35,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const guinea_bissau: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

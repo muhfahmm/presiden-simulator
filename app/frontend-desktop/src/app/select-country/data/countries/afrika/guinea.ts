@@ -17,13 +17,12 @@ export const guinea: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 33,
-    "pembangkit_air": 9,
-    "pembangkit_nuklir": 20,
-    "jaringan_listrik": 59,
-    "pembangkit_surya": 7,
-    "pembangkit_termal": 15,
-    "pembangkit_angin": 37
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const guinea: CountryData = {
     "terminal_bus": 8,
     "helipad": 27,
     "jalan_tol": 9,
-    "cakupan_internet": 81,
     "jalur_kereta": 33,
-    "kualitas_jalan": 92,
     "pelabuhan_laut": 24,
     "kereta_bawah_tanah": 9
   },
@@ -46,37 +43,15 @@ export const guinea: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 25,
-    "batu_bara": 2,
-    "tembaga": 20,
-    "gas_alam": 35,
-    "emas": 30,
-    "bijih_besi": 34,
-    "litium": 16,
-    "nikel": 25,
-    "minyak_bumi": 19,
-    "logam_tanah_jarang": 13,
-    "garam": 12,
-    "uranium": 18
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 1,
-    "mobil": 13,
+  "sektor_manufaktur": {    "mobil": 13,
     "semen_beton": 40,
-    "pupuk": 12,
-    "mie_instan": 3,
-    "pengolahan_daging": 18,
-    "air_mineral": 17,
-    "sepeda_motor": 33,
-    "farmasi": 18,
-    "semikonduktor": 21,
-    "smelter": 34,
-    "gula": 15,
-    "kayu": 27
+    "pengolahan_daging": 18,    "sepeda_motor": 33,    "semikonduktor": 21,
+    "smelter": 34,    "kayu": 27
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const guinea: CountryData = {
     "udang_kerang": 21.5,
     "ikan": 1
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 17,
+    "gula": 15,
+    "roti": 1,
+    "pengolahan_daging": 18,
+    "mie_instan": 3
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 18
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 19,
     "gudang_senjata": 13,
     "hangar_tank": 9,
@@ -112,8 +102,8 @@ export const guinea: CountryData = {
     "pangkalan_udara": 26,
     "pangkalan_laut": 10,
     "program_luar_angkasa": 39,
-    "pertahanan_siber": 29,
-  },
+    "pertahanan_siber": 29
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const guinea: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 39,
     "intelijen": 19,
@@ -171,13 +160,12 @@ export const guinea: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 28,
-          "sepeda_motor": 18,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 28,
+        "sepeda_motor": 18,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 6,
@@ -188,9 +176,8 @@ export const guinea: CountryData = {
           "kantor_polisi": 17,
           "kamera_pengawas": 25,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const guinea: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const trinidad_dan_tobago: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 3,
-    "pembangkit_air": 27,
-    "pembangkit_surya": 16,
-    "pembangkit_termal": 22,
-    "pembangkit_gas": 2,
-    "pembangkit_angin": 19,
-    "jaringan_listrik": 91
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const trinidad_dan_tobago: CountryData = {
     "kereta_bawah_tanah": 18,
     "jalur_kereta": 8,
     "jalan_tol": 35,
-    "kualitas_jalan": 85,
     "pelabuhan_laut": 15,
     "bandara": 14,
     "terminal_bus": 33,
-    "helipad": 39,
-    "cakupan_internet": 57
-  },
+    "helipad": 39
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 20,
-    "uranium": 27,
-    "batu_bara": 28,
-    "minyak_bumi": 20,
-    "gas_alam": 36,
-    "garam": 26,
-    "nikel": 34,
-    "litium": 11,
-    "aluminium": 26,
-    "tembaga": 33,
-    "logam_tanah_jarang": 38,
-    "bijih_besi": 37
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const trinidad_dan_tobago: CountryData = {
     "sepeda_motor": 24,
     "smelter": 24,
     "semen_beton": 28,
-    "kayu": 27,
-    "air_mineral": 36,
-    "gula": 8,
-    "roti": 18,
-    "farmasi": 23,
-    "pupuk": 40,
-    "pengolahan_daging": 29,
-    "mie_instan": 28
-  },
+    "kayu": 27
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const trinidad_dan_tobago: CountryData = {
     "udang_kerang": 12.0,
     "ikan": 28
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 36,
+    "gula": 8,
+    "roti": 18,
+    "pengolahan_daging": 29,
+    "mie_instan": 28
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 23
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 37,
     "gudang_senjata": 38,
     "hangar_tank": 34,
@@ -112,8 +105,8 @@ export const trinidad_dan_tobago: CountryData = {
     "pangkalan_udara": 7,
     "pangkalan_laut": 15,
     "program_luar_angkasa": 1,
-    "pertahanan_siber": 14,
-  },
+    "pertahanan_siber": 14
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const trinidad_dan_tobago: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 9,
     "intelijen": 35,
@@ -170,13 +162,12 @@ export const trinidad_dan_tobago: CountryData = {
       "manajemen_wilayah": 21,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 40,
-          "sepeda_motor": 39,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 40,
+        "sepeda_motor": 39,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 16,
@@ -187,9 +178,8 @@ export const trinidad_dan_tobago: CountryData = {
           "kantor_polisi": 38,
           "kamera_pengawas": 33,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const trinidad_dan_tobago: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

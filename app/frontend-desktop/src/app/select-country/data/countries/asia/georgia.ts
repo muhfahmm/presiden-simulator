@@ -17,14 +17,13 @@ export const georgia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 19,
-    "pembangkit_air": 36,
-    "pembangkit_surya": 5,
-    "pembangkit_termal": 12,
-    "pembangkit_gas": 12,
-    "pembangkit_angin": 15,
-    "jaringan_listrik": 94
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const georgia: CountryData = {
     "kereta_bawah_tanah": 11,
     "jalur_kereta": 18,
     "jalan_tol": 21,
-    "kualitas_jalan": 55,
     "pelabuhan_laut": 16,
     "bandara": 28,
     "terminal_bus": 39,
-    "helipad": 25,
-    "cakupan_internet": 82
-  },
+    "helipad": 25
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 36,
-    "uranium": 31,
-    "batu_bara": 35,
-    "minyak_bumi": 6,
-    "gas_alam": 23,
-    "garam": 36,
-    "nikel": 39,
-    "litium": 22,
-    "aluminium": 36,
-    "tembaga": 24,
-    "logam_tanah_jarang": 31,
-    "bijih_besi": 22
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const georgia: CountryData = {
     "sepeda_motor": 40,
     "smelter": 17,
     "semen_beton": 22,
-    "kayu": 38,
-    "air_mineral": 22,
-    "gula": 38,
-    "roti": 14,
-    "farmasi": 9,
-    "pupuk": 16,
-    "pengolahan_daging": 29,
-    "mie_instan": 9
-  },
+    "kayu": 38
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const georgia: CountryData = {
     "udang_kerang": 19.5,
     "ikan": 1
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 22,
+    "gula": 38,
+    "roti": 14,
+    "pengolahan_daging": 29,
+    "mie_instan": 9
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 9
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 20,
     "gudang_senjata": 10,
     "hangar_tank": 26,
@@ -112,8 +105,8 @@ export const georgia: CountryData = {
     "pangkalan_udara": 13,
     "pangkalan_laut": 10,
     "program_luar_angkasa": 19,
-    "pertahanan_siber": 24,
-  },
+    "pertahanan_siber": 24
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const georgia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 35,
     "intelijen": 3,
@@ -170,13 +162,12 @@ export const georgia: CountryData = {
       "manajemen_wilayah": 23,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 10,
-          "sepeda_motor": 28,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 10,
+        "sepeda_motor": 28,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 5,
@@ -187,9 +178,8 @@ export const georgia: CountryData = {
           "kantor_polisi": 4,
           "kamera_pengawas": 24,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const georgia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

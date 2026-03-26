@@ -17,14 +17,13 @@ export const paraguay: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 6,
-    "pembangkit_air": 33,
-    "pembangkit_surya": 34,
-    "pembangkit_termal": 15,
-    "pembangkit_gas": 2,
-    "pembangkit_angin": 18,
-    "jaringan_listrik": 95
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 99,
+    "pembangkit_listrik_tenaga_surya": 0,
+    "pembangkit_listrik_tenaga_uap": 1,
+    "pembangkit_listrik_tenaga_gas": 0,
+    "pembangkit_listrik_tenaga_angin": 0
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const paraguay: CountryData = {
     "kereta_bawah_tanah": 9,
     "jalur_kereta": 17,
     "jalan_tol": 29,
-    "kualitas_jalan": 74,
     "pelabuhan_laut": 34,
     "bandara": 15,
     "terminal_bus": 15,
-    "helipad": 21,
-    "cakupan_internet": 55
-  },
+    "helipad": 21
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 24,
-    "uranium": 33,
-    "batu_bara": 33,
-    "minyak_bumi": 4,
-    "gas_alam": 35,
-    "garam": 39,
-    "nikel": 8,
-    "litium": 35,
-    "aluminium": 32,
-    "tembaga": 28,
-    "logam_tanah_jarang": 23,
-    "bijih_besi": 33
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const paraguay: CountryData = {
     "sepeda_motor": 9,
     "smelter": 34,
     "semen_beton": 11,
-    "kayu": 4,
-    "air_mineral": 6,
-    "gula": 9,
-    "roti": 15,
-    "farmasi": 26,
-    "pupuk": 12,
-    "pengolahan_daging": 24,
-    "mie_instan": 38
-  },
+    "kayu": 4
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const paraguay: CountryData = {
     "udang_kerang": 9.0,
     "ikan": 4
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 6,
+    "gula": 9,
+    "roti": 15,
+    "pengolahan_daging": 24,
+    "mie_instan": 38
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 26
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 27,
     "gudang_senjata": 7,
     "hangar_tank": 20,
@@ -112,8 +105,8 @@ export const paraguay: CountryData = {
     "pangkalan_udara": 9,
     "pangkalan_laut": 14,
     "program_luar_angkasa": 36,
-    "pertahanan_siber": 5,
-  },
+    "pertahanan_siber": 5
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const paraguay: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 14,
     "intelijen": 19,
@@ -170,13 +162,12 @@ export const paraguay: CountryData = {
       "manajemen_wilayah": 1,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 24,
-          "sepeda_motor": 34,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 24,
+        "sepeda_motor": 34,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 8,
@@ -187,9 +178,8 @@ export const paraguay: CountryData = {
           "kantor_polisi": 22,
           "kamera_pengawas": 6,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const paraguay: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

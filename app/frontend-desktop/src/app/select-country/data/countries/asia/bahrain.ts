@@ -17,14 +17,13 @@ export const bahrain: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 32,
-    "pembangkit_air": 20,
-    "pembangkit_surya": 25,
-    "pembangkit_termal": 21,
-    "pembangkit_gas": 18,
-    "pembangkit_angin": 26,
-    "jaringan_listrik": 84
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const bahrain: CountryData = {
     "kereta_bawah_tanah": 10,
     "jalur_kereta": 28,
     "jalan_tol": 34,
-    "kualitas_jalan": 64,
     "pelabuhan_laut": 20,
     "bandara": 11,
     "terminal_bus": 30,
-    "helipad": 16,
-    "cakupan_internet": 56
-  },
+    "helipad": 16
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 12,
-    "uranium": 11,
-    "batu_bara": 19,
-    "minyak_bumi": 19,
-    "gas_alam": 31,
-    "garam": 14,
-    "nikel": 25,
-    "litium": 27,
-    "aluminium": 18,
-    "tembaga": 35,
-    "logam_tanah_jarang": 26,
-    "bijih_besi": 36
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const bahrain: CountryData = {
     "sepeda_motor": 33,
     "smelter": 21,
     "semen_beton": 14,
-    "kayu": 26,
-    "air_mineral": 25,
-    "gula": 12,
-    "roti": 40,
-    "farmasi": 5,
-    "pupuk": 24,
-    "pengolahan_daging": 8,
-    "mie_instan": 34
-  },
+    "kayu": 26
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const bahrain: CountryData = {
     "udang_kerang": 32.0,
     "ikan": 10
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 25,
+    "gula": 12,
+    "roti": 40,
+    "pengolahan_daging": 8,
+    "mie_instan": 34
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 5
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 19,
     "gudang_senjata": 20,
     "hangar_tank": 38,
@@ -112,8 +105,8 @@ export const bahrain: CountryData = {
     "pangkalan_udara": 33,
     "pangkalan_laut": 25,
     "program_luar_angkasa": 1,
-    "pertahanan_siber": 17,
-  },
+    "pertahanan_siber": 17
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const bahrain: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 36,
     "intelijen": 37,
@@ -170,13 +162,12 @@ export const bahrain: CountryData = {
       "manajemen_wilayah": 33,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 19,
-          "sepeda_motor": 28,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 19,
+        "sepeda_motor": 28,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 23,
@@ -187,9 +178,8 @@ export const bahrain: CountryData = {
           "kantor_polisi": 35,
           "kamera_pengawas": 9,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const bahrain: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,13 +17,12 @@ export const republik_afrika_tengah: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 11,
-    "pembangkit_air": 20,
-    "pembangkit_nuklir": 5,
-    "jaringan_listrik": 93,
-    "pembangkit_surya": 24,
-    "pembangkit_termal": 29,
-    "pembangkit_angin": 6
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const republik_afrika_tengah: CountryData = {
     "terminal_bus": 39,
     "helipad": 24,
     "jalan_tol": 21,
-    "cakupan_internet": 51,
     "jalur_kereta": 40,
-    "kualitas_jalan": 87,
     "pelabuhan_laut": 22,
     "kereta_bawah_tanah": 39
   },
@@ -46,37 +43,15 @@ export const republik_afrika_tengah: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 16,
-    "batu_bara": 32,
-    "tembaga": 36,
-    "gas_alam": 25,
-    "emas": 27,
-    "bijih_besi": 22,
-    "litium": 7,
-    "nikel": 8,
-    "minyak_bumi": 7,
-    "logam_tanah_jarang": 26,
-    "garam": 21,
-    "uranium": 22
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 23,
-    "mobil": 19,
+  "sektor_manufaktur": {    "mobil": 19,
     "semen_beton": 31,
-    "pupuk": 37,
-    "mie_instan": 13,
-    "pengolahan_daging": 8,
-    "air_mineral": 23,
-    "sepeda_motor": 34,
-    "farmasi": 16,
-    "semikonduktor": 40,
-    "smelter": 5,
-    "gula": 8,
-    "kayu": 13
+    "pengolahan_daging": 8,    "sepeda_motor": 34,    "semikonduktor": 40,
+    "smelter": 5,    "kayu": 13
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const republik_afrika_tengah: CountryData = {
     "udang_kerang": 31.0,
     "ikan": 28
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 23,
+    "gula": 8,
+    "roti": 23,
+    "pengolahan_daging": 8,
+    "mie_instan": 13
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 16
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 14,
     "gudang_senjata": 6,
     "hangar_tank": 17,
@@ -112,8 +102,8 @@ export const republik_afrika_tengah: CountryData = {
     "pangkalan_udara": 3,
     "pangkalan_laut": 18,
     "program_luar_angkasa": 31,
-    "pertahanan_siber": 24,
-  },
+    "pertahanan_siber": 24
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const republik_afrika_tengah: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 2,
     "intelijen": 8,
@@ -171,13 +160,12 @@ export const republik_afrika_tengah: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 36,
-          "sepeda_motor": 39,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 36,
+        "sepeda_motor": 39,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 13,
@@ -188,9 +176,8 @@ export const republik_afrika_tengah: CountryData = {
           "kantor_polisi": 26,
           "kamera_pengawas": 20,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const republik_afrika_tengah: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

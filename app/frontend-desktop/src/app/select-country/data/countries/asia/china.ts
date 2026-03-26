@@ -17,14 +17,13 @@ export const china: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 10,
-    "pembangkit_air": 22,
-    "pembangkit_surya": 12,
-    "pembangkit_termal": 1,
-    "pembangkit_gas": 27,
-    "pembangkit_angin": 30,
-    "jaringan_listrik": 84
-  },
+    "pembangkit_listrik_tenaga_nuklir": 58,
+    "pembangkit_listrik_tenaga_air": 13,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 55,
+    "pembangkit_listrik_tenaga_gas": 5,
+    "pembangkit_listrik_tenaga_angin": 10
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const china: CountryData = {
     "kereta_bawah_tanah": 33,
     "jalur_kereta": 4,
     "jalan_tol": 5,
-    "kualitas_jalan": 59,
     "pelabuhan_laut": 12,
     "bandara": 24,
     "terminal_bus": 38,
-    "helipad": 4,
-    "cakupan_internet": 60
-  },
+    "helipad": 4
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 3,
-    "uranium": 27,
-    "batu_bara": 34,
-    "minyak_bumi": 12,
-    "gas_alam": 20,
-    "garam": 39,
-    "nikel": 11,
-    "litium": 14,
-    "aluminium": 8,
-    "tembaga": 27,
-    "logam_tanah_jarang": 34,
-    "bijih_besi": 22
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const china: CountryData = {
     "sepeda_motor": 39,
     "smelter": 34,
     "semen_beton": 14,
-    "kayu": 30,
-    "air_mineral": 17,
-    "gula": 29,
-    "roti": 7,
-    "farmasi": 27,
-    "pupuk": 38,
-    "pengolahan_daging": 24,
-    "mie_instan": 11
-  },
+    "kayu": 30
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const china: CountryData = {
     "udang_kerang": 23.5,
     "ikan": 2
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 17,
+    "gula": 29,
+    "roti": 7,
+    "pengolahan_daging": 24,
+    "mie_instan": 11
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 27
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 32,
     "gudang_senjata": 37,
     "hangar_tank": 28,
@@ -112,8 +105,8 @@ export const china: CountryData = {
     "pangkalan_udara": 1,
     "pangkalan_laut": 9,
     "program_luar_angkasa": 27,
-    "pertahanan_siber": 28,
-  },
+    "pertahanan_siber": 28
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const china: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 32,
     "intelijen": 5,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 11,
       "misi_mata_mata": 8,
       "misi_sabotase": 3,
       "manajemen_wilayah": 9,
-      "program_nuklir": 0 }
+      "program_nuklir": 100 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 18,
-          "sepeda_motor": 15,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 18,
+        "sepeda_motor": 15,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 35,
@@ -187,9 +178,8 @@ export const china: CountryData = {
           "kantor_polisi": 19,
           "kamera_pengawas": 40,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const china: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -50,7 +50,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
    const productionItems = Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]: [string, any]) => ({
       key,
       label: val.desc,
-      icon: key === "pembangkit_air" ? Droplets : (key === "pembangkit_nuklir" ? Radiation : (key === "pembangkit_termal" ? Flame : Zap)),
+      icon: key === "pembangkit_listrik_tenaga_air" ? Droplets : (key === "pembangkit_listrik_tenaga_nuklir" ? Radiation : (key === "pembangkit_listrik_tenaga_uap" ? Flame : Zap)),
       desc: "Energi Listrik",
       count: (initialCountry.sektor_listrik as any)[key] || 0,
       tarif: val.production,

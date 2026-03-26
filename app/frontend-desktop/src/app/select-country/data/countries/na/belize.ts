@@ -17,14 +17,13 @@ export const belize: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 25,
-    "pembangkit_air": 16,
-    "pembangkit_surya": 26,
-    "pembangkit_termal": 6,
-    "pembangkit_gas": 18,
-    "pembangkit_angin": 19,
-    "jaringan_listrik": 68
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const belize: CountryData = {
     "kereta_bawah_tanah": 20,
     "jalur_kereta": 13,
     "jalan_tol": 20,
-    "kualitas_jalan": 95,
     "pelabuhan_laut": 12,
     "bandara": 10,
     "terminal_bus": 12,
-    "helipad": 39,
-    "cakupan_internet": 77
-  },
+    "helipad": 39
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 28,
-    "uranium": 27,
-    "batu_bara": 25,
-    "minyak_bumi": 6,
-    "gas_alam": 37,
-    "garam": 10,
-    "nikel": 13,
-    "litium": 6,
-    "aluminium": 12,
-    "tembaga": 34,
-    "logam_tanah_jarang": 36,
-    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const belize: CountryData = {
     "sepeda_motor": 16,
     "smelter": 32,
     "semen_beton": 28,
-    "kayu": 21,
-    "air_mineral": 28,
-    "gula": 7,
-    "roti": 37,
-    "farmasi": 28,
-    "pupuk": 36,
-    "pengolahan_daging": 10,
-    "mie_instan": 24
-  },
+    "kayu": 21
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const belize: CountryData = {
     "udang_kerang": 37.5,
     "ikan": 6
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 28,
+    "gula": 7,
+    "roti": 37,
+    "pengolahan_daging": 10,
+    "mie_instan": 24
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 28
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 38,
     "gudang_senjata": 14,
     "hangar_tank": 14,
@@ -112,8 +105,8 @@ export const belize: CountryData = {
     "pangkalan_udara": 36,
     "pangkalan_laut": 32,
     "program_luar_angkasa": 30,
-    "pertahanan_siber": 17,
-  },
+    "pertahanan_siber": 17
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const belize: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 22,
     "intelijen": 14,
@@ -170,13 +162,12 @@ export const belize: CountryData = {
       "manajemen_wilayah": 36,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 40,
-          "sepeda_motor": 27,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 40,
+        "sepeda_motor": 27,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 29,
@@ -187,9 +178,8 @@ export const belize: CountryData = {
           "kantor_polisi": 24,
           "kamera_pengawas": 28,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const belize: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,13 +17,12 @@ export const ghana: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 35,
-    "pembangkit_air": 25,
-    "pembangkit_nuklir": 7,
-    "jaringan_listrik": 77,
-    "pembangkit_surya": 2,
-    "pembangkit_termal": 17,
-    "pembangkit_angin": 36
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const ghana: CountryData = {
     "terminal_bus": 4,
     "helipad": 5,
     "jalan_tol": 9,
-    "cakupan_internet": 65,
     "jalur_kereta": 16,
-    "kualitas_jalan": 58,
     "pelabuhan_laut": 26,
     "kereta_bawah_tanah": 14
   },
@@ -46,37 +43,15 @@ export const ghana: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 32,
-    "batu_bara": 30,
-    "tembaga": 3,
-    "gas_alam": 26,
-    "emas": 65,
-    "bijih_besi": 28,
-    "litium": 26,
-    "nikel": 2,
-    "minyak_bumi": 40,
-    "logam_tanah_jarang": 8,
-    "garam": 8,
-    "uranium": 21
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 29,
-    "mobil": 36,
+  "sektor_manufaktur": {    "mobil": 36,
     "semen_beton": 13,
-    "pupuk": 38,
-    "mie_instan": 21,
-    "pengolahan_daging": 24,
-    "air_mineral": 38,
-    "sepeda_motor": 7,
-    "farmasi": 6,
-    "semikonduktor": 8,
-    "smelter": 38,
-    "gula": 13,
-    "kayu": 40
+    "pengolahan_daging": 24,    "sepeda_motor": 7,    "semikonduktor": 8,
+    "smelter": 38,    "kayu": 40
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const ghana: CountryData = {
     "udang_kerang": 26.5,
     "ikan": 35
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 38,
+    "gula": 13,
+    "roti": 29,
+    "pengolahan_daging": 24,
+    "mie_instan": 21
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 6
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 34,
     "gudang_senjata": 14,
     "hangar_tank": 20,
@@ -112,8 +102,8 @@ export const ghana: CountryData = {
     "pangkalan_udara": 3,
     "pangkalan_laut": 19,
     "program_luar_angkasa": 33,
-    "pertahanan_siber": 18,
-  },
+    "pertahanan_siber": 18
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const ghana: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 7,
     "intelijen": 3,
@@ -171,13 +160,12 @@ export const ghana: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 8,
-          "sepeda_motor": 9,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 8,
+        "sepeda_motor": 9,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 7,
@@ -188,9 +176,8 @@ export const ghana: CountryData = {
           "kantor_polisi": 36,
           "kamera_pengawas": 39,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const ghana: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

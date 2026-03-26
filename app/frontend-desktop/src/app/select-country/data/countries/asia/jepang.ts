@@ -17,14 +17,13 @@ export const jepang: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 10,
-    "pembangkit_air": 35,
-    "pembangkit_surya": 9,
-    "pembangkit_termal": 2,
-    "pembangkit_gas": 35,
-    "pembangkit_angin": 28,
-    "jaringan_listrik": 66
-  },
+    "pembangkit_listrik_tenaga_nuklir": 33,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const jepang: CountryData = {
     "kereta_bawah_tanah": 19,
     "jalur_kereta": 19,
     "jalan_tol": 14,
-    "kualitas_jalan": 91,
     "pelabuhan_laut": 1,
     "bandara": 36,
     "terminal_bus": 9,
-    "helipad": 7,
-    "cakupan_internet": 93
-  },
+    "helipad": 7
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 31,
-    "uranium": 29,
-    "batu_bara": 39,
-    "minyak_bumi": 16,
-    "gas_alam": 24,
-    "garam": 6,
-    "nikel": 5,
-    "litium": 11,
-    "aluminium": 17,
-    "tembaga": 27,
-    "logam_tanah_jarang": 9,
-    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const jepang: CountryData = {
     "sepeda_motor": 31,
     "smelter": 28,
     "semen_beton": 39,
-    "kayu": 17,
-    "air_mineral": 27,
-    "gula": 16,
-    "roti": 16,
-    "farmasi": 13,
-    "pupuk": 1,
-    "pengolahan_daging": 1,
-    "mie_instan": 23
-  },
+    "kayu": 17
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const jepang: CountryData = {
     "udang_kerang": 25.5,
     "ikan": 38
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 27,
+    "gula": 16,
+    "roti": 16,
+    "pengolahan_daging": 1,
+    "mie_instan": 23
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 13
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 18,
     "gudang_senjata": 36,
     "hangar_tank": 13,
@@ -112,8 +105,8 @@ export const jepang: CountryData = {
     "pangkalan_udara": 15,
     "pangkalan_laut": 31,
     "program_luar_angkasa": 30,
-    "pertahanan_siber": 19,
-  },
+    "pertahanan_siber": 19
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const jepang: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 15,
     "intelijen": 3,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 33,
       "misi_mata_mata": 19,
       "misi_sabotase": 17,
       "manajemen_wilayah": 40,
-      "program_nuklir": 0 }
+      "program_nuklir": 95 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 16,
-          "sepeda_motor": 31,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 16,
+        "sepeda_motor": 31,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 8,
@@ -187,9 +178,8 @@ export const jepang: CountryData = {
           "kantor_polisi": 36,
           "kamera_pengawas": 28,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const jepang: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

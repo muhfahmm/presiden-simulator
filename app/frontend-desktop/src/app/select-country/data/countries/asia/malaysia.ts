@@ -17,14 +17,13 @@ export const malaysia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 32,
-    "pembangkit_air": 14,
-    "pembangkit_surya": 16,
-    "pembangkit_termal": 35,
-    "pembangkit_gas": 2,
-    "pembangkit_angin": 22,
-    "jaringan_listrik": 93
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const malaysia: CountryData = {
     "kereta_bawah_tanah": 37,
     "jalur_kereta": 37,
     "jalan_tol": 37,
-    "kualitas_jalan": 70,
     "pelabuhan_laut": 37,
     "bandara": 32,
     "terminal_bus": 6,
-    "helipad": 14,
-    "cakupan_internet": 63
-  },
+    "helipad": 14
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 40,
-    "uranium": 33,
-    "batu_bara": 8,
-    "minyak_bumi": 40,
-    "gas_alam": 1,
-    "garam": 39,
-    "nikel": 9,
-    "litium": 32,
-    "aluminium": 21,
-    "tembaga": 23,
-    "logam_tanah_jarang": 9,
-    "bijih_besi": 2
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const malaysia: CountryData = {
     "sepeda_motor": 9,
     "smelter": 29,
     "semen_beton": 12,
-    "kayu": 3,
-    "air_mineral": 23,
-    "gula": 36,
-    "roti": 3,
-    "farmasi": 18,
-    "pupuk": 17,
-    "pengolahan_daging": 33,
-    "mie_instan": 4
-  },
+    "kayu": 3
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const malaysia: CountryData = {
     "udang_kerang": 18.5,
     "ikan": 24
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 23,
+    "gula": 36,
+    "roti": 3,
+    "pengolahan_daging": 33,
+    "mie_instan": 4
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 18
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 35,
     "gudang_senjata": 9,
     "hangar_tank": 33,
@@ -112,8 +105,8 @@ export const malaysia: CountryData = {
     "pangkalan_udara": 18,
     "pangkalan_laut": 31,
     "program_luar_angkasa": 40,
-    "pertahanan_siber": 25,
-  },
+    "pertahanan_siber": 25
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const malaysia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 16,
     "intelijen": 1,
@@ -170,13 +162,12 @@ export const malaysia: CountryData = {
       "manajemen_wilayah": 21,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 7,
-          "sepeda_motor": 34,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 7,
+        "sepeda_motor": 34,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 19,
@@ -187,9 +178,8 @@ export const malaysia: CountryData = {
           "kantor_polisi": 32,
           "kamera_pengawas": 23,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const malaysia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

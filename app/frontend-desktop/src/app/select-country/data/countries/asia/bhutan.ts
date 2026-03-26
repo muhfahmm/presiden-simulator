@@ -17,14 +17,13 @@ export const bhutan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 21,
-    "pembangkit_air": 12,
-    "pembangkit_surya": 21,
-    "pembangkit_termal": 35,
-    "pembangkit_gas": 37,
-    "pembangkit_angin": 33,
-    "jaringan_listrik": 77
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 99,
+    "pembangkit_listrik_tenaga_surya": 0,
+    "pembangkit_listrik_tenaga_uap": 1,
+    "pembangkit_listrik_tenaga_gas": 0,
+    "pembangkit_listrik_tenaga_angin": 0
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const bhutan: CountryData = {
     "kereta_bawah_tanah": 15,
     "jalur_kereta": 2,
     "jalan_tol": 34,
-    "kualitas_jalan": 55,
     "pelabuhan_laut": 25,
     "bandara": 14,
     "terminal_bus": 29,
-    "helipad": 26,
-    "cakupan_internet": 58
-  },
+    "helipad": 26
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 18,
-    "uranium": 3,
-    "batu_bara": 9,
-    "minyak_bumi": 8,
-    "gas_alam": 31,
-    "garam": 26,
-    "nikel": 17,
-    "litium": 17,
-    "aluminium": 6,
-    "tembaga": 19,
-    "logam_tanah_jarang": 2,
-    "bijih_besi": 29
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const bhutan: CountryData = {
     "sepeda_motor": 8,
     "smelter": 14,
     "semen_beton": 30,
-    "kayu": 40,
-    "air_mineral": 26,
-    "gula": 4,
-    "roti": 37,
-    "farmasi": 1,
-    "pupuk": 29,
-    "pengolahan_daging": 16,
-    "mie_instan": 23
-  },
+    "kayu": 40
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const bhutan: CountryData = {
     "udang_kerang": 22.0,
     "ikan": 25
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 26,
+    "gula": 4,
+    "roti": 37,
+    "pengolahan_daging": 16,
+    "mie_instan": 23
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 1
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 30,
     "gudang_senjata": 36,
     "hangar_tank": 38,
@@ -112,8 +105,8 @@ export const bhutan: CountryData = {
     "pangkalan_udara": 33,
     "pangkalan_laut": 32,
     "program_luar_angkasa": 8,
-    "pertahanan_siber": 1,
-  },
+    "pertahanan_siber": 1
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const bhutan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 6,
     "intelijen": 40,
@@ -170,13 +162,12 @@ export const bhutan: CountryData = {
       "manajemen_wilayah": 9,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 23,
-          "sepeda_motor": 29,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 23,
+        "sepeda_motor": 29,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 12,
@@ -187,9 +178,8 @@ export const bhutan: CountryData = {
           "kantor_polisi": 26,
           "kamera_pengawas": 31,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const bhutan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

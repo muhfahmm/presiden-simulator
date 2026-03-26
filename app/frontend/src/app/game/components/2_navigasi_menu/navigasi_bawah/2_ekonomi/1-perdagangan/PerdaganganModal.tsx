@@ -127,7 +127,9 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
 
   // Standard Database Orders
   const mineralOrder = ["emas", "uranium", "batu_bara", "minyak_bumi", "gas_alam", "garam", "nikel", "litium", "tembaga", "aluminium", "logam_tanah_jarang", "bijih_besi"];
-  const manufakturOrder = ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu", "air_mineral", "gula", "roti", "farmasi", "pupuk", "pengolahan_daging", "mie_instan"];
+  const manufakturOrder = ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu"];
+  const olahanPanganOrder = ["air_mineral", "gula", "roti", "pengolahan_daging", "mie_instan"];
+  const farmasiOrder = ["farmasi"];
   const panganOrder = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing", "udang_kerang", "ikan", "padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"];
   const militerOrder = ["pabrik_drone_kamikaze", "pabrik_amunisi", "pabrik_kendaraan_tempur", "pabrik_senjata_berat"];
 
@@ -148,17 +150,30 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
     })
     .sort((a, b) => mineralOrder.indexOf(a[0] as string) - mineralOrder.indexOf(b[0] as string))) as [string, number][];
 
-  // Category 2: Sektor Produksi & Ekonomi (Splits into 3 Sub-groups like Produksi Hub)
-  const manufakturKeys = ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill", "bottled_water_factory", "sugar_factory", "bakery_factory", "pharma_factory", "fertilizer_factory", "meat_processing_factory", "noodle_factory"];
+  // Category 2: Manufaktur
+  const manufakturKeys = ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill"];
   
   const manufakturItems = Object.entries(currentCountry.sektor_manufaktur)
     .filter(([key]) => manufakturKeys.includes(key) || manufakturKeys.some(mk => mk.replace('_factory', '') === key))
     .map(([key, val]) => {
-      // Find the factory key for delta lookup
       const factoryKey = manufakturKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
       return [key, getManufacturingCount(factoryKey, val as number)];
     })
     .sort((a, b) => manufakturOrder.indexOf(a[0] as string) - manufakturOrder.indexOf(b[0] as string)) as [string, number][];
+
+  // Category 4: Industri Pengolahan & Konsumsi
+  const olahanPanganFactoryKeys = ["bottled_water_factory", "sugar_factory", "bakery_factory", "meat_processing_factory", "noodle_factory"];
+  
+  const olahanPanganItems = Object.entries(currentCountry.sektor_olahan_pangan || {})
+    .map(([key, val]) => {
+      const factoryKey = olahanPanganFactoryKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
+      return [key, getManufacturingCount(factoryKey, val as number)];
+    })
+    .sort((a, b) => olahanPanganOrder.indexOf(a[0] as string) - olahanPanganOrder.indexOf(b[0] as string)) as [string, number][];
+
+  // Category 5: Layanan Medis & Farmasi
+  const farmasiItems = Object.entries(currentCountry.sektor_farmasi || {})
+    .map(([key, val]) => [key, getManufacturingCount("pharma_factory", val as number)]) as [string, number][];
 
   const peternakanItems = Object.entries(currentCountry.sektor_peternakan)
     .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number)])
@@ -178,12 +193,16 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
     .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || 0) as number)])
     .sort((a, b) => militerOrder.indexOf(a[0] as string) - militerOrder.indexOf(b[0] as string)) as [string, number][];
 
-  const panganLen = peternakanItems.length + perikananItems.length + agrikulturItems.length;
+  const agriPanganLen = peternakanItems.length + perikananItems.length + agrikulturItems.length;
+  const industriPengolahanLen = olahanPanganItems.length;
+  const farmasiLen = farmasiItems.length;
 
   const [selectedKey, setSelectedKey] = useState<string>(minerals[0]?.[0] || 'emas');
   const [showMinerals, setShowMinerals] = useState(true);
   const [showManufaktur, setShowManufaktur] = useState(false);
   const [showPangan, setShowPangan] = useState(false);
+  const [showIndustriPengolahan, setShowIndustriPengolahan] = useState(false);
+  const [showFarmasi, setShowFarmasi] = useState(false);
   const [showMiliter, setShowMiliter] = useState(false);
   const [selectedTimeframe, setSelectedTimeframe] = useState<string>("1w");
   const [activeChartTab, setActiveChartTab] = useState<"buy" | "sell">("buy");
@@ -218,6 +237,8 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
   const selectedItem = [
     ...minerals,
     ...manufakturItems,
+    ...olahanPanganItems,
+    ...farmasiItems,
     ...peternakanItems,
     ...perikananItems,
     ...agrikulturItems,
@@ -384,11 +405,11 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
               </div>
             </div>
 
-            {/* 3. Category: Food Production */}
+            {/* 3. Category: Food Production (Raw) */}
             <div className="border-b border-zinc-900/80">
               <div className="p-8 flex items-center justify-between">
                 <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
-                  3. Produksi Pangan ({panganLen})
+                  3. Produksi Pangan ({agriPanganLen})
                 </h3>
                 <button 
                    onClick={() => setShowPangan(!showPangan)}
@@ -485,11 +506,105 @@ export default function PerdaganganModal({ isOpen, onClose }: ModalProps) {
               </div>
             </div>
 
-            {/* 4. Category: Military Production */}
+            {/* 4. Category: Industri Pengolahan */}
             <div className="border-b border-zinc-900/80">
               <div className="p-8 flex items-center justify-between">
                 <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
-                  4. Produksi Militer ({militerItems.length})
+                  4. Industri Pengolahan ({industriPengolahanLen})
+                </h3>
+                <button 
+                   onClick={() => setShowIndustriPengolahan(!showIndustriPengolahan)}
+                  className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 hover:text-orange-500 transition-all cursor-pointer group"
+                >
+                  <Eye className={`h-4 w-4 group-hover:scale-110 transition-all duration-500 ${!showIndustriPengolahan ? 'rotate-180 opacity-50' : ''}`} />
+                </button>
+              </div>
+              <div className={`grid transition-all duration-700 ease-in-out ${showIndustriPengolahan ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                <div className="overflow-hidden no-scrollbar">
+                  <div className="px-4 pb-8 space-y-6">
+                    {/* Sub-group: Olahan Pangan */}
+                    <div className="space-y-2">
+                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">1. Olahan Pangan</p>
+                      {olahanPanganItems.map(([key, val]) => (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedKey(key as string)}
+                          className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all group relative cursor-pointer overflow-hidden ${
+                            selectedKey === key 
+                            ? 'bg-orange-600/10 border border-orange-500/40 text-white' 
+                            : 'text-zinc-500 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800'
+                          }`}
+                        >
+                          <div className="flex items-center gap-4 relative z-10">
+                            <div className={`p-2 rounded-xl transition-all duration-300 ${
+                              selectedKey === key ? 'bg-orange-500 text-white' : 'bg-zinc-900 text-zinc-600'
+                            }`}>
+                              {getIcon(key as string, "h-4 w-4")}
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-tight">
+                              {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})
+                            </span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 5. Category: Layanan Medis */}
+            <div className="border-b border-zinc-900/80">
+              <div className="p-8 flex items-center justify-between">
+                <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
+                  5. Layanan Medis ({farmasiLen})
+                </h3>
+                <button 
+                   onClick={() => setShowFarmasi(!showFarmasi)}
+                  className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 hover:text-red-500 transition-all cursor-pointer group"
+                >
+                  <Eye className={`h-4 w-4 group-hover:scale-110 transition-all duration-500 ${!showFarmasi ? 'rotate-180 opacity-50' : ''}`} />
+                </button>
+              </div>
+              <div className={`grid transition-all duration-700 ease-in-out ${showFarmasi ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
+                <div className="overflow-hidden no-scrollbar">
+                  <div className="px-4 pb-8 space-y-6">
+                    {/* Sub-group: Farmasi */}
+                    <div className="space-y-2">
+                       <p className="text-[9px] font-black text-zinc-600 uppercase tracking-widest pl-2 mb-1">1. Farmasi</p>
+                      {farmasiItems.map(([key, val]) => (
+                        <button
+                          key={key}
+                          onClick={() => setSelectedKey(key as string)}
+                          className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all group relative cursor-pointer overflow-hidden ${
+                            selectedKey === key 
+                            ? 'bg-red-600/10 border border-red-500/40 text-white' 
+                            : 'text-zinc-500 hover:bg-zinc-900/50 border border-transparent hover:border-zinc-800'
+                          }`}
+                        >
+                          <div className="flex items-center gap-4 relative z-10">
+                            <div className={`p-2 rounded-xl transition-all duration-300 ${
+                              selectedKey === key ? 'bg-red-500 text-white' : 'bg-zinc-900 text-zinc-600'
+                            }`}>
+                              {getIcon(key as string, "h-4 w-4")}
+                            </div>
+                            <span className="text-[10px] font-black uppercase tracking-tight">
+                              {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})
+                            </span>
+                          </div>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* 6. Category: Military Production */}
+            <div className="border-b border-zinc-900/80">
+              <div className="p-8 flex items-center justify-between">
+                <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic whitespace-nowrap">
+                  6. Produksi Militer ({militerItems.length})
                 </h3>
                 <button 
                    onClick={() => setShowMiliter(!showMiliter)}

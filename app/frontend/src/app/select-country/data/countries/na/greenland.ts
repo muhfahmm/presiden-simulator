@@ -17,14 +17,13 @@ export const greenland: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 27,
-    "pembangkit_air": 9,
-    "pembangkit_surya": 21,
-    "pembangkit_termal": 4,
-    "pembangkit_gas": 40,
-    "pembangkit_angin": 25,
-    "jaringan_listrik": 89
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const greenland: CountryData = {
     "kereta_bawah_tanah": 20,
     "jalur_kereta": 33,
     "jalan_tol": 1,
-    "kualitas_jalan": 69,
     "pelabuhan_laut": 6,
     "bandara": 6,
     "terminal_bus": 25,
-    "helipad": 27,
-    "cakupan_internet": 94
-  },
+    "helipad": 27
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 24,
-    "uranium": 29,
-    "batu_bara": 24,
-    "minyak_bumi": 39,
-    "gas_alam": 16,
-    "garam": 25,
-    "nikel": 3,
-    "litium": 26,
-    "aluminium": 32,
-    "tembaga": 12,
-    "logam_tanah_jarang": 10,
-    "bijih_besi": 17
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const greenland: CountryData = {
     "sepeda_motor": 20,
     "smelter": 21,
     "semen_beton": 25,
-    "kayu": 39,
-    "air_mineral": 23,
-    "gula": 10,
-    "roti": 24,
-    "farmasi": 1,
-    "pupuk": 7,
-    "pengolahan_daging": 24,
-    "mie_instan": 11
-  },
+    "kayu": 39
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const greenland: CountryData = {
     "udang_kerang": 14.5,
     "ikan": 14
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 23,
+    "gula": 10,
+    "roti": 24,
+    "pengolahan_daging": 24,
+    "mie_instan": 11
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 1
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 2,
     "gudang_senjata": 6,
     "hangar_tank": 11,
@@ -112,8 +105,8 @@ export const greenland: CountryData = {
     "pangkalan_udara": 40,
     "pangkalan_laut": 31,
     "program_luar_angkasa": 26,
-    "pertahanan_siber": 19,
-  },
+    "pertahanan_siber": 19
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const greenland: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 18,
     "intelijen": 3,
@@ -170,13 +162,12 @@ export const greenland: CountryData = {
       "manajemen_wilayah": 20,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 35,
-          "sepeda_motor": 3,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 35,
+        "sepeda_motor": 3,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 37,
@@ -187,9 +178,8 @@ export const greenland: CountryData = {
           "kantor_polisi": 5,
           "kamera_pengawas": 32,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const greenland: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

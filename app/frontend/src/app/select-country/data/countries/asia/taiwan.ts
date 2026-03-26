@@ -17,14 +17,13 @@ export const taiwan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 1,
-    "pembangkit_air": 12,
-    "pembangkit_surya": 38,
-    "pembangkit_termal": 29,
-    "pembangkit_gas": 28,
-    "pembangkit_angin": 37,
-    "jaringan_listrik": 57
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const taiwan: CountryData = {
     "kereta_bawah_tanah": 2,
     "jalur_kereta": 27,
     "jalan_tol": 25,
-    "kualitas_jalan": 65,
     "pelabuhan_laut": 39,
     "bandara": 9,
     "terminal_bus": 18,
-    "helipad": 23,
-    "cakupan_internet": 95
-  },
+    "helipad": 23
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 4,
-    "uranium": 26,
-    "batu_bara": 17,
-    "minyak_bumi": 37,
-    "gas_alam": 25,
-    "garam": 18,
-    "nikel": 24,
-    "litium": 18,
-    "aluminium": 38,
-    "tembaga": 24,
-    "logam_tanah_jarang": 2,
-    "bijih_besi": 26
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const taiwan: CountryData = {
     "sepeda_motor": 22,
     "smelter": 5,
     "semen_beton": 31,
-    "kayu": 21,
-    "air_mineral": 24,
-    "gula": 31,
-    "roti": 7,
-    "farmasi": 7,
-    "pupuk": 16,
-    "pengolahan_daging": 10,
-    "mie_instan": 31
-  },
+    "kayu": 21
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const taiwan: CountryData = {
     "udang_kerang": 33.0,
     "ikan": 2
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 24,
+    "gula": 31,
+    "roti": 7,
+    "pengolahan_daging": 10,
+    "mie_instan": 31
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 7
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 22,
     "gudang_senjata": 4,
     "hangar_tank": 5,
@@ -112,8 +105,8 @@ export const taiwan: CountryData = {
     "pangkalan_udara": 26,
     "pangkalan_laut": 30,
     "program_luar_angkasa": 19,
-    "pertahanan_siber": 12,
-  },
+    "pertahanan_siber": 12
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const taiwan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 11,
     "intelijen": 24,
@@ -170,13 +162,12 @@ export const taiwan: CountryData = {
       "manajemen_wilayah": 26,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 31,
-          "sepeda_motor": 29,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 31,
+        "sepeda_motor": 29,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 13,
@@ -187,9 +178,8 @@ export const taiwan: CountryData = {
           "kantor_polisi": 14,
           "kamera_pengawas": 19,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const taiwan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

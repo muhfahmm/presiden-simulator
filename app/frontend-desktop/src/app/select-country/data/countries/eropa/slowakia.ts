@@ -17,14 +17,13 @@ export const slowakia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 14,
-    "pembangkit_air": 22,
-    "pembangkit_surya": 8,
-    "pembangkit_termal": 30,
-    "pembangkit_gas": 8,
-    "pembangkit_angin": 39,
-    "jaringan_listrik": 93
-  },
+    "pembangkit_listrik_tenaga_nuklir": 5,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 2,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 10,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const slowakia: CountryData = {
     "kereta_bawah_tanah": 3,
     "jalur_kereta": 1,
     "jalan_tol": 40,
-    "kualitas_jalan": 74,
     "pelabuhan_laut": 4,
     "bandara": 39,
     "terminal_bus": 8,
-    "helipad": 33,
-    "cakupan_internet": 56
-  },
+    "helipad": 33
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 7,
-    "uranium": 38,
-    "batu_bara": 27,
-    "minyak_bumi": 30,
-    "gas_alam": 4,
-    "garam": 23,
-    "nikel": 5,
-    "litium": 38,
-    "aluminium": 22,
-    "tembaga": 1,
-    "logam_tanah_jarang": 21,
-    "bijih_besi": 7
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const slowakia: CountryData = {
     "sepeda_motor": 18,
     "smelter": 1,
     "semen_beton": 11,
-    "kayu": 20,
-    "air_mineral": 33,
-    "gula": 26,
-    "roti": 15,
-    "farmasi": 34,
-    "pupuk": 6,
-    "pengolahan_daging": 12,
-    "mie_instan": 38
-  },
+    "kayu": 20
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const slowakia: CountryData = {
     "udang_kerang": 24.0,
     "ikan": 5
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 33,
+    "gula": 26,
+    "roti": 15,
+    "pengolahan_daging": 12,
+    "mie_instan": 38
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 34
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 12,
     "gudang_senjata": 19,
     "hangar_tank": 36,
@@ -112,8 +105,8 @@ export const slowakia: CountryData = {
     "pangkalan_udara": 5,
     "pangkalan_laut": 27,
     "program_luar_angkasa": 24,
-    "pertahanan_siber": 34,
-  },
+    "pertahanan_siber": 34
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const slowakia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 4,
     "intelijen": 39,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 38,
       "misi_sabotase": 26,
       "manajemen_wilayah": 23,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 8,
-          "sepeda_motor": 2,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 8,
+        "sepeda_motor": 2,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 1,
@@ -187,9 +178,8 @@ export const slowakia: CountryData = {
           "kantor_polisi": 30,
           "kamera_pengawas": 36,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const slowakia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const prancis: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 18,
-    "pembangkit_air": 1,
-    "pembangkit_surya": 24,
-    "pembangkit_termal": 27,
-    "pembangkit_gas": 3,
-    "pembangkit_angin": 16,
-    "jaringan_listrik": 54
-  },
+    "pembangkit_listrik_tenaga_nuklir": 56,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 5,
+    "pembangkit_listrik_tenaga_gas": 5,
+    "pembangkit_listrik_tenaga_angin": 10
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const prancis: CountryData = {
     "kereta_bawah_tanah": 2,
     "jalur_kereta": 27,
     "jalan_tol": 27,
-    "kualitas_jalan": 64,
     "pelabuhan_laut": 8,
     "bandara": 34,
     "terminal_bus": 21,
-    "helipad": 12,
-    "cakupan_internet": 52
-  },
+    "helipad": 12
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 27,
-    "uranium": 24,
-    "batu_bara": 31,
-    "minyak_bumi": 37,
-    "gas_alam": 8,
-    "garam": 19,
-    "nikel": 5,
-    "litium": 40,
-    "aluminium": 20,
-    "tembaga": 32,
-    "logam_tanah_jarang": 32,
-    "bijih_besi": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const prancis: CountryData = {
     "sepeda_motor": 1,
     "smelter": 36,
     "semen_beton": 30,
-    "kayu": 2,
-    "air_mineral": 28,
-    "gula": 32,
-    "roti": 26,
-    "farmasi": 4,
-    "pupuk": 2,
-    "pengolahan_daging": 11,
-    "mie_instan": 38
-  },
+    "kayu": 2
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const prancis: CountryData = {
     "udang_kerang": 27.0,
     "ikan": 36
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 28,
+    "gula": 32,
+    "roti": 26,
+    "pengolahan_daging": 11,
+    "mie_instan": 38
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 4
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 3,
     "gudang_senjata": 33,
     "hangar_tank": 8,
@@ -112,8 +105,8 @@ export const prancis: CountryData = {
     "pangkalan_udara": 5,
     "pangkalan_laut": 35,
     "program_luar_angkasa": 37,
-    "pertahanan_siber": 25,
-  },
+    "pertahanan_siber": 25
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const prancis: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 37,
     "intelijen": 22,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 9,
       "misi_mata_mata": 18,
       "misi_sabotase": 22,
       "manajemen_wilayah": 7,
-      "program_nuklir": 0 }
+      "program_nuklir": 100 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 21,
-          "sepeda_motor": 24,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 21,
+        "sepeda_motor": 24,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 3,
@@ -187,9 +178,8 @@ export const prancis: CountryData = {
           "kantor_polisi": 13,
           "kamera_pengawas": 32,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const prancis: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

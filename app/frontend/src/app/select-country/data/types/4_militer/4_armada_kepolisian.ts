@@ -15,6 +15,5 @@ export interface SektorArmadaKepolisian {
       kamera_pengawas: number;
       pusat_forensik: number;
     };
-    kepercayaan_publik: number; // 0-100%
   };
 }

@@ -17,13 +17,12 @@ export const mali: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 13,
-    "pembangkit_air": 21,
-    "pembangkit_nuklir": 25,
-    "jaringan_listrik": 50,
-    "pembangkit_surya": 16,
-    "pembangkit_termal": 20,
-    "pembangkit_angin": 4
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const mali: CountryData = {
     "terminal_bus": 39,
     "helipad": 15,
     "jalan_tol": 21,
-    "cakupan_internet": 63,
     "jalur_kereta": 22,
-    "kualitas_jalan": 70,
     "pelabuhan_laut": 3,
     "kereta_bawah_tanah": 14
   },
@@ -46,37 +43,15 @@ export const mali: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 10,
-    "batu_bara": 34,
-    "tembaga": 3,
-    "gas_alam": 24,
-    "emas": 19,
-    "bijih_besi": 1,
-    "litium": 40,
-    "nikel": 23,
-    "minyak_bumi": 29,
-    "logam_tanah_jarang": 31,
-    "garam": 36,
-    "uranium": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 24,
-    "mobil": 24,
+  "sektor_manufaktur": {    "mobil": 24,
     "semen_beton": 27,
-    "pupuk": 10,
-    "mie_instan": 12,
-    "pengolahan_daging": 5,
-    "air_mineral": 29,
-    "sepeda_motor": 2,
-    "farmasi": 32,
-    "semikonduktor": 20,
-    "smelter": 1,
-    "gula": 16,
-    "kayu": 1
+    "pengolahan_daging": 5,    "sepeda_motor": 2,    "semikonduktor": 20,
+    "smelter": 1,    "kayu": 1
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const mali: CountryData = {
     "udang_kerang": 16.0,
     "ikan": 11
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 29,
+    "gula": 16,
+    "roti": 24,
+    "pengolahan_daging": 5,
+    "mie_instan": 12
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 32
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 20,
     "gudang_senjata": 17,
     "hangar_tank": 18,
@@ -112,8 +102,8 @@ export const mali: CountryData = {
     "pangkalan_udara": 2,
     "pangkalan_laut": 37,
     "program_luar_angkasa": 4,
-    "pertahanan_siber": 37,
-  },
+    "pertahanan_siber": 37
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const mali: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 26,
     "intelijen": 14,
@@ -171,13 +160,12 @@ export const mali: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 8,
-          "sepeda_motor": 8,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 8,
+        "sepeda_motor": 8,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 30,
@@ -188,9 +176,8 @@ export const mali: CountryData = {
           "kantor_polisi": 11,
           "kamera_pengawas": 18,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const mali: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

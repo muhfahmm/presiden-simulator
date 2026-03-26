@@ -17,14 +17,13 @@ export const chile: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 19,
-    "pembangkit_air": 38,
-    "pembangkit_surya": 25,
-    "pembangkit_termal": 4,
-    "pembangkit_gas": 17,
-    "pembangkit_angin": 7,
-    "jaringan_listrik": 58
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 60,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 15,
+    "pembangkit_listrik_tenaga_angin": 4
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const chile: CountryData = {
     "kereta_bawah_tanah": 24,
     "jalur_kereta": 40,
     "jalan_tol": 40,
-    "kualitas_jalan": 95,
     "pelabuhan_laut": 17,
     "bandara": 34,
     "terminal_bus": 9,
-    "helipad": 15,
-    "cakupan_internet": 51
-  },
+    "helipad": 15
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 7,
-    "uranium": 38,
-    "batu_bara": 33,
-    "minyak_bumi": 36,
-    "gas_alam": 37,
-    "garam": 15,
-    "nikel": 14,
-    "litium": 11,
-    "aluminium": 5,
-    "tembaga": 36,
-    "logam_tanah_jarang": 33,
-    "bijih_besi": 8
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const chile: CountryData = {
     "sepeda_motor": 4,
     "smelter": 26,
     "semen_beton": 4,
-    "kayu": 20,
-    "air_mineral": 35,
-    "gula": 24,
-    "roti": 17,
-    "farmasi": 11,
-    "pupuk": 18,
-    "pengolahan_daging": 16,
-    "mie_instan": 4
-  },
+    "kayu": 20
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const chile: CountryData = {
     "udang_kerang": 19.5,
     "ikan": 25
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 35,
+    "gula": 24,
+    "roti": 17,
+    "pengolahan_daging": 16,
+    "mie_instan": 4
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 11
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 20,
     "gudang_senjata": 5,
     "hangar_tank": 31,
@@ -112,8 +105,8 @@ export const chile: CountryData = {
     "pangkalan_udara": 37,
     "pangkalan_laut": 25,
     "program_luar_angkasa": 32,
-    "pertahanan_siber": 27,
-  },
+    "pertahanan_siber": 27
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const chile: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 10,
     "intelijen": 31,
@@ -170,13 +162,12 @@ export const chile: CountryData = {
       "manajemen_wilayah": 9,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 2,
-          "sepeda_motor": 21,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 2,
+        "sepeda_motor": 21,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 12,
@@ -187,9 +178,8 @@ export const chile: CountryData = {
           "kantor_polisi": 29,
           "kamera_pengawas": 22,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const chile: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

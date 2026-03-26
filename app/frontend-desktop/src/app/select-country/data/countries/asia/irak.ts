@@ -17,14 +17,13 @@ export const irak: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 36,
-    "pembangkit_air": 26,
-    "pembangkit_surya": 13,
-    "pembangkit_termal": 21,
-    "pembangkit_gas": 2,
-    "pembangkit_angin": 14,
-    "jaringan_listrik": 58
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const irak: CountryData = {
     "kereta_bawah_tanah": 32,
     "jalur_kereta": 39,
     "jalan_tol": 38,
-    "kualitas_jalan": 82,
     "pelabuhan_laut": 22,
     "bandara": 30,
     "terminal_bus": 30,
-    "helipad": 24,
-    "cakupan_internet": 75
-  },
+    "helipad": 24
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 4,
-    "uranium": 23,
-    "batu_bara": 17,
-    "minyak_bumi": 40,
-    "gas_alam": 40,
-    "garam": 34,
-    "nikel": 33,
-    "litium": 33,
-    "aluminium": 29,
-    "tembaga": 29,
-    "logam_tanah_jarang": 7,
-    "bijih_besi": 6
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const irak: CountryData = {
     "sepeda_motor": 5,
     "smelter": 10,
     "semen_beton": 17,
-    "kayu": 33,
-    "air_mineral": 12,
-    "gula": 37,
-    "roti": 26,
-    "farmasi": 40,
-    "pupuk": 32,
-    "pengolahan_daging": 5,
-    "mie_instan": 30
-  },
+    "kayu": 33
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const irak: CountryData = {
     "udang_kerang": 23.0,
     "ikan": 7
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 12,
+    "gula": 37,
+    "roti": 26,
+    "pengolahan_daging": 5,
+    "mie_instan": 30
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 40
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 13,
     "gudang_senjata": 9,
     "hangar_tank": 18,
@@ -112,8 +105,8 @@ export const irak: CountryData = {
     "pangkalan_udara": 18,
     "pangkalan_laut": 8,
     "program_luar_angkasa": 29,
-    "pertahanan_siber": 18,
-  },
+    "pertahanan_siber": 18
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const irak: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 12,
     "intelijen": 23,
@@ -170,13 +162,12 @@ export const irak: CountryData = {
       "manajemen_wilayah": 13,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 14,
-          "sepeda_motor": 15,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 14,
+        "sepeda_motor": 15,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 21,
@@ -187,9 +178,8 @@ export const irak: CountryData = {
           "kantor_polisi": 25,
           "kamera_pengawas": 27,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const irak: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

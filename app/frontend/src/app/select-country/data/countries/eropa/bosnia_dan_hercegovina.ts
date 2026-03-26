@@ -17,14 +17,13 @@ export const bosnia_dan_hercegovina: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 26,
-    "pembangkit_air": 38,
-    "pembangkit_surya": 5,
-    "pembangkit_termal": 13,
-    "pembangkit_gas": 29,
-    "pembangkit_angin": 23,
-    "jaringan_listrik": 50
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const bosnia_dan_hercegovina: CountryData = {
     "kereta_bawah_tanah": 9,
     "jalur_kereta": 12,
     "jalan_tol": 12,
-    "kualitas_jalan": 71,
     "pelabuhan_laut": 33,
     "bandara": 14,
     "terminal_bus": 35,
-    "helipad": 29,
-    "cakupan_internet": 65
-  },
+    "helipad": 29
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 19,
-    "uranium": 1,
-    "batu_bara": 15,
-    "minyak_bumi": 12,
-    "gas_alam": 29,
-    "garam": 38,
-    "nikel": 7,
-    "litium": 6,
-    "aluminium": 2,
-    "tembaga": 19,
-    "logam_tanah_jarang": 16,
-    "bijih_besi": 30
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const bosnia_dan_hercegovina: CountryData = {
     "sepeda_motor": 28,
     "smelter": 37,
     "semen_beton": 26,
-    "kayu": 28,
-    "air_mineral": 2,
-    "gula": 23,
-    "roti": 12,
-    "farmasi": 5,
-    "pupuk": 33,
-    "pengolahan_daging": 30,
-    "mie_instan": 22
-  },
+    "kayu": 28
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const bosnia_dan_hercegovina: CountryData = {
     "udang_kerang": 19.0,
     "ikan": 35
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 2,
+    "gula": 23,
+    "roti": 12,
+    "pengolahan_daging": 30,
+    "mie_instan": 22
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 5
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 30,
     "gudang_senjata": 9,
     "hangar_tank": 37,
@@ -112,8 +105,8 @@ export const bosnia_dan_hercegovina: CountryData = {
     "pangkalan_udara": 16,
     "pangkalan_laut": 22,
     "program_luar_angkasa": 24,
-    "pertahanan_siber": 40,
-  },
+    "pertahanan_siber": 40
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const bosnia_dan_hercegovina: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 29,
     "intelijen": 9,
@@ -170,13 +162,12 @@ export const bosnia_dan_hercegovina: CountryData = {
       "manajemen_wilayah": 15,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 9,
-          "sepeda_motor": 18,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 9,
+        "sepeda_motor": 18,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 13,
@@ -187,9 +178,8 @@ export const bosnia_dan_hercegovina: CountryData = {
           "kantor_polisi": 13,
           "kamera_pengawas": 7,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const bosnia_dan_hercegovina: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

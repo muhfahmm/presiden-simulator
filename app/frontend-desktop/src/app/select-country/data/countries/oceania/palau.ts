@@ -17,14 +17,13 @@ export const palau: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 8,
-    "pembangkit_air": 1,
-    "pembangkit_surya": 1,
-    "pembangkit_termal": 27,
-    "pembangkit_gas": 27,
-    "pembangkit_angin": 21,
-    "jaringan_listrik": 50
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const palau: CountryData = {
     "kereta_bawah_tanah": 39,
     "jalur_kereta": 27,
     "jalan_tol": 16,
-    "kualitas_jalan": 55,
     "pelabuhan_laut": 19,
     "bandara": 23,
     "terminal_bus": 5,
-    "helipad": 15,
-    "cakupan_internet": 92
-  },
+    "helipad": 15
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 18,
-    "uranium": 35,
-    "batu_bara": 1,
-    "minyak_bumi": 30,
-    "gas_alam": 15,
-    "garam": 7,
-    "nikel": 20,
-    "litium": 26,
-    "aluminium": 40,
-    "tembaga": 35,
-    "logam_tanah_jarang": 18,
-    "bijih_besi": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const palau: CountryData = {
     "sepeda_motor": 36,
     "smelter": 40,
     "semen_beton": 13,
-    "kayu": 16,
-    "air_mineral": 38,
-    "gula": 21,
-    "roti": 28,
-    "farmasi": 4,
-    "pupuk": 21,
-    "pengolahan_daging": 9,
-    "mie_instan": 15
-  },
+    "kayu": 16
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const palau: CountryData = {
     "udang_kerang": 17.0,
     "ikan": 2
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 38,
+    "gula": 21,
+    "roti": 28,
+    "pengolahan_daging": 9,
+    "mie_instan": 15
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 4
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 13,
     "gudang_senjata": 16,
     "hangar_tank": 34,
@@ -112,8 +105,8 @@ export const palau: CountryData = {
     "pangkalan_udara": 5,
     "pangkalan_laut": 13,
     "program_luar_angkasa": 14,
-    "pertahanan_siber": 14,
-  },
+    "pertahanan_siber": 14
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const palau: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 14,
     "intelijen": 14,
@@ -170,13 +162,12 @@ export const palau: CountryData = {
       "manajemen_wilayah": 1,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 33,
-          "sepeda_motor": 36,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 33,
+        "sepeda_motor": 36,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 21,
@@ -187,9 +178,8 @@ export const palau: CountryData = {
           "kantor_polisi": 8,
           "kamera_pengawas": 30,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const palau: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const tonga: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 8,
-    "pembangkit_air": 17,
-    "pembangkit_surya": 9,
-    "pembangkit_termal": 2,
-    "pembangkit_gas": 16,
-    "pembangkit_angin": 23,
-    "jaringan_listrik": 79
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const tonga: CountryData = {
     "kereta_bawah_tanah": 14,
     "jalur_kereta": 8,
     "jalan_tol": 19,
-    "kualitas_jalan": 81,
     "pelabuhan_laut": 19,
     "bandara": 20,
     "terminal_bus": 14,
-    "helipad": 24,
-    "cakupan_internet": 79
-  },
+    "helipad": 24
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 24,
-    "uranium": 18,
-    "batu_bara": 27,
-    "minyak_bumi": 11,
-    "gas_alam": 11,
-    "garam": 17,
-    "nikel": 38,
-    "litium": 4,
-    "aluminium": 36,
-    "tembaga": 35,
-    "logam_tanah_jarang": 30,
-    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const tonga: CountryData = {
     "sepeda_motor": 2,
     "smelter": 39,
     "semen_beton": 28,
-    "kayu": 38,
-    "air_mineral": 32,
-    "gula": 36,
-    "roti": 14,
-    "farmasi": 16,
-    "pupuk": 37,
-    "pengolahan_daging": 15,
-    "mie_instan": 6
-  },
+    "kayu": 38
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const tonga: CountryData = {
     "udang_kerang": 5.0,
     "ikan": 29
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 32,
+    "gula": 36,
+    "roti": 14,
+    "pengolahan_daging": 15,
+    "mie_instan": 6
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 16
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 27,
     "gudang_senjata": 28,
     "hangar_tank": 24,
@@ -112,8 +105,8 @@ export const tonga: CountryData = {
     "pangkalan_udara": 31,
     "pangkalan_laut": 31,
     "program_luar_angkasa": 16,
-    "pertahanan_siber": 39,
-  },
+    "pertahanan_siber": 39
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const tonga: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 11,
     "intelijen": 3,
@@ -170,13 +162,12 @@ export const tonga: CountryData = {
       "manajemen_wilayah": 21,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 2,
-          "sepeda_motor": 40,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 2,
+        "sepeda_motor": 40,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 39,
@@ -187,9 +178,8 @@ export const tonga: CountryData = {
           "kantor_polisi": 21,
           "kamera_pengawas": 18,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const tonga: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

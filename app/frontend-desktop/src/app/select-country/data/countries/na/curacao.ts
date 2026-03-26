@@ -17,14 +17,13 @@ export const curacao: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 13,
-    "pembangkit_air": 4,
-    "pembangkit_surya": 16,
-    "pembangkit_termal": 23,
-    "pembangkit_gas": 5,
-    "pembangkit_angin": 35,
-    "jaringan_listrik": 84
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const curacao: CountryData = {
     "kereta_bawah_tanah": 23,
     "jalur_kereta": 13,
     "jalan_tol": 39,
-    "kualitas_jalan": 81,
     "pelabuhan_laut": 36,
     "bandara": 24,
     "terminal_bus": 20,
-    "helipad": 35,
-    "cakupan_internet": 51
-  },
+    "helipad": 35
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 36,
-    "uranium": 33,
-    "batu_bara": 23,
-    "minyak_bumi": 35,
-    "gas_alam": 20,
-    "garam": 40,
-    "nikel": 37,
-    "litium": 19,
-    "aluminium": 6,
-    "tembaga": 15,
-    "logam_tanah_jarang": 16,
-    "bijih_besi": 18
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const curacao: CountryData = {
     "sepeda_motor": 17,
     "smelter": 22,
     "semen_beton": 12,
-    "kayu": 17,
-    "air_mineral": 22,
-    "gula": 40,
-    "roti": 33,
-    "farmasi": 31,
-    "pupuk": 27,
-    "pengolahan_daging": 16,
-    "mie_instan": 36
-  },
+    "kayu": 17
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const curacao: CountryData = {
     "udang_kerang": 19.0,
     "ikan": 11
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 22,
+    "gula": 40,
+    "roti": 33,
+    "pengolahan_daging": 16,
+    "mie_instan": 36
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 31
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 29,
     "gudang_senjata": 6,
     "hangar_tank": 35,
@@ -112,8 +105,8 @@ export const curacao: CountryData = {
     "pangkalan_udara": 33,
     "pangkalan_laut": 8,
     "program_luar_angkasa": 1,
-    "pertahanan_siber": 18,
-  },
+    "pertahanan_siber": 18
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const curacao: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 32,
     "intelijen": 27,
@@ -170,13 +162,12 @@ export const curacao: CountryData = {
       "manajemen_wilayah": 16,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 28,
-          "sepeda_motor": 1,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 28,
+        "sepeda_motor": 1,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 21,
@@ -187,9 +178,8 @@ export const curacao: CountryData = {
           "kantor_polisi": 36,
           "kamera_pengawas": 19,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const curacao: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

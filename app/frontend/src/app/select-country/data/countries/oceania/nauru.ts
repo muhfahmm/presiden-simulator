@@ -17,14 +17,13 @@ export const nauru: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 36,
-    "pembangkit_air": 4,
-    "pembangkit_surya": 25,
-    "pembangkit_termal": 16,
-    "pembangkit_gas": 31,
-    "pembangkit_angin": 6,
-    "jaringan_listrik": 73
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const nauru: CountryData = {
     "kereta_bawah_tanah": 21,
     "jalur_kereta": 35,
     "jalan_tol": 18,
-    "kualitas_jalan": 63,
     "pelabuhan_laut": 22,
     "bandara": 30,
     "terminal_bus": 40,
-    "helipad": 33,
-    "cakupan_internet": 79
-  },
+    "helipad": 33
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 15,
-    "uranium": 38,
-    "batu_bara": 21,
-    "minyak_bumi": 19,
-    "gas_alam": 37,
-    "garam": 7,
-    "nikel": 18,
-    "litium": 39,
-    "aluminium": 8,
-    "tembaga": 1,
-    "logam_tanah_jarang": 33,
-    "bijih_besi": 32
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const nauru: CountryData = {
     "sepeda_motor": 23,
     "smelter": 16,
     "semen_beton": 21,
-    "kayu": 30,
-    "air_mineral": 21,
-    "gula": 23,
-    "roti": 29,
-    "farmasi": 20,
-    "pupuk": 20,
-    "pengolahan_daging": 34,
-    "mie_instan": 5
-  },
+    "kayu": 30
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const nauru: CountryData = {
     "udang_kerang": 33.0,
     "ikan": 18
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 21,
+    "gula": 23,
+    "roti": 29,
+    "pengolahan_daging": 34,
+    "mie_instan": 5
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 20
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 34,
     "gudang_senjata": 37,
     "hangar_tank": 13,
@@ -112,8 +105,8 @@ export const nauru: CountryData = {
     "pangkalan_udara": 1,
     "pangkalan_laut": 5,
     "program_luar_angkasa": 23,
-    "pertahanan_siber": 1,
-  },
+    "pertahanan_siber": 1
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const nauru: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 3,
     "intelijen": 24,
@@ -170,13 +162,12 @@ export const nauru: CountryData = {
       "manajemen_wilayah": 6,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 12,
-          "sepeda_motor": 33,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 12,
+        "sepeda_motor": 33,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -187,9 +178,8 @@ export const nauru: CountryData = {
           "kantor_polisi": 33,
           "kamera_pengawas": 7,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const nauru: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

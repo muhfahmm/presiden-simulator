@@ -17,14 +17,13 @@ export const siprus: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 12,
-    "pembangkit_air": 4,
-    "pembangkit_surya": 38,
-    "pembangkit_termal": 35,
-    "pembangkit_gas": 19,
-    "pembangkit_angin": 24,
-    "jaringan_listrik": 54
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const siprus: CountryData = {
     "kereta_bawah_tanah": 22,
     "jalur_kereta": 23,
     "jalan_tol": 26,
-    "kualitas_jalan": 89,
     "pelabuhan_laut": 8,
     "bandara": 24,
     "terminal_bus": 21,
-    "helipad": 25,
-    "cakupan_internet": 59
-  },
+    "helipad": 25
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 20,
-    "uranium": 1,
-    "batu_bara": 7,
-    "minyak_bumi": 30,
-    "gas_alam": 27,
-    "garam": 36,
-    "nikel": 25,
-    "litium": 8,
-    "aluminium": 1,
-    "tembaga": 40,
-    "logam_tanah_jarang": 31,
-    "bijih_besi": 5
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const siprus: CountryData = {
     "sepeda_motor": 26,
     "smelter": 3,
     "semen_beton": 1,
-    "kayu": 20,
-    "air_mineral": 23,
-    "gula": 2,
-    "roti": 34,
-    "farmasi": 5,
-    "pupuk": 31,
-    "pengolahan_daging": 19,
-    "mie_instan": 37
-  },
+    "kayu": 20
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const siprus: CountryData = {
     "udang_kerang": 33.5,
     "ikan": 17
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 23,
+    "gula": 2,
+    "roti": 34,
+    "pengolahan_daging": 19,
+    "mie_instan": 37
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 5
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 13,
     "gudang_senjata": 24,
     "hangar_tank": 16,
@@ -112,8 +105,8 @@ export const siprus: CountryData = {
     "pangkalan_udara": 19,
     "pangkalan_laut": 27,
     "program_luar_angkasa": 4,
-    "pertahanan_siber": 32,
-  },
+    "pertahanan_siber": 32
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const siprus: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 2,
     "intelijen": 25,
@@ -170,13 +162,12 @@ export const siprus: CountryData = {
       "manajemen_wilayah": 4,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 29,
-          "sepeda_motor": 10,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 29,
+        "sepeda_motor": 10,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 27,
@@ -187,9 +178,8 @@ export const siprus: CountryData = {
           "kantor_polisi": 10,
           "kamera_pengawas": 22,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const siprus: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const vatikan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 26,
-    "pembangkit_air": 31,
-    "pembangkit_surya": 33,
-    "pembangkit_termal": 2,
-    "pembangkit_gas": 11,
-    "pembangkit_angin": 7,
-    "jaringan_listrik": 54
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const vatikan: CountryData = {
     "kereta_bawah_tanah": 5,
     "jalur_kereta": 26,
     "jalan_tol": 34,
-    "kualitas_jalan": 51,
     "pelabuhan_laut": 23,
     "bandara": 5,
     "terminal_bus": 16,
-    "helipad": 29,
-    "cakupan_internet": 91
-  },
+    "helipad": 29
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 14,
-    "uranium": 13,
-    "batu_bara": 34,
-    "minyak_bumi": 35,
-    "gas_alam": 17,
-    "garam": 29,
-    "nikel": 38,
-    "litium": 9,
-    "aluminium": 1,
-    "tembaga": 36,
-    "logam_tanah_jarang": 17,
-    "bijih_besi": 13
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const vatikan: CountryData = {
     "sepeda_motor": 10,
     "smelter": 15,
     "semen_beton": 14,
-    "kayu": 8,
-    "air_mineral": 3,
-    "gula": 23,
-    "roti": 18,
-    "farmasi": 40,
-    "pupuk": 22,
-    "pengolahan_daging": 17,
-    "mie_instan": 15
-  },
+    "kayu": 8
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const vatikan: CountryData = {
     "udang_kerang": 22.5,
     "ikan": 28
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 3,
+    "gula": 23,
+    "roti": 18,
+    "pengolahan_daging": 17,
+    "mie_instan": 15
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 40
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 20,
     "gudang_senjata": 26,
     "hangar_tank": 2,
@@ -112,8 +105,8 @@ export const vatikan: CountryData = {
     "pangkalan_udara": 1,
     "pangkalan_laut": 27,
     "program_luar_angkasa": 2,
-    "pertahanan_siber": 6,
-  },
+    "pertahanan_siber": 6
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const vatikan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 37,
     "intelijen": 39,
@@ -170,13 +162,12 @@ export const vatikan: CountryData = {
       "manajemen_wilayah": 25,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 26,
-          "sepeda_motor": 23,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 26,
+        "sepeda_motor": 23,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 30,
@@ -187,9 +178,8 @@ export const vatikan: CountryData = {
           "kantor_polisi": 5,
           "kamera_pengawas": 13,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const vatikan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const swiss: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 34,
-    "pembangkit_air": 2,
-    "pembangkit_surya": 2,
-    "pembangkit_termal": 2,
-    "pembangkit_gas": 22,
-    "pembangkit_angin": 22,
-    "jaringan_listrik": 89
-  },
+    "pembangkit_listrik_tenaga_nuklir": 4,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const swiss: CountryData = {
     "kereta_bawah_tanah": 1,
     "jalur_kereta": 5,
     "jalan_tol": 40,
-    "kualitas_jalan": 68,
     "pelabuhan_laut": 28,
     "bandara": 13,
     "terminal_bus": 14,
-    "helipad": 24,
-    "cakupan_internet": 71
-  },
+    "helipad": 24
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 15,
-    "uranium": 8,
-    "batu_bara": 10,
-    "minyak_bumi": 20,
-    "gas_alam": 18,
-    "garam": 12,
-    "nikel": 22,
-    "litium": 35,
-    "aluminium": 40,
-    "tembaga": 19,
-    "logam_tanah_jarang": 29,
-    "bijih_besi": 35
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const swiss: CountryData = {
     "sepeda_motor": 4,
     "smelter": 40,
     "semen_beton": 4,
-    "kayu": 4,
-    "air_mineral": 22,
-    "gula": 20,
-    "roti": 27,
-    "farmasi": 6,
-    "pupuk": 12,
-    "pengolahan_daging": 12,
-    "mie_instan": 18
-  },
+    "kayu": 4
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const swiss: CountryData = {
     "udang_kerang": 17.0,
     "ikan": 8
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 22,
+    "gula": 20,
+    "roti": 27,
+    "pengolahan_daging": 12,
+    "mie_instan": 18
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 6
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 19,
     "gudang_senjata": 5,
     "hangar_tank": 26,
@@ -112,8 +105,8 @@ export const swiss: CountryData = {
     "pangkalan_udara": 26,
     "pangkalan_laut": 30,
     "program_luar_angkasa": 4,
-    "pertahanan_siber": 29,
-  },
+    "pertahanan_siber": 29
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const swiss: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 2,
     "intelijen": 1,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 9,
       "misi_mata_mata": 11,
       "misi_sabotase": 16,
       "manajemen_wilayah": 38,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 20,
-          "sepeda_motor": 20,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 20,
+        "sepeda_motor": 20,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 38,
@@ -187,9 +178,8 @@ export const swiss: CountryData = {
           "kantor_polisi": 24,
           "kamera_pengawas": 28,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const swiss: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

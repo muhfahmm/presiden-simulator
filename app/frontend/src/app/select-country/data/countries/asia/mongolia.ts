@@ -17,14 +17,13 @@ export const mongolia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 33,
-    "pembangkit_air": 3,
-    "pembangkit_surya": 1,
-    "pembangkit_termal": 24,
-    "pembangkit_gas": 40,
-    "pembangkit_angin": 38,
-    "jaringan_listrik": 52
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const mongolia: CountryData = {
     "kereta_bawah_tanah": 17,
     "jalur_kereta": 37,
     "jalan_tol": 33,
-    "kualitas_jalan": 80,
     "pelabuhan_laut": 40,
     "bandara": 32,
     "terminal_bus": 12,
-    "helipad": 23,
-    "cakupan_internet": 86
-  },
+    "helipad": 23
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 30,
-    "uranium": 39,
-    "batu_bara": 33,
-    "minyak_bumi": 4,
-    "gas_alam": 31,
-    "garam": 7,
-    "nikel": 15,
-    "litium": 20,
-    "aluminium": 35,
-    "tembaga": 17,
-    "logam_tanah_jarang": 9,
-    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const mongolia: CountryData = {
     "sepeda_motor": 32,
     "smelter": 16,
     "semen_beton": 28,
-    "kayu": 22,
-    "air_mineral": 22,
-    "gula": 4,
-    "roti": 34,
-    "farmasi": 21,
-    "pupuk": 20,
-    "pengolahan_daging": 28,
-    "mie_instan": 14
-  },
+    "kayu": 22
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const mongolia: CountryData = {
     "udang_kerang": 28.0,
     "ikan": 33
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 22,
+    "gula": 4,
+    "roti": 34,
+    "pengolahan_daging": 28,
+    "mie_instan": 14
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 21
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 30,
     "gudang_senjata": 16,
     "hangar_tank": 38,
@@ -112,8 +105,8 @@ export const mongolia: CountryData = {
     "pangkalan_udara": 21,
     "pangkalan_laut": 13,
     "program_luar_angkasa": 31,
-    "pertahanan_siber": 16,
-  },
+    "pertahanan_siber": 16
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const mongolia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 31,
     "intelijen": 33,
@@ -170,13 +162,12 @@ export const mongolia: CountryData = {
       "manajemen_wilayah": 4,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 14,
-          "sepeda_motor": 30,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 14,
+        "sepeda_motor": 30,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 17,
@@ -187,9 +178,8 @@ export const mongolia: CountryData = {
           "kantor_polisi": 12,
           "kamera_pengawas": 40,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const mongolia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const denmark: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 31,
-    "pembangkit_air": 28,
-    "pembangkit_surya": 20,
-    "pembangkit_termal": 27,
-    "pembangkit_gas": 4,
-    "pembangkit_angin": 33,
-    "jaringan_listrik": 80
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 0,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 5,
+    "pembangkit_listrik_tenaga_angin": 70
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const denmark: CountryData = {
     "kereta_bawah_tanah": 4,
     "jalur_kereta": 14,
     "jalan_tol": 1,
-    "kualitas_jalan": 74,
     "pelabuhan_laut": 25,
     "bandara": 15,
     "terminal_bus": 32,
-    "helipad": 16,
-    "cakupan_internet": 64
-  },
+    "helipad": 16
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 9,
-    "uranium": 30,
-    "batu_bara": 14,
-    "minyak_bumi": 6,
-    "gas_alam": 32,
-    "garam": 2,
-    "nikel": 31,
-    "litium": 31,
-    "aluminium": 11,
-    "tembaga": 29,
-    "logam_tanah_jarang": 16,
-    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const denmark: CountryData = {
     "sepeda_motor": 19,
     "smelter": 24,
     "semen_beton": 34,
-    "kayu": 33,
-    "air_mineral": 25,
-    "gula": 14,
-    "roti": 30,
-    "farmasi": 25,
-    "pupuk": 31,
-    "pengolahan_daging": 10,
-    "mie_instan": 26
-  },
+    "kayu": 33
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const denmark: CountryData = {
     "udang_kerang": 3.5,
     "ikan": 27
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 25,
+    "gula": 14,
+    "roti": 30,
+    "pengolahan_daging": 10,
+    "mie_instan": 26
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 25
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 11,
     "gudang_senjata": 3,
     "hangar_tank": 25,
@@ -112,8 +105,8 @@ export const denmark: CountryData = {
     "pangkalan_udara": 9,
     "pangkalan_laut": 11,
     "program_luar_angkasa": 14,
-    "pertahanan_siber": 1,
-  },
+    "pertahanan_siber": 1
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const denmark: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 22,
     "intelijen": 24,
@@ -170,13 +162,12 @@ export const denmark: CountryData = {
       "manajemen_wilayah": 31,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 14,
-          "sepeda_motor": 27,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 14,
+        "sepeda_motor": 27,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 31,
@@ -187,9 +178,8 @@ export const denmark: CountryData = {
           "kantor_polisi": 20,
           "kamera_pengawas": 34,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const denmark: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

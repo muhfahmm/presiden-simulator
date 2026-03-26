@@ -17,14 +17,13 @@ export const ukraina: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 1,
-    "pembangkit_air": 15,
-    "pembangkit_surya": 24,
-    "pembangkit_termal": 10,
-    "pembangkit_gas": 21,
-    "pembangkit_angin": 37,
-    "jaringan_listrik": 80
-  },
+    "pembangkit_listrik_tenaga_nuklir": 15,
+    "pembangkit_listrik_tenaga_air": 5,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 20,
+    "pembangkit_listrik_tenaga_gas": 10,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const ukraina: CountryData = {
     "kereta_bawah_tanah": 25,
     "jalur_kereta": 6,
     "jalan_tol": 25,
-    "kualitas_jalan": 57,
     "pelabuhan_laut": 12,
     "bandara": 36,
     "terminal_bus": 25,
-    "helipad": 6,
-    "cakupan_internet": 55
-  },
+    "helipad": 6
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 9,
-    "uranium": 35,
-    "batu_bara": 36,
-    "minyak_bumi": 39,
-    "gas_alam": 8,
-    "garam": 36,
-    "nikel": 28,
-    "litium": 16,
-    "aluminium": 39,
-    "tembaga": 37,
-    "logam_tanah_jarang": 16,
-    "bijih_besi": 28
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const ukraina: CountryData = {
     "sepeda_motor": 38,
     "smelter": 5,
     "semen_beton": 18,
-    "kayu": 37,
-    "air_mineral": 36,
-    "gula": 17,
-    "roti": 21,
-    "farmasi": 32,
-    "pupuk": 33,
-    "pengolahan_daging": 24,
-    "mie_instan": 10
-  },
+    "kayu": 37
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const ukraina: CountryData = {
     "udang_kerang": 21.0,
     "ikan": 17
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 36,
+    "gula": 17,
+    "roti": 21,
+    "pengolahan_daging": 24,
+    "mie_instan": 10
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 32
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 9,
     "gudang_senjata": 11,
     "hangar_tank": 37,
@@ -112,8 +105,8 @@ export const ukraina: CountryData = {
     "pangkalan_udara": 19,
     "pangkalan_laut": 18,
     "program_luar_angkasa": 30,
-    "pertahanan_siber": 12,
-  },
+    "pertahanan_siber": 12
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const ukraina: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 33,
     "intelijen": 37,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 2,
       "misi_mata_mata": 35,
       "misi_sabotase": 30,
       "manajemen_wilayah": 29,
-      "program_nuklir": 0 }
+      "program_nuklir": 95 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 35,
-          "sepeda_motor": 32,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 35,
+        "sepeda_motor": 32,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 8,
@@ -187,9 +178,8 @@ export const ukraina: CountryData = {
           "kantor_polisi": 30,
           "kamera_pengawas": 8,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const ukraina: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

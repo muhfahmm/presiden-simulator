@@ -17,14 +17,13 @@ export const tajikistan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 39,
-    "pembangkit_air": 6,
-    "pembangkit_surya": 27,
-    "pembangkit_termal": 5,
-    "pembangkit_gas": 9,
-    "pembangkit_angin": 7,
-    "jaringan_listrik": 65
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const tajikistan: CountryData = {
     "kereta_bawah_tanah": 7,
     "jalur_kereta": 17,
     "jalan_tol": 9,
-    "kualitas_jalan": 94,
     "pelabuhan_laut": 6,
     "bandara": 27,
     "terminal_bus": 21,
-    "helipad": 15,
-    "cakupan_internet": 76
-  },
+    "helipad": 15
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 35,
-    "uranium": 21,
-    "batu_bara": 21,
-    "minyak_bumi": 28,
-    "gas_alam": 20,
-    "garam": 36,
-    "nikel": 25,
-    "litium": 39,
-    "aluminium": 8,
-    "tembaga": 31,
-    "logam_tanah_jarang": 34,
-    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const tajikistan: CountryData = {
     "sepeda_motor": 23,
     "smelter": 15,
     "semen_beton": 5,
-    "kayu": 5,
-    "air_mineral": 27,
-    "gula": 20,
-    "roti": 38,
-    "farmasi": 6,
-    "pupuk": 25,
-    "pengolahan_daging": 3,
-    "mie_instan": 19
-  },
+    "kayu": 5
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const tajikistan: CountryData = {
     "udang_kerang": 21.0,
     "ikan": 33
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 27,
+    "gula": 20,
+    "roti": 38,
+    "pengolahan_daging": 3,
+    "mie_instan": 19
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 6
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 13,
     "gudang_senjata": 10,
     "hangar_tank": 32,
@@ -112,8 +105,8 @@ export const tajikistan: CountryData = {
     "pangkalan_udara": 23,
     "pangkalan_laut": 36,
     "program_luar_angkasa": 25,
-    "pertahanan_siber": 23,
-  },
+    "pertahanan_siber": 23
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const tajikistan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 6,
     "intelijen": 9,
@@ -170,13 +162,12 @@ export const tajikistan: CountryData = {
       "manajemen_wilayah": 1,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 33,
-          "sepeda_motor": 7,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 33,
+        "sepeda_motor": 7,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 28,
@@ -187,9 +178,8 @@ export const tajikistan: CountryData = {
           "kantor_polisi": 18,
           "kamera_pengawas": 30,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const tajikistan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,13 +17,12 @@ export const seychelles: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 15,
-    "pembangkit_air": 28,
-    "pembangkit_nuklir": 33,
-    "jaringan_listrik": 94,
-    "pembangkit_surya": 33,
-    "pembangkit_termal": 20,
-    "pembangkit_angin": 24
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const seychelles: CountryData = {
     "terminal_bus": 28,
     "helipad": 38,
     "jalan_tol": 14,
-    "cakupan_internet": 67,
     "jalur_kereta": 4,
-    "kualitas_jalan": 71,
     "pelabuhan_laut": 24,
     "kereta_bawah_tanah": 15
   },
@@ -46,37 +43,15 @@ export const seychelles: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 15,
-    "batu_bara": 33,
-    "tembaga": 30,
-    "gas_alam": 31,
-    "emas": 7,
-    "bijih_besi": 38,
-    "litium": 16,
-    "nikel": 5,
-    "minyak_bumi": 37,
-    "logam_tanah_jarang": 14,
-    "garam": 16,
-    "uranium": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 25,
-    "mobil": 27,
+  "sektor_manufaktur": {    "mobil": 27,
     "semen_beton": 24,
-    "pupuk": 13,
-    "mie_instan": 23,
-    "pengolahan_daging": 36,
-    "air_mineral": 36,
-    "sepeda_motor": 29,
-    "farmasi": 37,
-    "semikonduktor": 32,
-    "smelter": 3,
-    "gula": 31,
-    "kayu": 28
+    "pengolahan_daging": 36,    "sepeda_motor": 29,    "semikonduktor": 32,
+    "smelter": 3,    "kayu": 28
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const seychelles: CountryData = {
     "udang_kerang": 30.5,
     "ikan": 25
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 36,
+    "gula": 31,
+    "roti": 25,
+    "pengolahan_daging": 36,
+    "mie_instan": 23
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 37
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 18,
     "gudang_senjata": 17,
     "hangar_tank": 9,
@@ -112,8 +102,8 @@ export const seychelles: CountryData = {
     "pangkalan_udara": 4,
     "pangkalan_laut": 23,
     "program_luar_angkasa": 19,
-    "pertahanan_siber": 13,
-  },
+    "pertahanan_siber": 13
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const seychelles: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 1,
     "intelijen": 9,
@@ -171,13 +160,12 @@ export const seychelles: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 39,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 39,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 30,
@@ -188,9 +176,8 @@ export const seychelles: CountryData = {
           "kantor_polisi": 24,
           "kamera_pengawas": 10,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const seychelles: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

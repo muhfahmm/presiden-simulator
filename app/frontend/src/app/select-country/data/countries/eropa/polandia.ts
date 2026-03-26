@@ -17,14 +17,13 @@ export const polandia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 32,
-    "pembangkit_air": 29,
-    "pembangkit_surya": 28,
-    "pembangkit_termal": 33,
-    "pembangkit_gas": 7,
-    "pembangkit_angin": 4,
-    "jaringan_listrik": 84
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const polandia: CountryData = {
     "kereta_bawah_tanah": 35,
     "jalur_kereta": 21,
     "jalan_tol": 11,
-    "kualitas_jalan": 81,
     "pelabuhan_laut": 32,
     "bandara": 23,
     "terminal_bus": 28,
-    "helipad": 20,
-    "cakupan_internet": 76
-  },
+    "helipad": 20
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 9,
-    "uranium": 6,
-    "batu_bara": 25,
-    "minyak_bumi": 9,
-    "gas_alam": 25,
-    "garam": 34,
-    "nikel": 12,
-    "litium": 27,
-    "aluminium": 32,
-    "tembaga": 31,
-    "logam_tanah_jarang": 36,
-    "bijih_besi": 1
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const polandia: CountryData = {
     "sepeda_motor": 35,
     "smelter": 11,
     "semen_beton": 13,
-    "kayu": 22,
-    "air_mineral": 7,
-    "gula": 32,
-    "roti": 40,
-    "farmasi": 37,
-    "pupuk": 5,
-    "pengolahan_daging": 15,
-    "mie_instan": 3
-  },
+    "kayu": 22
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const polandia: CountryData = {
     "udang_kerang": 24.5,
     "ikan": 29
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 7,
+    "gula": 32,
+    "roti": 40,
+    "pengolahan_daging": 15,
+    "mie_instan": 3
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 37
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 16,
     "gudang_senjata": 9,
     "hangar_tank": 29,
@@ -112,8 +105,8 @@ export const polandia: CountryData = {
     "pangkalan_udara": 26,
     "pangkalan_laut": 36,
     "program_luar_angkasa": 25,
-    "pertahanan_siber": 16,
-  },
+    "pertahanan_siber": 16
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const polandia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 3,
     "intelijen": 15,
@@ -170,13 +162,12 @@ export const polandia: CountryData = {
       "manajemen_wilayah": 13,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 15,
-          "sepeda_motor": 39,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 15,
+        "sepeda_motor": 39,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 17,
@@ -187,9 +178,8 @@ export const polandia: CountryData = {
           "kantor_polisi": 23,
           "kamera_pengawas": 30,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const polandia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

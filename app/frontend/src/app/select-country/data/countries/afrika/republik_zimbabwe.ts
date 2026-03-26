@@ -17,13 +17,12 @@ export const republik_zimbabwe: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 23,
-    "pembangkit_air": 11,
-    "pembangkit_nuklir": 30,
-    "jaringan_listrik": 66,
-    "pembangkit_surya": 14,
-    "pembangkit_termal": 1,
-    "pembangkit_angin": 1
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const republik_zimbabwe: CountryData = {
     "terminal_bus": 22,
     "helipad": 10,
     "jalan_tol": 25,
-    "cakupan_internet": 61,
     "jalur_kereta": 17,
-    "kualitas_jalan": 78,
     "pelabuhan_laut": 23,
     "kereta_bawah_tanah": 11
   },
@@ -46,37 +43,15 @@ export const republik_zimbabwe: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 36,
-    "batu_bara": 8,
-    "tembaga": 24,
-    "gas_alam": 30,
-    "emas": 23,
-    "bijih_besi": 36,
-    "litium": 26,
-    "nikel": 21,
-    "minyak_bumi": 6,
-    "logam_tanah_jarang": 40,
-    "garam": 17,
-    "uranium": 20
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 16,
-    "mobil": 19,
+  "sektor_manufaktur": {    "mobil": 19,
     "semen_beton": 40,
-    "pupuk": 18,
-    "mie_instan": 37,
-    "pengolahan_daging": 25,
-    "air_mineral": 25,
-    "sepeda_motor": 16,
-    "farmasi": 16,
-    "semikonduktor": 11,
-    "smelter": 24,
-    "gula": 31,
-    "kayu": 26
+    "pengolahan_daging": 25,    "sepeda_motor": 16,    "semikonduktor": 11,
+    "smelter": 24,    "kayu": 26
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const republik_zimbabwe: CountryData = {
     "udang_kerang": 24.0,
     "ikan": 1
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 25,
+    "gula": 31,
+    "roti": 16,
+    "pengolahan_daging": 25,
+    "mie_instan": 37
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 16
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 35,
     "gudang_senjata": 9,
     "hangar_tank": 2,
@@ -112,8 +102,8 @@ export const republik_zimbabwe: CountryData = {
     "pangkalan_udara": 6,
     "pangkalan_laut": 20,
     "program_luar_angkasa": 6,
-    "pertahanan_siber": 1,
-  },
+    "pertahanan_siber": 1
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const republik_zimbabwe: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 32,
     "intelijen": 15,
@@ -171,13 +160,12 @@ export const republik_zimbabwe: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 3,
-          "sepeda_motor": 35,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 3,
+        "sepeda_motor": 35,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -188,9 +176,8 @@ export const republik_zimbabwe: CountryData = {
           "kantor_polisi": 13,
           "kamera_pengawas": 33,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const republik_zimbabwe: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

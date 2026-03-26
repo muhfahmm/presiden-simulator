@@ -17,14 +17,13 @@ export const estonia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 32,
-    "pembangkit_air": 40,
-    "pembangkit_surya": 2,
-    "pembangkit_termal": 27,
-    "pembangkit_gas": 8,
-    "pembangkit_angin": 35,
-    "jaringan_listrik": 91
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const estonia: CountryData = {
     "kereta_bawah_tanah": 32,
     "jalur_kereta": 39,
     "jalan_tol": 35,
-    "kualitas_jalan": 51,
     "pelabuhan_laut": 18,
     "bandara": 14,
     "terminal_bus": 2,
-    "helipad": 19,
-    "cakupan_internet": 59
-  },
+    "helipad": 19
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 35,
-    "uranium": 9,
-    "batu_bara": 7,
-    "minyak_bumi": 13,
-    "gas_alam": 8,
-    "garam": 30,
-    "nikel": 21,
-    "litium": 15,
-    "aluminium": 33,
-    "tembaga": 40,
-    "logam_tanah_jarang": 27,
-    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const estonia: CountryData = {
     "sepeda_motor": 6,
     "smelter": 23,
     "semen_beton": 18,
-    "kayu": 19,
-    "air_mineral": 14,
-    "gula": 3,
-    "roti": 25,
-    "farmasi": 12,
-    "pupuk": 11,
-    "pengolahan_daging": 27,
-    "mie_instan": 27
-  },
+    "kayu": 19
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const estonia: CountryData = {
     "udang_kerang": 11.5,
     "ikan": 1
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 14,
+    "gula": 3,
+    "roti": 25,
+    "pengolahan_daging": 27,
+    "mie_instan": 27
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 12
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 40,
     "gudang_senjata": 8,
     "hangar_tank": 11,
@@ -112,8 +105,8 @@ export const estonia: CountryData = {
     "pangkalan_udara": 18,
     "pangkalan_laut": 23,
     "program_luar_angkasa": 27,
-    "pertahanan_siber": 7,
-  },
+    "pertahanan_siber": 7
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const estonia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 17,
     "intelijen": 16,
@@ -170,13 +162,12 @@ export const estonia: CountryData = {
       "manajemen_wilayah": 1,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 25,
-          "sepeda_motor": 15,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 25,
+        "sepeda_motor": 15,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 25,
@@ -187,9 +178,8 @@ export const estonia: CountryData = {
           "kantor_polisi": 6,
           "kamera_pengawas": 25,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const estonia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

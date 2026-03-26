@@ -17,14 +17,13 @@ export const tahiti: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 25,
-    "pembangkit_air": 18,
-    "pembangkit_surya": 5,
-    "pembangkit_termal": 35,
-    "pembangkit_gas": 8,
-    "pembangkit_angin": 24,
-    "jaringan_listrik": 68
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const tahiti: CountryData = {
     "kereta_bawah_tanah": 30,
     "jalur_kereta": 25,
     "jalan_tol": 36,
-    "kualitas_jalan": 53,
     "pelabuhan_laut": 13,
     "bandara": 31,
     "terminal_bus": 24,
-    "helipad": 16,
-    "cakupan_internet": 57
-  },
+    "helipad": 16
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 13,
-    "uranium": 29,
-    "batu_bara": 39,
-    "minyak_bumi": 23,
-    "gas_alam": 12,
-    "garam": 9,
-    "nikel": 12,
-    "litium": 13,
-    "aluminium": 2,
-    "tembaga": 16,
-    "logam_tanah_jarang": 7,
-    "bijih_besi": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const tahiti: CountryData = {
     "sepeda_motor": 17,
     "smelter": 37,
     "semen_beton": 28,
-    "kayu": 33,
-    "air_mineral": 33,
-    "gula": 3,
-    "roti": 2,
-    "farmasi": 24,
-    "pupuk": 12,
-    "pengolahan_daging": 2,
-    "mie_instan": 34
-  },
+    "kayu": 33
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const tahiti: CountryData = {
     "udang_kerang": 10.0,
     "ikan": 14
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 33,
+    "gula": 3,
+    "roti": 2,
+    "pengolahan_daging": 2,
+    "mie_instan": 34
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 24
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 37,
     "gudang_senjata": 33,
     "hangar_tank": 18,
@@ -112,8 +105,8 @@ export const tahiti: CountryData = {
     "pangkalan_udara": 31,
     "pangkalan_laut": 11,
     "program_luar_angkasa": 39,
-    "pertahanan_siber": 2,
-  },
+    "pertahanan_siber": 2
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const tahiti: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 14,
     "intelijen": 34,
@@ -170,13 +162,12 @@ export const tahiti: CountryData = {
       "manajemen_wilayah": 21,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 2,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 2,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 25,
@@ -187,9 +178,8 @@ export const tahiti: CountryData = {
           "kantor_polisi": 20,
           "kamera_pengawas": 5,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const tahiti: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

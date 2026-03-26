@@ -17,14 +17,13 @@ export const brazil: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 4,
-    "pembangkit_air": 5,
-    "pembangkit_surya": 40,
-    "pembangkit_termal": 28,
-    "pembangkit_gas": 38,
-    "pembangkit_angin": 17,
-    "jaringan_listrik": 71
-  },
+    "pembangkit_listrik_tenaga_nuklir": 2,
+    "pembangkit_listrik_tenaga_air": 65,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 10,
+    "pembangkit_listrik_tenaga_gas": 10,
+    "pembangkit_listrik_tenaga_angin": 8
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const brazil: CountryData = {
     "kereta_bawah_tanah": 8,
     "jalur_kereta": 16,
     "jalan_tol": 1,
-    "kualitas_jalan": 62,
     "pelabuhan_laut": 13,
     "bandara": 34,
     "terminal_bus": 11,
-    "helipad": 24,
-    "cakupan_internet": 86
-  },
+    "helipad": 24
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 25,
-    "uranium": 21,
-    "batu_bara": 32,
-    "minyak_bumi": 32,
-    "gas_alam": 22,
-    "garam": 2,
-    "nikel": 27,
-    "litium": 17,
-    "aluminium": 14,
-    "tembaga": 38,
-    "logam_tanah_jarang": 35,
-    "bijih_besi": 7
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const brazil: CountryData = {
     "sepeda_motor": 14,
     "smelter": 24,
     "semen_beton": 27,
-    "kayu": 29,
-    "air_mineral": 15,
-    "gula": 16,
-    "roti": 7,
-    "farmasi": 14,
-    "pupuk": 3,
-    "pengolahan_daging": 17,
-    "mie_instan": 34
-  },
+    "kayu": 29
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const brazil: CountryData = {
     "udang_kerang": 24.0,
     "ikan": 7
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 15,
+    "gula": 16,
+    "roti": 7,
+    "pengolahan_daging": 17,
+    "mie_instan": 34
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 14
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 15,
     "gudang_senjata": 3,
     "hangar_tank": 34,
@@ -112,8 +105,8 @@ export const brazil: CountryData = {
     "pangkalan_udara": 6,
     "pangkalan_laut": 11,
     "program_luar_angkasa": 24,
-    "pertahanan_siber": 39,
-  },
+    "pertahanan_siber": 39
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const brazil: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 39,
     "intelijen": 30,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 26,
       "misi_mata_mata": 5,
       "misi_sabotase": 10,
       "manajemen_wilayah": 36,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 38,
-          "sepeda_motor": 34,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 38,
+        "sepeda_motor": 34,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 21,
@@ -187,9 +178,8 @@ export const brazil: CountryData = {
           "kantor_polisi": 2,
           "kamera_pengawas": 39,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const brazil: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

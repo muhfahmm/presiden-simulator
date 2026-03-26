@@ -17,14 +17,13 @@ export const antigua_dan_barbuda: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 14,
-    "pembangkit_air": 38,
-    "pembangkit_surya": 2,
-    "pembangkit_termal": 39,
-    "pembangkit_gas": 4,
-    "pembangkit_angin": 32,
-    "jaringan_listrik": 83
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const antigua_dan_barbuda: CountryData = {
     "kereta_bawah_tanah": 32,
     "jalur_kereta": 3,
     "jalan_tol": 6,
-    "kualitas_jalan": 76,
     "pelabuhan_laut": 12,
     "bandara": 29,
     "terminal_bus": 12,
-    "helipad": 19,
-    "cakupan_internet": 86
-  },
+    "helipad": 19
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 11,
-    "uranium": 33,
-    "batu_bara": 16,
-    "minyak_bumi": 21,
-    "gas_alam": 7,
-    "garam": 15,
-    "nikel": 38,
-    "litium": 26,
-    "aluminium": 14,
-    "tembaga": 4,
-    "logam_tanah_jarang": 25,
-    "bijih_besi": 2
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const antigua_dan_barbuda: CountryData = {
     "sepeda_motor": 16,
     "smelter": 16,
     "semen_beton": 2,
-    "kayu": 25,
-    "air_mineral": 6,
-    "gula": 7,
-    "roti": 32,
-    "farmasi": 8,
-    "pupuk": 22,
-    "pengolahan_daging": 27,
-    "mie_instan": 19
-  },
+    "kayu": 25
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const antigua_dan_barbuda: CountryData = {
     "udang_kerang": 23.5,
     "ikan": 4
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 6,
+    "gula": 7,
+    "roti": 32,
+    "pengolahan_daging": 27,
+    "mie_instan": 19
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 8
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 13,
     "gudang_senjata": 8,
     "hangar_tank": 7,
@@ -112,8 +105,8 @@ export const antigua_dan_barbuda: CountryData = {
     "pangkalan_udara": 21,
     "pangkalan_laut": 33,
     "program_luar_angkasa": 31,
-    "pertahanan_siber": 22,
-  },
+    "pertahanan_siber": 22
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const antigua_dan_barbuda: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 32,
     "intelijen": 9,
@@ -170,13 +162,12 @@ export const antigua_dan_barbuda: CountryData = {
       "manajemen_wilayah": 29,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 39,
-          "sepeda_motor": 6,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 39,
+        "sepeda_motor": 6,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 20,
@@ -187,9 +178,8 @@ export const antigua_dan_barbuda: CountryData = {
           "kantor_polisi": 4,
           "kamera_pengawas": 40,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const antigua_dan_barbuda: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

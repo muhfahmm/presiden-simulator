@@ -17,14 +17,13 @@ export const guyana: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 11,
-    "pembangkit_air": 15,
-    "pembangkit_surya": 6,
-    "pembangkit_termal": 1,
-    "pembangkit_gas": 14,
-    "pembangkit_angin": 24,
-    "jaringan_listrik": 55
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 60,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 15,
+    "pembangkit_listrik_tenaga_angin": 4
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const guyana: CountryData = {
     "kereta_bawah_tanah": 11,
     "jalur_kereta": 10,
     "jalan_tol": 14,
-    "kualitas_jalan": 75,
     "pelabuhan_laut": 14,
     "bandara": 23,
     "terminal_bus": 3,
-    "helipad": 16,
-    "cakupan_internet": 74
-  },
+    "helipad": 16
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 15,
-    "uranium": 19,
-    "batu_bara": 28,
-    "minyak_bumi": 30,
-    "gas_alam": 32,
-    "garam": 36,
-    "nikel": 31,
-    "litium": 12,
-    "aluminium": 36,
-    "tembaga": 27,
-    "logam_tanah_jarang": 29,
-    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const guyana: CountryData = {
     "sepeda_motor": 4,
     "smelter": 24,
     "semen_beton": 6,
-    "kayu": 25,
-    "air_mineral": 15,
-    "gula": 3,
-    "roti": 4,
-    "farmasi": 13,
-    "pupuk": 29,
-    "pengolahan_daging": 17,
-    "mie_instan": 7
-  },
+    "kayu": 25
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const guyana: CountryData = {
     "udang_kerang": 10.5,
     "ikan": 22
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 15,
+    "gula": 3,
+    "roti": 4,
+    "pengolahan_daging": 17,
+    "mie_instan": 7
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 13
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 1,
     "gudang_senjata": 22,
     "hangar_tank": 7,
@@ -112,8 +105,8 @@ export const guyana: CountryData = {
     "pangkalan_udara": 35,
     "pangkalan_laut": 9,
     "program_luar_angkasa": 30,
-    "pertahanan_siber": 19,
-  },
+    "pertahanan_siber": 19
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const guyana: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 6,
     "intelijen": 14,
@@ -170,13 +162,12 @@ export const guyana: CountryData = {
       "manajemen_wilayah": 9,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 14,
-          "sepeda_motor": 15,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 14,
+        "sepeda_motor": 15,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 28,
@@ -187,9 +178,8 @@ export const guyana: CountryData = {
           "kantor_polisi": 21,
           "kamera_pengawas": 15,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const guyana: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

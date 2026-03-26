@@ -17,14 +17,13 @@ export const yunani: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 38,
-    "pembangkit_air": 29,
-    "pembangkit_surya": 7,
-    "pembangkit_termal": 38,
-    "pembangkit_gas": 13,
-    "pembangkit_angin": 25,
-    "jaringan_listrik": 79
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const yunani: CountryData = {
     "kereta_bawah_tanah": 35,
     "jalur_kereta": 4,
     "jalan_tol": 8,
-    "kualitas_jalan": 67,
     "pelabuhan_laut": 38,
     "bandara": 18,
     "terminal_bus": 15,
-    "helipad": 28,
-    "cakupan_internet": 91
-  },
+    "helipad": 28
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 18,
-    "uranium": 10,
-    "batu_bara": 34,
-    "minyak_bumi": 30,
-    "gas_alam": 33,
-    "garam": 4,
-    "nikel": 38,
-    "litium": 22,
-    "aluminium": 25,
-    "tembaga": 15,
-    "logam_tanah_jarang": 5,
-    "bijih_besi": 22
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const yunani: CountryData = {
     "sepeda_motor": 25,
     "smelter": 8,
     "semen_beton": 18,
-    "kayu": 14,
-    "air_mineral": 18,
-    "gula": 27,
-    "roti": 38,
-    "farmasi": 37,
-    "pupuk": 4,
-    "pengolahan_daging": 20,
-    "mie_instan": 20
-  },
+    "kayu": 14
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const yunani: CountryData = {
     "udang_kerang": 13.0,
     "ikan": 19
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 18,
+    "gula": 27,
+    "roti": 38,
+    "pengolahan_daging": 20,
+    "mie_instan": 20
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 37
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 36,
     "gudang_senjata": 11,
     "hangar_tank": 25,
@@ -112,8 +105,8 @@ export const yunani: CountryData = {
     "pangkalan_udara": 20,
     "pangkalan_laut": 10,
     "program_luar_angkasa": 6,
-    "pertahanan_siber": 28,
-  },
+    "pertahanan_siber": 28
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const yunani: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 8,
     "intelijen": 33,
@@ -170,13 +162,12 @@ export const yunani: CountryData = {
       "manajemen_wilayah": 29,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 28,
-          "sepeda_motor": 5,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 28,
+        "sepeda_motor": 5,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 32,
@@ -187,9 +178,8 @@ export const yunani: CountryData = {
           "kantor_polisi": 26,
           "kamera_pengawas": 32,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const yunani: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

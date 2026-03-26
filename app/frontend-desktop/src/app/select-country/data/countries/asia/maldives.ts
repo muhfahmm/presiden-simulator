@@ -17,14 +17,13 @@ export const maldives: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 31,
-    "pembangkit_air": 26,
-    "pembangkit_surya": 29,
-    "pembangkit_termal": 18,
-    "pembangkit_gas": 25,
-    "pembangkit_angin": 9,
-    "jaringan_listrik": 81
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const maldives: CountryData = {
     "kereta_bawah_tanah": 25,
     "jalur_kereta": 18,
     "jalan_tol": 38,
-    "kualitas_jalan": 75,
     "pelabuhan_laut": 27,
     "bandara": 29,
     "terminal_bus": 31,
-    "helipad": 18,
-    "cakupan_internet": 73
-  },
+    "helipad": 18
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 34,
-    "uranium": 39,
-    "batu_bara": 34,
-    "minyak_bumi": 26,
-    "gas_alam": 22,
-    "garam": 1,
-    "nikel": 7,
-    "litium": 19,
-    "aluminium": 21,
-    "tembaga": 7,
-    "logam_tanah_jarang": 2,
-    "bijih_besi": 5
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const maldives: CountryData = {
     "sepeda_motor": 27,
     "smelter": 38,
     "semen_beton": 12,
-    "kayu": 25,
-    "air_mineral": 6,
-    "gula": 32,
-    "roti": 31,
-    "farmasi": 22,
-    "pupuk": 35,
-    "pengolahan_daging": 32,
-    "mie_instan": 29
-  },
+    "kayu": 25
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const maldives: CountryData = {
     "udang_kerang": 7.0,
     "ikan": 12
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 6,
+    "gula": 32,
+    "roti": 31,
+    "pengolahan_daging": 32,
+    "mie_instan": 29
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 22
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 9,
     "gudang_senjata": 2,
     "hangar_tank": 8,
@@ -112,8 +105,8 @@ export const maldives: CountryData = {
     "pangkalan_udara": 19,
     "pangkalan_laut": 18,
     "program_luar_angkasa": 28,
-    "pertahanan_siber": 33,
-  },
+    "pertahanan_siber": 33
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const maldives: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 10,
     "intelijen": 33,
@@ -170,13 +162,12 @@ export const maldives: CountryData = {
       "manajemen_wilayah": 36,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 21,
-          "sepeda_motor": 29,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 21,
+        "sepeda_motor": 29,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 28,
@@ -187,9 +178,8 @@ export const maldives: CountryData = {
           "kantor_polisi": 34,
           "kamera_pengawas": 4,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const maldives: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

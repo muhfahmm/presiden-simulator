@@ -17,14 +17,13 @@ export const ceko: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 32,
-    "pembangkit_air": 39,
-    "pembangkit_surya": 30,
-    "pembangkit_termal": 34,
-    "pembangkit_gas": 35,
-    "pembangkit_angin": 13,
-    "jaringan_listrik": 84
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const ceko: CountryData = {
     "kereta_bawah_tanah": 5,
     "jalur_kereta": 36,
     "jalan_tol": 40,
-    "kualitas_jalan": 87,
     "pelabuhan_laut": 38,
     "bandara": 38,
     "terminal_bus": 25,
-    "helipad": 28,
-    "cakupan_internet": 59
-  },
+    "helipad": 28
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 18,
-    "uranium": 5,
-    "batu_bara": 29,
-    "minyak_bumi": 36,
-    "gas_alam": 37,
-    "garam": 6,
-    "nikel": 15,
-    "litium": 11,
-    "aluminium": 24,
-    "tembaga": 30,
-    "logam_tanah_jarang": 33,
-    "bijih_besi": 33
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const ceko: CountryData = {
     "sepeda_motor": 20,
     "smelter": 23,
     "semen_beton": 16,
-    "kayu": 26,
-    "air_mineral": 1,
-    "gula": 24,
-    "roti": 3,
-    "farmasi": 11,
-    "pupuk": 16,
-    "pengolahan_daging": 5,
-    "mie_instan": 1
-  },
+    "kayu": 26
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const ceko: CountryData = {
     "udang_kerang": 4.5,
     "ikan": 30
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 1,
+    "gula": 24,
+    "roti": 3,
+    "pengolahan_daging": 5,
+    "mie_instan": 1
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 11
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 6,
     "gudang_senjata": 2,
     "hangar_tank": 6,
@@ -112,8 +105,8 @@ export const ceko: CountryData = {
     "pangkalan_udara": 1,
     "pangkalan_laut": 34,
     "program_luar_angkasa": 15,
-    "pertahanan_siber": 29,
-  },
+    "pertahanan_siber": 29
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const ceko: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 21,
     "intelijen": 28,
@@ -170,13 +162,12 @@ export const ceko: CountryData = {
       "manajemen_wilayah": 5,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 9,
-          "sepeda_motor": 27,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 9,
+        "sepeda_motor": 27,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -187,9 +178,8 @@ export const ceko: CountryData = {
           "kantor_polisi": 21,
           "kamera_pengawas": 18,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const ceko: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

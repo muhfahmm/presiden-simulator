@@ -17,14 +17,13 @@ export const finlandia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 24,
-    "pembangkit_air": 21,
-    "pembangkit_surya": 23,
-    "pembangkit_termal": 17,
-    "pembangkit_gas": 15,
-    "pembangkit_angin": 6,
-    "jaringan_listrik": 55
-  },
+    "pembangkit_listrik_tenaga_nuklir": 5,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const finlandia: CountryData = {
     "kereta_bawah_tanah": 1,
     "jalur_kereta": 27,
     "jalan_tol": 29,
-    "kualitas_jalan": 61,
     "pelabuhan_laut": 31,
     "bandara": 35,
     "terminal_bus": 38,
-    "helipad": 4,
-    "cakupan_internet": 93
-  },
+    "helipad": 4
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 6,
-    "uranium": 39,
-    "batu_bara": 12,
-    "minyak_bumi": 11,
-    "gas_alam": 28,
-    "garam": 27,
-    "nikel": 20,
-    "litium": 5,
-    "aluminium": 29,
-    "tembaga": 24,
-    "logam_tanah_jarang": 9,
-    "bijih_besi": 5
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const finlandia: CountryData = {
     "sepeda_motor": 18,
     "smelter": 13,
     "semen_beton": 11,
-    "kayu": 1,
-    "air_mineral": 17,
-    "gula": 35,
-    "roti": 10,
-    "farmasi": 39,
-    "pupuk": 17,
-    "pengolahan_daging": 37,
-    "mie_instan": 31
-  },
+    "kayu": 1
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const finlandia: CountryData = {
     "udang_kerang": 26.0,
     "ikan": 29
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 17,
+    "gula": 35,
+    "roti": 10,
+    "pengolahan_daging": 37,
+    "mie_instan": 31
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 39
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 26,
     "gudang_senjata": 21,
     "hangar_tank": 39,
@@ -112,8 +105,8 @@ export const finlandia: CountryData = {
     "pangkalan_udara": 15,
     "pangkalan_laut": 35,
     "program_luar_angkasa": 40,
-    "pertahanan_siber": 15,
-  },
+    "pertahanan_siber": 15
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const finlandia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 40,
     "intelijen": 4,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 17,
       "misi_sabotase": 12,
       "manajemen_wilayah": 2,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 4,
-          "sepeda_motor": 19,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 4,
+        "sepeda_motor": 19,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 3,
@@ -187,9 +178,8 @@ export const finlandia: CountryData = {
           "kantor_polisi": 38,
           "kamera_pengawas": 9,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const finlandia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

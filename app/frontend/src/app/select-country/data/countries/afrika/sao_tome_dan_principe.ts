@@ -17,13 +17,12 @@ export const sao_tome_dan_principe: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 38,
-    "pembangkit_air": 20,
-    "pembangkit_nuklir": 5,
-    "jaringan_listrik": 56,
-    "pembangkit_surya": 35,
-    "pembangkit_termal": 10,
-    "pembangkit_angin": 10
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const sao_tome_dan_principe: CountryData = {
     "terminal_bus": 23,
     "helipad": 15,
     "jalan_tol": 3,
-    "cakupan_internet": 63,
     "jalur_kereta": 22,
-    "kualitas_jalan": 86,
     "pelabuhan_laut": 23,
     "kereta_bawah_tanah": 36
   },
@@ -46,37 +43,15 @@ export const sao_tome_dan_principe: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 29,
-    "batu_bara": 25,
-    "tembaga": 30,
-    "gas_alam": 28,
-    "emas": 6,
-    "bijih_besi": 4,
-    "litium": 32,
-    "nikel": 40,
-    "minyak_bumi": 16,
-    "logam_tanah_jarang": 3,
-    "garam": 16,
-    "uranium": 38
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 1,
-    "mobil": 14,
+  "sektor_manufaktur": {    "mobil": 14,
     "semen_beton": 3,
-    "pupuk": 20,
-    "mie_instan": 33,
-    "pengolahan_daging": 25,
-    "air_mineral": 5,
-    "sepeda_motor": 33,
-    "farmasi": 9,
-    "semikonduktor": 31,
-    "smelter": 10,
-    "gula": 23,
-    "kayu": 8
+    "pengolahan_daging": 25,    "sepeda_motor": 33,    "semikonduktor": 31,
+    "smelter": 10,    "kayu": 8
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const sao_tome_dan_principe: CountryData = {
     "udang_kerang": 15.0,
     "ikan": 10
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 5,
+    "gula": 23,
+    "roti": 1,
+    "pengolahan_daging": 25,
+    "mie_instan": 33
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 9
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 34,
     "gudang_senjata": 12,
     "hangar_tank": 7,
@@ -112,8 +102,8 @@ export const sao_tome_dan_principe: CountryData = {
     "pangkalan_udara": 28,
     "pangkalan_laut": 20,
     "program_luar_angkasa": 32,
-    "pertahanan_siber": 6,
-  },
+    "pertahanan_siber": 6
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const sao_tome_dan_principe: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 39,
     "intelijen": 8,
@@ -171,13 +160,12 @@ export const sao_tome_dan_principe: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 28,
-          "sepeda_motor": 34,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 28,
+        "sepeda_motor": 34,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 5,
@@ -188,9 +176,8 @@ export const sao_tome_dan_principe: CountryData = {
           "kantor_polisi": 8,
           "kamera_pengawas": 24,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const sao_tome_dan_principe: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

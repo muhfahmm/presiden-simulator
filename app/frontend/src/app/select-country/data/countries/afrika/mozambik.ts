@@ -17,13 +17,12 @@ export const mozambik: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 34,
-    "pembangkit_air": 34,
-    "pembangkit_nuklir": 9,
-    "jaringan_listrik": 91,
-    "pembangkit_surya": 4,
-    "pembangkit_termal": 7,
-    "pembangkit_angin": 17
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const mozambik: CountryData = {
     "terminal_bus": 13,
     "helipad": 11,
     "jalan_tol": 5,
-    "cakupan_internet": 89,
     "jalur_kereta": 8,
-    "kualitas_jalan": 51,
     "pelabuhan_laut": 14,
     "kereta_bawah_tanah": 18
   },
@@ -46,37 +43,15 @@ export const mozambik: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 36,
-    "batu_bara": 12,
-    "tembaga": 10,
-    "gas_alam": 9,
-    "emas": 6,
-    "bijih_besi": 31,
-    "litium": 5,
-    "nikel": 9,
-    "minyak_bumi": 35,
-    "logam_tanah_jarang": 27,
-    "garam": 8,
-    "uranium": 18
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 22,
-    "mobil": 31,
+  "sektor_manufaktur": {    "mobil": 31,
     "semen_beton": 11,
-    "pupuk": 36,
-    "mie_instan": 33,
-    "pengolahan_daging": 5,
-    "air_mineral": 25,
-    "sepeda_motor": 5,
-    "farmasi": 12,
-    "semikonduktor": 13,
-    "smelter": 29,
-    "gula": 27,
-    "kayu": 28
+    "pengolahan_daging": 5,    "sepeda_motor": 5,    "semikonduktor": 13,
+    "smelter": 29,    "kayu": 28
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const mozambik: CountryData = {
     "udang_kerang": 12.0,
     "ikan": 9
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 25,
+    "gula": 27,
+    "roti": 22,
+    "pengolahan_daging": 5,
+    "mie_instan": 33
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 12
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 17,
     "gudang_senjata": 16,
     "hangar_tank": 25,
@@ -112,8 +102,8 @@ export const mozambik: CountryData = {
     "pangkalan_udara": 11,
     "pangkalan_laut": 27,
     "program_luar_angkasa": 1,
-    "pertahanan_siber": 40,
-  },
+    "pertahanan_siber": 40
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const mozambik: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 12,
     "intelijen": 33,
@@ -171,13 +160,12 @@ export const mozambik: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 26,
-          "sepeda_motor": 23,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 26,
+        "sepeda_motor": 23,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 40,
@@ -188,9 +176,8 @@ export const mozambik: CountryData = {
           "kantor_polisi": 16,
           "kamera_pengawas": 2,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const mozambik: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

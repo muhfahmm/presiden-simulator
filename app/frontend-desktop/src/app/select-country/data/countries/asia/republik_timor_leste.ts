@@ -17,14 +17,13 @@ export const republik_timor_leste: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 17,
-    "pembangkit_air": 32,
-    "pembangkit_surya": 22,
-    "pembangkit_termal": 5,
-    "pembangkit_gas": 37,
-    "pembangkit_angin": 37,
-    "jaringan_listrik": 64
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const republik_timor_leste: CountryData = {
     "kereta_bawah_tanah": 10,
     "jalur_kereta": 40,
     "jalan_tol": 14,
-    "kualitas_jalan": 93,
     "pelabuhan_laut": 20,
     "bandara": 39,
     "terminal_bus": 13,
-    "helipad": 28,
-    "cakupan_internet": 73
-  },
+    "helipad": 28
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 21,
-    "uranium": 9,
-    "batu_bara": 10,
-    "minyak_bumi": 2,
-    "gas_alam": 4,
-    "garam": 22,
-    "nikel": 25,
-    "litium": 27,
-    "aluminium": 22,
-    "tembaga": 26,
-    "logam_tanah_jarang": 6,
-    "bijih_besi": 23
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const republik_timor_leste: CountryData = {
     "sepeda_motor": 34,
     "smelter": 8,
     "semen_beton": 32,
-    "kayu": 36,
-    "air_mineral": 1,
-    "gula": 35,
-    "roti": 16,
-    "farmasi": 39,
-    "pupuk": 24,
-    "pengolahan_daging": 29,
-    "mie_instan": 10
-  },
+    "kayu": 36
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const republik_timor_leste: CountryData = {
     "udang_kerang": 29.5,
     "ikan": 35
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 1,
+    "gula": 35,
+    "roti": 16,
+    "pengolahan_daging": 29,
+    "mie_instan": 10
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 39
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 8,
     "gudang_senjata": 40,
     "hangar_tank": 27,
@@ -112,8 +105,8 @@ export const republik_timor_leste: CountryData = {
     "pangkalan_udara": 2,
     "pangkalan_laut": 31,
     "program_luar_angkasa": 28,
-    "pertahanan_siber": 32,
-  },
+    "pertahanan_siber": 32
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const republik_timor_leste: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 18,
     "intelijen": 25,
@@ -170,13 +162,12 @@ export const republik_timor_leste: CountryData = {
       "manajemen_wilayah": 30,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 1,
-          "sepeda_motor": 29,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 1,
+        "sepeda_motor": 29,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 2,
@@ -187,9 +178,8 @@ export const republik_timor_leste: CountryData = {
           "kantor_polisi": 6,
           "kamera_pengawas": 32,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const republik_timor_leste: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

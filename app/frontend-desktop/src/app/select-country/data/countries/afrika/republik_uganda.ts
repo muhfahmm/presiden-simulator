@@ -17,13 +17,12 @@ export const republik_uganda: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 23,
-    "pembangkit_air": 30,
-    "pembangkit_nuklir": 11,
-    "jaringan_listrik": 84,
-    "pembangkit_surya": 33,
-    "pembangkit_termal": 14,
-    "pembangkit_angin": 26
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const republik_uganda: CountryData = {
     "terminal_bus": 15,
     "helipad": 40,
     "jalan_tol": 14,
-    "cakupan_internet": 50,
     "jalur_kereta": 36,
-    "kualitas_jalan": 52,
     "pelabuhan_laut": 8,
     "kereta_bawah_tanah": 40
   },
@@ -46,37 +43,15 @@ export const republik_uganda: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 3,
-    "batu_bara": 11,
-    "tembaga": 40,
-    "gas_alam": 3,
-    "emas": 17,
-    "bijih_besi": 23,
-    "litium": 30,
-    "nikel": 3,
-    "minyak_bumi": 9,
-    "logam_tanah_jarang": 3,
-    "garam": 36,
-    "uranium": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 22,
-    "mobil": 8,
+  "sektor_manufaktur": {    "mobil": 8,
     "semen_beton": 29,
-    "pupuk": 19,
-    "mie_instan": 19,
-    "pengolahan_daging": 26,
-    "air_mineral": 23,
-    "sepeda_motor": 27,
-    "farmasi": 22,
-    "semikonduktor": 1,
-    "smelter": 8,
-    "gula": 17,
-    "kayu": 37
+    "pengolahan_daging": 26,    "sepeda_motor": 27,    "semikonduktor": 1,
+    "smelter": 8,    "kayu": 37
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const republik_uganda: CountryData = {
     "udang_kerang": 26.0,
     "ikan": 19
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 23,
+    "gula": 17,
+    "roti": 22,
+    "pengolahan_daging": 26,
+    "mie_instan": 19
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 22
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 28,
     "gudang_senjata": 31,
     "hangar_tank": 20,
@@ -112,8 +102,8 @@ export const republik_uganda: CountryData = {
     "pangkalan_udara": 22,
     "pangkalan_laut": 26,
     "program_luar_angkasa": 30,
-    "pertahanan_siber": 35,
-  },
+    "pertahanan_siber": 35
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const republik_uganda: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 7,
     "intelijen": 22,
@@ -171,13 +160,12 @@ export const republik_uganda: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 25,
-          "sepeda_motor": 18,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 25,
+        "sepeda_motor": 18,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 2,
@@ -188,9 +176,8 @@ export const republik_uganda: CountryData = {
           "kantor_polisi": 39,
           "kamera_pengawas": 16,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const republik_uganda: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

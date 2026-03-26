@@ -17,13 +17,12 @@ export const tanjung_verde: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 16,
-    "pembangkit_air": 5,
-    "pembangkit_nuklir": 36,
-    "jaringan_listrik": 76,
-    "pembangkit_surya": 4,
-    "pembangkit_termal": 10,
-    "pembangkit_angin": 36
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const tanjung_verde: CountryData = {
     "terminal_bus": 10,
     "helipad": 18,
     "jalan_tol": 5,
-    "cakupan_internet": 83,
     "jalur_kereta": 23,
-    "kualitas_jalan": 84,
     "pelabuhan_laut": 5,
     "kereta_bawah_tanah": 20
   },
@@ -46,37 +43,15 @@ export const tanjung_verde: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 22,
-    "batu_bara": 3,
-    "tembaga": 13,
-    "gas_alam": 12,
-    "emas": 29,
-    "bijih_besi": 20,
-    "litium": 33,
-    "nikel": 22,
-    "minyak_bumi": 36,
-    "logam_tanah_jarang": 20,
-    "garam": 10,
-    "uranium": 30
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 16,
-    "mobil": 33,
+  "sektor_manufaktur": {    "mobil": 33,
     "semen_beton": 12,
-    "pupuk": 27,
-    "mie_instan": 30,
-    "pengolahan_daging": 26,
-    "air_mineral": 9,
-    "sepeda_motor": 20,
-    "farmasi": 5,
-    "semikonduktor": 17,
-    "smelter": 15,
-    "gula": 29,
-    "kayu": 15
+    "pengolahan_daging": 26,    "sepeda_motor": 20,    "semikonduktor": 17,
+    "smelter": 15,    "kayu": 15
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const tanjung_verde: CountryData = {
     "udang_kerang": 27.5,
     "ikan": 27
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 9,
+    "gula": 29,
+    "roti": 16,
+    "pengolahan_daging": 26,
+    "mie_instan": 30
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 5
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 28,
     "gudang_senjata": 21,
     "hangar_tank": 15,
@@ -112,8 +102,8 @@ export const tanjung_verde: CountryData = {
     "pangkalan_udara": 2,
     "pangkalan_laut": 30,
     "program_luar_angkasa": 14,
-    "pertahanan_siber": 4,
-  },
+    "pertahanan_siber": 4
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const tanjung_verde: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 23,
     "intelijen": 28,
@@ -171,13 +160,12 @@ export const tanjung_verde: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 39,
-          "sepeda_motor": 24,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 39,
+        "sepeda_motor": 24,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 23,
@@ -188,9 +176,8 @@ export const tanjung_verde: CountryData = {
           "kantor_polisi": 31,
           "kamera_pengawas": 12,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const tanjung_verde: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

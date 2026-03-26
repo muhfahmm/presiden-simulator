@@ -17,14 +17,13 @@ export const latvia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 12,
-    "pembangkit_air": 11,
-    "pembangkit_surya": 35,
-    "pembangkit_termal": 2,
-    "pembangkit_gas": 11,
-    "pembangkit_angin": 30,
-    "jaringan_listrik": 51
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const latvia: CountryData = {
     "kereta_bawah_tanah": 18,
     "jalur_kereta": 30,
     "jalan_tol": 15,
-    "kualitas_jalan": 54,
     "pelabuhan_laut": 6,
     "bandara": 22,
     "terminal_bus": 5,
-    "helipad": 30,
-    "cakupan_internet": 65
-  },
+    "helipad": 30
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 11,
-    "uranium": 30,
-    "batu_bara": 27,
-    "minyak_bumi": 3,
-    "gas_alam": 39,
-    "garam": 29,
-    "nikel": 32,
-    "litium": 10,
-    "aluminium": 9,
-    "tembaga": 1,
-    "logam_tanah_jarang": 2,
-    "bijih_besi": 28
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const latvia: CountryData = {
     "sepeda_motor": 29,
     "smelter": 39,
     "semen_beton": 40,
-    "kayu": 23,
-    "air_mineral": 32,
-    "gula": 38,
-    "roti": 39,
-    "farmasi": 20,
-    "pupuk": 29,
-    "pengolahan_daging": 20,
-    "mie_instan": 21
-  },
+    "kayu": 23
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const latvia: CountryData = {
     "udang_kerang": 20.5,
     "ikan": 28
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 32,
+    "gula": 38,
+    "roti": 39,
+    "pengolahan_daging": 20,
+    "mie_instan": 21
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 20
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 13,
     "gudang_senjata": 25,
     "hangar_tank": 32,
@@ -112,8 +105,8 @@ export const latvia: CountryData = {
     "pangkalan_udara": 22,
     "pangkalan_laut": 1,
     "program_luar_angkasa": 20,
-    "pertahanan_siber": 28,
-  },
+    "pertahanan_siber": 28
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const latvia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 8,
     "intelijen": 16,
@@ -170,13 +162,12 @@ export const latvia: CountryData = {
       "manajemen_wilayah": 14,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 38,
-          "sepeda_motor": 32,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 38,
+        "sepeda_motor": 32,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 28,
@@ -187,9 +178,8 @@ export const latvia: CountryData = {
           "kantor_polisi": 11,
           "kamera_pengawas": 4,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const latvia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

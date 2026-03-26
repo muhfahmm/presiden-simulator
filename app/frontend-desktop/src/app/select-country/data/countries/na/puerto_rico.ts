@@ -17,14 +17,13 @@ export const puerto_rico: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 39,
-    "pembangkit_air": 8,
-    "pembangkit_surya": 19,
-    "pembangkit_termal": 6,
-    "pembangkit_gas": 27,
-    "pembangkit_angin": 10,
-    "jaringan_listrik": 77
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const puerto_rico: CountryData = {
     "kereta_bawah_tanah": 36,
     "jalur_kereta": 32,
     "jalan_tol": 37,
-    "kualitas_jalan": 77,
     "pelabuhan_laut": 31,
     "bandara": 37,
     "terminal_bus": 31,
-    "helipad": 8,
-    "cakupan_internet": 85
-  },
+    "helipad": 8
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 9,
-    "uranium": 1,
-    "batu_bara": 40,
-    "minyak_bumi": 7,
-    "gas_alam": 23,
-    "garam": 12,
-    "nikel": 19,
-    "litium": 11,
-    "aluminium": 12,
-    "tembaga": 5,
-    "logam_tanah_jarang": 34,
-    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const puerto_rico: CountryData = {
     "sepeda_motor": 35,
     "smelter": 22,
     "semen_beton": 39,
-    "kayu": 31,
-    "air_mineral": 13,
-    "gula": 25,
-    "roti": 30,
-    "farmasi": 25,
-    "pupuk": 39,
-    "pengolahan_daging": 6,
-    "mie_instan": 9
-  },
+    "kayu": 31
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const puerto_rico: CountryData = {
     "udang_kerang": 13.5,
     "ikan": 31
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 13,
+    "gula": 25,
+    "roti": 30,
+    "pengolahan_daging": 6,
+    "mie_instan": 9
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 25
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 31,
     "gudang_senjata": 27,
     "hangar_tank": 4,
@@ -112,8 +105,8 @@ export const puerto_rico: CountryData = {
     "pangkalan_udara": 19,
     "pangkalan_laut": 10,
     "program_luar_angkasa": 1,
-    "pertahanan_siber": 38,
-  },
+    "pertahanan_siber": 38
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const puerto_rico: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 28,
     "intelijen": 25,
@@ -170,13 +162,12 @@ export const puerto_rico: CountryData = {
       "manajemen_wilayah": 30,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 37,
-          "sepeda_motor": 35,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 37,
+        "sepeda_motor": 35,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 30,
@@ -187,9 +178,8 @@ export const puerto_rico: CountryData = {
           "kantor_polisi": 8,
           "kamera_pengawas": 19,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const puerto_rico: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

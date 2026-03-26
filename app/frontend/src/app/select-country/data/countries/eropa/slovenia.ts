@@ -17,14 +17,13 @@ export const slovenia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 5,
-    "pembangkit_air": 25,
-    "pembangkit_surya": 11,
-    "pembangkit_termal": 32,
-    "pembangkit_gas": 4,
-    "pembangkit_angin": 32,
-    "jaringan_listrik": 68
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const slovenia: CountryData = {
     "kereta_bawah_tanah": 5,
     "jalur_kereta": 13,
     "jalan_tol": 14,
-    "kualitas_jalan": 90,
     "pelabuhan_laut": 11,
     "bandara": 26,
     "terminal_bus": 23,
-    "helipad": 35,
-    "cakupan_internet": 58
-  },
+    "helipad": 35
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 14,
-    "uranium": 9,
-    "batu_bara": 28,
-    "minyak_bumi": 13,
-    "gas_alam": 15,
-    "garam": 27,
-    "nikel": 3,
-    "litium": 11,
-    "aluminium": 7,
-    "tembaga": 15,
-    "logam_tanah_jarang": 7,
-    "bijih_besi": 17
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const slovenia: CountryData = {
     "sepeda_motor": 40,
     "smelter": 36,
     "semen_beton": 4,
-    "kayu": 12,
-    "air_mineral": 6,
-    "gula": 14,
-    "roti": 23,
-    "farmasi": 28,
-    "pupuk": 16,
-    "pengolahan_daging": 40,
-    "mie_instan": 25
-  },
+    "kayu": 12
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const slovenia: CountryData = {
     "udang_kerang": 36.5,
     "ikan": 18
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 6,
+    "gula": 14,
+    "roti": 23,
+    "pengolahan_daging": 40,
+    "mie_instan": 25
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 28
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 19,
     "gudang_senjata": 16,
     "hangar_tank": 11,
@@ -112,8 +105,8 @@ export const slovenia: CountryData = {
     "pangkalan_udara": 29,
     "pangkalan_laut": 18,
     "program_luar_angkasa": 17,
-    "pertahanan_siber": 33,
-  },
+    "pertahanan_siber": 33
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const slovenia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 17,
     "intelijen": 9,
@@ -170,13 +162,12 @@ export const slovenia: CountryData = {
       "manajemen_wilayah": 39,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 8,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 8,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 14,
@@ -187,9 +178,8 @@ export const slovenia: CountryData = {
           "kantor_polisi": 18,
           "kamera_pengawas": 24,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const slovenia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

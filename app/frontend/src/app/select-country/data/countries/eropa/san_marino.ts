@@ -17,14 +17,13 @@ export const san_marino: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 1,
-    "pembangkit_air": 35,
-    "pembangkit_surya": 5,
-    "pembangkit_termal": 24,
-    "pembangkit_gas": 36,
-    "pembangkit_angin": 2,
-    "jaringan_listrik": 61
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const san_marino: CountryData = {
     "kereta_bawah_tanah": 36,
     "jalur_kereta": 7,
     "jalan_tol": 2,
-    "kualitas_jalan": 65,
     "pelabuhan_laut": 31,
     "bandara": 36,
     "terminal_bus": 26,
-    "helipad": 20,
-    "cakupan_internet": 74
-  },
+    "helipad": 20
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 36,
-    "uranium": 22,
-    "batu_bara": 39,
-    "minyak_bumi": 39,
-    "gas_alam": 24,
-    "garam": 20,
-    "nikel": 2,
-    "litium": 20,
-    "aluminium": 39,
-    "tembaga": 40,
-    "logam_tanah_jarang": 5,
-    "bijih_besi": 9
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const san_marino: CountryData = {
     "sepeda_motor": 16,
     "smelter": 31,
     "semen_beton": 40,
-    "kayu": 6,
-    "air_mineral": 13,
-    "gula": 33,
-    "roti": 10,
-    "farmasi": 29,
-    "pupuk": 25,
-    "pengolahan_daging": 35,
-    "mie_instan": 36
-  },
+    "kayu": 6
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const san_marino: CountryData = {
     "udang_kerang": 10.0,
     "ikan": 25
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 13,
+    "gula": 33,
+    "roti": 10,
+    "pengolahan_daging": 35,
+    "mie_instan": 36
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 29
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 34,
     "gudang_senjata": 27,
     "hangar_tank": 19,
@@ -112,8 +105,8 @@ export const san_marino: CountryData = {
     "pangkalan_udara": 7,
     "pangkalan_laut": 35,
     "program_luar_angkasa": 22,
-    "pertahanan_siber": 39,
-  },
+    "pertahanan_siber": 39
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const san_marino: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 28,
     "intelijen": 8,
@@ -170,13 +162,12 @@ export const san_marino: CountryData = {
       "manajemen_wilayah": 19,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 28,
-          "sepeda_motor": 3,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 28,
+        "sepeda_motor": 3,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 40,
@@ -187,9 +178,8 @@ export const san_marino: CountryData = {
           "kantor_polisi": 35,
           "kamera_pengawas": 7,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const san_marino: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const spanyol: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 29,
-    "pembangkit_air": 31,
-    "pembangkit_surya": 19,
-    "pembangkit_termal": 15,
-    "pembangkit_gas": 19,
-    "pembangkit_angin": 29,
-    "jaringan_listrik": 90
-  },
+    "pembangkit_listrik_tenaga_nuklir": 7,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const spanyol: CountryData = {
     "kereta_bawah_tanah": 36,
     "jalur_kereta": 18,
     "jalan_tol": 17,
-    "kualitas_jalan": 87,
     "pelabuhan_laut": 39,
     "bandara": 23,
     "terminal_bus": 6,
-    "helipad": 16,
-    "cakupan_internet": 80
-  },
+    "helipad": 16
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 9,
-    "uranium": 39,
-    "batu_bara": 23,
-    "minyak_bumi": 40,
-    "gas_alam": 21,
-    "garam": 37,
-    "nikel": 4,
-    "litium": 21,
-    "aluminium": 40,
-    "tembaga": 33,
-    "logam_tanah_jarang": 36,
-    "bijih_besi": 33
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const spanyol: CountryData = {
     "sepeda_motor": 8,
     "smelter": 35,
     "semen_beton": 1,
-    "kayu": 13,
-    "air_mineral": 16,
-    "gula": 32,
-    "roti": 23,
-    "farmasi": 4,
-    "pupuk": 14,
-    "pengolahan_daging": 29,
-    "mie_instan": 16
-  },
+    "kayu": 13
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const spanyol: CountryData = {
     "udang_kerang": 4.5,
     "ikan": 5
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 16,
+    "gula": 32,
+    "roti": 23,
+    "pengolahan_daging": 29,
+    "mie_instan": 16
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 4
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 4,
     "gudang_senjata": 31,
     "hangar_tank": 30,
@@ -112,8 +105,8 @@ export const spanyol: CountryData = {
     "pangkalan_udara": 39,
     "pangkalan_laut": 37,
     "program_luar_angkasa": 4,
-    "pertahanan_siber": 35,
-  },
+    "pertahanan_siber": 35
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const spanyol: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 40,
     "intelijen": 8,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 18,
       "misi_mata_mata": 30,
       "misi_sabotase": 6,
       "manajemen_wilayah": 15,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 28,
-          "sepeda_motor": 8,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 28,
+        "sepeda_motor": 8,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 6,
@@ -187,9 +178,8 @@ export const spanyol: CountryData = {
           "kantor_polisi": 33,
           "kamera_pengawas": 7,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const spanyol: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

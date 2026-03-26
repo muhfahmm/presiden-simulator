@@ -17,14 +17,13 @@ export const palestina: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 28,
-    "pembangkit_air": 38,
-    "pembangkit_surya": 4,
-    "pembangkit_termal": 20,
-    "pembangkit_gas": 22,
-    "pembangkit_angin": 9,
-    "jaringan_listrik": 72
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const palestina: CountryData = {
     "kereta_bawah_tanah": 3,
     "jalur_kereta": 30,
     "jalan_tol": 36,
-    "kualitas_jalan": 62,
     "pelabuhan_laut": 30,
     "bandara": 7,
     "terminal_bus": 11,
-    "helipad": 26,
-    "cakupan_internet": 91
-  },
+    "helipad": 26
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 28,
-    "uranium": 22,
-    "batu_bara": 37,
-    "minyak_bumi": 7,
-    "gas_alam": 10,
-    "garam": 6,
-    "nikel": 11,
-    "litium": 2,
-    "aluminium": 12,
-    "tembaga": 8,
-    "logam_tanah_jarang": 6,
-    "bijih_besi": 18
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const palestina: CountryData = {
     "sepeda_motor": 30,
     "smelter": 12,
     "semen_beton": 35,
-    "kayu": 21,
-    "air_mineral": 5,
-    "gula": 37,
-    "roti": 34,
-    "farmasi": 29,
-    "pupuk": 16,
-    "pengolahan_daging": 9,
-    "mie_instan": 2
-  },
+    "kayu": 21
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const palestina: CountryData = {
     "udang_kerang": 5.5,
     "ikan": 14
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 5,
+    "gula": 37,
+    "roti": 34,
+    "pengolahan_daging": 9,
+    "mie_instan": 2
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 29
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 25,
     "gudang_senjata": 32,
     "hangar_tank": 35,
@@ -112,8 +105,8 @@ export const palestina: CountryData = {
     "pangkalan_udara": 19,
     "pangkalan_laut": 15,
     "program_luar_angkasa": 14,
-    "pertahanan_siber": 23,
-  },
+    "pertahanan_siber": 23
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const palestina: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 26,
     "intelijen": 16,
@@ -170,13 +162,12 @@ export const palestina: CountryData = {
       "manajemen_wilayah": 38,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 6,
-          "sepeda_motor": 21,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 6,
+        "sepeda_motor": 21,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 8,
@@ -187,9 +178,8 @@ export const palestina: CountryData = {
           "kantor_polisi": 26,
           "kamera_pengawas": 7,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const palestina: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,13 +17,12 @@ export const niger: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 35,
-    "pembangkit_air": 23,
-    "pembangkit_nuklir": 34,
-    "jaringan_listrik": 80,
-    "pembangkit_surya": 12,
-    "pembangkit_termal": 40,
-    "pembangkit_angin": 1
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const niger: CountryData = {
     "terminal_bus": 39,
     "helipad": 38,
     "jalan_tol": 40,
-    "cakupan_internet": 53,
     "jalur_kereta": 35,
-    "kualitas_jalan": 73,
     "pelabuhan_laut": 38,
     "kereta_bawah_tanah": 38
   },
@@ -46,37 +43,15 @@ export const niger: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 8,
-    "batu_bara": 25,
-    "tembaga": 38,
-    "gas_alam": 19,
-    "emas": 21,
-    "bijih_besi": 9,
-    "litium": 28,
-    "nikel": 17,
-    "minyak_bumi": 28,
-    "logam_tanah_jarang": 24,
-    "garam": 13,
-    "uranium": 18
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 5,
-    "mobil": 29,
+  "sektor_manufaktur": {    "mobil": 29,
     "semen_beton": 7,
-    "pupuk": 24,
-    "mie_instan": 27,
-    "pengolahan_daging": 36,
-    "air_mineral": 9,
-    "sepeda_motor": 21,
-    "farmasi": 32,
-    "semikonduktor": 14,
-    "smelter": 6,
-    "gula": 4,
-    "kayu": 30
+    "pengolahan_daging": 36,    "sepeda_motor": 21,    "semikonduktor": 14,
+    "smelter": 6,    "kayu": 30
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const niger: CountryData = {
     "udang_kerang": 36.0,
     "ikan": 25
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 9,
+    "gula": 4,
+    "roti": 5,
+    "pengolahan_daging": 36,
+    "mie_instan": 27
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 32
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 32,
     "gudang_senjata": 18,
     "hangar_tank": 20,
@@ -112,8 +102,8 @@ export const niger: CountryData = {
     "pangkalan_udara": 24,
     "pangkalan_laut": 25,
     "program_luar_angkasa": 39,
-    "pertahanan_siber": 16,
-  },
+    "pertahanan_siber": 16
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const niger: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 23,
     "intelijen": 2,
@@ -171,13 +160,12 @@ export const niger: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 30,
-          "sepeda_motor": 6,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 30,
+        "sepeda_motor": 6,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 8,
@@ -188,9 +176,8 @@ export const niger: CountryData = {
           "kantor_polisi": 22,
           "kamera_pengawas": 34,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const niger: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

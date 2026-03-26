@@ -17,14 +17,13 @@ export const kiribati: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 38,
-    "pembangkit_air": 5,
-    "pembangkit_surya": 19,
-    "pembangkit_termal": 34,
-    "pembangkit_gas": 32,
-    "pembangkit_angin": 15,
-    "jaringan_listrik": 76
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const kiribati: CountryData = {
     "kereta_bawah_tanah": 19,
     "jalur_kereta": 33,
     "jalan_tol": 39,
-    "kualitas_jalan": 90,
     "pelabuhan_laut": 39,
     "bandara": 3,
     "terminal_bus": 7,
-    "helipad": 2,
-    "cakupan_internet": 69
-  },
+    "helipad": 2
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 19,
-    "uranium": 21,
-    "batu_bara": 25,
-    "minyak_bumi": 40,
-    "gas_alam": 34,
-    "garam": 1,
-    "nikel": 38,
-    "litium": 34,
-    "aluminium": 6,
-    "tembaga": 1,
-    "logam_tanah_jarang": 25,
-    "bijih_besi": 32
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const kiribati: CountryData = {
     "sepeda_motor": 21,
     "smelter": 36,
     "semen_beton": 21,
-    "kayu": 32,
-    "air_mineral": 5,
-    "gula": 13,
-    "roti": 12,
-    "farmasi": 2,
-    "pupuk": 34,
-    "pengolahan_daging": 35,
-    "mie_instan": 25
-  },
+    "kayu": 32
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const kiribati: CountryData = {
     "udang_kerang": 13.5,
     "ikan": 26
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 5,
+    "gula": 13,
+    "roti": 12,
+    "pengolahan_daging": 35,
+    "mie_instan": 25
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 2
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 26,
     "gudang_senjata": 6,
     "hangar_tank": 22,
@@ -112,8 +105,8 @@ export const kiribati: CountryData = {
     "pangkalan_udara": 19,
     "pangkalan_laut": 28,
     "program_luar_angkasa": 25,
-    "pertahanan_siber": 31,
-  },
+    "pertahanan_siber": 31
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const kiribati: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 4,
     "intelijen": 12,
@@ -170,13 +162,12 @@ export const kiribati: CountryData = {
       "manajemen_wilayah": 37,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 40,
-          "sepeda_motor": 19,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 40,
+        "sepeda_motor": 19,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 20,
@@ -187,9 +178,8 @@ export const kiribati: CountryData = {
           "kantor_polisi": 34,
           "kamera_pengawas": 32,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const kiribati: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

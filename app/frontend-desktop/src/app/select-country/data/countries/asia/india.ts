@@ -17,14 +17,13 @@ export const india: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 19,
-    "pembangkit_air": 28,
-    "pembangkit_surya": 22,
-    "pembangkit_termal": 8,
-    "pembangkit_gas": 21,
-    "pembangkit_angin": 6,
-    "jaringan_listrik": 84
-  },
+    "pembangkit_listrik_tenaga_nuklir": 23,
+    "pembangkit_listrik_tenaga_air": 12,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 70,
+    "pembangkit_listrik_tenaga_gas": 3,
+    "pembangkit_listrik_tenaga_angin": 2
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const india: CountryData = {
     "kereta_bawah_tanah": 25,
     "jalur_kereta": 29,
     "jalan_tol": 15,
-    "kualitas_jalan": 50,
     "pelabuhan_laut": 6,
     "bandara": 20,
     "terminal_bus": 14,
-    "helipad": 40,
-    "cakupan_internet": 90
-  },
+    "helipad": 40
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 19,
-    "uranium": 31,
-    "batu_bara": 7,
-    "minyak_bumi": 36,
-    "gas_alam": 12,
-    "garam": 17,
-    "nikel": 10,
-    "litium": 22,
-    "aluminium": 13,
-    "tembaga": 1,
-    "logam_tanah_jarang": 34,
-    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const india: CountryData = {
     "sepeda_motor": 5,
     "smelter": 3,
     "semen_beton": 38,
-    "kayu": 8,
-    "air_mineral": 35,
-    "gula": 4,
-    "roti": 17,
-    "farmasi": 26,
-    "pupuk": 28,
-    "pengolahan_daging": 37,
-    "mie_instan": 37
-  },
+    "kayu": 8
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const india: CountryData = {
     "udang_kerang": 31.5,
     "ikan": 9
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 35,
+    "gula": 4,
+    "roti": 17,
+    "pengolahan_daging": 37,
+    "mie_instan": 37
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 26
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 31,
     "gudang_senjata": 32,
     "hangar_tank": 16,
@@ -112,8 +105,8 @@ export const india: CountryData = {
     "pangkalan_udara": 39,
     "pangkalan_laut": 14,
     "program_luar_angkasa": 15,
-    "pertahanan_siber": 40,
-  },
+    "pertahanan_siber": 40
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const india: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 11,
     "intelijen": 40,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 17,
       "misi_mata_mata": 19,
       "misi_sabotase": 4,
       "manajemen_wilayah": 3,
-      "program_nuklir": 0 }
+      "program_nuklir": 100 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 8,
-          "sepeda_motor": 10,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 8,
+        "sepeda_motor": 10,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 8,
@@ -187,9 +178,8 @@ export const india: CountryData = {
           "kantor_polisi": 29,
           "kamera_pengawas": 35,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const india: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

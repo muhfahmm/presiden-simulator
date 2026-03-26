@@ -17,13 +17,12 @@ export const komoro: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 4,
-    "pembangkit_air": 26,
-    "pembangkit_nuklir": 1,
-    "jaringan_listrik": 59,
-    "pembangkit_surya": 24,
-    "pembangkit_termal": 30,
-    "pembangkit_angin": 29
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const komoro: CountryData = {
     "terminal_bus": 4,
     "helipad": 19,
     "jalan_tol": 27,
-    "cakupan_internet": 93,
     "jalur_kereta": 8,
-    "kualitas_jalan": 68,
     "pelabuhan_laut": 5,
     "kereta_bawah_tanah": 39
   },
@@ -46,37 +43,15 @@ export const komoro: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 18,
-    "batu_bara": 15,
-    "tembaga": 1,
-    "gas_alam": 29,
-    "emas": 19,
-    "bijih_besi": 3,
-    "litium": 15,
-    "nikel": 4,
-    "minyak_bumi": 17,
-    "logam_tanah_jarang": 38,
-    "garam": 6,
-    "uranium": 6
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 14,
-    "mobil": 3,
+  "sektor_manufaktur": {    "mobil": 3,
     "semen_beton": 2,
-    "pupuk": 2,
-    "mie_instan": 17,
-    "pengolahan_daging": 29,
-    "air_mineral": 30,
-    "sepeda_motor": 20,
-    "farmasi": 36,
-    "semikonduktor": 17,
-    "smelter": 3,
-    "gula": 9,
-    "kayu": 19
+    "pengolahan_daging": 29,    "sepeda_motor": 20,    "semikonduktor": 17,
+    "smelter": 3,    "kayu": 19
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const komoro: CountryData = {
     "udang_kerang": 11.0,
     "ikan": 32
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 30,
+    "gula": 9,
+    "roti": 14,
+    "pengolahan_daging": 29,
+    "mie_instan": 17
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 36
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 14,
     "gudang_senjata": 39,
     "hangar_tank": 27,
@@ -112,8 +102,8 @@ export const komoro: CountryData = {
     "pangkalan_udara": 32,
     "pangkalan_laut": 6,
     "program_luar_angkasa": 25,
-    "pertahanan_siber": 25,
-  },
+    "pertahanan_siber": 25
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const komoro: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 27,
     "intelijen": 9,
@@ -171,13 +160,12 @@ export const komoro: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 39,
-          "sepeda_motor": 9,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 39,
+        "sepeda_motor": 9,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 34,
@@ -188,9 +176,8 @@ export const komoro: CountryData = {
           "kantor_polisi": 23,
           "kamera_pengawas": 38,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const komoro: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

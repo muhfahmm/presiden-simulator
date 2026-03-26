@@ -17,14 +17,13 @@ export const kamboja: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 38,
-    "pembangkit_air": 4,
-    "pembangkit_surya": 17,
-    "pembangkit_termal": 29,
-    "pembangkit_gas": 13,
-    "pembangkit_angin": 12,
-    "jaringan_listrik": 76
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const kamboja: CountryData = {
     "kereta_bawah_tanah": 33,
     "jalur_kereta": 10,
     "jalan_tol": 32,
-    "kualitas_jalan": 60,
     "pelabuhan_laut": 23,
     "bandara": 21,
     "terminal_bus": 14,
-    "helipad": 11,
-    "cakupan_internet": 84
-  },
+    "helipad": 11
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 23,
-    "uranium": 17,
-    "batu_bara": 16,
-    "minyak_bumi": 7,
-    "gas_alam": 27,
-    "garam": 24,
-    "nikel": 36,
-    "litium": 38,
-    "aluminium": 11,
-    "tembaga": 13,
-    "logam_tanah_jarang": 8,
-    "bijih_besi": 22
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const kamboja: CountryData = {
     "sepeda_motor": 22,
     "smelter": 24,
     "semen_beton": 20,
-    "kayu": 7,
-    "air_mineral": 4,
-    "gula": 1,
-    "roti": 22,
-    "farmasi": 30,
-    "pupuk": 28,
-    "pengolahan_daging": 11,
-    "mie_instan": 11
-  },
+    "kayu": 7
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const kamboja: CountryData = {
     "udang_kerang": 17.0,
     "ikan": 27
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 4,
+    "gula": 1,
+    "roti": 22,
+    "pengolahan_daging": 11,
+    "mie_instan": 11
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 30
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 9,
     "gudang_senjata": 25,
     "hangar_tank": 22,
@@ -112,8 +105,8 @@ export const kamboja: CountryData = {
     "pangkalan_udara": 34,
     "pangkalan_laut": 1,
     "program_luar_angkasa": 26,
-    "pertahanan_siber": 35,
-  },
+    "pertahanan_siber": 35
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const kamboja: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 29,
     "intelijen": 4,
@@ -170,13 +162,12 @@ export const kamboja: CountryData = {
       "manajemen_wilayah": 5,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 20,
-          "sepeda_motor": 30,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 20,
+        "sepeda_motor": 30,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 5,
@@ -187,9 +178,8 @@ export const kamboja: CountryData = {
           "kantor_polisi": 10,
           "kamera_pengawas": 18,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const kamboja: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,13 +17,12 @@ export const gambia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 27,
-    "pembangkit_air": 38,
-    "pembangkit_nuklir": 6,
-    "jaringan_listrik": 93,
-    "pembangkit_surya": 28,
-    "pembangkit_termal": 21,
-    "pembangkit_angin": 8
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const gambia: CountryData = {
     "terminal_bus": 26,
     "helipad": 29,
     "jalan_tol": 8,
-    "cakupan_internet": 92,
     "jalur_kereta": 24,
-    "kualitas_jalan": 63,
     "pelabuhan_laut": 13,
     "kereta_bawah_tanah": 11
   },
@@ -46,37 +43,15 @@ export const gambia: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 35,
-    "batu_bara": 40,
-    "tembaga": 11,
-    "gas_alam": 26,
-    "emas": 21,
-    "bijih_besi": 30,
-    "litium": 31,
-    "nikel": 32,
-    "minyak_bumi": 40,
-    "logam_tanah_jarang": 18,
-    "garam": 37,
-    "uranium": 32
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 9,
-    "mobil": 5,
+  "sektor_manufaktur": {    "mobil": 5,
     "semen_beton": 17,
-    "pupuk": 9,
-    "mie_instan": 37,
-    "pengolahan_daging": 22,
-    "air_mineral": 7,
-    "sepeda_motor": 16,
-    "farmasi": 1,
-    "semikonduktor": 24,
-    "smelter": 5,
-    "gula": 10,
-    "kayu": 19
+    "pengolahan_daging": 22,    "sepeda_motor": 16,    "semikonduktor": 24,
+    "smelter": 5,    "kayu": 19
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const gambia: CountryData = {
     "udang_kerang": 17.5,
     "ikan": 31
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 7,
+    "gula": 10,
+    "roti": 9,
+    "pengolahan_daging": 22,
+    "mie_instan": 37
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 1
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 27,
     "gudang_senjata": 3,
     "hangar_tank": 27,
@@ -112,8 +102,8 @@ export const gambia: CountryData = {
     "pangkalan_udara": 15,
     "pangkalan_laut": 2,
     "program_luar_angkasa": 7,
-    "pertahanan_siber": 18,
-  },
+    "pertahanan_siber": 18
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const gambia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 2,
     "intelijen": 12,
@@ -171,13 +160,12 @@ export const gambia: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 1,
-          "sepeda_motor": 32,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 1,
+        "sepeda_motor": 32,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 15,
@@ -188,9 +176,8 @@ export const gambia: CountryData = {
           "kantor_polisi": 26,
           "kamera_pengawas": 34,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const gambia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

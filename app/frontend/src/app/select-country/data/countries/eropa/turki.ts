@@ -17,14 +17,13 @@ export const turki: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 40,
-    "pembangkit_air": 13,
-    "pembangkit_surya": 33,
-    "pembangkit_termal": 37,
-    "pembangkit_gas": 16,
-    "pembangkit_angin": 11,
-    "jaringan_listrik": 77
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const turki: CountryData = {
     "kereta_bawah_tanah": 11,
     "jalur_kereta": 20,
     "jalan_tol": 37,
-    "kualitas_jalan": 73,
     "pelabuhan_laut": 3,
     "bandara": 24,
     "terminal_bus": 16,
-    "helipad": 6,
-    "cakupan_internet": 80
-  },
+    "helipad": 6
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 26,
-    "uranium": 16,
-    "batu_bara": 19,
-    "minyak_bumi": 4,
-    "gas_alam": 12,
-    "garam": 36,
-    "nikel": 7,
-    "litium": 4,
-    "aluminium": 1,
-    "tembaga": 12,
-    "logam_tanah_jarang": 32,
-    "bijih_besi": 30
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const turki: CountryData = {
     "sepeda_motor": 21,
     "smelter": 23,
     "semen_beton": 20,
-    "kayu": 11,
-    "air_mineral": 36,
-    "gula": 32,
-    "roti": 16,
-    "farmasi": 40,
-    "pupuk": 27,
-    "pengolahan_daging": 5,
-    "mie_instan": 27
-  },
+    "kayu": 11
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const turki: CountryData = {
     "udang_kerang": 23.5,
     "ikan": 18
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 36,
+    "gula": 32,
+    "roti": 16,
+    "pengolahan_daging": 5,
+    "mie_instan": 27
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 40
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 38,
     "gudang_senjata": 5,
     "hangar_tank": 4,
@@ -112,8 +105,8 @@ export const turki: CountryData = {
     "pangkalan_udara": 16,
     "pangkalan_laut": 12,
     "program_luar_angkasa": 27,
-    "pertahanan_siber": 36,
-  },
+    "pertahanan_siber": 36
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const turki: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 33,
     "intelijen": 7,
@@ -170,13 +162,12 @@ export const turki: CountryData = {
       "manajemen_wilayah": 21,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 1,
-          "sepeda_motor": 19,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 1,
+        "sepeda_motor": 19,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 18,
@@ -187,9 +178,8 @@ export const turki: CountryData = {
           "kantor_polisi": 17,
           "kamera_pengawas": 11,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const turki: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

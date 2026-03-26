@@ -17,14 +17,13 @@ export const pakistan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 8,
-    "pembangkit_air": 37,
-    "pembangkit_surya": 32,
-    "pembangkit_termal": 29,
-    "pembangkit_gas": 36,
-    "pembangkit_angin": 33,
-    "jaringan_listrik": 95
-  },
+    "pembangkit_listrik_tenaga_nuklir": 6,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const pakistan: CountryData = {
     "kereta_bawah_tanah": 39,
     "jalur_kereta": 29,
     "jalan_tol": 17,
-    "kualitas_jalan": 76,
     "pelabuhan_laut": 15,
     "bandara": 36,
     "terminal_bus": 38,
-    "helipad": 26,
-    "cakupan_internet": 79
-  },
+    "helipad": 26
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 13,
-    "uranium": 27,
-    "batu_bara": 30,
-    "minyak_bumi": 36,
-    "gas_alam": 25,
-    "garam": 4,
-    "nikel": 23,
-    "litium": 4,
-    "aluminium": 33,
-    "tembaga": 29,
-    "logam_tanah_jarang": 38,
-    "bijih_besi": 8
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const pakistan: CountryData = {
     "sepeda_motor": 13,
     "smelter": 8,
     "semen_beton": 2,
-    "kayu": 35,
-    "air_mineral": 17,
-    "gula": 3,
-    "roti": 33,
-    "farmasi": 35,
-    "pupuk": 5,
-    "pengolahan_daging": 32,
-    "mie_instan": 25
-  },
+    "kayu": 35
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const pakistan: CountryData = {
     "udang_kerang": 6.5,
     "ikan": 29
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 17,
+    "gula": 3,
+    "roti": 33,
+    "pengolahan_daging": 32,
+    "mie_instan": 25
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 35
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 21,
     "gudang_senjata": 25,
     "hangar_tank": 19,
@@ -112,8 +105,8 @@ export const pakistan: CountryData = {
     "pangkalan_udara": 28,
     "pangkalan_laut": 21,
     "program_luar_angkasa": 2,
-    "pertahanan_siber": 18,
-  },
+    "pertahanan_siber": 18
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const pakistan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 33,
     "intelijen": 10,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 4,
       "misi_mata_mata": 8,
       "misi_sabotase": 4,
       "manajemen_wilayah": 5,
-      "program_nuklir": 0 }
+      "program_nuklir": 100 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 12,
-          "sepeda_motor": 27,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 12,
+        "sepeda_motor": 27,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 22,
@@ -187,9 +178,8 @@ export const pakistan: CountryData = {
           "kantor_polisi": 40,
           "kamera_pengawas": 27,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const pakistan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

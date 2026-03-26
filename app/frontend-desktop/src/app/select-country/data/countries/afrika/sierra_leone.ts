@@ -17,13 +17,12 @@ export const sierra_leone: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 13,
-    "pembangkit_air": 27,
-    "pembangkit_nuklir": 23,
-    "jaringan_listrik": 85,
-    "pembangkit_surya": 7,
-    "pembangkit_termal": 17,
-    "pembangkit_angin": 24
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const sierra_leone: CountryData = {
     "terminal_bus": 7,
     "helipad": 12,
     "jalan_tol": 24,
-    "cakupan_internet": 76,
     "jalur_kereta": 23,
-    "kualitas_jalan": 80,
     "pelabuhan_laut": 32,
     "kereta_bawah_tanah": 4
   },
@@ -46,37 +43,15 @@ export const sierra_leone: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 26,
-    "batu_bara": 23,
-    "tembaga": 28,
-    "gas_alam": 39,
-    "emas": 40,
-    "bijih_besi": 21,
-    "litium": 38,
-    "nikel": 11,
-    "minyak_bumi": 13,
-    "logam_tanah_jarang": 3,
-    "garam": 24,
-    "uranium": 36
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 9,
-    "mobil": 29,
+  "sektor_manufaktur": {    "mobil": 29,
     "semen_beton": 36,
-    "pupuk": 11,
-    "mie_instan": 11,
-    "pengolahan_daging": 10,
-    "air_mineral": 7,
-    "sepeda_motor": 11,
-    "farmasi": 4,
-    "semikonduktor": 38,
-    "smelter": 10,
-    "gula": 29,
-    "kayu": 40
+    "pengolahan_daging": 10,    "sepeda_motor": 11,    "semikonduktor": 38,
+    "smelter": 10,    "kayu": 40
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const sierra_leone: CountryData = {
     "udang_kerang": 10.5,
     "ikan": 28
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 7,
+    "gula": 29,
+    "roti": 9,
+    "pengolahan_daging": 10,
+    "mie_instan": 11
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 4
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 17,
     "gudang_senjata": 7,
     "hangar_tank": 32,
@@ -112,8 +102,8 @@ export const sierra_leone: CountryData = {
     "pangkalan_udara": 27,
     "pangkalan_laut": 11,
     "program_luar_angkasa": 38,
-    "pertahanan_siber": 14,
-  },
+    "pertahanan_siber": 14
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const sierra_leone: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 1,
     "intelijen": 28,
@@ -171,13 +160,12 @@ export const sierra_leone: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 24,
-          "sepeda_motor": 19,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 24,
+        "sepeda_motor": 19,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 15,
@@ -188,9 +176,8 @@ export const sierra_leone: CountryData = {
           "kantor_polisi": 22,
           "kamera_pengawas": 24,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const sierra_leone: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const bulgaria: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 3,
-    "pembangkit_air": 32,
-    "pembangkit_surya": 5,
-    "pembangkit_termal": 16,
-    "pembangkit_gas": 26,
-    "pembangkit_angin": 32,
-    "jaringan_listrik": 76
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const bulgaria: CountryData = {
     "kereta_bawah_tanah": 36,
     "jalur_kereta": 39,
     "jalan_tol": 24,
-    "kualitas_jalan": 73,
     "pelabuhan_laut": 21,
     "bandara": 37,
     "terminal_bus": 11,
-    "helipad": 9,
-    "cakupan_internet": 76
-  },
+    "helipad": 9
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 7,
-    "uranium": 18,
-    "batu_bara": 12,
-    "minyak_bumi": 36,
-    "gas_alam": 7,
-    "garam": 25,
-    "nikel": 26,
-    "litium": 23,
-    "aluminium": 31,
-    "tembaga": 35,
-    "logam_tanah_jarang": 17,
-    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const bulgaria: CountryData = {
     "sepeda_motor": 1,
     "smelter": 40,
     "semen_beton": 29,
-    "kayu": 3,
-    "air_mineral": 30,
-    "gula": 8,
-    "roti": 3,
-    "farmasi": 15,
-    "pupuk": 2,
-    "pengolahan_daging": 24,
-    "mie_instan": 30
-  },
+    "kayu": 3
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const bulgaria: CountryData = {
     "udang_kerang": 5.5,
     "ikan": 37
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 30,
+    "gula": 8,
+    "roti": 3,
+    "pengolahan_daging": 24,
+    "mie_instan": 30
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 15
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 30,
     "gudang_senjata": 21,
     "hangar_tank": 20,
@@ -112,8 +105,8 @@ export const bulgaria: CountryData = {
     "pangkalan_udara": 31,
     "pangkalan_laut": 16,
     "program_luar_angkasa": 20,
-    "pertahanan_siber": 19,
-  },
+    "pertahanan_siber": 19
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const bulgaria: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 35,
     "intelijen": 35,
@@ -170,13 +162,12 @@ export const bulgaria: CountryData = {
       "manajemen_wilayah": 8,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 2,
-          "sepeda_motor": 26,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 2,
+        "sepeda_motor": 26,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 34,
@@ -187,9 +178,8 @@ export const bulgaria: CountryData = {
           "kantor_polisi": 25,
           "kamera_pengawas": 20,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const bulgaria: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

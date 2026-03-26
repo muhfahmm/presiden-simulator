@@ -17,14 +17,13 @@ export const myanmar: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 2,
-    "pembangkit_air": 4,
-    "pembangkit_surya": 23,
-    "pembangkit_termal": 11,
-    "pembangkit_gas": 12,
-    "pembangkit_angin": 1,
-    "jaringan_listrik": 78
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const myanmar: CountryData = {
     "kereta_bawah_tanah": 35,
     "jalur_kereta": 28,
     "jalan_tol": 15,
-    "kualitas_jalan": 52,
     "pelabuhan_laut": 4,
     "bandara": 40,
     "terminal_bus": 36,
-    "helipad": 22,
-    "cakupan_internet": 58
-  },
+    "helipad": 22
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 16,
-    "uranium": 5,
-    "batu_bara": 14,
-    "minyak_bumi": 4,
-    "gas_alam": 10,
-    "garam": 1,
-    "nikel": 26,
-    "litium": 5,
-    "aluminium": 4,
-    "tembaga": 21,
-    "logam_tanah_jarang": 38,
-    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const myanmar: CountryData = {
     "sepeda_motor": 13,
     "smelter": 30,
     "semen_beton": 13,
-    "kayu": 3,
-    "air_mineral": 20,
-    "gula": 4,
-    "roti": 30,
-    "farmasi": 30,
-    "pupuk": 28,
-    "pengolahan_daging": 17,
-    "mie_instan": 21
-  },
+    "kayu": 3
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const myanmar: CountryData = {
     "udang_kerang": 18.5,
     "ikan": 22
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 20,
+    "gula": 4,
+    "roti": 30,
+    "pengolahan_daging": 17,
+    "mie_instan": 21
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 30
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 14,
     "gudang_senjata": 28,
     "hangar_tank": 35,
@@ -112,8 +105,8 @@ export const myanmar: CountryData = {
     "pangkalan_udara": 31,
     "pangkalan_laut": 23,
     "program_luar_angkasa": 1,
-    "pertahanan_siber": 14,
-  },
+    "pertahanan_siber": 14
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const myanmar: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 7,
     "intelijen": 33,
@@ -170,13 +162,12 @@ export const myanmar: CountryData = {
       "manajemen_wilayah": 25,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 20,
-          "sepeda_motor": 3,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 20,
+        "sepeda_motor": 3,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 33,
@@ -187,9 +178,8 @@ export const myanmar: CountryData = {
           "kantor_polisi": 4,
           "kamera_pengawas": 28,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const myanmar: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

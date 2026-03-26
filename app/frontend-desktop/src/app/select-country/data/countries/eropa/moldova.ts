@@ -17,14 +17,13 @@ export const moldova: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 22,
-    "pembangkit_air": 31,
-    "pembangkit_surya": 32,
-    "pembangkit_termal": 17,
-    "pembangkit_gas": 15,
-    "pembangkit_angin": 14,
-    "jaringan_listrik": 87
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const moldova: CountryData = {
     "kereta_bawah_tanah": 37,
     "jalur_kereta": 28,
     "jalan_tol": 6,
-    "kualitas_jalan": 68,
     "pelabuhan_laut": 24,
     "bandara": 20,
     "terminal_bus": 13,
-    "helipad": 29,
-    "cakupan_internet": 90
-  },
+    "helipad": 29
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 15,
-    "uranium": 32,
-    "batu_bara": 8,
-    "minyak_bumi": 28,
-    "gas_alam": 24,
-    "garam": 8,
-    "nikel": 9,
-    "litium": 29,
-    "aluminium": 2,
-    "tembaga": 6,
-    "logam_tanah_jarang": 5,
-    "bijih_besi": 33
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const moldova: CountryData = {
     "sepeda_motor": 15,
     "smelter": 7,
     "semen_beton": 38,
-    "kayu": 15,
-    "air_mineral": 5,
-    "gula": 20,
-    "roti": 23,
-    "farmasi": 40,
-    "pupuk": 37,
-    "pengolahan_daging": 40,
-    "mie_instan": 11
-  },
+    "kayu": 15
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const moldova: CountryData = {
     "udang_kerang": 24.5,
     "ikan": 30
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 5,
+    "gula": 20,
+    "roti": 23,
+    "pengolahan_daging": 40,
+    "mie_instan": 11
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 40
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 9,
     "gudang_senjata": 29,
     "hangar_tank": 16,
@@ -112,8 +105,8 @@ export const moldova: CountryData = {
     "pangkalan_udara": 9,
     "pangkalan_laut": 31,
     "program_luar_angkasa": 7,
-    "pertahanan_siber": 6,
-  },
+    "pertahanan_siber": 6
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const moldova: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 40,
     "intelijen": 12,
@@ -170,13 +162,12 @@ export const moldova: CountryData = {
       "manajemen_wilayah": 2,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 29,
-          "sepeda_motor": 3,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 29,
+        "sepeda_motor": 3,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 21,
@@ -187,9 +178,8 @@ export const moldova: CountryData = {
           "kantor_polisi": 11,
           "kamera_pengawas": 39,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const moldova: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

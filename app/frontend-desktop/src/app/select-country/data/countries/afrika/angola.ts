@@ -17,13 +17,12 @@ export const angola: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 39,
-    "pembangkit_air": 27,
-    "pembangkit_nuklir": 16,
-    "jaringan_listrik": 85,
-    "pembangkit_surya": 25,
-    "pembangkit_termal": 19,
-    "pembangkit_angin": 23
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const angola: CountryData = {
     "terminal_bus": 18,
     "helipad": 10,
     "jalan_tol": 40,
-    "cakupan_internet": 81,
     "jalur_kereta": 39,
-    "kualitas_jalan": 83,
     "pelabuhan_laut": 6,
     "kereta_bawah_tanah": 16
   },
@@ -46,37 +43,15 @@ export const angola: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 8,
-    "batu_bara": 13,
-    "tembaga": 28,
-    "gas_alam": 11,
-    "emas": 8,
-    "bijih_besi": 22,
-    "litium": 39,
-    "nikel": 2,
-    "minyak_bumi": 80,
-    "logam_tanah_jarang": 50,
-    "garam": 7,
-    "uranium": 21
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 37,
-    "mobil": 2,
+  "sektor_manufaktur": {    "mobil": 2,
     "semen_beton": 20,
-    "pupuk": 32,
-    "mie_instan": 13,
-    "pengolahan_daging": 31,
-    "air_mineral": 40,
-    "sepeda_motor": 38,
-    "farmasi": 23,
-    "semikonduktor": 1,
-    "smelter": 4,
-    "gula": 13,
-    "kayu": 22
+    "pengolahan_daging": 31,    "sepeda_motor": 38,    "semikonduktor": 1,
+    "smelter": 4,    "kayu": 22
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const angola: CountryData = {
     "udang_kerang": 31.5,
     "ikan": 13
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 40,
+    "gula": 13,
+    "roti": 37,
+    "pengolahan_daging": 31,
+    "mie_instan": 13
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 23
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 10,
     "gudang_senjata": 38,
     "hangar_tank": 9,
@@ -112,8 +102,8 @@ export const angola: CountryData = {
     "pangkalan_udara": 7,
     "pangkalan_laut": 32,
     "program_luar_angkasa": 3,
-    "pertahanan_siber": 24,
-  },
+    "pertahanan_siber": 24
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const angola: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 5,
     "intelijen": 26,
@@ -171,13 +160,12 @@ export const angola: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 33,
-          "sepeda_motor": 33,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 33,
+        "sepeda_motor": 33,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 12,
@@ -188,9 +176,8 @@ export const angola: CountryData = {
           "kantor_polisi": 21,
           "kamera_pengawas": 21,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const angola: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

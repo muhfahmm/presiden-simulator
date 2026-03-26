@@ -17,14 +17,13 @@ export const indonesia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 38,
-    "pembangkit_air": 19,
-    "pembangkit_surya": 27,
-    "pembangkit_termal": 29,
-    "pembangkit_gas": 24,
-    "pembangkit_angin": 1,
-    "jaringan_listrik": 54
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 2,
+    "pembangkit_listrik_tenaga_uap": 67,
+    "pembangkit_listrik_tenaga_gas": 18,
+    "pembangkit_listrik_tenaga_angin": 1
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const indonesia: CountryData = {
     "kereta_bawah_tanah": 34,
     "jalur_kereta": 17,
     "jalan_tol": 6,
-    "kualitas_jalan": 95,
     "pelabuhan_laut": 3,
     "bandara": 30,
     "terminal_bus": 16,
-    "helipad": 2,
-    "cakupan_internet": 79
-  },
+    "helipad": 2
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 35,
-    "uranium": 5,
-    "batu_bara": 6,
-    "minyak_bumi": 20,
-    "gas_alam": 17,
-    "garam": 8,
-    "nikel": 18,
-    "litium": 17,
-    "aluminium": 20,
-    "tembaga": 21,
-    "logam_tanah_jarang": 1,
-    "bijih_besi": 7
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,14 +54,7 @@ export const indonesia: CountryData = {
     "sepeda_motor": 30,
     "smelter": 38,
     "semen_beton": 38,
-    "kayu": 39,
-    "air_mineral": 14,
-    "gula": 5,
-    "roti": 17,
-    "farmasi": 14,
-    "pupuk": 20,
-    "pengolahan_daging": 7,
-    "mie_instan": 16
+    "kayu": 39
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +77,26 @@ export const indonesia: CountryData = {
     "udang_kerang": 30.5,
     "ikan": 13
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 14,
+    "gula": 5,
+    "roti": 17,
+    "pengolahan_daging": 7,
+    "mie_instan": 16
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 14
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 9,
     "gudang_senjata": 39,
     "hangar_tank": 7,
@@ -112,8 +105,8 @@ export const indonesia: CountryData = {
     "pangkalan_udara": 37,
     "pangkalan_laut": 11,
     "program_luar_angkasa": 13,
-    "pertahanan_siber": 39,
-  },
+    "pertahanan_siber": 39
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const indonesia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 1,
     "intelijen": 13,
@@ -170,13 +162,12 @@ export const indonesia: CountryData = {
       "manajemen_wilayah": 40,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 23,
-          "sepeda_motor": 9,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 23,
+        "sepeda_motor": 9,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 8,
@@ -187,9 +178,8 @@ export const indonesia: CountryData = {
           "kantor_polisi": 36,
           "kamera_pengawas": 15,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,

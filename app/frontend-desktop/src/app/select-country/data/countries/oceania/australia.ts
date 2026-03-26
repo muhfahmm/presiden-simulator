@@ -17,14 +17,13 @@ export const australia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 24,
-    "pembangkit_air": 23,
-    "pembangkit_surya": 14,
-    "pembangkit_termal": 35,
-    "pembangkit_gas": 23,
-    "pembangkit_angin": 16,
-    "jaringan_listrik": 93
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const australia: CountryData = {
     "kereta_bawah_tanah": 13,
     "jalur_kereta": 4,
     "jalan_tol": 37,
-    "kualitas_jalan": 94,
     "pelabuhan_laut": 37,
     "bandara": 34,
     "terminal_bus": 25,
-    "helipad": 26,
-    "cakupan_internet": 62
-  },
+    "helipad": 26
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 38,
-    "uranium": 28,
-    "batu_bara": 29,
-    "minyak_bumi": 35,
-    "gas_alam": 14,
-    "garam": 27,
-    "nikel": 33,
-    "litium": 39,
-    "aluminium": 2,
-    "tembaga": 22,
-    "logam_tanah_jarang": 10,
-    "bijih_besi": 26
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const australia: CountryData = {
     "sepeda_motor": 38,
     "smelter": 35,
     "semen_beton": 7,
-    "kayu": 10,
-    "air_mineral": 4,
-    "gula": 9,
-    "roti": 22,
-    "farmasi": 3,
-    "pupuk": 16,
-    "pengolahan_daging": 1,
-    "mie_instan": 27
-  },
+    "kayu": 10
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const australia: CountryData = {
     "udang_kerang": 11.5,
     "ikan": 17
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 4,
+    "gula": 9,
+    "roti": 22,
+    "pengolahan_daging": 1,
+    "mie_instan": 27
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 3
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 19,
     "gudang_senjata": 4,
     "hangar_tank": 20,
@@ -112,8 +105,8 @@ export const australia: CountryData = {
     "pangkalan_udara": 10,
     "pangkalan_laut": 26,
     "program_luar_angkasa": 11,
-    "pertahanan_siber": 25,
-  },
+    "pertahanan_siber": 25
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const australia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 21,
     "intelijen": 20,
@@ -170,13 +162,12 @@ export const australia: CountryData = {
       "manajemen_wilayah": 1,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 26,
-          "sepeda_motor": 26,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 26,
+        "sepeda_motor": 26,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 23,
@@ -187,9 +178,8 @@ export const australia: CountryData = {
           "kantor_polisi": 8,
           "kamera_pengawas": 19,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const australia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

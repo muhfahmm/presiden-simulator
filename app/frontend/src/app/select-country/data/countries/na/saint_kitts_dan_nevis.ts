@@ -17,14 +17,13 @@ export const saint_kitts_dan_nevis: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 9,
-    "pembangkit_air": 26,
-    "pembangkit_surya": 27,
-    "pembangkit_termal": 39,
-    "pembangkit_gas": 27,
-    "pembangkit_angin": 6,
-    "jaringan_listrik": 57
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const saint_kitts_dan_nevis: CountryData = {
     "kereta_bawah_tanah": 15,
     "jalur_kereta": 30,
     "jalan_tol": 12,
-    "kualitas_jalan": 77,
     "pelabuhan_laut": 1,
     "bandara": 20,
     "terminal_bus": 29,
-    "helipad": 12,
-    "cakupan_internet": 81
-  },
+    "helipad": 12
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 13,
-    "uranium": 3,
-    "batu_bara": 13,
-    "minyak_bumi": 8,
-    "gas_alam": 17,
-    "garam": 29,
-    "nikel": 1,
-    "litium": 18,
-    "aluminium": 32,
-    "tembaga": 21,
-    "logam_tanah_jarang": 1,
-    "bijih_besi": 17
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const saint_kitts_dan_nevis: CountryData = {
     "sepeda_motor": 36,
     "smelter": 6,
     "semen_beton": 1,
-    "kayu": 32,
-    "air_mineral": 18,
-    "gula": 29,
-    "roti": 38,
-    "farmasi": 33,
-    "pupuk": 10,
-    "pengolahan_daging": 14,
-    "mie_instan": 28
-  },
+    "kayu": 32
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const saint_kitts_dan_nevis: CountryData = {
     "udang_kerang": 11.5,
     "ikan": 33
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 18,
+    "gula": 29,
+    "roti": 38,
+    "pengolahan_daging": 14,
+    "mie_instan": 28
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 33
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 15,
     "gudang_senjata": 32,
     "hangar_tank": 18,
@@ -112,8 +105,8 @@ export const saint_kitts_dan_nevis: CountryData = {
     "pangkalan_udara": 40,
     "pangkalan_laut": 6,
     "program_luar_angkasa": 14,
-    "pertahanan_siber": 19,
-  },
+    "pertahanan_siber": 19
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const saint_kitts_dan_nevis: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 27,
     "intelijen": 11,
@@ -170,13 +162,12 @@ export const saint_kitts_dan_nevis: CountryData = {
       "manajemen_wilayah": 11,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 3,
-          "sepeda_motor": 15,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 3,
+        "sepeda_motor": 15,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 34,
@@ -187,9 +178,8 @@ export const saint_kitts_dan_nevis: CountryData = {
           "kantor_polisi": 36,
           "kamera_pengawas": 25,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const saint_kitts_dan_nevis: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

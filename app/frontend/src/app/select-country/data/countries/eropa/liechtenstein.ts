@@ -17,14 +17,13 @@ export const liechtenstein: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 14,
-    "pembangkit_air": 24,
-    "pembangkit_surya": 16,
-    "pembangkit_termal": 18,
-    "pembangkit_gas": 17,
-    "pembangkit_angin": 2,
-    "jaringan_listrik": 50
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const liechtenstein: CountryData = {
     "kereta_bawah_tanah": 26,
     "jalur_kereta": 32,
     "jalan_tol": 16,
-    "kualitas_jalan": 89,
     "pelabuhan_laut": 7,
     "bandara": 39,
     "terminal_bus": 28,
-    "helipad": 39,
-    "cakupan_internet": 82
-  },
+    "helipad": 39
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 30,
-    "uranium": 7,
-    "batu_bara": 16,
-    "minyak_bumi": 20,
-    "gas_alam": 19,
-    "garam": 34,
-    "nikel": 7,
-    "litium": 8,
-    "aluminium": 34,
-    "tembaga": 28,
-    "logam_tanah_jarang": 38,
-    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const liechtenstein: CountryData = {
     "sepeda_motor": 30,
     "smelter": 13,
     "semen_beton": 6,
-    "kayu": 15,
-    "air_mineral": 23,
-    "gula": 10,
-    "roti": 25,
-    "farmasi": 32,
-    "pupuk": 18,
-    "pengolahan_daging": 21,
-    "mie_instan": 32
-  },
+    "kayu": 15
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const liechtenstein: CountryData = {
     "udang_kerang": 5.5,
     "ikan": 2
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 23,
+    "gula": 10,
+    "roti": 25,
+    "pengolahan_daging": 21,
+    "mie_instan": 32
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 32
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 13,
     "gudang_senjata": 27,
     "hangar_tank": 7,
@@ -112,8 +105,8 @@ export const liechtenstein: CountryData = {
     "pangkalan_udara": 35,
     "pangkalan_laut": 10,
     "program_luar_angkasa": 22,
-    "pertahanan_siber": 16,
-  },
+    "pertahanan_siber": 16
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const liechtenstein: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 8,
     "intelijen": 25,
@@ -170,13 +162,12 @@ export const liechtenstein: CountryData = {
       "manajemen_wilayah": 19,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 15,
-          "sepeda_motor": 24,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 15,
+        "sepeda_motor": 24,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 4,
@@ -187,9 +178,8 @@ export const liechtenstein: CountryData = {
           "kantor_polisi": 14,
           "kamera_pengawas": 3,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const liechtenstein: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

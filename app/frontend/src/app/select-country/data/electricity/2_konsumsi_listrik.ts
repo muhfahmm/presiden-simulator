@@ -1,4 +1,5 @@
-import { CountryData, SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian, SektorPabrikMiliter } from "../types/_index";
+import { CountryData, SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian, SektorPabrikMiliter, SektorEkstraksi } from "../types/_index";
+import { ExtractionData } from "../extraction/1_kualitas_ekstraksi";
 
 // 1. Konsumsi Ekstraksi (Mining)
 export const KONSUMSI_EKSTRAKSI = {
@@ -6,7 +7,7 @@ export const KONSUMSI_EKSTRAKSI = {
   litium: 25, minyak_bumi: 25, nikel: 20, logam_tanah_jarang: 35, tembaga: 15, uranium: 40
 };
 
-export function hitungKonsumsiEkstraksi(extraction: CountryData["sektor_ekstraksi"]) {
+export function hitungKonsumsiEkstraksi(extraction: SektorEkstraksi) {
   return (
     (extraction.aluminium ?? 0) * KONSUMSI_EKSTRAKSI.aluminium +
     (extraction.emas ?? 0) * KONSUMSI_EKSTRAKSI.emas +
@@ -37,15 +38,22 @@ export function hitungKonsumsiProduksi(manufacturing: CountryData["sektor_manufa
     (manufacturing.sepeda_motor ?? 0) * KONSUMSI_PRODUKSI.sepeda_motor +
     (manufacturing.smelter ?? 0) * KONSUMSI_PRODUKSI.smelter +
     (manufacturing.semen_beton ?? 0) * KONSUMSI_PRODUKSI.semen_beton +
-    (manufacturing.kayu ?? 0) * KONSUMSI_PRODUKSI.kayu +
-    (manufacturing.air_mineral ?? 0) * KONSUMSI_PRODUKSI.air_mineral +
-    (manufacturing.gula ?? 0) * KONSUMSI_PRODUKSI.gula +
-    (manufacturing.roti ?? 0) * KONSUMSI_PRODUKSI.roti +
-    (manufacturing.farmasi ?? 0) * KONSUMSI_PRODUKSI.farmasi +
-    (manufacturing.pupuk ?? 0) * KONSUMSI_PRODUKSI.pupuk +
-    (manufacturing.pengolahan_daging ?? 0) * KONSUMSI_PRODUKSI.pengolahan_daging +
-    (manufacturing.mie_instan ?? 0) * KONSUMSI_PRODUKSI.mie_instan
+    (manufacturing.kayu ?? 0) * KONSUMSI_PRODUKSI.kayu
   );
+}
+
+export function hitungKonsumsiOlahanPangan(olahan: CountryData["sektor_olahan_pangan"]) {
+  return (
+    (olahan.air_mineral ?? 0) * KONSUMSI_PRODUKSI.air_mineral +
+    (olahan.gula ?? 0) * KONSUMSI_PRODUKSI.gula +
+    (olahan.roti ?? 0) * KONSUMSI_PRODUKSI.roti +
+    (olahan.pengolahan_daging ?? 0) * KONSUMSI_PRODUKSI.pengolahan_daging +
+    (olahan.mie_instan ?? 0) * KONSUMSI_PRODUKSI.mie_instan
+  );
+}
+
+export function hitungKonsumsiFarmasi(farmasi: CountryData["sektor_farmasi"]) {
+  return (farmasi.farmasi ?? 0) * KONSUMSI_PRODUKSI.farmasi;
 }
 
 // 3. Konsumsi Pertanian & Peternakan
@@ -273,6 +281,8 @@ export function hitungTotalKonsumsiNasional(data: CountryData) {
   return (
     hitungKonsumsiEkstraksi(data.sektor_ekstraksi) +
     hitungKonsumsiProduksi(data.sektor_manufaktur) +
+    hitungKonsumsiOlahanPangan(data.sektor_olahan_pangan) +
+    hitungKonsumsiFarmasi(data.sektor_farmasi) +
     hitungKonsumsiPangan(data.sektor_peternakan, data.sektor_agrikultur) +
     hitungKonsumsiPertahanan(data.sektor_pertahanan, data.armada_militer, data.militer_strategis, data.armada_kepolisian, data.pabrik_militer) +
     hitungKonsumsiSosial(data.sektor_sosial) +

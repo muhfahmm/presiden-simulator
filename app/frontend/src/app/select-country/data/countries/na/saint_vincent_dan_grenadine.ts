@@ -17,14 +17,13 @@ export const saint_vincent_dan_grenadine: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 1,
-    "pembangkit_air": 7,
-    "pembangkit_surya": 2,
-    "pembangkit_termal": 23,
-    "pembangkit_gas": 4,
-    "pembangkit_angin": 8,
-    "jaringan_listrik": 67
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "kereta_bawah_tanah": 24,
     "jalur_kereta": 33,
     "jalan_tol": 16,
-    "kualitas_jalan": 79,
     "pelabuhan_laut": 27,
     "bandara": 26,
     "terminal_bus": 7,
-    "helipad": 7,
-    "cakupan_internet": 50
-  },
+    "helipad": 7
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 19,
-    "uranium": 19,
-    "batu_bara": 5,
-    "minyak_bumi": 10,
-    "gas_alam": 2,
-    "garam": 20,
-    "nikel": 23,
-    "litium": 11,
-    "aluminium": 24,
-    "tembaga": 33,
-    "logam_tanah_jarang": 34,
-    "bijih_besi": 28
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "sepeda_motor": 15,
     "smelter": 17,
     "semen_beton": 12,
-    "kayu": 13,
-    "air_mineral": 16,
-    "gula": 24,
-    "roti": 20,
-    "farmasi": 11,
-    "pupuk": 37,
-    "pengolahan_daging": 23,
-    "mie_instan": 40
-  },
+    "kayu": 13
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "udang_kerang": 15.5,
     "ikan": 22
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 16,
+    "gula": 24,
+    "roti": 20,
+    "pengolahan_daging": 23,
+    "mie_instan": 40
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 11
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 25,
     "gudang_senjata": 21,
     "hangar_tank": 23,
@@ -112,8 +105,8 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "pangkalan_udara": 39,
     "pangkalan_laut": 40,
     "program_luar_angkasa": 14,
-    "pertahanan_siber": 14,
-  },
+    "pertahanan_siber": 14
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const saint_vincent_dan_grenadine: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 3,
     "intelijen": 22,
@@ -170,13 +162,12 @@ export const saint_vincent_dan_grenadine: CountryData = {
       "manajemen_wilayah": 27,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 39,
-          "sepeda_motor": 20,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 39,
+        "sepeda_motor": 20,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 39,
@@ -187,9 +178,8 @@ export const saint_vincent_dan_grenadine: CountryData = {
           "kantor_polisi": 29,
           "kamera_pengawas": 1,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

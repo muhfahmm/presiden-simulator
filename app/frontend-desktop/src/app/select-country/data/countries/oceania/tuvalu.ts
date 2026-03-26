@@ -17,14 +17,13 @@ export const tuvalu: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 33,
-    "pembangkit_air": 27,
-    "pembangkit_surya": 28,
-    "pembangkit_termal": 12,
-    "pembangkit_gas": 32,
-    "pembangkit_angin": 36,
-    "jaringan_listrik": 66
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const tuvalu: CountryData = {
     "kereta_bawah_tanah": 14,
     "jalur_kereta": 31,
     "jalan_tol": 8,
-    "kualitas_jalan": 65,
     "pelabuhan_laut": 3,
     "bandara": 4,
     "terminal_bus": 1,
-    "helipad": 20,
-    "cakupan_internet": 78
-  },
+    "helipad": 20
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 18,
-    "uranium": 32,
-    "batu_bara": 30,
-    "minyak_bumi": 1,
-    "gas_alam": 7,
-    "garam": 19,
-    "nikel": 19,
-    "litium": 1,
-    "aluminium": 27,
-    "tembaga": 21,
-    "logam_tanah_jarang": 30,
-    "bijih_besi": 24
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const tuvalu: CountryData = {
     "sepeda_motor": 36,
     "smelter": 7,
     "semen_beton": 25,
-    "kayu": 33,
-    "air_mineral": 39,
-    "gula": 17,
-    "roti": 26,
-    "farmasi": 8,
-    "pupuk": 18,
-    "pengolahan_daging": 3,
-    "mie_instan": 5
-  },
+    "kayu": 33
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const tuvalu: CountryData = {
     "udang_kerang": 5.5,
     "ikan": 22
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 39,
+    "gula": 17,
+    "roti": 26,
+    "pengolahan_daging": 3,
+    "mie_instan": 5
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 8
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 38,
     "gudang_senjata": 26,
     "hangar_tank": 1,
@@ -112,8 +105,8 @@ export const tuvalu: CountryData = {
     "pangkalan_udara": 25,
     "pangkalan_laut": 4,
     "program_luar_angkasa": 5,
-    "pertahanan_siber": 31,
-  },
+    "pertahanan_siber": 31
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const tuvalu: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 36,
     "intelijen": 13,
@@ -170,13 +162,12 @@ export const tuvalu: CountryData = {
       "manajemen_wilayah": 12,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 31,
-          "sepeda_motor": 2,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 31,
+        "sepeda_motor": 2,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -187,9 +178,8 @@ export const tuvalu: CountryData = {
           "kantor_polisi": 12,
           "kamera_pengawas": 33,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const tuvalu: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

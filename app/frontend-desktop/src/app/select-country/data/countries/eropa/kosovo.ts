@@ -17,14 +17,13 @@ export const kosovo: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 24,
-    "pembangkit_air": 27,
-    "pembangkit_surya": 16,
-    "pembangkit_termal": 5,
-    "pembangkit_gas": 22,
-    "pembangkit_angin": 37,
-    "jaringan_listrik": 83
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const kosovo: CountryData = {
     "kereta_bawah_tanah": 5,
     "jalur_kereta": 13,
     "jalan_tol": 30,
-    "kualitas_jalan": 75,
     "pelabuhan_laut": 36,
     "bandara": 24,
     "terminal_bus": 38,
-    "helipad": 17,
-    "cakupan_internet": 76
-  },
+    "helipad": 17
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 36,
-    "uranium": 23,
-    "batu_bara": 10,
-    "minyak_bumi": 8,
-    "gas_alam": 7,
-    "garam": 33,
-    "nikel": 36,
-    "litium": 21,
-    "aluminium": 4,
-    "tembaga": 13,
-    "logam_tanah_jarang": 23,
-    "bijih_besi": 28
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const kosovo: CountryData = {
     "sepeda_motor": 8,
     "smelter": 18,
     "semen_beton": 4,
-    "kayu": 40,
-    "air_mineral": 38,
-    "gula": 35,
-    "roti": 23,
-    "farmasi": 34,
-    "pupuk": 37,
-    "pengolahan_daging": 16,
-    "mie_instan": 34
-  },
+    "kayu": 40
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const kosovo: CountryData = {
     "udang_kerang": 28.5,
     "ikan": 26
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 38,
+    "gula": 35,
+    "roti": 23,
+    "pengolahan_daging": 16,
+    "mie_instan": 34
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 34
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 39,
     "gudang_senjata": 13,
     "hangar_tank": 10,
@@ -112,8 +105,8 @@ export const kosovo: CountryData = {
     "pangkalan_udara": 38,
     "pangkalan_laut": 34,
     "program_luar_angkasa": 33,
-    "pertahanan_siber": 9,
-  },
+    "pertahanan_siber": 9
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const kosovo: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 11,
     "intelijen": 7,
@@ -170,13 +162,12 @@ export const kosovo: CountryData = {
       "manajemen_wilayah": 6,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 38,
-          "sepeda_motor": 16,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 38,
+        "sepeda_motor": 16,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 35,
@@ -187,9 +178,8 @@ export const kosovo: CountryData = {
           "kantor_polisi": 7,
           "kamera_pengawas": 31,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const kosovo: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

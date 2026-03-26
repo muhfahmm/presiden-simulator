@@ -17,13 +17,12 @@ export const namibia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 26,
-    "pembangkit_air": 19,
-    "pembangkit_nuklir": 40,
-    "jaringan_listrik": 85,
-    "pembangkit_surya": 7,
-    "pembangkit_termal": 1,
-    "pembangkit_angin": 25
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const namibia: CountryData = {
     "terminal_bus": 2,
     "helipad": 15,
     "jalan_tol": 4,
-    "cakupan_internet": 53,
     "jalur_kereta": 16,
-    "kualitas_jalan": 80,
     "pelabuhan_laut": 34,
     "kereta_bawah_tanah": 1
   },
@@ -46,37 +43,15 @@ export const namibia: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 37,
-    "batu_bara": 17,
-    "tembaga": 18,
-    "gas_alam": 15,
-    "emas": 21,
-    "bijih_besi": 10,
-    "litium": 38,
-    "nikel": 30,
-    "minyak_bumi": 29,
-    "logam_tanah_jarang": 7,
-    "garam": 12,
-    "uranium": 22
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 31,
-    "mobil": 13,
+  "sektor_manufaktur": {    "mobil": 13,
     "semen_beton": 27,
-    "pupuk": 18,
-    "mie_instan": 3,
-    "pengolahan_daging": 39,
-    "air_mineral": 26,
-    "sepeda_motor": 36,
-    "farmasi": 20,
-    "semikonduktor": 38,
-    "smelter": 7,
-    "gula": 11,
-    "kayu": 10
+    "pengolahan_daging": 39,    "sepeda_motor": 36,    "semikonduktor": 38,
+    "smelter": 7,    "kayu": 10
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const namibia: CountryData = {
     "udang_kerang": 23.0,
     "ikan": 28
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 26,
+    "gula": 11,
+    "roti": 31,
+    "pengolahan_daging": 39,
+    "mie_instan": 3
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 20
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 34,
     "gudang_senjata": 22,
     "hangar_tank": 4,
@@ -112,8 +102,8 @@ export const namibia: CountryData = {
     "pangkalan_udara": 40,
     "pangkalan_laut": 12,
     "program_luar_angkasa": 30,
-    "pertahanan_siber": 4,
-  },
+    "pertahanan_siber": 4
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const namibia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 25,
     "intelijen": 11,
@@ -171,13 +160,12 @@ export const namibia: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 23,
-          "sepeda_motor": 13,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 23,
+        "sepeda_motor": 13,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 2,
@@ -188,9 +176,8 @@ export const namibia: CountryData = {
           "kantor_polisi": 4,
           "kamera_pengawas": 13,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const namibia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

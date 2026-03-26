@@ -17,14 +17,13 @@ export const uni_emirat_arab: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 11,
-    "pembangkit_air": 40,
-    "pembangkit_surya": 15,
-    "pembangkit_termal": 19,
-    "pembangkit_gas": 11,
-    "pembangkit_angin": 21,
-    "jaringan_listrik": 64
-  },
+    "pembangkit_listrik_tenaga_nuklir": 4,
+    "pembangkit_listrik_tenaga_air": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 1,
+    "pembangkit_listrik_tenaga_gas": 89,
+    "pembangkit_listrik_tenaga_angin": 0
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const uni_emirat_arab: CountryData = {
     "kereta_bawah_tanah": 25,
     "jalur_kereta": 35,
     "jalan_tol": 36,
-    "kualitas_jalan": 80,
     "pelabuhan_laut": 13,
     "bandara": 17,
     "terminal_bus": 14,
-    "helipad": 19,
-    "cakupan_internet": 67
-  },
+    "helipad": 19
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 5,
-    "uranium": 25,
-    "batu_bara": 2,
-    "minyak_bumi": 36,
-    "gas_alam": 36,
-    "garam": 30,
-    "nikel": 11,
-    "litium": 11,
-    "aluminium": 4,
-    "tembaga": 27,
-    "logam_tanah_jarang": 36,
-    "bijih_besi": 38
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const uni_emirat_arab: CountryData = {
     "sepeda_motor": 28,
     "smelter": 35,
     "semen_beton": 31,
-    "kayu": 13,
-    "air_mineral": 20,
-    "gula": 32,
-    "roti": 30,
-    "farmasi": 4,
-    "pupuk": 37,
-    "pengolahan_daging": 22,
-    "mie_instan": 11
-  },
+    "kayu": 13
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const uni_emirat_arab: CountryData = {
     "udang_kerang": 33.0,
     "ikan": 26
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 20,
+    "gula": 32,
+    "roti": 30,
+    "pengolahan_daging": 22,
+    "mie_instan": 11
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 4
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 34,
     "gudang_senjata": 16,
     "hangar_tank": 31,
@@ -112,8 +105,8 @@ export const uni_emirat_arab: CountryData = {
     "pangkalan_udara": 15,
     "pangkalan_laut": 28,
     "program_luar_angkasa": 21,
-    "pertahanan_siber": 24,
-  },
+    "pertahanan_siber": 24
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const uni_emirat_arab: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 33,
     "intelijen": 5,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 32,
       "misi_mata_mata": 23,
       "misi_sabotase": 37,
       "manajemen_wilayah": 17,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 27,
-          "sepeda_motor": 3,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 27,
+        "sepeda_motor": 3,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 28,
@@ -187,9 +178,8 @@ export const uni_emirat_arab: CountryData = {
           "kantor_polisi": 22,
           "kamera_pengawas": 35,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const uni_emirat_arab: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

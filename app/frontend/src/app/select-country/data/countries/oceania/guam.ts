@@ -17,14 +17,13 @@ export const guam: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 20,
-    "pembangkit_air": 4,
-    "pembangkit_surya": 26,
-    "pembangkit_termal": 19,
-    "pembangkit_gas": 32,
-    "pembangkit_angin": 22,
-    "jaringan_listrik": 69
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const guam: CountryData = {
     "kereta_bawah_tanah": 16,
     "jalur_kereta": 24,
     "jalan_tol": 35,
-    "kualitas_jalan": 62,
     "pelabuhan_laut": 7,
     "bandara": 5,
     "terminal_bus": 27,
-    "helipad": 13,
-    "cakupan_internet": 88
-  },
+    "helipad": 13
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 32,
-    "uranium": 16,
-    "batu_bara": 22,
-    "minyak_bumi": 20,
-    "gas_alam": 35,
-    "garam": 29,
-    "nikel": 12,
-    "litium": 30,
-    "aluminium": 35,
-    "tembaga": 2,
-    "logam_tanah_jarang": 26,
-    "bijih_besi": 19
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const guam: CountryData = {
     "sepeda_motor": 16,
     "smelter": 32,
     "semen_beton": 8,
-    "kayu": 19,
-    "air_mineral": 28,
-    "gula": 27,
-    "roti": 9,
-    "farmasi": 7,
-    "pupuk": 33,
-    "pengolahan_daging": 20,
-    "mie_instan": 3
-  },
+    "kayu": 19
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const guam: CountryData = {
     "udang_kerang": 35.5,
     "ikan": 1
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 28,
+    "gula": 27,
+    "roti": 9,
+    "pengolahan_daging": 20,
+    "mie_instan": 3
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 7
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 14,
     "gudang_senjata": 24,
     "hangar_tank": 2,
@@ -112,8 +105,8 @@ export const guam: CountryData = {
     "pangkalan_udara": 32,
     "pangkalan_laut": 17,
     "program_luar_angkasa": 31,
-    "pertahanan_siber": 12,
-  },
+    "pertahanan_siber": 12
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const guam: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 36,
     "intelijen": 26,
@@ -170,13 +162,12 @@ export const guam: CountryData = {
       "manajemen_wilayah": 9,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 2,
-          "sepeda_motor": 7,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 2,
+        "sepeda_motor": 7,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 13,
@@ -187,9 +178,8 @@ export const guam: CountryData = {
           "kantor_polisi": 3,
           "kamera_pengawas": 32,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const guam: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

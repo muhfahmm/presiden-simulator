@@ -17,14 +17,13 @@ export const jerman: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 30,
-    "pembangkit_air": 38,
-    "pembangkit_surya": 17,
-    "pembangkit_termal": 20,
-    "pembangkit_gas": 37,
-    "pembangkit_angin": 36,
-    "jaringan_listrik": 51
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 3,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 35,
+    "pembangkit_listrik_tenaga_gas": 15,
+    "pembangkit_listrik_tenaga_angin": 32
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const jerman: CountryData = {
     "kereta_bawah_tanah": 35,
     "jalur_kereta": 4,
     "jalan_tol": 1,
-    "kualitas_jalan": 63,
     "pelabuhan_laut": 13,
     "bandara": 4,
     "terminal_bus": 38,
-    "helipad": 19,
-    "cakupan_internet": 63
-  },
+    "helipad": 19
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 14,
-    "uranium": 14,
-    "batu_bara": 1,
-    "minyak_bumi": 7,
-    "gas_alam": 24,
-    "garam": 28,
-    "nikel": 3,
-    "litium": 14,
-    "aluminium": 36,
-    "tembaga": 20,
-    "logam_tanah_jarang": 8,
-    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const jerman: CountryData = {
     "sepeda_motor": 16,
     "smelter": 34,
     "semen_beton": 31,
-    "kayu": 20,
-    "air_mineral": 38,
-    "gula": 5,
-    "roti": 10,
-    "farmasi": 23,
-    "pupuk": 31,
-    "pengolahan_daging": 34,
-    "mie_instan": 12
-  },
+    "kayu": 20
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const jerman: CountryData = {
     "udang_kerang": 30.0,
     "ikan": 15
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 38,
+    "gula": 5,
+    "roti": 10,
+    "pengolahan_daging": 34,
+    "mie_instan": 12
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 23
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 32,
     "gudang_senjata": 17,
     "hangar_tank": 40,
@@ -112,8 +105,8 @@ export const jerman: CountryData = {
     "pangkalan_udara": 9,
     "pangkalan_laut": 7,
     "program_luar_angkasa": 26,
-    "pertahanan_siber": 29,
-  },
+    "pertahanan_siber": 29
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const jerman: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 25,
     "intelijen": 10,
@@ -170,13 +162,12 @@ export const jerman: CountryData = {
       "manajemen_wilayah": 33,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 8,
-          "sepeda_motor": 20,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 8,
+        "sepeda_motor": 20,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 21,
@@ -187,9 +178,8 @@ export const jerman: CountryData = {
           "kantor_polisi": 38,
           "kamera_pengawas": 19,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const jerman: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

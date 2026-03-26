@@ -17,14 +17,13 @@ export const monako: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 6,
-    "pembangkit_air": 8,
-    "pembangkit_surya": 21,
-    "pembangkit_termal": 20,
-    "pembangkit_gas": 33,
-    "pembangkit_angin": 34,
-    "jaringan_listrik": 80
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const monako: CountryData = {
     "kereta_bawah_tanah": 9,
     "jalur_kereta": 25,
     "jalan_tol": 15,
-    "kualitas_jalan": 81,
     "pelabuhan_laut": 36,
     "bandara": 13,
     "terminal_bus": 33,
-    "helipad": 31,
-    "cakupan_internet": 57
-  },
+    "helipad": 31
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 34,
-    "uranium": 24,
-    "batu_bara": 28,
-    "minyak_bumi": 33,
-    "gas_alam": 17,
-    "garam": 13,
-    "nikel": 32,
-    "litium": 32,
-    "aluminium": 9,
-    "tembaga": 18,
-    "logam_tanah_jarang": 29,
-    "bijih_besi": 24
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const monako: CountryData = {
     "sepeda_motor": 16,
     "smelter": 13,
     "semen_beton": 5,
-    "kayu": 8,
-    "air_mineral": 13,
-    "gula": 37,
-    "roti": 7,
-    "farmasi": 36,
-    "pupuk": 37,
-    "pengolahan_daging": 32,
-    "mie_instan": 32
-  },
+    "kayu": 8
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const monako: CountryData = {
     "udang_kerang": 17.5,
     "ikan": 26
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 13,
+    "gula": 37,
+    "roti": 7,
+    "pengolahan_daging": 32,
+    "mie_instan": 32
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 36
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 13,
     "gudang_senjata": 21,
     "hangar_tank": 4,
@@ -112,8 +105,8 @@ export const monako: CountryData = {
     "pangkalan_udara": 22,
     "pangkalan_laut": 15,
     "program_luar_angkasa": 24,
-    "pertahanan_siber": 28,
-  },
+    "pertahanan_siber": 28
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const monako: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 2,
     "intelijen": 28,
@@ -170,13 +162,12 @@ export const monako: CountryData = {
       "manajemen_wilayah": 11,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 32,
-          "sepeda_motor": 29,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 32,
+        "sepeda_motor": 29,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 8,
@@ -187,9 +178,8 @@ export const monako: CountryData = {
           "kantor_polisi": 37,
           "kamera_pengawas": 24,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const monako: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

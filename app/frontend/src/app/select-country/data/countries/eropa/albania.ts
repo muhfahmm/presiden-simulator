@@ -17,14 +17,13 @@ export const albania: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 40,
-    "pembangkit_air": 15,
-    "pembangkit_surya": 18,
-    "pembangkit_termal": 33,
-    "pembangkit_gas": 6,
-    "pembangkit_angin": 24,
-    "jaringan_listrik": 71
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 98,
+    "pembangkit_listrik_tenaga_surya": 1,
+    "pembangkit_listrik_tenaga_uap": 0,
+    "pembangkit_listrik_tenaga_gas": 0,
+    "pembangkit_listrik_tenaga_angin": 1
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const albania: CountryData = {
     "kereta_bawah_tanah": 10,
     "jalur_kereta": 15,
     "jalan_tol": 18,
-    "kualitas_jalan": 78,
     "pelabuhan_laut": 21,
     "bandara": 25,
     "terminal_bus": 6,
-    "helipad": 6,
-    "cakupan_internet": 57
-  },
+    "helipad": 6
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 31,
-    "uranium": 23,
-    "batu_bara": 14,
-    "minyak_bumi": 8,
-    "gas_alam": 29,
-    "garam": 14,
-    "nikel": 17,
-    "litium": 7,
-    "aluminium": 34,
-    "tembaga": 32,
-    "logam_tanah_jarang": 4,
-    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const albania: CountryData = {
     "sepeda_motor": 36,
     "smelter": 30,
     "semen_beton": 30,
-    "kayu": 1,
-    "air_mineral": 5,
-    "gula": 8,
-    "roti": 35,
-    "farmasi": 24,
-    "pupuk": 8,
-    "pengolahan_daging": 35,
-    "mie_instan": 8
-  },
+    "kayu": 1
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const albania: CountryData = {
     "udang_kerang": 17.5,
     "ikan": 23
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 5,
+    "gula": 8,
+    "roti": 35,
+    "pengolahan_daging": 35,
+    "mie_instan": 8
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 24
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 6,
     "gudang_senjata": 22,
     "hangar_tank": 22,
@@ -112,8 +105,8 @@ export const albania: CountryData = {
     "pangkalan_udara": 3,
     "pangkalan_laut": 17,
     "program_luar_angkasa": 35,
-    "pertahanan_siber": 35,
-  },
+    "pertahanan_siber": 35
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const albania: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 28,
     "intelijen": 8,
@@ -170,13 +162,12 @@ export const albania: CountryData = {
       "manajemen_wilayah": 11,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 9,
-          "sepeda_motor": 4,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 9,
+        "sepeda_motor": 4,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 23,
@@ -187,9 +178,8 @@ export const albania: CountryData = {
           "kantor_polisi": 21,
           "kamera_pengawas": 18,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const albania: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

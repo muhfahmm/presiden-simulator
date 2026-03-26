@@ -17,14 +17,13 @@ export const bolivia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 9,
-    "pembangkit_air": 23,
-    "pembangkit_surya": 29,
-    "pembangkit_termal": 11,
-    "pembangkit_gas": 29,
-    "pembangkit_angin": 27,
-    "jaringan_listrik": 66
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 60,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 15,
+    "pembangkit_listrik_tenaga_angin": 4
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const bolivia: CountryData = {
     "kereta_bawah_tanah": 33,
     "jalur_kereta": 17,
     "jalan_tol": 34,
-    "kualitas_jalan": 59,
     "pelabuhan_laut": 31,
     "bandara": 10,
     "terminal_bus": 21,
-    "helipad": 19,
-    "cakupan_internet": 89
-  },
+    "helipad": 19
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 33,
-    "uranium": 27,
-    "batu_bara": 13,
-    "minyak_bumi": 23,
-    "gas_alam": 21,
-    "garam": 1,
-    "nikel": 39,
-    "litium": 21,
-    "aluminium": 37,
-    "tembaga": 30,
-    "logam_tanah_jarang": 28,
-    "bijih_besi": 29
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const bolivia: CountryData = {
     "sepeda_motor": 1,
     "smelter": 32,
     "semen_beton": 33,
-    "kayu": 23,
-    "air_mineral": 35,
-    "gula": 15,
-    "roti": 22,
-    "farmasi": 8,
-    "pupuk": 8,
-    "pengolahan_daging": 2,
-    "mie_instan": 9
-  },
+    "kayu": 23
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const bolivia: CountryData = {
     "udang_kerang": 19.0,
     "ikan": 17
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 35,
+    "gula": 15,
+    "roti": 22,
+    "pengolahan_daging": 2,
+    "mie_instan": 9
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 8
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 26,
     "gudang_senjata": 25,
     "hangar_tank": 7,
@@ -112,8 +105,8 @@ export const bolivia: CountryData = {
     "pangkalan_udara": 21,
     "pangkalan_laut": 26,
     "program_luar_angkasa": 4,
-    "pertahanan_siber": 26,
-  },
+    "pertahanan_siber": 26
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const bolivia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 18,
     "intelijen": 35,
@@ -170,13 +162,12 @@ export const bolivia: CountryData = {
       "manajemen_wilayah": 33,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 11,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 11,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 11,
@@ -187,9 +178,8 @@ export const bolivia: CountryData = {
           "kantor_polisi": 33,
           "kamera_pengawas": 28,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const bolivia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

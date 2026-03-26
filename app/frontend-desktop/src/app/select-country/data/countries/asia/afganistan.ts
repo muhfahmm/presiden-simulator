@@ -17,14 +17,13 @@ export const afganistan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 29,
-    "pembangkit_air": 27,
-    "pembangkit_surya": 33,
-    "pembangkit_termal": 1,
-    "pembangkit_gas": 5,
-    "pembangkit_angin": 27,
-    "jaringan_listrik": 82
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const afganistan: CountryData = {
     "kereta_bawah_tanah": 28,
     "jalur_kereta": 19,
     "jalan_tol": 17,
-    "kualitas_jalan": 58,
     "pelabuhan_laut": 36,
     "bandara": 38,
     "terminal_bus": 30,
-    "helipad": 17,
-    "cakupan_internet": 53
-  },
+    "helipad": 17
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 27,
-    "uranium": 32,
-    "batu_bara": 28,
-    "minyak_bumi": 9,
-    "gas_alam": 12,
-    "garam": 26,
-    "nikel": 18,
-    "litium": 13,
-    "aluminium": 12,
-    "tembaga": 34,
-    "logam_tanah_jarang": 38,
-    "bijih_besi": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const afganistan: CountryData = {
     "sepeda_motor": 16,
     "smelter": 24,
     "semen_beton": 13,
-    "kayu": 2,
-    "air_mineral": 35,
-    "gula": 6,
-    "roti": 4,
-    "farmasi": 9,
-    "pupuk": 9,
-    "pengolahan_daging": 31,
-    "mie_instan": 12
-  },
+    "kayu": 2
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const afganistan: CountryData = {
     "udang_kerang": 4.0,
     "ikan": 35
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 35,
+    "gula": 6,
+    "roti": 4,
+    "pengolahan_daging": 31,
+    "mie_instan": 12
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 9
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 16,
     "gudang_senjata": 17,
     "hangar_tank": 7,
@@ -112,8 +105,8 @@ export const afganistan: CountryData = {
     "pangkalan_udara": 28,
     "pangkalan_laut": 14,
     "program_luar_angkasa": 38,
-    "pertahanan_siber": 22,
-  },
+    "pertahanan_siber": 22
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const afganistan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 24,
     "intelijen": 16,
@@ -170,13 +162,12 @@ export const afganistan: CountryData = {
       "manajemen_wilayah": 30,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 15,
-          "sepeda_motor": 28,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 15,
+        "sepeda_motor": 28,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 23,
@@ -187,9 +178,8 @@ export const afganistan: CountryData = {
           "kantor_polisi": 16,
           "kamera_pengawas": 38,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const afganistan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

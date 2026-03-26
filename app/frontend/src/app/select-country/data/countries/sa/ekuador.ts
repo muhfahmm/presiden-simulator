@@ -17,14 +17,13 @@ export const ekuador: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 38,
-    "pembangkit_air": 11,
-    "pembangkit_surya": 2,
-    "pembangkit_termal": 26,
-    "pembangkit_gas": 37,
-    "pembangkit_angin": 11,
-    "jaringan_listrik": 84
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 60,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 15,
+    "pembangkit_listrik_tenaga_angin": 4
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const ekuador: CountryData = {
     "kereta_bawah_tanah": 19,
     "jalur_kereta": 23,
     "jalan_tol": 8,
-    "kualitas_jalan": 92,
     "pelabuhan_laut": 36,
     "bandara": 1,
     "terminal_bus": 11,
-    "helipad": 21,
-    "cakupan_internet": 95
-  },
+    "helipad": 21
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 11,
-    "uranium": 31,
-    "batu_bara": 31,
-    "minyak_bumi": 24,
-    "gas_alam": 16,
-    "garam": 29,
-    "nikel": 24,
-    "litium": 28,
-    "aluminium": 35,
-    "tembaga": 10,
-    "logam_tanah_jarang": 1,
-    "bijih_besi": 28
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const ekuador: CountryData = {
     "sepeda_motor": 13,
     "smelter": 5,
     "semen_beton": 33,
-    "kayu": 35,
-    "air_mineral": 25,
-    "gula": 34,
-    "roti": 19,
-    "farmasi": 32,
-    "pupuk": 26,
-    "pengolahan_daging": 12,
-    "mie_instan": 3
-  },
+    "kayu": 35
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const ekuador: CountryData = {
     "udang_kerang": 5.0,
     "ikan": 35
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 25,
+    "gula": 34,
+    "roti": 19,
+    "pengolahan_daging": 12,
+    "mie_instan": 3
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 32
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 27,
     "gudang_senjata": 10,
     "hangar_tank": 11,
@@ -112,8 +105,8 @@ export const ekuador: CountryData = {
     "pangkalan_udara": 6,
     "pangkalan_laut": 6,
     "program_luar_angkasa": 39,
-    "pertahanan_siber": 22,
-  },
+    "pertahanan_siber": 22
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const ekuador: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 39,
     "intelijen": 12,
@@ -170,13 +162,12 @@ export const ekuador: CountryData = {
       "manajemen_wilayah": 38,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 4,
-          "sepeda_motor": 8,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 4,
+        "sepeda_motor": 8,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 25,
@@ -187,9 +178,8 @@ export const ekuador: CountryData = {
           "kantor_polisi": 6,
           "kamera_pengawas": 35,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const ekuador: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

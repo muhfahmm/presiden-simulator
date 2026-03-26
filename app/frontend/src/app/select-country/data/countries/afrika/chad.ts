@@ -17,13 +17,12 @@ export const chad: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 18,
-    "pembangkit_air": 13,
-    "pembangkit_nuklir": 23,
-    "jaringan_listrik": 89,
-    "pembangkit_surya": 37,
-    "pembangkit_termal": 16,
-    "pembangkit_angin": 35
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const chad: CountryData = {
     "terminal_bus": 20,
     "helipad": 28,
     "jalan_tol": 18,
-    "cakupan_internet": 94,
     "jalur_kereta": 12,
-    "kualitas_jalan": 78,
     "pelabuhan_laut": 29,
     "kereta_bawah_tanah": 25
   },
@@ -46,37 +43,15 @@ export const chad: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 18,
-    "batu_bara": 40,
-    "tembaga": 16,
-    "gas_alam": 22,
-    "emas": 18,
-    "bijih_besi": 26,
-    "litium": 32,
-    "nikel": 22,
-    "minyak_bumi": 14,
-    "logam_tanah_jarang": 23,
-    "garam": 7,
-    "uranium": 22
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 27,
-    "mobil": 23,
+  "sektor_manufaktur": {    "mobil": 23,
     "semen_beton": 20,
-    "pupuk": 40,
-    "mie_instan": 34,
-    "pengolahan_daging": 4,
-    "air_mineral": 17,
-    "sepeda_motor": 27,
-    "farmasi": 8,
-    "semikonduktor": 17,
-    "smelter": 40,
-    "gula": 9,
-    "kayu": 13
+    "pengolahan_daging": 4,    "sepeda_motor": 27,    "semikonduktor": 17,
+    "smelter": 40,    "kayu": 13
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const chad: CountryData = {
     "udang_kerang": 12.5,
     "ikan": 2
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 17,
+    "gula": 9,
+    "roti": 27,
+    "pengolahan_daging": 4,
+    "mie_instan": 34
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 8
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 11,
     "gudang_senjata": 40,
     "hangar_tank": 33,
@@ -112,8 +102,8 @@ export const chad: CountryData = {
     "pangkalan_udara": 30,
     "pangkalan_laut": 22,
     "program_luar_angkasa": 3,
-    "pertahanan_siber": 36,
-  },
+    "pertahanan_siber": 36
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const chad: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 27,
     "intelijen": 30,
@@ -171,13 +160,12 @@ export const chad: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 35,
-          "sepeda_motor": 2,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 35,
+        "sepeda_motor": 2,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 29,
@@ -188,9 +176,8 @@ export const chad: CountryData = {
           "kantor_polisi": 2,
           "kamera_pengawas": 34,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const chad: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

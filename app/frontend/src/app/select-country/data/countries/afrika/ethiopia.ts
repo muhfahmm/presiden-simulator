@@ -17,13 +17,12 @@ export const ethiopia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 40,
-    "pembangkit_air": 27,
-    "pembangkit_nuklir": 19,
-    "jaringan_listrik": 78,
-    "pembangkit_surya": 1,
-    "pembangkit_termal": 3,
-    "pembangkit_angin": 38
+    "pembangkit_listrik_tenaga_gas": 0,
+    "pembangkit_listrik_tenaga_air": 95,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 1,
+    "pembangkit_listrik_tenaga_uap": 2,
+    "pembangkit_listrik_tenaga_angin": 2
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const ethiopia: CountryData = {
     "terminal_bus": 29,
     "helipad": 3,
     "jalan_tol": 29,
-    "cakupan_internet": 70,
     "jalur_kereta": 24,
-    "kualitas_jalan": 67,
     "pelabuhan_laut": 20,
     "kereta_bawah_tanah": 28
   },
@@ -46,37 +43,15 @@ export const ethiopia: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 1,
-    "batu_bara": 3,
-    "tembaga": 25,
-    "gas_alam": 33,
-    "emas": 36,
-    "bijih_besi": 31,
-    "litium": 39,
-    "nikel": 40,
-    "minyak_bumi": 19,
-    "logam_tanah_jarang": 40,
-    "garam": 20,
-    "uranium": 7
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 25,
-    "mobil": 33,
+  "sektor_manufaktur": {    "mobil": 33,
     "semen_beton": 20,
-    "pupuk": 23,
-    "mie_instan": 5,
-    "pengolahan_daging": 15,
-    "air_mineral": 30,
-    "sepeda_motor": 15,
-    "farmasi": 6,
-    "semikonduktor": 22,
-    "smelter": 22,
-    "gula": 7,
-    "kayu": 22
+    "pengolahan_daging": 15,    "sepeda_motor": 15,    "semikonduktor": 22,
+    "smelter": 22,    "kayu": 22
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const ethiopia: CountryData = {
     "udang_kerang": 11.5,
     "ikan": 7
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 30,
+    "gula": 7,
+    "roti": 25,
+    "pengolahan_daging": 15,
+    "mie_instan": 5
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 6
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 28,
     "gudang_senjata": 4,
     "hangar_tank": 8,
@@ -112,8 +102,8 @@ export const ethiopia: CountryData = {
     "pangkalan_udara": 10,
     "pangkalan_laut": 33,
     "program_luar_angkasa": 22,
-    "pertahanan_siber": 26,
-  },
+    "pertahanan_siber": 26
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const ethiopia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 5,
     "intelijen": 34,
@@ -171,13 +160,12 @@ export const ethiopia: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 1,
-          "sepeda_motor": 20,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 1,
+        "sepeda_motor": 20,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 31,
@@ -188,9 +176,8 @@ export const ethiopia: CountryData = {
           "kantor_polisi": 35,
           "kamera_pengawas": 28,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const ethiopia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

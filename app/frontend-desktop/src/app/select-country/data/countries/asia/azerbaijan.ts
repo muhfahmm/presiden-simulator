@@ -17,14 +17,13 @@ export const azerbaijan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 22,
-    "pembangkit_air": 30,
-    "pembangkit_surya": 35,
-    "pembangkit_termal": 26,
-    "pembangkit_gas": 40,
-    "pembangkit_angin": 13,
-    "jaringan_listrik": 54
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const azerbaijan: CountryData = {
     "kereta_bawah_tanah": 33,
     "jalur_kereta": 29,
     "jalan_tol": 34,
-    "kualitas_jalan": 82,
     "pelabuhan_laut": 2,
     "bandara": 6,
     "terminal_bus": 5,
-    "helipad": 29,
-    "cakupan_internet": 55
-  },
+    "helipad": 29
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 26,
-    "uranium": 36,
-    "batu_bara": 40,
-    "minyak_bumi": 35,
-    "gas_alam": 29,
-    "garam": 26,
-    "nikel": 14,
-    "litium": 27,
-    "aluminium": 6,
-    "tembaga": 17,
-    "logam_tanah_jarang": 30,
-    "bijih_besi": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const azerbaijan: CountryData = {
     "sepeda_motor": 8,
     "smelter": 4,
     "semen_beton": 35,
-    "kayu": 1,
-    "air_mineral": 5,
-    "gula": 6,
-    "roti": 36,
-    "farmasi": 24,
-    "pupuk": 27,
-    "pengolahan_daging": 19,
-    "mie_instan": 40
-  },
+    "kayu": 1
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const azerbaijan: CountryData = {
     "udang_kerang": 12.0,
     "ikan": 18
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 5,
+    "gula": 6,
+    "roti": 36,
+    "pengolahan_daging": 19,
+    "mie_instan": 40
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 24
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 21,
     "gudang_senjata": 33,
     "hangar_tank": 2,
@@ -112,8 +105,8 @@ export const azerbaijan: CountryData = {
     "pangkalan_udara": 28,
     "pangkalan_laut": 24,
     "program_luar_angkasa": 2,
-    "pertahanan_siber": 14,
-  },
+    "pertahanan_siber": 14
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const azerbaijan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 2,
     "intelijen": 10,
@@ -170,13 +162,12 @@ export const azerbaijan: CountryData = {
       "manajemen_wilayah": 26,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 24,
-          "sepeda_motor": 38,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 24,
+        "sepeda_motor": 38,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 37,
@@ -187,9 +178,8 @@ export const azerbaijan: CountryData = {
           "kantor_polisi": 40,
           "kamera_pengawas": 13,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const azerbaijan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const bahama: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 10,
-    "pembangkit_air": 36,
-    "pembangkit_surya": 28,
-    "pembangkit_termal": 30,
-    "pembangkit_gas": 1,
-    "pembangkit_angin": 13,
-    "jaringan_listrik": 69
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const bahama: CountryData = {
     "kereta_bawah_tanah": 40,
     "jalur_kereta": 29,
     "jalan_tol": 7,
-    "kualitas_jalan": 61,
     "pelabuhan_laut": 13,
     "bandara": 17,
     "terminal_bus": 21,
-    "helipad": 14,
-    "cakupan_internet": 65
-  },
+    "helipad": 14
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 21,
-    "uranium": 15,
-    "batu_bara": 40,
-    "minyak_bumi": 8,
-    "gas_alam": 20,
-    "garam": 10,
-    "nikel": 31,
-    "litium": 35,
-    "aluminium": 15,
-    "tembaga": 39,
-    "logam_tanah_jarang": 12,
-    "bijih_besi": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const bahama: CountryData = {
     "sepeda_motor": 4,
     "smelter": 32,
     "semen_beton": 15,
-    "kayu": 24,
-    "air_mineral": 13,
-    "gula": 26,
-    "roti": 33,
-    "farmasi": 11,
-    "pupuk": 29,
-    "pengolahan_daging": 19,
-    "mie_instan": 23
-  },
+    "kayu": 24
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const bahama: CountryData = {
     "udang_kerang": 14.5,
     "ikan": 40
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 13,
+    "gula": 26,
+    "roti": 33,
+    "pengolahan_daging": 19,
+    "mie_instan": 23
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 11
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 7,
     "gudang_senjata": 5,
     "hangar_tank": 27,
@@ -112,8 +105,8 @@ export const bahama: CountryData = {
     "pangkalan_udara": 17,
     "pangkalan_laut": 10,
     "program_luar_angkasa": 36,
-    "pertahanan_siber": 34,
-  },
+    "pertahanan_siber": 34
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const bahama: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 10,
     "intelijen": 34,
@@ -170,13 +162,12 @@ export const bahama: CountryData = {
       "manajemen_wilayah": 7,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 21,
-          "sepeda_motor": 4,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 21,
+        "sepeda_motor": 4,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 39,
@@ -187,9 +178,8 @@ export const bahama: CountryData = {
           "kantor_polisi": 4,
           "kamera_pengawas": 6,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const bahama: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

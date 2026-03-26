@@ -17,14 +17,13 @@ export const hong_kong: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 36,
-    "pembangkit_air": 7,
-    "pembangkit_surya": 20,
-    "pembangkit_termal": 19,
-    "pembangkit_gas": 17,
-    "pembangkit_angin": 19,
-    "jaringan_listrik": 59
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const hong_kong: CountryData = {
     "kereta_bawah_tanah": 34,
     "jalur_kereta": 22,
     "jalan_tol": 37,
-    "kualitas_jalan": 66,
     "pelabuhan_laut": 39,
     "bandara": 19,
     "terminal_bus": 31,
-    "helipad": 7,
-    "cakupan_internet": 50
-  },
+    "helipad": 7
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 21,
-    "uranium": 9,
-    "batu_bara": 36,
-    "minyak_bumi": 6,
-    "gas_alam": 21,
-    "garam": 7,
-    "nikel": 6,
-    "litium": 34,
-    "aluminium": 15,
-    "tembaga": 28,
-    "logam_tanah_jarang": 29,
-    "bijih_besi": 36
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const hong_kong: CountryData = {
     "sepeda_motor": 21,
     "smelter": 9,
     "semen_beton": 32,
-    "kayu": 24,
-    "air_mineral": 2,
-    "gula": 5,
-    "roti": 23,
-    "farmasi": 18,
-    "pupuk": 24,
-    "pengolahan_daging": 19,
-    "mie_instan": 17
-  },
+    "kayu": 24
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const hong_kong: CountryData = {
     "udang_kerang": 32.0,
     "ikan": 11
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 2,
+    "gula": 5,
+    "roti": 23,
+    "pengolahan_daging": 19,
+    "mie_instan": 17
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 18
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 26,
     "gudang_senjata": 6,
     "hangar_tank": 2,
@@ -112,8 +105,8 @@ export const hong_kong: CountryData = {
     "pangkalan_udara": 2,
     "pangkalan_laut": 37,
     "program_luar_angkasa": 26,
-    "pertahanan_siber": 1,
-  },
+    "pertahanan_siber": 1
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const hong_kong: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 1,
     "intelijen": 28,
@@ -170,13 +162,12 @@ export const hong_kong: CountryData = {
       "manajemen_wilayah": 3,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 13,
-          "sepeda_motor": 13,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 13,
+        "sepeda_motor": 13,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 1,
@@ -187,9 +178,8 @@ export const hong_kong: CountryData = {
           "kantor_polisi": 1,
           "kamera_pengawas": 11,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const hong_kong: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const qatar: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 32,
-    "pembangkit_air": 29,
-    "pembangkit_surya": 17,
-    "pembangkit_termal": 6,
-    "pembangkit_gas": 8,
-    "pembangkit_angin": 13,
-    "jaringan_listrik": 91
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 0,
+    "pembangkit_listrik_tenaga_surya": 1,
+    "pembangkit_listrik_tenaga_uap": 1,
+    "pembangkit_listrik_tenaga_gas": 98,
+    "pembangkit_listrik_tenaga_angin": 0
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const qatar: CountryData = {
     "kereta_bawah_tanah": 16,
     "jalur_kereta": 15,
     "jalan_tol": 13,
-    "kualitas_jalan": 63,
     "pelabuhan_laut": 11,
     "bandara": 2,
     "terminal_bus": 10,
-    "helipad": 19,
-    "cakupan_internet": 86
-  },
+    "helipad": 19
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 39,
-    "uranium": 16,
-    "batu_bara": 28,
-    "minyak_bumi": 36,
-    "gas_alam": 13,
-    "garam": 16,
-    "nikel": 25,
-    "litium": 22,
-    "aluminium": 8,
-    "tembaga": 2,
-    "logam_tanah_jarang": 4,
-    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const qatar: CountryData = {
     "sepeda_motor": 38,
     "smelter": 30,
     "semen_beton": 5,
-    "kayu": 40,
-    "air_mineral": 30,
-    "gula": 13,
-    "roti": 31,
-    "farmasi": 15,
-    "pupuk": 35,
-    "pengolahan_daging": 16,
-    "mie_instan": 1
-  },
+    "kayu": 40
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const qatar: CountryData = {
     "udang_kerang": 20.5,
     "ikan": 38
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 30,
+    "gula": 13,
+    "roti": 31,
+    "pengolahan_daging": 16,
+    "mie_instan": 1
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 15
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 7,
     "gudang_senjata": 6,
     "hangar_tank": 30,
@@ -112,8 +105,8 @@ export const qatar: CountryData = {
     "pangkalan_udara": 30,
     "pangkalan_laut": 11,
     "program_luar_angkasa": 7,
-    "pertahanan_siber": 24,
-  },
+    "pertahanan_siber": 24
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const qatar: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 34,
     "intelijen": 19,
@@ -170,13 +162,12 @@ export const qatar: CountryData = {
       "manajemen_wilayah": 38,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 38,
-          "sepeda_motor": 33,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 38,
+        "sepeda_motor": 33,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 17,
@@ -187,9 +178,8 @@ export const qatar: CountryData = {
           "kantor_polisi": 8,
           "kamera_pengawas": 38,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const qatar: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

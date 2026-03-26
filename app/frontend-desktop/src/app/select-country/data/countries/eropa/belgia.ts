@@ -17,14 +17,13 @@ export const belgia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 7,
-    "pembangkit_air": 13,
-    "pembangkit_surya": 36,
-    "pembangkit_termal": 23,
-    "pembangkit_gas": 2,
-    "pembangkit_angin": 29,
-    "jaringan_listrik": 56
-  },
+    "pembangkit_listrik_tenaga_nuklir": 5,
+    "pembangkit_listrik_tenaga_air": 3,
+    "pembangkit_listrik_tenaga_surya": 12,
+    "pembangkit_listrik_tenaga_uap": 10,
+    "pembangkit_listrik_tenaga_gas": 15,
+    "pembangkit_listrik_tenaga_angin": 15
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const belgia: CountryData = {
     "kereta_bawah_tanah": 18,
     "jalur_kereta": 35,
     "jalan_tol": 5,
-    "kualitas_jalan": 78,
     "pelabuhan_laut": 36,
     "bandara": 33,
     "terminal_bus": 40,
-    "helipad": 11,
-    "cakupan_internet": 91
-  },
+    "helipad": 11
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 24,
-    "uranium": 39,
-    "batu_bara": 23,
-    "minyak_bumi": 11,
-    "gas_alam": 38,
-    "garam": 11,
-    "nikel": 26,
-    "litium": 8,
-    "aluminium": 9,
-    "tembaga": 16,
-    "logam_tanah_jarang": 32,
-    "bijih_besi": 27
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const belgia: CountryData = {
     "sepeda_motor": 12,
     "smelter": 28,
     "semen_beton": 32,
-    "kayu": 34,
-    "air_mineral": 26,
-    "gula": 33,
-    "roti": 37,
-    "farmasi": 39,
-    "pupuk": 38,
-    "pengolahan_daging": 2,
-    "mie_instan": 15
-  },
+    "kayu": 34
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const belgia: CountryData = {
     "udang_kerang": 26.5,
     "ikan": 39
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 26,
+    "gula": 33,
+    "roti": 37,
+    "pengolahan_daging": 2,
+    "mie_instan": 15
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 39
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 28,
     "gudang_senjata": 2,
     "hangar_tank": 22,
@@ -112,8 +105,8 @@ export const belgia: CountryData = {
     "pangkalan_udara": 6,
     "pangkalan_laut": 28,
     "program_luar_angkasa": 31,
-    "pertahanan_siber": 6,
-  },
+    "pertahanan_siber": 6
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const belgia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 7,
     "intelijen": 36,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 34,
       "misi_mata_mata": 27,
       "misi_sabotase": 1,
       "manajemen_wilayah": 23,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 13,
-          "sepeda_motor": 8,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 13,
+        "sepeda_motor": 8,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 7,
@@ -187,9 +178,8 @@ export const belgia: CountryData = {
           "kantor_polisi": 19,
           "kamera_pengawas": 6,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const belgia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

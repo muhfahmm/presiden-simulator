@@ -17,14 +17,13 @@ export const brunei: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 36,
-    "pembangkit_air": 35,
-    "pembangkit_surya": 2,
-    "pembangkit_termal": 40,
-    "pembangkit_gas": 23,
-    "pembangkit_angin": 10,
-    "jaringan_listrik": 92
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const brunei: CountryData = {
     "kereta_bawah_tanah": 37,
     "jalur_kereta": 28,
     "jalan_tol": 8,
-    "kualitas_jalan": 53,
     "pelabuhan_laut": 22,
     "bandara": 9,
     "terminal_bus": 34,
-    "helipad": 21,
-    "cakupan_internet": 87
-  },
+    "helipad": 21
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 37,
-    "uranium": 28,
-    "batu_bara": 23,
-    "minyak_bumi": 31,
-    "gas_alam": 38,
-    "garam": 10,
-    "nikel": 37,
-    "litium": 12,
-    "aluminium": 6,
-    "tembaga": 35,
-    "logam_tanah_jarang": 36,
-    "bijih_besi": 6
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const brunei: CountryData = {
     "sepeda_motor": 19,
     "smelter": 1,
     "semen_beton": 40,
-    "kayu": 40,
-    "air_mineral": 27,
-    "gula": 16,
-    "roti": 30,
-    "farmasi": 13,
-    "pupuk": 5,
-    "pengolahan_daging": 9,
-    "mie_instan": 12
-  },
+    "kayu": 40
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const brunei: CountryData = {
     "udang_kerang": 15.0,
     "ikan": 29
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 27,
+    "gula": 16,
+    "roti": 30,
+    "pengolahan_daging": 9,
+    "mie_instan": 12
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 13
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 3,
     "gudang_senjata": 34,
     "hangar_tank": 36,
@@ -112,8 +105,8 @@ export const brunei: CountryData = {
     "pangkalan_udara": 24,
     "pangkalan_laut": 27,
     "program_luar_angkasa": 27,
-    "pertahanan_siber": 34,
-  },
+    "pertahanan_siber": 34
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const brunei: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 11,
     "intelijen": 38,
@@ -170,13 +162,12 @@ export const brunei: CountryData = {
       "manajemen_wilayah": 33,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 34,
-          "sepeda_motor": 11,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 34,
+        "sepeda_motor": 11,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 26,
@@ -187,9 +178,8 @@ export const brunei: CountryData = {
           "kantor_polisi": 30,
           "kamera_pengawas": 21,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const brunei: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

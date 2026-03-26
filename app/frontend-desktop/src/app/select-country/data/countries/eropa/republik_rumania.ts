@@ -17,14 +17,13 @@ export const republik_rumania: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 34,
-    "pembangkit_air": 4,
-    "pembangkit_surya": 19,
-    "pembangkit_termal": 23,
-    "pembangkit_gas": 2,
-    "pembangkit_angin": 31,
-    "jaringan_listrik": 91
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const republik_rumania: CountryData = {
     "kereta_bawah_tanah": 7,
     "jalur_kereta": 22,
     "jalan_tol": 30,
-    "kualitas_jalan": 81,
     "pelabuhan_laut": 19,
     "bandara": 3,
     "terminal_bus": 1,
-    "helipad": 29,
-    "cakupan_internet": 56
-  },
+    "helipad": 29
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 18,
-    "uranium": 38,
-    "batu_bara": 14,
-    "minyak_bumi": 32,
-    "gas_alam": 13,
-    "garam": 1,
-    "nikel": 10,
-    "litium": 16,
-    "aluminium": 4,
-    "tembaga": 10,
-    "logam_tanah_jarang": 30,
-    "bijih_besi": 24
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const republik_rumania: CountryData = {
     "sepeda_motor": 9,
     "smelter": 20,
     "semen_beton": 5,
-    "kayu": 40,
-    "air_mineral": 29,
-    "gula": 1,
-    "roti": 19,
-    "farmasi": 36,
-    "pupuk": 3,
-    "pengolahan_daging": 40,
-    "mie_instan": 20
-  },
+    "kayu": 40
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const republik_rumania: CountryData = {
     "udang_kerang": 14.0,
     "ikan": 12
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 29,
+    "gula": 1,
+    "roti": 19,
+    "pengolahan_daging": 40,
+    "mie_instan": 20
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 36
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 3,
     "gudang_senjata": 4,
     "hangar_tank": 31,
@@ -112,8 +105,8 @@ export const republik_rumania: CountryData = {
     "pangkalan_udara": 28,
     "pangkalan_laut": 30,
     "program_luar_angkasa": 33,
-    "pertahanan_siber": 23,
-  },
+    "pertahanan_siber": 23
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const republik_rumania: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 30,
     "intelijen": 22,
@@ -170,13 +162,12 @@ export const republik_rumania: CountryData = {
       "manajemen_wilayah": 10,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 30,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 30,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 27,
@@ -187,9 +178,8 @@ export const republik_rumania: CountryData = {
           "kantor_polisi": 13,
           "kamera_pengawas": 10,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const republik_rumania: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

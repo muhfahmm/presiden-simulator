@@ -17,14 +17,13 @@ export const costa_rica: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 1,
-    "pembangkit_air": 31,
-    "pembangkit_surya": 32,
-    "pembangkit_termal": 19,
-    "pembangkit_gas": 26,
-    "pembangkit_angin": 9,
-    "jaringan_listrik": 92
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 75,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 10,
+    "pembangkit_listrik_tenaga_gas": 0,
+    "pembangkit_listrik_tenaga_angin": 10
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const costa_rica: CountryData = {
     "kereta_bawah_tanah": 15,
     "jalur_kereta": 31,
     "jalan_tol": 14,
-    "kualitas_jalan": 72,
     "pelabuhan_laut": 35,
     "bandara": 39,
     "terminal_bus": 2,
-    "helipad": 30,
-    "cakupan_internet": 81
-  },
+    "helipad": 30
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 5,
-    "uranium": 28,
-    "batu_bara": 39,
-    "minyak_bumi": 34,
-    "gas_alam": 31,
-    "garam": 10,
-    "nikel": 35,
-    "litium": 2,
-    "aluminium": 8,
-    "tembaga": 4,
-    "logam_tanah_jarang": 13,
-    "bijih_besi": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const costa_rica: CountryData = {
     "sepeda_motor": 23,
     "smelter": 15,
     "semen_beton": 23,
-    "kayu": 23,
-    "air_mineral": 17,
-    "gula": 5,
-    "roti": 9,
-    "farmasi": 32,
-    "pupuk": 30,
-    "pengolahan_daging": 1,
-    "mie_instan": 23
-  },
+    "kayu": 23
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const costa_rica: CountryData = {
     "udang_kerang": 11.5,
     "ikan": 10
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 17,
+    "gula": 5,
+    "roti": 9,
+    "pengolahan_daging": 1,
+    "mie_instan": 23
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 32
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 22,
     "gudang_senjata": 4,
     "hangar_tank": 29,
@@ -112,8 +105,8 @@ export const costa_rica: CountryData = {
     "pangkalan_udara": 33,
     "pangkalan_laut": 2,
     "program_luar_angkasa": 23,
-    "pertahanan_siber": 2,
-  },
+    "pertahanan_siber": 2
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const costa_rica: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 10,
     "intelijen": 18,
@@ -170,13 +162,12 @@ export const costa_rica: CountryData = {
       "manajemen_wilayah": 19,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 39,
-          "sepeda_motor": 11,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 39,
+        "sepeda_motor": 11,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 34,
@@ -187,9 +178,8 @@ export const costa_rica: CountryData = {
           "kantor_polisi": 3,
           "kamera_pengawas": 37,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const costa_rica: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

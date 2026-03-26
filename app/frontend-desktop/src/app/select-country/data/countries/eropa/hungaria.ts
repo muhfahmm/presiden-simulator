@@ -17,14 +17,13 @@ export const hungaria: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 1,
-    "pembangkit_air": 18,
-    "pembangkit_surya": 15,
-    "pembangkit_termal": 33,
-    "pembangkit_gas": 33,
-    "pembangkit_angin": 19,
-    "jaringan_listrik": 93
-  },
+    "pembangkit_listrik_tenaga_nuklir": 4,
+    "pembangkit_listrik_tenaga_air": 1,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 25,
+    "pembangkit_listrik_tenaga_angin": 4
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const hungaria: CountryData = {
     "kereta_bawah_tanah": 12,
     "jalur_kereta": 7,
     "jalan_tol": 32,
-    "kualitas_jalan": 53,
     "pelabuhan_laut": 31,
     "bandara": 37,
     "terminal_bus": 4,
-    "helipad": 26,
-    "cakupan_internet": 72
-  },
+    "helipad": 26
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 2,
-    "uranium": 5,
-    "batu_bara": 40,
-    "minyak_bumi": 16,
-    "gas_alam": 32,
-    "garam": 3,
-    "nikel": 33,
-    "litium": 27,
-    "aluminium": 12,
-    "tembaga": 14,
-    "logam_tanah_jarang": 1,
-    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const hungaria: CountryData = {
     "sepeda_motor": 25,
     "smelter": 31,
     "semen_beton": 15,
-    "kayu": 26,
-    "air_mineral": 12,
-    "gula": 12,
-    "roti": 23,
-    "farmasi": 9,
-    "pupuk": 4,
-    "pengolahan_daging": 19,
-    "mie_instan": 3
-  },
+    "kayu": 26
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const hungaria: CountryData = {
     "udang_kerang": 21.0,
     "ikan": 18
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 12,
+    "gula": 12,
+    "roti": 23,
+    "pengolahan_daging": 19,
+    "mie_instan": 3
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 9
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 14,
     "gudang_senjata": 12,
     "hangar_tank": 12,
@@ -112,8 +105,8 @@ export const hungaria: CountryData = {
     "pangkalan_udara": 37,
     "pangkalan_laut": 38,
     "program_luar_angkasa": 34,
-    "pertahanan_siber": 9,
-  },
+    "pertahanan_siber": 9
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const hungaria: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 27,
     "intelijen": 20,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 27,
       "misi_mata_mata": 22,
       "misi_sabotase": 2,
       "manajemen_wilayah": 33,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 14,
-          "sepeda_motor": 13,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 14,
+        "sepeda_motor": 13,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 31,
@@ -187,9 +178,8 @@ export const hungaria: CountryData = {
           "kantor_polisi": 24,
           "kamera_pengawas": 10,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const hungaria: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

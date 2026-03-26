@@ -17,14 +17,13 @@ export const uruguay: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 18,
-    "pembangkit_air": 24,
-    "pembangkit_surya": 30,
-    "pembangkit_termal": 29,
-    "pembangkit_gas": 16,
-    "pembangkit_angin": 37,
-    "jaringan_listrik": 52
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 60,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 15,
+    "pembangkit_listrik_tenaga_angin": 4
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const uruguay: CountryData = {
     "kereta_bawah_tanah": 26,
     "jalur_kereta": 23,
     "jalan_tol": 39,
-    "kualitas_jalan": 72,
     "pelabuhan_laut": 33,
     "bandara": 2,
     "terminal_bus": 8,
-    "helipad": 33,
-    "cakupan_internet": 66
-  },
+    "helipad": 33
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 35,
-    "uranium": 17,
-    "batu_bara": 8,
-    "minyak_bumi": 23,
-    "gas_alam": 36,
-    "garam": 5,
-    "nikel": 26,
-    "litium": 9,
-    "aluminium": 36,
-    "tembaga": 2,
-    "logam_tanah_jarang": 15,
-    "bijih_besi": 32
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const uruguay: CountryData = {
     "sepeda_motor": 33,
     "smelter": 20,
     "semen_beton": 8,
-    "kayu": 30,
-    "air_mineral": 38,
-    "gula": 12,
-    "roti": 35,
-    "farmasi": 26,
-    "pupuk": 6,
-    "pengolahan_daging": 1,
-    "mie_instan": 15
-  },
+    "kayu": 30
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const uruguay: CountryData = {
     "udang_kerang": 31.5,
     "ikan": 2
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 38,
+    "gula": 12,
+    "roti": 35,
+    "pengolahan_daging": 1,
+    "mie_instan": 15
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 26
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 39,
     "gudang_senjata": 28,
     "hangar_tank": 9,
@@ -112,8 +105,8 @@ export const uruguay: CountryData = {
     "pangkalan_udara": 24,
     "pangkalan_laut": 39,
     "program_luar_angkasa": 32,
-    "pertahanan_siber": 32,
-  },
+    "pertahanan_siber": 32
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const uruguay: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 1,
     "intelijen": 4,
@@ -170,13 +162,12 @@ export const uruguay: CountryData = {
       "manajemen_wilayah": 12,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 25,
-          "sepeda_motor": 28,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 25,
+        "sepeda_motor": 28,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 34,
@@ -187,9 +178,8 @@ export const uruguay: CountryData = {
           "kantor_polisi": 23,
           "kamera_pengawas": 11,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const uruguay: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

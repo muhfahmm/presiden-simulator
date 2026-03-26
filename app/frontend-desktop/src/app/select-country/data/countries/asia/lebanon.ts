@@ -17,14 +17,13 @@ export const lebanon: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 26,
-    "pembangkit_air": 16,
-    "pembangkit_surya": 20,
-    "pembangkit_termal": 28,
-    "pembangkit_gas": 25,
-    "pembangkit_angin": 23,
-    "jaringan_listrik": 67
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const lebanon: CountryData = {
     "kereta_bawah_tanah": 29,
     "jalur_kereta": 19,
     "jalan_tol": 22,
-    "kualitas_jalan": 67,
     "pelabuhan_laut": 17,
     "bandara": 37,
     "terminal_bus": 14,
-    "helipad": 7,
-    "cakupan_internet": 52
-  },
+    "helipad": 7
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 19,
-    "uranium": 18,
-    "batu_bara": 17,
-    "minyak_bumi": 29,
-    "gas_alam": 40,
-    "garam": 9,
-    "nikel": 23,
-    "litium": 32,
-    "aluminium": 29,
-    "tembaga": 27,
-    "logam_tanah_jarang": 30,
-    "bijih_besi": 40
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const lebanon: CountryData = {
     "sepeda_motor": 34,
     "smelter": 7,
     "semen_beton": 27,
-    "kayu": 18,
-    "air_mineral": 4,
-    "gula": 2,
-    "roti": 14,
-    "farmasi": 5,
-    "pupuk": 5,
-    "pengolahan_daging": 3,
-    "mie_instan": 40
-  },
+    "kayu": 18
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const lebanon: CountryData = {
     "udang_kerang": 6.5,
     "ikan": 33
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 4,
+    "gula": 2,
+    "roti": 14,
+    "pengolahan_daging": 3,
+    "mie_instan": 40
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 5
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 21,
     "gudang_senjata": 8,
     "hangar_tank": 2,
@@ -112,8 +105,8 @@ export const lebanon: CountryData = {
     "pangkalan_udara": 8,
     "pangkalan_laut": 31,
     "program_luar_angkasa": 17,
-    "pertahanan_siber": 16,
-  },
+    "pertahanan_siber": 16
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const lebanon: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 16,
     "intelijen": 1,
@@ -170,13 +162,12 @@ export const lebanon: CountryData = {
       "manajemen_wilayah": 15,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 39,
-          "sepeda_motor": 9,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 39,
+        "sepeda_motor": 9,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -187,9 +178,8 @@ export const lebanon: CountryData = {
           "kantor_polisi": 25,
           "kamera_pengawas": 8,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const lebanon: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

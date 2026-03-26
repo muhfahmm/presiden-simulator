@@ -1,9 +1,8 @@
 export interface SektorListrik {
-  pembangkit_nuklir: number;
-  pembangkit_air: number;
-  pembangkit_surya: number;
-  pembangkit_termal: number;
-  pembangkit_gas: number;
-  pembangkit_angin: number;
-  jaringan_listrik: number; // 0-100% cakupan
+  pembangkit_listrik_tenaga_nuklir: number;
+  pembangkit_listrik_tenaga_air: number;
+  pembangkit_listrik_tenaga_surya: number;
+  pembangkit_listrik_tenaga_uap: number;
+  pembangkit_listrik_tenaga_gas: number;
+  pembangkit_listrik_tenaga_angin: number;
 }

@@ -17,14 +17,13 @@ export const selandia_baru: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 22,
-    "pembangkit_air": 8,
-    "pembangkit_surya": 22,
-    "pembangkit_termal": 6,
-    "pembangkit_gas": 2,
-    "pembangkit_angin": 28,
-    "jaringan_listrik": 64
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const selandia_baru: CountryData = {
     "kereta_bawah_tanah": 10,
     "jalur_kereta": 2,
     "jalan_tol": 24,
-    "kualitas_jalan": 93,
     "pelabuhan_laut": 16,
     "bandara": 14,
     "terminal_bus": 5,
-    "helipad": 5,
-    "cakupan_internet": 87
-  },
+    "helipad": 5
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 25,
-    "uranium": 13,
-    "batu_bara": 36,
-    "minyak_bumi": 16,
-    "gas_alam": 16,
-    "garam": 11,
-    "nikel": 7,
-    "litium": 17,
-    "aluminium": 7,
-    "tembaga": 21,
-    "logam_tanah_jarang": 18,
-    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const selandia_baru: CountryData = {
     "sepeda_motor": 35,
     "smelter": 21,
     "semen_beton": 9,
-    "kayu": 22,
-    "air_mineral": 14,
-    "gula": 15,
-    "roti": 5,
-    "farmasi": 24,
-    "pupuk": 27,
-    "pengolahan_daging": 16,
-    "mie_instan": 2
-  },
+    "kayu": 22
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const selandia_baru: CountryData = {
     "udang_kerang": 22.0,
     "ikan": 27
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 14,
+    "gula": 15,
+    "roti": 5,
+    "pengolahan_daging": 16,
+    "mie_instan": 2
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 24
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 17,
     "gudang_senjata": 32,
     "hangar_tank": 18,
@@ -112,8 +105,8 @@ export const selandia_baru: CountryData = {
     "pangkalan_udara": 2,
     "pangkalan_laut": 12,
     "program_luar_angkasa": 8,
-    "pertahanan_siber": 36,
-  },
+    "pertahanan_siber": 36
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const selandia_baru: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 29,
     "intelijen": 40,
@@ -170,13 +162,12 @@ export const selandia_baru: CountryData = {
       "manajemen_wilayah": 30,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 9,
-          "sepeda_motor": 1,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 9,
+        "sepeda_motor": 1,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 5,
@@ -187,9 +178,8 @@ export const selandia_baru: CountryData = {
           "kantor_polisi": 18,
           "kamera_pengawas": 6,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const selandia_baru: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

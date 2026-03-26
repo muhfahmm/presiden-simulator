@@ -17,14 +17,13 @@ export const makau: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 32,
-    "pembangkit_air": 24,
-    "pembangkit_surya": 39,
-    "pembangkit_termal": 36,
-    "pembangkit_gas": 7,
-    "pembangkit_angin": 2,
-    "jaringan_listrik": 66
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const makau: CountryData = {
     "kereta_bawah_tanah": 2,
     "jalur_kereta": 27,
     "jalan_tol": 39,
-    "kualitas_jalan": 59,
     "pelabuhan_laut": 28,
     "bandara": 4,
     "terminal_bus": 22,
-    "helipad": 16,
-    "cakupan_internet": 94
-  },
+    "helipad": 16
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 31,
-    "uranium": 24,
-    "batu_bara": 20,
-    "minyak_bumi": 17,
-    "gas_alam": 35,
-    "garam": 39,
-    "nikel": 30,
-    "litium": 10,
-    "aluminium": 15,
-    "tembaga": 38,
-    "logam_tanah_jarang": 5,
-    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const makau: CountryData = {
     "sepeda_motor": 26,
     "smelter": 15,
     "semen_beton": 34,
-    "kayu": 9,
-    "air_mineral": 3,
-    "gula": 35,
-    "roti": 38,
-    "farmasi": 36,
-    "pupuk": 26,
-    "pengolahan_daging": 28,
-    "mie_instan": 4
-  },
+    "kayu": 9
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const makau: CountryData = {
     "udang_kerang": 22.5,
     "ikan": 14
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 3,
+    "gula": 35,
+    "roti": 38,
+    "pengolahan_daging": 28,
+    "mie_instan": 4
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 36
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 2,
     "gudang_senjata": 38,
     "hangar_tank": 22,
@@ -112,8 +105,8 @@ export const makau: CountryData = {
     "pangkalan_udara": 33,
     "pangkalan_laut": 40,
     "program_luar_angkasa": 9,
-    "pertahanan_siber": 37,
-  },
+    "pertahanan_siber": 37
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const makau: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 22,
     "intelijen": 37,
@@ -170,13 +162,12 @@ export const makau: CountryData = {
       "manajemen_wilayah": 20,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 26,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 26,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 19,
@@ -187,9 +178,8 @@ export const makau: CountryData = {
           "kantor_polisi": 25,
           "kamera_pengawas": 37,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const makau: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

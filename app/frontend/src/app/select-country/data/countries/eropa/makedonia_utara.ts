@@ -17,14 +17,13 @@ export const makedonia_utara: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 8,
-    "pembangkit_air": 24,
-    "pembangkit_surya": 37,
-    "pembangkit_termal": 40,
-    "pembangkit_gas": 5,
-    "pembangkit_angin": 2,
-    "jaringan_listrik": 88
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const makedonia_utara: CountryData = {
     "kereta_bawah_tanah": 36,
     "jalur_kereta": 40,
     "jalan_tol": 34,
-    "kualitas_jalan": 93,
     "pelabuhan_laut": 37,
     "bandara": 11,
     "terminal_bus": 10,
-    "helipad": 31,
-    "cakupan_internet": 54
-  },
+    "helipad": 31
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 15,
-    "uranium": 20,
-    "batu_bara": 38,
-    "minyak_bumi": 14,
-    "gas_alam": 24,
-    "garam": 28,
-    "nikel": 37,
-    "litium": 2,
-    "aluminium": 31,
-    "tembaga": 34,
-    "logam_tanah_jarang": 20,
-    "bijih_besi": 40
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const makedonia_utara: CountryData = {
     "sepeda_motor": 36,
     "smelter": 15,
     "semen_beton": 14,
-    "kayu": 37,
-    "air_mineral": 11,
-    "gula": 19,
-    "roti": 23,
-    "farmasi": 35,
-    "pupuk": 2,
-    "pengolahan_daging": 21,
-    "mie_instan": 35
-  },
+    "kayu": 37
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const makedonia_utara: CountryData = {
     "udang_kerang": 28.0,
     "ikan": 16
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 11,
+    "gula": 19,
+    "roti": 23,
+    "pengolahan_daging": 21,
+    "mie_instan": 35
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 35
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 22,
     "gudang_senjata": 34,
     "hangar_tank": 20,
@@ -112,8 +105,8 @@ export const makedonia_utara: CountryData = {
     "pangkalan_udara": 3,
     "pangkalan_laut": 14,
     "program_luar_angkasa": 39,
-    "pertahanan_siber": 25,
-  },
+    "pertahanan_siber": 25
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const makedonia_utara: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 2,
     "intelijen": 32,
@@ -170,13 +162,12 @@ export const makedonia_utara: CountryData = {
       "manajemen_wilayah": 25,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 37,
-          "sepeda_motor": 4,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 37,
+        "sepeda_motor": 4,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 27,
@@ -187,9 +178,8 @@ export const makedonia_utara: CountryData = {
           "kantor_polisi": 6,
           "kamera_pengawas": 38,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const makedonia_utara: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const kazakhstan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 23,
-    "pembangkit_air": 13,
-    "pembangkit_surya": 10,
-    "pembangkit_termal": 36,
-    "pembangkit_gas": 5,
-    "pembangkit_angin": 16,
-    "jaringan_listrik": 55
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const kazakhstan: CountryData = {
     "kereta_bawah_tanah": 27,
     "jalur_kereta": 14,
     "jalan_tol": 16,
-    "kualitas_jalan": 94,
     "pelabuhan_laut": 33,
     "bandara": 20,
     "terminal_bus": 25,
-    "helipad": 16,
-    "cakupan_internet": 82
-  },
+    "helipad": 16
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 19,
-    "uranium": 32,
-    "batu_bara": 33,
-    "minyak_bumi": 2,
-    "gas_alam": 15,
-    "garam": 26,
-    "nikel": 14,
-    "litium": 19,
-    "aluminium": 33,
-    "tembaga": 32,
-    "logam_tanah_jarang": 28,
-    "bijih_besi": 12
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const kazakhstan: CountryData = {
     "sepeda_motor": 24,
     "smelter": 8,
     "semen_beton": 21,
-    "kayu": 12,
-    "air_mineral": 12,
-    "gula": 10,
-    "roti": 15,
-    "farmasi": 16,
-    "pupuk": 6,
-    "pengolahan_daging": 29,
-    "mie_instan": 21
-  },
+    "kayu": 12
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const kazakhstan: CountryData = {
     "udang_kerang": 25.0,
     "ikan": 4
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 12,
+    "gula": 10,
+    "roti": 15,
+    "pengolahan_daging": 29,
+    "mie_instan": 21
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 16
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 7,
     "gudang_senjata": 32,
     "hangar_tank": 18,
@@ -112,8 +105,8 @@ export const kazakhstan: CountryData = {
     "pangkalan_udara": 1,
     "pangkalan_laut": 23,
     "program_luar_angkasa": 20,
-    "pertahanan_siber": 6,
-  },
+    "pertahanan_siber": 6
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const kazakhstan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 5,
     "intelijen": 30,
@@ -170,13 +162,12 @@ export const kazakhstan: CountryData = {
       "manajemen_wilayah": 37,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 1,
-          "sepeda_motor": 20,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 1,
+        "sepeda_motor": 20,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 10,
@@ -187,9 +178,8 @@ export const kazakhstan: CountryData = {
           "kantor_polisi": 24,
           "kamera_pengawas": 30,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const kazakhstan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

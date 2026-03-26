@@ -17,14 +17,13 @@ export const iran: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 22,
-    "pembangkit_air": 14,
-    "pembangkit_surya": 36,
-    "pembangkit_termal": 30,
-    "pembangkit_gas": 22,
-    "pembangkit_angin": 7,
-    "jaringan_listrik": 80
-  },
+    "pembangkit_listrik_tenaga_nuklir": 1,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const iran: CountryData = {
     "kereta_bawah_tanah": 27,
     "jalur_kereta": 20,
     "jalan_tol": 35,
-    "kualitas_jalan": 67,
     "pelabuhan_laut": 22,
     "bandara": 30,
     "terminal_bus": 21,
-    "helipad": 33,
-    "cakupan_internet": 83
-  },
+    "helipad": 33
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 37,
-    "uranium": 16,
-    "batu_bara": 31,
-    "minyak_bumi": 15,
-    "gas_alam": 18,
-    "garam": 2,
-    "nikel": 26,
-    "litium": 7,
-    "aluminium": 27,
-    "tembaga": 14,
-    "logam_tanah_jarang": 27,
-    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const iran: CountryData = {
     "sepeda_motor": 9,
     "smelter": 17,
     "semen_beton": 11,
-    "kayu": 4,
-    "air_mineral": 13,
-    "gula": 28,
-    "roti": 30,
-    "farmasi": 27,
-    "pupuk": 30,
-    "pengolahan_daging": 7,
-    "mie_instan": 39
-  },
+    "kayu": 4
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const iran: CountryData = {
     "udang_kerang": 17.5,
     "ikan": 29
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 13,
+    "gula": 28,
+    "roti": 30,
+    "pengolahan_daging": 7,
+    "mie_instan": 39
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 27
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 18,
     "gudang_senjata": 17,
     "hangar_tank": 4,
@@ -112,8 +105,8 @@ export const iran: CountryData = {
     "pangkalan_udara": 16,
     "pangkalan_laut": 5,
     "program_luar_angkasa": 1,
-    "pertahanan_siber": 13,
-  },
+    "pertahanan_siber": 13
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const iran: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 39,
     "intelijen": 13,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 28,
       "misi_mata_mata": 19,
       "misi_sabotase": 6,
       "manajemen_wilayah": 24,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 5,
-          "sepeda_motor": 8,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 5,
+        "sepeda_motor": 8,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 18,
@@ -187,9 +178,8 @@ export const iran: CountryData = {
           "kantor_polisi": 29,
           "kamera_pengawas": 12,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const iran: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

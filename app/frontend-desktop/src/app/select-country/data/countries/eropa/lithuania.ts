@@ -17,14 +17,13 @@ export const lithuania: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 21,
-    "pembangkit_air": 13,
-    "pembangkit_surya": 7,
-    "pembangkit_termal": 16,
-    "pembangkit_gas": 27,
-    "pembangkit_angin": 32,
-    "jaringan_listrik": 87
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const lithuania: CountryData = {
     "kereta_bawah_tanah": 34,
     "jalur_kereta": 6,
     "jalan_tol": 36,
-    "kualitas_jalan": 68,
     "pelabuhan_laut": 37,
     "bandara": 23,
     "terminal_bus": 20,
-    "helipad": 27,
-    "cakupan_internet": 59
-  },
+    "helipad": 27
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 12,
-    "uranium": 37,
-    "batu_bara": 22,
-    "minyak_bumi": 7,
-    "gas_alam": 10,
-    "garam": 26,
-    "nikel": 1,
-    "litium": 11,
-    "aluminium": 6,
-    "tembaga": 39,
-    "logam_tanah_jarang": 8,
-    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const lithuania: CountryData = {
     "sepeda_motor": 26,
     "smelter": 32,
     "semen_beton": 23,
-    "kayu": 3,
-    "air_mineral": 7,
-    "gula": 11,
-    "roti": 34,
-    "farmasi": 36,
-    "pupuk": 36,
-    "pengolahan_daging": 4,
-    "mie_instan": 39
-  },
+    "kayu": 3
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const lithuania: CountryData = {
     "udang_kerang": 17.0,
     "ikan": 31
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 7,
+    "gula": 11,
+    "roti": 34,
+    "pengolahan_daging": 4,
+    "mie_instan": 39
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 36
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 8,
     "gudang_senjata": 25,
     "hangar_tank": 22,
@@ -112,8 +105,8 @@ export const lithuania: CountryData = {
     "pangkalan_udara": 13,
     "pangkalan_laut": 5,
     "program_luar_angkasa": 4,
-    "pertahanan_siber": 15,
-  },
+    "pertahanan_siber": 15
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const lithuania: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 40,
     "intelijen": 22,
@@ -170,13 +162,12 @@ export const lithuania: CountryData = {
       "manajemen_wilayah": 21,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 33,
-          "sepeda_motor": 21,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 33,
+        "sepeda_motor": 21,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 19,
@@ -187,9 +178,8 @@ export const lithuania: CountryData = {
           "kantor_polisi": 26,
           "kamera_pengawas": 13,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const lithuania: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

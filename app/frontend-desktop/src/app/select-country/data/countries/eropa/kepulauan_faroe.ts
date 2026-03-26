@@ -17,14 +17,13 @@ export const kepulauan_faroe: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 25,
-    "pembangkit_air": 38,
-    "pembangkit_surya": 26,
-    "pembangkit_termal": 29,
-    "pembangkit_gas": 1,
-    "pembangkit_angin": 6,
-    "jaringan_listrik": 65
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const kepulauan_faroe: CountryData = {
     "kereta_bawah_tanah": 26,
     "jalur_kereta": 7,
     "jalan_tol": 33,
-    "kualitas_jalan": 81,
     "pelabuhan_laut": 19,
     "bandara": 36,
     "terminal_bus": 35,
-    "helipad": 34,
-    "cakupan_internet": 79
-  },
+    "helipad": 34
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 27,
-    "uranium": 3,
-    "batu_bara": 1,
-    "minyak_bumi": 13,
-    "gas_alam": 20,
-    "garam": 21,
-    "nikel": 19,
-    "litium": 24,
-    "aluminium": 18,
-    "tembaga": 4,
-    "logam_tanah_jarang": 8,
-    "bijih_besi": 29
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const kepulauan_faroe: CountryData = {
     "sepeda_motor": 36,
     "smelter": 29,
     "semen_beton": 30,
-    "kayu": 16,
-    "air_mineral": 11,
-    "gula": 6,
-    "roti": 3,
-    "farmasi": 37,
-    "pupuk": 19,
-    "pengolahan_daging": 15,
-    "mie_instan": 27
-  },
+    "kayu": 16
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const kepulauan_faroe: CountryData = {
     "udang_kerang": 22.5,
     "ikan": 2
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 11,
+    "gula": 6,
+    "roti": 3,
+    "pengolahan_daging": 15,
+    "mie_instan": 27
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 37
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 7,
     "gudang_senjata": 18,
     "hangar_tank": 38,
@@ -112,8 +105,8 @@ export const kepulauan_faroe: CountryData = {
     "pangkalan_udara": 2,
     "pangkalan_laut": 40,
     "program_luar_angkasa": 30,
-    "pertahanan_siber": 3,
-  },
+    "pertahanan_siber": 3
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const kepulauan_faroe: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 31,
     "intelijen": 18,
@@ -170,13 +162,12 @@ export const kepulauan_faroe: CountryData = {
       "manajemen_wilayah": 21,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 37,
-          "sepeda_motor": 29,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 37,
+        "sepeda_motor": 29,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 25,
@@ -187,9 +178,8 @@ export const kepulauan_faroe: CountryData = {
           "kantor_polisi": 20,
           "kamera_pengawas": 21,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const kepulauan_faroe: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

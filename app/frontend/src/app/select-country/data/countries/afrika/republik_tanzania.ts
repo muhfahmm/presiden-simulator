@@ -17,13 +17,12 @@ export const republik_tanzania: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 35,
-    "pembangkit_air": 9,
-    "pembangkit_nuklir": 30,
-    "jaringan_listrik": 79,
-    "pembangkit_surya": 25,
-    "pembangkit_termal": 36,
-    "pembangkit_angin": 19
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const republik_tanzania: CountryData = {
     "terminal_bus": 40,
     "helipad": 1,
     "jalan_tol": 14,
-    "cakupan_internet": 58,
     "jalur_kereta": 33,
-    "kualitas_jalan": 56,
     "pelabuhan_laut": 31,
     "kereta_bawah_tanah": 24
   },
@@ -46,37 +43,15 @@ export const republik_tanzania: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 17,
-    "batu_bara": 12,
-    "tembaga": 8,
-    "gas_alam": 1,
-    "emas": 9,
-    "bijih_besi": 16,
-    "litium": 14,
-    "nikel": 2,
-    "minyak_bumi": 18,
-    "logam_tanah_jarang": 36,
-    "garam": 16,
-    "uranium": 35
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 33,
-    "mobil": 30,
+  "sektor_manufaktur": {    "mobil": 30,
     "semen_beton": 15,
-    "pupuk": 9,
-    "mie_instan": 4,
-    "pengolahan_daging": 36,
-    "air_mineral": 1,
-    "sepeda_motor": 11,
-    "farmasi": 8,
-    "semikonduktor": 34,
-    "smelter": 10,
-    "gula": 8,
-    "kayu": 13
+    "pengolahan_daging": 36,    "sepeda_motor": 11,    "semikonduktor": 34,
+    "smelter": 10,    "kayu": 13
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const republik_tanzania: CountryData = {
     "udang_kerang": 25.5,
     "ikan": 30
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 1,
+    "gula": 8,
+    "roti": 33,
+    "pengolahan_daging": 36,
+    "mie_instan": 4
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 8
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 12,
     "gudang_senjata": 2,
     "hangar_tank": 4,
@@ -112,8 +102,8 @@ export const republik_tanzania: CountryData = {
     "pangkalan_udara": 22,
     "pangkalan_laut": 19,
     "program_luar_angkasa": 11,
-    "pertahanan_siber": 14,
-  },
+    "pertahanan_siber": 14
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const republik_tanzania: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 31,
     "intelijen": 14,
@@ -171,13 +160,12 @@ export const republik_tanzania: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 36,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 36,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 34,
@@ -188,9 +176,8 @@ export const republik_tanzania: CountryData = {
           "kantor_polisi": 32,
           "kamera_pengawas": 22,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const republik_tanzania: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

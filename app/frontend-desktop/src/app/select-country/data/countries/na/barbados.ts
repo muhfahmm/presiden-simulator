@@ -17,14 +17,13 @@ export const barbados: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 14,
-    "pembangkit_air": 17,
-    "pembangkit_surya": 19,
-    "pembangkit_termal": 3,
-    "pembangkit_gas": 34,
-    "pembangkit_angin": 26,
-    "jaringan_listrik": 75
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const barbados: CountryData = {
     "kereta_bawah_tanah": 35,
     "jalur_kereta": 23,
     "jalan_tol": 11,
-    "kualitas_jalan": 59,
     "pelabuhan_laut": 3,
     "bandara": 30,
     "terminal_bus": 23,
-    "helipad": 31,
-    "cakupan_internet": 54
-  },
+    "helipad": 31
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 32,
-    "uranium": 4,
-    "batu_bara": 19,
-    "minyak_bumi": 26,
-    "gas_alam": 32,
-    "garam": 13,
-    "nikel": 30,
-    "litium": 34,
-    "aluminium": 26,
-    "tembaga": 27,
-    "logam_tanah_jarang": 1,
-    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const barbados: CountryData = {
     "sepeda_motor": 14,
     "smelter": 16,
     "semen_beton": 3,
-    "kayu": 17,
-    "air_mineral": 3,
-    "gula": 36,
-    "roti": 17,
-    "farmasi": 33,
-    "pupuk": 30,
-    "pengolahan_daging": 36,
-    "mie_instan": 12
-  },
+    "kayu": 17
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const barbados: CountryData = {
     "udang_kerang": 33.5,
     "ikan": 10
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 3,
+    "gula": 36,
+    "roti": 17,
+    "pengolahan_daging": 36,
+    "mie_instan": 12
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 33
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 15,
     "gudang_senjata": 40,
     "hangar_tank": 11,
@@ -112,8 +105,8 @@ export const barbados: CountryData = {
     "pangkalan_udara": 9,
     "pangkalan_laut": 27,
     "program_luar_angkasa": 12,
-    "pertahanan_siber": 28,
-  },
+    "pertahanan_siber": 28
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const barbados: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 15,
     "intelijen": 39,
@@ -170,13 +162,12 @@ export const barbados: CountryData = {
       "manajemen_wilayah": 15,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 11,
-          "sepeda_motor": 17,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 11,
+        "sepeda_motor": 17,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 23,
@@ -187,9 +178,8 @@ export const barbados: CountryData = {
           "kantor_polisi": 19,
           "kamera_pengawas": 19,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const barbados: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,13 +17,12 @@ export const tunisia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 29,
-    "pembangkit_air": 32,
-    "pembangkit_nuklir": 21,
-    "jaringan_listrik": 88,
-    "pembangkit_surya": 32,
-    "pembangkit_termal": 14,
-    "pembangkit_angin": 8
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const tunisia: CountryData = {
     "terminal_bus": 1,
     "helipad": 36,
     "jalan_tol": 37,
-    "cakupan_internet": 68,
     "jalur_kereta": 35,
-    "kualitas_jalan": 87,
     "pelabuhan_laut": 3,
     "kereta_bawah_tanah": 39
   },
@@ -46,37 +43,15 @@ export const tunisia: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 8,
-    "batu_bara": 27,
-    "tembaga": 7,
-    "gas_alam": 9,
-    "emas": 40,
-    "bijih_besi": 2,
-    "litium": 1,
-    "nikel": 22,
-    "minyak_bumi": 29,
-    "logam_tanah_jarang": 24,
-    "garam": 31,
-    "uranium": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 9,
-    "mobil": 39,
+  "sektor_manufaktur": {    "mobil": 39,
     "semen_beton": 37,
-    "pupuk": 18,
-    "mie_instan": 11,
-    "pengolahan_daging": 37,
-    "air_mineral": 35,
-    "sepeda_motor": 23,
-    "farmasi": 11,
-    "semikonduktor": 14,
-    "smelter": 22,
-    "gula": 20,
-    "kayu": 12
+    "pengolahan_daging": 37,    "sepeda_motor": 23,    "semikonduktor": 14,
+    "smelter": 22,    "kayu": 12
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const tunisia: CountryData = {
     "udang_kerang": 14.0,
     "ikan": 7
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 35,
+    "gula": 20,
+    "roti": 9,
+    "pengolahan_daging": 37,
+    "mie_instan": 11
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 11
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 6,
     "gudang_senjata": 2,
     "hangar_tank": 1,
@@ -112,8 +102,8 @@ export const tunisia: CountryData = {
     "pangkalan_udara": 10,
     "pangkalan_laut": 36,
     "program_luar_angkasa": 1,
-    "pertahanan_siber": 26,
-  },
+    "pertahanan_siber": 26
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const tunisia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 31,
     "intelijen": 32,
@@ -171,13 +160,12 @@ export const tunisia: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 8,
-          "sepeda_motor": 2,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 8,
+        "sepeda_motor": 2,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -188,9 +176,8 @@ export const tunisia: CountryData = {
           "kantor_polisi": 28,
           "kamera_pengawas": 32,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const tunisia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

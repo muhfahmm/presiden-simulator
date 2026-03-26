@@ -17,14 +17,13 @@ export const italia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 27,
-    "pembangkit_air": 14,
-    "pembangkit_surya": 35,
-    "pembangkit_termal": 21,
-    "pembangkit_gas": 25,
-    "pembangkit_angin": 36,
-    "jaringan_listrik": 58
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const italia: CountryData = {
     "kereta_bawah_tanah": 20,
     "jalur_kereta": 10,
     "jalan_tol": 38,
-    "kualitas_jalan": 94,
     "pelabuhan_laut": 20,
     "bandara": 40,
     "terminal_bus": 28,
-    "helipad": 2,
-    "cakupan_internet": 91
-  },
+    "helipad": 2
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 8,
-    "uranium": 39,
-    "batu_bara": 18,
-    "minyak_bumi": 40,
-    "gas_alam": 36,
-    "garam": 35,
-    "nikel": 6,
-    "litium": 11,
-    "aluminium": 4,
-    "tembaga": 31,
-    "logam_tanah_jarang": 17,
-    "bijih_besi": 31
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const italia: CountryData = {
     "sepeda_motor": 1,
     "smelter": 13,
     "semen_beton": 37,
-    "kayu": 10,
-    "air_mineral": 10,
-    "gula": 25,
-    "roti": 10,
-    "farmasi": 35,
-    "pupuk": 1,
-    "pengolahan_daging": 34,
-    "mie_instan": 4
-  },
+    "kayu": 10
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const italia: CountryData = {
     "udang_kerang": 25.0,
     "ikan": 26
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 10,
+    "gula": 25,
+    "roti": 10,
+    "pengolahan_daging": 34,
+    "mie_instan": 4
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 35
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 28,
     "gudang_senjata": 39,
     "hangar_tank": 18,
@@ -112,8 +105,8 @@ export const italia: CountryData = {
     "pangkalan_udara": 20,
     "pangkalan_laut": 16,
     "program_luar_angkasa": 10,
-    "pertahanan_siber": 9,
-  },
+    "pertahanan_siber": 9
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const italia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 15,
     "intelijen": 35,
@@ -170,13 +162,12 @@ export const italia: CountryData = {
       "manajemen_wilayah": 6,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 38,
-          "sepeda_motor": 39,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 38,
+        "sepeda_motor": 39,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 34,
@@ -187,9 +178,8 @@ export const italia: CountryData = {
           "kantor_polisi": 24,
           "kamera_pengawas": 28,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const italia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

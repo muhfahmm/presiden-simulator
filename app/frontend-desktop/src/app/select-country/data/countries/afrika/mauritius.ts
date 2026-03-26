@@ -17,13 +17,12 @@ export const mauritius: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 13,
-    "pembangkit_air": 22,
-    "pembangkit_nuklir": 28,
-    "jaringan_listrik": 86,
-    "pembangkit_surya": 3,
-    "pembangkit_termal": 13,
-    "pembangkit_angin": 11
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const mauritius: CountryData = {
     "terminal_bus": 24,
     "helipad": 32,
     "jalan_tol": 4,
-    "cakupan_internet": 75,
     "jalur_kereta": 2,
-    "kualitas_jalan": 68,
     "pelabuhan_laut": 36,
     "kereta_bawah_tanah": 11
   },
@@ -46,37 +43,15 @@ export const mauritius: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 23,
-    "batu_bara": 5,
-    "tembaga": 4,
-    "gas_alam": 7,
-    "emas": 27,
-    "bijih_besi": 18,
-    "litium": 37,
-    "nikel": 36,
-    "minyak_bumi": 26,
-    "logam_tanah_jarang": 15,
-    "garam": 5,
-    "uranium": 35
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 22,
-    "mobil": 40,
+  "sektor_manufaktur": {    "mobil": 40,
     "semen_beton": 26,
-    "pupuk": 40,
-    "mie_instan": 1,
-    "pengolahan_daging": 16,
-    "air_mineral": 5,
-    "sepeda_motor": 26,
-    "farmasi": 33,
-    "semikonduktor": 39,
-    "smelter": 38,
-    "gula": 24,
-    "kayu": 14
+    "pengolahan_daging": 16,    "sepeda_motor": 26,    "semikonduktor": 39,
+    "smelter": 38,    "kayu": 14
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const mauritius: CountryData = {
     "udang_kerang": 32.0,
     "ikan": 10
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 5,
+    "gula": 24,
+    "roti": 22,
+    "pengolahan_daging": 16,
+    "mie_instan": 1
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 33
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 29,
     "gudang_senjata": 6,
     "hangar_tank": 10,
@@ -112,8 +102,8 @@ export const mauritius: CountryData = {
     "pangkalan_udara": 28,
     "pangkalan_laut": 15,
     "program_luar_angkasa": 5,
-    "pertahanan_siber": 40,
-  },
+    "pertahanan_siber": 40
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const mauritius: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 39,
     "intelijen": 21,
@@ -171,13 +160,12 @@ export const mauritius: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 10,
-          "sepeda_motor": 1,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 10,
+        "sepeda_motor": 1,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 32,
@@ -188,9 +176,8 @@ export const mauritius: CountryData = {
           "kantor_polisi": 36,
           "kamera_pengawas": 20,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const mauritius: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

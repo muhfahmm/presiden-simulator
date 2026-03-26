@@ -17,14 +17,13 @@ export const panama: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 7,
-    "pembangkit_air": 1,
-    "pembangkit_surya": 38,
-    "pembangkit_termal": 21,
-    "pembangkit_gas": 6,
-    "pembangkit_angin": 21,
-    "jaringan_listrik": 54
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const panama: CountryData = {
     "kereta_bawah_tanah": 24,
     "jalur_kereta": 17,
     "jalan_tol": 33,
-    "kualitas_jalan": 62,
     "pelabuhan_laut": 26,
     "bandara": 29,
     "terminal_bus": 9,
-    "helipad": 13,
-    "cakupan_internet": 50
-  },
+    "helipad": 13
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 29,
-    "uranium": 24,
-    "batu_bara": 25,
-    "minyak_bumi": 6,
-    "gas_alam": 19,
-    "garam": 8,
-    "nikel": 6,
-    "litium": 22,
-    "aluminium": 13,
-    "tembaga": 11,
-    "logam_tanah_jarang": 13,
-    "bijih_besi": 29
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const panama: CountryData = {
     "sepeda_motor": 6,
     "smelter": 33,
     "semen_beton": 40,
-    "kayu": 11,
-    "air_mineral": 15,
-    "gula": 24,
-    "roti": 14,
-    "farmasi": 33,
-    "pupuk": 31,
-    "pengolahan_daging": 29,
-    "mie_instan": 17
-  },
+    "kayu": 11
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const panama: CountryData = {
     "udang_kerang": 19.5,
     "ikan": 14
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 15,
+    "gula": 24,
+    "roti": 14,
+    "pengolahan_daging": 29,
+    "mie_instan": 17
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 33
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 31,
     "gudang_senjata": 13,
     "hangar_tank": 12,
@@ -112,8 +105,8 @@ export const panama: CountryData = {
     "pangkalan_udara": 8,
     "pangkalan_laut": 3,
     "program_luar_angkasa": 17,
-    "pertahanan_siber": 40,
-  },
+    "pertahanan_siber": 40
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const panama: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 2,
     "intelijen": 4,
@@ -170,13 +162,12 @@ export const panama: CountryData = {
       "manajemen_wilayah": 10,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 25,
-          "sepeda_motor": 37,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 25,
+        "sepeda_motor": 37,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 8,
@@ -187,9 +178,8 @@ export const panama: CountryData = {
           "kantor_polisi": 6,
           "kamera_pengawas": 2,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const panama: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

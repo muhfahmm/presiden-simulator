@@ -17,14 +17,13 @@ export const thailand: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 5,
-    "pembangkit_air": 2,
-    "pembangkit_surya": 3,
-    "pembangkit_termal": 17,
-    "pembangkit_gas": 10,
-    "pembangkit_angin": 31,
-    "jaringan_listrik": 58
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const thailand: CountryData = {
     "kereta_bawah_tanah": 40,
     "jalur_kereta": 26,
     "jalan_tol": 15,
-    "kualitas_jalan": 76,
     "pelabuhan_laut": 2,
     "bandara": 30,
     "terminal_bus": 21,
-    "helipad": 34,
-    "cakupan_internet": 93
-  },
+    "helipad": 34
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 32,
-    "uranium": 39,
-    "batu_bara": 16,
-    "minyak_bumi": 30,
-    "gas_alam": 34,
-    "garam": 35,
-    "nikel": 9,
-    "litium": 29,
-    "aluminium": 14,
-    "tembaga": 22,
-    "logam_tanah_jarang": 25,
-    "bijih_besi": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const thailand: CountryData = {
     "sepeda_motor": 27,
     "smelter": 37,
     "semen_beton": 6,
-    "kayu": 23,
-    "air_mineral": 11,
-    "gula": 1,
-    "roti": 37,
-    "farmasi": 27,
-    "pupuk": 4,
-    "pengolahan_daging": 2,
-    "mie_instan": 4
-  },
+    "kayu": 23
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const thailand: CountryData = {
     "udang_kerang": 26.5,
     "ikan": 24
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 11,
+    "gula": 1,
+    "roti": 37,
+    "pengolahan_daging": 2,
+    "mie_instan": 4
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 27
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 10,
     "gudang_senjata": 5,
     "hangar_tank": 36,
@@ -112,8 +105,8 @@ export const thailand: CountryData = {
     "pangkalan_udara": 22,
     "pangkalan_laut": 19,
     "program_luar_angkasa": 10,
-    "pertahanan_siber": 14,
-  },
+    "pertahanan_siber": 14
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const thailand: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 24,
     "intelijen": 8,
@@ -170,13 +162,12 @@ export const thailand: CountryData = {
       "manajemen_wilayah": 24,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 1,
-          "sepeda_motor": 4,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 1,
+        "sepeda_motor": 4,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -187,9 +178,8 @@ export const thailand: CountryData = {
           "kantor_polisi": 32,
           "kamera_pengawas": 13,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const thailand: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

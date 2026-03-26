@@ -17,13 +17,12 @@ export const rwanda: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 21,
-    "pembangkit_air": 23,
-    "pembangkit_nuklir": 40,
-    "jaringan_listrik": 50,
-    "pembangkit_surya": 33,
-    "pembangkit_termal": 23,
-    "pembangkit_angin": 14
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const rwanda: CountryData = {
     "terminal_bus": 3,
     "helipad": 22,
     "jalan_tol": 11,
-    "cakupan_internet": 52,
     "jalur_kereta": 17,
-    "kualitas_jalan": 56,
     "pelabuhan_laut": 14,
     "kereta_bawah_tanah": 3
   },
@@ -46,37 +43,15 @@ export const rwanda: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 9,
-    "batu_bara": 36,
-    "tembaga": 25,
-    "gas_alam": 15,
-    "emas": 1,
-    "bijih_besi": 7,
-    "litium": 31,
-    "nikel": 1,
-    "minyak_bumi": 35,
-    "logam_tanah_jarang": 36,
-    "garam": 5,
-    "uranium": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 33,
-    "mobil": 6,
+  "sektor_manufaktur": {    "mobil": 6,
     "semen_beton": 12,
-    "pupuk": 32,
-    "mie_instan": 15,
-    "pengolahan_daging": 15,
-    "air_mineral": 15,
-    "sepeda_motor": 34,
-    "farmasi": 32,
-    "semikonduktor": 38,
-    "smelter": 17,
-    "gula": 7,
-    "kayu": 11
+    "pengolahan_daging": 15,    "sepeda_motor": 34,    "semikonduktor": 38,
+    "smelter": 17,    "kayu": 11
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const rwanda: CountryData = {
     "udang_kerang": 14.5,
     "ikan": 2
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 15,
+    "gula": 7,
+    "roti": 33,
+    "pengolahan_daging": 15,
+    "mie_instan": 15
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 32
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 3,
     "gudang_senjata": 27,
     "hangar_tank": 28,
@@ -112,8 +102,8 @@ export const rwanda: CountryData = {
     "pangkalan_udara": 40,
     "pangkalan_laut": 29,
     "program_luar_angkasa": 24,
-    "pertahanan_siber": 12,
-  },
+    "pertahanan_siber": 12
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const rwanda: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 27,
     "intelijen": 40,
@@ -171,13 +160,12 @@ export const rwanda: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 38,
-          "sepeda_motor": 34,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 38,
+        "sepeda_motor": 34,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 22,
@@ -188,9 +176,8 @@ export const rwanda: CountryData = {
           "kantor_polisi": 21,
           "kamera_pengawas": 11,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const rwanda: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

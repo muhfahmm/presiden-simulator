@@ -17,14 +17,13 @@ export const kroasia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 27,
-    "pembangkit_air": 8,
-    "pembangkit_surya": 20,
-    "pembangkit_termal": 9,
-    "pembangkit_gas": 36,
-    "pembangkit_angin": 19,
-    "jaringan_listrik": 58
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const kroasia: CountryData = {
     "kereta_bawah_tanah": 5,
     "jalur_kereta": 20,
     "jalan_tol": 28,
-    "kualitas_jalan": 57,
     "pelabuhan_laut": 25,
     "bandara": 18,
     "terminal_bus": 5,
-    "helipad": 33,
-    "cakupan_internet": 57
-  },
+    "helipad": 33
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 10,
-    "uranium": 20,
-    "batu_bara": 13,
-    "minyak_bumi": 28,
-    "gas_alam": 22,
-    "garam": 15,
-    "nikel": 32,
-    "litium": 36,
-    "aluminium": 38,
-    "tembaga": 29,
-    "logam_tanah_jarang": 13,
-    "bijih_besi": 11
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const kroasia: CountryData = {
     "sepeda_motor": 40,
     "smelter": 25,
     "semen_beton": 17,
-    "kayu": 9,
-    "air_mineral": 20,
-    "gula": 23,
-    "roti": 3,
-    "farmasi": 14,
-    "pupuk": 3,
-    "pengolahan_daging": 11,
-    "mie_instan": 9
-  },
+    "kayu": 9
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const kroasia: CountryData = {
     "udang_kerang": 33.0,
     "ikan": 29
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 20,
+    "gula": 23,
+    "roti": 3,
+    "pengolahan_daging": 11,
+    "mie_instan": 9
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 14
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 22,
     "gudang_senjata": 9,
     "hangar_tank": 18,
@@ -112,8 +105,8 @@ export const kroasia: CountryData = {
     "pangkalan_udara": 30,
     "pangkalan_laut": 13,
     "program_luar_angkasa": 16,
-    "pertahanan_siber": 37,
-  },
+    "pertahanan_siber": 37
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const kroasia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 27,
     "intelijen": 11,
@@ -170,13 +162,12 @@ export const kroasia: CountryData = {
       "manajemen_wilayah": 39,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 31,
-          "sepeda_motor": 38,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 31,
+        "sepeda_motor": 38,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 17,
@@ -187,9 +178,8 @@ export const kroasia: CountryData = {
           "kantor_polisi": 20,
           "kamera_pengawas": 22,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const kroasia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

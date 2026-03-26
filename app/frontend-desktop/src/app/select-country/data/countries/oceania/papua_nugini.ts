@@ -17,14 +17,13 @@ export const papua_nugini: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 4,
-    "pembangkit_air": 10,
-    "pembangkit_surya": 15,
-    "pembangkit_termal": 28,
-    "pembangkit_gas": 15,
-    "pembangkit_angin": 26,
-    "jaringan_listrik": 68
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const papua_nugini: CountryData = {
     "kereta_bawah_tanah": 1,
     "jalur_kereta": 4,
     "jalan_tol": 17,
-    "kualitas_jalan": 67,
     "pelabuhan_laut": 13,
     "bandara": 13,
     "terminal_bus": 30,
-    "helipad": 13,
-    "cakupan_internet": 85
-  },
+    "helipad": 13
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 24,
-    "uranium": 19,
-    "batu_bara": 17,
-    "minyak_bumi": 11,
-    "gas_alam": 16,
-    "garam": 21,
-    "nikel": 25,
-    "litium": 34,
-    "aluminium": 9,
-    "tembaga": 22,
-    "logam_tanah_jarang": 2,
-    "bijih_besi": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const papua_nugini: CountryData = {
     "sepeda_motor": 23,
     "smelter": 25,
     "semen_beton": 22,
-    "kayu": 4,
-    "air_mineral": 10,
-    "gula": 24,
-    "roti": 3,
-    "farmasi": 39,
-    "pupuk": 8,
-    "pengolahan_daging": 2,
-    "mie_instan": 23
-  },
+    "kayu": 4
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const papua_nugini: CountryData = {
     "udang_kerang": 14.0,
     "ikan": 1
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 10,
+    "gula": 24,
+    "roti": 3,
+    "pengolahan_daging": 2,
+    "mie_instan": 23
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 39
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 25,
     "gudang_senjata": 30,
     "hangar_tank": 13,
@@ -112,8 +105,8 @@ export const papua_nugini: CountryData = {
     "pangkalan_udara": 33,
     "pangkalan_laut": 21,
     "program_luar_angkasa": 13,
-    "pertahanan_siber": 34,
-  },
+    "pertahanan_siber": 34
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const papua_nugini: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 8,
     "intelijen": 5,
@@ -170,13 +162,12 @@ export const papua_nugini: CountryData = {
       "manajemen_wilayah": 39,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 29,
-          "sepeda_motor": 12,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 29,
+        "sepeda_motor": 12,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 20,
@@ -187,9 +178,8 @@ export const papua_nugini: CountryData = {
           "kantor_polisi": 7,
           "kamera_pengawas": 21,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const papua_nugini: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

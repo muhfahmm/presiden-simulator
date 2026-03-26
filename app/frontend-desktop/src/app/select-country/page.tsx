@@ -34,9 +34,11 @@ import {
   VEHICLE_FACTORY_POWER,
   HEAVY_WEAPON_FACTORY_POWER
 } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/2-produksi-militer/militaryLogic";
+import { getInfraQuality } from "./data/infrastructure/1_kualitas_infrastruktur";
+import { getExtractionData } from "./data/extraction/1_kualitas_ekstraksi";
 import {
   hitungTotalKapasitas, KAPASITAS_LISTRIK,
-  hitungKonsumsiProduksi, KONSUMSI_PRODUKSI, hitungKonsumsiPangan, KONSUMSI_PANGAN,
+  hitungKonsumsiProduksi, hitungKonsumsiOlahanPangan, hitungKonsumsiFarmasi, KONSUMSI_PRODUKSI, hitungKonsumsiPangan, KONSUMSI_PANGAN,
   hitungKonsumsiPertahanan, KONSUMSI_PERTAHANAN, KONSUMSI_FLEET, KONSUMSI_STRATEGIC,
   hitungKonsumsiBangunanMiliter, hitungKonsumsiPabrikMiliter,
   hitungKonsumsiSosial, KONSUMSI_SOSIAL,
@@ -156,10 +158,22 @@ export default function SelectCountry() {
   };
 
   const selectedData = countries.find(c => c.name_en === selectedCountry);
-  const currentData = (selectedData || countries[0]) as CountryData;
+  const baseData = (selectedData || countries[0]) as CountryData;
   const transformRef = useRef<ReactZoomPanPinchRef>(null);
   const isInternalSelection = useRef(false);
   const hasSelection = !!selectedData;
+
+  // Modernized Dynamic Data Merging
+  const extractionData = getExtractionData(selectedCountry);
+  const infraData = getInfraQuality(selectedCountry);
+  
+  const currentData: CountryData = {
+    ...baseData,
+    sektor_ekstraksi: {
+      ...extractionData,
+      ...baseData.sektor_ekstraksi
+    }
+  };
 
   const filteredCountries = countries.filter(c =>
     c.name_id.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -306,13 +320,19 @@ export default function SelectCountry() {
                       </span>
                     )}
                   </div>
-                  <ProgressStat label="Power Grid" value={currentData.sektor_listrik.jaringan_listrik} color="bg-amber-500" icon={<Zap size={10} />} />
+                  {(() => {
+                    const prod = hitungTotalKapasitas(currentData.sektor_listrik);
+                    const cons = hitungTotalKonsumsiNasional(currentData);
+                    const loadFactor = prod > 0 ? Math.min(100, Math.floor((cons / prod) * 100)) : (cons > 0 ? 100 : 0);
+                    const gridColor = loadFactor <= 50 ? "bg-emerald-500" : (loadFactor <= 75 ? "bg-yellow-400" : "bg-red-500");
+                    return <ProgressStat label="Power Grid (Beban)" value={loadFactor} color={gridColor} icon={<Zap size={10} />} />;
+                  })()}
                   <div className="flex flex-col gap-2 mt-1.5">
                     <div className="flex items-center justify-between text-[11px] font-black bg-emerald-500/10 p-2 rounded-xl border border-emerald-500/20 shadow-inner">
                       <span className="text-emerald-400 flex items-center gap-1.5"><Zap size={12} /> 1. Produksi Listrik</span>
                       <span className="text-emerald-400 text-sm">
                         {hitungTotalKapasitas(currentData.sektor_listrik).toLocaleString('id-ID')} MW
-                        <span className="text-emerald-500/60 text-[10px] font-bold font-sans ml-1">({currentData.sektor_listrik.pembangkit_nuklir + currentData.sektor_listrik.pembangkit_air + currentData.sektor_listrik.pembangkit_surya + currentData.sektor_listrik.pembangkit_termal + currentData.sektor_listrik.pembangkit_gas + currentData.sektor_listrik.pembangkit_angin} Unit)</span>
+                        <span className="text-emerald-500/60 text-[10px] font-bold font-sans ml-1">({currentData.sektor_listrik.pembangkit_listrik_tenaga_nuklir + currentData.sektor_listrik.pembangkit_listrik_tenaga_air + currentData.sektor_listrik.pembangkit_listrik_tenaga_surya + currentData.sektor_listrik.pembangkit_listrik_tenaga_uap + currentData.sektor_listrik.pembangkit_listrik_tenaga_gas + currentData.sektor_listrik.pembangkit_listrik_tenaga_angin} Unit)</span>
                       </span>
                     </div>
                     <div className="flex items-center justify-between text-[11px] font-black bg-amber-500/10 p-2 rounded-xl border border-amber-500/20 shadow-inner">
@@ -323,12 +343,12 @@ export default function SelectCountry() {
                     </div>
                   </div>
                   <div className={`grid ${getGridCols(leftWidth)} gap-x-3 gap-y-2 mt-2`}>
-                    <DetailStat icon={<Radio size={12} className="text-cyan-400" />} label="PLTN" value={`${currentData.sektor_listrik.pembangkit_nuklir} (${(currentData.sektor_listrik.pembangkit_nuklir * KAPASITAS_LISTRIK.pembangkit_nuklir).toLocaleString('id-ID')} MW)`} />
-                    <DetailStat icon={<Waves size={12} className="text-blue-400" />} label="PLTA" value={`${currentData.sektor_listrik.pembangkit_air} (${(currentData.sektor_listrik.pembangkit_air * KAPASITAS_LISTRIK.pembangkit_air).toLocaleString('id-ID')} MW)`} />
-                    <DetailStat icon={<Sun size={12} className="text-yellow-400" />} label="PLTS" value={`${currentData.sektor_listrik.pembangkit_surya} (${(currentData.sektor_listrik.pembangkit_surya * KAPASITAS_LISTRIK.pembangkit_surya).toLocaleString('id-ID')} MW)`} />
-                    <DetailStat icon={<Flame size={12} className="text-orange-400" />} label="PLTU" value={`${currentData.sektor_listrik.pembangkit_termal} (${(currentData.sektor_listrik.pembangkit_termal * KAPASITAS_LISTRIK.pembangkit_termal).toLocaleString('id-ID')} MW)`} />
-                    <DetailStat icon={<Flame size={12} className="text-red-400" />} label="PLTG" value={`${currentData.sektor_listrik.pembangkit_gas} (${(currentData.sektor_listrik.pembangkit_gas * KAPASITAS_LISTRIK.pembangkit_gas).toLocaleString('id-ID')} MW)`} />
-                    <DetailStat icon={<Wind size={12} className="text-emerald-400" />} label="PLTB" value={`${currentData.sektor_listrik.pembangkit_angin} (${(currentData.sektor_listrik.pembangkit_angin * KAPASITAS_LISTRIK.pembangkit_angin).toLocaleString('id-ID')} MW)`} />
+                    <DetailStat icon={<Radio size={12} className="text-cyan-400" />} label="PLTN" value={`${currentData.sektor_listrik.pembangkit_listrik_tenaga_nuklir} (${(currentData.sektor_listrik.pembangkit_listrik_tenaga_nuklir * KAPASITAS_LISTRIK.pembangkit_listrik_tenaga_nuklir).toLocaleString('id-ID')} MW)`} />
+                    <DetailStat icon={<Waves size={12} className="text-blue-400" />} label="PLTA" value={`${currentData.sektor_listrik.pembangkit_listrik_tenaga_air} (${(currentData.sektor_listrik.pembangkit_listrik_tenaga_air * KAPASITAS_LISTRIK.pembangkit_listrik_tenaga_air).toLocaleString('id-ID')} MW)`} />
+                    <DetailStat icon={<Sun size={12} className="text-yellow-400" />} label="PLTS" value={`${currentData.sektor_listrik.pembangkit_listrik_tenaga_surya} (${(currentData.sektor_listrik.pembangkit_listrik_tenaga_surya * KAPASITAS_LISTRIK.pembangkit_listrik_tenaga_surya).toLocaleString('id-ID')} MW)`} />
+                    <DetailStat icon={<Flame size={12} className="text-orange-400" />} label="PLTU" value={`${currentData.sektor_listrik.pembangkit_listrik_tenaga_uap} (${(currentData.sektor_listrik.pembangkit_listrik_tenaga_uap * KAPASITAS_LISTRIK.pembangkit_listrik_tenaga_uap).toLocaleString('id-ID')} MW)`} />
+                    <DetailStat icon={<Flame size={12} className="text-red-400" />} label="PLTG" value={`${currentData.sektor_listrik.pembangkit_listrik_tenaga_gas} (${(currentData.sektor_listrik.pembangkit_listrik_tenaga_gas * KAPASITAS_LISTRIK.pembangkit_listrik_tenaga_gas).toLocaleString('id-ID')} MW)`} />
+                    <DetailStat icon={<Wind size={12} className="text-emerald-400" />} label="PLTB" value={`${currentData.sektor_listrik.pembangkit_listrik_tenaga_angin} (${(currentData.sektor_listrik.pembangkit_listrik_tenaga_angin * KAPASITAS_LISTRIK.pembangkit_listrik_tenaga_angin).toLocaleString('id-ID')} MW)`} />
                   </div>
                 </div>
               </div>
@@ -356,8 +376,17 @@ export default function SelectCountry() {
                 <div className="flex flex-col gap-2">
                   <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1"><Ship size={8} /> Transportasi & Digital</span>
                   <div className="space-y-2">
-                    <ProgressStat label="Kualitas Jalan" value={currentData.infrastruktur.kualitas_jalan} color="bg-zinc-400" icon={<Map size={10} />} />
-                    <ProgressStat label="Cakupan Internet" value={currentData.infrastruktur.cakupan_internet} color="bg-blue-500" icon={<Wifi size={10} />} />
+                    {(() => {
+                      const quality = getInfraQuality(selectedCountry);
+                      const roadColor = quality.kualitas_jalan <= 50 ? "bg-red-500" : (quality.kualitas_jalan <= 75 ? "bg-yellow-400" : "bg-emerald-500");
+                      const internetColor = quality.cakupan_internet <= 50 ? "bg-red-500" : (quality.cakupan_internet <= 75 ? "bg-yellow-400" : "bg-emerald-500");
+                      return (
+                        <>
+                          <ProgressStat label="Kualitas Jalan" value={quality.kualitas_jalan} color={roadColor} icon={<Map size={10} />} />
+                          <ProgressStat label="Cakupan Internet" value={quality.cakupan_internet} color={internetColor} icon={<Wifi size={10} />} />
+                        </>
+                      );
+                    })()}
                   </div>
                   <div className={`grid ${getGridCols(leftWidth)} gap-3 mt-1`}>
                     <DetailStat icon={<Bike size={12} className="text-emerald-400" />} label="Jalur Sepeda" value={`${currentData.infrastruktur.jalur_sepeda ?? 0} (${((currentData.infrastruktur.jalur_sepeda ?? 0) * KONSUMSI_TRANSPORTASI.jalur_sepeda).toLocaleString('id-ID')} MW)`} />
@@ -393,18 +422,18 @@ export default function SelectCountry() {
                   </span>
                 </div>
                 <div className={`grid ${getGridCols(leftWidth)} gap-2`}>
-                  <SectorStat icon={<Gem size={10} className="text-yellow-400" />} label="Emas" value={`${currentData.sektor_ekstraksi.emas} (${(currentData.sektor_ekstraksi.emas * KONSUMSI_EKSTRAKSI.emas).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Radio size={10} className="text-emerald-400" />} label="Uranium" value={`${currentData.sektor_ekstraksi.uranium} (${(currentData.sektor_ekstraksi.uranium * KONSUMSI_EKSTRAKSI.uranium).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Layers size={10} className="text-zinc-400" />} label="Batubara" value={`${currentData.sektor_ekstraksi.batu_bara} (${(currentData.sektor_ekstraksi.batu_bara * KONSUMSI_EKSTRAKSI.batu_bara).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Droplets size={10} className="text-blue-400" />} label="Minyak" value={`${currentData.sektor_ekstraksi.minyak_bumi} (${(currentData.sektor_ekstraksi.minyak_bumi * KONSUMSI_EKSTRAKSI.minyak_bumi).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Flame size={10} className="text-orange-400" />} label="Gas" value={`${currentData.sektor_ekstraksi.gas_alam} (${(currentData.sektor_ekstraksi.gas_alam * KONSUMSI_EKSTRAKSI.gas_alam).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Waves size={10} className="text-blue-200" />} label="Garam" value={`${currentData.sektor_ekstraksi.garam} (${(currentData.sektor_ekstraksi.garam * KONSUMSI_EKSTRAKSI.garam).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Box size={10} className="text-orange-400" />} label="Nikel" value={`${currentData.sektor_ekstraksi.nikel} (${(currentData.sektor_ekstraksi.nikel * KONSUMSI_EKSTRAKSI.nikel).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Battery size={10} className="text-cyan-400" />} label="Litium" value={`${currentData.sektor_ekstraksi.litium} (${(currentData.sektor_ekstraksi.litium * KONSUMSI_EKSTRAKSI.litium).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Pickaxe size={10} className="text-orange-300" />} label="Tembaga" value={`${currentData.sektor_ekstraksi.tembaga} (${(currentData.sektor_ekstraksi.tembaga * KONSUMSI_EKSTRAKSI.tembaga).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Layers size={10} className="text-blue-200" />} label="Alumunium" value={`${currentData.sektor_ekstraksi.aluminium} (${(currentData.sektor_ekstraksi.aluminium * KONSUMSI_EKSTRAKSI.aluminium).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Cpu size={10} className="text-purple-400" />} label="Tanah Jarang" value={`${currentData.sektor_ekstraksi.logam_tanah_jarang} (${(currentData.sektor_ekstraksi.logam_tanah_jarang * KONSUMSI_EKSTRAKSI.logam_tanah_jarang).toLocaleString('id-ID')} MW)`} />
-                  <SectorStat icon={<Mountain size={10} className="text-zinc-500" />} label="Bijih Besi" value={`${currentData.sektor_ekstraksi.bijih_besi} (${(currentData.sektor_ekstraksi.bijih_besi * KONSUMSI_EKSTRAKSI.bijih_besi).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Gem size={10} className="text-yellow-400" />} label="Emas" value={`${currentData.sektor_ekstraksi.emas} (${((currentData.sektor_ekstraksi.emas ?? 0) * KONSUMSI_EKSTRAKSI.emas).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Radio size={10} className="text-emerald-400" />} label="Uranium" value={`${currentData.sektor_ekstraksi.uranium} (${((currentData.sektor_ekstraksi.uranium ?? 0) * KONSUMSI_EKSTRAKSI.uranium).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Layers size={10} className="text-zinc-400" />} label="Batubara" value={`${currentData.sektor_ekstraksi.batu_bara} (${((currentData.sektor_ekstraksi.batu_bara ?? 0) * KONSUMSI_EKSTRAKSI.batu_bara).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Droplets size={10} className="text-blue-400" />} label="Minyak" value={`${currentData.sektor_ekstraksi.minyak_bumi} (${((currentData.sektor_ekstraksi.minyak_bumi ?? 0) * KONSUMSI_EKSTRAKSI.minyak_bumi).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Flame size={10} className="text-orange-400" />} label="Gas" value={`${currentData.sektor_ekstraksi.gas_alam} (${((currentData.sektor_ekstraksi.gas_alam ?? 0) * KONSUMSI_EKSTRAKSI.gas_alam).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Waves size={10} className="text-blue-200" />} label="Garam" value={`${currentData.sektor_ekstraksi.garam} (${((currentData.sektor_ekstraksi.garam ?? 0) * KONSUMSI_EKSTRAKSI.garam).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Box size={10} className="text-orange-400" />} label="Nikel" value={`${currentData.sektor_ekstraksi.nikel} (${((currentData.sektor_ekstraksi.nikel ?? 0) * KONSUMSI_EKSTRAKSI.nikel).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Battery size={10} className="text-cyan-400" />} label="Litium" value={`${currentData.sektor_ekstraksi.litium} (${((currentData.sektor_ekstraksi.litium ?? 0) * KONSUMSI_EKSTRAKSI.litium).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Pickaxe size={10} className="text-orange-300" />} label="Tembaga" value={`${currentData.sektor_ekstraksi.tembaga} (${((currentData.sektor_ekstraksi.tembaga ?? 0) * KONSUMSI_EKSTRAKSI.tembaga).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Layers size={10} className="text-blue-200" />} label="Alumunium" value={`${currentData.sektor_ekstraksi.aluminium} (${((currentData.sektor_ekstraksi.aluminium ?? 0) * KONSUMSI_EKSTRAKSI.aluminium).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Cpu size={10} className="text-purple-400" />} label="Tanah Jarang" value={`${currentData.sektor_ekstraksi.logam_tanah_jarang} (${((currentData.sektor_ekstraksi.logam_tanah_jarang ?? 0) * KONSUMSI_EKSTRAKSI.logam_tanah_jarang).toLocaleString('id-ID')} MW)`} />
+                  <SectorStat icon={<Mountain size={10} className="text-zinc-500" />} label="Bijih Besi" value={`${currentData.sektor_ekstraksi.bijih_besi} (${((currentData.sektor_ekstraksi.bijih_besi ?? 0) * KONSUMSI_EKSTRAKSI.bijih_besi).toLocaleString('id-ID')} MW)`} />
                 </div>
               </div>
             </div>
@@ -425,8 +454,8 @@ export default function SelectCountry() {
                 <div className="flex items-center justify-between text-xs font-black bg-zinc-800/50 p-2 rounded-xl border border-zinc-700/30 mt-1 shadow-inner">
                   <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500" /> Beban Listrik</span>
                   <span className="text-amber-500 text-sm">
-                    {(hitungKonsumsiProduksi(currentData.sektor_manufaktur) + hitungKonsumsiPangan(currentData.sektor_peternakan, currentData.sektor_agrikultur)).toLocaleString('id-ID')} MW
-                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_manufaktur.semikonduktor + currentData.sektor_manufaktur.mobil + currentData.sektor_manufaktur.sepeda_motor + currentData.sektor_manufaktur.smelter + currentData.sektor_manufaktur.semen_beton + currentData.sektor_manufaktur.kayu + currentData.sektor_manufaktur.air_mineral + currentData.sektor_manufaktur.gula + currentData.sektor_manufaktur.roti + currentData.sektor_manufaktur.farmasi + currentData.sektor_manufaktur.pupuk + currentData.sektor_manufaktur.pengolahan_daging + currentData.sektor_manufaktur.mie_instan} Unit)</span>
+                    {(hitungKonsumsiProduksi(currentData.sektor_manufaktur) + hitungKonsumsiOlahanPangan(currentData.sektor_olahan_pangan) + hitungKonsumsiFarmasi(currentData.sektor_farmasi) + hitungKonsumsiPangan(currentData.sektor_peternakan, currentData.sektor_agrikultur)).toLocaleString('id-ID')} MW
+                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_manufaktur.semikonduktor + currentData.sektor_manufaktur.mobil + currentData.sektor_manufaktur.sepeda_motor + currentData.sektor_manufaktur.smelter + currentData.sektor_manufaktur.semen_beton + currentData.sektor_manufaktur.kayu + currentData.sektor_olahan_pangan.air_mineral + currentData.sektor_olahan_pangan.gula + currentData.sektor_olahan_pangan.roti + currentData.sektor_farmasi.farmasi + currentData.sektor_olahan_pangan.pengolahan_daging + currentData.sektor_olahan_pangan.mie_instan} Unit)</span>
                   </span>
                 </div>
                 {/* Manufacturing */}
@@ -441,13 +470,12 @@ export default function SelectCountry() {
                     <SectorStat icon={<Flame size={10} className="text-red-400" />} label="Pengolahan Smelter" value={`${currentData.sektor_manufaktur.smelter} (${(currentData.sektor_manufaktur.smelter * KONSUMSI_PRODUKSI.smelter).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Construction size={10} className="text-zinc-400" />} label="Pabrik Beton & Semen" value={`${currentData.sektor_manufaktur.semen_beton} (${(currentData.sektor_manufaktur.semen_beton * KONSUMSI_PRODUKSI.semen_beton).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<TreePine size={10} className="text-emerald-600" />} label="Pabrik Kayu" value={`${currentData.sektor_manufaktur.kayu} (${(currentData.sektor_manufaktur.kayu * KONSUMSI_PRODUKSI.kayu).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Droplet size={10} className="text-blue-400" />} label="Pabrik Air Mineral" value={`${currentData.sektor_manufaktur.air_mineral} (${(currentData.sektor_manufaktur.air_mineral * KONSUMSI_PRODUKSI.air_mineral).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Cookie size={10} className="text-yellow-600" />} label="Pabrik Gula" value={`${currentData.sektor_manufaktur.gula} (${(currentData.sektor_manufaktur.gula * KONSUMSI_PRODUKSI.gula).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Croissant size={10} className="text-amber-400" />} label="Pabrik Roti" value={`${currentData.sektor_manufaktur.roti} (${(currentData.sektor_manufaktur.roti * KONSUMSI_PRODUKSI.roti).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Pill size={10} className="text-pink-400" />} label="Pabrik Farmasi" value={`${currentData.sektor_manufaktur.farmasi} (${(currentData.sektor_manufaktur.farmasi * KONSUMSI_PRODUKSI.farmasi).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<FlaskConical size={10} className="text-emerald-400" />} label="Pabrik Pupuk" value={`${currentData.sektor_manufaktur.pupuk} (${(currentData.sektor_manufaktur.pupuk * KONSUMSI_PRODUKSI.pupuk).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Beef size={10} className="text-red-400" />} label="Pengolahan Daging" value={`${currentData.sektor_manufaktur.pengolahan_daging} (${(currentData.sektor_manufaktur.pengolahan_daging * KONSUMSI_PRODUKSI.pengolahan_daging).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Soup size={10} className="text-orange-400" />} label="Pabrik Mie Instan" value={`${currentData.sektor_manufaktur.mie_instan} (${(currentData.sektor_manufaktur.mie_instan * KONSUMSI_PRODUKSI.mie_instan).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Droplet size={10} className="text-blue-400" />} label="Pabrik Air Mineral" value={`${currentData.sektor_olahan_pangan.air_mineral} (${(currentData.sektor_olahan_pangan.air_mineral * KONSUMSI_PRODUKSI.air_mineral).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Cookie size={10} className="text-yellow-600" />} label="Pabrik Gula" value={`${currentData.sektor_olahan_pangan.gula} (${(currentData.sektor_olahan_pangan.gula * KONSUMSI_PRODUKSI.gula).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Croissant size={10} className="text-amber-400" />} label="Pabrik Roti" value={`${currentData.sektor_olahan_pangan.roti} (${(currentData.sektor_olahan_pangan.roti * KONSUMSI_PRODUKSI.roti).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Pill size={10} className="text-pink-400" />} label="Pabrik Farmasi" value={`${currentData.sektor_farmasi.farmasi} (${(currentData.sektor_farmasi.farmasi * KONSUMSI_PRODUKSI.farmasi).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Beef size={10} className="text-red-400" />} label="Pengolahan Daging" value={`${currentData.sektor_olahan_pangan.pengolahan_daging} (${(currentData.sektor_olahan_pangan.pengolahan_daging * KONSUMSI_PRODUKSI.pengolahan_daging).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Soup size={10} className="text-orange-400" />} label="Pabrik Mie Instan" value={`${currentData.sektor_olahan_pangan.mie_instan} (${(currentData.sektor_olahan_pangan.mie_instan * KONSUMSI_PRODUKSI.mie_instan).toLocaleString('id-ID')} MW)`} />
                   </div>
                 </div>
 
@@ -930,7 +958,6 @@ export default function SelectCountry() {
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
                     <span className="text-xs font-black text-blue-400 uppercase tracking-widest flex items-center gap-1.5"><Shield size={10} /> Armada Kepolisian (9)</span>
-                    <span className="text-xs font-bold text-emerald-400">{currentData.armada_kepolisian.armada_polisi.kepercayaan_publik}% Trust</span>
                   </div>
 
                   {/* Patrol & Taktis */}

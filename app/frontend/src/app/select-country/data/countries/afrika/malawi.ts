@@ -17,13 +17,12 @@ export const malawi: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 29,
-    "pembangkit_air": 30,
-    "pembangkit_nuklir": 40,
-    "jaringan_listrik": 93,
-    "pembangkit_surya": 39,
-    "pembangkit_termal": 34,
-    "pembangkit_angin": 17
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const malawi: CountryData = {
     "terminal_bus": 35,
     "helipad": 25,
     "jalan_tol": 24,
-    "cakupan_internet": 75,
     "jalur_kereta": 12,
-    "kualitas_jalan": 78,
     "pelabuhan_laut": 14,
     "kereta_bawah_tanah": 27
   },
@@ -46,37 +43,15 @@ export const malawi: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 40,
-    "batu_bara": 31,
-    "tembaga": 21,
-    "gas_alam": 27,
-    "emas": 5,
-    "bijih_besi": 15,
-    "litium": 38,
-    "nikel": 16,
-    "minyak_bumi": 27,
-    "logam_tanah_jarang": 17,
-    "garam": 4,
-    "uranium": 5
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 22,
-    "mobil": 29,
+  "sektor_manufaktur": {    "mobil": 29,
     "semen_beton": 2,
-    "pupuk": 23,
-    "mie_instan": 30,
-    "pengolahan_daging": 9,
-    "air_mineral": 12,
-    "sepeda_motor": 39,
-    "farmasi": 7,
-    "semikonduktor": 4,
-    "smelter": 34,
-    "gula": 16,
-    "kayu": 18
+    "pengolahan_daging": 9,    "sepeda_motor": 39,    "semikonduktor": 4,
+    "smelter": 34,    "kayu": 18
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const malawi: CountryData = {
     "udang_kerang": 9.5,
     "ikan": 39
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 12,
+    "gula": 16,
+    "roti": 22,
+    "pengolahan_daging": 9,
+    "mie_instan": 30
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 7
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 28,
     "gudang_senjata": 1,
     "hangar_tank": 9,
@@ -112,8 +102,8 @@ export const malawi: CountryData = {
     "pangkalan_udara": 39,
     "pangkalan_laut": 34,
     "program_luar_angkasa": 40,
-    "pertahanan_siber": 10,
-  },
+    "pertahanan_siber": 10
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const malawi: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 17,
     "intelijen": 14,
@@ -171,13 +160,12 @@ export const malawi: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 26,
-          "sepeda_motor": 19,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 26,
+        "sepeda_motor": 19,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 2,
@@ -188,9 +176,8 @@ export const malawi: CountryData = {
           "kantor_polisi": 13,
           "kamera_pengawas": 4,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const malawi: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

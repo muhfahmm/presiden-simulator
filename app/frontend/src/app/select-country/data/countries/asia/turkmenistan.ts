@@ -17,14 +17,13 @@ export const turkmenistan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 11,
-    "pembangkit_air": 1,
-    "pembangkit_surya": 2,
-    "pembangkit_termal": 29,
-    "pembangkit_gas": 17,
-    "pembangkit_angin": 21,
-    "jaringan_listrik": 68
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const turkmenistan: CountryData = {
     "kereta_bawah_tanah": 20,
     "jalur_kereta": 31,
     "jalan_tol": 12,
-    "kualitas_jalan": 52,
     "pelabuhan_laut": 7,
     "bandara": 16,
     "terminal_bus": 11,
-    "helipad": 33,
-    "cakupan_internet": 78
-  },
+    "helipad": 33
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 33,
-    "uranium": 1,
-    "batu_bara": 35,
-    "minyak_bumi": 2,
-    "gas_alam": 3,
-    "garam": 4,
-    "nikel": 24,
-    "litium": 22,
-    "aluminium": 6,
-    "tembaga": 20,
-    "logam_tanah_jarang": 7,
-    "bijih_besi": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const turkmenistan: CountryData = {
     "sepeda_motor": 15,
     "smelter": 39,
     "semen_beton": 2,
-    "kayu": 36,
-    "air_mineral": 32,
-    "gula": 6,
-    "roti": 17,
-    "farmasi": 25,
-    "pupuk": 4,
-    "pengolahan_daging": 17,
-    "mie_instan": 36
-  },
+    "kayu": 36
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const turkmenistan: CountryData = {
     "udang_kerang": 18.0,
     "ikan": 21
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 32,
+    "gula": 6,
+    "roti": 17,
+    "pengolahan_daging": 17,
+    "mie_instan": 36
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 25
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 17,
     "gudang_senjata": 32,
     "hangar_tank": 12,
@@ -112,8 +105,8 @@ export const turkmenistan: CountryData = {
     "pangkalan_udara": 23,
     "pangkalan_laut": 35,
     "program_luar_angkasa": 19,
-    "pertahanan_siber": 40,
-  },
+    "pertahanan_siber": 40
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const turkmenistan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 15,
     "intelijen": 18,
@@ -170,13 +162,12 @@ export const turkmenistan: CountryData = {
       "manajemen_wilayah": 3,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 9,
-          "sepeda_motor": 40,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 9,
+        "sepeda_motor": 40,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 37,
@@ -187,9 +178,8 @@ export const turkmenistan: CountryData = {
           "kantor_polisi": 14,
           "kamera_pengawas": 7,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const turkmenistan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

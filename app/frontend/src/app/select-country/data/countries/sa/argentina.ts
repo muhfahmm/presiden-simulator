@@ -17,14 +17,13 @@ export const argentina: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 1,
-    "pembangkit_air": 20,
-    "pembangkit_surya": 1,
-    "pembangkit_termal": 28,
-    "pembangkit_gas": 26,
-    "pembangkit_angin": 40,
-    "jaringan_listrik": 78
-  },
+    "pembangkit_listrik_tenaga_nuklir": 3,
+    "pembangkit_listrik_tenaga_air": 60,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 15,
+    "pembangkit_listrik_tenaga_angin": 4
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const argentina: CountryData = {
     "kereta_bawah_tanah": 39,
     "jalur_kereta": 25,
     "jalan_tol": 37,
-    "kualitas_jalan": 55,
     "pelabuhan_laut": 25,
     "bandara": 10,
     "terminal_bus": 29,
-    "helipad": 40,
-    "cakupan_internet": 55
-  },
+    "helipad": 40
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 22,
-    "uranium": 39,
-    "batu_bara": 40,
-    "minyak_bumi": 9,
-    "gas_alam": 8,
-    "garam": 24,
-    "nikel": 34,
-    "litium": 5,
-    "aluminium": 33,
-    "tembaga": 12,
-    "logam_tanah_jarang": 6,
-    "bijih_besi": 19
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const argentina: CountryData = {
     "sepeda_motor": 18,
     "smelter": 9,
     "semen_beton": 4,
-    "kayu": 33,
-    "air_mineral": 26,
-    "gula": 21,
-    "roti": 10,
-    "farmasi": 27,
-    "pupuk": 37,
-    "pengolahan_daging": 21,
-    "mie_instan": 1
-  },
+    "kayu": 33
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const argentina: CountryData = {
     "udang_kerang": 10.0,
     "ikan": 21
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 26,
+    "gula": 21,
+    "roti": 10,
+    "pengolahan_daging": 21,
+    "mie_instan": 1
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 27
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 35,
     "gudang_senjata": 27,
     "hangar_tank": 30,
@@ -112,8 +105,8 @@ export const argentina: CountryData = {
     "pangkalan_udara": 18,
     "pangkalan_laut": 5,
     "program_luar_angkasa": 22,
-    "pertahanan_siber": 32,
-  },
+    "pertahanan_siber": 32
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const argentina: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 28,
     "intelijen": 35,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 34,
       "misi_mata_mata": 20,
       "misi_sabotase": 40,
       "manajemen_wilayah": 27,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 9,
-          "sepeda_motor": 21,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 9,
+        "sepeda_motor": 21,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 18,
@@ -187,9 +178,8 @@ export const argentina: CountryData = {
           "kantor_polisi": 6,
           "kamera_pengawas": 21,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const argentina: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

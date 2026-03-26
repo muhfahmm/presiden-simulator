@@ -17,14 +17,13 @@ export const malta: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 13,
-    "pembangkit_air": 13,
-    "pembangkit_surya": 16,
-    "pembangkit_termal": 31,
-    "pembangkit_gas": 6,
-    "pembangkit_angin": 23,
-    "jaringan_listrik": 62
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const malta: CountryData = {
     "kereta_bawah_tanah": 25,
     "jalur_kereta": 15,
     "jalan_tol": 34,
-    "kualitas_jalan": 73,
     "pelabuhan_laut": 30,
     "bandara": 37,
     "terminal_bus": 11,
-    "helipad": 27,
-    "cakupan_internet": 69
-  },
+    "helipad": 27
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 29,
-    "uranium": 34,
-    "batu_bara": 14,
-    "minyak_bumi": 39,
-    "gas_alam": 31,
-    "garam": 28,
-    "nikel": 25,
-    "litium": 25,
-    "aluminium": 1,
-    "tembaga": 9,
-    "logam_tanah_jarang": 8,
-    "bijih_besi": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const malta: CountryData = {
     "sepeda_motor": 37,
     "smelter": 27,
     "semen_beton": 16,
-    "kayu": 6,
-    "air_mineral": 29,
-    "gula": 38,
-    "roti": 14,
-    "farmasi": 7,
-    "pupuk": 7,
-    "pengolahan_daging": 28,
-    "mie_instan": 39
-  },
+    "kayu": 6
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const malta: CountryData = {
     "udang_kerang": 15.5,
     "ikan": 5
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 29,
+    "gula": 38,
+    "roti": 14,
+    "pengolahan_daging": 28,
+    "mie_instan": 39
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 7
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 6,
     "gudang_senjata": 11,
     "hangar_tank": 12,
@@ -112,8 +105,8 @@ export const malta: CountryData = {
     "pangkalan_udara": 2,
     "pangkalan_laut": 10,
     "program_luar_angkasa": 32,
-    "pertahanan_siber": 22,
-  },
+    "pertahanan_siber": 22
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const malta: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 3,
     "intelijen": 36,
@@ -170,13 +162,12 @@ export const malta: CountryData = {
       "manajemen_wilayah": 14,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 3,
-          "sepeda_motor": 13,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 3,
+        "sepeda_motor": 13,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 1,
@@ -187,9 +178,8 @@ export const malta: CountryData = {
           "kantor_polisi": 13,
           "kamera_pengawas": 5,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const malta: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const sri_lanka: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 15,
-    "pembangkit_air": 8,
-    "pembangkit_surya": 7,
-    "pembangkit_termal": 3,
-    "pembangkit_gas": 3,
-    "pembangkit_angin": 2,
-    "jaringan_listrik": 67
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const sri_lanka: CountryData = {
     "kereta_bawah_tanah": 29,
     "jalur_kereta": 37,
     "jalan_tol": 1,
-    "kualitas_jalan": 55,
     "pelabuhan_laut": 35,
     "bandara": 31,
     "terminal_bus": 15,
-    "helipad": 24,
-    "cakupan_internet": 57
-  },
+    "helipad": 24
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 15,
-    "uranium": 25,
-    "batu_bara": 23,
-    "minyak_bumi": 10,
-    "gas_alam": 32,
-    "garam": 20,
-    "nikel": 32,
-    "litium": 17,
-    "aluminium": 2,
-    "tembaga": 37,
-    "logam_tanah_jarang": 17,
-    "bijih_besi": 2
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const sri_lanka: CountryData = {
     "sepeda_motor": 19,
     "smelter": 20,
     "semen_beton": 24,
-    "kayu": 13,
-    "air_mineral": 34,
-    "gula": 17,
-    "roti": 17,
-    "farmasi": 7,
-    "pupuk": 29,
-    "pengolahan_daging": 29,
-    "mie_instan": 3
-  },
+    "kayu": 13
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const sri_lanka: CountryData = {
     "udang_kerang": 28.5,
     "ikan": 38
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 34,
+    "gula": 17,
+    "roti": 17,
+    "pengolahan_daging": 29,
+    "mie_instan": 3
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 7
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 18,
     "gudang_senjata": 4,
     "hangar_tank": 37,
@@ -112,8 +105,8 @@ export const sri_lanka: CountryData = {
     "pangkalan_udara": 28,
     "pangkalan_laut": 9,
     "program_luar_angkasa": 35,
-    "pertahanan_siber": 13,
-  },
+    "pertahanan_siber": 13
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const sri_lanka: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 19,
     "intelijen": 20,
@@ -170,13 +162,12 @@ export const sri_lanka: CountryData = {
       "manajemen_wilayah": 29,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 10,
-          "sepeda_motor": 22,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 10,
+        "sepeda_motor": 22,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 8,
@@ -187,9 +178,8 @@ export const sri_lanka: CountryData = {
           "kantor_polisi": 1,
           "kamera_pengawas": 18,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const sri_lanka: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const peru: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 32,
-    "pembangkit_air": 22,
-    "pembangkit_surya": 26,
-    "pembangkit_termal": 38,
-    "pembangkit_gas": 5,
-    "pembangkit_angin": 30,
-    "jaringan_listrik": 75
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 60,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 15,
+    "pembangkit_listrik_tenaga_angin": 4
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const peru: CountryData = {
     "kereta_bawah_tanah": 26,
     "jalur_kereta": 15,
     "jalan_tol": 11,
-    "kualitas_jalan": 84,
     "pelabuhan_laut": 17,
     "bandara": 13,
     "terminal_bus": 38,
-    "helipad": 33,
-    "cakupan_internet": 94
-  },
+    "helipad": 33
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 5,
-    "uranium": 13,
-    "batu_bara": 28,
-    "minyak_bumi": 10,
-    "gas_alam": 7,
-    "garam": 26,
-    "nikel": 16,
-    "litium": 37,
-    "aluminium": 30,
-    "tembaga": 19,
-    "logam_tanah_jarang": 39,
-    "bijih_besi": 5
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const peru: CountryData = {
     "sepeda_motor": 16,
     "smelter": 16,
     "semen_beton": 17,
-    "kayu": 5,
-    "air_mineral": 23,
-    "gula": 11,
-    "roti": 14,
-    "farmasi": 21,
-    "pupuk": 37,
-    "pengolahan_daging": 39,
-    "mie_instan": 28
-  },
+    "kayu": 5
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const peru: CountryData = {
     "udang_kerang": 14.5,
     "ikan": 14
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 23,
+    "gula": 11,
+    "roti": 14,
+    "pengolahan_daging": 39,
+    "mie_instan": 28
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 21
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 15,
     "gudang_senjata": 17,
     "hangar_tank": 34,
@@ -112,8 +105,8 @@ export const peru: CountryData = {
     "pangkalan_udara": 34,
     "pangkalan_laut": 16,
     "program_luar_angkasa": 34,
-    "pertahanan_siber": 10,
-  },
+    "pertahanan_siber": 10
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const peru: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 30,
     "intelijen": 17,
@@ -170,13 +162,12 @@ export const peru: CountryData = {
       "manajemen_wilayah": 28,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 6,
-          "sepeda_motor": 37,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 6,
+        "sepeda_motor": 37,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 32,
@@ -187,9 +178,8 @@ export const peru: CountryData = {
           "kantor_polisi": 1,
           "kamera_pengawas": 2,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const peru: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

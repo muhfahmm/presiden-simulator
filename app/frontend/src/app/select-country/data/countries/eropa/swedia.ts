@@ -17,14 +17,13 @@ export const swedia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 27,
-    "pembangkit_air": 28,
-    "pembangkit_surya": 34,
-    "pembangkit_termal": 34,
-    "pembangkit_gas": 40,
-    "pembangkit_angin": 33,
-    "jaringan_listrik": 83
-  },
+    "pembangkit_listrik_tenaga_nuklir": 6,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const swedia: CountryData = {
     "kereta_bawah_tanah": 15,
     "jalur_kereta": 21,
     "jalan_tol": 13,
-    "kualitas_jalan": 80,
     "pelabuhan_laut": 2,
     "bandara": 19,
     "terminal_bus": 10,
-    "helipad": 11,
-    "cakupan_internet": 88
-  },
+    "helipad": 11
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 21,
-    "uranium": 5,
-    "batu_bara": 22,
-    "minyak_bumi": 1,
-    "gas_alam": 32,
-    "garam": 5,
-    "nikel": 23,
-    "litium": 15,
-    "aluminium": 31,
-    "tembaga": 36,
-    "logam_tanah_jarang": 32,
-    "bijih_besi": 8
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const swedia: CountryData = {
     "sepeda_motor": 31,
     "smelter": 2,
     "semen_beton": 28,
-    "kayu": 4,
-    "air_mineral": 27,
-    "gula": 38,
-    "roti": 30,
-    "farmasi": 35,
-    "pupuk": 2,
-    "pengolahan_daging": 10,
-    "mie_instan": 16
-  },
+    "kayu": 4
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const swedia: CountryData = {
     "udang_kerang": 29.0,
     "ikan": 33
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 27,
+    "gula": 38,
+    "roti": 30,
+    "pengolahan_daging": 10,
+    "mie_instan": 16
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 35
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 15,
     "gudang_senjata": 25,
     "hangar_tank": 37,
@@ -112,8 +105,8 @@ export const swedia: CountryData = {
     "pangkalan_udara": 15,
     "pangkalan_laut": 26,
     "program_luar_angkasa": 14,
-    "pertahanan_siber": 30,
-  },
+    "pertahanan_siber": 30
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const swedia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 40,
     "intelijen": 9,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 23,
       "misi_mata_mata": 2,
       "misi_sabotase": 33,
       "manajemen_wilayah": 13,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 6,
-          "sepeda_motor": 35,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 6,
+        "sepeda_motor": 35,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -187,9 +178,8 @@ export const swedia: CountryData = {
           "kantor_polisi": 14,
           "kamera_pengawas": 6,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const swedia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

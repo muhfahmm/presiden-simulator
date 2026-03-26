@@ -17,13 +17,12 @@ export const madagaskar: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 20,
-    "pembangkit_air": 10,
-    "pembangkit_nuklir": 24,
-    "jaringan_listrik": 79,
-    "pembangkit_surya": 7,
-    "pembangkit_termal": 6,
-    "pembangkit_angin": 17
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const madagaskar: CountryData = {
     "terminal_bus": 24,
     "helipad": 38,
     "jalan_tol": 12,
-    "cakupan_internet": 53,
     "jalur_kereta": 39,
-    "kualitas_jalan": 69,
     "pelabuhan_laut": 1,
     "kereta_bawah_tanah": 32
   },
@@ -46,37 +43,15 @@ export const madagaskar: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 22,
-    "batu_bara": 23,
-    "tembaga": 34,
-    "gas_alam": 5,
-    "emas": 24,
-    "bijih_besi": 35,
-    "litium": 12,
-    "nikel": 21,
-    "minyak_bumi": 31,
-    "logam_tanah_jarang": 7,
-    "garam": 35,
-    "uranium": 12
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 22,
-    "mobil": 30,
+  "sektor_manufaktur": {    "mobil": 30,
     "semen_beton": 25,
-    "pupuk": 33,
-    "mie_instan": 3,
-    "pengolahan_daging": 19,
-    "air_mineral": 27,
-    "sepeda_motor": 39,
-    "farmasi": 9,
-    "semikonduktor": 13,
-    "smelter": 39,
-    "gula": 40,
-    "kayu": 28
+    "pengolahan_daging": 19,    "sepeda_motor": 39,    "semikonduktor": 13,
+    "smelter": 39,    "kayu": 28
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const madagaskar: CountryData = {
     "udang_kerang": 11.5,
     "ikan": 26
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 27,
+    "gula": 40,
+    "roti": 22,
+    "pengolahan_daging": 19,
+    "mie_instan": 3
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 9
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 15,
     "gudang_senjata": 5,
     "hangar_tank": 16,
@@ -112,8 +102,8 @@ export const madagaskar: CountryData = {
     "pangkalan_udara": 26,
     "pangkalan_laut": 17,
     "program_luar_angkasa": 8,
-    "pertahanan_siber": 31,
-  },
+    "pertahanan_siber": 31
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const madagaskar: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 15,
     "intelijen": 34,
@@ -171,13 +160,12 @@ export const madagaskar: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 33,
-          "sepeda_motor": 21,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 33,
+        "sepeda_motor": 21,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 12,
@@ -188,9 +176,8 @@ export const madagaskar: CountryData = {
           "kantor_polisi": 37,
           "kamera_pengawas": 20,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const madagaskar: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

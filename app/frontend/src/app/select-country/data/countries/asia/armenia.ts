@@ -17,14 +17,13 @@ export const armenia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 10,
-    "pembangkit_air": 13,
-    "pembangkit_surya": 17,
-    "pembangkit_termal": 39,
-    "pembangkit_gas": 2,
-    "pembangkit_angin": 21,
-    "jaringan_listrik": 85
-  },
+    "pembangkit_listrik_tenaga_nuklir": 1,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const armenia: CountryData = {
     "kereta_bawah_tanah": 32,
     "jalur_kereta": 36,
     "jalan_tol": 20,
-    "kualitas_jalan": 86,
     "pelabuhan_laut": 17,
     "bandara": 24,
     "terminal_bus": 19,
-    "helipad": 39,
-    "cakupan_internet": 58
-  },
+    "helipad": 39
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 13,
-    "uranium": 34,
-    "batu_bara": 5,
-    "minyak_bumi": 35,
-    "gas_alam": 27,
-    "garam": 28,
-    "nikel": 12,
-    "litium": 19,
-    "aluminium": 25,
-    "tembaga": 33,
-    "logam_tanah_jarang": 36,
-    "bijih_besi": 40
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const armenia: CountryData = {
     "sepeda_motor": 38,
     "smelter": 19,
     "semen_beton": 26,
-    "kayu": 34,
-    "air_mineral": 16,
-    "gula": 20,
-    "roti": 40,
-    "farmasi": 12,
-    "pupuk": 21,
-    "pengolahan_daging": 15,
-    "mie_instan": 8
-  },
+    "kayu": 34
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const armenia: CountryData = {
     "udang_kerang": 8.0,
     "ikan": 6
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 16,
+    "gula": 20,
+    "roti": 40,
+    "pengolahan_daging": 15,
+    "mie_instan": 8
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 12
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 13,
     "gudang_senjata": 11,
     "hangar_tank": 27,
@@ -112,8 +105,8 @@ export const armenia: CountryData = {
     "pangkalan_udara": 37,
     "pangkalan_laut": 17,
     "program_luar_angkasa": 36,
-    "pertahanan_siber": 11,
-  },
+    "pertahanan_siber": 11
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const armenia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 9,
     "intelijen": 13,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 29,
       "misi_mata_mata": 14,
       "misi_sabotase": 19,
       "manajemen_wilayah": 24,
-      "program_nuklir": 0 }
+      "program_nuklir": 80 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 1,
-          "sepeda_motor": 10,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 1,
+        "sepeda_motor": 10,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 16,
@@ -187,9 +178,8 @@ export const armenia: CountryData = {
           "kantor_polisi": 26,
           "kamera_pengawas": 35,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const armenia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

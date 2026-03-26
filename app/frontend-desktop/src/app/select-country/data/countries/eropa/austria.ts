@@ -17,14 +17,13 @@ export const austria: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 23,
-    "pembangkit_air": 20,
-    "pembangkit_surya": 25,
-    "pembangkit_termal": 18,
-    "pembangkit_gas": 35,
-    "pembangkit_angin": 10,
-    "jaringan_listrik": 89
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const austria: CountryData = {
     "kereta_bawah_tanah": 28,
     "jalur_kereta": 33,
     "jalan_tol": 18,
-    "kualitas_jalan": 70,
     "pelabuhan_laut": 31,
     "bandara": 40,
     "terminal_bus": 18,
-    "helipad": 20,
-    "cakupan_internet": 83
-  },
+    "helipad": 20
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 36,
-    "uranium": 12,
-    "batu_bara": 21,
-    "minyak_bumi": 39,
-    "gas_alam": 21,
-    "garam": 27,
-    "nikel": 28,
-    "litium": 2,
-    "aluminium": 9,
-    "tembaga": 39,
-    "logam_tanah_jarang": 28,
-    "bijih_besi": 15
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const austria: CountryData = {
     "sepeda_motor": 38,
     "smelter": 15,
     "semen_beton": 6,
-    "kayu": 31,
-    "air_mineral": 32,
-    "gula": 23,
-    "roti": 26,
-    "farmasi": 31,
-    "pupuk": 25,
-    "pengolahan_daging": 26,
-    "mie_instan": 6
-  },
+    "kayu": 31
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const austria: CountryData = {
     "udang_kerang": 26.0,
     "ikan": 13
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 32,
+    "gula": 23,
+    "roti": 26,
+    "pengolahan_daging": 26,
+    "mie_instan": 6
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 31
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 40,
     "gudang_senjata": 6,
     "hangar_tank": 7,
@@ -112,8 +105,8 @@ export const austria: CountryData = {
     "pangkalan_udara": 21,
     "pangkalan_laut": 4,
     "program_luar_angkasa": 12,
-    "pertahanan_siber": 30,
-  },
+    "pertahanan_siber": 30
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const austria: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 35,
     "intelijen": 25,
@@ -170,13 +162,12 @@ export const austria: CountryData = {
       "manajemen_wilayah": 9,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 8,
-          "sepeda_motor": 14,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 8,
+        "sepeda_motor": 14,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 17,
@@ -187,9 +178,8 @@ export const austria: CountryData = {
           "kantor_polisi": 3,
           "kamera_pengawas": 1,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const austria: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

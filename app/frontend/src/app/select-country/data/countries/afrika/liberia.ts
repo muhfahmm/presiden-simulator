@@ -17,13 +17,12 @@ export const liberia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 23,
-    "pembangkit_air": 35,
-    "pembangkit_nuklir": 33,
-    "jaringan_listrik": 85,
-    "pembangkit_surya": 15,
-    "pembangkit_termal": 37,
-    "pembangkit_angin": 1
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const liberia: CountryData = {
     "terminal_bus": 8,
     "helipad": 31,
     "jalan_tol": 1,
-    "cakupan_internet": 89,
     "jalur_kereta": 20,
-    "kualitas_jalan": 89,
     "pelabuhan_laut": 3,
     "kereta_bawah_tanah": 12
   },
@@ -46,37 +43,15 @@ export const liberia: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 34,
-    "batu_bara": 8,
-    "tembaga": 25,
-    "gas_alam": 10,
-    "emas": 1,
-    "bijih_besi": 10,
-    "litium": 27,
-    "nikel": 25,
-    "minyak_bumi": 12,
-    "logam_tanah_jarang": 33,
-    "garam": 15,
-    "uranium": 39
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 22,
-    "mobil": 19,
+  "sektor_manufaktur": {    "mobil": 19,
     "semen_beton": 38,
-    "pupuk": 14,
-    "mie_instan": 10,
-    "pengolahan_daging": 4,
-    "air_mineral": 31,
-    "sepeda_motor": 10,
-    "farmasi": 25,
-    "semikonduktor": 31,
-    "smelter": 36,
-    "gula": 25,
-    "kayu": 8
+    "pengolahan_daging": 4,    "sepeda_motor": 10,    "semikonduktor": 31,
+    "smelter": 36,    "kayu": 8
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const liberia: CountryData = {
     "udang_kerang": 13.5,
     "ikan": 15
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 31,
+    "gula": 25,
+    "roti": 22,
+    "pengolahan_daging": 4,
+    "mie_instan": 10
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 25
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 30,
     "gudang_senjata": 16,
     "hangar_tank": 34,
@@ -112,8 +102,8 @@ export const liberia: CountryData = {
     "pangkalan_udara": 33,
     "pangkalan_laut": 1,
     "program_luar_angkasa": 30,
-    "pertahanan_siber": 34,
-  },
+    "pertahanan_siber": 34
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const liberia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 13,
     "intelijen": 20,
@@ -171,13 +160,12 @@ export const liberia: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 21,
-          "sepeda_motor": 31,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 21,
+        "sepeda_motor": 31,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -188,9 +176,8 @@ export const liberia: CountryData = {
           "kantor_polisi": 27,
           "kamera_pengawas": 23,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const liberia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,14 +17,13 @@ export const mikronesia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 35,
-    "pembangkit_air": 17,
-    "pembangkit_surya": 8,
-    "pembangkit_termal": 15,
-    "pembangkit_gas": 36,
-    "pembangkit_angin": 5,
-    "jaringan_listrik": 62
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const mikronesia: CountryData = {
     "kereta_bawah_tanah": 27,
     "jalur_kereta": 29,
     "jalan_tol": 18,
-    "kualitas_jalan": 72,
     "pelabuhan_laut": 40,
     "bandara": 4,
     "terminal_bus": 2,
-    "helipad": 12,
-    "cakupan_internet": 81
-  },
+    "helipad": 12
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 16,
-    "uranium": 36,
-    "batu_bara": 20,
-    "minyak_bumi": 26,
-    "gas_alam": 39,
-    "garam": 30,
-    "nikel": 3,
-    "litium": 37,
-    "aluminium": 9,
-    "tembaga": 39,
-    "logam_tanah_jarang": 7,
-    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const mikronesia: CountryData = {
     "sepeda_motor": 4,
     "smelter": 3,
     "semen_beton": 33,
-    "kayu": 36,
-    "air_mineral": 3,
-    "gula": 37,
-    "roti": 32,
-    "farmasi": 22,
-    "pupuk": 28,
-    "pengolahan_daging": 29,
-    "mie_instan": 9
-  },
+    "kayu": 36
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const mikronesia: CountryData = {
     "udang_kerang": 40.0,
     "ikan": 34
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 3,
+    "gula": 37,
+    "roti": 32,
+    "pengolahan_daging": 29,
+    "mie_instan": 9
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 22
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 21,
     "gudang_senjata": 17,
     "hangar_tank": 3,
@@ -112,8 +105,8 @@ export const mikronesia: CountryData = {
     "pangkalan_udara": 25,
     "pangkalan_laut": 27,
     "program_luar_angkasa": 6,
-    "pertahanan_siber": 22,
-  },
+    "pertahanan_siber": 22
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const mikronesia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 25,
     "intelijen": 27,
@@ -170,13 +162,12 @@ export const mikronesia: CountryData = {
       "manajemen_wilayah": 8,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 4,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 4,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 24,
@@ -187,9 +178,8 @@ export const mikronesia: CountryData = {
           "kantor_polisi": 7,
           "kamera_pengawas": 37,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const mikronesia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

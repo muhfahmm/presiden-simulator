@@ -17,14 +17,13 @@ export const kolombia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 5,
-    "pembangkit_air": 4,
-    "pembangkit_surya": 7,
-    "pembangkit_termal": 23,
-    "pembangkit_gas": 1,
-    "pembangkit_angin": 4,
-    "jaringan_listrik": 62
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 60,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 15,
+    "pembangkit_listrik_tenaga_angin": 4
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const kolombia: CountryData = {
     "kereta_bawah_tanah": 15,
     "jalur_kereta": 19,
     "jalan_tol": 40,
-    "kualitas_jalan": 75,
     "pelabuhan_laut": 26,
     "bandara": 33,
     "terminal_bus": 39,
-    "helipad": 3,
-    "cakupan_internet": 78
-  },
+    "helipad": 3
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 24,
-    "uranium": 2,
-    "batu_bara": 23,
-    "minyak_bumi": 1,
-    "gas_alam": 24,
-    "garam": 7,
-    "nikel": 21,
-    "litium": 4,
-    "aluminium": 20,
-    "tembaga": 16,
-    "logam_tanah_jarang": 26,
-    "bijih_besi": 1
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const kolombia: CountryData = {
     "sepeda_motor": 10,
     "smelter": 13,
     "semen_beton": 32,
-    "kayu": 12,
-    "air_mineral": 40,
-    "gula": 34,
-    "roti": 18,
-    "farmasi": 19,
-    "pupuk": 38,
-    "pengolahan_daging": 40,
-    "mie_instan": 19
-  },
+    "kayu": 12
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const kolombia: CountryData = {
     "udang_kerang": 23.5,
     "ikan": 15
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 40,
+    "gula": 34,
+    "roti": 18,
+    "pengolahan_daging": 40,
+    "mie_instan": 19
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 19
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 20,
     "gudang_senjata": 12,
     "hangar_tank": 34,
@@ -112,8 +105,8 @@ export const kolombia: CountryData = {
     "pangkalan_udara": 11,
     "pangkalan_laut": 32,
     "program_luar_angkasa": 40,
-    "pertahanan_siber": 39,
-  },
+    "pertahanan_siber": 39
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const kolombia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 17,
     "intelijen": 39,
@@ -170,13 +162,12 @@ export const kolombia: CountryData = {
       "manajemen_wilayah": 22,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 13,
-          "sepeda_motor": 4,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 13,
+        "sepeda_motor": 4,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 8,
@@ -187,9 +178,8 @@ export const kolombia: CountryData = {
           "kantor_polisi": 5,
           "kamera_pengawas": 17,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const kolombia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

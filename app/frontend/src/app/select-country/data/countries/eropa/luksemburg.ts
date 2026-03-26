@@ -17,14 +17,13 @@ export const luksemburg: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 9,
-    "pembangkit_air": 6,
-    "pembangkit_surya": 30,
-    "pembangkit_termal": 28,
-    "pembangkit_gas": 23,
-    "pembangkit_angin": 15,
-    "jaringan_listrik": 89
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const luksemburg: CountryData = {
     "kereta_bawah_tanah": 10,
     "jalur_kereta": 4,
     "jalan_tol": 19,
-    "kualitas_jalan": 89,
     "pelabuhan_laut": 29,
     "bandara": 34,
     "terminal_bus": 34,
-    "helipad": 37,
-    "cakupan_internet": 64
-  },
+    "helipad": 37
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 26,
-    "uranium": 27,
-    "batu_bara": 26,
-    "minyak_bumi": 36,
-    "gas_alam": 16,
-    "garam": 27,
-    "nikel": 37,
-    "litium": 39,
-    "aluminium": 36,
-    "tembaga": 9,
-    "logam_tanah_jarang": 12,
-    "bijih_besi": 34
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const luksemburg: CountryData = {
     "sepeda_motor": 12,
     "smelter": 26,
     "semen_beton": 39,
-    "kayu": 2,
-    "air_mineral": 19,
-    "gula": 10,
-    "roti": 21,
-    "farmasi": 38,
-    "pupuk": 39,
-    "pengolahan_daging": 22,
-    "mie_instan": 9
-  },
+    "kayu": 2
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const luksemburg: CountryData = {
     "udang_kerang": 15.5,
     "ikan": 1
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 19,
+    "gula": 10,
+    "roti": 21,
+    "pengolahan_daging": 22,
+    "mie_instan": 9
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 38
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 22,
     "gudang_senjata": 20,
     "hangar_tank": 13,
@@ -112,8 +105,8 @@ export const luksemburg: CountryData = {
     "pangkalan_udara": 9,
     "pangkalan_laut": 30,
     "program_luar_angkasa": 40,
-    "pertahanan_siber": 5,
-  },
+    "pertahanan_siber": 5
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const luksemburg: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 17,
     "intelijen": 20,
@@ -170,13 +162,12 @@ export const luksemburg: CountryData = {
       "manajemen_wilayah": 20,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 15,
-          "sepeda_motor": 40,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 15,
+        "sepeda_motor": 40,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 5,
@@ -187,9 +178,8 @@ export const luksemburg: CountryData = {
           "kantor_polisi": 23,
           "kamera_pengawas": 28,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const luksemburg: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,13 +17,12 @@ export const kamerun: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 36,
-    "pembangkit_air": 34,
-    "pembangkit_nuklir": 23,
-    "jaringan_listrik": 83,
-    "pembangkit_surya": 29,
-    "pembangkit_termal": 5,
-    "pembangkit_angin": 32
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const kamerun: CountryData = {
     "terminal_bus": 29,
     "helipad": 17,
     "jalan_tol": 39,
-    "cakupan_internet": 65,
     "jalur_kereta": 36,
-    "kualitas_jalan": 86,
     "pelabuhan_laut": 27,
     "kereta_bawah_tanah": 35
   },
@@ -46,37 +43,15 @@ export const kamerun: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 32,
-    "batu_bara": 10,
-    "tembaga": 7,
-    "gas_alam": 17,
-    "emas": 33,
-    "bijih_besi": 14,
-    "litium": 6,
-    "nikel": 39,
-    "minyak_bumi": 22,
-    "logam_tanah_jarang": 30,
-    "garam": 22,
-    "uranium": 8
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 32,
-    "mobil": 5,
+  "sektor_manufaktur": {    "mobil": 5,
     "semen_beton": 33,
-    "pupuk": 12,
-    "mie_instan": 38,
-    "pengolahan_daging": 16,
-    "air_mineral": 3,
-    "sepeda_motor": 1,
-    "farmasi": 3,
-    "semikonduktor": 22,
-    "smelter": 23,
-    "gula": 39,
-    "kayu": 34
+    "pengolahan_daging": 16,    "sepeda_motor": 1,    "semikonduktor": 22,
+    "smelter": 23,    "kayu": 34
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const kamerun: CountryData = {
     "udang_kerang": 24.5,
     "ikan": 6
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 3,
+    "gula": 39,
+    "roti": 32,
+    "pengolahan_daging": 16,
+    "mie_instan": 38
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 3
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 15,
     "gudang_senjata": 5,
     "hangar_tank": 13,
@@ -112,8 +102,8 @@ export const kamerun: CountryData = {
     "pangkalan_udara": 12,
     "pangkalan_laut": 27,
     "program_luar_angkasa": 37,
-    "pertahanan_siber": 18,
-  },
+    "pertahanan_siber": 18
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const kamerun: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 29,
     "intelijen": 1,
@@ -171,13 +160,12 @@ export const kamerun: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 21,
-          "sepeda_motor": 36,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 21,
+        "sepeda_motor": 36,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 40,
@@ -188,9 +176,8 @@ export const kamerun: CountryData = {
           "kantor_polisi": 11,
           "kamera_pengawas": 8,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const kamerun: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

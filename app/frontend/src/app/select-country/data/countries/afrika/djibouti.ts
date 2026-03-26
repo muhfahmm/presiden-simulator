@@ -17,13 +17,12 @@ export const djibouti: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 29,
-    "pembangkit_air": 19,
-    "pembangkit_nuklir": 5,
-    "jaringan_listrik": 56,
-    "pembangkit_surya": 25,
-    "pembangkit_termal": 15,
-    "pembangkit_angin": 5
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const djibouti: CountryData = {
     "terminal_bus": 13,
     "helipad": 3,
     "jalan_tol": 8,
-    "cakupan_internet": 64,
     "jalur_kereta": 3,
-    "kualitas_jalan": 90,
     "pelabuhan_laut": 3,
     "kereta_bawah_tanah": 35
   },
@@ -46,37 +43,15 @@ export const djibouti: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 1,
-    "batu_bara": 2,
-    "tembaga": 40,
-    "gas_alam": 22,
-    "emas": 27,
-    "bijih_besi": 13,
-    "litium": 2,
-    "nikel": 30,
-    "minyak_bumi": 33,
-    "logam_tanah_jarang": 26,
-    "garam": 24,
-    "uranium": 20
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 9,
-    "mobil": 23,
+  "sektor_manufaktur": {    "mobil": 23,
     "semen_beton": 9,
-    "pupuk": 11,
-    "mie_instan": 2,
-    "pengolahan_daging": 6,
-    "air_mineral": 36,
-    "sepeda_motor": 24,
-    "farmasi": 12,
-    "semikonduktor": 16,
-    "smelter": 28,
-    "gula": 26,
-    "kayu": 34
+    "pengolahan_daging": 6,    "sepeda_motor": 24,    "semikonduktor": 16,
+    "smelter": 28,    "kayu": 34
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const djibouti: CountryData = {
     "udang_kerang": 32.5,
     "ikan": 2
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 36,
+    "gula": 26,
+    "roti": 9,
+    "pengolahan_daging": 6,
+    "mie_instan": 2
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 12
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 11,
     "gudang_senjata": 1,
     "hangar_tank": 27,
@@ -112,8 +102,8 @@ export const djibouti: CountryData = {
     "pangkalan_udara": 9,
     "pangkalan_laut": 12,
     "program_luar_angkasa": 26,
-    "pertahanan_siber": 29,
-  },
+    "pertahanan_siber": 29
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const djibouti: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 14,
     "intelijen": 5,
@@ -171,13 +160,12 @@ export const djibouti: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 24,
-          "sepeda_motor": 40,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 24,
+        "sepeda_motor": 40,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 16,
@@ -188,9 +176,8 @@ export const djibouti: CountryData = {
           "kantor_polisi": 29,
           "kamera_pengawas": 40,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const djibouti: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

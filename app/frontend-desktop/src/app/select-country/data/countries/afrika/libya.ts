@@ -17,13 +17,12 @@ export const libya: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 11,
-    "pembangkit_air": 8,
-    "pembangkit_nuklir": 27,
-    "jaringan_listrik": 63,
-    "pembangkit_surya": 31,
-    "pembangkit_termal": 4,
-    "pembangkit_angin": 14
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const libya: CountryData = {
     "terminal_bus": 20,
     "helipad": 11,
     "jalan_tol": 8,
-    "cakupan_internet": 73,
     "jalur_kereta": 9,
-    "kualitas_jalan": 86,
     "pelabuhan_laut": 29,
     "kereta_bawah_tanah": 28
   },
@@ -46,37 +43,15 @@ export const libya: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 2,
-    "batu_bara": 15,
-    "tembaga": 15,
-    "gas_alam": 3,
-    "emas": 25,
-    "bijih_besi": 33,
-    "litium": 36,
-    "nikel": 3,
-    "minyak_bumi": 2,
-    "logam_tanah_jarang": 2,
-    "garam": 7,
-    "uranium": 26
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 26,
-    "mobil": 40,
+  "sektor_manufaktur": {    "mobil": 40,
     "semen_beton": 38,
-    "pupuk": 21,
-    "mie_instan": 24,
-    "pengolahan_daging": 10,
-    "air_mineral": 14,
-    "sepeda_motor": 37,
-    "farmasi": 7,
-    "semikonduktor": 20,
-    "smelter": 25,
-    "gula": 32,
-    "kayu": 22
+    "pengolahan_daging": 10,    "sepeda_motor": 37,    "semikonduktor": 20,
+    "smelter": 25,    "kayu": 22
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const libya: CountryData = {
     "udang_kerang": 17.5,
     "ikan": 25
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 14,
+    "gula": 32,
+    "roti": 26,
+    "pengolahan_daging": 10,
+    "mie_instan": 24
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 7
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 11,
     "gudang_senjata": 32,
     "hangar_tank": 25,
@@ -112,8 +102,8 @@ export const libya: CountryData = {
     "pangkalan_udara": 26,
     "pangkalan_laut": 30,
     "program_luar_angkasa": 33,
-    "pertahanan_siber": 2,
-  },
+    "pertahanan_siber": 2
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const libya: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 21,
     "intelijen": 31,
@@ -171,13 +160,12 @@ export const libya: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 38,
-          "sepeda_motor": 17,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 38,
+        "sepeda_motor": 17,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 11,
@@ -188,9 +176,8 @@ export const libya: CountryData = {
           "kantor_polisi": 33,
           "kamera_pengawas": 38,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const libya: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

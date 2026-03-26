@@ -17,14 +17,13 @@ export const fiji: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 32,
-    "pembangkit_air": 11,
-    "pembangkit_surya": 16,
-    "pembangkit_termal": 25,
-    "pembangkit_gas": 21,
-    "pembangkit_angin": 38,
-    "jaringan_listrik": 60
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const fiji: CountryData = {
     "kereta_bawah_tanah": 2,
     "jalur_kereta": 24,
     "jalan_tol": 12,
-    "kualitas_jalan": 53,
     "pelabuhan_laut": 25,
     "bandara": 14,
     "terminal_bus": 39,
-    "helipad": 19,
-    "cakupan_internet": 84
-  },
+    "helipad": 19
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 8,
-    "uranium": 29,
-    "batu_bara": 35,
-    "minyak_bumi": 15,
-    "gas_alam": 35,
-    "garam": 17,
-    "nikel": 24,
-    "litium": 10,
-    "aluminium": 7,
-    "tembaga": 24,
-    "logam_tanah_jarang": 22,
-    "bijih_besi": 18
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const fiji: CountryData = {
     "sepeda_motor": 39,
     "smelter": 11,
     "semen_beton": 18,
-    "kayu": 25,
-    "air_mineral": 26,
-    "gula": 37,
-    "roti": 9,
-    "farmasi": 29,
-    "pupuk": 23,
-    "pengolahan_daging": 9,
-    "mie_instan": 22
-  },
+    "kayu": 25
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const fiji: CountryData = {
     "udang_kerang": 12.0,
     "ikan": 9
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 26,
+    "gula": 37,
+    "roti": 9,
+    "pengolahan_daging": 9,
+    "mie_instan": 22
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 29
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 18,
     "gudang_senjata": 32,
     "hangar_tank": 20,
@@ -112,8 +105,8 @@ export const fiji: CountryData = {
     "pangkalan_udara": 25,
     "pangkalan_laut": 28,
     "program_luar_angkasa": 8,
-    "pertahanan_siber": 21,
-  },
+    "pertahanan_siber": 21
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const fiji: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 13,
     "intelijen": 18,
@@ -170,13 +162,12 @@ export const fiji: CountryData = {
       "manajemen_wilayah": 9,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 16,
-          "sepeda_motor": 37,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 16,
+        "sepeda_motor": 37,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 33,
@@ -187,9 +178,8 @@ export const fiji: CountryData = {
           "kantor_polisi": 21,
           "kamera_pengawas": 31,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const fiji: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

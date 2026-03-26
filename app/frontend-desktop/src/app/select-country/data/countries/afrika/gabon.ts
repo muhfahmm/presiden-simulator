@@ -17,13 +17,12 @@ export const gabon: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 1,
-    "pembangkit_air": 11,
-    "pembangkit_nuklir": 24,
-    "jaringan_listrik": 73,
-    "pembangkit_surya": 12,
-    "pembangkit_termal": 3,
-    "pembangkit_angin": 30
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const gabon: CountryData = {
     "terminal_bus": 19,
     "helipad": 38,
     "jalan_tol": 11,
-    "cakupan_internet": 54,
     "jalur_kereta": 7,
-    "kualitas_jalan": 64,
     "pelabuhan_laut": 31,
     "kereta_bawah_tanah": 16
   },
@@ -46,37 +43,15 @@ export const gabon: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 11,
-    "batu_bara": 9,
-    "tembaga": 39,
-    "gas_alam": 17,
-    "emas": 16,
-    "bijih_besi": 8,
-    "litium": 39,
-    "nikel": 12,
-    "minyak_bumi": 21,
-    "logam_tanah_jarang": 14,
-    "garam": 17,
-    "uranium": 38
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 31,
-    "mobil": 16,
+  "sektor_manufaktur": {    "mobil": 16,
     "semen_beton": 23,
-    "pupuk": 27,
-    "mie_instan": 12,
-    "pengolahan_daging": 25,
-    "air_mineral": 15,
-    "sepeda_motor": 4,
-    "farmasi": 9,
-    "semikonduktor": 10,
-    "smelter": 1,
-    "gula": 10,
-    "kayu": 31
+    "pengolahan_daging": 25,    "sepeda_motor": 4,    "semikonduktor": 10,
+    "smelter": 1,    "kayu": 31
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const gabon: CountryData = {
     "udang_kerang": 32.0,
     "ikan": 31
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 15,
+    "gula": 10,
+    "roti": 31,
+    "pengolahan_daging": 25,
+    "mie_instan": 12
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 9
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 6,
     "gudang_senjata": 30,
     "hangar_tank": 11,
@@ -112,8 +102,8 @@ export const gabon: CountryData = {
     "pangkalan_udara": 30,
     "pangkalan_laut": 5,
     "program_luar_angkasa": 10,
-    "pertahanan_siber": 5,
-  },
+    "pertahanan_siber": 5
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const gabon: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 33,
     "intelijen": 17,
@@ -171,13 +160,12 @@ export const gabon: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 15,
-          "sepeda_motor": 33,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 15,
+        "sepeda_motor": 33,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 21,
@@ -188,9 +176,8 @@ export const gabon: CountryData = {
           "kantor_polisi": 1,
           "kamera_pengawas": 35,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const gabon: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

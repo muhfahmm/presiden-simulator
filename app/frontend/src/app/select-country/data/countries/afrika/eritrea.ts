@@ -17,13 +17,12 @@ export const eritrea: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 35,
-    "pembangkit_air": 36,
-    "pembangkit_nuklir": 11,
-    "jaringan_listrik": 67,
-    "pembangkit_surya": 31,
-    "pembangkit_termal": 8,
-    "pembangkit_angin": 37
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const eritrea: CountryData = {
     "terminal_bus": 28,
     "helipad": 37,
     "jalan_tol": 13,
-    "cakupan_internet": 70,
     "jalur_kereta": 3,
-    "kualitas_jalan": 75,
     "pelabuhan_laut": 9,
     "kereta_bawah_tanah": 25
   },
@@ -46,37 +43,15 @@ export const eritrea: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 34,
-    "batu_bara": 23,
-    "tembaga": 36,
-    "gas_alam": 39,
-    "emas": 35,
-    "bijih_besi": 1,
-    "litium": 2,
-    "nikel": 13,
-    "minyak_bumi": 40,
-    "logam_tanah_jarang": 33,
-    "garam": 3,
-    "uranium": 22
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 39,
-    "mobil": 11,
+  "sektor_manufaktur": {    "mobil": 11,
     "semen_beton": 7,
-    "pupuk": 1,
-    "mie_instan": 23,
-    "pengolahan_daging": 18,
-    "air_mineral": 30,
-    "sepeda_motor": 11,
-    "farmasi": 9,
-    "semikonduktor": 16,
-    "smelter": 32,
-    "gula": 9,
-    "kayu": 1
+    "pengolahan_daging": 18,    "sepeda_motor": 11,    "semikonduktor": 16,
+    "smelter": 32,    "kayu": 1
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const eritrea: CountryData = {
     "udang_kerang": 17.0,
     "ikan": 24
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 30,
+    "gula": 9,
+    "roti": 39,
+    "pengolahan_daging": 18,
+    "mie_instan": 23
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 9
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 15,
     "gudang_senjata": 13,
     "hangar_tank": 14,
@@ -112,8 +102,8 @@ export const eritrea: CountryData = {
     "pangkalan_udara": 6,
     "pangkalan_laut": 16,
     "program_luar_angkasa": 22,
-    "pertahanan_siber": 40,
-  },
+    "pertahanan_siber": 40
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const eritrea: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 31,
     "intelijen": 36,
@@ -171,13 +160,12 @@ export const eritrea: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 26,
-          "sepeda_motor": 33,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 26,
+        "sepeda_motor": 33,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 32,
@@ -188,9 +176,8 @@ export const eritrea: CountryData = {
           "kantor_polisi": 30,
           "kamera_pengawas": 5,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const eritrea: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

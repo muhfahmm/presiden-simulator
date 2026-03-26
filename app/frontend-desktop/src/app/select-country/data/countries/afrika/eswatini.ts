@@ -17,13 +17,12 @@ export const eswatini: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 2,
-    "pembangkit_air": 13,
-    "pembangkit_nuklir": 11,
-    "jaringan_listrik": 65,
-    "pembangkit_surya": 39,
-    "pembangkit_termal": 25,
-    "pembangkit_angin": 18
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const eswatini: CountryData = {
     "terminal_bus": 12,
     "helipad": 9,
     "jalan_tol": 13,
-    "cakupan_internet": 71,
     "jalur_kereta": 20,
-    "kualitas_jalan": 65,
     "pelabuhan_laut": 21,
     "kereta_bawah_tanah": 11
   },
@@ -46,37 +43,15 @@ export const eswatini: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 32,
-    "batu_bara": 7,
-    "tembaga": 27,
-    "gas_alam": 34,
-    "emas": 30,
-    "bijih_besi": 20,
-    "litium": 4,
-    "nikel": 1,
-    "minyak_bumi": 1,
-    "logam_tanah_jarang": 1,
-    "garam": 7,
-    "uranium": 18
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 23,
-    "mobil": 38,
+  "sektor_manufaktur": {    "mobil": 38,
     "semen_beton": 6,
-    "pupuk": 32,
-    "mie_instan": 9,
-    "pengolahan_daging": 19,
-    "air_mineral": 12,
-    "sepeda_motor": 31,
-    "farmasi": 35,
-    "semikonduktor": 25,
-    "smelter": 1,
-    "gula": 33,
-    "kayu": 20
+    "pengolahan_daging": 19,    "sepeda_motor": 31,    "semikonduktor": 25,
+    "smelter": 1,    "kayu": 20
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const eswatini: CountryData = {
     "udang_kerang": 7.5,
     "ikan": 6
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 12,
+    "gula": 33,
+    "roti": 23,
+    "pengolahan_daging": 19,
+    "mie_instan": 9
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 35
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 20,
     "gudang_senjata": 38,
     "hangar_tank": 29,
@@ -112,8 +102,8 @@ export const eswatini: CountryData = {
     "pangkalan_udara": 19,
     "pangkalan_laut": 4,
     "program_luar_angkasa": 16,
-    "pertahanan_siber": 6,
-  },
+    "pertahanan_siber": 6
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const eswatini: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 38,
     "intelijen": 23,
@@ -171,13 +160,12 @@ export const eswatini: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 26,
-          "sepeda_motor": 37,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 26,
+        "sepeda_motor": 37,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 28,
@@ -188,9 +176,8 @@ export const eswatini: CountryData = {
           "kantor_polisi": 27,
           "kamera_pengawas": 31,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const eswatini: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

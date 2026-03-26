@@ -17,14 +17,13 @@ export const suriah: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 40,
-    "pembangkit_air": 24,
-    "pembangkit_surya": 34,
-    "pembangkit_termal": 22,
-    "pembangkit_gas": 34,
-    "pembangkit_angin": 29,
-    "jaringan_listrik": 72
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const suriah: CountryData = {
     "kereta_bawah_tanah": 9,
     "jalur_kereta": 10,
     "jalan_tol": 33,
-    "kualitas_jalan": 51,
     "pelabuhan_laut": 23,
     "bandara": 10,
     "terminal_bus": 23,
-    "helipad": 40,
-    "cakupan_internet": 57
-  },
+    "helipad": 40
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 18,
-    "uranium": 5,
-    "batu_bara": 22,
-    "minyak_bumi": 3,
-    "gas_alam": 26,
-    "garam": 20,
-    "nikel": 13,
-    "litium": 6,
-    "aluminium": 14,
-    "tembaga": 17,
-    "logam_tanah_jarang": 25,
-    "bijih_besi": 20
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const suriah: CountryData = {
     "sepeda_motor": 32,
     "smelter": 27,
     "semen_beton": 4,
-    "kayu": 8,
-    "air_mineral": 21,
-    "gula": 4,
-    "roti": 22,
-    "farmasi": 9,
-    "pupuk": 6,
-    "pengolahan_daging": 21,
-    "mie_instan": 6
-  },
+    "kayu": 8
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const suriah: CountryData = {
     "udang_kerang": 13.0,
     "ikan": 30
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 21,
+    "gula": 4,
+    "roti": 22,
+    "pengolahan_daging": 21,
+    "mie_instan": 6
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 9
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 7,
     "gudang_senjata": 34,
     "hangar_tank": 18,
@@ -112,8 +105,8 @@ export const suriah: CountryData = {
     "pangkalan_udara": 33,
     "pangkalan_laut": 16,
     "program_luar_angkasa": 20,
-    "pertahanan_siber": 9,
-  },
+    "pertahanan_siber": 9
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const suriah: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 25,
     "intelijen": 7,
@@ -170,13 +162,12 @@ export const suriah: CountryData = {
       "manajemen_wilayah": 40,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 19,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 19,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 16,
@@ -187,9 +178,8 @@ export const suriah: CountryData = {
           "kantor_polisi": 5,
           "kamera_pengawas": 17,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const suriah: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

@@ -17,13 +17,12 @@ export const togo: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 34,
-    "pembangkit_air": 4,
-    "pembangkit_nuklir": 37,
-    "jaringan_listrik": 78,
-    "pembangkit_surya": 21,
-    "pembangkit_termal": 30,
-    "pembangkit_angin": 27
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const togo: CountryData = {
     "terminal_bus": 9,
     "helipad": 27,
     "jalan_tol": 31,
-    "cakupan_internet": 90,
     "jalur_kereta": 20,
-    "kualitas_jalan": 67,
     "pelabuhan_laut": 23,
     "kereta_bawah_tanah": 3
   },
@@ -46,37 +43,15 @@ export const togo: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 27,
-    "batu_bara": 18,
-    "tembaga": 31,
-    "gas_alam": 14,
-    "emas": 6,
-    "bijih_besi": 26,
-    "litium": 38,
-    "nikel": 30,
-    "minyak_bumi": 2,
-    "logam_tanah_jarang": 19,
-    "garam": 10,
-    "uranium": 10
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 35,
-    "mobil": 16,
+  "sektor_manufaktur": {    "mobil": 16,
     "semen_beton": 4,
-    "pupuk": 30,
-    "mie_instan": 2,
-    "pengolahan_daging": 5,
-    "air_mineral": 10,
-    "sepeda_motor": 16,
-    "farmasi": 38,
-    "semikonduktor": 12,
-    "smelter": 16,
-    "gula": 38,
-    "kayu": 4
+    "pengolahan_daging": 5,    "sepeda_motor": 16,    "semikonduktor": 12,
+    "smelter": 16,    "kayu": 4
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const togo: CountryData = {
     "udang_kerang": 13.0,
     "ikan": 28
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 10,
+    "gula": 38,
+    "roti": 35,
+    "pengolahan_daging": 5,
+    "mie_instan": 2
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 38
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 28,
     "gudang_senjata": 16,
     "hangar_tank": 40,
@@ -112,8 +102,8 @@ export const togo: CountryData = {
     "pangkalan_udara": 34,
     "pangkalan_laut": 39,
     "program_luar_angkasa": 26,
-    "pertahanan_siber": 39,
-  },
+    "pertahanan_siber": 39
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const togo: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 11,
     "intelijen": 32,
@@ -171,13 +160,12 @@ export const togo: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 36,
-          "sepeda_motor": 16,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 36,
+        "sepeda_motor": 16,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 8,
@@ -188,9 +176,8 @@ export const togo: CountryData = {
           "kantor_polisi": 28,
           "kamera_pengawas": 18,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const togo: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

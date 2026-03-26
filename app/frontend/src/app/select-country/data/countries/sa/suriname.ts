@@ -17,14 +17,13 @@ export const suriname: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 12,
-    "pembangkit_air": 3,
-    "pembangkit_surya": 9,
-    "pembangkit_termal": 12,
-    "pembangkit_gas": 26,
-    "pembangkit_angin": 27,
-    "jaringan_listrik": 70
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 60,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 15,
+    "pembangkit_listrik_tenaga_angin": 4
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const suriname: CountryData = {
     "kereta_bawah_tanah": 31,
     "jalur_kereta": 22,
     "jalan_tol": 22,
-    "kualitas_jalan": 81,
     "pelabuhan_laut": 5,
     "bandara": 36,
     "terminal_bus": 39,
-    "helipad": 17,
-    "cakupan_internet": 52
-  },
+    "helipad": 17
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 28,
-    "uranium": 26,
-    "batu_bara": 8,
-    "minyak_bumi": 34,
-    "gas_alam": 32,
-    "garam": 14,
-    "nikel": 6,
-    "litium": 34,
-    "aluminium": 33,
-    "tembaga": 19,
-    "logam_tanah_jarang": 30,
-    "bijih_besi": 5
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const suriname: CountryData = {
     "sepeda_motor": 27,
     "smelter": 9,
     "semen_beton": 23,
-    "kayu": 38,
-    "air_mineral": 17,
-    "gula": 37,
-    "roti": 36,
-    "farmasi": 40,
-    "pupuk": 29,
-    "pengolahan_daging": 12,
-    "mie_instan": 13
-  },
+    "kayu": 38
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const suriname: CountryData = {
     "udang_kerang": 15.5,
     "ikan": 23
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 17,
+    "gula": 37,
+    "roti": 36,
+    "pengolahan_daging": 12,
+    "mie_instan": 13
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 40
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 36,
     "gudang_senjata": 18,
     "hangar_tank": 1,
@@ -112,8 +105,8 @@ export const suriname: CountryData = {
     "pangkalan_udara": 14,
     "pangkalan_laut": 3,
     "program_luar_angkasa": 31,
-    "pertahanan_siber": 31,
-  },
+    "pertahanan_siber": 31
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const suriname: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 7,
     "intelijen": 16,
@@ -170,13 +162,12 @@ export const suriname: CountryData = {
       "manajemen_wilayah": 17,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 13,
-          "sepeda_motor": 16,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 13,
+        "sepeda_motor": 16,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 18,
@@ -187,9 +178,8 @@ export const suriname: CountryData = {
           "kantor_polisi": 30,
           "kamera_pengawas": 20,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const suriname: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

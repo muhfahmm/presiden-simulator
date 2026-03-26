@@ -17,14 +17,13 @@ export const grenada: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 21,
-    "pembangkit_air": 25,
-    "pembangkit_surya": 2,
-    "pembangkit_termal": 28,
-    "pembangkit_gas": 34,
-    "pembangkit_angin": 29,
-    "jaringan_listrik": 76
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const grenada: CountryData = {
     "kereta_bawah_tanah": 25,
     "jalur_kereta": 29,
     "jalan_tol": 20,
-    "kualitas_jalan": 87,
     "pelabuhan_laut": 18,
     "bandara": 25,
     "terminal_bus": 7,
-    "helipad": 5,
-    "cakupan_internet": 85
-  },
+    "helipad": 5
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 33,
-    "uranium": 9,
-    "batu_bara": 15,
-    "minyak_bumi": 20,
-    "gas_alam": 2,
-    "garam": 2,
-    "nikel": 16,
-    "litium": 5,
-    "aluminium": 23,
-    "tembaga": 10,
-    "logam_tanah_jarang": 10,
-    "bijih_besi": 16
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const grenada: CountryData = {
     "sepeda_motor": 12,
     "smelter": 3,
     "semen_beton": 39,
-    "kayu": 32,
-    "air_mineral": 10,
-    "gula": 29,
-    "roti": 34,
-    "farmasi": 4,
-    "pupuk": 8,
-    "pengolahan_daging": 40,
-    "mie_instan": 20
-  },
+    "kayu": 32
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const grenada: CountryData = {
     "udang_kerang": 34.0,
     "ikan": 8
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 10,
+    "gula": 29,
+    "roti": 34,
+    "pengolahan_daging": 40,
+    "mie_instan": 20
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 4
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 24,
     "gudang_senjata": 20,
     "hangar_tank": 21,
@@ -112,8 +105,8 @@ export const grenada: CountryData = {
     "pangkalan_udara": 25,
     "pangkalan_laut": 11,
     "program_luar_angkasa": 6,
-    "pertahanan_siber": 36,
-  },
+    "pertahanan_siber": 36
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const grenada: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 34,
     "intelijen": 20,
@@ -170,13 +162,12 @@ export const grenada: CountryData = {
       "manajemen_wilayah": 18,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 29,
-          "sepeda_motor": 29,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 29,
+        "sepeda_motor": 29,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 33,
@@ -187,9 +178,8 @@ export const grenada: CountryData = {
           "kantor_polisi": 32,
           "kamera_pengawas": 6,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const grenada: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

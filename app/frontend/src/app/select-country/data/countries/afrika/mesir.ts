@@ -17,13 +17,12 @@ export const mesir: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 30,
-    "pembangkit_air": 21,
-    "pembangkit_nuklir": 3,
-    "jaringan_listrik": 67,
-    "pembangkit_surya": 31,
-    "pembangkit_termal": 20,
-    "pembangkit_angin": 5
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const mesir: CountryData = {
     "terminal_bus": 24,
     "helipad": 24,
     "jalan_tol": 16,
-    "cakupan_internet": 88,
     "jalur_kereta": 12,
-    "kualitas_jalan": 92,
     "pelabuhan_laut": 80,
     "kereta_bawah_tanah": 17
   },
@@ -46,37 +43,15 @@ export const mesir: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 7,
-    "batu_bara": 24,
-    "tembaga": 37,
-    "gas_alam": 3,
-    "emas": 17,
-    "bijih_besi": 10,
-    "litium": 40,
-    "nikel": 3,
-    "minyak_bumi": 18,
-    "logam_tanah_jarang": 24,
-    "garam": 30,
-    "uranium": 24
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 21,
-    "mobil": 16,
+  "sektor_manufaktur": {    "mobil": 16,
     "semen_beton": 13,
-    "pupuk": 7,
-    "mie_instan": 39,
-    "pengolahan_daging": 38,
-    "air_mineral": 9,
-    "sepeda_motor": 16,
-    "farmasi": 18,
-    "semikonduktor": 30,
-    "smelter": 12,
-    "gula": 29,
-    "kayu": 21
+    "pengolahan_daging": 38,    "sepeda_motor": 16,    "semikonduktor": 30,
+    "smelter": 12,    "kayu": 21
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const mesir: CountryData = {
     "udang_kerang": 2.0,
     "ikan": 22
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 9,
+    "gula": 29,
+    "roti": 21,
+    "pengolahan_daging": 38,
+    "mie_instan": 39
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 18
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 9,
     "gudang_senjata": 18,
     "hangar_tank": 19,
@@ -112,8 +102,8 @@ export const mesir: CountryData = {
     "pangkalan_udara": 32,
     "pangkalan_laut": 40,
     "program_luar_angkasa": 2,
-    "pertahanan_siber": 17,
-  },
+    "pertahanan_siber": 17
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const mesir: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 36,
     "intelijen": 17,
@@ -171,13 +160,12 @@ export const mesir: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 32,
-          "sepeda_motor": 30,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 32,
+        "sepeda_motor": 30,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 12,
@@ -188,9 +176,8 @@ export const mesir: CountryData = {
           "kantor_polisi": 13,
           "kamera_pengawas": 37,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const mesir: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

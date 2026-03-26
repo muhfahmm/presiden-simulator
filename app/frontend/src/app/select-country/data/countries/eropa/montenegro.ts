@@ -17,14 +17,13 @@ export const montenegro: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 14,
-    "pembangkit_air": 32,
-    "pembangkit_surya": 37,
-    "pembangkit_termal": 10,
-    "pembangkit_gas": 32,
-    "pembangkit_angin": 5,
-    "jaringan_listrik": 73
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const montenegro: CountryData = {
     "kereta_bawah_tanah": 6,
     "jalur_kereta": 26,
     "jalan_tol": 1,
-    "kualitas_jalan": 72,
     "pelabuhan_laut": 3,
     "bandara": 8,
     "terminal_bus": 40,
-    "helipad": 7,
-    "cakupan_internet": 74
-  },
+    "helipad": 7
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 25,
-    "uranium": 13,
-    "batu_bara": 6,
-    "minyak_bumi": 7,
-    "gas_alam": 15,
-    "garam": 10,
-    "nikel": 13,
-    "litium": 15,
-    "aluminium": 31,
-    "tembaga": 11,
-    "logam_tanah_jarang": 33,
-    "bijih_besi": 34
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const montenegro: CountryData = {
     "sepeda_motor": 9,
     "smelter": 19,
     "semen_beton": 27,
-    "kayu": 19,
-    "air_mineral": 29,
-    "gula": 3,
-    "roti": 32,
-    "farmasi": 12,
-    "pupuk": 31,
-    "pengolahan_daging": 17,
-    "mie_instan": 11
-  },
+    "kayu": 19
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const montenegro: CountryData = {
     "udang_kerang": 27.0,
     "ikan": 12
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 29,
+    "gula": 3,
+    "roti": 32,
+    "pengolahan_daging": 17,
+    "mie_instan": 11
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 12
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 4,
     "gudang_senjata": 19,
     "hangar_tank": 30,
@@ -112,8 +105,8 @@ export const montenegro: CountryData = {
     "pangkalan_udara": 37,
     "pangkalan_laut": 21,
     "program_luar_angkasa": 38,
-    "pertahanan_siber": 12,
-  },
+    "pertahanan_siber": 12
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const montenegro: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 20,
     "intelijen": 13,
@@ -170,13 +162,12 @@ export const montenegro: CountryData = {
       "manajemen_wilayah": 15,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 35,
-          "sepeda_motor": 27,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 35,
+        "sepeda_motor": 27,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 39,
@@ -187,9 +178,8 @@ export const montenegro: CountryData = {
           "kantor_polisi": 9,
           "kamera_pengawas": 20,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const montenegro: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

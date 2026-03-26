@@ -17,13 +17,12 @@ export const kenya: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 26,
-    "pembangkit_air": 13,
-    "pembangkit_nuklir": 8,
-    "jaringan_listrik": 85,
-    "pembangkit_surya": 18,
-    "pembangkit_termal": 7,
-    "pembangkit_angin": 9
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const kenya: CountryData = {
     "terminal_bus": 9,
     "helipad": 3,
     "jalan_tol": 17,
-    "cakupan_internet": 85,
     "jalur_kereta": 39,
-    "kualitas_jalan": 65,
     "pelabuhan_laut": 1,
     "kereta_bawah_tanah": 13
   },
@@ -46,37 +43,15 @@ export const kenya: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 10,
-    "batu_bara": 7,
-    "tembaga": 5,
-    "gas_alam": 8,
-    "emas": 7,
-    "bijih_besi": 8,
-    "litium": 4,
-    "nikel": 14,
-    "minyak_bumi": 23,
-    "logam_tanah_jarang": 28,
-    "garam": 20,
-    "uranium": 10
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 25,
-    "mobil": 30,
+  "sektor_manufaktur": {    "mobil": 30,
     "semen_beton": 9,
-    "pupuk": 7,
-    "mie_instan": 15,
-    "pengolahan_daging": 34,
-    "air_mineral": 36,
-    "sepeda_motor": 17,
-    "farmasi": 12,
-    "semikonduktor": 14,
-    "smelter": 29,
-    "gula": 2,
-    "kayu": 40
+    "pengolahan_daging": 34,    "sepeda_motor": 17,    "semikonduktor": 14,
+    "smelter": 29,    "kayu": 40
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const kenya: CountryData = {
     "udang_kerang": 28.5,
     "ikan": 7
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 36,
+    "gula": 2,
+    "roti": 25,
+    "pengolahan_daging": 34,
+    "mie_instan": 15
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 12
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 33,
     "gudang_senjata": 7,
     "hangar_tank": 13,
@@ -112,8 +102,8 @@ export const kenya: CountryData = {
     "pangkalan_udara": 17,
     "pangkalan_laut": 10,
     "program_luar_angkasa": 30,
-    "pertahanan_siber": 19,
-  },
+    "pertahanan_siber": 19
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const kenya: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 16,
     "intelijen": 32,
@@ -171,13 +160,12 @@ export const kenya: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 24,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 24,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 11,
@@ -188,9 +176,8 @@ export const kenya: CountryData = {
           "kantor_polisi": 27,
           "kamera_pengawas": 9,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const kenya: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

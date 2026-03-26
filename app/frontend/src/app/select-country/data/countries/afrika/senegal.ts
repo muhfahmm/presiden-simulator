@@ -17,13 +17,12 @@ export const senegal: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 16,
-    "pembangkit_air": 40,
-    "pembangkit_nuklir": 1,
-    "jaringan_listrik": 84,
-    "pembangkit_surya": 40,
-    "pembangkit_termal": 28,
-    "pembangkit_angin": 15
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const senegal: CountryData = {
     "terminal_bus": 33,
     "helipad": 4,
     "jalan_tol": 14,
-    "cakupan_internet": 62,
     "jalur_kereta": 36,
-    "kualitas_jalan": 64,
     "pelabuhan_laut": 11,
     "kereta_bawah_tanah": 12
   },
@@ -46,37 +43,15 @@ export const senegal: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 33,
-    "batu_bara": 18,
-    "tembaga": 8,
-    "gas_alam": 26,
-    "emas": 13,
-    "bijih_besi": 33,
-    "litium": 18,
-    "nikel": 36,
-    "minyak_bumi": 39,
-    "logam_tanah_jarang": 13,
-    "garam": 27,
-    "uranium": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 8,
-    "mobil": 20,
+  "sektor_manufaktur": {    "mobil": 20,
     "semen_beton": 21,
-    "pupuk": 37,
-    "mie_instan": 4,
-    "pengolahan_daging": 14,
-    "air_mineral": 34,
-    "sepeda_motor": 31,
-    "farmasi": 20,
-    "semikonduktor": 26,
-    "smelter": 37,
-    "gula": 28,
-    "kayu": 39
+    "pengolahan_daging": 14,    "sepeda_motor": 31,    "semikonduktor": 26,
+    "smelter": 37,    "kayu": 39
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const senegal: CountryData = {
     "udang_kerang": 29.5,
     "ikan": 15
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 34,
+    "gula": 28,
+    "roti": 8,
+    "pengolahan_daging": 14,
+    "mie_instan": 4
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 20
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 40,
     "gudang_senjata": 34,
     "hangar_tank": 22,
@@ -112,8 +102,8 @@ export const senegal: CountryData = {
     "pangkalan_udara": 34,
     "pangkalan_laut": 33,
     "program_luar_angkasa": 28,
-    "pertahanan_siber": 36,
-  },
+    "pertahanan_siber": 36
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const senegal: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 4,
     "intelijen": 13,
@@ -171,13 +160,12 @@ export const senegal: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 3,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 3,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 27,
@@ -188,9 +176,8 @@ export const senegal: CountryData = {
           "kantor_polisi": 2,
           "kamera_pengawas": 14,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const senegal: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

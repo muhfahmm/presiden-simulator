@@ -17,14 +17,13 @@ export const laos: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 25,
-    "pembangkit_air": 24,
-    "pembangkit_surya": 11,
-    "pembangkit_termal": 33,
-    "pembangkit_gas": 14,
-    "pembangkit_angin": 19,
-    "jaringan_listrik": 63
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const laos: CountryData = {
     "kereta_bawah_tanah": 1,
     "jalur_kereta": 20,
     "jalan_tol": 16,
-    "kualitas_jalan": 53,
     "pelabuhan_laut": 20,
     "bandara": 39,
     "terminal_bus": 1,
-    "helipad": 20,
-    "cakupan_internet": 65
-  },
+    "helipad": 20
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 6,
-    "uranium": 25,
-    "batu_bara": 15,
-    "minyak_bumi": 5,
-    "gas_alam": 28,
-    "garam": 32,
-    "nikel": 8,
-    "litium": 21,
-    "aluminium": 14,
-    "tembaga": 22,
-    "logam_tanah_jarang": 17,
-    "bijih_besi": 24
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const laos: CountryData = {
     "sepeda_motor": 33,
     "smelter": 22,
     "semen_beton": 39,
-    "kayu": 13,
-    "air_mineral": 25,
-    "gula": 31,
-    "roti": 25,
-    "farmasi": 23,
-    "pupuk": 24,
-    "pengolahan_daging": 36,
-    "mie_instan": 33
-  },
+    "kayu": 13
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const laos: CountryData = {
     "udang_kerang": 11.5,
     "ikan": 13
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 25,
+    "gula": 31,
+    "roti": 25,
+    "pengolahan_daging": 36,
+    "mie_instan": 33
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 23
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 5,
     "gudang_senjata": 10,
     "hangar_tank": 13,
@@ -112,8 +105,8 @@ export const laos: CountryData = {
     "pangkalan_udara": 20,
     "pangkalan_laut": 22,
     "program_luar_angkasa": 15,
-    "pertahanan_siber": 36,
-  },
+    "pertahanan_siber": 36
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const laos: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 4,
     "intelijen": 18,
@@ -170,13 +162,12 @@ export const laos: CountryData = {
       "manajemen_wilayah": 18,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 16,
-          "sepeda_motor": 2,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 16,
+        "sepeda_motor": 2,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 10,
@@ -187,9 +178,8 @@ export const laos: CountryData = {
           "kantor_polisi": 12,
           "kamera_pengawas": 35,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const laos: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

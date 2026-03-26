@@ -17,14 +17,13 @@ export const saint_lucia: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 2,
-    "pembangkit_air": 39,
-    "pembangkit_surya": 28,
-    "pembangkit_termal": 34,
-    "pembangkit_gas": 5,
-    "pembangkit_angin": 13,
-    "jaringan_listrik": 56
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const saint_lucia: CountryData = {
     "kereta_bawah_tanah": 11,
     "jalur_kereta": 25,
     "jalan_tol": 23,
-    "kualitas_jalan": 85,
     "pelabuhan_laut": 35,
     "bandara": 39,
     "terminal_bus": 9,
-    "helipad": 9,
-    "cakupan_internet": 91
-  },
+    "helipad": 9
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 24,
-    "uranium": 28,
-    "batu_bara": 8,
-    "minyak_bumi": 10,
-    "gas_alam": 11,
-    "garam": 35,
-    "nikel": 19,
-    "litium": 39,
-    "aluminium": 33,
-    "tembaga": 40,
-    "logam_tanah_jarang": 2,
-    "bijih_besi": 7
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const saint_lucia: CountryData = {
     "sepeda_motor": 22,
     "smelter": 27,
     "semen_beton": 15,
-    "kayu": 1,
-    "air_mineral": 2,
-    "gula": 24,
-    "roti": 40,
-    "farmasi": 20,
-    "pupuk": 25,
-    "pengolahan_daging": 30,
-    "mie_instan": 33
-  },
+    "kayu": 1
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const saint_lucia: CountryData = {
     "udang_kerang": 21.5,
     "ikan": 40
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 2,
+    "gula": 24,
+    "roti": 40,
+    "pengolahan_daging": 30,
+    "mie_instan": 33
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 20
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 10,
     "gudang_senjata": 19,
     "hangar_tank": 34,
@@ -112,8 +105,8 @@ export const saint_lucia: CountryData = {
     "pangkalan_udara": 37,
     "pangkalan_laut": 12,
     "program_luar_angkasa": 2,
-    "pertahanan_siber": 33,
-  },
+    "pertahanan_siber": 33
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const saint_lucia: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 16,
     "intelijen": 24,
@@ -170,13 +162,12 @@ export const saint_lucia: CountryData = {
       "manajemen_wilayah": 11,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 21,
-          "sepeda_motor": 2,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 21,
+        "sepeda_motor": 2,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 19,
@@ -187,9 +178,8 @@ export const saint_lucia: CountryData = {
           "kantor_polisi": 33,
           "kamera_pengawas": 15,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const saint_lucia: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

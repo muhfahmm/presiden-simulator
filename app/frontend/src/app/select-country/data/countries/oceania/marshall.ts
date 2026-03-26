@@ -17,14 +17,13 @@ export const marshall: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 27,
-    "pembangkit_air": 37,
-    "pembangkit_surya": 1,
-    "pembangkit_termal": 23,
-    "pembangkit_gas": 34,
-    "pembangkit_angin": 30,
-    "jaringan_listrik": 91
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const marshall: CountryData = {
     "kereta_bawah_tanah": 38,
     "jalur_kereta": 28,
     "jalan_tol": 14,
-    "kualitas_jalan": 53,
     "pelabuhan_laut": 16,
     "bandara": 18,
     "terminal_bus": 40,
-    "helipad": 29,
-    "cakupan_internet": 80
-  },
+    "helipad": 29
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 15,
-    "uranium": 30,
-    "batu_bara": 30,
-    "minyak_bumi": 9,
-    "gas_alam": 25,
-    "garam": 17,
-    "nikel": 35,
-    "litium": 30,
-    "aluminium": 28,
-    "tembaga": 23,
-    "logam_tanah_jarang": 20,
-    "bijih_besi": 10
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const marshall: CountryData = {
     "sepeda_motor": 24,
     "smelter": 29,
     "semen_beton": 38,
-    "kayu": 19,
-    "air_mineral": 9,
-    "gula": 16,
-    "roti": 30,
-    "farmasi": 1,
-    "pupuk": 39,
-    "pengolahan_daging": 32,
-    "mie_instan": 4
-  },
+    "kayu": 19
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const marshall: CountryData = {
     "udang_kerang": 16.5,
     "ikan": 29
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 9,
+    "gula": 16,
+    "roti": 30,
+    "pengolahan_daging": 32,
+    "mie_instan": 4
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 1
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 11,
     "gudang_senjata": 10,
     "hangar_tank": 31,
@@ -112,8 +105,8 @@ export const marshall: CountryData = {
     "pangkalan_udara": 34,
     "pangkalan_laut": 28,
     "program_luar_angkasa": 27,
-    "pertahanan_siber": 15,
-  },
+    "pertahanan_siber": 15
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const marshall: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 11,
     "intelijen": 11,
@@ -170,13 +162,12 @@ export const marshall: CountryData = {
       "manajemen_wilayah": 36,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 4,
-          "sepeda_motor": 27,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 4,
+        "sepeda_motor": 27,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 17,
@@ -187,9 +178,8 @@ export const marshall: CountryData = {
           "kantor_polisi": 7,
           "kamera_pengawas": 30,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const marshall: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

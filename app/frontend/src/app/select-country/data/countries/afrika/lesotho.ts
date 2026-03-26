@@ -17,13 +17,12 @@ export const lesotho: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 17,
-    "pembangkit_air": 26,
-    "pembangkit_nuklir": 15,
-    "jaringan_listrik": 67,
-    "pembangkit_surya": 38,
-    "pembangkit_termal": 37,
-    "pembangkit_angin": 6
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const lesotho: CountryData = {
     "terminal_bus": 15,
     "helipad": 38,
     "jalan_tol": 13,
-    "cakupan_internet": 51,
     "jalur_kereta": 8,
-    "kualitas_jalan": 68,
     "pelabuhan_laut": 22,
     "kereta_bawah_tanah": 7
   },
@@ -46,37 +43,15 @@ export const lesotho: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 5,
-    "batu_bara": 8,
-    "tembaga": 34,
-    "gas_alam": 26,
-    "emas": 18,
-    "bijih_besi": 3,
-    "litium": 19,
-    "nikel": 39,
-    "minyak_bumi": 6,
-    "logam_tanah_jarang": 22,
-    "garam": 37,
-    "uranium": 3
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 10,
-    "mobil": 19,
+  "sektor_manufaktur": {    "mobil": 19,
     "semen_beton": 7,
-    "pupuk": 18,
-    "mie_instan": 2,
-    "pengolahan_daging": 17,
-    "air_mineral": 36,
-    "sepeda_motor": 21,
-    "farmasi": 33,
-    "semikonduktor": 36,
-    "smelter": 2,
-    "gula": 29,
-    "kayu": 22
+    "pengolahan_daging": 17,    "sepeda_motor": 21,    "semikonduktor": 36,
+    "smelter": 2,    "kayu": 22
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const lesotho: CountryData = {
     "udang_kerang": 17.0,
     "ikan": 31
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 36,
+    "gula": 29,
+    "roti": 10,
+    "pengolahan_daging": 17,
+    "mie_instan": 2
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 33
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 6,
     "gudang_senjata": 28,
     "hangar_tank": 3,
@@ -112,8 +102,8 @@ export const lesotho: CountryData = {
     "pangkalan_udara": 24,
     "pangkalan_laut": 23,
     "program_luar_angkasa": 13,
-    "pertahanan_siber": 8,
-  },
+    "pertahanan_siber": 8
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const lesotho: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 34,
     "intelijen": 21,
@@ -171,13 +160,12 @@ export const lesotho: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 6,
-          "sepeda_motor": 19,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 6,
+        "sepeda_motor": 19,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 22,
@@ -188,9 +176,8 @@ export const lesotho: CountryData = {
           "kantor_polisi": 22,
           "kamera_pengawas": 1,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const lesotho: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

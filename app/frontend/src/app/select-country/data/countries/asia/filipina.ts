@@ -17,14 +17,13 @@ export const filipina: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 12,
-    "pembangkit_air": 31,
-    "pembangkit_surya": 5,
-    "pembangkit_termal": 1,
-    "pembangkit_gas": 33,
-    "pembangkit_angin": 29,
-    "jaringan_listrik": 59
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const filipina: CountryData = {
     "kereta_bawah_tanah": 20,
     "jalur_kereta": 11,
     "jalan_tol": 27,
-    "kualitas_jalan": 65,
     "pelabuhan_laut": 21,
     "bandara": 32,
     "terminal_bus": 34,
-    "helipad": 29,
-    "cakupan_internet": 75
-  },
+    "helipad": 29
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 16,
-    "uranium": 38,
-    "batu_bara": 2,
-    "minyak_bumi": 8,
-    "gas_alam": 11,
-    "garam": 25,
-    "nikel": 36,
-    "litium": 32,
-    "aluminium": 19,
-    "tembaga": 24,
-    "logam_tanah_jarang": 21,
-    "bijih_besi": 32
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const filipina: CountryData = {
     "sepeda_motor": 24,
     "smelter": 14,
     "semen_beton": 15,
-    "kayu": 12,
-    "air_mineral": 3,
-    "gula": 40,
-    "roti": 10,
-    "farmasi": 1,
-    "pupuk": 2,
-    "pengolahan_daging": 1,
-    "mie_instan": 2
-  },
+    "kayu": 12
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const filipina: CountryData = {
     "udang_kerang": 36.5,
     "ikan": 2
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 3,
+    "gula": 40,
+    "roti": 10,
+    "pengolahan_daging": 1,
+    "mie_instan": 2
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 1
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 2,
     "gudang_senjata": 26,
     "hangar_tank": 30,
@@ -112,8 +105,8 @@ export const filipina: CountryData = {
     "pangkalan_udara": 28,
     "pangkalan_laut": 36,
     "program_luar_angkasa": 16,
-    "pertahanan_siber": 23,
-  },
+    "pertahanan_siber": 23
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const filipina: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 40,
     "intelijen": 40,
@@ -170,13 +162,12 @@ export const filipina: CountryData = {
       "manajemen_wilayah": 25,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 15,
-          "sepeda_motor": 12,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 15,
+        "sepeda_motor": 12,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 32,
@@ -187,9 +178,8 @@ export const filipina: CountryData = {
           "kantor_polisi": 6,
           "kamera_pengawas": 2,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const filipina: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

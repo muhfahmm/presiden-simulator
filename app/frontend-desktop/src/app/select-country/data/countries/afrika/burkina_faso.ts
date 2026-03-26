@@ -17,13 +17,12 @@ export const burkina_faso: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 21,
-    "pembangkit_air": 5,
-    "pembangkit_nuklir": 27,
-    "jaringan_listrik": 58,
-    "pembangkit_surya": 29,
-    "pembangkit_termal": 19,
-    "pembangkit_angin": 22
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const burkina_faso: CountryData = {
     "terminal_bus": 5,
     "helipad": 37,
     "jalan_tol": 25,
-    "cakupan_internet": 52,
     "jalur_kereta": 4,
-    "kualitas_jalan": 74,
     "pelabuhan_laut": 18,
     "kereta_bawah_tanah": 15
   },
@@ -46,37 +43,15 @@ export const burkina_faso: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 30,
-    "batu_bara": 13,
-    "tembaga": 7,
-    "gas_alam": 37,
-    "emas": 4,
-    "bijih_besi": 29,
-    "litium": 40,
-    "nikel": 37,
-    "minyak_bumi": 8,
-    "logam_tanah_jarang": 22,
-    "garam": 8,
-    "uranium": 33
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 33,
-    "mobil": 33,
+  "sektor_manufaktur": {    "mobil": 33,
     "semen_beton": 12,
-    "pupuk": 20,
-    "mie_instan": 20,
-    "pengolahan_daging": 32,
-    "air_mineral": 16,
-    "sepeda_motor": 32,
-    "farmasi": 28,
-    "semikonduktor": 34,
-    "smelter": 17,
-    "gula": 40,
-    "kayu": 39
+    "pengolahan_daging": 32,    "sepeda_motor": 32,    "semikonduktor": 34,
+    "smelter": 17,    "kayu": 39
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const burkina_faso: CountryData = {
     "udang_kerang": 19.0,
     "ikan": 17
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 16,
+    "gula": 40,
+    "roti": 33,
+    "pengolahan_daging": 32,
+    "mie_instan": 20
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 28
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 27,
     "gudang_senjata": 5,
     "hangar_tank": 15,
@@ -112,8 +102,8 @@ export const burkina_faso: CountryData = {
     "pangkalan_udara": 34,
     "pangkalan_laut": 19,
     "program_luar_angkasa": 18,
-    "pertahanan_siber": 21,
-  },
+    "pertahanan_siber": 21
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const burkina_faso: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 11,
     "intelijen": 28,
@@ -171,13 +160,12 @@ export const burkina_faso: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 23,
-          "sepeda_motor": 8,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 23,
+        "sepeda_motor": 8,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 29,
@@ -188,9 +176,8 @@ export const burkina_faso: CountryData = {
           "kantor_polisi": 9,
           "kamera_pengawas": 38,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const burkina_faso: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

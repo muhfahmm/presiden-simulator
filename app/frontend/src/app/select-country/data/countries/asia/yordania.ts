@@ -17,14 +17,13 @@ export const yordania: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 17,
-    "pembangkit_air": 39,
-    "pembangkit_surya": 28,
-    "pembangkit_termal": 26,
-    "pembangkit_gas": 27,
-    "pembangkit_angin": 26,
-    "jaringan_listrik": 58
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const yordania: CountryData = {
     "kereta_bawah_tanah": 17,
     "jalur_kereta": 8,
     "jalan_tol": 9,
-    "kualitas_jalan": 86,
     "pelabuhan_laut": 33,
     "bandara": 32,
     "terminal_bus": 1,
-    "helipad": 3,
-    "cakupan_internet": 82
-  },
+    "helipad": 3
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 37,
-    "uranium": 31,
-    "batu_bara": 9,
-    "minyak_bumi": 30,
-    "gas_alam": 8,
-    "garam": 35,
-    "nikel": 13,
-    "litium": 27,
-    "aluminium": 9,
-    "tembaga": 22,
-    "logam_tanah_jarang": 32,
-    "bijih_besi": 32
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const yordania: CountryData = {
     "sepeda_motor": 19,
     "smelter": 16,
     "semen_beton": 14,
-    "kayu": 35,
-    "air_mineral": 16,
-    "gula": 26,
-    "roti": 11,
-    "farmasi": 29,
-    "pupuk": 26,
-    "pengolahan_daging": 7,
-    "mie_instan": 33
-  },
+    "kayu": 35
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const yordania: CountryData = {
     "udang_kerang": 28.0,
     "ikan": 37
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 16,
+    "gula": 26,
+    "roti": 11,
+    "pengolahan_daging": 7,
+    "mie_instan": 33
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 29
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 23,
     "gudang_senjata": 15,
     "hangar_tank": 21,
@@ -112,8 +105,8 @@ export const yordania: CountryData = {
     "pangkalan_udara": 28,
     "pangkalan_laut": 26,
     "program_luar_angkasa": 3,
-    "pertahanan_siber": 24,
-  },
+    "pertahanan_siber": 24
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const yordania: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 35,
     "intelijen": 17,
@@ -170,13 +162,12 @@ export const yordania: CountryData = {
       "manajemen_wilayah": 24,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 13,
-          "sepeda_motor": 32,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 13,
+        "sepeda_motor": 32,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 40,
@@ -187,9 +178,8 @@ export const yordania: CountryData = {
           "kantor_polisi": 16,
           "kamera_pengawas": 2,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const yordania: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

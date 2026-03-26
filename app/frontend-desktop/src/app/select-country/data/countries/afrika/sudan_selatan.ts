@@ -17,13 +17,12 @@ export const sudan_selatan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_gas": 12,
-    "pembangkit_air": 36,
-    "pembangkit_nuklir": 28,
-    "jaringan_listrik": 61,
-    "pembangkit_surya": 30,
-    "pembangkit_termal": 20,
-    "pembangkit_angin": 14
+    "pembangkit_listrik_tenaga_gas": 30,
+    "pembangkit_listrik_tenaga_air": 20,
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_surya": 5,
+    "pembangkit_listrik_tenaga_uap": 40,
+    "pembangkit_listrik_tenaga_angin": 4
   },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
@@ -35,9 +34,7 @@ export const sudan_selatan: CountryData = {
     "terminal_bus": 37,
     "helipad": 15,
     "jalan_tol": 3,
-    "cakupan_internet": 63,
     "jalur_kereta": 19,
-    "kualitas_jalan": 80,
     "pelabuhan_laut": 31,
     "kereta_bawah_tanah": 10
   },
@@ -46,37 +43,15 @@ export const sudan_selatan: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
-    "aluminium": 16,
-    "batu_bara": 20,
-    "tembaga": 34,
-    "gas_alam": 40,
-    "emas": 30,
-    "bijih_besi": 5,
-    "litium": 29,
-    "nikel": 38,
-    "minyak_bumi": 25,
-    "logam_tanah_jarang": 38,
-    "garam": 10,
-    "uranium": 14
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
   // =============================================================
 
-  "sektor_manufaktur": {
-    "roti": 35,
-    "mobil": 3,
+  "sektor_manufaktur": {    "mobil": 3,
     "semen_beton": 36,
-    "pupuk": 29,
-    "mie_instan": 14,
-    "pengolahan_daging": 38,
-    "air_mineral": 32,
-    "sepeda_motor": 34,
-    "farmasi": 29,
-    "semikonduktor": 38,
-    "smelter": 36,
-    "gula": 38,
-    "kayu": 1
+    "pengolahan_daging": 38,    "sepeda_motor": 34,    "semikonduktor": 38,
+    "smelter": 36,    "kayu": 1
   },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
@@ -99,11 +74,26 @@ export const sudan_selatan: CountryData = {
     "udang_kerang": 21.5,
     "ikan": 9
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 32,
+    "gula": 38,
+    "roti": 35,
+    "pengolahan_daging": 38,
+    "mie_instan": 14
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 29
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 26,
     "gudang_senjata": 17,
     "hangar_tank": 1,
@@ -112,8 +102,8 @@ export const sudan_selatan: CountryData = {
     "pangkalan_udara": 22,
     "pangkalan_laut": 15,
     "program_luar_angkasa": 34,
-    "pertahanan_siber": 11,
-  },
+    "pertahanan_siber": 11
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +148,6 @@ export const sudan_selatan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 29,
     "intelijen": 13,
@@ -171,13 +160,12 @@ export const sudan_selatan: CountryData = {
       "program_nuklir": 0
   }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 20,
-          "sepeda_motor": 19,
-          "unit_k9": 23
-  
+      "patroli_lantas": {
+        "mobil_patroli": 20,
+        "sepeda_motor": 19,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 38,
@@ -188,9 +176,8 @@ export const sudan_selatan: CountryData = {
           "kantor_polisi": 38,
           "kamera_pengawas": 23,
           "pusat_forensik": 1
-  },
-    "kepercayaan_publik": 50
   }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -359,6 +346,4 @@ export const sudan_selatan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

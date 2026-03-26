@@ -17,14 +17,13 @@ export const singapura: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 16,
-    "pembangkit_air": 33,
-    "pembangkit_surya": 23,
-    "pembangkit_termal": 36,
-    "pembangkit_gas": 26,
-    "pembangkit_angin": 27,
-    "jaringan_listrik": 53
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const singapura: CountryData = {
     "kereta_bawah_tanah": 5,
     "jalur_kereta": 6,
     "jalan_tol": 15,
-    "kualitas_jalan": 64,
     "pelabuhan_laut": 40,
     "bandara": 18,
     "terminal_bus": 30,
-    "helipad": 37,
-    "cakupan_internet": 56
-  },
+    "helipad": 37
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 6,
-    "uranium": 16,
-    "batu_bara": 33,
-    "minyak_bumi": 16,
-    "gas_alam": 12,
-    "garam": 35,
-    "nikel": 22,
-    "litium": 16,
-    "aluminium": 23,
-    "tembaga": 8,
-    "logam_tanah_jarang": 17,
-    "bijih_besi": 13
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const singapura: CountryData = {
     "sepeda_motor": 10,
     "smelter": 22,
     "semen_beton": 10,
-    "kayu": 38,
-    "air_mineral": 4,
-    "gula": 18,
-    "roti": 23,
-    "farmasi": 12,
-    "pupuk": 39,
-    "pengolahan_daging": 34,
-    "mie_instan": 9
-  },
+    "kayu": 38
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const singapura: CountryData = {
     "udang_kerang": 22.5,
     "ikan": 29
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 4,
+    "gula": 18,
+    "roti": 23,
+    "pengolahan_daging": 34,
+    "mie_instan": 9
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 12
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 14,
     "gudang_senjata": 31,
     "hangar_tank": 37,
@@ -112,8 +105,8 @@ export const singapura: CountryData = {
     "pangkalan_udara": 36,
     "pangkalan_laut": 20,
     "program_luar_angkasa": 23,
-    "pertahanan_siber": 20,
-  },
+    "pertahanan_siber": 20
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const singapura: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 23,
     "intelijen": 22,
@@ -170,13 +162,12 @@ export const singapura: CountryData = {
       "manajemen_wilayah": 27,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 25,
-          "sepeda_motor": 27,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 25,
+        "sepeda_motor": 27,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 29,
@@ -187,9 +178,8 @@ export const singapura: CountryData = {
           "kantor_polisi": 6,
           "kamera_pengawas": 13,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const singapura: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

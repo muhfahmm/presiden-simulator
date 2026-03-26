@@ -17,14 +17,13 @@ export const guatemala: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 15,
-    "pembangkit_air": 17,
-    "pembangkit_surya": 29,
-    "pembangkit_termal": 21,
-    "pembangkit_gas": 1,
-    "pembangkit_angin": 36,
-    "jaringan_listrik": 56
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 10,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 40,
+    "pembangkit_listrik_tenaga_angin": 5
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const guatemala: CountryData = {
     "kereta_bawah_tanah": 22,
     "jalur_kereta": 11,
     "jalan_tol": 16,
-    "kualitas_jalan": 78,
     "pelabuhan_laut": 3,
     "bandara": 21,
     "terminal_bus": 26,
-    "helipad": 25,
-    "cakupan_internet": 55
-  },
+    "helipad": 25
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 20,
-    "uranium": 29,
-    "batu_bara": 35,
-    "minyak_bumi": 39,
-    "gas_alam": 1,
-    "garam": 15,
-    "nikel": 1,
-    "litium": 15,
-    "aluminium": 37,
-    "tembaga": 34,
-    "logam_tanah_jarang": 33,
-    "bijih_besi": 6
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const guatemala: CountryData = {
     "sepeda_motor": 39,
     "smelter": 34,
     "semen_beton": 25,
-    "kayu": 38,
-    "air_mineral": 33,
-    "gula": 28,
-    "roti": 35,
-    "farmasi": 6,
-    "pupuk": 18,
-    "pengolahan_daging": 38,
-    "mie_instan": 28
-  },
+    "kayu": 38
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const guatemala: CountryData = {
     "udang_kerang": 7.0,
     "ikan": 22
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 33,
+    "gula": 28,
+    "roti": 35,
+    "pengolahan_daging": 38,
+    "mie_instan": 28
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 6
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 4,
     "gudang_senjata": 5,
     "hangar_tank": 9,
@@ -112,8 +105,8 @@ export const guatemala: CountryData = {
     "pangkalan_udara": 38,
     "pangkalan_laut": 12,
     "program_luar_angkasa": 32,
-    "pertahanan_siber": 39,
-  },
+    "pertahanan_siber": 39
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const guatemala: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 5,
     "intelijen": 11,
@@ -170,13 +162,12 @@ export const guatemala: CountryData = {
       "manajemen_wilayah": 30,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 32,
-          "sepeda_motor": 15,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 32,
+        "sepeda_motor": 15,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 13,
@@ -187,9 +178,8 @@ export const guatemala: CountryData = {
           "kantor_polisi": 21,
           "kamera_pengawas": 37,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const guatemala: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

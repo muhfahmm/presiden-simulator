@@ -17,14 +17,13 @@ export const korea_selatan: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 30,
-    "pembangkit_air": 25,
-    "pembangkit_surya": 30,
-    "pembangkit_termal": 33,
-    "pembangkit_gas": 20,
-    "pembangkit_angin": 2,
-    "jaringan_listrik": 74
-  },
+    "pembangkit_listrik_tenaga_nuklir": 26,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 10,
+    "pembangkit_listrik_tenaga_uap": 50,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 3
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const korea_selatan: CountryData = {
     "kereta_bawah_tanah": 10,
     "jalur_kereta": 18,
     "jalan_tol": 34,
-    "kualitas_jalan": 92,
     "pelabuhan_laut": 14,
     "bandara": 16,
     "terminal_bus": 25,
-    "helipad": 34,
-    "cakupan_internet": 93
-  },
+    "helipad": 34
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 6,
-    "uranium": 19,
-    "batu_bara": 5,
-    "minyak_bumi": 30,
-    "gas_alam": 23,
-    "garam": 12,
-    "nikel": 33,
-    "litium": 28,
-    "aluminium": 15,
-    "tembaga": 13,
-    "logam_tanah_jarang": 9,
-    "bijih_besi": 4
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const korea_selatan: CountryData = {
     "sepeda_motor": 18,
     "smelter": 26,
     "semen_beton": 37,
-    "kayu": 32,
-    "air_mineral": 30,
-    "gula": 33,
-    "roti": 19,
-    "farmasi": 27,
-    "pupuk": 20,
-    "pengolahan_daging": 11,
-    "mie_instan": 18
-  },
+    "kayu": 32
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const korea_selatan: CountryData = {
     "udang_kerang": 6.0,
     "ikan": 19
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 30,
+    "gula": 33,
+    "roti": 19,
+    "pengolahan_daging": 11,
+    "mie_instan": 18
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 27
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 27,
     "gudang_senjata": 7,
     "hangar_tank": 14,
@@ -112,8 +105,8 @@ export const korea_selatan: CountryData = {
     "pangkalan_udara": 2,
     "pangkalan_laut": 33,
     "program_luar_angkasa": 13,
-    "pertahanan_siber": 26,
-  },
+    "pertahanan_siber": 26
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,25 +151,23 @@ export const korea_selatan: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 6,
     "intelijen": 35,
-    "status_nuklir": false,
+    "status_nuklir": true,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
     "operasi_strategis": { "misi_serangan": 10,
       "misi_mata_mata": 29,
       "misi_sabotase": 37,
       "manajemen_wilayah": 35,
-      "program_nuklir": 0 }
+      "program_nuklir": 100 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 17,
-          "sepeda_motor": 28,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 17,
+        "sepeda_motor": 28,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 26,
@@ -187,9 +178,8 @@ export const korea_selatan: CountryData = {
           "kantor_polisi": 38,
           "kamera_pengawas": 40,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const korea_selatan: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 

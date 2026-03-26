@@ -17,14 +17,13 @@ export const gibraltar: CountryData = {
   // =============================================================
 
   "sektor_listrik": {
-    "pembangkit_nuklir": 5,
-    "pembangkit_air": 18,
-    "pembangkit_surya": 5,
-    "pembangkit_termal": 25,
-    "pembangkit_gas": 35,
-    "pembangkit_angin": 32,
-    "jaringan_listrik": 77
-  },
+    "pembangkit_listrik_tenaga_nuklir": 0,
+    "pembangkit_listrik_tenaga_air": 15,
+    "pembangkit_listrik_tenaga_surya": 15,
+    "pembangkit_listrik_tenaga_uap": 15,
+    "pembangkit_listrik_tenaga_gas": 20,
+    "pembangkit_listrik_tenaga_angin": 20
+    },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -34,30 +33,16 @@ export const gibraltar: CountryData = {
     "kereta_bawah_tanah": 31,
     "jalur_kereta": 17,
     "jalan_tol": 18,
-    "kualitas_jalan": 84,
     "pelabuhan_laut": 21,
     "bandara": 27,
     "terminal_bus": 13,
-    "helipad": 1,
-    "cakupan_internet": 87
-  },
+    "helipad": 1
+    },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
 
   "sektor_ekstraksi": {
-    "emas": 25,
-    "uranium": 2,
-    "batu_bara": 35,
-    "minyak_bumi": 33,
-    "gas_alam": 27,
-    "garam": 22,
-    "nikel": 5,
-    "litium": 25,
-    "aluminium": 10,
-    "tembaga": 10,
-    "logam_tanah_jarang": 28,
-    "bijih_besi": 10
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
@@ -69,15 +54,8 @@ export const gibraltar: CountryData = {
     "sepeda_motor": 29,
     "smelter": 37,
     "semen_beton": 14,
-    "kayu": 16,
-    "air_mineral": 5,
-    "gula": 2,
-    "roti": 40,
-    "farmasi": 36,
-    "pupuk": 4,
-    "pengolahan_daging": 24,
-    "mie_instan": 29
-  },
+    "kayu": 16
+    },
   // =============================================================
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
@@ -99,11 +77,26 @@ export const gibraltar: CountryData = {
     "udang_kerang": 32.0,
     "ikan": 27
   },
+  "sektor_olahan_pangan": {
+    "air_mineral": 5,
+    "gula": 2,
+    "roti": 40,
+    "pengolahan_daging": 24,
+    "mie_instan": 29
+  },
+
+  // =============================================================
+  // 6. 💊 LAYANAN MEDIS & FARMASI
+  // =============================================================
+
+  "sektor_farmasi": {
+    "farmasi": 36
+  },
+
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-
-  "sektor_pertahanan": {
+"sektor_pertahanan": {
     "penjara": 8,
     "gudang_senjata": 16,
     "hangar_tank": 21,
@@ -112,8 +105,8 @@ export const gibraltar: CountryData = {
     "pangkalan_udara": 7,
     "pangkalan_laut": 15,
     "program_luar_angkasa": 6,
-    "pertahanan_siber": 30,
-  },
+    "pertahanan_siber": 30
+    },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -158,7 +151,6 @@ export const gibraltar: CountryData = {
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
   // =============================================================
 
-  
   "militer_strategis": {
     "waktu_respon": 7,
     "intelijen": 39,
@@ -170,13 +162,12 @@ export const gibraltar: CountryData = {
       "manajemen_wilayah": 39,
       "program_nuklir": 0 }
   },
-  "armada_kepolisian": {
+    "armada_kepolisian": {
     "armada_polisi": {
-    "patroli_lantas": {
-          "mobil_patroli": 22,
-          "sepeda_motor": 14,
-          "unit_k9": 23
-        
+      "patroli_lantas": {
+        "mobil_patroli": 22,
+        "sepeda_motor": 14,
+        "unit_k9": 23
   },
         "taktis_khusus": {
           "swat": 31,
@@ -187,9 +178,8 @@ export const gibraltar: CountryData = {
           "kantor_polisi": 5,
           "kamera_pengawas": 39,
           "pusat_forensik": 1
-        },
-    "kepercayaan_publik": 50
-  }
+        }
+    }
   },
   "pabrik_militer": {
     "pabrik_drone_kamikaze": 0,
@@ -358,6 +348,4 @@ export const gibraltar: CountryData = {
     "lingkungan": 60
   }
 };
-
-
 
