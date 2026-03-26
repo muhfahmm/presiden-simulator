@@ -2,13 +2,13 @@
 
 import { useState, useEffect, Fragment } from "react"
 import { X, Zap, Battery, Activity, AlertTriangle, TrendingUp, TrendingDown, Info, Shield, Droplets, Sun, Wind, Flame, Radio, Search, ChevronLeft, Eye, Gauge, Factory, Pickaxe, Landmark, GraduationCap, HeartPulse, TrainFront, ShieldCheck, Bird, Sprout, Cpu, Car, Bike, Construction, TreePine, Cookie, Croissant, Pill, FlaskConical, Beef, Soup, Radiation, Coins, Ship, Plane, Crosshair, Library, Scale, Siren, Home, Store, Map, Coffee, Milk, Fish, Shell, Leaf, Utensils, Apple, Bean, Wifi, Bus, Warehouse, Archive, HardHat, ShieldAlert, Clock, Loader2, EyeOff, Hammer, Swords, Users } from "lucide-react"
-import { countries } from "@/app/select-country/data/countries/_index"
-import { CountryData } from "@/app/select-country/data/types/_index"
+import { countries } from "@/app/database/data/countries/region/_index"
+import { CountryData } from "@/app/database/data/types/_index"
 import { gameStorage } from "@/app/game/gamestorage"
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_FLEET, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_PANGAN } from "@/app/select-country/data/electricity"
-import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/select-country/data/pembangunan/laju-produksi"
-import { produksiMiliter } from "@/app/select-country/data/pembangunan/produksi-militer"
-import { tempatUmum } from "@/app/select-country/data/pembangunan/tempat-umum"
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_FLEET, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_PANGAN } from "@/app/database/data/1_kelistrikan"
+import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi"
+import { produksiMiliter } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/produksi-militer"
+import { tempatUmum } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/tempat-umum"
 
 interface ModalProps {
    isOpen: boolean;
@@ -659,4 +659,6 @@ function CardItem({ item, variant = "default" }: { item: any, variant?: "default
       </div>
    );
 }
+
+
 

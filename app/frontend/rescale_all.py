@@ -52,7 +52,7 @@ def rescale_file(filepath):
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(content)
 
-root = r'C:\fhm\EM4\app\frontend-desktop\src\app\select-country\data\countries'
+root = r'C:\fhm\EM4\app\frontend-desktop\src\app\database\data\countries'
 for dirpath, _, filenames in os.walk(root):
     for filename in filenames:
         if filename.endswith('.ts') and '_index' not in filename:

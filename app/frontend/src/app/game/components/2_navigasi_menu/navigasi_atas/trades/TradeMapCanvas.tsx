@@ -1,12 +1,12 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "@/app/select-country/data/countries/_index";
-import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "@/app/select-country/data/trades/tradeRoutes";
+import { countries as centersData } from "@/app/database/data/countries/region/_index";
+import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "@/app/database/data/trades/tradeRoutes";
 
-import { regionalRoutes } from "@/app/select-country/data/trades/regional/AsianRoutes";
-import { internationalHubs } from "@/app/select-country/data/trades/international/hubs";
-import { internationalRoutes } from "@/app/select-country/data/trades/international/routes";
+import { regionalRoutes } from "@/app/database/data/trades/regional/AsianRoutes";
+import { internationalHubs } from "@/app/database/data/trades/international/hubs";
+import { internationalRoutes } from "@/app/database/data/trades/international/routes";
 
 interface TradeMapCanvasProps {
   userCountry: string;
@@ -965,3 +965,4 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
     </div>
   );
 }
+

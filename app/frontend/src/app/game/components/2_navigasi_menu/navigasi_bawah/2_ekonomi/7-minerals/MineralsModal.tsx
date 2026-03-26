@@ -1,12 +1,12 @@
 "use client"
 
 import { X, Box, Battery, Layers, Pickaxe, TrendingUp, Activity, Info, Search, Eye, ChevronLeft, Radiation, Droplets, Flame, Coins, Loader2, Database, Clock } from "lucide-react";
-import { CountryData } from "@/app/select-country/data/types/_index";
-import { countries } from "@/app/select-country/data/countries/_index";
+import { CountryData } from "@/app/database/data/types/_index";
+import { countries } from "@/app/database/data/countries/region/_index";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
-import { mineralKritisRate } from "@/app/select-country/data/pembangunan/laju-produksi";
+import { mineralKritisRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi";
 import { useState, useEffect } from "react";
 
 interface MineralsModalProps {
@@ -223,3 +223,4 @@ export default function MineralsModal({ isOpen, onClose }: MineralsModalProps) {
     </div>
   );
 }
+

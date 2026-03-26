@@ -1,5 +1,5 @@
-import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/select-country/data/pembangunan/laju-produksi";
-import { CountryData } from "@/app/select-country/data/types/_index";
+import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi";
+import { CountryData } from "@/app/database/data/types/_index";
 
 /**
  * Calculates the total daily output for each building type based on base country 

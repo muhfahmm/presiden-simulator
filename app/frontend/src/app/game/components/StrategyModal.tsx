@@ -7,9 +7,9 @@ import {
   Globe, TreePine, Mountain, Droplets, Beef, ThumbsUp, BookOpen, Scale, BarChart3, X
 } from "lucide-react";
 
-import { allRelations } from "@/app/select-country/data/relations";
+import { allRelations } from "@/app/database/data/relations";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries as centersData } from "@/app/select-country/data/countries/_index";
+import { countries as centersData } from "@/app/database/data/countries/region/_index";
 
 interface StrategyModalProps {
   isOpen: boolean;
@@ -217,3 +217,4 @@ function TabButton({ icon, active, onClick }: { icon: React.ReactNode, active: b
     </button>
   );
 }
+

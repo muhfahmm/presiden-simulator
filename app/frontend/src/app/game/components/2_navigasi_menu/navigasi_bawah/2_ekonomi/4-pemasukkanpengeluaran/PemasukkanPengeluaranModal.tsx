@@ -2,20 +2,20 @@
 
 import { useState, useEffect } from "react"
 import { X, BarChart3, TrendingUp, TrendingDown, Landmark, PieChart, Coins, Shield, Zap, Building2, Activity, Info, Wallet, ArrowRight, Hammer, Users, Eye, ChevronLeft, Car, Home, Search } from "lucide-react"
-import { countries } from "@/app/select-country/data/countries/_index"
-import { CountryData } from "@/app/select-country/data/types/_index"
+import { countries } from "@/app/database/data/countries/region/_index"
+import { CountryData } from "@/app/database/data/types/_index"
 import { gameStorage } from "@/app/game/gamestorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage"
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/2_ekonomi/2-pajak/TaxStorage"
 
-import { KAPASITAS_LISTRIK_METADATA } from "@/app/select-country/data/electricity"
-import { mineralKritisRate } from "@/app/select-country/data/pembangunan/laju-produksi/1_mineral_kritis"
-import { produkIndustriRate } from "@/app/select-country/data/pembangunan/laju-produksi/2_produk_industri"
-import { komoditasPanganRate } from "@/app/select-country/data/pembangunan/laju-produksi/3_komoditas_pangan"
-import { produksiMiliter } from "@/app/select-country/data/pembangunan/produksi-militer"
-import { tempatUmum } from "@/app/select-country/data/pembangunan/tempat-umum"
-import { produksi } from "@/app/select-country/data/pembangunan/produksi"
+import { KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/1_kelistrikan"
+import { mineralKritisRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi/1_mineral_kritis"
+import { produkIndustriRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi/2_produk_industri"
+import { komoditasPanganRate } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/laju-produksi/3_komoditas_pangan"
+import { produksiMiliter } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/produksi-militer"
+import { tempatUmum } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/tempat-umum"
+import { produksi } from "@/app/database/data/4_produksi_ekonomi_nasional/2_pembangunan/produksi"
 
 import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMaintenance } from "@/app/game/data/economy/BudgetDeltaLogic"
 import { incomeStorage } from "./pemasukkan/IncomeStorage"
@@ -630,3 +630,5 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
     </div>
   )
 }
+
+

@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/select-country/data/types/_index";
+import { CountryData } from "@/app/database/data/types/_index";
 
 export const BASE_CHANCE = 40;
 export const SAME_IDEOLOGY_BONUS = 30;

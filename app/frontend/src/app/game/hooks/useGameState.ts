@@ -5,13 +5,12 @@ import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { budgetDeltaStorage } from "@/app/game/components/1_navbar/3_kas_negara/BudgetDeltaStorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/buildingStorage";
-import { countries } from "@/app/select-country/data/countries/_index";
+import { countries } from "@/app/database/data/countries/region/_index";
 import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLogic";
 import { calculatePopulationHappiness } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/1_kepuasan";
 import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
-
 export function useGameState(setActiveMenu: (menu: string) => void) {
   const [approval, setApproval] = useState(55);
   const [budget, setBudget] = useState(1240.5); // in Trillion
@@ -100,3 +99,4 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
     selectedCountrySDA, setSelectedCountrySDA
   };
 }
+

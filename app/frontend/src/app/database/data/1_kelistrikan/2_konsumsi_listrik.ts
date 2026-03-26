@@ -1,5 +1,5 @@
 import { CountryData, SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian, SektorPabrikMiliter, SektorEkstraksi } from "../types/_index";
-import { ExtractionData } from "../extraction/1_kualitas_ekstraksi";
+import { ExtractionData } from "../3_ekstraksi_mineral/1_kualitas_ekstraksi";
 
 // 1. Konsumsi Ekstraksi (Mining)
 export const KONSUMSI_EKSTRAKSI = {

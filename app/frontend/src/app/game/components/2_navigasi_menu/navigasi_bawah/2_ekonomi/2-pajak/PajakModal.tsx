@@ -2,8 +2,8 @@
 
 import { useState, useEffect } from "react"
 import { X, FileText, Scale, Coins, Smile, Meh, Frown, Angry, AlertCircle, TrendingUp, RefreshCw, Wallet, Globe, Shield, ShieldAlert, Info } from "lucide-react"
-import { countries } from "@/app/select-country/data/countries/_index"
-import { CountryData } from "@/app/select-country/data/types/_index"
+import { countries } from "@/app/database/data/countries/region/_index"
+import { CountryData } from "@/app/database/data/types/_index"
 import { gameStorage } from "@/app/game/gamestorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
 import { taxStorage } from "./TaxStorage"
@@ -268,3 +268,4 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
     </div>
   )
 }
+

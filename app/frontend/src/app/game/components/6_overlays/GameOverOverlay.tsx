@@ -26,7 +26,7 @@ export default function GameOverOverlay({ isGameOver, countryData }: GameOverOve
         <button 
           onClick={() => {
             gameStorage.clearSession();
-            router.push("/select-country");
+            router.push("/database");
           }}
           className="w-full bg-red-600 hover:bg-red-500 text-white font-black py-5 rounded-2xl shadow-xl transition-all cursor-pointer active:scale-95 text-xs uppercase tracking-[0.3em]"
         >

@@ -1,7 +1,7 @@
 "use client"
 
 import { X, ShieldAlert, Car, Search, Phone, UserCheck, MapPin, Radio, Shield, Zap } from "lucide-react"
-import { CountryData } from "@/app/select-country/data/types/_index";
+import { CountryData } from "@/app/database/data/types/_index";
 
 interface ModalProps {
   isOpen: boolean;

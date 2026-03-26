@@ -18,7 +18,7 @@ const walk = (dir) => {
 };
 
 // Target the data directory relative to the current working directory
-const baseDir = path.join(process.cwd(), 'src/app/select-country/data/countries');
+const baseDir = path.join(process.cwd(), 'src/app/database/data/countries');
 const files = walk(baseDir);
 
 console.log(`Processing ${files.length} files in ${baseDir}...`);

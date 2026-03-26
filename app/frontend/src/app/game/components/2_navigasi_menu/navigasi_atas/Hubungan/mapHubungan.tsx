@@ -1,8 +1,8 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "@/app/select-country/data/countries/_index";
-import { allRelations } from "@/app/select-country/data/relations";
+import { countries as centersData } from "@/app/database/data/countries/region/_index";
+import { allRelations } from "@/app/database/data/relations";
 
 interface MapHubunganProps {
   userCountry: string;
@@ -318,3 +318,4 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
     />
   );
 }
+

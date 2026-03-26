@@ -1,2 +1,2 @@
-import { countries } from "@/app/select-country/data/countries/_index";
+import { countries } from "@/app/database/data/countries/region/_index";
 export { countries };

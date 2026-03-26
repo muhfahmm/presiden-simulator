@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "@/app/select-country/data/countries/_index";
+import { countries as centersData } from "@/app/database/data/countries/region/_index";
 import { Layers, Mountain, Gem, Waves, Flame, Battery, Droplets, Box, Cpu, Pickaxe, Radio } from "lucide-react";
 
 export const sdaIcons: { [key: string]: { icon: any, color: string, label: string } } = {
@@ -341,3 +341,4 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
     </div>
   );
 }
+

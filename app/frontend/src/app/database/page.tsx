@@ -1,12 +1,12 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight, Eye, EyeOff, X } from "lucide-react";
 import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch";
-import WorldMapCanvas from "./selectcountrymap";
+import WorldMapCanvas from "./databasemap";
 import MapHubungan from "../game/components/2_navigasi_menu/navigasi_atas/Hubungan/mapHubungan";
-import { countries } from "./data/countries/_index";
+import { countries } from "./data/countries/region/_index";
 import { gameStorage } from "../game/gamestorage";
 import { CountryData } from "./data/types/_index";
 import {
@@ -34,8 +34,8 @@ import {
   VEHICLE_FACTORY_POWER,
   HEAVY_WEAPON_FACTORY_POWER
 } from "@/app/game/components/2_navigasi_menu/navigasi_bawah/3_pembangunan/2-produksi-militer/militaryLogic";
-import { getInfraQuality } from "./data/infrastructure/1_kualitas_infrastruktur";
-import { getExtractionData } from "./data/extraction/1_kualitas_ekstraksi";
+import { getInfraQuality } from "./data/2_insfratuktur/1_kualitas_infrastruktur";
+import { getExtractionData } from "./data/3_ekstraksi_mineral/1_kualitas_ekstraksi";
 import {
   hitungTotalKapasitas, KAPASITAS_LISTRIK,
   hitungKonsumsiProduksi, hitungKonsumsiOlahanPangan, hitungKonsumsiFarmasi, KONSUMSI_PRODUKSI, hitungKonsumsiPangan, KONSUMSI_PANGAN,
@@ -46,7 +46,7 @@ import {
   hitungKonsumsiTransportasi, KONSUMSI_TRANSPORTASI,
   hitungKonsumsiEkstraksi, KONSUMSI_EKSTRAKSI,
   hitungTotalKonsumsiNasional
-} from "./data/electricity";
+} from "./data/1_kelistrikan";
 import {
   Sword, Anchor, Plane, ShieldCheck, Globe2, TrendingUp, Gem, Droplets, Beef, TreePine, Mountain,
   Zap, Waves, Sun, Flame, Wind, Building2, TowerControl, Ship, Radio, Home, Store, Factory, Map,
@@ -57,7 +57,7 @@ import {
   Truck, Shield, Users, Coins, Globe, Church, Battery, Pickaxe, FlaskConical, Bus, Wheat
 } from "lucide-react";
 
-export default function SelectCountry() {
+export default function DatabasePage() {
   const router = useRouter();
   const [selectedCountry, setSelectedCountry] = useState("");
   const [searchQuery, setSearchQuery] = useState("");
@@ -257,7 +257,7 @@ export default function SelectCountry() {
 
         {/* Selected Country Flag Overlay */}
         <div className="flex items-center gap-2 bg-zinc-800/80 px-4 py-1.5 rounded-lg border border-zinc-700">
-          <span className="text-xl">{hasSelection ? currentData.flag : "🌍"}</span>
+          <span className="text-xl">{hasSelection ? currentData.flag : "ðŸŒ"}</span>
           <span className="text-xs font-bold text-zinc-100 uppercase tracking-wide">{hasSelection ? currentData.name_id : "Pilih Negara"}</span>
         </div>
       </header>
@@ -755,49 +755,49 @@ export default function SelectCountry() {
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Infanteri</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateInfantryPower(currentData.armada_militer.barak).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateInfantryPower(currentData.armada_militer.barak).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-white leading-none">{(currentData.armada_militer.barak * 10000 / 1000).toFixed(0)}K</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Tank Baja</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateTankPower(currentData.armada_militer.darat.tank_tempur_utama).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateTankPower(currentData.armada_militer.darat.tank_tempur_utama).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.darat.tank_tempur_utama}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">APC / IFV</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateApcPower(currentData.armada_militer.darat.apc_ifv).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateApcPower(currentData.armada_militer.darat.apc_ifv).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.darat.apc_ifv}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Artileri</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateArtilleryPower(currentData.armada_militer.darat.artileri_berat).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateArtilleryPower(currentData.armada_militer.darat.artileri_berat).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.darat.artileri_berat}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Sistem Roket</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateRocketPower(currentData.armada_militer.darat.sistem_peluncur_roket).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateRocketPower(currentData.armada_militer.darat.sistem_peluncur_roket).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-orange-400 leading-none">{currentData.armada_militer.darat.sistem_peluncur_roket}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Sistem SAM</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateSamPower(currentData.armada_militer.darat.pertahanan_udara_mobile).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateSamPower(currentData.armada_militer.darat.pertahanan_udara_mobile).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-blue-400 leading-none">{currentData.armada_militer.darat.pertahanan_udara_mobile}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kendaraan Taktis</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateTacticalPower(currentData.armada_militer.darat.kendaraan_taktis).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateTacticalPower(currentData.armada_militer.darat.kendaraan_taktis).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-zinc-400 leading-none">{currentData.armada_militer.darat.kendaraan_taktis}</span>
                       </div>
@@ -834,49 +834,49 @@ export default function SelectCountry() {
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kapal Induk</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateCarrierPower(currentData.armada_militer.laut.kapal_induk).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateCarrierPower(currentData.armada_militer.laut.kapal_induk).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.laut.kapal_induk}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Destroyer</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateDestroyerPower(currentData.armada_militer.laut.kapal_destroyer).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateDestroyerPower(currentData.armada_militer.laut.kapal_destroyer).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.laut.kapal_destroyer}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Korvet</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateCorvettePower(currentData.armada_militer.laut.kapal_korvet).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateCorvettePower(currentData.armada_militer.laut.kapal_korvet).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.laut.kapal_korvet}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kapal Selam Nuklir</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateSubmarinePower(currentData.armada_militer.laut.kapal_selam_nuklir).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateSubmarinePower(currentData.armada_militer.laut.kapal_selam_nuklir).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-emerald-400 leading-none">{currentData.armada_militer.laut.kapal_selam_nuklir}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kapal Selam Reguler</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateRegularSubPower(currentData.armada_militer.laut.kapal_selam_regular).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateRegularSubPower(currentData.armada_militer.laut.kapal_selam_regular).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-zinc-300 leading-none">{currentData.armada_militer.laut.kapal_selam_regular}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kapal Ranjau</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateMineShipPower(currentData.armada_militer.laut.kapal_ranjau).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateMineShipPower(currentData.armada_militer.laut.kapal_ranjau).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-red-400 leading-none">{currentData.armada_militer.laut.kapal_ranjau}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Logistik</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateLogisticsPower(currentData.armada_militer.laut.kapal_logistik).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateLogisticsPower(currentData.armada_militer.laut.kapal_logistik).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-blue-300 leading-none">{currentData.armada_militer.laut.kapal_logistik}</span>
                       </div>
@@ -894,56 +894,56 @@ export default function SelectCountry() {
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Jet Stealth</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateStealthPower(currentData.armada_militer.udara.jet_tempur_siluman).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateStealthPower(currentData.armada_militer.udara.jet_tempur_siluman).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.jet_tempur_siluman}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Interceptor</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateInterceptorPower(currentData.armada_militer.udara.jet_tempur_interceptor).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateInterceptorPower(currentData.armada_militer.udara.jet_tempur_interceptor).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-blue-400 leading-none">{currentData.armada_militer.udara.jet_tempur_interceptor}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Bomber</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateBomberPower(currentData.armada_militer.udara.pesawat_pengebom).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateBomberPower(currentData.armada_militer.udara.pesawat_pengebom).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-red-500 leading-none">{currentData.armada_militer.udara.pesawat_pengebom}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Heli Serang</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateAttackHeliPower(currentData.armada_militer.udara.helikopter_serang).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateAttackHeliPower(currentData.armada_militer.udara.helikopter_serang).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.helikopter_serang}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Pesawat Intai</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateReconPower(currentData.armada_militer.udara.pesawat_pengintai).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateReconPower(currentData.armada_militer.udara.pesawat_pengintai).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-white leading-none">{currentData.armada_militer.udara.pesawat_pengintai}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">UAV Intai</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateUavPower(currentData.armada_militer.udara.drone_intai_uav).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateUavPower(currentData.armada_militer.udara.drone_intai_uav).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-emerald-400 leading-none">{currentData.armada_militer.udara.drone_intai_uav}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Kamikaze</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateKamikazePower(currentData.armada_militer.udara.drone_kamikaze).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateKamikazePower(currentData.armada_militer.udara.drone_kamikaze).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-orange-400 leading-none">{currentData.armada_militer.udara.drone_kamikaze}</span>
                       </div>
                       <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
                         <div className="flex items-center justify-between mb-1">
                           <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none">Pesawat Angkut</span>
-                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">⚔️ {calculateTransportPower(currentData.armada_militer.udara.pesawat_angkut).toLocaleString('id-ID')}</span>
+                          <span className="text-[8px] text-amber-500/80 font-bold leading-none">âš”ï¸ {calculateTransportPower(currentData.armada_militer.udara.pesawat_angkut).toLocaleString('id-ID')}</span>
                         </div>
                         <span className="text-xs font-black text-zinc-400 leading-none">{currentData.armada_militer.udara.pesawat_angkut}</span>
                       </div>

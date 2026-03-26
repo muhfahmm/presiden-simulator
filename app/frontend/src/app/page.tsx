@@ -72,7 +72,7 @@ export default function Home() {
 
         <div className="flex flex-col w-full gap-4">
           <button 
-            onClick={() => router.push("/select-country")}
+            onClick={() => router.push("/database")}
             className="group flex items-center justify-center gap-3 w-full py-4 rounded-xl bg-gradient-to-r from-red-600 to-red-500 font-bold hover:from-red-500 hover:to-yellow-500 transition-all shadow-lg hover:shadow-red-500/20 active:scale-95 cursor-pointer"
           >
             <Play className="h-5 w-5 group-hover:animate-bounce" />

@@ -1,8 +1,8 @@
-"use client"
+﻿"use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "@/app/select-country/data/countries/_index";
-import { hitungKonsumsiEkstraksi } from "@/app/select-country/data/electricity/2_konsumsi_listrik";
+import { countries as centersData } from "@/app/database/data/countries/region/_index";
+import { hitungKonsumsiEkstraksi } from "@/app/database/data/1_kelistrikan/2_konsumsi_listrik";
 interface GameMapCanvasProps {
   userCountry: string;
   targetCountry: string | null;
@@ -389,3 +389,5 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
     />
   );
 }
+
+
