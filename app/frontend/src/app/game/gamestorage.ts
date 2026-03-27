@@ -10,6 +10,7 @@ import { inboxStorage } from "./components/sidemenu/2_kotak_masuk/inboxStorage";
 import { budgetStorage } from "./components/1_navbar/3_kas_negara";
 import { budgetDeltaStorage } from "./components/1_navbar/3_kas_negara/BudgetDeltaStorage";
 import { acaraStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/acara/acaraStorage";
+import { unSecurityCouncilStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 
 const STORAGE_KEY = "game_session";
 
@@ -55,6 +56,7 @@ export const gameStorage = {
     budgetStorage.clear();
     budgetDeltaStorage.clear();
     acaraStorage.clear();
+    unSecurityCouncilStorage.clear();
   },
 
   getSession: (): GameSession | null => {
@@ -109,6 +111,7 @@ export const gameStorage = {
     budgetStorage.clear();
     budgetDeltaStorage.clear();
     acaraStorage.clear();
+    unSecurityCouncilStorage.clear();
     
     window.location.href = '/database';
   },

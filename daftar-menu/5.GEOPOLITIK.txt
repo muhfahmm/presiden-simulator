@@ -45,17 +45,10 @@
   2.6. Organisasi Perdagangan Dunia
   2.7. Organisasi Buruh Internasional
   2.8. Organisasi Pangan dan Pertanian
-  2.8. Organisasi Penerbangan Sipil Internasional
-  2.9. Organisasi Maritim Internasional
-  2.10. Organisasi Telekomunikasi Internasional
-  2.11. Organisasi Meteorologi Dunia
-  2.12. Organisasi Perdagangan Dunia
-  2.13. Organisasi Buruh Internasional
-  2.14. Organisasi Pangan dan Pertanian
-  2.15. Organisasi Penerbangan Sipil Internasional
-  2.16. Organisasi Maritim Internasional
-  2.17. Organisasi Telekomunikasi Internasional
-  2.18. Organisasi Meteorologi Dunia
+  2.9. Organisasi Penerbangan Sipil Internasional
+  2.10. Organisasi Maritim Internasional
+  2.11. Organisasi Telekomunikasi Internasional
+  2.12. Organisasi Meteorologi Dunia
 
 3. ORGANISASI REGIONAL
   3.1. ASEAN (Asia Tenggara - Fokus: Stabilitas & Ekonomi)

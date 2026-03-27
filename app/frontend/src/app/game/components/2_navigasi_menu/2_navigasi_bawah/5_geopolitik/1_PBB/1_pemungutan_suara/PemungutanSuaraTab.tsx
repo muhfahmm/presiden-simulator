@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { FileText, AlertTriangle, Ban, ChevronLeft, Search, Clock, Globe, ThumbsUp, ThumbsDown } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/countries/region/index";
+import { unSecurityCouncilStorage } from "../2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 
 interface ResolutionItem {
   name: string;
   description: string;
+  effect: string;
 }
 
 interface ResolutionMenu {
@@ -31,12 +33,11 @@ const resolutionMenus: ResolutionMenu[] = [
     bgColor: "bg-cyan-500/5",
     glowColor: "shadow-cyan-500/10",
     items: [
-      { name: "Embargo Pelatihan Militer", description: "Melarang pengiriman instruktur militer dan latihan tempur bersama dengan negara target guna menekan kekuatan pertahanannya." },
-      { name: "Larangan Perang", description: "Resolusi PBB yang mewajibkan gencatan senjata total dan melarang segala bentuk agresi militer oleh negara target di wilayah manapun." },
-      { name: "Embargo Penjualan Teknologi", description: "Pembatasan ekspor komponen elektronik sensitif, semikonduktor, dan lisensi perangkat lunak strategis ke negara target." },
-      { name: "Embargo Penjualan Sumber Daya", description: "Melarang distribusi bahan mentah seperti minyak, gas, dan mineral strategis yang menjadi motor utama ekonomi negara target." },
-      { name: "Embargo Penjualan Senjata", description: "Boikot total terhadap perdagangan alutsista, termasuk suku cadang pesawat tempur dan amunisi kaliber besar." },
-      { name: "Embargo Penjualan Jasa", description: "Pemutusan akses terhadap layanan konsultasi finansial, asuransi pelayaran, dan bantuan logistik internasional." },
+      { 
+        name: "Larangan Perang (Anti-War)", 
+        description: "Kesepakatan kolektif antar negara anggota PBB untuk menghentikan seluruh agresi militer aktif.",
+        effect: "Membekukan menu Serang Negara. Jika dilanggar, Diplomatic Standing anjlok -50 poin dan otomatis memicu Sanksi Ekonomi."
+      },
     ]
   },
   {
@@ -49,9 +50,16 @@ const resolutionMenus: ResolutionMenu[] = [
     bgColor: "bg-amber-500/5",
     glowColor: "shadow-amber-500/10",
     items: [
-      { name: "Sanksi Ekonomi", description: "Pembekuan aset luar negeri pejabat negara target dan pembatasan transaksi perbankan lintas negara (SWIFT exclusion)." },
-      { name: "Sanksi Pelatihan Militer", description: "Pembatalan pakta pertahanan dan penarikan seluruh personel militer dari operasi gabungan dengan negara target." },
-      { name: "Sanksi Perang", description: "Otorisasi penggunaan kekuatan militer koalisi PBB untuk menjaga perdamaian jika agresi terus berlanjut." },
+      { 
+        name: "Sanksi Ekonomi (Economic Sanction)", 
+        description: "Pembatasan akses keuangan dan pembekuan aset negara di bank internasional.",
+        effect: "Penurunan Pajak & Daily Revenue sebesar 25%. Biaya pembangunan gedung baru naik 15% karena kesulitan modal."
+      },
+      { 
+        name: "Sanksi Perang (War Sanction)", 
+        description: "Hukuman atas agresi militer yang dianggap tidak sah oleh dewan internasional.",
+        effect: "Penurunan Combat Readiness armada sebesar 20%. Biaya pemeliharaan Hub Militer naik 30% karena kesulitan rantai pasok taktis."
+      },
     ]
   },
   {
@@ -64,11 +72,26 @@ const resolutionMenus: ResolutionMenu[] = [
     bgColor: "bg-rose-500/5",
     glowColor: "shadow-rose-500/10",
     items: [
-      { name: "Embargo Ekonomi", description: "Pemutusan total hubungan dagang bilateral, termasuk pelarangan impor produk unggulan dari negara target." },
-      { name: "Embargo Teknologi", description: "Isolasi digital total, mencakup pemutusan akses ke server global dan pelarangan platform teknologi luar negeri." },
-      { name: "Embargo Sumber Daya", description: "Penutupan jalur distribusi energi dan bahan bakar yang melewati wilayah kedaulatan negara anggota PBB lainnya." },
-      { name: "Embargo Jasa", description: "Melarang segala bentuk pergerakan tenaga kerja ahli dan layanan profesional untuk membantu ekonomi negara target." },
-      { name: "Embargo Senjata", description: "Pelumpuhan total kekuatan tempur dengan melarang seluruh rantai pasok industri pertahanan negara target secara global." },
+      { 
+        name: "Embargo Ekonomi (Total Trade)", 
+        description: "Pemutusan total seluruh jalur perdagangan ekspor dan impor dengan dunia luar.",
+        effect: "Daily Revenue dari jalur perdagangan anjlok hingga 80%. Penurunan Approval Rating warga sebesar 2% per hari akibat kelangkaan barang konsumsi."
+      },
+      { 
+        name: "Embargo Penjualan Teknologi (Tech)", 
+        description: "Larangan pengiriman komponen mikrochip, perangkat lunak, dan data riset dari luar negeri.",
+        effect: "Waktu produksi di Cyber Defense dan Program Luar Angkasa melambat 50%. Biaya riset teknologi baru naik 100%."
+      },
+      { 
+        name: "Embargo Penjualan Sumber Daya (Resource)", 
+        description: "Pemblokiran akses pasar internasional untuk menjual komoditas mentah dalam negeri.",
+        effect: "Pendapatan harian dari Tambang & Rig Minyak turun 60%. Stok bahan baku industri menumpuk namun tidak bernilai uang."
+      },
+      { 
+        name: "Embargo Senjata (Arms Embargo)", 
+        description: "Larangan total impor senjata, suku cadang alutsista, dan amunisi dari manufaktur global.",
+        effect: "Produksi di Armada Tempur melambat 40%. Amunisi harian berkurang 10% setiap kali melakukan operasi militer tanpa adanya suplai baru."
+      },
     ]
   },
 ];
@@ -81,12 +104,38 @@ const durations = [
   "1 Tahun"
 ];
 
+const techItems = ["Semikonduktor", "Mobil", "Sepeda Motor", "Smelter"];
+const resourceItems = [
+  "Emas", "Uranium", "Batu Bara", "Minyak Bumi", "Gas Alam", "Garam", 
+  "Nikel", "Litium", "Tembaga", "Aluminium", "Logam Tanah Jarang", "Bijih Besi"
+];
+
 export default function PemungutanSuaraTab() {
-  const [selectedItem, setSelectedItem] = useState<{ category: string, name: string, description: string } | null>(null);
+  const [selectedItem, setSelectedItem] = useState<{ category: string, name: string, description: string, effect: string } | null>(null);
   const [selectedDuration, setSelectedDuration] = useState("1 Bulan");
   const [selectedCountry, setSelectedCountry] = useState<any>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [userCountry, setUserCountry] = useState<string | null>(null);
+  const [selectedSubItem, setSelectedSubItem] = useState("");
+  const [isUNSCMember, setIsUNSCMember] = useState(false);
+
+  useEffect(() => {
+    const data = unSecurityCouncilStorage.getData();
+    const isMember = data.members.some(m => m.name === "Indonesia");
+    setIsUNSCMember(isMember);
+  }, []);
+
+  useEffect(() => {
+    if (selectedItem) {
+      if (selectedItem.name === "Embargo Penjualan Teknologi") {
+        setSelectedSubItem(techItems[0]);
+      } else if (selectedItem.name === "Embargo Penjualan Sumber Daya") {
+        setSelectedSubItem(resourceItems[0]);
+      } else {
+        setSelectedSubItem("");
+      }
+    }
+  }, [selectedItem]);
 
   useEffect(() => {
     const session = gameStorage.getSession();
@@ -115,12 +164,15 @@ export default function PemungutanSuaraTab() {
 
   // Simple Vote Estimation Simulation
   const estimateVotes = () => {
-    if (!selectedCountry) return { agree: 0, disagree: 0 };
+    if (!selectedCountry) return { agree: 0, abstain: 0, disagree: 0 };
     // Pseudo-random but semi-stable estimation
     const seed = selectedCountry.name_id?.length || 10;
-    const agree = Math.floor((seed * 1337) % 150) + 20;
     const total = 207;
-    return { agree, disagree: total - agree };
+    const agree = Math.floor((seed * 1337) % 110) + 40;
+    const abstain = Math.floor((seed * 777) % 40) + 10;
+    const disagree = Math.max(0, total - agree - abstain);
+    
+    return { agree, abstain, disagree };
   };
 
   const estimation = estimateVotes();
@@ -148,7 +200,7 @@ export default function PemungutanSuaraTab() {
                 return (
                   <button
                     key={i}
-                    onClick={() => setSelectedItem({ category: menu.title, name: item.name, description: item.description })}
+                    onClick={() => setSelectedItem({ category: menu.title, name: item.name, description: item.description, effect: item.effect })}
                     className={`w-full flex items-center justify-between px-4 py-3 border rounded-2xl transition-all group text-left cursor-pointer ${
                       isSelected 
                         ? "bg-zinc-800 border-zinc-600 shadow-md ring-1 ring-white/10" 
@@ -175,57 +227,109 @@ export default function PemungutanSuaraTab() {
       {selectedItem && (
         <div className="flex-1 flex flex-col gap-10 pt-10 border-t border-zinc-800/50 animate-in slide-in-from-bottom duration-500">
           {/* Active Configuration Header */}
-          <div className="flex items-center gap-6 p-8 rounded-[32px] bg-zinc-950/40 border border-rose-500/20 shadow-2xl backdrop-blur-sm">
-            <div className="p-4 rounded-2xl bg-rose-500/10 border border-rose-500/20 text-rose-500 shadow-lg shrink-0">
-              <Gavel className="h-6 w-6" />
-            </div>
-            <div className="flex-1">
-              <div className="flex items-center gap-3 mb-1">
-                <h3 className="text-[10px] font-black text-rose-500 uppercase tracking-[0.2em]">Konfigurasi Aktif</h3>
-                <div className="h-px w-12 bg-rose-500/20" />
-                <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">{selectedItem.category}</span>
+          {(() => {
+            const getColorClasses = () => {
+              if (selectedItem.category === "Rancangan Resolusi") return { text: "text-cyan-400", border: "border-cyan-500/30", bg: "bg-cyan-500/5", glow: "shadow-cyan-500/20", iconBg: "bg-cyan-500/10" };
+              if (selectedItem.category === "Sanksi") return { text: "text-amber-400", border: "border-amber-500/30", bg: "bg-amber-500/5", glow: "shadow-amber-500/20", iconBg: "bg-amber-500/10" };
+              return { text: "text-rose-400", border: "border-rose-500/30", bg: "bg-rose-500/5", glow: "shadow-rose-500/20", iconBg: "bg-rose-500/10" };
+            };
+            const theme = getColorClasses();
+            
+            return (
+              <div className={`flex items-start md:items-center gap-8 p-10 rounded-[40px] bg-zinc-950/60 border ${theme.border} ${theme.glow} backdrop-blur-xl group/header transition-all duration-700`}>
+                <div className={`p-5 rounded-3xl ${theme.iconBg} border ${theme.border} ${theme.text} shadow-2xl shrink-0 animate-pulse-slow`}>
+                  <Gavel className="h-8 w-8" />
+                </div>
+                <div className="flex-1">
+                  <div className="flex items-center gap-4 mb-2">
+                    <h3 className={`text-[11px] font-black ${theme.text} uppercase tracking-[0.3em]`}>Konfigurasi Aktif</h3>
+                    <div className={`h-px w-16 ${theme.bg.replace('bg-', 'bg-')}`} style={{ background: 'currentColor', opacity: 0.2 }} />
+                    <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest">{selectedItem.category}</span>
+                  </div>
+                  <p className="text-3xl font-black text-white uppercase tracking-tighter italic mb-2 drop-shadow-2xl">{selectedItem.name}</p>
+                  <p className="text-[12px] font-bold text-zinc-400 leading-relaxed italic uppercase tracking-tight opacity-80 max-w-3xl mb-6">
+                    {selectedItem.description}
+                  </p>
+                  <div className={`flex items-start gap-4 p-6 rounded-[28px] ${theme.bg} border ${theme.border} max-w-3xl animate-in slide-in-from-left duration-700 shadow-inner backdrop-blur-md`}>
+                    <div className={`mt-1 p-1 rounded-md ${theme.iconBg}`}>
+                      <AlertTriangle className={`h-4 w-4 ${theme.text}`} />
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className={`text-[10px] font-black ${theme.text} uppercase tracking-widest opacity-60 italic`}>Strategi & Dampak Sistemik</span>
+                      <p className="text-[13px] font-black text-white leading-relaxed uppercase tracking-wide">
+                         {selectedItem.effect}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <button 
+                  onClick={() => setSelectedItem(null)}
+                  className="px-8 py-4 rounded-2xl border border-zinc-800 text-[11px] font-black uppercase tracking-[0.2em] text-zinc-500 hover:text-white hover:border-rose-500/50 hover:bg-rose-500/10 transition-all cursor-pointer bg-zinc-900 shadow-2xl active:scale-95 shrink-0"
+                >
+                  Reset Konfigurasi
+                </button>
               </div>
-              <p className="text-lg font-black text-white uppercase tracking-tight italic mb-1">{selectedItem.name}</p>
-              <p className="text-[10px] font-bold text-zinc-400 leading-tight italic uppercase tracking-tight opacity-70 max-w-2xl">
-                {selectedItem.description}
-              </p>
-            </div>
-            <button 
-              onClick={() => setSelectedItem(null)}
-              className="px-6 py-3 rounded-2xl border border-zinc-800 text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:text-rose-500 hover:border-rose-500/30 transition-all cursor-pointer bg-zinc-900 active:scale-95"
-            >
-              Reset Pilihan
-            </button>
-          </div>
+            );
+          })()}
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 mb-20 animate-in fade-in duration-1000">
             {/* Config inputs (Duration & Country) */}
             <div className="lg:col-span-7 flex flex-col gap-12">
               
               {/* Durasi */}
-              <div className="flex flex-col gap-5">
-                <div className="flex items-center gap-3">
-                  <div className="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
-                    <Clock className="h-3.5 w-3.5 text-cyan-400" />
+                {/* 1. Sub-Item Selection (nomor 1) */}
+                {(selectedItem.name === "Embargo Penjualan Teknologi" || selectedItem.name === "Embargo Penjualan Sumber Daya") && (
+                  <div className="flex flex-col gap-5 animate-in slide-in-from-top duration-500">
+                    <div className="flex items-center gap-3">
+                       <div className="p-1.5 rounded-lg bg-indigo-500/10 border border-indigo-500/20">
+                          <FileText className="h-3.5 w-3.5 text-indigo-400" />
+                       </div>
+                       <h4 className="text-[11px] font-black text-white uppercase tracking-widest">
+                          1. {selectedItem.name === "Embargo Penjualan Teknologi" ? "Pilihan Teknologi" : "Jenis Sumber Daya"}
+                       </h4>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5">
+                      {(selectedItem.name === "Embargo Penjualan Teknologi" ? techItems : resourceItems).map(item => (
+                        <button
+                          key={item}
+                          onClick={() => setSelectedSubItem(item)}
+                          className={`px-3 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest border transition-all cursor-pointer ${
+                            selectedSubItem === item 
+                              ? "bg-indigo-500 text-white border-indigo-400 shadow-[0_0_20px_rgba(99,102,241,0.3)]" 
+                              : "bg-zinc-900/50 border-zinc-800 text-zinc-500 hover:text-zinc-300 hover:border-zinc-700"
+                          }`}
+                        >
+                          {item}
+                        </button>
+                      ))}
+                    </div>
                   </div>
-                  <h4 className="text-[11px] font-black text-white uppercase tracking-widest">1. Durasi Pelaksanaan</h4>
+                )}
+
+                {/* 2. Durasi */}
+                <div className="flex flex-col gap-5">
+                  <div className="flex items-center gap-3">
+                    <div className="p-1.5 rounded-lg bg-cyan-500/10 border border-cyan-500/20">
+                      <Clock className="h-3.5 w-3.5 text-cyan-400" />
+                    </div>
+                    <h4 className="text-[11px] font-black text-white uppercase tracking-widest">2. Durasi Pelaksanaan</h4>
+                  </div>
+                  <div className="grid grid-cols-3 md:grid-cols-5 gap-2.5">
+                    {durations.map(d => (
+                      <button
+                        key={d}
+                        onClick={() => setSelectedDuration(d)}
+                        className={`px-3 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest border transition-all cursor-pointer ${
+                          selectedDuration === d 
+                            ? "bg-cyan-500 text-white border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)]" 
+                            : "bg-zinc-900/50 border-zinc-800 text-zinc-500 hover:text-zinc-300 hover:border-zinc-700"
+                        }`}
+                      >
+                        {d}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <div className="grid grid-cols-3 md:grid-cols-5 gap-2.5">
-                  {durations.map(d => (
-                    <button
-                      key={d}
-                      onClick={() => setSelectedDuration(d)}
-                      className={`px-3 py-4 rounded-2xl text-[10px] font-black uppercase tracking-widest border transition-all cursor-pointer ${
-                        selectedDuration === d 
-                          ? "bg-cyan-500 text-white border-cyan-400 shadow-[0_0_20px_rgba(6,182,212,0.3)]" 
-                          : "bg-zinc-900/50 border-zinc-800 text-zinc-500 hover:text-zinc-300 hover:border-zinc-700"
-                      }`}
-                    >
-                      {d}
-                    </button>
-                  ))}
-                </div>
-              </div>
 
               {/* Negara */}
               <div className="flex flex-col gap-5">
@@ -234,7 +338,7 @@ export default function PemungutanSuaraTab() {
                     <div className="p-1.5 rounded-lg bg-amber-500/10 border border-amber-500/20">
                       <Globe className="h-3.5 w-3.5 text-amber-400" />
                     </div>
-                    <h4 className="text-[11px] font-black text-white uppercase tracking-widest">2. Target Negara</h4>
+                    <h4 className="text-[11px] font-black text-white uppercase tracking-widest">3. Target Negara</h4>
                   </div>
                   <span className="text-[10px] font-black text-zinc-600 px-3 py-1 rounded-full border border-zinc-800/80 bg-zinc-900/30 tracking-tight">
                     {filteredCountries.length} NEGARA TERSEDIA
@@ -302,6 +406,7 @@ export default function PemungutanSuaraTab() {
                   ))}
                 </div>
               </div>
+
             </div>
 
             {/* Right Column: Visualization */}
@@ -332,13 +437,14 @@ export default function PemungutanSuaraTab() {
                           <span className="text-xl font-black text-white tracking-tighter">207 <span className="text-[10px] text-zinc-600 font-bold uppercase tracking-widest ml-1">Voters</span></span>
                         </div>
                         
-                        <div className="flex flex-col gap-8 bg-zinc-900/60 border border-zinc-800/50 p-8 rounded-[32px] shadow-inner">
+                        <div className="flex flex-col gap-6 bg-zinc-900/60 border border-zinc-800/50 p-8 rounded-[32px] shadow-inner">
+                          {/* Mendukung */}
                           <div className="flex flex-col gap-3">
-                            <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
-                              <span className="text-emerald-400 flex items-center gap-2"><ThumbsUp className="h-3.5 w-3.5" /> Mendukung</span>
+                            <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-emerald-400">
+                              <span className="flex items-center gap-2"><ThumbsUp className="h-3.5 w-3.5" /> Mendukung</span>
                               <span className="text-white text-base">{estimation.agree}</span>
                             </div>
-                            <div className="h-3 bg-zinc-950 rounded-full overflow-hidden border border-zinc-900">
+                            <div className="h-2.5 bg-zinc-950 rounded-full overflow-hidden border border-zinc-900">
                               <div 
                                 className="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 transition-all duration-[1.5s] ease-out-expo shadow-[0_0_15px_rgba(16,185,129,0.3)]"
                                 style={{ width: `${(estimation.agree / 207) * 100}%` }}
@@ -346,12 +452,27 @@ export default function PemungutanSuaraTab() {
                             </div>
                           </div>
 
+                          {/* Absen */}
                           <div className="flex flex-col gap-3">
-                            <div className="flex justify-between text-[10px] font-black uppercase tracking-widest">
-                              <span className="text-rose-400 flex items-center gap-2"><ThumbsDown className="h-3.5 w-3.5" /> Menolak</span>
+                            <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-zinc-400">
+                              <span className="flex items-center gap-2 underline underline-offset-4 decoration-zinc-700">Absen (Abstain)</span>
+                              <span className="text-white text-base">{estimation.abstain}</span>
+                            </div>
+                            <div className="h-2.5 bg-zinc-950 rounded-full overflow-hidden border border-zinc-900">
+                              <div 
+                                className="h-full bg-zinc-700 transition-all duration-[1.5s] ease-out-expo"
+                                style={{ width: `${(estimation.abstain / 207) * 100}%` }}
+                              />
+                            </div>
+                          </div>
+
+                          {/* Menolak */}
+                          <div className="flex flex-col gap-3">
+                            <div className="flex justify-between text-[10px] font-black uppercase tracking-widest text-rose-400">
+                              <span className="flex items-center gap-2"><ThumbsDown className="h-3.5 w-3.5" /> Menolak</span>
                               <span className="text-white text-base">{estimation.disagree}</span>
                             </div>
-                            <div className="h-3 bg-zinc-950 rounded-full overflow-hidden border border-zinc-900">
+                            <div className="h-2.5 bg-zinc-950 rounded-full overflow-hidden border border-zinc-900">
                               <div 
                                 className="h-full bg-gradient-to-r from-rose-600 to-rose-400 transition-all duration-[1.5s] ease-out-expo shadow-[0_0_15px_rgba(244,63,94,0.3)]"
                                 style={{ width: `${(estimation.disagree / 207) * 100}%` }}
@@ -370,10 +491,18 @@ export default function PemungutanSuaraTab() {
                 </div>
 
                 <div className="mt-auto flex flex-col gap-4">
+                  {!isUNSCMember && (
+                    <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/20 flex gap-3 mb-2">
+                       <AlertTriangle className="h-4 w-4 text-rose-500 shrink-0" />
+                       <p className="text-[10px] text-rose-400 font-bold leading-relaxed uppercase tracking-tight">
+                         Hanya Anggota Dewan Keamanan yang diizinkan mengajukan draf resolusi strategis ke Majelis Umum.
+                       </p>
+                    </div>
+                  )}
                   <button 
-                    disabled={!selectedCountry}
+                    disabled={!selectedCountry || !isUNSCMember}
                     className={`w-full py-6 rounded-2xl font-black uppercase tracking-[0.3em] transition-all shadow-2xl active:scale-[0.98] flex items-center justify-center gap-3 group relative overflow-hidden ${
-                      selectedCountry 
+                      (selectedCountry && isUNSCMember)
                         ? "bg-rose-600 border border-rose-500 text-white hover:bg-rose-500 shadow-rose-600/30 cursor-pointer" 
                         : "bg-zinc-800 text-zinc-600 border-zinc-900 cursor-not-allowed grayscale opacity-50"
                     }`}

@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { X, HeartHandshake, Search, MapPin, Globe2, SearchSlash, Info, TrendingUp, TrendingDown, Activity, Users, ShieldCheck, Zap, ChevronRight, Map as LucideMap, XCircle, Command } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
 import { allRelations } from "@/app/database/data/countries/relations/index";
+import { unSecurityCouncilStorage } from "../1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 import { countries as centersData } from "@/app/database/data/countries/region/index";
 
 type Continent = "Asia" | "Afrika" | "Eropa" | "Amerika Utara" | "Amerika Selatan" | "Oseania";
@@ -85,6 +86,12 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
   const [currentCountry, setCurrentCountry] = useState<string>("Indonesia");
   const [activeContinent, setActiveContinent] = useState<Continent | "Semua">("Semua");
   const [searchQuery, setSearchQuery] = useState("");
+  const [isUNSCMember, setIsUNSCMember] = useState(false);
+
+  useEffect(() => {
+    const data = unSecurityCouncilStorage.getData();
+    setIsUNSCMember(data.members.some(m => m.name === "Indonesia"));
+  }, []);
 
   useEffect(() => {
     const session = gameStorage.getSession();
@@ -113,9 +120,12 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
   }, []);
 
   const getRelationStatus = (score: number) => {
-    if (score >= 70) return { label: "Aliansi Strategis", color: "text-green-500", bg: "bg-green-500/10", border: "border-green-500/30", icon: ShieldCheck };
-    if (score >= 41) return { label: "Status Netral", color: "text-yellow-500", bg: "bg-yellow-500/10", border: "border-yellow-500/30", icon: Globe2 };
-    return { label: "Konflik / Musuh", color: "text-red-500", bg: "bg-red-500/10", border: "border-red-500/30", icon: Zap };
+    // Apply UNSC Bonus if member (capped at 100)
+    const finalScore = isUNSCMember ? Math.min(100, Math.round(score * 1.2)) : score;
+    
+    if (finalScore >= 70) return { label: "Aliansi Strategis", color: "text-green-500", bg: "bg-green-500/10", border: "border-green-500/30", icon: ShieldCheck, finalScore };
+    if (finalScore >= 41) return { label: "Status Netral", color: "text-yellow-500", bg: "bg-yellow-500/10", border: "border-yellow-500/30", icon: Globe2, finalScore };
+    return { label: "Konflik / Musuh", color: "text-red-500", bg: "bg-red-500/10", border: "border-red-500/30", icon: Zap, finalScore };
   };
 
   const filteredRelations = useMemo(() => {
@@ -256,9 +266,16 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
                     {/* SCORE: ALWAYS VISIBLE AND PROMINENT */}
                     <div className="flex items-center gap-8">
                        <div className="flex flex-col items-end gap-1">
-                          <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">Sentimen Bilateral</span>
+                          <div className="flex items-center gap-1.5 min-w-[70px] justify-end">
+                            {isUNSCMember && (
+                              <span className="text-[7px] font-black bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-1 rounded-sm uppercase tracking-tighter shadow-sm animate-pulse-slow">
+                                +20% DK PBB
+                              </span>
+                            )}
+                            <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">Sentimen Bilateral</span>
+                          </div>
                           <span className={`text-2xl font-black font-mono tracking-tighter ${status.color}`}>
-                             {rel.relation}
+                             {status.finalScore}
                           </span>
                        </div>
                        
