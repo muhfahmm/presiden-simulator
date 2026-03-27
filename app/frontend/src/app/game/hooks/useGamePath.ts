@@ -29,7 +29,13 @@ export function useGamePath(path: string[]) {
     else if (subMenu === 'armada-polisi') initialMenu = "Menu:ArmadaPolisi";
     else initialMenu = "Pertahanan";
   } else if (category === 'geopolitik') {
-    if (subMenu === 'PBB') initialMenu = "Menu:PBB";
+    if (subMenu === 'PBB') {
+      const pbbTab = path[2];
+      if (pbbTab === 'pemungutan_suara') initialMenu = "Menu:PBB:pemungutan_suara";
+      else if (pbbTab === 'dewan_keamanan') initialMenu = "Menu:PBB:dewan_keamanan";
+      else if (pbbTab === 'suara_PBB') initialMenu = "Menu:PBB:suara_PBB";
+      else initialMenu = "Menu:PBB";
+    }
     else if (subMenu === 'organisasi-internasional') initialMenu = "Menu:OrganisasiInternasional";
     else if (subMenu === 'tingkat-hubungan') initialMenu = "Menu:TingkatHubungan";
     else if (subMenu === 'bantuan') initialMenu = "Menu:Bantuan";
@@ -78,6 +84,9 @@ export function useGamePath(path: string[]) {
       "Menu:ArmadaPolisi": "/game/pertahanan/armada-polisi",
       "Geopolitik": "/game/geopolitik",
       "Menu:PBB": "/game/geopolitik/PBB",
+      "Menu:PBB:pemungutan_suara": "/game/geopolitik/PBB/pemungutan_suara",
+      "Menu:PBB:dewan_keamanan": "/game/geopolitik/PBB/dewan_keamanan",
+      "Menu:PBB:suara_PBB": "/game/geopolitik/PBB/suara_PBB",
       "Menu:OrganisasiInternasional": "/game/geopolitik/organisasi-internasional",
       "Menu:TingkatHubungan": "/game/geopolitik/tingkat-hubungan",
       "Menu:Bantuan": "/game/geopolitik/bantuan",

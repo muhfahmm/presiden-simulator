@@ -164,8 +164,8 @@ export const mozambik: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 26,
-        "sepeda_motor": 23,
+        "mobil_patroli_interceptor": 26,
+        "unit_interceptor_r2": 23,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const mozambik: CountryData = {
       "stadion_internasional": 3
   },
 
-  "un_vote": "Pro",
+  "un_vote": 85,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

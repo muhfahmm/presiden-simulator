@@ -166,8 +166,8 @@ export const kepulauan_faroe: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 37,
-        "sepeda_motor": 29,
+        "mobil_patroli_interceptor": 37,
+        "unit_interceptor_r2": 29,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const kepulauan_faroe: CountryData = {
       "stadion_internasional": 10
   },
 
-  "un_vote": "Pro",
+  "un_vote": 18,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -166,8 +166,8 @@ export const republik_timor_leste: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 1,
-        "sepeda_motor": 29,
+        "mobil_patroli_interceptor": 1,
+        "unit_interceptor_r2": 29,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const republik_timor_leste: CountryData = {
       "stadion_internasional": 6
   },
 
-  "un_vote": "Pro",
+  "un_vote": 33,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

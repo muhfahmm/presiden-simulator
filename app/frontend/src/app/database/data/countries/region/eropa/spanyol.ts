@@ -166,8 +166,8 @@ export const spanyol: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 28,
-        "sepeda_motor": 8,
+        "mobil_patroli_interceptor": 28,
+        "unit_interceptor_r2": 8,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const spanyol: CountryData = {
       "stadion_internasional": 4
   },
 
-  "un_vote": "Pro",
+  "un_vote": 135,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

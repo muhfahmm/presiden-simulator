@@ -166,8 +166,8 @@ export const hungaria: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 14,
-        "sepeda_motor": 13,
+        "mobil_patroli_interceptor": 14,
+        "unit_interceptor_r2": 13,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const hungaria: CountryData = {
       "stadion_internasional": 30
   },
 
-  "un_vote": "Pro",
+  "un_vote": 94,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

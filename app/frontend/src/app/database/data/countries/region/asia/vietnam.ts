@@ -166,8 +166,8 @@ export const vietnam: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 19,
-        "sepeda_motor": 1,
+        "mobil_patroli_interceptor": 19,
+        "unit_interceptor_r2": 1,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const vietnam: CountryData = {
       "stadion_internasional": 28
   },
 
-  "un_vote": "Pro",
+  "un_vote": 76,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

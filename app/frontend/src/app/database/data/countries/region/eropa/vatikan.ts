@@ -166,8 +166,8 @@ export const vatikan: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 26,
-        "sepeda_motor": 23,
+        "mobil_patroli_interceptor": 26,
+        "unit_interceptor_r2": 23,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const vatikan: CountryData = {
       "stadion_internasional": 23
   },
 
-  "un_vote": "Pro",
+  "un_vote": 34,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

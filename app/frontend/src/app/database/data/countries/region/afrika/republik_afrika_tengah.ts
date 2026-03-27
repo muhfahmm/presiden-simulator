@@ -164,8 +164,8 @@ export const republik_afrika_tengah: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 36,
-        "sepeda_motor": 39,
+        "mobil_patroli_interceptor": 36,
+        "unit_interceptor_r2": 39,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const republik_afrika_tengah: CountryData = {
       "stadion_internasional": 29
   },
 
-  "un_vote": "Pro",
+  "un_vote": 66,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

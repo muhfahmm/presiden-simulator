@@ -164,8 +164,8 @@ export const djibouti: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 24,
-        "sepeda_motor": 40,
+        "mobil_patroli_interceptor": 24,
+        "unit_interceptor_r2": 40,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const djibouti: CountryData = {
       "stadion_internasional": 33
   },
 
-  "un_vote": "Pro",
+  "un_vote": 13,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

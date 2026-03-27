@@ -166,8 +166,8 @@ export const mongolia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 14,
-        "sepeda_motor": 30,
+        "mobil_patroli_interceptor": 14,
+        "unit_interceptor_r2": 30,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const mongolia: CountryData = {
       "stadion_internasional": 37
   },
 
-  "un_vote": "Pro",
+  "un_vote": 134,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

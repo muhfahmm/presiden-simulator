@@ -166,8 +166,8 @@ export const tuvalu: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 31,
-        "sepeda_motor": 2,
+        "mobil_patroli_interceptor": 31,
+        "unit_interceptor_r2": 2,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const tuvalu: CountryData = {
       "stadion_internasional": 5
   },
 
-  "un_vote": "Pro",
+  "un_vote": 29,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -166,8 +166,8 @@ export const dominika: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 19,
-        "sepeda_motor": 9,
+        "mobil_patroli_interceptor": 19,
+        "unit_interceptor_r2": 9,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const dominika: CountryData = {
       "stadion_internasional": 4
   },
 
-  "un_vote": "Pro",
+  "un_vote": 54,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -164,8 +164,8 @@ export const pantai_gading: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 23,
-        "sepeda_motor": 4,
+        "mobil_patroli_interceptor": 23,
+        "unit_interceptor_r2": 4,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const pantai_gading: CountryData = {
       "stadion_internasional": 32
   },
 
-  "un_vote": "Pro",
+  "un_vote": 51,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

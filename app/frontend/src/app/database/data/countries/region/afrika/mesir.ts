@@ -164,8 +164,8 @@ export const mesir: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 32,
-        "sepeda_motor": 30,
+        "mobil_patroli_interceptor": 32,
+        "unit_interceptor_r2": 30,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const mesir: CountryData = {
       "stadion_internasional": 4
   },
 
-  "un_vote": "Pro",
+  "un_vote": 159,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

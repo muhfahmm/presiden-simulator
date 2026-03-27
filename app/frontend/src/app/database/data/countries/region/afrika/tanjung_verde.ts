@@ -164,8 +164,8 @@ export const tanjung_verde: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 39,
-        "sepeda_motor": 24,
+        "mobil_patroli_interceptor": 39,
+        "unit_interceptor_r2": 24,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const tanjung_verde: CountryData = {
       "stadion_internasional": 39
   },
 
-  "un_vote": "Pro",
+  "un_vote": 97,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

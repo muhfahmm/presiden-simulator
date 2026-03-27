@@ -166,8 +166,8 @@ export const saint_kitts_dan_nevis: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 3,
-        "sepeda_motor": 15,
+        "mobil_patroli_interceptor": 3,
+        "unit_interceptor_r2": 15,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const saint_kitts_dan_nevis: CountryData = {
       "stadion_internasional": 36
   },
 
-  "un_vote": "Pro",
+  "un_vote": 64,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -166,8 +166,8 @@ export const samoa_amerika: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 4,
-        "sepeda_motor": 33,
+        "mobil_patroli_interceptor": 4,
+        "unit_interceptor_r2": 33,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const samoa_amerika: CountryData = {
       "stadion_internasional": 30
   },
 
-  "un_vote": "Pro",
+  "un_vote": 24,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

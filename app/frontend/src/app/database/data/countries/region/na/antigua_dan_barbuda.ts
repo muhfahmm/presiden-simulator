@@ -166,8 +166,8 @@ export const antigua_dan_barbuda: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 39,
-        "sepeda_motor": 6,
+        "mobil_patroli_interceptor": 39,
+        "unit_interceptor_r2": 6,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const antigua_dan_barbuda: CountryData = {
       "stadion_internasional": 32
   },
 
-  "un_vote": "Pro",
+  "un_vote": 12,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

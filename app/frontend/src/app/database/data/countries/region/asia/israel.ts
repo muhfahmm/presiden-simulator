@@ -166,8 +166,8 @@ export const israel: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 23,
-        "sepeda_motor": 30,
+        "mobil_patroli_interceptor": 23,
+        "unit_interceptor_r2": 30,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const israel: CountryData = {
       "stadion_internasional": 33
   },
 
-  "un_vote": "Pro",
+  "un_vote": 199,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -166,8 +166,8 @@ export const bahrain: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 19,
-        "sepeda_motor": 28,
+        "mobil_patroli_interceptor": 19,
+        "unit_interceptor_r2": 28,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const bahrain: CountryData = {
       "stadion_internasional": 27
   },
 
-  "un_vote": "Pro",
+  "un_vote": 96,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

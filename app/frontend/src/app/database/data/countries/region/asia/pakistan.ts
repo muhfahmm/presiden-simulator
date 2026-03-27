@@ -166,8 +166,8 @@ export const pakistan: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 12,
-        "sepeda_motor": 27,
+        "mobil_patroli_interceptor": 12,
+        "unit_interceptor_r2": 27,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const pakistan: CountryData = {
       "stadion_internasional": 23
   },
 
-  "un_vote": "Pro",
+  "un_vote": 180,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

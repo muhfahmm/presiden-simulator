@@ -166,8 +166,8 @@ export const yunani: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 28,
-        "sepeda_motor": 5,
+        "mobil_patroli_interceptor": 28,
+        "unit_interceptor_r2": 5,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const yunani: CountryData = {
       "stadion_internasional": 37
   },
 
-  "un_vote": "Pro",
+  "un_vote": 179,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

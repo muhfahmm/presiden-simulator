@@ -166,8 +166,8 @@ export const kuba: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 23,
-        "sepeda_motor": 29,
+        "mobil_patroli_interceptor": 23,
+        "unit_interceptor_r2": 29,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const kuba: CountryData = {
       "stadion_internasional": 19
   },
 
-  "un_vote": "Pro",
+  "un_vote": 171,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

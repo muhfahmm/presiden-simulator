@@ -164,8 +164,8 @@ export const guinea_bissau: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 33,
-        "sepeda_motor": 27,
+        "mobil_patroli_interceptor": 33,
+        "unit_interceptor_r2": 27,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const guinea_bissau: CountryData = {
       "stadion_internasional": 16
   },
 
-  "un_vote": "Pro",
+  "un_vote": 100,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

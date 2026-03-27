@@ -164,8 +164,8 @@ export const burundi: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 1,
-        "sepeda_motor": 32,
+        "mobil_patroli_interceptor": 1,
+        "unit_interceptor_r2": 32,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const burundi: CountryData = {
       "stadion_internasional": 12
   },
 
-  "un_vote": "Pro",
+  "un_vote": 37,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

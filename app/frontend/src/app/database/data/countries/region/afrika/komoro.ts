@@ -164,8 +164,8 @@ export const komoro: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 39,
-        "sepeda_motor": 9,
+        "mobil_patroli_interceptor": 39,
+        "unit_interceptor_r2": 9,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const komoro: CountryData = {
       "stadion_internasional": 1
   },
 
-  "un_vote": "Pro",
+  "un_vote": 61,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -166,8 +166,8 @@ export const puerto_rico: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 37,
-        "sepeda_motor": 35,
+        "mobil_patroli_interceptor": 37,
+        "unit_interceptor_r2": 35,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const puerto_rico: CountryData = {
       "stadion_internasional": 13
   },
 
-  "un_vote": "Pro",
+  "un_vote": 117,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

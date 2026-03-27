@@ -164,8 +164,8 @@ export const rwanda: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 38,
-        "sepeda_motor": 34,
+        "mobil_patroli_interceptor": 38,
+        "unit_interceptor_r2": 34,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const rwanda: CountryData = {
       "stadion_internasional": 22
   },
 
-  "un_vote": "Pro",
+  "un_vote": 50,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

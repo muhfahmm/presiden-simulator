@@ -166,8 +166,8 @@ export const saint_lucia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 21,
-        "sepeda_motor": 2,
+        "mobil_patroli_interceptor": 21,
+        "unit_interceptor_r2": 2,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const saint_lucia: CountryData = {
       "stadion_internasional": 3
   },
 
-  "un_vote": "Pro",
+  "un_vote": 17,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

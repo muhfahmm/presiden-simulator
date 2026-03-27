@@ -166,8 +166,8 @@ export const guyana: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 14,
-        "sepeda_motor": 15,
+        "mobil_patroli_interceptor": 14,
+        "unit_interceptor_r2": 15,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const guyana: CountryData = {
       "stadion_internasional": 7
   },
 
-  "un_vote": "Pro",
+  "un_vote": 74,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

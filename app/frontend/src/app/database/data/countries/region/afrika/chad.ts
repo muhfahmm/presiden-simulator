@@ -164,8 +164,8 @@ export const chad: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 35,
-        "sepeda_motor": 2,
+        "mobil_patroli_interceptor": 35,
+        "unit_interceptor_r2": 2,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const chad: CountryData = {
       "stadion_internasional": 39
   },
 
-  "un_vote": "Pro",
+  "un_vote": 58,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

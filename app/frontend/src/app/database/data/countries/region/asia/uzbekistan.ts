@@ -166,8 +166,8 @@ export const uzbekistan: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 6,
-        "sepeda_motor": 25,
+        "mobil_patroli_interceptor": 6,
+        "unit_interceptor_r2": 25,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const uzbekistan: CountryData = {
       "stadion_internasional": 26
   },
 
-  "un_vote": "Pro",
+  "un_vote": 80,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

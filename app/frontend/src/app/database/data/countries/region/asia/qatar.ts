@@ -166,8 +166,8 @@ export const qatar: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 38,
-        "sepeda_motor": 33,
+        "mobil_patroli_interceptor": 38,
+        "unit_interceptor_r2": 33,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const qatar: CountryData = {
       "stadion_internasional": 39
   },
 
-  "un_vote": "Pro",
+  "un_vote": 182,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

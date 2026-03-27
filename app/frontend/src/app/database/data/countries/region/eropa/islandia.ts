@@ -166,8 +166,8 @@ export const islandia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 36,
-        "sepeda_motor": 4,
+        "mobil_patroli_interceptor": 36,
+        "unit_interceptor_r2": 4,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const islandia: CountryData = {
       "stadion_internasional": 27
   },
 
-  "un_vote": "Pro",
+  "un_vote": 103,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

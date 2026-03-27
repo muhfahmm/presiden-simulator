@@ -166,8 +166,8 @@ export const belanda: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 40,
-        "sepeda_motor": 35,
+        "mobil_patroli_interceptor": 40,
+        "unit_interceptor_r2": 35,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const belanda: CountryData = {
       "stadion_internasional": 13
   },
 
-  "un_vote": "Pro",
+  "un_vote": 196,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

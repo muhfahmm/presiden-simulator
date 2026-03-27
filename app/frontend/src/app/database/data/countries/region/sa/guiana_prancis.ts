@@ -166,8 +166,8 @@ export const guiana_prancis: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 33,
-        "sepeda_motor": 23,
+        "mobil_patroli_interceptor": 33,
+        "unit_interceptor_r2": 23,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const guiana_prancis: CountryData = {
       "stadion_internasional": 28
   },
 
-  "un_vote": "Pro",
+  "un_vote": 39,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -166,8 +166,8 @@ export const georgia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 10,
-        "sepeda_motor": 28,
+        "mobil_patroli_interceptor": 10,
+        "unit_interceptor_r2": 28,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const georgia: CountryData = {
       "stadion_internasional": 26
   },
 
-  "un_vote": "Pro",
+  "un_vote": 127,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

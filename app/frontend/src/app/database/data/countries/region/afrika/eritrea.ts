@@ -164,8 +164,8 @@ export const eritrea: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 26,
-        "sepeda_motor": 33,
+        "mobil_patroli_interceptor": 26,
+        "unit_interceptor_r2": 33,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const eritrea: CountryData = {
       "stadion_internasional": 5
   },
 
-  "un_vote": "Pro",
+  "un_vote": 47,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

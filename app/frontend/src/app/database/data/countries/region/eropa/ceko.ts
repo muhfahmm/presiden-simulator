@@ -166,8 +166,8 @@ export const ceko: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 9,
-        "sepeda_motor": 27,
+        "mobil_patroli_interceptor": 9,
+        "unit_interceptor_r2": 27,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const ceko: CountryData = {
       "stadion_internasional": 10
   },
 
-  "un_vote": "Pro",
+  "un_vote": 26,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

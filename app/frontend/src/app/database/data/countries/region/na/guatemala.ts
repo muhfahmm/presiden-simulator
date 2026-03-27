@@ -166,8 +166,8 @@ export const guatemala: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 32,
-        "sepeda_motor": 15,
+        "mobil_patroli_interceptor": 32,
+        "unit_interceptor_r2": 15,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const guatemala: CountryData = {
       "stadion_internasional": 27
   },
 
-  "un_vote": "Pro",
+  "un_vote": 142,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

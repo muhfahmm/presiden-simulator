@@ -166,8 +166,8 @@ export const filipina: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 15,
-        "sepeda_motor": 12,
+        "mobil_patroli_interceptor": 15,
+        "unit_interceptor_r2": 12,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const filipina: CountryData = {
       "stadion_internasional": 12
   },
 
-  "un_vote": "Pro",
+  "un_vote": 139,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

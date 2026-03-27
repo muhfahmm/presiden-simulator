@@ -164,8 +164,8 @@ export const kamerun: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 21,
-        "sepeda_motor": 36,
+        "mobil_patroli_interceptor": 21,
+        "unit_interceptor_r2": 36,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const kamerun: CountryData = {
       "stadion_internasional": 3
   },
 
-  "un_vote": "Pro",
+  "un_vote": 138,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

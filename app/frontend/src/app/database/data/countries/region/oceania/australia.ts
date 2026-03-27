@@ -166,8 +166,8 @@ export const australia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 26,
-        "sepeda_motor": 26,
+        "mobil_patroli_interceptor": 26,
+        "unit_interceptor_r2": 26,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const australia: CountryData = {
       "stadion_internasional": 12
   },
 
-  "un_vote": "Pro",
+  "un_vote": 112,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

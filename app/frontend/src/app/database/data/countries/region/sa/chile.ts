@@ -166,8 +166,8 @@ export const chile: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 2,
-        "sepeda_motor": 21,
+        "mobil_patroli_interceptor": 2,
+        "unit_interceptor_r2": 21,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const chile: CountryData = {
       "stadion_internasional": 40
   },
 
-  "un_vote": "Pro",
+  "un_vote": 147,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -164,8 +164,8 @@ export const lesotho: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 6,
-        "sepeda_motor": 19,
+        "mobil_patroli_interceptor": 6,
+        "unit_interceptor_r2": 19,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const lesotho: CountryData = {
       "stadion_internasional": 12
   },
 
-  "un_vote": "Pro",
+  "un_vote": 115,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -166,8 +166,8 @@ export const sri_lanka: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 10,
-        "sepeda_motor": 22,
+        "mobil_patroli_interceptor": 10,
+        "unit_interceptor_r2": 22,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const sri_lanka: CountryData = {
       "stadion_internasional": 30
   },
 
-  "un_vote": "Pro",
+  "un_vote": 158,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

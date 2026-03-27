@@ -164,8 +164,8 @@ export const seychelles: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 17,
-        "sepeda_motor": 39,
+        "mobil_patroli_interceptor": 17,
+        "unit_interceptor_r2": 39,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const seychelles: CountryData = {
       "stadion_internasional": 19
   },
 
-  "un_vote": "Pro",
+  "un_vote": 6,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -166,8 +166,8 @@ export const bermuda: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 5,
-        "sepeda_motor": 32,
+        "mobil_patroli_interceptor": 5,
+        "unit_interceptor_r2": 32,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const bermuda: CountryData = {
       "stadion_internasional": 22
   },
 
-  "un_vote": "Pro",
+  "un_vote": 22,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

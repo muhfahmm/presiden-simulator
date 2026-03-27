@@ -166,8 +166,8 @@ export const swiss: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 20,
-        "sepeda_motor": 20,
+        "mobil_patroli_interceptor": 20,
+        "unit_interceptor_r2": 20,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const swiss: CountryData = {
       "stadion_internasional": 13
   },
 
-  "un_vote": "Pro",
+  "un_vote": 198,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

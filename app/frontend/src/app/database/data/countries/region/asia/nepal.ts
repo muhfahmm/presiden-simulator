@@ -166,8 +166,8 @@ export const nepal: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 17,
-        "sepeda_motor": 40,
+        "mobil_patroli_interceptor": 17,
+        "unit_interceptor_r2": 40,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const nepal: CountryData = {
       "stadion_internasional": 14
   },
 
-  "un_vote": "Pro",
+  "un_vote": 89,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

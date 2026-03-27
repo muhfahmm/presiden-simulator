@@ -166,8 +166,8 @@ export const papua_nugini: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 29,
-        "sepeda_motor": 12,
+        "mobil_patroli_interceptor": 29,
+        "unit_interceptor_r2": 12,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const papua_nugini: CountryData = {
       "stadion_internasional": 11
   },
 
-  "un_vote": "Pro",
+  "un_vote": 130,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

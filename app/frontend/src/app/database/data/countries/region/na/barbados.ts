@@ -166,8 +166,8 @@ export const barbados: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 11,
-        "sepeda_motor": 17,
+        "mobil_patroli_interceptor": 11,
+        "unit_interceptor_r2": 17,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const barbados: CountryData = {
       "stadion_internasional": 26
   },
 
-  "un_vote": "Pro",
+  "un_vote": 10,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

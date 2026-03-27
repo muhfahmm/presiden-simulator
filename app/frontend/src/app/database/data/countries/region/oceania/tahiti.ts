@@ -166,8 +166,8 @@ export const tahiti: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 17,
-        "sepeda_motor": 2,
+        "mobil_patroli_interceptor": 17,
+        "unit_interceptor_r2": 2,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const tahiti: CountryData = {
       "stadion_internasional": 1
   },
 
-  "un_vote": "Pro",
+  "un_vote": 81,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

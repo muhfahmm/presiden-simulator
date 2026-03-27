@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect, Fragment, useMemo } from "react";
 import { X, Wrench, Zap, Shield, Truck, MapPin, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship, Plane, Rocket, Crosshair, Activity, Wifi, Radio, Cctv, Search, Siren, Car, Bike, Dog, ShieldAlert, Anchor, Waves, Satellite, RadioTower, Cpu, Target, Radar, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, EyeOff, Building, Archive, Info, Briefcase, Users, Flame } from "lucide-react"
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/types/1_kelistrikan";
 import { KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL } from "@/app/database/data/types/1_kelistrikan/2_konsumsi_listrik";
@@ -13,7 +13,7 @@ import {
   TANK_POWER_PER_UNIT, APC_POWER_PER_UNIT, ARTILLERY_POWER_PER_UNIT, ROCKET_POWER_PER_UNIT, SAM_POWER_PER_UNIT, TACTICAL_POWER_PER_UNIT,
   CARRIER_POWER_PER_UNIT, DESTROYER_POWER_PER_UNIT, CORVETTE_POWER_PER_UNIT, SUBMARINE_POWER_PER_UNIT, REGULAR_SUB_POWER_PER_UNIT, MINE_SHIP_POWER_PER_UNIT, LOGISTICS_POWER_PER_UNIT,
   STEALTH_POWER_PER_UNIT, INTERCEPTOR_POWER_PER_UNIT, BOMBER_POWER_PER_UNIT, ATTACK_HELI_POWER_PER_UNIT, RECON_POWER_PER_UNIT, UAV_POWER_PER_UNIT, KAMIKAZE_POWER_PER_UNIT, TRANSPORT_POWER_PER_UNIT,
-  INFANTRY_POWER_PER_UNIT
+  INFANTRY_POWER_PER_UNIT, calculateTotalMilitaryPower
 } from "./kekuatanmiliter";
 
 export default function ArmadaMiliterModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
@@ -24,6 +24,34 @@ export default function ArmadaMiliterModal({ isOpen, onClose }: { isOpen: boolea
   const [quantity, setQuantity] = useState(1);
   const [currentData, setCurrentData] = useState<any>(null);
   const [tick, setTick] = useState(0);
+  const [activeTab, setActiveTab] = useState<"nasional" | "global">("nasional");
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const globalRankings = useMemo(() => {
+    return countries
+      .map(c => {
+        // Untuk negara user, kita gunakan buildingDeltas juga agar real-time saat dipesan
+        const isUserCountry = c.name_id === currentData?.name_id || c.name_en === currentData?.name_en;
+        const power = calculateTotalMilitaryPower(c.armada_militer, isUserCountry ? buildingStorage.getData().buildingDeltas : {});
+        return {
+          id: c.name_id || c.name_en,
+          name: c.name_id || c.name_en,
+          flag: c.flag,
+          power: power.total,
+          darat: power.darat,
+          laut: power.laut,
+          udara: power.udara,
+          isUser: isUserCountry
+        };
+      })
+      .sort((a, b) => b.power - a.power);
+  }, [currentData, tick]);
+
+  const filteredRankings = useMemo(() => {
+    if (!searchTerm) return globalRankings;
+    const s = searchTerm.toLowerCase();
+    return globalRankings.filter(r => r.name.toLowerCase().includes(s));
+  }, [globalRankings, searchTerm]);
 
   useEffect(() => {
     const session = gameStorage.getSession();
@@ -169,72 +197,265 @@ export default function ArmadaMiliterModal({ isOpen, onClose }: { isOpen: boolea
               <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Strike Fleet Command</p>
             </div>
           </div>
-          <div className="flex items-center gap-4">
-            <button onClick={() => setShowQueue(true)} className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group flex items-center gap-2 relative shadow-[0_0_15px_rgba(8,145,178,0.1)] active:scale-95">
-              <Clock className="h-6 w-6 text-cyan-500 group-hover:scale-110 group-hover:rotate-12 transition-transform" />
-              {activeConstructions.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-cyan-500 text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-zinc-950 shadow-lg animate-in zoom-in">{activeConstructions.length}</span>}
-            </button>
-            <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
-              <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
-              <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
-            </button>
+
+          <div className="flex items-center gap-6">
+            {/* Tabs */}
+            <div className="bg-zinc-950 p-1.5 rounded-2xl border border-zinc-800 flex items-center gap-1 shadow-inner">
+              <button
+                onClick={() => setActiveTab("nasional")}
+                className={`px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all cursor-pointer ${
+                  activeTab === "nasional"
+                    ? "bg-cyan-600 text-white shadow-lg shadow-cyan-900/40"
+                    : "text-zinc-500 hover:text-white"
+                }`}
+              >
+                Armada Nasional
+              </button>
+              <button
+                onClick={() => setActiveTab("global")}
+                className={`px-6 py-2.5 rounded-xl text-[11px] font-black uppercase tracking-widest transition-all cursor-pointer ${
+                  activeTab === "global"
+                    ? "bg-rose-600 text-white shadow-lg shadow-rose-900/40"
+                    : "text-zinc-500 hover:text-white"
+                }`}
+              >
+                Peringkat Global
+              </button>
+            </div>
+
+            <div className="flex items-center gap-4">
+              <button onClick={() => setShowQueue(true)} className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group flex items-center gap-2 relative shadow-[0_0_15px_rgba(8,145,178,0.1)] active:scale-95">
+                <Clock className="h-6 w-6 text-cyan-500 group-hover:scale-110 group-hover:rotate-12 transition-transform" />
+                {activeConstructions.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-cyan-500 text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-zinc-950 shadow-lg animate-in zoom-in">{activeConstructions.length}</span>}
+              </button>
+              <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
+                <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+                <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+              </button>
+            </div>
           </div>
         </div>
+
+        {/* Strength Badges Strip */}
+        {(() => {
+          const power = calculateTotalMilitaryPower(currentData.armada_militer, buildingDeltas);
+
+          const badges = [
+            { label: "Armada Darat", value: power.darat, icon: Truck, accent: "text-amber-400", glow: "shadow-[0_0_18px_rgba(251,191,36,0.15)]", border: "border-amber-500/20", bg: "bg-amber-500/5" },
+            { label: "Armada Laut", value: power.laut, icon: Ship, accent: "text-cyan-400", glow: "shadow-[0_0_18px_rgba(6,182,212,0.15)]", border: "border-cyan-500/20", bg: "bg-cyan-500/5" },
+            { label: "Armada Udara", value: power.udara, icon: Plane, accent: "text-violet-400", glow: "shadow-[0_0_18px_rgba(167,139,250,0.15)]", border: "border-violet-500/20", bg: "bg-violet-500/5" },
+            { label: "Total Kekuatan", value: power.total, icon: MilitaryIcon, accent: "text-rose-400", glow: "shadow-[0_0_22px_rgba(251,113,133,0.2)]", border: "border-rose-500/30", bg: "bg-rose-500/8" },
+          ];
+
+          return (
+            <div className="px-8 py-4 border-b border-zinc-800/40 bg-zinc-900/20 flex items-stretch gap-3">
+              {badges.map((b) => (
+                <div
+                  key={b.label}
+                  className={`flex-1 flex items-center gap-3 px-5 py-3.5 rounded-2xl border ${b.border} ${b.bg} ${b.glow} transition-all duration-300 group`}
+                >
+                  <div className={`p-2 rounded-xl bg-zinc-950/60 border border-zinc-800/50`}>
+                    <b.icon className={`h-4 w-4 ${b.accent}`} />
+                  </div>
+                  <div className="flex flex-col gap-0.5 min-w-0">
+                    <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.25em] leading-none truncate">{b.label}</span>
+                    <span className={`text-[18px] font-black ${b.accent} tracking-tight leading-tight`}>
+                      {b.value.toLocaleString("id-ID")}
+                    </span>
+                    <span className="text-[8px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Daya Tempur</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          );
+        })()}
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
-          <div className="space-y-12">
-            {militaryGroups.map((group) => (
-              <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-                <div className="flex items-center gap-3 mb-5 px-1">
-                  <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>
-                  <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title}</h3>
-                  <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
-                  <button onClick={() => toggleSector(group.id)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95">
-                    {collapsedSectors.has(group.id) ? <EyeOff size={16} /> : <Eye size={16} className="text-cyan-400" />}
-                  </button>
-                </div>
-                <div className={`grid transition-all duration-700 ease-in-out ${!collapsedSectors.has(group.id) ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
-                  <div className="overflow-hidden">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
-                      {group.items.map((item: any, idx: number) => {
-                        const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
-                        const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
-                        
-                        const subGroupLabels: Record<string, string> = {
-                          darat: "Armada Darat Nasional",
-                          laut: "Armada Maritim & Laut",
-                          udara: "Keunggulan Udara"
-                        };
+          {activeTab === "nasional" ? (
+            <div className="space-y-12">
+              {militaryGroups.map((group) => (
+                <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+                  <div className="flex items-center gap-3 mb-5 px-1">
+                    <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>
+                    <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title}</h3>
+                    <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
+                    <button onClick={() => toggleSector(group.id)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95">
+                      {collapsedSectors.has(group.id) ? <EyeOff size={16} /> : <Eye size={16} className="text-cyan-400" />}
+                    </button>
+                  </div>
+                  <div className={`grid transition-all duration-700 ease-in-out ${!collapsedSectors.has(group.id) ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
+                    <div className="overflow-hidden">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
+                        {group.items.map((item: any, idx: number) => {
+                          const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
+                          const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
+                          
+                          const subGroupLabels: Record<string, string> = {
+                            darat: "Armada Darat Nasional",
+                            laut: "Armada Maritim & Laut",
+                            udara: "Keunggulan Udara"
+                          };
 
-                        const showSubHeader = item.groupId && item.groupId !== prevGroupId;
+                          const showSubHeader = item.groupId && item.groupId !== prevGroupId;
 
-                        return (
-                          <Fragment key={item.key || idx}>
-                            {showSubHeader && subGroupLabels[item.groupId] && (
-                              <div className="col-span-full mt-6 mb-2 flex items-center gap-4">
-                                <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-800 to-zinc-800"></div>
-                                <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] whitespace-nowrap bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full shadow-xl">
-                                  {subGroupLabels[item.groupId]}
-                                </span>
-                                <div className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-800 to-zinc-800"></div>
-                              </div>
-                            )}
-                            <BuildingCard
-                              item={item}
-                              onBuild={handleBuildRequest}
-                              construction={currentConstruction}
-                            />
-                          </Fragment>
-                        );
-                      })}
+                          const power = calculateTotalMilitaryPower(currentData.armada_militer, buildingDeltas);
+                          const subGroupPower: Record<string, number> = {
+                            darat: power.darat,
+                            laut: power.laut,
+                            udara: power.udara,
+                          };
+
+                          const subGroupStrength = {
+                            darat: { accent: "text-amber-400", border: "border-amber-500/30", bg: "bg-amber-500/5", icon: Truck },
+                            laut: { accent: "text-cyan-400", border: "border-cyan-500/30", bg: "bg-cyan-500/5", icon: Ship },
+                            udara: { accent: "text-violet-400", border: "border-violet-500/30", bg: "bg-violet-500/5", icon: Plane },
+                          };
+
+                          return (
+                            <Fragment key={item.key || idx}>
+                              {showSubHeader && subGroupLabels[item.groupId] && (() => {
+                                const sg = (subGroupStrength as any)[item.groupId];
+                                return (
+                                  <div className="col-span-full mt-6 mb-2 flex flex-col gap-2">
+                                    {/* Label separator */}
+                                    <div className="flex items-center gap-4">
+                                      <div className="h-px flex-1 bg-gradient-to-r from-transparent via-zinc-800 to-zinc-800"></div>
+                                      <span className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] whitespace-nowrap bg-zinc-900 border border-zinc-800 px-4 py-1.5 rounded-full shadow-xl">
+                                        {subGroupLabels[item.groupId]}
+                                      </span>
+                                      <div className="h-px flex-1 bg-gradient-to-l from-transparent via-zinc-800 to-zinc-800"></div>
+                                    </div>
+                                    {/* Total strength badge */}
+                                    <div className="flex justify-center">
+                                      <div className={`flex items-center gap-2.5 px-5 py-2 rounded-2xl border ${sg.border} ${sg.bg} shadow-lg`}>
+                                        <sg.icon className={`h-3.5 w-3.5 ${sg.accent}`} />
+                                        <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.2em]">Total Kekuatan</span>
+                                        <span className={`text-[15px] font-black ${sg.accent} tracking-tight leading-none`}>
+                                          {(subGroupPower[item.groupId] || 0).toLocaleString("id-ID")}
+                                        </span>
+                                        <span className="text-[8px] font-bold text-zinc-600 uppercase tracking-widest">Daya Tempur</span>
+                                      </div>
+                                    </div>
+                                  </div>
+                                );
+                              })()}
+                              <BuildingCard
+                                item={item}
+                                onBuild={handleBuildRequest}
+                                construction={currentConstruction}
+                              />
+                            </Fragment>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 </div>
+              ))}
+            </div>
+          ) : (
+            <div className="animate-in fade-in slide-in-from-bottom-4 duration-700">
+              {/* Ranking Header & Search */}
+              <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-10 bg-zinc-900/40 p-6 rounded-[32px] border border-zinc-800/50">
+                <div className="flex items-center gap-4">
+                  <div className="p-4 bg-rose-500/10 rounded-2xl border border-rose-500/20 text-rose-500">
+                    <TrendingUp size={28} />
+                  </div>
+                  <div>
+                    <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">Indeks Kekuatan Global</h3>
+                    <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest mt-0.5">Global Military Strength Index (207 Nations)</p>
+                  </div>
+                </div>
+
+                <div className="relative w-full md:w-96 group">
+                  <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500 group-focus-within:text-rose-500 transition-colors" size={18} />
+                  <input
+                    type="text"
+                    placeholder="CARI NEGARA..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full bg-zinc-950 border border-zinc-800 rounded-2xl py-4 pl-12 pr-6 text-sm font-bold text-white placeholder:text-zinc-600 outline-none focus:border-rose-500/50 focus:ring-4 focus:ring-rose-500/5 transition-all uppercase tracking-widest"
+                  />
+                </div>
               </div>
-            ))}
-          </div>
+
+              {/* Ranking List */}
+              <div className="grid gap-3">
+                {filteredRankings.map((country) => {
+                  const rank = globalRankings.findIndex(r => r.id === country.id) + 1;
+                  return (
+                    <div
+                      key={country.id}
+                      className={`flex items-center justify-between p-5 rounded-[24px] border transition-all hover:bg-zinc-900/80 group ${
+                        country.isUser 
+                          ? "bg-cyan-500/10 border-cyan-500/40 shadow-[0_0_25px_rgba(6,182,212,0.15)] ring-1 ring-cyan-500/20" 
+                          : "bg-zinc-900/40 border-zinc-800/50 hover:border-zinc-700/50"
+                      }`}
+                    >
+                      <div className="flex items-center gap-6">
+                        {/* Rank Circle */}
+                        <div className={`w-12 h-12 rounded-xl flex items-center justify-center font-black text-lg shadow-inner border ${
+                          country.isUser ? "bg-cyan-950 text-cyan-400 border-cyan-800" : "bg-zinc-950 text-zinc-400 border-zinc-800"
+                        }`}>
+                          {rank}
+                        </div>
+
+                        {/* Country Info */}
+                        <div className="flex items-center gap-4">
+                          <span className="text-4xl filter drop-shadow-md grayscale-[0.2] group-hover:grayscale-0 transition-all">{country.flag}</span>
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className={`text-lg font-black uppercase italic tracking-tight ${country.isUser ? "text-cyan-400" : "text-white group-hover:text-rose-400"} transition-colors`}>
+                                {country.name}
+                              </h4>
+                              {country.isUser && (
+                                <span className="px-2 py-0.5 rounded-full bg-cyan-500 text-[9px] font-black text-black uppercase tracking-tighter animate-pulse">NASIONAL</span>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-4 mt-1">
+                              <span className="text-[10px] font-bold text-amber-500/60 uppercase">Darat: {country.darat.toLocaleString('id-ID')}</span>
+                              <span className="text-[10px] font-bold text-cyan-500/60 uppercase">Laut: {country.laut.toLocaleString('id-ID')}</span>
+                              <span className="text-[10px] font-bold text-violet-500/60 uppercase">Udara: {country.udara.toLocaleString('id-ID')}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Power Score & Combat Button */}
+                      <div className="flex items-center gap-4">
+                        <div className="flex flex-col items-end gap-1">
+                          <div className="flex items-baseline gap-2">
+                            <span className={`text-2xl font-black italic tracking-tighter ${country.isUser ? "text-cyan-400" : "text-white group-hover:text-rose-400"} transition-colors`}>
+                              {country.power.toLocaleString('id-ID')}
+                            </span>
+                          </div>
+                        </div>
+
+                        {!country.isUser && (
+                          <button 
+                            className="p-3 rounded-xl bg-rose-600/10 border border-rose-500/30 text-rose-500 hover:bg-rose-600 hover:text-white transition-all cursor-pointer shadow-lg active:scale-90 group"
+                            title="UMUMKAN PERANG"
+                          >
+                            <MilitaryIcon className="h-5 w-5 group-hover:rotate-12 transition-transform" />
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+
+                {filteredRankings.length === 0 && (
+                  <div className="py-20 flex flex-col items-center justify-center text-zinc-700 opacity-30 italic">
+                    <Search size={64} className="mb-4" />
+                    <p className="text-xl font-black uppercase tracking-widest">Negara Tidak Ditemukan</p>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
         </div>
+
 
         {/* Confirmation Modal */}
         {confirmBuild && (
@@ -429,10 +650,25 @@ function BuildingCard({ item, onBuild, construction }: any) {
         </div>
 
         {/* Total Alutsista section */}
-        <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
+        <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-2 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
+          {/* Row 1: Total Unit */}
           <div className="flex justify-between items-baseline gap-2">
-            <span className="text-[11px] font-black text-cyan-500/80 uppercase tracking-[0.15em] italic">TOTAL UNIT:</span>
-            <span className="text-[16px] font-black text-cyan-400 tracking-tight">{(item.count || 0).toLocaleString('id-ID')} <span className="text-[10px] text-cyan-500/50 font-normal uppercase italic ml-1">Unit</span></span>
+            <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.15em] italic">Total Unit</span>
+            <span className="text-[15px] font-black text-cyan-400 tracking-tight">
+              {(item.count || 0).toLocaleString('id-ID')}
+              <span className="text-[10px] text-cyan-500/50 font-normal uppercase italic ml-1">Unit</span>
+            </span>
+          </div>
+          {/* Row 2: Kalkulasi Total Kekuatan */}
+          <div className="flex items-center justify-between gap-1 pt-1 border-t border-zinc-800/30">
+            <span className="text-[9px] font-black text-zinc-600 uppercase tracking-[0.15em] italic whitespace-nowrap">
+              {(item.count || 0).toLocaleString('id-ID')} × {(item.power || 0).toLocaleString('id-ID')}
+            </span>
+            <span className="text-[9px] text-zinc-700 font-bold">=</span>
+            <span className="text-[14px] font-black text-amber-400 tracking-tight leading-none">
+              {((item.count || 0) * (item.power || 0)).toLocaleString('id-ID')}
+              <span className="text-[8px] text-amber-500/50 font-bold uppercase ml-1 italic">Kekuatan</span>
+            </span>
           </div>
         </div>
       </div>

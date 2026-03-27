@@ -166,8 +166,8 @@ export const belarus: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 34,
-        "sepeda_motor": 6,
+        "mobil_patroli_interceptor": 34,
+        "unit_interceptor_r2": 6,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const belarus: CountryData = {
       "stadion_internasional": 11
   },
 
-  "un_vote": "Pro",
+  "un_vote": 102,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

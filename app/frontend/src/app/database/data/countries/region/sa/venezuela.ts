@@ -166,8 +166,8 @@ export const venezuela: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 14,
-        "sepeda_motor": 25,
+        "mobil_patroli_interceptor": 14,
+        "unit_interceptor_r2": 25,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const venezuela: CountryData = {
       "stadion_internasional": 20
   },
 
-  "un_vote": "Pro",
+  "un_vote": 195,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

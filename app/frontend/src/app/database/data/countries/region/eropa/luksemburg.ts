@@ -166,8 +166,8 @@ export const luksemburg: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 15,
-        "sepeda_motor": 40,
+        "mobil_patroli_interceptor": 15,
+        "unit_interceptor_r2": 40,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const luksemburg: CountryData = {
       "stadion_internasional": 34
   },
 
-  "un_vote": "Pro",
+  "un_vote": 67,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

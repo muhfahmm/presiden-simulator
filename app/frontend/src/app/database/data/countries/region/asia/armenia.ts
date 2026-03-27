@@ -166,8 +166,8 @@ export const armenia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 1,
-        "sepeda_motor": 10,
+        "mobil_patroli_interceptor": 1,
+        "unit_interceptor_r2": 10,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const armenia: CountryData = {
       "stadion_internasional": 13
   },
 
-  "un_vote": "Pro",
+  "un_vote": 152,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

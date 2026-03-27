@@ -166,8 +166,8 @@ export const tonga: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 2,
-        "sepeda_motor": 40,
+        "mobil_patroli_interceptor": 2,
+        "unit_interceptor_r2": 40,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const tonga: CountryData = {
       "stadion_internasional": 14
   },
 
-  "un_vote": "Pro",
+  "un_vote": 5,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

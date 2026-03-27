@@ -164,8 +164,8 @@ export const republik_zambia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 35,
-        "sepeda_motor": 21,
+        "mobil_patroli_interceptor": 35,
+        "unit_interceptor_r2": 21,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const republik_zambia: CountryData = {
       "stadion_internasional": 24
   },
 
-  "un_vote": "Pro",
+  "un_vote": 25,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

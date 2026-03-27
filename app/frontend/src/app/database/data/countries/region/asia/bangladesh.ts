@@ -166,8 +166,8 @@ export const bangladesh: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 25,
-        "sepeda_motor": 30,
+        "mobil_patroli_interceptor": 25,
+        "unit_interceptor_r2": 30,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const bangladesh: CountryData = {
       "stadion_internasional": 39
   },
 
-  "un_vote": "Pro",
+  "un_vote": 118,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

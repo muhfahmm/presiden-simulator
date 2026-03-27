@@ -166,8 +166,8 @@ export const kazakhstan: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 1,
-        "sepeda_motor": 20,
+        "mobil_patroli_interceptor": 1,
+        "unit_interceptor_r2": 20,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const kazakhstan: CountryData = {
       "stadion_internasional": 9
   },
 
-  "un_vote": "Pro",
+  "un_vote": 187,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

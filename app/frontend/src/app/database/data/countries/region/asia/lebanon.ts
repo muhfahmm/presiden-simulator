@@ -166,8 +166,8 @@ export const lebanon: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 39,
-        "sepeda_motor": 9,
+        "mobil_patroli_interceptor": 39,
+        "unit_interceptor_r2": 9,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const lebanon: CountryData = {
       "stadion_internasional": 22
   },
 
-  "un_vote": "Pro",
+  "un_vote": 183,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -164,8 +164,8 @@ export const angola: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 33,
-        "sepeda_motor": 33,
+        "mobil_patroli_interceptor": 33,
+        "unit_interceptor_r2": 33,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const angola: CountryData = {
       "stadion_internasional": 40
   },
 
-  "un_vote": "Pro",
+  "un_vote": 155,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

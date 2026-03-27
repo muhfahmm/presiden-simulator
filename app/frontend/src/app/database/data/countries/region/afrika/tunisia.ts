@@ -164,8 +164,8 @@ export const tunisia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 8,
-        "sepeda_motor": 2,
+        "mobil_patroli_interceptor": 8,
+        "unit_interceptor_r2": 2,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const tunisia: CountryData = {
       "stadion_internasional": 21
   },
 
-  "un_vote": "Pro",
+  "un_vote": 59,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -166,8 +166,8 @@ export const paraguay: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 24,
-        "sepeda_motor": 34,
+        "mobil_patroli_interceptor": 24,
+        "unit_interceptor_r2": 34,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const paraguay: CountryData = {
       "stadion_internasional": 16
   },
 
-  "un_vote": "Pro",
+  "un_vote": 71,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

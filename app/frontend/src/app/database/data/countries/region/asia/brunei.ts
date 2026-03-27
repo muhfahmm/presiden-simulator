@@ -166,8 +166,8 @@ export const brunei: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 34,
-        "sepeda_motor": 11,
+        "mobil_patroli_interceptor": 34,
+        "unit_interceptor_r2": 11,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const brunei: CountryData = {
       "stadion_internasional": 9
   },
 
-  "un_vote": "Pro",
+  "un_vote": 114,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

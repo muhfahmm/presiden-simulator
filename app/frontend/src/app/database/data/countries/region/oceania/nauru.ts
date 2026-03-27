@@ -166,8 +166,8 @@ export const nauru: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 12,
-        "sepeda_motor": 33,
+        "mobil_patroli_interceptor": 12,
+        "unit_interceptor_r2": 33,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const nauru: CountryData = {
       "stadion_internasional": 30
   },
 
-  "un_vote": "Pro",
+  "un_vote": 52,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -166,8 +166,8 @@ export const norwegia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 33,
-        "sepeda_motor": 25,
+        "mobil_patroli_interceptor": 33,
+        "unit_interceptor_r2": 25,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const norwegia: CountryData = {
       "stadion_internasional": 25
   },
 
-  "un_vote": "Pro",
+  "un_vote": 161,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -164,8 +164,8 @@ export const maroko: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 29,
-        "sepeda_motor": 23,
+        "mobil_patroli_interceptor": 29,
+        "unit_interceptor_r2": 23,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const maroko: CountryData = {
       "stadion_internasional": 35
   },
 
-  "un_vote": "Pro",
+  "un_vote": 109,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

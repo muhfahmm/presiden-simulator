@@ -166,8 +166,8 @@ export const yordania: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 13,
-        "sepeda_motor": 32,
+        "mobil_patroli_interceptor": 13,
+        "unit_interceptor_r2": 32,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const yordania: CountryData = {
       "stadion_internasional": 11
   },
 
-  "un_vote": "Pro",
+  "un_vote": 82,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

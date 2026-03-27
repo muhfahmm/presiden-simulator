@@ -246,7 +246,7 @@ export const indonesia: CountryData = {
     "stadion_internasional": 11
   },
 
-  "un_vote": "Pro",
+  "un_vote": 128,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

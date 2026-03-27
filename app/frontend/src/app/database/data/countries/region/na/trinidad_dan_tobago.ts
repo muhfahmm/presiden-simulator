@@ -166,8 +166,8 @@ export const trinidad_dan_tobago: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 40,
-        "sepeda_motor": 39,
+        "mobil_patroli_interceptor": 40,
+        "unit_interceptor_r2": 39,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const trinidad_dan_tobago: CountryData = {
       "stadion_internasional": 20
   },
 
-  "un_vote": "Pro",
+  "un_vote": 123,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

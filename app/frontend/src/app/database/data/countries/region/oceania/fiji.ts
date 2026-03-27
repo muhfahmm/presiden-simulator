@@ -166,8 +166,8 @@ export const fiji: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 16,
-        "sepeda_motor": 37,
+        "mobil_patroli_interceptor": 16,
+        "unit_interceptor_r2": 37,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const fiji: CountryData = {
       "stadion_internasional": 20
   },
 
-  "un_vote": "Pro",
+  "un_vote": 113,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

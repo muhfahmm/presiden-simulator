@@ -166,8 +166,8 @@ export const kanada: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 1,
-        "sepeda_motor": 12,
+        "mobil_patroli_interceptor": 1,
+        "unit_interceptor_r2": 12,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const kanada: CountryData = {
       "stadion_internasional": 39
   },
 
-  "un_vote": "Pro",
+  "un_vote": 160,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

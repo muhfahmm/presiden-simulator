@@ -166,8 +166,8 @@ export const bulgaria: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 2,
-        "sepeda_motor": 26,
+        "mobil_patroli_interceptor": 2,
+        "unit_interceptor_r2": 26,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const bulgaria: CountryData = {
       "stadion_internasional": 10
   },
 
-  "un_vote": "Pro",
+  "un_vote": 42,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -164,8 +164,8 @@ export const republik_uganda: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 25,
-        "sepeda_motor": 18,
+        "mobil_patroli_interceptor": 25,
+        "unit_interceptor_r2": 18,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const republik_uganda: CountryData = {
       "stadion_internasional": 40
   },
 
-  "un_vote": "Pro",
+  "un_vote": 101,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

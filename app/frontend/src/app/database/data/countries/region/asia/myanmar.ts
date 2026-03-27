@@ -166,8 +166,8 @@ export const myanmar: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 20,
-        "sepeda_motor": 3,
+        "mobil_patroli_interceptor": 20,
+        "unit_interceptor_r2": 3,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const myanmar: CountryData = {
       "stadion_internasional": 24
   },
 
-  "un_vote": "Pro",
+  "un_vote": 55,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

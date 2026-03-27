@@ -166,8 +166,8 @@ export const andorra: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 33,
-        "sepeda_motor": 12,
+        "mobil_patroli_interceptor": 33,
+        "unit_interceptor_r2": 12,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const andorra: CountryData = {
       "stadion_internasional": 22
   },
 
-  "un_vote": "Pro",
+  "un_vote": 11,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

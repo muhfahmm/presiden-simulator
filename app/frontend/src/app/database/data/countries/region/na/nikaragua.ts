@@ -166,8 +166,8 @@ export const nikaragua: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 8,
-        "sepeda_motor": 7,
+        "mobil_patroli_interceptor": 8,
+        "unit_interceptor_r2": 7,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const nikaragua: CountryData = {
       "stadion_internasional": 31
   },
 
-  "un_vote": "Pro",
+  "un_vote": 162,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

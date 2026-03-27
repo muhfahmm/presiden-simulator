@@ -166,8 +166,8 @@ export const honduras: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 38,
-        "sepeda_motor": 6,
+        "mobil_patroli_interceptor": 38,
+        "unit_interceptor_r2": 6,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const honduras: CountryData = {
       "stadion_internasional": 13
   },
 
-  "un_vote": "Pro",
+  "un_vote": 137,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

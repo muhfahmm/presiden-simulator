@@ -164,8 +164,8 @@ export const mauritania: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 37,
-        "sepeda_motor": 36,
+        "mobil_patroli_interceptor": 37,
+        "unit_interceptor_r2": 36,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const mauritania: CountryData = {
       "stadion_internasional": 4
   },
 
-  "un_vote": "Pro",
+  "un_vote": 124,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

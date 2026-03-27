@@ -166,8 +166,8 @@ export const belgia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 13,
-        "sepeda_motor": 8,
+        "mobil_patroli_interceptor": 13,
+        "unit_interceptor_r2": 8,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const belgia: CountryData = {
       "stadion_internasional": 11
   },
 
-  "un_vote": "Pro",
+  "un_vote": 189,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

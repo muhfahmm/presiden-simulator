@@ -164,8 +164,8 @@ export const botswana: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 11,
-        "sepeda_motor": 4,
+        "mobil_patroli_interceptor": 11,
+        "unit_interceptor_r2": 4,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const botswana: CountryData = {
       "stadion_internasional": 1
   },
 
-  "un_vote": "Pro",
+  "un_vote": 48,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

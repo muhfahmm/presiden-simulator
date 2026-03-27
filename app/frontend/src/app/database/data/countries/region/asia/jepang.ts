@@ -166,8 +166,8 @@ export const jepang: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 16,
-        "sepeda_motor": 31,
+        "mobil_patroli_interceptor": 16,
+        "unit_interceptor_r2": 31,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const jepang: CountryData = {
       "stadion_internasional": 12
   },
 
-  "un_vote": "Pro",
+  "un_vote": 207,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

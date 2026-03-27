@@ -166,8 +166,8 @@ export const marshall: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 4,
-        "sepeda_motor": 27,
+        "mobil_patroli_interceptor": 4,
+        "unit_interceptor_r2": 27,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const marshall: CountryData = {
       "stadion_internasional": 20
   },
 
-  "un_vote": "Pro",
+  "un_vote": 4,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

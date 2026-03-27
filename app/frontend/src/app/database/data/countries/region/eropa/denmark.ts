@@ -166,8 +166,8 @@ export const denmark: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 14,
-        "sepeda_motor": 27,
+        "mobil_patroli_interceptor": 14,
+        "unit_interceptor_r2": 27,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const denmark: CountryData = {
       "stadion_internasional": 26
   },
 
-  "un_vote": "Pro",
+  "un_vote": 184,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

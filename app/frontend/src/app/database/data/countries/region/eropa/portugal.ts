@@ -166,8 +166,8 @@ export const portugal: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 11,
-        "sepeda_motor": 18,
+        "mobil_patroli_interceptor": 11,
+        "unit_interceptor_r2": 18,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const portugal: CountryData = {
       "stadion_internasional": 21
   },
 
-  "un_vote": "Pro",
+  "un_vote": 194,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

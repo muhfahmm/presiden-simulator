@@ -78,15 +78,15 @@ export default function ArmadaPolisiModal({ isOpen, onClose }: { isOpen: boolean
       color: "text-emerald-500",
       items: [
         // KEPOLISIAN
-        { key: "pos_polisi", groupId: "polisi", label: "Kantor Polisi", icon: Siren, desc: "Komando Wilayah", cost: 25, buildTime: 60, maintenanceCost: 15, lowongan_kerja: 80, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.kantor_polisi || 0) + ((buildingDeltas["pos_polisi"] as number) || 0), consumption: 0 },
-        { key: "mobil_patroli_interceptor", groupId: "polisi", label: "Mobil Patroli Interceptor", icon: Car, desc: "Patroli Lantas", cost: 2, buildTime: 7, maintenanceCost: 2, lowongan_kerja: 2, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.mobil_patroli_interceptor || 0) + ((buildingDeltas["mobil_patroli_interceptor"] as number) || 0), consumption: 0 },
-        { key: "unit_interceptor_r2", groupId: "polisi", label: "Unit Interceptor Roda Dua", icon: Bike, desc: "Patroli Cepat", cost: 1, buildTime: 5, maintenanceCost: 1, lowongan_kerja: 1, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.unit_interceptor_r2 || 0) + ((buildingDeltas["unit_interceptor_r2"] as number) || 0), consumption: 0 },
-        { key: "unit_k9", groupId: "polisi", label: "Unit K-9", icon: Dog, desc: "Pelacakan", cost: 1, buildTime: 5, maintenanceCost: 1, lowongan_kerja: 2, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.unit_k9 || 0) + ((buildingDeltas["unit_k9"] as number) || 0), consumption: 0 },
-        { key: "swat", groupId: "polisi", label: "Pasukan SWAT", icon: Crosshair, desc: "Taktis Khusus", cost: 5, buildTime: 30, maintenanceCost: 5, lowongan_kerja: 10, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.swat || 0) + ((buildingDeltas["swat"] as number) || 0), consumption: 0 },
-        { key: "police_heli", groupId: "polisi", label: "Heli Polisi", icon: Radio, desc: "Udara Polisi", cost: 15, buildTime: 60, maintenanceCost: 10, lowongan_kerja: 3, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.helikopter_polisi || 0) + ((buildingDeltas["police_heli"] as number) || 0), consumption: 0 },
-        { key: "riot_control", groupId: "polisi", label: "Anti-Huru Hara", icon: ShieldAlert, desc: "Ketertiban", cost: 4, buildTime: 20, maintenanceCost: 2, lowongan_kerja: 15, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.anti_huru_hara || 0) + ((buildingDeltas["riot_control"] as number) || 0), consumption: 0 },
-        { key: "cctv_network", groupId: "polisi", label: "Network CCTV", icon: Cctv, desc: "Surveillance", cost: 10, buildTime: 30, maintenanceCost: 8, lowongan_kerja: 5, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.kamera_pengawas || 0) + ((buildingDeltas["cctv_network"] as number) || 0), consumption: 0 },
-        { key: "forensik", groupId: "polisi", label: "Pusat Forensik", icon: Search, desc: "Identifikasi", cost: 30, buildTime: 90, maintenanceCost: 12, lowongan_kerja: 30, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.pusat_forensik || 0) + ((buildingDeltas["forensik"] as number) || 0), consumption: 0 }
+        { key: "pos_polisi", groupId: "polisi", label: "Kantor Polisi", icon: Siren, desc: "Komando Wilayah", cost: 25, buildTime: 60, maintenanceCost: 15, lowongan_kerja: 80, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.kantor_polisi || 0) + ((buildingDeltas["pos_polisi"] as number) || 0), consumption: 0, power: 50 },
+        { key: "mobil_patroli_interceptor", groupId: "polisi", label: "Mobil Patroli Interceptor", icon: Car, desc: "Patroli Lantas", cost: 2, buildTime: 7, maintenanceCost: 2, lowongan_kerja: 2, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.mobil_patroli_interceptor || 0) + ((buildingDeltas["mobil_patroli_interceptor"] as number) || 0), consumption: 0, power: 10 },
+        { key: "unit_interceptor_r2", groupId: "polisi", label: "Unit Interceptor Roda Dua", icon: Bike, desc: "Patroli Cepat", cost: 1, buildTime: 5, maintenanceCost: 1, lowongan_kerja: 1, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.unit_interceptor_r2 || 0) + ((buildingDeltas["unit_interceptor_r2"] as number) || 0), consumption: 0, power: 3 },
+        { key: "unit_k9", groupId: "polisi", label: "Unit K-9", icon: Dog, desc: "Pelacakan", cost: 1, buildTime: 5, maintenanceCost: 1, lowongan_kerja: 2, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.unit_k9 || 0) + ((buildingDeltas["unit_k9"] as number) || 0), consumption: 0, power: 5 },
+        { key: "swat", groupId: "polisi", label: "Pasukan SWAT", icon: Crosshair, desc: "Taktis Khusus", cost: 5, buildTime: 30, maintenanceCost: 5, lowongan_kerja: 10, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.swat || 0) + ((buildingDeltas["swat"] as number) || 0), consumption: 0, power: 80 },
+        { key: "police_heli", groupId: "polisi", label: "Heli Polisi", icon: Radio, desc: "Udara Polisi", cost: 15, buildTime: 60, maintenanceCost: 10, lowongan_kerja: 3, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.helikopter_polisi || 0) + ((buildingDeltas["police_heli"] as number) || 0), consumption: 0, power: 120 },
+        { key: "riot_control", groupId: "polisi", label: "Anti-Huru Hara", icon: ShieldAlert, desc: "Ketertiban", cost: 4, buildTime: 20, maintenanceCost: 2, lowongan_kerja: 15, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.anti_huru_hara || 0) + ((buildingDeltas["riot_control"] as number) || 0), consumption: 0, power: 30 },
+        { key: "cctv_network", groupId: "polisi", label: "Network CCTV", icon: Cctv, desc: "Surveillance", cost: 10, buildTime: 30, maintenanceCost: 8, lowongan_kerja: 5, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.kamera_pengawas || 0) + ((buildingDeltas["cctv_network"] as number) || 0), consumption: 0, power: 5 },
+        { key: "forensik", groupId: "polisi", label: "Pusat Forensik", icon: Search, desc: "Identifikasi", cost: 30, buildTime: 90, maintenanceCost: 12, lowongan_kerja: 30, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.pusat_forensik || 0) + ((buildingDeltas["forensik"] as number) || 0), consumption: 0, power: 20 }
       ]
     }
   ];
@@ -403,10 +403,25 @@ function BuildingCard({ item, onBuild, construction }: any) {
         </div>
 
         {/* Total stats section */}
-        <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
+        <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-2 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
+          {/* Row 1: Total Unit */}
           <div className="flex justify-between items-baseline gap-2">
-            <span className="text-[11px] font-black text-emerald-500/80 uppercase tracking-[0.15em] italic">TOTAL UNIT:</span>
-            <span className="text-[16px] font-black text-emerald-400 tracking-tight">{(item.count || 0).toLocaleString('id-ID')} <span className="text-[10px] text-emerald-500/50 font-normal uppercase italic ml-1">Unit</span></span>
+            <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.15em] italic">Total Unit</span>
+            <span className="text-[15px] font-black text-emerald-400 tracking-tight">
+              {(item.count || 0).toLocaleString('id-ID')}
+              <span className="text-[10px] text-emerald-500/50 font-normal uppercase italic ml-1">Unit</span>
+            </span>
+          </div>
+          {/* Row 2: Kalkulasi Total Kekuatan */}
+          <div className="flex items-center justify-between gap-1 pt-1 border-t border-zinc-800/30">
+            <span className="text-[9px] font-black text-zinc-600 uppercase tracking-[0.15em] italic whitespace-nowrap">
+              {(item.count || 0).toLocaleString('id-ID')} × {(item.power || 0).toLocaleString('id-ID')}
+            </span>
+            <span className="text-[9px] text-zinc-700 font-bold">=</span>
+            <span className="text-[14px] font-black text-amber-400 tracking-tight leading-none">
+              {((item.count || 0) * (item.power || 0)).toLocaleString('id-ID')}
+              <span className="text-[8px] text-amber-500/50 font-bold uppercase ml-1 italic">Kekuatan</span>
+            </span>
           </div>
         </div>
       </div>

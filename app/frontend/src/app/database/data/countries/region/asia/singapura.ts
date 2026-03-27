@@ -166,8 +166,8 @@ export const singapura: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 25,
-        "sepeda_motor": 27,
+        "mobil_patroli_interceptor": 25,
+        "unit_interceptor_r2": 27,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const singapura: CountryData = {
       "stadion_internasional": 25
   },
 
-  "un_vote": "Pro",
+  "un_vote": 148,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

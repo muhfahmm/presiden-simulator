@@ -164,8 +164,8 @@ export const niger: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 30,
-        "sepeda_motor": 6,
+        "mobil_patroli_interceptor": 30,
+        "unit_interceptor_r2": 6,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const niger: CountryData = {
       "stadion_internasional": 1
   },
 
-  "un_vote": "Pro",
+  "un_vote": 30,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -166,8 +166,8 @@ export const gibraltar: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 22,
-        "sepeda_motor": 14,
+        "mobil_patroli_interceptor": 22,
+        "unit_interceptor_r2": 14,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const gibraltar: CountryData = {
       "stadion_internasional": 19
   },
 
-  "un_vote": "Pro",
+  "un_vote": 23,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

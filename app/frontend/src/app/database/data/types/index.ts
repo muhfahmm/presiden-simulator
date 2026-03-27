@@ -42,7 +42,7 @@ export interface CountryData extends EkonomiData {
   geopolitik: SektorGeopolitik;
 
   // Global & Politik
-  un_vote: "Pro" | "Netral" | "Kontra";
+  un_vote: number;
   pendapatan_nasional: string;
   kementerian: {
     kesehatan: number;

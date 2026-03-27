@@ -166,8 +166,8 @@ export const polandia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 15,
-        "sepeda_motor": 39,
+        "mobil_patroli_interceptor": 15,
+        "unit_interceptor_r2": 39,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const polandia: CountryData = {
       "stadion_internasional": 33
   },
 
-  "un_vote": "Pro",
+  "un_vote": 200,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

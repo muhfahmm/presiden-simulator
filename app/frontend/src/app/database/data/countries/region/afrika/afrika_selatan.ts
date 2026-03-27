@@ -164,8 +164,8 @@ export const afrika_selatan: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 16,
-        "sepeda_motor": 15,
+        "mobil_patroli_interceptor": 16,
+        "unit_interceptor_r2": 15,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const afrika_selatan: CountryData = {
       "stadion_internasional": 32
   },
 
-  "un_vote": "Pro",
+  "un_vote": 188,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

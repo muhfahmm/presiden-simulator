@@ -164,8 +164,8 @@ export const eswatini: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 26,
-        "sepeda_motor": 37,
+        "mobil_patroli_interceptor": 26,
+        "unit_interceptor_r2": 37,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const eswatini: CountryData = {
       "stadion_internasional": 21
   },
 
-  "un_vote": "Pro",
+  "un_vote": 60,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

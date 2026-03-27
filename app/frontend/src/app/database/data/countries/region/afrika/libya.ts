@@ -164,8 +164,8 @@ export const libya: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 38,
-        "sepeda_motor": 17,
+        "mobil_patroli_interceptor": 38,
+        "unit_interceptor_r2": 17,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const libya: CountryData = {
       "stadion_internasional": 33
   },
 
-  "un_vote": "Pro",
+  "un_vote": 108,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

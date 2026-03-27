@@ -166,8 +166,8 @@ export const malaysia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 7,
-        "sepeda_motor": 34,
+        "mobil_patroli_interceptor": 7,
+        "unit_interceptor_r2": 34,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const malaysia: CountryData = {
       "stadion_internasional": 17
   },
 
-  "un_vote": "Pro",
+  "un_vote": 141,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

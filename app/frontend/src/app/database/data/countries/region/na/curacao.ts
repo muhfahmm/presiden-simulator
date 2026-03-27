@@ -166,8 +166,8 @@ export const curacao: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 28,
-        "sepeda_motor": 1,
+        "mobil_patroli_interceptor": 28,
+        "unit_interceptor_r2": 1,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const curacao: CountryData = {
       "stadion_internasional": 38
   },
 
-  "un_vote": "Pro",
+  "un_vote": 16,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

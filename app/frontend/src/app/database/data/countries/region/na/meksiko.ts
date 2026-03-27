@@ -166,8 +166,8 @@ export const meksiko: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 3,
-        "sepeda_motor": 8,
+        "mobil_patroli_interceptor": 3,
+        "unit_interceptor_r2": 8,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const meksiko: CountryData = {
       "stadion_internasional": 3
   },
 
-  "un_vote": "Pro",
+  "un_vote": 186,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

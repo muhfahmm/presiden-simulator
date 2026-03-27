@@ -95,3 +95,50 @@ export const calculateUavPower = (count: number): number => count * UAV_POWER_PE
 export const calculateKamikazePower = (count: number): number => count * KAMIKAZE_POWER_PER_UNIT;
 export const calculateTransportPower = (count: number): number => count * TRANSPORT_POWER_PER_UNIT;
 
+
+/**
+ * Menghitung total kekuatan militer gabungan (Darat, Laut, Udara).
+ * 
+ * @param armadaData Data armada_militer dari objek negara
+ * @param deltas (Optional) Data buildingDeltas untuk menghitung bangunan yang baru selesai/sedang dikonstruksi
+ * @returns Object berisi total kekuatan masing-masing matra dan total gabungan
+ */
+export const calculateTotalMilitaryPower = (armadaData: any, deltas: Record<string, any> = {}) => {
+  if (!armadaData) return { darat: 0, laut: 0, udara: 0, total: 0 };
+
+  const totalDarat =
+    ((armadaData.barak || 0) + (deltas["barak"] || 0)) * INFANTRY_POWER_PER_UNIT +
+    (armadaData.darat?.tank_tempur_utama || 0) * TANK_POWER_PER_UNIT +
+    (armadaData.darat?.apc_ifv || 0) * APC_POWER_PER_UNIT +
+    (armadaData.darat?.artileri_berat || 0) * ARTILLERY_POWER_PER_UNIT +
+    (armadaData.darat?.sistem_peluncur_roket || 0) * ROCKET_POWER_PER_UNIT +
+    (armadaData.darat?.pertahanan_udara_mobile || 0) * SAM_POWER_PER_UNIT +
+    (armadaData.darat?.kendaraan_taktis || 0) * TACTICAL_POWER_PER_UNIT;
+
+  const totalLaut =
+    (armadaData.laut?.kapal_induk || 0) * CARRIER_POWER_PER_UNIT +
+    (armadaData.laut?.kapal_destroyer || 0) * DESTROYER_POWER_PER_UNIT +
+    (armadaData.laut?.kapal_korvet || 0) * CORVETTE_POWER_PER_UNIT +
+    (armadaData.laut?.kapal_selam_nuklir || 0) * SUBMARINE_POWER_PER_UNIT +
+    (armadaData.laut?.kapal_selam_regular || 0) * REGULAR_SUB_POWER_PER_UNIT +
+    (armadaData.laut?.kapal_ranjau || 0) * MINE_SHIP_POWER_PER_UNIT +
+    (armadaData.laut?.kapal_logistik || 0) * LOGISTICS_POWER_PER_UNIT;
+
+  const totalUdara =
+    (armadaData.udara?.jet_tempur_siluman || 0) * STEALTH_POWER_PER_UNIT +
+    (armadaData.udara?.jet_tempur_interceptor || 0) * INTERCEPTOR_POWER_PER_UNIT +
+    (armadaData.udara?.pesawat_pengebom || 0) * BOMBER_POWER_PER_UNIT +
+    (armadaData.udara?.helikopter_serang || 0) * ATTACK_HELI_POWER_PER_UNIT +
+    (armadaData.udara?.pesawat_pengintai || 0) * RECON_POWER_PER_UNIT +
+    (armadaData.udara?.drone_intai_uav || 0) * UAV_POWER_PER_UNIT +
+    (armadaData.udara?.drone_kamikaze || 0) * KAMIKAZE_POWER_PER_UNIT +
+    (armadaData.udara?.pesawat_angkut || 0) * TRANSPORT_POWER_PER_UNIT;
+
+  return {
+    darat: totalDarat,
+    laut: totalLaut,
+    udara: totalUdara,
+    total: totalDarat + totalLaut + totalUdara
+  };
+};
+

@@ -166,8 +166,8 @@ export const belize: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 40,
-        "sepeda_motor": 27,
+        "mobil_patroli_interceptor": 40,
+        "unit_interceptor_r2": 27,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const belize: CountryData = {
       "stadion_internasional": 3
   },
 
-  "un_vote": "Pro",
+  "un_vote": 15,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

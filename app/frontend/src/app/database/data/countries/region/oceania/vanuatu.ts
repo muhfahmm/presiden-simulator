@@ -166,8 +166,8 @@ export const vanuatu: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 16,
-        "sepeda_motor": 26,
+        "mobil_patroli_interceptor": 16,
+        "unit_interceptor_r2": 26,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const vanuatu: CountryData = {
       "stadion_internasional": 6
   },
 
-  "un_vote": "Pro",
+  "un_vote": 1,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

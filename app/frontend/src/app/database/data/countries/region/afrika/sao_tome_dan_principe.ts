@@ -164,8 +164,8 @@ export const sao_tome_dan_principe: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 28,
-        "sepeda_motor": 34,
+        "mobil_patroli_interceptor": 28,
+        "unit_interceptor_r2": 34,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const sao_tome_dan_principe: CountryData = {
       "stadion_internasional": 30
   },
 
-  "un_vote": "Pro",
+  "un_vote": 86,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

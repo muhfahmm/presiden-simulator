@@ -166,8 +166,8 @@ export const republik_serbia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 21,
-        "sepeda_motor": 14,
+        "mobil_patroli_interceptor": 21,
+        "unit_interceptor_r2": 14,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const republik_serbia: CountryData = {
       "stadion_internasional": 25
   },
 
-  "un_vote": "Pro",
+  "un_vote": 167,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

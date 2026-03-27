@@ -166,8 +166,8 @@ export const hong_kong: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 13,
-        "sepeda_motor": 13,
+        "mobil_patroli_interceptor": 13,
+        "unit_interceptor_r2": 13,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const hong_kong: CountryData = {
       "stadion_internasional": 33
   },
 
-  "un_vote": "Pro",
+  "un_vote": 27,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

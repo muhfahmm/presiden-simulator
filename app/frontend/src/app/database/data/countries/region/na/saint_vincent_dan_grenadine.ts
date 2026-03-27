@@ -166,8 +166,8 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 39,
-        "sepeda_motor": 20,
+        "mobil_patroli_interceptor": 39,
+        "unit_interceptor_r2": 20,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const saint_vincent_dan_grenadine: CountryData = {
       "stadion_internasional": 10
   },
 
-  "un_vote": "Pro",
+  "un_vote": 110,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

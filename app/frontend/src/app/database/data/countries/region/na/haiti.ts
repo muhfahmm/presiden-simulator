@@ -166,8 +166,8 @@ export const haiti: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 3,
-        "sepeda_motor": 2,
+        "mobil_patroli_interceptor": 3,
+        "unit_interceptor_r2": 2,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const haiti: CountryData = {
       "stadion_internasional": 40
   },
 
-  "un_vote": "Pro",
+  "un_vote": 105,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

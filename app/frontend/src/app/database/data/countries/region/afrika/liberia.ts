@@ -164,8 +164,8 @@ export const liberia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 21,
-        "sepeda_motor": 31,
+        "mobil_patroli_interceptor": 21,
+        "unit_interceptor_r2": 31,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const liberia: CountryData = {
       "stadion_internasional": 30
   },
 
-  "un_vote": "Pro",
+  "un_vote": 93,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

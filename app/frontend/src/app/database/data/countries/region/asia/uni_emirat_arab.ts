@@ -166,8 +166,8 @@ export const uni_emirat_arab: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 27,
-        "sepeda_motor": 3,
+        "mobil_patroli_interceptor": 27,
+        "unit_interceptor_r2": 3,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const uni_emirat_arab: CountryData = {
       "stadion_internasional": 23
   },
 
-  "un_vote": "Pro",
+  "un_vote": 193,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

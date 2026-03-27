@@ -166,8 +166,8 @@ export const el_salvador: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 28,
-        "sepeda_motor": 28,
+        "mobil_patroli_interceptor": 28,
+        "unit_interceptor_r2": 28,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const el_salvador: CountryData = {
       "stadion_internasional": 38
   },
 
-  "un_vote": "Pro",
+  "un_vote": 79,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

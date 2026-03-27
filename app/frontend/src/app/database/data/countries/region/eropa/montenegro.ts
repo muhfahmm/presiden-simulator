@@ -166,8 +166,8 @@ export const montenegro: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 35,
-        "sepeda_motor": 27,
+        "mobil_patroli_interceptor": 35,
+        "unit_interceptor_r2": 27,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const montenegro: CountryData = {
       "stadion_internasional": 7
   },
 
-  "un_vote": "Pro",
+  "un_vote": 104,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

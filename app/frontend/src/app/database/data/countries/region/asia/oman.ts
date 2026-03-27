@@ -166,8 +166,8 @@ export const oman: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 22,
-        "sepeda_motor": 18,
+        "mobil_patroli_interceptor": 22,
+        "unit_interceptor_r2": 18,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const oman: CountryData = {
       "stadion_internasional": 19
   },
 
-  "un_vote": "Pro",
+  "un_vote": 165,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

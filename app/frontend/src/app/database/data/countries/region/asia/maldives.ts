@@ -166,8 +166,8 @@ export const maldives: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 21,
-        "sepeda_motor": 29,
+        "mobil_patroli_interceptor": 21,
+        "unit_interceptor_r2": 29,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const maldives: CountryData = {
       "stadion_internasional": 7
   },
 
-  "un_vote": "Pro",
+  "un_vote": 145,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

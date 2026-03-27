@@ -166,8 +166,8 @@ export const moldova: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 29,
-        "sepeda_motor": 3,
+        "mobil_patroli_interceptor": 29,
+        "unit_interceptor_r2": 3,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const moldova: CountryData = {
       "stadion_internasional": 38
   },
 
-  "un_vote": "Pro",
+  "un_vote": 38,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

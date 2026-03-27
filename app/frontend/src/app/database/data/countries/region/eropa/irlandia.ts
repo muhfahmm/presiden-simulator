@@ -166,8 +166,8 @@ export const irlandia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 28,
-        "sepeda_motor": 24,
+        "mobil_patroli_interceptor": 28,
+        "unit_interceptor_r2": 24,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const irlandia: CountryData = {
       "stadion_internasional": 17
   },
 
-  "un_vote": "Pro",
+  "un_vote": 153,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

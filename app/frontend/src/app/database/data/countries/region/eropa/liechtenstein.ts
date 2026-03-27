@@ -166,8 +166,8 @@ export const liechtenstein: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 15,
-        "sepeda_motor": 24,
+        "mobil_patroli_interceptor": 15,
+        "unit_interceptor_r2": 24,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const liechtenstein: CountryData = {
       "stadion_internasional": 3
   },
 
-  "un_vote": "Pro",
+  "un_vote": 20,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

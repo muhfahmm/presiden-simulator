@@ -166,8 +166,8 @@ export const thailand: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 1,
-        "sepeda_motor": 4,
+        "mobil_patroli_interceptor": 1,
+        "unit_interceptor_r2": 4,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const thailand: CountryData = {
       "stadion_internasional": 19
   },
 
-  "un_vote": "Pro",
+  "un_vote": 154,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

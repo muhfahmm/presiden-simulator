@@ -166,8 +166,8 @@ export const peru: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 6,
-        "sepeda_motor": 37,
+        "mobil_patroli_interceptor": 6,
+        "unit_interceptor_r2": 37,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const peru: CountryData = {
       "stadion_internasional": 3
   },
 
-  "un_vote": "Pro",
+  "un_vote": 41,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

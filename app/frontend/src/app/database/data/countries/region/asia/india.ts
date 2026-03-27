@@ -166,8 +166,8 @@ export const india: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 8,
-        "sepeda_motor": 10,
+        "mobil_patroli_interceptor": 8,
+        "unit_interceptor_r2": 10,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const india: CountryData = {
       "stadion_internasional": 40
   },
 
-  "un_vote": "Pro",
+  "un_vote": 204,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

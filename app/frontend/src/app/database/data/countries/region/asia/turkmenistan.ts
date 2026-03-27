@@ -166,8 +166,8 @@ export const turkmenistan: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 9,
-        "sepeda_motor": 40,
+        "mobil_patroli_interceptor": 9,
+        "unit_interceptor_r2": 40,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const turkmenistan: CountryData = {
       "stadion_internasional": 19
   },
 
-  "un_vote": "Pro",
+  "un_vote": 133,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

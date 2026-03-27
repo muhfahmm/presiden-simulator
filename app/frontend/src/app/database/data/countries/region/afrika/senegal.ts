@@ -164,8 +164,8 @@ export const senegal: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 17,
-        "sepeda_motor": 3,
+        "mobil_patroli_interceptor": 17,
+        "unit_interceptor_r2": 3,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const senegal: CountryData = {
       "stadion_internasional": 23
   },
 
-  "un_vote": "Pro",
+  "un_vote": 119,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -164,8 +164,8 @@ export const ghana: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 8,
-        "sepeda_motor": 9,
+        "mobil_patroli_interceptor": 8,
+        "unit_interceptor_r2": 9,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const ghana: CountryData = {
       "stadion_internasional": 24
   },
 
-  "un_vote": "Pro",
+  "un_vote": 125,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

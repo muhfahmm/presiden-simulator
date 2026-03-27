@@ -166,8 +166,8 @@ export const azerbaijan: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 24,
-        "sepeda_motor": 38,
+        "mobil_patroli_interceptor": 24,
+        "unit_interceptor_r2": 38,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const azerbaijan: CountryData = {
       "stadion_internasional": 10
   },
 
-  "un_vote": "Pro",
+  "un_vote": 140,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

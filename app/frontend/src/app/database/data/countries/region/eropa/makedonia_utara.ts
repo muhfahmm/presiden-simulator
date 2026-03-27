@@ -166,8 +166,8 @@ export const makedonia_utara: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 37,
-        "sepeda_motor": 4,
+        "mobil_patroli_interceptor": 37,
+        "unit_interceptor_r2": 4,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const makedonia_utara: CountryData = {
       "stadion_internasional": 7
   },
 
-  "un_vote": "Pro",
+  "un_vote": 172,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

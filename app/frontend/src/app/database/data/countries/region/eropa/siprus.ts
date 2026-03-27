@@ -166,8 +166,8 @@ export const siprus: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 29,
-        "sepeda_motor": 10,
+        "mobil_patroli_interceptor": 29,
+        "unit_interceptor_r2": 10,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const siprus: CountryData = {
       "stadion_internasional": 24
   },
 
-  "un_vote": "Pro",
+  "un_vote": 131,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

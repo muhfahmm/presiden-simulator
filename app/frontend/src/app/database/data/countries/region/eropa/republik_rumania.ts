@@ -166,8 +166,8 @@ export const republik_rumania: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 17,
-        "sepeda_motor": 30,
+        "mobil_patroli_interceptor": 17,
+        "unit_interceptor_r2": 30,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const republik_rumania: CountryData = {
       "stadion_internasional": 28
   },
 
-  "un_vote": "Pro",
+  "un_vote": 143,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

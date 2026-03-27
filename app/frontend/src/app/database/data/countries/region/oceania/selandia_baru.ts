@@ -166,8 +166,8 @@ export const selandia_baru: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 9,
-        "sepeda_motor": 1,
+        "mobil_patroli_interceptor": 9,
+        "unit_interceptor_r2": 1,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const selandia_baru: CountryData = {
       "stadion_internasional": 20
   },
 
-  "un_vote": "Pro",
+  "un_vote": 107,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

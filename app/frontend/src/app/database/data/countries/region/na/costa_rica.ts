@@ -166,8 +166,8 @@ export const costa_rica: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 39,
-        "sepeda_motor": 11,
+        "mobil_patroli_interceptor": 39,
+        "unit_interceptor_r2": 11,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const costa_rica: CountryData = {
       "stadion_internasional": 37
   },
 
-  "un_vote": "Pro",
+  "un_vote": 72,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

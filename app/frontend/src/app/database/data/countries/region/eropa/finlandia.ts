@@ -166,8 +166,8 @@ export const finlandia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 4,
-        "sepeda_motor": 19,
+        "mobil_patroli_interceptor": 4,
+        "unit_interceptor_r2": 19,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const finlandia: CountryData = {
       "stadion_internasional": 20
   },
 
-  "un_vote": "Pro",
+  "un_vote": 156,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

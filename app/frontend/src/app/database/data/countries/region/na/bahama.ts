@@ -166,8 +166,8 @@ export const bahama: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 21,
-        "sepeda_motor": 4,
+        "mobil_patroli_interceptor": 21,
+        "unit_interceptor_r2": 4,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const bahama: CountryData = {
       "stadion_internasional": 28
   },
 
-  "un_vote": "Pro",
+  "un_vote": 170,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

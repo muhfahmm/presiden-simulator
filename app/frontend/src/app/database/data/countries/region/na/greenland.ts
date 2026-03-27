@@ -166,8 +166,8 @@ export const greenland: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 35,
-        "sepeda_motor": 3,
+        "mobil_patroli_interceptor": 35,
+        "unit_interceptor_r2": 3,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const greenland: CountryData = {
       "stadion_internasional": 17
   },
 
-  "un_vote": "Pro",
+  "un_vote": 43,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

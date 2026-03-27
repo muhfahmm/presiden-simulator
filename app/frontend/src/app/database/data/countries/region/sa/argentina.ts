@@ -166,8 +166,8 @@ export const argentina: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 9,
-        "sepeda_motor": 21,
+        "mobil_patroli_interceptor": 9,
+        "unit_interceptor_r2": 21,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const argentina: CountryData = {
       "stadion_internasional": 35
   },
 
-  "un_vote": "Pro",
+  "un_vote": 190,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

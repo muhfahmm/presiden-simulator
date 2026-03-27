@@ -166,8 +166,8 @@ export const korea_selatan: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 17,
-        "sepeda_motor": 28,
+        "mobil_patroli_interceptor": 17,
+        "unit_interceptor_r2": 28,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const korea_selatan: CountryData = {
       "stadion_internasional": 3
   },
 
-  "un_vote": "Pro",
+  "un_vote": 185,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

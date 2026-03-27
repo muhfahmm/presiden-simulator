@@ -166,8 +166,8 @@ export const rusia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 21,
-        "sepeda_motor": 35,
+        "mobil_patroli_interceptor": 21,
+        "unit_interceptor_r2": 35,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const rusia: CountryData = {
       "stadion_internasional": 17
   },
 
-  "un_vote": "Pro",
+  "un_vote": 150,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

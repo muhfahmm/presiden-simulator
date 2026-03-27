@@ -166,8 +166,8 @@ export const jamaika: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 40,
-        "sepeda_motor": 18,
+        "mobil_patroli_interceptor": 40,
+        "unit_interceptor_r2": 18,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const jamaika: CountryData = {
       "stadion_internasional": 34
   },
 
-  "un_vote": "Pro",
+  "un_vote": 57,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

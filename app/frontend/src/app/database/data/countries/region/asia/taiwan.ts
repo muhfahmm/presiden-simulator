@@ -166,8 +166,8 @@ export const taiwan: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 31,
-        "sepeda_motor": 29,
+        "mobil_patroli_interceptor": 31,
+        "unit_interceptor_r2": 29,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const taiwan: CountryData = {
       "stadion_internasional": 16
   },
 
-  "un_vote": "Pro",
+  "un_vote": 75,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

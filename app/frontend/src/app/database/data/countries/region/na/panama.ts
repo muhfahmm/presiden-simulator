@@ -166,8 +166,8 @@ export const panama: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 25,
-        "sepeda_motor": 37,
+        "mobil_patroli_interceptor": 25,
+        "unit_interceptor_r2": 37,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const panama: CountryData = {
       "stadion_internasional": 31
   },
 
-  "un_vote": "Pro",
+  "un_vote": 120,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

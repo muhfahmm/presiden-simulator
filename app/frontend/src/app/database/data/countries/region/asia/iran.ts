@@ -166,8 +166,8 @@ export const iran: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 5,
-        "sepeda_motor": 8,
+        "mobil_patroli_interceptor": 5,
+        "unit_interceptor_r2": 8,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const iran: CountryData = {
       "stadion_internasional": 36
   },
 
-  "un_vote": "Pro",
+  "un_vote": 191,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

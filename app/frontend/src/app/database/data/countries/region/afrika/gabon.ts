@@ -164,8 +164,8 @@ export const gabon: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 15,
-        "sepeda_motor": 33,
+        "mobil_patroli_interceptor": 15,
+        "unit_interceptor_r2": 33,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const gabon: CountryData = {
       "stadion_internasional": 32
   },
 
-  "un_vote": "Pro",
+  "un_vote": 73,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -164,8 +164,8 @@ export const somalia: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 29,
-        "sepeda_motor": 17,
+        "mobil_patroli_interceptor": 29,
+        "unit_interceptor_r2": 17,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const somalia: CountryData = {
       "stadion_internasional": 34
   },
 
-  "un_vote": "Pro",
+  "un_vote": 98,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

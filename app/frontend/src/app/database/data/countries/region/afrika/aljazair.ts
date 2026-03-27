@@ -164,8 +164,8 @@ export const aljazair: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 26,
-        "sepeda_motor": 33,
+        "mobil_patroli_interceptor": 26,
+        "unit_interceptor_r2": 33,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const aljazair: CountryData = {
       "stadion_internasional": 26
   },
 
-  "un_vote": "Pro",
+  "un_vote": 84,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

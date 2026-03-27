@@ -166,8 +166,8 @@ export const kirgizstan: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 12,
-        "sepeda_motor": 29,
+        "mobil_patroli_interceptor": 12,
+        "unit_interceptor_r2": 29,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const kirgizstan: CountryData = {
       "stadion_internasional": 35
   },
 
-  "un_vote": "Pro",
+  "un_vote": 19,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

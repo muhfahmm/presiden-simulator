@@ -166,8 +166,8 @@ export const bosnia_dan_hercegovina: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 9,
-        "sepeda_motor": 18,
+        "mobil_patroli_interceptor": 9,
+        "unit_interceptor_r2": 18,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const bosnia_dan_hercegovina: CountryData = {
       "stadion_internasional": 34
   },
 
-  "un_vote": "Pro",
+  "un_vote": 144,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

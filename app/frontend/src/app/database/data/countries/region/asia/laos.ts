@@ -166,8 +166,8 @@ export const laos: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 16,
-        "sepeda_motor": 2,
+        "mobil_patroli_interceptor": 16,
+        "unit_interceptor_r2": 2,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const laos: CountryData = {
       "stadion_internasional": 10
   },
 
-  "un_vote": "Pro",
+  "un_vote": 21,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

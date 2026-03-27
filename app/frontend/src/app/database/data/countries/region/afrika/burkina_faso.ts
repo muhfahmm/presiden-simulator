@@ -164,8 +164,8 @@ export const burkina_faso: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 23,
-        "sepeda_motor": 8,
+        "mobil_patroli_interceptor": 23,
+        "unit_interceptor_r2": 8,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const burkina_faso: CountryData = {
       "stadion_internasional": 40
   },
 
-  "un_vote": "Pro",
+  "un_vote": 46,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

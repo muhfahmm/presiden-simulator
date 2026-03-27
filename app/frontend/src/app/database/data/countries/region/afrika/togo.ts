@@ -164,8 +164,8 @@ export const togo: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 36,
-        "sepeda_motor": 16,
+        "mobil_patroli_interceptor": 36,
+        "unit_interceptor_r2": 16,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const togo: CountryData = {
       "stadion_internasional": 2
   },
 
-  "un_vote": "Pro",
+  "un_vote": 122,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

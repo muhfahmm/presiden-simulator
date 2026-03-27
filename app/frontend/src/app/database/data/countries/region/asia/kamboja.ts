@@ -166,8 +166,8 @@ export const kamboja: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 20,
-        "sepeda_motor": 30,
+        "mobil_patroli_interceptor": 20,
+        "unit_interceptor_r2": 30,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const kamboja: CountryData = {
       "stadion_internasional": 6
   },
 
-  "un_vote": "Pro",
+  "un_vote": 166,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

@@ -166,8 +166,8 @@ export const amerika_serikat: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 2,
-        "sepeda_motor": 19,
+        "mobil_patroli_interceptor": 2,
+        "unit_interceptor_r2": 19,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const amerika_serikat: CountryData = {
       "stadion_internasional": 35
   },
 
-  "un_vote": "Pro",
+  "un_vote": 203,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

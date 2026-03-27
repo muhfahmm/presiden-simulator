@@ -164,8 +164,8 @@ export const republik_zimbabwe: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 3,
-        "sepeda_motor": 35,
+        "mobil_patroli_interceptor": 3,
+        "unit_interceptor_r2": 35,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -229,7 +229,7 @@ export const republik_zimbabwe: CountryData = {
       "stadion_internasional": 28
   },
 
-  "un_vote": "Pro",
+  "un_vote": 36,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================

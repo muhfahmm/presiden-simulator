@@ -166,8 +166,8 @@ export const guam: CountryData = {
     "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 2,
-        "sepeda_motor": 7,
+        "mobil_patroli_interceptor": 2,
+        "unit_interceptor_r2": 7,
         "unit_k9": 23
   },
         "taktis_khusus": {
@@ -231,7 +231,7 @@ export const guam: CountryData = {
       "stadion_internasional": 4
   },
 
-  "un_vote": "Pro",
+  "un_vote": 151,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
