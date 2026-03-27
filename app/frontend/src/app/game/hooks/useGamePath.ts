@@ -8,7 +8,11 @@ export function useGamePath(path: string[]) {
   const subMenu = path[1];
 
   if (category === 'ekonomi') {
-    if (subMenu === 'perdagangan') initialMenu = "Menu:Perdagangan";
+    if (subMenu === 'perdagangan') {
+      const detail = path[2];
+      if (detail) initialMenu = `Menu:Perdagangan:${detail}`;
+      else initialMenu = "Menu:Perdagangan";
+    }
     else if (subMenu === 'pajak') initialMenu = "Menu:Pajak";
     else if (subMenu === 'hutang') initialMenu = "Menu:Hutang";
     else if (subMenu === 'pemasukkan-pengeluaran') initialMenu = "Menu:Budget";
@@ -106,7 +110,15 @@ export function useGamePath(path: string[]) {
       "Menu:Ideologi": "/game/ideologi"
     };
 
-    const targetPath = menuToPath[activeMenu] || "/game";
+    let targetPath = menuToPath[activeMenu];
+    
+    // Dynamic path handling for Perdagangan details
+    if (!targetPath && activeMenu.startsWith("Menu:Perdagangan:")) {
+      const detail = activeMenu.split(":")[2];
+      targetPath = `/game/ekonomi/perdagangan/${detail}`;
+    }
+
+    targetPath = targetPath || "/game";
     if (window.location.pathname !== targetPath) {
       window.history.pushState(null, '', targetPath);
     }

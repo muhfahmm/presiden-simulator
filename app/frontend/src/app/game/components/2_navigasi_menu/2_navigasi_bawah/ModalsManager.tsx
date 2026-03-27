@@ -47,7 +47,9 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
   return (
     <>
       <PerdaganganModal
-        isOpen={activeMenu === "Menu:Perdagangan"}
+        isOpen={activeMenu.startsWith("Menu:Perdagangan")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
         onClose={() => setActiveMenu("Ekonomi")}
       />
       <PajakModal
