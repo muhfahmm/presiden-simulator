@@ -184,16 +184,21 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
             ))}
           </div>
 
-          <div className="relative w-full lg:w-[500px] group flex flex-col gap-2">
-            <div className="relative">
-              <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-700 group-focus-within:text-emerald-500 transition-colors z-10" />
+          <div className="flex flex-col gap-2 w-full lg:w-[520px]">
+            <div className="relative group">
+              <div className="absolute inset-y-0 left-0 pl-8 flex items-center pointer-events-none z-10">
+                <div className="p-2.5 bg-emerald-500/10 rounded-full border border-emerald-500/20 group-focus-within:bg-emerald-500/20 group-focus-within:border-emerald-500/40 transition-all duration-500">
+                  <Search className="h-5 w-5 text-emerald-400 group-focus-within:text-emerald-300 transition-all duration-500" />
+                </div>
+              </div>
               <input
                 type="text"
                 id="country-search-input"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Cari Identitas Kedaulatan..."
-                className="w-full bg-black/60 border border-zinc-800/80 rounded-[28px] py-5 pl-14 pr-32 text-sm font-black text-white placeholder:text-zinc-800 outline-none focus:border-emerald-500/40 focus:ring-[12px] focus:ring-emerald-500/5 transition-all uppercase tracking-widest shadow-[0_0_50px_rgba(0,0,0,0.5)] backdrop-blur-xl hover:bg-black/80"
+                placeholder="Cari identitas kedaulatan..."
+                style={{ paddingLeft: '100px' }}
+                className="w-full bg-white/[0.03] border border-white/[0.08] rounded-full h-16 pr-28 text-sm font-semibold text-white placeholder:text-zinc-500 outline-none focus:border-emerald-500/40 focus:bg-white/[0.05] focus:shadow-[0_0_0_4px_rgba(16,185,129,0.08)] transition-all duration-300 tracking-wide hover:border-white/15 hover:bg-white/[0.04]"
               />
               <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
                 {searchQuery && (

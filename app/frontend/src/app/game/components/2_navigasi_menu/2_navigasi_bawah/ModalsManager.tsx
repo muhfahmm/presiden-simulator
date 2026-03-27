@@ -18,7 +18,6 @@ import PertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_ba
 import IntelijenModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/2_intelijen/IntelijenModal";
 import ArmadaMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/3_armada_militer/ArmadaMiliterModal";
 import ArmadaPolisiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/4_armada_polisi/ArmadaPolisiModal";
-import GeopolitikModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/GeopolitikModal";
 import PBBModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB";
 import OrgIntlModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/OrgIntlModal";
 import TingkatHubunganModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/3_tingkat_hubungan/TingkatHubunganModal";
@@ -109,11 +108,6 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <IntelijenModal
         isOpen={activeMenu === "Menu:Intelijen"}
         onClose={() => setActiveMenu("Pertahanan")}
-      />
-      <GeopolitikModal
-        isOpen={activeMenu === "Geopolitik & Luar Negeri"}
-        onClose={() => setActiveMenu("Geopolitik")}
-        data={countryData}
       />
       <PBBModal
         isOpen={activeMenu.startsWith("Menu:PBB")}
