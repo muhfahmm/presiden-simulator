@@ -2,11 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "@/app/database/data/countries/region/index";
-import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "@/app/database/data/trades/tradeRoutes";
+import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "../rute/tradeRoutes";
 
-import { regionalRoutes } from "@/app/database/data/trades/regional/AsianRoutes";
-import { internationalHubs } from "@/app/database/data/trades/international/hubs";
-import { internationalRoutes } from "@/app/database/data/trades/international/routes";
+import { regionalRoutes } from "../rute/regional/AsianRoutes";
+import { internationalHubs } from "../rute/international/hubs";
+import { internationalRoutes } from "../rute/international/routes";
 import { allRelations } from "@/app/database/data/countries/relations/index";
 
 interface TradeMapCanvasProps {
