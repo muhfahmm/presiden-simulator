@@ -1,0 +1,230 @@
+DOKUMENTASI ANALISIS STRATEGIS: LOGIKA, INTERKONEKSI & ANALISIS DAMPAK UU
+
+Dokumen ini menyajikan analisis mendalam mengenai 40 Undang-Undang, mencakup Interaksi Teknis, Kelebihan (Plus), dan Kekurangan (Minus) untuk keseimbangan gameplay.
+
+================================================================================
+1. KATEGORI: INDUSTRI (Indutrial Sector)
+================================================================================
+A. Otomasi Industri
+   - Interaksi Selesai: [3_pembangunan] (Output ^), [7_populasi] (Unemployment ^)
+   - Kelebihan (+): Efisiensi produksi maksimal, biaya harian operasional pabrik turun drastis, GDP per kapita naik.
+   - Kekurangan (-): Angka pengangguran melonjak, memicu demonstasi buruh, menurunkan stabilitas sosial jangka pendek.
+
+B. Standarisasi Produk Ekspor
+   - Interaksi Selesai: [2_ekonomi] (Sell Price ^), [3_pembangunan] (QC Cost ^)
+   - Kelebihan (+): Kepercayaan pasar global naik, devisa negara dari ekspor meningkat secara signifikan.
+   - Kekurangan (-): Modal awal industri (Factory) naik karena standar bahan baku yang lebih mahal, menyulitkan industri baru.
+
+C. Hilirisasi Industri
+   - Interaksi Selesai: [3_pembangunan/SDA] (Raw Export Disable)
+   - Kelebihan (+): Nilai ekonomi SDA naik berkali-kali lipat, kemandirian ekonomi nasional tercapai.
+   - Kekurangan (-): Membutuhkan investasi infrastruktur (Smelter/Pabrik) yang sangat mahal dan subsidi energi yang besar.
+
+D. Sertifikasi TKDN Ketat
+   - Interaksi Selesai: [2_ekonomi] (Import Tax ^), [3_pembangunan] (Local Vendor Shop)
+   - Kelebihan (+): Ekosistem industri dalam negeri tumbuh mandiri, menyerap banyak tenaga kerja teknis lokal.
+   - Kekurangan (-): Harga barang elektronik/teknologi di pasar domestik naik, menghambat akses teknologi murah bagi rakyat.
+
+E. Zona Ekonomi Khusus
+   - Interaksi Selesai: [5_geopolitik] (Map Investment Area), [2_ekonomi] (Tax 0%)
+   - Kelebihan (+): Penarikan investasi asing (FDI) secara instan dan masif ke wilayah tertentu.
+   - Kekurangan (-): Ketimpangan pembangunan antar wilayah (Center vs Periphery), risiko kebocoran pajak pendapatan.
+
+================================================================================
+2. KATEGORI: KEAMANAN (National Security)
+================================================================================
+A. Izin Kepemilikan Senjata
+   - Interaksi Selesai: [4_pertahanan] (Defense ^), [1_kepuasan] (Safety v)
+   - Kelebihan (+): Rakyat memiliki kemampuan pertahanan mandiri, bonus pertahanan sipil saat invasi asing.
+   - Kekurangan (-): Tingkat kejahatan bersenjata di dalam negeri naik, risiko perang saudara/kerusuhan sipil meningkat.
+
+B. Sensor Informasi Global
+   - Interaksi Selesai: [1_kepuasan] (Approval Freeze), [3_pembangunan] (Research v)
+   - Kelebihan (+): Stabilitas politik terjaga, skandal pemerintah tidak menurunkan Approval Rating secara drastis.
+   - Kekurangan (-): Inovasi teknologi nasional terhambat karena batasan akses jurnal/informasi luar negeri.
+
+C. Unit Polisi Siber G20
+   - Interaksi Selesai: [2_ekonomi] (Anti-Hack), [1_kepuasan] (Tech Index ^)
+   - Kelebihan (+): Melindungi infrastruktur perbankan dan energi dari serangan hacker internasional secara total.
+   - Kekurangan (-): Biaya operasional tahunan sangat tinggi, memerlukan sumber daya SDM jenius yang terbatas.
+
+D. Identitas Tunggal Digital
+   - Interaksi Selesai: [2_ekonomi/3_kas_negara] (Efficiency ^), [1_kepuasan] (Corruption v)
+   - Kelebihan (+): Efisiensi administrasi publik maksimal, sistem pajak menjadi sangat akurat dan transparan.
+   - Kekurangan (-): Risiko pelanggaran privasi massal, memicu ketakutan warga akan pengawasan total oleh negara.
+
+E. Kedaulatan Ruang Udara
+   - Interaksi Selesai: [4_pertahanan] (Radar Mastery), [6_game_engine] (Intel Leak immune)
+   - Kelebihan (+): Menutup celah bagi pesawat intelijen asing, meningkatkan harga diri dan wibawa militer nasional.
+   - Kekurangan (-): Biaya pemeliharaan armada interceptor dan radar perbatasan meningkat signifikan.
+
+================================================================================
+3. KATEGORI: EKONOMI (Fiscal & Resources)
+================================================================================
+A. Eksploitasi Sumber Daya Nasional
+   - Interaksi Selesai: [3_pembangunan] (Output ^), [7_populasi] (Health v)
+   - Kelebihan (+): Pendapatan harian negara (Cash Flow) melonjak tajam dalam waktu singkat.
+   - Kekurangan (-): Kerusakan lingkungan jangka panjang, menurunkan skor kesehatan (Health Score) masyarakat.
+
+B. Pajak Kekayaan Ekstrim
+   - Interaksi Selesai: [2_ekonomi] (Tax Module), [1_kepuasan] (Equality ^)
+   - Kelebihan (+): Sumber dana segar untuk proyek infrastruktur, menurunkan jurang kaya-miskin (Gini Ratio).
+   - Kekurangan (-): Investasi dari konglomerat bisa lari ke luar negeri (Capital Flight), guncangan di bursa saham.
+
+C. Nasionalisasi Strategis
+   - Interaksi Selesai: [2_ekonomi] (Revenue 100% to State)
+   - Kelebihan (+): Kontrol penuh atas seluruh sektor vital (Minyak/Listrik), harga bisa diatur semurah mungkin.
+   - Kekurangan (-): Hubungan diplomatik dengan negara investor hancur, ancaman sanksi ekonomi internasional.
+
+D. Subsidi UMKM Digital
+   - Interaksi Selesai: [2_ekonomi] (SME Hub), [7_populasi] (Employment ^)
+   - Kelebihan (+): Menciptakan jutaan lapangan kerja mandiri, ekonomi tahan banting terhadap krisis global.
+   - Kekurangan (-): Memberatkan anggaran negara karena subsidi bunga bank dan biaya pelatihan digital yang berkelanjutan.
+
+E. Pajak Transaksi Kripto
+   - Interaksi Selesai: [2_ekonomi] (New Revenue Stream)
+   - Kelebihan (+): Mendapatkan pajak dari aliran dana baru di dunia digital, mengatur perputaran uang gelap.
+   - Kekurangan (-): Menghambat startup Fintech lokal, membuat investor beralih ke bursa luar negeri.
+
+================================================================================
+4. KATEGORI: MILITER & PERTAHANAN (Military Strength)
+================================================================================
+A. Doktrin Pertahanan Mandiri
+   - Interaksi Selesai: [4_pertahanan] (Maint Cost v), [3_pembangunan] (Riset v)
+   - Kelebihan (+): Biaya perawatan alutsista lokal sangat murah, kedaulatan militer terjamin (tidak disetir asing).
+   - Kekurangan (-): Tertinggal dalam teknologi persenjataan mutakhir (Top-tier Tech) jika riset sendiri terlalu lambat.
+
+B. Wajib Militer Nasional
+   - Interaksi Selesai: [7_populasi] (Production v), [4_pertahanan] (Recruit Speed ^)
+   - Kelebihan (+): Jumlah pasukan infanteri selalu melimpah untuk pertahanan darat yang tangguh.
+   - Kekurangan (-): Berkurangnya tenaga kerja di sektor industri dan agrikultur, menurunkan produktivitas ekonomi.
+
+C. Pertahanan Rudal Jauh
+   - Interaksi Selesai: [4_pertahanan] (Anti-Invade Buffer)
+   - Kelebihan (+): Mampu melumpuhkan serangan udara dan laut musuh sebelum mencapai garis pantai nasional.
+   - Kekurangan (-): Harga peluru kendali per unit sangat mahal, memancing ketidaknyamanan negara tetangga (Arm Race).
+
+D. Modernisasi Armada Laut
+   - Interaksi Selesai: [4_pertahanan] (Sea Power ^), [3_pembangunan/SDA] (Sea Resource Secure)
+   - Kelebihan (+): Mengamankan ribuan triliun SDA laut dari pencurian asing (Illegal Fishing).
+   - Kekurangan (-): Biaya galangan kapal dan operasional bahan bakar kapal perang sangat membebani kas negara.
+
+E. Program Satelit Militer
+   - Interaksi Selesai: [4_pertahanan] (Unit Accuracy ^), [6_game_engine] (Global Map Reveal)
+   - Kelebihan (+): Seluruh pergerakan musuh di peta terlihat jelas, akurasi serangan militer naik drastis.
+   - Kekurangan (-): Memerlukan teknologi ruang angkasa yang berisiko gagal saat peluncuran, biaya sangat mahal.
+
+================================================================================
+5. KATEGORI: SOSIAL & KEPENDUDUKAN (Social Welfare)
+================================================================================
+A. Kontrol Media & Informasi
+   - Interaksi Selesai: [1_kepuasan] (Stability Hub), [5_geopolitik] (World Opinion v)
+   - Kelebihan (+): Mencegah radikalisme dan hoax yang dapat memecah belah persatuan nasional.
+   - Kekurangan (-): Indeks kreativitas dan kebebasan berekspresi rakyat menurun, kecaman dari organisasi HAM dunia.
+
+B. Jaminan Sosial Semesta
+   - Interaksi Selesai: [1_kepuasan] (Happiness ^), [2_ekonomi] (anggaran negara Burn)
+   - Kelebihan (+): Rakyat merasa aman dan loyal kepada pemerintah, tidak ada demo besar-besaran karena ekonomi.
+   - Kekurangan (-): Kas negara (Kas Negara) terancam defisit besar jika tidak diimbangi pendapatan pajak yang kuat.
+
+C. Infrastruktur Pendidikan Digital
+   - Interaksi Selesai: [3_pembangunan] (Research Speed ^), [7_populasi] (Literacy ^)
+   - Kelebihan (+): Mempercepat kemajuan teknologi bangsa di masa depan, rakyat menjadi lebih kompetitif.
+   - Kekurangan (-): Hasil baru terlihat dalam jangka waktu panjang, tidak memberikan keuntungan instan.
+
+D. Layanan Kesehatan Mental Nasional
+   - Interaksi Selesai: [1_kepuasan] (Health ^), [7_populasi] (Productivity ^)
+   - Kelebihan (+): Menurunkan angka kriminalitas ringan, meningkatkan efisiensi kerja rakyat di kantor/pabrik.
+   - Kekurangan (-): Memerlukan jaringan puskesmas dan psikolog yang luas di seluruh pelosok negeri.
+
+E. Program Keluarga Berencana
+   - Interaksi Selesai: [7_populasi] (Growth Rate v), [3_pembangunan/Pangan] (Demand v)
+   - Kelebihan (+): Mencegah ledakan penduduk dan kelangkaan pangan di masa depan.
+   - Kekurangan (-): Potensi krisis tenaga kerja muda (Resesi Demografi) di masa tua game (late game).
+
+================================================================================
+6. KATEGORI: ENERGI & LINGKUNGAN (Energy Strategy)
+================================================================================
+A. Monopoli Energi Negara
+   - Interaksi Selesai: [2_ekonomi] (Electricity Fixed Price ^), [1_kepuasan] (Happiness ^)
+   - Kelebihan (+): Menjamin harga listrik murah bagi seluruh rakyat sebagai kebutuhan pokok.
+   - Kekurangan (-): Sektor energi swasta mati, beban pemeliharaan seluruh pembangkit ditanggung total oleh anggaran negara.
+
+B. UU Transisi Hijau Paksa
+   - Interaksi Selesai: [3_pembangunan] (Coal/Oil Disable), [1_kepuasan] (Enviro Score ^)
+   - Kelebihan (+): Citra negara di tingkat global (Eco-Friendly) naik, kualitas udara bersih.
+   - Kekurangan (-): Hilangnya pendapatan triliunan rupiah dari ekspor batubara dan minyak mentah nasional.
+
+C. Eksploitasi Laut Dalam
+   - Interaksi Selesai: [3_pembangunan] (Oil Output ^), [2_ekonomi] (Cash ^)
+   - Kelebihan (+): Cadangan energi nasional melimpah, devisa dari ekspor minyak mentah melonjak.
+   - Kekurangan (-): Risiko kebocoran minyak (Oil Spill) di laut, mencemari ekosistem dan mematikan pariwisata bahari.
+
+D. Prioritas Listrik Industri
+   - Interaksi Selesai: [3_pembangunan] (Factory Production Lock 100%)
+   - Kelebihan (+): Ekonomi tetap berputar meski terjadi krisis energi parah, pabrik tidak pernah mati listrik.
+   - Kekurangan (-): Kepercayaan rakyat pada pemerintah hancur karena listrik di rumah-rumah sering padam.
+
+E. Biofuel Mandatori
+   - Interaksi Selesai: [2_ekonomi] (Import Oil v), [3_pembangunan/Agri] (Market Link)
+   - Kelebihan (+): Mengurangi ketergantungan impor BBM luar negeri, mensejahterakan petani sawit/tebu lokal.
+   - Kekurangan (-): Harga minyak goreng dan bahan pangan berbasis gula bisa naik karena bahan baku dialihkan ke energi.
+
+================================================================================
+7. KATEGORI: HUKUM & KETERTIBAN (Law Enforcement)
+================================================================================
+A. Restorasi Hukuman Mati
+   - Interaksi Selesai: [1_kepuasan] (Crime Rate vvv), [5_geopolitik] (World Opinion v)
+   - Kelebihan (+): Menimbulkan efek jera luar biasa bagi bandar narkoba dan pelaku tindak pidana terorisme.
+   - Kekurangan (-): Hubungan dagang dengan negara-negara maju (EU) bisa terancam sanksi embargo hak asasi.
+
+B. Pengawasan Biometrik Massal
+   - Interaksi Selesai: [1_kepuasan] (Crime v), [4_pertahanan/Intel] (Spy Find ^)
+   - Kelebihan (+): Mempercepat penangkapan buronan dan penyusup asing di wilayah kedaulatan nasional.
+   - Kekurangan (-): Menyulut kemarahan aktivis sipil dan gelombang protes terkait privasi dan demokrasi.
+
+C. Darurat Sipil
+   - Interaksi Selesai: [1_kepuasan] (Stability Fix), [5_geopolitik] (Investment v)
+   - Kelebihan (+): Memberikan wewenang penuh kepada presiden untuk menstabilkan negara dari kerusuhan besar secara instan.
+   - Kekurangan (-): Demokrasi mati, ekonomi melambat, pariwisata berhenti total karena rasa tidak aman.
+
+D. Audit Transparansi Pejabat
+   - Interaksi Selesai: [1_kepuasan] (Corruption v), [2_ekonomi] (Trust Score ^)
+   - Kelebihan (+): Menarik minat investor asing karena iklim usaha yang bersih dari pungli dan korupsi.
+   - Kekurangan (-): Memicu gejolak di internal birokrasi, risiko upaya pelengseran presiden oleh oknum politik.
+
+E. Kedaulatan Yudisial
+   - Interaksi Selesai: [5_geopolitik] (Rule of Law ^), [3_pembangunan] (Planning Slower)
+   - Kelebihan (+): Menciptakan keadilan hukum yang murni tanpa intervensi kekuasaan.
+   - Kekurangan (-): Pemerintah tidak bisa bergerak cepat dalam pembangunan karena sering dihambat oleh gugatan hukum.
+
+================================================================================
+8. KATEGORI: HUBUNGAN INTERNASIONAL (Diplomacy)
+================================================================================
+A. Netralitas Absolut
+   - Interaksi Selesai: [4_pertahanan] (Slight Maint v), [5_geopolitik] (Non-Aligned Status)
+   - Kelebihan (+): Terbebas dari tekanan blok militer besar (NATO/Rusia/Cina), fokus total pada kesejahteraan rakyat.
+   - Kekurangan (-): Tidak memiliki pelindung (Alliance) jika terjadi agresi militer mendadak dari negara tetangga.
+
+B. Zona Perdagangan Bebas
+   - Interaksi Selesai: [2_ekonomi] (Import Tax 0%), [3_pembangunan] (Local Profit v)
+   - Kelebihan (+): Rakyat bisa menikmati barang kualitas dunia dengan harga sangat murah, inflasi rendah.
+   - Kekurangan (-): Mematikan industri lokal (UMKM) karena kalah bersaing harga dengan produk pabrikan global.
+
+C. Pakta Pertahanan Regional
+   - Interaksi Selesai: [5_geopolitik] (Aliansi Aktif), [4_pertahanan] (Bonus War Power)
+   - Kelebihan (+): Memperkuat pertahanan nasional secara kolektif dengan bantuan militer dari negara sekutu.
+   - Kekurangan (-): Kehilangan kedaulatan luar negeri secara penuh, wajib ikut perang jika sekutu diserang.
+
+D. Pertukaran Budaya Global
+   - Interaksi Selesai: [5_geopolitik] (Soft Power ^), [2_ekonomi/Wisata] (Revenue ^)
+   - Kelebihan (+): Meningkatkan citra positif bangsa sebagai bangsa yang ramah dan kaya akan budaya di mata dunia.
+   - Kekurangan (-): Memerlukan biaya promosi luar negeri yang sangat besar setiap tahunnya.
+
+E. Perjanjian Ekstradisi
+   - Interaksi Selesai: [1_kepuasan] (Corruption v), [5_geopolitik] (Border Secure)
+   - Kelebihan (+): Memastikan tidak ada penjahat nasional yang bisa bebas sembunyi di luar negeri setelah mencuri uang negara.
+   - Kekurangan (-): Membutuhkan proses diplomasi yang rumit dan timbal balik politik dengan negara mitra.
+
+--------------------------------------------------------------------------------
+DOKUMEN INI SELESAI. SIAP DIGUNAKAN UNTUK PENGEMBANGAN FITUR LOGIKA LANJUTAN.

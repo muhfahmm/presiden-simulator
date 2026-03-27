@@ -57,21 +57,22 @@ export const malawi: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 22.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 22,
     "sapi_perah": 27,
     "sapi_potong": 18,
     "domba_kambing": 29
   },
   "sektor_agrikultur": {
     "padi": 19,
-    "gandum_jagung": 13.0,
-    "sayur_umbi": 24.0,
+    "gandum_jagung": 13,
+    "sayur_umbi": 24,
     "kedelai": 37,
     "kelapa_sawit": 38,
-    "kopi_teh_kakao": 12.7
+    "kopi_teh_kakao": 13
   },
   "sektor_perikanan": {
-    "udang_kerang": 9.5,
+    "udang_kerang": 10,
     "ikan": 39
   },
   "sektor_olahan_pangan": {

@@ -60,21 +60,22 @@ export const yordania: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 16.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 16,
     "sapi_perah": 8,
     "sapi_potong": 14,
     "domba_kambing": 26
   },
   "sektor_agrikultur": {
     "padi": 20,
-    "gandum_jagung": 27.0,
-    "sayur_umbi": 31.5,
+    "gandum_jagung": 27,
+    "sayur_umbi": 32,
     "kedelai": 20,
     "kelapa_sawit": 19,
-    "kopi_teh_kakao": 21.0
+    "kopi_teh_kakao": 21
   },
   "sektor_perikanan": {
-    "udang_kerang": 28.0,
+    "udang_kerang": 28,
     "ikan": 37
   },
   "sektor_olahan_pangan": {

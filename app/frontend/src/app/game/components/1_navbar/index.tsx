@@ -1,14 +1,13 @@
-"use client"
-
-import React from "react";
-import { Heart, Users, Coins, Shield, LogOut } from "lucide-react";
+import { useState } from "react";
+import { Heart, Users, Coins, Shield, LogOut, RotateCcw, TrendingUp, TrendingDown, Clock, Activity, Zap, PieChart, BarChart3, Landmark, Percent, Receipt } from "lucide-react";
 import { CountryData } from "@/app/database/data/types/index";
 import { HappinessBreakdown } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
-
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import GameTimeControls from "@/app/game/components/1_navbar/5_navigasi_waktu/GameTimeControls";
+import BudgetDetailModal from "@/app/game/components/1_navbar/3_kas_negara/BudgetDetailModal";
 
 // --- Sub-component: StatusBadge ---
 interface StatusBadgeProps {
@@ -16,13 +15,18 @@ interface StatusBadgeProps {
   label: string;
   value: string | number;
   delta?: number;
+  deltaColor?: string;
+  onClick?: () => void;
 }
 
-function StatusBadge({ icon, label, value, delta }: StatusBadgeProps) {
+function StatusBadge({ icon, label, value, delta, deltaColor, onClick }: StatusBadgeProps) {
   const displayValue = typeof value === 'number' ? value.toLocaleString('id-ID') : value;
-  
+
   return (
-    <div className="flex items-center gap-2 bg-zinc-900/80 px-3 py-1.5 rounded-lg border border-zinc-800 relative group overflow-hidden">
+    <div
+      onClick={onClick}
+      className={`flex items-center gap-2 bg-zinc-900/80 px-3 py-1.5 rounded-lg border border-zinc-800 relative group overflow-hidden transition-all ${onClick ? 'cursor-pointer hover:border-zinc-600 hover:bg-zinc-800' : ''}`}
+    >
       <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       {icon}
       <div className="text-left leading-tight relative z-10">
@@ -32,7 +36,7 @@ function StatusBadge({ icon, label, value, delta }: StatusBadgeProps) {
             {displayValue}
           </p>
           {delta !== undefined && delta !== 0 && (
-            <span className={`text-[9px] font-black px-1 rounded-sm ${delta > 0 ? 'text-emerald-400 bg-emerald-500/10' : 'text-red-400 bg-red-500/10'}`}>
+            <span className={`text-[9px] font-black px-1 rounded-sm ${deltaColor ? deltaColor : (delta > 0 ? 'text-emerald-400 bg-emerald-500/10' : 'text-red-400 bg-red-500/10')}`}>
               {delta > 0 ? '+' : ''}{Math.round(delta).toLocaleString('id-ID')}
             </span>
           )}
@@ -51,6 +55,7 @@ interface GameNavbarProps {
   stability: number;
   population: number;
   populationDelta: number;
+  setActiveMenu: (menu: string) => void;
   onLogout: () => void;
 }
 
@@ -62,53 +67,80 @@ export default function GameNavbar({
   stability,
   population,
   populationDelta,
+  setActiveMenu,
   onLogout
 }: GameNavbarProps) {
+
   return (
-    <header className="relative z-[300] bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/80 px-8 py-4 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-      <div className="flex items-center gap-4">
-        {countryData && (
-          <div className="flex items-center gap-2 bg-zinc-800/40 px-3 py-1.5 rounded-xl border border-zinc-700/50 shadow-sm backdrop-blur-md">
-            <span className="text-base">{countryData.flag}</span>
-            <span className="text-xs font-bold text-zinc-200 tracking-wide uppercase">
-              {countryData.name_id}
-            </span>
-          </div>
-        )}
-      </div>
-      <div className="flex items-center gap-6">
-        <StatusBadge 
-          icon={<Heart className="h-4 w-4 text-rose-500" />} 
-          label="Kepuasan" 
-          value={`${happiness.global.toFixed(1)}%`} 
-        />
-        <StatusBadge 
-          icon={<Users className="h-4 w-4 text-blue-500" />} 
-          label="Populasi" 
-          value={population} 
-          delta={populationDelta}
-        />
-        <StatusBadge 
-          icon={<Coins className="h-4 w-4 text-yellow-500" />} 
-          label="Kas Negara" 
-          value={`${Math.round(budget).toLocaleString('id-ID')}`} 
-          delta={budgetDelta}
-        />
-        <StatusBadge 
-          icon={<Shield className="h-4 w-4 text-green-500" />} 
-          label="Stabilitas" 
-          value={`${stability}%`} 
-        />
-        <GameTimeControls />
-        
-        <button 
-          onClick={onLogout}
-          className="ml-4 p-2 rounded-lg bg-zinc-800/50 hover:bg-red-500/20 text-zinc-400 hover:text-red-400 transition-all border border-zinc-700/50 group"
-          title="Akhiri Sesi"
-        >
-          <LogOut className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
-        </button>
-      </div>
-    </header>
+    <>
+      <header className="relative z-[500] bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/80 px-8 py-4 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+        <div className="flex items-center gap-4">
+          {countryData && (
+            <div className="flex items-center gap-2 bg-zinc-800/40 px-3 py-1.5 rounded-xl border border-zinc-700/50 shadow-sm backdrop-blur-md">
+              <span className="text-base">{countryData.flag}</span>
+              <span className="text-xs font-bold text-zinc-200 tracking-wide uppercase">
+                {countryData.name_id}
+              </span>
+            </div>
+          )}
+        </div>
+        <div className="flex items-center gap-6">
+          <StatusBadge
+            icon={<Heart className="h-4 w-4 text-rose-500" />}
+            label="Kepuasan"
+            value={`${happiness.global.toFixed(1)}%`}
+          />
+          <StatusBadge
+            icon={<Users className="h-4 w-4 text-blue-500" />}
+            label="Populasi"
+            value={population}
+            delta={populationDelta}
+          />
+          <StatusBadge
+            icon={<Coins className="h-4 w-4 text-yellow-500" />}
+            label="Kas Negara"
+            value={`${Math.round(budget).toLocaleString('id-ID')}`}
+          />
+          <StatusBadge
+            icon={<TrendingUp className="h-4 w-4 text-emerald-500" />}
+            label="Pendapatan/Hari"
+            value={budgetDelta > 0 ? `+${Math.round(budgetDelta).toLocaleString('id-ID')}` : Math.round(budgetDelta).toLocaleString('id-ID')}
+            deltaColor="text-emerald-400 bg-emerald-500/10"
+          />
+          <StatusBadge
+            icon={<Shield className="h-4 w-4 text-green-500" />}
+            label="Stabilitas"
+            value={`${stability}%`}
+          />
+          <GameTimeControls />
+
+          <button
+            onClick={() => {
+              if (confirm("Apakah Anda yakin ingin RESET TOTAL? Seluruh progres (Uang, Populasi, Bangunan, Kepuasan) akan dihapus dan mengulang dari 1 Januari 2026.")) {
+                // Hapus seluruh data EM4 di localStorage
+                Object.keys(localStorage).forEach(key => {
+                  if (key.startsWith("em4_")) {
+                    localStorage.removeItem(key);
+                  }
+                });
+                window.location.reload();
+              }
+            }}
+            className="ml-4 p-2 rounded-lg bg-zinc-800/50 hover:bg-cyan-500/20 text-zinc-400 hover:text-cyan-400 transition-all border border-zinc-700/50 group"
+            title="Reset Total Game"
+          >
+            <RotateCcw className="h-4 w-4 transition-transform group-hover:rotate-180 duration-500" />
+          </button>
+
+          <button
+            onClick={onLogout}
+            className="ml-2 p-2 rounded-lg bg-zinc-800/50 hover:bg-red-500/20 text-zinc-400 hover:text-red-400 transition-all border border-zinc-700/50 group"
+            title="Akhiri Sesi"
+          >
+            <LogOut className="h-4 w-4 transition-transform group-hover:-translate-x-0.5" />
+          </button>
+        </div>
+      </header>
+    </>
   );
 }

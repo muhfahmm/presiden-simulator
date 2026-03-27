@@ -60,21 +60,22 @@ export const gibraltar: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 7.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 7,
     "sapi_perah": 31,
     "sapi_potong": 30,
     "domba_kambing": 17
   },
   "sektor_agrikultur": {
     "padi": 15,
-    "gandum_jagung": 3.0,
-    "sayur_umbi": 18.5,
+    "gandum_jagung": 3,
+    "sayur_umbi": 18,
     "kedelai": 6,
     "kelapa_sawit": 9,
-    "kopi_teh_kakao": 25.7
+    "kopi_teh_kakao": 26
   },
   "sektor_perikanan": {
-    "udang_kerang": 32.0,
+    "udang_kerang": 32,
     "ikan": 27
   },
   "sektor_olahan_pangan": {

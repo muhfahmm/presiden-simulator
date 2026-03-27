@@ -57,21 +57,22 @@ export const sierra_leone: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 24.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 24,
     "sapi_perah": 4,
     "sapi_potong": 30,
     "domba_kambing": 33
   },
   "sektor_agrikultur": {
     "padi": 20,
-    "gandum_jagung": 16.0,
-    "sayur_umbi": 30.0,
+    "gandum_jagung": 16,
+    "sayur_umbi": 30,
     "kedelai": 11,
     "kelapa_sawit": 15,
-    "kopi_teh_kakao": 25.7
+    "kopi_teh_kakao": 26
   },
   "sektor_perikanan": {
-    "udang_kerang": 10.5,
+    "udang_kerang": 10,
     "ikan": 28
   },
   "sektor_olahan_pangan": {

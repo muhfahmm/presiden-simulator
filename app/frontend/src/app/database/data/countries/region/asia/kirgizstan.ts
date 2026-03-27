@@ -60,21 +60,22 @@ export const kirgizstan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 25.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 25,
     "sapi_perah": 17,
     "sapi_potong": 31,
     "domba_kambing": 39
   },
   "sektor_agrikultur": {
     "padi": 37,
-    "gandum_jagung": 8.5,
-    "sayur_umbi": 7.0,
+    "gandum_jagung": 8,
+    "sayur_umbi": 7,
     "kedelai": 36,
     "kelapa_sawit": 2,
-    "kopi_teh_kakao": 28.3
+    "kopi_teh_kakao": 28
   },
   "sektor_perikanan": {
-    "udang_kerang": 26.5,
+    "udang_kerang": 26,
     "ikan": 19
   },
   "sektor_olahan_pangan": {

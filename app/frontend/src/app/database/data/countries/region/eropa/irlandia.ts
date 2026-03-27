@@ -60,21 +60,22 @@ export const irlandia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 24.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 24,
     "sapi_perah": 2,
     "sapi_potong": 22,
     "domba_kambing": 21
   },
   "sektor_agrikultur": {
     "padi": 37,
-    "gandum_jagung": 19.5,
-    "sayur_umbi": 22.5,
+    "gandum_jagung": 20,
+    "sayur_umbi": 22,
     "kedelai": 16,
     "kelapa_sawit": 4,
-    "kopi_teh_kakao": 10.0
+    "kopi_teh_kakao": 10
   },
   "sektor_perikanan": {
-    "udang_kerang": 16.5,
+    "udang_kerang": 16,
     "ikan": 31
   },
   "sektor_olahan_pangan": {

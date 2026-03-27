@@ -60,21 +60,22 @@ export const filipina: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 9.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 9,
     "sapi_perah": 10,
     "sapi_potong": 18,
     "domba_kambing": 34
   },
   "sektor_agrikultur": {
     "padi": 14,
-    "gandum_jagung": 16.0,
-    "sayur_umbi": 34.5,
+    "gandum_jagung": 16,
+    "sayur_umbi": 34,
     "kedelai": 6,
     "kelapa_sawit": 9,
-    "kopi_teh_kakao": 16.3
+    "kopi_teh_kakao": 16
   },
   "sektor_perikanan": {
-    "udang_kerang": 36.5,
+    "udang_kerang": 36,
     "ikan": 2
   },
   "sektor_olahan_pangan": {

@@ -6,7 +6,8 @@ export const mineralKritisRate = {
     production: 5,
     unit: "KG",
     maintenanceCost: 50,
-    buildTime: 30
+    buildTime: 30,
+    lowongan_kerja: 1000
   },
   uranium_mine: {
     key: "uranium_mine",
@@ -15,7 +16,8 @@ export const mineralKritisRate = {
     production: 2,
     unit: "KG",
     maintenanceCost: 100,
-    buildTime: 90
+    buildTime: 90,
+    lowongan_kerja: 500
   },
   coal_mine: {
     key: "coal_mine",
@@ -24,7 +26,8 @@ export const mineralKritisRate = {
     production: 100,
     unit: "TON",
     maintenanceCost: 30,
-    buildTime: 45
+    buildTime: 45,
+    lowongan_kerja: 2000
   },
   oil_well: {
     key: "oil_well",
@@ -33,7 +36,8 @@ export const mineralKritisRate = {
     production: 200,
     unit: "BARREL",
     maintenanceCost: 60,
-    buildTime: 60
+    buildTime: 60,
+    lowongan_kerja: 300
   },
   gas_well: {
     key: "gas_well",
@@ -42,7 +46,8 @@ export const mineralKritisRate = {
     production: 150,
     unit: "MMSCFD",
     maintenanceCost: 40,
-    buildTime: 60
+    buildTime: 60,
+    lowongan_kerja: 200
   },
   salt_mine: {
     key: "salt_mine",
@@ -51,7 +56,8 @@ export const mineralKritisRate = {
     production: 80,
     unit: "TON",
     maintenanceCost: 10,
-    buildTime: 20
+    buildTime: 20,
+    lowongan_kerja: 400
   },
   nickel_mine: {
     key: "nickel_mine",
@@ -60,7 +66,8 @@ export const mineralKritisRate = {
     production: 50,
     unit: "TON",
     maintenanceCost: 45,
-    buildTime: 60
+    buildTime: 60,
+    lowongan_kerja: 1500
   },
   lithium_mine: {
     key: "lithium_mine",
@@ -69,7 +76,8 @@ export const mineralKritisRate = {
     production: 30,
     unit: "TON",
     maintenanceCost: 70,
-    buildTime: 90
+    buildTime: 90,
+    lowongan_kerja: 1200
   },
   copper_mine: {
     key: "copper_mine",
@@ -78,7 +86,8 @@ export const mineralKritisRate = {
     production: 60,
     unit: "TON",
     maintenanceCost: 40,
-    buildTime: 60
+    buildTime: 60,
+    lowongan_kerja: 1500
   },
   aluminum_mine: {
     key: "aluminum_mine",
@@ -87,7 +96,8 @@ export const mineralKritisRate = {
     production: 70,
     unit: "TON",
     maintenanceCost: 35,
-    buildTime: 45
+    buildTime: 45,
+    lowongan_kerja: 1400
   },
   rare_earth_mine: {
     key: "rare_earth_mine",
@@ -96,7 +106,8 @@ export const mineralKritisRate = {
     production: 10,
     unit: "KG",
     maintenanceCost: 120,
-    buildTime: 120
+    buildTime: 120,
+    lowongan_kerja: 800
   },
   iron_ore_mine: {
     key: "iron_ore_mine",
@@ -105,6 +116,7 @@ export const mineralKritisRate = {
     production: 120,
     unit: "TON",
     maintenanceCost: 25,
-    buildTime: 45
+    buildTime: 45,
+    lowongan_kerja: 1800
   }
 };

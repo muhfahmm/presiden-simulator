@@ -60,21 +60,22 @@ export const nauru: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 33.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 34,
     "sapi_perah": 31,
     "sapi_potong": 22,
     "domba_kambing": 34
   },
   "sektor_agrikultur": {
     "padi": 1,
-    "gandum_jagung": 27.0,
-    "sayur_umbi": 23.0,
+    "gandum_jagung": 27,
+    "sayur_umbi": 23,
     "kedelai": 7,
     "kelapa_sawit": 8,
-    "kopi_teh_kakao": 17.0
+    "kopi_teh_kakao": 17
   },
   "sektor_perikanan": {
-    "udang_kerang": 33.0,
+    "udang_kerang": 33,
     "ikan": 18
   },
   "sektor_olahan_pangan": {

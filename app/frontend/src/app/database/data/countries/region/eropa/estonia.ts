@@ -60,21 +60,22 @@ export const estonia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 27.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 28,
     "sapi_perah": 34,
     "sapi_potong": 5,
     "domba_kambing": 28
   },
   "sektor_agrikultur": {
     "padi": 40,
-    "gandum_jagung": 38.0,
-    "sayur_umbi": 28.5,
+    "gandum_jagung": 38,
+    "sayur_umbi": 28,
     "kedelai": 14,
     "kelapa_sawit": 29,
-    "kopi_teh_kakao": 15.3
+    "kopi_teh_kakao": 15
   },
   "sektor_perikanan": {
-    "udang_kerang": 11.5,
+    "udang_kerang": 12,
     "ikan": 1
   },
   "sektor_olahan_pangan": {

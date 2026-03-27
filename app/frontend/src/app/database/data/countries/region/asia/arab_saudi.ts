@@ -60,21 +60,22 @@ export const arab_saudi: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 5.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 5,
     "sapi_perah": 32,
     "sapi_potong": 38,
     "domba_kambing": 17
   },
   "sektor_agrikultur": {
     "padi": 3,
-    "gandum_jagung": 20.0,
-    "sayur_umbi": 26.0,
+    "gandum_jagung": 20,
+    "sayur_umbi": 26,
     "kedelai": 39,
     "kelapa_sawit": 32,
-    "kopi_teh_kakao": 15.0
+    "kopi_teh_kakao": 15
   },
   "sektor_perikanan": {
-    "udang_kerang": 30.0,
+    "udang_kerang": 30,
     "ikan": 23
   },
   "sektor_olahan_pangan": {

@@ -60,21 +60,22 @@ export const chile: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 32.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 32,
     "sapi_perah": 37,
     "sapi_potong": 30,
     "domba_kambing": 28
   },
   "sektor_agrikultur": {
     "padi": 26,
-    "gandum_jagung": 10.0,
-    "sayur_umbi": 17.5,
+    "gandum_jagung": 10,
+    "sayur_umbi": 18,
     "kedelai": 21,
     "kelapa_sawit": 14,
-    "kopi_teh_kakao": 20.3
+    "kopi_teh_kakao": 20
   },
   "sektor_perikanan": {
-    "udang_kerang": 19.5,
+    "udang_kerang": 20,
     "ikan": 25
   },
   "sektor_olahan_pangan": {

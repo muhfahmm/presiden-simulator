@@ -8,6 +8,7 @@ import WorldMapCanvas from "./databasemap";
 import MapHubungan from "../game/components/2_navigasi_menu/1_navigasi_atas/Hubungan/mapHubungan";
 import { countries } from "./data/countries/region/index";
 import { gameStorage } from "../game/gamestorage";
+import { taxStorage } from "../game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { CountryData } from "./data/types/index";
 import {
   calculateTotalInfantry, calculateInfantryPower, calculateTankPower, calculateApcPower,
@@ -164,6 +165,11 @@ export default function DatabasePage() {
   const isInternalSelection = useRef(false);
   const hasSelection = !!selectedData;
 
+  // Total tax revenue for selected country (same logic as PajakModal)
+  const TRADE_KEYS_SET = new Set(["bea_cukai", "transit_sekutu", "transit_non_sekutu", "tarif_ekspor", "tarif_impor"]);
+  const currentTaxes = hasSelection ? (taxStorage.getTaxes(selectedCountry) || selectedData?.pajak || {}) : {};
+  const totalPendapatanPajak = Object.values(currentTaxes as any).reduce((sum: number, v: any) => sum + (v?.pendapatan || 0), 0);
+
   // Modernized Dynamic Data Merging
   const extractionData = getExtractionData(selectedCountry);
   const infraData = getInfraQuality(selectedCountry);
@@ -261,6 +267,7 @@ export default function DatabasePage() {
             <StatItem label="Ibukota" value={hasSelection ? currentData.capital : "-"} icon={<Landmark size={14} className="text-amber-400" />} />
             <StatItem label="Populasi" value={hasSelection ? currentData.jumlah_penduduk : "-"} icon={<Users size={14} className="text-blue-400" />} />
             <StatItem label="Kas Negara" value={hasSelection ? currentData.anggaran : "-"} icon={<Coins size={14} className="text-yellow-400" />} />
+            <StatItem label="Pendapatan/Hari" value={hasSelection ? `+${Math.round(totalPendapatanPajak).toLocaleString('id-ID')}` : "-"} icon={<TrendingUp size={14} className="text-emerald-400" />} />
             <StatItem label="Total Negara" value={`${countries.length}`} icon={<Globe size={14} className="text-teal-400" />} />
           </div>
         </div>

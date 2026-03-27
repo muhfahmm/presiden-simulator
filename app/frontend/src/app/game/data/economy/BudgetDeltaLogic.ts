@@ -84,20 +84,60 @@ export function calculateTotalMaintenance(countryData: CountryData, buildingDelt
   return calculateBaseMaintenance(countryData) + calculateDeltaMaintenance(buildingDeltas);
 }
 
-/**
- * Calculates the net change in national budget for one game day.
- */
-export function calculateDailyBudgetDelta(countryData: CountryData, buildingDeltas: Record<string, number>): number {
-  // 1. Income
-  const currentTaxes = taxStorage.getTaxes(countryData.name_en) || countryData.pajak;
-  const domesticTaxes = ["ppn", "korporasi", "pendapatan_nasional", "lingkungan", "lainnya"];
-  const tradeTaxes = ["bea_cukai", "transit_sekutu", "transit_non_sekutu"];
+export interface BudgetBreakdown {
+  totalAnnualRevenue: number;
+  totalAnnualExpense: number;
+  netAnnualSurplus: number;
+  dailyDelta: number;
+  dailyTaxRevenue: number;
+  revenues: {
+    domestic: Record<string, number>;
+    trade: Record<string, number>;
+    other: Record<string, number>;
+  };
+  expenses: {
+    maintenance: number;
+    military: number;
+    subsidies: number;
+    salaries: number;
+    debtInterest: number;
+    priceSubsidies: number;
+  };
+  details: {
+    subsidiLevel: number;
+    salaryMultiplier: number;
+    priceMultiplier: number;
+  }
+}
 
-  const activeDomesticRevenue = domesticTaxes.reduce((acc, key) => acc + ((currentTaxes as any)[key]?.pendapatan || 0), 0);
-  const activeTradeRevenue = tradeTaxes.reduce((acc, key) => acc + ((currentTaxes as any)[key]?.pendapatan || 0), 0);
+/**
+ * Calculates a complete breakdown of the national budget.
+ */
+export function calculateBudgetBreakdown(countryData: CountryData, buildingDeltas: Record<string, number>): BudgetBreakdown {
+  // 1. Income (Revenue) — iterate ALL tax keys dynamically (same as PajakModal)
+  const currentTaxes = taxStorage.getTaxes(countryData.name_en) || countryData.pajak;
+  const TRADE_KEYS = new Set(["bea_cukai", "transit_sekutu", "transit_non_sekutu", "tarif_ekspor", "tarif_impor"]);
+  const allTaxKeys = Object.keys(currentTaxes as any);
+
+  const revenues: BudgetBreakdown['revenues'] = { domestic: {}, trade: {}, other: {} };
   
+  allTaxKeys.forEach(key => {
+    const pendapatan = (currentTaxes as any)[key]?.pendapatan || 0;
+    if (TRADE_KEYS.has(key)) {
+      revenues.trade[key] = pendapatan;
+    } else {
+      revenues.domestic[key] = pendapatan;
+    }
+  });
+
   const incomeData = incomeStorage.getData();
-  const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue + (incomeData.grants || 0) + (incomeData.investments || 0);
+  revenues.other["grants"] = incomeData.grants || 0;
+  revenues.other["investments"] = incomeData.investments || 0;
+
+  const totalAnnualRevenue = 
+    Object.values(revenues.domestic).reduce((a, b) => a + b, 0) +
+    Object.values(revenues.trade).reduce((a, b) => a + b, 0) +
+    Object.values(revenues.other).reduce((a, b) => a + b, 0);
 
   // 2. Expenses
   const expData = expenseStorage.getData(countryData.name_en, countryData);
@@ -106,17 +146,17 @@ export function calculateDailyBudgetDelta(countryData: CountryData, buildingDelt
   const maintenanceExpense = calculateTotalMaintenance(countryData, buildingDeltas);
   
   // Military
-  const dailyMilitaryExpense = produksiMiliter.reduce((acc, item: any) => acc + (item.maintenance || 0), 0);
+  const militaryExpense = produksiMiliter.reduce((acc, item: any) => acc + (item.maintenance || 0), 0);
 
-  // Subsidies (Percentage of tax pendapatan - simplified simulation)
+  // Subsidies
   const totalSubsidiLevel = ((expData.subsidi_energi || 0) + (expData.subsidi_pangan || 0) + (expData.subsidi_kesehatan || 0) + (expData.subsidi_pendidikan || 0) + (expData.subsidi_umkm || 0) + (expData.subsidi_transportasi || 0) + (expData.subsidi_perumahan || 0)) / 7;
-  const subsidyExpense = (dailyTaxRevenue * (totalSubsidiLevel / 100));
+  const subsidyExpense = (totalAnnualRevenue * (totalSubsidiLevel / 100));
 
-  // Salaries (Linked to maintenance base but scaled by multiplier)
+  // Salaries
   const avgSalaryMultiplier = ((expData.gaji_asn || 1.0) + (expData.gaji_guru || 1.0) + (expData.gaji_medis || 1.0) + (expData.gaji_militer || 1.0)) / 4;
   const salaryExpense = (maintenanceExpense * 0.1) * avgSalaryMultiplier;
 
-  // Prices Subsidy Impact
+  // Price Subsidies
   const priceData = priceStorage.getData();
   const avgPriceMultiplier = (
     (priceData.harga_beras / 15000) + (priceData.harga_daging_sapi / 120000) + (priceData.harga_ayam / 40000) +
@@ -126,8 +166,38 @@ export function calculateDailyBudgetDelta(countryData: CountryData, buildingDelt
   ) / 11;
   const priceSubsidyExpense = Math.max(0, (1.0 - avgPriceMultiplier) * 1500);
 
-  const totalDailyExpense = maintenanceExpense + dailyMilitaryExpense + subsidyExpense + salaryExpense + (expData.debtInterestPaid || 0) + priceSubsidyExpense;
+  const totalAnnualExpense = maintenanceExpense + militaryExpense + subsidyExpense + salaryExpense + (expData.debtInterestPaid || 0) + priceSubsidyExpense;
+  const netAnnualSurplus = totalAnnualRevenue - totalAnnualExpense;
+  const dailyDelta = netAnnualSurplus / 365;
 
-  return dailyTaxRevenue - totalDailyExpense;
+  return {
+    totalAnnualRevenue,
+    totalAnnualExpense,
+    netAnnualSurplus,
+    dailyDelta,
+    dailyTaxRevenue: Object.values(revenues.domestic).reduce((a, b) => a + b, 0) + Object.values(revenues.trade).reduce((a, b) => a + b, 0),
+    revenues,
+    expenses: {
+      maintenance: maintenanceExpense,
+      military: militaryExpense,
+      subsidies: subsidyExpense,
+      salaries: salaryExpense,
+      debtInterest: expData.debtInterestPaid || 0,
+      priceSubsidies: priceSubsidyExpense
+    },
+    details: {
+      subsidiLevel: totalSubsidiLevel,
+      salaryMultiplier: avgSalaryMultiplier,
+      priceMultiplier: avgPriceMultiplier
+    }
+  };
+}
+
+/**
+ * Calculates the net change in national budget for one game day.
+ */
+export function calculateDailyBudgetDelta(countryData: CountryData, buildingDeltas: Record<string, number>): number {
+  const breakdown = calculateBudgetBreakdown(countryData, buildingDeltas);
+  return breakdown.dailyDelta;
 }
 

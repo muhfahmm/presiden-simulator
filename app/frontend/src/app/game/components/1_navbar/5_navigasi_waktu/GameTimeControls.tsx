@@ -10,7 +10,8 @@ import { populationDeltaStorage } from "@/app/game/components/1_navbar/2_populas
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { countries } from "@/app/database/data/countries/region/index";
 import { calculateDailyProductionTotals } from "@/app/game/data/production/productionLogic";
-import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLogic";
+import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
+import { budgetDeltaStorage } from "@/app/game/components/1_navbar/3_kas_negara/BudgetDeltaStorage";
 import { calculateDailyPopulationDelta } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
 import { happinessStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/happinessStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
@@ -48,27 +49,33 @@ export default function GameTimeControls() {
     const session = gameStorage.getSession();
     if (session) {
       const currentCountryCode = session.country || "Indonesia";
-      const currentData = countries.find((c: any) => 
-        c.name_id === currentCountryCode || 
-        c.name_en === currentCountryCode || 
+      const currentData = countries.find((c: any) =>
+        c.name_id === currentCountryCode ||
+        c.name_en === currentCountryCode ||
         (c.id && c.id === currentCountryCode)
       ) || countries[79] || countries[0];
-      
+
       const buildingData = buildingStorage.getData();
       const dailyDeltas = calculateDailyProductionTotals(currentData, buildingData.buildingDeltas);
       budgetStorage.updateCumulativeProduction(dailyDeltas);
 
-      const budgetDelta = calculateDailyBudgetDelta(currentData, buildingData.buildingDeltas);
-      budgetStorage.updateBudget(budgetDelta);
+      const breakdown = calculateBudgetBreakdown(currentData, buildingData.buildingDeltas);
+      const taxRevenue = Math.round(breakdown.dailyTaxRevenue);
+      budgetStorage.updateBudget(taxRevenue);
+      budgetDeltaStorage.setDelta(taxRevenue);
 
       // Daily Population Change (driven by tax policy)
       const currentPopulation = populationStorage.getPopulation();
-      const populationDelta = calculateDailyPopulationDelta(currentData, currentPopulation);
+      const rawPopulationDelta = calculateDailyPopulationDelta(currentData, currentPopulation);
+      const populationDelta = Math.round(rawPopulationDelta);
       populationStorage.updatePopulation(populationDelta);
       populationDeltaStorage.setDelta(populationDelta);
-      
-      // Daily Happiness Decay/Bonus (based on tax policy, applied every game day)
-      happinessStorage.applyDailyHappinessDecay(gameDate);
+
+      // Weekly Happiness Decay/Bonus (based on tax & price policy, applied every 7 game days)
+      const isWeeklyTick = gameDate.getDate() % 7 === 0;
+      if (isWeeklyTick) {
+        happinessStorage.applyDailyHappinessDecay(gameDate);
+      }
 
       // ── Tax Warning: Inbox notification after 10 consecutive days of negative tax impact ──
       const { taxImpact } = happinessStorage.getLiveImpacts();
@@ -116,14 +123,14 @@ export default function GameTimeControls() {
 
       {/* Controls */}
       <div className="flex items-center gap-1">
-        <button 
+        <button
           onClick={() => setIsPaused(true)}
           className={`p-2 rounded-lg transition-all cursor-pointer ${isPaused ? 'bg-amber-500/20 text-amber-500 border border-amber-500/30' : 'text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-300'}`}
           title="Pause Game"
         >
           <Pause size={18} fill={isPaused ? "currentColor" : "none"} />
         </button>
-        <button 
+        <button
           onClick={() => setIsPaused(false)}
           className={`p-2 rounded-lg transition-all cursor-pointer ${!isPaused ? 'bg-emerald-500/20 text-emerald-500 border border-emerald-500/30' : 'text-zinc-500 hover:bg-zinc-800/50 hover:text-zinc-300'}`}
           title="Resume Game"

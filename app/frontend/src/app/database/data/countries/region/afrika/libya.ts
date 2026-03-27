@@ -57,21 +57,22 @@ export const libya: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 21.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 22,
     "sapi_perah": 23,
     "sapi_potong": 35,
     "domba_kambing": 20
   },
   "sektor_agrikultur": {
     "padi": 17,
-    "gandum_jagung": 28.0,
-    "sayur_umbi": 39.0,
+    "gandum_jagung": 28,
+    "sayur_umbi": 39,
     "kedelai": 25,
     "kelapa_sawit": 15,
-    "kopi_teh_kakao": 20.0
+    "kopi_teh_kakao": 20
   },
   "sektor_perikanan": {
-    "udang_kerang": 17.5,
+    "udang_kerang": 18,
     "ikan": 25
   },
   "sektor_olahan_pangan": {

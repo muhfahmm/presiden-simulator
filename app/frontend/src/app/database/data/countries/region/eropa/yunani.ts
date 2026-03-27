@@ -60,21 +60,22 @@ export const yunani: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 9.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 10,
     "sapi_perah": 15,
     "sapi_potong": 27,
     "domba_kambing": 12
   },
   "sektor_agrikultur": {
     "padi": 18,
-    "gandum_jagung": 26.5,
-    "sayur_umbi": 26.5,
+    "gandum_jagung": 26,
+    "sayur_umbi": 26,
     "kedelai": 25,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 13.7
+    "kopi_teh_kakao": 14
   },
   "sektor_perikanan": {
-    "udang_kerang": 13.0,
+    "udang_kerang": 13,
     "ikan": 19
   },
   "sektor_olahan_pangan": {

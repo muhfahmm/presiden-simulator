@@ -60,21 +60,22 @@ export const vatikan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 15.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 15,
     "sapi_perah": 16,
     "sapi_potong": 20,
     "domba_kambing": 27
   },
   "sektor_agrikultur": {
     "padi": 4,
-    "gandum_jagung": 29.0,
-    "sayur_umbi": 16.0,
+    "gandum_jagung": 29,
+    "sayur_umbi": 16,
     "kedelai": 4,
     "kelapa_sawit": 3,
-    "kopi_teh_kakao": 25.7
+    "kopi_teh_kakao": 26
   },
   "sektor_perikanan": {
-    "udang_kerang": 22.5,
+    "udang_kerang": 22,
     "ikan": 28
   },
   "sektor_olahan_pangan": {

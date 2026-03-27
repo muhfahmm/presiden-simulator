@@ -60,21 +60,22 @@ export const bermuda: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 20.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 20,
     "sapi_perah": 10,
     "sapi_potong": 33,
     "domba_kambing": 13
   },
   "sektor_agrikultur": {
     "padi": 33,
-    "gandum_jagung": 36.0,
-    "sayur_umbi": 14.0,
+    "gandum_jagung": 36,
+    "sayur_umbi": 14,
     "kedelai": 22,
     "kelapa_sawit": 33,
-    "kopi_teh_kakao": 23.7
+    "kopi_teh_kakao": 24
   },
   "sektor_perikanan": {
-    "udang_kerang": 28.5,
+    "udang_kerang": 28,
     "ikan": 15
   },
   "sektor_olahan_pangan": {

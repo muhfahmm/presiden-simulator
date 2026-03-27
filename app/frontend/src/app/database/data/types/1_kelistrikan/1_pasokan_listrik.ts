@@ -7,7 +7,8 @@ export const KAPASITAS_LISTRIK_METADATA = {
     unit: "MW",
     desc: "PLTN (Fisi Nuklir)",
     maintenanceCost: 80,
-    buildTime: 365
+    buildTime: 365,
+    lowongan_kerja: 800
   },
   pembangkit_listrik_tenaga_air: {
     no: 2,
@@ -15,7 +16,8 @@ export const KAPASITAS_LISTRIK_METADATA = {
     unit: "MW",
     desc: "PLTA (Hidroelektrik)",
     maintenanceCost: 15,
-    buildTime: 180
+    buildTime: 180,
+    lowongan_kerja: 150
   },
   pembangkit_listrik_tenaga_surya: {
     no: 3,
@@ -23,7 +25,8 @@ export const KAPASITAS_LISTRIK_METADATA = {
     unit: "MW",
     desc: "PLTS (Panel Surya)",
     maintenanceCost: 2,
-    buildTime: 30
+    buildTime: 30,
+    lowongan_kerja: 40
   },
   pembangkit_listrik_tenaga_uap: {
     no: 4,
@@ -31,7 +34,8 @@ export const KAPASITAS_LISTRIK_METADATA = {
     unit: "MW",
     desc: "PLTU (Tenaga Uap)",
     maintenanceCost: 40,
-    buildTime: 120
+    buildTime: 120,
+    lowongan_kerja: 450
   },
   pembangkit_listrik_tenaga_gas: {
     no: 5,
@@ -39,7 +43,8 @@ export const KAPASITAS_LISTRIK_METADATA = {
     unit: "MW",
     desc: "PLTG (Gas Alam)",
     maintenanceCost: 25,
-    buildTime: 90
+    buildTime: 90,
+    lowongan_kerja: 250
   },
   pembangkit_listrik_tenaga_angin: {
     no: 6,
@@ -47,7 +52,8 @@ export const KAPASITAS_LISTRIK_METADATA = {
     unit: "MW",
     desc: "PLTB (Angin)",
     maintenanceCost: 3,
-    buildTime: 45
+    buildTime: 45,
+    lowongan_kerja: 20
   }
 };
 

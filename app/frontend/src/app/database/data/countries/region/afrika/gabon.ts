@@ -57,21 +57,22 @@ export const gabon: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 31.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 32,
     "sapi_perah": 32,
     "sapi_potong": 1,
     "domba_kambing": 7
   },
   "sektor_agrikultur": {
     "padi": 5,
-    "gandum_jagung": 25.0,
-    "sayur_umbi": 10.0,
+    "gandum_jagung": 25,
+    "sayur_umbi": 10,
     "kedelai": 15,
     "kelapa_sawit": 29,
-    "kopi_teh_kakao": 24.0
+    "kopi_teh_kakao": 24
   },
   "sektor_perikanan": {
-    "udang_kerang": 32.0,
+    "udang_kerang": 32,
     "ikan": 31
   },
   "sektor_olahan_pangan": {

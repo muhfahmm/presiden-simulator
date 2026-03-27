@@ -60,21 +60,22 @@ export const samoa: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 20.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 20,
     "sapi_perah": 14,
     "sapi_potong": 1,
     "domba_kambing": 33
   },
   "sektor_agrikultur": {
     "padi": 32,
-    "gandum_jagung": 16.0,
-    "sayur_umbi": 18.5,
+    "gandum_jagung": 16,
+    "sayur_umbi": 18,
     "kedelai": 24,
     "kelapa_sawit": 12,
-    "kopi_teh_kakao": 18.7
+    "kopi_teh_kakao": 19
   },
   "sektor_perikanan": {
-    "udang_kerang": 29.5,
+    "udang_kerang": 30,
     "ikan": 12
   },
   "sektor_olahan_pangan": {

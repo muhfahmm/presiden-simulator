@@ -60,21 +60,22 @@ export const oman: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 20.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 20,
     "sapi_perah": 35,
     "sapi_potong": 24,
     "domba_kambing": 35
   },
   "sektor_agrikultur": {
     "padi": 38,
-    "gandum_jagung": 6.5,
-    "sayur_umbi": 23.0,
+    "gandum_jagung": 6,
+    "sayur_umbi": 23,
     "kedelai": 4,
     "kelapa_sawit": 22,
-    "kopi_teh_kakao": 12.3
+    "kopi_teh_kakao": 12
   },
   "sektor_perikanan": {
-    "udang_kerang": 4.0,
+    "udang_kerang": 4,
     "ikan": 21
   },
   "sektor_olahan_pangan": {

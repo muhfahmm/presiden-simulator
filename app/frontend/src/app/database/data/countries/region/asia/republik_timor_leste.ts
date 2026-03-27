@@ -60,21 +60,22 @@ export const republik_timor_leste: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 19.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 19,
     "sapi_perah": 17,
     "sapi_potong": 6,
     "domba_kambing": 2
   },
   "sektor_agrikultur": {
     "padi": 9,
-    "gandum_jagung": 24.0,
-    "sayur_umbi": 29.5,
+    "gandum_jagung": 24,
+    "sayur_umbi": 30,
     "kedelai": 9,
     "kelapa_sawit": 40,
-    "kopi_teh_kakao": 17.7
+    "kopi_teh_kakao": 18
   },
   "sektor_perikanan": {
-    "udang_kerang": 29.5,
+    "udang_kerang": 30,
     "ikan": 35
   },
   "sektor_olahan_pangan": {

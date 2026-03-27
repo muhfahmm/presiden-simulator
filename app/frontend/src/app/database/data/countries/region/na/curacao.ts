@@ -60,21 +60,22 @@ export const curacao: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 32.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 32,
     "sapi_perah": 9,
     "sapi_potong": 14,
     "domba_kambing": 9
   },
   "sektor_agrikultur": {
     "padi": 31,
-    "gandum_jagung": 27.0,
-    "sayur_umbi": 24.5,
+    "gandum_jagung": 27,
+    "sayur_umbi": 24,
     "kedelai": 31,
     "kelapa_sawit": 7,
-    "kopi_teh_kakao": 14.3
+    "kopi_teh_kakao": 14
   },
   "sektor_perikanan": {
-    "udang_kerang": 19.0,
+    "udang_kerang": 19,
     "ikan": 11
   },
   "sektor_olahan_pangan": {

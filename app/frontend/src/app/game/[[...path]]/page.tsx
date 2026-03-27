@@ -25,7 +25,7 @@ export default function GamePage() {
   const params = useParams();
   const router = useRouter();
   const { activeMenu, setActiveMenu } = useGamePath((params?.path as string[]) || []);
-  
+
   const {
     approval, budget, budgetDelta, happiness, stability, population, populationDelta,
     userCountry, isMounted, unreadCount, targetCountry, setTargetCountry,
@@ -53,16 +53,16 @@ export default function GamePage() {
     <div className="flex min-h-screen bg-zinc-950 text-white font-sans relative overflow-hidden">
       {/* Main Content Area */}
       <main className="flex-1 z-10 flex flex-col h-screen overflow-hidden relative">
-        
+
         {/* Floating UI Elements */}
-        <SideMenu 
-          activeMenu={activeMenu} 
-          setActiveMenu={setActiveMenu} 
-          unreadCount={unreadCount} 
+        <SideMenu
+          activeMenu={activeMenu}
+          setActiveMenu={setActiveMenu}
+          unreadCount={unreadCount}
         />
 
         {/* Top Header / Status bar */}
-        <GameNavbar 
+        <GameNavbar
           countryData={countryData}
           happiness={happiness}
           budget={budget}
@@ -70,6 +70,7 @@ export default function GamePage() {
           stability={stability}
           population={population}
           populationDelta={populationDelta}
+          setActiveMenu={setActiveMenu}
           onLogout={() => {
             if (confirm("Apakah Anda yakin ingin mengakhiri sesi simulasi ini? Semua kemajuan akan hilang.")) {
               gameStorage.clearSession();
@@ -89,18 +90,18 @@ export default function GamePage() {
           {/* Keterangan Rute (Pelat Menu Pendukung Navigasi) */}
           <TradeRouteLegend isVisible={mapMode === "trade"} />
 
-          <TransformWrapper 
-            initialScale={1} 
-            minScale={1} 
-            maxScale={8} 
+          <TransformWrapper
+            initialScale={1}
+            minScale={1}
+            maxScale={8}
             centerOnInit={!isCentered}
-            onInit={() => setIsCentered(true)} 
+            onInit={() => setIsCentered(true)}
             limitToBounds={true}
             doubleClick={{ disabled: true }}
           >
             <TransformComponent wrapperClass="!w-full !h-full" contentClass="!h-full flex items-center justify-center">
               <div ref={containerRef} className="relative h-full flex items-center justify-center w-max">
-                <MapRenderer 
+                <MapRenderer
                   mapMode={mapMode}
                   userCountry={userCountry}
                   targetCountry={targetCountry}
@@ -113,41 +114,42 @@ export default function GamePage() {
           </TransformWrapper>
 
           {/* Target Interaction Modal */}
-          <StrategyModal 
-            isOpen={isMenuOpen} 
-            onClose={() => { setIsMenuOpen(false); setTargetCountry(null); }} 
-            targetCountry={targetCountry} 
+          <StrategyModal
+            isOpen={isMenuOpen}
+            onClose={() => { setIsMenuOpen(false); setTargetCountry(null); }}
+            targetCountry={targetCountry}
             userCountry={userCountry}
           />
 
           {/* Details Modal - Rendered Fixed Outside Scaling */}
-          <SDADetailsModal 
-            selectedCountrySDA={selectedCountrySDA} 
-            sdaIcons={sdaIcons} 
-            onClose={() => setSelectedCountrySDA(null)} 
+          <SDADetailsModal
+            selectedCountrySDA={selectedCountrySDA}
+            sdaIcons={sdaIcons}
+            onClose={() => setSelectedCountrySDA(null)}
           />
 
-          {/* Categorical Modals */}
-          <ModalsManager 
-            isMounted={isMounted} 
-            activeMenu={activeMenu} 
-            setActiveMenu={setActiveMenu} 
-            countryData={countryData} 
-          />
         </div>
       </main>
+
+      {/* Categorical Modals (Top Level Root) */}
+      <ModalsManager
+        isMounted={isMounted}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
+        countryData={countryData}
+      />
 
       {/* 6. GAME OVER OVERLAY */}
       <GameOverOverlay isGameOver={isGameOver} countryData={countryData} />
 
       {/* 5. WELCOME OVERLAY */}
-      <WelcomeOverlay 
-        showWelcome={isMounted && showWelcome} 
-        countryData={countryData} 
-        approval={approval} 
-        budget={budget} 
-        stability={stability} 
-        onClose={() => setShowWelcome(false)} 
+      <WelcomeOverlay
+        showWelcome={isMounted && showWelcome}
+        countryData={countryData}
+        approval={approval}
+        budget={budget}
+        stability={stability}
+        onClose={() => setShowWelcome(false)}
       />
     </div>
   );

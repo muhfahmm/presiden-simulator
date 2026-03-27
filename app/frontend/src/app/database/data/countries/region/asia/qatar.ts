@@ -60,21 +60,22 @@ export const qatar: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 16.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 16,
     "sapi_perah": 1,
     "sapi_potong": 21,
     "domba_kambing": 14
   },
   "sektor_agrikultur": {
     "padi": 19,
-    "gandum_jagung": 15.0,
-    "sayur_umbi": 13.0,
+    "gandum_jagung": 15,
+    "sayur_umbi": 13,
     "kedelai": 37,
     "kelapa_sawit": 32,
-    "kopi_teh_kakao": 18.3
+    "kopi_teh_kakao": 18
   },
   "sektor_perikanan": {
-    "udang_kerang": 20.5,
+    "udang_kerang": 20,
     "ikan": 38
   },
   "sektor_olahan_pangan": {

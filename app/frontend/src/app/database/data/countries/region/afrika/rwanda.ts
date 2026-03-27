@@ -57,21 +57,22 @@ export const rwanda: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 29.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 30,
     "sapi_perah": 38,
     "sapi_potong": 22,
     "domba_kambing": 13
   },
   "sektor_agrikultur": {
     "padi": 21,
-    "gandum_jagung": 7.5,
-    "sayur_umbi": 28.0,
+    "gandum_jagung": 8,
+    "sayur_umbi": 28,
     "kedelai": 37,
     "kelapa_sawit": 3,
-    "kopi_teh_kakao": 26.0
+    "kopi_teh_kakao": 26
   },
   "sektor_perikanan": {
-    "udang_kerang": 14.5,
+    "udang_kerang": 14,
     "ikan": 2
   },
   "sektor_olahan_pangan": {

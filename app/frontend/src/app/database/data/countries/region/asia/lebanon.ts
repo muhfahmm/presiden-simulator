@@ -60,21 +60,22 @@ export const lebanon: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 13.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 14,
     "sapi_perah": 4,
     "sapi_potong": 34,
     "domba_kambing": 32
   },
   "sektor_agrikultur": {
     "padi": 8,
-    "gandum_jagung": 28.5,
-    "sayur_umbi": 27.0,
+    "gandum_jagung": 28,
+    "sayur_umbi": 27,
     "kedelai": 3,
     "kelapa_sawit": 19,
-    "kopi_teh_kakao": 24.3
+    "kopi_teh_kakao": 24
   },
   "sektor_perikanan": {
-    "udang_kerang": 6.5,
+    "udang_kerang": 6,
     "ikan": 33
   },
   "sektor_olahan_pangan": {

@@ -60,21 +60,22 @@ export const saint_kitts_dan_nevis: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 5.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 5,
     "sapi_perah": 5,
     "sapi_potong": 2,
     "domba_kambing": 23
   },
   "sektor_agrikultur": {
     "padi": 23,
-    "gandum_jagung": 19.5,
-    "sayur_umbi": 21.5,
+    "gandum_jagung": 20,
+    "sayur_umbi": 22,
     "kedelai": 40,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 26.0
+    "kopi_teh_kakao": 26
   },
   "sektor_perikanan": {
-    "udang_kerang": 11.5,
+    "udang_kerang": 12,
     "ikan": 33
   },
   "sektor_olahan_pangan": {

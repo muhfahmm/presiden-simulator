@@ -57,21 +57,22 @@ export const liberia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 36.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 36,
     "sapi_perah": 2,
     "sapi_potong": 29,
     "domba_kambing": 24
   },
   "sektor_agrikultur": {
     "padi": 28,
-    "gandum_jagung": 27.5,
-    "sayur_umbi": 32.5,
+    "gandum_jagung": 28,
+    "sayur_umbi": 32,
     "kedelai": 29,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 25.0
+    "kopi_teh_kakao": 25
   },
   "sektor_perikanan": {
-    "udang_kerang": 13.5,
+    "udang_kerang": 14,
     "ikan": 15
   },
   "sektor_olahan_pangan": {

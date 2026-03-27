@@ -60,21 +60,22 @@ export const lithuania: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 32.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 32,
     "sapi_perah": 3,
     "sapi_potong": 30,
     "domba_kambing": 32
   },
   "sektor_agrikultur": {
     "padi": 9,
-    "gandum_jagung": 26.5,
-    "sayur_umbi": 22.5,
+    "gandum_jagung": 26,
+    "sayur_umbi": 22,
     "kedelai": 2,
     "kelapa_sawit": 5,
-    "kopi_teh_kakao": 9.7
+    "kopi_teh_kakao": 10
   },
   "sektor_perikanan": {
-    "udang_kerang": 17.0,
+    "udang_kerang": 17,
     "ikan": 31
   },
   "sektor_olahan_pangan": {

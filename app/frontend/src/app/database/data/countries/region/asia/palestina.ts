@@ -60,21 +60,22 @@ export const palestina: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 21.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 22,
     "sapi_perah": 4,
     "sapi_potong": 10,
     "domba_kambing": 35
   },
   "sektor_agrikultur": {
     "padi": 21,
-    "gandum_jagung": 9.0,
-    "sayur_umbi": 15.5,
+    "gandum_jagung": 9,
+    "sayur_umbi": 16,
     "kedelai": 15,
     "kelapa_sawit": 25,
-    "kopi_teh_kakao": 15.0
+    "kopi_teh_kakao": 15
   },
   "sektor_perikanan": {
-    "udang_kerang": 5.5,
+    "udang_kerang": 6,
     "ikan": 14
   },
   "sektor_olahan_pangan": {

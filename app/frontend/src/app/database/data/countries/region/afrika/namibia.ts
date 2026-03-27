@@ -57,21 +57,22 @@ export const namibia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 38.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 38,
     "sapi_perah": 35,
     "sapi_potong": 9,
     "domba_kambing": 3
   },
   "sektor_agrikultur": {
     "padi": 30,
-    "gandum_jagung": 25.5,
-    "sayur_umbi": 12.5,
+    "gandum_jagung": 26,
+    "sayur_umbi": 12,
     "kedelai": 36,
     "kelapa_sawit": 22,
-    "kopi_teh_kakao": 9.7
+    "kopi_teh_kakao": 10
   },
   "sektor_perikanan": {
-    "udang_kerang": 23.0,
+    "udang_kerang": 23,
     "ikan": 28
   },
   "sektor_olahan_pangan": {

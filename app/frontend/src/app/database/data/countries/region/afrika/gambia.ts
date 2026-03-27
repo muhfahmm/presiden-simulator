@@ -57,21 +57,22 @@ export const gambia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 33.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 33,
     "sapi_perah": 24,
     "sapi_potong": 16,
     "domba_kambing": 9
   },
   "sektor_agrikultur": {
     "padi": 19,
-    "gandum_jagung": 33.0,
-    "sayur_umbi": 17.0,
+    "gandum_jagung": 33,
+    "sayur_umbi": 17,
     "kedelai": 18,
     "kelapa_sawit": 28,
-    "kopi_teh_kakao": 25.3
+    "kopi_teh_kakao": 25
   },
   "sektor_perikanan": {
-    "udang_kerang": 17.5,
+    "udang_kerang": 18,
     "ikan": 31
   },
   "sektor_olahan_pangan": {

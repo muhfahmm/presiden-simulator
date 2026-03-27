@@ -60,21 +60,22 @@ export const brunei: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 23.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 24,
     "sapi_perah": 2,
     "sapi_potong": 23,
     "domba_kambing": 29
   },
   "sektor_agrikultur": {
     "padi": 39,
-    "gandum_jagung": 8.0,
-    "sayur_umbi": 17.0,
+    "gandum_jagung": 8,
+    "sayur_umbi": 17,
     "kedelai": 23,
     "kelapa_sawit": 36,
-    "kopi_teh_kakao": 20.3
+    "kopi_teh_kakao": 20
   },
   "sektor_perikanan": {
-    "udang_kerang": 15.0,
+    "udang_kerang": 15,
     "ikan": 29
   },
   "sektor_olahan_pangan": {

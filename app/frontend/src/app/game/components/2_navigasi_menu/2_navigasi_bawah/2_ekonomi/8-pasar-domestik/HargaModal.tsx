@@ -184,127 +184,91 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
     if (val <= 1.5) return "Komersial (Mahal)";
     return "Mewah (Sangat Mahal)";
   };
+  return (
+    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[92vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
 
-  return (
-    <div className="fixed inset-0 z-[150] flex items-center justify-center p-4 md:p-8">
-      <div 
-        className="fixed inset-0 bg-black/85 backdrop-blur-md animate-in fade-in duration-300"
-        onClick={onClose}
-      />
-      
-      <div className="relative w-full max-w-[95vw] h-[92vh] bg-zinc-950 border border-zinc-800 rounded-[40px] shadow-2xl animate-in zoom-in-95 duration-500 flex flex-col overflow-hidden">
-        
-        {/* Glow Effects (Premium Look) */}
+        {/* Glow Effects */}
         <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent blur-sm"></div>
         <div className="absolute -top-24 -left-24 w-96 h-96 bg-cyan-600/10 rounded-full blur-[120px]"></div>
         <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-600/10 rounded-full blur-[120px]"></div>
 
-        {/* Header (Synchronized with Economics Module Style) */}
-        <div className="px-10 py-8 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30 relative z-10">
-          <div className="flex items-center gap-5">
-            <div className="h-14 w-14 bg-cyan-500/10 border border-cyan-500/20 rounded-2xl flex items-center justify-center shadow-inner">
-              <Tag className="text-cyan-400 h-7 w-7" />
+        {/* Header (Synchronized with ProduksiBarangModal) */}
+        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-cyan-500/10 rounded-xl">
+              <Tag className="h-6 w-6 text-cyan-500" />
             </div>
             <div>
-              <h2 className="text-3xl font-black text-white tracking-tighter uppercase italic">Kebijakan Harga Rakyat</h2>
-              <p className="text-zinc-500 text-[10px] font-black uppercase tracking-[0.3em] flex items-center gap-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                National Sovereignty & Inflation Control
-              </p>
+              <h2 className="text-2xl font-bold text-white tracking-tight">Kebijakan Harga Rakyat</h2>
+              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Sovereignty &amp; Inflation Control</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
-             <button
-                onClick={onClose}
-                className="p-3 pr-5 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
-             >
-                <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
-                <span className="text-[10px] font-black uppercase tracking-widest">Tutup Panel</span>
-             </button>
+            <button
+              onClick={onClose}
+              className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
+            >
+              <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+              <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+            </button>
+          </div>
+        </div>
+
+        {/* Dashboard Summary Bar */}
+        <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
+              <div className="p-3 bg-cyan-500/10 rounded-xl">
+                <Tag className="h-6 w-6 text-cyan-500" />
+              </div>
+              <div>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Price Index Nasional</p>
+                <p className="text-xl font-black text-white leading-tight">{(avgPriceMultiplier * 100).toFixed(0)}% <span className="text-[10px] text-zinc-500">AVG</span></p>
+              </div>
+            </div>
+
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
+              <div className={`p-3 rounded-xl ${happinessImpact >= 0 ? 'bg-emerald-500/10' : 'bg-rose-500/10'}`}>
+                {happinessImpact >= 0 ? <TrendingUp className="h-6 w-6 text-emerald-500" /> : <TrendingDown className="h-6 w-6 text-rose-500" />}
+              </div>
+              <div>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Dampak Kepuasan</p>
+                <p className={`text-xl font-black leading-tight ${happinessImpact >= 0 ? 'text-emerald-500' : 'text-rose-500'}`}>
+                  {happinessImpact >= 0 ? '+' : ''}{happinessImpact.toFixed(1)}% <span className="text-[10px] text-zinc-500">/ Bln</span>
+                </p>
+              </div>
+            </div>
+
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
+              <div className={`p-3 rounded-xl ${monthlyGrowthPercent >= 0 ? 'bg-blue-500/10' : 'bg-rose-500/10'}`}>
+                <Users className={`h-6 w-6 ${monthlyGrowthPercent >= 0 ? 'text-blue-500' : 'text-rose-500'}`} />
+              </div>
+              <div>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">Pertumbuhan Populasi</p>
+                <p className={`text-xl font-black leading-tight ${monthlyGrowthPercent >= 0 ? 'text-blue-400' : 'text-rose-500'}`}>
+                  {monthlyGrowthPercent >= 0 ? '+' : ''}{monthlyGrowthPercent.toFixed(3)}% <span className="text-[10px] text-zinc-500">/ Bln</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Content */}
-        <div className="flex-1 overflow-y-auto p-12 custom-scrollbar space-y-12 relative z-10 bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.03),transparent_40%)]">
+        <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-[radial-gradient(circle_at_top_right,rgba(6,182,212,0.03),transparent_40%)] space-y-8">
           
-          {/* Dashboard Summary Section */}
-          <div className="flex flex-col gap-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-              <div className="p-5 bg-zinc-900/40 border border-white/5 rounded-3xl relative overflow-hidden group hover:bg-zinc-900/60 transition-all">
-                 <div className={`absolute top-0 left-0 w-1 h-full ${happinessImpact >= 0 ? "bg-emerald-500" : "bg-rose-500"}`} />
-                 <p className="text-zinc-500 text-[9px] font-black uppercase tracking-widest mb-1">Dampak Kepuasan</p>
-                 <div className="flex items-end gap-1.5">
-                   <span className={`text-2xl font-black italic ${happinessImpact >= 0 ? "text-emerald-400" : "text-rose-400"}`}>
-                     {happinessImpact >= 0 ? "+" : ""}{happinessImpact.toFixed(1)}%
-                   </span>
-                   <div className="pb-1 text-zinc-600 font-bold text-[9px] uppercase tracking-tighter">Per Bulan</div>
-                 </div>
-              </div>
-
-              <div className="p-5 bg-zinc-900/40 border border-white/5 rounded-3xl relative overflow-hidden group hover:bg-zinc-900/60 transition-all">
-                 <div className={`absolute top-0 left-0 w-1 h-full ${monthlyGrowthPercent >= 0 ? "bg-blue-500" : "bg-rose-500"}`} />
-                 <p className="text-zinc-500 text-[9px] font-black uppercase tracking-widest mb-1">Pertumbuhan Populasi</p>
-                 <div className="flex items-end gap-1.5">
-                   <Users className={`h-3 w-3 mb-1 ${monthlyGrowthPercent >= 0 ? 'text-blue-400' : 'text-rose-400'}`} />
-                   <span className={`text-2xl font-black italic ${monthlyGrowthPercent >= 0 ? "text-blue-400" : "text-rose-400"}`}>
-                     {monthlyGrowthPercent >= 0 ? "+" : ""}{monthlyGrowthPercent.toFixed(3)}%
-                   </span>
-                   <div className="pb-1 text-zinc-600 font-bold text-[9px] uppercase tracking-tighter">Per Bulan</div>
-                 </div>
-              </div>
-
-              <div className="p-5 bg-zinc-900/40 border border-white/5 rounded-3xl relative overflow-hidden group hover:bg-zinc-900/60 transition-all">
-                 <div className={`absolute top-0 left-0 w-1 h-full ${dailyHappinessDelta >= 0 ? "bg-amber-400" : "bg-rose-600"}`} />
-                 <p className="text-zinc-500 text-[9px] font-black uppercase tracking-widest mb-1">Dampak Kepuasan / Hari</p>
-                 <div className="flex items-end gap-1.5">
-                   <span className={`text-2xl font-black italic ${dailyHappinessDelta > 0 ? "text-amber-400" : dailyHappinessDelta < 0 ? "text-rose-400" : "text-zinc-400"}`}>
-                     {dailyHappinessDelta > 0 ? "+" : ""}{dailyHappinessDelta.toFixed(1)}
-                   </span>
-                   <div className="pb-1 text-zinc-600 font-bold text-[9px] uppercase tracking-tighter">Per Hari</div>
-                 </div>
-              </div>
-
-              <div className="p-5 bg-zinc-900/40 border border-white/5 rounded-3xl relative overflow-hidden group hover:bg-zinc-900/60 transition-all">
-                 <div className={`absolute top-0 left-0 w-1 h-full ${dailyPopulationDelta >= 0 ? "bg-blue-500" : "bg-rose-600"}`} />
-                 <p className="text-zinc-500 text-[9px] font-black uppercase tracking-widest mb-1">Populasi / Hari</p>
-                 <div className="flex items-end gap-1.5">
-                   <Users className={`h-3 w-3 mb-1 ${dailyPopulationDelta >= 0 ? 'text-blue-400' : 'text-rose-400'}`} />
-                   <span className={`text-2xl font-black italic ${dailyPopulationDelta > 0 ? "text-blue-400" : dailyPopulationDelta < 0 ? "text-rose-400" : "text-zinc-400"}`}>
-                     {dailyPopulationDelta > 0 ? "+" : ""}{dailyPopulationDelta.toLocaleString('id-ID')}
-                   </span>
-                   <div className="pb-1 text-zinc-600 font-bold text-[9px] uppercase tracking-tighter">Jiwa / Hari</div>
-                 </div>
-              </div>
-
-              <div className="p-5 bg-zinc-900/40 border border-white/5 rounded-3xl relative overflow-hidden group hover:bg-zinc-900/60 transition-all">
-                 <p className="text-zinc-500 text-[9px] font-black uppercase tracking-widest mb-1">Price Index</p>
-                <div className="flex items-end gap-1.5">
-                  <span className="text-2xl font-black italic text-zinc-100">{(avgPriceMultiplier * 100).toFixed(0)}%</span>
-                  <div className="pb-1 text-zinc-600 font-bold text-[9px] uppercase tracking-tighter">National Avg</div>
-                </div>
-              </div>
-
-              <div className="p-5 bg-zinc-900/40 border border-white/5 rounded-3xl relative overflow-hidden group hover:bg-zinc-900/60 transition-all">
-                 <p className="text-zinc-500 text-[9px] font-black uppercase tracking-widest mb-1">Total Unit Harga</p>
-                 <div className="flex items-end gap-1.5">
-                   <span className="text-2xl font-black italic text-cyan-400">{(totalItems).toFixed(0)}</span>
-                   <div className="pb-1 text-zinc-600 font-bold text-[9px] uppercase tracking-tighter">Komoditas</div>
-                 </div>
-              </div>
+          {/* Alert Info */}
+          <div className="p-5 bg-amber-500/5 border border-amber-500/10 rounded-2xl flex gap-4 items-center">
+            <div className="h-10 w-10 bg-amber-500/10 rounded-xl flex items-center justify-center shrink-0 border border-amber-500/20">
+              <AlertCircle className="text-amber-500" size={20} />
             </div>
-
-            <div className="p-6 bg-amber-500/5 border border-amber-500/10 rounded-[2rem] flex gap-4 items-center">
-              <div className="h-12 w-12 bg-amber-500/10 rounded-2xl flex items-center justify-center shrink-0 border border-amber-500/20">
-                <AlertCircle className="text-amber-500" size={24} />
-              </div>
-              <p className="text-[10px] text-zinc-400 leading-relaxed font-bold uppercase tracking-tight">
-                <span className="text-amber-500 block mb-0.5">Otoritas Fiskal:</span>
-                Kebijakan harga rendah (Subsidi) akan memotong anggaran harian secara otomatis. Pastikan kas negara tetap stabil sebelum melakukan intervensi pasar besar-besaran.
-              </p>
-            </div>
+            <p className="text-[10px] text-zinc-400 leading-relaxed font-bold uppercase tracking-tight">
+              <span className="text-amber-500">Otoritas Fiskal: </span>
+              Kebijakan harga rendah (Subsidi) akan memotong anggaran harian secara otomatis. Pastikan kas negara tetap stabil sebelum melakukan intervensi pasar besar-besaran.
+            </p>
           </div>
 
-          {/* Pricing Table (Compact List) */}
+          {/* Pricing Table */}
           <div className="flex flex-col gap-3">
             {categories.map((cat, index) => (
               <div key={cat.key} className="flex items-center justify-between p-4 bg-zinc-900/30 border border-zinc-800/50 rounded-2xl group/item hover:bg-zinc-900/50 hover:border-cyan-500/30 transition-all duration-300 relative overflow-hidden">
@@ -333,73 +297,48 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
                     <span className="text-[9px] font-bold opacity-40 italic">/{cat.unit}</span>
                   </div>
                   <span className={`text-[8px] font-black uppercase tracking-widest mt-0.5 ${harga[cat.key] <= cat.basePrice * 0.8 ? "text-emerald-500/70" : harga[cat.key] >= cat.basePrice * 1.4 ? "text-rose-500/70" : "text-zinc-500"}`}>
-                     {getPriceLabel(harga[cat.key] / cat.basePrice)}
+                    {getPriceLabel(harga[cat.key] / cat.basePrice)}
                   </span>
                 </div>
 
-                {/* 3. Controls (Compact) */}
+                {/* 3. Controls */}
                 <div className="flex-1 relative z-10">
                   <div className="grid grid-cols-5 gap-1.5 p-1 bg-zinc-950/80 border border-zinc-800/50 rounded-xl shadow-inner">
                     {presets.map((preset) => {
                       const targetPrice = Math.round(cat.basePrice * preset.multiplier);
                       return (
-                      <button
-                        key={preset.multiplier}
-                        onClick={() => handlePriceChange(cat.key, targetPrice)}
-                        className={`relative flex flex-col items-center justify-center py-2.5 rounded-lg transition-all cursor-pointer group/btn ${
-                          harga[cat.key] === targetPrice
-                            ? 'bg-zinc-800 text-white shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-zinc-700'
-                            : 'text-zinc-600 hover:bg-zinc-900 hover:text-zinc-300'
-                        }`}
-                      >
-                        {harga[cat.key] === targetPrice && (
-                          <div className={`absolute top-0 left-0 w-full h-[2px] bg-cyan-500`} />
-                        )}
-                        <span className="text-[9px] font-black uppercase tracking-tighter decoration-zinc-700 opacity-80">{preset.label}</span>
-                        <div className="flex items-baseline gap-0.5 mt-0.5">
-                           <span className="text-[11px] font-black tracking-tight">{formatPrice(targetPrice)}</span>
-                        </div>
-                      </button>
-                    )})}
+                        <button
+                          key={preset.multiplier}
+                          onClick={() => handlePriceChange(cat.key, targetPrice)}
+                          className={`relative flex flex-col items-center justify-center py-2.5 rounded-lg transition-all cursor-pointer group/btn ${
+                            harga[cat.key] === targetPrice
+                              ? 'bg-zinc-800 text-white shadow-[0_0_15px_rgba(0,0,0,0.5)] border border-zinc-700'
+                              : 'text-zinc-600 hover:bg-zinc-900 hover:text-zinc-300'
+                          }`}
+                        >
+                          {harga[cat.key] === targetPrice && (
+                            <div className="absolute top-0 left-0 w-full h-[2px] bg-cyan-500" />
+                          )}
+                          <span className="text-[9px] font-black uppercase tracking-tighter opacity-80">{preset.label}</span>
+                          <div className="flex items-baseline gap-0.5 mt-0.5">
+                            <span className="text-[11px] font-black tracking-tight">{formatPrice(targetPrice)}</span>
+                          </div>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 
                 {/* Aesthetic Background Icon */}
                 <div className="absolute top-1/2 -translate-y-1/2 right-10 p-0 opacity-[0.02] pointer-events-none group-hover/item:opacity-[0.05] transition-opacity">
-                   <cat.icon size={80} />
+                  <cat.icon size={80} />
                 </div>
               </div>
             ))}
           </div>
         </div>
-
-        {/* Footer */}
-        <div className="px-10 py-8 bg-zinc-900/30 border-t border-zinc-800/80 flex items-center justify-between backdrop-blur-3xl relative z-10">
-          <div className="flex items-center gap-6">
-             <div className="flex flex-col">
-                <p className="text-[10px] font-black text-zinc-600 uppercase tracking-[0.2em]">Otoritas Kebijakan</p>
-                <p className="text-sm font-black text-zinc-400 italic">Kabinet Bidang Perekonomian Nasional</p>
-             </div>
-             <div className="h-10 w-px bg-zinc-800" />
-             <div className="flex items-center gap-3">
-                <div className="h-2 w-2 rounded-full bg-cyan-500 animate-pulse" />
-                <span className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest">Enforcing Economic Stability</span>
-             </div>
-          </div>
-          <button 
-            onClick={onClose}
-            className="group relative px-16 py-5 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-black rounded-2xl shadow-[0_15px_30px_rgba(20,184,166,0.3)] hover:shadow-[0_20px_40px_rgba(20,184,166,0.4)] transition-all active:scale-95 text-[11px] uppercase tracking-[0.2em] overflow-hidden cursor-pointer"
-          >
-            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-            <span className="relative flex items-center gap-3">
-              <span className="h-5 w-5 bg-white/10 rounded flex items-center justify-center">
-                 <TrendingUp size={12} />
-              </span>
-              Simpan & Terapkan Kebijakan
-            </span>
-          </button>
-        </div>
       </div>
     </div>
   );
 }
+

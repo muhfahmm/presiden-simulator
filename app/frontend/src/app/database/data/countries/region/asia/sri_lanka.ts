@@ -60,21 +60,22 @@ export const sri_lanka: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 33.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 34,
     "sapi_perah": 7,
     "sapi_potong": 6,
     "domba_kambing": 39
   },
   "sektor_agrikultur": {
     "padi": 27,
-    "gandum_jagung": 22.5,
-    "sayur_umbi": 31.5,
+    "gandum_jagung": 22,
+    "sayur_umbi": 32,
     "kedelai": 2,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 29.7
+    "kopi_teh_kakao": 30
   },
   "sektor_perikanan": {
-    "udang_kerang": 28.5,
+    "udang_kerang": 28,
     "ikan": 38
   },
   "sektor_olahan_pangan": {

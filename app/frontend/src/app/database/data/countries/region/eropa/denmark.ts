@@ -60,21 +60,22 @@ export const denmark: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 27.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 28,
     "sapi_perah": 15,
     "sapi_potong": 16,
     "domba_kambing": 16
   },
   "sektor_agrikultur": {
     "padi": 31,
-    "gandum_jagung": 15.5,
-    "sayur_umbi": 15.5,
+    "gandum_jagung": 16,
+    "sayur_umbi": 16,
     "kedelai": 30,
     "kelapa_sawit": 6,
-    "kopi_teh_kakao": 23.0
+    "kopi_teh_kakao": 23
   },
   "sektor_perikanan": {
-    "udang_kerang": 3.5,
+    "udang_kerang": 4,
     "ikan": 27
   },
   "sektor_olahan_pangan": {

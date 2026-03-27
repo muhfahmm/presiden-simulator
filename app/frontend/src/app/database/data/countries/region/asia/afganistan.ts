@@ -60,21 +60,22 @@ export const afganistan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 15.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 16,
     "sapi_perah": 32,
     "sapi_potong": 24,
     "domba_kambing": 4
   },
   "sektor_agrikultur": {
     "padi": 26,
-    "gandum_jagung": 1.5,
-    "sayur_umbi": 8.5,
+    "gandum_jagung": 2,
+    "sayur_umbi": 8,
     "kedelai": 34,
     "kelapa_sawit": 21,
-    "kopi_teh_kakao": 25.3
+    "kopi_teh_kakao": 25
   },
   "sektor_perikanan": {
-    "udang_kerang": 4.0,
+    "udang_kerang": 4,
     "ikan": 35
   },
   "sektor_olahan_pangan": {

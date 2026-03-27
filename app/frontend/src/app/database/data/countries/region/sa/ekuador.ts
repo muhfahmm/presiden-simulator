@@ -60,21 +60,22 @@ export const ekuador: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 21.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 22,
     "sapi_perah": 35,
     "sapi_potong": 14,
     "domba_kambing": 11
   },
   "sektor_agrikultur": {
     "padi": 38,
-    "gandum_jagung": 18.5,
-    "sayur_umbi": 26.0,
+    "gandum_jagung": 18,
+    "sayur_umbi": 26,
     "kedelai": 33,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 30.0
+    "kopi_teh_kakao": 30
   },
   "sektor_perikanan": {
-    "udang_kerang": 5.0,
+    "udang_kerang": 5,
     "ikan": 35
   },
   "sektor_olahan_pangan": {

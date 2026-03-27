@@ -60,21 +60,22 @@ export const dominika: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 19.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 19,
     "sapi_perah": 34,
     "sapi_potong": 19,
     "domba_kambing": 6
   },
   "sektor_agrikultur": {
     "padi": 1,
-    "gandum_jagung": 2.0,
-    "sayur_umbi": 17.5,
+    "gandum_jagung": 2,
+    "sayur_umbi": 18,
     "kedelai": 33,
     "kelapa_sawit": 7,
-    "kopi_teh_kakao": 27.3
+    "kopi_teh_kakao": 27
   },
   "sektor_perikanan": {
-    "udang_kerang": 35.5,
+    "udang_kerang": 36,
     "ikan": 2
   },
   "sektor_olahan_pangan": {

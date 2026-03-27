@@ -60,21 +60,22 @@ export const brazil: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 18.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 18,
     "sapi_perah": 25,
     "sapi_potong": 38,
     "domba_kambing": 3
   },
   "sektor_agrikultur": {
     "padi": 28,
-    "gandum_jagung": 11.0,
-    "sayur_umbi": 33.0,
+    "gandum_jagung": 11,
+    "sayur_umbi": 33,
     "kedelai": 40,
     "kelapa_sawit": 10,
-    "kopi_teh_kakao": 19.3
+    "kopi_teh_kakao": 19
   },
   "sektor_perikanan": {
-    "udang_kerang": 24.0,
+    "udang_kerang": 24,
     "ikan": 7
   },
   "sektor_olahan_pangan": {

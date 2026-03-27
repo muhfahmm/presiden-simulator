@@ -25,6 +25,8 @@ import KepuasanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawa
 import PopulasiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/7_populasi/PopulasiModal";
 import AcaraModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/acara/AcaraModal";
 import NewMessageToast from "@/app/game/components/sidemenu/2_kotak_masuk/NewMessageToast";
+import BudgetDetailModal from "@/app/game/components/1_navbar/3_kas_negara/BudgetDetailModal";
+import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 
 interface ModalsManagerProps {
   isMounted: boolean;
@@ -125,6 +127,12 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <PopulasiModal
         isOpen={activeMenu === "Dashboard:Populasi"}
         onClose={() => setActiveMenu("Populasi")}
+      />
+      <BudgetDetailModal
+        isOpen={activeMenu === "Dashboard:Budget"}
+        onClose={() => setActiveMenu("Ekonomi")}
+        countryData={countryData}
+        buildingDeltas={buildingStorage.getData().buildingDeltas || {}}
       />
       <NewMessageToast />
     </>

@@ -60,21 +60,22 @@ export const bahrain: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 31.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 32,
     "sapi_perah": 7,
     "sapi_potong": 5,
     "domba_kambing": 33
   },
   "sektor_agrikultur": {
     "padi": 23,
-    "gandum_jagung": 16.0,
-    "sayur_umbi": 27.5,
+    "gandum_jagung": 16,
+    "sayur_umbi": 28,
     "kedelai": 40,
     "kelapa_sawit": 2,
-    "kopi_teh_kakao": 22.0
+    "kopi_teh_kakao": 22
   },
   "sektor_perikanan": {
-    "udang_kerang": 32.0,
+    "udang_kerang": 32,
     "ikan": 10
   },
   "sektor_olahan_pangan": {

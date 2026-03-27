@@ -60,21 +60,22 @@ export const hungaria: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 27.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 28,
     "sapi_perah": 40,
     "sapi_potong": 24,
     "domba_kambing": 18
   },
   "sektor_agrikultur": {
     "padi": 20,
-    "gandum_jagung": 15.5,
-    "sayur_umbi": 23.0,
+    "gandum_jagung": 16,
+    "sayur_umbi": 23,
     "kedelai": 33,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 9.7
+    "kopi_teh_kakao": 10
   },
   "sektor_perikanan": {
-    "udang_kerang": 21.0,
+    "udang_kerang": 21,
     "ikan": 18
   },
   "sektor_olahan_pangan": {

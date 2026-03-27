@@ -60,21 +60,22 @@ export const myanmar: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 28.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 28,
     "sapi_perah": 21,
     "sapi_potong": 7,
     "domba_kambing": 26
   },
   "sektor_agrikultur": {
     "padi": 22,
-    "gandum_jagung": 2.0,
-    "sayur_umbi": 12.0,
+    "gandum_jagung": 2,
+    "sayur_umbi": 12,
     "kedelai": 30,
     "kelapa_sawit": 13,
-    "kopi_teh_kakao": 22.7
+    "kopi_teh_kakao": 23
   },
   "sektor_perikanan": {
-    "udang_kerang": 18.5,
+    "udang_kerang": 18,
     "ikan": 22
   },
   "sektor_olahan_pangan": {

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { 
+import {
   Star, Wallet, Wrench, Shield, Globe, Landmark, LayoutGrid, ChevronLeft,
   Hammer, Swords as MilitaryIcon, Users2, BarChart3, TrendingUp,
   ArrowRightLeft, FileText, CreditCard, Zap, Package, Home, ShieldAlert, Gem, Tag, Smile
@@ -102,28 +102,27 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
   return (
     <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-40 w-max max-w-[95vw]">
       <nav className={`flex items-center gap-2 bg-zinc-950 px-2.5 py-2 rounded-2xl border border-zinc-800/80 shadow-2xl transition-all duration-500 ease-in-out ${isMenuSelected ? 'min-w-[320px]' : ''}`}>
-        
+
         {/* Main Navigation Section */}
         <div className="flex items-center gap-2">
-          {(isMenuSelected 
-            ? [{ id: "Peta Taktis", icon: LayoutGrid, label: "Peta Taktis" }, menuItems.find(item => item.id === activeTab)] 
+          {(isMenuSelected
+            ? [{ id: "Peta Taktis", icon: LayoutGrid, label: "Peta Taktis" }, menuItems.find(item => item.id === activeTab)]
             : menuItems
           ).filter(Boolean).map((item: any) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
             const isMap = item.id === "Peta Taktis";
-            
+
             return (
               <div key={item.id} className="group relative">
                 <button
                   onClick={() => isMap ? handleFullReset() : handleMainClick(item.id)}
-                  className={`px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 flex items-center gap-2.5 justify-center ${
-                    isActive 
-                      ? "bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg scale-105 min-w-[7rem]" 
-                      : isMap
-                        ? "text-zinc-400 hover:text-white hover:bg-zinc-800/60"
-                        : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/40"
-                  }`}
+                  className={`px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 flex items-center gap-2.5 justify-center ${isActive
+                    ? "bg-gradient-to-r from-cyan-600 to-blue-600 text-white shadow-lg scale-105 min-w-[7rem]"
+                    : isMap
+                      ? "text-zinc-400 hover:text-white hover:bg-zinc-800/60"
+                      : "text-zinc-500 hover:text-zinc-200 hover:bg-zinc-800/40"
+                    }`}
                 >
                   <Icon className={`h-5 w-5 ${isActive ? "animate-pulse" : ""}`} />
                   {isActive && (
@@ -150,11 +149,10 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
               <div key={sub.id} className="group/sub relative">
                 <button
                   onClick={() => setActiveMenu(sub.id)}
-                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl transition-all group/btn whitespace-nowrap cursor-pointer border ${
-                    activeMenu === sub.id
-                      ? 'bg-zinc-800 border-cyan-500/50 text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.1)]'
-                      : 'bg-zinc-900/40 hover:bg-zinc-800/80 border-zinc-800/50 hover:border-zinc-700 text-zinc-400'
-                  }`}
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl transition-all group/btn whitespace-nowrap cursor-pointer border ${activeMenu === sub.id
+                    ? 'bg-zinc-800 border-cyan-500/50 text-cyan-400 shadow-[0_0_10px_rgba(6,182,212,0.1)]'
+                    : 'bg-zinc-900/40 hover:bg-zinc-800/80 border-zinc-800/50 hover:border-zinc-700 text-zinc-400'
+                    }`}
                 >
                   <sub.icon className={`h-4 w-4 ${activeMenu === sub.id ? 'text-cyan-400' : 'text-zinc-500 group-hover/btn:text-cyan-400'} transition-colors`} />
                   <span className={`text-[11px] font-bold ${activeMenu === sub.id ? 'text-zinc-100' : 'text-zinc-400 group-hover/btn:text-zinc-100'} transition-colors uppercase tracking-tight`}>

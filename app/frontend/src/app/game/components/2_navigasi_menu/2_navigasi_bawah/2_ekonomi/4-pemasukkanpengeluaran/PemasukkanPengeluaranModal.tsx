@@ -64,18 +64,19 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
 
   if (!isOpen) return null;
 
-  // --- LOGIKA KALKULASI (Unified with economyLogic.ts) ---
-
-  // 1. Revenue
+  // 1. Revenue — dynamic iteration same as PajakModal
   const savedTaxes = taxStorage.getTaxes(initialCountry.name_en) || initialCountry.pajak;
-  const domesticTaxes = ["ppn", "korporasi", "pendapatan_nasional", "lingkungan", "lainnya"];
-  const tradeTaxes = ["bea_cukai", "transit_sekutu", "transit_non_sekutu"];
+  const TRADE_KEYS = new Set(["bea_cukai", "transit_sekutu", "transit_non_sekutu", "tarif_ekspor", "tarif_impor"]);
+  const autoLabel = (key: string) => key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
+  const allTaxKeys = Object.keys(savedTaxes as any);
+  const dynamicDomestic = allTaxKeys.filter(k => !TRADE_KEYS.has(k)).map(k => ({ id: k, label: autoLabel(k) }));
+  const dynamicTrade = allTaxKeys.filter(k => TRADE_KEYS.has(k)).map(k => ({ id: k, label: autoLabel(k) }));
 
-  const activeDomesticRevenue = domesticTaxes.reduce((acc, key) => acc + ((savedTaxes as any)[key]?.pendapatan || 0), 0);
-  const activeTradeRevenue = tradeTaxes.reduce((acc, key) => acc + ((savedTaxes as any)[key]?.pendapatan || 0), 0);
-  
-  
-  const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue + (incData.grants || 0) + (incData.investments || 0);
+  const activeDomesticRevenue = dynamicDomestic.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0);
+  const activeTradeRevenue = dynamicTrade.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0);
+
+  const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue;
+  const totalDailyIncome = dailyTaxRevenue + (incData.grants || 0) + (incData.investments || 0);
 
   // 2. Expenses
   const buildingData = buildingStorage.getData();
@@ -235,7 +236,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   
   // Extra Fiscal Expenses
   const totalSubsidyLevel = ((expData.subsidi_energi || 0) + (expData.subsidi_pangan || 0) + (expData.subsidi_kesehatan || 0) + (expData.subsidi_pendidikan || 0) + (expData.subsidi_umkm || 0) + (expData.subsidi_transportasi || 0) + (expData.subsidi_perumahan || 0)) / 7;
-  const subsidyExpense = (dailyTaxRevenue * (totalSubsidyLevel / 100));
+  const subsidyExpense = (totalDailyIncome * (totalSubsidyLevel / 100));
   const coreMaintenance = dailyBaseMaintenance + dailyDeltaMaintenance;
   const getMult = (v: number) => v <= 2.0 ? v : v / 100;
   const avgSalaryMultiplier = (getMult(expData.gaji_asn || 1) + getMult(expData.gaji_guru || 1) + getMult(expData.gaji_medis || 1) + getMult(expData.gaji_militer || 1)) / 4;
@@ -244,8 +245,8 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   const totalDailyExpense = coreMaintenance + dailyMilitaryExpense + subsidyExpense + salaryExpense + (expData.debtInterestPaid || 0);
 
   // 3. Final Balance
-  const netDailySurplus = dailyTaxRevenue - totalDailyExpense;
-  const surplusPercentage = (netDailySurplus / dailyTaxRevenue) * 100;
+  const netDailySurplus = totalDailyIncome - totalDailyExpense;
+  const surplusPercentage = (netDailySurplus / totalDailyIncome) * 100;
   const expenseItems = [
      { id: "military", label: "Beban Militer & Pertahanan", value: dailyMilitaryExpense, icon: Shield, color: "text-red-400", desc: "Pemeliharaan alutsista dan gaji personel aktif." },
      { id: "maintenance", label: "Pemeliharaan Infrastruktur", value: dailyBaseMaintenance, icon: Zap, color: "text-amber-400", desc: "Listrik, jalan raya, pelabuhan, dan fasilitas publik." },
@@ -290,9 +291,9 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
         </div>
         
         <div className="flex-1 overflow-y-auto p-10 no-scrollbar space-y-8 bg-[radial-gradient(circle_at_top_right,rgba(168,85,247,0.03),transparent_40%)]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
              <div className="bg-zinc-900/40 border border-zinc-800 p-8 rounded-3xl flex flex-col gap-6 relative group overflow-hidden transition-all hover:bg-zinc-900/60 shadow-lg">
-                <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><TrendingUp className="h-10 w-10 text-emerald-400" /></div>
+                 <div className="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity"><TrendingUp className="h-10 w-10 text-blue-400" /></div>
                 <div>
                    <span className="text-xs font-black text-zinc-500 uppercase tracking-widest block mb-2">Total Kas Negara</span>
                    <div className="flex items-baseline gap-2">
@@ -301,7 +302,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                 </div>
                 <div className="pt-4 border-t border-zinc-800 flex justify-between items-center">
                    <span className="text-[13px] font-bold text-zinc-500 uppercase">Status</span>
-                   <span className="text-xs font-black text-emerald-400 uppercase tracking-widest italic">Liquid</span>
+                   <span className="text-xs font-black text-blue-400 uppercase tracking-widest italic">Liquid</span>
                 </div>
              </div>
              <div className="bg-zinc-900/40 border border-zinc-800 p-8 rounded-3xl flex flex-col gap-6 relative group overflow-hidden transition-all hover:bg-zinc-900/60 shadow-lg">
@@ -318,26 +319,6 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                    <span className="text-xs font-black text-blue-400 uppercase tracking-widest italic">{initialCountry.name_id} v.1</span>
                 </div>
              </div>
-             <div className="bg-zinc-900/40 border border-zinc-800 p-8 rounded-3xl flex flex-col gap-6 relative group overflow-hidden transition-all hover:bg-zinc-900/60 shadow-lg">
-                <div className={`absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity`}>
-                   {netDailySurplus >= 0 ? <TrendingUp className="h-10 w-10 text-emerald-400" /> : <TrendingDown className="h-10 w-10 text-red-400" />}
-                </div>
-                <div>
-                   <span className="text-xs font-black text-zinc-500 uppercase tracking-widest block mb-2">Saldo Bersih</span>
-                   <div className="flex items-baseline gap-2">
-                      <span className={`text-3xl font-black tracking-tight ${netDailySurplus >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                         {netDailySurplus >= 0 ? '+' : ''}{Math.round(netDailySurplus).toLocaleString('id-ID')}
-                      </span>
-                      <span className="text-sm font-bold text-zinc-500 uppercase">/ Hari</span>
-                   </div>
-                </div>
-                <div className="pt-4 border-t border-zinc-800 flex justify-between items-center">
-                   <span className="text-[13px] font-bold text-zinc-500 uppercase">Proyeksi</span>
-                   <span className={`text-xs font-black uppercase tracking-widest ${netDailySurplus >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>
-                      {netDailySurplus >= 0 ? 'Surplus' : 'Defisit'}
-                   </span>
-                </div>
-             </div>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
@@ -350,47 +331,40 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                    </h3>
                    <span className="text-xs font-black text-emerald-400">+{Math.round(dailyTaxRevenue).toLocaleString('id-ID')}</span>
                 </div>
-                
-                <div className="space-y-4 max-h-[400px] overflow-y-auto no-scrollbar pr-2">
-                   {/* Domestic Taxes */}
-                   <div className="space-y-3">
-                      <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Domestic Fiscal</span>
-                      {[
-                         { id: "ppn", label: "Pajak PPN", icon: Coins, color: "text-purple-400" },
-                         { id: "korporasi", label: "Pajak Korporasi", icon: Building2, color: "text-cyan-400" },
-                         { id: "pendapatan_nasional", label: "Pajak Penghasilan", icon: Wallet, color: "text-green-400" },
-                         { id: "lingkungan", label: "Pajak Lingkungan", icon: Activity, color: "text-emerald-400" },
-                         { id: "lainnya", label: "Pajak Lainnya", icon: Info, color: "text-zinc-500" }
-                      ].map((tax) => (
-                         <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
-                            <div className="flex items-center gap-3">
-                               <tax.icon size={14} className={tax.color} />
-                               <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{tax.label}</span>
-                            </div>
-                            <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
-                         </div>
-                      ))}
-                   </div>
+                                 <div className="space-y-4 max-h-[400px] overflow-y-auto no-scrollbar pr-2">
+                    {/* Domestic Taxes — dynamic */}
+                    {dynamicDomestic.length > 0 && (
+                    <div className="space-y-3">
+                       <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Domestic Fiscal</span>
+                       {dynamicDomestic.map((tax) => (
+                          <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
+                             <div className="flex items-center gap-3">
+                                <Coins size={14} className="text-purple-400" />
+                                <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{tax.label}</span>
+                             </div>
+                             <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
+                          </div>
+                       ))}
+                    </div>
+                    )}
 
-                   {/* Trade Taxes */}
-                   <div className="space-y-3 mt-6">
-                      <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Trade & Logistics</span>
-                      {[
-                         { id: "bea_cukai", label: "Bea Cukai", icon: Landmark, color: "text-amber-400" },
-                         { id: "transit_sekutu", label: "Transit (Sekutu)", icon: Shield, color: "text-blue-400" },
-                         { id: "transit_non_sekutu", label: "Transit (Non-Mitra)", icon: Activity, color: "text-rose-400" }
-                      ].map((tax) => (
-                         <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
-                            <div className="flex items-center gap-3">
-                               <tax.icon size={14} className={tax.color} />
-                               <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{tax.label}</span>
-                            </div>
-                            <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
-                         </div>
-                      ))}
-                   </div>
-                </div>
-             </div>
+                    {/* Trade Taxes — dynamic */}
+                    {dynamicTrade.length > 0 && (
+                    <div className="space-y-3 mt-6">
+                       <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Trade &amp; Logistics</span>
+                       {dynamicTrade.map((tax) => (
+                          <div key={tax.id} className="bg-zinc-950/50 border border-zinc-900 p-4 rounded-2xl flex justify-between items-center group hover:border-zinc-800 transition-all">
+                             <div className="flex items-center gap-3">
+                                <Landmark size={14} className="text-amber-400" />
+                                <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{tax.label}</span>
+                             </div>
+                             <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
+                          </div>
+                       ))}
+                    </div>
+                    )}
+                 </div>
+              </div>
 
              {/* KOLOM 2: PENGELUARAN */}
              <div className="bg-zinc-900/30 border border-zinc-800 rounded-[2rem] p-8 space-y-8 backdrop-blur-sm shadow-xl relative overflow-hidden">

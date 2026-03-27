@@ -60,21 +60,22 @@ export const makedonia_utara: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 11.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 12,
     "sapi_perah": 17,
     "sapi_potong": 34,
     "domba_kambing": 35
   },
   "sektor_agrikultur": {
     "padi": 2,
-    "gandum_jagung": 30.5,
-    "sayur_umbi": 19.5,
+    "gandum_jagung": 30,
+    "sayur_umbi": 20,
     "kedelai": 37,
     "kelapa_sawit": 34,
-    "kopi_teh_kakao": 25.3
+    "kopi_teh_kakao": 25
   },
   "sektor_perikanan": {
-    "udang_kerang": 28.0,
+    "udang_kerang": 28,
     "ikan": 16
   },
   "sektor_olahan_pangan": {

@@ -57,21 +57,22 @@ export const guinea_bissau: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 14.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 14,
     "sapi_perah": 37,
     "sapi_potong": 39,
     "domba_kambing": 1
   },
   "sektor_agrikultur": {
     "padi": 6,
-    "gandum_jagung": 28.5,
-    "sayur_umbi": 15.5,
+    "gandum_jagung": 28,
+    "sayur_umbi": 16,
     "kedelai": 1,
     "kelapa_sawit": 23,
-    "kopi_teh_kakao": 26.0
+    "kopi_teh_kakao": 26
   },
   "sektor_perikanan": {
-    "udang_kerang": 10.5,
+    "udang_kerang": 10,
     "ikan": 9
   },
   "sektor_olahan_pangan": {

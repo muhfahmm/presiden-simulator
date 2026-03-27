@@ -60,21 +60,22 @@ export const bangladesh: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 7.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 8,
     "sapi_perah": 1,
     "sapi_potong": 4,
     "domba_kambing": 31
   },
   "sektor_agrikultur": {
     "padi": 9,
-    "gandum_jagung": 19.5,
-    "sayur_umbi": 24.5,
+    "gandum_jagung": 20,
+    "sayur_umbi": 24,
     "kedelai": 12,
     "kelapa_sawit": 26,
-    "kopi_teh_kakao": 26.0
+    "kopi_teh_kakao": 26
   },
   "sektor_perikanan": {
-    "udang_kerang": 23.5,
+    "udang_kerang": 24,
     "ikan": 32
   },
   "sektor_olahan_pangan": {

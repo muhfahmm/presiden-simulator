@@ -60,21 +60,22 @@ export const swiss: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 30.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 30,
     "sapi_perah": 14,
     "sapi_potong": 11,
     "domba_kambing": 32
   },
   "sektor_agrikultur": {
     "padi": 40,
-    "gandum_jagung": 15.5,
-    "sayur_umbi": 20.5,
+    "gandum_jagung": 16,
+    "sayur_umbi": 20,
     "kedelai": 6,
     "kelapa_sawit": 26,
-    "kopi_teh_kakao": 16.0
+    "kopi_teh_kakao": 16
   },
   "sektor_perikanan": {
-    "udang_kerang": 17.0,
+    "udang_kerang": 17,
     "ikan": 8
   },
   "sektor_olahan_pangan": {

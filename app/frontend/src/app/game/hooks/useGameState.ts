@@ -6,7 +6,7 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { budgetDeltaStorage } from "@/app/game/components/1_navbar/3_kas_negara/BudgetDeltaStorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { countries } from "@/app/database/data/countries/region/index";
-import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLogic";
+import { calculateDailyBudgetDelta, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
 import { calculateDailyPopulationDelta } from "@/app/game/components/1_navbar/2_populasi/PopulationDeltaLogic";
 import { calculatePopulationHappiness } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan";
 import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
@@ -62,7 +62,8 @@ export function useGameState(setActiveMenu: (menu: string) => void) {
       
       if (currentCountry) {
         const buildingData = buildingStorage.getData();
-        const delta = calculateDailyBudgetDelta(currentCountry, buildingData.buildingDeltas);
+        const breakdown = calculateBudgetBreakdown(currentCountry, buildingData.buildingDeltas);
+        const delta = breakdown.dailyTaxRevenue;
         setBudgetDelta(delta);
         budgetDeltaStorage.setDelta(delta);
         setHappiness(calculatePopulationHappiness());

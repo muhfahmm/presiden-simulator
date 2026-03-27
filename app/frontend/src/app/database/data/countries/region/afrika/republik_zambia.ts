@@ -57,21 +57,22 @@ export const republik_zambia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 17.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 18,
     "sapi_perah": 31,
     "sapi_potong": 11,
     "domba_kambing": 2
   },
   "sektor_agrikultur": {
     "padi": 11,
-    "gandum_jagung": 21.5,
-    "sayur_umbi": 10.5,
+    "gandum_jagung": 22,
+    "sayur_umbi": 10,
     "kedelai": 34,
     "kelapa_sawit": 2,
-    "kopi_teh_kakao": 24.0
+    "kopi_teh_kakao": 24
   },
   "sektor_perikanan": {
-    "udang_kerang": 14.5,
+    "udang_kerang": 14,
     "ikan": 9
   },
   "sektor_olahan_pangan": {

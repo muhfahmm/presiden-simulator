@@ -60,21 +60,22 @@ export const selandia_baru: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 23.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 24,
     "sapi_perah": 20,
     "sapi_potong": 23,
     "domba_kambing": 34
   },
   "sektor_agrikultur": {
     "padi": 11,
-    "gandum_jagung": 8.0,
-    "sayur_umbi": 14.5,
+    "gandum_jagung": 8,
+    "sayur_umbi": 14,
     "kedelai": 32,
     "kelapa_sawit": 19,
-    "kopi_teh_kakao": 12.7
+    "kopi_teh_kakao": 13
   },
   "sektor_perikanan": {
-    "udang_kerang": 22.0,
+    "udang_kerang": 22,
     "ikan": 27
   },
   "sektor_olahan_pangan": {

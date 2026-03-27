@@ -60,21 +60,22 @@ export const el_salvador: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 18.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 18,
     "sapi_perah": 33,
     "sapi_potong": 7,
     "domba_kambing": 6
   },
   "sektor_agrikultur": {
     "padi": 25,
-    "gandum_jagung": 26.5,
-    "sayur_umbi": 28.0,
+    "gandum_jagung": 26,
+    "sayur_umbi": 28,
     "kedelai": 18,
     "kelapa_sawit": 6,
-    "kopi_teh_kakao": 21.0
+    "kopi_teh_kakao": 21
   },
   "sektor_perikanan": {
-    "udang_kerang": 23.0,
+    "udang_kerang": 23,
     "ikan": 28
   },
   "sektor_olahan_pangan": {

@@ -57,21 +57,22 @@ export const republik_uganda: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 25.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 26,
     "sapi_perah": 21,
     "sapi_potong": 24,
     "domba_kambing": 35
   },
   "sektor_agrikultur": {
     "padi": 30,
-    "gandum_jagung": 32.5,
-    "sayur_umbi": 20.5,
+    "gandum_jagung": 32,
+    "sayur_umbi": 20,
     "kedelai": 12,
     "kelapa_sawit": 38,
-    "kopi_teh_kakao": 23.3
+    "kopi_teh_kakao": 23
   },
   "sektor_perikanan": {
-    "udang_kerang": 26.0,
+    "udang_kerang": 26,
     "ikan": 19
   },
   "sektor_olahan_pangan": {

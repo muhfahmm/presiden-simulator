@@ -23,7 +23,7 @@ export const indonesia: CountryData = {
     "pembangkit_listrik_tenaga_uap": 67,
     "pembangkit_listrik_tenaga_gas": 18,
     "pembangkit_listrik_tenaga_angin": 1
-    },
+  },
   // =============================================================
   // 2. 🏗️ SEKTOR INFRASTRUKTUR
   // =============================================================
@@ -37,7 +37,7 @@ export const indonesia: CountryData = {
     "bandara": 30,
     "terminal_bus": 16,
     "helipad": 2
-    },
+  },
   // =============================================================
   // 3. ⛏️ EKSTRAKSI & ENERGI
   // =============================================================
@@ -72,21 +72,23 @@ export const indonesia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 3.0,
+  "sektor_peternakan": {
+
+    "ayam_unggas": 3,
     "sapi_perah": 14,
     "sapi_potong": 17,
     "domba_kambing": 10
   },
   "sektor_agrikultur": {
     "padi": 29,
-    "gandum_jagung": 15.0,
-    "sayur_umbi": 19.5,
+    "gandum_jagung": 15,
+    "sayur_umbi": 20,
     "kedelai": 14,
     "kelapa_sawit": 31,
-    "kopi_teh_kakao": 22.7
+    "kopi_teh_kakao": 23
   },
   "sektor_perikanan": {
-    "udang_kerang": 30.5,
+    "udang_kerang": 31,
     "ikan": 13
   },
   "sektor_olahan_pangan": {
@@ -108,7 +110,7 @@ export const indonesia: CountryData = {
   // =============================================================
   // 7. 🛡️ MANAJEMEN PERTAHANAN
   // =============================================================
-"sektor_pertahanan": {
+  "sektor_pertahanan": {
     "penjara": 9,
     "gudang_senjata": 39,
     "hangar_tank": 7,
@@ -118,7 +120,7 @@ export const indonesia: CountryData = {
     "pangkalan_laut": 11,
     "program_luar_angkasa": 13,
     "pertahanan_siber": 39
-    },
+  },
   // =============================================================
   // 8. ⚔️ SEKTOR ARMADA TEMPUR NASIONAL
   // =============================================================
@@ -126,38 +128,38 @@ export const indonesia: CountryData = {
   "armada_militer": {
     "barak": 34,
     "darat": {
-        "tank_tempur_utama": 31,
-        "apc_ifv": 9,
-        "artileri_berat": 26,
-        "sistem_peluncur_roket": 0,
-        "pertahanan_udara_mobile": 0,
-        "kendaraan_taktis": 0
-      },
-      "laut": {
-        "kapal_induk": 29,
-        "kapal_destroyer": 40,
-        "kapal_korvet": 0,
-        "kapal_selam_nuklir": 0,
-        "kapal_selam_regular": 0,
-        "kapal_ranjau": 0,
-        "kapal_logistik": 0
-      },
-      "udara": {
-        "jet_tempur_siluman": 8,
-        "jet_tempur_interceptor": 0,
-        "pesawat_pengebom": 0,
-        "helikopter_serang": 8,
-        "pesawat_pengintai": 2,
-        "drone_intai_uav": 0,
-        "drone_kamikaze": 0,
-        "pesawat_angkut": 0
-      }
-  ,
+      "tank_tempur_utama": 31,
+      "apc_ifv": 9,
+      "artileri_berat": 26,
+      "sistem_peluncur_roket": 0,
+      "pertahanan_udara_mobile": 0,
+      "kendaraan_taktis": 0
+    },
+    "laut": {
+      "kapal_induk": 29,
+      "kapal_destroyer": 40,
+      "kapal_korvet": 0,
+      "kapal_selam_nuklir": 0,
+      "kapal_selam_regular": 0,
+      "kapal_ranjau": 0,
+      "kapal_logistik": 0
+    },
+    "udara": {
+      "jet_tempur_siluman": 8,
+      "jet_tempur_interceptor": 0,
+      "pesawat_pengebom": 0,
+      "helikopter_serang": 8,
+      "pesawat_pengintai": 2,
+      "drone_intai_uav": 0,
+      "drone_kamikaze": 0,
+      "pesawat_angkut": 0
+    }
+    ,
     "personel": {
-        "infanteri_reguler": 340000,
-        "pasukan_khusus": 30000,
-        "pasukan_cadangan": 400000
-      }
+      "infanteri_reguler": 340000,
+      "pasukan_khusus": 30000,
+      "pasukan_cadangan": 400000
+    }
   },
   // =============================================================
   // 9. 🛡️ SEKTOR STRATEGIS & KEAMANAN PUBLIK
@@ -168,29 +170,31 @@ export const indonesia: CountryData = {
     "intelijen": 13,
     "status_nuklir": false,
     "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
-    "operasi_strategis": { "misi_serangan": 20,
+    "operasi_strategis": {
+      "misi_serangan": 20,
       "misi_mata_mata": 39,
       "misi_sabotase": 23,
       "manajemen_wilayah": 40,
-      "program_nuklir": 0 }
+      "program_nuklir": 0
+    }
   },
-    "armada_kepolisian": {
+  "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
         "mobil_patroli": 23,
         "sepeda_motor": 9,
         "unit_k9": 23
-  },
-        "taktis_khusus": {
-          "swat": 8,
-          "helikopter_polisi": 4,
-          "anti_huru_hara": 62
-        },
-        "pusat_komando": {
-          "kantor_polisi": 36,
-          "kamera_pengawas": 15,
-          "pusat_forensik": 1
-        }
+      },
+      "taktis_khusus": {
+        "swat": 8,
+        "helikopter_polisi": 4,
+        "anti_huru_hara": 62
+      },
+      "pusat_komando": {
+        "kantor_polisi": 36,
+        "kamera_pengawas": 15,
+        "pusat_forensik": 1
+      }
     }
   },
   "pabrik_militer": {
@@ -233,13 +237,13 @@ export const indonesia: CountryData = {
       "akademi_polisi": 29,
       "indeks_korupsi": 73,
       "indeks_keamanan": 78
-  }
+    }
   },
   "sektor_olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 35,
-      "stadion": 37,
-      "stadion_internasional": 11
+    "kolam_renang": 35,
+    "sirkuit_balap": 35,
+    "stadion": 37,
+    "stadion_internasional": 11
   },
 
   "un_vote": "Pro",
@@ -318,7 +322,7 @@ export const indonesia: CountryData = {
     "harga_pendidikan": 483900
   },
 
-    // =============================================================
+  // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
 

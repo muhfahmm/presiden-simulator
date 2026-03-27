@@ -60,21 +60,22 @@ export const belanda: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 25.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 25,
     "sapi_perah": 38,
     "sapi_potong": 31,
     "domba_kambing": 12
   },
   "sektor_agrikultur": {
     "padi": 32,
-    "gandum_jagung": 19.5,
-    "sayur_umbi": 31.0,
+    "gandum_jagung": 20,
+    "sayur_umbi": 31,
     "kedelai": 14,
     "kelapa_sawit": 38,
-    "kopi_teh_kakao": 31.0
+    "kopi_teh_kakao": 31
   },
   "sektor_perikanan": {
-    "udang_kerang": 13.0,
+    "udang_kerang": 13,
     "ikan": 37
   },
   "sektor_olahan_pangan": {

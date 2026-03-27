@@ -60,21 +60,22 @@ export const marshall: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 33.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 33,
     "sapi_perah": 37,
     "sapi_potong": 23,
     "domba_kambing": 6
   },
   "sektor_agrikultur": {
     "padi": 12,
-    "gandum_jagung": 11.0,
-    "sayur_umbi": 30.0,
+    "gandum_jagung": 11,
+    "sayur_umbi": 30,
     "kedelai": 35,
     "kelapa_sawit": 15,
-    "kopi_teh_kakao": 20.7
+    "kopi_teh_kakao": 21
   },
   "sektor_perikanan": {
-    "udang_kerang": 16.5,
+    "udang_kerang": 16,
     "ikan": 29
   },
   "sektor_olahan_pangan": {

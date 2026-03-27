@@ -60,21 +60,22 @@ export const bulgaria: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 14.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 14,
     "sapi_perah": 6,
     "sapi_potong": 5,
     "domba_kambing": 28
   },
   "sektor_agrikultur": {
     "padi": 35,
-    "gandum_jagung": 11.0,
-    "sayur_umbi": 12.5,
+    "gandum_jagung": 11,
+    "sayur_umbi": 12,
     "kedelai": 28,
     "kelapa_sawit": 20,
-    "kopi_teh_kakao": 39.0
+    "kopi_teh_kakao": 39
   },
   "sektor_perikanan": {
-    "udang_kerang": 5.5,
+    "udang_kerang": 6,
     "ikan": 37
   },
   "sektor_olahan_pangan": {

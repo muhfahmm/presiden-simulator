@@ -60,21 +60,22 @@ export const greenland: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 5.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 6,
     "sapi_perah": 29,
     "sapi_potong": 33,
     "domba_kambing": 3
   },
   "sektor_agrikultur": {
     "padi": 32,
-    "gandum_jagung": 24.0,
-    "sayur_umbi": 29.5,
+    "gandum_jagung": 24,
+    "sayur_umbi": 30,
     "kedelai": 13,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 26.3
+    "kopi_teh_kakao": 26
   },
   "sektor_perikanan": {
-    "udang_kerang": 14.5,
+    "udang_kerang": 14,
     "ikan": 14
   },
   "sektor_olahan_pangan": {

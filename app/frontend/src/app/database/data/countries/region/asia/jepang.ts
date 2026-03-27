@@ -60,21 +60,22 @@ export const jepang: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 21.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 21,
     "sapi_perah": 24,
     "sapi_potong": 13,
     "domba_kambing": 10
   },
   "sektor_agrikultur": {
     "padi": 17,
-    "gandum_jagung": 11.0,
-    "sayur_umbi": 15.5,
+    "gandum_jagung": 11,
+    "sayur_umbi": 16,
     "kedelai": 23,
     "kelapa_sawit": 29,
-    "kopi_teh_kakao": 33.3
+    "kopi_teh_kakao": 33
   },
   "sektor_perikanan": {
-    "udang_kerang": 25.5,
+    "udang_kerang": 26,
     "ikan": 38
   },
   "sektor_olahan_pangan": {

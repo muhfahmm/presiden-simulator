@@ -60,21 +60,22 @@ export const kazakhstan: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 23.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 24,
     "sapi_perah": 25,
     "sapi_potong": 29,
     "domba_kambing": 2
   },
   "sektor_agrikultur": {
     "padi": 33,
-    "gandum_jagung": 18.5,
-    "sayur_umbi": 24.5,
+    "gandum_jagung": 18,
+    "sayur_umbi": 24,
     "kedelai": 25,
     "kelapa_sawit": 13,
-    "kopi_teh_kakao": 9.7
+    "kopi_teh_kakao": 10
   },
   "sektor_perikanan": {
-    "udang_kerang": 25.0,
+    "udang_kerang": 25,
     "ikan": 4
   },
   "sektor_olahan_pangan": {

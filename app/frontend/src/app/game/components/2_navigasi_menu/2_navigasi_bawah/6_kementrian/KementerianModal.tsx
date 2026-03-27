@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
 import { X, Landmark, Shield, Star, Zap, User, RefreshCw, ChevronRight, Info, FileText } from "lucide-react"
-import { INITIAL_KEMENTERIAN, Ministry, KEMENTERIAN_FULL_DATABASE } from "./database_menteri"
+import { INITIAL_KEMENTERIAN, Ministry, KEMENTERIAN_FULL_DATABASE } from "./1_database_menteri"
 import { budgetStorage } from "../../../1_navbar/3_kas_negara"
-import UndangUndangTab from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_kementrian/UndangUndangTab"
+import UndangUndangTab from "./undangundang"
 
 interface ModalProps {
   isOpen: boolean;
@@ -85,8 +85,8 @@ export default function KementerianModal({ isOpen, onClose }: ModalProps) {
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-8 backdrop-blur-sm bg-black/40 animate-in fade-in duration-300 no-scrollbar">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-7xl h-[85vh] overflow-hidden shadow-2xl flex flex-col relative no-scrollbar">
+    <div className="fixed inset-0 z-[100] flex items-end justify-center backdrop-blur-sm bg-black/40 animate-in fade-in duration-300 no-scrollbar">
+      <div className="bg-zinc-950 border-x border-t border-zinc-800 rounded-t-[40px] w-full max-w-7xl h-[92vh] overflow-hidden shadow-2xl flex flex-col relative no-scrollbar">
         {/* Header - Compact */}
         <div className="px-6 py-4 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-4">
@@ -104,8 +104,8 @@ export default function KementerianModal({ isOpen, onClose }: ModalProps) {
               onClick={() => handleTabChange("kabinet")}
               className={`px-8 py-3 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer flex items-center gap-3 ${
                 activeTab === "kabinet" 
-                  ? "bg-purple-600 text-white shadow-lg shadow-purple-500/30" 
-                  : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/50"
+                  ? "bg-purple-600 text-white shadow-[0_0_20px_rgba(147,51,234,0.4)] border border-purple-400/50" 
+                  : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/50 border border-transparent"
               }`}
             >
               <Landmark className="h-4 w-4" />
@@ -115,8 +115,8 @@ export default function KementerianModal({ isOpen, onClose }: ModalProps) {
               onClick={() => handleTabChange("undang-undang")}
               className={`px-8 py-3 rounded-xl text-[10px] font-black uppercase tracking-[0.2em] transition-all cursor-pointer flex items-center gap-3 ${
                 activeTab === "undang-undang" 
-                  ? "bg-purple-600 text-white shadow-lg shadow-purple-500/30" 
-                  : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/50"
+                  ? "bg-amber-600 text-white shadow-[0_0_20px_rgba(217,119,6,0.4)] border border-amber-400/50" 
+                  : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/50 border border-transparent"
               }`}
             >
               <FileText className="h-4 w-4" />

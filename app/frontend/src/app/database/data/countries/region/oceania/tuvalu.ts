@@ -60,21 +60,22 @@ export const tuvalu: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 5.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 6,
     "sapi_perah": 24,
     "sapi_potong": 22,
     "domba_kambing": 38
   },
   "sektor_agrikultur": {
     "padi": 8,
-    "gandum_jagung": 23.5,
-    "sayur_umbi": 23.5,
+    "gandum_jagung": 24,
+    "sayur_umbi": 24,
     "kedelai": 35,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 27.7
+    "kopi_teh_kakao": 28
   },
   "sektor_perikanan": {
-    "udang_kerang": 5.5,
+    "udang_kerang": 6,
     "ikan": 22
   },
   "sektor_olahan_pangan": {

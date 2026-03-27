@@ -1,10 +1,11 @@
 import { useState, useEffect, Fragment } from "react";
-import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain } from "lucide-react"
+import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain, Briefcase, Users } from "lucide-react"
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate, produksiMiliter, tempatUmum } from "@/app/database/data/types";
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PANGAN, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI } from "@/app/database/data/types/1_kelistrikan"
 import { gameStorage } from "@/app/game/gamestorage";
+import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { formatGameDate, addDays, getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
 
@@ -147,6 +148,10 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   const handleConfirmBuild = () => {
     if (!confirmBuild) return;
     try {
+      // Deduct construction cost from budget
+      const totalCost = confirmBuild.cost * quantity;
+      budgetStorage.updateBudget(-totalCost);
+
       let currentStart = getStoredGameDate().getTime();
       const itemsToAdd: any[] = [];
 
@@ -225,7 +230,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   const productionGroups = [
     {
       id: "kelistrikan",
-      title: "1. Sektor Kelistrikan Nasional",
+      title: "1. Sektor Listrik Nasional",
       icon: Zap,
       color: "text-amber-400",
       items: Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]: [string, any]) => ({
@@ -239,114 +244,13 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         count: (currentData.sektor_listrik[key as keyof typeof currentData.sektor_listrik] || 0) + ((buildingDeltas[key] as number) || 0),
         pendapatan_nasional: 0,
         cost: 35,
-        buildTime: val.buildTime || 90
+        buildTime: val.buildTime || 90,
+        lowongan_kerja: val.lowongan_kerja || 0
       }))
     },
     {
-      id: "produksi_ekonomi",
-      title: "2. Sektor Produksi & Ekonomi Nasional",
-      icon: Factory,
-      color: "text-emerald-500",
-      items: [
-        // --- INDUSTRI (Grouped) ---
-        ...Object.entries(produkIndustriRate)
-          .sort((a, b) => {
-            const order = ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu", "air_mineral", "gula", "roti", "farmasi", "pupuk", "pengolahan_daging", "mie_instan"];
-            const idxA = order.indexOf(a[1].dataKey);
-            const idxB = order.indexOf(b[1].dataKey);
-            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
-          })
-          .map(([key, val]: [string, any]) => ({
-            key,
-            groupId: "manufaktur",
-            label: val.desc,
-            icon: getIcon(key),
-            desc: "Manufaktur",
-            tarif: val.production,
-            unit: val.unit,
-            count: (currentData.sektor_manufaktur[val.dataKey as keyof typeof currentData.sektor_manufaktur] || 0) + ((buildingDeltas[key] as number) || 0),
-            powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
-            pendapatan_nasional: val.pendapatan_nasional,
-            cost: 45,
-            buildTime: val.buildTime || 45
-          })),
-
-        // --- PETERNAKAN (Grouped) ---
-        ...Object.entries(komoditasPanganRate)
-          .filter(([key]) => ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"].includes(key))
-          .sort((a, b) => {
-            const order = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"];
-            const idxA = order.indexOf(a[0]);
-            const idxB = order.indexOf(b[0]);
-            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
-          })
-          .map(([key, val]: [string, any]) => ({
-            key,
-            groupId: "peternakan",
-            label: val.desc,
-            icon: getIcon(key),
-            desc: "Peternakan Nasional",
-            tarif: val.production,
-            unit: val.unit,
-            count: (currentData.sektor_peternakan[val.dataKey as keyof typeof currentData.sektor_peternakan] || 0) + ((buildingDeltas[key] as number) || 0),
-            powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
-            pendapatan_nasional: val.pendapatan_nasional,
-            cost: 15,
-            buildTime: val.buildTime || 25
-          })),
-
-        // --- PERIKANAN & KELAUTAN (Grouped) ---
-        ...Object.entries(komoditasPanganRate)
-          .filter(([key]) => ["udang_kerang", "ikan"].includes(key))
-          .sort((a, b) => {
-            const order = ["udang_kerang", "ikan"];
-            const idxA = order.indexOf(a[0]);
-            const idxB = order.indexOf(b[0]);
-            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
-          })
-          .map(([key, val]: [string, any]) => ({
-            key,
-            groupId: "perikanan",
-            label: val.desc,
-            icon: getIcon(key),
-            desc: "Perikanan & Kelautan",
-            tarif: val.production,
-            unit: val.unit,
-            count: (currentData.sektor_perikanan[val.dataKey as keyof typeof currentData.sektor_perikanan] || 0) + ((buildingDeltas[key] as number) || 0),
-            powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
-            pendapatan_nasional: val.pendapatan_nasional,
-            cost: 20,
-            buildTime: val.buildTime || 30
-          })),
-
-        // --- PERTANIAN & PERKEBUNAN (Grouped) ---
-        ...Object.entries(komoditasPanganRate)
-          .filter(([key]) => ["padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"].includes(key))
-          .sort((a, b) => {
-            const order = ["padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"];
-            const idxA = order.indexOf(a[0]);
-            const idxB = order.indexOf(b[0]);
-            return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
-          })
-          .map(([key, val]: [string, any]) => ({
-            key,
-            groupId: "pertanian",
-            label: val.desc,
-            icon: getIcon(key),
-            desc: "Pertanian & Perkebunan",
-            tarif: val.production,
-            unit: val.unit,
-            count: (currentData.sektor_agrikultur[val.dataKey as keyof typeof currentData.sektor_agrikultur] || 0) + ((buildingDeltas[key] as number) || 0),
-            powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
-            pendapatan_nasional: val.pendapatan_nasional,
-            cost: 10,
-            buildTime: val.buildTime || 30
-          }))
-      ]
-    },
-    {
       id: "ekstraksi",
-      title: "5. Mineral Kritis & Strategis",
+      title: "2. Sektor Ekstraksi & Mineral Kritis",
       icon: Pickaxe,
       color: "text-orange-500",
       items: Object.entries(mineralKritisRate)
@@ -368,7 +272,124 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           powerUsage: (KONSUMSI_EKSTRAKSI as any)[val.dataKey] || 5,
           pendapatan_nasional: 0,
           cost: 30,
-          buildTime: val.buildTime || 30
+          buildTime: val.buildTime || 30,
+          lowongan_kerja: val.lowongan_kerja || 0
+        }))
+    },
+    {
+      id: "manufaktur_industri",
+      title: "3. Sektor Manufaktur & Industri",
+      icon: Factory,
+      color: "text-emerald-500",
+      items: Object.entries(produkIndustriRate)
+        .filter(([_, val]) => ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu"].includes(val.dataKey))
+        .sort((a, b) => {
+          const order = ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu"];
+          const idxA = order.indexOf(a[1].dataKey);
+          const idxB = order.indexOf(b[1].dataKey);
+          return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
+        })
+        .map(([key, val]: [string, any]) => ({
+          key,
+          groupId: "manufaktur",
+          label: val.desc,
+          icon: getIcon(key),
+          desc: "Manufaktur",
+          tarif: val.production,
+          unit: val.unit,
+          count: (currentData.sektor_manufaktur[val.dataKey as keyof typeof currentData.sektor_manufaktur] || 0) + ((buildingDeltas[key] as number) || 0),
+          powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
+          pendapatan_nasional: val.pendapatan_nasional,
+          cost: 45,
+          buildTime: val.buildTime || 45,
+          lowongan_kerja: val.lowongan_kerja || 0
+        }))
+    },
+    {
+      id: "agri_peternakan",
+      title: "4. Sektor Agri dan Peternakan",
+      icon: Sprout,
+      color: "text-lime-500",
+      items: [
+        // --- sub 1: PETERNAKAN ---
+        ...Object.entries(komoditasPanganRate)
+          .filter(([_, val]: [string, any]) => ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"].includes(val.dataKey))
+          .map(([key, val]: [string, any]) => ({
+            key,
+            groupId: "peternakan",
+            label: val.desc,
+            icon: getIcon(key),
+            desc: "Peternakan Nasional",
+            tarif: val.production,
+            unit: val.unit,
+            count: (currentData.sektor_peternakan[val.dataKey as keyof typeof currentData.sektor_peternakan] || 0) + ((buildingDeltas[key] as number) || 0),
+            powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
+            pendapatan_nasional: val.pendapatan_nasional,
+            cost: 15,
+            buildTime: val.buildTime || 25,
+            lowongan_kerja: val.lowongan_kerja || 0
+          })),
+
+        // --- sub 2: AGRIKULTUR & PERTANIAN ---
+        ...Object.entries(komoditasPanganRate)
+          .filter(([_, val]: [string, any]) => ["padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"].includes(val.dataKey))
+          .map(([key, val]: [string, any]) => ({
+            key,
+            groupId: "agrikultur",
+            label: val.desc,
+            icon: getIcon(key),
+            desc: "Pertanian & Perkebunan",
+            tarif: val.production,
+            unit: val.unit,
+            count: (currentData.sektor_agrikultur[val.dataKey as keyof typeof currentData.sektor_agrikultur] || 0) + ((buildingDeltas[key] as number) || 0),
+            powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
+            pendapatan_nasional: val.pendapatan_nasional,
+            cost: 10,
+            buildTime: val.buildTime || 30,
+            lowongan_kerja: val.lowongan_kerja || 0
+          })),
+
+        // --- sub 3: OLAHAN PANGAN ---
+        ...Object.entries(produkIndustriRate)
+          .filter(([_, val]) => ["air_mineral", "gula", "roti", "pengolahan_daging", "mie_instan"].includes(val.dataKey))
+          .map(([key, val]: [string, any]) => ({
+            key,
+            groupId: "olahan_pangan",
+            label: val.desc,
+            icon: getIcon(key),
+            desc: "Olahan Pangan",
+            tarif: val.production,
+            unit: val.unit,
+            count: (currentData.sektor_olahan_pangan?.[val.dataKey as keyof typeof currentData.sektor_olahan_pangan] || 0) + ((buildingDeltas[key] as number) || 0),
+            powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
+            pendapatan_nasional: val.pendapatan_nasional,
+            cost: 25,
+            buildTime: val.buildTime || 35,
+            lowongan_kerja: val.lowongan_kerja || 0
+          }))
+      ]
+    },
+    {
+      id: "farmasi",
+      title: "5. Sektor Farmasi & Medis",
+      icon: Pill,
+      color: "text-rose-400",
+      items: Object.entries(produkIndustriRate)
+        .filter(([_, val]) => val.dataKey === "farmasi")
+        .map(([key, val]: [string, any]) => ({
+          key,
+          groupId: "farmasi",
+          label: val.desc,
+          icon: getIcon(key),
+          desc: "Farmasi & Kesehatan",
+          tarif: val.production,
+          unit: val.unit,
+          count: (currentData.sektor_farmasi?.[val.dataKey as keyof typeof currentData.sektor_farmasi] || 0) + ((buildingDeltas[key] as number) || 0),
+          powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
+          pendapatan_nasional: val.pendapatan_nasional,
+          cost: 60,
+          buildTime: val.buildTime || 60,
+          lowongan_kerja: val.lowongan_kerja || 0
         }))
     }
   ];
@@ -480,45 +501,35 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                       {group.items.map((item, idx) => {
                         const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
                         const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
-                        const showManufakturHeader = item.groupId === "manufaktur" && prevGroupId !== "manufaktur" && group.id === "produksi_ekonomi";
                         const showPeternakanHeader = item.groupId === "peternakan" && prevGroupId !== "peternakan";
-                        const showPerikananHeader = item.groupId === "perikanan" && prevGroupId !== "perikanan";
-                        const showPertanianHeader = item.groupId === "pertanian" && prevGroupId !== "pertanian";
+                        const showAgrikulturHeader = item.groupId === "agrikultur" && prevGroupId !== "agrikultur";
+                        const showOlahanPanganHeader = item.groupId === "olahan_pangan" && prevGroupId !== "olahan_pangan";
 
                         return (
                           <Fragment key={item.key || idx}>
-                            {showManufakturHeader && (
-                              <div className="col-span-full mb-4 flex items-center gap-3 mt-2">
-                                <Factory className="h-4 w-4 text-zinc-500" />
-                                <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
-                                  MANUFAKTUR & INDUSTRI (13)
-                                </span>
-                              </div>
-                            )}
-
                             {showPeternakanHeader && (
-                              <div className="col-span-full mt-8 mb-4 flex items-center gap-3">
+                              <div className="col-span-full mt-2 mb-4 flex items-center gap-3">
                                 <Beef className="h-4 w-4 text-zinc-500" />
                                 <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
-                                  PETERNAKAN NASIONAL (4)
+                                  SUB MENU 1: PETERNAKAN NASIONAL
                                 </span>
                               </div>
                             )}
 
-                            {showPerikananHeader && (
-                              <div className="col-span-full mt-8 mb-4 flex items-center gap-3">
-                                <Fish className="h-4 w-4 text-zinc-500" />
-                                <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
-                                  PERIKANAN & KELAUTAN (2)
-                                </span>
-                              </div>
-                            )}
-
-                            {showPertanianHeader && (
+                            {showAgrikulturHeader && (
                               <div className="col-span-full mt-8 mb-4 flex items-center gap-3">
                                 <Sprout className="h-4 w-4 text-zinc-500" />
                                 <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
-                                   PERTANIAN & PERKEBUNAN (6)
+                                   SUB MENU 2: AGRIKULTUR & PERTANIAN
+                                </span>
+                              </div>
+                            )}
+
+                            {showOlahanPanganHeader && (
+                              <div className="col-span-full mt-8 mb-4 flex items-center gap-3">
+                                <Utensils className="h-4 w-4 text-zinc-500" />
+                                <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
+                                   SUB MENU 3: INDUSTRI OLAHAN PANGAN
                                 </span>
                               </div>
                             )}
@@ -527,7 +538,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                               item={item}
                               onBuild={handleBuildRequest}
                               construction={currentConstruction}
-                              cumulative={session?.cumulativeProduction?.[item.key] || 0}
+                              cumulative={item.count || 0}
                             />
                           </Fragment>
                         );
@@ -684,14 +695,113 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
     ? calculateConstructionProgress(construction.startDate, construction.endDate, currentDate)
     : null;
 
+  // New logic for 6-month workforce occupancy
+  const diffTime = Math.abs(currentDate - INITIAL_GAME_DATE.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const sixMonthIndex = Math.floor(diffDays / 180);
+  
+  const nextUpdateMs = INITIAL_GAME_DATE.getTime() + (sixMonthIndex + 1) * 180 * 24 * 60 * 60 * 1000;
+  const nextUpdateDate = new Date(nextUpdateMs);
+  const nextDateStr = `${nextUpdateDate.getDate().toString().padStart(2, '0')}-${(nextUpdateDate.getMonth() + 1).toString().padStart(2, '0')}-${nextUpdateDate.getFullYear()}`;
+  
+  // Deterministic but building-specific occupancy rate (65% TO 95%)
+  const seed = (sixMonthIndex + (item.label?.length || 0)) % 100;
+  const occupancyPercentage = 0.65 + (seed % 30) / 100;
+  const totalVacancies = (item.lowongan_kerja || 0) * (item.count || 0);
+  const filledVacancies = Math.floor(totalVacancies * occupancyPercentage);
+
   return (
-    <div className={`bg-zinc-900/40 border ${progress ? 'border-cyan-500/30 bg-cyan-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative overflow-hidden h-full`}>
+    <div className={`bg-zinc-900/40 border ${progress ? 'border-cyan-500/30 bg-cyan-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative overflow-hidden h-full min-h-[380px]`}>
       {/* Background Progress Highlight */}
       {progress && (
         <div
           className="absolute top-0 left-0 bottom-0 bg-cyan-500/5 transition-all duration-1000"
           style={{ width: `${progress.percentage}%` }}
         />
+      )}
+
+      {/* Info Modal Overlay (Absolute) */}
+      {showDetail && (
+        <div className="absolute inset-0 z-50 bg-zinc-950/98 backdrop-blur-md p-6 flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="flex justify-between items-center mb-6">
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 bg-cyan-500/10 rounded-xl border border-cyan-500/20 text-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                <Info size={18} />
+              </div>
+              <div>
+                <h5 className="text-[14px] font-black text-white uppercase tracking-wider italic">Detail Fasilitas</h5>
+                <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">Spesifikasi & Biaya</p>
+              </div>
+            </div>
+            <button 
+              onClick={() => setShowDetail(false)}
+              className="p-2.5 hover:bg-zinc-800/80 rounded-xl text-zinc-500 hover:text-white transition-all cursor-pointer border border-transparent hover:border-zinc-700"
+            >
+              <X size={20} />
+            </button>
+          </div>
+
+          <div className="space-y-4 flex-1 overflow-y-auto no-scrollbar pr-1">
+            <div className="flex flex-col gap-1.5 p-4 rounded-2xl bg-zinc-900/50 border border-zinc-800/30">
+              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] opacity-60">Nama Bangunan</span>
+              <h4 className="text-xl font-black text-amber-400 uppercase italic leading-tight tracking-tight">{item.label}</h4>
+            </div>
+
+            <div className="grid gap-2">
+              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400">
+                    <Flame size={12} />
+                  </div>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
+                </div>
+                <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
+              </div>
+              
+              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500">
+                    <Zap size={12} />
+                  </div>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
+                </div>
+                <span className="text-[14px] font-black text-amber-500">{item.groupId === "kelistrikan" ? "SUPPLY" : `${item.powerUsage} MW`}</span>
+              </div>
+
+              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-400">
+                    <Users size={12} />
+                  </div>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Lowongan</span>
+                </div>
+                <span className="text-[14px] font-black text-blue-400">+{item.lowongan_kerja?.toLocaleString('id-ID')} <span className="text-[9px] text-blue-500/50 italic opacity-80">/ UNIT</span></span>
+              </div>
+
+              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-cyan-500/10 rounded-lg text-cyan-500">
+                    <Briefcase size={12} />
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Okupansi Tenaga Kerja</span>
+                  </div>
+                </div>
+                <div className="flex flex-col items-end">
+                  <span className="text-[14px] font-black text-cyan-400">{filledVacancies.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-400">/ {totalVacancies.toLocaleString('id-ID')}</span></span>
+                  <span className="text-[8px] font-black text-cyan-500 uppercase tracking-widest leading-none italic opacity-90">UPDATE: {nextDateStr}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setShowDetail(false)}
+            className="mt-6 w-full py-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-zinc-800 hover:text-white transition-all cursor-pointer active:scale-[0.98] shadow-lg"
+          >
+            Kembali
+          </button>
+        </div>
       )}
 
       <div className="flex items-start justify-between relative z-10">
@@ -716,99 +826,100 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
         </div>
       </div>
 
-      <div className="flex-1 flex flex-col gap-1 relative z-10 mt-1">
-        <h4 className="text-[17px] font-black text-zinc-100 tracking-tight group-hover:text-amber-400 transition-colors uppercase italic leading-tight">{item.label}</h4>
+      <div className="flex-1 flex flex-col relative z-10 mt-1">
+        <h4 className="text-[17px] font-black text-zinc-100 tracking-tight group-hover:text-amber-400 transition-colors uppercase italic leading-tight mb-3">
+          {item.label}
+        </h4>
 
-        <div className="flex flex-col gap-1 mt-1">
-          {showDetail ? (
-            <div className="mt-2 space-y-2 animate-in fade-in slide-in-from-top-1 duration-300">
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
-                <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Pemeliharaan</span>
-                <span className="text-[15px] font-black text-rose-400">-{item.maintenanceCost || 5} / hari</span>
-              </div>
-              <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
-                <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Beban Listrik</span>
-                <span className="text-[15px] font-black text-amber-500">{item.groupId === "kelistrikan" ? "Supply" : `${item.powerUsage} MW`}</span>
-              </div>
-              <p className="text-[12px] text-zinc-400 italic mt-2 px-1 leading-relaxed">Fasilitas ini membutuhkan anggaran operasional harian agar tetap berfungsi optimal.</p>
+        <div className="flex flex-col gap-2.5 flex-1">
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 bg-amber-500/10 rounded-lg">
+              <TrendingUp size={12} className="text-amber-500" />
             </div>
-          ) : (
-            <>
-              <div className="flex items-center gap-2">
-                <TrendingUp size={12} className="text-amber-500" />
-                <span className="text-[12px] font-bold text-amber-500/90">
-                  Produksi: +{Math.floor(item.tarif)} {item.unit}/bangunan
-                </span>
+            <span className="text-[12px] font-bold text-amber-500/90">
+              Produksi: +{Math.floor(item.tarif)} {item.unit}/bangunan
+            </span>
+          </div>
+
+          {item.groupId !== "kelistrikan" && (
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                <Zap size={12} className="text-rose-500/90" />
               </div>
-
-              {item.groupId !== "kelistrikan" && (
-                <div className="flex items-center gap-2">
-                  <Zap size={12} className="text-rose-500/90" />
-                  <span className="text-[12px] font-bold text-rose-500/80">
-                    Konsumsi Listrik: {item.powerUsage} MW/bangunan
-                  </span>
-                </div>
-              )}
-
-              {!progress && (
-                <div className="flex items-center gap-2">
-                  <Clock size={12} className="text-zinc-500" />
-                  <span className="text-[12px] font-bold text-zinc-500 italic">Waktu Konstruksi: {item.buildTime} Hari</span>
-                </div>
-              )}
-            </>
+              <span className="text-[12px] font-bold text-rose-500/80">
+                Konsumsi: {item.powerUsage} MW/bangunan
+              </span>
+            </div>
           )}
 
-          {/* New Total Output Section */}
-          <div className="mt-3 pt-3 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-xl p-3">
-            {/* Cumulative / Total Display for ALL buildings */}
-            <div className="flex justify-between items-baseline gap-2 border-t border-zinc-800/10 pt-1.5 mt-1">
-              <span className="text-[11px] font-black text-cyan-500 uppercase tracking-widest italic">
-                {item.groupId === "kelistrikan" ? "JUMLAH TOTAL PRODUKSI:" : "Hasil di Gudang:"}
-              </span>
-              <span className="text-[14px] font-black text-cyan-400 tracking-tight">
-                {item.groupId === "kelistrikan" ? (Math.floor(item.tarif) * item.count).toLocaleString('id-ID') : Math.floor(cumulative).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-400 font-normal uppercase italic">{item.unit}</span>
-              </span>
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 bg-blue-500/10 rounded-lg">
+              <Users size={12} className="text-blue-400" />
             </div>
+            <span className="text-[12px] font-bold text-blue-400/80">
+              Lowongan: {item.lowongan_kerja?.toLocaleString('id-ID')} Jiwa/unit
+            </span>
+          </div>
+
+          {!progress && (
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 bg-zinc-800/50 rounded-lg">
+                <Clock size={12} className="text-zinc-500" />
+              </div>
+              <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
+            </div>
+          )}
+        </div>
+
+        {/* New Total Output Section */}
+        <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
+          <div className="flex justify-between items-baseline gap-2">
+            <span className="text-[11px] font-black text-cyan-500/80 uppercase tracking-[0.15em] italic">
+              {item.groupId === "kelistrikan" ? "TOTAL PRODUKSI:" : "STOK GUDANG:"}
+            </span>
+            <span className="text-[16px] font-black text-cyan-400 tracking-tight">
+              {item.groupId === "kelistrikan" ? (Math.floor(item.tarif) * item.count).toLocaleString('id-ID') : Math.floor(cumulative).toLocaleString('id-ID')} <span className="text-[10px] text-cyan-500/50 font-normal uppercase italic ml-1">{item.unit}</span>
+            </span>
           </div>
         </div>
+      </div>
 
-        <div className="mt-auto pt-3 relative z-10">
-          {progress ? (
-            <div className="space-y-2">
-              <div className="flex justify-between items-center text-[9px] font-black uppercase tracking-widest text-zinc-400">
-                <span className="flex items-center gap-1.5">
-                  <Loader2 size={10} className={`animate-spin ${progress.isWaiting ? 'text-zinc-600' : 'text-cyan-400'}`} />
-                  {getStatusText(progress.percentage, progress.isWaiting)}
-                </span>
-                <span className={progress.colorClass.replace('bg-', 'text-')}>{progress.percentage}%</span>
-              </div>
-              <div className="h-1.5 w-full bg-zinc-950 rounded-full overflow-hidden border border-zinc-800/50">
-                <div
-                  className={`h-full transition-all duration-1000 ${progress.colorClass} shadow-[0_0_10px_rgba(6,182,212,0.2)]`}
-                  style={{ width: `${progress.percentage}%` }}
-                />
-              </div>
-              <div className="flex justify-between items-center text-[8px] font-bold text-zinc-500 uppercase tracking-tighter italic">
-                <span>Estimasi Selesai:</span>
-                <span className="text-zinc-400">{formatGameDate(new Date(construction.endDate))}</span>
-              </div>
+      <div className="mt-auto pt-4 relative z-10">
+        {progress ? (
+          <div className="space-y-3 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
+            <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-zinc-400">
+              <span className="flex items-center gap-1.5">
+                <Loader2 size={12} className={`animate-spin ${progress.isWaiting ? 'text-zinc-600' : 'text-cyan-400'}`} />
+                {getStatusText(progress.percentage, progress.isWaiting)}
+              </span>
+              <span className={progress.colorClass.replace('bg-', 'text-')}>{progress.percentage}%</span>
             </div>
-          ) : (
-            <div className="flex items-center justify-between mt-2">
-              <span className="text-xs text-zinc-400 font-bold tracking-tight">Biaya: {item.cost}</span>
-              <button
-                onClick={(e) => { e.stopPropagation(); onBuild(item); }}
-                className="px-5 py-2 rounded-xl bg-cyan-600/10 text-cyan-500 text-xs font-black uppercase tracking-widest border border-cyan-500/30 hover:bg-cyan-600 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95"
-              >
-                Bangun
-              </button>
+            <div className="h-2 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/30 p-0.5">
+              <div
+                className={`h-full transition-all duration-1000 ${progress.colorClass} rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]`}
+                style={{ width: `${progress.percentage}%` }}
+              />
             </div>
-          )}
-        </div>
+            <div className="flex justify-between items-center text-[9px] font-bold text-zinc-500 uppercase tracking-tighter italic opacity-70">
+              <span className="flex items-center gap-1"><Clock size={10} /> ESTIMASI:</span>
+              <span className="text-zinc-400">{formatGameDate(new Date(construction.endDate))}</span>
+            </div>
+          </div>
+        ) : (
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col">
+              <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span>
+              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
+            </div>
+            <button
+              onClick={(e) => { e.stopPropagation(); onBuild(item); }}
+              className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20"
+            >
+              Bangun
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
 }
-
-

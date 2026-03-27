@@ -60,21 +60,22 @@ export const guiana_prancis: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 10.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 10,
     "sapi_perah": 12,
     "sapi_potong": 20,
     "domba_kambing": 23
   },
   "sektor_agrikultur": {
     "padi": 31,
-    "gandum_jagung": 20.5,
-    "sayur_umbi": 10.5,
+    "gandum_jagung": 20,
+    "sayur_umbi": 10,
     "kedelai": 38,
     "kelapa_sawit": 37,
-    "kopi_teh_kakao": 11.3
+    "kopi_teh_kakao": 11
   },
   "sektor_perikanan": {
-    "udang_kerang": 17.0,
+    "udang_kerang": 17,
     "ikan": 8
   },
   "sektor_olahan_pangan": {

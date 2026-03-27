@@ -60,21 +60,22 @@ export const uruguay: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 6.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 6,
     "sapi_perah": 3,
     "sapi_potong": 22,
     "domba_kambing": 12
   },
   "sektor_agrikultur": {
     "padi": 7,
-    "gandum_jagung": 13.5,
-    "sayur_umbi": 17.5,
+    "gandum_jagung": 14,
+    "sayur_umbi": 18,
     "kedelai": 28,
     "kelapa_sawit": 33,
-    "kopi_teh_kakao": 25.0
+    "kopi_teh_kakao": 25
   },
   "sektor_perikanan": {
-    "udang_kerang": 31.5,
+    "udang_kerang": 32,
     "ikan": 2
   },
   "sektor_olahan_pangan": {

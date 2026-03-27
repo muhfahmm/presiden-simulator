@@ -57,21 +57,22 @@ export const angola: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 14.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 14,
     "sapi_perah": 15,
     "sapi_potong": 17,
     "domba_kambing": 39
   },
   "sektor_agrikultur": {
     "padi": 20,
-    "gandum_jagung": 22.0,
-    "sayur_umbi": 21.0,
+    "gandum_jagung": 22,
+    "sayur_umbi": 21,
     "kedelai": 5,
     "kelapa_sawit": 39,
-    "kopi_teh_kakao": 22.3
+    "kopi_teh_kakao": 22
   },
   "sektor_perikanan": {
-    "udang_kerang": 31.5,
+    "udang_kerang": 32,
     "ikan": 13
   },
   "sektor_olahan_pangan": {

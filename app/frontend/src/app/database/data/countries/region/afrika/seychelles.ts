@@ -57,21 +57,22 @@ export const seychelles: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 13.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 13,
     "sapi_perah": 2,
     "sapi_potong": 27,
     "domba_kambing": 40
   },
   "sektor_agrikultur": {
     "padi": 23,
-    "gandum_jagung": 10.0,
-    "sayur_umbi": 24.0,
+    "gandum_jagung": 10,
+    "sayur_umbi": 24,
     "kedelai": 40,
     "kelapa_sawit": 26,
-    "kopi_teh_kakao": 21.7
+    "kopi_teh_kakao": 22
   },
   "sektor_perikanan": {
-    "udang_kerang": 30.5,
+    "udang_kerang": 30,
     "ikan": 25
   },
   "sektor_olahan_pangan": {

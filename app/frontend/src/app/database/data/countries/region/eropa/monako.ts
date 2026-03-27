@@ -60,21 +60,22 @@ export const monako: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 31.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 32,
     "sapi_perah": 5,
     "sapi_potong": 38,
     "domba_kambing": 17
   },
   "sektor_agrikultur": {
     "padi": 14,
-    "gandum_jagung": 32.5,
-    "sayur_umbi": 30.5,
+    "gandum_jagung": 32,
+    "sayur_umbi": 30,
     "kedelai": 37,
     "kelapa_sawit": 12,
-    "kopi_teh_kakao": 9.0
+    "kopi_teh_kakao": 9
   },
   "sektor_perikanan": {
-    "udang_kerang": 17.5,
+    "udang_kerang": 18,
     "ikan": 26
   },
   "sektor_olahan_pangan": {

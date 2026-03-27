@@ -60,21 +60,22 @@ export const san_marino: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 15.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 16,
     "sapi_perah": 29,
     "sapi_potong": 19,
     "domba_kambing": 24
   },
   "sektor_agrikultur": {
     "padi": 1,
-    "gandum_jagung": 24.0,
-    "sayur_umbi": 21.0,
+    "gandum_jagung": 24,
+    "sayur_umbi": 21,
     "kedelai": 15,
     "kelapa_sawit": 21,
-    "kopi_teh_kakao": 17.7
+    "kopi_teh_kakao": 18
   },
   "sektor_perikanan": {
-    "udang_kerang": 10.0,
+    "udang_kerang": 10,
     "ikan": 25
   },
   "sektor_olahan_pangan": {

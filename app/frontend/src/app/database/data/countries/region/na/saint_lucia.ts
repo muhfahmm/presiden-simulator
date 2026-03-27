@@ -60,21 +60,22 @@ export const saint_lucia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 11.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 12,
     "sapi_perah": 31,
     "sapi_potong": 8,
     "domba_kambing": 9
   },
   "sektor_agrikultur": {
     "padi": 22,
-    "gandum_jagung": 30.5,
-    "sayur_umbi": 15.5,
+    "gandum_jagung": 30,
+    "sayur_umbi": 16,
     "kedelai": 32,
     "kelapa_sawit": 31,
-    "kopi_teh_kakao": 27.3
+    "kopi_teh_kakao": 27
   },
   "sektor_perikanan": {
-    "udang_kerang": 21.5,
+    "udang_kerang": 22,
     "ikan": 40
   },
   "sektor_olahan_pangan": {

@@ -60,21 +60,22 @@ export const thailand: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 20.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 20,
     "sapi_perah": 30,
     "sapi_potong": 33,
     "domba_kambing": 23
   },
   "sektor_agrikultur": {
     "padi": 26,
-    "gandum_jagung": 22.5,
-    "sayur_umbi": 18.5,
+    "gandum_jagung": 22,
+    "sayur_umbi": 18,
     "kedelai": 3,
     "kelapa_sawit": 32,
-    "kopi_teh_kakao": 18.7
+    "kopi_teh_kakao": 19
   },
   "sektor_perikanan": {
-    "udang_kerang": 26.5,
+    "udang_kerang": 26,
     "ikan": 24
   },
   "sektor_olahan_pangan": {

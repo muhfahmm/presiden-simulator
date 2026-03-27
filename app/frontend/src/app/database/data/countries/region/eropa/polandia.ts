@@ -60,21 +60,22 @@ export const polandia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 22.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 22,
     "sapi_perah": 6,
     "sapi_potong": 14,
     "domba_kambing": 10
   },
   "sektor_agrikultur": {
     "padi": 5,
-    "gandum_jagung": 15.5,
-    "sayur_umbi": 22.0,
+    "gandum_jagung": 16,
+    "sayur_umbi": 22,
     "kedelai": 6,
     "kelapa_sawit": 7,
-    "kopi_teh_kakao": 11.0
+    "kopi_teh_kakao": 11
   },
   "sektor_perikanan": {
-    "udang_kerang": 24.5,
+    "udang_kerang": 24,
     "ikan": 29
   },
   "sektor_olahan_pangan": {

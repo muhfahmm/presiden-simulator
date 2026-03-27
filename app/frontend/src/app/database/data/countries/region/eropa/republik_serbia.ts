@@ -60,21 +60,22 @@ export const republik_serbia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 14.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 14,
     "sapi_perah": 30,
     "sapi_potong": 3,
     "domba_kambing": 22
   },
   "sektor_agrikultur": {
     "padi": 9,
-    "gandum_jagung": 18.5,
-    "sayur_umbi": 6.0,
+    "gandum_jagung": 18,
+    "sayur_umbi": 6,
     "kedelai": 19,
     "kelapa_sawit": 24,
-    "kopi_teh_kakao": 21.0
+    "kopi_teh_kakao": 21
   },
   "sektor_perikanan": {
-    "udang_kerang": 28.0,
+    "udang_kerang": 28,
     "ikan": 16
   },
   "sektor_olahan_pangan": {

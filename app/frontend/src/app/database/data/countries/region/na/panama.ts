@@ -60,21 +60,22 @@ export const panama: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 19.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 19,
     "sapi_perah": 24,
     "sapi_potong": 40,
     "domba_kambing": 4
   },
   "sektor_agrikultur": {
     "padi": 8,
-    "gandum_jagung": 31.0,
-    "sayur_umbi": 14.5,
+    "gandum_jagung": 31,
+    "sayur_umbi": 14,
     "kedelai": 39,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 21.3
+    "kopi_teh_kakao": 21
   },
   "sektor_perikanan": {
-    "udang_kerang": 19.5,
+    "udang_kerang": 20,
     "ikan": 14
   },
   "sektor_olahan_pangan": {

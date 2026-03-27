@@ -60,21 +60,22 @@ export const jerman: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 18.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 18,
     "sapi_perah": 35,
     "sapi_potong": 16,
     "domba_kambing": 17
   },
   "sektor_agrikultur": {
     "padi": 33,
-    "gandum_jagung": 17.0,
-    "sayur_umbi": 20.0,
+    "gandum_jagung": 17,
+    "sayur_umbi": 20,
     "kedelai": 9,
     "kelapa_sawit": 28,
-    "kopi_teh_kakao": 14.0
+    "kopi_teh_kakao": 14
   },
   "sektor_perikanan": {
-    "udang_kerang": 30.0,
+    "udang_kerang": 30,
     "ikan": 15
   },
   "sektor_olahan_pangan": {

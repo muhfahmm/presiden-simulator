@@ -60,21 +60,22 @@ export const islandia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 23.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 24,
     "sapi_perah": 22,
     "sapi_potong": 9,
     "domba_kambing": 16
   },
   "sektor_agrikultur": {
     "padi": 27,
-    "gandum_jagung": 28.5,
-    "sayur_umbi": 30.5,
+    "gandum_jagung": 28,
+    "sayur_umbi": 30,
     "kedelai": 23,
     "kelapa_sawit": 14,
-    "kopi_teh_kakao": 25.0
+    "kopi_teh_kakao": 25
   },
   "sektor_perikanan": {
-    "udang_kerang": 23.5,
+    "udang_kerang": 24,
     "ikan": 14
   },
   "sektor_olahan_pangan": {

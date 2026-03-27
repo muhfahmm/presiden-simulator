@@ -60,21 +60,22 @@ export const bolivia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 19.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 20,
     "sapi_perah": 20,
     "sapi_potong": 21,
     "domba_kambing": 13
   },
   "sektor_agrikultur": {
     "padi": 17,
-    "gandum_jagung": 19.0,
-    "sayur_umbi": 24.0,
+    "gandum_jagung": 19,
+    "sayur_umbi": 24,
     "kedelai": 13,
     "kelapa_sawit": 31,
-    "kopi_teh_kakao": 23.7
+    "kopi_teh_kakao": 24
   },
   "sektor_perikanan": {
-    "udang_kerang": 19.0,
+    "udang_kerang": 19,
     "ikan": 17
   },
   "sektor_olahan_pangan": {

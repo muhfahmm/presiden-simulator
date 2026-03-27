@@ -60,21 +60,22 @@ export const malaysia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 17.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 17,
     "sapi_perah": 4,
     "sapi_potong": 14,
     "domba_kambing": 23
   },
   "sektor_agrikultur": {
     "padi": 2,
-    "gandum_jagung": 11.0,
-    "sayur_umbi": 22.0,
+    "gandum_jagung": 11,
+    "sayur_umbi": 22,
     "kedelai": 16,
     "kelapa_sawit": 37,
-    "kopi_teh_kakao": 29.7
+    "kopi_teh_kakao": 30
   },
   "sektor_perikanan": {
-    "udang_kerang": 18.5,
+    "udang_kerang": 18,
     "ikan": 24
   },
   "sektor_olahan_pangan": {

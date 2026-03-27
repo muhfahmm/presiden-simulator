@@ -60,21 +60,22 @@ export const kiribati: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 16.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 16,
     "sapi_perah": 29,
     "sapi_potong": 26,
     "domba_kambing": 17
   },
   "sektor_agrikultur": {
     "padi": 14,
-    "gandum_jagung": 32.0,
-    "sayur_umbi": 18.5,
+    "gandum_jagung": 32,
+    "sayur_umbi": 18,
     "kedelai": 40,
     "kelapa_sawit": 36,
-    "kopi_teh_kakao": 17.7
+    "kopi_teh_kakao": 18
   },
   "sektor_perikanan": {
-    "udang_kerang": 13.5,
+    "udang_kerang": 14,
     "ikan": 26
   },
   "sektor_olahan_pangan": {

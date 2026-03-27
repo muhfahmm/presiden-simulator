@@ -60,21 +60,22 @@ export const slowakia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 16.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 16,
     "sapi_perah": 14,
     "sapi_potong": 33,
     "domba_kambing": 14
   },
   "sektor_agrikultur": {
     "padi": 7,
-    "gandum_jagung": 27.0,
-    "sayur_umbi": 24.0,
+    "gandum_jagung": 27,
+    "sayur_umbi": 24,
     "kedelai": 16,
     "kelapa_sawit": 39,
-    "kopi_teh_kakao": 26.7
+    "kopi_teh_kakao": 27
   },
   "sektor_perikanan": {
-    "udang_kerang": 24.0,
+    "udang_kerang": 24,
     "ikan": 5
   },
   "sektor_olahan_pangan": {

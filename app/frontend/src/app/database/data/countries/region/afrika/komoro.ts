@@ -57,21 +57,22 @@ export const komoro: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 28.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 28,
     "sapi_perah": 21,
     "sapi_potong": 10,
     "domba_kambing": 12
   },
   "sektor_agrikultur": {
     "padi": 17,
-    "gandum_jagung": 10.5,
-    "sayur_umbi": 18.0,
+    "gandum_jagung": 10,
+    "sayur_umbi": 18,
     "kedelai": 35,
     "kelapa_sawit": 20,
-    "kopi_teh_kakao": 27.0
+    "kopi_teh_kakao": 27
   },
   "sektor_perikanan": {
-    "udang_kerang": 11.0,
+    "udang_kerang": 11,
     "ikan": 32
   },
   "sektor_olahan_pangan": {

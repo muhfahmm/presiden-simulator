@@ -60,21 +60,22 @@ export const argentina: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 17.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 18,
     "sapi_perah": 25,
     "sapi_potong": 23,
     "domba_kambing": 14
   },
   "sektor_agrikultur": {
     "padi": 2,
-    "gandum_jagung": 30.0,
-    "sayur_umbi": 17.0,
+    "gandum_jagung": 30,
+    "sayur_umbi": 17,
     "kedelai": 2,
     "kelapa_sawit": 22,
-    "kopi_teh_kakao": 22.0
+    "kopi_teh_kakao": 22
   },
   "sektor_perikanan": {
-    "udang_kerang": 10.0,
+    "udang_kerang": 10,
     "ikan": 21
   },
   "sektor_olahan_pangan": {

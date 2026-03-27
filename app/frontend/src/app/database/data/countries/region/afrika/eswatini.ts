@@ -57,21 +57,22 @@ export const eswatini: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 28.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 28,
     "sapi_perah": 2,
     "sapi_potong": 28,
     "domba_kambing": 3
   },
   "sektor_agrikultur": {
     "padi": 28,
-    "gandum_jagung": 10.5,
-    "sayur_umbi": 5.0,
+    "gandum_jagung": 10,
+    "sayur_umbi": 5,
     "kedelai": 22,
     "kelapa_sawit": 17,
-    "kopi_teh_kakao": 25.3
+    "kopi_teh_kakao": 25
   },
   "sektor_perikanan": {
-    "udang_kerang": 7.5,
+    "udang_kerang": 8,
     "ikan": 6
   },
   "sektor_olahan_pangan": {

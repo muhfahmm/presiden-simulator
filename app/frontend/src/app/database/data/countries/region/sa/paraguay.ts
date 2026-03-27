@@ -60,21 +60,22 @@ export const paraguay: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 13.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 13,
     "sapi_perah": 3,
     "sapi_potong": 31,
     "domba_kambing": 37
   },
   "sektor_agrikultur": {
     "padi": 26,
-    "gandum_jagung": 20.5,
-    "sayur_umbi": 11.5,
+    "gandum_jagung": 20,
+    "sayur_umbi": 12,
     "kedelai": 14,
     "kelapa_sawit": 5,
-    "kopi_teh_kakao": 17.0
+    "kopi_teh_kakao": 17
   },
   "sektor_perikanan": {
-    "udang_kerang": 9.0,
+    "udang_kerang": 9,
     "ikan": 4
   },
   "sektor_olahan_pangan": {

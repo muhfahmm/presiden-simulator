@@ -57,21 +57,22 @@ export const mauritania: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 24.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 24,
     "sapi_perah": 1,
     "sapi_potong": 11,
     "domba_kambing": 28
   },
   "sektor_agrikultur": {
     "padi": 25,
-    "gandum_jagung": 23.5,
-    "sayur_umbi": 15.5,
+    "gandum_jagung": 24,
+    "sayur_umbi": 16,
     "kedelai": 10,
     "kelapa_sawit": 25,
-    "kopi_teh_kakao": 27.7
+    "kopi_teh_kakao": 28
   },
   "sektor_perikanan": {
-    "udang_kerang": 18.0,
+    "udang_kerang": 18,
     "ikan": 21
   },
   "sektor_olahan_pangan": {

@@ -6,7 +6,8 @@ export const produkIndustriRate = {
     production: 10,
     unit: "UNIT",
     maintenanceCost: 100,
-    buildTime: 120
+    buildTime: 120,
+    lowongan_kerja: 5000
   },
   car_factory: {
     key: "car_factory",
@@ -15,7 +16,8 @@ export const produkIndustriRate = {
     production: 50,
     unit: "UNIT",
     maintenanceCost: 200,
-    buildTime: 180
+    buildTime: 180,
+    lowongan_kerja: 8000
   },
   motorcycle_factory: {
     key: "motorcycle_factory",
@@ -24,7 +26,8 @@ export const produkIndustriRate = {
     production: 100,
     unit: "UNIT",
     maintenanceCost: 80,
-    buildTime: 90
+    buildTime: 90,
+    lowongan_kerja: 4000
   },
   smelter: {
     key: "smelter",
@@ -33,7 +36,8 @@ export const produkIndustriRate = {
     production: 500,
     unit: "TON",
     maintenanceCost: 300,
-    buildTime: 150
+    buildTime: 150,
+    lowongan_kerja: 3000
   },
   cement_factory: {
     key: "cement_factory",
@@ -42,7 +46,8 @@ export const produkIndustriRate = {
     production: 1000,
     unit: "TON",
     maintenanceCost: 150,
-    buildTime: 120
+    buildTime: 120,
+    lowongan_kerja: 1500
   },
   sawmill: {
     key: "sawmill",
@@ -51,7 +56,8 @@ export const produkIndustriRate = {
     production: 200,
     unit: "M3",
     maintenanceCost: 40,
-    buildTime: 45
+    buildTime: 45,
+    lowongan_kerja: 500
   },
   bottled_water_factory: {
     key: "bottled_water_factory",
@@ -60,7 +66,8 @@ export const produkIndustriRate = {
     production: 5000,
     unit: "LITER",
     maintenanceCost: 30,
-    buildTime: 30
+    buildTime: 30,
+    lowongan_kerja: 300
   },
   sugar_factory: {
     key: "sugar_factory",
@@ -69,7 +76,8 @@ export const produkIndustriRate = {
     production: 200,
     unit: "TON",
     maintenanceCost: 50,
-    buildTime: 60
+    buildTime: 60,
+    lowongan_kerja: 800
   },
   bakery_factory: {
     key: "bakery_factory",
@@ -78,7 +86,8 @@ export const produkIndustriRate = {
     production: 10000,
     unit: "UNIT",
     maintenanceCost: 40,
-    buildTime: 30
+    buildTime: 30,
+    lowongan_kerja: 200
   },
   pharma_factory: {
     key: "pharma_factory",
@@ -87,7 +96,8 @@ export const produkIndustriRate = {
     production: 1000,
     unit: "BOX",
     maintenanceCost: 150,
-    buildTime: 90
+    buildTime: 90,
+    lowongan_kerja: 1200
   },
   fertilizer_factory: {
     key: "fertilizer_factory",
@@ -96,7 +106,8 @@ export const produkIndustriRate = {
     production: 500,
     unit: "TON",
     maintenanceCost: 60,
-    buildTime: 60
+    buildTime: 60,
+    lowongan_kerja: 600
   },
   meat_processing_factory: {
     key: "meat_processing_factory",
@@ -105,7 +116,8 @@ export const produkIndustriRate = {
     production: 50,
     unit: "TON",
     maintenanceCost: 100,
-    buildTime: 60
+    buildTime: 60,
+    lowongan_kerja: 400
   },
   noodle_factory: {
     key: "noodle_factory",
@@ -114,6 +126,7 @@ export const produkIndustriRate = {
     production: 50000,
     unit: "UNIT",
     maintenanceCost: 40,
-    buildTime: 30
+    buildTime: 30,
+    lowongan_kerja: 500
   }
 };

@@ -60,21 +60,22 @@ export const china: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 10.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 10,
     "sapi_perah": 13,
     "sapi_potong": 37,
     "domba_kambing": 36
   },
   "sektor_agrikultur": {
     "padi": 30,
-    "gandum_jagung": 4.0,
-    "sayur_umbi": 25.0,
+    "gandum_jagung": 4,
+    "sayur_umbi": 25,
     "kedelai": 24,
     "kelapa_sawit": 38,
-    "kopi_teh_kakao": 17.7
+    "kopi_teh_kakao": 18
   },
   "sektor_perikanan": {
-    "udang_kerang": 23.5,
+    "udang_kerang": 24,
     "ikan": 2
   },
   "sektor_olahan_pangan": {

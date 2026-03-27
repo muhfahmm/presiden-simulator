@@ -60,21 +60,22 @@ export const palau: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 17.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 17,
     "sapi_perah": 11,
     "sapi_potong": 33,
     "domba_kambing": 36
   },
   "sektor_agrikultur": {
     "padi": 12,
-    "gandum_jagung": 22.5,
-    "sayur_umbi": 13.5,
+    "gandum_jagung": 22,
+    "sayur_umbi": 14,
     "kedelai": 39,
     "kelapa_sawit": 23,
-    "kopi_teh_kakao": 16.7
+    "kopi_teh_kakao": 17
   },
   "sektor_perikanan": {
-    "udang_kerang": 17.0,
+    "udang_kerang": 17,
     "ikan": 2
   },
   "sektor_olahan_pangan": {

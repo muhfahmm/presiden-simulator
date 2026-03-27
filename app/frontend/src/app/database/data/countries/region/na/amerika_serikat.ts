@@ -60,21 +60,22 @@ export const amerika_serikat: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 15.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 15,
     "sapi_perah": 9,
     "sapi_potong": 13,
     "domba_kambing": 38
   },
   "sektor_agrikultur": {
     "padi": 35,
-    "gandum_jagung": 23.5,
-    "sayur_umbi": 12.0,
+    "gandum_jagung": 24,
+    "sayur_umbi": 12,
     "kedelai": 4,
     "kelapa_sawit": 13,
-    "kopi_teh_kakao": 22.7
+    "kopi_teh_kakao": 23
   },
   "sektor_perikanan": {
-    "udang_kerang": 11.0,
+    "udang_kerang": 11,
     "ikan": 19
   },
   "sektor_olahan_pangan": {

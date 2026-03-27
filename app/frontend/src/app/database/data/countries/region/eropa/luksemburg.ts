@@ -60,21 +60,22 @@ export const luksemburg: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 7.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 7,
     "sapi_perah": 34,
     "sapi_potong": 39,
     "domba_kambing": 18
   },
   "sektor_agrikultur": {
     "padi": 3,
-    "gandum_jagung": 21.5,
-    "sayur_umbi": 3.5,
+    "gandum_jagung": 22,
+    "sayur_umbi": 4,
     "kedelai": 23,
     "kelapa_sawit": 22,
-    "kopi_teh_kakao": 24.0
+    "kopi_teh_kakao": 24
   },
   "sektor_perikanan": {
-    "udang_kerang": 15.5,
+    "udang_kerang": 16,
     "ikan": 1
   },
   "sektor_olahan_pangan": {

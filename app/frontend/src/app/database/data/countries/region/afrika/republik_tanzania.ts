@@ -57,21 +57,22 @@ export const republik_tanzania: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 18.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 18,
     "sapi_perah": 26,
     "sapi_potong": 21,
     "domba_kambing": 38
   },
   "sektor_agrikultur": {
     "padi": 19,
-    "gandum_jagung": 16.5,
-    "sayur_umbi": 11.0,
+    "gandum_jagung": 16,
+    "sayur_umbi": 11,
     "kedelai": 11,
     "kelapa_sawit": 6,
-    "kopi_teh_kakao": 11.3
+    "kopi_teh_kakao": 11
   },
   "sektor_perikanan": {
-    "udang_kerang": 25.5,
+    "udang_kerang": 26,
     "ikan": 30
   },
   "sektor_olahan_pangan": {

@@ -60,21 +60,22 @@ export const belize: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 23.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 24,
     "sapi_perah": 37,
     "sapi_potong": 13,
     "domba_kambing": 9
   },
   "sektor_agrikultur": {
     "padi": 18,
-    "gandum_jagung": 24.5,
-    "sayur_umbi": 15.0,
+    "gandum_jagung": 24,
+    "sayur_umbi": 15,
     "kedelai": 32,
     "kelapa_sawit": 4,
-    "kopi_teh_kakao": 22.0
+    "kopi_teh_kakao": 22
   },
   "sektor_perikanan": {
-    "udang_kerang": 37.5,
+    "udang_kerang": 38,
     "ikan": 6
   },
   "sektor_olahan_pangan": {

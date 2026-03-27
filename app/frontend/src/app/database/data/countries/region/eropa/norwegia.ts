@@ -60,21 +60,22 @@ export const norwegia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 31.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 31,
     "sapi_perah": 18,
     "sapi_potong": 22,
     "domba_kambing": 7
   },
   "sektor_agrikultur": {
     "padi": 31,
-    "gandum_jagung": 22.0,
-    "sayur_umbi": 27.0,
+    "gandum_jagung": 22,
+    "sayur_umbi": 27,
     "kedelai": 2,
     "kelapa_sawit": 20,
-    "kopi_teh_kakao": 23.7
+    "kopi_teh_kakao": 24
   },
   "sektor_perikanan": {
-    "udang_kerang": 28.5,
+    "udang_kerang": 28,
     "ikan": 11
   },
   "sektor_olahan_pangan": {

@@ -60,21 +60,22 @@ export const australia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 23.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 24,
     "sapi_perah": 13,
     "sapi_potong": 6,
     "domba_kambing": 30
   },
   "sektor_agrikultur": {
     "padi": 27,
-    "gandum_jagung": 20.5,
-    "sayur_umbi": 3.0,
+    "gandum_jagung": 20,
+    "sayur_umbi": 3,
     "kedelai": 16,
     "kelapa_sawit": 33,
-    "kopi_teh_kakao": 33.3
+    "kopi_teh_kakao": 33
   },
   "sektor_perikanan": {
-    "udang_kerang": 11.5,
+    "udang_kerang": 12,
     "ikan": 17
   },
   "sektor_olahan_pangan": {

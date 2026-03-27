@@ -60,21 +60,22 @@ export const nepal: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 20.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 20,
     "sapi_perah": 29,
     "sapi_potong": 8,
     "domba_kambing": 14
   },
   "sektor_agrikultur": {
     "padi": 22,
-    "gandum_jagung": 18.0,
-    "sayur_umbi": 12.0,
+    "gandum_jagung": 18,
+    "sayur_umbi": 12,
     "kedelai": 24,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 17.7
+    "kopi_teh_kakao": 18
   },
   "sektor_perikanan": {
-    "udang_kerang": 28.0,
+    "udang_kerang": 28,
     "ikan": 7
   },
   "sektor_olahan_pangan": {

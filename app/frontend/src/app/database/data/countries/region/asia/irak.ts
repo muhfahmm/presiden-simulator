@@ -60,21 +60,22 @@ export const irak: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 22.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 22,
     "sapi_perah": 8,
     "sapi_potong": 15,
     "domba_kambing": 30
   },
   "sektor_agrikultur": {
     "padi": 29,
-    "gandum_jagung": 2.0,
-    "sayur_umbi": 19.0,
+    "gandum_jagung": 2,
+    "sayur_umbi": 19,
     "kedelai": 10,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 12.0
+    "kopi_teh_kakao": 12
   },
   "sektor_perikanan": {
-    "udang_kerang": 23.0,
+    "udang_kerang": 23,
     "ikan": 7
   },
   "sektor_olahan_pangan": {

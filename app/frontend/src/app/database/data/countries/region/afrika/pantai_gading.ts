@@ -57,21 +57,22 @@ export const pantai_gading: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 30.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 30,
     "sapi_perah": 4,
     "sapi_potong": 29,
     "domba_kambing": 23
   },
   "sektor_agrikultur": {
     "padi": 32,
-    "gandum_jagung": 19.5,
-    "sayur_umbi": 31.5,
+    "gandum_jagung": 20,
+    "sayur_umbi": 32,
     "kedelai": 2,
     "kelapa_sawit": 31,
-    "kopi_teh_kakao": 29.3
+    "kopi_teh_kakao": 29
   },
   "sektor_perikanan": {
-    "udang_kerang": 18.5,
+    "udang_kerang": 18,
     "ikan": 39
   },
   "sektor_olahan_pangan": {

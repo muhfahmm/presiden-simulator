@@ -60,21 +60,22 @@ export const rusia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 36.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 36,
     "sapi_perah": 39,
     "sapi_potong": 8,
     "domba_kambing": 12
   },
   "sektor_agrikultur": {
     "padi": 35,
-    "gandum_jagung": 14.0,
-    "sayur_umbi": 27.0,
+    "gandum_jagung": 14,
+    "sayur_umbi": 27,
     "kedelai": 37,
     "kelapa_sawit": 10,
-    "kopi_teh_kakao": 13.7
+    "kopi_teh_kakao": 14
   },
   "sektor_perikanan": {
-    "udang_kerang": 14.0,
+    "udang_kerang": 14,
     "ikan": 28
   },
   "sektor_olahan_pangan": {

@@ -60,21 +60,22 @@ export const kolombia: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 19.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 20,
     "sapi_perah": 1,
     "sapi_potong": 4,
     "domba_kambing": 36
   },
   "sektor_agrikultur": {
     "padi": 13,
-    "gandum_jagung": 7.5,
-    "sayur_umbi": 23.0,
+    "gandum_jagung": 8,
+    "sayur_umbi": 23,
     "kedelai": 27,
     "kelapa_sawit": 22,
-    "kopi_teh_kakao": 12.0
+    "kopi_teh_kakao": 12
   },
   "sektor_perikanan": {
-    "udang_kerang": 23.5,
+    "udang_kerang": 24,
     "ikan": 15
   },
   "sektor_olahan_pangan": {

@@ -60,21 +60,22 @@ export const malta: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 23.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 23,
     "sapi_perah": 3,
     "sapi_potong": 20,
     "domba_kambing": 24
   },
   "sektor_agrikultur": {
     "padi": 6,
-    "gandum_jagung": 24.0,
-    "sayur_umbi": 19.5,
+    "gandum_jagung": 24,
+    "sayur_umbi": 20,
     "kedelai": 17,
     "kelapa_sawit": 14,
-    "kopi_teh_kakao": 28.3
+    "kopi_teh_kakao": 28
   },
   "sektor_perikanan": {
-    "udang_kerang": 15.5,
+    "udang_kerang": 16,
     "ikan": 5
   },
   "sektor_olahan_pangan": {

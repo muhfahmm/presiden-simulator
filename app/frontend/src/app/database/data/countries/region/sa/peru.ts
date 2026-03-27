@@ -60,21 +60,22 @@ export const peru: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 27.5,
+  "sektor_peternakan": { 
+    "ayam_unggas": 28,
     "sapi_perah": 15,
     "sapi_potong": 15,
     "domba_kambing": 15
   },
   "sektor_agrikultur": {
     "padi": 36,
-    "gandum_jagung": 8.0,
-    "sayur_umbi": 16.5,
+    "gandum_jagung": 8,
+    "sayur_umbi": 16,
     "kedelai": 32,
     "kelapa_sawit": 27,
-    "kopi_teh_kakao": 15.7
+    "kopi_teh_kakao": 16
   },
   "sektor_perikanan": {
-    "udang_kerang": 14.5,
+    "udang_kerang": 14,
     "ikan": 14
   },
   "sektor_olahan_pangan": {

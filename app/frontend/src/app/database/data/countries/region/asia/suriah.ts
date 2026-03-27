@@ -60,21 +60,22 @@ export const suriah: CountryData = {
   // 5. 🌾 AGRI & PETERNAKAN
   // =============================================================
 
-  "sektor_peternakan": { "ayam_unggas": 35.0,
+  "sektor_peternakan": { 
+    "ayam_unggas": 35,
     "sapi_perah": 17,
     "sapi_potong": 24,
     "domba_kambing": 33
   },
   "sektor_agrikultur": {
     "padi": 31,
-    "gandum_jagung": 5.0,
-    "sayur_umbi": 19.5,
+    "gandum_jagung": 5,
+    "sayur_umbi": 20,
     "kedelai": 12,
     "kelapa_sawit": 35,
-    "kopi_teh_kakao": 21.7
+    "kopi_teh_kakao": 22
   },
   "sektor_perikanan": {
-    "udang_kerang": 13.0,
+    "udang_kerang": 13,
     "ikan": 30
   },
   "sektor_olahan_pangan": {

@@ -6,7 +6,8 @@ export const komoditasPanganRate = {
     production: 1000,
     unit: "EKOR",
     maintenanceCost: 20,
-    buildTime: 30
+    buildTime: 30,
+    lowongan_kerja: 100
   },
   dairy_farm: {
     key: "dairy_farm",
@@ -15,7 +16,8 @@ export const komoditasPanganRate = {
     production: 500,
     unit: "LITER",
     maintenanceCost: 40,
-    buildTime: 60
+    buildTime: 60,
+    lowongan_kerja: 150
   },
   cattle_farm: {
     key: "cattle_farm",
@@ -24,7 +26,8 @@ export const komoditasPanganRate = {
     production: 100,
     unit: "EKOR",
     maintenanceCost: 60,
-    buildTime: 90
+    buildTime: 90,
+    lowongan_kerja: 120
   },
   sheep_farm: {
     key: "sheep_farm",
@@ -33,7 +36,8 @@ export const komoditasPanganRate = {
     production: 200,
     unit: "EKOR",
     maintenanceCost: 30,
-    buildTime: 60
+    buildTime: 60,
+    lowongan_kerja: 80
   },
   shrimp_farm: {
     key: "shrimp_farm",
@@ -42,7 +46,8 @@ export const komoditasPanganRate = {
     production: 1000,
     unit: "KG",
     maintenanceCost: 50,
-    buildTime: 45
+    buildTime: 45,
+    lowongan_kerja: 250
   },
   freshwater_fish_farm: {
     key: "freshwater_fish_farm",
@@ -51,7 +56,8 @@ export const komoditasPanganRate = {
     production: 2000,
     unit: "KG",
     maintenanceCost: 30,
-    buildTime: 45
+    buildTime: 45,
+    lowongan_kerja: 200
   },
   pearl_farm: {
     key: "pearl_farm",
@@ -60,7 +66,8 @@ export const komoditasPanganRate = {
     production: 100,
     unit: "GRAM",
     maintenanceCost: 80,
-    buildTime: 120
+    buildTime: 120,
+    lowongan_kerja: 150
   },
   paddy_field: {
     key: "paddy_field",
@@ -69,7 +76,8 @@ export const komoditasPanganRate = {
     production: 5000,
     unit: "KG",
     maintenanceCost: 25,
-    buildTime: 90
+    buildTime: 90,
+    lowongan_kerja: 300
   },
   wheat_field: {
     key: "wheat_field",
@@ -78,7 +86,8 @@ export const komoditasPanganRate = {
     production: 3000,
     unit: "KG",
     maintenanceCost: 20,
-    buildTime: 90
+    buildTime: 90,
+    lowongan_kerja: 200
   },
   corn_field: {
     key: "corn_field",
@@ -87,7 +96,8 @@ export const komoditasPanganRate = {
     production: 4000,
     unit: "KG",
     maintenanceCost: 20,
-    buildTime: 75
+    buildTime: 75,
+    lowongan_kerja: 150
   },
   tuber_field: {
     key: "tuber_field",
@@ -96,7 +106,8 @@ export const komoditasPanganRate = {
     production: 6000,
     unit: "KG",
     maintenanceCost: 15,
-    buildTime: 60
+    buildTime: 60,
+    lowongan_kerja: 120
   },
   soybean_field: {
     key: "soybean_field",
@@ -105,7 +116,8 @@ export const komoditasPanganRate = {
     production: 2000,
     unit: "KG",
     maintenanceCost: 20,
-    buildTime: 60
+    buildTime: 60,
+    lowongan_kerja: 100
   },
   palm_oil_plantation: {
     key: "palm_oil_plantation",
@@ -114,7 +126,8 @@ export const komoditasPanganRate = {
     production: 10000,
     unit: "LITER",
     maintenanceCost: 70,
-    buildTime: 365
+    buildTime: 365,
+    lowongan_kerja: 1000
   },
   tea_plantation: {
     key: "tea_plantation",
@@ -123,7 +136,8 @@ export const komoditasPanganRate = {
     production: 500,
     unit: "KG",
     maintenanceCost: 30,
-    buildTime: 180
+    buildTime: 180,
+    lowongan_kerja: 400
   },
   coffee_plantation: {
     key: "coffee_plantation",
@@ -132,7 +146,8 @@ export const komoditasPanganRate = {
     production: 400,
     unit: "KG",
     maintenanceCost: 35,
-    buildTime: 240
+    buildTime: 240,
+    lowongan_kerja: 400
   },
   cocoa_plantation: {
     key: "cocoa_plantation",
@@ -141,7 +156,8 @@ export const komoditasPanganRate = {
     production: 300,
     unit: "KG",
     maintenanceCost: 40,
-    buildTime: 300
+    buildTime: 300,
+    lowongan_kerja: 400
   },
   sugarcane_plantation: {
     key: "sugarcane_plantation",
@@ -150,7 +166,8 @@ export const komoditasPanganRate = {
     production: 5000,
     unit: "KG",
     maintenanceCost: 30,
-    buildTime: 180
+    buildTime: 180,
+    lowongan_kerja: 500
   },
   vegetable_farm: {
     key: "vegetable_farm",
@@ -159,6 +176,7 @@ export const komoditasPanganRate = {
     production: 2000,
     unit: "KG",
     maintenanceCost: 15,
-    buildTime: 30
+    buildTime: 30,
+    lowongan_kerja: 120
   }
 };
