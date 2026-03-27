@@ -41,8 +41,8 @@ export const produksiMiliter = [
 
   // 4. Polisi & Keamanan (Polisi)
   { key: "pos_polisi", category: "Polisi", label: "Kantor Polisi", desc: "Komando Wilayah", cost: 25, buildTime: 60, maintenanceCost: 15 },
-  { key: "police_car", category: "Polisi", label: "Mobil Patroli", desc: "Patroli Lantas", cost: 2, buildTime: 7, maintenanceCost: 2 },
-  { key: "police_bike", category: "Polisi", label: "Sepeda Motor", desc: "Patroli Cepat", cost: 1, buildTime: 5, maintenanceCost: 1 },
+  { key: "mobil_patroli_interceptor", category: "Polisi", label: "Mobil Patroli Interceptor", desc: "Patroli Lantas", cost: 2, buildTime: 7, maintenanceCost: 2 },
+  { key: "unit_interceptor_r2", category: "Polisi", label: "Unit Interceptor Roda Dua", desc: "Patroli Cepat", cost: 1, buildTime: 5, maintenanceCost: 1 },
   { key: "unit_k9", category: "Polisi", label: "Unit K-9", desc: "Pelacakan", cost: 1, buildTime: 5, maintenanceCost: 1 },
   { key: "swat", category: "Polisi", label: "Pasukan SWAT", desc: "Taktis Khusus", cost: 5, buildTime: 30, maintenanceCost: 5 },
   { key: "police_heli", category: "Polisi", label: "Heli Polisi", desc: "Udara Polisi", cost: 15, buildTime: 60, maintenanceCost: 10 },

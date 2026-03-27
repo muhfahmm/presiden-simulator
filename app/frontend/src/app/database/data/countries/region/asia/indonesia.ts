@@ -181,8 +181,8 @@ export const indonesia: CountryData = {
   "armada_kepolisian": {
     "armada_polisi": {
       "patroli_lantas": {
-        "mobil_patroli": 23,
-        "sepeda_motor": 9,
+        "mobil_patroli_interceptor": 23,
+        "unit_interceptor_r2": 9,
         "unit_k9": 23
       },
       "taktis_khusus": {

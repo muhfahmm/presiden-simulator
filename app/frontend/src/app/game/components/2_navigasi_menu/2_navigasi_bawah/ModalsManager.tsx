@@ -14,9 +14,9 @@ import HargaModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2
 import ProduksiHubV3 from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/1-produksi/ProduksiModal";
 import ProduksiMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/2-produksi-militer/ProduksiMiliterModal";
 import TempatUmumModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/TempatUmumModal";
-import PertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/PertahananModal";
-import ArmadaMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/ArmadaMiliterModal";
-import ArmadaPolisiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/ArmadaPolisiModal";
+import PertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/PertahananModal";
+import ArmadaMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/2_armada_militer/ArmadaMiliterModal";
+import ArmadaPolisiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/3_armada_polisi/ArmadaPolisiModal";
 import GeopolitikModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/GeopolitikModal";
 import KementerianModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_kementrian/KementerianModal";
 import BeritaModal from "@/app/game/components/sidemenu/1_berita/BeritaModal";
@@ -96,12 +96,10 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <ArmadaMiliterModal
         isOpen={activeMenu === "Menu:ArmadaMiliter"}
         onClose={() => setActiveMenu("Pertahanan")}
-        data={countryData}
       />
       <ArmadaPolisiModal
         isOpen={activeMenu === "Menu:ArmadaPolisi"}
         onClose={() => setActiveMenu("Pertahanan")}
-        data={countryData}
       />
       <GeopolitikModal
         isOpen={activeMenu === "Geopolitik & Luar Negeri"}

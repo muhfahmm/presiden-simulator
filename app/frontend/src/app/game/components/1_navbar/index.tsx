@@ -100,12 +100,7 @@ export default function GameNavbar({
             icon={<Coins className="h-4 w-4 text-yellow-500" />}
             label="Kas Negara"
             value={`${Math.round(budget).toLocaleString('id-ID')}`}
-          />
-          <StatusBadge
-            icon={<TrendingUp className="h-4 w-4 text-emerald-500" />}
-            label="Pendapatan/Hari"
-            value={budgetDelta > 0 ? `+${Math.round(budgetDelta).toLocaleString('id-ID')}` : Math.round(budgetDelta).toLocaleString('id-ID')}
-            deltaColor="text-emerald-400 bg-emerald-500/10"
+            delta={budgetDelta}
           />
           <StatusBadge
             icon={<Shield className="h-4 w-4 text-green-500" />}

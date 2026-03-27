@@ -1,8 +1,8 @@
 export interface SektorArmadaKepolisian {
   armada_polisi: {
     patroli_lantas: {
-      mobil_patroli: number;
-      sepeda_motor: number;
+      mobil_patroli_interceptor: number;
+      unit_interceptor_r2: number;
       unit_k9: number;
     };
     taktis_khusus: {

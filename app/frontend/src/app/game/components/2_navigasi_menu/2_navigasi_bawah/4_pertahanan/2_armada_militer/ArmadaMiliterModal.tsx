@@ -10,72 +10,19 @@ import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
 import { 
-  calculateTotalInfantry, 
-  calculateInfantryPower,
-  calculatePrisonCapacity,
-  calculateArmoryCapacity,
-  calculateTankHangarCapacity,
-  calculateAcademyCapacity,
-  calculateAirBaseCapacity,
-  calculateNavalBaseCapacity,
-  calculateTankPower,
-  calculateApcPower,
-  calculateArtilleryPower,
-  calculateRocketPower,
-  calculateSamPower,
-  calculateTacticalPower,
-  calculateCarrierPower,
-  calculateDestroyerPower,
-  calculateCorvettePower,
-  calculateSubmarinePower,
-  calculateRegularSubPower,
-  calculateMineShipPower,
-  calculateLogisticsPower,
-  calculateStealthPower,
-  calculateInterceptorPower,
-  calculateBomberPower,
-  calculateAttackHeliPower,
-  calculateReconPower,
-  calculateUavPower,
-  calculateKamikazePower,
-  calculateTransportPower,
-  INFANTRY_POWER_PER_UNIT,
-  TANK_POWER_PER_UNIT,
-  APC_POWER_PER_UNIT,
-  ARTILLERY_POWER_PER_UNIT,
-  ROCKET_POWER_PER_UNIT,
-  SAM_POWER_PER_UNIT,
-  TACTICAL_POWER_PER_UNIT,
-  CARRIER_POWER_PER_UNIT,
-  DESTROYER_POWER_PER_UNIT,
-  CORVETTE_POWER_PER_UNIT,
-  SUBMARINE_POWER_PER_UNIT,
-  REGULAR_SUB_POWER_PER_UNIT,
-  MINE_SHIP_POWER_PER_UNIT,
-  LOGISTICS_POWER_PER_UNIT,
-  STEALTH_POWER_PER_UNIT,
-  INTERCEPTOR_POWER_PER_UNIT,
-  BOMBER_POWER_PER_UNIT,
-  ATTACK_HELI_POWER_PER_UNIT,
-  RECON_POWER_PER_UNIT,
-  UAV_POWER_PER_UNIT,
-  KAMIKAZE_POWER_PER_UNIT,
-  TRANSPORT_POWER_PER_UNIT
-} from "../../4_pertahanan/2_armada_militer/kekuatanmiliter";
+  TANK_POWER_PER_UNIT, APC_POWER_PER_UNIT, ARTILLERY_POWER_PER_UNIT, ROCKET_POWER_PER_UNIT, SAM_POWER_PER_UNIT, TACTICAL_POWER_PER_UNIT,
+  CARRIER_POWER_PER_UNIT, DESTROYER_POWER_PER_UNIT, CORVETTE_POWER_PER_UNIT, SUBMARINE_POWER_PER_UNIT, REGULAR_SUB_POWER_PER_UNIT, MINE_SHIP_POWER_PER_UNIT, LOGISTICS_POWER_PER_UNIT,
+  STEALTH_POWER_PER_UNIT, INTERCEPTOR_POWER_PER_UNIT, BOMBER_POWER_PER_UNIT, ATTACK_HELI_POWER_PER_UNIT, RECON_POWER_PER_UNIT, UAV_POWER_PER_UNIT, KAMIKAZE_POWER_PER_UNIT, TRANSPORT_POWER_PER_UNIT,
+  INFANTRY_POWER_PER_UNIT
+} from "./kekuatanmiliter";
 
-interface ModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-}
-
-export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
+export default function ArmadaMiliterModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
   const [activeConstructions, setActiveConstructions] = useState<any[]>([]);
   const [showQueue, setShowQueue] = useState(false);
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
   const [confirmBuild, setConfirmBuild] = useState<any>(null);
   const [quantity, setQuantity] = useState(1);
   const [currentData, setCurrentData] = useState<any>(null);
-
   const [tick, setTick] = useState(0);
 
   useEffect(() => {
@@ -87,14 +34,12 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
     }
   }, [isOpen]);
 
-  // Sync queue data whenever tick or modal opens
   useEffect(() => {
     if (!isOpen) return;
     const queue = buildingStorage.getQueue();
     setActiveConstructions(queue);
   }, [tick, isOpen]);
 
-  // Polling for progress updates and completion
   useEffect(() => {
     if (!isOpen) return;
 
@@ -113,12 +58,11 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
               buildingStorage.removeFromQueue(finishItem.id);
             }
           });
-          // Dispatch event to sync lainnya components
           window.dispatchEvent(new Event('building_storage_updated'));
         }
         setTick(t => t + 1);
       } catch (err) {
-        console.error("DEBUG: Military Hub poll error", err);
+        console.error("DEBUG: Armada Hub poll error", err);
       }
     }, 1000);
     return () => clearInterval(interval);
@@ -131,19 +75,76 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
 
   const totalPasokan = hitungTotalKapasitas(currentData);
   const totalBeban = hitungTotalKonsumsiNasional(currentData);
+  const surplus = totalPasokan - totalBeban;
 
-  let adjustedTotalPasokan = totalPasokan;
-  let adjustedTotalBeban = totalBeban;
-
-  const deltaEntries = Object.entries(buildingDeltas);
-  deltaEntries.forEach(([key, deltaValue]) => {
-    const meta = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA];
-    if (meta && typeof deltaValue === 'number') {
-      adjustedTotalPasokan += (deltaValue * meta.production);
+  const militaryGroups = [
+    {
+      id: "armada_tempur",
+      title: "Manajemen Armada Tempur Nasional",
+      icon: MilitaryIcon,
+      color: "text-orange-500",
+      items: [
+        // ARMADA DARAT
+        { key: "barak", groupId: "darat", label: "Barak Militer/Pasukan", icon: MilitaryIcon, desc: "Hunian Tentara", cost: 40, buildTime: 45, maintenanceCost: 15, lowongan_kerja: 500, count: (currentData.armada_militer.barak || 0) + ((buildingDeltas["barak"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.barak, power: INFANTRY_POWER_PER_UNIT },
+        { key: "tank", groupId: "darat", label: "Main Battle Tank", icon: Truck, desc: "Kavaleri Darat", cost: 20, buildTime: 30, maintenanceCost: 10, lowongan_kerja: 4, count: (currentData.armada_militer.darat.tank_tempur_utama || 0), consumption: 0, power: TANK_POWER_PER_UNIT },
+        { key: "apc", groupId: "darat", label: "APC / IFV", icon: Truck, desc: "Transportasi Taktis", cost: 8, buildTime: 15, maintenanceCost: 4, lowongan_kerja: 3, count: (currentData.armada_militer.darat.apc_ifv || 0), consumption: 0, power: APC_POWER_PER_UNIT },
+        { key: "artileri", groupId: "darat", label: "Artileri Berat", icon: Target, desc: "Pukulan Jarak Jauh", cost: 15, buildTime: 45, maintenanceCost: 8, lowongan_kerja: 6, count: (currentData.armada_militer.darat.artileri_berat || 0), consumption: 0, power: ARTILLERY_POWER_PER_UNIT },
+        { key: "rocket", groupId: "darat", label: "MLRS Rocket", icon: Rocket, desc: "Sistem Roket", cost: 18, buildTime: 50, maintenanceCost: 12, lowongan_kerja: 5, count: (currentData.armada_militer.darat.sistem_peluncur_roket || 0), consumption: 0, power: ROCKET_POWER_PER_UNIT },
+        { key: "sam", groupId: "darat", label: "Mobile SAM", icon: ShieldAlert, desc: "Hulu Ledak", cost: 25, buildTime: 60, maintenanceCost: 15, lowongan_kerja: 6, count: (currentData.armada_militer.darat.pertahanan_udara_mobile || 0), consumption: 0, power: SAM_POWER_PER_UNIT },
+        { key: "tactical", groupId: "darat", label: "Kendaraan Taktis", icon: Car, desc: "Patroli Tempur", cost: 5, buildTime: 10, maintenanceCost: 2, lowongan_kerja: 2, count: (currentData.armada_militer.darat.kendaraan_taktis || 0), consumption: 0, power: TACTICAL_POWER_PER_UNIT },
+        
+        // ARMADA LAUT
+        { key: "carrier", groupId: "laut", label: "Kapal Induk", icon: Ship, desc: "Pangkalan Apung", cost: 750, buildTime: 480, maintenanceCost: 200, lowongan_kerja: 5000, count: (currentData.armada_militer.laut.kapal_induk || 0), consumption: 0, power: CARRIER_POWER_PER_UNIT },
+        { key: "destroyer", groupId: "laut", label: "Kapal Destroyer", icon: Waves, desc: "Perusak Maritim", cost: 280, buildTime: 360, maintenanceCost: 100, lowongan_kerja: 300, count: (currentData.armada_militer.laut.kapal_destroyer || 0), consumption: 0, power: DESTROYER_POWER_PER_UNIT },
+        { key: "corvette", groupId: "laut", label: "Kapal Korvet", icon: Anchor, desc: "Kapal Kawal", cost: 120, buildTime: 180, maintenanceCost: 45, lowongan_kerja: 100, count: (currentData.armada_militer.laut.kapal_korvet || 0), consumption: 0, power: CORVETTE_POWER_PER_UNIT },
+        { key: "submarine", groupId: "laut", label: "Kapal Selam Nuklir", icon: RadioTower, desc: "Siluman Bawah Air", cost: 420, buildTime: 420, maintenanceCost: 150, lowongan_kerja: 80, count: (currentData.armada_militer.laut.kapal_selam_nuklir || 0), consumption: 0, power: SUBMARINE_POWER_PER_UNIT },
+        { key: "reg_sub", groupId: "laut", label: "Kapal Selam Reguler", icon: RadioTower, desc: "Selam Reguler", cost: 150, buildTime: 240, maintenanceCost: 60, lowongan_kerja: 60, count: (currentData.armada_militer.laut.kapal_selam_regular || 0), consumption: 0, power: REGULAR_SUB_POWER_PER_UNIT },
+        { key: "mine_ship", groupId: "laut", label: "Kapal Ranjau", icon: Ship, desc: "Penyapu Ranjau", cost: 45, buildTime: 90, maintenanceCost: 15, lowongan_kerja: 40, count: (currentData.armada_militer.laut.kapal_ranjau || 0), consumption: 0, power: MINE_SHIP_POWER_PER_UNIT },
+        { key: "logistics", groupId: "laut", label: "Kapal Logistik", icon: Truck, desc: "Suplai Maritim", cost: 60, buildTime: 120, maintenanceCost: 25, lowongan_kerja: 50, count: (currentData.armada_militer.laut.kapal_logistik || 0), consumption: 0, power: LOGISTICS_POWER_PER_UNIT },
+        
+        // ARMADA UDARA
+        { key: "stealth_jet", groupId: "udara", label: "Jet Stealth", icon: Plane, desc: "Supremasi Udara", cost: 250, buildTime: 300, maintenanceCost: 120, lowongan_kerja: 2, count: (currentData.armada_militer.udara.jet_tempur_siluman || 0), consumption: 0, power: STEALTH_POWER_PER_UNIT },
+        { key: "interceptor", groupId: "udara", label: "Jet Interceptor", icon: Plane, desc: "Satu Pencegat", cost: 120, buildTime: 180, maintenanceCost: 55, lowongan_kerja: 2, count: (currentData.armada_militer.udara.jet_tempur_interceptor || 0), consumption: 0, power: INTERCEPTOR_POWER_PER_UNIT },
+        { key: "bomber", groupId: "udara", label: "Pesawat Pengebom", icon: Radio, desc: "Serangan Udara", cost: 350, buildTime: 360, maintenanceCost: 180, lowongan_kerja: 3, count: (currentData.armada_militer.udara.pesawat_pengebom || 0), consumption: 0, power: BOMBER_POWER_PER_UNIT },
+        { key: "heli_attack", groupId: "udara", label: "Heli Serang", icon: Radio, desc: "Bantuan Udara", cost: 40, buildTime: 90, maintenanceCost: 25, lowongan_kerja: 3, count: (currentData.armada_militer.udara.helikopter_serang || 0), consumption: 0, power: ATTACK_HELI_POWER_PER_UNIT },
+        { key: "recon_plane", groupId: "udara", label: "Pesawat Intai", icon: Search, desc: "Intelijen Udara", cost: 80, buildTime: 120, maintenanceCost: 20, lowongan_kerja: 2, count: (currentData.armada_militer.udara.pesawat_pengintai || 0), consumption: 0, power: RECON_POWER_PER_UNIT },
+        { key: "uav", groupId: "udara", label: "Drone UAV", icon: Satellite, desc: "Intai Tanpa Awak", cost: 15, buildTime: 30, maintenanceCost: 5, lowongan_kerja: 1, count: (currentData.armada_militer.udara.drone_intai_uav || 0), consumption: 0, power: UAV_POWER_PER_UNIT },
+        { key: "kamikaze", groupId: "udara", label: "Drone Kamikaze", icon: Target, desc: "Serangan Bunuh Diri", cost: 5, buildTime: 7, maintenanceCost: 1, lowongan_kerja: 1, count: (currentData.armada_militer.udara.drone_kamikaze || 0), consumption: 0, power: KAMIKAZE_POWER_PER_UNIT },
+        { key: "transport", groupId: "udara", label: "Pesawat Angkut", icon: Truck, desc: "Logistik Udara", cost: 45, buildTime: 90, maintenanceCost: 15, lowongan_kerja: 3, count: (currentData.armada_militer.udara.pesawat_angkut || 0), consumption: 0, power: TRANSPORT_POWER_PER_UNIT }
+      ]
     }
-  });
+  ];
 
-  const surplus = adjustedTotalPasokan - adjustedTotalBeban;
+  const handleBuildRequest = (item: any) => {
+    setConfirmBuild(item);
+    setQuantity(1);
+  };
+
+  const handleConfirmBuild = () => {
+    if (!confirmBuild) return;
+    try {
+      let currentStart = getStoredGameDate().getTime();
+      const itemsToAdd: any[] = [];
+      for (let i = 0; i < quantity; i++) {
+        const currentEnd = addDays(new Date(currentStart), confirmBuild.buildTime).getTime();
+        const newItem = buildingStorage.addToQueue({
+          buildingKey: confirmBuild.key,
+          label: confirmBuild.label,
+          sector: confirmBuild.groupId,
+          startDate: currentStart,
+          endDate: currentEnd,
+          buildTime: confirmBuild.buildTime
+        });
+        if (newItem) itemsToAdd.push(newItem);
+        currentStart = currentEnd;
+      }
+      if (itemsToAdd.length > 0) setActiveConstructions(prev => [...prev, ...itemsToAdd]);
+      setConfirmBuild(null);
+      setQuantity(1);
+    } catch (err) {
+      console.error("DEBUG: Armada Hub build error", err);
+    }
+  };
 
   const toggleSector = (id: string) => {
     setCollapsedSectors(prev => {
@@ -154,82 +155,18 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
     });
   };
 
-  const handles = {
-    handleBuildRequest: (item: any) => {
-      setConfirmBuild(item);
-      setQuantity(1);
-    },
-    handleConfirmBuild: () => {
-      if (!confirmBuild) return;
-      try {
-        let currentStart = getStoredGameDate().getTime();
-        const itemsToAdd: any[] = [];
-        for (let i = 0; i < quantity; i++) {
-          const currentEnd = addDays(new Date(currentStart), confirmBuild.buildTime).getTime();
-          const newItem = buildingStorage.addToQueue({
-            buildingKey: confirmBuild.key,
-            label: confirmBuild.label,
-            sector: confirmBuild.groupId,
-            startDate: currentStart,
-            endDate: currentEnd,
-            buildTime: confirmBuild.buildTime
-          });
-          if (newItem) itemsToAdd.push(newItem);
-          currentStart = currentEnd;
-        }
-        if (itemsToAdd.length > 0) setActiveConstructions(prev => [...prev, ...itemsToAdd]);
-        setConfirmBuild(null);
-        setQuantity(1);
-      } catch (err) {
-        console.error("DEBUG: Military Hub build error", err);
-      }
-    }
-  };
-
-  const militaryGroups = [
-    {
-      id: "pertahanan_alutsista",
-      title: "1. Manajemen Pertahanan",
-      icon: Shield,
-      color: "text-red-500",
-      items: [
-        { key: "penjara", groupId: "pertahanan", label: "Penjara", icon: Gavel, desc: "Lembaga Pemasyarakatan", cost: 25, buildTime: 60, maintenanceCost: 20, lowongan_kerja: 200, count: (currentData.sektor_pertahanan?.penjara || 0) + ((buildingDeltas["penjara"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.penjara },
-        { key: "gudang_senjata", groupId: "pertahanan", label: "Gudang Senjata", icon: Archive, desc: "Penyimpanan Amunisi", cost: 30, buildTime: 30, maintenanceCost: 10, lowongan_kerja: 100, count: (currentData.sektor_pertahanan?.gudang_senjata || 0) + ((buildingDeltas["gudang_senjata"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.gudang_senjata },
-        { key: "hangar_tank", groupId: "pertahanan", label: "Hangar Tank", icon: Truck, desc: "Garasi Tempur", cost: 50, buildTime: 60, maintenanceCost: 35, lowongan_kerja: 150, count: (currentData.sektor_pertahanan?.hangar_tank || 0) + ((buildingDeltas["hangar_tank"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.hangar_tank },
-        { key: "akademi_militer", groupId: "pertahanan", label: "Akademi Militer", icon: Landmark, desc: "Pendidikan Perwira", cost: 150, buildTime: 180, maintenanceCost: 40, lowongan_kerja: 300, count: (currentData.sektor_pertahanan?.akademi_militer || 0) + ((buildingDeltas["akademi_militer"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.akademi_militer },
-        { key: "pusat_komando", groupId: "pertahanan", label: "Pusat Komando", icon: TowerControl, desc: "Komando Tertinggi", cost: 450, buildTime: 240, maintenanceCost: 150, lowongan_kerja: 250, count: (currentData.sektor_pertahanan?.pusat_komando || 0) + ((buildingDeltas["pusat_komando"] as number) || 0), consumption: KONSUMSI_STRATEGIC.pusat_komando },
-        { key: "pangkalan_udara", groupId: "pertahanan", label: "Pangkalan Udara", icon: MapPin, desc: "Fasilitas Dirgantara", cost: 280, buildTime: 180, maintenanceCost: 80, lowongan_kerja: 500, count: (currentData.sektor_pertahanan?.pangkalan_udara || 0) + ((buildingDeltas["pangkalan_udara"] as number) || 0), consumption: KONSUMSI_STRATEGIC.pangkalan_udara },
-        { key: "pangkalan_laut", groupId: "pertahanan", label: "Pangkalan Laut", icon: Ship, desc: "Fasilitas Maritim", cost: 320, buildTime: 210, maintenanceCost: 100, lowongan_kerja: 450, count: (currentData.sektor_pertahanan?.pangkalan_laut || 0) + ((buildingDeltas["pangkalan_laut"] as number) || 0), consumption: KONSUMSI_STRATEGIC.pangkalan_laut },
-        { key: "program_luar_angkasa", groupId: "pertahanan", label: "Program luar angkasa", icon: Rocket, desc: "Program Satelit", cost: 600, buildTime: 365, maintenanceCost: 250, lowongan_kerja: 800, count: (currentData.sektor_pertahanan?.program_luar_angkasa || 0) + ((buildingDeltas["program_luar_angkasa"] as number) || 0), consumption: KONSUMSI_STRATEGIC.program_luar_angkasa },
-        { key: "cyber_shield", groupId: "pertahanan", label: "Cyber Defense", icon: ShieldAlert, desc: "Keamanan Digital", cost: 180, buildTime: 120, maintenanceCost: 50, lowongan_kerja: 120, count: Math.floor(currentData.sektor_pertahanan?.pertahanan_siber || 0), consumption: 0 }
-      ]
-    },
-    {
-      id: "strategis_keamanan",
-      title: "2. Sektor Strategis & Intelijen Nasional",
-      icon: Crosshair,
-      color: "text-indigo-400",
-      items: [
-        // INTELIJEN
-        { key: "satellite", groupId: "intel", label: "Sistem Satelit", icon: Satellite, desc: "Orbit Intelijen", cost: 350, buildTime: 180, maintenanceCost: 100, lowongan_kerja: 80, count: (currentData.militer_strategis?.intel_radar?.sistem_satelit || 0) + ((buildingDeltas["satellite"] as number) || 0), consumption: 0 },
-        { key: "radar", groupId: "intel", label: "Jaringan Radar", icon: Radar, desc: "Deteksi Dini", cost: 120, buildTime: 90, maintenanceCost: 30, lowongan_kerja: 50, count: (currentData.militer_strategis?.intel_radar?.jaringan_radar || 0), consumption: 0 },
-        { key: "operasi_siber", groupId: "intel", label: "Operasi Cyber", icon: Cpu, desc: "Perang Digital", cost: 180, buildTime: 120, maintenanceCost: 40, lowongan_kerja: 120, count: (currentData.militer_strategis?.intel_radar?.operasi_siber || 0), consumption: 0 }
-      ]
-    }
-  ];
-
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[92vh] overflow-hidden shadow-2xl flex flex-col relative">
         {/* Header */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-purple-500/10 rounded-xl">
-              <Wrench className="h-6 w-6 text-purple-500" />
+            <div className="p-2 bg-cyan-500/10 rounded-xl">
+              <MilitaryIcon className="h-6 w-6 text-cyan-500" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white tracking-tight">Militer Hub</h2>
-              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Defense & Strategic Hub</p>
+              <h2 className="text-2xl font-bold text-white tracking-tight italic uppercase">Komando Armada</h2>
+              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Strike Fleet Command</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -244,33 +181,6 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
           </div>
         </div>
 
-        {/* Electricity Summary */}
-        <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
-              <div className="p-3 bg-cyan-500/10 rounded-xl"><Zap className="h-6 w-6 text-cyan-500" /></div>
-              <div>
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.supply.title}</p>
-                <p className="text-xl font-black text-white leading-tight">{(adjustedTotalPasokan * 10).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
-              </div>
-            </div>
-            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
-              <div className="p-3 bg-rose-500/10 rounded-xl"><Activity className="h-6 w-6 text-rose-500" /></div>
-              <div>
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.usage.title}</p>
-                <p className="text-xl font-black text-white leading-tight">{(adjustedTotalBeban * 10).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
-              </div>
-            </div>
-            <div className={`bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 relative overflow-hidden group`}>
-              <div className={`p-3 rounded-xl ${surplus >= 0 ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>{surplus >= 0 ? <TrendingUp className="h-6 w-6 text-emerald-500" /> : <TrendingDown className="h-6 w-6 text-rose-500" />}</div>
-              <div>
-                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.balance.title}</p>
-                <p className={`text-xl font-black leading-tight ${surplus >= 0 ? "text-emerald-500" : "text-rose-500"}`}>{(surplus * 10).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
           <div className="space-y-12">
@@ -278,7 +188,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
               <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
                 <div className="flex items-center gap-3 mb-5 px-1">
                   <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}><group.icon className={`h-4 w-4 ${group.color}`} /></div>
-                  <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title} <span className="text-cyan-400 ml-3 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span></h3>
+                  <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title}</h3>
                   <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
                   <button onClick={() => toggleSector(group.id)} className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95">
                     {collapsedSectors.has(group.id) ? <EyeOff size={16} /> : <Eye size={16} className="text-cyan-400" />}
@@ -294,8 +204,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
                         const subGroupLabels: Record<string, string> = {
                           darat: "Armada Darat Nasional",
                           laut: "Armada Maritim & Laut",
-                          udara: "Keunggulan Udara",
-                          intel: "Intelijen & Perang Informasi"
+                          udara: "Keunggulan Udara"
                         };
 
                         const showSubHeader = item.groupId && item.groupId !== prevGroupId;
@@ -313,9 +222,8 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
                             )}
                             <BuildingCard
                               item={item}
-                              onBuild={handles.handleBuildRequest}
+                              onBuild={handleBuildRequest}
                               construction={currentConstruction}
-                              cumulative={0}
                             />
                           </Fragment>
                         );
@@ -356,7 +264,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <button onClick={() => setConfirmBuild(null)} className="py-3 rounded-xl border border-zinc-800 text-zinc-400 font-black uppercase text-xs hover:bg-zinc-800 transition-all">Batal</button>
-                <button onClick={handles.handleConfirmBuild} className="py-3 rounded-xl bg-cyan-600 text-white font-black uppercase text-xs shadow-lg shadow-cyan-900/40 hover:bg-cyan-500 transition-all">Konfirmasi</button>
+                <button onClick={handleConfirmBuild} className="py-3 rounded-xl bg-cyan-600 text-white font-black uppercase text-xs shadow-lg shadow-cyan-900/40 hover:bg-cyan-500 transition-all">Konfirmasi</button>
               </div>
             </div>
           </div>
@@ -366,14 +274,14 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
         <div className={`absolute top-0 right-0 bottom-0 w-80 bg-zinc-950 border-l border-zinc-800 z-[110] transform transition-transform duration-500 ease-in-out shadow-2xl ${showQueue ? 'translate-x-0' : 'translate-x-full'}`}>
           <div className="p-6 h-full flex flex-col">
             <div className="flex items-center justify-between mb-8">
-              <div className="flex items-center gap-2"><Clock size={16} className="text-cyan-500" /><h3 className="text-sm font-black text-white uppercase tracking-widest">Antrean Pembangunan</h3></div>
+              <div className="flex items-center gap-2"><Clock size={16} className="text-cyan-500" /><h3 className="text-sm font-black text-white uppercase tracking-widest">Antrean Armada</h3></div>
               <button onClick={() => setShowQueue(false)} className="p-2 hover:bg-zinc-900 rounded-lg text-zinc-500"><X size={16} /></button>
             </div>
             <div className="flex-1 overflow-y-auto space-y-4 no-scrollbar">
-              {activeConstructions.length === 0 ? (
-                <div className="flex flex-col items-center justify-center h-40 opacity-20 text-center"><Building size={40} className="mb-4" /><p className="text-[10px] font-black uppercase tracking-widest">Tidak ada antrean</p></div>
+              {activeConstructions.filter(c => ["darat", "laut", "udara"].includes(c.sector)).length === 0 ? (
+                <div className="flex flex-col items-center justify-center h-40 opacity-20 text-center"><MilitaryIcon size={40} className="mb-4" /><p className="text-[10px] font-black uppercase tracking-widest">Tidak ada antrean</p></div>
               ) : (
-                activeConstructions.map((item, idx) => {
+                activeConstructions.filter(c => ["darat", "laut", "udara"].includes(c.sector)).map((item, idx) => {
                   const progress = calculateConstructionProgress(item.startDate, item.endDate, getStoredGameDate().getTime());
                   return (
                     <div key={idx} className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-4 space-y-3">
@@ -391,22 +299,10 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
   )
 }
 
-function BuildingCard({ item, onBuild, construction, cumulative }: any) {
+function BuildingCard({ item, onBuild, construction }: any) {
   const [showDetail, setShowDetail] = useState(false);
   const currentDate = getStoredGameDate().getTime();
   const progress = construction ? calculateConstructionProgress(construction.startDate, construction.endDate, currentDate) : null;
-
-  // 6-month workforce occupancy (deterministic, same as ProduksiModal)
-  const diffTime = Math.abs(currentDate - INITIAL_GAME_DATE.getTime());
-  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-  const sixMonthIndex = Math.floor(diffDays / 180);
-  const nextUpdateMs = INITIAL_GAME_DATE.getTime() + (sixMonthIndex + 1) * 180 * 24 * 60 * 60 * 1000;
-  const nextUpdateDate = new Date(nextUpdateMs);
-  const nextDateStr = `${nextUpdateDate.getDate().toString().padStart(2, '0')}-${(nextUpdateDate.getMonth() + 1).toString().padStart(2, '0')}-${nextUpdateDate.getFullYear()}`;
-  const seed = (sixMonthIndex + (item.label?.length || 0)) % 100;
-  const occupancyPercentage = 0.65 + (seed % 30) / 100;
-  const totalVacancies = (item.lowongan_kerja || 0) * (item.count || 0);
-  const filledVacancies = Math.floor(totalVacancies * occupancyPercentage);
 
   return (
     <div className={`bg-zinc-900/40 border ${progress ? 'border-cyan-500/30 bg-cyan-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative overflow-hidden h-full min-h-[440px]`}>
@@ -414,7 +310,6 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
         <div className="absolute top-0 left-0 bottom-0 bg-cyan-500/5 transition-all duration-1000" style={{ width: `${progress.percentage}%` }} />
       )}
 
-      {/* Info overlay â€” absolute, same as ProduksiModal */}
       {showDetail && (
         <div className="absolute inset-0 z-50 bg-zinc-950/98 backdrop-blur-md p-6 flex flex-col animate-in fade-in zoom-in-95 duration-200">
           <div className="flex justify-between items-center mb-6">
@@ -423,7 +318,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
                 <Info size={18} />
               </div>
               <div>
-                <h5 className="text-[14px] font-black text-white uppercase tracking-wider italic">Detail Fasilitas</h5>
+                <h5 className="text-[14px] font-black text-white uppercase tracking-wider italic">Detail Armada</h5>
                 <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">Spesifikasi &amp; Biaya</p>
               </div>
             </div>
@@ -434,11 +329,19 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
 
           <div className="space-y-4 flex-1 overflow-y-auto no-scrollbar pr-1">
             <div className="flex flex-col gap-1.5 p-4 rounded-2xl bg-zinc-900/50 border border-zinc-800/30">
-              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] opacity-60">Nama Bangunan</span>
+              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] opacity-60">Nama Unit</span>
               <h4 className="text-xl font-black text-amber-400 uppercase italic leading-tight tracking-tight">{item.label}</h4>
             </div>
 
             <div className="grid gap-2">
+              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-cyan-500/10 rounded-lg text-cyan-400"><MilitaryIcon size={12} /></div>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Daya Tempur</span>
+                </div>
+                <span className="text-[14px] font-black text-cyan-400">+{item.power?.toLocaleString('id-ID')} <span className="text-[9px] text-cyan-500/50 italic opacity-80">/ UNIT</span></span>
+              </div>
+
               <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                 <div className="flex items-center gap-2.5">
                   <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
@@ -457,33 +360,10 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
                 </div>
               )}
 
-              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-400"><Users size={12} /></div>
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Lowongan</span>
-                </div>
-                <span className="text-[14px] font-black text-blue-400">+{(item.lowongan_kerja || 0).toLocaleString('id-ID')} <span className="text-[9px] text-blue-500/50 italic opacity-80">/ UNIT</span></span>
-              </div>
-
-              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-cyan-500/10 rounded-lg text-cyan-500"><Briefcase size={12} /></div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Okupansi Tenaga Kerja</span>
-                  </div>
-                </div>
-                <div className="flex flex-col items-end">
-                  <span className="text-[14px] font-black text-cyan-400">{filledVacancies.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-400">/ {totalVacancies.toLocaleString('id-ID')}</span></span>
-                  <span className="text-[8px] font-black text-cyan-500 uppercase tracking-widest leading-none italic opacity-90">UPDATE: {nextDateStr}</span>
-                </div>
-              </div>
             </div>
           </div>
 
-          <button
-            onClick={() => setShowDetail(false)}
-            className="mt-6 w-full py-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-zinc-800 hover:text-white transition-all cursor-pointer active:scale-[0.98] shadow-lg"
-          >
+          <button onClick={() => setShowDetail(false)} className="mt-6 w-full py-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-zinc-800 hover:text-white transition-all cursor-pointer active:scale-[0.98] shadow-lg">
             Kembali
           </button>
         </div>
@@ -495,10 +375,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
           <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform">
             <item.icon className={`h-5 w-5 ${progress ? 'text-white' : 'text-cyan-500'} shadow-[0_0_10px_rgba(6,182,212,0.3)]`} />
           </div>
-          <button
-            onClick={() => setShowDetail(!showDetail)}
-            className={`p-2.5 rounded-xl border transition-all cursor-pointer ${showDetail ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'}`}
-          >
+          <button onClick={() => setShowDetail(!showDetail)} className={`p-2.5 rounded-xl border transition-all cursor-pointer ${showDetail ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'}`}>
             <Info size={16} />
           </button>
         </div>
@@ -520,39 +397,32 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
 
         <div className="flex flex-col gap-2.5 flex-1">
           <div className="flex items-center gap-2.5">
+            <div className="p-1.5 bg-cyan-500/10 rounded-lg">
+              <MilitaryIcon size={12} className="text-cyan-400" />
+            </div>
+            <span className="text-[12px] font-bold text-cyan-400/90">
+              Daya Tempur: +{item.power?.toLocaleString('id-ID')} / unit
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2.5">
             <div className="p-1.5 bg-rose-500/10 rounded-lg">
               <Flame size={12} className="text-rose-400" />
             </div>
-            <span className="text-[12px] font-bold text-rose-400/90">
-              Pemeliharaan: -{item.maintenanceCost || 5}/hari
-            </span>
+            <span className="text-[12px] font-bold text-rose-400/90">Pemeliharaan: -{item.maintenanceCost || 5}/hari</span>
           </div>
 
           {item.consumption > 0 && (
             <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-amber-500/10 rounded-lg">
-                <Zap size={12} className="text-amber-500/90" />
-              </div>
-              <span className="text-[12px] font-bold text-amber-500/80">
-                Konsumsi: {item.consumption} MW/unit
-              </span>
+              <div className="p-1.5 bg-amber-500/10 rounded-lg"><Zap size={12} className="text-amber-500/90" /></div>
+              <span className="text-[12px] font-bold text-amber-500/80">Konsumsi: {item.consumption} MW/unit</span>
             </div>
           )}
 
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 bg-blue-500/10 rounded-lg">
-              <Users size={12} className="text-blue-400" />
-            </div>
-            <span className="text-[12px] font-bold text-blue-400/80">
-              Lowongan: {(item.lowongan_kerja || 0).toLocaleString('id-ID')} Jiwa/unit
-            </span>
-          </div>
 
           {!progress && (
             <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-zinc-800/50 rounded-lg">
-                <Clock size={12} className="text-zinc-500" />
-              </div>
+              <div className="p-1.5 bg-zinc-800/50 rounded-lg"><Clock size={12} className="text-zinc-500" /></div>
               <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
             </div>
           )}
@@ -561,12 +431,8 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
         {/* Total Alutsista section */}
         <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
           <div className="flex justify-between items-baseline gap-2">
-            <span className="text-[11px] font-black text-cyan-500/80 uppercase tracking-[0.15em] italic">
-              TOTAL ALUTSISTA:
-            </span>
-            <span className="text-[16px] font-black text-cyan-400 tracking-tight">
-              {(item.count || 0).toLocaleString('id-ID')} <span className="text-[10px] text-cyan-500/50 font-normal uppercase italic ml-1">Unit</span>
-            </span>
+            <span className="text-[11px] font-black text-cyan-500/80 uppercase tracking-[0.15em] italic">TOTAL UNIT:</span>
+            <span className="text-[16px] font-black text-cyan-400 tracking-tight">{(item.count || 0).toLocaleString('id-ID')} <span className="text-[10px] text-cyan-500/50 font-normal uppercase italic ml-1">Unit</span></span>
           </div>
         </div>
       </div>
@@ -583,10 +449,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
               <span className={progress.colorClass.replace('bg-', 'text-')}>{progress.percentage}%</span>
             </div>
             <div className="h-2 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/30 p-0.5">
-              <div
-                className={`h-full transition-all duration-1000 ${progress.colorClass} rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]`}
-                style={{ width: `${progress.percentage}%` }}
-              />
+              <div className={`h-full transition-all duration-1000 ${progress.colorClass} rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]`} style={{ width: `${progress.percentage}%` }} />
             </div>
             <div className="flex justify-between items-center text-[9px] font-bold text-zinc-500 uppercase tracking-tighter italic opacity-70">
               <span className="flex items-center gap-1"><Clock size={10} /> ESTIMASI:</span>
@@ -596,13 +459,10 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
         ) : (
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
-              <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span>
+              <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
               <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
             </div>
-            <button
-              onClick={(e) => { e.stopPropagation(); onBuild(item); }}
-              className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20"
-            >
+            <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20">
               Bangun
             </button>
           </div>
@@ -611,3 +471,4 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
     </div>
   )
 }
+

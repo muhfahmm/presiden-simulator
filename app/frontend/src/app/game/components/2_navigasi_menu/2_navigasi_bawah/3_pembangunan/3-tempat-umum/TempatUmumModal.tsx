@@ -1,11 +1,11 @@
 "use client"
 
 import { useState, useEffect, Fragment } from "react";
-import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Building2, Microscope, Search, Trophy, Gavel, Siren as PoliceIcon, Home as HomeIcon, Truck, School, Lightbulb, Info } from "lucide-react"
+import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Building2, Microscope, Search, Trophy, Gavel, Siren as PoliceIcon, Home as HomeIcon, Truck, School, Lightbulb, Info, Briefcase, Users } from "lucide-react"
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_PANGAN } from "@/app/database/data/types/1_kelistrikan"
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
-import { formatGameDate, addDays, getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
 
@@ -103,16 +103,16 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
       icon: Ship,
       color: "text-cyan-400",
       items: [
-        { key: "jalur_sepeda", groupId: "infra_darat", label: "Jalur Sepeda", icon: Bike, desc: "Logistik", tarif: 1, unit: "Unit", cost: 5, buildTime: 15, maintenanceCost: 1, count: (currentData.infrastruktur.jalur_sepeda || 0) + ((buildingDeltas["jalur_sepeda"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_sepeda },
-        { key: "jalan_tol", groupId: "infra_darat", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", tarif: 1, unit: "Unit", cost: 80, buildTime: 60, maintenanceCost: 5, count: (currentData.infrastruktur.jalan_tol || 0) + ((buildingDeltas["jalan_tol"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalan_tol },
-        { key: "terminal_bus", groupId: "infra_darat", label: "Terminal Bus", icon: Bus, desc: "Transportasi", tarif: 1, unit: "Unit", cost: 30, buildTime: 45, maintenanceCost: 3, count: (currentData.infrastruktur.terminal_bus || 0) + ((buildingDeltas["terminal_bus"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.terminal_bus },
+        { key: "jalur_sepeda", groupId: "infra_darat", label: "Jalur Sepeda", icon: Bike, desc: "Logistik", tarif: 1, unit: "Unit", cost: 5, buildTime: 15, maintenanceCost: 1, count: (currentData.infrastruktur?.jalur_sepeda || 0) + ((buildingDeltas["jalur_sepeda"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_sepeda },
+        { key: "jalan_tol", groupId: "infra_darat", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", tarif: 1, unit: "Unit", cost: 80, buildTime: 60, maintenanceCost: 5, count: (currentData.infrastruktur?.jalan_tol || 0) + ((buildingDeltas["jalan_tol"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalan_tol },
+        { key: "terminal_bus", groupId: "infra_darat", label: "Terminal Bus", icon: Bus, desc: "Transportasi", tarif: 1, unit: "Unit", cost: 30, buildTime: 45, maintenanceCost: 3, count: (currentData.infrastruktur?.terminal_bus || 0) + ((buildingDeltas["terminal_bus"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.terminal_bus },
         
-        { key: "jalur_kereta", groupId: "perkeretaapian", label: "Kereta Api", icon: TrainFront, desc: "Logistik", tarif: 1, unit: "Unit", cost: 120, buildTime: 90, maintenanceCost: 10, count: (currentData.infrastruktur.jalur_kereta || 0) + ((buildingDeltas["jalur_kereta"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_kereta },
-        { key: "kereta_bawah_tanah", groupId: "perkeretaapian", label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transportasi", tarif: 1, unit: "Unit", cost: 150, buildTime: 120, maintenanceCost: 15, count: (currentData.infrastruktur.kereta_bawah_tanah || 0) + ((buildingDeltas["kereta_bawah_tanah"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.kereta_bawah_tanah },
+        { key: "jalur_kereta", groupId: "perkeretaapian", label: "Kereta Api", icon: TrainFront, desc: "Logistik", tarif: 1, unit: "Unit", cost: 120, buildTime: 90, maintenanceCost: 10, count: (currentData.infrastruktur?.jalur_kereta || 0) + ((buildingDeltas["jalur_kereta"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_kereta },
+        { key: "kereta_bawah_tanah", groupId: "perkeretaapian", label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transportasi", tarif: 1, unit: "Unit", cost: 150, buildTime: 120, maintenanceCost: 15, count: (currentData.infrastruktur?.kereta_bawah_tanah || 0) + ((buildingDeltas["kereta_bawah_tanah"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.kereta_bawah_tanah },
         
-        { key: "pelabuhan_laut", groupId: "maritim_udara", label: "Pelabuhan", icon: Ship, desc: "Maritim", tarif: 1, unit: "Unit", cost: 350, buildTime: 180, maintenanceCost: 40, count: (currentData.infrastruktur.pelabuhan_laut || 0) + ((buildingDeltas["seaport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.pelabuhan_laut },
-        { key: "bandara", groupId: "maritim_udara", label: "Bandara", icon: Plane, desc: "Udara", tarif: 1, unit: "Unit", cost: 450, buildTime: 240, maintenanceCost: 60, count: (currentData.infrastruktur.bandara || 0) + ((buildingDeltas["bandara"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bandara },
-        { key: "helipad", groupId: "maritim_udara", label: "Helipad", icon: Plane, desc: "Udara", tarif: 1, unit: "Unit", cost: 15, buildTime: 30, maintenanceCost: 5, count: (currentData.infrastruktur.helipad || 0) + ((buildingDeltas["helipad"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.helipad },
+        { key: "pelabuhan_laut", groupId: "maritim_udara", label: "Pelabuhan", icon: Ship, desc: "Maritim", tarif: 1, unit: "Unit", cost: 350, buildTime: 180, maintenanceCost: 40, count: (currentData.infrastruktur?.pelabuhan_laut || 0) + ((buildingDeltas["seaport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.pelabuhan_laut },
+        { key: "bandara", groupId: "maritim_udara", label: "Bandara", icon: Plane, desc: "Udara", tarif: 1, unit: "Unit", cost: 450, buildTime: 240, maintenanceCost: 60, count: (currentData.infrastruktur?.bandara || 0) + ((buildingDeltas["bandara"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bandara },
+        { key: "helipad", groupId: "maritim_udara", label: "Helipad", icon: Plane, desc: "Udara", tarif: 1, unit: "Unit", cost: 15, buildTime: 30, maintenanceCost: 5, count: (currentData.infrastruktur?.helipad || 0) + ((buildingDeltas["helipad"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.helipad },
       ]
     },
     {
@@ -122,27 +122,27 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
       color: "text-rose-400",
       items: [
         // --- PENDIDIKAN & RISET (6 JENIS) ---
-        { key: "tk_sd", groupId: "pendidikan", label: "TK / SD", icon: Building2, desc: "Pendidikan", tarif: 1, unit: "Unit", cost: 13, buildTime: 40, maintenanceCost: 2, count: ((currentData.sektor_sosial.pendidikan.prasekolah || 0) + (currentData.sektor_sosial.pendidikan.dasar || 0)) + ((buildingDeltas["tk_sd"] as number) || 0), consumption: (KONSUMSI_SOSIAL.pendidikan.prasekolah + KONSUMSI_SOSIAL.pendidikan.dasar) / 2 },
-        { key: "smp_sma", groupId: "pendidikan", label: "SMP / SMA", icon: Library, desc: "Pendidikan", tarif: 1, unit: "Unit", cost: 32, buildTime: 60, maintenanceCost: 5, count: ((currentData.sektor_sosial.pendidikan.menengah || 0) + (currentData.sektor_sosial.pendidikan.lanjutan || 0)) + ((buildingDeltas["smp_sma"] as number) || 0), consumption: (KONSUMSI_SOSIAL.pendidikan.menengah + KONSUMSI_SOSIAL.pendidikan.lanjutan) / 2 },
-        { key: "pt_lembaga", groupId: "pendidikan", label: "PT / Lembaga", icon: Library, desc: "Pendidikan", tarif: 1, unit: "Unit", cost: 230, buildTime: 150, maintenanceCost: 20, count: ((currentData.sektor_sosial.pendidikan.universitas || 0) + (currentData.sektor_sosial.pendidikan.lembaga_pendidikan || 0)) + ((buildingDeltas["pt_lembaga"] as number) || 0), consumption: ((KONSUMSI_SOSIAL.pendidikan.universitas || 0) + (KONSUMSI_SOSIAL.pendidikan.lembaga_pendidikan || 0)) / 2 },
-        { key: "lab_riset", groupId: "pendidikan", label: "Lab & Riset", icon: Microscope, desc: "Riset", tarif: 1, unit: "Unit", cost: 290, buildTime: 120, maintenanceCost: 30, count: ((currentData.sektor_sosial.pendidikan.laboratorium || 0) + (currentData.sektor_sosial.pendidikan.pusat_penelitian || 0)) + ((buildingDeltas["lab_riset"] as number) || 0), consumption: ((KONSUMSI_SOSIAL.pendidikan.laboratorium || 0) + (KONSUMSI_SOSIAL.pendidikan.pusat_penelitian || 0)) / 2 },
-        { key: "observatorium", groupId: "pendidikan", label: "Observatorium", icon: Eye, desc: "Riset", tarif: 1, unit: "Unit", cost: 120, buildTime: 180, maintenanceCost: 15, count: (currentData.sektor_sosial.pendidikan.observatorium || 0) + ((buildingDeltas["observatorium"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.observatorium },
-        { key: "pusat_pengembangan", groupId: "pendidikan", label: "Pengembangan", icon: Lightbulb, desc: "Inovasi", tarif: 1, unit: "Unit", cost: 180, buildTime: 90, maintenanceCost: 20, count: (currentData.sektor_sosial.pendidikan.pusat_pengembangan || 0) + ((buildingDeltas["pusat_pengembangan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.pusat_pengembangan },
+        { key: "tk_sd", groupId: "pendidikan", label: "TK / SD", icon: Building2, desc: "Pendidikan", tarif: 1, unit: "Unit", cost: 13, buildTime: 40, maintenanceCost: 2, count: ((currentData.sektor_sosial?.pendidikan?.prasekolah || 0) + (currentData.sektor_sosial?.pendidikan?.dasar || 0)) + ((buildingDeltas["tk_sd"] as number) || 0), consumption: (KONSUMSI_SOSIAL.pendidikan.prasekolah + KONSUMSI_SOSIAL.pendidikan.dasar) / 2 },
+        { key: "smp_sma", groupId: "pendidikan", label: "SMP / SMA", icon: Library, desc: "Pendidikan", tarif: 1, unit: "Unit", cost: 32, buildTime: 60, maintenanceCost: 5, count: ((currentData.sektor_sosial?.pendidikan?.menengah || 0) + (currentData.sektor_sosial?.pendidikan?.lanjutan || 0)) + ((buildingDeltas["smp_sma"] as number) || 0), consumption: (KONSUMSI_SOSIAL.pendidikan.menengah + KONSUMSI_SOSIAL.pendidikan.lanjutan) / 2 },
+        { key: "pt_lembaga", groupId: "pendidikan", label: "PT / Lembaga", icon: Library, desc: "Pendidikan", tarif: 1, unit: "Unit", cost: 230, buildTime: 150, maintenanceCost: 20, count: ((currentData.sektor_sosial?.pendidikan?.universitas || 0) + (currentData.sektor_sosial?.pendidikan?.lembaga_pendidikan || 0)) + ((buildingDeltas["pt_lembaga"] as number) || 0), consumption: ((KONSUMSI_SOSIAL.pendidikan.universitas || 0) + (KONSUMSI_SOSIAL.pendidikan.lembaga_pendidikan || 0)) / 2 },
+        { key: "lab_riset", groupId: "pendidikan", label: "Lab & Riset", icon: Microscope, desc: "Riset", tarif: 1, unit: "Unit", cost: 290, buildTime: 120, maintenanceCost: 30, count: ((currentData.sektor_sosial?.pendidikan?.laboratorium || 0) + (currentData.sektor_sosial?.pendidikan?.pusat_penelitian || 0)) + ((buildingDeltas["lab_riset"] as number) || 0), consumption: ((KONSUMSI_SOSIAL.pendidikan.laboratorium || 0) + (KONSUMSI_SOSIAL.pendidikan.pusat_penelitian || 0)) / 2 },
+        { key: "observatorium", groupId: "pendidikan", label: "Observatorium", icon: Eye, desc: "Riset", tarif: 1, unit: "Unit", cost: 120, buildTime: 180, maintenanceCost: 15, count: (currentData.sektor_sosial?.pendidikan?.observatorium || 0) + ((buildingDeltas["observatorium"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.observatorium },
+        { key: "pusat_pengembangan", groupId: "pendidikan", label: "Pengembangan", icon: Lightbulb, desc: "Inovasi", tarif: 1, unit: "Unit", cost: 180, buildTime: 90, maintenanceCost: 20, count: (currentData.sektor_sosial?.pendidikan?.pusat_pengembangan || 0) + ((buildingDeltas["pusat_pengembangan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.pusat_pengembangan },
 
         // --- KESEHATAN & OLAHRAGA (6 JENIS) ---
-        { key: "rumah_sakit_besar", groupId: "kesehatan", label: "RS Besar", icon: Building2, desc: "Kesehatan", tarif: 1, unit: "Unit", cost: 350, buildTime: 180, maintenanceCost: 50, count: (currentData.sektor_sosial.kesehatan.rumah_sakit_besar || 0) + ((buildingDeltas["rumah_sakit_besar"] as number) || 0), consumption: KONSUMSI_SOSIAL.kesehatan.rumah_sakit_besar },
-        { key: "rumah_sakit_kecil", groupId: "kesehatan", label: "RS Kecil", icon: Building2, desc: "Kesehatan", tarif: 1, unit: "Unit", cost: 80, buildTime: 45, maintenanceCost: 15, count: (currentData.sektor_sosial.kesehatan.rumah_sakit_kecil || 0) + ((buildingDeltas["rumah_sakit_kecil"] as number) || 0), consumption: KONSUMSI_SOSIAL.kesehatan.rumah_sakit_kecil },
-        { key: "pusat_diagnostik", groupId: "kesehatan", label: "Diagnostik", icon: Search, desc: "Kesehatan", tarif: 1, unit: "Unit", cost: 30, buildTime: 30, maintenanceCost: 5, count: (currentData.sektor_sosial.kesehatan.pusat_diagnostik || 0) + ((buildingDeltas["pusat_diagnostik"] as number) || 0), consumption: KONSUMSI_SOSIAL.kesehatan.pusat_diagnostik },
+        { key: "rumah_sakit_besar", groupId: "kesehatan", label: "RS Besar", icon: Building2, desc: "Kesehatan", tarif: 1, unit: "Unit", cost: 350, buildTime: 180, maintenanceCost: 50, count: (currentData.sektor_sosial?.kesehatan?.rumah_sakit_besar || 0) + ((buildingDeltas["rumah_sakit_besar"] as number) || 0), consumption: KONSUMSI_SOSIAL.kesehatan.rumah_sakit_besar },
+        { key: "rumah_sakit_kecil", groupId: "kesehatan", label: "RS Kecil", icon: Building2, desc: "Kesehatan", tarif: 1, unit: "Unit", cost: 80, buildTime: 45, maintenanceCost: 15, count: (currentData.sektor_sosial?.kesehatan?.rumah_sakit_kecil || 0) + ((buildingDeltas["rumah_sakit_kecil"] as number) || 0), consumption: KONSUMSI_SOSIAL.kesehatan.rumah_sakit_kecil },
+        { key: "pusat_diagnostik", groupId: "kesehatan", label: "Diagnostik", icon: Search, desc: "Kesehatan", tarif: 1, unit: "Unit", cost: 30, buildTime: 30, maintenanceCost: 5, count: (currentData.sektor_sosial?.kesehatan?.pusat_diagnostik || 0) + ((buildingDeltas["pusat_diagnostik"] as number) || 0), consumption: KONSUMSI_SOSIAL.kesehatan.pusat_diagnostik },
         { key: "kolam_renang", groupId: "kesehatan", label: "Kolam Renang", icon: Waves, desc: "Olahraga", tarif: 1, unit: "Unit", cost: 15, buildTime: 30, maintenanceCost: 3, count: (currentData.sektor_olahraga?.kolam_renang || 0) + ((buildingDeltas["kolam_renang"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.kolam_renang },
         { key: "sirkuit_balap", groupId: "kesehatan", label: "Sirkuit Balap", icon: Flame, desc: "Olahraga", tarif: 1, unit: "Unit", cost: 250, buildTime: 180, maintenanceCost: 40, count: (currentData.sektor_olahraga?.sirkuit_balap || 0) + ((buildingDeltas["sirkuit_balap"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.sirkuit_balap },
         { key: "stadium_int", groupId: "kesehatan", label: "Stadion (Nas/Int)", icon: Trophy, desc: "Olahraga", tarif: 1, unit: "Unit", cost: 670, buildTime: 240, maintenanceCost: 60, count: ((currentData.sektor_olahraga?.stadion || 0) + (currentData.sektor_olahraga?.stadion_internasional || 0)) + ((buildingDeltas["stadium_int"] as number) || 0), consumption: (KONSUMSI_SOSIAL.olahraga.stadion + KONSUMSI_SOSIAL.olahraga.stadion_internasional) / 2 },
 
         // --- HUKUM & KEAMANAN (6 JENIS) ---
-        { key: "akademi_polisi", groupId: "hukum", label: "Akademi Polisi", icon: GraduationCap, desc: "Keamanan", tarif: 1, unit: "Unit", cost: 40, buildTime: 60, maintenanceCost: 10, count: (currentData.sektor_sosial.hukum.akademi_polisi || 0) + ((buildingDeltas["akademi_polisi"] as number) || 0), consumption: KONSUMSI_SOSIAL.hukum.akademi_polisi },
-        { key: "pos_polisi", groupId: "hukum", label: "Kepolisian", icon: ShieldAlert, desc: "Keamanan", tarif: 1, unit: "Unit", cost: 25, buildTime: 60, maintenanceCost: 5, count: (currentData.sektor_sosial.hukum.pos_polisi || 0) + ((buildingDeltas["pos_polisi"] as number) || 0), consumption: KONSUMSI_SOSIAL.hukum.pos_polisi },
-        { key: "armada_polisi", groupId: "hukum", label: "Armada Mobil", icon: Car, desc: "Keamanan", tarif: 1, unit: "Unit", cost: 5, buildTime: 15, maintenanceCost: 1, count: (currentData.sektor_sosial.hukum.armada_mobil_polisi || 0) + ((buildingDeltas["armada_polisi"] as number) || 0), consumption: KONSUMSI_SOSIAL.hukum.armada_mobil_polisi },
-        { key: "kejaksaan_court", groupId: "hukum", label: "Kejaksaan/Court", icon: Gavel, desc: "Hukum", tarif: 1, unit: "Unit", cost: 120, buildTime: 90, maintenanceCost: 15, count: (currentData.sektor_sosial.hukum.kejaksaan + currentData.sektor_sosial.hukum.pengadilan) + ((buildingDeltas["kejaksaan_court"] as number) || 0), consumption: (KONSUMSI_SOSIAL.hukum.kejaksaan + KONSUMSI_SOSIAL.hukum.pengadilan) / 2 },
-        { key: "legal_aid", groupId: "hukum", label: "Bantuan Hukum", icon: Scale, desc: "Hukum", tarif: 1, unit: "Unit", cost: 30, buildTime: 30, maintenanceCost: 5, count: (currentData.sektor_sosial.hukum.pusat_bantuan_hukum || 0) + ((buildingDeltas["legal_aid"] as number) || 0), consumption: KONSUMSI_SOSIAL.hukum.pusat_bantuan_hukum },
+        { key: "akademi_polisi", groupId: "hukum", label: "Akademi Polisi", icon: GraduationCap, desc: "Keamanan", tarif: 1, unit: "Unit", cost: 40, buildTime: 60, maintenanceCost: 10, count: (currentData.sektor_sosial?.hukum?.akademi_polisi || 0) + ((buildingDeltas["akademi_polisi"] as number) || 0), consumption: KONSUMSI_SOSIAL.hukum.akademi_polisi },
+        { key: "pos_polisi", groupId: "hukum", label: "Kepolisian", icon: ShieldAlert, desc: "Keamanan", tarif: 1, unit: "Unit", cost: 25, buildTime: 60, maintenanceCost: 5, count: (currentData.sektor_sosial?.hukum?.pos_polisi || 0) + ((buildingDeltas["pos_polisi"] as number) || 0), consumption: KONSUMSI_SOSIAL.hukum.pos_polisi },
+        { key: "armada_polisi", groupId: "hukum", label: "Armada Mobil", icon: Car, desc: "Keamanan", tarif: 1, unit: "Unit", cost: 5, buildTime: 15, maintenanceCost: 1, count: (currentData.sektor_sosial?.hukum?.armada_mobil_polisi || 0) + ((buildingDeltas["armada_polisi"] as number) || 0), consumption: KONSUMSI_SOSIAL.hukum.armada_mobil_polisi },
+        { key: "kejaksaan_court", groupId: "hukum", label: "Kejaksaan/Court", icon: Gavel, desc: "Hukum", tarif: 1, unit: "Unit", cost: 120, buildTime: 90, maintenanceCost: 15, count: ((currentData.sektor_sosial?.hukum?.kejaksaan || 0) + (currentData.sektor_sosial?.hukum?.pengadilan || 0)) + ((buildingDeltas["kejaksaan_court"] as number) || 0), consumption: (KONSUMSI_SOSIAL.hukum.kejaksaan + KONSUMSI_SOSIAL.hukum.pengadilan) / 2 },
+        { key: "legal_aid", groupId: "hukum", label: "Bantuan Hukum", icon: Scale, desc: "Hukum", tarif: 1, unit: "Unit", cost: 30, buildTime: 30, maintenanceCost: 5, count: (currentData.sektor_sosial?.hukum?.pusat_bantuan_hukum || 0) + ((buildingDeltas["legal_aid"] as number) || 0), consumption: KONSUMSI_SOSIAL.hukum.pusat_bantuan_hukum },
         { key: "stasiun_komando", groupId: "hukum", label: "Pusat Komando", icon: Siren, desc: "Keamanan", tarif: 1, unit: "Unit", cost: 80, buildTime: 45, maintenanceCost: 12, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.kantor_polisi || 0) + ((buildingDeltas["stasiun_komando"] as number) || 0), consumption: KONSUMSI_SOSIAL.hukum.pos_polisi },
       ]
     }
@@ -349,13 +349,105 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
   const currentDate = getStoredGameDate().getTime();
   const progress = construction ? calculateConstructionProgress(construction.startDate, construction.endDate, currentDate) : null;
 
+  // 6-month workforce occupancy (deterministic)
+  const diffTime = Math.abs(currentDate - INITIAL_GAME_DATE.getTime());
+  const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+  const sixMonthIndex = Math.floor(diffDays / 180);
+  const nextUpdateMs = INITIAL_GAME_DATE.getTime() + (sixMonthIndex + 1) * 180 * 24 * 60 * 60 * 1000;
+  const nextUpdateDate = new Date(nextUpdateMs);
+  const nextDateStr = `${nextUpdateDate.getDate().toString().padStart(2, '0')}-${(nextUpdateDate.getMonth() + 1).toString().padStart(2, '0')}-${nextUpdateDate.getFullYear()}`;
+  const seed = (sixMonthIndex + (item.label?.length || 0)) % 100;
+  const occupancyPercentage = 0.65 + (seed % 30) / 100;
+  const lowongan = item.lowongan_kerja || 0;
+  const totalVacancies = lowongan * (item.count || 0);
+  const filledVacancies = Math.floor(totalVacancies * occupancyPercentage);
+
   return (
-    <div className={`bg-zinc-900/40 border ${progress ? 'border-cyan-500/30 bg-cyan-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative overflow-hidden h-full`}>
-      {progress && <div className="absolute top-0 left-0 bottom-0 bg-cyan-500/5 transition-all duration-1000" style={{ width: `${progress.percentage}%` }} />}
+    <div className={`bg-zinc-900/40 border ${progress ? 'border-cyan-500/30 bg-cyan-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative overflow-hidden h-full min-h-[440px]`}>
+      {progress && (
+        <div className="absolute top-0 left-0 bottom-0 bg-cyan-500/5 transition-all duration-1000" style={{ width: `${progress.percentage}%` }} />
+      )}
+
+      {/* Info overlay */}
+      {showDetail && (
+        <div className="absolute inset-0 z-50 bg-zinc-950/98 backdrop-blur-md p-6 flex flex-col animate-in fade-in zoom-in-95 duration-200">
+          <div className="flex justify-between items-center mb-6">
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 bg-cyan-500/10 rounded-xl border border-cyan-500/20 text-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
+                <Info size={18} />
+              </div>
+              <div>
+                <h5 className="text-[14px] font-black text-white uppercase tracking-wider italic">Detail Fasilitas</h5>
+                <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">Spesifikasi &amp; Biaya</p>
+              </div>
+            </div>
+            <button onClick={() => setShowDetail(false)} className="p-2.5 hover:bg-zinc-800/80 rounded-xl text-zinc-500 hover:text-white transition-all cursor-pointer border border-transparent hover:border-zinc-700">
+              <X size={20} />
+            </button>
+          </div>
+
+          <div className="space-y-4 flex-1 overflow-y-auto no-scrollbar pr-1">
+            <div className="flex flex-col gap-1.5 p-4 rounded-2xl bg-zinc-900/50 border border-zinc-800/30">
+              <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-[0.2em] opacity-60">Nama Bangunan</span>
+              <h4 className="text-xl font-black text-amber-400 uppercase italic leading-tight tracking-tight">{item.label}</h4>
+            </div>
+
+            <div className="grid gap-2">
+              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
+                </div>
+                <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
+              </div>
+
+              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
+                </div>
+                <span className="text-[14px] font-black text-amber-500">{item.consumption > 0 ? `${item.consumption} MW` : 'SUPPLY'}</span>
+              </div>
+
+              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-400"><Users size={12} /></div>
+                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Lowongan</span>
+                </div>
+                <span className="text-[14px] font-black text-blue-400">+{lowongan.toLocaleString('id-ID')} <span className="text-[9px] text-blue-500/50 italic opacity-80">/ UNIT</span></span>
+              </div>
+
+              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-cyan-500/10 rounded-lg text-cyan-500"><Briefcase size={12} /></div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Okupansi Tenaga Kerja</span>
+                  </div>
+                </div>
+                <div className="flex flex-col items-end">
+                  <span className="text-[14px] font-black text-cyan-400">{filledVacancies.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-400">/ {totalVacancies.toLocaleString('id-ID')}</span></span>
+                  <span className="text-[8px] font-black text-cyan-500 uppercase tracking-widest leading-none italic opacity-90">UPDATE: {nextDateStr}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setShowDetail(false)}
+            className="mt-6 w-full py-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-zinc-800 hover:text-white transition-all cursor-pointer active:scale-[0.98] shadow-lg"
+          >
+            Kembali
+          </button>
+        </div>
+      )}
+
+      {/* Card header */}
       <div className="flex items-start justify-between relative z-10">
         <div className="flex gap-2">
-          <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform"><item.icon className={`h-5 w-5 ${progress ? 'text-white' : 'text-cyan-500'}`} /></div>
-          <button 
+          <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform">
+            <item.icon className={`h-5 w-5 ${progress ? 'text-white' : 'text-cyan-500'} shadow-[0_0_10px_rgba(6,182,212,0.3)]`} />
+          </div>
+          <button
             onClick={() => setShowDetail(!showDetail)}
             className={`p-2.5 rounded-xl border transition-all cursor-pointer ${showDetail ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'}`}
           >
@@ -363,51 +455,111 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
           </button>
         </div>
         <div className="flex flex-col items-end gap-1">
-          <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">{item.desc}</div>
-          <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter">Terbangun: {item.count} Unit</div>
+          <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
+            {item.desc}
+          </div>
+          <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
+            Terbangun: {item.count} Unit
+          </div>
         </div>
       </div>
-      <div className="flex-1 flex flex-col gap-1 relative z-10 mt-1">
-        <h4 className="text-[14px] font-black text-zinc-100 tracking-tight group-hover:text-white transition-colors leading-tight line-clamp-1">{item.label}</h4>
-        <div className="flex flex-col gap-1 mt-1">
-          {showDetail ? (
-            <div className="mt-2 space-y-2 animate-in fade-in slide-in-from-top-1 duration-300">
-               <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
-                  <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Pemeliharaan</span>
-                  <span className="text-[15px] font-black text-rose-400">-{item.maintenanceCost || 5} / hari</span>
-               </div>
-               <div className="flex items-center justify-between p-2.5 rounded-xl bg-zinc-950/50 border border-zinc-800/50">
-                  <span className="text-[12px] font-bold text-zinc-500 uppercase tracking-widest">Beban Listrik</span>
-                  <span className="text-[15px] font-black text-amber-500">{item.consumption || 5} MW</span>
-               </div>
-               <p className="text-[12px] text-zinc-400 italic mt-2 px-1 leading-relaxed">Fasilitas publik didanai oleh negara untuk mendukung produktivitas dan kesejahteraan rakyat.</p>
+
+      {/* Card body */}
+      <div className="flex-1 flex flex-col relative z-10 mt-1">
+        <h4 className="text-[17px] font-black text-zinc-100 tracking-tight group-hover:text-amber-400 transition-colors uppercase italic leading-tight mb-3">
+          {item.label}
+        </h4>
+
+        <div className="flex flex-col gap-2.5 flex-1">
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 bg-rose-500/10 rounded-lg">
+              <Flame size={12} className="text-rose-400" />
             </div>
-          ) : (
-            <>
-              <div className="flex items-center gap-2 border-t border-zinc-800/10 pt-2 mt-1">
-                <Zap size={12} className="text-rose-500/90" />
-                <span className="text-[11px] font-bold text-rose-500/80">Konsumsi: {item.consumption || 5} MW/unit</span>
+            <span className="text-[12px] font-bold text-rose-400/90">
+              Pemeliharaan: -{item.maintenanceCost || 5}/hari
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2.5">
+            <div className="p-1.5 bg-amber-500/10 rounded-lg">
+              <Zap size={12} className="text-amber-500/90" />
+            </div>
+            <span className="text-[12px] font-bold text-amber-500/80">
+              Konsumsi: {item.consumption || 5} MW/unit
+            </span>
+          </div>
+
+          {lowongan > 0 && (
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 bg-blue-500/10 rounded-lg">
+                <Users size={12} className="text-blue-400" />
               </div>
-              <div className="flex items-center gap-2"><Clock size={12} className="text-zinc-500" /><span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span></div>
-            </>
-          )}
-        </div>
-        <div className="mt-auto pt-3 relative z-10">
-          {progress ? (
-            <div className="space-y-2">
-              <div className="flex justify-between items-center text-[9px] font-black uppercase tracking-widest text-zinc-400"><span>{getStatusText(progress.percentage, progress.isWaiting)}</span><span className={progress.colorClass.replace('bg-', 'text-')}>{progress.percentage}%</span></div>
-              <div className="h-1.5 w-full bg-zinc-950 rounded-full overflow-hidden border border-zinc-800/50"><div className={`h-full ${progress.colorClass}`} style={{ width: `${progress.percentage}%` }} /></div>
+              <span className="text-[12px] font-bold text-blue-400/80">
+                Lowongan: {lowongan.toLocaleString('id-ID')} Jiwa/unit
+              </span>
             </div>
-          ) : (
-            <div className="flex items-center justify-between mt-2">
-              <span className="text-[10px] text-zinc-400 font-bold tracking-tight">Biaya: {item.cost}</span>
-              <button onClick={e => { e.stopPropagation(); onBuild(item); }} className="px-4 py-1.5 rounded-lg bg-cyan-600/10 text-cyan-500 text-[10px] font-black uppercase tracking-widest border border-cyan-500/30 hover:bg-cyan-600 hover:text-white transition-all cursor-pointer">Bangun</button>
+          )}
+
+          {!progress && (
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 bg-zinc-800/50 rounded-lg">
+                <Clock size={12} className="text-zinc-500" />
+              </div>
+              <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
             </div>
           )}
         </div>
+
+        {/* Total Fasilitas section */}
+        <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
+          <div className="flex justify-between items-baseline gap-2">
+            <span className="text-[11px] font-black text-cyan-500/80 uppercase tracking-[0.15em] italic">
+              TOTAL FASILITAS:
+            </span>
+            <span className="text-[16px] font-black text-cyan-400 tracking-tight">
+              {(item.count || 0).toLocaleString('id-ID')} <span className="text-[10px] text-cyan-500/50 font-normal uppercase italic ml-1">Unit</span>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      {/* Build button / progress */}
+      <div className="mt-auto pt-4 relative z-10">
+        {progress ? (
+          <div className="space-y-3 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
+            <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-zinc-400">
+              <span className="flex items-center gap-1.5">
+                <Loader2 size={12} className={`animate-spin ${progress.isWaiting ? 'text-zinc-600' : 'text-cyan-400'}`} />
+                {getStatusText(progress.percentage, progress.isWaiting)}
+              </span>
+              <span className={progress.colorClass.replace('bg-', 'text-')}>{progress.percentage}%</span>
+            </div>
+            <div className="h-2 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/30 p-0.5">
+              <div
+                className={`h-full transition-all duration-1000 ${progress.colorClass} rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]`}
+                style={{ width: `${progress.percentage}%` }}
+              />
+            </div>
+            <div className="flex justify-between items-center text-[9px] font-bold text-zinc-500 uppercase tracking-tighter italic opacity-70">
+              <span className="flex items-center gap-1"><Clock size={10} /> ESTIMASI:</span>
+              <span className="text-zinc-400">{formatGameDate(new Date(construction.endDate))}</span>
+            </div>
+          </div>
+        ) : (
+          <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col">
+              <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span>
+              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
+            </div>
+            <button
+              onClick={(e) => { e.stopPropagation(); onBuild(item); }}
+              className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20"
+            >
+              Bangun
+            </button>
+          </div>
+        )}
       </div>
     </div>
   )
 }
-
-
