@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "@/app/database/data/countries/region/index";
 import { Layers, Mountain, Gem, Waves, Flame, Battery, Droplets, Box, Cpu, Pickaxe, Radio } from "lucide-react";
 import { getExtractionData } from "@/app/database/data/types/7_ekstraksi_mineral_kritis/1_kualitas_ekstraksi";
+import { allRelations } from "@/app/database/data/countries/relations/index";
 
 export const sdaIcons: { [key: string]: { icon: any, color: string, label: string } } = {
   aluminium: { icon: Layers, color: "text-blue-200", label: "Alumunium" },
@@ -28,6 +29,46 @@ interface MapSDAProps {
   active?: boolean;
   geoData?: any;
 }
+
+const geoJsonToIndo: { [key: string]: string } = {
+  "The Bahamas": "bahama",
+  "Democratic Republic of the Congo": "republik demokratik kongo",
+  "Northern Cyprus": "siprus",
+  "Czech Republic": "ceko",
+  "Guinea Bissau": "guinea-bissau",
+  "Equatorial Guinea": "guinea",
+  "Macedonia": "makedonia utara",
+  "Republic of Serbia": "republik serbia",
+  "Swaziland": "eswatini",
+  "East Timor": "timor-leste",
+  "Falkland Islands": "argentina",
+  "Western Sahara": "maroko",
+  "Somaliland": "somalia",
+  "New Caledonia": "fiji",
+  "Solomon Islands": "marshall",
+  "United States": "amerika serikat",
+  "United States of America": "amerika serikat"
+};
+
+const getRelation = (name: string, userCountry: string) => {
+  if (name === userCountry) return 100;
+  
+  const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+  const userId = userEntry ? userEntry.name_id.toLowerCase().trim() : userCountry.toLowerCase().trim();
+  
+  const countryEntry = centersData.find(c => c.name_en === name || c.name_id === name);
+  let targetId = countryEntry ? countryEntry.name_id.toLowerCase().trim() : name.toLowerCase().trim();
+  
+  if (geoJsonToIndo[name]) {
+    targetId = geoJsonToIndo[name].toLowerCase().trim();
+  }
+  
+  const userRelations = allRelations[userId];
+  if (!userRelations) return 50; 
+  
+  const relationItem = userRelations.find(item => item.name.toLowerCase().trim() === targetId);
+  return relationItem ? relationItem.relation : 50; 
+};
 
 // Tactical Maritime Labels (Oceans, Seas, Gulfs, Straits)
 const maritimeLabels = [
@@ -84,8 +125,6 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
   const mapWidth = 6000;
   const mapHeight = 2400;
 
-  
-
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas || !geoData) return;
@@ -138,7 +177,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
 
         ctx.closePath();
 
-        // SDA Mode hardcoded style:
+        // SDA Mode style:
         let fillColor = "rgba(71, 85, 105, 0.4)";
         let strokeColor = "rgba(255, 255, 255, 0.1)";
         let isHighlighted = isPlayer || isTarget;
@@ -149,8 +188,17 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
             strokeColor = "#4ade80";
             ctx.lineWidth = 2;
           } else if (isTarget) {
-            fillColor = "rgba(239, 68, 68, 0.3)";
-            strokeColor = "#f87171";
+            const rel = getRelation(name, userCountry);
+            if (rel >= 70) {
+              fillColor = "rgba(34, 197, 94, 0.4)"; // Green
+              strokeColor = "#4ade80";
+            } else if (rel >= 41) {
+              fillColor = "rgba(234, 179, 8, 0.4)"; // Yellow
+              strokeColor = "#fbbf24";
+            } else {
+              fillColor = "rgba(239, 68, 68, 0.4)"; // Red
+              strokeColor = "#f87171";
+            }
             ctx.lineWidth = 2;
           }
         } else {
@@ -193,9 +241,12 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
           ctx.shadowColor = "#22d3ee";
           ctx.shadowBlur = 15;
         } else if (isTarget) {
+          const rel = getRelation(center.name_en, userCountry);
           ctx.arc(x, y, 6, 0, Math.PI * 2);
-          ctx.fillStyle = "#f59e0b"; 
-          ctx.shadowColor = "#f59e0b";
+          if (rel >= 70) ctx.fillStyle = "#22c55e";
+          else if (rel >= 41) ctx.fillStyle = "#eab308";
+          else ctx.fillStyle = "#ef4444";
+          ctx.shadowColor = ctx.fillStyle as string;
           ctx.shadowBlur = 15;
         } else {
           ctx.arc(x, y, 2.5, 0, Math.PI * 2); 
@@ -342,4 +393,3 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
     </div>
   );
 }
-

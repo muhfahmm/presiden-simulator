@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useMemo } from "react";
-import { X, HeartHandshake, Search, MapPin, Globe2, SearchSlash, Info, TrendingUp, TrendingDown, Activity, Users, ShieldCheck, Zap, ChevronRight, Map as LucideMap } from "lucide-react"
+import { X, HeartHandshake, Search, MapPin, Globe2, SearchSlash, Info, TrendingUp, TrendingDown, Activity, Users, ShieldCheck, Zap, ChevronRight, Map as LucideMap, XCircle, Command } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
 import { allRelations } from "@/app/database/data/countries/relations/index";
 import { countries as centersData } from "@/app/database/data/countries/region/index";
@@ -100,9 +100,21 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
     return allRelations[accessibleKey] || allRelations[key] || [];
   }, [currentCountry]);
 
+  // Handle keyboard shortcut (Ctrl+K)
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        document.getElementById('country-search-input')?.focus();
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
   const getRelationStatus = (score: number) => {
-    if (score > 70) return { label: "Aliansi Strategis", color: "text-green-500", bg: "bg-green-500/10", border: "border-green-500/30", icon: ShieldCheck };
-    if (score > 30) return { label: "Status Netral", color: "text-yellow-500", bg: "bg-yellow-500/10", border: "border-yellow-500/30", icon: Globe2 };
+    if (score >= 70) return { label: "Aliansi Strategis", color: "text-green-500", bg: "bg-green-500/10", border: "border-green-500/30", icon: ShieldCheck };
+    if (score >= 41) return { label: "Status Netral", color: "text-yellow-500", bg: "bg-yellow-500/10", border: "border-yellow-500/30", icon: Globe2 };
     return { label: "Konflik / Musuh", color: "text-red-500", bg: "bg-red-500/10", border: "border-red-500/30", icon: Zap };
   };
 
@@ -162,15 +174,41 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
             ))}
           </div>
 
-          <div className="relative w-full lg:w-[450px] group">
-            <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-700 group-focus-within:text-emerald-500 transition-colors" />
-            <input
-              type="text"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Cari Identitas Kedaulatan..."
-              className="w-full bg-black/50 border border-zinc-800/80 rounded-[28px] py-4.5 pl-14 pr-6 text-sm font-black text-white placeholder:text-zinc-800 outline-none focus:border-emerald-500/40 focus:ring-[10px] focus:ring-emerald-500/5 transition-all uppercase tracking-widest shadow-2xl"
-            />
+          <div className="relative w-full lg:w-[500px] group flex flex-col gap-2">
+            <div className="relative">
+              <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-5 w-5 text-zinc-700 group-focus-within:text-emerald-500 transition-colors z-10" />
+              <input
+                type="text"
+                id="country-search-input"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Cari Identitas Kedaulatan..."
+                className="w-full bg-black/60 border border-zinc-800/80 rounded-[28px] py-5 pl-14 pr-32 text-sm font-black text-white placeholder:text-zinc-800 outline-none focus:border-emerald-500/40 focus:ring-[12px] focus:ring-emerald-500/5 transition-all uppercase tracking-widest shadow-[0_0_50px_rgba(0,0,0,0.5)] backdrop-blur-xl hover:bg-black/80"
+              />
+              <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                {searchQuery && (
+                  <button 
+                    onClick={() => setSearchQuery("")}
+                    className="p-1.5 hover:bg-zinc-800 rounded-full text-zinc-600 hover:text-rose-500 transition-colors cursor-pointer"
+                  >
+                    <XCircle size={18} />
+                  </button>
+                )}
+                <div className="hidden sm:flex items-center gap-1 px-2.5 py-1.5 bg-zinc-900/80 border border-zinc-800 rounded-xl text-[9px] font-black text-zinc-600 uppercase tracking-tighter shadow-inner">
+                  <Command size={10} />
+                  <span>K</span>
+                </div>
+              </div>
+            </div>
+            <div className="flex items-center justify-between px-4">
+              <span className="text-[10px] font-bold text-zinc-600 uppercase tracking-widest">
+                {filteredRelations.length > 0 ? (
+                  <>Menampilkan <span className="text-emerald-500">{filteredRelations.length}</span> dari <span className="text-zinc-400">{userRelations.length}</span> entitas</>
+                ) : (
+                  <span className="text-rose-500/60">Tidak ada hasil ditemukan</span>
+                )}
+              </span>
+            </div>
           </div>
         </div>
 
@@ -184,31 +222,34 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
                 
                 return (
                   <div
-                    key={idx}
-                    className="group bg-zinc-900/10 border border-zinc-800/40 hover:border-emerald-500/30 hover:bg-zinc-900/30 p-4 pl-6 rounded-2xl transition-all duration-300 flex items-center justify-between relative backdrop-blur-sm shadow-sm"
+                    key={rel.id || idx}
+                    className="group bg-zinc-900/10 border border-zinc-800/40 hover:border-emerald-500/30 hover:bg-zinc-900/30 p-4 pl-6 rounded-2xl transition-all duration-300 flex items-center justify-between relative backdrop-blur-sm shadow-sm hover:shadow-[0_0_30px_rgba(16,185,129,0.05)]"
                   >
-                    <div className="flex items-center gap-4">
-                      {/* Flag Pair Structure */}
-                      <div className="flex items-center -space-x-2 mr-2">
-                        <div className="w-10 h-10 bg-zinc-800 rounded-full border-2 border-zinc-900 flex items-center justify-center text-xl shadow-lg relative z-10 group-hover:scale-110 transition-transform">
-                          {userCountryObj?.flag || "🌍"}
-                        </div>
-                        <div className="w-10 h-10 bg-zinc-800 rounded-full border-2 border-zinc-900 flex items-center justify-center text-xl shadow-lg relative z-0 group-hover:translate-x-1 transition-transform">
+                    <div className="absolute -left-1 top-1/2 -translate-y-1/2 w-1.5 h-0 group-hover:h-8 bg-emerald-500 rounded-full transition-all duration-500 opacity-0 group-hover:opacity-100" />
+                    
+                    <div className="flex items-center gap-6">
+                      <div className="text-[10px] font-black text-zinc-800 group-hover:text-emerald-500/40 transition-colors w-6 tabular-nums">
+                        {String(rel.id || idx + 1).padStart(3, '0')}
+                      </div>
+                      
+                      <div className="flex items-center gap-4">
+                        {/* Flag Structure - Single Target Flag */}
+                        <div className="w-12 h-12 bg-zinc-800 rounded-full border-2 border-zinc-900 flex items-center justify-center text-2xl shadow-lg group-hover:scale-110 transition-transform mr-2">
                           {targetCountryObj?.flag || "🏳️"}
                         </div>
-                      </div>
 
-                      {/* Descriptive Text: [PLAYER] dengan [TARGET] */}
-                      <div className="flex flex-col">
-                        <div className="flex items-center gap-2">
-                          <span className="text-[11px] font-black text-emerald-500/80 uppercase tracking-widest leading-none">
-                            {currentCountry}
-                          </span>
-                          <span className="text-[10px] font-black text-zinc-600 uppercase italic">dengan</span>
+                        {/* Descriptive Text: [PLAYER] dengan [TARGET] */}
+                        <div className="flex flex-col">
+                          <div className="flex items-center gap-2">
+                            <span className="text-[11px] font-black text-emerald-500/80 uppercase tracking-widest leading-none">
+                              {currentCountry}
+                            </span>
+                            <span className="text-[10px] font-black text-zinc-600 uppercase italic">dengan</span>
+                          </div>
+                          <h4 className="text-lg font-black text-white uppercase tracking-tight group-hover:text-emerald-400 transition-colors">
+                            {rel.name}
+                          </h4>
                         </div>
-                        <h4 className="text-lg font-black text-white uppercase tracking-tight group-hover:text-emerald-400 transition-colors">
-                          {rel.name}
-                        </h4>
                       </div>
                     </div>
 
@@ -262,7 +303,7 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
             <div className="h-6 w-px bg-zinc-800 hidden md:block"></div>
             <div className="flex items-center gap-3">
               <div className="p-2 bg-zinc-900 rounded-lg"><Users size={16} className="text-zinc-500" /></div>
-              <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest">{filteredRelations.length} dari {userRelations.length} Entitas Diplomatik Terdeteksi</span>
+              <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest uppercase"> {filteredRelations.length} dari {userRelations.length} Entitas Diplomatik Terintegrasi</span>
             </div>
           </div>
 
@@ -275,5 +316,5 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
         </div>
       </div>
     </div>
-  )
+  );
 }

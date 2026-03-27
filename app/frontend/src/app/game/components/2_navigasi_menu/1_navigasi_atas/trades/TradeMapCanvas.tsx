@@ -7,6 +7,7 @@ import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "@/app/databa
 import { regionalRoutes } from "@/app/database/data/trades/regional/AsianRoutes";
 import { internationalHubs } from "@/app/database/data/trades/international/hubs";
 import { internationalRoutes } from "@/app/database/data/trades/international/routes";
+import { allRelations } from "@/app/database/data/countries/relations/index";
 
 interface TradeMapCanvasProps {
   userCountry: string;
@@ -16,13 +17,44 @@ interface TradeMapCanvasProps {
   geoData?: any;
 }
 
-// Pseudo-random relation hash
+const geoJsonToIndo: { [key: string]: string } = {
+  "The Bahamas": "bahama",
+  "Democratic Republic of the Congo": "republik demokratik kongo",
+  "Northern Cyprus": "siprus",
+  "Czech Republic": "ceko",
+  "Guinea Bissau": "guinea-bissau",
+  "Equatorial Guinea": "guinea",
+  "Macedonia": "makedonia utara",
+  "Republic of Serbia": "republik serbia",
+  "Swaziland": "eswatini",
+  "East Timor": "timor-leste",
+  "Falkland Islands": "argentina",
+  "Western Sahara": "maroko",
+  "Somaliland": "somalia",
+  "New Caledonia": "fiji",
+  "Solomon Islands": "marshall",
+  "United States": "amerika serikat",
+  "United States of America": "amerika serikat"
+};
+
 const getRelation = (name: string, userCountry: string) => {
-  let str = name + userCountry;
-  let hash = 0;
-  for (let i = 0; i < str.length; i++) hash = str.charCodeAt(i) + ((hash << 5) - hash);
   if (name === userCountry) return 100;
-  return Math.abs(hash % 100) + 1;
+  
+  const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+  const userId = userEntry ? userEntry.name_id.toLowerCase().trim() : userCountry.toLowerCase().trim();
+  
+  const countryEntry = centersData.find(c => c.name_en === name || c.name_id === name);
+  let targetId = countryEntry ? countryEntry.name_id.toLowerCase().trim() : name.toLowerCase().trim();
+  
+  if (geoJsonToIndo[name]) {
+    targetId = geoJsonToIndo[name].toLowerCase().trim();
+  }
+  
+  const userRelations = allRelations[userId];
+  if (!userRelations) return 50; 
+  
+  const relationItem = userRelations.find(item => item.name.toLowerCase().trim() === targetId);
+  return relationItem ? relationItem.relation : 50; 
 };
 
 // Tactical Maritime Labels (Oceans, Seas, Gulfs, Straits)
@@ -226,10 +258,19 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
             ctx.shadowColor = "#4ade80";
             ctx.shadowBlur = 15;
           } else if (isTarget) {
-            fillColor = "rgba(239, 68, 68, 0.3)";
-            strokeColor = "#f87171";
+            const rel = getRelation(name, userCountry);
+            if (rel >= 70) {
+              fillColor = "rgba(34, 197, 94, 0.4)"; // Green
+              strokeColor = "#4ade80";
+            } else if (rel >= 41) {
+              fillColor = "rgba(234, 179, 8, 0.4)"; // Yellow
+              strokeColor = "#fbbf24";
+            } else {
+              fillColor = "rgba(239, 68, 68, 0.4)"; // Red
+              strokeColor = "#f87171";
+            }
             ctx.lineWidth = 2;
-            ctx.shadowColor = "#f87171";
+            ctx.shadowColor = strokeColor;
             ctx.shadowBlur = 15;
           }
         }

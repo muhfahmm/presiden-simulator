@@ -207,7 +207,7 @@ import { suriname_relations } from "./sa/suriname";
 import { uruguay_relations } from "./sa/uruguay";
 import { venezuela_relations } from "./sa/venezuela";
 
-export const allRelations: { [key: string]: { name: string; relation: number }[] } = {
+export const allRelations: { [key: string]: { id: number; name: string; relation: number }[] } = {
   "afrika selatan": afrika_selatan_relations,
   "aljazair": aljazair_relations,
   "angola": angola_relations,

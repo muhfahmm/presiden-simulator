@@ -25,7 +25,7 @@ const geoJsonToIndo: { [key: string]: string } = {
   "East Timor": "timor-leste",
   "Turkey": "turki",
   "United Republic of Tanzania": "republik tanzania",
-  "United States of America": "samoa amerika",
+  "United States of America": "amerika serikat",
   "West Bank": "palestina",
   "Falkland Islands": "argentina",
   "Western Sahara": "maroko",
@@ -169,8 +169,8 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
         let fillColor = "rgba(71, 85, 105, 0.3)";
         let strokeColor = "rgba(255, 255, 255, 0.2)";
 
-        if (relation <= 30) fillColor = "rgba(239, 68, 68, 0.5)"; 
-        else if (relation <= 70) fillColor = "rgba(234, 179, 8, 0.5)"; 
+        if (relation <= 40) fillColor = "rgba(239, 68, 68, 0.5)"; 
+        else if (relation <= 69) fillColor = "rgba(234, 179, 8, 0.5)"; 
         else fillColor = "rgba(34, 197, 94, 0.5)"; 
 
         ctx.lineWidth = 1;
@@ -218,10 +218,10 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
           const relation = getRelation(center.name_en, userCountry);
           ctx.arc(x, y, 4, 0, Math.PI * 2); 
           
-          if (relation <= 30) {
+          if (relation <= 40) {
             ctx.fillStyle = "#ef4444"; 
             ctx.shadowColor = "#ef4444";
-          } else if (relation <= 70) {
+          } else if (relation <= 69) {
             ctx.fillStyle = "#eab308"; 
             ctx.shadowColor = "#eab308";
           } else {
