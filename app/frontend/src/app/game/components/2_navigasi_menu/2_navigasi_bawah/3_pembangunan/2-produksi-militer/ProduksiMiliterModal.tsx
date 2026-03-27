@@ -61,7 +61,7 @@ import {
   UAV_POWER_PER_UNIT,
   KAMIKAZE_POWER_PER_UNIT,
   TRANSPORT_POWER_PER_UNIT
-} from "../../4_pertahanan/2_armada_militer/kekuatanmiliter";
+} from "../../4_pertahanan/3_armada_militer/kekuatanmiliter";
 
 interface ModalProps {
   isOpen: boolean;
@@ -202,18 +202,6 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
         { key: "pangkalan_laut", groupId: "pertahanan", label: "Pangkalan Laut", icon: Ship, desc: "Fasilitas Maritim", cost: 320, buildTime: 210, maintenanceCost: 100, lowongan_kerja: 450, count: (currentData.sektor_pertahanan?.pangkalan_laut || 0) + ((buildingDeltas["pangkalan_laut"] as number) || 0), consumption: KONSUMSI_STRATEGIC.pangkalan_laut },
         { key: "program_luar_angkasa", groupId: "pertahanan", label: "Program luar angkasa", icon: Rocket, desc: "Program Satelit", cost: 600, buildTime: 365, maintenanceCost: 250, lowongan_kerja: 800, count: (currentData.sektor_pertahanan?.program_luar_angkasa || 0) + ((buildingDeltas["program_luar_angkasa"] as number) || 0), consumption: KONSUMSI_STRATEGIC.program_luar_angkasa },
         { key: "cyber_shield", groupId: "pertahanan", label: "Cyber Defense", icon: ShieldAlert, desc: "Keamanan Digital", cost: 180, buildTime: 120, maintenanceCost: 50, lowongan_kerja: 120, count: Math.floor(currentData.sektor_pertahanan?.pertahanan_siber || 0), consumption: 0 }
-      ]
-    },
-    {
-      id: "strategis_keamanan",
-      title: "2. Sektor Strategis & Intelijen Nasional",
-      icon: Crosshair,
-      color: "text-indigo-400",
-      items: [
-        // INTELIJEN
-        { key: "satellite", groupId: "intel", label: "Sistem Satelit", icon: Satellite, desc: "Orbit Intelijen", cost: 350, buildTime: 180, maintenanceCost: 100, lowongan_kerja: 80, count: (currentData.militer_strategis?.intel_radar?.sistem_satelit || 0) + ((buildingDeltas["satellite"] as number) || 0), consumption: 0 },
-        { key: "radar", groupId: "intel", label: "Jaringan Radar", icon: Radar, desc: "Deteksi Dini", cost: 120, buildTime: 90, maintenanceCost: 30, lowongan_kerja: 50, count: (currentData.militer_strategis?.intel_radar?.jaringan_radar || 0), consumption: 0 },
-        { key: "operasi_siber", groupId: "intel", label: "Operasi Cyber", icon: Cpu, desc: "Perang Digital", cost: 180, buildTime: 120, maintenanceCost: 40, lowongan_kerja: 120, count: (currentData.militer_strategis?.intel_radar?.operasi_siber || 0), consumption: 0 }
       ]
     }
   ];

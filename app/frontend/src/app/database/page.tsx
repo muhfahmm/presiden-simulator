@@ -19,7 +19,7 @@ import {
   calculateUavPower, calculateKamikazePower, calculateTransportPower,
   calculatePrisonCapacity, calculateArmoryCapacity, calculateTankHangarCapacity, calculateAcademyCapacity,
   calculateAirBaseCapacity, calculateNavalBaseCapacity
-} from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/2_armada_militer/kekuatanmiliter";
+} from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/3_armada_militer/kekuatanmiliter";
 import {
   PRISON_POWER,
   BARRACKS_POWER,

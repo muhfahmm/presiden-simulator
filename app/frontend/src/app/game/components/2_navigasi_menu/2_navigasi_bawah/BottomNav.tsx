@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import {
   Star, Wallet, Wrench, Shield, Globe, Landmark, LayoutGrid, ChevronLeft,
   Hammer, Swords as MilitaryIcon, Users2, BarChart3, TrendingUp,
-  ArrowRightLeft, FileText, CreditCard, Zap, Package, Home, ShieldAlert, Gem, Tag, Smile
+  ArrowRightLeft, FileText, CreditCard, Zap, Package, Home, ShieldAlert, Gem, Tag, Smile, Eye, HeartHandshake, HandHelping
 } from "lucide-react";
 
 interface BottomNavProps {
@@ -48,11 +48,15 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
     ],
     "Pertahanan": [
       { id: "Komando Pertahanan", label: "Komando Pertahanan", icon: Shield },
+      { id: "Menu:Intelijen", label: "Intelijen", icon: Eye },
       { id: "Menu:ArmadaMiliter", label: "Armada Militer", icon: MilitaryIcon },
       { id: "Menu:ArmadaPolisi", label: "Armada Polisi", icon: ShieldAlert },
     ],
     "Geopolitik": [
-      { id: "Geopolitik & Luar Negeri", label: "Geopolitik & Luar Negeri", icon: Globe },
+      { id: "Menu:PBB", label: "PBB", icon: Globe },
+      { id: "Menu:OrganisasiInternasional", label: "Organisasi Internasional", icon: Landmark },
+      { id: "Menu:TingkatHubungan", label: "Tingkat Hubungan", icon: HeartHandshake },
+      { id: "Menu:Bantuan", label: "Bantuan", icon: HandHelping },
     ],
     "Kementerian": [
       { id: "Dashboard:Kementerian", label: "Kementerian", icon: Landmark },

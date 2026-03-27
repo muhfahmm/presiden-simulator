@@ -24,11 +24,15 @@ export function useGamePath(path: string[]) {
     else initialMenu = "Pembangunan";
   } else if (category === 'pertahanan') {
     if (subMenu === 'komando-pertahanan') initialMenu = "Komando Pertahanan";
+    else if (subMenu === 'intelijen') initialMenu = "Menu:Intelijen";
     else if (subMenu === 'armada-militer') initialMenu = "Menu:ArmadaMiliter";
     else if (subMenu === 'armada-polisi') initialMenu = "Menu:ArmadaPolisi";
     else initialMenu = "Pertahanan";
   } else if (category === 'geopolitik') {
-    if (subMenu === 'geopolitik-luar-negeri') initialMenu = "Geopolitik & Luar Negeri";
+    if (subMenu === 'PBB') initialMenu = "Menu:PBB";
+    else if (subMenu === 'organisasi-internasional') initialMenu = "Menu:OrganisasiInternasional";
+    else if (subMenu === 'tingkat-hubungan') initialMenu = "Menu:TingkatHubungan";
+    else if (subMenu === 'bantuan') initialMenu = "Menu:Bantuan";
     else initialMenu = "Geopolitik";
   } else if (category === 'kementrian') {
     if (subMenu === 'kementrian-dashboard') initialMenu = "Dashboard:Kementerian";
@@ -69,10 +73,14 @@ export function useGamePath(path: string[]) {
       "Menu:TempatUmum": "/game/pembangunan/tempat-umum",
       "Pertahanan": "/game/pertahanan",
       "Komando Pertahanan": "/game/pertahanan/komando-pertahanan",
+      "Menu:Intelijen": "/game/pertahanan/intelijen",
       "Menu:ArmadaMiliter": "/game/pertahanan/armada-militer",
       "Menu:ArmadaPolisi": "/game/pertahanan/armada-polisi",
       "Geopolitik": "/game/geopolitik",
-      "Geopolitik & Luar Negeri": "/game/geopolitik/geopolitik-luar-negeri",
+      "Menu:PBB": "/game/geopolitik/PBB",
+      "Menu:OrganisasiInternasional": "/game/geopolitik/organisasi-internasional",
+      "Menu:TingkatHubungan": "/game/geopolitik/tingkat-hubungan",
+      "Menu:Bantuan": "/game/geopolitik/bantuan",
       "Kementerian": "/game/kementrian",
       "Dashboard:Kementerian": "/game/kementrian/kementrian-dashboard",
       "Menu:Berita": "/game/berita",

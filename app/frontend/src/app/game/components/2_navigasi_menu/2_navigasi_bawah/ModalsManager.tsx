@@ -15,9 +15,14 @@ import ProduksiHubV3 from "@/app/game/components/2_navigasi_menu/2_navigasi_bawa
 import ProduksiMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/2-produksi-militer/ProduksiMiliterModal";
 import TempatUmumModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/TempatUmumModal";
 import PertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/PertahananModal";
-import ArmadaMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/2_armada_militer/ArmadaMiliterModal";
-import ArmadaPolisiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/3_armada_polisi/ArmadaPolisiModal";
+import IntelijenModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/2_intelijen/IntelijenModal";
+import ArmadaMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/3_armada_militer/ArmadaMiliterModal";
+import ArmadaPolisiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/4_armada_polisi/ArmadaPolisiModal";
 import GeopolitikModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/GeopolitikModal";
+import PBBModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/PBBModal";
+import OrgIntlModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/OrgIntlModal";
+import TingkatHubunganModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/3_tingkat_hubungan/TingkatHubunganModal";
+import BantuanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/4_bantuan/BantuanModal";
 import KementerianModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_kementrian/KementerianModal";
 import BeritaModal from "@/app/game/components/sidemenu/1_berita/BeritaModal";
 import InboxModal from "@/app/game/components/sidemenu/2_kotak_masuk/InboxModal";
@@ -101,10 +106,30 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         isOpen={activeMenu === "Menu:ArmadaPolisi"}
         onClose={() => setActiveMenu("Pertahanan")}
       />
+      <IntelijenModal
+        isOpen={activeMenu === "Menu:Intelijen"}
+        onClose={() => setActiveMenu("Pertahanan")}
+      />
       <GeopolitikModal
         isOpen={activeMenu === "Geopolitik & Luar Negeri"}
         onClose={() => setActiveMenu("Geopolitik")}
         data={countryData}
+      />
+      <PBBModal
+        isOpen={activeMenu === "Menu:PBB"}
+        onClose={() => setActiveMenu("Geopolitik")}
+      />
+      <OrgIntlModal
+        isOpen={activeMenu === "Menu:OrganisasiInternasional"}
+        onClose={() => setActiveMenu("Geopolitik")}
+      />
+      <TingkatHubunganModal
+        isOpen={activeMenu === "Menu:TingkatHubungan"}
+        onClose={() => setActiveMenu("Geopolitik")}
+      />
+      <BantuanModal
+        isOpen={activeMenu === "Menu:Bantuan"}
+        onClose={() => setActiveMenu("Geopolitik")}
       />
       <KementerianModal
         isOpen={activeMenu === "Dashboard:Kementerian"}
