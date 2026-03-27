@@ -58,6 +58,10 @@ export function useGamePath(path: string[]) {
     else initialMenu = "Ekonomi";
   } else if (category === 'minerals') {
     initialMenu = "Menu:Minerals";
+  } else if (category === 'agama') {
+    initialMenu = "Menu:Agama";
+  } else if (category === 'ideologi') {
+    initialMenu = "Menu:Ideologi";
   }
 
   const [activeMenu, setActiveMenu] = useState<string>(initialMenu);
@@ -97,7 +101,9 @@ export function useGamePath(path: string[]) {
       "Dashboard:Kepuasan": "/game/kepuasan/dashboard",
       "Action:NaikkanKepuasan": "/game/kepuasan/naikkan",
       "Dashboard:Populasi": "/game/kependudukan",
-      "Dashboard:Budget": "/game/anggaran/dashboard"
+      "Dashboard:Budget": "/game/anggaran/dashboard",
+      "Menu:Agama": "/game/agama",
+      "Menu:Ideologi": "/game/ideologi"
     };
 
     const targetPath = menuToPath[activeMenu] || "/game";

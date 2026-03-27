@@ -1,0 +1,249 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import { X, Star, Users, Heart, Sparkles, Activity, Moon, Book, Sun, Landmark, Compass, Wind, Globe, Info, Plus, Minus, CheckCircle2 } from "lucide-react"
+import { religions } from "@/app/database/data/religions"
+
+interface ModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  countryData: any;
+}
+
+const religionEffects: Record<string, { plus: string[]; minus: string[] }> = {
+  "Islam": {
+    plus: ["Produksi Pangan +10%", "Efektivitas Pajak Zakat (Pendapatan) +5%"],
+    minus: ["Biaya Diplomasi Barat +10%", "Risiko Konflik jika UU Kontraband Aktif"]
+  },
+  "Protestan": {
+    plus: ["Kecepatan Produksi Industri +15%", "Pertumbuhan Ekonomi +5%"],
+    minus: ["Biaya Subsidi Sosial +10%"]
+  },
+  "Katolik": {
+    plus: ["Loyalitas Warga +10%", "Kecepatan Pembangunan Infrastruktur +10%"],
+    minus: ["Kecepatan Riset Teknologi -10% (Doktrin Konservatif)"]
+  },
+  "Kristen Ortodoks": {
+    plus: ["Ketahanan Militer +10%", "Stabilitas Nasional +5%"],
+    minus: ["Hubungan Perdagangan Global -5%"]
+  },
+  "Hindu": {
+    plus: ["Keharmonisan Sosial +15%", "Produksi Pertanian +10%"],
+    minus: ["Mobilitas Tenaga Kerja Industri -10%"]
+  },
+  "Buddha": {
+    plus: ["Happiness Index +20%", "Health Score +5%"],
+    minus: ["Kecepatan Rekrutmen Militer -20%"]
+  },
+  "Ateisme": {
+    plus: ["Kecepatan Riset & Teknologi +25%", "Efisiensi Logistik +10%"],
+    minus: ["Approval Rating -15%", "Risiko Radikalisme Internal +10%"]
+  },
+  "Yahudi": {
+    plus: ["Pendapatan Sektor Komersial +20%", "Efektivitas Intelijen +10%"],
+    minus: ["Risiko Embargo dari Blok Regional Tertentu"]
+  },
+  "Konghucu": {
+    plus: ["Efisiensi Birokrasi +15%", "Disiplin Kerja (Output Pabrik) +10%"],
+    minus: ["Indeks Demokrasi -10%"]
+  },
+  "Taoisme": {
+    plus: ["Keberlanjutan Lingkungan +20%", "Biaya Energi -5%"],
+    minus: ["Pertumbuhan Industri Berat -10%"]
+  },
+  "Shinto": {
+    plus: ["Nasionalisme +25%", "Kualitas Alutsista +10%"],
+    minus: ["Biaya Diplomasi Internasional +15%"]
+  }
+};
+
+const icons: Record<string, any> = {
+  "Islam": Moon,
+  "Protestan": Book,
+  "Katolik": Star,
+  "Kristen Ortodoks": Book,
+  "Hindu": Sun,
+  "Buddha": Wind,
+  "Ateisme": Globe,
+  "Yahudi": Star,
+  "Konghucu": Landmark,
+  "Taoisme": Compass,
+  "Shinto": Landmark
+};
+
+function ReligionCard({ religion, isActive, countryData }: { religion: string; isActive: boolean; countryData: any }) {
+  const [showInfo, setShowInfo] = useState(false);
+  const Icon = icons[religion] || Star;
+  const effects = religionEffects[religion];
+
+  return (
+    <div
+      className={`relative p-6 rounded-3xl border transition-all group overflow-hidden h-[280px] flex flex-col ${isActive
+          ? "bg-amber-500/10 border-amber-500 shadow-[0_0_30px_rgba(245,158,11,0.1)]"
+          : "bg-zinc-900/40 border-zinc-800 hover:border-zinc-700"
+        }`}
+    >
+      <div className={`absolute -top-10 -right-10 w-32 h-32 blur-3xl rounded-full transition-opacity ${isActive ? "bg-amber-500/10 opacity-100" : "bg-white/5 opacity-0 group-hover:opacity-100"}`}></div>
+
+      {/* Content */}
+      <div className="flex flex-col gap-4 relative z-10 h-full">
+        <div className="flex justify-between items-start">
+          <div className={`p-3 rounded-2xl ${isActive ? "bg-amber-500 text-black" : "bg-zinc-800 text-zinc-400 group-hover:text-white transition-colors"}`}>
+            <Icon className="h-6 w-6" />
+          </div>
+          <div className="flex gap-2">
+            <button
+              onClick={() => setShowInfo(true)}
+              className="p-2 bg-white/5 hover:bg-white/10 border border-white/5 rounded-xl transition-all active:scale-90 cursor-pointer"
+            >
+              <Info className="h-4 w-4 text-zinc-400 group-hover:text-white" />
+            </button>
+            {isActive && (
+              <div className="px-3 py-1 bg-amber-500/20 border border-amber-500/30 rounded-full">
+                <span className="text-[9px] font-black text-amber-500 uppercase tracking-widest">Negara</span>
+              </div>
+            )}
+          </div>
+        </div>
+
+        <div className="space-y-1">
+          <h3 className="text-xl font-black text-white uppercase tracking-tight italic">{religion}</h3>
+          <p className="text-[11px] text-zinc-500 font-medium leading-tight">Sistem kepercayaan dan panduan moral masyarakat.</p>
+        </div>
+
+        <div className="mt-auto pt-2 border-t border-white/5">
+          {!isActive ? (
+            <button 
+              className="w-full py-2.5 bg-zinc-800/50 hover:bg-amber-500/20 border border-white/5 hover:border-amber-500/30 rounded-xl text-[10px] font-black text-zinc-400 hover:text-amber-500 uppercase tracking-[0.2em] transition-all cursor-pointer group/btn flex items-center justify-center gap-2"
+            >
+              <span>Ganti</span>
+              <Plus className="h-3 w-3 opacity-0 group-hover:opacity-100 transition-opacity" />
+            </button>
+          ) : (
+            <div className="w-full py-2.5 bg-amber-500/10 border border-amber-500/20 rounded-xl text-[10px] font-black text-amber-500 uppercase tracking-[0.2em] flex items-center justify-center gap-2">
+              <CheckCircle2 className="h-3 w-3" />
+              <span>Sistem Aktif</span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Info Overlay (Inside Card) */}
+      {showInfo && (
+        <div className="absolute inset-0 z-20 bg-zinc-950/95 backdrop-blur-md p-6 flex flex-col animate-in slide-in-from-bottom-2 duration-300">
+          <div className="flex justify-between items-center mb-4">
+            <h4 className="text-[10px] font-black text-amber-500 uppercase tracking-widest italic">{religion} Effects</h4>
+            <button onClick={() => setShowInfo(false)} className="p-1.5 hover:bg-white/5 rounded-lg transition-colors cursor-pointer">
+              <X className="h-4 w-4 text-zinc-500" />
+            </button>
+          </div>
+
+          <div className="flex-1 overflow-y-auto flex gap-4 pr-1 custom-scrollbar mt-2">
+            <div className="flex-1 space-y-2">
+              {effects.plus.map((eff, i) => (
+                <div key={i} className="flex items-center gap-2 group/eff">
+                  <div className="p-1 bg-emerald-500/20 rounded-lg shrink-0">
+                    <CheckCircle2 className="h-3 w-3 text-emerald-500" />
+                  </div>
+                  <span className="text-[11px] font-bold text-zinc-300 leading-none tracking-tight">{eff}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex-1 space-y-2 border-l border-white/5 pl-4">
+              {effects.minus.map((eff, i) => (
+                <div key={i} className="flex items-center gap-2 group/eff">
+                  <div className="p-1 bg-rose-500/20 rounded-lg shrink-0">
+                    <X className="h-3 w-3 text-rose-500" />
+                  </div>
+                  <span className="text-[11px] font-bold text-zinc-300 leading-none tracking-tight">{eff}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <button
+            onClick={() => setShowInfo(false)}
+            className="mt-4 w-full py-2 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 rounded-xl text-[9px] font-black text-amber-500 uppercase tracking-widest transition-all cursor-pointer"
+          >
+            Tutup Info
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default function AgamaModal({ isOpen, onClose, countryData }: ModalProps) {
+  if (!isOpen) return null;
+
+  const currentReligion = countryData?.religion || "Islam";
+
+  return (
+    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[92vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+
+        {/* Glow Effects */}
+        <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-amber-500/50 to-transparent blur-sm"></div>
+        <div className="absolute -top-24 -left-24 w-96 h-96 bg-amber-600/10 rounded-full blur-[120px]"></div>
+        <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-amber-600/10 rounded-full blur-[120px]"></div>
+
+        {/* Header */}
+        <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
+          <div className="flex items-center gap-3">
+            <div className="p-2 bg-amber-500/10 rounded-xl">
+              <Star className="h-6 w-6 text-amber-500" />
+            </div>
+            <div>
+              <h2 className="text-2xl font-bold text-white tracking-tight">Agama & Kepercayaan</h2>
+              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">Manajemen Religi dan Harmoni Sosial</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <button
+              onClick={onClose}
+              className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
+            >
+              <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+              <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+            </button>
+          </div>
+        </div>
+
+        {/* Content Area */}
+        <div className="flex-1 overflow-y-auto p-10 bg-zinc-950/20">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 pb-24">
+            {religions.map((religion) => (
+              <ReligionCard
+                key={religion}
+                religion={religion}
+                isActive={religion === currentReligion}
+                countryData={countryData}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Footer */}
+        <div className="px-10 py-6 bg-zinc-900/30 border-t border-zinc-900 flex items-center justify-between backdrop-blur-3xl relative z-10">
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-amber-500/10 border border-amber-500/20 rounded-full">
+              <div className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
+              <span className="text-[10px] font-black text-amber-400 uppercase tracking-widest">Data Statistik</span>
+            </div>
+            <p className="text-xs text-zinc-500 font-medium italic tracking-tight">Kalkulasi demografi religi berdasarkan sensus nasional terbaru.</p>
+          </div>
+          <div className="flex items-center gap-8">
+            <div className="flex flex-col items-end">
+              <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">Total Penganut</span>
+              <span className="text-base font-black tracking-tighter italic text-amber-400">
+                {countryData?.jumlah_penduduk?.toLocaleString('id-ID')} JIWA
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}

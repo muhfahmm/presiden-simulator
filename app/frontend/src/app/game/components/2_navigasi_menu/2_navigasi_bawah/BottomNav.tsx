@@ -20,6 +20,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
     { id: "Pembangunan", icon: Wrench, label: "Pembangunan" },
     { id: "Pertahanan", icon: Shield, label: "Pertahanan" },
     { id: "Geopolitik", icon: Globe, label: "Geopolitik" },
+    { id: "Sosial & Budaya", icon: Star, label: "Sosial & Budaya" },
     { id: "Kementerian", icon: Landmark, label: "Kementerian" },
   ];
 
@@ -57,6 +58,10 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
       { id: "Menu:OrganisasiInternasional", label: "Organisasi Internasional", icon: Landmark },
       { id: "Menu:TingkatHubungan", label: "Tingkat Hubungan", icon: HeartHandshake },
       { id: "Menu:Bantuan", label: "Bantuan", icon: HandHelping },
+    ],
+    "Sosial & Budaya": [
+      { id: "Menu:Agama", label: "Agama & Kepercayaan", icon: Star },
+      { id: "Menu:Ideologi", label: "Ideologi Negara", icon: Shield },
     ],
     "Kementerian": [
       { id: "Dashboard:Kementerian", label: "Kementerian", icon: Landmark },

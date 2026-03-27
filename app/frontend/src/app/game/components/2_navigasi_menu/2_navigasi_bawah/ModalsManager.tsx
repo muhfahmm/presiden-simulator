@@ -22,11 +22,13 @@ import PBBModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_g
 import OrgIntlModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/OrgIntlModal";
 import TingkatHubunganModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/3_tingkat_hubungan/TingkatHubunganModal";
 import BantuanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/4_bantuan/BantuanModal";
-import KementerianModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_kementrian/KementerianModal";
+import KementerianModal from "./7_kementrian/KementerianModal";
+import AgamaModal from "./6_sosial_budaya/1_agama/AgamaModal";
+import IdeologiModal from "./6_sosial_budaya/2_ideologi/IdeologiModal";
 import BeritaModal from "@/app/game/components/sidemenu/1_berita/BeritaModal";
 import InboxModal from "@/app/game/components/sidemenu/2_kotak_masuk/InboxModal";
 import KepuasanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/KepuasanModal";
-import PopulasiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/7_populasi/PopulasiModal";
+import PopulasiModal from "./8_populasi/PopulasiModal";
 import AcaraModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/acara/AcaraModal";
 import NewMessageToast from "@/app/game/components/sidemenu/2_kotak_masuk/NewMessageToast";
 import BudgetDetailModal from "@/app/game/components/1_navbar/3_kas_negara/BudgetDetailModal";
@@ -130,6 +132,16 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <KementerianModal
         isOpen={activeMenu === "Dashboard:Kementerian"}
         onClose={() => setActiveMenu("Kementerian")}
+      />
+      <AgamaModal
+        isOpen={activeMenu === "Menu:Agama"}
+        onClose={() => setActiveMenu("Sosial & Budaya")}
+        countryData={countryData}
+      />
+      <IdeologiModal
+        isOpen={activeMenu === "Menu:Ideologi"}
+        onClose={() => setActiveMenu("Sosial & Budaya")}
+        countryData={countryData}
       />
       <BeritaModal
         isOpen={activeMenu === "Menu:Berita"}
