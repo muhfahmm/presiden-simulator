@@ -18,6 +18,16 @@ import { getInitialAgreements } from "./database_mitra/agreementsRegistry"
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage"
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
+import { countries } from "@/app/database/data/countries/region/index"
+import { getExtractionData } from "@/app/database/data/types/7_ekstraksi_mineral_kritis/1_kualitas_ekstraksi";
+import { 
+  getManufakturData, 
+  getPeternakanData, 
+  getAgrikulturData, 
+  getPerikananData, 
+  getOlahanPanganData, 
+  getFarmasiData 
+} from "@/app/database/data/types/3_produksi";
 
 interface ModalProps {
   isOpen: boolean;
@@ -121,8 +131,36 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   const buildingDeltas = buildingData.buildingDeltas || {};
   const budgetData = budgetStorage.getData();
 
+  const [selectedTradePartner, setSelectedTradePartner] = useState<string | null>(null);
+  const [tradeType, setTradeType] = useState<"impor" | "ekspor">("impor");
+
+  // Helper to get formatted name/ID for database lookups
+  const getCountryKey = (name: string) => name.toLowerCase().replace(/ /g, "_");
+
+  // Determine which country data to display in the sidebar/stats
+  // Synchronize with database: Always prioritize lookup in the official countries list
+  const activeCountryData = useMemo(() => {
+    // 1. Determine the name we are looking for
+    const targetName = selectedTradePartner || currentCountry?.name_id || currentCountry?.name_en || "Indonesia";
+    
+    // 2. Search in the regional countries database (main source for all stats)
+    const found = countries.find(c => 
+      c.name_id?.toLowerCase() === targetName.toLowerCase() || 
+      c.name_en?.toLowerCase() === targetName.toLowerCase() ||
+      getCountryKey(c.name_id || "") === getCountryKey(targetName)
+    );
+
+    // 3. Fallback to currentCountry only if lookup fails
+    return found || currentCountry;
+  }, [selectedTradePartner, currentCountry]);
+
+  // Player state detection
+  const isPlayerCountry = !selectedTradePartner || 
+    (getCountryKey(activeCountryData?.name_en || "") === getCountryKey(currentCountry?.name_en || "Indonesia"));
+
   // Helper for Manufacturing count (matches ProduksiHub)
   const getManufacturingCount = (key: string, baseVal: number) => {
+    if (!isPlayerCountry) return baseVal;
     const delta = (buildingDeltas[key] || 0) as number;
     return baseVal + delta;
   };
@@ -143,6 +181,120 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
     aluminium: "aluminum_mine", logam_tanah_jarang: "rare_earth_mine", 
     bijih_besi: "iron_ore_mine"
   };
+
+  const manufakturKeys = ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill"];
+  const olahanPanganFactoryKeys = ["bottled_water_factory", "sugar_factory", "bakery_factory", "meat_processing_factory", "noodle_factory"];
+
+  const minerals = useMemo(() => {
+    // 1. Get the sanitized ID for the extraction database lookup
+    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    
+    // 2. Fetch specialized extraction data (e.g., Indonesia: 140, Malaysia: 2)
+    const extractionStats = getExtractionData(lookupId);
+    
+    return mineralOrder.map(key => {
+      // Use specialized stats first, fallback to regional file, then to 0
+      const baseVal = (extractionStats[key as keyof typeof extractionStats] as number) ?? 
+                      (activeCountryData.sektor_ekstraksi?.[key as keyof typeof activeCountryData.sektor_ekstraksi] as number) ?? 0;
+      
+      const buildingKey = mineralDataToBuildingKey[key] || key;
+      const delta = isPlayerCountry ? ((buildingDeltas[buildingKey] || 0) as number) : 0;
+      return [key, baseVal + delta];
+    }) as [string, number][];
+  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+
+  const manufakturItems = useMemo(() => {
+    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    const overrideStats = getManufakturData(lookupId);
+
+    return manufakturOrder.map(key => {
+      const baseVal = (overrideStats[key as keyof typeof overrideStats] as number) ??
+                      (activeCountryData.sektor_manufaktur?.[key as keyof typeof activeCountryData.sektor_manufaktur] as number) ?? 0;
+      const factoryKey = manufakturKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
+      return [key, getManufacturingCount(factoryKey, baseVal)];
+    }) as [string, number][];
+  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+
+  const olahanPanganItems = useMemo(() => {
+    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    const overrideStats = getOlahanPanganData(lookupId);
+
+    return olahanPanganOrder.map(key => {
+      const baseVal = (overrideStats[key as keyof typeof overrideStats] as number) ??
+                      (activeCountryData.sektor_olahan_pangan?.[key as keyof typeof activeCountryData.sektor_olahan_pangan] as number) ?? 0;
+      const factoryKey = olahanPanganFactoryKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
+      return [key, getManufacturingCount(factoryKey, baseVal)];
+    }) as [string, number][];
+  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+
+  const farmasiItems = useMemo(() => {
+    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    const overrideStats = getFarmasiData(lookupId);
+
+    return farmasiOrder.map(key => {
+      const baseVal = (overrideStats[key as keyof typeof overrideStats] as number) ??
+                      (activeCountryData.sektor_farmasi?.[key as keyof typeof activeCountryData.sektor_farmasi] as number) ?? 0;
+      return [key, getManufacturingCount("pharma_factory", baseVal)];
+    }) as [string, number][];
+  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+
+  const peternakanItems = useMemo(() => {
+    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    const overrideStats = getPeternakanData(lookupId);
+    const keys = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"];
+
+    return keys.map(key => {
+      const baseVal = (overrideStats[key as keyof typeof overrideStats] as number) ??
+                      (activeCountryData.sektor_peternakan?.[key as keyof typeof activeCountryData.sektor_peternakan] as number) ?? 0;
+      const delta = isPlayerCountry ? ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number) : 0;
+      return [key, baseVal + delta];
+    }) as [string, number][];
+  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+
+  const perikananItems = useMemo(() => {
+    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    const overrideStats = getPerikananData(lookupId);
+    const keys = ["udang_kerang", "ikan"];
+
+    return keys.map(key => {
+      const baseVal = (overrideStats[key as keyof typeof overrideStats] as number) ??
+                      (activeCountryData.sektor_perikanan?.[key as keyof typeof activeCountryData.sektor_perikanan] as number) ?? 0;
+      const delta = isPlayerCountry ? ((buildingDeltas[key] || 0) as number) : 0;
+      return [key, baseVal + delta];
+    }) as [string, number][];
+  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+
+  const agrikulturItems = useMemo(() => {
+    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    const overrideStats = getAgrikulturData(lookupId);
+    const keys = ["padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"];
+
+    return keys.map(key => {
+      const baseVal = (overrideStats[key as keyof typeof overrideStats] as number) ??
+                      (activeCountryData.sektor_agrikultur?.[key as keyof typeof activeCountryData.sektor_agrikultur] as number) ?? 0;
+      const delta = isPlayerCountry ? ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number) : 0;
+      return [key, baseVal + delta];
+    }) as [string, number][];
+  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+
+  const militerItems = useMemo(() => {
+    return militerOrder.map(key => {
+      const baseVal = (activeCountryData.pabrik_militer?.[key as keyof typeof activeCountryData.pabrik_militer] as number) || 0;
+      const delta = isPlayerCountry ? ((buildingDeltas[key] || 0) as number) : 0;
+      return [key, baseVal + delta];
+    }) as [string, number][];
+  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+
+  const [selectedKey, setSelectedKey] = useState<string>(minerals[0]?.[0] || 'emas');
+  const [showMinerals, setShowMinerals] = useState(true);
+  const [showManufaktur, setShowManufaktur] = useState(false);
+  const [showPangan, setShowPangan] = useState(false);
+  const [showIndustriPengolahan, setShowIndustriPengolahan] = useState(false);
+  const [showFarmasi, setShowFarmasi] = useState(false);
+  const [showMiliter, setShowMiliter] = useState(false);
+  const [selectedTimeframe, setSelectedTimeframe] = useState<string>("1w");
+  const [activeChartTab, setActiveChartTab] = useState<"buy" | "sell">("buy");
+  const [executionModalItem, setExecutionModalItem] = useState<{ type: "buy" | "sell" } | null>(null);
 
   const getProductionRate = (key: string) => {
     const rates: Record<string, number> = {
@@ -167,68 +319,6 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
     if (["mobil", "sepeda_motor", "pabrik_drone_kamikaze", "pabrik_kendaraan_tempur", "pabrik_senjata_berat", "ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"].includes(key)) return "Unit";
     return "Ton";
   };
-
-  const minerals = (Object.entries(currentCountry.sektor_ekstraksi)
-    .filter(([key]) => key !== 'strength' && typeof currentCountry.sektor_ekstraksi[key as keyof typeof currentCountry.sektor_ekstraksi] === 'number')
-    .map(([key, val]) => {
-      const buildingKey = mineralDataToBuildingKey[key] || key;
-      return [key, (val as number) + ((buildingDeltas[buildingKey] || 0) as number)];
-    })
-    .sort((a, b) => mineralOrder.indexOf(a[0] as string) - mineralOrder.indexOf(b[0] as string))) as [string, number][];
-
-  // Category 2: Manufaktur
-  const manufakturKeys = ["electronics_factory", "car_factory", "motorcycle_factory", "smelter", "cement_factory", "sawmill"];
-  const manufakturItems = Object.entries(currentCountry.sektor_manufaktur)
-    .filter(([key]) => manufakturKeys.includes(key) || manufakturKeys.some(mk => mk.replace('_factory', '') === key))
-    .map(([key, val]) => {
-      const factoryKey = manufakturKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
-      return [key, getManufacturingCount(factoryKey, val as number)];
-    })
-    .sort((a, b) => manufakturOrder.indexOf(a[0] as string) - manufakturOrder.indexOf(b[0] as string)) as [string, number][];
-
-  const olahanPanganFactoryKeys = ["bottled_water_factory", "sugar_factory", "bakery_factory", "meat_processing_factory", "noodle_factory"];
-  const olahanPanganItems = Object.entries(currentCountry.sektor_olahan_pangan || {})
-    .map(([key, val]) => {
-      const factoryKey = olahanPanganFactoryKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
-      return [key, getManufacturingCount(factoryKey, val as number)];
-    })
-    .sort((a, b) => olahanPanganOrder.indexOf(a[0] as string) - olahanPanganOrder.indexOf(b[0] as string)) as [string, number][];
-
-  const farmasiItems = Object.entries(currentCountry.sektor_farmasi || {})
-    .map(([key, val]) => [key, getManufacturingCount("pharma_factory", val as number)]) as [string, number][];
-
-  const peternakanItems = Object.entries(currentCountry.sektor_peternakan)
-    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number)])
-    .sort((a, b) => panganOrder.indexOf(a[0] as string) - panganOrder.indexOf(b[0] as string)) as [string, number][];
-
-  const agrikulturItems = Object.entries(currentCountry.sektor_agrikultur)
-    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number)])
-    .sort((a, b) => panganOrder.indexOf(a[0] as string) - panganOrder.indexOf(b[0] as string)) as [string, number][];
-
-  const perikananItems = Object.entries(currentCountry.sektor_perikanan)
-    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || 0) as number)])
-    .sort((a, b) => panganOrder.indexOf(a[0] as string) - panganOrder.indexOf(b[0] as string)) as [string, number][];
-
-  const militerItems = Object.entries(currentCountry.pabrik_militer)
-    .map(([key, val]) => [key, (val as number) + ((buildingDeltas[key] || 0) as number)])
-    .sort((a, b) => militerOrder.indexOf(a[0] as string) - militerOrder.indexOf(b[0] as string)) as [string, number][];
-
-  const agriPanganLen = peternakanItems.length + perikananItems.length + agrikulturItems.length;
-  const industriPengolahanLen = olahanPanganItems.length;
-  const farmasiLen = farmasiItems.length;
-
-  const [selectedKey, setSelectedKey] = useState<string>(minerals[0]?.[0] || 'emas');
-  const [showMinerals, setShowMinerals] = useState(true);
-  const [showManufaktur, setShowManufaktur] = useState(false);
-  const [showPangan, setShowPangan] = useState(false);
-  const [showIndustriPengolahan, setShowIndustriPengolahan] = useState(false);
-  const [showFarmasi, setShowFarmasi] = useState(false);
-  const [showMiliter, setShowMiliter] = useState(false);
-  const [selectedTimeframe, setSelectedTimeframe] = useState<string>("1w");
-  const [activeChartTab, setActiveChartTab] = useState<"buy" | "sell">("buy");
-  const [executionModalItem, setExecutionModalItem] = useState<{ type: "buy" | "sell" } | null>(null);
-  const [selectedTradePartner, setSelectedTradePartner] = useState<string | null>(null);
-  const [tradeType, setTradeType] = useState<"impor" | "ekspor">("impor");
 
   useEffect(() => {
     if (isOpen && activeMenu.startsWith("Menu:Perdagangan:")) {
@@ -368,7 +458,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
           {/* Commodities Sidebar */}
           <div className="w-[320px] border-r border-zinc-900 bg-zinc-950/50 flex flex-col backdrop-blur-sm">
             <div className="p-6 border-b border-zinc-900/80 shrink-0">
-              <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic text-center">Daftar Komoditas</h3>
+              <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic text-center">Daftar Komoditas {activeCountryData.name_id}</h3>
               <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic mt-1 text-center">Kategori Produksi 1 - 6</p>
             </div>
             <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
@@ -384,14 +474,16 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                       <button key={key} onClick={() => setSelectedKey(key)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                         <div className="flex items-center gap-4">
                           <div className={`p-2 rounded-xl ${selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>{getIcon(key)}</div>
-                          <span className="text-[12px] font-black uppercase tracking-tight">{labelsMap[key] || key.replace(/_/g, ' ')} ({val})</span>
+                          <span className="text-[12px] font-black uppercase tracking-tight">
+                            {labelsMap[key] || key.replace(/_/g, ' ')} 
+                            <span className={val === 0 ? "text-red-500" : ""}> ({val})</span>
+                          </span>
                         </div>
                       </button>
                     ))}
                   </div>
                 )}
               </div>
-              {/* Repeat other categories with similar structure... */}
               {/* Manufaktur */}
               <div className="border-b border-zinc-900/80">
                 <div className="p-8 flex items-center justify-between">
@@ -404,7 +496,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                       <button key={key} onClick={() => setSelectedKey(key as string)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                         <div className="flex items-center gap-4">
                           <div className={`p-2 rounded-xl ${selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>{getIcon(key as string)}</div>
-                          <span className="text-[12px] font-black uppercase tracking-tight">{labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})</span>
+                          <span className="text-[12px] font-black uppercase tracking-tight">
+                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                            <span className={val === 0 ? "text-red-500" : ""}> ({val})</span>
+                          </span>
                         </div>
                       </button>
                     ))}
@@ -423,7 +518,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                       <button key={key} onClick={() => setSelectedKey(key as string)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                         <div className="flex items-center gap-4">
                           <div className={`p-2 rounded-xl ${selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>{getIcon(key as string)}</div>
-                          <span className="text-[10px] font-black uppercase tracking-tight">{labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})</span>
+                          <span className="text-[10px] font-black uppercase tracking-tight">
+                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                            <span className={val === 0 ? "text-red-500" : ""}> ({val})</span>
+                          </span>
                         </div>
                       </button>
                     ))}
@@ -431,7 +529,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                       <button key={key} onClick={() => setSelectedKey(key as string)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                         <div className="flex items-center gap-4">
                           <div className={`p-2 rounded-xl ${selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>{getIcon(key as string)}</div>
-                          <span className="text-[10px] font-black uppercase tracking-tight">{labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})</span>
+                          <span className="text-[10px] font-black uppercase tracking-tight">
+                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                            <span className={val === 0 ? "text-red-500" : ""}> ({val})</span>
+                          </span>
                         </div>
                       </button>
                     ))}
@@ -439,7 +540,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                       <button key={key} onClick={() => setSelectedKey(key as string)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                         <div className="flex items-center gap-4">
                           <div className={`p-2 rounded-xl ${selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>{getIcon(key as string)}</div>
-                          <span className="text-[10px] font-black uppercase tracking-tight">{labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})</span>
+                          <span className="text-[10px] font-black uppercase tracking-tight">
+                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                            <span className={val === 0 ? "text-red-500" : ""}> ({val})</span>
+                          </span>
                         </div>
                       </button>
                     ))}
@@ -458,7 +562,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                       <button key={key} onClick={() => setSelectedKey(key as string)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                         <div className="flex items-center gap-4">
                           <div className={`p-2 rounded-xl ${selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>{getIcon(key as string)}</div>
-                          <span className="text-[10px] font-black uppercase tracking-tight">{labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})</span>
+                          <span className="text-[10px] font-black uppercase tracking-tight">
+                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                            <span className={val === 0 ? "text-red-500" : ""}> ({val})</span>
+                          </span>
                         </div>
                       </button>
                     ))}
@@ -477,7 +584,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                       <button key={key} onClick={() => setSelectedKey(key as string)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                         <div className="flex items-center gap-4">
                           <div className={`p-2 rounded-xl ${selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>{getIcon(key as string)}</div>
-                          <span className="text-[10px] font-black uppercase tracking-tight">{labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})</span>
+                          <span className="text-[10px] font-black uppercase tracking-tight">
+                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                            <span className={val === 0 ? "text-red-500" : ""}> ({val})</span>
+                          </span>
                         </div>
                       </button>
                     ))}
@@ -496,7 +606,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                       <button key={key} onClick={() => setSelectedKey(key as string)} className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}>
                         <div className="flex items-center gap-4">
                           <div className={`p-2 rounded-xl ${selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>{getIcon(key as string)}</div>
-                          <span className="text-[10px] font-black uppercase tracking-tight">{labelsMap[key as string] || (key as string).replace(/_/g, ' ')} ({val})</span>
+                          <span className="text-[10px] font-black uppercase tracking-tight">
+                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                            <span className={val === 0 ? "text-red-500" : ""}> ({val})</span>
+                          </span>
                         </div>
                       </button>
                     ))}

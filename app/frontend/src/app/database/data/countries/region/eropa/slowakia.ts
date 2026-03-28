@@ -43,6 +43,18 @@ export const slowakia: CountryData = {
   // =============================================================
 
   "sektor_ekstraksi": {
+    "emas": 17,
+    "uranium": 30,
+    "batu_bara": 0,
+    "minyak_bumi": 0,
+    "gas_alam": 0,
+    "garam": 0,
+    "nikel": 0,
+    "litium": 0,
+    "tembaga": 31,
+    "aluminium": 0,
+    "logam_tanah_jarang": 0,
+    "bijih_besi": 0
   },
   // =============================================================
   // 4. 🏭 PENGOLAHAN & MANUFAKTUR
