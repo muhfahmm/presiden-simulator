@@ -6,7 +6,7 @@ import { internationalHubs } from "../3_hub/hubs";
 import { getInitialAgreements } from "../../database_mitra/agreementsRegistry";
 import { tradeStorage } from "../../TradeStorage";
 import { allRelations } from "@/app/database/data/countries/relations/index";
-import { calculateTradeRoute, getHubForCountry } from "../2_rute/TradeRoutes";
+import { calculateTradeRoute, getHubForCountry, Point } from "../2_rute/TradeRoutes";
 import { timeStorage } from "../../timeStorage";
 
 interface TradeMapCanvasProps {
@@ -155,7 +155,8 @@ const getContinentColor = (name: string, id: string): string => {
 };
 
 export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, active = true, geoData }: TradeMapCanvasProps) {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const bgCanvasRef = useRef<HTMLCanvasElement>(null);
+  const fgCanvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
   const [selectedWp, setSelectedWp] = useState<string | null>(null);
@@ -281,28 +282,26 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
 
 
 
+  // Cache for pre-calculated routes for active transactions
+  const activeRoutesCacheRef = useRef<Record<number, Point[]>>({});
+
+  // 1. EFFECT: Draw Static Background Layer
   useEffect(() => {
-    const canvas = canvasRef.current;
+    const canvas = bgCanvasRef.current;
     if (!canvas || !geoData) return;
 
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d"); 
     if (!ctx) return;
 
-    // Clear and Fill background style - Richer "Command Center" theme
+    // Clear and Fill background style
     ctx.clearRect(0, 0, mapWidth * 3, mapHeight);
 
-
-    // Line hitting cache
-
     const offsets = [0, mapWidth, mapWidth * 2];
-    drawnPathsRef.current = []; // Clear line tap cache
+    drawnPathsRef.current = []; 
 
-    const selectedHubObj = selectedWp && typeof internationalHubs !== 'undefined'
-      ? internationalHubs.find((h: any) => h.name === selectedWp)
-      : null;
-
-    // --- RE-ENABLE TRADE ROUTES CALCULATION ---
     const userCenter = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+
+    // Calc static routes for partners
     if (userCenter) {
       tradePartners.forEach(partnerName => {
         const pCenter = centersData.find(c =>
@@ -310,14 +309,12 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
           c.name_en.toLowerCase().trim() === partnerName
         );
         if (pCenter) {
-          // Basic straight/curved logic for maritime routes
           const pts = [];
           const segments = 20;
           for (let i = 0; i <= segments; i++) {
             const t = i / segments;
             const lon = userCenter.lon + (pCenter.lon - userCenter.lon) * t;
             const lat = userCenter.lat + (pCenter.lat - userCenter.lat) * t;
-            // Add a small arc/curve to look less "digital" and more "tactical"
             const curLat = lat + Math.sin(t * Math.PI) * 10;
             pts.push({ rtX: (lon + 180) / 360, rtY: (90 - curLat) / 180 });
           }
@@ -336,35 +333,36 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       ctx.save();
       ctx.translate(offset, 0);
 
-      // Gradient Background
-      const bgGradient = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
-      bgGradient.addColorStop(0, "#121d31"); // Realistic Deep Marine
-      bgGradient.addColorStop(1, "#070b13"); // Deep dark ocean
-      ctx.fillStyle = bgGradient;
-      ctx.fillRect(0, 0, mapWidth, mapHeight);
-
-      // Drawing bounds: Equirectangular Projection Math
       const project = (lon: number, lat: number) => {
-        // Slightly adjust coordinates to center things better for panoramic view
         const x = ((lon + 180) / 360) * mapWidth;
         const y = ((90 - lat) / 180) * mapHeight;
         return { x, y };
       };
 
-      // Grid removed
+      // Gradient Ocean
+      const bgGradient = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
+      bgGradient.addColorStop(0, "#121d31");
+      bgGradient.addColorStop(1, "#070b13");
+      ctx.fillStyle = bgGradient;
+      ctx.fillRect(0, 0, mapWidth, mapHeight);
 
       // Draw Countries
       geoData.features.forEach((feature: any) => {
         const name = feature.properties.name;
-        const isPlayer = name === userCountry;
-        const isTarget = name === targetCountry;
+        
+        const geoNameMap: { [key: string]: string } = { "United States": "United States of America" };
+        const targetUserCountry = geoNameMap[userCountry] || userCountry;
+        const targetHoverCountry = targetCountry ? (geoNameMap[targetCountry] || targetCountry) : null;
+
+        const isPlayer = name === targetUserCountry;
+        const isTarget = name === targetHoverCountry;
 
         ctx.lineJoin = "round";
         ctx.lineCap = "round";
         ctx.beginPath();
 
         const drawCoords = (coordinates: any) => {
-          coordinates.forEach((polyline: any, idx: number) => {
+          coordinates.forEach((polyline: any) => {
             polyline.forEach((coord: any, cIdx: number) => {
               const { x, y } = project(coord[0], coord[1]);
               if (cIdx === 0) ctx.moveTo(x, y);
@@ -373,61 +371,45 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
           });
         };
 
-        if (feature.geometry.type === "Polygon") {
-          drawCoords(feature.geometry.coordinates);
-        } else if (feature.geometry.type === "MultiPolygon") {
-          feature.geometry.coordinates.forEach((polygon: any) => {
-            drawCoords(polygon);
-          });
-        }
+        if (feature.geometry.type === "Polygon") drawCoords(feature.geometry.coordinates);
+        else if (feature.geometry.type === "MultiPolygon") feature.geometry.coordinates.forEach((p: any) => drawCoords(p));
 
         ctx.closePath();
 
-        // Styling parameters
         let fillColor = getContinentColor(name, feature.id);
         let strokeColor = "rgba(245, 245, 220, 0.25)";
-
-        // Check if this country is an economic partner
+        
         const normalizedName = name.toLowerCase().trim();
         const displayIndoName = fullGeoToIndoMap[name] || name;
         const normalizedIndoName = displayIndoName.toLowerCase().trim();
         const isPartner = tradePartners.has(normalizedName) || tradePartners.has(normalizedIndoName);
 
-        let isHighlighted = isPlayer || isTarget;
-
         ctx.lineWidth = 1;
         ctx.shadowBlur = 0;
 
-        // Apply partner highlighting if not primary highlight (player/target)
         if (isPartner && !isPlayer && !isTarget) {
-          fillColor = "rgba(6, 182, 212, 0.45)"; // Rich Cyan-Blue for partners
+          fillColor = "rgba(6, 182, 212, 0.45)"; 
           strokeColor = "rgba(6, 182, 212, 0.9)";
           ctx.lineWidth = 1.5;
         }
 
-        if (isHighlighted) {
+        if (isPlayer || isTarget) {
           if (isPlayer) {
             fillColor = "rgba(34, 197, 94, 0.3)";
             strokeColor = "#4ade80";
-            ctx.lineWidth = 2;
-            ctx.shadowColor = "#4ade80";
-            ctx.shadowBlur = 15;
           } else if (isTarget) {
             const rel = getRelation(name, userCountry);
-            if (rel >= 70) {
-              fillColor = "rgba(34, 197, 94, 0.4)"; // Green
-              strokeColor = "#4ade80";
-            } else if (rel >= 41) {
-              fillColor = "rgba(234, 179, 8, 0.4)"; // Yellow
-              strokeColor = "#fbbf24";
-            } else {
-              fillColor = "rgba(239, 68, 68, 0.4)"; // Red
-              strokeColor = "#f87171";
-            }
-            ctx.lineWidth = 2;
-            ctx.shadowColor = strokeColor;
-            ctx.shadowBlur = 15;
+            if (rel >= 70) strokeColor = "#4ade80";
+            else if (rel >= 41) strokeColor = "#fbbf24";
+            else strokeColor = "#f87171";
+            
+            if (strokeColor === "#4ade80") fillColor = "rgba(74, 222, 128, 0.4)";
+            else if (strokeColor === "#fbbf24") fillColor = "rgba(251, 191, 36, 0.4)";
+            else fillColor = "rgba(239, 68, 68, 0.4)";
           }
+          ctx.lineWidth = 2;
+          ctx.shadowColor = strokeColor;
+          ctx.shadowBlur = 15;
         }
 
         ctx.fillStyle = fillColor;
@@ -437,21 +419,19 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         ctx.shadowBlur = 0;
       });
 
-      // Radar removed
+      // Maritime Labels
+      maritimeLabels.forEach(label => {
+        const { x, y } = project(label.lon, label.lat);
+        if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) {
+          ctx.font = `italic ${label.size}px 'Inter', sans-serif`;
+          ctx.fillStyle = label.color;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillText(label.name, x, y);
+        }
+      });
 
-      // Draw Country Markers (Cyberpunk style)
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-
-      // Draw Country Markers (Cyberpunk style)
-      ctx.textAlign = "center";
-      ctx.textBaseline = "middle";
-
-      // Simple decluttering: track used positions
-      const labelGrid: { x: number, y: number }[] = [];
-      const minLabelDist = 120; // Minimum distance between background labels
-
-      // Separate selected from non-selected to ensure selected is always on top
+      // Markers & Center Labels
       const sortedCenters = [...centersData].sort((a, b) => {
         if (a.name_en === targetCountry) return 1;
         if (b.name_en === targetCountry) return -1;
@@ -459,6 +439,8 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         if (b.name_en === userCountry) return -1;
         return 0;
       });
+      const labelGrid: { x: number, y: number }[] = [];
+      const minLabelDist = 120;
 
       sortedCenters.forEach((center: any) => {
         const x = ((center.lon + 180) / 360) * mapWidth;
@@ -466,193 +448,160 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         const isPlayer = center.name_en === userCountry;
         const isTarget = center.name_en === targetCountry;
 
-        // 1. Draw glowing dot marker
         ctx.beginPath();
-        const isWhiteDot = ["Papua Nugini", "Papua New Guinea"].includes(center.name_en);
-        if (isWhiteDot) {
-          ctx.arc(x, y, 4, 0, Math.PI * 2); // Slightly larger
+        if (["Papua Nugini", "Papua New Guinea"].includes(center.name_en)) {
+          ctx.arc(x, y, 4, 0, Math.PI * 2);
           ctx.fillStyle = "#ffffff";
-          ctx.shadowColor = "#ffffff";
           ctx.shadowBlur = 4;
+          ctx.shadowColor = "#ffffff";
         } else {
-          ctx.arc(x, y, 2.5, 0, Math.PI * 2); // Smaller dots for non-selected
-          ctx.fillStyle = "rgba(148, 163, 184, 0.5)"; // Slate 400
+          ctx.arc(x, y, 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = "rgba(148, 163, 184, 0.5)";
         }
         ctx.fill();
-        ctx.shadowBlur = 0; // reset
+        ctx.shadowBlur = 0;
 
-        // 1.5 Draw Tactical Maritime Labels (Oceans, Seas, Gulfs)
-        maritimeLabels.forEach(label => {
-          const { x, y } = project(label.lon, label.lat);
-          ctx.font = `italic ${label.size}px 'Inter', sans-serif`;
-          ctx.fillStyle = label.color;
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-          // Only draw if it's within map bounds to save performance and stop artifacts
-          if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) {
-            ctx.fillText(label.name, x, y);
-          }
-        });
-
-        // 2. Text Labels with Decluttering
-        // Non-trade label modes removed
-        if (true) {
-          if (isPlayer || isTarget) {
-            ctx.font = "48px sans-serif";
-            ctx.shadowColor = "rgba(0,0,0,0.8)"; ctx.shadowBlur = 10;
-            ctx.fillText(center.flag, x, y - 90);
-            ctx.shadowBlur = 0;
-          } else {
-            // Only draw background labels if they don't crowd others
-            const isTooCrowded = labelGrid.some(pos =>
-              Math.abs(pos.x - x) < minLabelDist && Math.abs(pos.y - y) < minLabelDist / 2
-            );
-
-            if (!isTooCrowded) {
-              ctx.font = "14px 'Inter', sans-serif";
-              ctx.fillStyle = "rgba(148, 163, 184, 0.35)";
-              ctx.fillText(center.flag, x, y - 18);
-              labelGrid.push({ x, y });
-            }
+        if (isPlayer || isTarget) {
+          ctx.font = "48px sans-serif";
+          ctx.fillText(center.flag, x, y - 90);
+        } else {
+          const isTooCrowded = labelGrid.some(pos => Math.abs(pos.x - x) < minLabelDist && Math.abs(pos.y - y) < minLabelDist / 2);
+          if (!isTooCrowded) {
+            ctx.font = "14px 'Inter', sans-serif";
+            ctx.fillStyle = "rgba(148, 163, 184, 0.35)";
+            ctx.fillText(center.flag, x, y - 18);
+            labelGrid.push({ x, y });
           }
         }
       });
 
-      // === DRAW TRADE ROUTES (LINES) ===
+      // Draw Partner Routes (Static)
       drawnPathsRef.current.forEach(path => {
         ctx.beginPath();
         const p0 = path.pts[0];
         ctx.moveTo(p0.rtX * mapWidth, p0.rtY * mapHeight);
-
-        for (let i = 1; i < path.pts.length; i++) {
-          ctx.lineTo(path.pts[i].rtX * mapWidth, path.pts[i].rtY * mapHeight);
-        }
-
+        path.pts.forEach(pt => ctx.lineTo(pt.rtX * mapWidth, pt.rtY * mapHeight));
         ctx.lineWidth = 1.2;
-        ctx.strokeStyle = "rgba(14, 165, 233, 0.3)"; // Subtle Cyan Route
-        ctx.shadowBlur = 4;
-        ctx.shadowColor = "rgba(14, 165, 233, 0.5)";
+        ctx.strokeStyle = "rgba(14, 165, 233, 0.3)";
         ctx.stroke();
+      });
+
+      // Draw International Hubs
+      internationalHubs.forEach((hub: any) => {
+        const hX = ((hub.lon + 180) / 360) * mapWidth;
+        const hY = ((90 - hub.lat) / 180) * mapHeight;
+        ctx.beginPath();
+        ctx.arc(hX, hY, hub.radius || 4.5, 0, Math.PI * 2);
+        ctx.fillStyle = hub.fill || "#ffffff";
+        if (hub.shadowColor) {
+           ctx.shadowColor = hub.shadowColor;
+           ctx.shadowBlur = hub.shadowBlur || 8;
+        }
+        ctx.fill();
         ctx.shadowBlur = 0;
       });
 
-      // === DRAW INTERNATIONAL HUBS (Loaded from international/hubs.ts) ===
-      if (typeof internationalHubs !== 'undefined') {
-        internationalHubs.forEach((hub: any) => {
-          const hX = ((hub.lon + 180) / 360) * mapWidth;
-          const hY = ((90 - hub.lat) / 180) * mapHeight;
+      ctx.restore();
+    });
+  }, [geoData, userCountry, targetCountry, centersData, tradePartners]);
 
-          ctx.beginPath();
-          ctx.arc(hX, hY, hub.radius || 4.5, 0, Math.PI * 2);
-          ctx.fillStyle = hub.fill || "#ffffff";
-          if (hub.shadowColor) {
-            ctx.shadowColor = hub.shadowColor;
-            ctx.shadowBlur = hub.shadowBlur || 8;
-          }
-          ctx.fill();
-          ctx.shadowColor = "transparent";
-          ctx.shadowBlur = 0;
-          ctx.strokeStyle = "transparent";
-          ctx.stroke();
-        });
-      }
+  // 2. EFFECT: Draw Animation Layer (Every Frame - Targeted & Lightweight)
+  useEffect(() => {
+    const canvas = fgCanvasRef.current;
+    if (!canvas) return;
 
-      // === DRAW ACTIVE TRANSACTION LINES & SHIPS ===
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    // Clear JUST the animation layer
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const offsets = [0, mapWidth, mapWidth * 2];
+
+    offsets.forEach(offset => {
+      ctx.save();
+      ctx.translate(offset, 0);
+
+      const project = (lon: number, lat: number) => {
+        const x = ((lon + 180) / 360) * mapWidth;
+        const y = ((90 - lat) / 180) * mapHeight;
+        return { x, y };
+      };
+
       if (activeTransactions.length > 0) {
         activeTransactions.forEach(tx => {
-          const sourceHub = getHubForCountry(tx.source);
-          const destHub = getHubForCountry(tx.dest);
+          // Pre-calculate/Cache routes to save CPU
+          if (!activeRoutesCacheRef.current[tx.id]) {
+            const sourceHub = getHubForCountry(tx.source);
+            const destHub = getHubForCountry(tx.dest);
+            if (sourceHub && destHub) {
+              activeRoutesCacheRef.current[tx.id] = calculateTradeRoute(
+                { lon: sourceHub.lon, lat: sourceHub.lat },
+                { lon: destHub.lon, lat: destHub.lat }
+              );
+            }
+          }
 
-          if (sourceHub && destHub) {
-            const route = calculateTradeRoute(
-              { lon: sourceHub.lon, lat: sourceHub.lat },
-              { lon: destHub.lon, lat: destHub.lat }
-            );
-
-            // 1. Draw Path (BOLD, SOLID, GLOWING)
+          const route = activeRoutesCacheRef.current[tx.id];
+          if (route) {
+            // Draw Glowing Path
             ctx.beginPath();
-            ctx.setLineDash([]);
-
             const first = route[0];
             const { x: startX, y: startY } = project(first.lon, first.lat);
             ctx.moveTo(startX, startY);
-
             for (let i = 1; i < route.length; i++) {
               const { x, y } = project(route[i].lon, route[i].lat);
               ctx.lineTo(x, y);
             }
 
-            ctx.lineWidth = 5.0;
+            ctx.lineWidth = 4.0;
             ctx.strokeStyle = tx.type === 'buy' ? "#ff3333" : "#22c55e";
-            ctx.shadowBlur = 15;
-            ctx.shadowColor = tx.type === 'buy' ? "rgba(255, 0, 0, 0.7)" : "rgba(34, 197, 94, 0.7)";
+            ctx.shadowBlur = 12;
+            ctx.shadowColor = tx.type === 'buy' ? "rgba(255, 0, 0, 0.6)" : "rgba(34, 197, 94, 0.6)";
             ctx.stroke();
             ctx.shadowBlur = 0;
 
-            // 2. Calculate Ship Position (Animation driven by Game Time)
-            const duration = 10000; // Total travel time at 1x speed
+            // Draw Ship
+            const duration = 10000;
             const activeElapsed = txAccumulatedTimeRef.current[tx.id] || 0;
             const progress = Math.min(1, Math.max(0, activeElapsed / duration));
 
-            // Auto-cleanup when finished (respecting game time)
             if (activeElapsed >= duration) {
-              tradeStorage.removeTransaction(tx.id);
-              return;
+               delete activeRoutesCacheRef.current[tx.id]; // Cleanup cache
+               tradeStorage.removeTransaction(tx.id);
+               return;
             }
 
-            if (progress < 1) {
-              // Find current point in route based on progress
-              const totalSegments = route.length - 1;
-              const currentSegment = Math.min(totalSegments - 1, Math.floor(progress * totalSegments));
-              const segmentProgress = (progress * totalSegments) - currentSegment;
+            const totalSegments = route.length - 1;
+            const currentSegment = Math.min(totalSegments - 1, Math.floor(progress * totalSegments));
+            const segmentProgress = (progress * totalSegments) - currentSegment;
 
-              const p1 = route[currentSegment];
-              const p2 = route[currentSegment + 1];
+            const p1 = route[currentSegment];
+            const p2 = route[currentSegment + 1];
+            const currentLon = p1.lon + (p2.lon - p1.lon) * segmentProgress;
+            const currentLat = p1.lat + (p2.lat - p1.lat) * segmentProgress;
+            const { x, y } = project(currentLon, currentLat);
 
-              const currentLon = p1.lon + (p2.lon - p1.lon) * segmentProgress;
-              const currentLat = p1.lat + (p2.lat - p1.lat) * segmentProgress;
+            const { x: x2, y: y2 } = project(p2.lon, p2.lat);
+            const angle = Math.atan2(y2 - y, x2 - x);
 
-              const { x, y } = project(currentLon, currentLat);
-
-              // Calculate Heading
-              const { x: x2, y: y2 } = project(p2.lon, p2.lat);
-              const angle = Math.atan2(y2 - y, x2 - x);
-
-              // 3. Draw Cargo Ship Icon
-              ctx.save();
-              ctx.translate(x, y);
-              ctx.rotate(angle);
-
-              // Ship Shape
-              ctx.fillStyle = "#ffffff";
-              ctx.shadowBlur = 10;
-              ctx.shadowColor = "#ffffff";
-
-              // Draw a techy cargo ship triangle/diamond
-              ctx.beginPath();
-              ctx.moveTo(12, 0);   // Front
-              ctx.lineTo(-8, -6);  // Back Left
-              ctx.lineTo(-5, 0);   // Middle Back
-              ctx.lineTo(-8, 6);   // Back Right
-              ctx.closePath();
-              ctx.fill();
-
-              // High-tech highlight (Cabin)
-              ctx.fillStyle = tx.type === 'buy' ? "#ff3333" : "#22c55e";
-              ctx.fillRect(-2, -2, 4, 4);
-
-              ctx.restore();
-            }
+            ctx.save();
+            ctx.translate(x, y);
+            ctx.rotate(angle);
+            ctx.fillStyle = "#ffffff";
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = "#ffffff";
+            ctx.beginPath();
+            ctx.moveTo(10, 0); ctx.lineTo(-6, -5); ctx.lineTo(-4, 0); ctx.lineTo(-6, 5);
+            ctx.closePath();
+            ctx.fill();
+            ctx.restore();
           }
         });
       }
-
-
-
       ctx.restore();
     });
-
-  }, [geoData, userCountry, targetCountry, centersData, selectedWp, activeTransactions, sessionTrades, animationTime]);
+  }, [activeTransactions, animationTime]); // NO geoData/countries here!
 
   // Define Custom Cursors
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
@@ -660,11 +609,21 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
 
   return (
     <div className="relative h-full w-full overflow-hidden">
+      {/* Background Layer: Static Map, Countries, Hubs */}
       <canvas
-        ref={canvasRef}
+        ref={bgCanvasRef}
         width={mapWidth * 3}
         height={mapHeight}
-        className="h-full w-auto max-w-none z-10"
+        className="h-full w-auto max-w-none z-0"
+        style={{ pointerEvents: "none" }}
+      />
+      
+      {/* Animation Layer: Trade Ships, Active Lines */}
+      <canvas
+        ref={fgCanvasRef}
+        width={mapWidth * 3}
+        height={mapHeight}
+        className="absolute inset-0 h-full w-auto max-w-none z-10"
         style={{ cursor: defaultCursor, pointerEvents: active ? "auto" : "none" }}
         onMouseDown={(e) => {
           if (mouseDownPosRef && mouseDownPosRef.current !== undefined) {
@@ -673,7 +632,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         }}
         onMouseMove={(e) => {
           if (typeof active !== 'undefined' && !active) return;
-          const canvas = canvasRef.current;
+          const canvas = fgCanvasRef.current;
           if (!canvas) return;
           const rect = canvas.getBoundingClientRect();
           const clickX = ((e.clientX - rect.left) / rect.width) * (mapWidth * 3);
@@ -681,33 +640,23 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
           const mappedClickX = clickX % mapWidth;
 
           let foundHover = false;
-          let debugMinDist = 99999;
-          let closestName = "";
-
           centersData.forEach((center: any) => {
             const x = ((center.lon + 180) / 360) * mapWidth;
             const y = ((90 - center.lat) / 180) * mapHeight;
             const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
             if (dist < 60) foundHover = true;
-            if (dist < debugMinDist) { debugMinDist = dist; closestName = center.name_en; }
-
           });
-
-
           setIsHovering(foundHover);
-
         }}
-
         onClick={(e) => {
           if (!active) return;
-
           if (mouseDownPosRef.current) {
             const dx = Math.abs(e.clientX - mouseDownPosRef.current.x);
             const dy = Math.abs(e.clientY - mouseDownPosRef.current.y);
-            if (dx > 5 || dy > 5) return; // Drag detected, abort
+            if (dx > 5 || dy > 5) return;
           }
 
-          const canvas = canvasRef.current;
+          const canvas = fgCanvasRef.current;
           if (!canvas) return;
           const rect = canvas.getBoundingClientRect();
           const clickX = ((e.clientX - rect.left) / rect.width) * (mapWidth * 3);
@@ -724,7 +673,6 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
             if (dist < minDist) { minDist = dist; closest = { name: center.name_en?.trim() }; }
           });
 
-
           if (typeof internationalHubs !== 'undefined') {
             internationalHubs.forEach((hub) => {
               const x = ((hub.lon + 180) / 360) * mapWidth;
@@ -734,26 +682,9 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
             });
           }
 
-          let clickedPath: any = null;
-          if (minDist >= 60 && typeof drawnPathsRef !== 'undefined' && drawnPathsRef.current) {
-            let minLineDist = 60;
-            drawnPathsRef.current.forEach(line => {
-              line.pts.forEach(pt => {
-                const lx = pt.rtX * mapWidth;
-                const ly = pt.rtY * mapHeight;
-                const lDist = Math.sqrt((mappedClickX - lx) ** 2 + (clickY - ly) ** 2);
-                if (lDist < minLineDist) {
-                  minLineDist = lDist;
-                  clickedPath = line;
-                }
-              });
-            });
-          }
-
           if (closest && minDist < 60) {
             const targetName = closest.name;
             setSelectedWp(prev => prev === targetName ? null : targetName);
-            // onSelect(targetName); // Modal disabled for trade mode
           }
         }}
       />
