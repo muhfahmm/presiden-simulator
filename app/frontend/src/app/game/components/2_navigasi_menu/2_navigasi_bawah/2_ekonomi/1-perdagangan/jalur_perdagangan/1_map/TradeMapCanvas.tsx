@@ -167,6 +167,12 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
   const mapWidth = 6000;
   const mapHeight = 2400;
 
+  // Modern Tactical Theme (Amber/Orange for Dormant, Cyan/Blue for Active)
+  const DORMANT_TRADE_COLOR = "rgba(245, 158, 11, 0.4)"; 
+  const ACTIVE_TRADE_COLOR = "#0066ff";
+  const CUSTOM_TRADE_COLOR = "#ef4444";
+  const CUSTOM_TRADE_DORMANT = "rgba(239, 68, 68, 0.25)";
+
   
 
   useEffect(() => {
@@ -613,7 +619,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               console.log("[Draw Debug] selectedWp:", selectedWp, "seg.origin:", seg.origin, "seg.mitra:", seg.mitra, "originId:", seg.originId, "partnerId:", seg.partnerId, "isSelected:", isSelected);
             }
             ctx.lineWidth = isSelected ? 4.5 : 3.5;
-            ctx.strokeStyle = selectedWp ? (isSelected ? "#00e5ff" : "rgba(239, 68, 68, 0.25)") : "#ef4444";
+            ctx.strokeStyle = selectedWp ? (isSelected ? "#00e5ff" : CUSTOM_TRADE_DORMANT) : CUSTOM_TRADE_COLOR;
 
             // RED!
             ctx.beginPath();
@@ -694,8 +700,8 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
 
             ctx.lineWidth = isSelected ? 3.5 : 1.8;
             // Ketika diklik rutenya maka akan berubah warna (Biru)
-            ctx.strokeStyle = isSelected ? "#0066ff" : "rgba(148, 163, 184, 0.4)";
-            ctx.shadowColor = isSelected ? "#0066ff" : "transparent";
+            ctx.strokeStyle = isSelected ? ACTIVE_TRADE_COLOR : DORMANT_TRADE_COLOR;
+            ctx.shadowColor = isSelected ? ACTIVE_TRADE_COLOR : "transparent";
             ctx.shadowBlur = isSelected ? 10 : 0;
 
             // Cache path for click hit-testing
@@ -777,8 +783,8 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
             );
 
             ctx.lineWidth = isSelected ? 4.0 : 2.0;
-            ctx.strokeStyle = isSelected ? "#0066ff" : "rgba(245, 158, 11, 0.4)"; // Amber dormant
-            ctx.shadowColor = isSelected ? "#0066ff" : "transparent";
+            ctx.strokeStyle = isSelected ? ACTIVE_TRADE_COLOR : DORMANT_TRADE_COLOR; // Standardized Amber dormant
+            ctx.shadowColor = isSelected ? ACTIVE_TRADE_COLOR : "transparent";
             ctx.shadowBlur = isSelected ? 12 : 0;
 
             const targetSet = isSelected ? drawnSegmentsActive : drawnSegmentsDormant;

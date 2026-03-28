@@ -15,7 +15,7 @@ export const regionalRoutes: {
 } = {
   "Jakarta": {
     "Singapura": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 106.82, lat: -6.17 }, // Jakarta (Pelabuhan)
         { lon: 107.50, lat: -4.50 }, // Mulai naik diagonal halus
@@ -28,7 +28,7 @@ export const regionalRoutes: {
   },
   "Singapura": {
     "Malaysia Barat (Kanan)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 103.85, lat: 1.25 }, // Singapura
         { lon: 104.20, lat: 2.50 }, // Keluar ke Laut Cina Selatan
@@ -40,7 +40,7 @@ export const regionalRoutes: {
   "Malaysia Barat (Kiri)": {},
   "Thailand (Kanan)": {
     "Malaysia Barat (Kanan)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 100.60, lat: 7.20 }, // Thailand (Kanan)
         { lon: 101.80, lat: 7.30 }, // Dorong lurus ke timur menjauh dari pantai
@@ -55,7 +55,7 @@ export const regionalRoutes: {
       ]
     },
     "Kamboja": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 100.60, lat: 7.20 }, // Thailand (Kanan)
         { lon: 102.00, lat: 8.90 }, // Tengah Teluk Thailand atas
@@ -65,7 +65,7 @@ export const regionalRoutes: {
   },
   "Taiwan": {
     "Filipina (Utara)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 120.30, lat: 22.62 }, // Taiwan
         { lon: 120.80, lat: 20.50 }, // Selat Luzon
@@ -75,7 +75,7 @@ export const regionalRoutes: {
   },
   "Sri Lanka (Colombo)": {
     "India (Chennai)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 79.86, lat: 6.92 }, // Colombo
         { lon: 79.95, lat: 6.20 }, // Southbound approach (Cleared)
@@ -94,7 +94,7 @@ export const regionalRoutes: {
   },
   "India (Chennai)": {
     "India (Kolkata)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 80.27, lat: 13.08 }, // Chennai
         { lon: 82.50, lat: 16.50 }, // East of Kakinada
@@ -105,7 +105,7 @@ export const regionalRoutes: {
   },
   "India (Kolkata)": {
     "Bangladesh": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 88.10, lat: 21.70 },
         { lon: 88.50, lat: 21.20 },
@@ -117,7 +117,7 @@ export const regionalRoutes: {
   },
   "Bangladesh": {
     "Myanmar (Utara)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 91.80, lat: 22.33 },
         { lon: 91.80, lat: 22.20 },
@@ -145,7 +145,7 @@ export const regionalRoutes: {
   },
   "Myanmar (Utara)": {
     "Myanmar (Selatan)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 92.90, lat: 20.15 },
         { lon: 92.70, lat: 19.60 },
@@ -166,7 +166,7 @@ export const regionalRoutes: {
   },
   "Myanmar (Selatan)": {
     "Malaysia Barat (Kiri)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 96.20, lat: 16.75 },
         { lon: 97.00, lat: 15.00 },
@@ -183,7 +183,7 @@ export const regionalRoutes: {
   },
   "Kamboja": {
     "Vietnam (Selatan)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 103.50, lat: 10.60 }, // Kamboja
         { lon: 103.40, lat: 9.80 },
@@ -198,7 +198,7 @@ export const regionalRoutes: {
   },
   "Vietnam (Selatan)": {
     "Hainan": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 107.15, lat: 10.40 }, // Vietnam (Selatan)
         { lon: 109.50, lat: 12.00 }, // Clear coastal bulge
@@ -208,7 +208,7 @@ export const regionalRoutes: {
       ]
     },
     "Vietnam (Utara)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 107.15, lat: 10.40 },
         { lon: 107.89, lat: 10.59 },
@@ -231,7 +231,7 @@ export const regionalRoutes: {
   },
   "Vietnam (Utara)": {
     "Hainan": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 106.68, lat: 20.85 },
         { lon: 106.90, lat: 20.50 }, 
@@ -249,7 +249,7 @@ export const regionalRoutes: {
   },
   "Hainan": {
     "China (Hong Kong)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 110.70, lat: 19.40 },
         { lon: 112.00, lat: 20.50 }, 
@@ -260,7 +260,7 @@ export const regionalRoutes: {
   },
   "China (Shanghai)": {
     "China (Tianjin)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 121.50, lat: 31.20 },
         { lon: 122.50, lat: 31.50 },
@@ -272,7 +272,7 @@ export const regionalRoutes: {
       ]
     },
     "Korea Selatan": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 121.50, lat: 31.20 },
         { lon: 124.00, lat: 32.00 },
@@ -284,7 +284,7 @@ export const regionalRoutes: {
   },
   "China (Tianjin)": {
     "Korea Utara": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 117.70, lat: 38.98 }, // Tianjin
         { lon: 119.50, lat: 38.50 }, // shared node
@@ -297,7 +297,7 @@ export const regionalRoutes: {
 
   "Korea Selatan": {
     "Jepang (Selatan)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 129.04, lat: 35.10 },
         { lon: 129.60, lat: 34.70 }, // East of Tsushima
@@ -306,7 +306,7 @@ export const regionalRoutes: {
       ]
     },
     "Rusia (Vladivostok)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 129.04, lat: 35.10 },
         { lon: 129.50, lat: 35.50 },
@@ -318,7 +318,7 @@ export const regionalRoutes: {
   },
   "Rusia (Vladivostok)": {
     "Rusia (Sakhalin)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 131.90, lat: 43.10 },
         { lon: 134.00, lat: 42.50 },
@@ -331,7 +331,7 @@ export const regionalRoutes: {
   },
   "Rusia (Sakhalin)": {
     "Rusia (Magadan)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 142.80, lat: 46.60 },
         { lon: 142.80, lat: 45.90 }, // Down South out of Bay
@@ -346,7 +346,7 @@ export const regionalRoutes: {
   },
   "Rusia (Magadan)": {
     "Rusia (Petropavlovsk)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 150.80, lat: 59.50 },
         { lon: 152.00, lat: 57.50 },
@@ -361,7 +361,7 @@ export const regionalRoutes: {
   },
   "Rusia (Petropavlovsk)": {
     "Jepang (Utara)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 158.60, lat: 53.00 },
         { lon: 158.40, lat: 52.00 }, 
@@ -379,7 +379,7 @@ export const regionalRoutes: {
   },
   "Malaysia Timur (Kiri)": {
     "Brunei": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 110.35, lat: 1.55 }, // Kiri
         { lon: 111.00, lat: 3.00 }, // Push North
@@ -391,7 +391,7 @@ export const regionalRoutes: {
   },
   "Brunei": {
     "Malaysia Timur (Kanan)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 115.00, lat: 5.00 },
         { lon: 115.50, lat: 5.50 },
@@ -401,7 +401,7 @@ export const regionalRoutes: {
   },
   "Malaysia Timur (Kanan)": {
     "Filipina (Mindanao)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 116.05, lat: 6.00 },
         { lon: 116.15, lat: 7.00 }, // Initial Curve
@@ -417,7 +417,7 @@ export const regionalRoutes: {
   },
   "Filipina (Mindanao)": {
     "Filipina (Visayas)": {
-      color: "#ff4d4d",
+      color: "#f59e0b",
       coords: [
         { lon: 124.40, lat: 6.20 },
         { lon: 124.60, lat: 5.80 }, 
