@@ -1,0 +1,70 @@
+KONSEP SISTEM ESTIMASI PENGIRIMAN PINTAR (SMART LOGISTICS ENGINE)
+============================================================
+
+Konsep ini bertujuan untuk membuat estimasi waktu pengiriman yang tidak hanya berdasarkan "wilayah", tetapi benar-benar "membaca" data geografis (jalur perdagangan) yang ada di peta.
+
+1. LOGIKA DASAR (GEOSPATIAL DISTANCE)
+--------------------------------------
+Alih-alih menggunakan nilai statis per benua, sistem akan menghitung total jarak (Euclidean/Haversine) antara titik-titik koordinat di `2_rute/`.
+- Tiap 1.000 unit jarak peta = +1 Hari perjalan laut.
+- Tiap 1.000 unit jarak peta = +4 Jam perjalanan udara.
+
+2. PENGHITUNGAN TRANSIT (COUNTRY HOPPING)
+-----------------------------------------
+Waktu pengiriman bertambah setiap kali komoditas melewati "Node" atau "Check-point" di negara lain:
+- Transit Pelabuhan: +6 s/d 12 Jam per negara yang dilalui (untuk bongkar muat/inspeksi).
+- Birokrasi Perbatasan: Jika melewati negara dengan hubungan diplomatik buruk (relasi < 40), waktu bertambah +1 Hari karena pemeriksaan ketat.
+
+3. VARIABEL BOTTLENECK (STRATEGIC POINTS)
+-----------------------------------------
+Titik-titik tertentu di peta memiliki variabel "Kemacetan" atau "Resiko":
+- Terusan Suez / Selat Malaka: Jika jalur melewati titik ini, tambahkan +12 Jam (antrian kapal).
+- Jalur Konflik: Jika jalur melewati zona perang, waktu pengiriman bisa melambat +2 Hari karena kapal harus memutar (Rerouting).
+
+4. MODE TRANSPORTASI (MODAL SPLIT)
+----------------------------------
+User bisa memilih mode pengiriman di menu Eksekusi:
+- Cargo Ship (Default): Murah, kapasitas besar, lambat.
+- Air Freight (Cargo Pesawat): Sangat mahal, kapasitas kecil, sangat cepat (3x lipat lebih cepat).
+
+5. DETAIL DATA YANG DITAMPILKAN KE USER
+---------------------------------------
+Saat user melakukan impor/ekspor, menu akan menampilkan:
+- "Jalur yang Dilalui": [Thailand] -> [Vietnam] -> [Filipina] -> [Indonesia].
+- "Transit": 2 Negara.
+- "Kondisi Jalur": Aman / Resiko Cuaca / Resiko Konflik.
+- "Estimasi Tiba": [Waktu Real-time].
+
+6. IMPLEMENTASI TEKNIS (PSEUDO-CODE)
+------------------------------------
+Sistem akan memanggil array rute di `2_rute/tradeRoutes.ts`:
+```typescript
+function calculateSmartTime(route: string[]) {
+  let baseHours = route.length * 12; // Base transit per node
+  let totalDistance = calculateTotalDist(route);
+  let relationshipPenalty = checkRelationPenalty(route);
+  
+  return (baseHours + (totalDistance / speed) + relationshipPenalty);
+}
+```
+
+7. VISUALISASI KE DEPAN
+-----------------------
+Data dari kalkulator pintar ini akan disinkronkan langsung dengan animasi kapal di `1_map/TradeMapCanvas.tsx`. Kapal akan bergerak mengikuti jumlah hari yang dihitung tersebut secara visual.
+
+8. PROPOSAL STRUKTUR FOLDER LOGISTIK PINTAR
+-----------------------------------------
+
+Untuk menampung logika yang lebih kompleks, berikut adalah struktur folder yang direkomendasikan:
+
+jalur_perdagangan/
+├── 1_map/                       # UI Rendering & Canvas (Eksisting)
+├── 2_rute/                      # Database Koordinat Jalur (Eksisting)
+├── 3_logic/                     # Mesin Perhitungan (BARU)
+│   ├── pathfinder.ts            # Mencari jalur & menghitung jarak (KM)
+│   ├── shippingCalculator.ts    # Hitung waktu (hari) & penalti transit
+│   └── modeManager.ts           # Logika perbedaan kargo Laut vs Udara
+└── 4_components/                # Komponen Visual Tambahan (BARU)
+    ├── ShipIcon.tsx             # Aset visual kapal/pesawat di peta
+    ├── TransitBadge.tsx         # Label nama negara yang sedang dilalui
+    └── ShippingProgressBar.tsx  # Progress Bar di UI Eksekusi/Histori

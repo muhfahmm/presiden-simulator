@@ -12,6 +12,7 @@ export interface TradeTransaction {
   pricePerUnit: number;
   totalPrice: number;
   partner: string;
+  shippingTime: string;
   timestamp: string; // ISO string for sorting
   gameDate: string;  // Formatted game date e.g. 01-01-2026
 }

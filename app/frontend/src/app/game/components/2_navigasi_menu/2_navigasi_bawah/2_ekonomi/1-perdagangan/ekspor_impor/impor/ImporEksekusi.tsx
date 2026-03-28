@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { Hammer, ChevronLeft, Coins, Calculator, Box, MapPin, Activity, CheckCircle2, AlertTriangle } from "lucide-react";
+import { Hammer, ChevronLeft, Coins, Calculator, Box, MapPin, Activity, CheckCircle2, AlertTriangle, Clock } from "lucide-react";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { historiImportStorage } from "./HistoriImportStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
+import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/countries/region/index";
 
 interface ImporEksekusiProps {
   selectedKey: string;
@@ -65,11 +66,30 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
   const totalCost = quantity * basePrice;
   const isBudgetInsufficient = totalCost > budgetData.anggaran;
 
+  const calculateShippingTime = (partner: string | null) => {
+    if (!partner) return "3-5 Hari";
+    
+    // ASEAN / Close neighbors
+    const asean = ["Singapura", "Malaysia", "Thailand", "Filipina", "Brunei", "Vietnam", "Laos", "Kamboja", "Myanmar", "Timor Leste"];
+    if (asean.includes(partner)) return "2-3 Hari";
+    
+    if (asiaCountries.some(c => c.name_id === partner || c.name_en === partner)) return "5-7 Hari";
+    if (oceaniaCountries.some(c => c.name_id === partner || c.name_en === partner)) return "7-10 Hari";
+    if (eropaCountries.some(c => c.name_id === partner || c.name_en === partner)) return "14-20 Hari";
+    if (afrikaCountries.some(c => c.name_id === partner || c.name_en === partner)) return "18-25 Hari";
+    if (naCountries.some(c => c.name_id === partner || c.name_en === partner)) return "21-28 Hari";
+    if (saCountries.some(c => c.name_id === partner || c.name_en === partner)) return "25-35 Hari";
+    
+    return "10-15 Hari"; // Default
+  };
+
   const handleConfirm = () => {
     if (isBudgetInsufficient) return;
     
     budgetStorage.updateBudget(-totalCost);
     
+    const shippingTime = calculateShippingTime(selectedTradePartner);
+
     // Log to history
     historiImportStorage.saveImport({
       commodityKey: selectedKey,
@@ -78,7 +98,8 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
       unit: getUnit(selectedKey),
       pricePerUnit: basePrice,
       totalPrice: totalCost,
-      partner: selectedTradePartner || "Unknown Partner"
+      partner: selectedTradePartner || "Unknown Partner",
+      shippingTime: shippingTime
     });
 
     // Add to Inbox
@@ -88,7 +109,7 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
       subject: `Impor ${selectedName} dari ${selectedTradePartner || "Mitra"} Berhasil`,
       priority: 'medium',
       time: `${String(gameDate.getDate()).padStart(2, '0')}-${String(gameDate.getMonth() + 1).padStart(2, '0')}-${gameDate.getFullYear()}`,
-      content: `Transaksi impor ${quantity.toLocaleString('id-ID')} ${getUnit(selectedKey)} ${selectedName} telah berhasil diselesaikan.\n\nDetail:\n- Pengeluaran: -${totalCost.toLocaleString('id-ID')}\n- Mitra Dagang: ${selectedTradePartner || "Mitra Internasional"}`
+      content: `Transaksi impor ${quantity.toLocaleString('id-ID')} ${getUnit(selectedKey)} ${selectedName} telah berhasil diselesaikan.\n\nDetail:\n- Pengeluaran: -${totalCost.toLocaleString('id-ID')}\n- Mitra Dagang: ${selectedTradePartner || "Mitra Internasional"}\n- Estimasi Pengiriman: ${shippingTime}`
     });
 
     setShowSuccess(true);
@@ -206,7 +227,15 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
                 />
               </div>
 
-              <div className="p-6 bg-zinc-950/50 rounded-3xl border border-zinc-800/80 space-y-1">
+                <div className="p-4 bg-zinc-950/30 rounded-2xl border border-zinc-900 flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-2">
+                    <Clock size={14} className="text-blue-500" />
+                    <p className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">Estimasi Waktu Pengiriman</p>
+                  </div>
+                  <p className="text-xs font-black text-blue-400 italic uppercase">{calculateShippingTime(selectedTradePartner)}</p>
+                </div>
+
+                <div className="p-6 bg-zinc-950/50 rounded-3xl border border-zinc-800/80 space-y-1">
                 <p className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">Total Estimasi Nilai</p>
                 <div className="flex items-baseline justify-between">
                   <p className={`text-4xl font-black italic tracking-tighter ${isBudgetInsufficient ? 'text-red-500' : 'text-white'}`}>

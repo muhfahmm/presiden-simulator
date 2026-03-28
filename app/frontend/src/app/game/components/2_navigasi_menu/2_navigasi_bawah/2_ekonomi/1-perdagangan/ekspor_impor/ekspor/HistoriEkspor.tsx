@@ -80,7 +80,7 @@ export const HistoriEkspor: React.FC = () => {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-2">
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
                 <div className="bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
                   <div className="flex items-center gap-1.5 mb-1 opacity-50">
                     <MapPin size={10} className="text-zinc-500" />
@@ -101,6 +101,13 @@ export const HistoriEkspor: React.FC = () => {
                     <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">Harga</span>
                   </div>
                   <p className="text-[10px] font-black text-zinc-300 uppercase truncate">{tx.pricePerUnit.toLocaleString('id-ID')}</p>
+                </div>
+                <div className="bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
+                  <div className="flex items-center gap-1.5 mb-1 opacity-50">
+                    <Clock size={10} className="text-green-500" />
+                    <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">Pengiriman</span>
+                  </div>
+                  <p className="text-[10px] font-black text-green-400 uppercase truncate">{tx.shippingTime || "3-5 Hari"}</p>
                 </div>
               </div>
             </div>
