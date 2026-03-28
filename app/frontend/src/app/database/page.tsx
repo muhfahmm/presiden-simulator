@@ -284,9 +284,9 @@ export default function DatabasePage() {
             <Globe2 size={12} className="text-blue-400" />
             <span className="text-xs text-zinc-500 font-medium uppercase tracking-wider">Suara PBB</span>
             <span className={`text-xs font-black px-1.5 py-0.5 rounded ${!hasSelection ? 'bg-zinc-800 text-zinc-600' :
-                currentData.un_vote === 'Pro' ? 'bg-emerald-500/20 text-emerald-400' :
-                  currentData.un_vote === 'Kontra' ? 'bg-red-500/20 text-red-400' :
-                    'bg-zinc-700/50 text-zinc-300'
+                currentData.un_vote >= 139 ? 'bg-emerald-500/20 text-emerald-400' :
+                  currentData.un_vote >= 28 ? 'bg-sky-500/20 text-sky-400' :
+                    'bg-red-500/20 text-red-400'
               }`}>
               {hasSelection ? currentData.un_vote : "-"}
             </span>
@@ -493,13 +493,20 @@ export default function DatabasePage() {
                   <span className="text-zinc-400 flex items-center gap-1"><Zap size={10} className="text-amber-500" /> Beban Listrik</span>
                   <span className="text-amber-500 text-sm">
                     {(hitungKonsumsiProduksi(currentData.sektor_manufaktur) + hitungKonsumsiOlahanPangan(currentData.sektor_olahan_pangan) + hitungKonsumsiFarmasi(currentData.sektor_farmasi) + hitungKonsumsiPangan(currentData.sektor_peternakan, currentData.sektor_agrikultur)).toLocaleString('id-ID')} MW
-                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">({currentData.sektor_manufaktur.semikonduktor + currentData.sektor_manufaktur.mobil + currentData.sektor_manufaktur.sepeda_motor + currentData.sektor_manufaktur.smelter + currentData.sektor_manufaktur.semen_beton + currentData.sektor_manufaktur.kayu + currentData.sektor_olahan_pangan.air_mineral + currentData.sektor_olahan_pangan.gula + currentData.sektor_olahan_pangan.roti + currentData.sektor_farmasi.farmasi + currentData.sektor_olahan_pangan.pengolahan_daging + currentData.sektor_olahan_pangan.mie_instan} Unit)</span>
+                    <span className="text-zinc-500 text-xs font-bold font-sans ml-1">
+                      ({currentData.sektor_manufaktur.semikonduktor + currentData.sektor_manufaktur.mobil + currentData.sektor_manufaktur.sepeda_motor + currentData.sektor_manufaktur.smelter + currentData.sektor_manufaktur.semen_beton + currentData.sektor_manufaktur.kayu +
+                        currentData.sektor_olahan_pangan.air_mineral + currentData.sektor_olahan_pangan.gula + currentData.sektor_olahan_pangan.roti + currentData.sektor_olahan_pangan.pengolahan_daging + currentData.sektor_olahan_pangan.mie_instan +
+                        currentData.sektor_farmasi.farmasi +
+                        currentData.sektor_peternakan.ayam_unggas + currentData.sektor_peternakan.sapi_perah + currentData.sektor_peternakan.sapi_potong + currentData.sektor_peternakan.domba_kambing +
+                        currentData.sektor_perikanan.udang_kerang + currentData.sektor_perikanan.ikan +
+                        currentData.sektor_agrikultur.padi + currentData.sektor_agrikultur.gandum_jagung + currentData.sektor_agrikultur.sayur_umbi + currentData.sektor_agrikultur.kedelai + currentData.sektor_agrikultur.kelapa_sawit + currentData.sektor_agrikultur.kopi_teh_kakao} Unit)
+                    </span>
                   </span>
                 </div>
-                {/* Manufacturing */}
+                {/* 1. Sektor Manufaktur */}
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Factory size={10} /> Manufaktur & Industri (13)</span>
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Factory size={10} /> 1. Sektor Manufaktur (6 Jenis)</span>
                   </div>
                   <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
                     <SectorStat icon={<Cpu size={10} className="text-purple-400" />} label="Pabrik Semikonduktor" value={`${currentData.sektor_manufaktur.semikonduktor} (${(currentData.sektor_manufaktur.semikonduktor * KONSUMSI_PRODUKSI.semikonduktor).toLocaleString('id-ID')} MW)`} />
@@ -508,23 +515,16 @@ export default function DatabasePage() {
                     <SectorStat icon={<Flame size={10} className="text-red-400" />} label="Pengolahan Smelter" value={`${currentData.sektor_manufaktur.smelter} (${(currentData.sektor_manufaktur.smelter * KONSUMSI_PRODUKSI.smelter).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Construction size={10} className="text-zinc-400" />} label="Pabrik Beton & Semen" value={`${currentData.sektor_manufaktur.semen_beton} (${(currentData.sektor_manufaktur.semen_beton * KONSUMSI_PRODUKSI.semen_beton).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<TreePine size={10} className="text-emerald-600" />} label="Pabrik Kayu" value={`${currentData.sektor_manufaktur.kayu} (${(currentData.sektor_manufaktur.kayu * KONSUMSI_PRODUKSI.kayu).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Droplet size={10} className="text-blue-400" />} label="Pabrik Air Mineral" value={`${currentData.sektor_olahan_pangan.air_mineral} (${(currentData.sektor_olahan_pangan.air_mineral * KONSUMSI_PRODUKSI.air_mineral).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Cookie size={10} className="text-yellow-600" />} label="Pabrik Gula" value={`${currentData.sektor_olahan_pangan.gula} (${(currentData.sektor_olahan_pangan.gula * KONSUMSI_PRODUKSI.gula).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Croissant size={10} className="text-amber-400" />} label="Pabrik Roti" value={`${currentData.sektor_olahan_pangan.roti} (${(currentData.sektor_olahan_pangan.roti * KONSUMSI_PRODUKSI.roti).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Pill size={10} className="text-pink-400" />} label="Pabrik Farmasi" value={`${currentData.sektor_farmasi.farmasi} (${(currentData.sektor_farmasi.farmasi * KONSUMSI_PRODUKSI.farmasi).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Beef size={10} className="text-red-400" />} label="Pengolahan Daging" value={`${currentData.sektor_olahan_pangan.pengolahan_daging} (${(currentData.sektor_olahan_pangan.pengolahan_daging * KONSUMSI_PRODUKSI.pengolahan_daging).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Soup size={10} className="text-orange-400" />} label="Pabrik Mie Instan" value={`${currentData.sektor_olahan_pangan.mie_instan} (${(currentData.sektor_olahan_pangan.mie_instan * KONSUMSI_PRODUKSI.mie_instan).toLocaleString('id-ID')} MW)`} />
                   </div>
                 </div>
 
                 <div className="h-px bg-zinc-800/50" />
 
-                {/* Peternakan */}
+                {/* 2. Sektor Peternakan */}
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Beef size={10} /> Peternakan (4)</span>
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Bird size={10} /> 2. Sektor Peternakan (4 Jenis)</span>
                   </div>
-
                   <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
                     <SectorStat icon={<Bird size={10} className="text-amber-500" />} label="Ayam/Unggas" value={`${currentData.sektor_peternakan.ayam_unggas} (${(currentData.sektor_peternakan.ayam_unggas * KONSUMSI_PANGAN.ayam_unggas).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Milk size={10} className="text-zinc-200" />} label="Sapi Perah" value={`${currentData.sektor_peternakan.sapi_perah} (${(currentData.sektor_peternakan.sapi_perah * KONSUMSI_PANGAN.sapi_perah).toLocaleString('id-ID')} MW)`} />
@@ -535,12 +535,28 @@ export default function DatabasePage() {
 
                 <div className="h-px bg-zinc-800/50" />
 
-                {/* Perikanan */}
+                {/* 3. Sektor Agrikultur */}
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Fish size={10} /> Perikanan & Kelautan (2)</span>
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Wheat size={10} /> 3. Sektor Agrikultur (6 Jenis)</span>
                   </div>
+                  <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
+                    <SectorStat icon={<Sprout size={10} className="text-green-500" />} label="Padi" value={`${currentData.sektor_agrikultur.padi} (${(currentData.sektor_agrikultur.padi * KONSUMSI_PANGAN.padi).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Utensils size={10} className="text-amber-600" />} label="Gandum/Jagung" value={`${currentData.sektor_agrikultur.gandum_jagung} (${(currentData.sektor_agrikultur.gandum_jagung * KONSUMSI_PANGAN.gandum_jagung).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Apple size={10} className="text-red-500" />} label="Sayur/Umbi" value={`${currentData.sektor_agrikultur.sayur_umbi} (${(currentData.sektor_agrikultur.sayur_umbi * KONSUMSI_PANGAN.sayur_umbi).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Bean size={10} className="text-emerald-700" />} label="Kedelai" value={`${currentData.sektor_agrikultur.kedelai} (${(currentData.sektor_agrikultur.kedelai * KONSUMSI_PANGAN.kedelai).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Droplet size={10} className="text-amber-500" />} label="Kelapa Sawit" value={`${currentData.sektor_agrikultur.kelapa_sawit} (${(currentData.sektor_agrikultur.kelapa_sawit * KONSUMSI_PANGAN.kelapa_sawit).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Coffee size={10} className="text-amber-900" />} label="Kopi/Teh/Kakao" value={`${currentData.sektor_agrikultur.kopi_teh_kakao} (${(currentData.sektor_agrikultur.kopi_teh_kakao * KONSUMSI_PANGAN.kopi_teh_kakao).toLocaleString('id-ID')} MW)`} />
+                  </div>
+                </div>
 
+                <div className="h-px bg-zinc-800/50" />
+
+                {/* 4. Sektor Perikanan */}
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Fish size={10} /> 4. Sektor Perikanan (2 Jenis)</span>
+                  </div>
                   <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
                     <SectorStat icon={<Shell size={10} className="text-pink-300" />} label="Udang/Kerang" value={`${currentData.sektor_perikanan.udang_kerang} (${(currentData.sektor_perikanan.udang_kerang * KONSUMSI_PANGAN.udang_kerang).toLocaleString('id-ID')} MW)`} />
                     <SectorStat icon={<Fish size={10} className="text-blue-400" />} label="Ikan" value={`${currentData.sektor_perikanan.ikan} (${(currentData.sektor_perikanan.ikan * KONSUMSI_PANGAN.ikan).toLocaleString('id-ID')} MW)`} />
@@ -549,19 +565,29 @@ export default function DatabasePage() {
 
                 <div className="h-px bg-zinc-800/50" />
 
-                {/* Agrikultur & Pertanian */}
+                {/* 5. Sektor Olahan Pangan */}
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Wheat size={10} /> Agrikultur & Pertanian (6)</span>
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Utensils size={10} /> 5. Sektor Olahan Pangan (5 Jenis)</span>
                   </div>
-
                   <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
-                    <SectorStat icon={<Sprout size={10} className="text-green-500" />} label="Padi" value={`${currentData.sektor_agrikultur.padi} (${(currentData.sektor_agrikultur.padi * KONSUMSI_PANGAN.padi).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Utensils size={10} className="text-amber-600" />} label="Gandum/Jagung" value={`${currentData.sektor_agrikultur.gandum_jagung} (${(currentData.sektor_agrikultur.gandum_jagung * KONSUMSI_PANGAN.gandum_jagung).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Apple size={10} className="text-red-500" />} label="Sayur/Umbi" value={`${currentData.sektor_agrikultur.sayur_umbi} (${(currentData.sektor_agrikultur.sayur_umbi * KONSUMSI_PANGAN.sayur_umbi).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Bean size={10} className="text-emerald-700" />} label="Kedelai" value={`${currentData.sektor_agrikultur.kedelai} (${(currentData.sektor_agrikultur.kedelai * KONSUMSI_PANGAN.kedelai).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Droplet size={10} className="text-amber-500" />} label="Kelapa Sawit" value={`${currentData.sektor_agrikultur.kelapa_sawit} (${(currentData.sektor_agrikultur.kelapa_sawit * KONSUMSI_PANGAN.kelapa_sawit).toLocaleString('id-ID')} MW)`} />
-                    <SectorStat icon={<Coffee size={10} className="text-amber-900" />} label="Kopi/Teh/Kakao" value={`${currentData.sektor_agrikultur.kopi_teh_kakao} (${(currentData.sektor_agrikultur.kopi_teh_kakao * KONSUMSI_PANGAN.kopi_teh_kakao).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Droplet size={10} className="text-blue-400" />} label="Pabrik Air Mineral" value={`${currentData.sektor_olahan_pangan.air_mineral} (${(currentData.sektor_olahan_pangan.air_mineral * KONSUMSI_PRODUKSI.air_mineral).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Cookie size={10} className="text-yellow-600" />} label="Pabrik Gula" value={`${currentData.sektor_olahan_pangan.gula} (${(currentData.sektor_olahan_pangan.gula * KONSUMSI_PRODUKSI.gula).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Croissant size={10} className="text-amber-400" />} label="Pabrik Roti" value={`${currentData.sektor_olahan_pangan.roti} (${(currentData.sektor_olahan_pangan.roti * KONSUMSI_PRODUKSI.roti).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Beef size={10} className="text-red-400" />} label="Pengolahan Daging" value={`${currentData.sektor_olahan_pangan.pengolahan_daging} (${(currentData.sektor_olahan_pangan.pengolahan_daging * KONSUMSI_PRODUKSI.pengolahan_daging).toLocaleString('id-ID')} MW)`} />
+                    <SectorStat icon={<Soup size={10} className="text-orange-400" />} label="Pabrik Mie Instan" value={`${currentData.sektor_olahan_pangan.mie_instan} (${(currentData.sektor_olahan_pangan.mie_instan * KONSUMSI_PRODUKSI.mie_instan).toLocaleString('id-ID')} MW)`} />
+                  </div>
+                </div>
+
+                <div className="h-px bg-zinc-800/50" />
+
+                {/* 6. Sektor Farmasi */}
+                <div className="flex flex-col gap-2">
+                  <div className="flex items-center justify-between">
+                    <span className="text-xs font-bold text-zinc-500 uppercase flex items-center gap-1.5"><Pill size={10} /> 6. Sektor Farmasi & Medis (1 Jenis)</span>
+                  </div>
+                  <div className={`grid ${getGridCols(leftWidth)} gap-2 mt-1`}>
+                    <SectorStat icon={<Pill size={10} className="text-pink-400" />} label="Pabrik Farmasi" value={`${currentData.sektor_farmasi.farmasi} (${(currentData.sektor_farmasi.farmasi * KONSUMSI_PRODUKSI.farmasi).toLocaleString('id-ID')} MW)`} />
                   </div>
                 </div>
               </div>

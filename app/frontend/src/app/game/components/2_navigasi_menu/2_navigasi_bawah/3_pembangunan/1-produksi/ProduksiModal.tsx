@@ -243,7 +243,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         unit: val.unit,
         count: (currentData.sektor_listrik?.[key as keyof typeof currentData.sektor_listrik] || 0) + ((buildingDeltas[key] as number) || 0),
         pendapatan_nasional: 0,
-        cost: 35,
+        cost: val.buildCost || 35,
         buildTime: val.buildTime || 90,
         lowongan_kerja: val.lowongan_kerja || 0
       }))
@@ -271,7 +271,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           count: (currentData.sektor_ekstraksi?.[val.dataKey as keyof typeof currentData.sektor_ekstraksi] || 0) + ((buildingDeltas[key] as number) || 0),
           powerUsage: (KONSUMSI_EKSTRAKSI as any)[val.dataKey] || 5,
           pendapatan_nasional: 0,
-          cost: 30,
+          cost: val.buildCost || 30,
           buildTime: val.buildTime || 30,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
@@ -300,7 +300,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           count: (currentData.sektor_manufaktur?.[val.dataKey as keyof typeof currentData.sektor_manufaktur] || 0) + ((buildingDeltas[key] as number) || 0),
           powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: 45,
+          cost: val.buildCost || 45,
           buildTime: val.buildTime || 45,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
@@ -325,7 +325,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
             count: (currentData.sektor_peternakan?.[val.dataKey as keyof typeof currentData.sektor_peternakan] || 0) + ((buildingDeltas[key] as number) || 0),
             powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
             pendapatan_nasional: val.pendapatan_nasional,
-            cost: 15,
+            cost: val.buildCost || 15,
             buildTime: val.buildTime || 25,
             lowongan_kerja: val.lowongan_kerja || 0
           })),
@@ -344,7 +344,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
             count: (currentData.sektor_agrikultur?.[val.dataKey as keyof typeof currentData.sektor_agrikultur] || 0) + ((buildingDeltas[key] as number) || 0),
             powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
             pendapatan_nasional: val.pendapatan_nasional,
-            cost: 10,
+            cost: val.buildCost || 10,
             buildTime: val.buildTime || 30,
             lowongan_kerja: val.lowongan_kerja || 0
           })),
@@ -363,7 +363,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
             count: (currentData.sektor_olahan_pangan?.[val.dataKey as keyof typeof currentData.sektor_olahan_pangan] || 0) + ((buildingDeltas[key] as number) || 0),
             powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
             pendapatan_nasional: val.pendapatan_nasional,
-            cost: 25,
+            cost: val.buildCost || 25,
             buildTime: val.buildTime || 35,
             lowongan_kerja: val.lowongan_kerja || 0
           }))
@@ -387,7 +387,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           count: (currentData.sektor_farmasi?.[val.dataKey as keyof typeof currentData.sektor_farmasi] || 0) + ((buildingDeltas[key] as number) || 0),
           powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: 60,
+          cost: val.buildCost || 60,
           buildTime: val.buildTime || 60,
           lowongan_kerja: val.lowongan_kerja || 0
         }))

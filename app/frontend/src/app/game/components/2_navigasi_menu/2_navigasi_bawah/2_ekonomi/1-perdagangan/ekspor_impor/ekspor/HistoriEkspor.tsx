@@ -2,15 +2,27 @@ import React, { useState, useEffect } from "react";
 import { History, TrendingUp, Clock, Box, MapPin, Coins, Trash2 } from "lucide-react";
 import { historiEksporStorage, TradeTransaction } from "./HistoriEksporStorage";
 
+import { timeStorage } from "../../timeStorage";
+
 export const HistoriEkspor: React.FC = () => {
   const [history, setHistory] = useState(historiEksporStorage.getHistory());
+  const [gameTime, setGameTime] = useState(timeStorage.getState());
 
   useEffect(() => {
     const handleUpdate = () => {
       setHistory(historiEksporStorage.getHistory());
     };
     window.addEventListener('export_history_updated', handleUpdate);
-    return () => window.removeEventListener('export_history_updated', handleUpdate);
+    
+    // Listen to game clock
+    const unsubscribe = timeStorage.subscribe((date, isPaused, speed) => {
+      setGameTime({ gameDate: date, isPaused, speed });
+    });
+
+    return () => {
+      window.removeEventListener('export_history_updated', handleUpdate);
+      unsubscribe();
+    };
   }, []);
 
   const handleClear = () => {
@@ -54,64 +66,105 @@ export const HistoriEkspor: React.FC = () => {
             <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-40">Belum ada transaksi tercatat</p>
           </div>
         ) : (
-          history.map((tx: TradeTransaction) => (
-            <div 
-              key={tx.id}
-              className="bg-zinc-900/30 border border-zinc-800/50 p-5 rounded-3xl hover:bg-zinc-900/50 transition-all group animate-in slide-in-from-right-4 duration-500"
-            >
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-xl bg-zinc-800/50 border border-zinc-700/30 flex items-center justify-center text-white">
-                    <Box size={20} />
+          history.map((tx: TradeTransaction) => {
+            const calculateProgress = () => {
+              // Duration in game-time: 45s real (1x) = 22.5 game-days
+              // 1 game-day = 24 * 60 * 60 * 1000 ms
+              const durationGameMs = 22.5 * 24 * 60 * 60 * 1000;
+              const start = tx.gameStartDateMs || 0;
+              if (!start) return 100; // Old records are done
+              
+              const current = gameTime.gameDate.getTime();
+              const elapsed = current - start;
+              return Math.min(100, Math.max(0, (elapsed / durationGameMs) * 100));
+            };
+
+            const progress = calculateProgress();
+
+            return (
+              <div 
+                key={tx.id}
+                className="bg-zinc-900/30 border border-zinc-800/50 p-5 rounded-3xl hover:bg-zinc-900/50 transition-all group animate-in slide-in-from-right-4 duration-500 overflow-hidden relative"
+              >
+                {/* Progress Bar Background */}
+                {progress < 100 && (
+                  <div className="absolute top-0 left-0 w-full h-[2px] bg-zinc-800/50 overflow-hidden">
+                    <div 
+                      className="h-full bg-green-500 shadow-[0_0_10px_rgba(34,197,94,0.5)] transition-all ease-linear"
+                      style={{ 
+                        width: `${progress}%`,
+                        transitionDuration: gameTime.isPaused ? '0ms' : `${2000 / gameTime.speed}ms` 
+                      }}
+                    />
                   </div>
-                  <div>
-                    <h5 className="text-sm font-black text-white italic tracking-tight uppercase">{tx.commodityName}</h5>
-                    <div className="flex items-center gap-2 mt-0.5">
-                      <Clock size={10} className="text-zinc-600" />
-                      <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">{tx.gameDate}</span>
+                )}
+
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-zinc-800/50 border border-zinc-700/30 flex items-center justify-center text-white">
+                      <Box size={20} />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h5 className="text-sm font-black text-white italic tracking-tight uppercase">{tx.commodityName}</h5>
+                        {progress < 100 ? (
+                          <div className="flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-green-500/10 border border-green-500/20">
+                            <Clock size={10} className="text-green-500 animate-pulse" />
+                            <span className="text-[8px] font-black text-green-500 uppercase tracking-widest">{Math.floor(progress)}%</span>
+                          </div>
+                        ) : (
+                          <div className="px-2 py-0.5 rounded-full bg-blue-500/10 border border-blue-500/20">
+                            <span className="text-[8px] font-black text-blue-400 uppercase tracking-widest italic">DIKIRIM</span>
+                          </div>
+                        )}
+                      </div>
+                      <div className="flex items-center gap-2 mt-0.5">
+                        <Clock size={10} className="text-zinc-600" />
+                        <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">{tx.gameDate}</span>
+                      </div>
                     </div>
                   </div>
+                  <div className="text-right">
+                    <p className="text-lg font-black italic tracking-tighter text-green-400">
+                      +{tx.totalPrice.toLocaleString('id-ID')}
+                    </p>
+                    <p className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">Total Nilai</p>
+                  </div>
                 </div>
-                <div className="text-right">
-                  <p className="text-lg font-black italic tracking-tighter text-green-400">
-                    +{tx.totalPrice.toLocaleString('id-ID')}
-                  </p>
-                  <p className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest">Total Nilai</p>
-                </div>
-              </div>
 
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                <div className="bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
-                  <div className="flex items-center gap-1.5 mb-1 opacity-50">
-                    <MapPin size={10} className="text-zinc-500" />
-                    <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">Mitra</span>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
+                  <div className="bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
+                    <div className="flex items-center gap-1.5 mb-1 opacity-50">
+                      <MapPin size={10} className="text-zinc-500" />
+                      <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">Mitra</span>
+                    </div>
+                    <p className="text-[10px] font-black text-zinc-300 uppercase truncate">{tx.partner}</p>
                   </div>
-                  <p className="text-[10px] font-black text-zinc-300 uppercase truncate">{tx.partner}</p>
-                </div>
-                <div className="bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
-                  <div className="flex items-center gap-1.5 mb-1 opacity-50">
-                    <Box size={10} className="text-zinc-500" />
-                    <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">Volume</span>
+                  <div className="bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
+                    <div className="flex items-center gap-1.5 mb-1 opacity-50">
+                      <Box size={10} className="text-zinc-500" />
+                      <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">Volume</span>
+                    </div>
+                    <p className="text-[10px] font-black text-zinc-300 uppercase truncate">{tx.amount.toLocaleString('id-ID')} <span className="text-[8px] text-zinc-600">{tx.unit}</span></p>
                   </div>
-                  <p className="text-[10px] font-black text-zinc-300 uppercase truncate">{tx.amount.toLocaleString('id-ID')} <span className="text-[8px] text-zinc-600">{tx.unit}</span></p>
-                </div>
-                <div className="bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
-                  <div className="flex items-center gap-1.5 mb-1 opacity-50">
-                    <Coins size={10} className="text-zinc-500" />
-                    <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">Harga</span>
+                  <div className="bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
+                    <div className="flex items-center gap-1.5 mb-1 opacity-50">
+                      <Coins size={10} className="text-zinc-500" />
+                      <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">Harga</span>
+                    </div>
+                    <p className="text-[10px] font-black text-zinc-300 uppercase truncate">{tx.pricePerUnit.toLocaleString('id-ID')}</p>
                   </div>
-                  <p className="text-[10px] font-black text-zinc-300 uppercase truncate">{tx.pricePerUnit.toLocaleString('id-ID')}</p>
-                </div>
-                <div className="bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
-                  <div className="flex items-center gap-1.5 mb-1 opacity-50">
-                    <Clock size={10} className="text-green-500" />
-                    <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">Pengiriman</span>
+                  <div className="bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
+                    <div className="flex items-center gap-1.5 mb-1 opacity-50">
+                      <Clock size={10} className="text-green-500" />
+                      <span className="text-[8px] font-black uppercase text-zinc-600 tracking-widest">Status Paket</span>
+                    </div>
+                    <p className="text-[10px] font-black text-green-400 uppercase truncate">{progress < 100 ? "Dalam Pelayaran" : "Tiba di Tujuan"}</p>
                   </div>
-                  <p className="text-[10px] font-black text-green-400 uppercase truncate">{tx.shippingTime || "3-5 Hari"}</p>
                 </div>
               </div>
-            </div>
-          ))
+            );
+          })
         )}
       </div>
     </div>

@@ -3,6 +3,7 @@ import { countries } from "@/app/database/data/countries/region/index";
 import { CountryData } from "@/app/database/data/types/index";
 import { historiImportStorage } from "./ekspor_impor/impor/HistoriImportStorage";
 import { historiEksporStorage } from "./ekspor_impor/ekspor/HistoriEksporStorage";
+import { importStockStorage } from "./ImportStockStorage";
 
 const TRADE_STORAGE_KEY = "game_trades";
 const TRANSACTIONS_KEY = "active_trade_transactions";
@@ -17,6 +18,7 @@ export const tradeStorage = {
       // Reset trade histories
       historiImportStorage.clearHistory();
       historiEksporStorage.clearHistory();
+      importStockStorage.clear();
 
       // Notify UI listeners for real-time synchronization
       window.dispatchEvent(new CustomEvent('trade_storage_updated'));
@@ -76,13 +78,13 @@ export const tradeStorage = {
   addTransaction: (tx: { source: string, dest: string, type: 'buy' | 'sell' }) => {
     if (typeof window === 'undefined') return;
     const txs = tradeStorage.getActiveTransactions();
-    // Add unique transaction with timestamp
+    // Add unique transaction with timestamp and random factor to prevent collisions
     const normalize = (name: string) => name.toLowerCase().trim() === "philippines" ? "Filipina" : name.trim();
     const newTx = { 
         ...tx, 
         source: normalize(tx.source),
         dest: normalize(tx.dest),
-        id: Date.now(), 
+        id: Date.now() + Math.floor(Math.random() * 1000000), 
         timestamp: Date.now() 
     };
     const updated = [...txs, newTx];

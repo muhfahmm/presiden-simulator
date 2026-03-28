@@ -15,6 +15,7 @@ export interface TradeTransaction {
   shippingTime: string;
   timestamp: string; // ISO string for sorting
   gameDate: string;  // Formatted game date e.g. 01-01-2026
+  gameStartDateMs: number; // For synchronization with game clock
 }
 
 export const historiEksporStorage = {
@@ -29,7 +30,8 @@ export const historiEksporStorage = {
       id: Math.random().toString(36).substring(2, 11),
       type: 'ekspor',
       timestamp: new Date().toISOString(),
-      gameDate: `${String(gameDate.getDate()).padStart(2, '0')}-${String(gameDate.getMonth() + 1).padStart(2, '0')}-${gameDate.getFullYear()}`
+      gameDate: `${String(gameDate.getDate()).padStart(2, '0')}-${String(gameDate.getMonth() + 1).padStart(2, '0')}-${gameDate.getFullYear()}`,
+      gameStartDateMs: gameDate.getTime()
     };
 
     const updatedHistory = [newTransaction, ...history].slice(0, 100);

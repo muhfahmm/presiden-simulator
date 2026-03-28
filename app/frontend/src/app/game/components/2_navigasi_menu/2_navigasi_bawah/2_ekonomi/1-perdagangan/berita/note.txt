@@ -1,0 +1,64 @@
+# RANCANGAN SISTEM BERITA (TRADE HUB)
+
+Tujuan: Memberikan konteks dinamis terhadap perubahan harga komoditas dan situasi ekonomi/politik yang mempengaruhi perdagangan.
+
+## STRUKTUR DATA BERITA (newsData.ts)
+Setiap berita harus memiliki properti berikut:
+1.  **ID**: Unique identifier (string/number).
+2.  **Judul**: Judul berita yang menarik (max 100 karakter).
+3.  **Kategori**: 
+    - Ekonomi (Perubahan harga/pajak)
+    - Geopolitik (Perang/Aliansi)
+    - Bencana Alam (Gangguan produksi)
+    - Teknologi (Efisiensi fasilitas)
+4.  **Tingkat Urgensi**:
+    - Low (Informasi umum)
+    - Medium (Berita penting)
+    - High (Breaking News - berdampak langsung)
+5.  **Sumber**: Nama kantor berita (misal: "Global Trade Monitor", "Lensa Ekonomi").
+6.  **Waktu**: Timestamp atau tanggal game saat berita dirilis.
+7.  **Deskripsi Singkat**: Ringkasan 1-2 kalimat untuk tampilan list.
+8.  **Konten Lengkap**: Isi detail berita.
+9.  **Dampak (Metadata)**:
+    - Komoditas terkait (misal: "Emas", "Minyak Bumi")
+    - Persentase perubahan harga (misal: +15% atau -10%)
+    - Durasi dampak (misal: "3 Bulan")
+
+## RENCANA FITUR UI (BeritaHalaman.tsx)
+1.  **List Berita**: Tampilan kronologis dengan indikator warna berdasarkan urgensi.
+2.  **Filter Kategori**: Memungkinkan user melihat berita berdasarkan topik tertentu.
+3.  **Detail View**: Modal atau expand card saat berita diklik untuk membaca isi lengkap.
+4.  **Banner Breaking News**: Ticker atau banner kecil di bagian atas jika ada berita dengan urgensi "High".
+
+## CONTOH RENCANA KONTEN (VARIASI LEBIH BANYAK)
+
+### 1. MINERAL & ENERGI (High Impact)
+- "Konflik di Timur Tengah: Blokade Selat Hormuz Menyebabkan Harga Minyak Dunia Melonjak 25%." (Urgensi: High)
+- "Penemuan Cadangan Litium Masif di Pegunungan Andes: Suplai Global Meningkat, Biaya Produksi Baterai Menurun." (Urgensi: Medium)
+- "Serangan Siber pada Infrastruktur Gas: Distribusi Terhenti, Harga Gas Alam Naik Secara Drastis di Eropa." (Urgensi: High)
+- "Rekor Produksi Batubara Nasional: Stok Melimpah, Kebijakan Ekspor Diperketat untuk Menjaga Stok Domestik." (Urgensi: Low)
+
+### 2. MANUFAKTUR & TEKNOLOGI
+- "Inovasi Nanoteknologi: Efisiensi Produksi Suku Cadang Elektronik Meningkat 40%, Harga Pasar Menurun." (Urgensi: Medium)
+- "Mogok Kerja Buruh Industri Otomotif Global: Produksi Kendaraan Tersendat, Waktu Tunggu Inden Semakin Lama." (Urgensi: Medium)
+- "Kebijakan Subsidi Panel Surya: Permintaan Global untuk Material Silikon dan Kaca Industri Meningkat Pesat." (Urgensi: Low)
+
+### 3. PRODUKSI PANGAN & PERTANIAN
+- "Gagal Panen Massal Akibat El Nino: Krisis Padi Mengancam Asia Tenggara, Harga Beras Internasional Meroket." (Urgensi: High)
+- "Wabah Penyakit Mulut dan Kuku (PMK) Jenis Baru: Ekspor Daging Sapi dan Susu Dilarang Sementara di Berbagai Wilayah." (Urgensi: Medium)
+- "Panen Raya Gandum di Ukraina dan Rusia: Pasokan Melimpah, Harga Tepung Terigu di Pasar Global Menurun." (Urgensi: Medium)
+- "Inovasi Pupuk Organik Cair: Hasil Perkebunan Kopi dan Teh Meningkat dengan Biaya Operasional Lebih Rendah." (Urgensi: Low)
+
+### 4. INDUSTRI PENGOLAHAN
+- "Kenaikan Pajak Ekspor Minyak Kelapa Sawit (CPO): Harga Turunan Produk Sabun dan Kosmetik Menjadi Lebih Mahal." (Urgensi: Medium)
+- "Standar Keamanan Pangan Baru di Uni Eropa: Persyaratan Ketat untuk Produk Olahan Ikan, Biaya Sertifikasi Menambah Beban Ekspor." (Urgensi: Low)
+
+### 5. MEDIS & FARMASI
+- "Pandemi Flu Jenis Baru: Permintaan Masker, Ventilator, dan Bahan Baku Obat-obatan Meningkat 500% dalam Semalam." (Urgensi: High)
+- "Penemuan Vaksin Universal untuk Demam Berdarah: Saham Perusahaan Farmasi Melonjak, Distribusi Global Dimulai." (Urgensi: Medium)
+- "Kelangkaan Bahan Baku Kapas Global: Produksi Perban dan Perlengkapan Medis Dasar Terhambat." (Urgensi: Medium)
+
+### 6. MILITER & PERTAHANAN
+- "Eskalasi Ketegangan Perbatasan: Negara Tetangga Memperkuat Pertahanan, Permintaan Amunisi dan Drone Kamikaze Meningkat." (Urgensi: High)
+- "Embargo Senjata Internasional terhadap Rezim Tertentu: Penjualan Kendaraan Tempur dan Senjata Berat Mengalami Penyesuaian." (Urgensi: High)
+- "Latihan Perang Berskala Besar di Samudera Pasifik: Kebutuhan Bahan Bakar Militer Menguras Cadangan Strategis Negara." (Urgensi: Medium)

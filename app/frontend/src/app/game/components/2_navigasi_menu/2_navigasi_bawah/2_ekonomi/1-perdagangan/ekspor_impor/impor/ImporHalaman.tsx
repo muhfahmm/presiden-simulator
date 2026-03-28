@@ -1,6 +1,7 @@
 import { buyPriceMap, sellPriceMap } from "../../tradeData";
 import { TradePriceChart } from "../../TradePriceChart";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
+import { importStockStorage } from "../../ImportStockStorage";
 
 interface ImporHalamanProps {
   selectedKey: string;
@@ -16,6 +17,7 @@ interface ImporHalamanProps {
   setActiveChartTab: (tab: "buy" | "sell") => void;
   getStoredGameDate: () => Date;
   INITIAL_GAME_DATE: Date;
+  selectedTradePartner: string | null;
 }
 
 export const ImporHalaman: React.FC<ImporHalamanProps> = ({
@@ -31,7 +33,8 @@ export const ImporHalaman: React.FC<ImporHalamanProps> = ({
   activeChartTab,
   setActiveChartTab,
   getStoredGameDate,
-  INITIAL_GAME_DATE
+  INITIAL_GAME_DATE,
+  selectedTradePartner
 }) => {
   return (
     <div className="animate-in fade-in duration-700 space-y-10">
@@ -58,7 +61,9 @@ export const ImporHalaman: React.FC<ImporHalamanProps> = ({
                 const today = getStoredGameDate();
                 const daysPassed = Math.floor((today.getTime() - INITIAL_GAME_DATE.getTime()) / (1000 * 60 * 60 * 24));
                 const dailyProd = selectedUnits * getProductionRate(selectedKey);
-                const stock = dailyProd * Math.max(1, daysPassed);
+                const totalSimulated = Math.floor(dailyProd * Math.max(0, daysPassed));
+                const alreadyImported = importStockStorage.getImportedAmount(selectedTradePartner, selectedKey);
+                const stock = Math.max(0, totalSimulated - alreadyImported);
                 return `${stock.toLocaleString('id-ID')} ${getUnit(selectedKey)}`;
               })()}</span>
             </div>
@@ -76,7 +81,7 @@ export const ImporHalaman: React.FC<ImporHalamanProps> = ({
             className={`px-10 py-5 font-black uppercase text-[12px] tracking-[0.2em] rounded-2xl transition-all whitespace-nowrap ${
               selectedUnits === 0 
               ? "bg-zinc-800 text-zinc-500 cursor-not-allowed opacity-50 shadow-none" 
-              : "bg-red-500 text-white hover:bg-red-600 cursor-pointer shadow-[0_10px_30px_rgba(239,68,68,0.2)] active:scale-95"
+              : "bg-red-500 text-white hover:bg-red-600 cursor-pointer shadow-[0_10px_30px_rgba(239,68,68,0.2)] hover:shadow-[0_15px_40px_rgba(239,68,68,0.4)] hover:scale-[1.02] active:scale-95"
             }`}
           >
             Eksekusi Impor {baseBuyPrice.toLocaleString('id-ID')}
@@ -88,12 +93,12 @@ export const ImporHalaman: React.FC<ImporHalamanProps> = ({
         <div className="flex flex-wrap items-center justify-between gap-6">
           <div className="flex items-center gap-1 bg-zinc-900/50 p-1.5 rounded-2xl border border-zinc-900/50 backdrop-blur-md">
             {["1d", "1w", "1m", "3m", "6m", "9m", "1y", "3y", "5y"].map(tf => (
-              <button key={tf} onClick={() => setSelectedTimeframe(tf)} className={`px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${selectedTimeframe === tf ? 'bg-blue-600 text-white' : 'text-zinc-500 hover:text-white hover:bg-zinc-800'}`}>{tf}</button>
+              <button key={tf} onClick={() => setSelectedTimeframe(tf)} className={`px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all cursor-pointer ${selectedTimeframe === tf ? 'bg-blue-600 text-white' : 'text-zinc-500 hover:text-white hover:bg-zinc-800'}`}>{tf}</button>
             ))}
           </div>
           <div className="flex items-center gap-2 bg-zinc-900/40 p-1 rounded-2xl border border-zinc-900/50">
-            <button onClick={() => setActiveChartTab("buy")} className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${activeChartTab === "buy" ? 'bg-red-500 text-white' : 'text-zinc-600'}`}>Grafik Beli</button>
-            <button onClick={() => setActiveChartTab("sell")} className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${activeChartTab === "sell" ? 'bg-green-500 text-white' : 'text-zinc-600'}`}>Grafik Jual</button>
+            <button onClick={() => setActiveChartTab("buy")} className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all hover:scale-105 active:scale-95 cursor-pointer ${activeChartTab === "buy" ? 'bg-red-500 text-white shadow-lg shadow-red-500/20' : 'text-zinc-600 hover:text-zinc-400'}`}>Grafik Beli</button>
+            <button onClick={() => setActiveChartTab("sell")} className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all hover:scale-105 active:scale-95 cursor-pointer ${activeChartTab === "sell" ? 'bg-green-500 text-white shadow-lg shadow-green-500/20' : 'text-zinc-600 hover:text-zinc-400'}`}>Grafik Jual</button>
           </div>
         </div>
         <TradePriceChart selectedKey={selectedKey} selectedTimeframe={selectedTimeframe} basePrice={activeChartTab === "buy" ? baseBuyPrice : Math.round(sellPriceMap[selectedKey] || 100)} type={activeChartTab} color={activeChartTab === "buy" ? "#ef4444" : "#22c55e"} />

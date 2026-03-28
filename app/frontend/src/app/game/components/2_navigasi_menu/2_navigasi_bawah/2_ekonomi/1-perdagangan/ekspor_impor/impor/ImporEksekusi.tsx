@@ -5,6 +5,7 @@ import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_wak
 import { historiImportStorage } from "./HistoriImportStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { tradeStorage } from "../../TradeStorage";
+import { importStockStorage } from "../../ImportStockStorage";
 import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/countries/region/index";
 
 interface ImporEksekusiProps {
@@ -36,7 +37,9 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
     const today = getStoredGameDate();
     const daysPassed = Math.floor((today.getTime() - INITIAL_GAME_DATE.getTime()) / (1000 * 60 * 60 * 24));
     const aiDailyProd = selectedUnits * getProductionRate(selectedKey);
-    return Math.floor(aiDailyProd * Math.max(1, daysPassed));
+    const totalSimulated = Math.floor(aiDailyProd * Math.max(0, daysPassed));
+    const alreadyImported = importStockStorage.getImportedAmount(selectedTradePartner, selectedKey);
+    return Math.max(0, totalSimulated - alreadyImported);
   };
 
   const [liveAiStock, setLiveAiStock] = useState(calculateAiStock());
@@ -89,6 +92,9 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
     
     budgetStorage.updateBudget(-totalCost);
     
+    // TRACK PARTNER STOCK REDUCTION
+    importStockStorage.addImport(selectedTradePartner, selectedKey, quantity);
+    
     const shippingTime = calculateShippingTime(selectedTradePartner);
 
     // Log to history
@@ -137,7 +143,7 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
       <div className="flex items-center justify-between">
         <button 
           onClick={() => setActiveMenu("Menu:Perdagangan")}
-          className="p-2.5 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl border border-zinc-800 transition-all active:scale-[0.95] flex items-center gap-2"
+          className="p-2.5 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl border border-zinc-800 transition-all hover:scale-105 active:scale-[0.95] flex items-center gap-2 cursor-pointer"
         >
           <ChevronLeft size={16} />
           <span className="text-[10px] font-black uppercase tracking-widest pr-1">Kembali</span>
@@ -266,7 +272,7 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
           <div className="grid grid-cols-2 gap-4 mt-8">
             <button 
               onClick={() => setActiveMenu("Menu:Perdagangan")}
-              className="py-5 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-500 hover:text-white font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl border border-zinc-800 transition-all active:scale-[0.98]"
+              className="py-5 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-500 hover:text-white font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl border border-zinc-800 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
               Batalkan
             </button>
@@ -276,7 +282,7 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
               className={`py-5 font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl border transition-all active:scale-[0.98] ${
                 isBudgetInsufficient 
                 ? 'bg-zinc-900 border-zinc-800 text-zinc-700 cursor-not-allowed' 
-                : 'bg-red-500 border-red-400 text-white shadow-lg shadow-red-500/20 animate-in fade-in slide-in-from-right-2'
+                : 'bg-red-500 border-red-400 text-white shadow-lg shadow-red-500/20 hover:bg-red-400 hover:scale-[1.02] active:scale-[0.98] cursor-pointer animate-in fade-in slide-in-from-right-2'
               }`}
             >
               Konfirmasi Impor

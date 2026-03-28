@@ -115,6 +115,9 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
   const handleConfirm = () => {
     budgetStorage.updateBudget(totalValue);
     
+    // REDUCE DOMESTIC STOCK
+    budgetStorage.updateCumulativeProduction({ [stockKey]: -quantity });
+    
     const shippingTime = calculateShippingTime(selectedTradePartner);
 
     // Log to history
@@ -163,7 +166,7 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
       <div className="flex items-center justify-between">
         <button 
           onClick={() => setActiveMenu("Menu:Perdagangan")}
-          className="p-2.5 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl border border-zinc-800 transition-all active:scale-[0.95] flex items-center gap-2"
+          className="p-2.5 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-400 hover:text-white rounded-xl border border-zinc-800 transition-all hover:scale-105 active:scale-[0.95] flex items-center gap-2 cursor-pointer"
         >
           <ChevronLeft size={16} />
           <span className="text-[10px] font-black uppercase tracking-widest pr-1">Kembali</span>
@@ -289,7 +292,7 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
           <div className="grid grid-cols-2 gap-4 mt-8">
             <button 
               onClick={() => setActiveMenu("Menu:Perdagangan")}
-              className="py-5 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-500 hover:text-white font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl border border-zinc-800 transition-all active:scale-[0.98]"
+              className="py-5 bg-zinc-900/50 hover:bg-zinc-800 text-zinc-500 hover:text-white font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl border border-zinc-800 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
             >
               Batalkan
             </button>
@@ -299,7 +302,7 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
               className={`py-5 font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl border transition-all active:scale-[0.98] ${
                 quantity <= 0 || userStock <= 0
                 ? 'bg-zinc-900 border-zinc-800 text-zinc-700 cursor-not-allowed' 
-                : 'bg-green-600 border-green-500 text-white shadow-lg shadow-green-500/20 active:bg-green-500'
+                : 'bg-green-600 border-green-500 text-white shadow-lg shadow-green-500/20 hover:bg-green-500 hover:scale-[1.02] active:scale-[0.98] cursor-pointer'
               }`}
             >
               Konfirmasi Ekspor

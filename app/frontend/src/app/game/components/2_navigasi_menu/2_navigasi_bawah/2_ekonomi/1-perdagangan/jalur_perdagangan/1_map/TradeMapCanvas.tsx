@@ -139,7 +139,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
   const requestRef = useRef<number>(null);
   const lastTimestampRef = useRef<number>(Date.now());
   const txAccumulatedTimeRef = useRef<Record<number, number>>({});
-  
+
   // Cache for pre-calculated and PROJECTED routes
   const activeRoutesCacheRef = useRef<Record<number, { pts: Point[], pixels: { x: number, y: number }[] }>>({});
   const drawnPathsRef = useRef<{ pts: { rtX: number, rtY: number }[], origin: string, mitra: string }[]>([]);
@@ -192,7 +192,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
 
     ctx.clearRect(0, 0, mapWidth * 3, mapHeight);
     const offsets = [0, mapWidth, mapWidth * 2];
-    
+
     // a. Pre-calculate active route pixels to ensure they are available for drawing
     activeTransactions.forEach(tx => {
       if (!activeRoutesCacheRef.current[tx.id]) {
@@ -204,29 +204,13 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       }
     });
 
-    // b. Pre-calculate dormant paths
+    // b. Dormant paths calculation removed
     drawnPathsRef.current = [];
-    const userCenter = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
-    if (userCenter) {
-      tradePartners.forEach(partnerName => {
-        const pCenter = centersData.find(c => c.name_id.toLowerCase().trim() === partnerName || c.name_en.toLowerCase().trim() === partnerName);
-        if (pCenter) {
-          const pts = [];
-          for (let i = 0; i <= 20; i++) {
-            const t = i / 20;
-            const lon = userCenter.lon + (pCenter.lon - userCenter.lon) * t;
-            const lat = userCenter.lat + (pCenter.lat - userCenter.lat) * t + Math.sin(t * Math.PI) * 10;
-            pts.push({ rtX: (lon + 180) / 360, rtY: (90 - lat) / 180 });
-          }
-          drawnPathsRef.current.push({ pts, origin: userCenter.name_en, mitra: pCenter.name_id });
-        }
-      });
-    }
 
     offsets.forEach(offset => {
       ctx.save(); ctx.translate(offset, 0);
       const project = (lon: number, lat: number) => ({ x: ((lon + 180) / 360) * mapWidth, y: ((90 - lat) / 180) * mapHeight });
-      
+
       // Gradient Ocean
       const grad = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
       grad.addColorStop(0, "#121d31"); grad.addColorStop(1, "#070b13");
@@ -238,7 +222,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         const targetUser = { "United States": "United States of America" }[userCountry] || userCountry;
         const targetHover = targetCountry ? ({ "United States": "United States of America" }[targetCountry] || targetCountry) : null;
         const isPlayer = name === targetUser, isTarget = name === targetHover;
-        
+
         ctx.beginPath();
         const draw = (coords: any) => coords.forEach((poly: any) => poly.forEach((c: any, i: number) => {
           const { x, y } = project(c[0], c[1]);
@@ -252,7 +236,8 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         let fill = getContinentColor(name, feature.id), stroke = "rgba(245, 245, 220, 0.25)";
         if (isPartner && !isPlayer && !isTarget) { fill = "rgba(6, 182, 212, 0.45)"; stroke = "rgba(6, 182, 212, 0.9)"; }
         if (isPlayer || isTarget) {
-          fill = isPlayer ? "rgba(34, 197, 94, 0.3)" : "rgba(251, 191, 36, 0.4)";
+          // Hanya gunakan hijau untuk player, target tetap warna benua tapi dengan stroke & glow
+          if (isPlayer) fill = "rgba(34, 197, 94, 0.3)";
           stroke = isPlayer ? "#4ade80" : "#fbbf24";
           ctx.shadowBlur = 15; ctx.shadowColor = stroke;
         }
@@ -266,31 +251,29 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
           ctx.beginPath();
           ctx.moveTo(data.pixels[0].x, data.pixels[0].y);
           for (let i = 1; i < data.pixels.length; i++) ctx.lineTo(data.pixels[i].x, data.pixels[i].y);
-          ctx.lineWidth = 3.5;
-          ctx.strokeStyle = tx.type === 'buy' ? "#ff3333" : "#22c55e";
-          ctx.globalAlpha = 0.5;
+          ctx.lineWidth = 5;
+          ctx.strokeStyle = tx.type === 'buy' ? "#ef4444" : "#10b981";
+          ctx.globalAlpha = 0.7;
+          ctx.shadowBlur = 10;
+          ctx.shadowColor = ctx.strokeStyle;
           ctx.stroke();
           ctx.globalAlpha = 1.0;
+          ctx.shadowBlur = 0;
         }
       });
 
-      // Dormant Routes
-      drawnPathsRef.current.forEach(p => {
-        ctx.beginPath(); ctx.moveTo(p.pts[0].rtX*mapWidth, p.pts[0].rtY*mapHeight);
-        p.pts.forEach(pt => ctx.lineTo(pt.rtX*mapWidth, pt.rtY*mapHeight));
-        ctx.strokeStyle = "rgba(14,165,233,0.3)"; ctx.stroke();
-      });
+      // Dormant Routes removed
 
       // Centers & Labels
-      const sorted = [...centersData].sort((a,b) => (a.name_en === targetCountry ? 1 : b.name_en === targetCountry ? -1 : 0));
+      const sorted = [...centersData].sort((a, b) => (a.name_en === targetCountry ? 1 : b.name_en === targetCountry ? -1 : 0));
       const grid: any[] = [];
       sorted.forEach(c => {
         const { x, y } = project(c.lon, c.lat);
         const isSel = c.name_en === userCountry || c.name_en === targetCountry;
         ctx.beginPath(); ctx.arc(x, y, isSel ? 4 : 2.5, 0, 7); ctx.fillStyle = isSel ? "#ffffff" : "rgba(148,163,184,0.5)"; ctx.fill();
-        if (isSel) { ctx.font = "48px sans-serif"; ctx.fillText(c.flag, x, y - 90); }
-        else if (!grid.some(p => Math.abs(p.x-x)<120 && Math.abs(p.y-y)<60)) {
-          ctx.font = "14px sans-serif"; ctx.fillStyle = "rgba(148,163,184,0.35)"; ctx.fillText(c.flag, x, y-18); grid.push({x,y});
+        if (isSel) { /* Flag/Label removed */ }
+        else if (!grid.some(p => Math.abs(p.x - x) < 120 && Math.abs(p.y - y) < 60)) {
+          ctx.font = "14px sans-serif"; ctx.fillStyle = "rgba(148,163,184,0.35)"; ctx.fillText(c.flag, x, y - 18); grid.push({ x, y });
         }
       });
 
@@ -320,38 +303,44 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
       if (canvas) {
         const ctx = canvas.getContext("2d");
         if (ctx) {
-           ctx.clearRect(0, 0, canvas.width, canvas.height);
-           const offsets = [0, mapWidth, mapWidth * 2];
-           offsets.forEach(offset => {
-             ctx.save(); ctx.translate(offset, 0);
-             activeTxRef.current.forEach(tx => {
-               const data = activeRoutesCacheRef.current[tx.id];
-               if (data) {
-                 const { pixels } = data;
-                 const duration = 10000;
-                 const elapsed = txAccumulatedTimeRef.current[tx.id] || 0;
-                 const progress = Math.min(1, Math.max(0, elapsed / duration));
-                 
-                 if (elapsed >= duration) {
-                    delete activeRoutesCacheRef.current[tx.id];
-                    setTimeout(() => tradeStorage.removeTransaction(tx.id), 0);
-                    return;
-                 }
-                 const totalSegs = pixels.length - 1;
-                 const curSeg = Math.min(totalSegs - 1, Math.floor(progress * totalSegs));
-                 const segProg = (progress * totalSegs) - curSeg;
-                 const p1 = pixels[curSeg], p2 = pixels[curSeg + 1];
-                 const curX = p1.x + (p2.x - p1.x) * segProg, curY = p1.y + (p2.y - p1.y) * segProg;
-                 const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+          const offsets = [0, mapWidth, mapWidth * 2];
+          offsets.forEach(offset => {
+            ctx.save(); ctx.translate(offset, 0);
+            activeTxRef.current.forEach(tx => {
+              const data = activeRoutesCacheRef.current[tx.id];
+              if (data) {
+                const { pixels } = data;
+                const duration = 45000; // 45 seconds voyage for better visibility
+                const elapsed = txAccumulatedTimeRef.current[tx.id] || 0;
+                const progress = Math.min(1, Math.max(0, elapsed / duration));
 
-                 ctx.save(); ctx.translate(curX, curY); ctx.rotate(angle); ctx.fillStyle = "#ffffff";
-                 ctx.shadowBlur = 8; ctx.shadowColor = "#ffffff";
-                 ctx.beginPath(); ctx.moveTo(10, 0); ctx.lineTo(-6, -5); ctx.lineTo(-4, 0); ctx.lineTo(-6, 5);
-                 ctx.closePath(); ctx.fill(); ctx.restore();
-               }
-             });
-             ctx.restore();
-           });
+                if (elapsed >= duration) {
+                  delete activeRoutesCacheRef.current[tx.id];
+                  setTimeout(() => tradeStorage.removeTransaction(tx.id), 0);
+                  return;
+                }
+                const totalSegs = pixels.length - 1;
+                const curSeg = Math.min(totalSegs - 1, Math.floor(progress * totalSegs));
+                const segProg = (progress * totalSegs) - curSeg;
+                const p1 = pixels[curSeg], p2 = pixels[curSeg + 1];
+                const curX = p1.x + (p2.x - p1.x) * segProg, curY = p1.y + (p2.y - p1.y) * segProg;
+                const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
+
+                ctx.save(); ctx.translate(curX, curY); ctx.rotate(angle); ctx.fillStyle = "#ffffff";
+                ctx.shadowBlur = 12; ctx.shadowColor = "#ffffff";
+                // Larger Arrow Icon (32px scale)
+                ctx.beginPath(); 
+                ctx.moveTo(16, 0); 
+                ctx.lineTo(-10, -8); 
+                ctx.lineTo(-6, 0); 
+                ctx.lineTo(-10, 8);
+                ctx.closePath(); 
+                ctx.fill(); ctx.restore();
+              }
+            });
+            ctx.restore();
+          });
         }
       }
       requestRef.current = requestAnimationFrame(animate);
@@ -371,7 +360,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
           const rect = fgCanvasRef.current!.getBoundingClientRect();
           const x = ((e.clientX - rect.left) / rect.width) * (mapWidth * 3) % mapWidth;
           const y = ((e.clientY - rect.top) / rect.height) * mapHeight;
-          setIsHovering(centersData.some(c => Math.sqrt((((c.lon+180)/360)*mapWidth - x)**2 + (((90-c.lat)/180)*mapHeight - y)**2) < 60));
+          setIsHovering(centersData.some(c => Math.sqrt((((c.lon + 180) / 360) * mapWidth - x) ** 2 + (((90 - c.lat) / 180) * mapHeight - y) ** 2) < 60));
         }}
         onClick={(e) => {
           if (!active) return;
@@ -380,12 +369,12 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
           const y = ((e.clientY - rect.top) / rect.height) * mapHeight;
           let closest: any = null, minDist = 100;
           centersData.forEach(c => {
-            const d = Math.sqrt((((c.lon+180)/360)*mapWidth - x)**2 + (((90-c.lat)/180)*mapHeight - y)**2);
+            const d = Math.sqrt((((c.lon + 180) / 360) * mapWidth - x) ** 2 + (((90 - c.lat) / 180) * mapHeight - y) ** 2);
             if (d < minDist) { minDist = d; closest = c; }
           });
           internationalHubs.forEach(h => {
-             const d = Math.sqrt((((h.lon+180)/360)*mapWidth - x)**2 + (((90-h.lat)/180)*mapHeight - y)**2);
-             if (d < minDist) { minDist = d; closest = h; }
+            const d = Math.sqrt((((h.lon + 180) / 360) * mapWidth - x) ** 2 + (((90 - h.lat) / 180) * mapHeight - y) ** 2);
+            if (d < minDist) { minDist = d; closest = h; }
           });
           if (closest) {
             let name = closest.name_en || closest.name;
