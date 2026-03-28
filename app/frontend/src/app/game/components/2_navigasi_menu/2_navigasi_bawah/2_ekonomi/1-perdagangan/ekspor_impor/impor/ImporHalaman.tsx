@@ -1,6 +1,6 @@
-import React from "react";
 import { buyPriceMap, sellPriceMap } from "../../tradeData";
 import { TradePriceChart } from "../../TradePriceChart";
+import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 
 interface ImporHalamanProps {
   selectedKey: string;
@@ -72,7 +72,7 @@ export const ImporHalaman: React.FC<ImporHalamanProps> = ({
           </div>
           <button 
             disabled={selectedUnits === 0}
-            onClick={() => setActiveMenu(`Menu:Perdagangan:impor=${selectedKey}`)} 
+            onClick={() => setActiveMenu(`Menu:Perdagangan:impor_eksekusi`)} 
             className={`px-10 py-5 font-black uppercase text-[12px] tracking-[0.2em] rounded-2xl transition-all whitespace-nowrap ${
               selectedUnits === 0 
               ? "bg-zinc-800 text-zinc-500 cursor-not-allowed opacity-50 shadow-none" 

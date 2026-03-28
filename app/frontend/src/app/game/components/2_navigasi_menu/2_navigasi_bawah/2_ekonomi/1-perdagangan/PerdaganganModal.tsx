@@ -4,7 +4,7 @@ import {
   Cpu, Car, Bike, Construction, TreePine, Droplet, Cookie, Croissant, Pill, FlaskConical, Beef, Soup, 
   Bird, Milk, Leaf, Shell, Fish, Sprout, Utensils, Apple, Bean, Layers, Mountain, Gem, Waves, Flame, 
   Battery, Droplets, Box, Pickaxe, Radio, Coffee, Carrot, Eye, ChevronRight, Plus,
-  Target, Shield, Sword, Navigation, Ban
+  Target, Shield, Sword, Navigation, Ban, History as HistoryIcon
 } from "lucide-react"
 import { AddTradePartnerModal } from "./mitra_dagang_internasional/AddTradePartnerModal"
 import { CountryData } from "@/app/database/data/types/index"
@@ -12,7 +12,6 @@ import NavigasiWaktu from "./NavigasiWaktu"
 import { tradeStorage } from "./TradeStorage"
 import { buyPriceMap, sellPriceMap, labelsMap, baseKeyMapping, getDynamicPrice } from "./tradeData"
 import { TradePriceChart } from "./TradePriceChart"
-import { TradeExecutionModal } from "./TradeExecutionModal"
 import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime"
 import { getInitialAgreements } from "./database_mitra/agreementsRegistry"
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage"
@@ -33,6 +32,10 @@ import { militerRate } from "@/app/database/data/types/4_militer/7_militer_rates
 import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { EksporHalaman } from "./ekspor_impor/ekspor/EksporHalaman";
 import { ImporHalaman } from "./ekspor_impor/impor/ImporHalaman";
+import { EksporEksekusi } from "./ekspor_impor/ekspor/EksporEksekusi";
+import { ImporEksekusi } from "./ekspor_impor/impor/ImporEksekusi";
+import { HistoriEkspor } from "./ekspor_impor/ekspor/HistoriEkspor";
+import { HistoriImport } from "./ekspor_impor/impor/HistoriImport";
 
 interface ModalProps {
   isOpen: boolean;
@@ -146,7 +149,8 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   }, []);
 
   const [selectedTradePartner, setSelectedTradePartner] = useState<string | null>(null);
-  const [tradeType, setTradeType] = useState<"impor" | "ekspor">("impor");
+  const [tradeType, setTradeType] = useState<"impor" | "ekspor" | "histori">("impor");
+  const [historiType, setHistoriType] = useState<"impor" | "ekspor">("impor");
 
   // Helper to get formatted name/ID for database lookups
   const getCountryKey = (name: string) => name.toLowerCase().replace(/ /g, "_");
@@ -508,219 +512,219 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
               ) : (
                 <>
                   {/* Minerals */}
-              <div className="border-b border-zinc-900/80">
-                <div className="p-8 flex items-center justify-between">
-                  <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">1. Mineral Kritis</h3>
-                  <button onClick={() => setShowMinerals(!showMinerals)} className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 transition-all cursor-pointer"><Eye className="h-4 w-4" /></button>
-                </div>
-                {showMinerals && (
-                  <div className="px-4 pb-8 space-y-2">
-                    {minerals.map(([key, val]) => (
-                      <button 
-                        key={key} 
-                        disabled={val === 0}
-                        onClick={() => setSelectedKey(key)} 
-                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : 'cursor-pointer ' + (selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent')}`}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                            {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key)}
-                          </div>
-                          <span className="text-[12px] font-black uppercase tracking-tight">
-                            {labelsMap[key] || key.replace(/_/g, ' ')} 
-                            <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                          </span>
+                  <div className="border-b border-zinc-900/80">
+                    <div className="p-8 flex items-center justify-between">
+                      <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">1. Mineral Kritis</h3>
+                        <button onClick={() => setShowMinerals(!showMinerals)} className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 transition-all cursor-pointer"><Eye className="h-4 w-4" /></button>
+                      </div>
+                      {showMinerals && (
+                        <div className="px-4 pb-8 space-y-2">
+                          {minerals.map(([key, val]) => (
+                            <button 
+                              key={key} 
+                              disabled={val === 0}
+                              onClick={() => setSelectedKey(key)} 
+                              className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : 'cursor-pointer ' + (selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent')}`}
+                            >
+                              <div className="flex items-center gap-4">
+                                <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
+                                  {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key)}
+                                </div>
+                                <span className="text-[12px] font-black uppercase tracking-tight">
+                                  {labelsMap[key] || key.replace(/_/g, ' ')} 
+                                  <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
+                                </span>
+                              </div>
+                            </button>
+                          ))}
                         </div>
-                      </button>
-                    ))}
-                  </div>
+                      )}
+                    </div>
+                    {/* Manufaktur */}
+                    <div className="border-b border-zinc-900/80">
+                      <div className="p-8 flex items-center justify-between">
+                        <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">2. Manufaktur</h3>
+                        <button onClick={() => setShowManufaktur(!showManufaktur)} className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 transition-all cursor-pointer"><Eye className="h-4 w-4" /></button>
+                      </div>
+                      {showManufaktur && (
+                        <div className="px-4 pb-8 space-y-2">
+                          {manufakturItems.map(([key, val]) => (
+                            <button 
+                              key={key} 
+                              disabled={val === 0}
+                              onClick={() => setSelectedKey(key as string)} 
+                              className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
+                            >
+                              <div className="flex items-center gap-4">
+                                <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
+                                  {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
+                                </div>
+                                <span className="text-[12px] font-black uppercase tracking-tight">
+                                  {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                  <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
+                                </span>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    {/* Pangan */}
+                    <div className="border-b border-zinc-900/80">
+                      <div className="p-8 flex items-center justify-between">
+                        <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">3. Produksi Pangan</h3>
+                        <button onClick={() => setShowPangan(!showPangan)} className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 transition-all cursor-pointer"><Eye className="h-4 w-4" /></button>
+                      </div>
+                      {showPangan && (
+                        <div className="px-4 pb-8 space-y-4">
+                          {peternakanItems.map(([key, val]) => (
+                            <button 
+                              key={key} 
+                              disabled={val === 0}
+                              onClick={() => setSelectedKey(key as string)} 
+                              className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
+                            >
+                              <div className="flex items-center gap-4">
+                                <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
+                                  {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
+                                </div>
+                                <span className="text-[12px] font-black uppercase tracking-tight">
+                                  {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                  <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
+                                </span>
+                              </div>
+                            </button>
+                          ))}
+                          {perikananItems.map(([key, val]) => (
+                            <button 
+                              key={key} 
+                              disabled={val === 0}
+                              onClick={() => setSelectedKey(key as string)} 
+                              className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
+                            >
+                              <div className="flex items-center gap-4">
+                                <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
+                                  {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
+                                </div>
+                                <span className="text-[12px] font-black uppercase tracking-tight">
+                                  {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                  <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
+                                </span>
+                              </div>
+                            </button>
+                          ))}
+                          {agrikulturItems.map(([key, val]) => (
+                            <button 
+                              key={key} 
+                              disabled={val === 0}
+                              onClick={() => setSelectedKey(key as string)} 
+                              className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
+                            >
+                              <div className="flex items-center gap-4">
+                                <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
+                                  {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
+                                </div>
+                                <span className="text-[12px] font-black uppercase tracking-tight">
+                                  {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                  <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
+                                </span>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    {/* Industri Pengolahan */}
+                    <div className="border-b border-zinc-900/80">
+                      <div className="p-8 flex items-center justify-between">
+                        <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">4. Pengolahan</h3>
+                        <button onClick={() => setShowIndustriPengolahan(!showIndustriPengolahan)} className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 transition-all cursor-pointer"><Eye className="h-4 w-4" /></button>
+                      </div>
+                      {showIndustriPengolahan && (
+                        <div className="px-4 pb-8 space-y-2">
+                          {olahanPanganItems.map(([key, val]) => (
+                            <button 
+                              key={key} 
+                              disabled={val === 0}
+                              onClick={() => setSelectedKey(key as string)} 
+                              className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
+                            >
+                              <div className="flex items-center gap-4">
+                                <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
+                                  {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
+                                </div>
+                                <span className="text-[12px] font-black uppercase tracking-tight">
+                                  {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                  <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
+                                </span>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    {/* Farmasi */}
+                    <div className="border-b border-zinc-900/80">
+                      <div className="p-8 flex items-center justify-between">
+                        <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">5. Medis</h3>
+                        <button onClick={() => setShowFarmasi(!showFarmasi)} className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 transition-all cursor-pointer"><Eye className="h-4 w-4" /></button>
+                      </div>
+                      {showFarmasi && (
+                        <div className="px-4 pb-8 space-y-2">
+                          {farmasiItems.map(([key, val]) => (
+                            <button 
+                              key={key} 
+                              disabled={val === 0}
+                              onClick={() => setSelectedKey(key as string)} 
+                              className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
+                            >
+                              <div className="flex items-center gap-4">
+                                <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
+                                  {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
+                                </div>
+                                <span className="text-[12px] font-black uppercase tracking-tight">
+                                  {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                  <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
+                                </span>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    {/* Militer */}
+                    <div className="border-b border-zinc-900/80">
+                      <div className="p-8 flex items-center justify-between">
+                        <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">6. Militer</h3>
+                        <button onClick={() => setShowMiliter(!showMiliter)} className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 transition-all cursor-pointer"><Eye className="h-4 w-4" /></button>
+                      </div>
+                      {showMiliter && (
+                        <div className="px-4 pb-8 space-y-2">
+                          {militerItems.map(([key, val]) => (
+                            <button 
+                              key={key} 
+                              disabled={val === 0}
+                              onClick={() => setSelectedKey(key as string)} 
+                              className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
+                            >
+                              <div className="flex items-center gap-4">
+                                <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
+                                  {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
+                                </div>
+                                <span className="text-[12px] font-black uppercase tracking-tight">
+                                  {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
+                                  <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
+                                </span>
+                              </div>
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  </>
                 )}
               </div>
-              {/* Manufaktur */}
-              <div className="border-b border-zinc-900/80">
-                <div className="p-8 flex items-center justify-between">
-                  <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">2. Manufaktur</h3>
-                  <button onClick={() => setShowManufaktur(!showManufaktur)} className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 transition-all cursor-pointer"><Eye className="h-4 w-4" /></button>
-                </div>
-                {showManufaktur && (
-                  <div className="px-4 pb-8 space-y-2">
-                    {manufakturItems.map(([key, val]) => (
-                      <button 
-                        key={key} 
-                        disabled={val === 0}
-                        onClick={() => setSelectedKey(key as string)} 
-                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                            {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
-                          </div>
-                          <span className="text-[12px] font-black uppercase tracking-tight">
-                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
-                            <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                          </span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-              {/* Pangan */}
-              <div className="border-b border-zinc-900/80">
-                <div className="p-8 flex items-center justify-between">
-                  <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">3. Produksi Pangan</h3>
-                  <button onClick={() => setShowPangan(!showPangan)} className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 transition-all cursor-pointer"><Eye className="h-4 w-4" /></button>
-                </div>
-                {showPangan && (
-                  <div className="px-4 pb-8 space-y-4">
-                    {peternakanItems.map(([key, val]) => (
-                      <button 
-                        key={key} 
-                        disabled={val === 0}
-                        onClick={() => setSelectedKey(key as string)} 
-                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                            {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
-                          </div>
-                          <span className="text-[12px] font-black uppercase tracking-tight">
-                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
-                            <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                          </span>
-                        </div>
-                      </button>
-                    ))}
-                    {perikananItems.map(([key, val]) => (
-                      <button 
-                        key={key} 
-                        disabled={val === 0}
-                        onClick={() => setSelectedKey(key as string)} 
-                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                            {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
-                          </div>
-                          <span className="text-[12px] font-black uppercase tracking-tight">
-                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
-                            <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                          </span>
-                        </div>
-                      </button>
-                    ))}
-                    {agrikulturItems.map(([key, val]) => (
-                      <button 
-                        key={key} 
-                        disabled={val === 0}
-                        onClick={() => setSelectedKey(key as string)} 
-                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                            {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
-                          </div>
-                          <span className="text-[12px] font-black uppercase tracking-tight">
-                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
-                            <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                          </span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-              {/* Industri Pengolahan */}
-              <div className="border-b border-zinc-900/80">
-                <div className="p-8 flex items-center justify-between">
-                  <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">4. Pengolahan</h3>
-                  <button onClick={() => setShowIndustriPengolahan(!showIndustriPengolahan)} className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 transition-all cursor-pointer"><Eye className="h-4 w-4" /></button>
-                </div>
-                {showIndustriPengolahan && (
-                  <div className="px-4 pb-8 space-y-2">
-                    {olahanPanganItems.map(([key, val]) => (
-                      <button 
-                        key={key} 
-                        disabled={val === 0}
-                        onClick={() => setSelectedKey(key as string)} 
-                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                            {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
-                          </div>
-                          <span className="text-[12px] font-black uppercase tracking-tight">
-                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
-                            <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                          </span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-              {/* Farmasi */}
-              <div className="border-b border-zinc-900/80">
-                <div className="p-8 flex items-center justify-between">
-                  <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">5. Medis</h3>
-                  <button onClick={() => setShowFarmasi(!showFarmasi)} className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 transition-all cursor-pointer"><Eye className="h-4 w-4" /></button>
-                </div>
-                {showFarmasi && (
-                  <div className="px-4 pb-8 space-y-2">
-                    {farmasiItems.map(([key, val]) => (
-                      <button 
-                        key={key} 
-                        disabled={val === 0}
-                        onClick={() => setSelectedKey(key as string)} 
-                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                            {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
-                          </div>
-                          <span className="text-[12px] font-black uppercase tracking-tight">
-                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
-                            <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                          </span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-              {/* Militer */}
-              <div className="border-b border-zinc-900/80">
-                <div className="p-8 flex items-center justify-between">
-                  <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">6. Militer</h3>
-                  <button onClick={() => setShowMiliter(!showMiliter)} className="p-1 rounded-lg hover:bg-zinc-900 text-zinc-500 transition-all cursor-pointer"><Eye className="h-4 w-4" /></button>
-                </div>
-                {showMiliter && (
-                  <div className="px-4 pb-8 space-y-2">
-                    {militerItems.map(([key, val]) => (
-                      <button 
-                        key={key} 
-                        disabled={val === 0}
-                        onClick={() => setSelectedKey(key as string)} 
-                        className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all border ${val === 0 ? 'cursor-not-allowed border-transparent' : selectedKey === key ? 'bg-blue-600/10 border-blue-500/40 text-white' : 'text-zinc-500 hover:bg-zinc-900/50 border-transparent'}`}
-                      >
-                        <div className="flex items-center gap-4">
-                          <div className={`p-2 rounded-xl ${val === 0 ? 'bg-zinc-900 text-red-500' : selectedKey === key ? 'bg-blue-500 text-white' : 'bg-zinc-900 text-zinc-600'}`}>
-                            {val === 0 ? <Ban className="h-4 w-4" /> : getIcon(key as string)}
-                          </div>
-                          <span className="text-[12px] font-black uppercase tracking-tight">
-                            {labelsMap[key as string] || (key as string).replace(/_/g, ' ')} 
-                            <span className={val === 0 ? "text-red-500" : "text-green-500"}> ({val})</span>
-                          </span>
-                        </div>
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-                </>
-              )}
             </div>
-          </div>
 
           {/* Main Content Area */}
           <div className="flex-1 bg-zinc-950 p-8 lg:p-16 overflow-y-auto relative scrollbar-thin scrollbar-thumb-zinc-800">
@@ -753,9 +757,21 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 >
                   Ekspor Komoditas
                 </button>
+                <div className="w-[1px] h-4 bg-zinc-800 mx-2"></div>
+                <button 
+                  onClick={() => setTradeType("histori")}
+                  className={`px-10 py-3 rounded-2xl text-[11px] font-black uppercase tracking-[0.2em] transition-all duration-500 flex items-center gap-2 ${
+                    tradeType === "histori" 
+                    ? "bg-blue-500 text-white shadow-[0_0_30px_rgba(59,130,246,0.3)]" 
+                    : "text-zinc-500 hover:text-zinc-300"
+                  }`}
+                >
+                  <HistoryIcon size={14} />
+                  Histori Transaksi
+                </button>
               </div>
 
-              {!selectedTradePartner ? (
+              {!selectedTradePartner && tradeType !== "histori" ? (
                 <div className="flex-1 flex flex-col items-center justify-center space-y-6 animate-in fade-in duration-700">
                   <div className="w-24 h-24 rounded-full bg-zinc-900/50 border border-zinc-800 flex items-center justify-center text-zinc-700">
                     <Globe className="h-12 w-12 animate-pulse" />
@@ -766,7 +782,66 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                   </div>
                 </div>
               ) : (
-                tradeType === "ekspor" ? (
+                activeMenu === "Menu:Perdagangan:ekspor_eksekusi" ? (
+                  <EksporEksekusi 
+                    selectedKey={selectedKey}
+                    selectedName={selectedName}
+                    selectedUnits={selectedUnits}
+                    getProductionRate={getProductionRate}
+                    getUnit={getUnit}
+                    basePrice={baseSellPrice}
+                    setActiveMenu={setActiveMenu}
+                    budgetData={budgetData}
+                    activeCountryData={activeCountryData}
+                    currentCountry={currentCountry}
+                    getStoredGameDate={getStoredGameDate}
+                    INITIAL_GAME_DATE={INITIAL_GAME_DATE}
+                    selectedTradePartner={selectedTradePartner}
+                  />
+                ) : activeMenu === "Menu:Perdagangan:impor_eksekusi" ? (
+                  <ImporEksekusi 
+                    selectedKey={selectedKey}
+                    selectedName={selectedName}
+                    selectedUnits={selectedUnits}
+                    getProductionRate={getProductionRate}
+                    getUnit={getUnit}
+                    basePrice={baseBuyPrice}
+                    setActiveMenu={setActiveMenu}
+                    budgetData={budgetData}
+                    activeCountryData={activeCountryData}
+                    currentCountry={currentCountry}
+                    selectedTradePartner={selectedTradePartner}
+                    getStoredGameDate={getStoredGameDate}
+                  />
+                ) : tradeType === "histori" ? (
+                  <div className="flex flex-col h-full space-y-6">
+                    <div className="flex items-center gap-4 border-b border-zinc-900 pb-4">
+                      <button 
+                        onClick={() => setHistoriType("impor")}
+                        className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                          historiType === "impor" 
+                          ? "bg-red-500/10 text-red-500 border border-red-500/20 shadow-[0_0_20px_rgba(239,68,68,0.1)]" 
+                          : "text-zinc-600 hover:text-zinc-400 border border-transparent"
+                        }`}
+                      >
+                        Histori Impor
+                      </button>
+                      <button 
+                        onClick={() => setHistoriType("ekspor")}
+                        className={`px-4 py-2 rounded-xl text-[10px] font-black uppercase tracking-widest transition-all ${
+                          historiType === "ekspor" 
+                          ? "bg-green-500/10 text-green-500 border border-green-500/20 shadow-[0_0_20px_rgba(34,197,94,0.1)]" 
+                          : "text-zinc-600 hover:text-zinc-400 border border-transparent"
+                        }`}
+                      >
+                        Histori Ekspor
+                      </button>
+                    </div>
+                    <div className="flex-1 overflow-hidden">
+                      {historiType === "impor" ? <HistoriImport /> : <HistoriEkspor />}
+                    </div>
+                  </div>
+                ) : tradeType === "ekspor" ? (
                   <EksporHalaman 
                     selectedKey={selectedKey}
                     selectedName={selectedName}
@@ -801,50 +876,39 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 )
               )}
 
-              <div className="space-y-6 pt-8 border-t border-zinc-900/80">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-[11px] font-black text-white uppercase tracking-[0.3em] italic">DAFTAR MITRA DAGANG INTERNASIONAL</h3>
-                  <div className="h-[1px] flex-1 bg-zinc-900 mx-8"></div>
-                </div>
-                <div className="h-[400px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <button onClick={() => setIsAddPartnerOpen(true)} className="bg-blue-500/5 border border-dashed border-blue-500/30 hover:border-blue-500/60 hover:bg-blue-500/10 p-5 rounded-2xl flex items-center gap-4 cursor-pointer group transition-all">
-                      <div className="p-3 bg-blue-500/10 rounded-xl group-hover:bg-blue-500 group-hover:text-white transition-all"><Plus className="h-5 w-5" /></div>
-                      <div className="text-left"><div className="text-xs font-black text-blue-400 uppercase tracking-widest">Tambah Mitra Dagang</div><div className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">Ekspansi Jaringan</div></div>
-                    </button>
-                    {activePartnersList.map((agreement: any, idx: number) => (
-                      <div key={idx} className="bg-zinc-900/20 border border-zinc-900 p-5 rounded-2xl flex items-center justify-between transition-all">
-                        <div className="flex items-center gap-4">
-                          <div className="p-3 bg-zinc-900 rounded-xl"><Globe className="h-5 w-5 text-zinc-500" /></div>
-                          <div className="text-xs font-black text-white uppercase tracking-wider">{agreement.mitra}</div>
+              {!(activeMenu === "Menu:Perdagangan:ekspor_eksekusi" || activeMenu === "Menu:Perdagangan:impor_eksekusi") && (
+                <div className="space-y-6 pt-8 border-t border-zinc-900/80">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-[11px] font-black text-white uppercase tracking-[0.3em] italic">DAFTAR MITRA DAGANG INTERNASIONAL</h3>
+                    <div className="h-[1px] flex-1 bg-zinc-900 mx-8"></div>
+                  </div>
+                  <div className="h-[400px] overflow-y-auto pr-4 scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <button onClick={() => setIsAddPartnerOpen(true)} className="bg-blue-500/5 border border-dashed border-blue-500/30 hover:border-blue-500/60 hover:bg-blue-500/10 p-5 rounded-2xl flex items-center gap-4 cursor-pointer group transition-all">
+                        <div className="p-3 bg-blue-500/10 rounded-xl group-hover:bg-blue-500 group-hover:text-white transition-all"><Plus className="h-5 w-5" /></div>
+                        <div className="text-left"><div className="text-xs font-black text-blue-400 uppercase tracking-widest">Tambah Mitra Dagang</div><div className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">Ekspansi Jaringan</div></div>
+                      </button>
+                      {activePartnersList.map((agreement: any, idx: number) => (
+                        <div key={idx} className="bg-zinc-900/20 border border-zinc-900 p-5 rounded-2xl flex items-center justify-between transition-all">
+                          <div className="flex items-center gap-4">
+                            <div className="p-3 bg-zinc-900 rounded-xl"><Globe className="h-5 w-5 text-zinc-500" /></div>
+                            <div className="text-xs font-black text-white uppercase tracking-wider">{agreement.mitra}</div>
+                          </div>
+                          <div className="flex flex-col items-end gap-1">
+                            <span className={`${agreement.status === 'Aktif' ? 'bg-green-500/10 text-green-500 border-green-500/20' : 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20'} px-2 py-1 text-[8px] font-black uppercase tracking-widest rounded-md border text-center whitespace-nowrap`}>
+                              {agreement.status === 'Aktif' ? 'Terverifikasi' : 'Diproses'}
+                            </span>
+                          </div>
                         </div>
-                        <div className="flex flex-col items-end gap-1">
-                          <span className={`${agreement.status === 'Aktif' ? 'bg-green-500/10 text-green-500 border-green-500/20' : 'bg-yellow-500/10 text-yellow-500 border-yellow-500/20'} px-2 py-1 text-[8px] font-black uppercase tracking-widest rounded-md border text-center whitespace-nowrap`}>
-                            {agreement.status === 'Aktif' ? 'Terverifikasi' : 'Diproses'}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </div>
       </div>
-
-      <TradeExecutionModal 
-        isOpen={!!executionModalItem}
-        onClose={() => setActiveMenu("Menu:Perdagangan")}
-        selectedKey={selectedKey}
-        selectedName={selectedName}
-        type={executionModalItem?.type || "buy"}
-        basePrice={executionModalItem?.type === "buy" ? baseBuyPrice : baseSellPrice}
-        icon={iconMap[selectedKey] || BarChart3}
-        color={executionModalItem?.type === "buy" ? "#ef4444" : "#22c55e"}
-        partners={activePartnersList}
-        defaultPartner={selectedTradePartner}
-      />
 
       <AddTradePartnerModal 
         isOpen={isAddPartnerOpen}

@@ -79,7 +79,7 @@ export const EksporHalaman: React.FC<EksporHalamanProps> = ({
           </div>
           <button 
             disabled={selectedUnits === 0}
-            onClick={() => setActiveMenu(`Menu:Perdagangan:ekspor=${selectedKey}`)} 
+            onClick={() => setActiveMenu(`Menu:Perdagangan:ekspor_eksekusi`)} 
             className={`px-10 py-5 font-black uppercase text-[12px] tracking-[0.2em] rounded-2xl transition-all whitespace-nowrap ${
               selectedUnits === 0 
               ? "bg-zinc-800 text-zinc-500 cursor-not-allowed opacity-50 shadow-none" 

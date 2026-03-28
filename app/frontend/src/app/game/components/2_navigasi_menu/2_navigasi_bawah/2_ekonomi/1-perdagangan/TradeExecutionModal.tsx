@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { X, Play, Package, TrendingUp, Activity, ArrowRightLeft, Zap, Box, Factory, Pickaxe, Tractor, Ship, Globe, ChevronDown } from "lucide-react";
+import { createPortal } from "react-dom";
+import { X, Play, Package, TrendingUp, Activity, ArrowRightLeft, Zap, Box, Factory, Pickaxe, Tractor, Ship, Globe, ChevronDown, Coins } from "lucide-react";
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/database/data/types";
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
@@ -33,7 +34,16 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
 
   const buildingData = buildingStorage.getData();
   const buildingDeltas = buildingData.buildingDeltas || {};
-  const budgetData = budgetStorage.getData();
+  const [budgetData, setBudgetData] = useState(budgetStorage.getData());
+  
+  // Listen for budget/production updates for real-time reactivity
+  useEffect(() => {
+    const handleUpdate = () => {
+      setBudgetData(budgetStorage.getData());
+    };
+    window.addEventListener('budget_storage_updated', handleUpdate);
+    return () => window.removeEventListener('budget_storage_updated', handleUpdate);
+  }, []);
   
   // Mapping trade keys to production buildings
   const productionMapping: Record<string, string> = {
@@ -87,7 +97,11 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
   const [selectedPartner, setSelectedPartner] = useState<string | null>(defaultPartner);
   const [isPartnerDropdownOpen, setIsPartnerDropdownOpen] = useState(false);
   const [showWarning, setShowWarning] = useState(false);
-  const [showBudgetError, setShowBudgetError] = useState(false);
+  const [budgetErrorData, setBudgetErrorData] = useState<{
+    required: number;
+    available: number;
+    commodity: string;
+  } | null>(null);
   const [successData, setSuccessData] = useState<{
     type: "buy" | "sell";
     quantity: number;
@@ -146,7 +160,6 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                   <Icon size={32} style={{ color }} className="relative z-10 group-hover:scale-110 transition-transform duration-500" />
                 </div>
                 <div>
-                  <h3 className="text-base font-black text-zinc-500 uppercase tracking-[0.4em] leading-tight">Eksekusi Perdagangan</h3>
                   <h2 className="text-4xl font-black text-white tracking-tighter italic uppercase">{selectedName}</h2>
                 </div>
               </div>
@@ -225,6 +238,22 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
 
             {/* Execution Controls */}
             <div className="space-y-6">
+              {/* Kas Negara (Balance) Card */}
+              <div className="flex items-center justify-between bg-zinc-900/40 border border-zinc-800/80 p-5 rounded-2xl group hover:border-yellow-500/20 transition-all">
+                <div className="flex items-center gap-4">
+                  <div className="p-2.5 bg-yellow-500/10 rounded-xl group-hover:bg-yellow-500/20 transition-colors">
+                    <Coins className="h-5 w-5 text-yellow-500" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest">Saldo Anggaran Saat Ini</span>
+                    <span className="text-xl font-black text-white italic tracking-tight">{budgetData.anggaran.toLocaleString('id-ID')}</span>
+                  </div>
+                </div>
+                <div className="flex flex-col items-end">
+                  <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-tighter italic">Kas Negara Nasional</span>
+                </div>
+              </div>
+
               {/* Partner Selection Dropdown */}
               <div className="relative">
                 <span className="text-[12px] font-black text-zinc-500 uppercase tracking-[0.3em] block mb-3 px-2">Tujuan / Sumber Transaksi</span>
@@ -318,9 +347,13 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                 <div className="flex flex-col gap-1 text-right">
                   <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest">Total Estimasi Nilai</span>
                   <div className="flex items-baseline justify-end gap-1">
-                    <span className="text-4xl font-black text-white tracking-tighter italic drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]">
-                    {Math.floor(quantity * basePrice).toLocaleString('id-ID')}
-                  </span>
+                    <span className={`text-4xl font-black tracking-tighter italic transition-colors duration-300 ${
+                      type === "buy" && (quantity * basePrice) > budgetData.anggaran 
+                      ? "text-red-500 drop-shadow-[0_0_15px_rgba(239,68,68,0.3)]" 
+                      : "text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.1)]"
+                    }`}>
+                      {Math.floor(quantity * basePrice).toLocaleString('id-ID')}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -353,9 +386,13 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
                       // Proceed with confirmation logic
                       const totalValue = quantity * basePrice;
                       
-                      // Budget Validation Check
-                      if (type === "buy" && totalValue > budgetData.anggaran) {
-                        setShowBudgetError(true);
+                      // Budget Validation Check - Match Success State Pattern
+                      if (type === "buy" && Number(totalValue) > Number(budgetData.anggaran)) {
+                        setBudgetErrorData({
+                          required: totalValue,
+                          available: budgetData.anggaran,
+                          commodity: selectedName
+                        });
                         return;
                       }
 
@@ -385,11 +422,14 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
         </div>
       </div>
 
-      {/* Success Modal Overlay */}
-      {successData &&
-        <div className="fixed inset-0 z-[300] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-500">
+      {/* Success Modal Overlay - Rendered via Portal for absolute top-level visibility */}
+      {successData && typeof document !== 'undefined' && createPortal(
+        <div className="fixed inset-0 z-[99999] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-500">
           <div className="absolute inset-0 bg-black/40" onClick={() => { setSuccessData(null); onClose(); }}></div>
-          <div className="bg-zinc-950 border border-zinc-800/80 w-full max-md rounded-[2.5rem] overflow-hidden relative shadow-[0_40px_80px_rgba(0,0,0,0.9)] animate-in zoom-in-95 duration-500 p-8 flex flex-col items-center text-center gap-6">
+          <div 
+            className="bg-zinc-950 border border-zinc-800/80 w-full max-md rounded-[2.5rem] overflow-hidden relative shadow-[0_40px_80px_rgba(0,0,0,0.9)] animate-in zoom-in-95 duration-500 p-8 flex flex-col items-center text-center gap-6"
+            onClick={(e) => e.stopPropagation()}
+          >
             {/* Success Icon with Glow */}
             <div className="w-20 h-20 rounded-full bg-green-500/10 border border-green-500/30 flex items-center justify-center relative group">
               <div className="absolute inset-0 bg-green-500/20 blur-xl rounded-full animate-pulse group-hover:scale-125 transition-transform duration-1000"></div>
@@ -417,48 +457,67 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
               Tutup
             </button>
           </div>
-        </div>
-      }
+        </div>,
+        document.body
+      )}
 
-      {/* Budget Error Modal Overlay */}
-      {showBudgetError &&
-        <div className="fixed inset-0 z-[400] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-500">
-          <div className="absolute inset-0 bg-black/60" onClick={() => setShowBudgetError(false)}></div>
-          <div className="bg-zinc-950 border border-red-500/30 w-full max-w-md rounded-[2.5rem] overflow-hidden relative shadow-[0_40px_80px_rgba(239,68,68,0.2)] animate-in zoom-in-95 duration-500 p-10 flex flex-col items-center text-center gap-8">
-            <div className="w-24 h-24 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center relative group">
-              <div className="absolute inset-0 bg-red-500/20 blur-2xl rounded-full"></div>
-              <X size={48} className="text-red-500 relative z-10 group-hover:rotate-90 transition-transform duration-500" />
+      {/* Budget Error Modal Overlay - Rendered via Portal for absolute top-level visibility */}
+      {budgetErrorData && typeof document !== 'undefined' && createPortal(
+        <div className="fixed inset-0 z-[100000] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-300">
+          <div className="absolute inset-0 bg-black/70" onClick={() => setBudgetErrorData(null)}></div>
+          <div 
+            className="bg-zinc-950 border border-zinc-800/80 w-full max-md rounded-[2.5rem] overflow-hidden relative shadow-[0_40px_80px_rgba(239,68,68,0.3)] animate-in zoom-in-95 duration-500 p-8 flex flex-col items-center text-center gap-6"
+            onClick={(e) => e.stopPropagation()}
+          >
+            
+            {/* Warning Icon with Glow - Perfect Match with Success Style */}
+            <div className="w-20 h-20 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center relative group">
+              <div className="absolute inset-0 bg-red-500/20 blur-xl rounded-full animate-pulse group-hover:scale-125 transition-transform duration-1000"></div>
+              <X size={40} className="text-red-500 relative z-10" />
             </div>
 
-            <div className="space-y-4">
-              <h3 className="text-3xl font-black text-white tracking-tighter uppercase italic">
+            <div className="space-y-2">
+              <h3 className="text-2xl font-black text-white tracking-tighter uppercase italic">
                 Uang Tidak Cukup!
               </h3>
               <p className="text-zinc-400 text-sm font-medium leading-relaxed">
-                Saldo anggaran nasional Anda tidak memadai untuk melakukan impor <span className="text-white font-bold">{selectedName}</span> sebanyak <span className="text-white font-bold">{quantity.toLocaleString('id-ID')} {unit}</span>.
+                Maaf, Saldo anggaran nasional Anda <span className="text-red-400">tidak memadai</span> untuk melakukan impor <span className="text-white font-bold">{budgetErrorData.commodity}</span>.
               </p>
             </div>
 
+            <div className="w-full h-px bg-zinc-900/50"></div>
+
             <div className="grid grid-cols-2 w-full gap-4">
-              <div className="bg-zinc-900/50 p-4 rounded-2xl border border-zinc-800">
-                 <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Saldo Saat Ini</p>
-                 <p className="text-lg font-black text-white italic">{budgetData.anggaran.toLocaleString('id-ID')}</p>
+              <div className="bg-zinc-900/50 p-4 rounded-2xl border border-zinc-800 relative group overflow-hidden">
+                <div className="absolute inset-0 bg-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 relative z-10">Saldo Kas Negara</p>
+                <div className="flex items-center gap-2 justify-center relative z-10">
+                  <Coins size={14} className="text-yellow-500" />
+                  <p className="text-lg font-black text-white italic">{budgetErrorData.available.toLocaleString('id-ID')}</p>
+                </div>
               </div>
-              <div className="bg-zinc-900/50 p-4 rounded-2xl border border-zinc-800 text-red-400/80">
-                 <p className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1 font-normal">Dibutuhkan</p>
-                 <p className="text-lg font-black italic">{(quantity * basePrice).toLocaleString('id-ID')}</p>
+              <div className="bg-red-500/5 p-4 rounded-2xl border border-red-500/20 relative group overflow-hidden">
+                <div className="absolute inset-0 bg-red-500/5 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <p className="text-[10px] font-black text-red-500/60 uppercase tracking-widest mb-1 relative z-10">Total Dibutuhkan</p>
+                <div className="flex items-center gap-2 justify-center relative z-10">
+                  <Zap size={14} className="text-red-500" />
+                  <p className="text-lg font-black text-red-500 italic">{budgetErrorData.required.toLocaleString('id-ID')}</p>
+                </div>
               </div>
             </div>
 
+            <div className="w-full h-px bg-zinc-900/50"></div>
+
             <button 
-              onClick={() => setShowBudgetError(false)}
-              className="w-full py-5 bg-red-600 hover:bg-red-500 text-white font-black uppercase text-[11px] tracking-[0.4em] rounded-[1.5rem] shadow-[0_10px_30px_rgba(220,38,38,0.3)] transition-all active:scale-[0.98]"
+              onClick={() => setBudgetErrorData(null)}
+              className="w-full py-4 bg-zinc-900 hover:bg-zinc-800 text-white font-black uppercase text-[10px] tracking-[0.3em] rounded-2xl border border-zinc-800 transition-all active:scale-[0.98] shadow-lg"
             >
-              Tutup
+              Kembali & Sesuaikan
             </button>
           </div>
-        </div>
-      }
+        </div>,
+        document.body
+      )}
     </>
   );
 };
