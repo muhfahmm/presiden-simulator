@@ -162,13 +162,18 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
             <div className="grid grid-cols-3 gap-4">
               <div className="bg-zinc-900/50 border border-zinc-800/50 p-6 rounded-[2rem] flex flex-col gap-1 group hover:border-white/10 transition-colors">
                 <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                  <Activity size={10} className="text-blue-500" /> Produksi/Hari
+                  <Activity size={10} className="text-blue-500" /> Total Produksi Harian
                 </span>
                 <div className="flex items-baseline gap-1">
                   <span className="text-3xl font-black text-white tracking-tighter italic">
                     {(!selectedPartner || selectedPartner === "Pasar Global") ? "-" : (dailyProduction !== null ? Math.floor(dailyProduction).toLocaleString('id-ID') : "---")}
                   </span>
-                  {(selectedPartner && selectedPartner !== "Pasar Global") && dailyProduction !== null && <span className="text-[12px] font-bold text-zinc-600 uppercase tracking-widest">{unit}</span>}
+                  {(selectedPartner && selectedPartner !== "Pasar Global") && dailyProduction !== null && (
+                    <div className="flex flex-col">
+                      <span className="text-[12px] font-bold text-zinc-600 uppercase tracking-widest leading-none">{unit}</span>
+                      <span className="text-[9px] font-bold text-blue-500/60 uppercase tracking-tighter italic mt-1 leading-none">Laju: {rateData?.production} {unit}/Unit</span>
+                    </div>
+                  )}
                 </div>
                 <div className="mt-3 w-full h-1 bg-zinc-800 rounded-full overflow-hidden relative">
                   <div 
@@ -180,7 +185,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
 
               <div className="bg-zinc-900/50 border border-zinc-800/50 p-6 rounded-[2rem] flex flex-col gap-1 group hover:border-white/10 transition-colors">
                 <span className="text-[11px] font-black text-zinc-500 uppercase tracking-widest flex items-center gap-2">
-                  <Package size={10} className="text-green-500" /> Fasilitas
+                  <Package size={10} className="text-green-500" /> Total Fasilitas Aktif
                 </span>
                 <div className="flex items-baseline gap-1">
                   <span className="text-3xl font-black text-white tracking-tighter italic">
@@ -201,7 +206,7 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
 
               <div className="bg-zinc-900/50 border border-zinc-800/50 p-6 rounded-[2rem] flex flex-col gap-1 group hover:border-white/10 transition-colors">
                 <span className="text-[11px] font-black text-purple-500 uppercase tracking-widest flex items-center gap-2">
-                  <TrendingUp size={10} /> Hasil di Gudang:
+                  <TrendingUp size={10} /> Total Stok Nasional
                 </span>
                 <div className="flex items-baseline gap-1">
                   <span className="text-3xl font-black text-white tracking-tighter italic">

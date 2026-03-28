@@ -140,8 +140,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   // Determine which country data to display in the sidebar/stats
   // Synchronize with database: Always prioritize lookup in the official countries list
   const activeCountryData = useMemo(() => {
+    if (!selectedTradePartner) return null;
+    
     // 1. Determine the name we are looking for
-    const targetName = selectedTradePartner || currentCountry?.name_id || currentCountry?.name_en || "Indonesia";
+    const targetName = selectedTradePartner;
     
     // 2. Search in the regional countries database (main source for all stats)
     const found = countries.find(c => 
@@ -150,17 +152,21 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
       getCountryKey(c.name_id || "") === getCountryKey(targetName)
     );
 
-    // 3. Fallback to currentCountry only if lookup fails
-    return found || currentCountry;
-  }, [selectedTradePartner, currentCountry]);
+    // 3. Fallback to currentCountry only if lookup fails (should rarely happen if selection exists)
+    return found || null;
+  }, [selectedTradePartner]);
 
-  // Player state detection
-  const isPlayerCountry = !selectedTradePartner || 
-    (getCountryKey(activeCountryData?.name_en || "") === getCountryKey(currentCountry?.name_en || "Indonesia"));
+  // Logic for Minerals - depends on tradeType
+  const getContextualData = () => {
+    if (tradeType === "ekspor") return currentCountry;
+    return activeCountryData || currentCountry;
+  };
+
+  const isPlayerContext = tradeType === "ekspor";
 
   // Helper for Manufacturing count (matches ProduksiHub)
-  const getManufacturingCount = (key: string, baseVal: number) => {
-    if (!isPlayerCountry) return baseVal;
+  const getManufacturingCount = (key: string, baseVal: number, usePlayerDelta: boolean) => {
+    if (!usePlayerDelta) return baseVal;
     const delta = (buildingDeltas[key] || 0) as number;
     return baseVal + delta;
   };
@@ -186,104 +192,108 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   const olahanPanganFactoryKeys = ["bottled_water_factory", "sugar_factory", "bakery_factory", "meat_processing_factory", "noodle_factory"];
 
   const minerals = useMemo(() => {
-    // 1. Get the sanitized ID for the extraction database lookup
-    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
-    
-    // 2. Fetch specialized extraction data (e.g., Indonesia: 140, Malaysia: 2)
+    const data = getContextualData();
+    const lookupId = data?.name_id || data?.name_en || "indonesia";
     const extractionStats = getExtractionData(lookupId);
     
     return mineralOrder.map(key => {
-      // Use specialized stats first, fallback to regional file, then to 0
-      const baseVal = (extractionStats[key as keyof typeof extractionStats] as number) ?? 
-                      (activeCountryData.sektor_ekstraksi?.[key as keyof typeof activeCountryData.sektor_ekstraksi] as number) ?? 0;
+      const baseVal = (extractionStats as any)[key] ?? 
+                      (data?.sektor_ekstraksi as any)?.[key] ?? 0;
       
       const buildingKey = mineralDataToBuildingKey[key] || key;
-      const delta = isPlayerCountry ? ((buildingDeltas[buildingKey] || 0) as number) : 0;
+      const delta = isPlayerContext ? ((buildingDeltas[buildingKey] || 0) as number) : 0;
       return [key, baseVal + delta];
     }) as [string, number][];
-  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+  }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
 
   const manufakturItems = useMemo(() => {
-    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    const data = getContextualData();
+    const lookupId = data?.name_id || data?.name_en || "indonesia";
     const overrideStats = getManufakturData(lookupId);
 
     return manufakturOrder.map(key => {
-      const baseVal = (overrideStats[key as keyof typeof overrideStats] as number) ??
-                      (activeCountryData.sektor_manufaktur?.[key as keyof typeof activeCountryData.sektor_manufaktur] as number) ?? 0;
+      const baseVal = (overrideStats as any)[key] ??
+                      (data?.sektor_manufaktur as any)?.[key] ?? 0;
       const factoryKey = manufakturKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
-      return [key, getManufacturingCount(factoryKey, baseVal)];
+      return [key, getManufacturingCount(factoryKey, baseVal, isPlayerContext)];
     }) as [string, number][];
-  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+  }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
 
   const olahanPanganItems = useMemo(() => {
-    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    const data = getContextualData();
+    const lookupId = data?.name_id || data?.name_en || "indonesia";
     const overrideStats = getOlahanPanganData(lookupId);
 
     return olahanPanganOrder.map(key => {
-      const baseVal = (overrideStats[key as keyof typeof overrideStats] as number) ??
-                      (activeCountryData.sektor_olahan_pangan?.[key as keyof typeof activeCountryData.sektor_olahan_pangan] as number) ?? 0;
+      const baseVal = (overrideStats as any)[key] ??
+                      (data?.sektor_olahan_pangan as any)?.[key] ?? 0;
       const factoryKey = olahanPanganFactoryKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
-      return [key, getManufacturingCount(factoryKey, baseVal)];
+      return [key, getManufacturingCount(factoryKey, baseVal, isPlayerContext)];
     }) as [string, number][];
-  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+  }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
 
   const farmasiItems = useMemo(() => {
-    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    const data = getContextualData();
+    const lookupId = data?.name_id || data?.name_en || "indonesia";
     const overrideStats = getFarmasiData(lookupId);
 
     return farmasiOrder.map(key => {
-      const baseVal = (overrideStats[key as keyof typeof overrideStats] as number) ??
-                      (activeCountryData.sektor_farmasi?.[key as keyof typeof activeCountryData.sektor_farmasi] as number) ?? 0;
-      return [key, getManufacturingCount("pharma_factory", baseVal)];
+      const baseVal = (overrideStats as any)[key] ??
+                      (data?.sektor_farmasi as any)?.[key] ?? 0;
+      return [key, getManufacturingCount("pharma_factory", baseVal, isPlayerContext)];
     }) as [string, number][];
-  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+  }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
 
   const peternakanItems = useMemo(() => {
-    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    const data = getContextualData();
+    const lookupId = data?.name_id || data?.name_en || "indonesia";
     const overrideStats = getPeternakanData(lookupId);
     const keys = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"];
 
     return keys.map(key => {
-      const baseVal = (overrideStats[key as keyof typeof overrideStats] as number) ??
-                      (activeCountryData.sektor_peternakan?.[key as keyof typeof activeCountryData.sektor_peternakan] as number) ?? 0;
-      const delta = isPlayerCountry ? ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number) : 0;
+      const baseVal = (overrideStats as any)[key] ??
+                      (data?.sektor_peternakan as any)?.[key] ?? 0;
+      const delta = isPlayerContext ? ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number) : 0;
       return [key, baseVal + delta];
     }) as [string, number][];
-  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+  }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
 
   const perikananItems = useMemo(() => {
-    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    const data = getContextualData();
+    const lookupId = data?.name_id || data?.name_en || "indonesia";
     const overrideStats = getPerikananData(lookupId);
     const keys = ["udang_kerang", "ikan"];
 
     return keys.map(key => {
-      const baseVal = (overrideStats[key as keyof typeof overrideStats] as number) ??
-                      (activeCountryData.sektor_perikanan?.[key as keyof typeof activeCountryData.sektor_perikanan] as number) ?? 0;
-      const delta = isPlayerCountry ? ((buildingDeltas[key] || 0) as number) : 0;
+      const baseVal = (overrideStats as any)[key] ??
+                      (data?.sektor_perikanan as any)?.[key] ?? 0;
+      const delta = isPlayerContext ? ((buildingDeltas[key] || 0) as number) : 0;
       return [key, baseVal + delta];
     }) as [string, number][];
-  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+  }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
 
   const agrikulturItems = useMemo(() => {
-    const lookupId = activeCountryData?.name_id || activeCountryData?.name_en || "indonesia";
+    const data = getContextualData();
+    const lookupId = data?.name_id || data?.name_en || "indonesia";
     const overrideStats = getAgrikulturData(lookupId);
     const keys = ["padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"];
 
     return keys.map(key => {
-      const baseVal = (overrideStats[key as keyof typeof overrideStats] as number) ??
-                      (activeCountryData.sektor_agrikultur?.[key as keyof typeof activeCountryData.sektor_agrikultur] as number) ?? 0;
-      const delta = isPlayerCountry ? ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number) : 0;
+      const baseVal = (overrideStats as any)[key] ??
+                      (data?.sektor_agrikultur as any)?.[key] ?? 0;
+      const delta = isPlayerContext ? ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number) : 0;
       return [key, baseVal + delta];
     }) as [string, number][];
-  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+  }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
 
   const militerItems = useMemo(() => {
+    const data = getContextualData();
     return militerOrder.map(key => {
-      const baseVal = (activeCountryData.pabrik_militer?.[key as keyof typeof activeCountryData.pabrik_militer] as number) || 0;
-      const delta = isPlayerCountry ? ((buildingDeltas[key] || 0) as number) : 0;
+      const baseVal = (data?.pabrik_militer as any)?.[key] || 0;
+      const delta = isPlayerContext ? ((buildingDeltas[key] || 0) as number) : 0;
       return [key, baseVal + delta];
     }) as [string, number][];
-  }, [activeCountryData, isPlayerCountry, buildingDeltas]);
+  }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
 
   const [selectedKey, setSelectedKey] = useState<string>(minerals[0]?.[0] || 'emas');
   const [showMinerals, setShowMinerals] = useState(true);
@@ -458,11 +468,22 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
           {/* Commodities Sidebar */}
           <div className="w-[320px] border-r border-zinc-900 bg-zinc-950/50 flex flex-col backdrop-blur-sm">
             <div className="p-6 border-b border-zinc-900/80 shrink-0">
-              <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic text-center">Daftar Komoditas {activeCountryData.name_id}</h3>
-              <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic mt-1 text-center">Kategori Produksi 1 - 6</p>
+              <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] leading-none italic text-center">
+                {selectedTradePartner ? `Daftar Komoditas ${selectedTradePartner}` : "Pilih Negara Terlebih Dahulu"}
+              </h3>
+              <p className="text-[10px] font-bold text-zinc-600 uppercase tracking-tighter italic mt-1 text-center">
+                {selectedTradePartner ? "Kategori Produksi 1 - 6" : "Silakan pilih mitra dagang di sidebar kiri"}
+              </p>
             </div>
             <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-thumb-zinc-800 scrollbar-track-transparent">
-              {/* Minerals */}
+              {!selectedTradePartner ? (
+                <div className="flex flex-col items-center justify-center h-full p-8 text-center space-y-4 opacity-40">
+                  <Globe className="h-12 w-12 text-zinc-700" />
+                  <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500">Data Komoditas Tidak Tersedia</p>
+                </div>
+              ) : (
+                <>
+                  {/* Minerals */}
               <div className="border-b border-zinc-900/80">
                 <div className="p-8 flex items-center justify-between">
                   <h3 className="text-[14px] font-black text-white uppercase tracking-[0.2em] italic">1. Mineral Kritis</h3>
@@ -616,6 +637,8 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                   </div>
                 )}
               </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -652,88 +675,116 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                 </button>
               </div>
 
-              <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-10">
-                <div className="space-y-4">
-                  <h2 className="text-2xl font-black text-white tracking-widest uppercase flex items-center gap-4 leading-none">{selectedName}</h2>
-                  <div className="grid grid-cols-2 gap-x-12 gap-y-4 text-[12px] font-black uppercase tracking-[0.2em] text-zinc-500 italic">
-                    <div className="flex flex-col gap-1">
-                      <span className="text-zinc-600 not-italic">Total Bangunan</span>
-                      <span className="text-white text-sm">{selectedUnits.toLocaleString('id-ID')} Unit</span>
-                    </div>
-                    <div className="flex flex-col gap-1">
-                      <span className="text-zinc-600 not-italic">Produksi /Hari</span>
-                      <span className="text-blue-400 text-sm">{(selectedUnits * getProductionRate(selectedKey)).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
-                    </div>
-                    <div className="flex flex-col gap-1 col-span-2">
-                      <span className="text-zinc-600 not-italic">Total Stok</span>
-                      <span className="text-blue-500 text-sm">{(() => {
-                        const stockKeyMap: Record<string, string> = {
-                          emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", minyak_bumi: "oil_well", gas_alam: "gas_well",
-                          garam: "salt_mine", nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine", aluminium: "aluminum_mine",
-                          logam_tanah_jarang: "rare_earth_mine", bijih_besi: "iron_ore_mine", ayam_unggas: "livestock_poultry", sapi_perah: "livestock_dairy",
-                          sapi_potong: "livestock_beef", domba_kambing: "livestock_sheep", udang_kerang: "livestock_shrimp", ikan: "livestock_fish",
-                          padi: "agri_rice", gandum_jagung: "agri_grains", sayur_umbi: "agri_veg", kedelai: "agri_soy", kelapa_sawit: "agri_palm", coffee_tea_cocoa: "agri_luxury"
-                        };
-                        const mfgKey = Object.keys(baseKeyMapping).find(k => baseKeyMapping[k] === selectedKey);
-                        const stockKey = stockKeyMap[selectedKey] || mfgKey || selectedKey;
-                        const stock = Math.floor(budgetData.cumulativeProduction?.[stockKey] || 0);
-                        return `${stock.toLocaleString('id-ID')} ${getUnit(selectedKey)}`;
-                      })()}</span>
-                    </div>
+              {!selectedTradePartner ? (
+                <div className="flex-1 flex flex-col items-center justify-center space-y-6 animate-in fade-in duration-700">
+                  <div className="w-24 h-24 rounded-full bg-zinc-900/50 border border-zinc-800 flex items-center justify-center text-zinc-700">
+                    <Globe className="h-12 w-12 animate-pulse" />
+                  </div>
+                  <div className="text-center space-y-2">
+                    <h3 className="text-xl font-black text-white uppercase tracking-widest italic">Pilih negara terlebih dulu</h3>
+                    <p className="text-xs text-zinc-500 font-bold uppercase tracking-tighter">Gunakan menu di sebelah kiri untuk melihat detail perdagangan</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 xl:gap-6 flex-wrap lg:flex-nowrap">
-                  {tradeType === "impor" ? (
-                    <div className="flex flex-col gap-3 flex-shrink-0 animate-in fade-in slide-in-from-right-4 duration-500">
-                      <div className="flex flex-col gap-1 text-[10px] font-black uppercase tracking-widest text-zinc-500">
-                        <div className="flex justify-between gap-8"><span>Harga Tertinggi</span><span className="text-green-500">{Math.round(buyPriceMap[selectedKey] * 1.15).toLocaleString('id-ID')}</span></div>
-                        <div className="flex justify-between gap-8"><span>Harga Terendah</span><span className="text-red-500">{Math.round(buyPriceMap[selectedKey] * 0.85).toLocaleString('id-ID')}</span></div>
+              ) : (
+                <>
+                  <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-10">
+                    <div className="space-y-4">
+                      <h2 className="text-2xl font-black text-white tracking-widest uppercase flex items-center gap-4 leading-none">{selectedName}</h2>
+                      <div className="grid grid-cols-3 gap-x-12 gap-y-8 text-[12px] font-black uppercase tracking-[0.2em] text-zinc-500 italic">
+                        <div className="flex flex-col gap-2">
+                          <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Fasilitas Aktif</span>
+                          <span className="text-white text-base tracking-normal">{selectedUnits.toLocaleString('id-ID')} Unit</span>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Produksi /Fasilitas</span>
+                          <span className="text-zinc-300 text-base tracking-normal">{getProductionRate(selectedKey).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
+                        </div>
+                        <div className="flex flex-col gap-2">
+                          <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Produksi Harian</span>
+                          <span className="text-blue-400 text-base tracking-normal">{(selectedUnits * getProductionRate(selectedKey)).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
+                        </div>
+                        <div className="flex flex-col gap-2 col-span-2 mt-2">
+                          <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Stok Tersedia</span>
+                          <span className="text-blue-500 text-base tracking-normal">{(() => {
+                            const stockKeyMap: Record<string, string> = {
+                              emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", minyak_bumi: "oil_well", gas_alam: "gas_well",
+                              garam: "salt_mine", nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine", aluminium: "aluminum_mine",
+                              logam_tanah_jarang: "rare_earth_mine", bijih_besi: "iron_ore_mine", ayam_unggas: "livestock_poultry", sapi_perah: "livestock_dairy",
+                              sapi_potong: "livestock_beef", domba_kambing: "livestock_sheep", udang_kerang: "livestock_shrimp", ikan: "livestock_fish",
+                              padi: "agri_rice", gandum_jagung: "agri_grains", sayur_umbi: "agri_veg", kedelai: "agri_soy", kelapa_sawit: "agri_palm", coffee_tea_cocoa: "agri_luxury"
+                            };
+                            const mfgKey = Object.keys(baseKeyMapping).find(k => baseKeyMapping[k] === selectedKey);
+                            const stockKey = stockKeyMap[selectedKey] || mfgKey || selectedKey;
+                            const stock = Math.floor(budgetData.cumulativeProduction?.[stockKey] || 0);
+                            return `${stock.toLocaleString('id-ID')} ${getUnit(selectedKey)}`;
+                          })()}</span>
+                        </div>
                       </div>
-                      <button 
-                        onClick={() => setActiveMenu(`Menu:Perdagangan:impor=${selectedKey}`)} 
-                        className="px-10 py-5 bg-red-500 text-white font-black uppercase text-[12px] tracking-[0.2em] rounded-2xl hover:bg-red-600 transition-all cursor-pointer shadow-[0_10px_30px_rgba(239,68,68,0.2)] active:scale-95 whitespace-nowrap"
-                      >
-                        Eksekusi Impor {baseBuyPrice.toLocaleString('id-ID')}
-                      </button>
                     </div>
-                  ) : (
-                    <div className="flex flex-col gap-3 flex-shrink-0 animate-in fade-in slide-in-from-left-4 duration-500">
-                      <div className="flex flex-col gap-1 text-[10px] font-black uppercase tracking-widest text-zinc-500">
-                        <div className="flex justify-between gap-8"><span>Harga Tertinggi</span><span className="text-green-500">{Math.round(sellPriceMap[selectedKey] * 1.15).toLocaleString('id-ID')}</span></div>
-                        <div className="flex justify-between gap-8"><span>Harga Terendah</span><span className="text-red-500">{Math.round(sellPriceMap[selectedKey] * 0.85).toLocaleString('id-ID')}</span></div>
+                    <div className="flex items-center gap-4 xl:gap-6 flex-wrap lg:flex-nowrap">
+                      {tradeType === "impor" ? (
+                        <div className="flex flex-col gap-3 flex-shrink-0 animate-in fade-in slide-in-from-right-4 duration-500">
+                          <div className="flex flex-col gap-1 text-[10px] font-black uppercase tracking-widest text-zinc-500">
+                            <div className="flex justify-between gap-8"><span>Harga Tertinggi</span><span className="text-green-500">{Math.round(buyPriceMap[selectedKey] * 1.15).toLocaleString('id-ID')}</span></div>
+                            <div className="flex justify-between gap-8"><span>Harga Terendah</span><span className="text-red-500">{Math.round(buyPriceMap[selectedKey] * 0.85).toLocaleString('id-ID')}</span></div>
+                          </div>
+                          <button 
+                            disabled={selectedUnits === 0}
+                            onClick={() => setActiveMenu(`Menu:Perdagangan:impor=${selectedKey}`)} 
+                            className={`px-10 py-5 font-black uppercase text-[12px] tracking-[0.2em] rounded-2xl transition-all whitespace-nowrap ${
+                              selectedUnits === 0 
+                              ? "bg-zinc-800 text-zinc-500 cursor-not-allowed opacity-50 shadow-none" 
+                              : "bg-red-500 text-white hover:bg-red-600 cursor-pointer shadow-[0_10px_30px_rgba(239,68,68,0.2)] active:scale-95"
+                            }`}
+                          >
+                            Eksekusi Impor {baseBuyPrice.toLocaleString('id-ID')}
+                          </button>
+                        </div>
+                      ) : (
+                        <div className="flex flex-col gap-3 flex-shrink-0 animate-in fade-in slide-in-from-left-4 duration-500">
+                          <div className="flex flex-col gap-1 text-[10px] font-black uppercase tracking-widest text-zinc-500">
+                            <div className="flex justify-between gap-8"><span>Harga Tertinggi</span><span className="text-green-500">{Math.round(sellPriceMap[selectedKey] * 1.15).toLocaleString('id-ID')}</span></div>
+                            <div className="flex justify-between gap-8"><span>Harga Terendah</span><span className="text-red-500">{Math.round(sellPriceMap[selectedKey] * 0.85).toLocaleString('id-ID')}</span></div>
+                          </div>
+                          <button 
+                            disabled={selectedUnits === 0}
+                            onClick={() => setActiveMenu(`Menu:Perdagangan:ekspor=${selectedKey}`)} 
+                            className={`px-10 py-5 font-black uppercase text-[12px] tracking-[0.2em] rounded-2xl transition-all whitespace-nowrap ${
+                              selectedUnits === 0 
+                              ? "bg-zinc-800 text-zinc-500 cursor-not-allowed opacity-50 shadow-none" 
+                              : "bg-green-500 text-white hover:bg-green-600 cursor-pointer shadow-[0_10px_30px_rgba(34,197,94,0.2)] active:scale-95"
+                            }`}
+                          >
+                            Eksekusi Ekspor {baseSellPrice.toLocaleString('id-ID')}
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="space-y-6 pt-4">
+                    <div className="flex flex-wrap items-center justify-between gap-6">
+                      <div className="flex items-center gap-1 bg-zinc-900/50 p-1.5 rounded-2xl border border-zinc-900/50 backdrop-blur-md">
+                        {["1d", "1w", "1m", "3m", "6m", "9m", "1y", "3y", "5y"].map(tf => (
+                          <button key={tf} onClick={() => setSelectedTimeframe(tf)} className={`px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${selectedTimeframe === tf ? 'bg-blue-600 text-white' : 'text-zinc-500 hover:text-white hover:bg-zinc-800'}`}>{tf}</button>
+                        ))}
                       </div>
-                      <button 
-                        onClick={() => setActiveMenu(`Menu:Perdagangan:ekspor=${selectedKey}`)} 
-                        className="px-10 py-5 bg-green-500 text-white font-black uppercase text-[12px] tracking-[0.2em] rounded-2xl hover:bg-green-600 transition-all cursor-pointer shadow-[0_10px_30px_rgba(34,197,94,0.2)] active:scale-95 whitespace-nowrap"
-                      >
-                        Eksekusi Ekspor {baseSellPrice.toLocaleString('id-ID')}
-                      </button>
+                      <div className="flex items-center gap-2 bg-zinc-900/40 p-1 rounded-2xl border border-zinc-900/50">
+                        <button onClick={() => setActiveChartTab("buy")} className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${activeChartTab === "buy" ? 'bg-red-500 text-white' : 'text-zinc-600'}`}>Grafik Beli</button>
+                        <button onClick={() => setActiveChartTab("sell")} className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${activeChartTab === "sell" ? 'bg-green-500 text-white' : 'text-zinc-600'}`}>Grafik Jual</button>
+                      </div>
                     </div>
-                  )}
-                </div>
-              </div>
-
-              <div className="space-y-6 pt-4">
-                <div className="flex flex-wrap items-center justify-between gap-6">
-                  <div className="flex items-center gap-1 bg-zinc-900/50 p-1.5 rounded-2xl border border-zinc-900/50 backdrop-blur-md">
-                    {["1d", "1w", "1m", "3m", "6m", "9m", "1y", "3y", "5y"].map(tf => (
-                      <button key={tf} onClick={() => setSelectedTimeframe(tf)} className={`px-4 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${selectedTimeframe === tf ? 'bg-blue-600 text-white' : 'text-zinc-500 hover:text-white hover:bg-zinc-800'}`}>{tf}</button>
-                    ))}
+                    <TradePriceChart selectedKey={selectedKey} selectedTimeframe={selectedTimeframe} basePrice={activeChartTab === "buy" ? baseBuyPrice : baseSellPrice} type={activeChartTab} color={activeChartTab === "buy" ? "#ef4444" : "#22c55e"} />
                   </div>
-                  <div className="flex items-center gap-2 bg-zinc-900/40 p-1 rounded-2xl border border-zinc-900/50">
-                    <button onClick={() => setActiveChartTab("buy")} className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${activeChartTab === "buy" ? 'bg-red-500 text-white' : 'text-zinc-600'}`}>Grafik Beli</button>
-                    <button onClick={() => setActiveChartTab("sell")} className={`px-6 py-2 text-[10px] font-black uppercase tracking-widest rounded-xl transition-all ${activeChartTab === "sell" ? 'bg-green-500 text-white' : 'text-zinc-600'}`}>Grafik Jual</button>
-                  </div>
-                </div>
-                <TradePriceChart selectedKey={selectedKey} selectedTimeframe={selectedTimeframe} basePrice={activeChartTab === "buy" ? baseBuyPrice : baseSellPrice} type={activeChartTab} color={activeChartTab === "buy" ? "#ef4444" : "#22c55e"} />
-              </div>
 
-              <div className="pt-8 border-t border-zinc-900/80">
-                <div className="max-w-md bg-zinc-900/40 border border-zinc-800/50 p-8 rounded-[2rem] relative overflow-hidden">
-                  <span className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.4em] block mb-3">Metrik Pasokan</span>
-                  <div className="flex items-baseline gap-3"><span className="text-4xl font-black text-white tracking-tighter italic">{selectedUnits}</span></div>
-                </div>
-              </div>
+                  <div className="pt-8 border-t border-zinc-900/80">
+                    <div className="max-w-md bg-zinc-900/40 border border-zinc-800/50 p-8 rounded-[2rem] relative overflow-hidden">
+                      <span className="text-[11px] font-black text-zinc-600 uppercase tracking-[0.4em] block mb-3">Metrik Pasokan</span>
+                      <div className="flex items-baseline gap-3"><span className="text-4xl font-black text-white tracking-tighter italic">{selectedUnits}</span></div>
+                    </div>
+                  </div>
+                </>
+              )}
 
               <div className="space-y-6 pt-8 border-t border-zinc-900/80">
                 <div className="flex items-center justify-between">
