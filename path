@@ -17,3 +17,5 @@ taskkill /F /IM node.exe
 
 go
 taskkill /F /IM main.ex
+cd ..; cd ..; cd "c:\fhm\EM1\app\frontend"
+npx tauri dev

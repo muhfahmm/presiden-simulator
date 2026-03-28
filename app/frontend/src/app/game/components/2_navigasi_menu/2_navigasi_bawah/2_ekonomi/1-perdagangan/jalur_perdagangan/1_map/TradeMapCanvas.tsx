@@ -39,25 +39,17 @@ const geoJsonToIndo: { [key: string]: string } = {
 
 const getRelation = (name: string, userCountry: string) => {
   if (name === userCountry) return 100;
-
   const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
   const userId = userEntry ? userEntry.name_id.toLowerCase().trim() : userCountry.toLowerCase().trim();
-
   const countryEntry = centersData.find(c => c.name_en === name || c.name_id === name);
   let targetId = countryEntry ? countryEntry.name_id.toLowerCase().trim() : name.toLowerCase().trim();
-
-  if (geoJsonToIndo[name]) {
-    targetId = geoJsonToIndo[name].toLowerCase().trim();
-  }
-
+  if (geoJsonToIndo[name]) targetId = geoJsonToIndo[name].toLowerCase().trim();
   const userRelations = allRelations[userId];
   if (!userRelations) return 50;
-
-  const relationItem = userRelations.find(item => item.name.toLowerCase().trim() === targetId);
-  return relationItem ? relationItem.relation : 50;
+  const item = userRelations.find(i => i.name.toLowerCase().trim() === targetId);
+  return item ? item.relation : 50;
 };
 
-// Tactical Maritime Labels (Oceans, Seas, Gulfs, Straits)
 const maritimeLabels = [
   { name: "S A M U D R A   P A S I F I K", lon: -140, lat: 0, size: 36, color: "rgba(56, 189, 248, 0.15)" },
   { name: "S A M U D R A   P A S I F I K", lon: 160, lat: 10, size: 36, color: "rgba(56, 189, 248, 0.15)" },
@@ -66,46 +58,23 @@ const maritimeLabels = [
   { name: "S A M U D R A   H I N D I A", lon: 80, lat: -20, size: 36, color: "rgba(56, 189, 248, 0.15)" },
   { name: "S A M U D R A   A R K T I K", lon: 0, lat: 80, size: 32, color: "rgba(56, 189, 248, 0.15)" },
   { name: "S A M U D R A   S E L A T A N", lon: 0, lat: -60, size: 32, color: "rgba(56, 189, 248, 0.15)" },
-
-  // Majors Seas
   { name: "Laut Mediterania", lon: 18, lat: 34, size: 20, color: "rgba(125, 211, 252, 0.4)" },
   { name: "Laut Karibia", lon: -75, lat: 15, size: 24, color: "rgba(125, 211, 252, 0.4)" },
   { name: "Laut Cina Selatan", lon: 112, lat: 12, size: 20, color: "rgba(125, 211, 252, 0.4)" },
   { name: "Laut Filipina", lon: 130, lat: 15, size: 20, color: "rgba(125, 211, 252, 0.4)" },
   { name: "Laut Jawa", lon: 110, lat: -5, size: 16, color: "rgba(125, 211, 252, 0.4)" },
-  { name: "Laut Banda", lon: 130, lat: -6, size: 16, color: "rgba(125, 211, 252, 0.4)" },
   { name: "Laut Hitam", lon: 35, lat: 43, size: 18, color: "rgba(125, 211, 252, 0.4)" },
   { name: "Laut Merah", lon: 38, lat: 20, size: 18, color: "rgba(125, 211, 252, 0.4)" },
-  { name: "Laut Baltik", lon: 20, lat: 57, size: 18, color: "rgba(125, 211, 252, 0.4)" },
-  { name: "Laut Utara", lon: 3, lat: 56, size: 20, color: "rgba(125, 211, 252, 0.4)" },
-  { name: "Laut Jepang", lon: 135, lat: 40, size: 20, color: "rgba(125, 211, 252, 0.4)" },
-  { name: "Laut Bering", lon: -175, lat: 58, size: 24, color: "rgba(125, 211, 252, 0.4)" },
   { name: "Laut Arab", lon: 65, lat: 15, size: 24, color: "rgba(125, 211, 252, 0.4)" },
-  { name: "Laut Tasman", lon: 160, lat: -40, size: 20, color: "rgba(125, 211, 252, 0.4)" },
-  { name: "Laut Koral", lon: 155, lat: -15, size: 20, color: "rgba(125, 211, 252, 0.4)" },
-
-  // Gulfs and Bays
   { name: "Teluk Meksiko", lon: -90, lat: 25, size: 20, color: "rgba(125, 211, 252, 0.4)" },
   { name: "Teluk Benggala", lon: 90, lat: 15, size: 24, color: "rgba(125, 211, 252, 0.4)" },
   { name: "Teluk Persia", lon: 51, lat: 26, size: 16, color: "rgba(125, 211, 252, 0.4)" },
-  { name: "Teluk Aden", lon: 48, lat: 12, size: 14, color: "rgba(125, 211, 252, 0.4)" },
-  { name: "Teluk Guinea", lon: 0, lat: 0, size: 20, color: "rgba(125, 211, 252, 0.4)" },
-  { name: "Teluk Alaska", lon: -145, lat: 55, size: 20, color: "rgba(125, 211, 252, 0.4)" },
-
-  // Tactical Straits and Canals
   { name: "Selat Malaka", lon: 99, lat: 4, size: 12, color: "rgba(2, 132, 199, 0.6)" },
   { name: "Selat Gibraltar", lon: -5.6, lat: 35.5, size: 12, color: "rgba(2, 132, 199, 0.6)" },
-  { name: "Selat Hormuz", lon: 56.5, lat: 26.5, size: 12, color: "rgba(2, 132, 199, 0.6)" },
-  { name: "Selat Sunda", lon: 105, lat: -6.5, size: 12, color: "rgba(2, 132, 199, 0.6)" },
-  { name: "Selat Bosporus", lon: 29, lat: 41, size: 12, color: "rgba(2, 132, 199, 0.6)" },
   { name: "Terusan Suez", lon: 33.5, lat: 31, size: 12, color: "rgba(2, 132, 199, 0.6)" },
-  { name: "Terusan Panama", lon: -78.5, lat: 8, size: 12, color: "rgba(2, 132, 199, 0.6)" },
-  { name: "Selat Inggris", lon: 1, lat: 51, size: 14, color: "rgba(2, 132, 199, 0.6)" },
-  { name: "Kanal Taiwan", lon: 119.5, lat: 24, size: 14, color: "rgba(2, 132, 199, 0.6)" }
+  { name: "Terusan Panama", lon: -78.5, lat: 8, size: 12, color: "rgba(2, 132, 199, 0.6)" }
 ];
 
-
-// Map Helper for Continent Colors
 const getContinentColor = (name: string, id: string): string => {
   const n = name.trim().toLowerCase();
   const i = id?.toUpperCase() || "";
@@ -158,537 +127,274 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
   const bgCanvasRef = useRef<HTMLCanvasElement>(null);
   const fgCanvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovering, setIsHovering] = useState(false);
-  const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
   const [selectedWp, setSelectedWp] = useState<string | null>(null);
   const [sessionTrades, setSessionTrades] = useState<any[]>([]);
   const [activeTransactions, setActiveTransactions] = useState<any[]>([]);
 
-  // Listen for real-time trade storage updates
-  useEffect(() => {
-    const updateTrades = () => {
-      if (!userCountry) return;
-      const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
-      if (userEntry) {
-        const trades = tradeStorage.getTrade(userEntry.name_en) || tradeStorage.getTrade(userEntry.name_id);
-        setSessionTrades(trades || []);
-      }
-    };
-
-    // Initial load
-    updateTrades();
-    setActiveTransactions(tradeStorage.getActiveTransactions());
-
-    const tradeUpdateHandler = () => {
-      updateTrades();
-      setActiveTransactions(tradeStorage.getActiveTransactions());
-    };
-
-    window.addEventListener('trade_storage_updated', tradeUpdateHandler);
-    return () => window.removeEventListener('trade_storage_updated', tradeUpdateHandler);
-  }, [userCountry]);
-
-  // Logic for Trade Partners - takes initial data or session data if available
-  const tradePartners = useMemo(() => {
-    if (!userCountry) return new Set<string>();
-
-    const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
-    if (!userEntry) return new Set<string>();
-
-    const userEn = userEntry.name_en;
-    const userId = userEntry.name_id;
-
-    // Use the state-driven sessionTrades (updated via events)
-    let partnersData: any[] = [];
-    if (sessionTrades && Array.isArray(sessionTrades) && sessionTrades.length > 0) {
-      // filters for 'Perdagangan' and ensures they are active
-      // Supporting both 'type' and 'jenis' for backward and database compatibility
-      partnersData = sessionTrades.filter((t: any) =>
-        (t.type === 'Perdagangan' || t.jenis === 'Perdagangan') &&
-        t.status === 'Aktif'
-      );
-    } else {
-      // 2. Fallback to initial database relations
-      partnersData = getInitialAgreements(userEn, userId);
-    }
-
-    // Create a Set of normalized names for fast lookup during map rendering
-    return new Set(partnersData.map((p: any) => (p.mitra || p.name || "").toLowerCase().trim()));
-  }, [userCountry, sessionTrades]);
-
-  // Robust Naming Map: English (from GeoJSON) to Indonesian (used in trade mitra)
-  const fullGeoToIndoMap = useMemo(() => {
-    const map: Record<string, string> = { ...geoJsonToIndo };
-    centersData.forEach(c => {
-      if (c.name_en) map[c.name_en] = c.name_id;
-    });
-    return map;
-  }, [centersData]);
-
-  // Line hitting cache ref
-  const drawnPathsRef = useRef<{ pts: { rtX: number, rtY: number }[], origin: string, mitra: string, originId: string, partnerId: string }[]>([]);
-
-  // Higher resolution for more detail and less "narrow" feel
-  // 3:1 or 2.5:1 aspect ratio can feel more panoramic
   const mapWidth = 6000;
   const mapHeight = 2400;
 
-  // Modern Tactical Theme (Amber/Orange for Dormant, Cyan/Blue for Active)
-  const DORMANT_TRADE_COLOR = "rgba(245, 158, 11, 0.4)";
-  const ACTIVE_TRADE_COLOR = "#0066ff";
-  const CUSTOM_TRADE_COLOR = "#ef4444";
-  const CUSTOM_TRADE_DORMANT = "rgba(239, 68, 68, 0.25)";
-
-  // Animation loop state
-  const [animationTime, setAnimationTime] = useState(Date.now());
-  const [gameState, setGameState] = useState(timeStorage.getState());
+  const activeTxRef = useRef<any[]>([]);
+  const gameStateRef = useRef(timeStorage.getState());
   const requestRef = useRef<number>(null);
   const lastTimestampRef = useRef<number>(Date.now());
   const txAccumulatedTimeRef = useRef<Record<number, number>>({});
+  
+  // Cache for pre-calculated and PROJECTED routes
+  const activeRoutesCacheRef = useRef<Record<number, { pts: Point[], pixels: { x: number, y: number }[] }>>({});
+  const drawnPathsRef = useRef<{ pts: { rtX: number, rtY: number }[], origin: string, mitra: string }[]>([]);
+
+  // 1. DATA LISTENERS
+  useEffect(() => {
+    const update = () => {
+      const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+      if (userEntry) {
+        setSessionTrades(tradeStorage.getTrade(userEntry.name_en) || tradeStorage.getTrade(userEntry.name_id) || []);
+        setActiveTransactions(tradeStorage.getActiveTransactions());
+      }
+    };
+    update();
+    const handler = () => update();
+    window.addEventListener('trade_storage_updated', handler);
+    return () => window.removeEventListener('trade_storage_updated', handler);
+  }, [userCountry]);
+
+  useEffect(() => { activeTxRef.current = activeTransactions; }, [activeTransactions]);
 
   useEffect(() => {
     const unsubscribe = timeStorage.subscribe((date, paused, speed) => {
-      setGameState({ gameDate: date, isPaused: paused, speed: speed });
+      gameStateRef.current = { gameDate: date, isPaused: paused, speed: speed };
     });
     return () => unsubscribe();
   }, []);
 
+  const tradePartners = useMemo(() => {
+    if (!userCountry) return new Set<string>();
+    const entry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+    if (!entry) return new Set<string>();
+    const activeAgreements = sessionTrades.filter((t: any) => (t.type === 'Perdagangan' || t.jenis === 'Perdagangan') && t.status === 'Aktif');
+    const partners = activeAgreements.length > 0 ? activeAgreements : getInitialAgreements(entry.name_en, entry.name_id);
+    return new Set(partners.map((p: any) => (p.mitra || p.name || "").toLowerCase().trim()));
+  }, [userCountry, sessionTrades]);
+
+  const fullGeoToIndoMap = useMemo(() => {
+    const map: Record<string, string> = { ...geoJsonToIndo };
+    centersData.forEach(c => { if (c.name_en) map[c.name_en] = c.name_id; });
+    return map;
+  }, []);
+
+  // --- 2. STATIC BACKGROUND (Peta Dunia + Rute Diam + Rute Aktif Statis) ---
+  useEffect(() => {
+    const canvas = bgCanvasRef.current;
+    if (!canvas || !geoData) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    ctx.clearRect(0, 0, mapWidth * 3, mapHeight);
+    const offsets = [0, mapWidth, mapWidth * 2];
+    
+    // a. Pre-calculate active route pixels to ensure they are available for drawing
+    activeTransactions.forEach(tx => {
+      if (!activeRoutesCacheRef.current[tx.id]) {
+        const sHub = getHubForCountry(tx.source), dHub = getHubForCountry(tx.dest);
+        if (sHub && dHub) {
+          const pts = calculateTradeRoute({ lon: sHub.lon, lat: sHub.lat }, { lon: dHub.lon, lat: dHub.lat });
+          activeRoutesCacheRef.current[tx.id] = { pts, pixels: pts.map(p => ({ x: ((p.lon + 180) / 360) * mapWidth, y: ((90 - p.lat) / 180) * mapHeight })) };
+        }
+      }
+    });
+
+    // b. Pre-calculate dormant paths
+    drawnPathsRef.current = [];
+    const userCenter = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+    if (userCenter) {
+      tradePartners.forEach(partnerName => {
+        const pCenter = centersData.find(c => c.name_id.toLowerCase().trim() === partnerName || c.name_en.toLowerCase().trim() === partnerName);
+        if (pCenter) {
+          const pts = [];
+          for (let i = 0; i <= 20; i++) {
+            const t = i / 20;
+            const lon = userCenter.lon + (pCenter.lon - userCenter.lon) * t;
+            const lat = userCenter.lat + (pCenter.lat - userCenter.lat) * t + Math.sin(t * Math.PI) * 10;
+            pts.push({ rtX: (lon + 180) / 360, rtY: (90 - lat) / 180 });
+          }
+          drawnPathsRef.current.push({ pts, origin: userCenter.name_en, mitra: pCenter.name_id });
+        }
+      });
+    }
+
+    offsets.forEach(offset => {
+      ctx.save(); ctx.translate(offset, 0);
+      const project = (lon: number, lat: number) => ({ x: ((lon + 180) / 360) * mapWidth, y: ((90 - lat) / 180) * mapHeight });
+      
+      // Gradient Ocean
+      const grad = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
+      grad.addColorStop(0, "#121d31"); grad.addColorStop(1, "#070b13");
+      ctx.fillStyle = grad; ctx.fillRect(0, 0, mapWidth, mapHeight);
+
+      // Countries
+      geoData.features.forEach((feature: any) => {
+        const name = feature.properties.name;
+        const targetUser = { "United States": "United States of America" }[userCountry] || userCountry;
+        const targetHover = targetCountry ? ({ "United States": "United States of America" }[targetCountry] || targetCountry) : null;
+        const isPlayer = name === targetUser, isTarget = name === targetHover;
+        
+        ctx.beginPath();
+        const draw = (coords: any) => coords.forEach((poly: any) => poly.forEach((c: any, i: number) => {
+          const { x, y } = project(c[0], c[1]);
+          if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        }));
+        if (feature.geometry.type === "Polygon") draw(feature.geometry.coordinates);
+        else feature.geometry.coordinates.forEach((p: any) => draw(p));
+        ctx.closePath();
+
+        const isPartner = tradePartners.has(name.toLowerCase().trim()) || tradePartners.has((fullGeoToIndoMap[name] || name).toLowerCase().trim());
+        let fill = getContinentColor(name, feature.id), stroke = "rgba(245, 245, 220, 0.25)";
+        if (isPartner && !isPlayer && !isTarget) { fill = "rgba(6, 182, 212, 0.45)"; stroke = "rgba(6, 182, 212, 0.9)"; }
+        if (isPlayer || isTarget) {
+          fill = isPlayer ? "rgba(34, 197, 94, 0.3)" : "rgba(251, 191, 36, 0.4)";
+          stroke = isPlayer ? "#4ade80" : "#fbbf24";
+          ctx.shadowBlur = 15; ctx.shadowColor = stroke;
+        }
+        ctx.fillStyle = fill; ctx.strokeStyle = stroke; ctx.fill(); ctx.stroke(); ctx.shadowBlur = 0;
+      });
+
+      // Active Static Routes (Lines drawn ONCE here, not in loop)
+      activeTransactions.forEach(tx => {
+        const data = activeRoutesCacheRef.current[tx.id];
+        if (data) {
+          ctx.beginPath();
+          ctx.moveTo(data.pixels[0].x, data.pixels[0].y);
+          for (let i = 1; i < data.pixels.length; i++) ctx.lineTo(data.pixels[i].x, data.pixels[i].y);
+          ctx.lineWidth = 3.5;
+          ctx.strokeStyle = tx.type === 'buy' ? "#ff3333" : "#22c55e";
+          ctx.globalAlpha = 0.5;
+          ctx.stroke();
+          ctx.globalAlpha = 1.0;
+        }
+      });
+
+      // Dormant Routes
+      drawnPathsRef.current.forEach(p => {
+        ctx.beginPath(); ctx.moveTo(p.pts[0].rtX*mapWidth, p.pts[0].rtY*mapHeight);
+        p.pts.forEach(pt => ctx.lineTo(pt.rtX*mapWidth, pt.rtY*mapHeight));
+        ctx.strokeStyle = "rgba(14,165,233,0.3)"; ctx.stroke();
+      });
+
+      // Centers & Labels
+      const sorted = [...centersData].sort((a,b) => (a.name_en === targetCountry ? 1 : b.name_en === targetCountry ? -1 : 0));
+      const grid: any[] = [];
+      sorted.forEach(c => {
+        const { x, y } = project(c.lon, c.lat);
+        const isSel = c.name_en === userCountry || c.name_en === targetCountry;
+        ctx.beginPath(); ctx.arc(x, y, isSel ? 4 : 2.5, 0, 7); ctx.fillStyle = isSel ? "#ffffff" : "rgba(148,163,184,0.5)"; ctx.fill();
+        if (isSel) { ctx.font = "48px sans-serif"; ctx.fillText(c.flag, x, y - 90); }
+        else if (!grid.some(p => Math.abs(p.x-x)<120 && Math.abs(p.y-y)<60)) {
+          ctx.font = "14px sans-serif"; ctx.fillStyle = "rgba(148,163,184,0.35)"; ctx.fillText(c.flag, x, y-18); grid.push({x,y});
+        }
+      });
+
+      internationalHubs.forEach(h => {
+        const { x, y } = project(h.lon, h.lat);
+        ctx.beginPath(); ctx.arc(x, y, 4.5, 0, 7); ctx.fillStyle = h.fill || "#ffffff"; ctx.fill();
+      });
+      ctx.restore();
+    });
+  }, [geoData, userCountry, targetCountry, centersData, tradePartners, activeTransactions]);
+
+  // --- 3. ANIMATION LOOP (FOREGROUND - PELAYARAN SAJA) ---
   useEffect(() => {
     const animate = () => {
       const now = Date.now();
       const deltaTime = now - lastTimestampRef.current;
       lastTimestampRef.current = now;
 
-      // Only increment progress if not paused
-      if (!gameState.isPaused) {
-        activeTransactions.forEach(tx => {
+      if (!gameStateRef.current.isPaused) {
+        activeTxRef.current.forEach(tx => {
           const current = txAccumulatedTimeRef.current[tx.id] || 0;
-          // Apply speed multiplier to movement
-          txAccumulatedTimeRef.current[tx.id] = current + (deltaTime * gameState.speed);
+          txAccumulatedTimeRef.current[tx.id] = current + (deltaTime * gameStateRef.current.speed);
         });
       }
 
-      setAnimationTime(now); // Trigger re-render
-      requestRef.current = requestAnimationFrame(animate);
-    };
+      const canvas = fgCanvasRef.current;
+      if (canvas) {
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+           ctx.clearRect(0, 0, canvas.width, canvas.height);
+           const offsets = [0, mapWidth, mapWidth * 2];
+           offsets.forEach(offset => {
+             ctx.save(); ctx.translate(offset, 0);
+             activeTxRef.current.forEach(tx => {
+               const data = activeRoutesCacheRef.current[tx.id];
+               if (data) {
+                 const { pixels } = data;
+                 const duration = 10000;
+                 const elapsed = txAccumulatedTimeRef.current[tx.id] || 0;
+                 const progress = Math.min(1, Math.max(0, elapsed / duration));
+                 
+                 if (elapsed >= duration) {
+                    delete activeRoutesCacheRef.current[tx.id];
+                    setTimeout(() => tradeStorage.removeTransaction(tx.id), 0);
+                    return;
+                 }
+                 const totalSegs = pixels.length - 1;
+                 const curSeg = Math.min(totalSegs - 1, Math.floor(progress * totalSegs));
+                 const segProg = (progress * totalSegs) - curSeg;
+                 const p1 = pixels[curSeg], p2 = pixels[curSeg + 1];
+                 const curX = p1.x + (p2.x - p1.x) * segProg, curY = p1.y + (p2.y - p1.y) * segProg;
+                 const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
 
-    if (activeTransactions.length > 0) {
-      lastTimestampRef.current = Date.now();
-      requestRef.current = requestAnimationFrame(animate);
-    }
-    return () => {
-      if (requestRef.current) cancelAnimationFrame(requestRef.current);
-    };
-  }, [activeTransactions.length, gameState.isPaused, gameState.speed]);
-
-
-
-  // Cache for pre-calculated routes for active transactions
-  const activeRoutesCacheRef = useRef<Record<number, Point[]>>({});
-
-  // 1. EFFECT: Draw Static Background Layer
-  useEffect(() => {
-    const canvas = bgCanvasRef.current;
-    if (!canvas || !geoData) return;
-
-    const ctx = canvas.getContext("2d"); 
-    if (!ctx) return;
-
-    // Clear and Fill background style
-    ctx.clearRect(0, 0, mapWidth * 3, mapHeight);
-
-    const offsets = [0, mapWidth, mapWidth * 2];
-    drawnPathsRef.current = []; 
-
-    const userCenter = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
-
-    // Calc static routes for partners
-    if (userCenter) {
-      tradePartners.forEach(partnerName => {
-        const pCenter = centersData.find(c =>
-          c.name_id.toLowerCase().trim() === partnerName ||
-          c.name_en.toLowerCase().trim() === partnerName
-        );
-        if (pCenter) {
-          const pts = [];
-          const segments = 20;
-          for (let i = 0; i <= segments; i++) {
-            const t = i / segments;
-            const lon = userCenter.lon + (pCenter.lon - userCenter.lon) * t;
-            const lat = userCenter.lat + (pCenter.lat - userCenter.lat) * t;
-            const curLat = lat + Math.sin(t * Math.PI) * 10;
-            pts.push({ rtX: (lon + 180) / 360, rtY: (90 - curLat) / 180 });
-          }
-          drawnPathsRef.current.push({
-            pts,
-            origin: userCenter.name_en,
-            mitra: pCenter.name_id,
-            originId: userCenter.name_id,
-            partnerId: pCenter.name_id
-          });
+                 ctx.save(); ctx.translate(curX, curY); ctx.rotate(angle); ctx.fillStyle = "#ffffff";
+                 ctx.shadowBlur = 8; ctx.shadowColor = "#ffffff";
+                 ctx.beginPath(); ctx.moveTo(10, 0); ctx.lineTo(-6, -5); ctx.lineTo(-4, 0); ctx.lineTo(-6, 5);
+                 ctx.closePath(); ctx.fill(); ctx.restore();
+               }
+             });
+             ctx.restore();
+           });
         }
-      });
-    }
-
-    offsets.forEach(offset => {
-      ctx.save();
-      ctx.translate(offset, 0);
-
-      const project = (lon: number, lat: number) => {
-        const x = ((lon + 180) / 360) * mapWidth;
-        const y = ((90 - lat) / 180) * mapHeight;
-        return { x, y };
-      };
-
-      // Gradient Ocean
-      const bgGradient = ctx.createRadialGradient(mapWidth / 2, mapHeight / 2, 100, mapWidth / 2, mapHeight / 2, mapWidth / 1.5);
-      bgGradient.addColorStop(0, "#121d31");
-      bgGradient.addColorStop(1, "#070b13");
-      ctx.fillStyle = bgGradient;
-      ctx.fillRect(0, 0, mapWidth, mapHeight);
-
-      // Draw Countries
-      geoData.features.forEach((feature: any) => {
-        const name = feature.properties.name;
-        
-        const geoNameMap: { [key: string]: string } = { "United States": "United States of America" };
-        const targetUserCountry = geoNameMap[userCountry] || userCountry;
-        const targetHoverCountry = targetCountry ? (geoNameMap[targetCountry] || targetCountry) : null;
-
-        const isPlayer = name === targetUserCountry;
-        const isTarget = name === targetHoverCountry;
-
-        ctx.lineJoin = "round";
-        ctx.lineCap = "round";
-        ctx.beginPath();
-
-        const drawCoords = (coordinates: any) => {
-          coordinates.forEach((polyline: any) => {
-            polyline.forEach((coord: any, cIdx: number) => {
-              const { x, y } = project(coord[0], coord[1]);
-              if (cIdx === 0) ctx.moveTo(x, y);
-              else ctx.lineTo(x, y);
-            });
-          });
-        };
-
-        if (feature.geometry.type === "Polygon") drawCoords(feature.geometry.coordinates);
-        else if (feature.geometry.type === "MultiPolygon") feature.geometry.coordinates.forEach((p: any) => drawCoords(p));
-
-        ctx.closePath();
-
-        let fillColor = getContinentColor(name, feature.id);
-        let strokeColor = "rgba(245, 245, 220, 0.25)";
-        
-        const normalizedName = name.toLowerCase().trim();
-        const displayIndoName = fullGeoToIndoMap[name] || name;
-        const normalizedIndoName = displayIndoName.toLowerCase().trim();
-        const isPartner = tradePartners.has(normalizedName) || tradePartners.has(normalizedIndoName);
-
-        ctx.lineWidth = 1;
-        ctx.shadowBlur = 0;
-
-        if (isPartner && !isPlayer && !isTarget) {
-          fillColor = "rgba(6, 182, 212, 0.45)"; 
-          strokeColor = "rgba(6, 182, 212, 0.9)";
-          ctx.lineWidth = 1.5;
-        }
-
-        if (isPlayer || isTarget) {
-          if (isPlayer) {
-            fillColor = "rgba(34, 197, 94, 0.3)";
-            strokeColor = "#4ade80";
-          } else if (isTarget) {
-            const rel = getRelation(name, userCountry);
-            if (rel >= 70) strokeColor = "#4ade80";
-            else if (rel >= 41) strokeColor = "#fbbf24";
-            else strokeColor = "#f87171";
-            
-            if (strokeColor === "#4ade80") fillColor = "rgba(74, 222, 128, 0.4)";
-            else if (strokeColor === "#fbbf24") fillColor = "rgba(251, 191, 36, 0.4)";
-            else fillColor = "rgba(239, 68, 68, 0.4)";
-          }
-          ctx.lineWidth = 2;
-          ctx.shadowColor = strokeColor;
-          ctx.shadowBlur = 15;
-        }
-
-        ctx.fillStyle = fillColor;
-        ctx.strokeStyle = strokeColor;
-        ctx.fill();
-        ctx.stroke();
-        ctx.shadowBlur = 0;
-      });
-
-      // Maritime Labels
-      maritimeLabels.forEach(label => {
-        const { x, y } = project(label.lon, label.lat);
-        if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) {
-          ctx.font = `italic ${label.size}px 'Inter', sans-serif`;
-          ctx.fillStyle = label.color;
-          ctx.textAlign = "center";
-          ctx.textBaseline = "middle";
-          ctx.fillText(label.name, x, y);
-        }
-      });
-
-      // Markers & Center Labels
-      const sortedCenters = [...centersData].sort((a, b) => {
-        if (a.name_en === targetCountry) return 1;
-        if (b.name_en === targetCountry) return -1;
-        if (a.name_en === userCountry) return 1;
-        if (b.name_en === userCountry) return -1;
-        return 0;
-      });
-      const labelGrid: { x: number, y: number }[] = [];
-      const minLabelDist = 120;
-
-      sortedCenters.forEach((center: any) => {
-        const x = ((center.lon + 180) / 360) * mapWidth;
-        const y = ((90 - center.lat) / 180) * mapHeight;
-        const isPlayer = center.name_en === userCountry;
-        const isTarget = center.name_en === targetCountry;
-
-        ctx.beginPath();
-        if (["Papua Nugini", "Papua New Guinea"].includes(center.name_en)) {
-          ctx.arc(x, y, 4, 0, Math.PI * 2);
-          ctx.fillStyle = "#ffffff";
-          ctx.shadowBlur = 4;
-          ctx.shadowColor = "#ffffff";
-        } else {
-          ctx.arc(x, y, 2.5, 0, Math.PI * 2);
-          ctx.fillStyle = "rgba(148, 163, 184, 0.5)";
-        }
-        ctx.fill();
-        ctx.shadowBlur = 0;
-
-        if (isPlayer || isTarget) {
-          ctx.font = "48px sans-serif";
-          ctx.fillText(center.flag, x, y - 90);
-        } else {
-          const isTooCrowded = labelGrid.some(pos => Math.abs(pos.x - x) < minLabelDist && Math.abs(pos.y - y) < minLabelDist / 2);
-          if (!isTooCrowded) {
-            ctx.font = "14px 'Inter', sans-serif";
-            ctx.fillStyle = "rgba(148, 163, 184, 0.35)";
-            ctx.fillText(center.flag, x, y - 18);
-            labelGrid.push({ x, y });
-          }
-        }
-      });
-
-      // Draw Partner Routes (Static)
-      drawnPathsRef.current.forEach(path => {
-        ctx.beginPath();
-        const p0 = path.pts[0];
-        ctx.moveTo(p0.rtX * mapWidth, p0.rtY * mapHeight);
-        path.pts.forEach(pt => ctx.lineTo(pt.rtX * mapWidth, pt.rtY * mapHeight));
-        ctx.lineWidth = 1.2;
-        ctx.strokeStyle = "rgba(14, 165, 233, 0.3)";
-        ctx.stroke();
-      });
-
-      // Draw International Hubs
-      internationalHubs.forEach((hub: any) => {
-        const hX = ((hub.lon + 180) / 360) * mapWidth;
-        const hY = ((90 - hub.lat) / 180) * mapHeight;
-        ctx.beginPath();
-        ctx.arc(hX, hY, hub.radius || 4.5, 0, Math.PI * 2);
-        ctx.fillStyle = hub.fill || "#ffffff";
-        if (hub.shadowColor) {
-           ctx.shadowColor = hub.shadowColor;
-           ctx.shadowBlur = hub.shadowBlur || 8;
-        }
-        ctx.fill();
-        ctx.shadowBlur = 0;
-      });
-
-      ctx.restore();
-    });
-  }, [geoData, userCountry, targetCountry, centersData, tradePartners]);
-
-  // 2. EFFECT: Draw Animation Layer (Every Frame - Targeted & Lightweight)
-  useEffect(() => {
-    const canvas = fgCanvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    // Clear JUST the animation layer
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const offsets = [0, mapWidth, mapWidth * 2];
-
-    offsets.forEach(offset => {
-      ctx.save();
-      ctx.translate(offset, 0);
-
-      const project = (lon: number, lat: number) => {
-        const x = ((lon + 180) / 360) * mapWidth;
-        const y = ((90 - lat) / 180) * mapHeight;
-        return { x, y };
-      };
-
-      if (activeTransactions.length > 0) {
-        activeTransactions.forEach(tx => {
-          // Pre-calculate/Cache routes to save CPU
-          if (!activeRoutesCacheRef.current[tx.id]) {
-            const sourceHub = getHubForCountry(tx.source);
-            const destHub = getHubForCountry(tx.dest);
-            if (sourceHub && destHub) {
-              activeRoutesCacheRef.current[tx.id] = calculateTradeRoute(
-                { lon: sourceHub.lon, lat: sourceHub.lat },
-                { lon: destHub.lon, lat: destHub.lat }
-              );
-            }
-          }
-
-          const route = activeRoutesCacheRef.current[tx.id];
-          if (route) {
-            // Draw Glowing Path
-            ctx.beginPath();
-            const first = route[0];
-            const { x: startX, y: startY } = project(first.lon, first.lat);
-            ctx.moveTo(startX, startY);
-            for (let i = 1; i < route.length; i++) {
-              const { x, y } = project(route[i].lon, route[i].lat);
-              ctx.lineTo(x, y);
-            }
-
-            ctx.lineWidth = 4.0;
-            ctx.strokeStyle = tx.type === 'buy' ? "#ff3333" : "#22c55e";
-            ctx.shadowBlur = 12;
-            ctx.shadowColor = tx.type === 'buy' ? "rgba(255, 0, 0, 0.6)" : "rgba(34, 197, 94, 0.6)";
-            ctx.stroke();
-            ctx.shadowBlur = 0;
-
-            // Draw Ship
-            const duration = 10000;
-            const activeElapsed = txAccumulatedTimeRef.current[tx.id] || 0;
-            const progress = Math.min(1, Math.max(0, activeElapsed / duration));
-
-            if (activeElapsed >= duration) {
-               delete activeRoutesCacheRef.current[tx.id]; // Cleanup cache
-               tradeStorage.removeTransaction(tx.id);
-               return;
-            }
-
-            const totalSegments = route.length - 1;
-            const currentSegment = Math.min(totalSegments - 1, Math.floor(progress * totalSegments));
-            const segmentProgress = (progress * totalSegments) - currentSegment;
-
-            const p1 = route[currentSegment];
-            const p2 = route[currentSegment + 1];
-            const currentLon = p1.lon + (p2.lon - p1.lon) * segmentProgress;
-            const currentLat = p1.lat + (p2.lat - p1.lat) * segmentProgress;
-            const { x, y } = project(currentLon, currentLat);
-
-            const { x: x2, y: y2 } = project(p2.lon, p2.lat);
-            const angle = Math.atan2(y2 - y, x2 - x);
-
-            ctx.save();
-            ctx.translate(x, y);
-            ctx.rotate(angle);
-            ctx.fillStyle = "#ffffff";
-            ctx.shadowBlur = 8;
-            ctx.shadowColor = "#ffffff";
-            ctx.beginPath();
-            ctx.moveTo(10, 0); ctx.lineTo(-6, -5); ctx.lineTo(-4, 0); ctx.lineTo(-6, 5);
-            ctx.closePath();
-            ctx.fill();
-            ctx.restore();
-          }
-        });
       }
-      ctx.restore();
-    });
-  }, [activeTransactions, animationTime]); // NO geoData/countries here!
+      requestRef.current = requestAnimationFrame(animate);
+    };
+    requestRef.current = requestAnimationFrame(animate);
+    return () => { if (requestRef.current) cancelAnimationFrame(requestRef.current); };
+  }, []);
 
-  // Define Custom Cursors
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
-  const hoverCursor = "pointer";
 
   return (
     <div className="relative h-full w-full overflow-hidden">
-      {/* Background Layer: Static Map, Countries, Hubs */}
-      <canvas
-        ref={bgCanvasRef}
-        width={mapWidth * 3}
-        height={mapHeight}
-        className="h-full w-auto max-w-none z-0"
-        style={{ pointerEvents: "none" }}
-      />
-      
-      {/* Animation Layer: Trade Ships, Active Lines */}
-      <canvas
-        ref={fgCanvasRef}
-        width={mapWidth * 3}
-        height={mapHeight}
-        className="absolute inset-0 h-full w-auto max-w-none z-10"
-        style={{ cursor: defaultCursor, pointerEvents: active ? "auto" : "none" }}
-        onMouseDown={(e) => {
-          if (mouseDownPosRef && mouseDownPosRef.current !== undefined) {
-            mouseDownPosRef.current = { x: e.clientX, y: e.clientY };
-          }
-        }}
+      <canvas ref={bgCanvasRef} width={mapWidth * 3} height={mapHeight} className="h-full w-auto max-w-none z-0" style={{ pointerEvents: "none" }} />
+      <canvas ref={fgCanvasRef} width={mapWidth * 3} height={mapHeight} className="absolute inset-0 h-full w-auto max-w-none z-10" style={{ cursor: isHovering ? "pointer" : defaultCursor, pointerEvents: active ? "auto" : "none" }}
         onMouseMove={(e) => {
-          if (typeof active !== 'undefined' && !active) return;
-          const canvas = fgCanvasRef.current;
-          if (!canvas) return;
-          const rect = canvas.getBoundingClientRect();
-          const clickX = ((e.clientX - rect.left) / rect.width) * (mapWidth * 3);
-          const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-          const mappedClickX = clickX % mapWidth;
-
-          let foundHover = false;
-          centersData.forEach((center: any) => {
-            const x = ((center.lon + 180) / 360) * mapWidth;
-            const y = ((90 - center.lat) / 180) * mapHeight;
-            const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
-            if (dist < 60) foundHover = true;
-          });
-          setIsHovering(foundHover);
+          if (!active) return;
+          const rect = fgCanvasRef.current!.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * (mapWidth * 3) % mapWidth;
+          const y = ((e.clientY - rect.top) / rect.height) * mapHeight;
+          setIsHovering(centersData.some(c => Math.sqrt((((c.lon+180)/360)*mapWidth - x)**2 + (((90-c.lat)/180)*mapHeight - y)**2) < 60));
         }}
         onClick={(e) => {
           if (!active) return;
-          if (mouseDownPosRef.current) {
-            const dx = Math.abs(e.clientX - mouseDownPosRef.current.x);
-            const dy = Math.abs(e.clientY - mouseDownPosRef.current.y);
-            if (dx > 5 || dy > 5) return;
-          }
-
-          const canvas = fgCanvasRef.current;
-          if (!canvas) return;
-          const rect = canvas.getBoundingClientRect();
-          const clickX = ((e.clientX - rect.left) / rect.width) * (mapWidth * 3);
-          const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
-          const mappedClickX = clickX % mapWidth;
-
-          let closest: any = null;
-          let minDist = 100;
-
-          centersData.forEach((center: any) => {
-            const x = ((center.lon + 180) / 360) * mapWidth;
-            const y = ((90 - center.lat) / 180) * mapHeight;
-            const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
-            if (dist < minDist) { minDist = dist; closest = { name: center.name_en?.trim() }; }
+          const rect = fgCanvasRef.current!.getBoundingClientRect();
+          const x = ((e.clientX - rect.left) / rect.width) * (mapWidth * 3) % mapWidth;
+          const y = ((e.clientY - rect.top) / rect.height) * mapHeight;
+          let closest: any = null, minDist = 100;
+          centersData.forEach(c => {
+            const d = Math.sqrt((((c.lon+180)/360)*mapWidth - x)**2 + (((90-c.lat)/180)*mapHeight - y)**2);
+            if (d < minDist) { minDist = d; closest = c; }
           });
-
-          if (typeof internationalHubs !== 'undefined') {
-            internationalHubs.forEach((hub) => {
-              const x = ((hub.lon + 180) / 360) * mapWidth;
-              const y = ((90 - hub.lat) / 180) * mapHeight;
-              const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
-              if (dist <= minDist) { minDist = dist; closest = { name: hub.name }; }
-            });
-          }
-
-          if (closest && minDist < 60) {
-            const targetName = closest.name;
-            setSelectedWp(prev => prev === targetName ? null : targetName);
+          internationalHubs.forEach(h => {
+             const d = Math.sqrt((((h.lon+180)/360)*mapWidth - x)**2 + (((90-h.lat)/180)*mapHeight - y)**2);
+             if (d < minDist) { minDist = d; closest = h; }
+          });
+          if (closest) {
+            let name = closest.name_en || closest.name;
+            if (name.includes('(')) name = name.split('(')[0].trim();
+            setSelectedWp(prev => prev === name ? null : name);
+            if (onSelect) onSelect(name);
           }
         }}
       />
     </div>
   );
 }
-

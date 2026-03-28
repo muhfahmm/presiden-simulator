@@ -45,7 +45,10 @@ export default function GamePage() {
       setIsMenuOpen(false);
     } else {
       setTargetCountry(name);
-      setIsMenuOpen(true);
+      // Only open strategy menu if not in trade map mode
+      if (mapMode !== "trade") {
+        setIsMenuOpen(true);
+      }
     }
   };
 
