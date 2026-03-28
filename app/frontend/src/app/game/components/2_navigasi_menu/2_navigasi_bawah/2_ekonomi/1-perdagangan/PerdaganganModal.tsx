@@ -8,6 +8,7 @@ import {
 } from "lucide-react"
 import { AddTradePartnerModal } from "./mitra_dagang_internasional/AddTradePartnerModal"
 import { CountryData } from "@/app/database/data/types/index"
+import NavigasiWaktu from "./NavigasiWaktu"
 import { tradeStorage } from "./TradeStorage"
 import { buyPriceMap, sellPriceMap, labelsMap, baseKeyMapping, getDynamicPrice } from "./tradeData"
 import { TradePriceChart } from "./TradePriceChart"
@@ -141,6 +142,30 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
     nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine", 
     aluminium: "aluminum_mine", logam_tanah_jarang: "rare_earth_mine", 
     bijih_besi: "iron_ore_mine"
+  };
+
+  const getProductionRate = (key: string) => {
+    const rates: Record<string, number> = {
+      emas: 2, uranium: 5, nikel: 80, litium: 120, tembaga: 200, aluminium: 300,
+      logam_tanah_jarang: 15, bijih_besi: 1500, batu_bara: 2500, minyak_bumi: 1200,
+      gas_alam: 3500, garam: 800, semikonduktor: 50, mobil: 150, sepeda_motor: 350,
+      smelter: 12, semen_beton: 800, kayu: 1200, air_mineral: 5000, gula: 1200,
+      roti: 2500, pengolahan_daging: 800, mie_instan: 4500, farmasi: 120,
+      ayam_unggas: 2000, sapi_perah: 1500, sapi_potong: 800, domba_kambing: 1200,
+      udang_kerang: 1500, ikan: 2500, padi: 5000, gandum_jagung: 4000,
+      sayur_umbi: 3000, kedelai: 1500, kelapa_sawit: 2500, kopi_teh_kakao: 800,
+      pabrik_drone_kamikaze: 5, pabrik_amunisi: 500, pabrik_kendaraan_tempur: 2,
+      pabrik_senjata_berat: 1
+    };
+    return rates[key] || 0;
+  };
+
+  const getUnit = (key: string) => {
+    if (["minyak_bumi", "air_mineral", "kelapa_sawit", "bahan_bakar"].includes(key)) return "Barel";
+    if (["gas_alam"].includes(key)) return "m3";
+    if (["emas", "uranium", "logam_tanah_jarang", "semikonduktor", "farmasi"].includes(key)) return "Kg";
+    if (["mobil", "sepeda_motor", "pabrik_drone_kamikaze", "pabrik_kendaraan_tempur", "pabrik_senjata_berat", "ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"].includes(key)) return "Unit";
+    return "Ton";
   };
 
   const minerals = (Object.entries(currentCountry.sektor_ekstraksi)
@@ -300,6 +325,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
               </div>
            </div>
            <div className="flex items-center gap-4">
+              <NavigasiWaktu />
               <button className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-white transition-all cursor-pointer group shadow-[0_0_15px_rgba(59,130,246,0.1)] active:scale-95">
                  <Ship className="h-6 w-6 text-blue-500 group-hover:scale-110 transition-transform" />
               </button>
@@ -514,31 +540,41 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
               </div>
 
               <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-10">
-                <div className="space-y-2">
+                <div className="space-y-4">
                   <h2 className="text-2xl font-black text-white tracking-widest uppercase flex items-center gap-4 leading-none">{selectedName}</h2>
-                  <div className="flex flex-col items-start gap-2 text-[12px] font-black uppercase tracking-[0.2em] text-zinc-500 italic">
-                    <div className="flex items-center gap-2"><span className="text-zinc-600 not-italic">Harga Tertinggi</span><span className="text-green-500">{Math.round((activeChartTab === 'buy' ? buyPriceMap[selectedKey] : sellPriceMap[selectedKey]) * 1.15).toLocaleString('id-ID')}</span></div>
-                    <div className="flex items-center gap-2"><span className="text-zinc-600 not-italic">Harga Terendah</span><span className="text-red-500">{Math.round((activeChartTab === 'buy' ? buyPriceMap[selectedKey] : sellPriceMap[selectedKey]) * 0.85).toLocaleString('id-ID')}</span></div>
-                    <div className="flex items-center gap-2"><span className="text-zinc-600 not-italic">Total Stok</span><span className="text-blue-500 font-black">{(() => {
-                      const stockKeyMap: Record<string, string> = {
-                        emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", minyak_bumi: "oil_well", gas_alam: "gas_well",
-                        garam: "salt_mine", nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine", aluminium: "aluminum_mine",
-                        logam_tanah_jarang: "rare_earth_mine", bijih_besi: "iron_ore_mine", ayam_unggas: "livestock_poultry", sapi_perah: "livestock_dairy",
-                        sapi_potong: "livestock_beef", domba_kambing: "livestock_sheep", udang_kerang: "livestock_shrimp", ikan: "livestock_fish",
-                        padi: "agri_rice", gandum_jagung: "agri_grains", sayur_umbi: "agri_veg", kedelai: "agri_soy", kelapa_sawit: "agri_palm", coffee_tea_cocoa: "agri_luxury"
-                      };
-                      const mfgKey = Object.keys(baseKeyMapping).find(k => baseKeyMapping[k] === selectedKey);
-                      const stockKey = stockKeyMap[selectedKey] || mfgKey || selectedKey;
-                      return Math.floor(budgetData.cumulativeProduction?.[stockKey] || 0).toLocaleString('id-ID');
-                    })()}</span></div>
+                  <div className="grid grid-cols-2 gap-x-12 gap-y-4 text-[12px] font-black uppercase tracking-[0.2em] text-zinc-500 italic">
+                    <div className="flex flex-col gap-1">
+                      <span className="text-zinc-600 not-italic">Total Bangunan</span>
+                      <span className="text-white text-sm">{selectedUnits.toLocaleString('id-ID')} Unit</span>
+                    </div>
+                    <div className="flex flex-col gap-1">
+                      <span className="text-zinc-600 not-italic">Produksi /Hari</span>
+                      <span className="text-blue-400 text-sm">{(selectedUnits * getProductionRate(selectedKey)).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
+                    </div>
+                    <div className="flex flex-col gap-1 col-span-2">
+                      <span className="text-zinc-600 not-italic">Total Stok</span>
+                      <span className="text-blue-500 text-sm">{(() => {
+                        const stockKeyMap: Record<string, string> = {
+                          emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", minyak_bumi: "oil_well", gas_alam: "gas_well",
+                          garam: "salt_mine", nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine", aluminium: "aluminum_mine",
+                          logam_tanah_jarang: "rare_earth_mine", bijih_besi: "iron_ore_mine", ayam_unggas: "livestock_poultry", sapi_perah: "livestock_dairy",
+                          sapi_potong: "livestock_beef", domba_kambing: "livestock_sheep", udang_kerang: "livestock_shrimp", ikan: "livestock_fish",
+                          padi: "agri_rice", gandum_jagung: "agri_grains", sayur_umbi: "agri_veg", kedelai: "agri_soy", kelapa_sawit: "agri_palm", coffee_tea_cocoa: "agri_luxury"
+                        };
+                        const mfgKey = Object.keys(baseKeyMapping).find(k => baseKeyMapping[k] === selectedKey);
+                        const stockKey = stockKeyMap[selectedKey] || mfgKey || selectedKey;
+                        const stock = Math.floor(budgetData.cumulativeProduction?.[stockKey] || 0);
+                        return `${stock.toLocaleString('id-ID')} ${getUnit(selectedKey)}`;
+                      })()}</span>
+                    </div>
                   </div>
                 </div>
                 <div className="flex items-center gap-4 xl:gap-6 flex-wrap lg:flex-nowrap">
                   {tradeType === "impor" ? (
-                    <div className="flex flex-col gap-1 flex-shrink-0 animate-in fade-in slide-in-from-right-4 duration-500">
-                      <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1 flex flex-col">
-                        <span className="text-[10px] text-zinc-500 uppercase tracking-widest not-italic">Harga Beli</span>
-                        {importPriceVal.toLocaleString('id-ID')}
+                    <div className="flex flex-col gap-3 flex-shrink-0 animate-in fade-in slide-in-from-right-4 duration-500">
+                      <div className="flex flex-col gap-1 text-[10px] font-black uppercase tracking-widest text-zinc-500">
+                        <div className="flex justify-between gap-8"><span>Harga Tertinggi</span><span className="text-green-500">{Math.round(buyPriceMap[selectedKey] * 1.15).toLocaleString('id-ID')}</span></div>
+                        <div className="flex justify-between gap-8"><span>Harga Terendah</span><span className="text-red-500">{Math.round(buyPriceMap[selectedKey] * 0.85).toLocaleString('id-ID')}</span></div>
                       </div>
                       <button 
                         onClick={() => setActiveMenu(`Menu:Perdagangan:impor=${selectedKey}`)} 
@@ -548,10 +584,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
                       </button>
                     </div>
                   ) : (
-                    <div className="flex flex-col gap-1 flex-shrink-0 animate-in fade-in slide-in-from-left-4 duration-500">
-                      <div className="text-lg lg:text-xl font-black text-white tracking-tighter italic mb-1 flex flex-col">
-                        <span className="text-[10px] text-zinc-500 uppercase tracking-widest not-italic">Harga Jual</span>
-                        {exportPriceVal.toLocaleString('id-ID')}
+                    <div className="flex flex-col gap-3 flex-shrink-0 animate-in fade-in slide-in-from-left-4 duration-500">
+                      <div className="flex flex-col gap-1 text-[10px] font-black uppercase tracking-widest text-zinc-500">
+                        <div className="flex justify-between gap-8"><span>Harga Tertinggi</span><span className="text-green-500">{Math.round(sellPriceMap[selectedKey] * 1.15).toLocaleString('id-ID')}</span></div>
+                        <div className="flex justify-between gap-8"><span>Harga Terendah</span><span className="text-red-500">{Math.round(sellPriceMap[selectedKey] * 0.85).toLocaleString('id-ID')}</span></div>
                       </div>
                       <button 
                         onClick={() => setActiveMenu(`Menu:Perdagangan:ekspor=${selectedKey}`)} 
