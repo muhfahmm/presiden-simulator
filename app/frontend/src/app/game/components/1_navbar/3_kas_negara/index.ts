@@ -1,11 +1,13 @@
-import { gameStorage, GameSession } from "@/app/game/gamestorage";
+import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/countries/region/index";
+import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 
 const BUDGET_STORAGE_KEY = "em4_budget_data";
 
 export interface BudgetData {
   anggaran: number;
   cumulativeProduction: Record<string, number>;
+  lastProcessedDate?: string; // ISO string of the last game date processed
 }
 
 export const budgetStorage = {
@@ -22,7 +24,8 @@ export const budgetStorage = {
         const parsed = JSON.parse(stored);
         return {
           anggaran: typeof parsed.anggaran === 'number' ? parsed.anggaran : 0,
-          cumulativeProduction: parsed.cumulativeProduction || {}
+          cumulativeProduction: parsed.cumulativeProduction || {},
+          lastProcessedDate: parsed.lastProcessedDate
         };
       } catch (e) {
         console.error("Failed to parse budget storage", e);
@@ -36,8 +39,9 @@ export const budgetStorage = {
       const defaultBudget = typeof countryData.anggaran === 'number' ? countryData.anggaran : 1240;
 
       const migratedData: BudgetData = {
-        anggaran: typeof session.anggaran === 'number' ? session.anggaran : defaultBudget,
-        cumulativeProduction: session.cumulativeProduction || {}
+        anggaran: defaultBudget, // Force reset to database value if storage is missing
+        cumulativeProduction: {}, // Always reset production to 0 on full init
+        lastProcessedDate: INITIAL_GAME_DATE.toISOString() // Mark first day as processed to show initial budget
       };
       
       // Save it to the new key immediately
@@ -45,7 +49,7 @@ export const budgetStorage = {
       return migratedData;
     }
 
-    return { anggaran: 0, cumulativeProduction: {} };
+    return { anggaran: 0, cumulativeProduction: {}, lastProcessedDate: undefined };
   },
 
   saveData: (data: BudgetData) => {
@@ -71,7 +75,7 @@ export const budgetStorage = {
     return budgetStorage.getData().cumulativeProduction;
   },
 
-  updateCumulativeProduction: (deltas: Record<string, number>) => {
+  updateCumulativeProduction: (deltas: Record<string, number>, gameDate?: Date) => {
     const data = budgetStorage.getData();
     if (!data.cumulativeProduction) data.cumulativeProduction = {};
     
@@ -79,6 +83,10 @@ export const budgetStorage = {
       const current = data.cumulativeProduction[key] || 0;
       data.cumulativeProduction[key] = current + amount;
     });
+
+    if (gameDate) {
+      data.lastProcessedDate = gameDate.toISOString();
+    }
     
     budgetStorage.saveData(data);
   }

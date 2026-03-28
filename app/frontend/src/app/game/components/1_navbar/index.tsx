@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Heart, Users, Coins, Shield, LogOut, RotateCcw, TrendingUp, TrendingDown, Clock, Activity, Zap, PieChart, BarChart3, Landmark, Percent, Receipt } from "lucide-react";
 import { CountryData } from "@/app/database/data/types/index";
 import { HappinessBreakdown } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan";
+import { gameStorage } from "@/app/game/gamestorage";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { stabilityStorage } from "@/app/game/components/1_navbar/4_stabilitas";
@@ -111,13 +112,8 @@ export default function GameNavbar({
 
           <button
             onClick={() => {
-              if (confirm("Apakah Anda yakin ingin RESET TOTAL? Seluruh progres (Uang, Populasi, Bangunan, Kepuasan) akan dihapus dan mengulang dari 1 Januari 2026.")) {
-                // Hapus seluruh data EM4 di localStorage
-                Object.keys(localStorage).forEach(key => {
-                  if (key.startsWith("em4_")) {
-                    localStorage.removeItem(key);
-                  }
-                });
+              if (confirm("Apakah Anda yakin ingin RESET PROGRES? Seluruh data (Uang, Stok, Bangunan, Kepuasan) akan dihapus tetapi Anda tetap bermain sebagai negara ini.")) {
+                gameStorage.resetCurrentSession();
                 window.location.reload();
               }
             }}

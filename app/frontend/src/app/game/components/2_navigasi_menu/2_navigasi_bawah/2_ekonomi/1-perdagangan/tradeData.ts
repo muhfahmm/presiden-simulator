@@ -7,11 +7,11 @@ export const buyPriceMap: Record<string, number> = {
   // Industry & Others
   "semikonduktor": 1020, "mobil": 54000, "sepeda_motor": 4200, "smelter": 144000,
   "semen_beton": 150, "kayu": 102, "air_mineral": 80, "gula": 250,
-  "roti": 180, "farmasi": 65, "pupuk": 35, "pengolahan_daging": 18,
+  "roti": 180, "farmasi": 65, "pengolahan_daging": 18,
   mie_instan: 50, ayam_unggas: 750, sapi_perah: 2100, sapi_potong: 3200,
   domba_kambing: 450, udang_kerang: 150, ikan: 65,
   padi: 210, gandum_jagung: 150, sayur_umbi: 120, kedelai: 210,
-  kelapa_sawit: 350, kopi_teh_kakao: 950, tebu: 180,
+  kelapa_sawit: 350, kopi_teh_kakao: 950,
   // Military Production
   pabrik_drone_kamikaze: 12000, pabrik_amunisi: 500, pabrik_kendaraan_tempur: 85000, pabrik_senjata_berat: 45000
 };
@@ -24,11 +24,11 @@ export const sellPriceMap: Record<string, number> = {
   // Industry & Others
   "semikonduktor": 850, "mobil": 45000, "sepeda_motor": 3500, "smelter": 120000,
   "semen_beton": 125, "kayu": 85, "air_mineral": 50, "gula": 180,
-  "roti": 120, "farmasi": 45, "pupuk": 25, "pengolahan_daging": 12,
+  "roti": 120, "farmasi": 45, "pengolahan_daging": 12,
   "mie_instan": 35, ayam_unggas: 500, sapi_perah: 1800, sapi_potong: 2500,
   domba_kambing: 350, udang_kerang: 100, ikan: 45,
   padi: 140, gandum_jagung: 100, sayur_umbi: 80, kedelai: 150,
-  kelapa_sawit: 250, kopi_teh_kakao: 650, tebu: 120,
+  kelapa_sawit: 250, kopi_teh_kakao: 650,
   // Military Production
   pabrik_drone_kamikaze: 9500, pabrik_amunisi: 350, pabrik_kendaraan_tempur: 68000, pabrik_senjata_berat: 36000
 };
@@ -39,12 +39,12 @@ export const labelsMap: Record<string, string> = {
   logam_tanah_jarang: "Rare Earth", bijih_besi: "Bijih Besi",
   semikonduktor: "Semikonduktor", mobil: "Mobil", sepeda_motor: "Sepeda Motor", smelter: "Pengolahan Smelter",
   semen_beton: "Beton & Semen", kayu: "Kayu", air_mineral: "Air Mineral", gula: "Gula",
-  roti: "Roti", farmasi: "Farmasi", pupuk: "Pupuk", pengolahan_daging: "Pengolahan Daging",
+  roti: "Roti", farmasi: "Farmasi", pengolahan_daging: "Pengolahan Daging",
   mie_instan: "Mie Instan",
   ayam_unggas: "Ayam/Unggas", sapi_perah: "Sapi Perah", sapi_potong: "Sapi Potong",
   domba_kambing: "Domba/Kambing", udang_kerang: "Udang/Kerang", ikan: "Ikan",
   padi: "Padi", gandum_jagung: "Gandum/Jagung", sayur_umbi: "Sayur/Umbi", kedelai: "Kedelai",
-  kelapa_sawit: "Kelapa Sawit", kopi_teh_kakao: "Kopi/Teh/Kakao", tebu: "Tebu",
+  kelapa_sawit: "Kelapa Sawit", kopi_teh_kakao: "Kopi/Teh/Kakao",
   pabrik_drone_kamikaze: "Drone Kamikaze", pabrik_amunisi: "Amunisi Militer", 
   pabrik_kendaraan_tempur: "Kendaraan Tempur", pabrik_senjata_berat: "Senjata Berat"
 };
@@ -61,7 +61,6 @@ export const baseKeyMapping: Record<string, string> = {
   "noodle_factory": "mie_instan",
   "meat_processing_factory": "pengolahan_daging",
   "sawmill": "kayu",
-  "fertilizer_factory": "pupuk",
   "bakery_factory": "roti"
 };
 

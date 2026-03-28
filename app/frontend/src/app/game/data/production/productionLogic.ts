@@ -1,4 +1,5 @@
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/database/data/types";
+import { militerRate } from "@/app/database/data/types/4_militer/7_militer_rates";
 import { CountryData } from "@/app/database/data/types/index";
 
 /**
@@ -68,6 +69,13 @@ export function calculateDailyProductionTotals(countryData: CountryData, buildin
     
     // For these grouped items, tarif is effectively 1 per count in the UI
     deltas[group.key] = baseCount + deltaCount;
+  });
+  
+  // 4. Militer (Category 6)
+  Object.entries(militerRate).forEach(([key, val]: [string, any]) => {
+    const baseCount = countryData.pabrik_militer[key as keyof typeof countryData.pabrik_militer] || 0;
+    const totalCount = Number(baseCount) + (Number(buildingDeltas[key]) || 0);
+    deltas[key] = totalCount * Math.floor(val.production || 0);
   });
 
   return deltas;

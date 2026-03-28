@@ -145,10 +145,48 @@ export const gameStorage = {
     unILOStorage.clear();
     unFAOStorage.clear();
     unICAOStorage.clear();
-    unIMOStorage.clear();
-    unITUStorage.clear();
     unWMOStorage.clear();
     
     window.location.href = '/database';
+  },
+
+  resetCurrentSession: () => {
+    if (typeof window === 'undefined') return;
+    const session = gameStorage.getSession();
+    if (!session) return;
+
+    // Reset session fields but keep the country
+    session.startTime = Date.now();
+    session.isWelcomeSeen = true;
+    delete session.cumulativeProduction;
+    
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+    localStorage.removeItem("em4_game_date");
+
+    // Modular cleanup for all systems
+    happinessStorage.clear();
+    priceStorage.clear();
+    expenseStorage.clear();
+    incomeStorage.clear();
+    taxStorage.clear();
+    tradeStorage.clear();
+    buildingStorage.clear();
+    inboxStorage.clear();
+    budgetStorage.clear();
+    budgetDeltaStorage.clear();
+    acaraStorage.clear();
+    unSecurityCouncilStorage.clear();
+    unIMFStorage.clear();
+    unWorldBankStorage.clear();
+    unInterpolStorage.clear();
+    unWHOStorage.clear();
+    unUNESCOStorage.clear();
+    unWTOStorage.clear();
+    unILOStorage.clear();
+    unFAOStorage.clear();
+    unICAOStorage.clear();
+    unIMOStorage.clear();
+    unITUStorage.clear();
+    unWMOStorage.clear();
   },
 };

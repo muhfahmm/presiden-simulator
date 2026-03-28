@@ -32,10 +32,19 @@ export default function GameTimeControls() {
 
   // Handle daily side effects (Production & Budget)
   useEffect(() => {
-    // Skip initial mount calculation to start at 0 on Jan 1st
-    if (state.gameDate.getTime() === INITIAL_GAME_DATE.getTime()) return;
-
     const session = gameStorage.getSession();
+    if (!session) return;
+
+    // Use current game date to check if we've already processed this day
+    const budgetData = budgetStorage.getData();
+    const currentDateStr = state.gameDate.toISOString().split('T')[0]; // compare YYYY-MM-DD
+    const lastProcessedStr = budgetData.lastProcessedDate ? new Date(budgetData.lastProcessedDate).toISOString().split('T')[0] : null;
+
+    if (currentDateStr === lastProcessedStr) {
+      // Already processed this game day
+      return;
+    }
+
     if (session) {
       const currentCountryCode = session.country || "Indonesia";
       const currentData = countries.find((c: any) =>
@@ -46,7 +55,7 @@ export default function GameTimeControls() {
 
       const buildingData = buildingStorage.getData();
       const dailyDeltas = calculateDailyProductionTotals(currentData, buildingData.buildingDeltas);
-      budgetStorage.updateCumulativeProduction(dailyDeltas);
+      budgetStorage.updateCumulativeProduction(dailyDeltas, state.gameDate);
 
       const breakdown = calculateBudgetBreakdown(currentData, buildingData.buildingDeltas);
       const taxRevenue = Math.round(breakdown.dailyTaxRevenue);
