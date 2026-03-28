@@ -9,7 +9,6 @@ export const republik_ugandaAgreements = [
       { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Maroko", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Aljazair", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Kenya", "type": "Perdagangan", "status": "Aktif" }
     

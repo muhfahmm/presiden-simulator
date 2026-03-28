@@ -1,6 +1,5 @@
 export const costa_ricaAgreements = [
 
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Kanada", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Kuba", "type": "Perdagangan", "status": "Aktif" },

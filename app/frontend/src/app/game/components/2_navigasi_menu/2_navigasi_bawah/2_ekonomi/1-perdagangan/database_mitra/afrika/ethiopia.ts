@@ -8,7 +8,6 @@ export const ethiopiaAgreements = [
       { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Afrika Selatan", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Ghana", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },

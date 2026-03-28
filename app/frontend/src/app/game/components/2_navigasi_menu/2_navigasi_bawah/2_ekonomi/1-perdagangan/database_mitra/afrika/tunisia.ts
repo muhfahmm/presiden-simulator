@@ -14,6 +14,5 @@ export const tunisiaAgreements = [
       { "mitra": "Afrika Selatan", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Aljazair", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" }
     
 ];

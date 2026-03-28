@@ -1,6 +1,5 @@
 export const uni_emirat_arabAgreements = [
 
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },

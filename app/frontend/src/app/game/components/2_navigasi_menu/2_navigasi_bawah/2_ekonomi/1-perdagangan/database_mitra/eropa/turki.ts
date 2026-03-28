@@ -2,7 +2,6 @@ export const turkiAgreements = [
 
       { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Belanda", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },

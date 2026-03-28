@@ -26,38 +26,38 @@ export default function MapRenderer({
     <>
       <div style={{ display: mapMode === "trade" ? "none" : "contents" }} className="h-full">
         {mapMode === "default" && (
-          <GameMapCanvas 
-            userCountry={userCountry} 
-            targetCountry={targetCountry} 
+          <GameMapCanvas
+            userCountry={userCountry}
+            targetCountry={targetCountry}
             mapMode={mapMode}
             geoData={geoData}
-            onSelect={onSelect} 
+            onSelect={onSelect}
           />
         )}
         {mapMode === "sda" && (
-          <MapSDA 
-            userCountry={userCountry} 
-            targetCountry={targetCountry} 
+          <MapSDA
+            userCountry={userCountry}
+            targetCountry={targetCountry}
             geoData={geoData}
-            onSelect={onSelect} 
+            onSelect={onSelect}
             onSelectSDA={onSelectSDA}
           />
         )}
         {mapMode === "hubungan" && (
-          <MapHubungan 
-            userCountry={userCountry} 
-            targetCountry={targetCountry} 
+          <MapHubungan
+            userCountry={userCountry}
+            targetCountry={targetCountry}
             geoData={geoData}
-            onSelect={onSelect} 
+            onSelect={onSelect}
           />
         )}
       </div>
       <div style={{ display: mapMode === "trade" ? "contents" : "none" }} className="h-full">
-        <TradeMapCanvas 
-          userCountry={userCountry} 
-          targetCountry={targetCountry} 
+        <TradeMapCanvas
+          userCountry={userCountry}
+          targetCountry={targetCountry}
           geoData={geoData}
-          onSelect={onSelect} 
+          onSelect={onSelect}
         />
       </div>
     </>

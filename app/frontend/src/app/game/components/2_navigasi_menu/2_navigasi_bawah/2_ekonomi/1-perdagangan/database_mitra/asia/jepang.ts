@@ -10,7 +10,6 @@ export const jepangAgreements = [
       { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Indonesia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Thailand", "type": "Perdagangan", "status": "Aktif" }

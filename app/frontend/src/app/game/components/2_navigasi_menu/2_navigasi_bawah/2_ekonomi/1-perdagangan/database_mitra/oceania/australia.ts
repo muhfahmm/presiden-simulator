@@ -3,7 +3,6 @@ export const australiaAgreements = [
       { "mitra": "Selandia Baru", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Fiji", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Papua Nugini", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },

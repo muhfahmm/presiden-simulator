@@ -1,6 +1,5 @@
 export const palauAgreements = [
 
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Australia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Papua Nugini", "type": "Perdagangan", "status": "Aktif" },

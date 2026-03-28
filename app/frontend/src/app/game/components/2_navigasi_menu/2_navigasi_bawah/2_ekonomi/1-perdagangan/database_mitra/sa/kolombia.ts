@@ -4,7 +4,6 @@ export const kolombiaAgreements = [
       { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Brazil", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Argentina", "type": "Perdagangan", "status": "Aktif" },

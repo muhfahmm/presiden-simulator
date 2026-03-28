@@ -1,13 +1,13 @@
 "use client"
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { countries as centersData } from "@/app/database/data/countries/region/index";
-import { customTradeRoutes, waypointCoords, hiddenWaypoints } from "../2_rute/tradeRoutes";
-
-import { regionalRoutes } from "../2_rute/rute_utama/AsianRoutes";
-import { internationalHubs } from "../2_rute/rute_utama/hubs";
-import { internationalRoutes } from "../2_rute/rute_utama/routes";
+import { internationalHubs } from "../3_hub/hubs";
+import { getInitialAgreements } from "../../database_mitra/agreementsRegistry";
+import { tradeStorage } from "../../TradeStorage";
 import { allRelations } from "@/app/database/data/countries/relations/index";
+import { calculateTradeRoute, getHubForCountry } from "../2_rute/TradeRoutes";
+import { timeStorage } from "../../timeStorage";
 
 interface TradeMapCanvasProps {
   userCountry: string;
@@ -39,22 +39,22 @@ const geoJsonToIndo: { [key: string]: string } = {
 
 const getRelation = (name: string, userCountry: string) => {
   if (name === userCountry) return 100;
-  
+
   const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
   const userId = userEntry ? userEntry.name_id.toLowerCase().trim() : userCountry.toLowerCase().trim();
-  
+
   const countryEntry = centersData.find(c => c.name_en === name || c.name_id === name);
   let targetId = countryEntry ? countryEntry.name_id.toLowerCase().trim() : name.toLowerCase().trim();
-  
+
   if (geoJsonToIndo[name]) {
     targetId = geoJsonToIndo[name].toLowerCase().trim();
   }
-  
+
   const userRelations = allRelations[userId];
-  if (!userRelations) return 50; 
-  
+  if (!userRelations) return 50;
+
   const relationItem = userRelations.find(item => item.name.toLowerCase().trim() === targetId);
-  return relationItem ? relationItem.relation : 50; 
+  return relationItem ? relationItem.relation : 50;
 };
 
 // Tactical Maritime Labels (Oceans, Seas, Gulfs, Straits)
@@ -156,9 +156,73 @@ const getContinentColor = (name: string, id: string): string => {
 
 export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, active = true, geoData }: TradeMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
-    const [isHovering, setIsHovering] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
   const [selectedWp, setSelectedWp] = useState<string | null>(null);
+  const [sessionTrades, setSessionTrades] = useState<any[]>([]);
+  const [activeTransactions, setActiveTransactions] = useState<any[]>([]);
+
+  // Listen for real-time trade storage updates
+  useEffect(() => {
+    const updateTrades = () => {
+      if (!userCountry) return;
+      const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+      if (userEntry) {
+        const trades = tradeStorage.getTrade(userEntry.name_en) || tradeStorage.getTrade(userEntry.name_id);
+        setSessionTrades(trades || []);
+      }
+    };
+
+    // Initial load
+    updateTrades();
+    setActiveTransactions(tradeStorage.getActiveTransactions());
+
+    const tradeUpdateHandler = () => {
+      updateTrades();
+      setActiveTransactions(tradeStorage.getActiveTransactions());
+    };
+
+    window.addEventListener('trade_storage_updated', tradeUpdateHandler);
+    return () => window.removeEventListener('trade_storage_updated', tradeUpdateHandler);
+  }, [userCountry]);
+
+  // Logic for Trade Partners - takes initial data or session data if available
+  const tradePartners = useMemo(() => {
+    if (!userCountry) return new Set<string>();
+
+    const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+    if (!userEntry) return new Set<string>();
+
+    const userEn = userEntry.name_en;
+    const userId = userEntry.name_id;
+
+    // Use the state-driven sessionTrades (updated via events)
+    let partnersData: any[] = [];
+    if (sessionTrades && Array.isArray(sessionTrades) && sessionTrades.length > 0) {
+      // filters for 'Perdagangan' and ensures they are active
+      // Supporting both 'type' and 'jenis' for backward and database compatibility
+      partnersData = sessionTrades.filter((t: any) =>
+        (t.type === 'Perdagangan' || t.jenis === 'Perdagangan') &&
+        t.status === 'Aktif'
+      );
+    } else {
+      // 2. Fallback to initial database relations
+      partnersData = getInitialAgreements(userEn, userId);
+    }
+
+    // Create a Set of normalized names for fast lookup during map rendering
+    return new Set(partnersData.map((p: any) => (p.mitra || p.name || "").toLowerCase().trim()));
+  }, [userCountry, sessionTrades]);
+
+  // Robust Naming Map: English (from GeoJSON) to Indonesian (used in trade mitra)
+  const fullGeoToIndoMap = useMemo(() => {
+    const map: Record<string, string> = { ...geoJsonToIndo };
+    centersData.forEach(c => {
+      if (c.name_en) map[c.name_en] = c.name_id;
+    });
+    return map;
+  }, [centersData]);
+
   // Line hitting cache ref
   const drawnPathsRef = useRef<{ pts: { rtX: number, rtY: number }[], origin: string, mitra: string, originId: string, partnerId: string }[]>([]);
 
@@ -168,12 +232,54 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
   const mapHeight = 2400;
 
   // Modern Tactical Theme (Amber/Orange for Dormant, Cyan/Blue for Active)
-  const DORMANT_TRADE_COLOR = "rgba(245, 158, 11, 0.4)"; 
+  const DORMANT_TRADE_COLOR = "rgba(245, 158, 11, 0.4)";
   const ACTIVE_TRADE_COLOR = "#0066ff";
   const CUSTOM_TRADE_COLOR = "#ef4444";
   const CUSTOM_TRADE_DORMANT = "rgba(239, 68, 68, 0.25)";
 
-  
+  // Animation loop state
+  const [animationTime, setAnimationTime] = useState(Date.now());
+  const [gameState, setGameState] = useState(timeStorage.getState());
+  const requestRef = useRef<number>(null);
+  const lastTimestampRef = useRef<number>(Date.now());
+  const txAccumulatedTimeRef = useRef<Record<number, number>>({});
+
+  useEffect(() => {
+    const unsubscribe = timeStorage.subscribe((date, paused, speed) => {
+      setGameState({ gameDate: date, isPaused: paused, speed: speed });
+    });
+    return () => unsubscribe();
+  }, []);
+
+  useEffect(() => {
+    const animate = () => {
+      const now = Date.now();
+      const deltaTime = now - lastTimestampRef.current;
+      lastTimestampRef.current = now;
+
+      // Only increment progress if not paused
+      if (!gameState.isPaused) {
+        activeTransactions.forEach(tx => {
+          const current = txAccumulatedTimeRef.current[tx.id] || 0;
+          // Apply speed multiplier to movement
+          txAccumulatedTimeRef.current[tx.id] = current + (deltaTime * gameState.speed);
+        });
+      }
+
+      setAnimationTime(now); // Trigger re-render
+      requestRef.current = requestAnimationFrame(animate);
+    };
+
+    if (activeTransactions.length > 0) {
+      lastTimestampRef.current = Date.now();
+      requestRef.current = requestAnimationFrame(animate);
+    }
+    return () => {
+      if (requestRef.current) cancelAnimationFrame(requestRef.current);
+    };
+  }, [activeTransactions.length, gameState.isPaused, gameState.speed]);
+
+
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -194,6 +300,37 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
     const selectedHubObj = selectedWp && typeof internationalHubs !== 'undefined'
       ? internationalHubs.find((h: any) => h.name === selectedWp)
       : null;
+
+    // --- RE-ENABLE TRADE ROUTES CALCULATION ---
+    const userCenter = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+    if (userCenter) {
+      tradePartners.forEach(partnerName => {
+        const pCenter = centersData.find(c =>
+          c.name_id.toLowerCase().trim() === partnerName ||
+          c.name_en.toLowerCase().trim() === partnerName
+        );
+        if (pCenter) {
+          // Basic straight/curved logic for maritime routes
+          const pts = [];
+          const segments = 20;
+          for (let i = 0; i <= segments; i++) {
+            const t = i / segments;
+            const lon = userCenter.lon + (pCenter.lon - userCenter.lon) * t;
+            const lat = userCenter.lat + (pCenter.lat - userCenter.lat) * t;
+            // Add a small arc/curve to look less "digital" and more "tactical"
+            const curLat = lat + Math.sin(t * Math.PI) * 10;
+            pts.push({ rtX: (lon + 180) / 360, rtY: (90 - curLat) / 180 });
+          }
+          drawnPathsRef.current.push({
+            pts,
+            origin: userCenter.name_en,
+            mitra: pCenter.name_id,
+            originId: userCenter.name_id,
+            partnerId: pCenter.name_id
+          });
+        }
+      });
+    }
 
     offsets.forEach(offset => {
       ctx.save();
@@ -249,12 +386,24 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         // Styling parameters
         let fillColor = getContinentColor(name, feature.id);
         let strokeColor = "rgba(245, 245, 220, 0.25)";
+
+        // Check if this country is an economic partner
+        const normalizedName = name.toLowerCase().trim();
+        const displayIndoName = fullGeoToIndoMap[name] || name;
+        const normalizedIndoName = displayIndoName.toLowerCase().trim();
+        const isPartner = tradePartners.has(normalizedName) || tradePartners.has(normalizedIndoName);
+
         let isHighlighted = isPlayer || isTarget;
 
         ctx.lineWidth = 1;
         ctx.shadowBlur = 0;
 
-        // Non-trade modes removed
+        // Apply partner highlighting if not primary highlight (player/target)
+        if (isPartner && !isPlayer && !isTarget) {
+          fillColor = "rgba(6, 182, 212, 0.45)"; // Rich Cyan-Blue for partners
+          strokeColor = "rgba(6, 182, 212, 0.9)";
+          ctx.lineWidth = 1.5;
+        }
 
         if (isHighlighted) {
           if (isPlayer) {
@@ -369,494 +518,23 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         }
       });
 
-      // 2.5 Static Nodes for Custom Ports (Loaded from waypointCoords/Country Files)
-      Object.keys(waypointCoords).forEach(name => {
-        if (hiddenWaypoints.includes(name)) return; // Skip steering nodes
+      // === DRAW TRADE ROUTES (LINES) ===
+      drawnPathsRef.current.forEach(path => {
+        ctx.beginPath();
+        const p0 = path.pts[0];
+        ctx.moveTo(p0.rtX * mapWidth, p0.rtY * mapHeight);
 
-        const coord = waypointCoords[name];
-        const { x, y } = project(coord.lon, coord.lat);
-
-        if (x > 0 && x < mapWidth && y > 0 && y < mapHeight) {
-          ctx.beginPath();
-          ctx.arc(x, y, 3.5, 0, Math.PI * 2);
-          ctx.fillStyle = "#ffffff";
-          ctx.shadowColor = "#ffffff";
-          ctx.shadowBlur = 4;
-          ctx.fill();
-          ctx.shadowBlur = 0; // reset
+        for (let i = 1; i < path.pts.length; i++) {
+          ctx.lineTo(path.pts[i].rtX * mapWidth, path.pts[i].rtY * mapHeight);
         }
+
+        ctx.lineWidth = 1.2;
+        ctx.strokeStyle = "rgba(14, 165, 233, 0.3)"; // Subtle Cyan Route
+        ctx.shadowBlur = 4;
+        ctx.shadowColor = "rgba(14, 165, 233, 0.5)";
+        ctx.stroke();
+        ctx.shadowBlur = 0;
       });
-
-      // 3. AI Trade Routes Render Pass (Purged)
-      const uCenter = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
-      if (uCenter) {
-        const ux = ((uCenter!.lon + 180) / 360) * mapWidth;
-        const uy = ((90 - uCenter!.lat) / 180) * mapHeight;
-
-        ctx.lineWidth = 3;
-        ctx.shadowBlur = 0; // Solid classic lines, no glow
-
-        // Draw origin node (Red circle, white center)
-        const drawNode = (nx: number, ny: number) => {
-          ctx.beginPath();
-          ctx.arc(nx, ny, 6, 0, Math.PI * 2);
-          ctx.fillStyle = "#ffffff"; // White center
-          ctx.fill();
-          ctx.shadowColor = "#ffffff";
-          ctx.shadowBlur = 8;
-          ctx.strokeStyle = "transparent";
-          ctx.stroke();
-          ctx.shadowBlur = 0;
-        };
-
-        const activeAgreements = [...(uCenter.geopolitik?.perjanjian || [])];
-
-        // Forcefully inject custom routes into the rendering pipeline so the user can immediately see their manually created paths!
-        const uNameEn = uCenter.name_en?.trim();
-        const uNameId = uCenter.name_id?.trim();
-        const activeCustoms = customTradeRoutes[uNameEn] || customTradeRoutes[uNameId] || {};
-
-        Object.keys(activeCustoms).forEach(dest => {
-          const existingIdx = activeAgreements.findIndex(a => a.mitra?.trim() === dest.trim() || a.mitra?.trim() === centersData.find(c => c.name_en === dest)?.name_id?.trim());
-          if (existingIdx !== -1) {
-            activeAgreements[existingIdx] = { mitra: dest, jenis: "Perdagangan", status: "Aktif" };
-          } else {
-            activeAgreements.push({ mitra: dest, jenis: "Perdagangan", status: "Aktif" });
-          }
-        });
-
-        // Deduplicate to prevent "double lines" if an agreement exists in both custom and original data
-        const uniqueAgreements: any[] = [];
-        const seenPartners = new Set<string>();
-
-        activeAgreements.forEach(agr => {
-          const pName = agr.mitra?.trim();
-          if (pName && !seenPartners.has(pName) && (agr.jenis === "Perdagangan" || (agr as any).type === "Maritime") && agr.status === "Aktif") {
-            seenPartners.add(pName);
-            uniqueAgreements.push(agr);
-          }
-        });
-
-        // 1. Collect all intended geographic segments from all active (unique) perjanjian
-        const uniqueSegments = new Map<string, { start: any, end: any, isFinal: boolean, mitra: string, origin?: string, originId?: string, partnerId?: string }>();
-
-        uniqueAgreements.forEach((agr: any) => {
-          if (!uCenter) return;
-          const pMatch = centersData.find(c => c.name_en?.trim() === agr.mitra?.trim() || c.name_id?.trim() === agr.mitra?.trim());
-          const partnerEn = pMatch ? pMatch.name_en : agr.mitra;
-          const partnerId = pMatch ? pMatch.name_id : agr.mitra;
-
-          const uNameEn = uCenter.name_en?.trim();
-          const uNameId = uCenter.name_id?.trim();
-          const pNameEn = partnerEn?.trim();
-          const pNameId = partnerId?.trim();
-
-          let waypoints = customTradeRoutes[uNameEn]?.[pNameEn] ||
-            customTradeRoutes[uNameId]?.[pNameEn] ||
-            customTradeRoutes[uNameEn]?.[pNameId] ||
-            customTradeRoutes[uNameId]?.[pNameId];
-
-          if (false && waypoints && waypoints.length > 0) {
-            const startStaticWp = waypointCoords[uNameEn] || waypointCoords[uNameId];
-            let currentPos = {
-              lon: startStaticWp?.lon ?? uCenter!.lon,
-              lat: startStaticWp?.lat ?? uCenter!.lat
-            };
-
-            waypoints.forEach((wpName: string, wpIdx: number) => {
-              const nextWpObj = centersData.find(c => c.name_en === wpName || c.name_id === wpName);
-              const staticWp = waypointCoords[wpName];
-              const nextWpLon = staticWp?.lon ?? nextWpObj?.lon;
-              const nextWpLat = staticWp?.lat ?? nextWpObj?.lat;
-
-              if (nextWpLon !== undefined && nextWpLat !== undefined) {
-                const isFinal = wpIdx === waypoints.length - 1;
-
-                const isAtlanticCrossing = (currentPos.lon < -55 && nextWpLon > -20) || (currentPos.lon > -20 && nextWpLon < -55);
-                if (isAtlanticCrossing) {
-                  const midAtlantic = { lon: -40.0, lat: 45.0 };
-                  const key1 = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->-40.0,45.0`;
-                  uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: midAtlantic, isFinal: false, mitra: "Mid-Atlantic Trunk", origin: uNameEn });
-                  const key2 = `-40.0,45.0->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
-                  uniqueSegments.set(key2, { start: midAtlantic, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, mitra: wpName, origin: uNameEn });
-                  currentPos = { lon: nextWpLon, lat: nextWpLat };
-                  return;
-                }
-
-                const isPanamaCrossing = ((currentPos.lon < -78.5 && nextWpLon > -76.5) || (currentPos.lon > -76.5 && nextWpLon < -78.5)) && currentPos.lat > 1.0 && nextWpLat > 1.0 && currentPos.lat < 15.0 && nextWpLat < 15.0 && wpName !== "Panama" && Math.abs(currentPos.lon - (-79.53)) > 0.5 && Math.abs(nextWpLon - (-79.53)) > 0.5;
-                if (isPanamaCrossing) {
-                  const panamaNode = { lon: -79.53, lat: 8.96 };
-                  const key1 = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->-79.5,9.0`;
-                  uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: panamaNode, isFinal: false, mitra: "Panama Trunk", origin: uNameEn });
-                  const key2 = `-79.5,9.0->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
-                  uniqueSegments.set(key2, { start: panamaNode, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, mitra: wpName, origin: uNameEn });
-                  currentPos = { lon: nextWpLon, lat: nextWpLat };
-                  return;
-                }
-
-                const key = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
-                if (!uniqueSegments.has(key) || isFinal) {
-                  uniqueSegments.set(key, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: { lon: nextWpLon, lat: nextWpLat }, isFinal, mitra: wpName, origin: uNameEn });
-                }
-                currentPos = { lon: nextWpLon, lat: nextWpLat };
-              }
-            });
-          }
-        });
-
-        // 1.5 Global Custom Routes Segment Injector
-        Object.keys(customTradeRoutes).forEach(originName => {
-          const routesObj = customTradeRoutes[originName];
-          if (!routesObj) return;
-
-          Object.keys(routesObj).forEach(destName => {
-            const waypoints = routesObj[destName];
-            if (!waypoints || waypoints.length === 0) return;
-
-            const startWpObj = centersData.find(c => c.name_en === originName || c.name_id === originName);
-            const startStaticWp = waypointCoords[originName];
-            const startLon = startStaticWp?.lon ?? startWpObj?.lon;
-            const startLat = startStaticWp?.lat ?? startWpObj?.lat;
-
-            if (startLon === undefined || startLat === undefined) return;
-
-            let currentPos = { lon: startLon, lat: startLat };
-
-            waypoints.forEach((wpName: string, wpIdx: number) => {
-              const nextWpObj = centersData.find(c => c.name_en === wpName || c.name_id === wpName);
-              const staticWp = waypointCoords[wpName];
-              const nextWpLon = staticWp?.lon ?? nextWpObj?.lon;
-              const nextWpLat = staticWp?.lat ?? nextWpObj?.lat;
-
-              if (nextWpLon !== undefined && nextWpLat !== undefined) {
-                const isFinal = wpIdx === waypoints.length - 1;
-
-                const isAtlanticCrossing = (currentPos.lon < -55 && nextWpLon > -20) || (currentPos.lon > -20 && nextWpLon < -55);
-                if (isAtlanticCrossing) {
-                  const midAtlantic = { lon: -40.0, lat: 45.0 };
-                  const key1 = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->-40.0,45.0`;
-                  uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: midAtlantic, isFinal: false, mitra: "Mid-Atlantic Trunk", origin: originName });
-                  const key2 = `-40.0,45.0->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
-                  uniqueSegments.set(key2, { start: midAtlantic, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, mitra: wpName, origin: originName });
-                  currentPos = { lon: nextWpLon, lat: nextWpLat };
-                  return;
-                }
-
-                const isPanamaCrossing = ((currentPos.lon < -78.5 && nextWpLon > -76.5) || (currentPos.lon > -76.5 && nextWpLon < -78.5)) && currentPos.lat > 1.0 && nextWpLat > 1.0 && currentPos.lat < 15.0 && nextWpLat < 15.0 && wpName !== "Panama" && Math.abs(currentPos.lon - (-79.53)) > 0.5 && Math.abs(nextWpLon - (-79.53)) > 0.5;
-                if (isPanamaCrossing) {
-                  const panamaNode = { lon: -79.53, lat: 8.96 };
-                  const key1 = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->-79.5,9.0`;
-                  uniqueSegments.set(key1, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: panamaNode, isFinal: false, mitra: "Panama Trunk", origin: originName });
-                  const key2 = `-79.5,9.0->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
-                  uniqueSegments.set(key2, { start: panamaNode, end: { lon: nextWpLon, lat: nextWpLat }, isFinal: isFinal, mitra: wpName, origin: originName });
-                  currentPos = { lon: nextWpLon, lat: nextWpLat };
-                  return;
-                }
-
-                const key = `${currentPos.lon.toFixed(1)},${currentPos.lat.toFixed(1)}->${nextWpLon.toFixed(1)},${nextWpLat.toFixed(1)}`;
-                if (!uniqueSegments.has(key) || isFinal) {
-                  uniqueSegments.set(key, { start: { lon: currentPos.lon, lat: currentPos.lat }, end: { lon: nextWpLon, lat: nextWpLat }, isFinal, mitra: wpName, origin: originName });
-                }
-                currentPos = { lon: nextWpLon, lat: nextWpLat };
-              }
-            });
-          });
-        });
-
-        // 2. Render each unique segment exactly once
-        uniqueSegments.forEach((seg) => {
-          let path: any[] | null = null;
-          try {
-            // path = aiPathfinder.findPath(seg.start.lon, seg.start.lat, seg.end.lon, seg.end.lat);
-          } catch (err) {
-            console.warn(`Pathfinding error for ${seg.mitra}:`, err);
-          }
-          let rawNormalized: { rtX: number, rtY: number }[] = [];
-
-          // Standalone Static Coordinate Falling back index-matched setup flawless.
-          rawNormalized = [
-            { rtX: (seg.start.lon + 180) / 360, rtY: (90 - seg.start.lat) / 180 },
-            { rtX: (seg.end.lon + 180) / 360, rtY: (90 - seg.end.lat) / 180 }
-          ];
-
-          if (rawNormalized.length > 0) {
-
-            // Smooth algorithm to combine staircase serrations into continuous curves
-            const smoothPath = (pts: any[]) => {
-              let smoothed = [...pts];
-              const iterations = 5;
-              for (let k = 0; k < iterations; k++) {
-                let nextSmoothed = [];
-                for (let i = 0; i < smoothed.length; i++) {
-                  if (i === 0 || i === smoothed.length - 1) {
-                    nextSmoothed.push(smoothed[i]);
-                  } else {
-                    const prev = smoothed[i - 1];
-                    const curr = smoothed[i];
-                    const next = smoothed[i + 1];
-                    nextSmoothed.push({
-                      rtX: prev.rtX * 0.25 + curr.rtX * 0.5 + next.rtX * 0.25,
-                      rtY: prev.rtY * 0.25 + curr.rtY * 0.5 + next.rtY * 0.25
-                    });
-                  }
-                }
-                smoothed = nextSmoothed;
-              }
-              return smoothed;
-            };
-
-            const normalized = (seg.mitra === "Panama Trunk" || seg.mitra === "Mid-Atlantic Trunk") ? rawNormalized : smoothPath(rawNormalized);
-
-            // Style
-            const isSelected = selectedWp && (
-              seg.origin?.trim().toLowerCase() === selectedWp.trim().toLowerCase() ||
-              seg.mitra?.trim().toLowerCase() === selectedWp.trim().toLowerCase() ||
-              (seg.originId && seg.originId.trim().toLowerCase() === selectedWp.trim().toLowerCase()) ||
-              (seg.partnerId && seg.partnerId.trim().toLowerCase() === selectedWp.trim().toLowerCase())
-            );
-
-            if (selectedWp && Math.random() < 0.05) {
-              console.log("[Draw Debug] selectedWp:", selectedWp, "seg.origin:", seg.origin, "seg.mitra:", seg.mitra, "originId:", seg.originId, "partnerId:", seg.partnerId, "isSelected:", isSelected);
-            }
-            ctx.lineWidth = isSelected ? 4.5 : 3.5;
-            ctx.strokeStyle = selectedWp ? (isSelected ? "#00e5ff" : CUSTOM_TRADE_DORMANT) : CUSTOM_TRADE_COLOR;
-
-            // RED!
-            ctx.beginPath();
-            const sx = ((seg.start.lon + 180) / 360) * mapWidth;
-            const sy = ((90 - seg.start.lat) / 180) * mapHeight;
-            ctx.moveTo(sx, sy);
-
-            drawnPathsRef.current.push({ pts: normalized, origin: seg.origin || "", mitra: seg.mitra || "", originId: seg.originId || "", partnerId: seg.partnerId || "" });
-            normalized.forEach((p, idx) => {
-              let nextX = p.rtX * mapWidth;
-              let nextY = p.rtY * mapHeight;
-              const prevMatch = idx === 0 ? { rtX: sx / mapWidth, rtY: sy / mapHeight } : normalized[idx - 1];
-              if (Math.abs(p.rtX - prevMatch.rtX) > 0.5) ctx.moveTo(nextX, nextY);
-              else ctx.lineTo(nextX, nextY);
-            });
-            ctx.stroke();
-            // Reset shadow to avoid bleed to next segments
-            ctx.shadowColor = "transparent";
-            ctx.shadowBlur = 0;
-
-            // Nodes
-            const destP = normalized[normalized.length - 1];
-            const nodeX = destP.rtX * mapWidth;
-            const nodeY = destP.rtY * mapHeight;
-
-            // Override logic for specific country sizes
-            const isSmallForced = ["Bangladesh", "Filipina", "Sri Lanka", "Myanmar", "India", "Pakistan", "Iran", "Oman", "United Arab Emirates", "Bahrain", "Qatar", "Kuwait", "Yemen", "Saudi Arabia"].includes(seg.mitra);
-            const isLargeForced = ["Malaysia"].includes(seg.mitra);
-
-            if ((seg.isFinal || isLargeForced) && !isSmallForced) {
-              drawNode(nodeX, nodeY);
-
-              if (seg.isFinal) {
-                // Final land-bridge
-                const pUX = ((seg.end.lon + 180) / 360) * mapWidth;
-                const pUY = ((90 - seg.end.lat) / 180) * mapHeight;
-                ctx.lineWidth = 1.5;
-                ctx.strokeStyle = "rgba(220, 38, 38, 0.4)"; // Red shadow for end node connection
-                ctx.setLineDash([4, 4]);
-                ctx.beginPath();
-                ctx.moveTo(nodeX, nodeY);
-                ctx.lineTo(pUX, pUY);
-                ctx.stroke();
-                ctx.setLineDash([]);
-              }
-            } else if (!hiddenWaypoints.includes(seg.mitra)) {
-              ctx.beginPath();
-              ctx.arc(nodeX, nodeY, 3.2, 0, Math.PI * 2);
-              ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
-              ctx.fill();
-              ctx.strokeStyle = "#ef4444"; // RED border
-              ctx.lineWidth = 1;
-              ctx.stroke();
-            }
-          }
-        });
-
-        // Draw user country node on top
-        drawNode(ux, uy);
-      } // 👈 Close uCenter
-
-      // === DRAW REGIONAL ROUTES (Loaded from regionalRoutes.ts) ===
-      if (typeof regionalRoutes !== 'undefined') {
-        Object.keys(regionalRoutes).forEach(origin => {
-          const destObj = regionalRoutes[origin];
-          Object.keys(destObj).forEach(dest => {
-            const route = destObj[dest];
-
-            const isSelected = selectedWp && (
-              selectedWp === `${origin}-${dest}` ||
-              selectedWp === `${dest}-${origin}` ||
-              origin.trim().toLowerCase().includes(selectedWp.trim().toLowerCase()) ||
-              selectedWp.trim().toLowerCase().includes(origin.trim().toLowerCase()) ||
-              dest.trim().toLowerCase().includes(selectedWp.trim().toLowerCase()) ||
-              selectedWp.trim().toLowerCase().includes(dest.trim().toLowerCase()) ||
-              (selectedHubObj && route.coords.some((pt: any) => Math.abs(pt.lon - selectedHubObj.lon) < 0.05 && Math.abs(pt.lat - selectedHubObj.lat) < 0.05))
-            );
-
-            ctx.lineWidth = isSelected ? 3.5 : 1.8;
-            // Ketika diklik rutenya maka akan berubah warna (Biru)
-            ctx.strokeStyle = isSelected ? ACTIVE_TRADE_COLOR : DORMANT_TRADE_COLOR;
-            ctx.shadowColor = isSelected ? ACTIVE_TRADE_COLOR : "transparent";
-            ctx.shadowBlur = isSelected ? 10 : 0;
-
-            // Cache path for click hit-testing
-            const normalizedPts = route.coords.map((pt: any) => ({
-              rtX: (pt.lon + 180) / 360,
-              rtY: (90 - pt.lat) / 180
-            }));
-            if (typeof drawnPathsRef !== 'undefined' && drawnPathsRef.current) {
-              drawnPathsRef.current.push({
-                pts: normalizedPts,
-                origin: origin,
-                mitra: dest,
-                originId: "",
-                partnerId: ""
-              });
-            }
-
-            ctx.beginPath();
-            route.coords.forEach((pt: any, idx: number) => {
-              const x = ((pt.lon + 180) / 360) * mapWidth;
-              const y = ((90 - pt.lat) / 180) * mapHeight;
-              const prevPt = idx > 0 ? route.coords[idx - 1] : null;
-              const isSeamCrossing = prevPt && Math.abs(pt.lon - prevPt.lon) > 180;
-
-              if (idx === 0 || isSeamCrossing) ctx.moveTo(x, y);
-              else ctx.lineTo(x, y);
-            });
-            ctx.stroke();
-
-            // Menandakan rutenya dari mana berjalan ke arah mana (Arrow)
-            if (isSelected) {
-              for (let i = 0; i < route.coords.length - 1; i += 4) {
-                const curr = route.coords[i];
-                const next = route.coords[i + 1];
-                const cX = ((curr.lon + 180) / 360) * mapWidth;
-                const cY = ((90 - curr.lat) / 180) * mapHeight;
-                const nX = ((next.lon + 180) / 360) * mapWidth;
-                const nY = ((90 - next.lat) / 180) * mapHeight;
-
-                const midX = (cX + nX) / 2;
-                const midY = (cY + nY) / 2;
-                const angle = Math.atan2(nY - cY, nX - cX);
-
-                ctx.save();
-                ctx.translate(midX, midY);
-                ctx.rotate(angle);
-                ctx.beginPath();
-                ctx.moveTo(-6, -4);
-                ctx.lineTo(4, 0);
-                ctx.lineTo(-6, 4);
-                ctx.fillStyle = "#ffffff";
-                ctx.fill();
-                ctx.restore();
-              }
-            }
-            ctx.shadowBlur = 0; // reset
-          });
-        });
-      }
-
-      const drawnSegmentsActive = new Set<string>();
-      const drawnSegmentsDormant = new Set<string>();
-      const drawnArrows = new Set<string>();
-
-      // === DRAW INTERNATIONAL ROUTES (Loaded from international/routes.ts) ===
-      if (typeof internationalRoutes !== 'undefined') {
-        Object.keys(internationalRoutes).forEach(origin => {
-          const destObj = internationalRoutes[origin];
-          Object.keys(destObj).forEach(dest => {
-            const route = destObj[dest];
-            const isSelected = selectedWp && (
-              selectedWp === `${origin}-${dest}` ||
-              selectedWp === `${dest}-${origin}` ||
-              origin.trim().toLowerCase().includes(selectedWp.trim().toLowerCase()) ||
-              selectedWp.trim().toLowerCase().includes(origin.trim().toLowerCase()) ||
-              dest.trim().toLowerCase().includes(selectedWp.trim().toLowerCase()) ||
-              selectedWp.trim().toLowerCase().includes(dest.trim().toLowerCase()) ||
-              (selectedHubObj && route.coords.some((pt: any) => Math.abs(pt.lon - selectedHubObj.lon) < 0.05 && Math.abs(pt.lat - selectedHubObj.lat) < 0.05))
-            );
-
-            ctx.lineWidth = isSelected ? 4.0 : 2.0;
-            ctx.strokeStyle = isSelected ? ACTIVE_TRADE_COLOR : DORMANT_TRADE_COLOR; // Standardized Amber dormant
-            ctx.shadowColor = isSelected ? ACTIVE_TRADE_COLOR : "transparent";
-            ctx.shadowBlur = isSelected ? 12 : 0;
-
-            const targetSet = isSelected ? drawnSegmentsActive : drawnSegmentsDormant;
-
-            const normalizedPts = route.coords.map((pt: any) => ({
-              rtX: (pt.lon + 180) / 360,
-              rtY: (90 - pt.lat) / 180
-            }));
-            if (typeof drawnPathsRef !== 'undefined' && drawnPathsRef.current) {
-              drawnPathsRef.current.push({
-                pts: normalizedPts,
-                origin: origin,
-                mitra: dest,
-                originId: "",
-                partnerId: ""
-              });
-            }
-
-            ctx.beginPath();
-            route.coords.forEach((pt: any, idx: number) => {
-              const x = ((pt.lon + 180) / 360) * mapWidth;
-              const y = ((90 - pt.lat) / 180) * mapHeight;
-              const prevPt = idx > 0 ? route.coords[idx - 1] : null;
-              const isSeamCrossing = prevPt && Math.abs(pt.lon - prevPt.lon) > 180;
-
-              if (idx > 0 && !isSeamCrossing && prevPt) {
-                const prevX = ((prevPt.lon + 180) / 360) * mapWidth;
-                const prevY = ((90 - prevPt.lat) / 180) * mapHeight;
-                const key1 = `${prevPt.lon.toFixed(2)},${prevPt.lat.toFixed(2)}-${pt.lon.toFixed(2)},${pt.lat.toFixed(2)}`;
-                const key2 = `${pt.lon.toFixed(2)},${pt.lat.toFixed(2)}-${prevPt.lon.toFixed(2)},${prevPt.lat.toFixed(2)}`;
-
-                if (!targetSet.has(key1) && !targetSet.has(key2)) {
-                  targetSet.add(key1);
-                  ctx.moveTo(prevX, prevY);
-                  ctx.lineTo(x, y);
-                }
-              }
-            });
-            ctx.stroke();
-
-            if (isSelected) {
-              for (let i = 0; i < route.coords.length - 1; i += 4) {
-                const curr = route.coords[i];
-                const key = `${curr.lon.toFixed(2)},${curr.lat.toFixed(2)}`;
-                if (drawnArrows.has(key)) continue;
-                drawnArrows.add(key);
-
-                const next = route.coords[i + 1];
-                const cX = ((curr.lon + 180) / 360) * mapWidth;
-                const cY = ((90 - curr.lat) / 180) * mapHeight;
-                const nX = ((next.lon + 180) / 360) * mapWidth;
-                const nY = ((90 - next.lat) / 180) * mapHeight;
-                const midX = (cX + nX) / 2;
-                const midY = (cY + nY) / 2;
-                const angle = Math.atan2(nY - cY, nX - cX);
-
-                ctx.save();
-                ctx.translate(midX, midY);
-                ctx.rotate(angle);
-                ctx.beginPath();
-                ctx.moveTo(-6, -4);
-                ctx.lineTo(4, 0);
-                ctx.lineTo(-6, 4);
-                ctx.fillStyle = "#ffffff";
-                ctx.fill();
-                ctx.restore();
-              }
-            }
-            ctx.shadowBlur = 0;
-          });
-        });
-      }
 
       // === DRAW INTERNATIONAL HUBS (Loaded from international/hubs.ts) ===
       if (typeof internationalHubs !== 'undefined') {
@@ -879,13 +557,102 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
         });
       }
 
+      // === DRAW ACTIVE TRANSACTION LINES & SHIPS ===
+      if (activeTransactions.length > 0) {
+        activeTransactions.forEach(tx => {
+          const sourceHub = getHubForCountry(tx.source);
+          const destHub = getHubForCountry(tx.dest);
+
+          if (sourceHub && destHub) {
+            const route = calculateTradeRoute(
+              { lon: sourceHub.lon, lat: sourceHub.lat },
+              { lon: destHub.lon, lat: destHub.lat }
+            );
+
+            // 1. Draw Path (BOLD, SOLID, GLOWING)
+            ctx.beginPath();
+            ctx.setLineDash([]);
+
+            const first = route[0];
+            const { x: startX, y: startY } = project(first.lon, first.lat);
+            ctx.moveTo(startX, startY);
+
+            for (let i = 1; i < route.length; i++) {
+              const { x, y } = project(route[i].lon, route[i].lat);
+              ctx.lineTo(x, y);
+            }
+
+            ctx.lineWidth = 5.0;
+            ctx.strokeStyle = tx.type === 'buy' ? "#ff3333" : "#22c55e";
+            ctx.shadowBlur = 15;
+            ctx.shadowColor = tx.type === 'buy' ? "rgba(255, 0, 0, 0.7)" : "rgba(34, 197, 94, 0.7)";
+            ctx.stroke();
+            ctx.shadowBlur = 0;
+
+            // 2. Calculate Ship Position (Animation driven by Game Time)
+            const duration = 10000; // Total travel time at 1x speed
+            const activeElapsed = txAccumulatedTimeRef.current[tx.id] || 0;
+            const progress = Math.min(1, Math.max(0, activeElapsed / duration));
+
+            // Auto-cleanup when finished (respecting game time)
+            if (activeElapsed >= duration) {
+              tradeStorage.removeTransaction(tx.id);
+              return;
+            }
+
+            if (progress < 1) {
+              // Find current point in route based on progress
+              const totalSegments = route.length - 1;
+              const currentSegment = Math.min(totalSegments - 1, Math.floor(progress * totalSegments));
+              const segmentProgress = (progress * totalSegments) - currentSegment;
+
+              const p1 = route[currentSegment];
+              const p2 = route[currentSegment + 1];
+
+              const currentLon = p1.lon + (p2.lon - p1.lon) * segmentProgress;
+              const currentLat = p1.lat + (p2.lat - p1.lat) * segmentProgress;
+
+              const { x, y } = project(currentLon, currentLat);
+
+              // Calculate Heading
+              const { x: x2, y: y2 } = project(p2.lon, p2.lat);
+              const angle = Math.atan2(y2 - y, x2 - x);
+
+              // 3. Draw Cargo Ship Icon
+              ctx.save();
+              ctx.translate(x, y);
+              ctx.rotate(angle);
+
+              // Ship Shape
+              ctx.fillStyle = "#ffffff";
+              ctx.shadowBlur = 10;
+              ctx.shadowColor = "#ffffff";
+
+              // Draw a techy cargo ship triangle/diamond
+              ctx.beginPath();
+              ctx.moveTo(12, 0);   // Front
+              ctx.lineTo(-8, -6);  // Back Left
+              ctx.lineTo(-5, 0);   // Middle Back
+              ctx.lineTo(-8, 6);   // Back Right
+              ctx.closePath();
+              ctx.fill();
+
+              // High-tech highlight (Cabin)
+              ctx.fillStyle = tx.type === 'buy' ? "#ff3333" : "#22c55e";
+              ctx.fillRect(-2, -2, 4, 4);
+
+              ctx.restore();
+            }
+          }
+        });
+      }
 
 
-      ctx.restore();
+
       ctx.restore();
     });
 
-  }, [geoData, userCountry, targetCountry, centersData, selectedWp]);
+  }, [geoData, userCountry, targetCountry, centersData, selectedWp, activeTransactions, sessionTrades, animationTime]);
 
   // Define Custom Cursors
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
@@ -926,18 +693,9 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
 
           });
 
-          if (typeof waypointCoords !== 'undefined') {
-            Object.keys(waypointCoords).forEach((name) => {
-              const coord = waypointCoords[name];
-              const x = ((coord.lon + 180) / 360) * mapWidth;
-              const y = ((90 - coord.lat) / 180) * mapHeight;
-              const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
-              if (dist < 60) foundHover = true;
-            });
-          }
 
           setIsHovering(foundHover);
-          if (Math.random() < 0.05) console.log("Hover debugging:", foundHover, "Min dist to", closestName, "is", debugMinDist);
+
         }}
 
         onClick={(e) => {
@@ -966,16 +724,6 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
             if (dist < minDist) { minDist = dist; closest = { name: center.name_en?.trim() }; }
           });
 
-          if (typeof waypointCoords !== 'undefined') {
-            Object.keys(waypointCoords).forEach((name) => {
-              if (typeof hiddenWaypoints !== 'undefined' && hiddenWaypoints.includes(name)) return;
-              const coord = waypointCoords[name];
-              const x = ((coord.lon + 180) / 360) * mapWidth;
-              const y = ((90 - coord.lat) / 180) * mapHeight;
-              const dist = Math.sqrt((mappedClickX - x) ** 2 + (clickY - y) ** 2);
-              if (dist < minDist) { minDist = dist; closest = { name: name }; }
-            });
-          }
 
           if (typeof internationalHubs !== 'undefined') {
             internationalHubs.forEach((hub) => {

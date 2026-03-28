@@ -8,7 +8,6 @@ export const selandia_baruAgreements = [
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Australia", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" }

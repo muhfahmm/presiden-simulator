@@ -2,7 +2,6 @@ export const makauAgreements = [
 
       { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Indonesia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Vietnam", "type": "Perdagangan", "status": "Aktif" },

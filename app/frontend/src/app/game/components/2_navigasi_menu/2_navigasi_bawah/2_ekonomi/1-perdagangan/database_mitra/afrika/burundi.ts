@@ -9,7 +9,6 @@ export const burundiAgreements = [
       { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Ethiopia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Ghana", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Nigeria", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Kenya", "type": "Perdagangan", "status": "Aktif" }

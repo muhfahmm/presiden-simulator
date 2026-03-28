@@ -1,7 +1,6 @@
 export const saint_vincent_dan_grenadineAgreements = [
 
       { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Meksiko", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },

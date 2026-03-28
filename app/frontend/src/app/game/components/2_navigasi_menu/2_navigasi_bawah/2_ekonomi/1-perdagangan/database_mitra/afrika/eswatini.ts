@@ -9,7 +9,6 @@ export const eswatiniAgreements = [
       { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Maroko", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Ethiopia", "type": "Perdagangan", "status": "Aktif" },

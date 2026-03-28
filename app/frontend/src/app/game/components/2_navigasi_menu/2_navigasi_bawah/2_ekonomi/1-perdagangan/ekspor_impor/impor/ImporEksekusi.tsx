@@ -4,6 +4,7 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { historiImportStorage } from "./HistoriImportStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
+import { tradeStorage } from "../../TradeStorage";
 import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/countries/region/index";
 
 interface ImporEksekusiProps {
@@ -111,6 +112,15 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
       time: `${String(gameDate.getDate()).padStart(2, '0')}-${String(gameDate.getMonth() + 1).padStart(2, '0')}-${gameDate.getFullYear()}`,
       content: `Transaksi impor ${quantity.toLocaleString('id-ID')} ${getUnit(selectedKey)} ${selectedName} telah berhasil diselesaikan.\n\nDetail:\n- Pengeluaran: -${totalCost.toLocaleString('id-ID')}\n- Mitra Dagang: ${selectedTradePartner || "Mitra Internasional"}\n- Estimasi Pengiriman: ${shippingTime}`
     });
+
+    // Add animated transaction line to the map
+    if (selectedTradePartner) {
+        tradeStorage.addTransaction({
+            source: selectedTradePartner,
+            dest: currentCountry.name_id,
+            type: 'buy'
+        });
+    }
 
     setShowSuccess(true);
     

@@ -14,6 +14,5 @@ export const uzbekistanAgreements = [
       { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Thailand", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Vietnam", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" }
     
 ];

@@ -6,7 +6,6 @@ export const omanAgreements = [
       { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Indonesia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Thailand", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Vietnam", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },

@@ -8,7 +8,6 @@ export const kosovoAgreements = [
       { "mitra": "Italia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Turki", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Spanyol", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" }

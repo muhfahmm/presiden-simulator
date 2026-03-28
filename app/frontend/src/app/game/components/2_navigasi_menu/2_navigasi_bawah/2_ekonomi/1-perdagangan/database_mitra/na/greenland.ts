@@ -7,7 +7,6 @@ export const greenlandAgreements = [
       { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Meksiko", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },

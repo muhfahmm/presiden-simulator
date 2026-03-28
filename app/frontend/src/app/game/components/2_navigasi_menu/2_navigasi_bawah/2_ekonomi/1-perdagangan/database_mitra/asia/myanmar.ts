@@ -9,7 +9,6 @@ export const myanmarAgreements = [
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "China", "type": "Perdagangan", "status": "Aktif" }
     
 ];

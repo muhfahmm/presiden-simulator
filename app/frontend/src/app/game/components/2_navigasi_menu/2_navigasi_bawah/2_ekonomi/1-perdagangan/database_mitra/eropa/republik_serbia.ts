@@ -10,7 +10,6 @@ export const republik_serbiaAgreements = [
       { "mitra": "Rusia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Belanda", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Swiss", "type": "Perdagangan", "status": "Aktif" },

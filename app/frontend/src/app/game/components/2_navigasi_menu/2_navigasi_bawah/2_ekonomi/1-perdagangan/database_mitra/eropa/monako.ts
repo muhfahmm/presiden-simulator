@@ -5,7 +5,6 @@ export const monakoAgreements = [
       { "mitra": "Swiss", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Turki", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Spanyol", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Italia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Belanda", "type": "Perdagangan", "status": "Aktif" },

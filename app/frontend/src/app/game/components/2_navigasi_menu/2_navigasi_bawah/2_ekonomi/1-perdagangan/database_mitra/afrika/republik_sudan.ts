@@ -9,7 +9,6 @@ export const republik_sudanAgreements = [
       { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Ghana", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" }
     

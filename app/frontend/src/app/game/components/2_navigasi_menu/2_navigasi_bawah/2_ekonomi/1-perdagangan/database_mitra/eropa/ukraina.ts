@@ -3,7 +3,6 @@ export const ukrainaAgreements = [
       { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Turki", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Spanyol", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Italia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Rusia", "type": "Perdagangan", "status": "Aktif" },

@@ -1,7 +1,6 @@
 export const korea_utaraAgreements = [
 
       { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Thailand", "type": "Perdagangan", "status": "Aktif" },

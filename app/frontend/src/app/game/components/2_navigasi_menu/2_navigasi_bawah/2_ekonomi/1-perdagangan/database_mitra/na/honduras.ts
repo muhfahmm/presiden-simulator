@@ -1,6 +1,5 @@
 export const hondurasAgreements = [
 
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Kuba", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },

@@ -10,7 +10,6 @@ export const kroasiaAgreements = [
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Swiss", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Italia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" }

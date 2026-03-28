@@ -11,6 +11,5 @@ export const republik_timor_lesteAgreements = [
       { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Malaysia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "China", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" }
     
 ];

@@ -4,7 +4,6 @@ export const republik_afrika_tengahAgreements = [
       { "mitra": "Nigeria", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Maroko", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },

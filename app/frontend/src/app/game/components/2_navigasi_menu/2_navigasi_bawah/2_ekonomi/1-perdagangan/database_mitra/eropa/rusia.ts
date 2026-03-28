@@ -2,7 +2,6 @@ export const rusiaAgreements = [
 
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Jepang", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Belanda", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },

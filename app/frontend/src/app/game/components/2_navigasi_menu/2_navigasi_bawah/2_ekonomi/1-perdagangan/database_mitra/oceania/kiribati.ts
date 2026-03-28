@@ -1,7 +1,6 @@
 export const kiribatiAgreements = [
 
       { "mitra": "Papua Nugini", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Fiji", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },

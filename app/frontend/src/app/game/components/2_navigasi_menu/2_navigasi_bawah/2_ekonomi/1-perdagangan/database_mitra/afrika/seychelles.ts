@@ -9,6 +9,5 @@ export const seychellesAgreements = [
       { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Ethiopia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Aljazair", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" }
     
 ];

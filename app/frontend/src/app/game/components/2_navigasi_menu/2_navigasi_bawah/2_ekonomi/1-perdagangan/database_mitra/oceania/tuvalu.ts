@@ -7,7 +7,6 @@ export const tuvaluAgreements = [
       { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Fiji", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Selandia Baru", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Australia", "type": "Perdagangan", "status": "Aktif" }

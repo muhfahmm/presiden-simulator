@@ -1,7 +1,6 @@
 export const mongoliaAgreements = [
 
       { "mitra": "Thailand", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Indonesia", "type": "Perdagangan", "status": "Aktif" },

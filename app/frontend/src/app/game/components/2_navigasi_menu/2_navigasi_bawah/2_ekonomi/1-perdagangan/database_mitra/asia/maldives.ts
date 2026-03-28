@@ -1,6 +1,5 @@
 export const maldivesAgreements = [
 
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Filipina", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Indonesia", "type": "Perdagangan", "status": "Aktif" },

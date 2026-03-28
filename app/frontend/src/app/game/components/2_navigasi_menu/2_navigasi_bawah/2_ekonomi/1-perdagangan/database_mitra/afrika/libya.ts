@@ -7,7 +7,6 @@ export const libyaAgreements = [
       { "mitra": "Prancis", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Ethiopia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Mesir", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Korea Selatan", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Ghana", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Aljazair", "type": "Perdagangan", "status": "Aktif" },

@@ -2,7 +2,6 @@ export const bosnia_dan_hercegovinaAgreements = [
 
       { "mitra": "Turki", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Spanyol", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Italia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Amerika Serikat", "type": "Perdagangan", "status": "Aktif" },

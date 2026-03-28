@@ -10,7 +10,6 @@ export const republik_tanzaniaAgreements = [
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Mesir", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Ethiopia", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" }
     
 ];

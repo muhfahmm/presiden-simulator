@@ -1,7 +1,6 @@
 export const chadAgreements = [
 
       { "mitra": "Nigeria", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Singapura", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Maroko", "type": "Perdagangan", "status": "Aktif" },

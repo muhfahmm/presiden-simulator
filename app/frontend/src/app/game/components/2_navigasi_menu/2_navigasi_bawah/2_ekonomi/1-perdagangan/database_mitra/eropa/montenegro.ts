@@ -14,6 +14,5 @@ export const montenegroAgreements = [
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Swiss", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Belanda", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" }
     
 ];

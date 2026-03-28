@@ -9,6 +9,5 @@ export const fijiAgreements = [
       { "mitra": "Selandia Baru", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Australia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Inggris", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" }
     
 ];

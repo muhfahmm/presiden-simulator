@@ -9,6 +9,5 @@ export const hong_kongAgreements = [
       { "mitra": "Filipina", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Indonesia", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Thailand", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" }
     
 ];

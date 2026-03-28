@@ -1,10 +1,10 @@
 ===USERPAGE===
 frontend-desktop (Web - port 4000)
-cd "c:\fhm\EM4\app\frontend"
+cd "c:\fhm\EM1\app\frontend"
 npm run dev
 
 frontend-desktop (Desktop - Tauri)
-cd "c:\fhm\EM4\app\frontend"
+cd "c:\fhm\EM1\app\frontend"
 npx tauri dev
 
 server Go (User Game Server - port 4001)

@@ -411,12 +411,12 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   const importPriceVal = baseBuyPrice;
 
   const activePartnersList = (managedTrades?.filter((a: any) => 
-    a.jenis === 'Perdagangan' && 
+    (a.type === 'Perdagangan' || a.jenis === 'Perdagangan') && 
     a.mitra.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
     a.mitra.toLowerCase() !== currentCountry.name_en.toLowerCase()
   ).length > 0 
     ? managedTrades.filter((a: any) => 
-          a.jenis === 'Perdagangan' && 
+          (a.type === 'Perdagangan' || a.jenis === 'Perdagangan') && 
           a.mitra.toLowerCase() !== currentCountry.name_id.toLowerCase() && 
           a.mitra.toLowerCase() !== currentCountry.name_en.toLowerCase()
         ).sort((a: any, b: any) => a.mitra.localeCompare(b.mitra))

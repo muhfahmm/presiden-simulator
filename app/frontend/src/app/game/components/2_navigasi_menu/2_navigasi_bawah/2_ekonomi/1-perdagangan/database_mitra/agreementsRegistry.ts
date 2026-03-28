@@ -1,19 +1,7 @@
-import * as asia from "./asia/index";
-import * as afrika from "./afrika/index";
-import * as eropa from "./eropa/index";
-import * as na from "./na/index";
-import * as oceania from "./oceania/index";
-import * as sa from "./sa/index";
+import * as allAgreementsImports from "./index";
 
-// Combine all perjanjian into a single registry
-const allAgreements: Record<string, any[]> = {
-  ...asia,
-  ...afrika,
-  ...eropa,
-  ...na,
-  ...oceania,
-  ...sa,
-};
+// Combine all perjanjian into a single registry from the central index
+const allAgreements: Record<string, any[]> = allAgreementsImports;
 
 /**
  * Normalizes a country name to snake_case for registry lookup.

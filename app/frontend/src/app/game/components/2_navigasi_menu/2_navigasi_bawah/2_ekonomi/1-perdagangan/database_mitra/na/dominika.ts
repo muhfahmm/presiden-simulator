@@ -12,7 +12,6 @@ export const dominikaAgreements = [
       { "mitra": "India", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Jerman", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Uni Emirat Arab", "type": "Perdagangan", "status": "Aktif" },
-      { "mitra": "Uni Eropa", "type": "Perdagangan", "status": "Aktif" },
       { "mitra": "Meksiko", "type": "Perdagangan", "status": "Aktif" }
     
 ];

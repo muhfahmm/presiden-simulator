@@ -3,6 +3,7 @@ import { Hammer, ChevronLeft, Coins, Calculator, Box, MapPin, Activity, CheckCir
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { historiEksporStorage } from "./HistoriEksporStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
+import { tradeStorage } from "../../TradeStorage";
 import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/countries/region/index";
 
 interface EksporEksekusiProps {
@@ -137,6 +138,15 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
       time: `${String(gameDate.getDate()).padStart(2, '0')}-${String(gameDate.getMonth() + 1).padStart(2, '0')}-${gameDate.getFullYear()}`,
       content: `Transaksi ekspor ${quantity.toLocaleString('id-ID')} ${getUnit(selectedKey)} ${selectedName} telah berhasil diselesaikan.\n\nDetail:\n- Pendapatan: +${totalValue.toLocaleString('id-ID')}\n- Mitra Dagang: ${selectedTradePartner || "Mitra Internasional"}\n- Estimasi Pengiriman: ${shippingTime}`
     });
+
+    // Add animated transaction line to the map
+    if (selectedTradePartner) {
+        tradeStorage.addTransaction({
+            source: currentCountry.name_id,
+            dest: selectedTradePartner,
+            type: 'sell'
+        });
+    }
 
     setShowSuccess(true);
     
