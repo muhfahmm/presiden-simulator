@@ -1,101 +1,122 @@
+// ===================
+// DETAIL TOTAL BANGUNAN: Pertahanan (Total: 9 Bangunan)
+// ===================
 export const pertahananRate = {
-  penjara: {
-    key: "penjara",
+  "1_penjara": {
+    key: "1_penjara",
+    dataKey: "penjara",
     groupId: "pertahanan",
     label: "Penjara",
-    desc: "Lembaga Pemasyarakatan",
-    cost: 25,
-    buildCost: 25,
-    buildTime: 60,
-    maintenanceCost: 20,
-    lowongan_kerja: 200
+    deskripsi: "Lembaga Pemasyarakatan",
+    biaya: 25,
+    biaya_pembangunan: 25,
+    waktu_pembangunan: 60,
+    biaya_pemeliharaan: 20,
+    lowongan_kerja: 200,
+    konsumsi_listrik: 2
   },
-  gudang_senjata: {
-    key: "gudang_senjata",
+  "2_gudang_senjata": {
+    key: "2_gudang_senjata",
+    dataKey: "gudang_senjata",
     groupId: "pertahanan",
     label: "Gudang Senjata",
-    desc: "Penyimpanan Amunisi",
-    cost: 30,
-    buildCost: 30,
-    buildTime: 30,
-    maintenanceCost: 10,
-    lowongan_kerja: 100
+    deskripsi: "Penyimpanan Amunisi",
+    biaya: 30,
+    biaya_pembangunan: 30,
+    waktu_pembangunan: 30,
+    biaya_pemeliharaan: 10,
+    lowongan_kerja: 100,
+    konsumsi_listrik: 2
   },
-  hangar_tank: {
-    key: "hangar_tank",
+  "3_hangar_tank": {
+    key: "3_hangar_tank",
+    dataKey: "hangar_tank",
     groupId: "pertahanan",
     label: "Hangar Tank",
-    desc: "Garasi Tempur",
-    cost: 50,
-    buildCost: 50,
-    buildTime: 60,
-    maintenanceCost: 35,
-    lowongan_kerja: 150
+    deskripsi: "Garasi Tempur",
+    biaya: 50,
+    biaya_pembangunan: 50,
+    waktu_pembangunan: 60,
+    biaya_pemeliharaan: 35,
+    lowongan_kerja: 150,
+    konsumsi_listrik: 5
   },
-  akademi_militer: {
-    key: "akademi_militer",
+  "4_akademi_militer": {
+    key: "4_akademi_militer",
+    dataKey: "akademi_militer",
     groupId: "pertahanan",
     label: "Akademi Militer",
-    desc: "Pendidikan Perwira",
-    cost: 150,
-    buildCost: 150,
-    buildTime: 180,
-    maintenanceCost: 40,
-    lowongan_kerja: 300
+    deskripsi: "Pendidikan Perwira",
+    biaya: 150,
+    biaya_pembangunan: 150,
+    waktu_pembangunan: 180,
+    biaya_pemeliharaan: 40,
+    lowongan_kerja: 300,
+    konsumsi_listrik: 10
   },
-  pusat_komando: {
-    key: "pusat_komando",
+  "5_pusat_komando": {
+    key: "5_pusat_komando",
+    dataKey: "pusat_komando",
     groupId: "pertahanan",
     label: "Pusat Komando",
-    desc: "Komando Tertinggi",
-    cost: 450,
-    buildCost: 450,
-    buildTime: 240,
-    maintenanceCost: 150,
-    lowongan_kerja: 250
+    deskripsi: "Komando Tertinggi",
+    biaya: 450,
+    biaya_pembangunan: 450,
+    waktu_pembangunan: 240,
+    biaya_pemeliharaan: 150,
+    lowongan_kerja: 250,
+    konsumsi_listrik: 15
   },
-  pangkalan_udara: {
-    key: "pangkalan_udara",
+  "6_pangkalan_udara": {
+    key: "6_pangkalan_udara",
+    dataKey: "pangkalan_udara",
     groupId: "pertahanan",
     label: "Pangkalan Udara",
-    desc: "Fasilitas Dirgantara",
-    cost: 280,
-    buildCost: 280,
-    buildTime: 180,
-    maintenanceCost: 80,
-    lowongan_kerja: 500
+    deskripsi: "Fasilitas Dirgantara",
+    biaya: 280,
+    biaya_pembangunan: 280,
+    waktu_pembangunan: 180,
+    biaya_pemeliharaan: 80,
+    lowongan_kerja: 500,
+    konsumsi_listrik: 30
   },
-  pangkalan_laut: {
-    key: "pangkalan_laut",
+  "7_pangkalan_laut": {
+    key: "7_pangkalan_laut",
+    dataKey: "pangkalan_laut",
     groupId: "pertahanan",
     label: "Pangkalan Laut",
-    desc: "Fasilitas Maritim",
-    cost: 320,
-    buildCost: 320,
-    buildTime: 210,
-    maintenanceCost: 100,
-    lowongan_kerja: 450
+    deskripsi: "Fasilitas Maritim",
+    biaya: 320,
+    biaya_pembangunan: 320,
+    waktu_pembangunan: 210,
+    biaya_pemeliharaan: 100,
+    lowongan_kerja: 450,
+    konsumsi_listrik: 35
   },
-  program_luar_angkasa: {
-    key: "program_luar_angkasa",
+  "8_program_luar_angkasa": {
+    key: "8_program_luar_angkasa",
+    dataKey: "program_luar_angkasa",
     groupId: "pertahanan",
     label: "Program luar angkasa",
-    desc: "Program Satelit",
-    cost: 600,
-    buildCost: 600,
-    buildTime: 365,
-    maintenanceCost: 250,
-    lowongan_kerja: 800
+    deskripsi: "Program Satelit",
+    biaya: 600,
+    biaya_pembangunan: 600,
+    waktu_pembangunan: 365,
+    biaya_pemeliharaan: 250,
+    lowongan_kerja: 800,
+    konsumsi_listrik: 80
   },
-  cyber_shield: {
-    key: "cyber_shield",
+  "9_pertahanan_siber": {
+    key: "9_pertahanan_siber",
+    dataKey: "pertahanan_siber",
     groupId: "pertahanan",
     label: "Cyber Defense",
-    desc: "Keamanan Digital",
-    cost: 180,
-    buildCost: 180,
-    buildTime: 120,
-    maintenanceCost: 50,
-    lowongan_kerja: 120
+    deskripsi: "Keamanan Digital",
+    biaya: 180,
+    biaya_pembangunan: 180,
+    waktu_pembangunan: 120,
+    biaya_pemeliharaan: 50,
+    lowongan_kerja: 120,
+    konsumsi_listrik: 5
   }
 };

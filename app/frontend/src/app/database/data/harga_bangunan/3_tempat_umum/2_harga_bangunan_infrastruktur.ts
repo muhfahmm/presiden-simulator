@@ -1,88 +1,99 @@
+// ===================
+// DETAIL TOTAL BANGUNAN: Infrastruktur (Total: 8 Bangunan)
+// ===================
 export const infrastrukturRate = {
-  jalur_sepeda: {
-    key: "jalur_sepeda",
+  "1_jalur_sepeda": {
+    key: "1_jalur_sepeda",
     dataKey: "jalur_sepeda",
-    desc: "Jalur Sepeda",
-    production: 1,
-    unit: "Unit",
-    maintenanceCost: 1,
-    buildTime: 15,
-    buildCost: 5
+    deskripsi: "Jalur Sepeda",
+    produksi: 1,
+    satuan: "Unit",
+    biaya_pemeliharaan: 1,
+    waktu_pembangunan: 15,
+    biaya_pembangunan: 5,
+    konsumsi_listrik: 0
   },
-  jalan_tol: {
-    key: "jalan_tol",
+  "2_jalan_tol": {
+    key: "2_jalan_tol",
     dataKey: "jalan_tol",
-    desc: "Jalan Raya",
-    production: 1,
-    unit: "Unit",
-    maintenanceCost: 5,
-    buildTime: 60,
-    buildCost: 80
+    deskripsi: "Jalan Raya",
+    produksi: 1,
+    satuan: "Unit",
+    biaya_pemeliharaan: 5,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 80,
+    konsumsi_listrik: 3
   },
-  terminal_bus: {
-    key: "terminal_bus",
+  "3_terminal_bus": {
+    key: "3_terminal_bus",
     dataKey: "terminal_bus",
-    desc: "Terminal Bus",
-    production: 1,
-    unit: "Unit",
-    maintenanceCost: 3,
-    buildTime: 45,
-    buildCost: 30,
-    lowongan_kerja: 150
+    deskripsi: "Terminal Bus",
+    produksi: 1,
+    satuan: "Unit",
+    biaya_pemeliharaan: 3,
+    waktu_pembangunan: 45,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 150,
+    konsumsi_listrik: 5
   },
-  jalur_kereta: {
-    key: "jalur_kereta",
+  "4_jalur_kereta": {
+    key: "4_jalur_kereta",
     dataKey: "jalur_kereta",
-    desc: "Jalur Kereta Api",
-    production: 1,
-    unit: "Unit",
-    maintenanceCost: 10,
-    buildTime: 90,
-    buildCost: 120,
-    lowongan_kerja: 300
+    deskripsi: "Jalur Kereta Api",
+    produksi: 1,
+    satuan: "Unit",
+    biaya_pemeliharaan: 10,
+    waktu_pembangunan: 90,
+    biaya_pembangunan: 120,
+    lowongan_kerja: 300,
+    konsumsi_listrik: 15
   },
-  kereta_bawah_tanah: {
-    key: "kereta_bawah_tanah",
+  "5_kereta_bawah_tanah": {
+    key: "5_kereta_bawah_tanah",
     dataKey: "kereta_bawah_tanah",
-    desc: "Kereta Bawah Tanah (Subway)",
-    production: 1,
-    unit: "Unit",
-    maintenanceCost: 15,
-    buildTime: 120,
-    buildCost: 150,
-    lowongan_kerja: 400
+    deskripsi: "Kereta Bawah Tanah (Subway)",
+    produksi: 1,
+    satuan: "Unit",
+    biaya_pemeliharaan: 15,
+    waktu_pembangunan: 120,
+    biaya_pembangunan: 150,
+    lowongan_kerja: 400,
+    konsumsi_listrik: 20
   },
-  pelabuhan_laut: {
-    key: "pelabuhan_laut",
+  "6_pelabuhan_laut": {
+    key: "6_pelabuhan_laut",
     dataKey: "pelabuhan_laut",
-    desc: "Pelabuhan Laut",
-    production: 1,
-    unit: "Unit",
-    maintenanceCost: 40,
-    buildTime: 180,
-    buildCost: 350,
-    lowongan_kerja: 1000
+    deskripsi: "Pelabuhan Laut",
+    produksi: 1,
+    satuan: "Unit",
+    biaya_pemeliharaan: 40,
+    waktu_pembangunan: 180,
+    biaya_pembangunan: 350,
+    lowongan_kerja: 1000,
+    konsumsi_listrik: 25
   },
-  bandara: {
-    key: "bandara",
+  "7_bandara": {
+    key: "7_bandara",
     dataKey: "bandara",
-    desc: "Bandara Internasional",
-    production: 1,
-    unit: "Unit",
-    maintenanceCost: 60,
-    buildTime: 240,
-    buildCost: 450,
-    lowongan_kerja: 1500
+    deskripsi: "Bandara Internasional",
+    produksi: 1,
+    satuan: "Unit",
+    biaya_pemeliharaan: 60,
+    waktu_pembangunan: 240,
+    biaya_pembangunan: 450,
+    lowongan_kerja: 1500,
+    konsumsi_listrik: 30
   },
-  helipad: {
-    key: "helipad",
+  "8_helipad": {
+    key: "8_helipad",
     dataKey: "helipad",
-    desc: "Helipad",
-    production: 1,
-    unit: "Unit",
-    maintenanceCost: 5,
-    buildTime: 30,
-    buildCost: 15,
-    lowongan_kerja: 50
-  }
+    deskripsi: "Helipad",
+    produksi: 1,
+    satuan: "Unit",
+    biaya_pemeliharaan: 5,
+    waktu_pembangunan: 30,
+    biaya_pembangunan: 15,
+    lowongan_kerja: 50,
+    konsumsi_listrik: 2
+  },
 };

@@ -1,62 +1,77 @@
+// ===================
+// DETAIL TOTAL BANGUNAN: Listrik (Total: 6 Bangunan)
+// ===================
 export const KAPASITAS_LISTRIK_METADATA = {
-  pembangkit_listrik_tenaga_nuklir: {
-    no: 1,
-    production: 1000,
-    unit: "MW",
-    desc: "PLTN (Fisi Nuklir)",
-    maintenanceCost: 80,
-    buildTime: 365,
-    buildCost: 35,
-    lowongan_kerja: 800
+  "1_pembangkit_listrik_tenaga_nuklir": {
+    key: "1_pembangkit_listrik_tenaga_nuklir",
+    dataKey: "pembangkit_listrik_tenaga_nuklir",
+    produksi: 1000,
+    satuan: "MW",
+    deskripsi: "PLTN (Fisi Nuklir)",
+    biaya_pemeliharaan: 80,
+    waktu_pembangunan: 365,
+    biaya_pembangunan: 35,
+    lowongan_kerja: 800,
+    konsumsi_listrik: 0
   },
-  pembangkit_listrik_tenaga_air: {
-    no: 2,
-    production: 100,
-    unit: "MW",
-    desc: "PLTA (Hidroelektrik)",
-    maintenanceCost: 15,
-    buildTime: 180,
-    buildCost: 35,
-    lowongan_kerja: 150
+  "2_pembangkit_listrik_tenaga_air": {
+    key: "2_pembangkit_listrik_tenaga_air",
+    dataKey: "pembangkit_listrik_tenaga_air",
+    produksi: 100,
+    satuan: "MW",
+    deskripsi: "PLTA (Hidroelektrik)",
+    biaya_pemeliharaan: 15,
+    waktu_pembangunan: 180,
+    biaya_pembangunan: 35,
+    lowongan_kerja: 150,
+    konsumsi_listrik: 0
   },
-  pembangkit_listrik_tenaga_surya: {
-    no: 3,
-    production: 20,
-    unit: "MW",
-    desc: "PLTS (Panel Surya)",
-    maintenanceCost: 2,
-    buildTime: 30,
-    buildCost: 35,
-    lowongan_kerja: 40
+  "3_pembangkit_listrik_tenaga_surya": {
+    key: "3_pembangkit_listrik_tenaga_surya",
+    dataKey: "pembangkit_listrik_tenaga_surya",
+    produksi: 20,
+    satuan: "MW",
+    deskripsi: "PLTS (Panel Surya)",
+    biaya_pemeliharaan: 2,
+    waktu_pembangunan: 30,
+    biaya_pembangunan: 35,
+    lowongan_kerja: 40,
+    konsumsi_listrik: 0
   },
-  pembangkit_listrik_tenaga_uap: {
-    no: 4,
-    production: 500,
-    unit: "MW",
-    desc: "PLTU (Tenaga Uap)",
-    maintenanceCost: 40,
-    buildTime: 120,
-    buildCost: 35,
-    lowongan_kerja: 450
+  "4_pembangkit_listrik_tenaga_uap": {
+    key: "4_pembangkit_listrik_tenaga_uap",
+    dataKey: "pembangkit_listrik_tenaga_uap",
+    produksi: 500,
+    satuan: "MW",
+    deskripsi: "PLTU (Tenaga Uap)",
+    biaya_pemeliharaan: 40,
+    waktu_pembangunan: 120,
+    biaya_pembangunan: 35,
+    lowongan_kerja: 450,
+    konsumsi_listrik: 0
   },
-  pembangkit_listrik_tenaga_gas: {
-    no: 5,
-    production: 300,
-    unit: "MW",
-    desc: "PLTG (Gas Alam)",
-    maintenanceCost: 25,
-    buildTime: 90,
-    buildCost: 35,
-    lowongan_kerja: 250
+  "5_pembangkit_listrik_tenaga_gas": {
+    key: "5_pembangkit_listrik_tenaga_gas",
+    dataKey: "pembangkit_listrik_tenaga_gas",
+    produksi: 300,
+    satuan: "MW",
+    deskripsi: "PLTG (Gas Alam)",
+    biaya_pemeliharaan: 25,
+    waktu_pembangunan: 90,
+    biaya_pembangunan: 35,
+    lowongan_kerja: 250,
+    konsumsi_listrik: 0
   },
-  pembangkit_listrik_tenaga_angin: {
-    no: 6,
-    production: 10,
-    unit: "MW",
-    desc: "PLTB (Angin)",
-    maintenanceCost: 3,
-    buildTime: 45,
-    buildCost: 35,
-    lowongan_kerja: 20
+  "6_pembangkit_listrik_tenaga_angin": {
+    key: "6_pembangkit_listrik_tenaga_angin",
+    dataKey: "pembangkit_listrik_tenaga_angin",
+    produksi: 10,
+    satuan: "MW",
+    deskripsi: "PLTB (Angin)",
+    biaya_pemeliharaan: 3,
+    waktu_pembangunan: 45,
+    biaya_pembangunan: 35,
+    lowongan_kerja: 20,
+    konsumsi_listrik: 0
   }
 };

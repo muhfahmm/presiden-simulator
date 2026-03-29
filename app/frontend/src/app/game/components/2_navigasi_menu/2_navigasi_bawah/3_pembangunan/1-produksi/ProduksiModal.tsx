@@ -8,7 +8,7 @@ import { perikananRate } from "@/app/database/data/harga_bangunan/1_produksi/6_h
 import { olahanPanganRate } from "@/app/database/data/harga_bangunan/1_produksi/7_harga_bangunan_olahan_pangan";
 import { farmasiRate } from "@/app/database/data/harga_bangunan/1_produksi/8_harga_bangunan_farmasi";
 import { produksiMiliter, tempatUmum } from "@/app/database/data/types";
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PANGAN, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI } from "@/app/database/data/types/1_kelistrikan"
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI } from "@/app/database/data/types/1_kelistrikan"
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
@@ -256,16 +256,16 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       items: Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]: [string, any]) => ({
         key,
         groupId: "kelistrikan",
-        label: val.desc,
+        label: val.deskripsi,
         icon: getIcon(key),
         desc: "Energi Listrik",
-        tarif: val.production,
-        unit: val.unit,
+        tarif: val.produksi,
+        unit: val.satuan,
         count: (currentData.sektor_listrik?.[key as keyof typeof currentData.sektor_listrik] || 0) + ((buildingDeltas[key] as number) || 0),
         pendapatan_nasional: 0,
-        cost: val.buildCost || 35,
-        buildTime: val.buildTime || 90,
-        maintenanceCost: val.maintenanceCost ?? 5,
+        cost: val.biaya_pembangunan || 35,
+        buildTime: val.waktu_pembangunan || 90,
+        maintenanceCost: val.biaya_pemeliharaan ?? 5,
         lowongan_kerja: val.lowongan_kerja || 0
       }))
     },
@@ -284,17 +284,17 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         .map(([key, val]: [string, any]) => ({
           key,
           groupId: "ekstraksi",
-          label: val.desc,
+          label: val.deskripsi,
           icon: getIcon(key),
           desc: "Sumber Daya Alam",
-          tarif: val.production,
-          unit: val.unit,
+          tarif: val.produksi,
+          unit: val.satuan,
           count: (currentData.sektor_ekstraksi?.[val.dataKey as keyof typeof currentData.sektor_ekstraksi] || 0) + ((buildingDeltas[key] as number) || 0),
-          powerUsage: (KONSUMSI_EKSTRAKSI as any)[val.dataKey] || 5,
+          powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: 0,
-          cost: val.buildCost || 30,
-          buildTime: val.buildTime || 30,
-          maintenanceCost: val.maintenanceCost ?? 10,
+          cost: val.biaya_pembangunan || 30,
+          buildTime: val.waktu_pembangunan || 30,
+          maintenanceCost: val.biaya_pemeliharaan ?? 10,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -307,17 +307,17 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         .map(([key, val]: [string, any]) => ({
           key,
           groupId: "manufaktur",
-          label: val.desc,
+          label: val.deskripsi,
           icon: getIcon(key),
           desc: "Manufaktur",
-          tarif: val.production,
-          unit: val.unit,
+          tarif: val.produksi,
+          unit: val.satuan,
           count: (currentData.sektor_manufaktur?.[val.dataKey as keyof typeof currentData.sektor_manufaktur] || 0) + ((buildingDeltas[key] as number) || 0),
-          powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
+          powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: val.buildCost || 45,
-          buildTime: val.buildTime || 45,
-          maintenanceCost: val.maintenanceCost ?? 15,
+          cost: val.biaya_pembangunan || 45,
+          buildTime: val.waktu_pembangunan || 45,
+          maintenanceCost: val.biaya_pemeliharaan ?? 15,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -330,17 +330,17 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         .map(([key, val]: [string, any]) => ({
           key,
           groupId: "peternakan",
-          label: val.desc,
+          label: val.deskripsi,
           icon: getIcon(key),
           desc: "Peternakan",
-          tarif: val.production,
-          unit: val.unit,
+          tarif: val.produksi,
+          unit: val.satuan,
           count: (currentData.sektor_peternakan?.[val.dataKey as keyof typeof currentData.sektor_peternakan] || 0) + ((buildingDeltas[key] as number) || 0),
-          powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
+          powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: val.buildCost || 15,
-          buildTime: val.buildTime || 25,
-          maintenanceCost: val.maintenanceCost ?? 2,
+          cost: val.biaya_pembangunan || 15,
+          buildTime: val.waktu_pembangunan || 25,
+          maintenanceCost: val.biaya_pemeliharaan ?? 2,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -353,17 +353,17 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         .map(([key, val]: [string, any]) => ({
           key,
           groupId: "agrikultur",
-          label: val.desc,
+          label: val.deskripsi,
           icon: getIcon(key),
           desc: "Agrikultur",
-          tarif: val.production,
-          unit: val.unit,
+          tarif: val.produksi,
+          unit: val.satuan,
           count: (currentData.sektor_agrikultur?.[val.dataKey as keyof typeof currentData.sektor_agrikultur] || 0) + ((buildingDeltas[key] as number) || 0),
-          powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
+          powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: val.buildCost || 10,
-          buildTime: val.buildTime || 30,
-          maintenanceCost: val.maintenanceCost ?? 1,
+          cost: val.biaya_pembangunan || 10,
+          buildTime: val.waktu_pembangunan || 30,
+          maintenanceCost: val.biaya_pemeliharaan ?? 1,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -376,17 +376,17 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         .map(([key, val]: [string, any]) => ({
           key,
           groupId: "perikanan",
-          label: val.desc,
+          label: val.deskripsi,
           icon: getIcon(key),
           desc: "Perikanan",
-          tarif: val.production,
-          unit: val.unit,
+          tarif: val.produksi,
+          unit: val.satuan,
           count: (currentData.sektor_perikanan?.[val.dataKey as keyof typeof currentData.sektor_perikanan] || 0) + ((buildingDeltas[key] as number) || 0),
-          powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
+          powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: val.buildCost || 12,
-          buildTime: val.buildTime || 20,
-          maintenanceCost: val.maintenanceCost ?? 1.5,
+          cost: val.biaya_pembangunan || 12,
+          buildTime: val.waktu_pembangunan || 20,
+          maintenanceCost: val.biaya_pemeliharaan ?? 1.5,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -399,17 +399,17 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         .map(([key, val]: [string, any]) => ({
           key,
           groupId: "olahan_pangan",
-          label: val.desc,
+          label: val.deskripsi,
           icon: getIcon(key),
           desc: "Olahan Pangan",
-          tarif: val.production,
-          unit: val.unit,
+          tarif: val.produksi,
+          unit: val.satuan,
           count: (currentData.sektor_olahan_pangan?.[val.dataKey as keyof typeof currentData.sektor_olahan_pangan] || 0) + ((buildingDeltas[key] as number) || 0),
-          powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
+          powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: val.buildCost || 25,
-          buildTime: val.buildTime || 35,
-          maintenanceCost: val.maintenanceCost ?? 8,
+          cost: val.biaya_pembangunan || 25,
+          buildTime: val.waktu_pembangunan || 35,
+          maintenanceCost: val.biaya_pemeliharaan ?? 8,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -422,17 +422,17 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         .map(([key, val]: [string, any]) => ({
           key,
           groupId: "farmasi",
-          label: val.desc,
+          label: val.deskripsi,
           icon: getIcon(key),
           desc: "Farmasi",
-          tarif: val.production,
-          unit: val.unit,
+          tarif: val.produksi,
+          unit: val.satuan,
           count: (currentData.sektor_farmasi?.[val.dataKey as keyof typeof currentData.sektor_farmasi] || 0) + ((buildingDeltas[key] as number) || 0),
-          powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
+          powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: val.buildCost || 60,
-          buildTime: val.buildTime || 60,
-          maintenanceCost: val.maintenanceCost ?? 25,
+          cost: val.biaya_pembangunan || 60,
+          buildTime: val.waktu_pembangunan || 60,
+          maintenanceCost: val.biaya_pemeliharaan ?? 25,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     }
@@ -771,7 +771,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
                   </div>
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
                 </div>
-                <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
+                <span className="text-[14px] font-black text-rose-400">-{item.biaya_pemeliharaan || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
               </div>
               
               {item.powerUsage > 0 && (

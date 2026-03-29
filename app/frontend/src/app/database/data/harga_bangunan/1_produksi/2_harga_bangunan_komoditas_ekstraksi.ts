@@ -1,134 +1,149 @@
+// ===================
+// DETAIL TOTAL BANGUNAN: Ekstraksi (Total: 12 Bangunan)
+// ===================
 export const mineralKritisRate = {
-  gold_mine: {
-    key: "gold_mine",
+  "1_tambang_emas": {
+    key: "1_tambang_emas",
     dataKey: "emas",
-    desc: "Tambang Emas",
-    production: 5,
-    unit: "KG",
-    maintenanceCost: 50,
-    buildTime: 30,
-    buildCost: 30,
-    lowongan_kerja: 1000
+    deskripsi: "Tambang Emas",
+    produksi: 5,
+    satuan: "KG",
+    biaya_pemeliharaan: 50,
+    waktu_pembangunan: 30,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 1000,
+    konsumsi_listrik: 10
   },
-  uranium_mine: {
-    key: "uranium_mine",
+  "2_tambang_uranium": {
+    key: "2_tambang_uranium",
     dataKey: "uranium",
-    desc: "Tambang Uranium",
-    production: 2,
-    unit: "KG",
-    maintenanceCost: 100,
-    buildTime: 90,
-    buildCost: 30,
-    lowongan_kerja: 500
+    deskripsi: "Tambang Uranium",
+    produksi: 2,
+    satuan: "KG",
+    biaya_pemeliharaan: 100,
+    waktu_pembangunan: 90,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 500,
+    konsumsi_listrik: 40
   },
-  coal_mine: {
-    key: "coal_mine",
+  "3_tambang_batu_bara": {
+    key: "3_tambang_batu_bara",
     dataKey: "batu_bara",
-    desc: "Tambang Batu Bara",
-    production: 100,
-    unit: "TON",
-    maintenanceCost: 30,
-    buildTime: 45,
-    buildCost: 30,
-    lowongan_kerja: 2000
+    deskripsi: "Tambang Batu Bara",
+    produksi: 100,
+    satuan: "TON",
+    biaya_pemeliharaan: 30,
+    waktu_pembangunan: 45,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 2000,
+    konsumsi_listrik: 15
   },
-  oil_well: {
-    key: "oil_well",
+  "4_sumur_minyak": {
+    key: "4_sumur_minyak",
     dataKey: "minyak_bumi",
-    desc: "Sumur Minyak Bumi",
-    production: 200,
-    unit: "BARREL",
-    maintenanceCost: 60,
-    buildTime: 60,
-    buildCost: 30,
-    lowongan_kerja: 300
+    deskripsi: "Sumur Minyak Bumi",
+    produksi: 200,
+    satuan: "BARREL",
+    biaya_pemeliharaan: 60,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 300,
+    konsumsi_listrik: 25
   },
-  gas_well: {
-    key: "gas_well",
+  "5_sumur_gas": {
+    key: "5_sumur_gas",
     dataKey: "gas_alam",
-    desc: "Sumur Gas Alam",
-    production: 150,
-    unit: "MMSCFD",
-    maintenanceCost: 40,
-    buildTime: 60,
-    buildCost: 30,
-    lowongan_kerja: 200
+    deskripsi: "Sumur Gas Alam",
+    produksi: 150,
+    satuan: "MMSCFD",
+    biaya_pemeliharaan: 40,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 200,
+    konsumsi_listrik: 20
   },
-  salt_mine: {
-    key: "salt_mine",
+  "6_tambang_garam": {
+    key: "6_tambang_garam",
     dataKey: "garam",
-    desc: "Tambang Garam",
-    production: 80,
-    unit: "TON",
-    maintenanceCost: 10,
-    buildTime: 20,
-    buildCost: 30,
-    lowongan_kerja: 400
+    deskripsi: "Tambang Garam",
+    produksi: 80,
+    satuan: "TON",
+    biaya_pemeliharaan: 10,
+    waktu_pembangunan: 20,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 400,
+    konsumsi_listrik: 5
   },
-  nickel_mine: {
-    key: "nickel_mine",
+  "7_tambang_nikel": {
+    key: "7_tambang_nikel",
     dataKey: "nikel",
-    desc: "Tambang Nikel",
-    production: 50,
-    unit: "TON",
-    maintenanceCost: 45,
-    buildTime: 60,
-    buildCost: 30,
-    lowongan_kerja: 1500
+    deskripsi: "Tambang Nikel",
+    produksi: 50,
+    satuan: "TON",
+    biaya_pemeliharaan: 45,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 1500,
+    konsumsi_listrik: 20
   },
-  lithium_mine: {
-    key: "lithium_mine",
+  "8_tambang_litium": {
+    key: "8_tambang_litium",
     dataKey: "litium",
-    desc: "Tambang Litium",
-    production: 30,
-    unit: "TON",
-    maintenanceCost: 70,
-    buildTime: 90,
-    buildCost: 30,
-    lowongan_kerja: 1200
+    deskripsi: "Tambang Litium",
+    produksi: 30,
+    satuan: "TON",
+    biaya_pemeliharaan: 70,
+    waktu_pembangunan: 90,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 1200,
+    konsumsi_listrik: 25
   },
-  copper_mine: {
-    key: "copper_mine",
+  "9_tambang_tembaga": {
+    key: "9_tambang_tembaga",
     dataKey: "tembaga",
-    desc: "Tambang Tembaga",
-    production: 60,
-    unit: "TON",
-    maintenanceCost: 40,
-    buildTime: 60,
-    buildCost: 30,
-    lowongan_kerja: 1500
+    deskripsi: "Tambang Tembaga",
+    produksi: 60,
+    satuan: "TON",
+    biaya_pemeliharaan: 40,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 1500,
+    konsumsi_listrik: 15
   },
-  aluminum_mine: {
-    key: "aluminum_mine",
+  "10_tambang_aluminium": {
+    key: "10_tambang_aluminium",
     dataKey: "aluminium",
-    desc: "Tambang Aluminium",
-    production: 70,
-    unit: "TON",
-    maintenanceCost: 35,
-    buildTime: 45,
-    buildCost: 30,
-    lowongan_kerja: 1400
+    deskripsi: "Tambang Aluminium",
+    produksi: 70,
+    satuan: "TON",
+    biaya_pemeliharaan: 35,
+    waktu_pembangunan: 45,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 1400,
+    konsumsi_listrik: 30
   },
-  rare_earth_mine: {
-    key: "rare_earth_mine",
+  "11_tambang_ltj": {
+    key: "11_tambang_ltj",
     dataKey: "logam_tanah_jarang",
-    desc: "Tambang Logam Tanah Jarang",
-    production: 10,
-    unit: "KG",
-    maintenanceCost: 120,
-    buildTime: 120,
-    buildCost: 30,
-    lowongan_kerja: 800
+    deskripsi: "Tambang Logam Tanah Jarang",
+    produksi: 10,
+    satuan: "KG",
+    biaya_pemeliharaan: 120,
+    waktu_pembangunan: 120,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 800,
+    konsumsi_listrik: 35
   },
-  iron_ore_mine: {
-    key: "iron_ore_mine",
+  "12_tambang_bijih_besi": {
+    key: "12_tambang_bijih_besi",
     dataKey: "bijih_besi",
-    desc: "Tambang Bijih Besi",
-    production: 120,
-    unit: "TON",
-    maintenanceCost: 25,
-    buildTime: 45,
-    buildCost: 30,
-    lowongan_kerja: 1800
+    deskripsi: "Tambang Bijih Besi",
+    produksi: 120,
+    satuan: "TON",
+    biaya_pemeliharaan: 25,
+    waktu_pembangunan: 45,
+    biaya_pembangunan: 30,
+    lowongan_kerja: 1800,
+    konsumsi_listrik: 15
   }
 };

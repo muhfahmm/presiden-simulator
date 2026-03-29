@@ -4,8 +4,8 @@ import { KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/harga_bangunan/1
 export { KAPASITAS_LISTRIK_METADATA };
 
 export const KAPASITAS_LISTRIK = Object.fromEntries(
-  Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]) => [key, val.production])
-) as Record<keyof typeof KAPASITAS_LISTRIK_METADATA, number>;
+  Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]) => [val.dataKey, val.produksi])
+) as Record<string, number>;
 
 export function hitungTotalKapasitas(electricity: CountryData["sektor_listrik"]) {
   return (

@@ -1,57 +1,65 @@
+// ===================
+// DETAIL TOTAL BANGUNAN: Olahan Pangan (Total: 5 Bangunan)
+// ===================
 export const olahanPanganRate = {
-  bottled_water_factory: {
-    key: "bottled_water_factory",
+  "1_pabrik_air_mineral": {
+    key: "1_pabrik_air_mineral",
     dataKey: "air_mineral",
-    desc: "Pabrik Air Mineral",
-    production: 5000,
-    unit: "LITER",
-    maintenanceCost: 30,
-    buildTime: 30,
-    buildCost: 25,
-    lowongan_kerja: 300
+    deskripsi: "Pabrik Air Mineral",
+    produksi: 5000,
+    satuan: "LITER",
+    biaya_pemeliharaan: 30,
+    waktu_pembangunan: 30,
+    biaya_pembangunan: 25,
+    lowongan_kerja: 300,
+    konsumsi_listrik: 2
   },
-  sugar_factory: {
-    key: "sugar_factory",
+  "2_pabrik_gula": {
+    key: "2_pabrik_gula",
     dataKey: "gula",
-    desc: "Pabrik Gula",
-    production: 200,
-    unit: "TON",
-    maintenanceCost: 50,
-    buildTime: 60,
-    buildCost: 25,
-    lowongan_kerja: 800
+    deskripsi: "Pabrik Gula",
+    produksi: 200,
+    satuan: "TON",
+    biaya_pemeliharaan: 50,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 25,
+    lowongan_kerja: 800,
+    konsumsi_listrik: 10
   },
-  bakery_factory: {
-    key: "bakery_factory",
+  "3_pabrik_roti": {
+    key: "3_pabrik_roti",
     dataKey: "roti",
-    desc: "Pabrik Roti",
-    production: 10000,
-    unit: "UNIT",
-    maintenanceCost: 40,
-    buildTime: 30,
-    buildCost: 25,
-    lowongan_kerja: 200
+    deskripsi: "Pabrik Roti",
+    produksi: 10000,
+    satuan: "UNIT",
+    biaya_pemeliharaan: 40,
+    waktu_pembangunan: 30,
+    biaya_pembangunan: 25,
+    lowongan_kerja: 200,
+    konsumsi_listrik: 2
   },
-  meat_processing_factory: {
-    key: "meat_processing_factory",
+  "4_pabrik_pengolahan_daging": {
+    key: "4_pabrik_pengolahan_daging",
     dataKey: "pengolahan_daging",
-    desc: "Pabrik Pengolahan Daging",
-    production: 50,
-    unit: "TON",
-    maintenanceCost: 100,
-    buildTime: 60,
-    buildCost: 25,
-    lowongan_kerja: 400
+    deskripsi: "Pabrik Pengolahan Daging",
+    produksi: 50,
+    satuan: "TON",
+    biaya_pemeliharaan: 100,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 25,
+    lowongan_kerja: 400,
+    konsumsi_listrik: 5
   },
-  noodle_factory: {
-    key: "noodle_factory",
+  "5_pabrik_mie_instan": {
+    key: "5_pabrik_mie_instan",
     dataKey: "mie_instan",
-    desc: "Pabrik Mie Instan",
-    production: 50000,
-    unit: "UNIT",
-    maintenanceCost: 40,
-    buildTime: 30,
-    buildCost: 25,
-    lowongan_kerja: 500
+    deskripsi: "Pabrik Mie Instan",
+    produksi: 50000,
+    satuan: "UNIT",
+    biaya_pemeliharaan: 40,
+    waktu_pembangunan: 30,
+    biaya_pembangunan: 25,
+    lowongan_kerja: 500,
+    konsumsi_listrik: 10
   }
 };

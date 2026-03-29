@@ -1,123 +1,137 @@
+// ===================
+// DETAIL TOTAL BANGUNAN: Agrikultur (Total: 11 Bangunan)
+// ===================
 export const agrikulturRate = {
-  paddy_field: {
-    key: "paddy_field",
+  "1_sawah_padi": {
+    key: "1_sawah_padi",
     dataKey: "padi",
-    desc: "Pertanian Padi",
-    production: 5000,
-    unit: "KG",
-    maintenanceCost: 25,
-    buildTime: 90,
-    buildCost: 10,
-    lowongan_kerja: 300
+    deskripsi: "Pertanian Padi",
+    produksi: 5000,
+    satuan: "KG",
+    biaya_pemeliharaan: 25,
+    waktu_pembangunan: 90,
+    biaya_pembangunan: 10,
+    lowongan_kerja: 300,
+    konsumsi_listrik: 0.2
   },
-  wheat_field: {
-    key: "wheat_field",
+  "2_ladang_gandum": {
+    key: "2_ladang_gandum",
     dataKey: "gandum_jagung",
-    desc: "Pertanian Gandum",
-    production: 3000,
-    unit: "KG",
-    maintenanceCost: 20,
-    buildTime: 90,
-    buildCost: 10,
-    lowongan_kerja: 200
+    deskripsi: "Pertanian Gandum",
+    produksi: 3000,
+    satuan: "KG",
+    biaya_pemeliharaan: 20,
+    waktu_pembangunan: 90,
+    biaya_pembangunan: 10,
+    lowongan_kerja: 200,
+    konsumsi_listrik: 0.1
   },
-  corn_field: {
-    key: "corn_field",
+  "3_ladang_jagung": {
+    key: "3_ladang_jagung",
     dataKey: "gandum_jagung",
-    desc: "Pertanian Jagung",
-    production: 4000,
-    unit: "KG",
-    maintenanceCost: 20,
-    buildTime: 75,
-    buildCost: 10,
-    lowongan_kerja: 150
+    deskripsi: "Pertanian Jagung",
+    produksi: 4000,
+    satuan: "KG",
+    biaya_pemeliharaan: 20,
+    waktu_pembangunan: 75,
+    biaya_pembangunan: 10,
+    lowongan_kerja: 150,
+    konsumsi_listrik: 0.1
   },
-  tuber_field: {
-    key: "tuber_field",
+  "4_ladang_umbi": {
+    key: "4_ladang_umbi",
     dataKey: "sayur_umbi",
-    desc: "Pertanian Umbi-umbian",
-    production: 6000,
-    unit: "KG",
-    maintenanceCost: 15,
-    buildTime: 60,
-    buildCost: 10,
-    lowongan_kerja: 120
+    deskripsi: "Pertanian Umbi-umbian",
+    produksi: 6000,
+    satuan: "KG",
+    biaya_pemeliharaan: 15,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 10,
+    lowongan_kerja: 120,
+    konsumsi_listrik: 0.15
   },
-  soybean_field: {
-    key: "soybean_field",
+  "5_ladang_kedelai": {
+    key: "5_ladang_kedelai",
     dataKey: "kedelai",
-    desc: "Pertanian Kedelai",
-    production: 2000,
-    unit: "KG",
-    maintenanceCost: 20,
-    buildTime: 60,
-    buildCost: 10,
-    lowongan_kerja: 100
+    deskripsi: "Pertanian Kedelai",
+    produksi: 2000,
+    satuan: "KG",
+    biaya_pemeliharaan: 20,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 10,
+    lowongan_kerja: 100,
+    konsumsi_listrik: 0.1
   },
-  palm_oil_plantation: {
-    key: "palm_oil_plantation",
+  "6_perkebunan_sawit": {
+    key: "6_perkebunan_sawit",
     dataKey: "kelapa_sawit",
-    desc: "Perkebunan Kelapa Sawit",
-    production: 10000,
-    unit: "LITER",
-    maintenanceCost: 70,
-    buildTime: 365,
-    buildCost: 10,
-    lowongan_kerja: 1000
+    deskripsi: "Perkebunan Kelapa Sawit",
+    produksi: 10000,
+    satuan: "LITER",
+    biaya_pemeliharaan: 70,
+    waktu_pembangunan: 365,
+    biaya_pembangunan: 10,
+    lowongan_kerja: 1000,
+    konsumsi_listrik: 1
   },
-  tea_plantation: {
-    key: "tea_plantation",
+  "7_perkebunan_teh": {
+    key: "7_perkebunan_teh",
     dataKey: "kopi_teh_kakao",
-    desc: "Perkebunan Teh",
-    production: 500,
-    unit: "KG",
-    maintenanceCost: 30,
-    buildTime: 180,
-    buildCost: 10,
-    lowongan_kerja: 400
+    deskripsi: "Perkebunan Teh",
+    produksi: 500,
+    satuan: "KG",
+    biaya_pemeliharaan: 30,
+    waktu_pembangunan: 180,
+    biaya_pembangunan: 10,
+    lowongan_kerja: 400,
+    konsumsi_listrik: 0.2
   },
-  coffee_plantation: {
-    key: "coffee_plantation",
+  "8_perkebunan_kopi": {
+    key: "8_perkebunan_kopi",
     dataKey: "kopi_teh_kakao",
-    desc: "Perkebunan Kopi",
-    production: 400,
-    unit: "KG",
-    maintenanceCost: 35,
-    buildTime: 240,
-    buildCost: 10,
-    lowongan_kerja: 400
+    deskripsi: "Perkebunan Kopi",
+    produksi: 400,
+    satuan: "KG",
+    biaya_pemeliharaan: 35,
+    waktu_pembangunan: 240,
+    biaya_pembangunan: 10,
+    lowongan_kerja: 400,
+    konsumsi_listrik: 0.2
   },
-  cocoa_plantation: {
-    key: "cocoa_plantation",
+  "9_perkebunan_kakao": {
+    key: "9_perkebunan_kakao",
     dataKey: "kopi_teh_kakao",
-    desc: "Perkebunan Kakao",
-    production: 300,
-    unit: "KG",
-    maintenanceCost: 40,
-    buildTime: 300,
-    buildCost: 10,
-    lowongan_kerja: 400
+    deskripsi: "Perkebunan Kakao",
+    produksi: 300,
+    satuan: "KG",
+    biaya_pemeliharaan: 40,
+    waktu_pembangunan: 300,
+    biaya_pembangunan: 10,
+    lowongan_kerja: 400,
+    konsumsi_listrik: 0.2
   },
-  sugarcane_plantation: {
-    key: "sugarcane_plantation",
+  "10_perkebunan_tebu": {
+    key: "10_perkebunan_tebu",
     dataKey: "tebu",
-    desc: "Perkebunan Tebu",
-    production: 5000,
-    unit: "KG",
-    maintenanceCost: 30,
-    buildTime: 180,
-    buildCost: 10,
-    lowongan_kerja: 500
+    deskripsi: "Perkebunan Tebu",
+    produksi: 5000,
+    satuan: "KG",
+    biaya_pemeliharaan: 30,
+    waktu_pembangunan: 180,
+    biaya_pembangunan: 10,
+    lowongan_kerja: 500,
+    konsumsi_listrik: 0.15
   },
-  vegetable_farm: {
-    key: "vegetable_farm",
+  "11_kebun_sayur": {
+    key: "11_kebun_sayur",
     dataKey: "sayur_umbi",
-    desc: "Pertanian Sayur Mayur",
-    production: 2000,
-    unit: "KG",
-    maintenanceCost: 15,
-    buildTime: 30,
-    buildCost: 10,
-    lowongan_kerja: 120
+    deskripsi: "Pertanian Sayur Mayur",
+    produksi: 2000,
+    satuan: "KG",
+    biaya_pemeliharaan: 15,
+    waktu_pembangunan: 30,
+    biaya_pembangunan: 10,
+    lowongan_kerja: 120,
+    konsumsi_listrik: 0.15
   }
 };

@@ -1,35 +1,41 @@
+// ===================
+// DETAIL TOTAL BANGUNAN: Perikanan (Total: 3 Bangunan)
+// ===================
 export const perikananRate = {
-  shrimp_farm: {
-    key: "shrimp_farm",
+  "1_tambak_udang": {
+    key: "1_tambak_udang",
     dataKey: "udang_kerang",
-    desc: "Tambak Udang Intensif",
-    production: 1000,
-    unit: "KG",
-    maintenanceCost: 50,
-    buildTime: 45,
-    buildCost: 15,
-    lowongan_kerja: 250
+    deskripsi: "Tambak Udang Intensif",
+    produksi: 1000,
+    satuan: "KG",
+    biaya_pemeliharaan: 50,
+    waktu_pembangunan: 45,
+    biaya_pembangunan: 15,
+    lowongan_kerja: 250,
+    konsumsi_listrik: 0.65
   },
-  freshwater_fish_farm: {
-    key: "freshwater_fish_farm",
+  "2_budidaya_ikan_tawar": {
+    key: "2_budidaya_ikan_tawar",
     dataKey: "ikan",
-    desc: "Budidaya Ikan Air Tawar",
-    production: 2000,
-    unit: "KG",
-    maintenanceCost: 30,
-    buildTime: 45,
-    buildCost: 15,
-    lowongan_kerja: 200
+    deskripsi: "Budidaya Ikan Air Tawar",
+    produksi: 2000,
+    satuan: "KG",
+    biaya_pemeliharaan: 30,
+    waktu_pembangunan: 45,
+    biaya_pembangunan: 15,
+    lowongan_kerja: 200,
+    konsumsi_listrik: 0.5
   },
-  pearl_farm: {
-    key: "pearl_farm",
+  "3_budidaya_mutiara": {
+    key: "3_budidaya_mutiara",
     dataKey: "udang_kerang",
-    desc: "Budidaya Kerang & Mutiara",
-    production: 100,
-    unit: "GRAM",
-    maintenanceCost: 80,
-    buildTime: 120,
-    buildCost: 15,
-    lowongan_kerja: 150
+    deskripsi: "Budidaya Kerang & Mutiara",
+    produksi: 100,
+    satuan: "GRAM",
+    biaya_pemeliharaan: 80,
+    waktu_pembangunan: 120,
+    biaya_pembangunan: 15,
+    lowongan_kerja: 150,
+    konsumsi_listrik: 0.65
   }
 };

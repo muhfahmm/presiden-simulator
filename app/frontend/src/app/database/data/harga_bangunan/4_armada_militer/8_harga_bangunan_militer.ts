@@ -1,205 +1,252 @@
+// ===================
+// DETAIL TOTAL BANGUNAN: Armada Militer (Total: 22 Unit)
+// ===================
 export const armadaMiliterRate = {
   // ARMADA DARAT
-  barak: {
-    key: "barak",
+  "1_barak": {
+    key: "1_barak",
+    dataKey: "barak",
     groupId: "darat",
-    desc: "Hunian Tentara",
-    cost: 40,
-    buildTime: 45,
-    maintenanceCost: 15,
-    lowongan_kerja: 500
+    deskripsi: "Hunian Tentara",
+    biaya: 40,
+    waktu_pembangunan: 45,
+    biaya_pemeliharaan: 15,
+    lowongan_kerja: 500,
+    konsumsi_listrik: 5
   },
-  tank: {
-    key: "tank",
+  "2_tank": {
+    key: "2_tank",
+    dataKey: "tank",
     groupId: "darat",
-    desc: "Kavaleri Darat",
-    cost: 20,
-    buildTime: 30,
-    maintenanceCost: 10,
-    lowongan_kerja: 4
+    deskripsi: "Kavaleri Darat",
+    biaya: 20,
+    waktu_pembangunan: 30,
+    biaya_pemeliharaan: 10,
+    lowongan_kerja: 4,
+    konsumsi_listrik: 0
   },
-  apc: {
-    key: "apc",
+  "3_apc": {
+    key: "3_apc",
+    dataKey: "apc",
     groupId: "darat",
-    desc: "Transportasi Taktis",
-    cost: 8,
-    buildTime: 15,
-    maintenanceCost: 4,
-    lowongan_kerja: 3
+    deskripsi: "Transportasi Taktis",
+    biaya: 8,
+    waktu_pembangunan: 15,
+    biaya_pemeliharaan: 4,
+    lowongan_kerja: 3,
+    konsumsi_listrik: 0
   },
-  artileri: {
-    key: "artileri",
+  "4_artileri": {
+    key: "4_artileri",
+    dataKey: "artileri",
     groupId: "darat",
-    desc: "Pukulan Jarak Jauh",
-    cost: 15,
-    buildTime: 45,
-    maintenanceCost: 8,
-    lowongan_kerja: 6
+    deskripsi: "Pukulan Jarak Jauh",
+    biaya: 15,
+    waktu_pembangunan: 45,
+    biaya_pemeliharaan: 8,
+    lowongan_kerja: 6,
+    konsumsi_listrik: 0
   },
-  rocket: {
-    key: "rocket",
+  "5_roket_peluncur": {
+    key: "5_roket_peluncur",
+    dataKey: "rocket",
     groupId: "darat",
-    desc: "Sistem Roket",
-    cost: 18,
-    buildTime: 50,
-    maintenanceCost: 12,
-    lowongan_kerja: 5
+    deskripsi: "Sistem Roket",
+    biaya: 18,
+    waktu_pembangunan: 50,
+    biaya_pemeliharaan: 12,
+    lowongan_kerja: 5,
+    konsumsi_listrik: 0
   },
-  sam: {
-    key: "sam",
+  "6_misil_sam": {
+    key: "6_misil_sam",
+    dataKey: "sam",
     groupId: "darat",
-    desc: "Hulu Ledak",
-    cost: 25,
-    buildTime: 60,
-    maintenanceCost: 15,
-    lowongan_kerja: 6
+    deskripsi: "Hulu Ledak",
+    biaya: 25,
+    waktu_pembangunan: 60,
+    biaya_pemeliharaan: 15,
+    lowongan_kerja: 6,
+    konsumsi_listrik: 0
   },
-  tactical: {
-    key: "tactical",
+  "7_kendaraan_taktis": {
+    key: "7_kendaraan_taktis",
+    dataKey: "tactical",
     groupId: "darat",
-    desc: "Patroli Tempur",
-    cost: 5,
-    buildTime: 10,
-    maintenanceCost: 2,
-    lowongan_kerja: 2
+    deskripsi: "Patroli Tempur",
+    biaya: 5,
+    waktu_pembangunan: 10,
+    biaya_pemeliharaan: 2,
+    lowongan_kerja: 2,
+    konsumsi_listrik: 0
   },
   
   // ARMADA LAUT
-  carrier: {
-    key: "carrier",
+  "8_kapal_induk": {
+    key: "8_kapal_induk",
+    dataKey: "carrier",
     groupId: "laut",
-    desc: "Pangkalan Apung",
-    cost: 750,
-    buildTime: 480,
-    maintenanceCost: 200,
-    lowongan_kerja: 5000
+    deskripsi: "Pangkalan Apung",
+    biaya: 750,
+    waktu_pembangunan: 480,
+    biaya_pemeliharaan: 200,
+    lowongan_kerja: 5000,
+    konsumsi_listrik: 0
   },
-  destroyer: {
-    key: "destroyer",
+  "9_kapal_perusak": {
+    key: "9_kapal_perusak",
+    dataKey: "destroyer",
     groupId: "laut",
-    desc: "Perusak Maritim",
-    cost: 280,
-    buildTime: 360,
-    maintenanceCost: 100,
-    lowongan_kerja: 300
+    deskripsi: "Perusak Maritim",
+    biaya: 280,
+    waktu_pembangunan: 360,
+    biaya_pemeliharaan: 100,
+    lowongan_kerja: 300,
+    konsumsi_listrik: 0
   },
-  corvette: {
-    key: "corvette",
+  "10_kapal_korvet": {
+    key: "10_kapal_korvet",
+    dataKey: "corvette",
     groupId: "laut",
-    desc: "Kapal Kawal",
-    cost: 120,
-    buildTime: 180,
-    maintenanceCost: 45,
-    lowongan_kerja: 100
+    deskripsi: "Kapal Kawal",
+    biaya: 120,
+    waktu_pembangunan: 180,
+    biaya_pemeliharaan: 45,
+    lowongan_kerja: 100,
+    konsumsi_listrik: 0
   },
-  submarine: {
-    key: "submarine",
+  "11_kapal_selam_nuklir": {
+    key: "11_kapal_selam_nuklir",
+    dataKey: "submarine",
     groupId: "laut",
-    desc: "Siluman Bawah Air",
-    cost: 420,
-    buildTime: 420,
-    maintenanceCost: 150,
-    lowongan_kerja: 80
+    deskripsi: "Siluman Bawah Air",
+    biaya: 420,
+    waktu_pembangunan: 420,
+    biaya_pemeliharaan: 150,
+    lowongan_kerja: 80,
+    konsumsi_listrik: 0
   },
-  reg_sub: {
-    key: "reg_sub",
+  "12_kapal_selam_reguler": {
+    key: "12_kapal_selam_reguler",
+    dataKey: "reg_sub",
     groupId: "laut",
-    desc: "Selam Reguler",
-    cost: 150,
-    buildTime: 240,
-    maintenanceCost: 60,
-    lowongan_kerja: 60
+    deskripsi: "Selam Reguler",
+    biaya: 150,
+    waktu_pembangunan: 240,
+    biaya_pemeliharaan: 60,
+    lowongan_kerja: 60,
+    konsumsi_listrik: 0
   },
-  mine_ship: {
-    key: "mine_ship",
+  "13_penyapu_ranjau": {
+    key: "13_penyapu_ranjau",
+    dataKey: "mine_ship",
     groupId: "laut",
-    desc: "Penyapu Ranjau",
-    cost: 45,
-    buildTime: 90,
-    maintenanceCost: 15,
-    lowongan_kerja: 40
+    deskripsi: "Penyapu Ranjau",
+    biaya: 45,
+    waktu_pembangunan: 90,
+    biaya_pemeliharaan: 15,
+    lowongan_kerja: 40,
+    konsumsi_listrik: 0
   },
-  logistics: {
-    key: "logistics",
+  "14_kapal_logistik": {
+    key: "14_kapal_logistik",
+    dataKey: "logistics",
     groupId: "laut",
-    desc: "Suplai Maritim",
-    cost: 60,
-    buildTime: 120,
-    maintenanceCost: 25,
-    lowongan_kerja: 50
+    deskripsi: "Suplai Maritim",
+    biaya: 60,
+    waktu_pembangunan: 120,
+    biaya_pemeliharaan: 25,
+    lowongan_kerja: 50,
+    konsumsi_listrik: 0
   },
   
   // ARMADA UDARA
-  stealth_jet: {
-    key: "stealth_jet",
+  "15_jet_tempur_siluman": {
+    key: "15_jet_tempur_siluman",
+    dataKey: "stealth_jet",
     groupId: "udara",
-    desc: "Supremasi Udara",
-    cost: 250,
-    buildTime: 300,
-    maintenanceCost: 120,
-    lowongan_kerja: 2
+    deskripsi: "Supremasi Udara",
+    biaya: 250,
+    waktu_pembangunan: 300,
+    biaya_pemeliharaan: 120,
+    lowongan_kerja: 2,
+    konsumsi_listrik: 0
   },
-  interceptor: {
-    key: "interceptor",
+  "16_jet_pencegat": {
+    key: "16_jet_pencegat",
+    dataKey: "interceptor",
     groupId: "udara",
-    desc: "Satu Pencegat",
-    cost: 120,
-    buildTime: 180,
-    maintenanceCost: 55,
-    lowongan_kerja: 2
+    deskripsi: "Satu Pencegat",
+    biaya: 120,
+    waktu_pembangunan: 180,
+    biaya_pemeliharaan: 55,
+    lowongan_kerja: 2,
+    konsumsi_listrik: 0
   },
-  bomber: {
-    key: "bomber",
+  "17_pesawat_pembom": {
+    key: "17_pesawat_pembom",
+    dataKey: "bomber",
     groupId: "udara",
-    desc: "Serangan Udara",
-    cost: 350,
-    buildTime: 360,
-    maintenanceCost: 180,
-    lowongan_kerja: 3
+    deskripsi: "Serangan Udara",
+    biaya: 350,
+    waktu_pembangunan: 360,
+    biaya_pemeliharaan: 180,
+    lowongan_kerja: 3,
+    konsumsi_listrik: 0
   },
-  heli_attack: {
-    key: "heli_attack",
+  "18_helikopter_serbu": {
+    key: "18_helikopter_serbu",
+    dataKey: "heli_attack",
     groupId: "udara",
-    desc: "Bantuan Udara",
-    cost: 40,
-    buildTime: 90,
-    maintenanceCost: 25,
-    lowongan_kerja: 3
+    deskripsi: "Bantuan Udara",
+    biaya: 40,
+    waktu_pembangunan: 90,
+    biaya_pemeliharaan: 25,
+    lowongan_kerja: 3,
+    konsumsi_listrik: 0
   },
-  recon_plane: {
-    key: "recon_plane",
+  "19_pesawat_intai": {
+    key: "19_pesawat_intai",
+    dataKey: "recon_plane",
     groupId: "udara",
-    desc: "Intelijen Udara",
-    cost: 80,
-    buildTime: 120,
-    maintenanceCost: 20,
-    lowongan_kerja: 2
+    deskripsi: "Intelijen Udara",
+    biaya: 80,
+    waktu_pembangunan: 120,
+    biaya_pemeliharaan: 20,
+    lowongan_kerja: 2,
+    konsumsi_listrik: 0
   },
-  uav: {
-    key: "uav",
+  "20_drone_intai": {
+    key: "20_drone_intai",
+    dataKey: "uav",
     groupId: "udara",
-    desc: "Intai Tanpa Awak",
-    cost: 15,
-    buildTime: 30,
-    maintenanceCost: 5,
-    lowongan_kerja: 1
+    deskripsi: "Intai Tanpa Awak",
+    biaya: 15,
+    waktu_pembangunan: 30,
+    biaya_pemeliharaan: 5,
+    lowongan_kerja: 1,
+    konsumsi_listrik: 0
   },
-  kamikaze: {
-    key: "kamikaze",
+  "21_drone_kamikaze": {
+    key: "21_drone_kamikaze",
+    dataKey: "kamikaze",
     groupId: "udara",
-    desc: "Serangan Bunuh Diri",
-    cost: 5,
-    buildTime: 7,
-    maintenanceCost: 1,
-    lowongan_kerja: 1
+    deskripsi: "Serangan Bunuh Diri",
+    biaya: 5,
+    waktu_pembangunan: 7,
+    biaya_pemeliharaan: 1,
+    lowongan_kerja: 1,
+    konsumsi_listrik: 0
   },
-  transport: {
-    key: "transport",
+  "22_transport_udara": {
+    key: "22_transport_udara",
+    dataKey: "transport",
     groupId: "udara",
-    desc: "Logistik Udara",
-    cost: 45,
-    buildTime: 90,
-    maintenanceCost: 15,
-    lowongan_kerja: 3
+    deskripsi: "Logistik Udara",
+    biaya: 45,
+    waktu_pembangunan: 90,
+    biaya_pemeliharaan: 15,
+    lowongan_kerja: 3,
+    konsumsi_listrik: 0
   }
 };

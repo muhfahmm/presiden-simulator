@@ -1,13 +1,17 @@
+// ===================
+// DETAIL TOTAL BANGUNAN: Farmasi (Total: 1 Bangunan)
+// ===================
 export const farmasiRate = {
-  pharma_factory: {
-    key: "pharma_factory",
+  "1_pabrik_farmasi": {
+    key: "1_pabrik_farmasi",
     dataKey: "farmasi",
-    desc: "Pabrik Farmasi",
-    production: 1000,
-    unit: "BOX",
-    maintenanceCost: 150,
-    buildTime: 90,
-    buildCost: 60,
-    lowongan_kerja: 1200
+    deskripsi: "Pabrik Farmasi",
+    produksi: 1000,
+    satuan: "BOX",
+    biaya_pemeliharaan: 150,
+    waktu_pembangunan: 90,
+    biaya_pembangunan: 60,
+    lowongan_kerja: 1200,
+    konsumsi_listrik: 10
   }
 };

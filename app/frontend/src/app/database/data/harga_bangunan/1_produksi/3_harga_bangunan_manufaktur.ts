@@ -1,79 +1,89 @@
+// ===================
+// DETAIL TOTAL BANGUNAN: Manufaktur (Total: 7 Bangunan)
+// ===================
 export const produkIndustriRate = {
-  electronics_factory: {
-    key: "electronics_factory",
+  "1_pabrik_elektronik": {
+    key: "1_pabrik_elektronik",
     dataKey: "semikonduktor",
-    desc: "Pabrik Semikonduktor",
-    production: 10,
-    unit: "UNIT",
-    maintenanceCost: 100,
-    buildTime: 120,
-    buildCost: 45,
-    lowongan_kerja: 5000
+    deskripsi: "Pabrik Semikonduktor",
+    produksi: 10,
+    satuan: "UNIT",
+    biaya_pemeliharaan: 100,
+    waktu_pembangunan: 120,
+    biaya_pembangunan: 45,
+    lowongan_kerja: 5000,
+    konsumsi_listrik: 50
   },
-  car_factory: {
-    key: "car_factory",
+  "2_pabrik_mobil": {
+    key: "2_pabrik_mobil",
     dataKey: "mobil",
-    desc: "Pabrik Mobil",
-    production: 50,
-    unit: "UNIT",
-    maintenanceCost: 200,
-    buildTime: 180,
-    buildCost: 45,
-    lowongan_kerja: 8000
+    deskripsi: "Pabrik Mobil",
+    produksi: 50,
+    satuan: "UNIT",
+    biaya_pemeliharaan: 200,
+    waktu_pembangunan: 180,
+    biaya_pembangunan: 45,
+    lowongan_kerja: 8000,
+    konsumsi_listrik: 20
   },
-  motorcycle_factory: {
-    key: "motorcycle_factory",
+  "3_pabrik_motor": {
+    key: "3_pabrik_motor",
     dataKey: "sepeda_motor",
-    desc: "Pabrik Motor",
-    production: 100,
-    unit: "UNIT",
-    maintenanceCost: 80,
-    buildTime: 90,
-    buildCost: 45,
-    lowongan_kerja: 4000
+    deskripsi: "Pabrik Motor",
+    produksi: 100,
+    satuan: "UNIT",
+    biaya_pemeliharaan: 80,
+    waktu_pembangunan: 90,
+    biaya_pembangunan: 45,
+    lowongan_kerja: 4000,
+    konsumsi_listrik: 15
   },
-  smelter: {
-    key: "smelter",
+  "4_smelter": {
+    key: "4_smelter",
     dataKey: "smelter",
-    desc: "Pabrik Logam (Smelter)",
-    production: 500,
-    unit: "TON",
-    maintenanceCost: 300,
-    buildTime: 150,
-    buildCost: 45,
-    lowongan_kerja: 3000
+    deskripsi: "Pabrik Logam (Smelter)",
+    produksi: 500,
+    satuan: "TON",
+    biaya_pemeliharaan: 300,
+    waktu_pembangunan: 150,
+    biaya_pembangunan: 45,
+    lowongan_kerja: 3000,
+    konsumsi_listrik: 100
   },
-  cement_factory: {
-    key: "cement_factory",
+  "5_pabrik_semen": {
+    key: "5_pabrik_semen",
     dataKey: "semen_beton",
-    desc: "Pabrik Beton & Semen",
-    production: 1000,
-    unit: "TON",
-    maintenanceCost: 150,
-    buildTime: 120,
-    buildCost: 45,
-    lowongan_kerja: 1500
+    deskripsi: "Pabrik Beton & Semen",
+    produksi: 1000,
+    satuan: "TON",
+    biaya_pemeliharaan: 150,
+    waktu_pembangunan: 120,
+    biaya_pembangunan: 45,
+    lowongan_kerja: 1500,
+    konsumsi_listrik: 30
   },
-  sawmill: {
-    key: "sawmill",
+  "6_penggergajian_kayu": {
+    key: "6_penggergajian_kayu",
     dataKey: "kayu",
-    desc: "Penggergajian Kayu",
-    production: 200,
-    unit: "M3",
-    maintenanceCost: 40,
-    buildTime: 45,
-    buildCost: 45,
-    lowongan_kerja: 500
+    deskripsi: "Penggergajian Kayu",
+    produksi: 200,
+    satuan: "M3",
+    biaya_pemeliharaan: 40,
+    waktu_pembangunan: 45,
+    biaya_pembangunan: 45,
+    lowongan_kerja: 500,
+    konsumsi_listrik: 5
   },
-  fertilizer_factory: {
-    key: "fertilizer_factory",
+  "7_pabrik_pupuk": {
+    key: "7_pabrik_pupuk",
     dataKey: "pupuk",
-    desc: "Pabrik Pupuk",
-    production: 500,
-    unit: "TON",
-    maintenanceCost: 60,
-    buildTime: 60,
-    buildCost: 45,
-    lowongan_kerja: 600
+    deskripsi: "Pabrik Pupuk",
+    produksi: 500,
+    satuan: "TON",
+    biaya_pemeliharaan: 60,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 45,
+    lowongan_kerja: 600,
+    konsumsi_listrik: 20
   }
 };
