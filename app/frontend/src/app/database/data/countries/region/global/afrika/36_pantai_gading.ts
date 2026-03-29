@@ -3,11 +3,16 @@ import { pantai_gading_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrik
 import { pantai_gading_armada } from "../../modules/2_militer/2_armada_militer/afrika/36_pantai_gading";
 import { pantai_gading_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/36_pantai_gading";
 import { pantai_gading_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/36_pantai_gading";
+import { pantai_gading_hukum } from "../../modules/3_sosial/3_hukum/afrika/36_pantai_gading";
 import { pantai_gading_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/36_pantai_gading";
 import { pantai_gading_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/36_pantai_gading";
+import { pantai_gading_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/36_pantai_gading";
 import { pantai_gading_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/36_pantai_gading";
 import { pantai_gading_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/36_pantai_gading";
 import { pantai_gading_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/36_pantai_gading";
+import { pantai_gading_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/36_pantai_gading";
+import { pantai_gading_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/36_pantai_gading";
+import { pantai_gading_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/36_pantai_gading";
 import { pantai_gading_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/36_pantai_gading";
 import { pantai_gading_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/36_pantai_gading";
 import { pantai_gading_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/36_pantai_gading";
@@ -29,50 +34,11 @@ export const pantai_gading: CountryData = {
   "armada_militer": pantai_gading_armada,
   "militer_strategis": pantai_gading_strategis,
   "armada_kepolisian": pantai_gading_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 6,
-      "dasar": 14,
-      "menengah": 12,
-      "lanjutan": 9,
-      "universitas": 36,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 38,
-      "observatorium": 37,
-      "pusat_penelitian": 16,
-      "pusat_pengembangan": 22,
-      "literasi": 76
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 35,
-      "rumah_sakit_kecil": 38,
-      "pusat_diagnostik": 38,
-      "harapan_hidup": 10,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 20,
-      "pengadilan": 38,
-      "kejaksaan": 5,
-      "pos_polisi": 20,
-      "armada_mobil_polisi": 787,
-      "akademi_polisi": 18,
-      "indeks_korupsi": 90,
-      "indeks_keamanan": 64
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 14,
-      "sirkuit_balap": 33,
-      "stadion": 33,
-      "stadion_internasional": 32
-  },
+  "pabrik_militer": pantai_gading_pabrik,
+    "pendidikan": pantai_gading_pendidikan,
+  "kesehatan": pantai_gading_kesehatan,
+  "hukum": pantai_gading_hukum,
+  "sektor_olahraga": pantai_gading_olahraga,
   "un_vote": 51,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

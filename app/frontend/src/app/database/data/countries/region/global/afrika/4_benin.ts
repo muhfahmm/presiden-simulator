@@ -3,11 +3,16 @@ import { benin_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/af
 import { benin_armada } from "../../modules/2_militer/2_armada_militer/afrika/4_benin";
 import { benin_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/4_benin";
 import { benin_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/4_benin";
+import { benin_hukum } from "../../modules/3_sosial/3_hukum/afrika/4_benin";
 import { benin_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/4_benin";
 import { benin_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/4_benin";
+import { benin_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/4_benin";
 import { benin_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/4_benin";
 import { benin_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/4_benin";
 import { benin_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/4_benin";
+import { benin_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/4_benin";
+import { benin_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/4_benin";
+import { benin_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/4_benin";
 import { benin_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/4_benin";
 import { benin_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/4_benin";
 import { benin_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/4_benin";
@@ -29,50 +34,11 @@ export const benin: CountryData = {
   "armada_militer": benin_armada,
   "militer_strategis": benin_strategis,
   "armada_kepolisian": benin_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 18,
-      "dasar": 28,
-      "menengah": 25,
-      "lanjutan": 21,
-      "universitas": 38,
-      "lembaga_pendidikan": 27,
-      "laboratorium": 8,
-      "observatorium": 33,
-      "pusat_penelitian": 17,
-      "pusat_pengembangan": 36,
-      "literasi": 87
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 17,
-      "rumah_sakit_kecil": 19,
-      "pusat_diagnostik": 17,
-      "harapan_hidup": 6,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 13,
-      "pengadilan": 20,
-      "kejaksaan": 7,
-      "pos_polisi": 36,
-      "armada_mobil_polisi": 7222,
-      "akademi_polisi": 33,
-      "indeks_korupsi": 71,
-      "indeks_keamanan": 55
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 40,
-      "sirkuit_balap": 33,
-      "stadion": 9,
-      "stadion_internasional": 13
-  },
+  "pabrik_militer": benin_pabrik,
+    "pendidikan": benin_pendidikan,
+  "kesehatan": benin_kesehatan,
+  "hukum": benin_hukum,
+  "sektor_olahraga": benin_olahraga,
   "un_vote": 62,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { gambia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/a
 import { gambia_armada } from "../../modules/2_militer/2_armada_militer/afrika/14_gambia";
 import { gambia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/14_gambia";
 import { gambia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/14_gambia";
+import { gambia_hukum } from "../../modules/3_sosial/3_hukum/afrika/14_gambia";
 import { gambia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/14_gambia";
 import { gambia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/14_gambia";
+import { gambia_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/14_gambia";
 import { gambia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/14_gambia";
 import { gambia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/14_gambia";
 import { gambia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/14_gambia";
+import { gambia_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/14_gambia";
+import { gambia_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/14_gambia";
+import { gambia_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/14_gambia";
 import { gambia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/14_gambia";
 import { gambia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/14_gambia";
 import { gambia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/14_gambia";
@@ -29,50 +34,11 @@ export const gambia: CountryData = {
   "armada_militer": gambia_armada,
   "militer_strategis": gambia_strategis,
   "armada_kepolisian": gambia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 17,
-      "dasar": 17,
-      "menengah": 11,
-      "lanjutan": 35,
-      "universitas": 10,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 22,
-      "observatorium": 17,
-      "pusat_penelitian": 23,
-      "pusat_pengembangan": 13,
-      "literasi": 51
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 39,
-      "rumah_sakit_kecil": 8,
-      "pusat_diagnostik": 31,
-      "harapan_hidup": 16,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 15,
-      "pengadilan": 14,
-      "kejaksaan": 33,
-      "pos_polisi": 37,
-      "armada_mobil_polisi": 4533,
-      "akademi_polisi": 15,
-      "indeks_korupsi": 95,
-      "indeks_keamanan": 64
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 9,
-      "sirkuit_balap": 11,
-      "stadion": 12,
-      "stadion_internasional": 36
-  },
+  "pabrik_militer": gambia_pabrik,
+    "pendidikan": gambia_pendidikan,
+  "kesehatan": gambia_kesehatan,
+  "hukum": gambia_hukum,
+  "sektor_olahraga": gambia_olahraga,
   "un_vote": 116,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

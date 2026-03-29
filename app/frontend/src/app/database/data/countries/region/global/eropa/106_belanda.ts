@@ -3,11 +3,16 @@ import { belanda_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { belanda_armada } from "../../modules/2_militer/2_armada_militer/eropa/106_belanda";
 import { belanda_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/106_belanda";
 import { belanda_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/106_belanda";
+import { belanda_hukum } from "../../modules/3_sosial/3_hukum/eropa/106_belanda";
 import { belanda_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/106_belanda";
 import { belanda_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/106_belanda";
+import { belanda_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/106_belanda";
 import { belanda_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/106_belanda";
 import { belanda_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/106_belanda";
 import { belanda_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/106_belanda";
+import { belanda_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/106_belanda";
+import { belanda_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/106_belanda";
+import { belanda_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/106_belanda";
 import { belanda_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/106_belanda";
 import { belanda_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/106_belanda";
 import { belanda_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/106_belanda";
@@ -29,50 +34,11 @@ export const belanda: CountryData = {
   "armada_militer": belanda_armada,
   "militer_strategis": belanda_strategis,
   "armada_kepolisian": belanda_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 34,
-      "dasar": 15,
-      "menengah": 28,
-      "lanjutan": 27,
-      "universitas": 33,
-      "lembaga_pendidikan": 11,
-      "laboratorium": 1,
-      "observatorium": 40,
-      "pusat_penelitian": 34,
-      "pusat_pengembangan": 25,
-      "literasi": 74
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 12,
-      "rumah_sakit_kecil": 26,
-      "pusat_diagnostik": 28,
-      "harapan_hidup": 27,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 34,
-      "pengadilan": 30,
-      "kejaksaan": 2,
-      "pos_polisi": 6,
-      "armada_mobil_polisi": 6595,
-      "akademi_polisi": 28,
-      "indeks_korupsi": 73,
-      "indeks_keamanan": 95
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 38,
-      "sirkuit_balap": 21,
-      "stadion": 35,
-      "stadion_internasional": 13
-  },
+  "pabrik_militer": belanda_pabrik,
+    "pendidikan": belanda_pendidikan,
+  "kesehatan": belanda_kesehatan,
+  "hukum": belanda_hukum,
+  "sektor_olahraga": belanda_olahraga,
   "un_vote": 196,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

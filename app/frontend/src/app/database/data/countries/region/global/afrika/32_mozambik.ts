@@ -3,11 +3,16 @@ import { mozambik_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { mozambik_armada } from "../../modules/2_militer/2_armada_militer/afrika/32_mozambik";
 import { mozambik_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/32_mozambik";
 import { mozambik_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/32_mozambik";
+import { mozambik_hukum } from "../../modules/3_sosial/3_hukum/afrika/32_mozambik";
 import { mozambik_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/32_mozambik";
 import { mozambik_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/32_mozambik";
+import { mozambik_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/32_mozambik";
 import { mozambik_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/32_mozambik";
 import { mozambik_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/32_mozambik";
 import { mozambik_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/32_mozambik";
+import { mozambik_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/32_mozambik";
+import { mozambik_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/32_mozambik";
+import { mozambik_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/32_mozambik";
 import { mozambik_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/32_mozambik";
 import { mozambik_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/32_mozambik";
 import { mozambik_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/32_mozambik";
@@ -29,50 +34,11 @@ export const mozambik: CountryData = {
   "armada_militer": mozambik_armada,
   "militer_strategis": mozambik_strategis,
   "armada_kepolisian": mozambik_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 38,
-      "dasar": 12,
-      "menengah": 22,
-      "lanjutan": 16,
-      "universitas": 17,
-      "lembaga_pendidikan": 12,
-      "laboratorium": 17,
-      "observatorium": 33,
-      "pusat_penelitian": 25,
-      "pusat_pengembangan": 4,
-      "literasi": 83
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 34,
-      "rumah_sakit_kecil": 7,
-      "pusat_diagnostik": 40,
-      "harapan_hidup": 23,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 34,
-      "pengadilan": 38,
-      "kejaksaan": 7,
-      "pos_polisi": 9,
-      "armada_mobil_polisi": 4434,
-      "akademi_polisi": 35,
-      "indeks_korupsi": 78,
-      "indeks_keamanan": 84
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 25,
-      "sirkuit_balap": 26,
-      "stadion": 9,
-      "stadion_internasional": 3
-  },
+  "pabrik_militer": mozambik_pabrik,
+    "pendidikan": mozambik_pendidikan,
+  "kesehatan": mozambik_kesehatan,
+  "hukum": mozambik_hukum,
+  "sektor_olahraga": mozambik_olahraga,
   "un_vote": 85,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

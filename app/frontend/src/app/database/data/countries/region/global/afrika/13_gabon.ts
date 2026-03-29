@@ -3,11 +3,16 @@ import { gabon_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/af
 import { gabon_armada } from "../../modules/2_militer/2_armada_militer/afrika/13_gabon";
 import { gabon_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/13_gabon";
 import { gabon_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/13_gabon";
+import { gabon_hukum } from "../../modules/3_sosial/3_hukum/afrika/13_gabon";
 import { gabon_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/13_gabon";
 import { gabon_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/13_gabon";
+import { gabon_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/13_gabon";
 import { gabon_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/13_gabon";
 import { gabon_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/13_gabon";
 import { gabon_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/13_gabon";
+import { gabon_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/13_gabon";
+import { gabon_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/13_gabon";
+import { gabon_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/13_gabon";
 import { gabon_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/13_gabon";
 import { gabon_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/13_gabon";
 import { gabon_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/13_gabon";
@@ -29,50 +34,11 @@ export const gabon: CountryData = {
   "armada_militer": gabon_armada,
   "militer_strategis": gabon_strategis,
   "armada_kepolisian": gabon_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 26,
-      "dasar": 28,
-      "menengah": 15,
-      "lanjutan": 40,
-      "universitas": 15,
-      "lembaga_pendidikan": 14,
-      "laboratorium": 12,
-      "observatorium": 26,
-      "pusat_penelitian": 40,
-      "pusat_pengembangan": 12,
-      "literasi": 50
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 9,
-      "rumah_sakit_kecil": 3,
-      "pusat_diagnostik": 3,
-      "harapan_hidup": 35,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 12,
-      "pengadilan": 18,
-      "kejaksaan": 38,
-      "pos_polisi": 36,
-      "armada_mobil_polisi": 1827,
-      "akademi_polisi": 2,
-      "indeks_korupsi": 86,
-      "indeks_keamanan": 89
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 27,
-      "stadion": 25,
-      "stadion_internasional": 32
-  },
+  "pabrik_militer": gabon_pabrik,
+    "pendidikan": gabon_pendidikan,
+  "kesehatan": gabon_kesehatan,
+  "hukum": gabon_hukum,
+  "sektor_olahraga": gabon_olahraga,
   "un_vote": 73,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

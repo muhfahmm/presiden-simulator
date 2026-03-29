@@ -3,11 +3,16 @@ import { kanada_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/n
 import { kanada_armada } from "../../modules/2_militer/2_armada_militer/na/168_kanada";
 import { kanada_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/168_kanada";
 import { kanada_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/168_kanada";
+import { kanada_hukum } from "../../modules/3_sosial/3_hukum/na/168_kanada";
 import { kanada_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/168_kanada";
 import { kanada_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/168_kanada";
+import { kanada_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/168_kanada";
 import { kanada_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/168_kanada";
 import { kanada_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/168_kanada";
 import { kanada_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/168_kanada";
+import { kanada_olahraga } from "../../modules/3_sosial/4_olahraga/na/168_kanada";
+import { kanada_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/168_kanada";
+import { kanada_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/168_kanada";
 import { kanada_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/168_kanada";
 import { kanada_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/168_kanada";
 import { kanada_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/168_kanada";
@@ -29,50 +34,11 @@ export const kanada: CountryData = {
   "armada_militer": kanada_armada,
   "militer_strategis": kanada_strategis,
   "armada_kepolisian": kanada_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 5,
-      "dasar": 25,
-      "menengah": 27,
-      "lanjutan": 32,
-      "universitas": 5,
-      "lembaga_pendidikan": 1,
-      "laboratorium": 35,
-      "observatorium": 19,
-      "pusat_penelitian": 37,
-      "pusat_pengembangan": 6,
-      "literasi": 89
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 4,
-      "rumah_sakit_kecil": 38,
-      "pusat_diagnostik": 19,
-      "harapan_hidup": 35,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 35,
-      "pengadilan": 31,
-      "kejaksaan": 24,
-      "pos_polisi": 23,
-      "armada_mobil_polisi": 4735,
-      "akademi_polisi": 36,
-      "indeks_korupsi": 53,
-      "indeks_keamanan": 63
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 14,
-      "sirkuit_balap": 14,
-      "stadion": 17,
-      "stadion_internasional": 39
-  },
+  "pabrik_militer": kanada_pabrik,
+    "pendidikan": kanada_pendidikan,
+  "kesehatan": kanada_kesehatan,
+  "hukum": kanada_hukum,
+  "sektor_olahraga": kanada_olahraga,
   "un_vote": 160,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

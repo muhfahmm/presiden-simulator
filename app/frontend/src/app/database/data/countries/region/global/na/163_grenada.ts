@@ -3,11 +3,16 @@ import { grenada_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { grenada_armada } from "../../modules/2_militer/2_armada_militer/na/163_grenada";
 import { grenada_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/163_grenada";
 import { grenada_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/163_grenada";
+import { grenada_hukum } from "../../modules/3_sosial/3_hukum/na/163_grenada";
 import { grenada_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/163_grenada";
 import { grenada_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/163_grenada";
+import { grenada_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/163_grenada";
 import { grenada_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/163_grenada";
 import { grenada_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/163_grenada";
 import { grenada_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/163_grenada";
+import { grenada_olahraga } from "../../modules/3_sosial/4_olahraga/na/163_grenada";
+import { grenada_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/163_grenada";
+import { grenada_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/163_grenada";
 import { grenada_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/163_grenada";
 import { grenada_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/163_grenada";
 import { grenada_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/163_grenada";
@@ -29,50 +34,11 @@ export const grenada: CountryData = {
   "armada_militer": grenada_armada,
   "militer_strategis": grenada_strategis,
   "armada_kepolisian": grenada_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 8,
-      "dasar": 24,
-      "menengah": 11,
-      "lanjutan": 6,
-      "universitas": 32,
-      "lembaga_pendidikan": 38,
-      "laboratorium": 33,
-      "observatorium": 8,
-      "pusat_penelitian": 24,
-      "pusat_pengembangan": 11,
-      "literasi": 60
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 3,
-      "rumah_sakit_kecil": 34,
-      "pusat_diagnostik": 25,
-      "harapan_hidup": 32,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 21,
-      "pengadilan": 36,
-      "kejaksaan": 28,
-      "pos_polisi": 28,
-      "armada_mobil_polisi": 948,
-      "akademi_polisi": 39,
-      "indeks_korupsi": 60,
-      "indeks_keamanan": 81
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 30,
-      "stadion": 19,
-      "stadion_internasional": 14
-  },
+  "pabrik_militer": grenada_pabrik,
+    "pendidikan": grenada_pendidikan,
+  "kesehatan": grenada_kesehatan,
+  "hukum": grenada_hukum,
+  "sektor_olahraga": grenada_olahraga,
   "un_vote": 63,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

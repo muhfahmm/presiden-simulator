@@ -3,11 +3,16 @@ import { uruguay_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { uruguay_armada } from "../../modules/2_militer/2_armada_militer/sa/206_uruguay";
 import { uruguay_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/sa/206_uruguay";
 import { uruguay_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/sa/206_uruguay";
+import { uruguay_hukum } from "../../modules/3_sosial/3_hukum/sa/206_uruguay";
 import { uruguay_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/sa/206_uruguay";
 import { uruguay_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/sa/206_uruguay";
+import { uruguay_kesehatan } from "../../modules/3_sosial/2_kesehatan/sa/206_uruguay";
 import { uruguay_listrik } from "../../modules/1_ekonomi/2_kelistrikan/sa/206_uruguay";
 import { uruguay_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/sa/206_uruguay";
 import { uruguay_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/sa/206_uruguay";
+import { uruguay_olahraga } from "../../modules/3_sosial/4_olahraga/sa/206_uruguay";
+import { uruguay_pabrik } from "../../modules/2_militer/5_pabrik_militer/sa/206_uruguay";
+import { uruguay_pendidikan } from "../../modules/3_sosial/1_pendidikan/sa/206_uruguay";
 import { uruguay_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/sa/206_uruguay";
 import { uruguay_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/206_uruguay";
 import { uruguay_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/206_uruguay";
@@ -29,50 +34,11 @@ export const uruguay: CountryData = {
   "armada_militer": uruguay_armada,
   "militer_strategis": uruguay_strategis,
   "armada_kepolisian": uruguay_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 9,
-      "dasar": 27,
-      "menengah": 15,
-      "lanjutan": 14,
-      "universitas": 34,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 15,
-      "observatorium": 22,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 32,
-      "literasi": 95
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 5,
-      "rumah_sakit_kecil": 21,
-      "pusat_diagnostik": 6,
-      "harapan_hidup": 6,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 6,
-      "pengadilan": 17,
-      "kejaksaan": 26,
-      "pos_polisi": 24,
-      "armada_mobil_polisi": 1835,
-      "akademi_polisi": 18,
-      "indeks_korupsi": 61,
-      "indeks_keamanan": 87
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 16,
-      "stadion": 34,
-      "stadion_internasional": 9
-  },
+  "pabrik_militer": uruguay_pabrik,
+    "pendidikan": uruguay_pendidikan,
+  "kesehatan": uruguay_kesehatan,
+  "hukum": uruguay_hukum,
+  "sektor_olahraga": uruguay_olahraga,
   "un_vote": 99,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

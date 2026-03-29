@@ -3,11 +3,16 @@ import { bahrain_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { bahrain_armada } from "../../modules/2_militer/2_armada_militer/asia/58_bahrain";
 import { bahrain_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/58_bahrain";
 import { bahrain_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/58_bahrain";
+import { bahrain_hukum } from "../../modules/3_sosial/3_hukum/asia/58_bahrain";
 import { bahrain_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/58_bahrain";
 import { bahrain_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/58_bahrain";
+import { bahrain_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/58_bahrain";
 import { bahrain_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/58_bahrain";
 import { bahrain_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/58_bahrain";
 import { bahrain_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/58_bahrain";
+import { bahrain_olahraga } from "../../modules/3_sosial/4_olahraga/asia/58_bahrain";
+import { bahrain_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/58_bahrain";
+import { bahrain_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/58_bahrain";
 import { bahrain_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/58_bahrain";
 import { bahrain_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/58_bahrain";
 import { bahrain_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/58_bahrain";
@@ -29,50 +34,11 @@ export const bahrain: CountryData = {
   "armada_militer": bahrain_armada,
   "militer_strategis": bahrain_strategis,
   "armada_kepolisian": bahrain_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 27,
-      "dasar": 35,
-      "menengah": 39,
-      "lanjutan": 12,
-      "universitas": 24,
-      "lembaga_pendidikan": 3,
-      "laboratorium": 12,
-      "observatorium": 4,
-      "pusat_penelitian": 18,
-      "pusat_pengembangan": 24,
-      "literasi": 61
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 36,
-      "rumah_sakit_kecil": 12,
-      "pusat_diagnostik": 7,
-      "harapan_hidup": 11,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 35,
-      "pengadilan": 20,
-      "kejaksaan": 22,
-      "pos_polisi": 24,
-      "armada_mobil_polisi": 9975,
-      "akademi_polisi": 8,
-      "indeks_korupsi": 92,
-      "indeks_keamanan": 72
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 5,
-      "sirkuit_balap": 13,
-      "stadion": 4,
-      "stadion_internasional": 27
-  },
+  "pabrik_militer": bahrain_pabrik,
+    "pendidikan": bahrain_pendidikan,
+  "kesehatan": bahrain_kesehatan,
+  "hukum": bahrain_hukum,
+  "sektor_olahraga": bahrain_olahraga,
   "un_vote": 96,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { taiwan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/a
 import { taiwan_armada } from "../../modules/2_militer/2_armada_militer/asia/94_taiwan";
 import { taiwan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/94_taiwan";
 import { taiwan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/94_taiwan";
+import { taiwan_hukum } from "../../modules/3_sosial/3_hukum/asia/94_taiwan";
 import { taiwan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/94_taiwan";
 import { taiwan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/94_taiwan";
+import { taiwan_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/94_taiwan";
 import { taiwan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/94_taiwan";
 import { taiwan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/94_taiwan";
 import { taiwan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/94_taiwan";
+import { taiwan_olahraga } from "../../modules/3_sosial/4_olahraga/asia/94_taiwan";
+import { taiwan_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/94_taiwan";
+import { taiwan_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/94_taiwan";
 import { taiwan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/94_taiwan";
 import { taiwan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/94_taiwan";
 import { taiwan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/94_taiwan";
@@ -29,50 +34,11 @@ export const taiwan: CountryData = {
   "armada_militer": taiwan_armada,
   "militer_strategis": taiwan_strategis,
   "armada_kepolisian": taiwan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 38,
-      "dasar": 25,
-      "menengah": 21,
-      "lanjutan": 40,
-      "universitas": 37,
-      "lembaga_pendidikan": 9,
-      "laboratorium": 26,
-      "observatorium": 14,
-      "pusat_penelitian": 26,
-      "pusat_pengembangan": 30,
-      "literasi": 93
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 8,
-      "rumah_sakit_kecil": 24,
-      "pusat_diagnostik": 34,
-      "harapan_hidup": 17,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 30,
-      "pengadilan": 17,
-      "kejaksaan": 6,
-      "pos_polisi": 10,
-      "armada_mobil_polisi": 6896,
-      "akademi_polisi": 15,
-      "indeks_korupsi": 72,
-      "indeks_keamanan": 57
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 10,
-      "sirkuit_balap": 18,
-      "stadion": 9,
-      "stadion_internasional": 16
-  },
+  "pabrik_militer": taiwan_pabrik,
+    "pendidikan": taiwan_pendidikan,
+  "kesehatan": taiwan_kesehatan,
+  "hukum": taiwan_hukum,
+  "sektor_olahraga": taiwan_olahraga,
   "un_vote": 75,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

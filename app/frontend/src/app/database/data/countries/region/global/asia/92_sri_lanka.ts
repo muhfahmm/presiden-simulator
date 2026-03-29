@@ -3,11 +3,16 @@ import { sri_lanka_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { sri_lanka_armada } from "../../modules/2_militer/2_armada_militer/asia/92_sri_lanka";
 import { sri_lanka_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/92_sri_lanka";
 import { sri_lanka_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/92_sri_lanka";
+import { sri_lanka_hukum } from "../../modules/3_sosial/3_hukum/asia/92_sri_lanka";
 import { sri_lanka_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/92_sri_lanka";
 import { sri_lanka_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/92_sri_lanka";
+import { sri_lanka_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/92_sri_lanka";
 import { sri_lanka_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/92_sri_lanka";
 import { sri_lanka_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/92_sri_lanka";
 import { sri_lanka_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/92_sri_lanka";
+import { sri_lanka_olahraga } from "../../modules/3_sosial/4_olahraga/asia/92_sri_lanka";
+import { sri_lanka_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/92_sri_lanka";
+import { sri_lanka_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/92_sri_lanka";
 import { sri_lanka_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/92_sri_lanka";
 import { sri_lanka_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/92_sri_lanka";
 import { sri_lanka_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/92_sri_lanka";
@@ -29,50 +34,11 @@ export const sri_lanka: CountryData = {
   "armada_militer": sri_lanka_armada,
   "militer_strategis": sri_lanka_strategis,
   "armada_kepolisian": sri_lanka_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 27,
-      "dasar": 26,
-      "menengah": 34,
-      "lanjutan": 27,
-      "universitas": 34,
-      "lembaga_pendidikan": 38,
-      "laboratorium": 34,
-      "observatorium": 38,
-      "pusat_penelitian": 25,
-      "pusat_pengembangan": 8,
-      "literasi": 80
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 36,
-      "rumah_sakit_kecil": 1,
-      "pusat_diagnostik": 35,
-      "harapan_hidup": 18,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 10,
-      "pengadilan": 19,
-      "kejaksaan": 36,
-      "pos_polisi": 33,
-      "armada_mobil_polisi": 7907,
-      "akademi_polisi": 38,
-      "indeks_korupsi": 89,
-      "indeks_keamanan": 67
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 30,
-      "stadion": 39,
-      "stadion_internasional": 30
-  },
+  "pabrik_militer": sri_lanka_pabrik,
+    "pendidikan": sri_lanka_pendidikan,
+  "kesehatan": sri_lanka_kesehatan,
+  "hukum": sri_lanka_hukum,
+  "sektor_olahraga": sri_lanka_olahraga,
   "un_vote": 158,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

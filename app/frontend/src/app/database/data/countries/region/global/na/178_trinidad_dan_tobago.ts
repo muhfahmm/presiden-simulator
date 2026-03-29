@@ -3,11 +3,16 @@ import { trinidad_dan_tobago_agrikultur } from "../../modules/1_ekonomi/7_sektor
 import { trinidad_dan_tobago_armada } from "../../modules/2_militer/2_armada_militer/na/178_trinidad_dan_tobago";
 import { trinidad_dan_tobago_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/178_trinidad_dan_tobago";
 import { trinidad_dan_tobago_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/178_trinidad_dan_tobago";
+import { trinidad_dan_tobago_hukum } from "../../modules/3_sosial/3_hukum/na/178_trinidad_dan_tobago";
 import { trinidad_dan_tobago_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/178_trinidad_dan_tobago";
 import { trinidad_dan_tobago_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/178_trinidad_dan_tobago";
+import { trinidad_dan_tobago_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/178_trinidad_dan_tobago";
 import { trinidad_dan_tobago_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/178_trinidad_dan_tobago";
 import { trinidad_dan_tobago_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/178_trinidad_dan_tobago";
 import { trinidad_dan_tobago_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/178_trinidad_dan_tobago";
+import { trinidad_dan_tobago_olahraga } from "../../modules/3_sosial/4_olahraga/na/178_trinidad_dan_tobago";
+import { trinidad_dan_tobago_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/178_trinidad_dan_tobago";
+import { trinidad_dan_tobago_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/178_trinidad_dan_tobago";
 import { trinidad_dan_tobago_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/178_trinidad_dan_tobago";
 import { trinidad_dan_tobago_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/178_trinidad_dan_tobago";
 import { trinidad_dan_tobago_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/178_trinidad_dan_tobago";
@@ -29,50 +34,11 @@ export const trinidad_dan_tobago: CountryData = {
   "armada_militer": trinidad_dan_tobago_armada,
   "militer_strategis": trinidad_dan_tobago_strategis,
   "armada_kepolisian": trinidad_dan_tobago_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 26,
-      "dasar": 5,
-      "menengah": 22,
-      "lanjutan": 32,
-      "universitas": 2,
-      "lembaga_pendidikan": 14,
-      "laboratorium": 39,
-      "observatorium": 40,
-      "pusat_penelitian": 32,
-      "pusat_pengembangan": 3,
-      "literasi": 74
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 39,
-      "rumah_sakit_kecil": 33,
-      "pusat_diagnostik": 22,
-      "harapan_hidup": 16,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 17,
-      "pengadilan": 40,
-      "kejaksaan": 25,
-      "pos_polisi": 18,
-      "armada_mobil_polisi": 9719,
-      "akademi_polisi": 15,
-      "indeks_korupsi": 62,
-      "indeks_keamanan": 54
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 8,
-      "sirkuit_balap": 34,
-      "stadion": 8,
-      "stadion_internasional": 20
-  },
+  "pabrik_militer": trinidad_dan_tobago_pabrik,
+    "pendidikan": trinidad_dan_tobago_pendidikan,
+  "kesehatan": trinidad_dan_tobago_kesehatan,
+  "hukum": trinidad_dan_tobago_hukum,
+  "sektor_olahraga": trinidad_dan_tobago_olahraga,
   "un_vote": 123,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

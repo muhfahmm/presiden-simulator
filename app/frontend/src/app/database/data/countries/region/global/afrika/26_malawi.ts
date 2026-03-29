@@ -3,11 +3,16 @@ import { malawi_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/a
 import { malawi_armada } from "../../modules/2_militer/2_armada_militer/afrika/26_malawi";
 import { malawi_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/26_malawi";
 import { malawi_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/26_malawi";
+import { malawi_hukum } from "../../modules/3_sosial/3_hukum/afrika/26_malawi";
 import { malawi_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/26_malawi";
 import { malawi_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/26_malawi";
+import { malawi_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/26_malawi";
 import { malawi_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/26_malawi";
 import { malawi_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/26_malawi";
 import { malawi_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/26_malawi";
+import { malawi_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/26_malawi";
+import { malawi_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/26_malawi";
+import { malawi_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/26_malawi";
 import { malawi_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/26_malawi";
 import { malawi_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/26_malawi";
 import { malawi_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/26_malawi";
@@ -29,50 +34,11 @@ export const malawi: CountryData = {
   "armada_militer": malawi_armada,
   "militer_strategis": malawi_strategis,
   "armada_kepolisian": malawi_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 17,
-      "dasar": 38,
-      "menengah": 16,
-      "lanjutan": 5,
-      "universitas": 35,
-      "lembaga_pendidikan": 39,
-      "laboratorium": 6,
-      "observatorium": 28,
-      "pusat_penelitian": 19,
-      "pusat_pengembangan": 32,
-      "literasi": 95
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 1,
-      "rumah_sakit_kecil": 23,
-      "pusat_diagnostik": 40,
-      "harapan_hidup": 18,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 29,
-      "pengadilan": 18,
-      "kejaksaan": 40,
-      "pos_polisi": 4,
-      "armada_mobil_polisi": 5954,
-      "akademi_polisi": 12,
-      "indeks_korupsi": 82,
-      "indeks_keamanan": 90
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 9,
-      "sirkuit_balap": 33,
-      "stadion": 38,
-      "stadion_internasional": 13
-  },
+  "pabrik_militer": malawi_pabrik,
+    "pendidikan": malawi_pendidikan,
+  "kesehatan": malawi_kesehatan,
+  "hukum": malawi_hukum,
+  "sektor_olahraga": malawi_olahraga,
   "un_vote": 35,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

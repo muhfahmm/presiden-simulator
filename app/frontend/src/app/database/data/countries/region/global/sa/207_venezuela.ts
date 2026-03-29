@@ -3,11 +3,16 @@ import { venezuela_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { venezuela_armada } from "../../modules/2_militer/2_armada_militer/sa/207_venezuela";
 import { venezuela_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/sa/207_venezuela";
 import { venezuela_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/sa/207_venezuela";
+import { venezuela_hukum } from "../../modules/3_sosial/3_hukum/sa/207_venezuela";
 import { venezuela_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/sa/207_venezuela";
 import { venezuela_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/sa/207_venezuela";
+import { venezuela_kesehatan } from "../../modules/3_sosial/2_kesehatan/sa/207_venezuela";
 import { venezuela_listrik } from "../../modules/1_ekonomi/2_kelistrikan/sa/207_venezuela";
 import { venezuela_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/sa/207_venezuela";
 import { venezuela_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/sa/207_venezuela";
+import { venezuela_olahraga } from "../../modules/3_sosial/4_olahraga/sa/207_venezuela";
+import { venezuela_pabrik } from "../../modules/2_militer/5_pabrik_militer/sa/207_venezuela";
+import { venezuela_pendidikan } from "../../modules/3_sosial/1_pendidikan/sa/207_venezuela";
 import { venezuela_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/sa/207_venezuela";
 import { venezuela_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/207_venezuela";
 import { venezuela_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/207_venezuela";
@@ -29,50 +34,11 @@ export const venezuela: CountryData = {
   "armada_militer": venezuela_armada,
   "militer_strategis": venezuela_strategis,
   "armada_kepolisian": venezuela_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 12,
-      "dasar": 25,
-      "menengah": 6,
-      "lanjutan": 20,
-      "universitas": 40,
-      "lembaga_pendidikan": 38,
-      "laboratorium": 40,
-      "observatorium": 3,
-      "pusat_penelitian": 25,
-      "pusat_pengembangan": 10,
-      "literasi": 69
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 20,
-      "rumah_sakit_kecil": 38,
-      "pusat_diagnostik": 8,
-      "harapan_hidup": 31,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 6,
-      "pengadilan": 1,
-      "kejaksaan": 13,
-      "pos_polisi": 39,
-      "armada_mobil_polisi": 922,
-      "akademi_polisi": 32,
-      "indeks_korupsi": 87,
-      "indeks_keamanan": 86
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 12,
-      "sirkuit_balap": 3,
-      "stadion": 23,
-      "stadion_internasional": 20
-  },
+  "pabrik_militer": venezuela_pabrik,
+    "pendidikan": venezuela_pendidikan,
+  "kesehatan": venezuela_kesehatan,
+  "hukum": venezuela_hukum,
+  "sektor_olahraga": venezuela_olahraga,
   "un_vote": 195,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

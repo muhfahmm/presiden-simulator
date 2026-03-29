@@ -3,11 +3,16 @@ import { turki_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/er
 import { turki_armada } from "../../modules/2_militer/2_armada_militer/eropa/148_turki";
 import { turki_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/148_turki";
 import { turki_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/148_turki";
+import { turki_hukum } from "../../modules/3_sosial/3_hukum/eropa/148_turki";
 import { turki_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/148_turki";
 import { turki_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/148_turki";
+import { turki_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/148_turki";
 import { turki_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/148_turki";
 import { turki_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/148_turki";
 import { turki_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/148_turki";
+import { turki_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/148_turki";
+import { turki_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/148_turki";
+import { turki_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/148_turki";
 import { turki_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/148_turki";
 import { turki_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/148_turki";
 import { turki_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/148_turki";
@@ -29,50 +34,11 @@ export const turki: CountryData = {
   "armada_militer": turki_armada,
   "militer_strategis": turki_strategis,
   "armada_kepolisian": turki_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 31,
-      "dasar": 11,
-      "menengah": 38,
-      "lanjutan": 38,
-      "universitas": 1,
-      "lembaga_pendidikan": 23,
-      "laboratorium": 30,
-      "observatorium": 19,
-      "pusat_penelitian": 33,
-      "pusat_pengembangan": 15,
-      "literasi": 93
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 4,
-      "pusat_diagnostik": 23,
-      "harapan_hidup": 36,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 23,
-      "pengadilan": 13,
-      "kejaksaan": 32,
-      "pos_polisi": 26,
-      "armada_mobil_polisi": 8169,
-      "akademi_polisi": 31,
-      "indeks_korupsi": 72,
-      "indeks_keamanan": 59
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 25,
-      "sirkuit_balap": 39,
-      "stadion": 37,
-      "stadion_internasional": 38
-  },
+  "pabrik_militer": turki_pabrik,
+    "pendidikan": turki_pendidikan,
+  "kesehatan": turki_kesehatan,
+  "hukum": turki_hukum,
+  "sektor_olahraga": turki_olahraga,
   "un_vote": 83,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

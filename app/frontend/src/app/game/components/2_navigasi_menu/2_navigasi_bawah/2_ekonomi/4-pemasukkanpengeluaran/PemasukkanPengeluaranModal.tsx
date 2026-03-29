@@ -109,10 +109,10 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
     { label: "Peternakan", data: initialCountry.sektor_peternakan },
     { label: "Perikanan", data: initialCountry.sektor_perikanan },
     { label: "Agrikultur", data: initialCountry.sektor_agrikultur },
-    { label: "Pendidikan", data: initialCountry.sektor_sosial?.pendidikan },
-    { label: "Kesehatan", data: initialCountry.sektor_sosial?.kesehatan },
+    { label: "Pendidikan", data: initialCountry.pendidikan },
+    { label: "Kesehatan", data: initialCountry.kesehatan },
     { label: "Olahraga", data: initialCountry.sektor_olahraga },
-    { label: "Hukum", data: initialCountry.sektor_sosial?.hukum }
+    { label: "Hukum", data: initialCountry.hukum }
   ];
 
   const militarySectors = [

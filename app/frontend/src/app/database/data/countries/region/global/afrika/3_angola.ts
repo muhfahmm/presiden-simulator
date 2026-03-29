@@ -3,11 +3,16 @@ import { angola_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/a
 import { angola_armada } from "../../modules/2_militer/2_armada_militer/afrika/3_angola";
 import { angola_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/3_angola";
 import { angola_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/3_angola";
+import { angola_hukum } from "../../modules/3_sosial/3_hukum/afrika/3_angola";
 import { angola_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/3_angola";
 import { angola_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/3_angola";
+import { angola_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/3_angola";
 import { angola_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/3_angola";
 import { angola_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/3_angola";
 import { angola_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/3_angola";
+import { angola_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/3_angola";
+import { angola_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/3_angola";
+import { angola_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/3_angola";
 import { angola_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/3_angola";
 import { angola_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/3_angola";
 import { angola_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/3_angola";
@@ -29,50 +34,11 @@ export const angola: CountryData = {
   "armada_militer": angola_armada,
   "militer_strategis": angola_strategis,
   "armada_kepolisian": angola_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 26,
-      "dasar": 24,
-      "menengah": 27,
-      "lanjutan": 8,
-      "universitas": 40,
-      "lembaga_pendidikan": 35,
-      "laboratorium": 26,
-      "observatorium": 17,
-      "pusat_penelitian": 36,
-      "pusat_pengembangan": 9,
-      "literasi": 93
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 20,
-      "rumah_sakit_kecil": 7,
-      "pusat_diagnostik": 16,
-      "harapan_hidup": 28,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 5,
-      "pengadilan": 36,
-      "kejaksaan": 24,
-      "pos_polisi": 25,
-      "armada_mobil_polisi": 4093,
-      "akademi_polisi": 18,
-      "indeks_korupsi": 74,
-      "indeks_keamanan": 61
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 30,
-      "sirkuit_balap": 5,
-      "stadion": 36,
-      "stadion_internasional": 40
-  },
+  "pabrik_militer": angola_pabrik,
+    "pendidikan": angola_pendidikan,
+  "kesehatan": angola_kesehatan,
+  "hukum": angola_hukum,
+  "sektor_olahraga": angola_olahraga,
   "un_vote": 155,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

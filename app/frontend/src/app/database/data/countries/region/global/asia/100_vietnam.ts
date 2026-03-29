@@ -3,11 +3,16 @@ import { vietnam_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { vietnam_armada } from "../../modules/2_militer/2_armada_militer/asia/100_vietnam";
 import { vietnam_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/100_vietnam";
 import { vietnam_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/100_vietnam";
+import { vietnam_hukum } from "../../modules/3_sosial/3_hukum/asia/100_vietnam";
 import { vietnam_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/100_vietnam";
 import { vietnam_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/100_vietnam";
+import { vietnam_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/100_vietnam";
 import { vietnam_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/100_vietnam";
 import { vietnam_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/100_vietnam";
 import { vietnam_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/100_vietnam";
+import { vietnam_olahraga } from "../../modules/3_sosial/4_olahraga/asia/100_vietnam";
+import { vietnam_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/100_vietnam";
+import { vietnam_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/100_vietnam";
 import { vietnam_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/100_vietnam";
 import { vietnam_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/100_vietnam";
 import { vietnam_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/100_vietnam";
@@ -29,50 +34,11 @@ export const vietnam: CountryData = {
   "armada_militer": vietnam_armada,
   "militer_strategis": vietnam_strategis,
   "armada_kepolisian": vietnam_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 11,
-      "dasar": 29,
-      "menengah": 36,
-      "lanjutan": 5,
-      "universitas": 18,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 13,
-      "observatorium": 23,
-      "pusat_penelitian": 25,
-      "pusat_pengembangan": 15,
-      "literasi": 74
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 11,
-      "rumah_sakit_kecil": 2,
-      "pusat_diagnostik": 4,
-      "harapan_hidup": 17,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 14,
-      "pengadilan": 28,
-      "kejaksaan": 29,
-      "pos_polisi": 8,
-      "armada_mobil_polisi": 6043,
-      "akademi_polisi": 8,
-      "indeks_korupsi": 68,
-      "indeks_keamanan": 68
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 32,
-      "sirkuit_balap": 13,
-      "stadion": 29,
-      "stadion_internasional": 28
-  },
+  "pabrik_militer": vietnam_pabrik,
+    "pendidikan": vietnam_pendidikan,
+  "kesehatan": vietnam_kesehatan,
+  "hukum": vietnam_hukum,
+  "sektor_olahraga": vietnam_olahraga,
   "un_vote": 76,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

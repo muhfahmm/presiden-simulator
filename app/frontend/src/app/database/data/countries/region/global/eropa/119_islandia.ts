@@ -3,11 +3,16 @@ import { islandia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { islandia_armada } from "../../modules/2_militer/2_armada_militer/eropa/119_islandia";
 import { islandia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/119_islandia";
 import { islandia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/119_islandia";
+import { islandia_hukum } from "../../modules/3_sosial/3_hukum/eropa/119_islandia";
 import { islandia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/119_islandia";
 import { islandia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/119_islandia";
+import { islandia_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/119_islandia";
 import { islandia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/119_islandia";
 import { islandia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/119_islandia";
 import { islandia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/119_islandia";
+import { islandia_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/119_islandia";
+import { islandia_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/119_islandia";
+import { islandia_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/119_islandia";
 import { islandia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/119_islandia";
 import { islandia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/119_islandia";
 import { islandia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/119_islandia";
@@ -29,50 +34,11 @@ export const islandia: CountryData = {
   "armada_militer": islandia_armada,
   "militer_strategis": islandia_strategis,
   "armada_kepolisian": islandia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 11,
-      "dasar": 25,
-      "menengah": 3,
-      "lanjutan": 29,
-      "universitas": 37,
-      "lembaga_pendidikan": 34,
-      "laboratorium": 11,
-      "observatorium": 16,
-      "pusat_penelitian": 13,
-      "pusat_pengembangan": 18,
-      "literasi": 57
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 29,
-      "rumah_sakit_kecil": 12,
-      "pusat_diagnostik": 5,
-      "harapan_hidup": 33,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 1,
-      "pengadilan": 9,
-      "kejaksaan": 8,
-      "pos_polisi": 22,
-      "armada_mobil_polisi": 1677,
-      "akademi_polisi": 14,
-      "indeks_korupsi": 59,
-      "indeks_keamanan": 83
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 40,
-      "sirkuit_balap": 7,
-      "stadion": 3,
-      "stadion_internasional": 27
-  },
+  "pabrik_militer": islandia_pabrik,
+    "pendidikan": islandia_pendidikan,
+  "kesehatan": islandia_kesehatan,
+  "hukum": islandia_hukum,
+  "sektor_olahraga": islandia_olahraga,
   "un_vote": 103,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { samoa_amerika_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrik
 import { samoa_amerika_armada } from "../../modules/2_militer/2_armada_militer/oceania/189_samoa_amerika";
 import { samoa_amerika_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/189_samoa_amerika";
 import { samoa_amerika_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/189_samoa_amerika";
+import { samoa_amerika_hukum } from "../../modules/3_sosial/3_hukum/oceania/189_samoa_amerika";
 import { samoa_amerika_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/189_samoa_amerika";
 import { samoa_amerika_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/189_samoa_amerika";
+import { samoa_amerika_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/189_samoa_amerika";
 import { samoa_amerika_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/189_samoa_amerika";
 import { samoa_amerika_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/189_samoa_amerika";
 import { samoa_amerika_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/189_samoa_amerika";
+import { samoa_amerika_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/189_samoa_amerika";
+import { samoa_amerika_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/189_samoa_amerika";
+import { samoa_amerika_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/189_samoa_amerika";
 import { samoa_amerika_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/189_samoa_amerika";
 import { samoa_amerika_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/189_samoa_amerika";
 import { samoa_amerika_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/189_samoa_amerika";
@@ -29,50 +34,11 @@ export const samoa_amerika: CountryData = {
   "armada_militer": samoa_amerika_armada,
   "militer_strategis": samoa_amerika_strategis,
   "armada_kepolisian": samoa_amerika_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 11,
-      "dasar": 28,
-      "menengah": 19,
-      "lanjutan": 37,
-      "universitas": 19,
-      "lembaga_pendidikan": 16,
-      "laboratorium": 2,
-      "observatorium": 12,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 15,
-      "literasi": 51
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 22,
-      "rumah_sakit_kecil": 33,
-      "pusat_diagnostik": 40,
-      "harapan_hidup": 29,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 16,
-      "pengadilan": 28,
-      "kejaksaan": 14,
-      "pos_polisi": 29,
-      "armada_mobil_polisi": 3317,
-      "akademi_polisi": 20,
-      "indeks_korupsi": 69,
-      "indeks_keamanan": 79
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 21,
-      "sirkuit_balap": 9,
-      "stadion": 24,
-      "stadion_internasional": 30
-  },
+  "pabrik_militer": samoa_amerika_pabrik,
+    "pendidikan": samoa_amerika_pendidikan,
+  "kesehatan": samoa_amerika_kesehatan,
+  "hukum": samoa_amerika_hukum,
+  "sektor_olahraga": samoa_amerika_olahraga,
   "un_vote": 24,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

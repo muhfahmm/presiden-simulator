@@ -3,11 +3,16 @@ import { qatar_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/as
 import { qatar_armada } from "../../modules/2_militer/2_armada_militer/asia/89_qatar";
 import { qatar_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/89_qatar";
 import { qatar_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/89_qatar";
+import { qatar_hukum } from "../../modules/3_sosial/3_hukum/asia/89_qatar";
 import { qatar_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/89_qatar";
 import { qatar_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/89_qatar";
+import { qatar_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/89_qatar";
 import { qatar_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/89_qatar";
 import { qatar_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/89_qatar";
 import { qatar_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/89_qatar";
+import { qatar_olahraga } from "../../modules/3_sosial/4_olahraga/asia/89_qatar";
+import { qatar_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/89_qatar";
+import { qatar_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/89_qatar";
 import { qatar_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/89_qatar";
 import { qatar_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/89_qatar";
 import { qatar_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/89_qatar";
@@ -29,50 +34,11 @@ export const qatar: CountryData = {
   "armada_militer": qatar_armada,
   "militer_strategis": qatar_strategis,
   "armada_kepolisian": qatar_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 17,
-      "dasar": 34,
-      "menengah": 6,
-      "lanjutan": 29,
-      "universitas": 40,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 8,
-      "observatorium": 17,
-      "pusat_penelitian": 16,
-      "pusat_pengembangan": 39,
-      "literasi": 95
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 30,
-      "rumah_sakit_kecil": 37,
-      "pusat_diagnostik": 2,
-      "harapan_hidup": 39,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 19,
-      "pengadilan": 32,
-      "kejaksaan": 12,
-      "pos_polisi": 9,
-      "armada_mobil_polisi": 6106,
-      "akademi_polisi": 25,
-      "indeks_korupsi": 85,
-      "indeks_keamanan": 74
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 8,
-      "sirkuit_balap": 12,
-      "stadion": 17,
-      "stadion_internasional": 39
-  },
+  "pabrik_militer": qatar_pabrik,
+    "pendidikan": qatar_pendidikan,
+  "kesehatan": qatar_kesehatan,
+  "hukum": qatar_hukum,
+  "sektor_olahraga": qatar_olahraga,
   "un_vote": 182,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

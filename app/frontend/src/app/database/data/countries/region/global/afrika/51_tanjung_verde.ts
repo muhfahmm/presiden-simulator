@@ -3,11 +3,16 @@ import { tanjung_verde_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrik
 import { tanjung_verde_armada } from "../../modules/2_militer/2_armada_militer/afrika/51_tanjung_verde";
 import { tanjung_verde_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/51_tanjung_verde";
 import { tanjung_verde_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/51_tanjung_verde";
+import { tanjung_verde_hukum } from "../../modules/3_sosial/3_hukum/afrika/51_tanjung_verde";
 import { tanjung_verde_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/51_tanjung_verde";
 import { tanjung_verde_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/51_tanjung_verde";
+import { tanjung_verde_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/51_tanjung_verde";
 import { tanjung_verde_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/51_tanjung_verde";
 import { tanjung_verde_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/51_tanjung_verde";
 import { tanjung_verde_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/51_tanjung_verde";
+import { tanjung_verde_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/51_tanjung_verde";
+import { tanjung_verde_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/51_tanjung_verde";
+import { tanjung_verde_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/51_tanjung_verde";
 import { tanjung_verde_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/51_tanjung_verde";
 import { tanjung_verde_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/51_tanjung_verde";
 import { tanjung_verde_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/51_tanjung_verde";
@@ -29,50 +34,11 @@ export const tanjung_verde: CountryData = {
   "armada_militer": tanjung_verde_armada,
   "militer_strategis": tanjung_verde_strategis,
   "armada_kepolisian": tanjung_verde_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 1,
-      "dasar": 8,
-      "menengah": 15,
-      "lanjutan": 3,
-      "universitas": 7,
-      "lembaga_pendidikan": 13,
-      "laboratorium": 31,
-      "observatorium": 12,
-      "pusat_penelitian": 36,
-      "pusat_pengembangan": 11,
-      "literasi": 95
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 39,
-      "rumah_sakit_kecil": 16,
-      "pusat_diagnostik": 20,
-      "harapan_hidup": 37,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 39,
-      "pengadilan": 19,
-      "kejaksaan": 23,
-      "pos_polisi": 18,
-      "armada_mobil_polisi": 5017,
-      "akademi_polisi": 37,
-      "indeks_korupsi": 79,
-      "indeks_keamanan": 51
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 12,
-      "sirkuit_balap": 5,
-      "stadion": 24,
-      "stadion_internasional": 39
-  },
+  "pabrik_militer": tanjung_verde_pabrik,
+    "pendidikan": tanjung_verde_pendidikan,
+  "kesehatan": tanjung_verde_kesehatan,
+  "hukum": tanjung_verde_hukum,
+  "sektor_olahraga": tanjung_verde_olahraga,
   "un_vote": 97,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

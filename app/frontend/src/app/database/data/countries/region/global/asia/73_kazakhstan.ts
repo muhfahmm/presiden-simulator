@@ -3,11 +3,16 @@ import { kazakhstan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { kazakhstan_armada } from "../../modules/2_militer/2_armada_militer/asia/73_kazakhstan";
 import { kazakhstan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/73_kazakhstan";
 import { kazakhstan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/73_kazakhstan";
+import { kazakhstan_hukum } from "../../modules/3_sosial/3_hukum/asia/73_kazakhstan";
 import { kazakhstan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/73_kazakhstan";
 import { kazakhstan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/73_kazakhstan";
+import { kazakhstan_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/73_kazakhstan";
 import { kazakhstan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/73_kazakhstan";
 import { kazakhstan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/73_kazakhstan";
 import { kazakhstan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/73_kazakhstan";
+import { kazakhstan_olahraga } from "../../modules/3_sosial/4_olahraga/asia/73_kazakhstan";
+import { kazakhstan_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/73_kazakhstan";
+import { kazakhstan_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/73_kazakhstan";
 import { kazakhstan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/73_kazakhstan";
 import { kazakhstan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/73_kazakhstan";
 import { kazakhstan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/73_kazakhstan";
@@ -29,50 +34,11 @@ export const kazakhstan: CountryData = {
   "armada_militer": kazakhstan_armada,
   "militer_strategis": kazakhstan_strategis,
   "armada_kepolisian": kazakhstan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 19,
-      "dasar": 38,
-      "menengah": 1,
-      "lanjutan": 39,
-      "universitas": 15,
-      "lembaga_pendidikan": 19,
-      "laboratorium": 22,
-      "observatorium": 40,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 36,
-      "literasi": 85
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 7,
-      "rumah_sakit_kecil": 17,
-      "pusat_diagnostik": 13,
-      "harapan_hidup": 7,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 9,
-      "pengadilan": 37,
-      "kejaksaan": 8,
-      "pos_polisi": 4,
-      "armada_mobil_polisi": 4297,
-      "akademi_polisi": 22,
-      "indeks_korupsi": 71,
-      "indeks_keamanan": 72
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 11,
-      "sirkuit_balap": 4,
-      "stadion": 23,
-      "stadion_internasional": 9
-  },
+  "pabrik_militer": kazakhstan_pabrik,
+    "pendidikan": kazakhstan_pendidikan,
+  "kesehatan": kazakhstan_kesehatan,
+  "hukum": kazakhstan_hukum,
+  "sektor_olahraga": kazakhstan_olahraga,
   "un_vote": 187,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

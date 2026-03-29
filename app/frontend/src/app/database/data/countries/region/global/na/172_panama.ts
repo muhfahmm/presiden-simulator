@@ -3,11 +3,16 @@ import { panama_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/n
 import { panama_armada } from "../../modules/2_militer/2_armada_militer/na/172_panama";
 import { panama_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/172_panama";
 import { panama_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/172_panama";
+import { panama_hukum } from "../../modules/3_sosial/3_hukum/na/172_panama";
 import { panama_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/172_panama";
 import { panama_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/172_panama";
+import { panama_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/172_panama";
 import { panama_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/172_panama";
 import { panama_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/172_panama";
 import { panama_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/172_panama";
+import { panama_olahraga } from "../../modules/3_sosial/4_olahraga/na/172_panama";
+import { panama_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/172_panama";
+import { panama_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/172_panama";
 import { panama_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/172_panama";
 import { panama_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/172_panama";
 import { panama_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/172_panama";
@@ -29,50 +34,11 @@ export const panama: CountryData = {
   "armada_militer": panama_armada,
   "militer_strategis": panama_strategis,
   "armada_kepolisian": panama_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 17,
-      "dasar": 19,
-      "menengah": 19,
-      "lanjutan": 2,
-      "universitas": 11,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 2,
-      "observatorium": 9,
-      "pusat_penelitian": 34,
-      "pusat_pengembangan": 36,
-      "literasi": 78
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 11,
-      "rumah_sakit_kecil": 31,
-      "pusat_diagnostik": 15,
-      "harapan_hidup": 37,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 18,
-      "pengadilan": 4,
-      "kejaksaan": 33,
-      "pos_polisi": 8,
-      "armada_mobil_polisi": 748,
-      "akademi_polisi": 18,
-      "indeks_korupsi": 59,
-      "indeks_keamanan": 50
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 34,
-      "stadion": 22,
-      "stadion_internasional": 31
-  },
+  "pabrik_militer": panama_pabrik,
+    "pendidikan": panama_pendidikan,
+  "kesehatan": panama_kesehatan,
+  "hukum": panama_hukum,
+  "sektor_olahraga": panama_olahraga,
   "un_vote": 120,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

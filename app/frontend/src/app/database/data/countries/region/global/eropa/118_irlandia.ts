@@ -3,11 +3,16 @@ import { irlandia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { irlandia_armada } from "../../modules/2_militer/2_armada_militer/eropa/118_irlandia";
 import { irlandia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/118_irlandia";
 import { irlandia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/118_irlandia";
+import { irlandia_hukum } from "../../modules/3_sosial/3_hukum/eropa/118_irlandia";
 import { irlandia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/118_irlandia";
 import { irlandia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/118_irlandia";
+import { irlandia_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/118_irlandia";
 import { irlandia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/118_irlandia";
 import { irlandia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/118_irlandia";
 import { irlandia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/118_irlandia";
+import { irlandia_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/118_irlandia";
+import { irlandia_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/118_irlandia";
+import { irlandia_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/118_irlandia";
 import { irlandia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/118_irlandia";
 import { irlandia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/118_irlandia";
 import { irlandia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/118_irlandia";
@@ -29,50 +34,11 @@ export const irlandia: CountryData = {
   "armada_militer": irlandia_armada,
   "militer_strategis": irlandia_strategis,
   "armada_kepolisian": irlandia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 23,
-      "dasar": 22,
-      "menengah": 37,
-      "lanjutan": 24,
-      "universitas": 35,
-      "lembaga_pendidikan": 1,
-      "laboratorium": 10,
-      "observatorium": 37,
-      "pusat_penelitian": 10,
-      "pusat_pengembangan": 25,
-      "literasi": 92
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 34,
-      "rumah_sakit_kecil": 1,
-      "pusat_diagnostik": 12,
-      "harapan_hidup": 24,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 37,
-      "pengadilan": 24,
-      "kejaksaan": 29,
-      "pos_polisi": 13,
-      "armada_mobil_polisi": 4069,
-      "akademi_polisi": 11,
-      "indeks_korupsi": 93,
-      "indeks_keamanan": 79
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 17,
-      "sirkuit_balap": 3,
-      "stadion": 3,
-      "stadion_internasional": 17
-  },
+  "pabrik_militer": irlandia_pabrik,
+    "pendidikan": irlandia_pendidikan,
+  "kesehatan": irlandia_kesehatan,
+  "hukum": irlandia_hukum,
+  "sektor_olahraga": irlandia_olahraga,
   "un_vote": 153,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

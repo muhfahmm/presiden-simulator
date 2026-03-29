@@ -3,11 +3,16 @@ import { djibouti_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { djibouti_armada } from "../../modules/2_militer/2_armada_militer/afrika/9_djibouti";
 import { djibouti_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/9_djibouti";
 import { djibouti_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/9_djibouti";
+import { djibouti_hukum } from "../../modules/3_sosial/3_hukum/afrika/9_djibouti";
 import { djibouti_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/9_djibouti";
 import { djibouti_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/9_djibouti";
+import { djibouti_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/9_djibouti";
 import { djibouti_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/9_djibouti";
 import { djibouti_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/9_djibouti";
 import { djibouti_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/9_djibouti";
+import { djibouti_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/9_djibouti";
+import { djibouti_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/9_djibouti";
+import { djibouti_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/9_djibouti";
 import { djibouti_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/9_djibouti";
 import { djibouti_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/9_djibouti";
 import { djibouti_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/9_djibouti";
@@ -29,50 +34,11 @@ export const djibouti: CountryData = {
   "armada_militer": djibouti_armada,
   "militer_strategis": djibouti_strategis,
   "armada_kepolisian": djibouti_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 29,
-      "dasar": 39,
-      "menengah": 20,
-      "lanjutan": 39,
-      "universitas": 34,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 30,
-      "observatorium": 18,
-      "pusat_penelitian": 7,
-      "pusat_pengembangan": 28,
-      "literasi": 90
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 16,
-      "rumah_sakit_kecil": 29,
-      "pusat_diagnostik": 17,
-      "harapan_hidup": 35,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 16,
-      "pengadilan": 40,
-      "kejaksaan": 15,
-      "pos_polisi": 8,
-      "armada_mobil_polisi": 622,
-      "akademi_polisi": 26,
-      "indeks_korupsi": 87,
-      "indeks_keamanan": 75
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 8,
-      "sirkuit_balap": 19,
-      "stadion": 34,
-      "stadion_internasional": 33
-  },
+  "pabrik_militer": djibouti_pabrik,
+    "pendidikan": djibouti_pendidikan,
+  "kesehatan": djibouti_kesehatan,
+  "hukum": djibouti_hukum,
+  "sektor_olahraga": djibouti_olahraga,
   "un_vote": 13,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

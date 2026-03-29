@@ -3,11 +3,16 @@ import { bermuda_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { bermuda_armada } from "../../modules/2_militer/2_armada_militer/na/157_bermuda";
 import { bermuda_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/157_bermuda";
 import { bermuda_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/157_bermuda";
+import { bermuda_hukum } from "../../modules/3_sosial/3_hukum/na/157_bermuda";
 import { bermuda_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/157_bermuda";
 import { bermuda_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/157_bermuda";
+import { bermuda_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/157_bermuda";
 import { bermuda_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/157_bermuda";
 import { bermuda_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/157_bermuda";
 import { bermuda_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/157_bermuda";
+import { bermuda_olahraga } from "../../modules/3_sosial/4_olahraga/na/157_bermuda";
+import { bermuda_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/157_bermuda";
+import { bermuda_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/157_bermuda";
 import { bermuda_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/157_bermuda";
 import { bermuda_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/157_bermuda";
 import { bermuda_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/157_bermuda";
@@ -29,50 +34,11 @@ export const bermuda: CountryData = {
   "armada_militer": bermuda_armada,
   "militer_strategis": bermuda_strategis,
   "armada_kepolisian": bermuda_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 28,
-      "dasar": 35,
-      "menengah": 3,
-      "lanjutan": 21,
-      "universitas": 6,
-      "lembaga_pendidikan": 29,
-      "laboratorium": 40,
-      "observatorium": 23,
-      "pusat_penelitian": 20,
-      "pusat_pengembangan": 6,
-      "literasi": 94
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 16,
-      "rumah_sakit_kecil": 31,
-      "pusat_diagnostik": 40,
-      "harapan_hidup": 31,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 30,
-      "pengadilan": 12,
-      "kejaksaan": 14,
-      "pos_polisi": 4,
-      "armada_mobil_polisi": 6328,
-      "akademi_polisi": 24,
-      "indeks_korupsi": 56,
-      "indeks_keamanan": 85
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 39,
-      "sirkuit_balap": 40,
-      "stadion": 19,
-      "stadion_internasional": 22
-  },
+  "pabrik_militer": bermuda_pabrik,
+    "pendidikan": bermuda_pendidikan,
+  "kesehatan": bermuda_kesehatan,
+  "hukum": bermuda_hukum,
+  "sektor_olahraga": bermuda_olahraga,
   "un_vote": 22,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { meksiko_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { meksiko_armada } from "../../modules/2_militer/2_armada_militer/na/170_meksiko";
 import { meksiko_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/170_meksiko";
 import { meksiko_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/170_meksiko";
+import { meksiko_hukum } from "../../modules/3_sosial/3_hukum/na/170_meksiko";
 import { meksiko_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/170_meksiko";
 import { meksiko_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/170_meksiko";
+import { meksiko_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/170_meksiko";
 import { meksiko_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/170_meksiko";
 import { meksiko_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/170_meksiko";
 import { meksiko_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/170_meksiko";
+import { meksiko_olahraga } from "../../modules/3_sosial/4_olahraga/na/170_meksiko";
+import { meksiko_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/170_meksiko";
+import { meksiko_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/170_meksiko";
 import { meksiko_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/170_meksiko";
 import { meksiko_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/170_meksiko";
 import { meksiko_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/170_meksiko";
@@ -29,50 +34,11 @@ export const meksiko: CountryData = {
   "armada_militer": meksiko_armada,
   "militer_strategis": meksiko_strategis,
   "armada_kepolisian": meksiko_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 32,
-      "dasar": 12,
-      "menengah": 8,
-      "lanjutan": 23,
-      "universitas": 18,
-      "lembaga_pendidikan": 37,
-      "laboratorium": 16,
-      "observatorium": 5,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 18,
-      "literasi": 58
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 12,
-      "rumah_sakit_kecil": 34,
-      "pusat_diagnostik": 27,
-      "harapan_hidup": 33,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 30,
-      "pengadilan": 37,
-      "kejaksaan": 32,
-      "pos_polisi": 7,
-      "armada_mobil_polisi": 5622,
-      "akademi_polisi": 35,
-      "indeks_korupsi": 86,
-      "indeks_keamanan": 92
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 16,
-      "sirkuit_balap": 28,
-      "stadion": 14,
-      "stadion_internasional": 3
-  },
+  "pabrik_militer": meksiko_pabrik,
+    "pendidikan": meksiko_pendidikan,
+  "kesehatan": meksiko_kesehatan,
+  "hukum": meksiko_hukum,
+  "sektor_olahraga": meksiko_olahraga,
   "un_vote": 186,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

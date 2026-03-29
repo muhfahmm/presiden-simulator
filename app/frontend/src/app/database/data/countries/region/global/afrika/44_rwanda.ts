@@ -3,11 +3,16 @@ import { rwanda_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/a
 import { rwanda_armada } from "../../modules/2_militer/2_armada_militer/afrika/44_rwanda";
 import { rwanda_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/44_rwanda";
 import { rwanda_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/44_rwanda";
+import { rwanda_hukum } from "../../modules/3_sosial/3_hukum/afrika/44_rwanda";
 import { rwanda_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/44_rwanda";
 import { rwanda_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/44_rwanda";
+import { rwanda_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/44_rwanda";
 import { rwanda_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/44_rwanda";
 import { rwanda_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/44_rwanda";
 import { rwanda_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/44_rwanda";
+import { rwanda_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/44_rwanda";
+import { rwanda_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/44_rwanda";
+import { rwanda_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/44_rwanda";
 import { rwanda_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/44_rwanda";
 import { rwanda_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/44_rwanda";
 import { rwanda_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/44_rwanda";
@@ -29,50 +34,11 @@ export const rwanda: CountryData = {
   "armada_militer": rwanda_armada,
   "militer_strategis": rwanda_strategis,
   "armada_kepolisian": rwanda_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 9,
-      "dasar": 28,
-      "menengah": 28,
-      "lanjutan": 30,
-      "universitas": 8,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 35,
-      "observatorium": 24,
-      "pusat_penelitian": 12,
-      "pusat_pengembangan": 9,
-      "literasi": 86
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 7,
-      "pusat_diagnostik": 22,
-      "harapan_hidup": 21,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 33,
-      "pengadilan": 25,
-      "kejaksaan": 22,
-      "pos_polisi": 24,
-      "armada_mobil_polisi": 8723,
-      "akademi_polisi": 40,
-      "indeks_korupsi": 62,
-      "indeks_keamanan": 88
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 29,
-      "sirkuit_balap": 39,
-      "stadion": 22,
-      "stadion_internasional": 22
-  },
+  "pabrik_militer": rwanda_pabrik,
+    "pendidikan": rwanda_pendidikan,
+  "kesehatan": rwanda_kesehatan,
+  "hukum": rwanda_hukum,
+  "sektor_olahraga": rwanda_olahraga,
   "un_vote": 50,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

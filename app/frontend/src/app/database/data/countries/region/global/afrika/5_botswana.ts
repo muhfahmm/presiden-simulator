@@ -3,11 +3,16 @@ import { botswana_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { botswana_armada } from "../../modules/2_militer/2_armada_militer/afrika/5_botswana";
 import { botswana_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/5_botswana";
 import { botswana_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/5_botswana";
+import { botswana_hukum } from "../../modules/3_sosial/3_hukum/afrika/5_botswana";
 import { botswana_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/5_botswana";
 import { botswana_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/5_botswana";
+import { botswana_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/5_botswana";
 import { botswana_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/5_botswana";
 import { botswana_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/5_botswana";
 import { botswana_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/5_botswana";
+import { botswana_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/5_botswana";
+import { botswana_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/5_botswana";
+import { botswana_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/5_botswana";
 import { botswana_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/5_botswana";
 import { botswana_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/5_botswana";
 import { botswana_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/5_botswana";
@@ -29,50 +34,11 @@ export const botswana: CountryData = {
   "armada_militer": botswana_armada,
   "militer_strategis": botswana_strategis,
   "armada_kepolisian": botswana_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 39,
-      "dasar": 14,
-      "menengah": 7,
-      "lanjutan": 24,
-      "universitas": 16,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 2,
-      "observatorium": 14,
-      "pusat_penelitian": 32,
-      "pusat_pengembangan": 35,
-      "literasi": 70
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 11,
-      "rumah_sakit_kecil": 24,
-      "pusat_diagnostik": 7,
-      "harapan_hidup": 2,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 27,
-      "pengadilan": 40,
-      "kejaksaan": 30,
-      "pos_polisi": 14,
-      "armada_mobil_polisi": 6809,
-      "akademi_polisi": 22,
-      "indeks_korupsi": 66,
-      "indeks_keamanan": 72
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 2,
-      "sirkuit_balap": 2,
-      "stadion": 10,
-      "stadion_internasional": 1
-  },
+  "pabrik_militer": botswana_pabrik,
+    "pendidikan": botswana_pendidikan,
+  "kesehatan": botswana_kesehatan,
+  "hukum": botswana_hukum,
+  "sektor_olahraga": botswana_olahraga,
   "un_vote": 48,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

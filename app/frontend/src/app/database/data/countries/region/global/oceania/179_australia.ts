@@ -3,11 +3,16 @@ import { australia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { australia_armada } from "../../modules/2_militer/2_armada_militer/oceania/179_australia";
 import { australia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/179_australia";
 import { australia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/179_australia";
+import { australia_hukum } from "../../modules/3_sosial/3_hukum/oceania/179_australia";
 import { australia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/179_australia";
 import { australia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/179_australia";
+import { australia_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/179_australia";
 import { australia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/179_australia";
 import { australia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/179_australia";
 import { australia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/179_australia";
+import { australia_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/179_australia";
+import { australia_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/179_australia";
+import { australia_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/179_australia";
 import { australia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/179_australia";
 import { australia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/179_australia";
 import { australia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/179_australia";
@@ -29,50 +34,11 @@ export const australia: CountryData = {
   "armada_militer": australia_armada,
   "militer_strategis": australia_strategis,
   "armada_kepolisian": australia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 7,
-      "dasar": 15,
-      "menengah": 20,
-      "lanjutan": 33,
-      "universitas": 29,
-      "lembaga_pendidikan": 27,
-      "laboratorium": 20,
-      "observatorium": 17,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 33,
-      "literasi": 50
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 25,
-      "rumah_sakit_kecil": 16,
-      "pusat_diagnostik": 12,
-      "harapan_hidup": 26,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 14,
-      "pengadilan": 21,
-      "kejaksaan": 16,
-      "pos_polisi": 9,
-      "armada_mobil_polisi": 1387,
-      "akademi_polisi": 35,
-      "indeks_korupsi": 50,
-      "indeks_keamanan": 80
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 11,
-      "sirkuit_balap": 12,
-      "stadion": 33,
-      "stadion_internasional": 12
-  },
+  "pabrik_militer": australia_pabrik,
+    "pendidikan": australia_pendidikan,
+  "kesehatan": australia_kesehatan,
+  "hukum": australia_hukum,
+  "sektor_olahraga": australia_olahraga,
   "un_vote": 112,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

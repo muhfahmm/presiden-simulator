@@ -3,11 +3,16 @@ import { sierra_leone_agrikultur } from "../../modules/1_ekonomi/7_sektor_agriku
 import { sierra_leone_armada } from "../../modules/2_militer/2_armada_militer/afrika/48_sierra_leone";
 import { sierra_leone_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/48_sierra_leone";
 import { sierra_leone_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/48_sierra_leone";
+import { sierra_leone_hukum } from "../../modules/3_sosial/3_hukum/afrika/48_sierra_leone";
 import { sierra_leone_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/48_sierra_leone";
 import { sierra_leone_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/48_sierra_leone";
+import { sierra_leone_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/48_sierra_leone";
 import { sierra_leone_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/48_sierra_leone";
 import { sierra_leone_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/48_sierra_leone";
 import { sierra_leone_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/48_sierra_leone";
+import { sierra_leone_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/48_sierra_leone";
+import { sierra_leone_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/48_sierra_leone";
+import { sierra_leone_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/48_sierra_leone";
 import { sierra_leone_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/48_sierra_leone";
 import { sierra_leone_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/48_sierra_leone";
 import { sierra_leone_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/48_sierra_leone";
@@ -29,50 +34,11 @@ export const sierra_leone: CountryData = {
   "armada_militer": sierra_leone_armada,
   "militer_strategis": sierra_leone_strategis,
   "armada_kepolisian": sierra_leone_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 2,
-      "dasar": 34,
-      "menengah": 22,
-      "lanjutan": 32,
-      "universitas": 2,
-      "lembaga_pendidikan": 31,
-      "laboratorium": 28,
-      "observatorium": 4,
-      "pusat_penelitian": 26,
-      "pusat_pengembangan": 11,
-      "literasi": 61
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 32,
-      "rumah_sakit_kecil": 28,
-      "pusat_diagnostik": 20,
-      "harapan_hidup": 16,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 2,
-      "pengadilan": 34,
-      "kejaksaan": 17,
-      "pos_polisi": 14,
-      "armada_mobil_polisi": 2557,
-      "akademi_polisi": 8,
-      "indeks_korupsi": 82,
-      "indeks_keamanan": 79
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 26,
-      "sirkuit_balap": 14,
-      "stadion": 21,
-      "stadion_internasional": 11
-  },
+  "pabrik_militer": sierra_leone_pabrik,
+    "pendidikan": sierra_leone_pendidikan,
+  "kesehatan": sierra_leone_kesehatan,
+  "hukum": sierra_leone_hukum,
+  "sektor_olahraga": sierra_leone_olahraga,
   "un_vote": 91,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

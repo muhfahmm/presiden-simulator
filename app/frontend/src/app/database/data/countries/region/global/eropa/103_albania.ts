@@ -3,11 +3,16 @@ import { albania_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { albania_armada } from "../../modules/2_militer/2_armada_militer/eropa/103_albania";
 import { albania_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/103_albania";
 import { albania_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/103_albania";
+import { albania_hukum } from "../../modules/3_sosial/3_hukum/eropa/103_albania";
 import { albania_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/103_albania";
 import { albania_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/103_albania";
+import { albania_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/103_albania";
 import { albania_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/103_albania";
 import { albania_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/103_albania";
 import { albania_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/103_albania";
+import { albania_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/103_albania";
+import { albania_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/103_albania";
+import { albania_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/103_albania";
 import { albania_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/103_albania";
 import { albania_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/103_albania";
 import { albania_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/103_albania";
@@ -29,50 +34,11 @@ export const albania: CountryData = {
   "armada_militer": albania_armada,
   "militer_strategis": albania_strategis,
   "armada_kepolisian": albania_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 16,
-      "dasar": 23,
-      "menengah": 2,
-      "lanjutan": 36,
-      "universitas": 30,
-      "lembaga_pendidikan": 33,
-      "laboratorium": 16,
-      "observatorium": 4,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 12,
-      "literasi": 77
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 39,
-      "pusat_diagnostik": 39,
-      "harapan_hidup": 10,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 16,
-      "pengadilan": 15,
-      "kejaksaan": 4,
-      "pos_polisi": 22,
-      "armada_mobil_polisi": 7268,
-      "akademi_polisi": 36,
-      "indeks_korupsi": 67,
-      "indeks_keamanan": 58
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 11,
-      "sirkuit_balap": 8,
-      "stadion": 32,
-      "stadion_internasional": 26
-  },
+  "pabrik_militer": albania_pabrik,
+    "pendidikan": albania_pendidikan,
+  "kesehatan": albania_kesehatan,
+  "hukum": albania_hukum,
+  "sektor_olahraga": albania_olahraga,
   "un_vote": 77,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

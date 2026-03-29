@@ -3,11 +3,16 @@ import { guiana_prancis_agrikultur } from "../../modules/1_ekonomi/7_sektor_agri
 import { guiana_prancis_armada } from "../../modules/2_militer/2_armada_militer/sa/200_guiana_prancis";
 import { guiana_prancis_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/sa/200_guiana_prancis";
 import { guiana_prancis_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/sa/200_guiana_prancis";
+import { guiana_prancis_hukum } from "../../modules/3_sosial/3_hukum/sa/200_guiana_prancis";
 import { guiana_prancis_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/sa/200_guiana_prancis";
 import { guiana_prancis_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/sa/200_guiana_prancis";
+import { guiana_prancis_kesehatan } from "../../modules/3_sosial/2_kesehatan/sa/200_guiana_prancis";
 import { guiana_prancis_listrik } from "../../modules/1_ekonomi/2_kelistrikan/sa/200_guiana_prancis";
 import { guiana_prancis_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/sa/200_guiana_prancis";
 import { guiana_prancis_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/sa/200_guiana_prancis";
+import { guiana_prancis_olahraga } from "../../modules/3_sosial/4_olahraga/sa/200_guiana_prancis";
+import { guiana_prancis_pabrik } from "../../modules/2_militer/5_pabrik_militer/sa/200_guiana_prancis";
+import { guiana_prancis_pendidikan } from "../../modules/3_sosial/1_pendidikan/sa/200_guiana_prancis";
 import { guiana_prancis_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/sa/200_guiana_prancis";
 import { guiana_prancis_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/200_guiana_prancis";
 import { guiana_prancis_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/200_guiana_prancis";
@@ -29,50 +34,11 @@ export const guiana_prancis: CountryData = {
   "armada_militer": guiana_prancis_armada,
   "militer_strategis": guiana_prancis_strategis,
   "armada_kepolisian": guiana_prancis_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 35,
-      "dasar": 18,
-      "menengah": 20,
-      "lanjutan": 31,
-      "universitas": 31,
-      "lembaga_pendidikan": 29,
-      "laboratorium": 10,
-      "observatorium": 31,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 23,
-      "literasi": 86
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 21,
-      "rumah_sakit_kecil": 18,
-      "pusat_diagnostik": 21,
-      "harapan_hidup": 10,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 7,
-      "pengadilan": 4,
-      "kejaksaan": 22,
-      "pos_polisi": 27,
-      "armada_mobil_polisi": 7285,
-      "akademi_polisi": 11,
-      "indeks_korupsi": 94,
-      "indeks_keamanan": 69
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 28,
-      "sirkuit_balap": 30,
-      "stadion": 31,
-      "stadion_internasional": 28
-  },
+  "pabrik_militer": guiana_prancis_pabrik,
+    "pendidikan": guiana_prancis_pendidikan,
+  "kesehatan": guiana_prancis_kesehatan,
+  "hukum": guiana_prancis_hukum,
+  "sektor_olahraga": guiana_prancis_olahraga,
   "un_vote": 39,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

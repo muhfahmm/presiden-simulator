@@ -3,11 +3,16 @@ import { republik_serbia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agr
 import { republik_serbia_armada } from "../../modules/2_militer/2_armada_militer/eropa/139_republik_serbia";
 import { republik_serbia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/139_republik_serbia";
 import { republik_serbia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/139_republik_serbia";
+import { republik_serbia_hukum } from "../../modules/3_sosial/3_hukum/eropa/139_republik_serbia";
 import { republik_serbia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/139_republik_serbia";
 import { republik_serbia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/139_republik_serbia";
+import { republik_serbia_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/139_republik_serbia";
 import { republik_serbia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/139_republik_serbia";
 import { republik_serbia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/139_republik_serbia";
 import { republik_serbia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/139_republik_serbia";
+import { republik_serbia_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/139_republik_serbia";
+import { republik_serbia_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/139_republik_serbia";
+import { republik_serbia_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/139_republik_serbia";
 import { republik_serbia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/139_republik_serbia";
 import { republik_serbia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/139_republik_serbia";
 import { republik_serbia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/139_republik_serbia";
@@ -29,50 +34,11 @@ export const republik_serbia: CountryData = {
   "armada_militer": republik_serbia_armada,
   "militer_strategis": republik_serbia_strategis,
   "armada_kepolisian": republik_serbia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 4,
-      "dasar": 13,
-      "menengah": 18,
-      "lanjutan": 24,
-      "universitas": 39,
-      "lembaga_pendidikan": 6,
-      "laboratorium": 10,
-      "observatorium": 8,
-      "pusat_penelitian": 29,
-      "pusat_pengembangan": 25,
-      "literasi": 66
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 26,
-      "rumah_sakit_kecil": 12,
-      "pusat_diagnostik": 23,
-      "harapan_hidup": 13,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 19,
-      "pengadilan": 4,
-      "kejaksaan": 8,
-      "pos_polisi": 31,
-      "armada_mobil_polisi": 7504,
-      "akademi_polisi": 37,
-      "indeks_korupsi": 94,
-      "indeks_keamanan": 80
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 40,
-      "sirkuit_balap": 3,
-      "stadion": 27,
-      "stadion_internasional": 25
-  },
+  "pabrik_militer": republik_serbia_pabrik,
+    "pendidikan": republik_serbia_pendidikan,
+  "kesehatan": republik_serbia_kesehatan,
+  "hukum": republik_serbia_hukum,
+  "sektor_olahraga": republik_serbia_olahraga,
   "un_vote": 167,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { mauritania_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { mauritania_armada } from "../../modules/2_militer/2_armada_militer/afrika/29_mauritania";
 import { mauritania_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/29_mauritania";
 import { mauritania_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/29_mauritania";
+import { mauritania_hukum } from "../../modules/3_sosial/3_hukum/afrika/29_mauritania";
 import { mauritania_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/29_mauritania";
 import { mauritania_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/29_mauritania";
+import { mauritania_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/29_mauritania";
 import { mauritania_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/29_mauritania";
 import { mauritania_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/29_mauritania";
 import { mauritania_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/29_mauritania";
+import { mauritania_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/29_mauritania";
+import { mauritania_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/29_mauritania";
+import { mauritania_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/29_mauritania";
 import { mauritania_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/29_mauritania";
 import { mauritania_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/29_mauritania";
 import { mauritania_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/29_mauritania";
@@ -29,50 +34,11 @@ export const mauritania: CountryData = {
   "armada_militer": mauritania_armada,
   "militer_strategis": mauritania_strategis,
   "armada_kepolisian": mauritania_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 20,
-      "dasar": 38,
-      "menengah": 16,
-      "lanjutan": 7,
-      "universitas": 7,
-      "lembaga_pendidikan": 5,
-      "laboratorium": 39,
-      "observatorium": 19,
-      "pusat_penelitian": 23,
-      "pusat_pengembangan": 10,
-      "literasi": 88
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 24,
-      "rumah_sakit_kecil": 29,
-      "pusat_diagnostik": 2,
-      "harapan_hidup": 11,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 20,
-      "pengadilan": 28,
-      "kejaksaan": 38,
-      "pos_polisi": 14,
-      "armada_mobil_polisi": 5010,
-      "akademi_polisi": 20,
-      "indeks_korupsi": 82,
-      "indeks_keamanan": 71
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 10,
-      "stadion": 20,
-      "stadion_internasional": 4
-  },
+  "pabrik_militer": mauritania_pabrik,
+    "pendidikan": mauritania_pendidikan,
+  "kesehatan": mauritania_kesehatan,
+  "hukum": mauritania_hukum,
+  "sektor_olahraga": mauritania_olahraga,
   "un_vote": 124,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

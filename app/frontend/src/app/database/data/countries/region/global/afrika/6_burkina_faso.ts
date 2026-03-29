@@ -3,11 +3,16 @@ import { burkina_faso_agrikultur } from "../../modules/1_ekonomi/7_sektor_agriku
 import { burkina_faso_armada } from "../../modules/2_militer/2_armada_militer/afrika/6_burkina_faso";
 import { burkina_faso_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/6_burkina_faso";
 import { burkina_faso_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/6_burkina_faso";
+import { burkina_faso_hukum } from "../../modules/3_sosial/3_hukum/afrika/6_burkina_faso";
 import { burkina_faso_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/6_burkina_faso";
 import { burkina_faso_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/6_burkina_faso";
+import { burkina_faso_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/6_burkina_faso";
 import { burkina_faso_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/6_burkina_faso";
 import { burkina_faso_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/6_burkina_faso";
 import { burkina_faso_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/6_burkina_faso";
+import { burkina_faso_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/6_burkina_faso";
+import { burkina_faso_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/6_burkina_faso";
+import { burkina_faso_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/6_burkina_faso";
 import { burkina_faso_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/6_burkina_faso";
 import { burkina_faso_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/6_burkina_faso";
 import { burkina_faso_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/6_burkina_faso";
@@ -29,50 +34,11 @@ export const burkina_faso: CountryData = {
   "armada_militer": burkina_faso_armada,
   "militer_strategis": burkina_faso_strategis,
   "armada_kepolisian": burkina_faso_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 21,
-      "dasar": 26,
-      "menengah": 12,
-      "lanjutan": 23,
-      "universitas": 40,
-      "lembaga_pendidikan": 35,
-      "laboratorium": 9,
-      "observatorium": 18,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 2,
-      "literasi": 50
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 28,
-      "pusat_diagnostik": 26,
-      "harapan_hidup": 38,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 22,
-      "pengadilan": 13,
-      "kejaksaan": 10,
-      "pos_polisi": 8,
-      "armada_mobil_polisi": 5057,
-      "akademi_polisi": 13,
-      "indeks_korupsi": 88,
-      "indeks_keamanan": 54
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 9,
-      "sirkuit_balap": 6,
-      "stadion": 29,
-      "stadion_internasional": 40
-  },
+  "pabrik_militer": burkina_faso_pabrik,
+    "pendidikan": burkina_faso_pendidikan,
+  "kesehatan": burkina_faso_kesehatan,
+  "hukum": burkina_faso_hukum,
+  "sektor_olahraga": burkina_faso_olahraga,
   "un_vote": 46,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { madagaskar_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { madagaskar_armada } from "../../modules/2_militer/2_armada_militer/afrika/25_madagaskar";
 import { madagaskar_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/25_madagaskar";
 import { madagaskar_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/25_madagaskar";
+import { madagaskar_hukum } from "../../modules/3_sosial/3_hukum/afrika/25_madagaskar";
 import { madagaskar_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/25_madagaskar";
 import { madagaskar_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/25_madagaskar";
+import { madagaskar_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/25_madagaskar";
 import { madagaskar_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/25_madagaskar";
 import { madagaskar_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/25_madagaskar";
 import { madagaskar_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/25_madagaskar";
+import { madagaskar_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/25_madagaskar";
+import { madagaskar_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/25_madagaskar";
+import { madagaskar_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/25_madagaskar";
 import { madagaskar_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/25_madagaskar";
 import { madagaskar_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/25_madagaskar";
 import { madagaskar_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/25_madagaskar";
@@ -29,50 +34,11 @@ export const madagaskar: CountryData = {
   "armada_militer": madagaskar_armada,
   "militer_strategis": madagaskar_strategis,
   "armada_kepolisian": madagaskar_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 27,
-      "dasar": 21,
-      "menengah": 35,
-      "lanjutan": 27,
-      "universitas": 8,
-      "lembaga_pendidikan": 7,
-      "laboratorium": 21,
-      "observatorium": 28,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 18,
-      "literasi": 68
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 35,
-      "rumah_sakit_kecil": 5,
-      "pusat_diagnostik": 4,
-      "harapan_hidup": 1,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 29,
-      "pengadilan": 28,
-      "kejaksaan": 14,
-      "pos_polisi": 23,
-      "armada_mobil_polisi": 5100,
-      "akademi_polisi": 38,
-      "indeks_korupsi": 77,
-      "indeks_keamanan": 50
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 16,
-      "sirkuit_balap": 12,
-      "stadion": 36,
-      "stadion_internasional": 17
-  },
+  "pabrik_militer": madagaskar_pabrik,
+    "pendidikan": madagaskar_pendidikan,
+  "kesehatan": madagaskar_kesehatan,
+  "hukum": madagaskar_hukum,
+  "sektor_olahraga": madagaskar_olahraga,
   "un_vote": 87,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

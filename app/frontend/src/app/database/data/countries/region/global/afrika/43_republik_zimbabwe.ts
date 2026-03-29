@@ -3,11 +3,16 @@ import { republik_zimbabwe_agrikultur } from "../../modules/1_ekonomi/7_sektor_a
 import { republik_zimbabwe_armada } from "../../modules/2_militer/2_armada_militer/afrika/43_republik_zimbabwe";
 import { republik_zimbabwe_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/43_republik_zimbabwe";
 import { republik_zimbabwe_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/43_republik_zimbabwe";
+import { republik_zimbabwe_hukum } from "../../modules/3_sosial/3_hukum/afrika/43_republik_zimbabwe";
 import { republik_zimbabwe_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/43_republik_zimbabwe";
 import { republik_zimbabwe_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/43_republik_zimbabwe";
+import { republik_zimbabwe_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/43_republik_zimbabwe";
 import { republik_zimbabwe_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/43_republik_zimbabwe";
 import { republik_zimbabwe_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/43_republik_zimbabwe";
 import { republik_zimbabwe_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/43_republik_zimbabwe";
+import { republik_zimbabwe_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/43_republik_zimbabwe";
+import { republik_zimbabwe_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/43_republik_zimbabwe";
+import { republik_zimbabwe_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/43_republik_zimbabwe";
 import { republik_zimbabwe_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/43_republik_zimbabwe";
 import { republik_zimbabwe_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/43_republik_zimbabwe";
 import { republik_zimbabwe_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/43_republik_zimbabwe";
@@ -29,50 +34,11 @@ export const republik_zimbabwe: CountryData = {
   "armada_militer": republik_zimbabwe_armada,
   "militer_strategis": republik_zimbabwe_strategis,
   "armada_kepolisian": republik_zimbabwe_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 38,
-      "dasar": 32,
-      "menengah": 5,
-      "lanjutan": 3,
-      "universitas": 19,
-      "lembaga_pendidikan": 15,
-      "laboratorium": 25,
-      "observatorium": 14,
-      "pusat_penelitian": 39,
-      "pusat_pengembangan": 16,
-      "literasi": 62
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 6,
-      "rumah_sakit_kecil": 33,
-      "pusat_diagnostik": 35,
-      "harapan_hidup": 38,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 9,
-      "pengadilan": 8,
-      "kejaksaan": 23,
-      "pos_polisi": 6,
-      "armada_mobil_polisi": 1107,
-      "akademi_polisi": 8,
-      "indeks_korupsi": 76,
-      "indeks_keamanan": 86
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 15,
-      "sirkuit_balap": 12,
-      "stadion": 9,
-      "stadion_internasional": 28
-  },
+  "pabrik_militer": republik_zimbabwe_pabrik,
+    "pendidikan": republik_zimbabwe_pendidikan,
+  "kesehatan": republik_zimbabwe_kesehatan,
+  "hukum": republik_zimbabwe_hukum,
+  "sektor_olahraga": republik_zimbabwe_olahraga,
   "un_vote": 36,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

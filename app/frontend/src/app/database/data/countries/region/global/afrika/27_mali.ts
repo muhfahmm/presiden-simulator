@@ -3,11 +3,16 @@ import { mali_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/afr
 import { mali_armada } from "../../modules/2_militer/2_armada_militer/afrika/27_mali";
 import { mali_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/27_mali";
 import { mali_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/27_mali";
+import { mali_hukum } from "../../modules/3_sosial/3_hukum/afrika/27_mali";
 import { mali_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/27_mali";
 import { mali_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/27_mali";
+import { mali_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/27_mali";
 import { mali_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/27_mali";
 import { mali_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/27_mali";
 import { mali_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/27_mali";
+import { mali_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/27_mali";
+import { mali_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/27_mali";
+import { mali_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/27_mali";
 import { mali_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/27_mali";
 import { mali_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/27_mali";
 import { mali_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/27_mali";
@@ -29,50 +34,11 @@ export const mali: CountryData = {
   "armada_militer": mali_armada,
   "militer_strategis": mali_strategis,
   "armada_kepolisian": mali_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 25,
-      "dasar": 22,
-      "menengah": 5,
-      "lanjutan": 36,
-      "universitas": 15,
-      "lembaga_pendidikan": 19,
-      "laboratorium": 33,
-      "observatorium": 17,
-      "pusat_penelitian": 20,
-      "pusat_pengembangan": 17,
-      "literasi": 80
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 9,
-      "rumah_sakit_kecil": 11,
-      "pusat_diagnostik": 5,
-      "harapan_hidup": 27,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 34,
-      "pengadilan": 13,
-      "kejaksaan": 27,
-      "pos_polisi": 31,
-      "armada_mobil_polisi": 2788,
-      "akademi_polisi": 5,
-      "indeks_korupsi": 53,
-      "indeks_keamanan": 93
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 21,
-      "sirkuit_balap": 3,
-      "stadion": 7,
-      "stadion_internasional": 40
-  },
+  "pabrik_militer": mali_pabrik,
+    "pendidikan": mali_pendidikan,
+  "kesehatan": mali_kesehatan,
+  "hukum": mali_hukum,
+  "sektor_olahraga": mali_olahraga,
   "un_vote": 106,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

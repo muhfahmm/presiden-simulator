@@ -3,11 +3,16 @@ import { kosovo_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/e
 import { kosovo_armada } from "../../modules/2_militer/2_armada_militer/eropa/123_kosovo";
 import { kosovo_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/123_kosovo";
 import { kosovo_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/123_kosovo";
+import { kosovo_hukum } from "../../modules/3_sosial/3_hukum/eropa/123_kosovo";
 import { kosovo_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/123_kosovo";
 import { kosovo_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/123_kosovo";
+import { kosovo_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/123_kosovo";
 import { kosovo_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/123_kosovo";
 import { kosovo_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/123_kosovo";
 import { kosovo_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/123_kosovo";
+import { kosovo_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/123_kosovo";
+import { kosovo_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/123_kosovo";
+import { kosovo_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/123_kosovo";
 import { kosovo_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/123_kosovo";
 import { kosovo_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/123_kosovo";
 import { kosovo_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/123_kosovo";
@@ -29,50 +34,11 @@ export const kosovo: CountryData = {
   "armada_militer": kosovo_armada,
   "militer_strategis": kosovo_strategis,
   "armada_kepolisian": kosovo_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 4,
-      "dasar": 38,
-      "menengah": 37,
-      "lanjutan": 39,
-      "universitas": 25,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 9,
-      "observatorium": 21,
-      "pusat_penelitian": 18,
-      "pusat_pengembangan": 39,
-      "literasi": 51
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 26,
-      "pusat_diagnostik": 39,
-      "harapan_hidup": 10,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 11,
-      "pengadilan": 16,
-      "kejaksaan": 25,
-      "pos_polisi": 18,
-      "armada_mobil_polisi": 9952,
-      "akademi_polisi": 26,
-      "indeks_korupsi": 50,
-      "indeks_keamanan": 93
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 22,
-      "sirkuit_balap": 33,
-      "stadion": 25,
-      "stadion_internasional": 13
-  },
+  "pabrik_militer": kosovo_pabrik,
+    "pendidikan": kosovo_pendidikan,
+  "kesehatan": kosovo_kesehatan,
+  "hukum": kosovo_hukum,
+  "sektor_olahraga": kosovo_olahraga,
   "un_vote": 7,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

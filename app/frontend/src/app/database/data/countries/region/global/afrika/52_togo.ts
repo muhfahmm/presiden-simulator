@@ -3,11 +3,16 @@ import { togo_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/afr
 import { togo_armada } from "../../modules/2_militer/2_armada_militer/afrika/52_togo";
 import { togo_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/52_togo";
 import { togo_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/52_togo";
+import { togo_hukum } from "../../modules/3_sosial/3_hukum/afrika/52_togo";
 import { togo_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/52_togo";
 import { togo_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/52_togo";
+import { togo_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/52_togo";
 import { togo_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/52_togo";
 import { togo_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/52_togo";
 import { togo_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/52_togo";
+import { togo_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/52_togo";
+import { togo_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/52_togo";
+import { togo_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/52_togo";
 import { togo_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/52_togo";
 import { togo_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/52_togo";
 import { togo_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/52_togo";
@@ -29,50 +34,11 @@ export const togo: CountryData = {
   "armada_militer": togo_armada,
   "militer_strategis": togo_strategis,
   "armada_kepolisian": togo_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 3,
-      "dasar": 19,
-      "menengah": 11,
-      "lanjutan": 39,
-      "universitas": 13,
-      "lembaga_pendidikan": 14,
-      "laboratorium": 1,
-      "observatorium": 5,
-      "pusat_penelitian": 39,
-      "pusat_pengembangan": 1,
-      "literasi": 54
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 20,
-      "rumah_sakit_kecil": 15,
-      "pusat_diagnostik": 17,
-      "harapan_hidup": 27,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 37,
-      "pengadilan": 27,
-      "kejaksaan": 39,
-      "pos_polisi": 8,
-      "armada_mobil_polisi": 4480,
-      "akademi_polisi": 4,
-      "indeks_korupsi": 80,
-      "indeks_keamanan": 81
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 9,
-      "sirkuit_balap": 19,
-      "stadion": 38,
-      "stadion_internasional": 2
-  },
+  "pabrik_militer": togo_pabrik,
+    "pendidikan": togo_pendidikan,
+  "kesehatan": togo_kesehatan,
+  "hukum": togo_hukum,
+  "sektor_olahraga": togo_olahraga,
   "un_vote": 122,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

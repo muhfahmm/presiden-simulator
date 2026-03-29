@@ -3,11 +3,16 @@ import { aljazair_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { aljazair_armada } from "../../modules/2_militer/2_armada_militer/afrika/2_aljazair";
 import { aljazair_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/2_aljazair";
 import { aljazair_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/2_aljazair";
+import { aljazair_hukum } from "../../modules/3_sosial/3_hukum/afrika/2_aljazair";
 import { aljazair_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/2_aljazair";
 import { aljazair_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/2_aljazair";
+import { aljazair_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/2_aljazair";
 import { aljazair_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/2_aljazair";
 import { aljazair_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/2_aljazair";
 import { aljazair_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/2_aljazair";
+import { aljazair_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/2_aljazair";
+import { aljazair_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/2_aljazair";
+import { aljazair_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/2_aljazair";
 import { aljazair_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/2_aljazair";
 import { aljazair_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/2_aljazair";
 import { aljazair_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/2_aljazair";
@@ -29,50 +34,11 @@ export const aljazair: CountryData = {
   "armada_militer": aljazair_armada,
   "militer_strategis": aljazair_strategis,
   "armada_kepolisian": aljazair_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 23,
-      "dasar": 35,
-      "menengah": 5,
-      "lanjutan": 7,
-      "universitas": 5,
-      "lembaga_pendidikan": 16,
-      "laboratorium": 6,
-      "observatorium": 2,
-      "pusat_penelitian": 24,
-      "pusat_pengembangan": 19,
-      "literasi": 60
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 35,
-      "rumah_sakit_kecil": 4,
-      "pusat_diagnostik": 33,
-      "harapan_hidup": 39,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 10,
-      "pengadilan": 2,
-      "kejaksaan": 31,
-      "pos_polisi": 24,
-      "armada_mobil_polisi": 1704,
-      "akademi_polisi": 34,
-      "indeks_korupsi": 58,
-      "indeks_keamanan": 61
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 20,
-      "sirkuit_balap": 36,
-      "stadion": 12,
-      "stadion_internasional": 26
-  },
+  "pabrik_militer": aljazair_pabrik,
+    "pendidikan": aljazair_pendidikan,
+  "kesehatan": aljazair_kesehatan,
+  "hukum": aljazair_hukum,
+  "sektor_olahraga": aljazair_olahraga,
   "un_vote": 84,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

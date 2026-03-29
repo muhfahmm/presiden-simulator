@@ -3,11 +3,16 @@ import { kamerun_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { kamerun_armada } from "../../modules/2_militer/2_armada_militer/afrika/18_kamerun";
 import { kamerun_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/18_kamerun";
 import { kamerun_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/18_kamerun";
+import { kamerun_hukum } from "../../modules/3_sosial/3_hukum/afrika/18_kamerun";
 import { kamerun_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/18_kamerun";
 import { kamerun_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/18_kamerun";
+import { kamerun_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/18_kamerun";
 import { kamerun_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/18_kamerun";
 import { kamerun_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/18_kamerun";
 import { kamerun_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/18_kamerun";
+import { kamerun_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/18_kamerun";
+import { kamerun_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/18_kamerun";
+import { kamerun_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/18_kamerun";
 import { kamerun_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/18_kamerun";
 import { kamerun_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/18_kamerun";
 import { kamerun_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/18_kamerun";
@@ -29,50 +34,11 @@ export const kamerun: CountryData = {
   "armada_militer": kamerun_armada,
   "militer_strategis": kamerun_strategis,
   "armada_kepolisian": kamerun_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 31,
-      "dasar": 32,
-      "menengah": 23,
-      "lanjutan": 34,
-      "universitas": 38,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 9,
-      "observatorium": 10,
-      "pusat_penelitian": 37,
-      "pusat_pengembangan": 40,
-      "literasi": 50
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 37,
-      "pusat_diagnostik": 3,
-      "harapan_hidup": 32,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 19,
-      "pengadilan": 2,
-      "kejaksaan": 2,
-      "pos_polisi": 4,
-      "armada_mobil_polisi": 886,
-      "akademi_polisi": 25,
-      "indeks_korupsi": 65,
-      "indeks_keamanan": 75
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 30,
-      "sirkuit_balap": 32,
-      "stadion": 6,
-      "stadion_internasional": 3
-  },
+  "pabrik_militer": kamerun_pabrik,
+    "pendidikan": kamerun_pendidikan,
+  "kesehatan": kamerun_kesehatan,
+  "hukum": kamerun_hukum,
+  "sektor_olahraga": kamerun_olahraga,
   "un_vote": 138,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

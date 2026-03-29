@@ -3,11 +3,16 @@ import { tonga_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/oc
 import { tonga_armada } from "../../modules/2_militer/2_armada_militer/oceania/192_tonga";
 import { tonga_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/192_tonga";
 import { tonga_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/192_tonga";
+import { tonga_hukum } from "../../modules/3_sosial/3_hukum/oceania/192_tonga";
 import { tonga_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/192_tonga";
 import { tonga_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/192_tonga";
+import { tonga_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/192_tonga";
 import { tonga_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/192_tonga";
 import { tonga_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/192_tonga";
 import { tonga_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/192_tonga";
+import { tonga_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/192_tonga";
+import { tonga_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/192_tonga";
+import { tonga_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/192_tonga";
 import { tonga_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/192_tonga";
 import { tonga_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/192_tonga";
 import { tonga_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/192_tonga";
@@ -29,50 +34,11 @@ export const tonga: CountryData = {
   "armada_militer": tonga_armada,
   "militer_strategis": tonga_strategis,
   "armada_kepolisian": tonga_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 10,
-      "dasar": 17,
-      "menengah": 21,
-      "lanjutan": 40,
-      "universitas": 36,
-      "lembaga_pendidikan": 22,
-      "laboratorium": 28,
-      "observatorium": 36,
-      "pusat_penelitian": 24,
-      "pusat_pengembangan": 23,
-      "literasi": 87
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 9,
-      "rumah_sakit_kecil": 11,
-      "pusat_diagnostik": 37,
-      "harapan_hidup": 15,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 9,
-      "pengadilan": 17,
-      "kejaksaan": 1,
-      "pos_polisi": 18,
-      "armada_mobil_polisi": 6958,
-      "akademi_polisi": 38,
-      "indeks_korupsi": 75,
-      "indeks_keamanan": 71
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 20,
-      "sirkuit_balap": 32,
-      "stadion": 31,
-      "stadion_internasional": 14
-  },
+  "pabrik_militer": tonga_pabrik,
+    "pendidikan": tonga_pendidikan,
+  "kesehatan": tonga_kesehatan,
+  "hukum": tonga_hukum,
+  "sektor_olahraga": tonga_olahraga,
   "un_vote": 5,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

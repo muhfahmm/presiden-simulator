@@ -3,11 +3,16 @@ import { armenia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { armenia_armada } from "../../modules/2_militer/2_armada_militer/asia/56_armenia";
 import { armenia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/56_armenia";
 import { armenia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/56_armenia";
+import { armenia_hukum } from "../../modules/3_sosial/3_hukum/asia/56_armenia";
 import { armenia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/56_armenia";
 import { armenia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/56_armenia";
+import { armenia_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/56_armenia";
 import { armenia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/56_armenia";
 import { armenia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/56_armenia";
 import { armenia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/56_armenia";
+import { armenia_olahraga } from "../../modules/3_sosial/4_olahraga/asia/56_armenia";
+import { armenia_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/56_armenia";
+import { armenia_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/56_armenia";
 import { armenia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/56_armenia";
 import { armenia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/56_armenia";
 import { armenia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/56_armenia";
@@ -29,50 +34,11 @@ export const armenia: CountryData = {
   "armada_militer": armenia_armada,
   "militer_strategis": armenia_strategis,
   "armada_kepolisian": armenia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 40,
-      "dasar": 40,
-      "menengah": 33,
-      "lanjutan": 24,
-      "universitas": 17,
-      "lembaga_pendidikan": 23,
-      "laboratorium": 12,
-      "observatorium": 3,
-      "pusat_penelitian": 4,
-      "pusat_pengembangan": 27,
-      "literasi": 69
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 15,
-      "rumah_sakit_kecil": 2,
-      "pusat_diagnostik": 18,
-      "harapan_hidup": 27,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 14,
-      "pengadilan": 31,
-      "kejaksaan": 12,
-      "pos_polisi": 5,
-      "armada_mobil_polisi": 8740,
-      "akademi_polisi": 39,
-      "indeks_korupsi": 58,
-      "indeks_keamanan": 55
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 32,
-      "sirkuit_balap": 18,
-      "stadion": 18,
-      "stadion_internasional": 13
-  },
+  "pabrik_militer": armenia_pabrik,
+    "pendidikan": armenia_pendidikan,
+  "kesehatan": armenia_kesehatan,
+  "hukum": armenia_hukum,
+  "sektor_olahraga": armenia_olahraga,
   "un_vote": 152,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

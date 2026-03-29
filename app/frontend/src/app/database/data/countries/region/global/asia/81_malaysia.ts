@@ -3,11 +3,16 @@ import { malaysia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { malaysia_armada } from "../../modules/2_militer/2_armada_militer/asia/81_malaysia";
 import { malaysia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/81_malaysia";
 import { malaysia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/81_malaysia";
+import { malaysia_hukum } from "../../modules/3_sosial/3_hukum/asia/81_malaysia";
 import { malaysia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/81_malaysia";
 import { malaysia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/81_malaysia";
+import { malaysia_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/81_malaysia";
 import { malaysia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/81_malaysia";
 import { malaysia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/81_malaysia";
 import { malaysia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/81_malaysia";
+import { malaysia_olahraga } from "../../modules/3_sosial/4_olahraga/asia/81_malaysia";
+import { malaysia_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/81_malaysia";
+import { malaysia_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/81_malaysia";
 import { malaysia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/81_malaysia";
 import { malaysia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/81_malaysia";
 import { malaysia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/81_malaysia";
@@ -29,50 +34,11 @@ export const malaysia: CountryData = {
   "armada_militer": malaysia_armada,
   "militer_strategis": malaysia_strategis,
   "armada_kepolisian": malaysia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 34,
-      "dasar": 29,
-      "menengah": 31,
-      "lanjutan": 1,
-      "universitas": 35,
-      "lembaga_pendidikan": 36,
-      "laboratorium": 12,
-      "observatorium": 11,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 6,
-      "literasi": 75
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 6,
-      "rumah_sakit_kecil": 30,
-      "pusat_diagnostik": 25,
-      "harapan_hidup": 1,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 22,
-      "pengadilan": 17,
-      "kejaksaan": 21,
-      "pos_polisi": 18,
-      "armada_mobil_polisi": 2455,
-      "akademi_polisi": 16,
-      "indeks_korupsi": 52,
-      "indeks_keamanan": 87
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 33,
-      "sirkuit_balap": 32,
-      "stadion": 37,
-      "stadion_internasional": 17
-  },
+  "pabrik_militer": malaysia_pabrik,
+    "pendidikan": malaysia_pendidikan,
+  "kesehatan": malaysia_kesehatan,
+  "hukum": malaysia_hukum,
+  "sektor_olahraga": malaysia_olahraga,
   "un_vote": 141,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

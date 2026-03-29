@@ -3,11 +3,16 @@ import { yaman_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/as
 import { yaman_armada } from "../../modules/2_militer/2_armada_militer/asia/101_yaman";
 import { yaman_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/101_yaman";
 import { yaman_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/101_yaman";
+import { yaman_hukum } from "../../modules/3_sosial/3_hukum/asia/101_yaman";
 import { yaman_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/101_yaman";
 import { yaman_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/101_yaman";
+import { yaman_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/101_yaman";
 import { yaman_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/101_yaman";
 import { yaman_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/101_yaman";
 import { yaman_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/101_yaman";
+import { yaman_olahraga } from "../../modules/3_sosial/4_olahraga/asia/101_yaman";
+import { yaman_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/101_yaman";
+import { yaman_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/101_yaman";
 import { yaman_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/101_yaman";
 import { yaman_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/101_yaman";
 import { yaman_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/101_yaman";
@@ -29,50 +34,11 @@ export const yaman: CountryData = {
   "armada_militer": yaman_armada,
   "militer_strategis": yaman_strategis,
   "armada_kepolisian": yaman_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 15,
-      "dasar": 24,
-      "menengah": 7,
-      "lanjutan": 38,
-      "universitas": 18,
-      "lembaga_pendidikan": 11,
-      "laboratorium": 18,
-      "observatorium": 38,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 9,
-      "literasi": 88
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 4,
-      "rumah_sakit_kecil": 20,
-      "pusat_diagnostik": 8,
-      "harapan_hidup": 26,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 7,
-      "pengadilan": 6,
-      "kejaksaan": 23,
-      "pos_polisi": 12,
-      "armada_mobil_polisi": 3048,
-      "akademi_polisi": 32,
-      "indeks_korupsi": 77,
-      "indeks_keamanan": 50
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 31,
-      "sirkuit_balap": 12,
-      "stadion": 16,
-      "stadion_internasional": 10
-  },
+  "pabrik_militer": yaman_pabrik,
+    "pendidikan": yaman_pendidikan,
+  "kesehatan": yaman_kesehatan,
+  "hukum": yaman_hukum,
+  "sektor_olahraga": yaman_olahraga,
   "un_vote": 111,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

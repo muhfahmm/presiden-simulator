@@ -3,11 +3,16 @@ import { selandia_baru_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrik
 import { selandia_baru_armada } from "../../modules/2_militer/2_armada_militer/oceania/190_selandia_baru";
 import { selandia_baru_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/190_selandia_baru";
 import { selandia_baru_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/190_selandia_baru";
+import { selandia_baru_hukum } from "../../modules/3_sosial/3_hukum/oceania/190_selandia_baru";
 import { selandia_baru_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/190_selandia_baru";
 import { selandia_baru_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/190_selandia_baru";
+import { selandia_baru_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/190_selandia_baru";
 import { selandia_baru_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/190_selandia_baru";
 import { selandia_baru_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/190_selandia_baru";
 import { selandia_baru_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/190_selandia_baru";
+import { selandia_baru_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/190_selandia_baru";
+import { selandia_baru_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/190_selandia_baru";
+import { selandia_baru_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/190_selandia_baru";
 import { selandia_baru_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/190_selandia_baru";
 import { selandia_baru_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/190_selandia_baru";
 import { selandia_baru_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/190_selandia_baru";
@@ -29,50 +34,11 @@ export const selandia_baru: CountryData = {
   "armada_militer": selandia_baru_armada,
   "militer_strategis": selandia_baru_strategis,
   "armada_kepolisian": selandia_baru_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 7,
-      "dasar": 34,
-      "menengah": 5,
-      "lanjutan": 25,
-      "universitas": 39,
-      "lembaga_pendidikan": 6,
-      "laboratorium": 3,
-      "observatorium": 9,
-      "pusat_penelitian": 13,
-      "pusat_pengembangan": 28,
-      "literasi": 58
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 3,
-      "rumah_sakit_kecil": 28,
-      "pusat_diagnostik": 22,
-      "harapan_hidup": 36,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 26,
-      "pengadilan": 9,
-      "kejaksaan": 8,
-      "pos_polisi": 31,
-      "armada_mobil_polisi": 4446,
-      "akademi_polisi": 35,
-      "indeks_korupsi": 77,
-      "indeks_keamanan": 85
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 13,
-      "sirkuit_balap": 14,
-      "stadion": 26,
-      "stadion_internasional": 20
-  },
+  "pabrik_militer": selandia_baru_pabrik,
+    "pendidikan": selandia_baru_pendidikan,
+  "kesehatan": selandia_baru_kesehatan,
+  "hukum": selandia_baru_hukum,
+  "sektor_olahraga": selandia_baru_olahraga,
   "un_vote": 107,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

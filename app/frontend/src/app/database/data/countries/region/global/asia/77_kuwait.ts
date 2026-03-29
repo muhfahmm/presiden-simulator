@@ -3,11 +3,16 @@ import { kuwait_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/a
 import { kuwait_armada } from "../../modules/2_militer/2_armada_militer/asia/77_kuwait";
 import { kuwait_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/77_kuwait";
 import { kuwait_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/77_kuwait";
+import { kuwait_hukum } from "../../modules/3_sosial/3_hukum/asia/77_kuwait";
 import { kuwait_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/77_kuwait";
 import { kuwait_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/77_kuwait";
+import { kuwait_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/77_kuwait";
 import { kuwait_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/77_kuwait";
 import { kuwait_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/77_kuwait";
 import { kuwait_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/77_kuwait";
+import { kuwait_olahraga } from "../../modules/3_sosial/4_olahraga/asia/77_kuwait";
+import { kuwait_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/77_kuwait";
+import { kuwait_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/77_kuwait";
 import { kuwait_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/77_kuwait";
 import { kuwait_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/77_kuwait";
 import { kuwait_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/77_kuwait";
@@ -29,50 +34,11 @@ export const kuwait: CountryData = {
   "armada_militer": kuwait_armada,
   "militer_strategis": kuwait_strategis,
   "armada_kepolisian": kuwait_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 20,
-      "dasar": 14,
-      "menengah": 25,
-      "lanjutan": 22,
-      "universitas": 36,
-      "lembaga_pendidikan": 37,
-      "laboratorium": 36,
-      "observatorium": 19,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 27,
-      "literasi": 55
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 15,
-      "rumah_sakit_kecil": 23,
-      "pusat_diagnostik": 21,
-      "harapan_hidup": 24,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 26,
-      "pengadilan": 19,
-      "kejaksaan": 18,
-      "pos_polisi": 32,
-      "armada_mobil_polisi": 8824,
-      "akademi_polisi": 32,
-      "indeks_korupsi": 72,
-      "indeks_keamanan": 68
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 17,
-      "sirkuit_balap": 19,
-      "stadion": 28,
-      "stadion_internasional": 9
-  },
+  "pabrik_militer": kuwait_pabrik,
+    "pendidikan": kuwait_pendidikan,
+  "kesehatan": kuwait_kesehatan,
+  "hukum": kuwait_hukum,
+  "sektor_olahraga": kuwait_olahraga,
   "un_vote": 157,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

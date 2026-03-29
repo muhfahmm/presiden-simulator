@@ -3,11 +3,16 @@ import { tuvalu_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/o
 import { tuvalu_armada } from "../../modules/2_militer/2_armada_militer/oceania/193_tuvalu";
 import { tuvalu_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/193_tuvalu";
 import { tuvalu_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/193_tuvalu";
+import { tuvalu_hukum } from "../../modules/3_sosial/3_hukum/oceania/193_tuvalu";
 import { tuvalu_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/193_tuvalu";
 import { tuvalu_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/193_tuvalu";
+import { tuvalu_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/193_tuvalu";
 import { tuvalu_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/193_tuvalu";
 import { tuvalu_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/193_tuvalu";
 import { tuvalu_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/193_tuvalu";
+import { tuvalu_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/193_tuvalu";
+import { tuvalu_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/193_tuvalu";
+import { tuvalu_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/193_tuvalu";
 import { tuvalu_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/193_tuvalu";
 import { tuvalu_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/193_tuvalu";
 import { tuvalu_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/193_tuvalu";
@@ -29,50 +34,11 @@ export const tuvalu: CountryData = {
   "armada_militer": tuvalu_armada,
   "militer_strategis": tuvalu_strategis,
   "armada_kepolisian": tuvalu_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 17,
-      "dasar": 24,
-      "menengah": 21,
-      "lanjutan": 22,
-      "universitas": 13,
-      "lembaga_pendidikan": 25,
-      "laboratorium": 39,
-      "observatorium": 39,
-      "pusat_penelitian": 29,
-      "pusat_pengembangan": 30,
-      "literasi": 81
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 19,
-      "rumah_sakit_kecil": 19,
-      "pusat_diagnostik": 13,
-      "harapan_hidup": 39,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 39,
-      "pengadilan": 9,
-      "kejaksaan": 20,
-      "pos_polisi": 40,
-      "armada_mobil_polisi": 8650,
-      "akademi_polisi": 39,
-      "indeks_korupsi": 94,
-      "indeks_keamanan": 52
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 10,
-      "sirkuit_balap": 19,
-      "stadion": 29,
-      "stadion_internasional": 5
-  },
+  "pabrik_militer": tuvalu_pabrik,
+    "pendidikan": tuvalu_pendidikan,
+  "kesehatan": tuvalu_kesehatan,
+  "hukum": tuvalu_hukum,
+  "sektor_olahraga": tuvalu_olahraga,
   "un_vote": 29,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

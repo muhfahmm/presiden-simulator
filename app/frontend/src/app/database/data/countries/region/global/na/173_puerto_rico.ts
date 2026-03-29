@@ -3,11 +3,16 @@ import { puerto_rico_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikul
 import { puerto_rico_armada } from "../../modules/2_militer/2_armada_militer/na/173_puerto_rico";
 import { puerto_rico_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/173_puerto_rico";
 import { puerto_rico_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/173_puerto_rico";
+import { puerto_rico_hukum } from "../../modules/3_sosial/3_hukum/na/173_puerto_rico";
 import { puerto_rico_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/173_puerto_rico";
 import { puerto_rico_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/173_puerto_rico";
+import { puerto_rico_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/173_puerto_rico";
 import { puerto_rico_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/173_puerto_rico";
 import { puerto_rico_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/173_puerto_rico";
 import { puerto_rico_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/173_puerto_rico";
+import { puerto_rico_olahraga } from "../../modules/3_sosial/4_olahraga/na/173_puerto_rico";
+import { puerto_rico_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/173_puerto_rico";
+import { puerto_rico_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/173_puerto_rico";
 import { puerto_rico_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/173_puerto_rico";
 import { puerto_rico_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/173_puerto_rico";
 import { puerto_rico_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/173_puerto_rico";
@@ -29,50 +34,11 @@ export const puerto_rico: CountryData = {
   "armada_militer": puerto_rico_armada,
   "militer_strategis": puerto_rico_strategis,
   "armada_kepolisian": puerto_rico_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 31,
-      "dasar": 8,
-      "menengah": 14,
-      "lanjutan": 27,
-      "universitas": 19,
-      "lembaga_pendidikan": 26,
-      "laboratorium": 28,
-      "observatorium": 40,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 9,
-      "literasi": 55
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 19,
-      "rumah_sakit_kecil": 38,
-      "pusat_diagnostik": 11,
-      "harapan_hidup": 35,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 15,
-      "pengadilan": 36,
-      "kejaksaan": 4,
-      "pos_polisi": 40,
-      "armada_mobil_polisi": 3667,
-      "akademi_polisi": 37,
-      "indeks_korupsi": 91,
-      "indeks_keamanan": 77
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 39,
-      "sirkuit_balap": 35,
-      "stadion": 6,
-      "stadion_internasional": 13
-  },
+  "pabrik_militer": puerto_rico_pabrik,
+    "pendidikan": puerto_rico_pendidikan,
+  "kesehatan": puerto_rico_kesehatan,
+  "hukum": puerto_rico_hukum,
+  "sektor_olahraga": puerto_rico_olahraga,
   "un_vote": 117,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

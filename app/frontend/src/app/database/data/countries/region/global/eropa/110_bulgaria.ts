@@ -3,11 +3,16 @@ import { bulgaria_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { bulgaria_armada } from "../../modules/2_militer/2_armada_militer/eropa/110_bulgaria";
 import { bulgaria_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/110_bulgaria";
 import { bulgaria_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/110_bulgaria";
+import { bulgaria_hukum } from "../../modules/3_sosial/3_hukum/eropa/110_bulgaria";
 import { bulgaria_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/110_bulgaria";
 import { bulgaria_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/110_bulgaria";
+import { bulgaria_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/110_bulgaria";
 import { bulgaria_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/110_bulgaria";
 import { bulgaria_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/110_bulgaria";
 import { bulgaria_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/110_bulgaria";
+import { bulgaria_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/110_bulgaria";
+import { bulgaria_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/110_bulgaria";
+import { bulgaria_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/110_bulgaria";
 import { bulgaria_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/110_bulgaria";
 import { bulgaria_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/110_bulgaria";
 import { bulgaria_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/110_bulgaria";
@@ -29,50 +34,11 @@ export const bulgaria: CountryData = {
   "armada_militer": bulgaria_armada,
   "militer_strategis": bulgaria_strategis,
   "armada_kepolisian": bulgaria_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 33,
-      "dasar": 29,
-      "menengah": 15,
-      "lanjutan": 12,
-      "universitas": 14,
-      "lembaga_pendidikan": 19,
-      "laboratorium": 25,
-      "observatorium": 29,
-      "pusat_penelitian": 16,
-      "pusat_pengembangan": 35,
-      "literasi": 87
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 9,
-      "rumah_sakit_kecil": 30,
-      "pusat_diagnostik": 35,
-      "harapan_hidup": 23,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 25,
-      "pengadilan": 17,
-      "kejaksaan": 30,
-      "pos_polisi": 13,
-      "armada_mobil_polisi": 9399,
-      "akademi_polisi": 22,
-      "indeks_korupsi": 65,
-      "indeks_keamanan": 52
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 8,
-      "sirkuit_balap": 9,
-      "stadion": 25,
-      "stadion_internasional": 10
-  },
+  "pabrik_militer": bulgaria_pabrik,
+    "pendidikan": bulgaria_pendidikan,
+  "kesehatan": bulgaria_kesehatan,
+  "hukum": bulgaria_hukum,
+  "sektor_olahraga": bulgaria_olahraga,
   "un_vote": 42,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

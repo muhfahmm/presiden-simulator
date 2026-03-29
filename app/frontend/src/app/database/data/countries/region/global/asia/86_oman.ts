@@ -3,11 +3,16 @@ import { oman_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/asi
 import { oman_armada } from "../../modules/2_militer/2_armada_militer/asia/86_oman";
 import { oman_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/86_oman";
 import { oman_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/86_oman";
+import { oman_hukum } from "../../modules/3_sosial/3_hukum/asia/86_oman";
 import { oman_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/86_oman";
 import { oman_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/86_oman";
+import { oman_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/86_oman";
 import { oman_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/86_oman";
 import { oman_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/86_oman";
 import { oman_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/86_oman";
+import { oman_olahraga } from "../../modules/3_sosial/4_olahraga/asia/86_oman";
+import { oman_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/86_oman";
+import { oman_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/86_oman";
 import { oman_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/86_oman";
 import { oman_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/86_oman";
 import { oman_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/86_oman";
@@ -29,50 +34,11 @@ export const oman: CountryData = {
   "armada_militer": oman_armada,
   "militer_strategis": oman_strategis,
   "armada_kepolisian": oman_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 11,
-      "dasar": 17,
-      "menengah": 17,
-      "lanjutan": 12,
-      "universitas": 1,
-      "lembaga_pendidikan": 7,
-      "laboratorium": 38,
-      "observatorium": 4,
-      "pusat_penelitian": 16,
-      "pusat_pengembangan": 4,
-      "literasi": 60
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 11,
-      "rumah_sakit_kecil": 3,
-      "pusat_diagnostik": 26,
-      "harapan_hidup": 20,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 4,
-      "pengadilan": 6,
-      "kejaksaan": 5,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 1122,
-      "akademi_polisi": 37,
-      "indeks_korupsi": 86,
-      "indeks_keamanan": 50
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 1,
-      "sirkuit_balap": 11,
-      "stadion": 37,
-      "stadion_internasional": 19
-  },
+  "pabrik_militer": oman_pabrik,
+    "pendidikan": oman_pendidikan,
+  "kesehatan": oman_kesehatan,
+  "hukum": oman_hukum,
+  "sektor_olahraga": oman_olahraga,
   "un_vote": 165,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

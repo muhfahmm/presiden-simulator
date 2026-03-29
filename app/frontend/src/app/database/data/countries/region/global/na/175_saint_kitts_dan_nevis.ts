@@ -3,11 +3,16 @@ import { saint_kitts_dan_nevis_agrikultur } from "../../modules/1_ekonomi/7_sekt
 import { saint_kitts_dan_nevis_armada } from "../../modules/2_militer/2_armada_militer/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/175_saint_kitts_dan_nevis";
+import { saint_kitts_dan_nevis_hukum } from "../../modules/3_sosial/3_hukum/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/175_saint_kitts_dan_nevis";
+import { saint_kitts_dan_nevis_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/175_saint_kitts_dan_nevis";
+import { saint_kitts_dan_nevis_olahraga } from "../../modules/3_sosial/4_olahraga/na/175_saint_kitts_dan_nevis";
+import { saint_kitts_dan_nevis_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/175_saint_kitts_dan_nevis";
+import { saint_kitts_dan_nevis_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/175_saint_kitts_dan_nevis";
@@ -29,50 +34,11 @@ export const saint_kitts_dan_nevis: CountryData = {
   "armada_militer": saint_kitts_dan_nevis_armada,
   "militer_strategis": saint_kitts_dan_nevis_strategis,
   "armada_kepolisian": saint_kitts_dan_nevis_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 39,
-      "dasar": 1,
-      "menengah": 2,
-      "lanjutan": 29,
-      "universitas": 2,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 22,
-      "observatorium": 14,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 9,
-      "literasi": 73
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 23,
-      "rumah_sakit_kecil": 7,
-      "pusat_diagnostik": 20,
-      "harapan_hidup": 17,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 7,
-      "pengadilan": 32,
-      "kejaksaan": 23,
-      "pos_polisi": 34,
-      "armada_mobil_polisi": 2295,
-      "akademi_polisi": 24,
-      "indeks_korupsi": 83,
-      "indeks_keamanan": 81
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 23,
-      "sirkuit_balap": 5,
-      "stadion": 20,
-      "stadion_internasional": 36
-  },
+  "pabrik_militer": saint_kitts_dan_nevis_pabrik,
+    "pendidikan": saint_kitts_dan_nevis_pendidikan,
+  "kesehatan": saint_kitts_dan_nevis_kesehatan,
+  "hukum": saint_kitts_dan_nevis_hukum,
+  "sektor_olahraga": saint_kitts_dan_nevis_olahraga,
   "un_vote": 64,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { argentina_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { argentina_armada } from "../../modules/2_militer/2_armada_militer/sa/195_argentina";
 import { argentina_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/sa/195_argentina";
 import { argentina_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/sa/195_argentina";
+import { argentina_hukum } from "../../modules/3_sosial/3_hukum/sa/195_argentina";
 import { argentina_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/sa/195_argentina";
 import { argentina_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/sa/195_argentina";
+import { argentina_kesehatan } from "../../modules/3_sosial/2_kesehatan/sa/195_argentina";
 import { argentina_listrik } from "../../modules/1_ekonomi/2_kelistrikan/sa/195_argentina";
 import { argentina_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/sa/195_argentina";
 import { argentina_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/sa/195_argentina";
+import { argentina_olahraga } from "../../modules/3_sosial/4_olahraga/sa/195_argentina";
+import { argentina_pabrik } from "../../modules/2_militer/5_pabrik_militer/sa/195_argentina";
+import { argentina_pendidikan } from "../../modules/3_sosial/1_pendidikan/sa/195_argentina";
 import { argentina_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/sa/195_argentina";
 import { argentina_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/195_argentina";
 import { argentina_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/195_argentina";
@@ -29,50 +34,11 @@ export const argentina: CountryData = {
   "armada_militer": argentina_armada,
   "militer_strategis": argentina_strategis,
   "armada_kepolisian": argentina_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 38,
-      "dasar": 16,
-      "menengah": 21,
-      "lanjutan": 26,
-      "universitas": 23,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 19,
-      "observatorium": 13,
-      "pusat_penelitian": 4,
-      "pusat_pengembangan": 22,
-      "literasi": 75
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 32,
-      "rumah_sakit_kecil": 13,
-      "pusat_diagnostik": 21,
-      "harapan_hidup": 33,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 32,
-      "pengadilan": 39,
-      "kejaksaan": 34,
-      "pos_polisi": 12,
-      "armada_mobil_polisi": 6304,
-      "akademi_polisi": 6,
-      "indeks_korupsi": 79,
-      "indeks_keamanan": 58
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 40,
-      "sirkuit_balap": 13,
-      "stadion": 37,
-      "stadion_internasional": 35
-  },
+  "pabrik_militer": argentina_pabrik,
+    "pendidikan": argentina_pendidikan,
+  "kesehatan": argentina_kesehatan,
+  "hukum": argentina_hukum,
+  "sektor_olahraga": argentina_olahraga,
   "un_vote": 190,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

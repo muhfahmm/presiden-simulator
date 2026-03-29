@@ -3,11 +3,16 @@ import { kenya_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/af
 import { kenya_armada } from "../../modules/2_militer/2_armada_militer/afrika/19_kenya";
 import { kenya_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/19_kenya";
 import { kenya_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/19_kenya";
+import { kenya_hukum } from "../../modules/3_sosial/3_hukum/afrika/19_kenya";
 import { kenya_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/19_kenya";
 import { kenya_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/19_kenya";
+import { kenya_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/19_kenya";
 import { kenya_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/19_kenya";
 import { kenya_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/19_kenya";
 import { kenya_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/19_kenya";
+import { kenya_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/19_kenya";
+import { kenya_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/19_kenya";
+import { kenya_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/19_kenya";
 import { kenya_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/19_kenya";
 import { kenya_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/19_kenya";
 import { kenya_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/19_kenya";
@@ -29,50 +34,11 @@ export const kenya: CountryData = {
   "armada_militer": kenya_armada,
   "militer_strategis": kenya_strategis,
   "armada_kepolisian": kenya_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 17,
-      "dasar": 17,
-      "menengah": 16,
-      "lanjutan": 12,
-      "universitas": 40,
-      "lembaga_pendidikan": 35,
-      "laboratorium": 27,
-      "observatorium": 20,
-      "pusat_penelitian": 34,
-      "pusat_pengembangan": 18,
-      "literasi": 57
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 36,
-      "rumah_sakit_kecil": 6,
-      "pusat_diagnostik": 20,
-      "harapan_hidup": 37,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 9,
-      "pengadilan": 14,
-      "kejaksaan": 40,
-      "pos_polisi": 31,
-      "armada_mobil_polisi": 7884,
-      "akademi_polisi": 8,
-      "indeks_korupsi": 69,
-      "indeks_keamanan": 93
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 4,
-      "sirkuit_balap": 35,
-      "stadion": 26,
-      "stadion_internasional": 5
-  },
+  "pabrik_militer": kenya_pabrik,
+    "pendidikan": kenya_pendidikan,
+  "kesehatan": kenya_kesehatan,
+  "hukum": kenya_hukum,
+  "sektor_olahraga": kenya_olahraga,
   "un_vote": 169,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

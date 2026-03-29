@@ -3,11 +3,16 @@ import { bolivia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { bolivia_armada } from "../../modules/2_militer/2_armada_militer/sa/196_bolivia";
 import { bolivia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/sa/196_bolivia";
 import { bolivia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/sa/196_bolivia";
+import { bolivia_hukum } from "../../modules/3_sosial/3_hukum/sa/196_bolivia";
 import { bolivia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/sa/196_bolivia";
 import { bolivia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/sa/196_bolivia";
+import { bolivia_kesehatan } from "../../modules/3_sosial/2_kesehatan/sa/196_bolivia";
 import { bolivia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/sa/196_bolivia";
 import { bolivia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/sa/196_bolivia";
 import { bolivia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/sa/196_bolivia";
+import { bolivia_olahraga } from "../../modules/3_sosial/4_olahraga/sa/196_bolivia";
+import { bolivia_pabrik } from "../../modules/2_militer/5_pabrik_militer/sa/196_bolivia";
+import { bolivia_pendidikan } from "../../modules/3_sosial/1_pendidikan/sa/196_bolivia";
 import { bolivia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/sa/196_bolivia";
 import { bolivia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/196_bolivia";
 import { bolivia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/196_bolivia";
@@ -29,50 +34,11 @@ export const bolivia: CountryData = {
   "armada_militer": bolivia_armada,
   "militer_strategis": bolivia_strategis,
   "armada_kepolisian": bolivia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 17,
-      "dasar": 7,
-      "menengah": 38,
-      "lanjutan": 26,
-      "universitas": 27,
-      "lembaga_pendidikan": 21,
-      "laboratorium": 15,
-      "observatorium": 7,
-      "pusat_penelitian": 26,
-      "pusat_pengembangan": 9,
-      "literasi": 92
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 8,
-      "rumah_sakit_kecil": 9,
-      "pusat_diagnostik": 38,
-      "harapan_hidup": 11,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 27,
-      "pengadilan": 10,
-      "kejaksaan": 5,
-      "pos_polisi": 25,
-      "armada_mobil_polisi": 9720,
-      "akademi_polisi": 5,
-      "indeks_korupsi": 52,
-      "indeks_keamanan": 58
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 15,
-      "sirkuit_balap": 19,
-      "stadion": 30,
-      "stadion_internasional": 24
-  },
+  "pabrik_militer": bolivia_pabrik,
+    "pendidikan": bolivia_pendidikan,
+  "kesehatan": bolivia_kesehatan,
+  "hukum": bolivia_hukum,
+  "sektor_olahraga": bolivia_olahraga,
   "un_vote": 68,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

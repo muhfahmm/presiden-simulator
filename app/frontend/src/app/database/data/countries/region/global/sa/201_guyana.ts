@@ -3,11 +3,16 @@ import { guyana_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/s
 import { guyana_armada } from "../../modules/2_militer/2_armada_militer/sa/201_guyana";
 import { guyana_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/sa/201_guyana";
 import { guyana_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/sa/201_guyana";
+import { guyana_hukum } from "../../modules/3_sosial/3_hukum/sa/201_guyana";
 import { guyana_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/sa/201_guyana";
 import { guyana_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/sa/201_guyana";
+import { guyana_kesehatan } from "../../modules/3_sosial/2_kesehatan/sa/201_guyana";
 import { guyana_listrik } from "../../modules/1_ekonomi/2_kelistrikan/sa/201_guyana";
 import { guyana_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/sa/201_guyana";
 import { guyana_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/sa/201_guyana";
+import { guyana_olahraga } from "../../modules/3_sosial/4_olahraga/sa/201_guyana";
+import { guyana_pabrik } from "../../modules/2_militer/5_pabrik_militer/sa/201_guyana";
+import { guyana_pendidikan } from "../../modules/3_sosial/1_pendidikan/sa/201_guyana";
 import { guyana_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/sa/201_guyana";
 import { guyana_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/201_guyana";
 import { guyana_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/201_guyana";
@@ -29,50 +34,11 @@ export const guyana: CountryData = {
   "armada_militer": guyana_armada,
   "militer_strategis": guyana_strategis,
   "armada_kepolisian": guyana_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 14,
-      "dasar": 24,
-      "menengah": 34,
-      "lanjutan": 14,
-      "universitas": 29,
-      "lembaga_pendidikan": 21,
-      "laboratorium": 36,
-      "observatorium": 6,
-      "pusat_penelitian": 34,
-      "pusat_pengembangan": 16,
-      "literasi": 91
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 15,
-      "rumah_sakit_kecil": 15,
-      "pusat_diagnostik": 19,
-      "harapan_hidup": 14,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 31,
-      "pengadilan": 38,
-      "kejaksaan": 5,
-      "pos_polisi": 30,
-      "armada_mobil_polisi": 1553,
-      "akademi_polisi": 32,
-      "indeks_korupsi": 66,
-      "indeks_keamanan": 53
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 27,
-      "stadion": 2,
-      "stadion_internasional": 7
-  },
+  "pabrik_militer": guyana_pabrik,
+    "pendidikan": guyana_pendidikan,
+  "kesehatan": guyana_kesehatan,
+  "hukum": guyana_hukum,
+  "sektor_olahraga": guyana_olahraga,
   "un_vote": 74,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

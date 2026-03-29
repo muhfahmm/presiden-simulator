@@ -2,4 +2,11 @@ export const afrika_selatan_strategis = {
     "waktu_respon": 36,
     "intelijen": 23,
     "status_nuklir": true,
-    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 } as const;
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
+    "operasi_strategis": { "misi_serangan": 15,
+      "misi_mata_mata": 11,
+      "misi_sabotase": 26,
+      "manajemen_wilayah": 10,
+      "program_nuklir": 80
+  }
+  } as const;

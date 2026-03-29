@@ -3,11 +3,16 @@ import { antigua_dan_barbuda_agrikultur } from "../../modules/1_ekonomi/7_sektor
 import { antigua_dan_barbuda_armada } from "../../modules/2_militer/2_armada_militer/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/153_antigua_dan_barbuda";
+import { antigua_dan_barbuda_hukum } from "../../modules/3_sosial/3_hukum/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/153_antigua_dan_barbuda";
+import { antigua_dan_barbuda_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/153_antigua_dan_barbuda";
+import { antigua_dan_barbuda_olahraga } from "../../modules/3_sosial/4_olahraga/na/153_antigua_dan_barbuda";
+import { antigua_dan_barbuda_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/153_antigua_dan_barbuda";
+import { antigua_dan_barbuda_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/153_antigua_dan_barbuda";
@@ -29,50 +34,11 @@ export const antigua_dan_barbuda: CountryData = {
   "armada_militer": antigua_dan_barbuda_armada,
   "militer_strategis": antigua_dan_barbuda_strategis,
   "armada_kepolisian": antigua_dan_barbuda_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 12,
-      "dasar": 40,
-      "menengah": 2,
-      "lanjutan": 13,
-      "universitas": 3,
-      "lembaga_pendidikan": 30,
-      "laboratorium": 33,
-      "observatorium": 39,
-      "pusat_penelitian": 2,
-      "pusat_pengembangan": 38,
-      "literasi": 95
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 1,
-      "rumah_sakit_kecil": 34,
-      "pusat_diagnostik": 19,
-      "harapan_hidup": 14,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 3,
-      "pengadilan": 15,
-      "kejaksaan": 39,
-      "pos_polisi": 20,
-      "armada_mobil_polisi": 1019,
-      "akademi_polisi": 32,
-      "indeks_korupsi": 52,
-      "indeks_keamanan": 83
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 5,
-      "sirkuit_balap": 40,
-      "stadion": 23,
-      "stadion_internasional": 32
-  },
+  "pabrik_militer": antigua_dan_barbuda_pabrik,
+    "pendidikan": antigua_dan_barbuda_pendidikan,
+  "kesehatan": antigua_dan_barbuda_kesehatan,
+  "hukum": antigua_dan_barbuda_hukum,
+  "sektor_olahraga": antigua_dan_barbuda_olahraga,
   "un_vote": 12,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

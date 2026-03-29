@@ -3,11 +3,16 @@ import { paraguay_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { paraguay_armada } from "../../modules/2_militer/2_armada_militer/sa/203_paraguay";
 import { paraguay_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/sa/203_paraguay";
 import { paraguay_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/sa/203_paraguay";
+import { paraguay_hukum } from "../../modules/3_sosial/3_hukum/sa/203_paraguay";
 import { paraguay_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/sa/203_paraguay";
 import { paraguay_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/sa/203_paraguay";
+import { paraguay_kesehatan } from "../../modules/3_sosial/2_kesehatan/sa/203_paraguay";
 import { paraguay_listrik } from "../../modules/1_ekonomi/2_kelistrikan/sa/203_paraguay";
 import { paraguay_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/sa/203_paraguay";
 import { paraguay_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/sa/203_paraguay";
+import { paraguay_olahraga } from "../../modules/3_sosial/4_olahraga/sa/203_paraguay";
+import { paraguay_pabrik } from "../../modules/2_militer/5_pabrik_militer/sa/203_paraguay";
+import { paraguay_pendidikan } from "../../modules/3_sosial/1_pendidikan/sa/203_paraguay";
 import { paraguay_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/sa/203_paraguay";
 import { paraguay_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/203_paraguay";
 import { paraguay_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/203_paraguay";
@@ -29,50 +34,11 @@ export const paraguay: CountryData = {
   "armada_militer": paraguay_armada,
   "militer_strategis": paraguay_strategis,
   "armada_kepolisian": paraguay_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 1,
-      "dasar": 7,
-      "menengah": 15,
-      "lanjutan": 4,
-      "universitas": 26,
-      "lembaga_pendidikan": 25,
-      "laboratorium": 14,
-      "observatorium": 30,
-      "pusat_penelitian": 11,
-      "pusat_pengembangan": 13,
-      "literasi": 81
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 14,
-      "pusat_diagnostik": 23,
-      "harapan_hidup": 18,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 6,
-      "pengadilan": 24,
-      "kejaksaan": 27,
-      "pos_polisi": 12,
-      "armada_mobil_polisi": 8579,
-      "akademi_polisi": 39,
-      "indeks_korupsi": 82,
-      "indeks_keamanan": 72
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 33,
-      "sirkuit_balap": 32,
-      "stadion": 24,
-      "stadion_internasional": 16
-  },
+  "pabrik_militer": paraguay_pabrik,
+    "pendidikan": paraguay_pendidikan,
+  "kesehatan": paraguay_kesehatan,
+  "hukum": paraguay_hukum,
+  "sektor_olahraga": paraguay_olahraga,
   "un_vote": 71,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

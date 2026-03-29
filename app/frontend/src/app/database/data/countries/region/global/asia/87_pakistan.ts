@@ -3,11 +3,16 @@ import { pakistan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { pakistan_armada } from "../../modules/2_militer/2_armada_militer/asia/87_pakistan";
 import { pakistan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/87_pakistan";
 import { pakistan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/87_pakistan";
+import { pakistan_hukum } from "../../modules/3_sosial/3_hukum/asia/87_pakistan";
 import { pakistan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/87_pakistan";
 import { pakistan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/87_pakistan";
+import { pakistan_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/87_pakistan";
 import { pakistan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/87_pakistan";
 import { pakistan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/87_pakistan";
 import { pakistan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/87_pakistan";
+import { pakistan_olahraga } from "../../modules/3_sosial/4_olahraga/asia/87_pakistan";
+import { pakistan_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/87_pakistan";
+import { pakistan_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/87_pakistan";
 import { pakistan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/87_pakistan";
 import { pakistan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/87_pakistan";
 import { pakistan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/87_pakistan";
@@ -29,50 +34,11 @@ export const pakistan: CountryData = {
   "armada_militer": pakistan_armada,
   "militer_strategis": pakistan_strategis,
   "armada_kepolisian": pakistan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 10,
-      "dasar": 21,
-      "menengah": 40,
-      "lanjutan": 3,
-      "universitas": 22,
-      "lembaga_pendidikan": 17,
-      "laboratorium": 11,
-      "observatorium": 8,
-      "pusat_penelitian": 16,
-      "pusat_pengembangan": 31,
-      "literasi": 71
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 35,
-      "rumah_sakit_kecil": 7,
-      "pusat_diagnostik": 5,
-      "harapan_hidup": 8,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 9,
-      "pengadilan": 32,
-      "kejaksaan": 23,
-      "pos_polisi": 12,
-      "armada_mobil_polisi": 6016,
-      "akademi_polisi": 27,
-      "indeks_korupsi": 61,
-      "indeks_keamanan": 59
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 13,
-      "stadion": 8,
-      "stadion_internasional": 23
-  },
+  "pabrik_militer": pakistan_pabrik,
+    "pendidikan": pakistan_pendidikan,
+  "kesehatan": pakistan_kesehatan,
+  "hukum": pakistan_hukum,
+  "sektor_olahraga": pakistan_olahraga,
   "un_vote": 180,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

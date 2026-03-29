@@ -3,11 +3,16 @@ import { hungaria_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { hungaria_armada } from "../../modules/2_militer/2_armada_militer/eropa/116_hungaria";
 import { hungaria_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/116_hungaria";
 import { hungaria_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/116_hungaria";
+import { hungaria_hukum } from "../../modules/3_sosial/3_hukum/eropa/116_hungaria";
 import { hungaria_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/116_hungaria";
 import { hungaria_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/116_hungaria";
+import { hungaria_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/116_hungaria";
 import { hungaria_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/116_hungaria";
 import { hungaria_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/116_hungaria";
 import { hungaria_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/116_hungaria";
+import { hungaria_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/116_hungaria";
+import { hungaria_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/116_hungaria";
+import { hungaria_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/116_hungaria";
 import { hungaria_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/116_hungaria";
 import { hungaria_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/116_hungaria";
 import { hungaria_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/116_hungaria";
@@ -29,50 +34,11 @@ export const hungaria: CountryData = {
   "armada_militer": hungaria_armada,
   "militer_strategis": hungaria_strategis,
   "armada_kepolisian": hungaria_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 2,
-      "dasar": 17,
-      "menengah": 34,
-      "lanjutan": 37,
-      "universitas": 27,
-      "lembaga_pendidikan": 9,
-      "laboratorium": 27,
-      "observatorium": 36,
-      "pusat_penelitian": 15,
-      "pusat_pengembangan": 1,
-      "literasi": 74
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 38,
-      "rumah_sakit_kecil": 27,
-      "pusat_diagnostik": 6,
-      "harapan_hidup": 17,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 40,
-      "pengadilan": 24,
-      "kejaksaan": 8,
-      "pos_polisi": 40,
-      "armada_mobil_polisi": 5808,
-      "akademi_polisi": 19,
-      "indeks_korupsi": 72,
-      "indeks_keamanan": 69
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 27,
-      "sirkuit_balap": 6,
-      "stadion": 25,
-      "stadion_internasional": 30
-  },
+  "pabrik_militer": hungaria_pabrik,
+    "pendidikan": hungaria_pendidikan,
+  "kesehatan": hungaria_kesehatan,
+  "hukum": hungaria_hukum,
+  "sektor_olahraga": hungaria_olahraga,
   "un_vote": 94,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

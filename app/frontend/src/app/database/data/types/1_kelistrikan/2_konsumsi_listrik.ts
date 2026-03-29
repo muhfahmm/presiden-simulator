@@ -189,10 +189,10 @@ export const KONSUMSI_SOSIAL = {
   hukum: { akademi_polisi: 10, pos_polisi: 3, armada_mobil_polisi: 0.1, kejaksaan: 5, pengadilan: 10, pusat_bantuan_hukum: 3 }
 };
 
-export function hitungKonsumsiSosial(social: CountryData["sektor_sosial"]) {
-  const edu = social.pendidikan || {};
-  const kesehatan = social.kesehatan || {};
-  const hukum = social.hukum || {};
+export function hitungKonsumsiSosial(data: Partial<CountryData>) {
+  const edu = data.pendidikan || {};
+  const kesehatan = data.kesehatan || {};
+  const hukum = data.hukum || {};
 
   const totalEdu = Object.keys(KONSUMSI_SOSIAL.pendidikan).reduce((total, key) =>
     total + ((edu as any)[key] ?? 0) * (KONSUMSI_SOSIAL.pendidikan as any)[key], 0);
@@ -238,7 +238,7 @@ export function hitungTotalKonsumsiNasional(data: CountryData) {
     hitungKonsumsiFarmasi(data.sektor_farmasi) +
     hitungKonsumsiPangan(data.sektor_peternakan, data.sektor_agrikultur) +
     hitungKonsumsiPertahanan(data.sektor_pertahanan, data.armada_militer, data.militer_strategis, data.armada_kepolisian, data.pabrik_militer) +
-    hitungKonsumsiSosial(data.sektor_sosial) +
+    hitungKonsumsiSosial(data) +
     hitungKonsumsiOlahraga(data.sektor_olahraga) +
     hitungKonsumsiTransportasi(data.infrastruktur)
   );

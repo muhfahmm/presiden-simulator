@@ -3,11 +3,16 @@ import { el_salvador_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikul
 import { el_salvador_armada } from "../../modules/2_militer/2_armada_militer/na/161_el_salvador";
 import { el_salvador_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/161_el_salvador";
 import { el_salvador_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/161_el_salvador";
+import { el_salvador_hukum } from "../../modules/3_sosial/3_hukum/na/161_el_salvador";
 import { el_salvador_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/161_el_salvador";
 import { el_salvador_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/161_el_salvador";
+import { el_salvador_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/161_el_salvador";
 import { el_salvador_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/161_el_salvador";
 import { el_salvador_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/161_el_salvador";
 import { el_salvador_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/161_el_salvador";
+import { el_salvador_olahraga } from "../../modules/3_sosial/4_olahraga/na/161_el_salvador";
+import { el_salvador_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/161_el_salvador";
+import { el_salvador_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/161_el_salvador";
 import { el_salvador_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/161_el_salvador";
 import { el_salvador_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/161_el_salvador";
 import { el_salvador_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/161_el_salvador";
@@ -29,50 +34,11 @@ export const el_salvador: CountryData = {
   "armada_militer": el_salvador_armada,
   "militer_strategis": el_salvador_strategis,
   "armada_kepolisian": el_salvador_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 22,
-      "dasar": 11,
-      "menengah": 26,
-      "lanjutan": 25,
-      "universitas": 24,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 16,
-      "observatorium": 17,
-      "pusat_penelitian": 36,
-      "pusat_pengembangan": 34,
-      "literasi": 68
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 31,
-      "rumah_sakit_kecil": 19,
-      "pusat_diagnostik": 32,
-      "harapan_hidup": 36,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 17,
-      "pengadilan": 27,
-      "kejaksaan": 31,
-      "pos_polisi": 17,
-      "armada_mobil_polisi": 9033,
-      "akademi_polisi": 20,
-      "indeks_korupsi": 77,
-      "indeks_keamanan": 78
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 27,
-      "sirkuit_balap": 8,
-      "stadion": 1,
-      "stadion_internasional": 38
-  },
+  "pabrik_militer": el_salvador_pabrik,
+    "pendidikan": el_salvador_pendidikan,
+  "kesehatan": el_salvador_kesehatan,
+  "hukum": el_salvador_hukum,
+  "sektor_olahraga": el_salvador_olahraga,
   "un_vote": 79,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

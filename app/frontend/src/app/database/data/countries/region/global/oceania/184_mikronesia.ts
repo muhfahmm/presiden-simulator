@@ -3,11 +3,16 @@ import { mikronesia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { mikronesia_armada } from "../../modules/2_militer/2_armada_militer/oceania/184_mikronesia";
 import { mikronesia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/184_mikronesia";
 import { mikronesia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/184_mikronesia";
+import { mikronesia_hukum } from "../../modules/3_sosial/3_hukum/oceania/184_mikronesia";
 import { mikronesia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/184_mikronesia";
 import { mikronesia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/184_mikronesia";
+import { mikronesia_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/184_mikronesia";
 import { mikronesia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/184_mikronesia";
 import { mikronesia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/184_mikronesia";
 import { mikronesia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/184_mikronesia";
+import { mikronesia_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/184_mikronesia";
+import { mikronesia_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/184_mikronesia";
+import { mikronesia_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/184_mikronesia";
 import { mikronesia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/184_mikronesia";
 import { mikronesia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/184_mikronesia";
 import { mikronesia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/184_mikronesia";
@@ -29,50 +34,11 @@ export const mikronesia: CountryData = {
   "armada_militer": mikronesia_armada,
   "militer_strategis": mikronesia_strategis,
   "armada_kepolisian": mikronesia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 36,
-      "dasar": 16,
-      "menengah": 1,
-      "lanjutan": 2,
-      "universitas": 1,
-      "lembaga_pendidikan": 8,
-      "laboratorium": 33,
-      "observatorium": 40,
-      "pusat_penelitian": 15,
-      "pusat_pengembangan": 28,
-      "literasi": 86
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 26,
-      "rumah_sakit_kecil": 21,
-      "pusat_diagnostik": 28,
-      "harapan_hidup": 29,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 20,
-      "pengadilan": 11,
-      "kejaksaan": 38,
-      "pos_polisi": 40,
-      "armada_mobil_polisi": 8682,
-      "akademi_polisi": 35,
-      "indeks_korupsi": 65,
-      "indeks_keamanan": 93
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 2,
-      "sirkuit_balap": 28,
-      "stadion": 26,
-      "stadion_internasional": 34
-  },
+  "pabrik_militer": mikronesia_pabrik,
+    "pendidikan": mikronesia_pendidikan,
+  "kesehatan": mikronesia_kesehatan,
+  "hukum": mikronesia_hukum,
+  "sektor_olahraga": mikronesia_olahraga,
   "un_vote": 14,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

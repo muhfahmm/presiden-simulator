@@ -3,11 +3,16 @@ import { makau_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/as
 import { makau_armada } from "../../modules/2_militer/2_armada_militer/asia/80_makau";
 import { makau_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/80_makau";
 import { makau_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/80_makau";
+import { makau_hukum } from "../../modules/3_sosial/3_hukum/asia/80_makau";
 import { makau_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/80_makau";
 import { makau_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/80_makau";
+import { makau_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/80_makau";
 import { makau_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/80_makau";
 import { makau_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/80_makau";
 import { makau_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/80_makau";
+import { makau_olahraga } from "../../modules/3_sosial/4_olahraga/asia/80_makau";
+import { makau_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/80_makau";
+import { makau_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/80_makau";
 import { makau_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/80_makau";
 import { makau_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/80_makau";
 import { makau_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/80_makau";
@@ -29,50 +34,11 @@ export const makau: CountryData = {
   "armada_militer": makau_armada,
   "militer_strategis": makau_strategis,
   "armada_kepolisian": makau_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 36,
-      "dasar": 27,
-      "menengah": 31,
-      "lanjutan": 3,
-      "universitas": 38,
-      "lembaga_pendidikan": 15,
-      "laboratorium": 24,
-      "observatorium": 3,
-      "pusat_penelitian": 24,
-      "pusat_pengembangan": 13,
-      "literasi": 61
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 38,
-      "rumah_sakit_kecil": 33,
-      "pusat_diagnostik": 34,
-      "harapan_hidup": 8,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 23,
-      "pengadilan": 33,
-      "kejaksaan": 7,
-      "pos_polisi": 36,
-      "armada_mobil_polisi": 2272,
-      "akademi_polisi": 38,
-      "indeks_korupsi": 90,
-      "indeks_keamanan": 50
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 29,
-      "sirkuit_balap": 11,
-      "stadion": 27,
-      "stadion_internasional": 12
-  },
+  "pabrik_militer": makau_pabrik,
+    "pendidikan": makau_pendidikan,
+  "kesehatan": makau_kesehatan,
+  "hukum": makau_hukum,
+  "sektor_olahraga": makau_olahraga,
   "un_vote": 8,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

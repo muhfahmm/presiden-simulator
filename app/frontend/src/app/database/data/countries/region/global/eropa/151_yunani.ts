@@ -3,11 +3,16 @@ import { yunani_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/e
 import { yunani_armada } from "../../modules/2_militer/2_armada_militer/eropa/151_yunani";
 import { yunani_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/151_yunani";
 import { yunani_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/151_yunani";
+import { yunani_hukum } from "../../modules/3_sosial/3_hukum/eropa/151_yunani";
 import { yunani_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/151_yunani";
 import { yunani_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/151_yunani";
+import { yunani_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/151_yunani";
 import { yunani_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/151_yunani";
 import { yunani_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/151_yunani";
 import { yunani_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/151_yunani";
+import { yunani_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/151_yunani";
+import { yunani_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/151_yunani";
+import { yunani_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/151_yunani";
 import { yunani_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/151_yunani";
 import { yunani_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/151_yunani";
 import { yunani_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/151_yunani";
@@ -29,50 +34,11 @@ export const yunani: CountryData = {
   "armada_militer": yunani_armada,
   "militer_strategis": yunani_strategis,
   "armada_kepolisian": yunani_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 17,
-      "dasar": 30,
-      "menengah": 11,
-      "lanjutan": 32,
-      "universitas": 38,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 35,
-      "observatorium": 15,
-      "pusat_penelitian": 17,
-      "pusat_pengembangan": 17,
-      "literasi": 50
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 40,
-      "rumah_sakit_kecil": 18,
-      "pusat_diagnostik": 25,
-      "harapan_hidup": 2,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 11,
-      "pengadilan": 4,
-      "kejaksaan": 5,
-      "pos_polisi": 22,
-      "armada_mobil_polisi": 651,
-      "akademi_polisi": 25,
-      "indeks_korupsi": 74,
-      "indeks_keamanan": 75
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 38,
-      "sirkuit_balap": 24,
-      "stadion": 27,
-      "stadion_internasional": 37
-  },
+  "pabrik_militer": yunani_pabrik,
+    "pendidikan": yunani_pendidikan,
+  "kesehatan": yunani_kesehatan,
+  "hukum": yunani_hukum,
+  "sektor_olahraga": yunani_olahraga,
   "un_vote": 179,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

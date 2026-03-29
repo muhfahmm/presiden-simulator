@@ -3,11 +3,16 @@ import { maldives_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { maldives_armada } from "../../modules/2_militer/2_armada_militer/asia/82_maldives";
 import { maldives_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/82_maldives";
 import { maldives_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/82_maldives";
+import { maldives_hukum } from "../../modules/3_sosial/3_hukum/asia/82_maldives";
 import { maldives_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/82_maldives";
 import { maldives_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/82_maldives";
+import { maldives_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/82_maldives";
 import { maldives_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/82_maldives";
 import { maldives_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/82_maldives";
 import { maldives_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/82_maldives";
+import { maldives_olahraga } from "../../modules/3_sosial/4_olahraga/asia/82_maldives";
+import { maldives_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/82_maldives";
+import { maldives_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/82_maldives";
 import { maldives_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/82_maldives";
 import { maldives_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/82_maldives";
 import { maldives_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/82_maldives";
@@ -29,50 +34,11 @@ export const maldives: CountryData = {
   "armada_militer": maldives_armada,
   "militer_strategis": maldives_strategis,
   "armada_kepolisian": maldives_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 27,
-      "dasar": 10,
-      "menengah": 37,
-      "lanjutan": 30,
-      "universitas": 32,
-      "lembaga_pendidikan": 21,
-      "laboratorium": 29,
-      "observatorium": 37,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 5,
-      "literasi": 94
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 11,
-      "rumah_sakit_kecil": 6,
-      "pusat_diagnostik": 20,
-      "harapan_hidup": 40,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 16,
-      "pengadilan": 38,
-      "kejaksaan": 8,
-      "pos_polisi": 30,
-      "armada_mobil_polisi": 8491,
-      "akademi_polisi": 9,
-      "indeks_korupsi": 85,
-      "indeks_keamanan": 80
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 16,
-      "stadion": 12,
-      "stadion_internasional": 7
-  },
+  "pabrik_militer": maldives_pabrik,
+    "pendidikan": maldives_pendidikan,
+  "kesehatan": maldives_kesehatan,
+  "hukum": maldives_hukum,
+  "sektor_olahraga": maldives_olahraga,
   "un_vote": 145,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

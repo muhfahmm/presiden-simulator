@@ -3,11 +3,16 @@ import { tahiti_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/o
 import { tahiti_armada } from "../../modules/2_militer/2_armada_militer/oceania/191_tahiti";
 import { tahiti_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/191_tahiti";
 import { tahiti_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/191_tahiti";
+import { tahiti_hukum } from "../../modules/3_sosial/3_hukum/oceania/191_tahiti";
 import { tahiti_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/191_tahiti";
 import { tahiti_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/191_tahiti";
+import { tahiti_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/191_tahiti";
 import { tahiti_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/191_tahiti";
 import { tahiti_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/191_tahiti";
 import { tahiti_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/191_tahiti";
+import { tahiti_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/191_tahiti";
+import { tahiti_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/191_tahiti";
+import { tahiti_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/191_tahiti";
 import { tahiti_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/191_tahiti";
 import { tahiti_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/191_tahiti";
 import { tahiti_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/191_tahiti";
@@ -29,50 +34,11 @@ export const tahiti: CountryData = {
   "armada_militer": tahiti_armada,
   "militer_strategis": tahiti_strategis,
   "armada_kepolisian": tahiti_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 40,
-      "dasar": 12,
-      "menengah": 17,
-      "lanjutan": 40,
-      "universitas": 33,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 29,
-      "observatorium": 37,
-      "pusat_penelitian": 9,
-      "pusat_pengembangan": 37,
-      "literasi": 56
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 12,
-      "rumah_sakit_kecil": 13,
-      "pusat_diagnostik": 12,
-      "harapan_hidup": 40,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 32,
-      "pengadilan": 11,
-      "kejaksaan": 18,
-      "pos_polisi": 39,
-      "armada_mobil_polisi": 8885,
-      "akademi_polisi": 27,
-      "indeks_korupsi": 82,
-      "indeks_keamanan": 94
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 19,
-      "sirkuit_balap": 1,
-      "stadion": 22,
-      "stadion_internasional": 1
-  },
+  "pabrik_militer": tahiti_pabrik,
+    "pendidikan": tahiti_pendidikan,
+  "kesehatan": tahiti_kesehatan,
+  "hukum": tahiti_hukum,
+  "sektor_olahraga": tahiti_olahraga,
   "un_vote": 81,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

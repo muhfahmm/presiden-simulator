@@ -3,11 +3,16 @@ import { gibraltar_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { gibraltar_armada } from "../../modules/2_militer/2_armada_militer/eropa/115_gibraltar";
 import { gibraltar_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/115_gibraltar";
 import { gibraltar_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/115_gibraltar";
+import { gibraltar_hukum } from "../../modules/3_sosial/3_hukum/eropa/115_gibraltar";
 import { gibraltar_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/115_gibraltar";
 import { gibraltar_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/115_gibraltar";
+import { gibraltar_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/115_gibraltar";
 import { gibraltar_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/115_gibraltar";
 import { gibraltar_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/115_gibraltar";
 import { gibraltar_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/115_gibraltar";
+import { gibraltar_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/115_gibraltar";
+import { gibraltar_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/115_gibraltar";
+import { gibraltar_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/115_gibraltar";
 import { gibraltar_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/115_gibraltar";
 import { gibraltar_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/115_gibraltar";
 import { gibraltar_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/115_gibraltar";
@@ -29,50 +34,11 @@ export const gibraltar: CountryData = {
   "armada_militer": gibraltar_armada,
   "militer_strategis": gibraltar_strategis,
   "armada_kepolisian": gibraltar_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 21,
-      "dasar": 37,
-      "menengah": 9,
-      "lanjutan": 33,
-      "universitas": 12,
-      "lembaga_pendidikan": 32,
-      "laboratorium": 14,
-      "observatorium": 40,
-      "pusat_penelitian": 33,
-      "pusat_pengembangan": 11,
-      "literasi": 86
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 4,
-      "rumah_sakit_kecil": 38,
-      "pusat_diagnostik": 26,
-      "harapan_hidup": 15,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 14,
-      "pengadilan": 33,
-      "kejaksaan": 19,
-      "pos_polisi": 37,
-      "armada_mobil_polisi": 6715,
-      "akademi_polisi": 31,
-      "indeks_korupsi": 74,
-      "indeks_keamanan": 79
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 18,
-      "sirkuit_balap": 37,
-      "stadion": 39,
-      "stadion_internasional": 19
-  },
+  "pabrik_militer": gibraltar_pabrik,
+    "pendidikan": gibraltar_pendidikan,
+  "kesehatan": gibraltar_kesehatan,
+  "hukum": gibraltar_hukum,
+  "sektor_olahraga": gibraltar_olahraga,
   "un_vote": 23,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

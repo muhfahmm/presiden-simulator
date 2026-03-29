@@ -3,11 +3,16 @@ import { mesir_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/af
 import { mesir_armada } from "../../modules/2_militer/2_armada_militer/afrika/31_mesir";
 import { mesir_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/31_mesir";
 import { mesir_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/31_mesir";
+import { mesir_hukum } from "../../modules/3_sosial/3_hukum/afrika/31_mesir";
 import { mesir_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/31_mesir";
 import { mesir_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/31_mesir";
+import { mesir_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/31_mesir";
 import { mesir_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/31_mesir";
 import { mesir_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/31_mesir";
 import { mesir_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/31_mesir";
+import { mesir_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/31_mesir";
+import { mesir_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/31_mesir";
+import { mesir_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/31_mesir";
 import { mesir_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/31_mesir";
 import { mesir_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/31_mesir";
 import { mesir_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/31_mesir";
@@ -29,50 +34,11 @@ export const mesir: CountryData = {
   "armada_militer": mesir_armada,
   "militer_strategis": mesir_strategis,
   "armada_kepolisian": mesir_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 3,
-      "dasar": 3,
-      "menengah": 19,
-      "lanjutan": 28,
-      "universitas": 30,
-      "lembaga_pendidikan": 6,
-      "laboratorium": 19,
-      "observatorium": 14,
-      "pusat_penelitian": 18,
-      "pusat_pengembangan": 7,
-      "literasi": 67
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 8,
-      "rumah_sakit_kecil": 32,
-      "pusat_diagnostik": 33,
-      "harapan_hidup": 25,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 12,
-      "pengadilan": 3,
-      "kejaksaan": 4,
-      "pos_polisi": 25,
-      "armada_mobil_polisi": 8480,
-      "akademi_polisi": 19,
-      "indeks_korupsi": 72,
-      "indeks_keamanan": 87
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 38,
-      "sirkuit_balap": 6,
-      "stadion": 31,
-      "stadion_internasional": 4
-  },
+  "pabrik_militer": mesir_pabrik,
+    "pendidikan": mesir_pendidikan,
+  "kesehatan": mesir_kesehatan,
+  "hukum": mesir_hukum,
+  "sektor_olahraga": mesir_olahraga,
   "un_vote": 159,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

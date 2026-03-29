@@ -4,7 +4,7 @@ import { SektorListrik } from "./1_kelistrikan";
 import { SektorInfrastruktur } from "./2_infrastruktur";
 import { SektorManufaktur, SektorPeternakan, SektorAgrikultur, SektorPerikanan, SektorOlahanPangan, SektorFarmasi } from "./3_produksi";
 import { SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian, SektorPabrikMiliter } from "./4_militer";
-import { SektorSosial } from "./5_layanan_sosial";
+import { PendidikanData, KesehatanData, HukumData } from "./5_layanan_sosial";
 import { SektorGeopolitik } from "./6_geopolitik_dan_luar_negeri";
 import { SektorEkstraksi } from "./7_ekstraksi_mineral_kritis";
 import { OlahragaData } from "./8_olahraga";
@@ -37,7 +37,12 @@ export interface CountryData extends EkonomiData {
   militer_strategis: SektorMiliterStrategis;
   armada_kepolisian: SektorArmadaKepolisian;
   pabrik_militer: SektorPabrikMiliter;
-  sektor_sosial: SektorSosial;
+  
+  // Sektor Sosial (Flattened)
+  pendidikan: PendidikanData;
+  kesehatan: KesehatanData;
+  hukum: HukumData;
+
   sektor_olahraga: OlahragaData;
   geopolitik: SektorGeopolitik;
 

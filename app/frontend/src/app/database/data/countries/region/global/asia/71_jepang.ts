@@ -3,11 +3,16 @@ import { jepang_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/a
 import { jepang_armada } from "../../modules/2_militer/2_armada_militer/asia/71_jepang";
 import { jepang_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/71_jepang";
 import { jepang_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/71_jepang";
+import { jepang_hukum } from "../../modules/3_sosial/3_hukum/asia/71_jepang";
 import { jepang_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/71_jepang";
 import { jepang_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/71_jepang";
+import { jepang_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/71_jepang";
 import { jepang_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/71_jepang";
 import { jepang_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/71_jepang";
 import { jepang_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/71_jepang";
+import { jepang_olahraga } from "../../modules/3_sosial/4_olahraga/asia/71_jepang";
+import { jepang_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/71_jepang";
+import { jepang_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/71_jepang";
 import { jepang_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/71_jepang";
 import { jepang_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/71_jepang";
 import { jepang_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/71_jepang";
@@ -29,50 +34,11 @@ export const jepang: CountryData = {
   "armada_militer": jepang_armada,
   "militer_strategis": jepang_strategis,
   "armada_kepolisian": jepang_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 28,
-      "dasar": 7,
-      "menengah": 22,
-      "lanjutan": 10,
-      "universitas": 23,
-      "lembaga_pendidikan": 17,
-      "laboratorium": 17,
-      "observatorium": 9,
-      "pusat_penelitian": 13,
-      "pusat_pengembangan": 5,
-      "literasi": 86
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 11,
-      "rumah_sakit_kecil": 35,
-      "pusat_diagnostik": 9,
-      "harapan_hidup": 17,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 23,
-      "pengadilan": 13,
-      "kejaksaan": 14,
-      "pos_polisi": 28,
-      "armada_mobil_polisi": 6450,
-      "akademi_polisi": 33,
-      "indeks_korupsi": 90,
-      "indeks_keamanan": 64
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 13,
-      "sirkuit_balap": 39,
-      "stadion": 39,
-      "stadion_internasional": 12
-  },
+  "pabrik_militer": jepang_pabrik,
+    "pendidikan": jepang_pendidikan,
+  "kesehatan": jepang_kesehatan,
+  "hukum": jepang_hukum,
+  "sektor_olahraga": jepang_olahraga,
   "un_vote": 207,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

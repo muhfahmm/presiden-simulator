@@ -3,11 +3,16 @@ import { singapura_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { singapura_armada } from "../../modules/2_militer/2_armada_militer/asia/91_singapura";
 import { singapura_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/91_singapura";
 import { singapura_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/91_singapura";
+import { singapura_hukum } from "../../modules/3_sosial/3_hukum/asia/91_singapura";
 import { singapura_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/91_singapura";
 import { singapura_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/91_singapura";
+import { singapura_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/91_singapura";
 import { singapura_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/91_singapura";
 import { singapura_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/91_singapura";
 import { singapura_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/91_singapura";
+import { singapura_olahraga } from "../../modules/3_sosial/4_olahraga/asia/91_singapura";
+import { singapura_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/91_singapura";
+import { singapura_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/91_singapura";
 import { singapura_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/91_singapura";
 import { singapura_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/91_singapura";
 import { singapura_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/91_singapura";
@@ -29,50 +34,11 @@ export const singapura: CountryData = {
   "armada_militer": singapura_armada,
   "militer_strategis": singapura_strategis,
   "armada_kepolisian": singapura_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 26,
-      "dasar": 40,
-      "menengah": 11,
-      "lanjutan": 4,
-      "universitas": 15,
-      "lembaga_pendidikan": 18,
-      "laboratorium": 35,
-      "observatorium": 8,
-      "pusat_penelitian": 12,
-      "pusat_pengembangan": 33,
-      "literasi": 66
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 1,
-      "rumah_sakit_kecil": 23,
-      "pusat_diagnostik": 23,
-      "harapan_hidup": 25,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 2,
-      "pengadilan": 16,
-      "kejaksaan": 37,
-      "pos_polisi": 6,
-      "armada_mobil_polisi": 2865,
-      "akademi_polisi": 33,
-      "indeks_korupsi": 64,
-      "indeks_keamanan": 92
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 16,
-      "sirkuit_balap": 38,
-      "stadion": 11,
-      "stadion_internasional": 25
-  },
+  "pabrik_militer": singapura_pabrik,
+    "pendidikan": singapura_pendidikan,
+  "kesehatan": singapura_kesehatan,
+  "hukum": singapura_hukum,
+  "sektor_olahraga": singapura_olahraga,
   "un_vote": 148,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

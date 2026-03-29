@@ -3,11 +3,16 @@ import { guam_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/oce
 import { guam_armada } from "../../modules/2_militer/2_armada_militer/oceania/181_guam";
 import { guam_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/181_guam";
 import { guam_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/181_guam";
+import { guam_hukum } from "../../modules/3_sosial/3_hukum/oceania/181_guam";
 import { guam_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/181_guam";
 import { guam_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/181_guam";
+import { guam_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/181_guam";
 import { guam_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/181_guam";
 import { guam_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/181_guam";
 import { guam_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/181_guam";
+import { guam_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/181_guam";
+import { guam_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/181_guam";
+import { guam_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/181_guam";
 import { guam_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/181_guam";
 import { guam_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/181_guam";
 import { guam_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/181_guam";
@@ -29,50 +34,11 @@ export const guam: CountryData = {
   "armada_militer": guam_armada,
   "militer_strategis": guam_strategis,
   "armada_kepolisian": guam_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 23,
-      "dasar": 20,
-      "menengah": 15,
-      "lanjutan": 38,
-      "universitas": 25,
-      "lembaga_pendidikan": 32,
-      "laboratorium": 29,
-      "observatorium": 5,
-      "pusat_penelitian": 37,
-      "pusat_pengembangan": 39,
-      "literasi": 69
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 10,
-      "rumah_sakit_kecil": 20,
-      "pusat_diagnostik": 11,
-      "harapan_hidup": 30,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 37,
-      "pengadilan": 36,
-      "kejaksaan": 15,
-      "pos_polisi": 33,
-      "armada_mobil_polisi": 5805,
-      "akademi_polisi": 37,
-      "indeks_korupsi": 60,
-      "indeks_keamanan": 86
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 39,
-      "sirkuit_balap": 12,
-      "stadion": 11,
-      "stadion_internasional": 4
-  },
+  "pabrik_militer": guam_pabrik,
+    "pendidikan": guam_pendidikan,
+  "kesehatan": guam_kesehatan,
+  "hukum": guam_hukum,
+  "sektor_olahraga": guam_olahraga,
   "un_vote": 151,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

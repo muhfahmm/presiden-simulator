@@ -3,11 +3,16 @@ import { iran_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/asi
 import { iran_armada } from "../../modules/2_militer/2_armada_militer/asia/69_iran";
 import { iran_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/69_iran";
 import { iran_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/69_iran";
+import { iran_hukum } from "../../modules/3_sosial/3_hukum/asia/69_iran";
 import { iran_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/69_iran";
 import { iran_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/69_iran";
+import { iran_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/69_iran";
 import { iran_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/69_iran";
 import { iran_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/69_iran";
 import { iran_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/69_iran";
+import { iran_olahraga } from "../../modules/3_sosial/4_olahraga/asia/69_iran";
+import { iran_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/69_iran";
+import { iran_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/69_iran";
 import { iran_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/69_iran";
 import { iran_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/69_iran";
 import { iran_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/69_iran";
@@ -29,50 +34,11 @@ export const iran: CountryData = {
   "armada_militer": iran_armada,
   "militer_strategis": iran_strategis,
   "armada_kepolisian": iran_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 33,
-      "dasar": 2,
-      "menengah": 13,
-      "lanjutan": 25,
-      "universitas": 5,
-      "lembaga_pendidikan": 16,
-      "laboratorium": 17,
-      "observatorium": 6,
-      "pusat_penelitian": 12,
-      "pusat_pengembangan": 35,
-      "literasi": 71
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 16,
-      "rumah_sakit_kecil": 1,
-      "pusat_diagnostik": 30,
-      "harapan_hidup": 11,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 14,
-      "pengadilan": 16,
-      "kejaksaan": 35,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 9271,
-      "akademi_polisi": 17,
-      "indeks_korupsi": 74,
-      "indeks_keamanan": 86
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 39,
-      "sirkuit_balap": 34,
-      "stadion": 33,
-      "stadion_internasional": 36
-  },
+  "pabrik_militer": iran_pabrik,
+    "pendidikan": iran_pendidikan,
+  "kesehatan": iran_kesehatan,
+  "hukum": iran_hukum,
+  "sektor_olahraga": iran_olahraga,
   "un_vote": 191,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

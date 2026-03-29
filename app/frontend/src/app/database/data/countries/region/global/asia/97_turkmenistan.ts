@@ -3,11 +3,16 @@ import { turkmenistan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agriku
 import { turkmenistan_armada } from "../../modules/2_militer/2_armada_militer/asia/97_turkmenistan";
 import { turkmenistan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/97_turkmenistan";
 import { turkmenistan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/97_turkmenistan";
+import { turkmenistan_hukum } from "../../modules/3_sosial/3_hukum/asia/97_turkmenistan";
 import { turkmenistan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/97_turkmenistan";
 import { turkmenistan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/97_turkmenistan";
+import { turkmenistan_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/97_turkmenistan";
 import { turkmenistan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/97_turkmenistan";
 import { turkmenistan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/97_turkmenistan";
 import { turkmenistan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/97_turkmenistan";
+import { turkmenistan_olahraga } from "../../modules/3_sosial/4_olahraga/asia/97_turkmenistan";
+import { turkmenistan_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/97_turkmenistan";
+import { turkmenistan_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/97_turkmenistan";
 import { turkmenistan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/97_turkmenistan";
 import { turkmenistan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/97_turkmenistan";
 import { turkmenistan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/97_turkmenistan";
@@ -29,50 +34,11 @@ export const turkmenistan: CountryData = {
   "armada_militer": turkmenistan_armada,
   "militer_strategis": turkmenistan_strategis,
   "armada_kepolisian": turkmenistan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 20,
-      "dasar": 34,
-      "menengah": 20,
-      "lanjutan": 24,
-      "universitas": 17,
-      "lembaga_pendidikan": 6,
-      "laboratorium": 9,
-      "observatorium": 23,
-      "pusat_penelitian": 27,
-      "pusat_pengembangan": 4,
-      "literasi": 80
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 27,
-      "rumah_sakit_kecil": 21,
-      "pusat_diagnostik": 37,
-      "harapan_hidup": 2,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 38,
-      "pengadilan": 28,
-      "kejaksaan": 5,
-      "pos_polisi": 2,
-      "armada_mobil_polisi": 6765,
-      "akademi_polisi": 17,
-      "indeks_korupsi": 56,
-      "indeks_keamanan": 79
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 30,
-      "sirkuit_balap": 5,
-      "stadion": 4,
-      "stadion_internasional": 19
-  },
+  "pabrik_militer": turkmenistan_pabrik,
+    "pendidikan": turkmenistan_pendidikan,
+  "kesehatan": turkmenistan_kesehatan,
+  "hukum": turkmenistan_hukum,
+  "sektor_olahraga": turkmenistan_olahraga,
   "un_vote": 133,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

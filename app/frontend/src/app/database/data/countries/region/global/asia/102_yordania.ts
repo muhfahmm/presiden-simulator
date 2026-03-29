@@ -3,11 +3,16 @@ import { yordania_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { yordania_armada } from "../../modules/2_militer/2_armada_militer/asia/102_yordania";
 import { yordania_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/102_yordania";
 import { yordania_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/102_yordania";
+import { yordania_hukum } from "../../modules/3_sosial/3_hukum/asia/102_yordania";
 import { yordania_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/102_yordania";
 import { yordania_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/102_yordania";
+import { yordania_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/102_yordania";
 import { yordania_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/102_yordania";
 import { yordania_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/102_yordania";
 import { yordania_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/102_yordania";
+import { yordania_olahraga } from "../../modules/3_sosial/4_olahraga/asia/102_yordania";
+import { yordania_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/102_yordania";
+import { yordania_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/102_yordania";
 import { yordania_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/102_yordania";
 import { yordania_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/102_yordania";
 import { yordania_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/102_yordania";
@@ -29,50 +34,11 @@ export const yordania: CountryData = {
   "armada_militer": yordania_armada,
   "militer_strategis": yordania_strategis,
   "armada_kepolisian": yordania_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 4,
-      "dasar": 10,
-      "menengah": 27,
-      "lanjutan": 36,
-      "universitas": 33,
-      "lembaga_pendidikan": 23,
-      "laboratorium": 29,
-      "observatorium": 28,
-      "pusat_penelitian": 17,
-      "pusat_pengembangan": 34,
-      "literasi": 69
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 4,
-      "pusat_diagnostik": 1,
-      "harapan_hidup": 17,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 40,
-      "pengadilan": 12,
-      "kejaksaan": 15,
-      "pos_polisi": 8,
-      "armada_mobil_polisi": 7967,
-      "akademi_polisi": 13,
-      "indeks_korupsi": 60,
-      "indeks_keamanan": 55
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 40,
-      "sirkuit_balap": 15,
-      "stadion": 19,
-      "stadion_internasional": 11
-  },
+  "pabrik_militer": yordania_pabrik,
+    "pendidikan": yordania_pendidikan,
+  "kesehatan": yordania_kesehatan,
+  "hukum": yordania_hukum,
+  "sektor_olahraga": yordania_olahraga,
   "un_vote": 82,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { laos_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/asi
 import { laos_armada } from "../../modules/2_militer/2_armada_militer/asia/78_laos";
 import { laos_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/78_laos";
 import { laos_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/78_laos";
+import { laos_hukum } from "../../modules/3_sosial/3_hukum/asia/78_laos";
 import { laos_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/78_laos";
 import { laos_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/78_laos";
+import { laos_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/78_laos";
 import { laos_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/78_laos";
 import { laos_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/78_laos";
 import { laos_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/78_laos";
+import { laos_olahraga } from "../../modules/3_sosial/4_olahraga/asia/78_laos";
+import { laos_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/78_laos";
+import { laos_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/78_laos";
 import { laos_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/78_laos";
 import { laos_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/78_laos";
 import { laos_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/78_laos";
@@ -29,50 +34,11 @@ export const laos: CountryData = {
   "armada_militer": laos_armada,
   "militer_strategis": laos_strategis,
   "armada_kepolisian": laos_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 26,
-      "dasar": 20,
-      "menengah": 34,
-      "lanjutan": 1,
-      "universitas": 19,
-      "lembaga_pendidikan": 17,
-      "laboratorium": 33,
-      "observatorium": 27,
-      "pusat_penelitian": 9,
-      "pusat_pengembangan": 12,
-      "literasi": 77
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 34,
-      "rumah_sakit_kecil": 36,
-      "pusat_diagnostik": 10,
-      "harapan_hidup": 21,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 23,
-      "pengadilan": 20,
-      "kejaksaan": 38,
-      "pos_polisi": 20,
-      "armada_mobil_polisi": 598,
-      "akademi_polisi": 34,
-      "indeks_korupsi": 75,
-      "indeks_keamanan": 55
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 40,
-      "sirkuit_balap": 15,
-      "stadion": 12,
-      "stadion_internasional": 10
-  },
+  "pabrik_militer": laos_pabrik,
+    "pendidikan": laos_pendidikan,
+  "kesehatan": laos_kesehatan,
+  "hukum": laos_hukum,
+  "sektor_olahraga": laos_olahraga,
   "un_vote": 21,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { san_marino_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { san_marino_armada } from "../../modules/2_militer/2_armada_militer/eropa/141_san_marino";
 import { san_marino_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/141_san_marino";
 import { san_marino_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/141_san_marino";
+import { san_marino_hukum } from "../../modules/3_sosial/3_hukum/eropa/141_san_marino";
 import { san_marino_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/141_san_marino";
 import { san_marino_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/141_san_marino";
+import { san_marino_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/141_san_marino";
 import { san_marino_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/141_san_marino";
 import { san_marino_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/141_san_marino";
 import { san_marino_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/141_san_marino";
+import { san_marino_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/141_san_marino";
+import { san_marino_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/141_san_marino";
+import { san_marino_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/141_san_marino";
 import { san_marino_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/141_san_marino";
 import { san_marino_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/141_san_marino";
 import { san_marino_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/141_san_marino";
@@ -29,50 +34,11 @@ export const san_marino: CountryData = {
   "armada_militer": san_marino_armada,
   "militer_strategis": san_marino_strategis,
   "armada_kepolisian": san_marino_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 15,
-      "dasar": 39,
-      "menengah": 25,
-      "lanjutan": 10,
-      "universitas": 18,
-      "lembaga_pendidikan": 19,
-      "laboratorium": 6,
-      "observatorium": 18,
-      "pusat_penelitian": 30,
-      "pusat_pengembangan": 11,
-      "literasi": 50
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 7,
-      "rumah_sakit_kecil": 28,
-      "pusat_diagnostik": 32,
-      "harapan_hidup": 9,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 4,
-      "pengadilan": 36,
-      "kejaksaan": 21,
-      "pos_polisi": 33,
-      "armada_mobil_polisi": 9208,
-      "akademi_polisi": 22,
-      "indeks_korupsi": 86,
-      "indeks_keamanan": 73
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 27,
-      "sirkuit_balap": 20,
-      "stadion": 19,
-      "stadion_internasional": 32
-  },
+  "pabrik_militer": san_marino_pabrik,
+    "pendidikan": san_marino_pendidikan,
+  "kesehatan": san_marino_kesehatan,
+  "hukum": san_marino_hukum,
+  "sektor_olahraga": san_marino_olahraga,
   "un_vote": 31,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

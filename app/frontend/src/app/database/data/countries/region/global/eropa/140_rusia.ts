@@ -3,11 +3,16 @@ import { rusia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/er
 import { rusia_armada } from "../../modules/2_militer/2_armada_militer/eropa/140_rusia";
 import { rusia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/140_rusia";
 import { rusia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/140_rusia";
+import { rusia_hukum } from "../../modules/3_sosial/3_hukum/eropa/140_rusia";
 import { rusia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/140_rusia";
 import { rusia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/140_rusia";
+import { rusia_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/140_rusia";
 import { rusia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/140_rusia";
 import { rusia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/140_rusia";
 import { rusia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/140_rusia";
+import { rusia_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/140_rusia";
+import { rusia_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/140_rusia";
+import { rusia_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/140_rusia";
 import { rusia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/140_rusia";
 import { rusia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/140_rusia";
 import { rusia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/140_rusia";
@@ -29,50 +34,11 @@ export const rusia: CountryData = {
   "armada_militer": rusia_armada,
   "militer_strategis": rusia_strategis,
   "armada_kepolisian": rusia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 12,
-      "dasar": 37,
-      "menengah": 12,
-      "lanjutan": 2,
-      "universitas": 15,
-      "lembaga_pendidikan": 37,
-      "laboratorium": 26,
-      "observatorium": 34,
-      "pusat_penelitian": 29,
-      "pusat_pengembangan": 8,
-      "literasi": 87
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 12,
-      "rumah_sakit_kecil": 29,
-      "pusat_diagnostik": 29,
-      "harapan_hidup": 35,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 26,
-      "pengadilan": 27,
-      "kejaksaan": 3,
-      "pos_polisi": 11,
-      "armada_mobil_polisi": 6612,
-      "akademi_polisi": 24,
-      "indeks_korupsi": 75,
-      "indeks_keamanan": 72
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 2,
-      "stadion": 14,
-      "stadion_internasional": 17
-  },
+  "pabrik_militer": rusia_pabrik,
+    "pendidikan": rusia_pendidikan,
+  "kesehatan": rusia_kesehatan,
+  "hukum": rusia_hukum,
+  "sektor_olahraga": rusia_olahraga,
   "un_vote": 150,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { jamaika_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { jamaika_armada } from "../../modules/2_militer/2_armada_militer/na/167_jamaika";
 import { jamaika_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/167_jamaika";
 import { jamaika_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/167_jamaika";
+import { jamaika_hukum } from "../../modules/3_sosial/3_hukum/na/167_jamaika";
 import { jamaika_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/167_jamaika";
 import { jamaika_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/167_jamaika";
+import { jamaika_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/167_jamaika";
 import { jamaika_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/167_jamaika";
 import { jamaika_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/167_jamaika";
 import { jamaika_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/167_jamaika";
+import { jamaika_olahraga } from "../../modules/3_sosial/4_olahraga/na/167_jamaika";
+import { jamaika_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/167_jamaika";
+import { jamaika_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/167_jamaika";
 import { jamaika_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/167_jamaika";
 import { jamaika_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/167_jamaika";
 import { jamaika_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/167_jamaika";
@@ -29,50 +34,11 @@ export const jamaika: CountryData = {
   "armada_militer": jamaika_armada,
   "militer_strategis": jamaika_strategis,
   "armada_kepolisian": jamaika_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 39,
-      "dasar": 20,
-      "menengah": 17,
-      "lanjutan": 7,
-      "universitas": 2,
-      "lembaga_pendidikan": 21,
-      "laboratorium": 1,
-      "observatorium": 7,
-      "pusat_penelitian": 20,
-      "pusat_pengembangan": 35,
-      "literasi": 58
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 28,
-      "rumah_sakit_kecil": 9,
-      "pusat_diagnostik": 2,
-      "harapan_hidup": 38,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 11,
-      "pengadilan": 23,
-      "kejaksaan": 1,
-      "pos_polisi": 20,
-      "armada_mobil_polisi": 9778,
-      "akademi_polisi": 39,
-      "indeks_korupsi": 77,
-      "indeks_keamanan": 79
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 18,
-      "stadion": 39,
-      "stadion_internasional": 34
-  },
+  "pabrik_militer": jamaika_pabrik,
+    "pendidikan": jamaika_pendidikan,
+  "kesehatan": jamaika_kesehatan,
+  "hukum": jamaika_hukum,
+  "sektor_olahraga": jamaika_olahraga,
   "un_vote": 57,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

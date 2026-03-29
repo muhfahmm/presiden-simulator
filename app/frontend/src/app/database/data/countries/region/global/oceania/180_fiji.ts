@@ -3,11 +3,16 @@ import { fiji_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/oce
 import { fiji_armada } from "../../modules/2_militer/2_armada_militer/oceania/180_fiji";
 import { fiji_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/180_fiji";
 import { fiji_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/180_fiji";
+import { fiji_hukum } from "../../modules/3_sosial/3_hukum/oceania/180_fiji";
 import { fiji_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/180_fiji";
 import { fiji_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/180_fiji";
+import { fiji_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/180_fiji";
 import { fiji_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/180_fiji";
 import { fiji_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/180_fiji";
 import { fiji_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/180_fiji";
+import { fiji_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/180_fiji";
+import { fiji_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/180_fiji";
+import { fiji_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/180_fiji";
 import { fiji_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/180_fiji";
 import { fiji_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/180_fiji";
 import { fiji_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/180_fiji";
@@ -29,50 +34,11 @@ export const fiji: CountryData = {
   "armada_militer": fiji_armada,
   "militer_strategis": fiji_strategis,
   "armada_kepolisian": fiji_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 13,
-      "dasar": 36,
-      "menengah": 17,
-      "lanjutan": 29,
-      "universitas": 17,
-      "lembaga_pendidikan": 30,
-      "laboratorium": 15,
-      "observatorium": 24,
-      "pusat_penelitian": 36,
-      "pusat_pengembangan": 12,
-      "literasi": 83
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 36,
-      "rumah_sakit_kecil": 24,
-      "pusat_diagnostik": 11,
-      "harapan_hidup": 39,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 37,
-      "pengadilan": 28,
-      "kejaksaan": 25,
-      "pos_polisi": 7,
-      "armada_mobil_polisi": 6507,
-      "akademi_polisi": 23,
-      "indeks_korupsi": 68,
-      "indeks_keamanan": 67
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 17,
-      "sirkuit_balap": 32,
-      "stadion": 6,
-      "stadion_internasional": 20
-  },
+  "pabrik_militer": fiji_pabrik,
+    "pendidikan": fiji_pendidikan,
+  "kesehatan": fiji_kesehatan,
+  "hukum": fiji_hukum,
+  "sektor_olahraga": fiji_olahraga,
   "un_vote": 113,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

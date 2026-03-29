@@ -3,11 +3,16 @@ import { brazil_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/s
 import { brazil_armada } from "../../modules/2_militer/2_armada_militer/sa/197_brazil";
 import { brazil_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/sa/197_brazil";
 import { brazil_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/sa/197_brazil";
+import { brazil_hukum } from "../../modules/3_sosial/3_hukum/sa/197_brazil";
 import { brazil_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/sa/197_brazil";
 import { brazil_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/sa/197_brazil";
+import { brazil_kesehatan } from "../../modules/3_sosial/2_kesehatan/sa/197_brazil";
 import { brazil_listrik } from "../../modules/1_ekonomi/2_kelistrikan/sa/197_brazil";
 import { brazil_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/sa/197_brazil";
 import { brazil_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/sa/197_brazil";
+import { brazil_olahraga } from "../../modules/3_sosial/4_olahraga/sa/197_brazil";
+import { brazil_pabrik } from "../../modules/2_militer/5_pabrik_militer/sa/197_brazil";
+import { brazil_pendidikan } from "../../modules/3_sosial/1_pendidikan/sa/197_brazil";
 import { brazil_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/sa/197_brazil";
 import { brazil_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/197_brazil";
 import { brazil_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/197_brazil";
@@ -29,50 +34,11 @@ export const brazil: CountryData = {
   "armada_militer": brazil_armada,
   "militer_strategis": brazil_strategis,
   "armada_kepolisian": brazil_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 22,
-      "dasar": 29,
-      "menengah": 22,
-      "lanjutan": 1,
-      "universitas": 5,
-      "lembaga_pendidikan": 38,
-      "laboratorium": 8,
-      "observatorium": 1,
-      "pusat_penelitian": 5,
-      "pusat_pengembangan": 27,
-      "literasi": 50
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 25,
-      "rumah_sakit_kecil": 37,
-      "pusat_diagnostik": 22,
-      "harapan_hidup": 1,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 33,
-      "pengadilan": 38,
-      "kejaksaan": 7,
-      "pos_polisi": 4,
-      "armada_mobil_polisi": 9953,
-      "akademi_polisi": 10,
-      "indeks_korupsi": 67,
-      "indeks_keamanan": 95
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 10,
-      "sirkuit_balap": 12,
-      "stadion": 30,
-      "stadion_internasional": 19
-  },
+  "pabrik_militer": brazil_pabrik,
+    "pendidikan": brazil_pendidikan,
+  "kesehatan": brazil_kesehatan,
+  "hukum": brazil_hukum,
+  "sektor_olahraga": brazil_olahraga,
   "un_vote": 206,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { afganistan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { afganistan_armada } from "../../modules/2_militer/2_armada_militer/asia/54_afganistan";
 import { afganistan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/54_afganistan";
 import { afganistan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/54_afganistan";
+import { afganistan_hukum } from "../../modules/3_sosial/3_hukum/asia/54_afganistan";
 import { afganistan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/54_afganistan";
 import { afganistan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/54_afganistan";
+import { afganistan_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/54_afganistan";
 import { afganistan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/54_afganistan";
 import { afganistan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/54_afganistan";
 import { afganistan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/54_afganistan";
+import { afganistan_olahraga } from "../../modules/3_sosial/4_olahraga/asia/54_afganistan";
+import { afganistan_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/54_afganistan";
+import { afganistan_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/54_afganistan";
 import { afganistan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/54_afganistan";
 import { afganistan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/54_afganistan";
 import { afganistan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/54_afganistan";
@@ -29,50 +34,11 @@ export const afganistan: CountryData = {
   "armada_militer": afganistan_armada,
   "militer_strategis": afganistan_strategis,
   "armada_kepolisian": afganistan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 30,
-      "dasar": 21,
-      "menengah": 33,
-      "lanjutan": 11,
-      "universitas": 30,
-      "lembaga_pendidikan": 9,
-      "laboratorium": 28,
-      "observatorium": 25,
-      "pusat_penelitian": 1,
-      "pusat_pengembangan": 13,
-      "literasi": 70
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 23,
-      "rumah_sakit_kecil": 16,
-      "pusat_diagnostik": 25,
-      "harapan_hidup": 24,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 25,
-      "pengadilan": 33,
-      "kejaksaan": 14,
-      "pos_polisi": 40,
-      "armada_mobil_polisi": 7082,
-      "akademi_polisi": 33,
-      "indeks_korupsi": 91,
-      "indeks_keamanan": 57
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 25,
-      "sirkuit_balap": 32,
-      "stadion": 11,
-      "stadion_internasional": 33
-  },
+  "pabrik_militer": afganistan_pabrik,
+    "pendidikan": afganistan_pendidikan,
+  "kesehatan": afganistan_kesehatan,
+  "hukum": afganistan_hukum,
+  "sektor_olahraga": afganistan_olahraga,
   "un_vote": 126,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

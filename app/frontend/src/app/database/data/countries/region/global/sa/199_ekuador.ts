@@ -3,11 +3,16 @@ import { ekuador_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { ekuador_armada } from "../../modules/2_militer/2_armada_militer/sa/199_ekuador";
 import { ekuador_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/sa/199_ekuador";
 import { ekuador_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/sa/199_ekuador";
+import { ekuador_hukum } from "../../modules/3_sosial/3_hukum/sa/199_ekuador";
 import { ekuador_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/sa/199_ekuador";
 import { ekuador_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/sa/199_ekuador";
+import { ekuador_kesehatan } from "../../modules/3_sosial/2_kesehatan/sa/199_ekuador";
 import { ekuador_listrik } from "../../modules/1_ekonomi/2_kelistrikan/sa/199_ekuador";
 import { ekuador_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/sa/199_ekuador";
 import { ekuador_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/sa/199_ekuador";
+import { ekuador_olahraga } from "../../modules/3_sosial/4_olahraga/sa/199_ekuador";
+import { ekuador_pabrik } from "../../modules/2_militer/5_pabrik_militer/sa/199_ekuador";
+import { ekuador_pendidikan } from "../../modules/3_sosial/1_pendidikan/sa/199_ekuador";
 import { ekuador_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/sa/199_ekuador";
 import { ekuador_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/199_ekuador";
 import { ekuador_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/199_ekuador";
@@ -29,50 +34,11 @@ export const ekuador: CountryData = {
   "armada_militer": ekuador_armada,
   "militer_strategis": ekuador_strategis,
   "armada_kepolisian": ekuador_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 12,
-      "dasar": 5,
-      "menengah": 37,
-      "lanjutan": 14,
-      "universitas": 30,
-      "lembaga_pendidikan": 13,
-      "laboratorium": 27,
-      "observatorium": 9,
-      "pusat_penelitian": 12,
-      "pusat_pengembangan": 26,
-      "literasi": 60
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 33,
-      "rumah_sakit_kecil": 1,
-      "pusat_diagnostik": 34,
-      "harapan_hidup": 2,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 12,
-      "pengadilan": 2,
-      "kejaksaan": 6,
-      "pos_polisi": 29,
-      "armada_mobil_polisi": 4812,
-      "akademi_polisi": 24,
-      "indeks_korupsi": 90,
-      "indeks_keamanan": 59
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 14,
-      "sirkuit_balap": 14,
-      "stadion": 9,
-      "stadion_internasional": 27
-  },
+  "pabrik_militer": ekuador_pabrik,
+    "pendidikan": ekuador_pendidikan,
+  "kesehatan": ekuador_kesehatan,
+  "hukum": ekuador_hukum,
+  "sektor_olahraga": ekuador_olahraga,
   "un_vote": 32,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

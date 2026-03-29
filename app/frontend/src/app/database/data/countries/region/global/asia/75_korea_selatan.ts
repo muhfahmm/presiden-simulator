@@ -3,11 +3,16 @@ import { korea_selatan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrik
 import { korea_selatan_armada } from "../../modules/2_militer/2_armada_militer/asia/75_korea_selatan";
 import { korea_selatan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/75_korea_selatan";
 import { korea_selatan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/75_korea_selatan";
+import { korea_selatan_hukum } from "../../modules/3_sosial/3_hukum/asia/75_korea_selatan";
 import { korea_selatan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/75_korea_selatan";
 import { korea_selatan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/75_korea_selatan";
+import { korea_selatan_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/75_korea_selatan";
 import { korea_selatan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/75_korea_selatan";
 import { korea_selatan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/75_korea_selatan";
 import { korea_selatan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/75_korea_selatan";
+import { korea_selatan_olahraga } from "../../modules/3_sosial/4_olahraga/asia/75_korea_selatan";
+import { korea_selatan_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/75_korea_selatan";
+import { korea_selatan_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/75_korea_selatan";
 import { korea_selatan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/75_korea_selatan";
 import { korea_selatan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/75_korea_selatan";
 import { korea_selatan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/75_korea_selatan";
@@ -29,50 +34,11 @@ export const korea_selatan: CountryData = {
   "armada_militer": korea_selatan_armada,
   "militer_strategis": korea_selatan_strategis,
   "armada_kepolisian": korea_selatan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 31,
-      "dasar": 28,
-      "menengah": 3,
-      "lanjutan": 18,
-      "universitas": 26,
-      "lembaga_pendidikan": 9,
-      "laboratorium": 12,
-      "observatorium": 1,
-      "pusat_penelitian": 1,
-      "pusat_pengembangan": 39,
-      "literasi": 94
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 14,
-      "rumah_sakit_kecil": 2,
-      "pusat_diagnostik": 17,
-      "harapan_hidup": 39,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 40,
-      "pengadilan": 23,
-      "kejaksaan": 27,
-      "pos_polisi": 35,
-      "armada_mobil_polisi": 8927,
-      "akademi_polisi": 35,
-      "indeks_korupsi": 74,
-      "indeks_keamanan": 83
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 30,
-      "sirkuit_balap": 18,
-      "stadion": 14,
-      "stadion_internasional": 3
-  },
+  "pabrik_militer": korea_selatan_pabrik,
+    "pendidikan": korea_selatan_pendidikan,
+  "kesehatan": korea_selatan_kesehatan,
+  "hukum": korea_selatan_hukum,
+  "sektor_olahraga": korea_selatan_olahraga,
   "un_vote": 185,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

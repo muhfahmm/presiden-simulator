@@ -3,11 +3,16 @@ import { guinea_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/a
 import { guinea_armada } from "../../modules/2_militer/2_armada_militer/afrika/16_guinea";
 import { guinea_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/16_guinea";
 import { guinea_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/16_guinea";
+import { guinea_hukum } from "../../modules/3_sosial/3_hukum/afrika/16_guinea";
 import { guinea_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/16_guinea";
 import { guinea_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/16_guinea";
+import { guinea_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/16_guinea";
 import { guinea_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/16_guinea";
 import { guinea_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/16_guinea";
 import { guinea_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/16_guinea";
+import { guinea_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/16_guinea";
+import { guinea_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/16_guinea";
+import { guinea_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/16_guinea";
 import { guinea_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/16_guinea";
 import { guinea_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/16_guinea";
 import { guinea_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/16_guinea";
@@ -29,50 +34,11 @@ export const guinea: CountryData = {
   "armada_militer": guinea_armada,
   "militer_strategis": guinea_strategis,
   "armada_kepolisian": guinea_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 10,
-      "dasar": 33,
-      "menengah": 17,
-      "lanjutan": 10,
-      "universitas": 11,
-      "lembaga_pendidikan": 10,
-      "laboratorium": 1,
-      "observatorium": 26,
-      "pusat_penelitian": 26,
-      "pusat_pengembangan": 9,
-      "literasi": 80
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 11,
-      "rumah_sakit_kecil": 2,
-      "pusat_diagnostik": 39,
-      "harapan_hidup": 37,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 27,
-      "pengadilan": 40,
-      "kejaksaan": 17,
-      "pos_polisi": 38,
-      "armada_mobil_polisi": 5895,
-      "akademi_polisi": 2,
-      "indeks_korupsi": 85,
-      "indeks_keamanan": 71
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 1,
-      "sirkuit_balap": 8,
-      "stadion": 33,
-      "stadion_internasional": 20
-  },
+  "pabrik_militer": guinea_pabrik,
+    "pendidikan": guinea_pendidikan,
+  "kesehatan": guinea_kesehatan,
+  "hukum": guinea_hukum,
+  "sektor_olahraga": guinea_olahraga,
   "un_vote": 49,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

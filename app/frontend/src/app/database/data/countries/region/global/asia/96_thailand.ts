@@ -3,11 +3,16 @@ import { thailand_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { thailand_armada } from "../../modules/2_militer/2_armada_militer/asia/96_thailand";
 import { thailand_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/96_thailand";
 import { thailand_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/96_thailand";
+import { thailand_hukum } from "../../modules/3_sosial/3_hukum/asia/96_thailand";
 import { thailand_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/96_thailand";
 import { thailand_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/96_thailand";
+import { thailand_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/96_thailand";
 import { thailand_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/96_thailand";
 import { thailand_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/96_thailand";
 import { thailand_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/96_thailand";
+import { thailand_olahraga } from "../../modules/3_sosial/4_olahraga/asia/96_thailand";
+import { thailand_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/96_thailand";
+import { thailand_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/96_thailand";
 import { thailand_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/96_thailand";
 import { thailand_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/96_thailand";
 import { thailand_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/96_thailand";
@@ -29,50 +34,11 @@ export const thailand: CountryData = {
   "armada_militer": thailand_armada,
   "militer_strategis": thailand_strategis,
   "armada_kepolisian": thailand_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 16,
-      "dasar": 8,
-      "menengah": 8,
-      "lanjutan": 23,
-      "universitas": 22,
-      "lembaga_pendidikan": 11,
-      "laboratorium": 34,
-      "observatorium": 22,
-      "pusat_penelitian": 16,
-      "pusat_pengembangan": 21,
-      "literasi": 80
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 2,
-      "rumah_sakit_kecil": 38,
-      "pusat_diagnostik": 17,
-      "harapan_hidup": 39,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 26,
-      "pengadilan": 28,
-      "kejaksaan": 15,
-      "pos_polisi": 9,
-      "armada_mobil_polisi": 1226,
-      "akademi_polisi": 13,
-      "indeks_korupsi": 71,
-      "indeks_keamanan": 78
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 2,
-      "sirkuit_balap": 32,
-      "stadion": 27,
-      "stadion_internasional": 19
-  },
+  "pabrik_militer": thailand_pabrik,
+    "pendidikan": thailand_pendidikan,
+  "kesehatan": thailand_kesehatan,
+  "hukum": thailand_hukum,
+  "sektor_olahraga": thailand_olahraga,
   "un_vote": 154,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

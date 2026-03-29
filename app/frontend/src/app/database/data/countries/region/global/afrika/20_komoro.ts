@@ -3,11 +3,16 @@ import { komoro_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/a
 import { komoro_armada } from "../../modules/2_militer/2_armada_militer/afrika/20_komoro";
 import { komoro_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/20_komoro";
 import { komoro_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/20_komoro";
+import { komoro_hukum } from "../../modules/3_sosial/3_hukum/afrika/20_komoro";
 import { komoro_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/20_komoro";
 import { komoro_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/20_komoro";
+import { komoro_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/20_komoro";
 import { komoro_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/20_komoro";
 import { komoro_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/20_komoro";
 import { komoro_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/20_komoro";
+import { komoro_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/20_komoro";
+import { komoro_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/20_komoro";
+import { komoro_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/20_komoro";
 import { komoro_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/20_komoro";
 import { komoro_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/20_komoro";
 import { komoro_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/20_komoro";
@@ -29,50 +34,11 @@ export const komoro: CountryData = {
   "armada_militer": komoro_armada,
   "militer_strategis": komoro_strategis,
   "armada_kepolisian": komoro_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 14,
-      "dasar": 36,
-      "menengah": 35,
-      "lanjutan": 30,
-      "universitas": 4,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 23,
-      "observatorium": 10,
-      "pusat_penelitian": 6,
-      "pusat_pengembangan": 13,
-      "literasi": 56
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 3,
-      "rumah_sakit_kecil": 38,
-      "pusat_diagnostik": 33,
-      "harapan_hidup": 35,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 11,
-      "pengadilan": 5,
-      "kejaksaan": 25,
-      "pos_polisi": 4,
-      "armada_mobil_polisi": 3539,
-      "akademi_polisi": 1,
-      "indeks_korupsi": 71,
-      "indeks_keamanan": 64
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 35,
-      "stadion": 20,
-      "stadion_internasional": 1
-  },
+  "pabrik_militer": komoro_pabrik,
+    "pendidikan": komoro_pendidikan,
+  "kesehatan": komoro_kesehatan,
+  "hukum": komoro_hukum,
+  "sektor_olahraga": komoro_olahraga,
   "un_vote": 61,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { sudan_selatan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrik
 import { sudan_selatan_armada } from "../../modules/2_militer/2_armada_militer/afrika/50_sudan_selatan";
 import { sudan_selatan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/50_sudan_selatan";
 import { sudan_selatan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/50_sudan_selatan";
+import { sudan_selatan_hukum } from "../../modules/3_sosial/3_hukum/afrika/50_sudan_selatan";
 import { sudan_selatan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/50_sudan_selatan";
 import { sudan_selatan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/50_sudan_selatan";
+import { sudan_selatan_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/50_sudan_selatan";
 import { sudan_selatan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/50_sudan_selatan";
 import { sudan_selatan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/50_sudan_selatan";
 import { sudan_selatan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/50_sudan_selatan";
+import { sudan_selatan_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/50_sudan_selatan";
+import { sudan_selatan_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/50_sudan_selatan";
+import { sudan_selatan_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/50_sudan_selatan";
 import { sudan_selatan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/50_sudan_selatan";
 import { sudan_selatan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/50_sudan_selatan";
 import { sudan_selatan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/50_sudan_selatan";
@@ -29,50 +34,11 @@ export const sudan_selatan: CountryData = {
   "armada_militer": sudan_selatan_armada,
   "militer_strategis": sudan_selatan_strategis,
   "armada_kepolisian": sudan_selatan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 35,
-      "dasar": 32,
-      "menengah": 39,
-      "lanjutan": 12,
-      "universitas": 20,
-      "lembaga_pendidikan": 38,
-      "laboratorium": 39,
-      "observatorium": 27,
-      "pusat_penelitian": 17,
-      "pusat_pengembangan": 14,
-      "literasi": 86
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 4,
-      "rumah_sakit_kecil": 38,
-      "pusat_diagnostik": 34,
-      "harapan_hidup": 15,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 26,
-      "pengadilan": 22,
-      "kejaksaan": 22,
-      "pos_polisi": 19,
-      "armada_mobil_polisi": 4342,
-      "akademi_polisi": 34,
-      "indeks_korupsi": 85,
-      "indeks_keamanan": 84
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 12,
-      "sirkuit_balap": 21,
-      "stadion": 32,
-      "stadion_internasional": 15
-  },
+  "pabrik_militer": sudan_selatan_pabrik,
+    "pendidikan": sudan_selatan_pendidikan,
+  "kesehatan": sudan_selatan_kesehatan,
+  "hukum": sudan_selatan_hukum,
+  "sektor_olahraga": sudan_selatan_olahraga,
   "un_vote": 92,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

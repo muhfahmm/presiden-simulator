@@ -3,11 +3,16 @@ import { republik_demokratik_kongo_agrikultur } from "../../modules/1_ekonomi/7_
 import { republik_demokratik_kongo_armada } from "../../modules/2_militer/2_armada_militer/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/38_republik_demokratik_kongo";
+import { republik_demokratik_kongo_hukum } from "../../modules/3_sosial/3_hukum/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/38_republik_demokratik_kongo";
+import { republik_demokratik_kongo_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/38_republik_demokratik_kongo";
+import { republik_demokratik_kongo_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/38_republik_demokratik_kongo";
+import { republik_demokratik_kongo_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/38_republik_demokratik_kongo";
+import { republik_demokratik_kongo_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/38_republik_demokratik_kongo";
@@ -29,50 +34,11 @@ export const republik_demokratik_kongo: CountryData = {
   "armada_militer": republik_demokratik_kongo_armada,
   "militer_strategis": republik_demokratik_kongo_strategis,
   "armada_kepolisian": republik_demokratik_kongo_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 35,
-      "dasar": 34,
-      "menengah": 40,
-      "lanjutan": 8,
-      "universitas": 19,
-      "lembaga_pendidikan": 38,
-      "laboratorium": 12,
-      "observatorium": 27,
-      "pusat_penelitian": 13,
-      "pusat_pengembangan": 40,
-      "literasi": 84
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 16,
-      "rumah_sakit_kecil": 40,
-      "pusat_diagnostik": 22,
-      "harapan_hidup": 30,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 8,
-      "pengadilan": 1,
-      "kejaksaan": 40,
-      "pos_polisi": 23,
-      "armada_mobil_polisi": 7514,
-      "akademi_polisi": 31,
-      "indeks_korupsi": 76,
-      "indeks_keamanan": 70
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 38,
-      "sirkuit_balap": 26,
-      "stadion": 16,
-      "stadion_internasional": 26
-  },
+  "pabrik_militer": republik_demokratik_kongo_pabrik,
+    "pendidikan": republik_demokratik_kongo_pendidikan,
+  "kesehatan": republik_demokratik_kongo_kesehatan,
+  "hukum": republik_demokratik_kongo_hukum,
+  "sektor_olahraga": republik_demokratik_kongo_olahraga,
   "un_vote": 136,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

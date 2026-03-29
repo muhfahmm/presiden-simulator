@@ -3,11 +3,16 @@ import { nauru_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/oc
 import { nauru_armada } from "../../modules/2_militer/2_armada_militer/oceania/185_nauru";
 import { nauru_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/185_nauru";
 import { nauru_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/185_nauru";
+import { nauru_hukum } from "../../modules/3_sosial/3_hukum/oceania/185_nauru";
 import { nauru_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/185_nauru";
 import { nauru_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/185_nauru";
+import { nauru_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/185_nauru";
 import { nauru_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/185_nauru";
 import { nauru_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/185_nauru";
 import { nauru_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/185_nauru";
+import { nauru_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/185_nauru";
+import { nauru_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/185_nauru";
+import { nauru_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/185_nauru";
 import { nauru_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/185_nauru";
 import { nauru_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/185_nauru";
 import { nauru_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/185_nauru";
@@ -29,50 +34,11 @@ export const nauru: CountryData = {
   "armada_militer": nauru_armada,
   "militer_strategis": nauru_strategis,
   "armada_kepolisian": nauru_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 28,
-      "dasar": 7,
-      "menengah": 7,
-      "lanjutan": 21,
-      "universitas": 4,
-      "lembaga_pendidikan": 3,
-      "laboratorium": 1,
-      "observatorium": 30,
-      "pusat_penelitian": 14,
-      "pusat_pengembangan": 15,
-      "literasi": 61
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 36,
-      "rumah_sakit_kecil": 9,
-      "pusat_diagnostik": 25,
-      "harapan_hidup": 25,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 37,
-      "pengadilan": 24,
-      "kejaksaan": 2,
-      "pos_polisi": 7,
-      "armada_mobil_polisi": 1388,
-      "akademi_polisi": 29,
-      "indeks_korupsi": 73,
-      "indeks_keamanan": 65
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 27,
-      "sirkuit_balap": 11,
-      "stadion": 23,
-      "stadion_internasional": 30
-  },
+  "pabrik_militer": nauru_pabrik,
+    "pendidikan": nauru_pendidikan,
+  "kesehatan": nauru_kesehatan,
+  "hukum": nauru_hukum,
+  "sektor_olahraga": nauru_olahraga,
   "un_vote": 52,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

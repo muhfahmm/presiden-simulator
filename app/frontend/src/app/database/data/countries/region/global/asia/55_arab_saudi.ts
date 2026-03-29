@@ -3,11 +3,16 @@ import { arab_saudi_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { arab_saudi_armada } from "../../modules/2_militer/2_armada_militer/asia/55_arab_saudi";
 import { arab_saudi_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/55_arab_saudi";
 import { arab_saudi_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/55_arab_saudi";
+import { arab_saudi_hukum } from "../../modules/3_sosial/3_hukum/asia/55_arab_saudi";
 import { arab_saudi_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/55_arab_saudi";
 import { arab_saudi_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/55_arab_saudi";
+import { arab_saudi_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/55_arab_saudi";
 import { arab_saudi_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/55_arab_saudi";
 import { arab_saudi_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/55_arab_saudi";
 import { arab_saudi_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/55_arab_saudi";
+import { arab_saudi_olahraga } from "../../modules/3_sosial/4_olahraga/asia/55_arab_saudi";
+import { arab_saudi_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/55_arab_saudi";
+import { arab_saudi_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/55_arab_saudi";
 import { arab_saudi_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/55_arab_saudi";
 import { arab_saudi_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/55_arab_saudi";
 import { arab_saudi_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/55_arab_saudi";
@@ -29,50 +34,11 @@ export const arab_saudi: CountryData = {
   "armada_militer": arab_saudi_armada,
   "militer_strategis": arab_saudi_strategis,
   "armada_kepolisian": arab_saudi_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 28,
-      "dasar": 40,
-      "menengah": 32,
-      "lanjutan": 6,
-      "universitas": 16,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 2,
-      "observatorium": 11,
-      "pusat_penelitian": 5,
-      "pusat_pengembangan": 28,
-      "literasi": 78
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 27,
-      "rumah_sakit_kecil": 17,
-      "pusat_diagnostik": 27,
-      "harapan_hidup": 3,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 27,
-      "pengadilan": 36,
-      "kejaksaan": 18,
-      "pos_polisi": 26,
-      "armada_mobil_polisi": 1693,
-      "akademi_polisi": 38,
-      "indeks_korupsi": 94,
-      "indeks_keamanan": 84
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 38,
-      "sirkuit_balap": 3,
-      "stadion": 1,
-      "stadion_internasional": 12
-  },
+  "pabrik_militer": arab_saudi_pabrik,
+    "pendidikan": arab_saudi_pendidikan,
+  "kesehatan": arab_saudi_kesehatan,
+  "hukum": arab_saudi_hukum,
+  "sektor_olahraga": arab_saudi_olahraga,
   "un_vote": 163,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

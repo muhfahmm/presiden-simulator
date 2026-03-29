@@ -3,11 +3,16 @@ import { chad_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/afr
 import { chad_armada } from "../../modules/2_militer/2_armada_militer/afrika/8_chad";
 import { chad_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/8_chad";
 import { chad_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/8_chad";
+import { chad_hukum } from "../../modules/3_sosial/3_hukum/afrika/8_chad";
 import { chad_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/8_chad";
 import { chad_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/8_chad";
+import { chad_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/8_chad";
 import { chad_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/8_chad";
 import { chad_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/8_chad";
 import { chad_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/8_chad";
+import { chad_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/8_chad";
+import { chad_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/8_chad";
+import { chad_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/8_chad";
 import { chad_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/8_chad";
 import { chad_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/8_chad";
 import { chad_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/8_chad";
@@ -29,50 +34,11 @@ export const chad: CountryData = {
   "armada_militer": chad_armada,
   "militer_strategis": chad_strategis,
   "armada_kepolisian": chad_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 29,
-      "dasar": 3,
-      "menengah": 24,
-      "lanjutan": 14,
-      "universitas": 4,
-      "lembaga_pendidikan": 27,
-      "laboratorium": 26,
-      "observatorium": 9,
-      "pusat_penelitian": 36,
-      "pusat_pengembangan": 22,
-      "literasi": 67
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 32,
-      "rumah_sakit_kecil": 14,
-      "pusat_diagnostik": 25,
-      "harapan_hidup": 14,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 1,
-      "pengadilan": 20,
-      "kejaksaan": 19,
-      "pos_polisi": 16,
-      "armada_mobil_polisi": 1832,
-      "akademi_polisi": 7,
-      "indeks_korupsi": 50,
-      "indeks_keamanan": 78
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 34,
-      "sirkuit_balap": 31,
-      "stadion": 24,
-      "stadion_internasional": 39
-  },
+  "pabrik_militer": chad_pabrik,
+    "pendidikan": chad_pendidikan,
+  "kesehatan": chad_kesehatan,
+  "hukum": chad_hukum,
+  "sektor_olahraga": chad_olahraga,
   "un_vote": 58,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

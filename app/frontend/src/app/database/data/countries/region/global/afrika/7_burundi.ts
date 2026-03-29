@@ -3,11 +3,16 @@ import { burundi_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { burundi_armada } from "../../modules/2_militer/2_armada_militer/afrika/7_burundi";
 import { burundi_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/7_burundi";
 import { burundi_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/7_burundi";
+import { burundi_hukum } from "../../modules/3_sosial/3_hukum/afrika/7_burundi";
 import { burundi_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/7_burundi";
 import { burundi_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/7_burundi";
+import { burundi_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/7_burundi";
 import { burundi_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/7_burundi";
 import { burundi_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/7_burundi";
 import { burundi_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/7_burundi";
+import { burundi_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/7_burundi";
+import { burundi_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/7_burundi";
+import { burundi_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/7_burundi";
 import { burundi_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/7_burundi";
 import { burundi_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/7_burundi";
 import { burundi_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/7_burundi";
@@ -29,50 +34,11 @@ export const burundi: CountryData = {
   "armada_militer": burundi_armada,
   "militer_strategis": burundi_strategis,
   "armada_kepolisian": burundi_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 9,
-      "dasar": 21,
-      "menengah": 1,
-      "lanjutan": 34,
-      "universitas": 35,
-      "lembaga_pendidikan": 17,
-      "laboratorium": 14,
-      "observatorium": 3,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 28,
-      "literasi": 88
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 23,
-      "rumah_sakit_kecil": 8,
-      "pusat_diagnostik": 9,
-      "harapan_hidup": 30,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 37,
-      "pengadilan": 18,
-      "kejaksaan": 31,
-      "pos_polisi": 9,
-      "armada_mobil_polisi": 9272,
-      "akademi_polisi": 12,
-      "indeks_korupsi": 75,
-      "indeks_keamanan": 59
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 9,
-      "sirkuit_balap": 3,
-      "stadion": 4,
-      "stadion_internasional": 12
-  },
+  "pabrik_militer": burundi_pabrik,
+    "pendidikan": burundi_pendidikan,
+  "kesehatan": burundi_kesehatan,
+  "hukum": burundi_hukum,
+  "sektor_olahraga": burundi_olahraga,
   "un_vote": 37,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

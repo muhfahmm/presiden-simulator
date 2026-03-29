@@ -3,11 +3,16 @@ import { afrika_selatan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agri
 import { afrika_selatan_armada } from "../../modules/2_militer/2_armada_militer/afrika/1_afrika_selatan";
 import { afrika_selatan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/1_afrika_selatan";
 import { afrika_selatan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/1_afrika_selatan";
+import { afrika_selatan_hukum } from "../../modules/3_sosial/3_hukum/afrika/1_afrika_selatan";
 import { afrika_selatan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/1_afrika_selatan";
 import { afrika_selatan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/1_afrika_selatan";
+import { afrika_selatan_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/1_afrika_selatan";
 import { afrika_selatan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/1_afrika_selatan";
 import { afrika_selatan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/1_afrika_selatan";
 import { afrika_selatan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/1_afrika_selatan";
+import { afrika_selatan_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/1_afrika_selatan";
+import { afrika_selatan_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/1_afrika_selatan";
+import { afrika_selatan_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/1_afrika_selatan";
 import { afrika_selatan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/1_afrika_selatan";
 import { afrika_selatan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/1_afrika_selatan";
 import { afrika_selatan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/1_afrika_selatan";
@@ -29,50 +34,11 @@ export const afrika_selatan: CountryData = {
   "armada_militer": afrika_selatan_armada,
   "militer_strategis": afrika_selatan_strategis,
   "armada_kepolisian": afrika_selatan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 32,
-      "dasar": 3,
-      "menengah": 34,
-      "lanjutan": 15,
-      "universitas": 2,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 28,
-      "observatorium": 20,
-      "pusat_penelitian": 40,
-      "pusat_pengembangan": 10,
-      "literasi": 85
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 20,
-      "rumah_sakit_kecil": 22,
-      "pusat_diagnostik": 36,
-      "harapan_hidup": 15,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 21,
-      "pengadilan": 20,
-      "kejaksaan": 20,
-      "pos_polisi": 6,
-      "armada_mobil_polisi": 2079,
-      "akademi_polisi": 26,
-      "indeks_korupsi": 58,
-      "indeks_keamanan": 52
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 16,
-      "sirkuit_balap": 21,
-      "stadion": 18,
-      "stadion_internasional": 32
-  },
+  "pabrik_militer": afrika_selatan_pabrik,
+    "pendidikan": afrika_selatan_pendidikan,
+  "kesehatan": afrika_selatan_kesehatan,
+  "hukum": afrika_selatan_hukum,
+  "sektor_olahraga": afrika_selatan_olahraga,
   "un_vote": 188,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { maroko_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/a
 import { maroko_armada } from "../../modules/2_militer/2_armada_militer/afrika/28_maroko";
 import { maroko_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/28_maroko";
 import { maroko_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/28_maroko";
+import { maroko_hukum } from "../../modules/3_sosial/3_hukum/afrika/28_maroko";
 import { maroko_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/28_maroko";
 import { maroko_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/28_maroko";
+import { maroko_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/28_maroko";
 import { maroko_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/28_maroko";
 import { maroko_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/28_maroko";
 import { maroko_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/28_maroko";
+import { maroko_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/28_maroko";
+import { maroko_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/28_maroko";
+import { maroko_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/28_maroko";
 import { maroko_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/28_maroko";
 import { maroko_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/28_maroko";
 import { maroko_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/28_maroko";
@@ -29,50 +34,11 @@ export const maroko: CountryData = {
   "armada_militer": maroko_armada,
   "militer_strategis": maroko_strategis,
   "armada_kepolisian": maroko_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 13,
-      "dasar": 17,
-      "menengah": 39,
-      "lanjutan": 22,
-      "universitas": 18,
-      "lembaga_pendidikan": 23,
-      "laboratorium": 40,
-      "observatorium": 21,
-      "pusat_penelitian": 35,
-      "pusat_pengembangan": 33,
-      "literasi": 66
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 15,
-      "rumah_sakit_kecil": 40,
-      "pusat_diagnostik": 36,
-      "harapan_hidup": 40,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 25,
-      "pengadilan": 9,
-      "kejaksaan": 27,
-      "pos_polisi": 2,
-      "armada_mobil_polisi": 2738,
-      "akademi_polisi": 40,
-      "indeks_korupsi": 70,
-      "indeks_keamanan": 60
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 21,
-      "sirkuit_balap": 22,
-      "stadion": 3,
-      "stadion_internasional": 35
-  },
+  "pabrik_militer": maroko_pabrik,
+    "pendidikan": maroko_pendidikan,
+  "kesehatan": maroko_kesehatan,
+  "hukum": maroko_hukum,
+  "sektor_olahraga": maroko_olahraga,
   "un_vote": 109,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

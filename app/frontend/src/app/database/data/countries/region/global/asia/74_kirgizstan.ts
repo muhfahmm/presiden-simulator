@@ -3,11 +3,16 @@ import { kirgizstan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { kirgizstan_armada } from "../../modules/2_militer/2_armada_militer/asia/74_kirgizstan";
 import { kirgizstan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/74_kirgizstan";
 import { kirgizstan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/74_kirgizstan";
+import { kirgizstan_hukum } from "../../modules/3_sosial/3_hukum/asia/74_kirgizstan";
 import { kirgizstan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/74_kirgizstan";
 import { kirgizstan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/74_kirgizstan";
+import { kirgizstan_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/74_kirgizstan";
 import { kirgizstan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/74_kirgizstan";
 import { kirgizstan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/74_kirgizstan";
 import { kirgizstan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/74_kirgizstan";
+import { kirgizstan_olahraga } from "../../modules/3_sosial/4_olahraga/asia/74_kirgizstan";
+import { kirgizstan_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/74_kirgizstan";
+import { kirgizstan_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/74_kirgizstan";
 import { kirgizstan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/74_kirgizstan";
 import { kirgizstan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/74_kirgizstan";
 import { kirgizstan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/74_kirgizstan";
@@ -29,50 +34,11 @@ export const kirgizstan: CountryData = {
   "armada_militer": kirgizstan_armada,
   "militer_strategis": kirgizstan_strategis,
   "armada_kepolisian": kirgizstan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 6,
-      "dasar": 5,
-      "menengah": 21,
-      "lanjutan": 18,
-      "universitas": 40,
-      "lembaga_pendidikan": 28,
-      "laboratorium": 17,
-      "observatorium": 20,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 14,
-      "literasi": 69
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 22,
-      "rumah_sakit_kecil": 22,
-      "pusat_diagnostik": 28,
-      "harapan_hidup": 15,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 38,
-      "pengadilan": 15,
-      "kejaksaan": 37,
-      "pos_polisi": 9,
-      "armada_mobil_polisi": 5304,
-      "akademi_polisi": 33,
-      "indeks_korupsi": 90,
-      "indeks_keamanan": 77
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 16,
-      "sirkuit_balap": 25,
-      "stadion": 23,
-      "stadion_internasional": 35
-  },
+  "pabrik_militer": kirgizstan_pabrik,
+    "pendidikan": kirgizstan_pendidikan,
+  "kesehatan": kirgizstan_kesehatan,
+  "hukum": kirgizstan_hukum,
+  "sektor_olahraga": kirgizstan_olahraga,
   "un_vote": 19,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

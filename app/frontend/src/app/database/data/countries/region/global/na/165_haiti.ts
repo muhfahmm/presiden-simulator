@@ -3,11 +3,16 @@ import { haiti_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/na
 import { haiti_armada } from "../../modules/2_militer/2_armada_militer/na/165_haiti";
 import { haiti_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/165_haiti";
 import { haiti_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/165_haiti";
+import { haiti_hukum } from "../../modules/3_sosial/3_hukum/na/165_haiti";
 import { haiti_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/165_haiti";
 import { haiti_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/165_haiti";
+import { haiti_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/165_haiti";
 import { haiti_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/165_haiti";
 import { haiti_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/165_haiti";
 import { haiti_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/165_haiti";
+import { haiti_olahraga } from "../../modules/3_sosial/4_olahraga/na/165_haiti";
+import { haiti_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/165_haiti";
+import { haiti_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/165_haiti";
 import { haiti_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/165_haiti";
 import { haiti_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/165_haiti";
 import { haiti_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/165_haiti";
@@ -29,50 +34,11 @@ export const haiti: CountryData = {
   "armada_militer": haiti_armada,
   "militer_strategis": haiti_strategis,
   "armada_kepolisian": haiti_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 37,
-      "dasar": 32,
-      "menengah": 5,
-      "lanjutan": 25,
-      "universitas": 40,
-      "lembaga_pendidikan": 18,
-      "laboratorium": 16,
-      "observatorium": 21,
-      "pusat_penelitian": 11,
-      "pusat_pengembangan": 5,
-      "literasi": 80
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 12,
-      "rumah_sakit_kecil": 36,
-      "pusat_diagnostik": 13,
-      "harapan_hidup": 38,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 17,
-      "pengadilan": 27,
-      "kejaksaan": 21,
-      "pos_polisi": 11,
-      "armada_mobil_polisi": 7356,
-      "akademi_polisi": 13,
-      "indeks_korupsi": 50,
-      "indeks_keamanan": 59
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 11,
-      "sirkuit_balap": 33,
-      "stadion": 7,
-      "stadion_internasional": 40
-  },
+  "pabrik_militer": haiti_pabrik,
+    "pendidikan": haiti_pendidikan,
+  "kesehatan": haiti_kesehatan,
+  "hukum": haiti_hukum,
+  "sektor_olahraga": haiti_olahraga,
   "un_vote": 105,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { inggris_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { inggris_armada } from "../../modules/2_militer/2_armada_militer/eropa/117_inggris";
 import { inggris_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/117_inggris";
 import { inggris_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/117_inggris";
+import { inggris_hukum } from "../../modules/3_sosial/3_hukum/eropa/117_inggris";
 import { inggris_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/117_inggris";
 import { inggris_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/117_inggris";
+import { inggris_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/117_inggris";
 import { inggris_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/117_inggris";
 import { inggris_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/117_inggris";
 import { inggris_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/117_inggris";
+import { inggris_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/117_inggris";
+import { inggris_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/117_inggris";
+import { inggris_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/117_inggris";
 import { inggris_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/117_inggris";
 import { inggris_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/117_inggris";
 import { inggris_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/117_inggris";
@@ -29,50 +34,11 @@ export const inggris: CountryData = {
   "armada_militer": inggris_armada,
   "militer_strategis": inggris_strategis,
   "armada_kepolisian": inggris_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 10,
-      "dasar": 17,
-      "menengah": 31,
-      "lanjutan": 5,
-      "universitas": 9,
-      "lembaga_pendidikan": 1,
-      "laboratorium": 24,
-      "observatorium": 28,
-      "pusat_penelitian": 3,
-      "pusat_pengembangan": 30,
-      "literasi": 93
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 4,
-      "rumah_sakit_kecil": 32,
-      "pusat_diagnostik": 20,
-      "harapan_hidup": 12,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 11,
-      "pengadilan": 39,
-      "kejaksaan": 25,
-      "pos_polisi": 2,
-      "armada_mobil_polisi": 9587,
-      "akademi_polisi": 26,
-      "indeks_korupsi": 89,
-      "indeks_keamanan": 81
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 19,
-      "sirkuit_balap": 40,
-      "stadion": 25,
-      "stadion_internasional": 14
-  },
+  "pabrik_militer": inggris_pabrik,
+    "pendidikan": inggris_pendidikan,
+  "kesehatan": inggris_kesehatan,
+  "hukum": inggris_hukum,
+  "sektor_olahraga": inggris_olahraga,
   "un_vote": 181,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

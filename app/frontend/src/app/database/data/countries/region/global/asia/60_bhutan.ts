@@ -3,11 +3,16 @@ import { bhutan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/a
 import { bhutan_armada } from "../../modules/2_militer/2_armada_militer/asia/60_bhutan";
 import { bhutan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/60_bhutan";
 import { bhutan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/60_bhutan";
+import { bhutan_hukum } from "../../modules/3_sosial/3_hukum/asia/60_bhutan";
 import { bhutan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/60_bhutan";
 import { bhutan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/60_bhutan";
+import { bhutan_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/60_bhutan";
 import { bhutan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/60_bhutan";
 import { bhutan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/60_bhutan";
 import { bhutan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/60_bhutan";
+import { bhutan_olahraga } from "../../modules/3_sosial/4_olahraga/asia/60_bhutan";
+import { bhutan_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/60_bhutan";
+import { bhutan_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/60_bhutan";
 import { bhutan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/60_bhutan";
 import { bhutan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/60_bhutan";
 import { bhutan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/60_bhutan";
@@ -29,50 +34,11 @@ export const bhutan: CountryData = {
   "armada_militer": bhutan_armada,
   "militer_strategis": bhutan_strategis,
   "armada_kepolisian": bhutan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 35,
-      "dasar": 31,
-      "menengah": 30,
-      "lanjutan": 39,
-      "universitas": 22,
-      "lembaga_pendidikan": 16,
-      "laboratorium": 21,
-      "observatorium": 16,
-      "pusat_penelitian": 11,
-      "pusat_pengembangan": 11,
-      "literasi": 54
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 35,
-      "rumah_sakit_kecil": 17,
-      "pusat_diagnostik": 39,
-      "harapan_hidup": 31,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 40,
-      "pengadilan": 3,
-      "kejaksaan": 9,
-      "pos_polisi": 5,
-      "armada_mobil_polisi": 865,
-      "akademi_polisi": 1,
-      "indeks_korupsi": 71,
-      "indeks_keamanan": 73
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 20,
-      "sirkuit_balap": 8,
-      "stadion": 16,
-      "stadion_internasional": 28
-  },
+  "pabrik_militer": bhutan_pabrik,
+    "pendidikan": bhutan_pendidikan,
+  "kesehatan": bhutan_kesehatan,
+  "hukum": bhutan_hukum,
+  "sektor_olahraga": bhutan_olahraga,
   "un_vote": 149,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

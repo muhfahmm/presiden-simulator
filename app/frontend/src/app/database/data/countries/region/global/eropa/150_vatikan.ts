@@ -3,11 +3,16 @@ import { vatikan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { vatikan_armada } from "../../modules/2_militer/2_armada_militer/eropa/150_vatikan";
 import { vatikan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/150_vatikan";
 import { vatikan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/150_vatikan";
+import { vatikan_hukum } from "../../modules/3_sosial/3_hukum/eropa/150_vatikan";
 import { vatikan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/150_vatikan";
 import { vatikan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/150_vatikan";
+import { vatikan_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/150_vatikan";
 import { vatikan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/150_vatikan";
 import { vatikan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/150_vatikan";
 import { vatikan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/150_vatikan";
+import { vatikan_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/150_vatikan";
+import { vatikan_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/150_vatikan";
+import { vatikan_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/150_vatikan";
 import { vatikan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/150_vatikan";
 import { vatikan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/150_vatikan";
 import { vatikan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/150_vatikan";
@@ -29,50 +34,11 @@ export const vatikan: CountryData = {
   "armada_militer": vatikan_armada,
   "militer_strategis": vatikan_strategis,
   "armada_kepolisian": vatikan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 11,
-      "dasar": 10,
-      "menengah": 4,
-      "lanjutan": 33,
-      "universitas": 11,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 33,
-      "observatorium": 20,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 18,
-      "literasi": 66
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 39,
-      "rumah_sakit_kecil": 11,
-      "pusat_diagnostik": 4,
-      "harapan_hidup": 14,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 27,
-      "pengadilan": 30,
-      "kejaksaan": 38,
-      "pos_polisi": 29,
-      "armada_mobil_polisi": 1565,
-      "akademi_polisi": 33,
-      "indeks_korupsi": 55,
-      "indeks_keamanan": 74
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 12,
-      "sirkuit_balap": 13,
-      "stadion": 33,
-      "stadion_internasional": 23
-  },
+  "pabrik_militer": vatikan_pabrik,
+    "pendidikan": vatikan_pendidikan,
+  "kesehatan": vatikan_kesehatan,
+  "hukum": vatikan_hukum,
+  "sektor_olahraga": vatikan_olahraga,
   "un_vote": 34,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

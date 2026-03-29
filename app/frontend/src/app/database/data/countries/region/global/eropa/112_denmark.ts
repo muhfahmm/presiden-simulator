@@ -3,11 +3,16 @@ import { denmark_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { denmark_armada } from "../../modules/2_militer/2_armada_militer/eropa/112_denmark";
 import { denmark_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/112_denmark";
 import { denmark_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/112_denmark";
+import { denmark_hukum } from "../../modules/3_sosial/3_hukum/eropa/112_denmark";
 import { denmark_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/112_denmark";
 import { denmark_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/112_denmark";
+import { denmark_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/112_denmark";
 import { denmark_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/112_denmark";
 import { denmark_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/112_denmark";
 import { denmark_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/112_denmark";
+import { denmark_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/112_denmark";
+import { denmark_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/112_denmark";
+import { denmark_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/112_denmark";
 import { denmark_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/112_denmark";
 import { denmark_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/112_denmark";
 import { denmark_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/112_denmark";
@@ -29,50 +34,11 @@ export const denmark: CountryData = {
   "armada_militer": denmark_armada,
   "militer_strategis": denmark_strategis,
   "armada_kepolisian": denmark_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 9,
-      "dasar": 3,
-      "menengah": 37,
-      "lanjutan": 28,
-      "universitas": 20,
-      "lembaga_pendidikan": 39,
-      "laboratorium": 40,
-      "observatorium": 2,
-      "pusat_penelitian": 29,
-      "pusat_pengembangan": 18,
-      "literasi": 78
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 28,
-      "rumah_sakit_kecil": 7,
-      "pusat_diagnostik": 5,
-      "harapan_hidup": 24,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 32,
-      "pengadilan": 26,
-      "kejaksaan": 17,
-      "pos_polisi": 24,
-      "armada_mobil_polisi": 2831,
-      "akademi_polisi": 17,
-      "indeks_korupsi": 66,
-      "indeks_keamanan": 75
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 17,
-      "sirkuit_balap": 25,
-      "stadion": 38,
-      "stadion_internasional": 26
-  },
+  "pabrik_militer": denmark_pabrik,
+    "pendidikan": denmark_pendidikan,
+  "kesehatan": denmark_kesehatan,
+  "hukum": denmark_hukum,
+  "sektor_olahraga": denmark_olahraga,
   "un_vote": 184,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { polandia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { polandia_armada } from "../../modules/2_militer/2_armada_militer/eropa/135_polandia";
 import { polandia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/135_polandia";
 import { polandia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/135_polandia";
+import { polandia_hukum } from "../../modules/3_sosial/3_hukum/eropa/135_polandia";
 import { polandia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/135_polandia";
 import { polandia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/135_polandia";
+import { polandia_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/135_polandia";
 import { polandia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/135_polandia";
 import { polandia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/135_polandia";
 import { polandia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/135_polandia";
+import { polandia_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/135_polandia";
+import { polandia_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/135_polandia";
+import { polandia_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/135_polandia";
 import { polandia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/135_polandia";
 import { polandia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/135_polandia";
 import { polandia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/135_polandia";
@@ -29,50 +34,11 @@ export const polandia: CountryData = {
   "armada_militer": polandia_armada,
   "militer_strategis": polandia_strategis,
   "armada_kepolisian": polandia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 22,
-      "dasar": 29,
-      "menengah": 10,
-      "lanjutan": 11,
-      "universitas": 10,
-      "lembaga_pendidikan": 5,
-      "laboratorium": 33,
-      "observatorium": 31,
-      "pusat_penelitian": 6,
-      "pusat_pengembangan": 34,
-      "literasi": 60
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 31,
-      "rumah_sakit_kecil": 30,
-      "pusat_diagnostik": 34,
-      "harapan_hidup": 32,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 4,
-      "pengadilan": 36,
-      "kejaksaan": 3,
-      "pos_polisi": 18,
-      "armada_mobil_polisi": 3804,
-      "akademi_polisi": 20,
-      "indeks_korupsi": 72,
-      "indeks_keamanan": 78
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 33,
-      "sirkuit_balap": 34,
-      "stadion": 4,
-      "stadion_internasional": 33
-  },
+  "pabrik_militer": polandia_pabrik,
+    "pendidikan": polandia_pendidikan,
+  "kesehatan": polandia_kesehatan,
+  "hukum": polandia_hukum,
+  "sektor_olahraga": polandia_olahraga,
   "un_vote": 200,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

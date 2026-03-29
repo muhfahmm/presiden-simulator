@@ -3,11 +3,16 @@ import { republik_timor_leste_agrikultur } from "../../modules/1_ekonomi/7_sekto
 import { republik_timor_leste_armada } from "../../modules/2_militer/2_armada_militer/asia/90_republik_timor_leste";
 import { republik_timor_leste_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/90_republik_timor_leste";
 import { republik_timor_leste_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/90_republik_timor_leste";
+import { republik_timor_leste_hukum } from "../../modules/3_sosial/3_hukum/asia/90_republik_timor_leste";
 import { republik_timor_leste_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/90_republik_timor_leste";
 import { republik_timor_leste_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/90_republik_timor_leste";
+import { republik_timor_leste_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/90_republik_timor_leste";
 import { republik_timor_leste_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/90_republik_timor_leste";
 import { republik_timor_leste_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/90_republik_timor_leste";
 import { republik_timor_leste_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/90_republik_timor_leste";
+import { republik_timor_leste_olahraga } from "../../modules/3_sosial/4_olahraga/asia/90_republik_timor_leste";
+import { republik_timor_leste_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/90_republik_timor_leste";
+import { republik_timor_leste_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/90_republik_timor_leste";
 import { republik_timor_leste_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/90_republik_timor_leste";
 import { republik_timor_leste_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/90_republik_timor_leste";
 import { republik_timor_leste_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/90_republik_timor_leste";
@@ -29,50 +34,11 @@ export const republik_timor_leste: CountryData = {
   "armada_militer": republik_timor_leste_armada,
   "militer_strategis": republik_timor_leste_strategis,
   "armada_kepolisian": republik_timor_leste_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 8,
-      "dasar": 7,
-      "menengah": 32,
-      "lanjutan": 8,
-      "universitas": 16,
-      "lembaga_pendidikan": 26,
-      "laboratorium": 36,
-      "observatorium": 8,
-      "pusat_penelitian": 13,
-      "pusat_pengembangan": 19,
-      "literasi": 79
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 16,
-      "rumah_sakit_kecil": 38,
-      "pusat_diagnostik": 35,
-      "harapan_hidup": 32,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 17,
-      "pengadilan": 13,
-      "kejaksaan": 20,
-      "pos_polisi": 11,
-      "armada_mobil_polisi": 4976,
-      "akademi_polisi": 4,
-      "indeks_korupsi": 93,
-      "indeks_keamanan": 90
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 2,
-      "sirkuit_balap": 36,
-      "stadion": 23,
-      "stadion_internasional": 6
-  },
+  "pabrik_militer": republik_timor_leste_pabrik,
+    "pendidikan": republik_timor_leste_pendidikan,
+  "kesehatan": republik_timor_leste_kesehatan,
+  "hukum": republik_timor_leste_hukum,
+  "sektor_olahraga": republik_timor_leste_olahraga,
   "un_vote": 33,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { malta_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/er
 import { malta_armada } from "../../modules/2_militer/2_armada_militer/eropa/130_malta";
 import { malta_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/130_malta";
 import { malta_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/130_malta";
+import { malta_hukum } from "../../modules/3_sosial/3_hukum/eropa/130_malta";
 import { malta_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/130_malta";
 import { malta_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/130_malta";
+import { malta_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/130_malta";
 import { malta_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/130_malta";
 import { malta_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/130_malta";
 import { malta_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/130_malta";
+import { malta_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/130_malta";
+import { malta_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/130_malta";
+import { malta_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/130_malta";
 import { malta_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/130_malta";
 import { malta_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/130_malta";
 import { malta_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/130_malta";
@@ -29,50 +34,11 @@ export const malta: CountryData = {
   "armada_militer": malta_armada,
   "militer_strategis": malta_strategis,
   "armada_kepolisian": malta_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 13,
-      "dasar": 6,
-      "menengah": 36,
-      "lanjutan": 26,
-      "universitas": 4,
-      "lembaga_pendidikan": 22,
-      "laboratorium": 28,
-      "observatorium": 13,
-      "pusat_penelitian": 9,
-      "pusat_pengembangan": 17,
-      "literasi": 83
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 13,
-      "rumah_sakit_kecil": 13,
-      "pusat_diagnostik": 31,
-      "harapan_hidup": 39,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 29,
-      "pengadilan": 19,
-      "kejaksaan": 25,
-      "pos_polisi": 31,
-      "armada_mobil_polisi": 9865,
-      "akademi_polisi": 5,
-      "indeks_korupsi": 89,
-      "indeks_keamanan": 82
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 21,
-      "sirkuit_balap": 24,
-      "stadion": 26,
-      "stadion_internasional": 3
-  },
+  "pabrik_militer": malta_pabrik,
+    "pendidikan": malta_pendidikan,
+  "kesehatan": malta_kesehatan,
+  "hukum": malta_hukum,
+  "sektor_olahraga": malta_olahraga,
   "un_vote": 121,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -144,28 +144,27 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
 
          if (sector === "umum") {
             const i = c.infrastruktur as any;
-            const s = c.sektor_sosial;
             const sec = c.armada_kepolisian as any;
             
             if (i[key] !== undefined) return i[key] || 0;
             if (key === "bike_lane") return i.jalur_sepeda || 0;
             if (key === "seaport") return i.pelabuhan_laut || 0;
 
-            if (s.pendidikan) {
-               const edu = s.pendidikan as any;
+            if (c.pendidikan) {
+               const edu = c.pendidikan as any;
                if (edu[key] !== undefined) return edu[key] || 0;
                if (key === "elem_school") return edu.sd || 0;
                if (key === "mid_school") return edu.smp || 0;
                if (key === "sma") return edu.sma || 0;
             }
 
-            if (s.kesehatan) {
-               const h = s.kesehatan as any;
+            if (c.kesehatan) {
+               const h = c.kesehatan as any;
                if (h[key] !== undefined) return h[key] || 0;
             }
 
-            if (s.hukum) {
-               if (key === "pos_polisi") return s.hukum.pos_polisi || (sec.armada_polisi?.pusat_komando?.kantor_polisi) || 0;
+            if (c.hukum) {
+               if (key === "pos_polisi") return c.hukum.pos_polisi || (sec.armada_polisi?.pusat_komando?.kantor_polisi) || 0;
                if (sec.armada_polisi) {
                   const p = sec.armada_polisi;
                   if (key === "police_car") return p.patroli_lantas.mobil_patroli || 0;

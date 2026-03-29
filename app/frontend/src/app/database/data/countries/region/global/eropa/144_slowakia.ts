@@ -3,11 +3,16 @@ import { slowakia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { slowakia_armada } from "../../modules/2_militer/2_armada_militer/eropa/144_slowakia";
 import { slowakia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/144_slowakia";
 import { slowakia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/144_slowakia";
+import { slowakia_hukum } from "../../modules/3_sosial/3_hukum/eropa/144_slowakia";
 import { slowakia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/144_slowakia";
 import { slowakia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/144_slowakia";
+import { slowakia_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/144_slowakia";
 import { slowakia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/144_slowakia";
 import { slowakia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/144_slowakia";
 import { slowakia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/144_slowakia";
+import { slowakia_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/144_slowakia";
+import { slowakia_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/144_slowakia";
+import { slowakia_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/144_slowakia";
 import { slowakia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/144_slowakia";
 import { slowakia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/144_slowakia";
 import { slowakia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/144_slowakia";
@@ -29,50 +34,11 @@ export const slowakia: CountryData = {
   "armada_militer": slowakia_armada,
   "militer_strategis": slowakia_strategis,
   "armada_kepolisian": slowakia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 24,
-      "dasar": 26,
-      "menengah": 4,
-      "lanjutan": 23,
-      "universitas": 30,
-      "lembaga_pendidikan": 18,
-      "laboratorium": 1,
-      "observatorium": 20,
-      "pusat_penelitian": 36,
-      "pusat_pengembangan": 4,
-      "literasi": 56
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 6,
-      "rumah_sakit_kecil": 18,
-      "pusat_diagnostik": 21,
-      "harapan_hidup": 15,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 22,
-      "pengadilan": 25,
-      "kejaksaan": 14,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 1466,
-      "akademi_polisi": 18,
-      "indeks_korupsi": 65,
-      "indeks_keamanan": 68
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 22,
-      "stadion": 20,
-      "stadion_internasional": 20
-  },
+  "pabrik_militer": slowakia_pabrik,
+    "pendidikan": slowakia_pendidikan,
+  "kesehatan": slowakia_kesehatan,
+  "hukum": slowakia_hukum,
+  "sektor_olahraga": slowakia_olahraga,
   "un_vote": 176,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

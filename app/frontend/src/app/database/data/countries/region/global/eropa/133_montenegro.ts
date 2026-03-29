@@ -3,11 +3,16 @@ import { montenegro_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { montenegro_armada } from "../../modules/2_militer/2_armada_militer/eropa/133_montenegro";
 import { montenegro_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/133_montenegro";
 import { montenegro_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/133_montenegro";
+import { montenegro_hukum } from "../../modules/3_sosial/3_hukum/eropa/133_montenegro";
 import { montenegro_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/133_montenegro";
 import { montenegro_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/133_montenegro";
+import { montenegro_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/133_montenegro";
 import { montenegro_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/133_montenegro";
 import { montenegro_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/133_montenegro";
 import { montenegro_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/133_montenegro";
+import { montenegro_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/133_montenegro";
+import { montenegro_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/133_montenegro";
+import { montenegro_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/133_montenegro";
 import { montenegro_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/133_montenegro";
 import { montenegro_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/133_montenegro";
 import { montenegro_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/133_montenegro";
@@ -29,50 +34,11 @@ export const montenegro: CountryData = {
   "armada_militer": montenegro_armada,
   "militer_strategis": montenegro_strategis,
   "armada_kepolisian": montenegro_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 3,
-      "dasar": 11,
-      "menengah": 7,
-      "lanjutan": 34,
-      "universitas": 20,
-      "lembaga_pendidikan": 9,
-      "laboratorium": 19,
-      "observatorium": 38,
-      "pusat_penelitian": 29,
-      "pusat_pengembangan": 20,
-      "literasi": 83
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 2,
-      "rumah_sakit_kecil": 13,
-      "pusat_diagnostik": 4,
-      "harapan_hidup": 4,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 3,
-      "pengadilan": 12,
-      "kejaksaan": 37,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 5087,
-      "akademi_polisi": 14,
-      "indeks_korupsi": 95,
-      "indeks_keamanan": 72
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 23,
-      "sirkuit_balap": 1,
-      "stadion": 7,
-      "stadion_internasional": 7
-  },
+  "pabrik_militer": montenegro_pabrik,
+    "pendidikan": montenegro_pendidikan,
+  "kesehatan": montenegro_kesehatan,
+  "hukum": montenegro_hukum,
+  "sektor_olahraga": montenegro_olahraga,
   "un_vote": 104,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

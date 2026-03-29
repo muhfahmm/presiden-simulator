@@ -3,11 +3,16 @@ import { spanyol_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { spanyol_armada } from "../../modules/2_militer/2_armada_militer/eropa/145_spanyol";
 import { spanyol_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/145_spanyol";
 import { spanyol_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/145_spanyol";
+import { spanyol_hukum } from "../../modules/3_sosial/3_hukum/eropa/145_spanyol";
 import { spanyol_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/145_spanyol";
 import { spanyol_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/145_spanyol";
+import { spanyol_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/145_spanyol";
 import { spanyol_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/145_spanyol";
 import { spanyol_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/145_spanyol";
 import { spanyol_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/145_spanyol";
+import { spanyol_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/145_spanyol";
+import { spanyol_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/145_spanyol";
+import { spanyol_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/145_spanyol";
 import { spanyol_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/145_spanyol";
 import { spanyol_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/145_spanyol";
 import { spanyol_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/145_spanyol";
@@ -29,50 +34,11 @@ export const spanyol: CountryData = {
   "armada_militer": spanyol_armada,
   "militer_strategis": spanyol_strategis,
   "armada_kepolisian": spanyol_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 15,
-      "dasar": 7,
-      "menengah": 3,
-      "lanjutan": 40,
-      "universitas": 4,
-      "lembaga_pendidikan": 7,
-      "laboratorium": 40,
-      "observatorium": 39,
-      "pusat_penelitian": 32,
-      "pusat_pengembangan": 32,
-      "literasi": 60
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 11,
-      "rumah_sakit_kecil": 16,
-      "pusat_diagnostik": 16,
-      "harapan_hidup": 8,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 4,
-      "pengadilan": 28,
-      "kejaksaan": 10,
-      "pos_polisi": 26,
-      "armada_mobil_polisi": 9910,
-      "akademi_polisi": 28,
-      "indeks_korupsi": 92,
-      "indeks_keamanan": 86
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 1,
-      "sirkuit_balap": 11,
-      "stadion": 17,
-      "stadion_internasional": 4
-  },
+  "pabrik_militer": spanyol_pabrik,
+    "pendidikan": spanyol_pendidikan,
+  "kesehatan": spanyol_kesehatan,
+  "hukum": spanyol_hukum,
+  "sektor_olahraga": spanyol_olahraga,
   "un_vote": 135,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

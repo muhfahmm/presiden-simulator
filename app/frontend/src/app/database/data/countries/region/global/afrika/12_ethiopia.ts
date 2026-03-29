@@ -3,11 +3,16 @@ import { ethiopia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { ethiopia_armada } from "../../modules/2_militer/2_armada_militer/afrika/12_ethiopia";
 import { ethiopia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/12_ethiopia";
 import { ethiopia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/12_ethiopia";
+import { ethiopia_hukum } from "../../modules/3_sosial/3_hukum/afrika/12_ethiopia";
 import { ethiopia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/12_ethiopia";
 import { ethiopia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/12_ethiopia";
+import { ethiopia_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/12_ethiopia";
 import { ethiopia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/12_ethiopia";
 import { ethiopia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/12_ethiopia";
 import { ethiopia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/12_ethiopia";
+import { ethiopia_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/12_ethiopia";
+import { ethiopia_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/12_ethiopia";
+import { ethiopia_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/12_ethiopia";
 import { ethiopia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/12_ethiopia";
 import { ethiopia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/12_ethiopia";
 import { ethiopia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/12_ethiopia";
@@ -29,50 +34,11 @@ export const ethiopia: CountryData = {
   "armada_militer": ethiopia_armada,
   "militer_strategis": ethiopia_strategis,
   "armada_kepolisian": ethiopia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 6,
-      "dasar": 2,
-      "menengah": 32,
-      "lanjutan": 7,
-      "universitas": 9,
-      "lembaga_pendidikan": 16,
-      "laboratorium": 38,
-      "observatorium": 24,
-      "pusat_penelitian": 28,
-      "pusat_pengembangan": 33,
-      "literasi": 54
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 39,
-      "rumah_sakit_kecil": 15,
-      "pusat_diagnostik": 7,
-      "harapan_hidup": 2,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 14,
-      "pengadilan": 24,
-      "kejaksaan": 10,
-      "pos_polisi": 21,
-      "armada_mobil_polisi": 9104,
-      "akademi_polisi": 17,
-      "indeks_korupsi": 82,
-      "indeks_keamanan": 82
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 26,
-      "stadion": 14,
-      "stadion_internasional": 40
-  },
+  "pabrik_militer": ethiopia_pabrik,
+    "pendidikan": ethiopia_pendidikan,
+  "kesehatan": ethiopia_kesehatan,
+  "hukum": ethiopia_hukum,
+  "sektor_olahraga": ethiopia_olahraga,
   "un_vote": 70,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

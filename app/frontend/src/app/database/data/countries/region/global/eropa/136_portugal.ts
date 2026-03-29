@@ -3,11 +3,16 @@ import { portugal_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { portugal_armada } from "../../modules/2_militer/2_armada_militer/eropa/136_portugal";
 import { portugal_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/136_portugal";
 import { portugal_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/136_portugal";
+import { portugal_hukum } from "../../modules/3_sosial/3_hukum/eropa/136_portugal";
 import { portugal_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/136_portugal";
 import { portugal_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/136_portugal";
+import { portugal_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/136_portugal";
 import { portugal_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/136_portugal";
 import { portugal_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/136_portugal";
 import { portugal_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/136_portugal";
+import { portugal_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/136_portugal";
+import { portugal_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/136_portugal";
+import { portugal_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/136_portugal";
 import { portugal_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/136_portugal";
 import { portugal_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/136_portugal";
 import { portugal_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/136_portugal";
@@ -29,50 +34,11 @@ export const portugal: CountryData = {
   "armada_militer": portugal_armada,
   "militer_strategis": portugal_strategis,
   "armada_kepolisian": portugal_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 3,
-      "dasar": 4,
-      "menengah": 24,
-      "lanjutan": 29,
-      "universitas": 30,
-      "lembaga_pendidikan": 18,
-      "laboratorium": 22,
-      "observatorium": 34,
-      "pusat_penelitian": 32,
-      "pusat_pengembangan": 11,
-      "literasi": 52
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 12,
-      "rumah_sakit_kecil": 9,
-      "pusat_diagnostik": 26,
-      "harapan_hidup": 23,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 30,
-      "pengadilan": 34,
-      "kejaksaan": 26,
-      "pos_polisi": 12,
-      "armada_mobil_polisi": 2351,
-      "akademi_polisi": 11,
-      "indeks_korupsi": 56,
-      "indeks_keamanan": 80
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 21,
-      "sirkuit_balap": 35,
-      "stadion": 38,
-      "stadion_internasional": 21
-  },
+  "pabrik_militer": portugal_pabrik,
+    "pendidikan": portugal_pendidikan,
+  "kesehatan": portugal_kesehatan,
+  "hukum": portugal_hukum,
+  "sektor_olahraga": portugal_olahraga,
   "un_vote": 194,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

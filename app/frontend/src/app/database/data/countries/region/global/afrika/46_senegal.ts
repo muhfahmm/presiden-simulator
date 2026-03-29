@@ -3,11 +3,16 @@ import { senegal_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { senegal_armada } from "../../modules/2_militer/2_armada_militer/afrika/46_senegal";
 import { senegal_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/46_senegal";
 import { senegal_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/46_senegal";
+import { senegal_hukum } from "../../modules/3_sosial/3_hukum/afrika/46_senegal";
 import { senegal_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/46_senegal";
 import { senegal_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/46_senegal";
+import { senegal_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/46_senegal";
 import { senegal_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/46_senegal";
 import { senegal_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/46_senegal";
 import { senegal_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/46_senegal";
+import { senegal_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/46_senegal";
+import { senegal_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/46_senegal";
+import { senegal_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/46_senegal";
 import { senegal_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/46_senegal";
 import { senegal_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/46_senegal";
 import { senegal_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/46_senegal";
@@ -29,50 +34,11 @@ export const senegal: CountryData = {
   "armada_militer": senegal_armada,
   "militer_strategis": senegal_strategis,
   "armada_kepolisian": senegal_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 29,
-      "dasar": 17,
-      "menengah": 11,
-      "lanjutan": 32,
-      "universitas": 35,
-      "lembaga_pendidikan": 28,
-      "laboratorium": 4,
-      "observatorium": 22,
-      "pusat_penelitian": 1,
-      "pusat_pengembangan": 29,
-      "literasi": 89
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 9,
-      "rumah_sakit_kecil": 5,
-      "pusat_diagnostik": 40,
-      "harapan_hidup": 5,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 25,
-      "pengadilan": 30,
-      "kejaksaan": 27,
-      "pos_polisi": 10,
-      "armada_mobil_polisi": 1640,
-      "akademi_polisi": 1,
-      "indeks_korupsi": 87,
-      "indeks_keamanan": 66
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 15,
-      "sirkuit_balap": 27,
-      "stadion": 40,
-      "stadion_internasional": 23
-  },
+  "pabrik_militer": senegal_pabrik,
+    "pendidikan": senegal_pendidikan,
+  "kesehatan": senegal_kesehatan,
+  "hukum": senegal_hukum,
+  "sektor_olahraga": senegal_olahraga,
   "un_vote": 119,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

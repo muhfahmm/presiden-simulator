@@ -3,11 +3,16 @@ import { bahama_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/n
 import { bahama_armada } from "../../modules/2_militer/2_armada_militer/na/154_bahama";
 import { bahama_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/154_bahama";
 import { bahama_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/154_bahama";
+import { bahama_hukum } from "../../modules/3_sosial/3_hukum/na/154_bahama";
 import { bahama_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/154_bahama";
 import { bahama_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/154_bahama";
+import { bahama_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/154_bahama";
 import { bahama_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/154_bahama";
 import { bahama_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/154_bahama";
 import { bahama_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/154_bahama";
+import { bahama_olahraga } from "../../modules/3_sosial/4_olahraga/na/154_bahama";
+import { bahama_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/154_bahama";
+import { bahama_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/154_bahama";
 import { bahama_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/154_bahama";
 import { bahama_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/154_bahama";
 import { bahama_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/154_bahama";
@@ -29,50 +34,11 @@ export const bahama: CountryData = {
   "armada_militer": bahama_armada,
   "militer_strategis": bahama_strategis,
   "armada_kepolisian": bahama_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 24,
-      "dasar": 1,
-      "menengah": 4,
-      "lanjutan": 18,
-      "universitas": 23,
-      "lembaga_pendidikan": 17,
-      "laboratorium": 25,
-      "observatorium": 24,
-      "pusat_penelitian": 33,
-      "pusat_pengembangan": 2,
-      "literasi": 94
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 29,
-      "rumah_sakit_kecil": 6,
-      "pusat_diagnostik": 40,
-      "harapan_hidup": 3,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 25,
-      "pengadilan": 3,
-      "kejaksaan": 38,
-      "pos_polisi": 9,
-      "armada_mobil_polisi": 927,
-      "akademi_polisi": 18,
-      "indeks_korupsi": 70,
-      "indeks_keamanan": 78
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 34,
-      "sirkuit_balap": 26,
-      "stadion": 28,
-      "stadion_internasional": 28
-  },
+  "pabrik_militer": bahama_pabrik,
+    "pendidikan": bahama_pendidikan,
+  "kesehatan": bahama_kesehatan,
+  "hukum": bahama_hukum,
+  "sektor_olahraga": bahama_olahraga,
   "un_vote": 170,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

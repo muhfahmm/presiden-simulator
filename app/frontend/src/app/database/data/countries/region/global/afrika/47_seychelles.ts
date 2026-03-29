@@ -3,11 +3,16 @@ import { seychelles_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { seychelles_armada } from "../../modules/2_militer/2_armada_militer/afrika/47_seychelles";
 import { seychelles_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/47_seychelles";
 import { seychelles_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/47_seychelles";
+import { seychelles_hukum } from "../../modules/3_sosial/3_hukum/afrika/47_seychelles";
 import { seychelles_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/47_seychelles";
 import { seychelles_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/47_seychelles";
+import { seychelles_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/47_seychelles";
 import { seychelles_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/47_seychelles";
 import { seychelles_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/47_seychelles";
 import { seychelles_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/47_seychelles";
+import { seychelles_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/47_seychelles";
+import { seychelles_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/47_seychelles";
+import { seychelles_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/47_seychelles";
 import { seychelles_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/47_seychelles";
 import { seychelles_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/47_seychelles";
 import { seychelles_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/47_seychelles";
@@ -29,50 +34,11 @@ export const seychelles: CountryData = {
   "armada_militer": seychelles_armada,
   "militer_strategis": seychelles_strategis,
   "armada_kepolisian": seychelles_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 9,
-      "dasar": 8,
-      "menengah": 29,
-      "lanjutan": 36,
-      "universitas": 7,
-      "lembaga_pendidikan": 28,
-      "laboratorium": 27,
-      "observatorium": 27,
-      "pusat_penelitian": 39,
-      "pusat_pengembangan": 25,
-      "literasi": 84
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 26,
-      "rumah_sakit_kecil": 31,
-      "pusat_diagnostik": 23,
-      "harapan_hidup": 31,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 12,
-      "pengadilan": 4,
-      "kejaksaan": 36,
-      "pos_polisi": 33,
-      "armada_mobil_polisi": 7433,
-      "akademi_polisi": 12,
-      "indeks_korupsi": 87,
-      "indeks_keamanan": 73
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 13,
-      "sirkuit_balap": 22,
-      "stadion": 39,
-      "stadion_internasional": 19
-  },
+  "pabrik_militer": seychelles_pabrik,
+    "pendidikan": seychelles_pendidikan,
+  "kesehatan": seychelles_kesehatan,
+  "hukum": seychelles_hukum,
+  "sektor_olahraga": seychelles_olahraga,
   "un_vote": 6,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

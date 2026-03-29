@@ -3,11 +3,16 @@ import { bosnia_dan_hercegovina_agrikultur } from "../../modules/1_ekonomi/7_sek
 import { bosnia_dan_hercegovina_armada } from "../../modules/2_militer/2_armada_militer/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_hukum } from "../../modules/3_sosial/3_hukum/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/109_bosnia_dan_hercegovina";
@@ -29,50 +34,11 @@ export const bosnia_dan_hercegovina: CountryData = {
   "armada_militer": bosnia_dan_hercegovina_armada,
   "militer_strategis": bosnia_dan_hercegovina_strategis,
   "armada_kepolisian": bosnia_dan_hercegovina_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 40,
-      "dasar": 35,
-      "menengah": 34,
-      "lanjutan": 5,
-      "universitas": 25,
-      "lembaga_pendidikan": 37,
-      "laboratorium": 5,
-      "observatorium": 6,
-      "pusat_penelitian": 1,
-      "pusat_pengembangan": 40,
-      "literasi": 81
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 7,
-      "rumah_sakit_kecil": 33,
-      "pusat_diagnostik": 18,
-      "harapan_hidup": 34,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 32,
-      "pengadilan": 4,
-      "kejaksaan": 28,
-      "pos_polisi": 19,
-      "armada_mobil_polisi": 6801,
-      "akademi_polisi": 2,
-      "indeks_korupsi": 94,
-      "indeks_keamanan": 70
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 16,
-      "stadion": 27,
-      "stadion_internasional": 34
-  },
+  "pabrik_militer": bosnia_dan_hercegovina_pabrik,
+    "pendidikan": bosnia_dan_hercegovina_pendidikan,
+  "kesehatan": bosnia_dan_hercegovina_kesehatan,
+  "hukum": bosnia_dan_hercegovina_hukum,
+  "sektor_olahraga": bosnia_dan_hercegovina_olahraga,
   "un_vote": 144,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { finlandia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { finlandia_armada } from "../../modules/2_militer/2_armada_militer/eropa/114_finlandia";
 import { finlandia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/114_finlandia";
 import { finlandia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/114_finlandia";
+import { finlandia_hukum } from "../../modules/3_sosial/3_hukum/eropa/114_finlandia";
 import { finlandia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/114_finlandia";
 import { finlandia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/114_finlandia";
+import { finlandia_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/114_finlandia";
 import { finlandia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/114_finlandia";
 import { finlandia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/114_finlandia";
 import { finlandia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/114_finlandia";
+import { finlandia_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/114_finlandia";
+import { finlandia_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/114_finlandia";
+import { finlandia_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/114_finlandia";
 import { finlandia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/114_finlandia";
 import { finlandia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/114_finlandia";
 import { finlandia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/114_finlandia";
@@ -29,50 +34,11 @@ export const finlandia: CountryData = {
   "armada_militer": finlandia_armada,
   "militer_strategis": finlandia_strategis,
   "armada_kepolisian": finlandia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 14,
-      "dasar": 2,
-      "menengah": 37,
-      "lanjutan": 36,
-      "universitas": 32,
-      "lembaga_pendidikan": 15,
-      "laboratorium": 17,
-      "observatorium": 3,
-      "pusat_penelitian": 36,
-      "pusat_pengembangan": 40,
-      "literasi": 64
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 35,
-      "rumah_sakit_kecil": 10,
-      "pusat_diagnostik": 25,
-      "harapan_hidup": 28,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 22,
-      "pengadilan": 15,
-      "kejaksaan": 36,
-      "pos_polisi": 7,
-      "armada_mobil_polisi": 6415,
-      "akademi_polisi": 10,
-      "indeks_korupsi": 50,
-      "indeks_keamanan": 88
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 31,
-      "sirkuit_balap": 18,
-      "stadion": 4,
-      "stadion_internasional": 20
-  },
+  "pabrik_militer": finlandia_pabrik,
+    "pendidikan": finlandia_pendidikan,
+  "kesehatan": finlandia_kesehatan,
+  "hukum": finlandia_hukum,
+  "sektor_olahraga": finlandia_olahraga,
   "un_vote": 156,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

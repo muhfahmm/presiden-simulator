@@ -3,11 +3,16 @@ import { lebanon_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { lebanon_armada } from "../../modules/2_militer/2_armada_militer/asia/79_lebanon";
 import { lebanon_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/79_lebanon";
 import { lebanon_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/79_lebanon";
+import { lebanon_hukum } from "../../modules/3_sosial/3_hukum/asia/79_lebanon";
 import { lebanon_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/79_lebanon";
 import { lebanon_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/79_lebanon";
+import { lebanon_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/79_lebanon";
 import { lebanon_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/79_lebanon";
 import { lebanon_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/79_lebanon";
 import { lebanon_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/79_lebanon";
+import { lebanon_olahraga } from "../../modules/3_sosial/4_olahraga/asia/79_lebanon";
+import { lebanon_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/79_lebanon";
+import { lebanon_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/79_lebanon";
 import { lebanon_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/79_lebanon";
 import { lebanon_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/79_lebanon";
 import { lebanon_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/79_lebanon";
@@ -29,50 +34,11 @@ export const lebanon: CountryData = {
   "armada_militer": lebanon_armada,
   "militer_strategis": lebanon_strategis,
   "armada_kepolisian": lebanon_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 8,
-      "dasar": 2,
-      "menengah": 1,
-      "lanjutan": 40,
-      "universitas": 22,
-      "lembaga_pendidikan": 9,
-      "laboratorium": 12,
-      "observatorium": 3,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 2,
-      "literasi": 81
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 9,
-      "rumah_sakit_kecil": 14,
-      "pusat_diagnostik": 34,
-      "harapan_hidup": 10,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 12,
-      "pengadilan": 5,
-      "kejaksaan": 39,
-      "pos_polisi": 24,
-      "armada_mobil_polisi": 1509,
-      "akademi_polisi": 30,
-      "indeks_korupsi": 54,
-      "indeks_keamanan": 57
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 6,
-      "sirkuit_balap": 8,
-      "stadion": 27,
-      "stadion_internasional": 22
-  },
+  "pabrik_militer": lebanon_pabrik,
+    "pendidikan": lebanon_pendidikan,
+  "kesehatan": lebanon_kesehatan,
+  "hukum": lebanon_hukum,
+  "sektor_olahraga": lebanon_olahraga,
   "un_vote": 183,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { palestina_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { palestina_armada } from "../../modules/2_militer/2_armada_militer/asia/88_palestina";
 import { palestina_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/88_palestina";
 import { palestina_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/88_palestina";
+import { palestina_hukum } from "../../modules/3_sosial/3_hukum/asia/88_palestina";
 import { palestina_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/88_palestina";
 import { palestina_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/88_palestina";
+import { palestina_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/88_palestina";
 import { palestina_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/88_palestina";
 import { palestina_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/88_palestina";
 import { palestina_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/88_palestina";
+import { palestina_olahraga } from "../../modules/3_sosial/4_olahraga/asia/88_palestina";
+import { palestina_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/88_palestina";
+import { palestina_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/88_palestina";
 import { palestina_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/88_palestina";
 import { palestina_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/88_palestina";
 import { palestina_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/88_palestina";
@@ -29,50 +34,11 @@ export const palestina: CountryData = {
   "armada_militer": palestina_armada,
   "militer_strategis": palestina_strategis,
   "armada_kepolisian": palestina_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 35,
-      "dasar": 21,
-      "menengah": 33,
-      "lanjutan": 28,
-      "universitas": 5,
-      "lembaga_pendidikan": 33,
-      "laboratorium": 36,
-      "observatorium": 1,
-      "pusat_penelitian": 26,
-      "pusat_pengembangan": 28,
-      "literasi": 64
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 9,
-      "rumah_sakit_kecil": 39,
-      "pusat_diagnostik": 38,
-      "harapan_hidup": 27,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 39,
-      "pengadilan": 34,
-      "kejaksaan": 35,
-      "pos_polisi": 19,
-      "armada_mobil_polisi": 1999,
-      "akademi_polisi": 6,
-      "indeks_korupsi": 72,
-      "indeks_keamanan": 90
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 20,
-      "stadion": 29,
-      "stadion_internasional": 9
-  },
+  "pabrik_militer": palestina_pabrik,
+    "pendidikan": palestina_pendidikan,
+  "kesehatan": palestina_kesehatan,
+  "hukum": palestina_hukum,
+  "sektor_olahraga": palestina_olahraga,
   "un_vote": 40,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

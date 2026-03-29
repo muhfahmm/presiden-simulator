@@ -3,11 +3,16 @@ import { myanmar_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { myanmar_armada } from "../../modules/2_militer/2_armada_militer/asia/84_myanmar";
 import { myanmar_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/84_myanmar";
 import { myanmar_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/84_myanmar";
+import { myanmar_hukum } from "../../modules/3_sosial/3_hukum/asia/84_myanmar";
 import { myanmar_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/84_myanmar";
 import { myanmar_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/84_myanmar";
+import { myanmar_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/84_myanmar";
 import { myanmar_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/84_myanmar";
 import { myanmar_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/84_myanmar";
 import { myanmar_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/84_myanmar";
+import { myanmar_olahraga } from "../../modules/3_sosial/4_olahraga/asia/84_myanmar";
+import { myanmar_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/84_myanmar";
+import { myanmar_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/84_myanmar";
 import { myanmar_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/84_myanmar";
 import { myanmar_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/84_myanmar";
 import { myanmar_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/84_myanmar";
@@ -29,50 +34,11 @@ export const myanmar: CountryData = {
   "armada_militer": myanmar_armada,
   "militer_strategis": myanmar_strategis,
   "armada_kepolisian": myanmar_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 7,
-      "dasar": 37,
-      "menengah": 11,
-      "lanjutan": 18,
-      "universitas": 4,
-      "lembaga_pendidikan": 31,
-      "laboratorium": 1,
-      "observatorium": 25,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 13,
-      "literasi": 72
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 16,
-      "rumah_sakit_kecil": 20,
-      "pusat_diagnostik": 3,
-      "harapan_hidup": 3,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 12,
-      "pengadilan": 23,
-      "kejaksaan": 13,
-      "pos_polisi": 11,
-      "armada_mobil_polisi": 908,
-      "akademi_polisi": 13,
-      "indeks_korupsi": 51,
-      "indeks_keamanan": 91
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 13,
-      "sirkuit_balap": 3,
-      "stadion": 29,
-      "stadion_internasional": 24
-  },
+  "pabrik_militer": myanmar_pabrik,
+    "pendidikan": myanmar_pendidikan,
+  "kesehatan": myanmar_kesehatan,
+  "hukum": myanmar_hukum,
+  "sektor_olahraga": myanmar_olahraga,
   "un_vote": 55,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

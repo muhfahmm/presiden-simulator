@@ -3,11 +3,16 @@ import { peru_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/sa/
 import { peru_armada } from "../../modules/2_militer/2_armada_militer/sa/204_peru";
 import { peru_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/sa/204_peru";
 import { peru_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/sa/204_peru";
+import { peru_hukum } from "../../modules/3_sosial/3_hukum/sa/204_peru";
 import { peru_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/sa/204_peru";
 import { peru_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/sa/204_peru";
+import { peru_kesehatan } from "../../modules/3_sosial/2_kesehatan/sa/204_peru";
 import { peru_listrik } from "../../modules/1_ekonomi/2_kelistrikan/sa/204_peru";
 import { peru_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/sa/204_peru";
 import { peru_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/sa/204_peru";
+import { peru_olahraga } from "../../modules/3_sosial/4_olahraga/sa/204_peru";
+import { peru_pabrik } from "../../modules/2_militer/5_pabrik_militer/sa/204_peru";
+import { peru_pendidikan } from "../../modules/3_sosial/1_pendidikan/sa/204_peru";
 import { peru_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/sa/204_peru";
 import { peru_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/204_peru";
 import { peru_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/204_peru";
@@ -29,50 +34,11 @@ export const peru: CountryData = {
   "armada_militer": peru_armada,
   "militer_strategis": peru_strategis,
   "armada_kepolisian": peru_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 16,
-      "dasar": 32,
-      "menengah": 29,
-      "lanjutan": 27,
-      "universitas": 21,
-      "lembaga_pendidikan": 15,
-      "laboratorium": 29,
-      "observatorium": 16,
-      "pusat_penelitian": 28,
-      "pusat_pengembangan": 13,
-      "literasi": 59
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 17,
-      "rumah_sakit_kecil": 32,
-      "pusat_diagnostik": 36,
-      "harapan_hidup": 31,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 3,
-      "pengadilan": 34,
-      "kejaksaan": 26,
-      "pos_polisi": 20,
-      "armada_mobil_polisi": 8042,
-      "akademi_polisi": 25,
-      "indeks_korupsi": 91,
-      "indeks_keamanan": 89
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 27,
-      "sirkuit_balap": 30,
-      "stadion": 2,
-      "stadion_internasional": 3
-  },
+  "pabrik_militer": peru_pabrik,
+    "pendidikan": peru_pendidikan,
+  "kesehatan": peru_kesehatan,
+  "hukum": peru_hukum,
+  "sektor_olahraga": peru_olahraga,
   "un_vote": 41,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { siprus_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/e
 import { siprus_armada } from "../../modules/2_militer/2_armada_militer/eropa/142_siprus";
 import { siprus_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/142_siprus";
 import { siprus_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/142_siprus";
+import { siprus_hukum } from "../../modules/3_sosial/3_hukum/eropa/142_siprus";
 import { siprus_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/142_siprus";
 import { siprus_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/142_siprus";
+import { siprus_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/142_siprus";
 import { siprus_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/142_siprus";
 import { siprus_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/142_siprus";
 import { siprus_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/142_siprus";
+import { siprus_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/142_siprus";
+import { siprus_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/142_siprus";
+import { siprus_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/142_siprus";
 import { siprus_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/142_siprus";
 import { siprus_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/142_siprus";
 import { siprus_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/142_siprus";
@@ -29,50 +34,11 @@ export const siprus: CountryData = {
   "armada_militer": siprus_armada,
   "militer_strategis": siprus_strategis,
   "armada_kepolisian": siprus_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 11,
-      "dasar": 33,
-      "menengah": 25,
-      "lanjutan": 24,
-      "universitas": 27,
-      "lembaga_pendidikan": 12,
-      "laboratorium": 7,
-      "observatorium": 6,
-      "pusat_penelitian": 33,
-      "pusat_pengembangan": 20,
-      "literasi": 66
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 6,
-      "rumah_sakit_kecil": 22,
-      "pusat_diagnostik": 23,
-      "harapan_hidup": 17,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 24,
-      "pengadilan": 28,
-      "kejaksaan": 11,
-      "pos_polisi": 36,
-      "armada_mobil_polisi": 9348,
-      "akademi_polisi": 2,
-      "indeks_korupsi": 61,
-      "indeks_keamanan": 86
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 32,
-      "sirkuit_balap": 3,
-      "stadion": 14,
-      "stadion_internasional": 24
-  },
+  "pabrik_militer": siprus_pabrik,
+    "pendidikan": siprus_pendidikan,
+  "kesehatan": siprus_kesehatan,
+  "hukum": siprus_hukum,
+  "sektor_olahraga": siprus_olahraga,
   "un_vote": 131,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { curacao_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { curacao_armada } from "../../modules/2_militer/2_armada_militer/na/159_curacao";
 import { curacao_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/159_curacao";
 import { curacao_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/159_curacao";
+import { curacao_hukum } from "../../modules/3_sosial/3_hukum/na/159_curacao";
 import { curacao_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/159_curacao";
 import { curacao_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/159_curacao";
+import { curacao_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/159_curacao";
 import { curacao_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/159_curacao";
 import { curacao_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/159_curacao";
 import { curacao_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/159_curacao";
+import { curacao_olahraga } from "../../modules/3_sosial/4_olahraga/na/159_curacao";
+import { curacao_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/159_curacao";
+import { curacao_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/159_curacao";
 import { curacao_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/159_curacao";
 import { curacao_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/159_curacao";
 import { curacao_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/159_curacao";
@@ -29,50 +34,11 @@ export const curacao: CountryData = {
   "armada_militer": curacao_armada,
   "militer_strategis": curacao_strategis,
   "armada_kepolisian": curacao_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 3,
-      "dasar": 31,
-      "menengah": 24,
-      "lanjutan": 13,
-      "universitas": 17,
-      "lembaga_pendidikan": 9,
-      "laboratorium": 14,
-      "observatorium": 1,
-      "pusat_penelitian": 27,
-      "pusat_pengembangan": 13,
-      "literasi": 78
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 32,
-      "rumah_sakit_kecil": 23,
-      "pusat_diagnostik": 17,
-      "harapan_hidup": 35,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 11,
-      "pengadilan": 1,
-      "kejaksaan": 17,
-      "pos_polisi": 39,
-      "armada_mobil_polisi": 5296,
-      "akademi_polisi": 22,
-      "indeks_korupsi": 78,
-      "indeks_keamanan": 79
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 25,
-      "sirkuit_balap": 4,
-      "stadion": 17,
-      "stadion_internasional": 38
-  },
+  "pabrik_militer": curacao_pabrik,
+    "pendidikan": curacao_pendidikan,
+  "kesehatan": curacao_kesehatan,
+  "hukum": curacao_hukum,
+  "sektor_olahraga": curacao_olahraga,
   "un_vote": 16,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { papua_nugini_agrikultur } from "../../modules/1_ekonomi/7_sektor_agriku
 import { papua_nugini_armada } from "../../modules/2_militer/2_armada_militer/oceania/187_papua_nugini";
 import { papua_nugini_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/187_papua_nugini";
 import { papua_nugini_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/187_papua_nugini";
+import { papua_nugini_hukum } from "../../modules/3_sosial/3_hukum/oceania/187_papua_nugini";
 import { papua_nugini_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/187_papua_nugini";
 import { papua_nugini_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/187_papua_nugini";
+import { papua_nugini_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/187_papua_nugini";
 import { papua_nugini_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/187_papua_nugini";
 import { papua_nugini_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/187_papua_nugini";
 import { papua_nugini_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/187_papua_nugini";
+import { papua_nugini_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/187_papua_nugini";
+import { papua_nugini_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/187_papua_nugini";
+import { papua_nugini_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/187_papua_nugini";
 import { papua_nugini_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/187_papua_nugini";
 import { papua_nugini_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/187_papua_nugini";
 import { papua_nugini_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/187_papua_nugini";
@@ -29,50 +34,11 @@ export const papua_nugini: CountryData = {
   "armada_militer": papua_nugini_armada,
   "militer_strategis": papua_nugini_strategis,
   "armada_kepolisian": papua_nugini_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 30,
-      "dasar": 29,
-      "menengah": 17,
-      "lanjutan": 1,
-      "universitas": 20,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 29,
-      "observatorium": 22,
-      "pusat_penelitian": 7,
-      "pusat_pengembangan": 15,
-      "literasi": 74
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 32,
-      "rumah_sakit_kecil": 40,
-      "pusat_diagnostik": 5,
-      "harapan_hidup": 35,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 20,
-      "pengadilan": 16,
-      "kejaksaan": 6,
-      "pos_polisi": 34,
-      "armada_mobil_polisi": 2579,
-      "akademi_polisi": 36,
-      "indeks_korupsi": 87,
-      "indeks_keamanan": 88
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 24,
-      "stadion": 29,
-      "stadion_internasional": 11
-  },
+  "pabrik_militer": papua_nugini_pabrik,
+    "pendidikan": papua_nugini_pendidikan,
+  "kesehatan": papua_nugini_kesehatan,
+  "hukum": papua_nugini_hukum,
+  "sektor_olahraga": papua_nugini_olahraga,
   "un_vote": 130,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

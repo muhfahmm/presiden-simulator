@@ -3,11 +3,16 @@ import { barbados_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { barbados_armada } from "../../modules/2_militer/2_armada_militer/na/155_barbados";
 import { barbados_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/155_barbados";
 import { barbados_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/155_barbados";
+import { barbados_hukum } from "../../modules/3_sosial/3_hukum/na/155_barbados";
 import { barbados_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/155_barbados";
 import { barbados_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/155_barbados";
+import { barbados_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/155_barbados";
 import { barbados_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/155_barbados";
 import { barbados_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/155_barbados";
 import { barbados_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/155_barbados";
+import { barbados_olahraga } from "../../modules/3_sosial/4_olahraga/na/155_barbados";
+import { barbados_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/155_barbados";
+import { barbados_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/155_barbados";
 import { barbados_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/155_barbados";
 import { barbados_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/155_barbados";
 import { barbados_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/155_barbados";
@@ -29,50 +34,11 @@ export const barbados: CountryData = {
   "armada_militer": barbados_armada,
   "militer_strategis": barbados_strategis,
   "armada_kepolisian": barbados_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 7,
-      "dasar": 15,
-      "menengah": 12,
-      "lanjutan": 18,
-      "universitas": 24,
-      "lembaga_pendidikan": 13,
-      "laboratorium": 19,
-      "observatorium": 25,
-      "pusat_penelitian": 14,
-      "pusat_pengembangan": 1,
-      "literasi": 63
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 26,
-      "rumah_sakit_kecil": 30,
-      "pusat_diagnostik": 21,
-      "harapan_hidup": 7,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 23,
-      "pengadilan": 4,
-      "kejaksaan": 39,
-      "pos_polisi": 24,
-      "armada_mobil_polisi": 3756,
-      "akademi_polisi": 17,
-      "indeks_korupsi": 83,
-      "indeks_keamanan": 82
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 36,
-      "sirkuit_balap": 39,
-      "stadion": 8,
-      "stadion_internasional": 26
-  },
+  "pabrik_militer": barbados_pabrik,
+    "pendidikan": barbados_pendidikan,
+  "kesehatan": barbados_kesehatan,
+  "hukum": barbados_hukum,
+  "sektor_olahraga": barbados_olahraga,
   "un_vote": 10,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

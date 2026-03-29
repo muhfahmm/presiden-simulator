@@ -3,11 +3,16 @@ import { guinea_bissau_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrik
 import { guinea_bissau_armada } from "../../modules/2_militer/2_armada_militer/afrika/17_guinea_bissau";
 import { guinea_bissau_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/17_guinea_bissau";
 import { guinea_bissau_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/17_guinea_bissau";
+import { guinea_bissau_hukum } from "../../modules/3_sosial/3_hukum/afrika/17_guinea_bissau";
 import { guinea_bissau_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/17_guinea_bissau";
 import { guinea_bissau_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/17_guinea_bissau";
+import { guinea_bissau_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/17_guinea_bissau";
 import { guinea_bissau_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/17_guinea_bissau";
 import { guinea_bissau_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/17_guinea_bissau";
 import { guinea_bissau_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/17_guinea_bissau";
+import { guinea_bissau_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/17_guinea_bissau";
+import { guinea_bissau_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/17_guinea_bissau";
+import { guinea_bissau_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/17_guinea_bissau";
 import { guinea_bissau_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/17_guinea_bissau";
 import { guinea_bissau_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/17_guinea_bissau";
 import { guinea_bissau_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/17_guinea_bissau";
@@ -29,50 +34,11 @@ export const guinea_bissau: CountryData = {
   "armada_militer": guinea_bissau_armada,
   "militer_strategis": guinea_bissau_strategis,
   "armada_kepolisian": guinea_bissau_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 39,
-      "dasar": 3,
-      "menengah": 15,
-      "lanjutan": 19,
-      "universitas": 40,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 35,
-      "observatorium": 38,
-      "pusat_penelitian": 6,
-      "pusat_pengembangan": 33,
-      "literasi": 80
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 9,
-      "rumah_sakit_kecil": 26,
-      "pusat_diagnostik": 8,
-      "harapan_hidup": 26,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 2,
-      "pengadilan": 36,
-      "kejaksaan": 10,
-      "pos_polisi": 28,
-      "armada_mobil_polisi": 6154,
-      "akademi_polisi": 14,
-      "indeks_korupsi": 95,
-      "indeks_keamanan": 92
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 15,
-      "sirkuit_balap": 4,
-      "stadion": 37,
-      "stadion_internasional": 16
-  },
+  "pabrik_militer": guinea_bissau_pabrik,
+    "pendidikan": guinea_bissau_pendidikan,
+  "kesehatan": guinea_bissau_kesehatan,
+  "hukum": guinea_bissau_hukum,
+  "sektor_olahraga": guinea_bissau_olahraga,
   "un_vote": 100,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

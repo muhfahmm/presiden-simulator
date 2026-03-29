@@ -3,11 +3,16 @@ import { republik_tanzania_agrikultur } from "../../modules/1_ekonomi/7_sektor_a
 import { republik_tanzania_armada } from "../../modules/2_militer/2_armada_militer/afrika/40_republik_tanzania";
 import { republik_tanzania_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/40_republik_tanzania";
 import { republik_tanzania_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/40_republik_tanzania";
+import { republik_tanzania_hukum } from "../../modules/3_sosial/3_hukum/afrika/40_republik_tanzania";
 import { republik_tanzania_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/40_republik_tanzania";
 import { republik_tanzania_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/40_republik_tanzania";
+import { republik_tanzania_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/40_republik_tanzania";
 import { republik_tanzania_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/40_republik_tanzania";
 import { republik_tanzania_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/40_republik_tanzania";
 import { republik_tanzania_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/40_republik_tanzania";
+import { republik_tanzania_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/40_republik_tanzania";
+import { republik_tanzania_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/40_republik_tanzania";
+import { republik_tanzania_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/40_republik_tanzania";
 import { republik_tanzania_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/40_republik_tanzania";
 import { republik_tanzania_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/40_republik_tanzania";
 import { republik_tanzania_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/40_republik_tanzania";
@@ -29,50 +34,11 @@ export const republik_tanzania: CountryData = {
   "armada_militer": republik_tanzania_armada,
   "militer_strategis": republik_tanzania_strategis,
   "armada_kepolisian": republik_tanzania_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 9,
-      "dasar": 2,
-      "menengah": 8,
-      "lanjutan": 17,
-      "universitas": 1,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 6,
-      "observatorium": 21,
-      "pusat_penelitian": 11,
-      "pusat_pengembangan": 26,
-      "literasi": 83
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 5,
-      "rumah_sakit_kecil": 7,
-      "pusat_diagnostik": 4,
-      "harapan_hidup": 7,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 32,
-      "pengadilan": 13,
-      "kejaksaan": 8,
-      "pos_polisi": 27,
-      "armada_mobil_polisi": 1318,
-      "akademi_polisi": 7,
-      "indeks_korupsi": 70,
-      "indeks_keamanan": 64
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 1,
-      "sirkuit_balap": 3,
-      "stadion": 34,
-      "stadion_internasional": 40
-  },
+  "pabrik_militer": republik_tanzania_pabrik,
+    "pendidikan": republik_tanzania_pendidikan,
+  "kesehatan": republik_tanzania_kesehatan,
+  "hukum": republik_tanzania_hukum,
+  "sektor_olahraga": republik_tanzania_olahraga,
   "un_vote": 178,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

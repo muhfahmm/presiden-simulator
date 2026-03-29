@@ -3,11 +3,16 @@ import { belize_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/n
 import { belize_armada } from "../../modules/2_militer/2_armada_militer/na/156_belize";
 import { belize_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/156_belize";
 import { belize_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/156_belize";
+import { belize_hukum } from "../../modules/3_sosial/3_hukum/na/156_belize";
 import { belize_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/156_belize";
 import { belize_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/156_belize";
+import { belize_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/156_belize";
 import { belize_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/156_belize";
 import { belize_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/156_belize";
 import { belize_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/156_belize";
+import { belize_olahraga } from "../../modules/3_sosial/4_olahraga/na/156_belize";
+import { belize_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/156_belize";
+import { belize_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/156_belize";
 import { belize_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/156_belize";
 import { belize_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/156_belize";
 import { belize_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/156_belize";
@@ -29,50 +34,11 @@ export const belize: CountryData = {
   "armada_militer": belize_armada,
   "militer_strategis": belize_strategis,
   "armada_kepolisian": belize_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 9,
-      "dasar": 6,
-      "menengah": 13,
-      "lanjutan": 6,
-      "universitas": 5,
-      "lembaga_pendidikan": 37,
-      "laboratorium": 40,
-      "observatorium": 14,
-      "pusat_penelitian": 19,
-      "pusat_pengembangan": 26,
-      "literasi": 64
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 36,
-      "rumah_sakit_kecil": 8,
-      "pusat_diagnostik": 2,
-      "harapan_hidup": 38,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 34,
-      "pengadilan": 30,
-      "kejaksaan": 31,
-      "pos_polisi": 31,
-      "armada_mobil_polisi": 5370,
-      "akademi_polisi": 8,
-      "indeks_korupsi": 80,
-      "indeks_keamanan": 63
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 10,
-      "sirkuit_balap": 15,
-      "stadion": 32,
-      "stadion_internasional": 3
-  },
+  "pabrik_militer": belize_pabrik,
+    "pendidikan": belize_pendidikan,
+  "kesehatan": belize_kesehatan,
+  "hukum": belize_hukum,
+  "sektor_olahraga": belize_olahraga,
   "un_vote": 15,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

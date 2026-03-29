@@ -4,4 +4,16 @@ export const gibraltar_kepolisian = {
         "mobil_patroli_interceptor": 22,
         "unit_interceptor_r2": 14,
         "unit_k9": 23
+  },
+        "taktis_khusus": {
+          "swat": 31,
+          "helikopter_polisi": 6,
+          "anti_huru_hara": 62
+        },
+        "pusat_komando": {
+          "kantor_polisi": 5,
+          "kamera_pengawas": 39,
+          "pusat_forensik": 1
+        }
+    }
   } as const;

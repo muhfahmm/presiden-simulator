@@ -3,11 +3,16 @@ import { latvia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/e
 import { latvia_armada } from "../../modules/2_militer/2_armada_militer/eropa/125_latvia";
 import { latvia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/125_latvia";
 import { latvia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/125_latvia";
+import { latvia_hukum } from "../../modules/3_sosial/3_hukum/eropa/125_latvia";
 import { latvia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/125_latvia";
 import { latvia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/125_latvia";
+import { latvia_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/125_latvia";
 import { latvia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/125_latvia";
 import { latvia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/125_latvia";
 import { latvia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/125_latvia";
+import { latvia_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/125_latvia";
+import { latvia_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/125_latvia";
+import { latvia_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/125_latvia";
 import { latvia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/125_latvia";
 import { latvia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/125_latvia";
 import { latvia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/125_latvia";
@@ -29,50 +34,11 @@ export const latvia: CountryData = {
   "armada_militer": latvia_armada,
   "militer_strategis": latvia_strategis,
   "armada_kepolisian": latvia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 11,
-      "dasar": 18,
-      "menengah": 3,
-      "lanjutan": 11,
-      "universitas": 18,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 32,
-      "observatorium": 18,
-      "pusat_penelitian": 39,
-      "pusat_pengembangan": 24,
-      "literasi": 70
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 27,
-      "rumah_sakit_kecil": 24,
-      "pusat_diagnostik": 28,
-      "harapan_hidup": 6,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 20,
-      "pengadilan": 25,
-      "kejaksaan": 33,
-      "pos_polisi": 32,
-      "armada_mobil_polisi": 1008,
-      "akademi_polisi": 29,
-      "indeks_korupsi": 56,
-      "indeks_keamanan": 59
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 7,
-      "sirkuit_balap": 11,
-      "stadion": 21,
-      "stadion_internasional": 19
-  },
+  "pabrik_militer": latvia_pabrik,
+    "pendidikan": latvia_pendidikan,
+  "kesehatan": latvia_kesehatan,
+  "hukum": latvia_hukum,
+  "sektor_olahraga": latvia_olahraga,
   "un_vote": 164,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

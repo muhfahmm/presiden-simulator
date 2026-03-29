@@ -3,11 +3,16 @@ import { indonesia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { indonesia_armada } from "../../modules/2_militer/2_armada_militer/asia/67_indonesia";
 import { indonesia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/67_indonesia";
 import { indonesia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/67_indonesia";
+import { indonesia_hukum } from "../../modules/3_sosial/3_hukum/asia/67_indonesia";
 import { indonesia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/67_indonesia";
 import { indonesia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/67_indonesia";
+import { indonesia_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/67_indonesia";
 import { indonesia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/67_indonesia";
 import { indonesia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/67_indonesia";
 import { indonesia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/67_indonesia";
+import { indonesia_olahraga } from "../../modules/3_sosial/4_olahraga/asia/67_indonesia";
+import { indonesia_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/67_indonesia";
+import { indonesia_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/67_indonesia";
 import { indonesia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/67_indonesia";
 import { indonesia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/67_indonesia";
 import { indonesia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/67_indonesia";
@@ -29,45 +34,12 @@ export const indonesia: CountryData = {
   "armada_militer": indonesia_armada,
   "militer_strategis": indonesia_strategis,
   "armada_kepolisian": indonesia_kepolisian,
-  "pabrik_militer": { "pabrik_drone_kamikaze": 0, "pabrik_amunisi": 0, "pabrik_kendaraan_tempur": 0, "pabrik_senjata_berat": 0 },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 27,
-      "dasar": 31,
-      "menengah": 21,
-      "lanjutan": 38,
-      "universitas": 37,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 10,
-      "observatorium": 12,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 18,
-      "literasi": 65
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 3,
-      "rumah_sakit_kecil": 27,
-      "pusat_diagnostik": 24,
-      "harapan_hidup": 27,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 27,
-      "pengadilan": 26,
-      "kejaksaan": 12,
-      "pos_polisi": 7,
-      "armada_mobil_polisi": 7586,
-      "akademi_polisi": 29,
-      "indeks_korupsi": 73,
-      "indeks_keamanan": 78
-    }
-  },
-  "sektor_olahraga": {
-    "kolam_renang": 35,
-    "sirkuit_balap": 35,
-    "stadion": 37,
-    "stadion_internasional": 11
-  },
+  "pabrik_militer": indonesia_pabrik,
+    "pendidikan": indonesia_pendidikan,
+  "kesehatan": indonesia_kesehatan,
+  "hukum": indonesia_hukum,
+  "sektor_olahraga": indonesia_olahraga,
+  
   "un_vote": 128,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

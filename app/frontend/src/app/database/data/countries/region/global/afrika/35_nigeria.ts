@@ -3,11 +3,16 @@ import { nigeria_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { nigeria_armada } from "../../modules/2_militer/2_armada_militer/afrika/35_nigeria";
 import { nigeria_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/35_nigeria";
 import { nigeria_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/35_nigeria";
+import { nigeria_hukum } from "../../modules/3_sosial/3_hukum/afrika/35_nigeria";
 import { nigeria_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/35_nigeria";
 import { nigeria_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/35_nigeria";
+import { nigeria_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/35_nigeria";
 import { nigeria_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/35_nigeria";
 import { nigeria_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/35_nigeria";
 import { nigeria_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/35_nigeria";
+import { nigeria_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/35_nigeria";
+import { nigeria_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/35_nigeria";
+import { nigeria_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/35_nigeria";
 import { nigeria_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/35_nigeria";
 import { nigeria_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/35_nigeria";
 import { nigeria_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/35_nigeria";
@@ -29,50 +34,11 @@ export const nigeria: CountryData = {
   "armada_militer": nigeria_armada,
   "militer_strategis": nigeria_strategis,
   "armada_kepolisian": nigeria_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 34,
-      "dasar": 11,
-      "menengah": 14,
-      "lanjutan": 3,
-      "universitas": 10,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 33,
-      "observatorium": 29,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 16,
-      "literasi": 66
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 39,
-      "rumah_sakit_kecil": 13,
-      "pusat_diagnostik": 8,
-      "harapan_hidup": 1,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 6,
-      "pengadilan": 2,
-      "kejaksaan": 17,
-      "pos_polisi": 34,
-      "armada_mobil_polisi": 8695,
-      "akademi_polisi": 14,
-      "indeks_korupsi": 73,
-      "indeks_keamanan": 56
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 17,
-      "sirkuit_balap": 8,
-      "stadion": 25,
-      "stadion_internasional": 32
-  },
+  "pabrik_militer": nigeria_pabrik,
+    "pendidikan": nigeria_pendidikan,
+  "kesehatan": nigeria_kesehatan,
+  "hukum": nigeria_hukum,
+  "sektor_olahraga": nigeria_olahraga,
   "un_vote": 175,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

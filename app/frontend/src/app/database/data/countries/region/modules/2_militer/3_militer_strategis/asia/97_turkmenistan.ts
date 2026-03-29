@@ -2,4 +2,10 @@ export const turkmenistan_strategis = {
     "waktu_respon": 15,
     "intelijen": 18,
     "status_nuklir": false,
-    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 } as const;
+    "intel_radar": { "sistem_satelit": 0, "jaringan_radar": 0, "operasi_siber": 0 },
+    "operasi_strategis": { "misi_serangan": 11,
+      "misi_mata_mata": 34,
+      "misi_sabotase": 2,
+      "manajemen_wilayah": 3,
+      "program_nuklir": 0 }
+  } as const;

@@ -3,11 +3,16 @@ import { saint_vincent_dan_grenadine_agrikultur } from "../../modules/1_ekonomi/
 import { saint_vincent_dan_grenadine_armada } from "../../modules/2_militer/2_armada_militer/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/177_saint_vincent_dan_grenadine";
+import { saint_vincent_dan_grenadine_hukum } from "../../modules/3_sosial/3_hukum/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/177_saint_vincent_dan_grenadine";
+import { saint_vincent_dan_grenadine_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/177_saint_vincent_dan_grenadine";
+import { saint_vincent_dan_grenadine_olahraga } from "../../modules/3_sosial/4_olahraga/na/177_saint_vincent_dan_grenadine";
+import { saint_vincent_dan_grenadine_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/177_saint_vincent_dan_grenadine";
+import { saint_vincent_dan_grenadine_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/177_saint_vincent_dan_grenadine";
@@ -29,50 +34,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
   "armada_militer": saint_vincent_dan_grenadine_armada,
   "militer_strategis": saint_vincent_dan_grenadine_strategis,
   "armada_kepolisian": saint_vincent_dan_grenadine_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 21,
-      "dasar": 9,
-      "menengah": 19,
-      "lanjutan": 16,
-      "universitas": 10,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 1,
-      "observatorium": 10,
-      "pusat_penelitian": 2,
-      "pusat_pengembangan": 15,
-      "literasi": 66
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 23,
-      "rumah_sakit_kecil": 2,
-      "pusat_diagnostik": 8,
-      "harapan_hidup": 20,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 32,
-      "pengadilan": 18,
-      "kejaksaan": 5,
-      "pos_polisi": 5,
-      "armada_mobil_polisi": 5603,
-      "akademi_polisi": 31,
-      "indeks_korupsi": 73,
-      "indeks_keamanan": 87
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 10,
-      "sirkuit_balap": 25,
-      "stadion": 25,
-      "stadion_internasional": 10
-  },
+  "pabrik_militer": saint_vincent_dan_grenadine_pabrik,
+    "pendidikan": saint_vincent_dan_grenadine_pendidikan,
+  "kesehatan": saint_vincent_dan_grenadine_kesehatan,
+  "hukum": saint_vincent_dan_grenadine_hukum,
+  "sektor_olahraga": saint_vincent_dan_grenadine_olahraga,
   "un_vote": 110,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

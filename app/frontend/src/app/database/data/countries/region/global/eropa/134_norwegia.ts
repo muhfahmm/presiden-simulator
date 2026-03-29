@@ -3,11 +3,16 @@ import { norwegia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { norwegia_armada } from "../../modules/2_militer/2_armada_militer/eropa/134_norwegia";
 import { norwegia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/134_norwegia";
 import { norwegia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/134_norwegia";
+import { norwegia_hukum } from "../../modules/3_sosial/3_hukum/eropa/134_norwegia";
 import { norwegia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/134_norwegia";
 import { norwegia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/134_norwegia";
+import { norwegia_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/134_norwegia";
 import { norwegia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/134_norwegia";
 import { norwegia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/134_norwegia";
 import { norwegia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/134_norwegia";
+import { norwegia_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/134_norwegia";
+import { norwegia_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/134_norwegia";
+import { norwegia_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/134_norwegia";
 import { norwegia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/134_norwegia";
 import { norwegia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/134_norwegia";
 import { norwegia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/134_norwegia";
@@ -29,50 +34,11 @@ export const norwegia: CountryData = {
   "armada_militer": norwegia_armada,
   "militer_strategis": norwegia_strategis,
   "armada_kepolisian": norwegia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 1,
-      "dasar": 26,
-      "menengah": 9,
-      "lanjutan": 13,
-      "universitas": 1,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 19,
-      "observatorium": 36,
-      "pusat_penelitian": 5,
-      "pusat_pengembangan": 13,
-      "literasi": 82
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 14,
-      "rumah_sakit_kecil": 37,
-      "pusat_diagnostik": 22,
-      "harapan_hidup": 27,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 16,
-      "pengadilan": 34,
-      "kejaksaan": 29,
-      "pos_polisi": 4,
-      "armada_mobil_polisi": 1953,
-      "akademi_polisi": 32,
-      "indeks_korupsi": 76,
-      "indeks_keamanan": 82
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 22,
-      "stadion": 40,
-      "stadion_internasional": 25
-  },
+  "pabrik_militer": norwegia_pabrik,
+    "pendidikan": norwegia_pendidikan,
+  "kesehatan": norwegia_kesehatan,
+  "hukum": norwegia_hukum,
+  "sektor_olahraga": norwegia_olahraga,
   "un_vote": 161,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

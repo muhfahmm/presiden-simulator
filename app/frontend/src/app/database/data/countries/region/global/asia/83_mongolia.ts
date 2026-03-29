@@ -3,11 +3,16 @@ import { mongolia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { mongolia_armada } from "../../modules/2_militer/2_armada_militer/asia/83_mongolia";
 import { mongolia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/83_mongolia";
 import { mongolia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/83_mongolia";
+import { mongolia_hukum } from "../../modules/3_sosial/3_hukum/asia/83_mongolia";
 import { mongolia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/83_mongolia";
 import { mongolia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/83_mongolia";
+import { mongolia_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/83_mongolia";
 import { mongolia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/83_mongolia";
 import { mongolia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/83_mongolia";
 import { mongolia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/83_mongolia";
+import { mongolia_olahraga } from "../../modules/3_sosial/4_olahraga/asia/83_mongolia";
+import { mongolia_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/83_mongolia";
+import { mongolia_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/83_mongolia";
 import { mongolia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/83_mongolia";
 import { mongolia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/83_mongolia";
 import { mongolia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/83_mongolia";
@@ -29,50 +34,11 @@ export const mongolia: CountryData = {
   "armada_militer": mongolia_armada,
   "militer_strategis": mongolia_strategis,
   "armada_kepolisian": mongolia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 11,
-      "dasar": 22,
-      "menengah": 1,
-      "lanjutan": 3,
-      "universitas": 40,
-      "lembaga_pendidikan": 31,
-      "laboratorium": 25,
-      "observatorium": 28,
-      "pusat_penelitian": 3,
-      "pusat_pengembangan": 28,
-      "literasi": 57
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 3,
-      "rumah_sakit_kecil": 1,
-      "pusat_diagnostik": 28,
-      "harapan_hidup": 37,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 26,
-      "pengadilan": 39,
-      "kejaksaan": 3,
-      "pos_polisi": 1,
-      "armada_mobil_polisi": 5711,
-      "akademi_polisi": 14,
-      "indeks_korupsi": 87,
-      "indeks_keamanan": 78
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 5,
-      "sirkuit_balap": 11,
-      "stadion": 40,
-      "stadion_internasional": 37
-  },
+  "pabrik_militer": mongolia_pabrik,
+    "pendidikan": mongolia_pendidikan,
+  "kesehatan": mongolia_kesehatan,
+  "hukum": mongolia_hukum,
+  "sektor_olahraga": mongolia_olahraga,
   "un_vote": 134,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

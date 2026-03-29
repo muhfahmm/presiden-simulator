@@ -3,11 +3,16 @@ import { lesotho_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { lesotho_armada } from "../../modules/2_militer/2_armada_militer/afrika/22_lesotho";
 import { lesotho_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/22_lesotho";
 import { lesotho_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/22_lesotho";
+import { lesotho_hukum } from "../../modules/3_sosial/3_hukum/afrika/22_lesotho";
 import { lesotho_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/22_lesotho";
 import { lesotho_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/22_lesotho";
+import { lesotho_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/22_lesotho";
 import { lesotho_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/22_lesotho";
 import { lesotho_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/22_lesotho";
 import { lesotho_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/22_lesotho";
+import { lesotho_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/22_lesotho";
+import { lesotho_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/22_lesotho";
+import { lesotho_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/22_lesotho";
 import { lesotho_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/22_lesotho";
 import { lesotho_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/22_lesotho";
 import { lesotho_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/22_lesotho";
@@ -29,50 +34,11 @@ export const lesotho: CountryData = {
   "armada_militer": lesotho_armada,
   "militer_strategis": lesotho_strategis,
   "armada_kepolisian": lesotho_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 1,
-      "dasar": 20,
-      "menengah": 22,
-      "lanjutan": 6,
-      "universitas": 1,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 17,
-      "observatorium": 6,
-      "pusat_penelitian": 14,
-      "pusat_pengembangan": 1,
-      "literasi": 67
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 12,
-      "rumah_sakit_kecil": 32,
-      "pusat_diagnostik": 21,
-      "harapan_hidup": 10,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 37,
-      "pengadilan": 25,
-      "kejaksaan": 26,
-      "pos_polisi": 17,
-      "armada_mobil_polisi": 5078,
-      "akademi_polisi": 15,
-      "indeks_korupsi": 65,
-      "indeks_keamanan": 72
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 15,
-      "sirkuit_balap": 26,
-      "stadion": 34,
-      "stadion_internasional": 12
-  },
+  "pabrik_militer": lesotho_pabrik,
+    "pendidikan": lesotho_pendidikan,
+  "kesehatan": lesotho_kesehatan,
+  "hukum": lesotho_hukum,
+  "sektor_olahraga": lesotho_olahraga,
   "un_vote": 115,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

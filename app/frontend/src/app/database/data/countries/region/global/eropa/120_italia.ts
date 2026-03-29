@@ -3,11 +3,16 @@ import { italia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/e
 import { italia_armada } from "../../modules/2_militer/2_armada_militer/eropa/120_italia";
 import { italia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/120_italia";
 import { italia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/120_italia";
+import { italia_hukum } from "../../modules/3_sosial/3_hukum/eropa/120_italia";
 import { italia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/120_italia";
 import { italia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/120_italia";
+import { italia_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/120_italia";
 import { italia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/120_italia";
 import { italia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/120_italia";
 import { italia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/120_italia";
+import { italia_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/120_italia";
+import { italia_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/120_italia";
+import { italia_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/120_italia";
 import { italia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/120_italia";
 import { italia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/120_italia";
 import { italia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/120_italia";
@@ -29,50 +34,11 @@ export const italia: CountryData = {
   "armada_militer": italia_armada,
   "militer_strategis": italia_strategis,
   "armada_kepolisian": italia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 20,
-      "dasar": 25,
-      "menengah": 21,
-      "lanjutan": 38,
-      "universitas": 34,
-      "lembaga_pendidikan": 19,
-      "laboratorium": 8,
-      "observatorium": 2,
-      "pusat_penelitian": 33,
-      "pusat_pengembangan": 25,
-      "literasi": 79
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 18,
-      "rumah_sakit_kecil": 30,
-      "pusat_diagnostik": 9,
-      "harapan_hidup": 2,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 11,
-      "pengadilan": 25,
-      "kejaksaan": 38,
-      "pos_polisi": 33,
-      "armada_mobil_polisi": 2648,
-      "akademi_polisi": 17,
-      "indeks_korupsi": 59,
-      "indeks_keamanan": 70
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 37,
-      "sirkuit_balap": 28,
-      "stadion": 3,
-      "stadion_internasional": 27
-  },
+  "pabrik_militer": italia_pabrik,
+    "pendidikan": italia_pendidikan,
+  "kesehatan": italia_kesehatan,
+  "hukum": italia_hukum,
+  "sektor_olahraga": italia_olahraga,
   "un_vote": 146,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

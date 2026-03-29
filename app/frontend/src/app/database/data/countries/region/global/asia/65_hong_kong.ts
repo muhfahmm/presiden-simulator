@@ -3,11 +3,16 @@ import { hong_kong_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { hong_kong_armada } from "../../modules/2_militer/2_armada_militer/asia/65_hong_kong";
 import { hong_kong_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/65_hong_kong";
 import { hong_kong_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/65_hong_kong";
+import { hong_kong_hukum } from "../../modules/3_sosial/3_hukum/asia/65_hong_kong";
 import { hong_kong_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/65_hong_kong";
 import { hong_kong_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/65_hong_kong";
+import { hong_kong_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/65_hong_kong";
 import { hong_kong_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/65_hong_kong";
 import { hong_kong_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/65_hong_kong";
 import { hong_kong_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/65_hong_kong";
+import { hong_kong_olahraga } from "../../modules/3_sosial/4_olahraga/asia/65_hong_kong";
+import { hong_kong_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/65_hong_kong";
+import { hong_kong_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/65_hong_kong";
 import { hong_kong_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/65_hong_kong";
 import { hong_kong_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/65_hong_kong";
 import { hong_kong_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/65_hong_kong";
@@ -29,50 +34,11 @@ export const hong_kong: CountryData = {
   "armada_militer": hong_kong_armada,
   "militer_strategis": hong_kong_strategis,
   "armada_kepolisian": hong_kong_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 4,
-      "dasar": 8,
-      "menengah": 22,
-      "lanjutan": 27,
-      "universitas": 38,
-      "lembaga_pendidikan": 5,
-      "laboratorium": 25,
-      "observatorium": 39,
-      "pusat_penelitian": 19,
-      "pusat_pengembangan": 36,
-      "literasi": 59
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 18,
-      "rumah_sakit_kecil": 17,
-      "pusat_diagnostik": 21,
-      "harapan_hidup": 15,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 10,
-      "pengadilan": 17,
-      "kejaksaan": 15,
-      "pos_polisi": 33,
-      "armada_mobil_polisi": 7778,
-      "akademi_polisi": 40,
-      "indeks_korupsi": 86,
-      "indeks_keamanan": 66
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 7,
-      "sirkuit_balap": 1,
-      "stadion": 31,
-      "stadion_internasional": 33
-  },
+  "pabrik_militer": hong_kong_pabrik,
+    "pendidikan": hong_kong_pendidikan,
+  "kesehatan": hong_kong_kesehatan,
+  "hukum": hong_kong_hukum,
+  "sektor_olahraga": hong_kong_olahraga,
   "un_vote": 27,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

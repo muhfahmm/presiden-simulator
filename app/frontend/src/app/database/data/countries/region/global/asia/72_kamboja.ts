@@ -3,11 +3,16 @@ import { kamboja_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { kamboja_armada } from "../../modules/2_militer/2_armada_militer/asia/72_kamboja";
 import { kamboja_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/72_kamboja";
 import { kamboja_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/72_kamboja";
+import { kamboja_hukum } from "../../modules/3_sosial/3_hukum/asia/72_kamboja";
 import { kamboja_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/72_kamboja";
 import { kamboja_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/72_kamboja";
+import { kamboja_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/72_kamboja";
 import { kamboja_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/72_kamboja";
 import { kamboja_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/72_kamboja";
 import { kamboja_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/72_kamboja";
+import { kamboja_olahraga } from "../../modules/3_sosial/4_olahraga/asia/72_kamboja";
+import { kamboja_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/72_kamboja";
+import { kamboja_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/72_kamboja";
 import { kamboja_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/72_kamboja";
 import { kamboja_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/72_kamboja";
 import { kamboja_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/72_kamboja";
@@ -29,50 +34,11 @@ export const kamboja: CountryData = {
   "armada_militer": kamboja_armada,
   "militer_strategis": kamboja_strategis,
   "armada_kepolisian": kamboja_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 22,
-      "dasar": 19,
-      "menengah": 40,
-      "lanjutan": 25,
-      "universitas": 33,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 26,
-      "observatorium": 35,
-      "pusat_penelitian": 11,
-      "pusat_pengembangan": 9,
-      "literasi": 65
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 23,
-      "rumah_sakit_kecil": 34,
-      "pusat_diagnostik": 21,
-      "harapan_hidup": 40,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 36,
-      "pengadilan": 11,
-      "kejaksaan": 7,
-      "pos_polisi": 22,
-      "armada_mobil_polisi": 4080,
-      "akademi_polisi": 22,
-      "indeks_korupsi": 70,
-      "indeks_keamanan": 62
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 36,
-      "sirkuit_balap": 5,
-      "stadion": 29,
-      "stadion_internasional": 6
-  },
+  "pabrik_militer": kamboja_pabrik,
+    "pendidikan": kamboja_pendidikan,
+  "kesehatan": kamboja_kesehatan,
+  "hukum": kamboja_hukum,
+  "sektor_olahraga": kamboja_olahraga,
   "un_vote": 166,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

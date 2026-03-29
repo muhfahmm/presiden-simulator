@@ -3,11 +3,16 @@ import { uzbekistan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { uzbekistan_armada } from "../../modules/2_militer/2_armada_militer/asia/99_uzbekistan";
 import { uzbekistan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/99_uzbekistan";
 import { uzbekistan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/99_uzbekistan";
+import { uzbekistan_hukum } from "../../modules/3_sosial/3_hukum/asia/99_uzbekistan";
 import { uzbekistan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/99_uzbekistan";
 import { uzbekistan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/99_uzbekistan";
+import { uzbekistan_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/99_uzbekistan";
 import { uzbekistan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/99_uzbekistan";
 import { uzbekistan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/99_uzbekistan";
 import { uzbekistan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/99_uzbekistan";
+import { uzbekistan_olahraga } from "../../modules/3_sosial/4_olahraga/asia/99_uzbekistan";
+import { uzbekistan_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/99_uzbekistan";
+import { uzbekistan_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/99_uzbekistan";
 import { uzbekistan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/99_uzbekistan";
 import { uzbekistan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/99_uzbekistan";
 import { uzbekistan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/99_uzbekistan";
@@ -29,50 +34,11 @@ export const uzbekistan: CountryData = {
   "armada_militer": uzbekistan_armada,
   "militer_strategis": uzbekistan_strategis,
   "armada_kepolisian": uzbekistan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 31,
-      "dasar": 18,
-      "menengah": 36,
-      "lanjutan": 40,
-      "universitas": 25,
-      "lembaga_pendidikan": 1,
-      "laboratorium": 20,
-      "observatorium": 5,
-      "pusat_penelitian": 26,
-      "pusat_pengembangan": 40,
-      "literasi": 60
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 6,
-      "rumah_sakit_kecil": 1,
-      "pusat_diagnostik": 34,
-      "harapan_hidup": 36,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 3,
-      "pengadilan": 1,
-      "kejaksaan": 22,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 2015,
-      "akademi_polisi": 6,
-      "indeks_korupsi": 58,
-      "indeks_keamanan": 63
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 37,
-      "sirkuit_balap": 3,
-      "stadion": 6,
-      "stadion_internasional": 26
-  },
+  "pabrik_militer": uzbekistan_pabrik,
+    "pendidikan": uzbekistan_pendidikan,
+  "kesehatan": uzbekistan_kesehatan,
+  "hukum": uzbekistan_hukum,
+  "sektor_olahraga": uzbekistan_olahraga,
   "un_vote": 80,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

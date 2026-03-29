@@ -3,11 +3,16 @@ import { austria_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { austria_armada } from "../../modules/2_militer/2_armada_militer/eropa/105_austria";
 import { austria_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/105_austria";
 import { austria_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/105_austria";
+import { austria_hukum } from "../../modules/3_sosial/3_hukum/eropa/105_austria";
 import { austria_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/105_austria";
 import { austria_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/105_austria";
+import { austria_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/105_austria";
 import { austria_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/105_austria";
 import { austria_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/105_austria";
 import { austria_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/105_austria";
+import { austria_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/105_austria";
+import { austria_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/105_austria";
+import { austria_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/105_austria";
 import { austria_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/105_austria";
 import { austria_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/105_austria";
 import { austria_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/105_austria";
@@ -29,50 +34,11 @@ export const austria: CountryData = {
   "armada_militer": austria_armada,
   "militer_strategis": austria_strategis,
   "armada_kepolisian": austria_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 27,
-      "dasar": 10,
-      "menengah": 30,
-      "lanjutan": 21,
-      "universitas": 7,
-      "lembaga_pendidikan": 26,
-      "laboratorium": 12,
-      "observatorium": 23,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 23,
-      "literasi": 88
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 23,
-      "rumah_sakit_kecil": 6,
-      "pusat_diagnostik": 14,
-      "harapan_hidup": 13,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 19,
-      "pengadilan": 15,
-      "kejaksaan": 34,
-      "pos_polisi": 16,
-      "armada_mobil_polisi": 645,
-      "akademi_polisi": 14,
-      "indeks_korupsi": 61,
-      "indeks_keamanan": 78
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 28,
-      "sirkuit_balap": 32,
-      "stadion": 1,
-      "stadion_internasional": 29
-  },
+  "pabrik_militer": austria_pabrik,
+    "pendidikan": austria_pendidikan,
+  "kesehatan": austria_kesehatan,
+  "hukum": austria_hukum,
+  "sektor_olahraga": austria_olahraga,
   "un_vote": 192,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

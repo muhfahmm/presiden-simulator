@@ -3,11 +3,16 @@ import { dominika_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { dominika_armada } from "../../modules/2_militer/2_armada_militer/na/160_dominika";
 import { dominika_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/160_dominika";
 import { dominika_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/160_dominika";
+import { dominika_hukum } from "../../modules/3_sosial/3_hukum/na/160_dominika";
 import { dominika_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/160_dominika";
 import { dominika_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/160_dominika";
+import { dominika_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/160_dominika";
 import { dominika_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/160_dominika";
 import { dominika_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/160_dominika";
 import { dominika_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/160_dominika";
+import { dominika_olahraga } from "../../modules/3_sosial/4_olahraga/na/160_dominika";
+import { dominika_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/160_dominika";
+import { dominika_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/160_dominika";
 import { dominika_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/160_dominika";
 import { dominika_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/160_dominika";
 import { dominika_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/160_dominika";
@@ -29,50 +34,11 @@ export const dominika: CountryData = {
   "armada_militer": dominika_armada,
   "militer_strategis": dominika_strategis,
   "armada_kepolisian": dominika_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 32,
-      "dasar": 10,
-      "menengah": 18,
-      "lanjutan": 30,
-      "universitas": 28,
-      "lembaga_pendidikan": 19,
-      "laboratorium": 40,
-      "observatorium": 4,
-      "pusat_penelitian": 5,
-      "pusat_pengembangan": 36,
-      "literasi": 84
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 6,
-      "rumah_sakit_kecil": 24,
-      "pusat_diagnostik": 33,
-      "harapan_hidup": 35,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 9,
-      "pengadilan": 2,
-      "kejaksaan": 16,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 7579,
-      "akademi_polisi": 28,
-      "indeks_korupsi": 88,
-      "indeks_keamanan": 86
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 34,
-      "sirkuit_balap": 2,
-      "stadion": 31,
-      "stadion_internasional": 4
-  },
+  "pabrik_militer": dominika_pabrik,
+    "pendidikan": dominika_pendidikan,
+  "kesehatan": dominika_kesehatan,
+  "hukum": dominika_hukum,
+  "sektor_olahraga": dominika_olahraga,
   "un_vote": 54,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

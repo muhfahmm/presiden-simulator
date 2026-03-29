@@ -3,11 +3,16 @@ import { republik_dominika_agrikultur } from "../../modules/1_ekonomi/7_sektor_a
 import { republik_dominika_armada } from "../../modules/2_militer/2_armada_militer/na/174_republik_dominika";
 import { republik_dominika_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/174_republik_dominika";
 import { republik_dominika_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/174_republik_dominika";
+import { republik_dominika_hukum } from "../../modules/3_sosial/3_hukum/na/174_republik_dominika";
 import { republik_dominika_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/174_republik_dominika";
 import { republik_dominika_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/174_republik_dominika";
+import { republik_dominika_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/174_republik_dominika";
 import { republik_dominika_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/174_republik_dominika";
 import { republik_dominika_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/174_republik_dominika";
 import { republik_dominika_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/174_republik_dominika";
+import { republik_dominika_olahraga } from "../../modules/3_sosial/4_olahraga/na/174_republik_dominika";
+import { republik_dominika_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/174_republik_dominika";
+import { republik_dominika_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/174_republik_dominika";
 import { republik_dominika_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/174_republik_dominika";
 import { republik_dominika_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/174_republik_dominika";
 import { republik_dominika_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/174_republik_dominika";
@@ -29,50 +34,11 @@ export const republik_dominika: CountryData = {
   "armada_militer": republik_dominika_armada,
   "militer_strategis": republik_dominika_strategis,
   "armada_kepolisian": republik_dominika_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 10,
-      "dasar": 13,
-      "menengah": 20,
-      "lanjutan": 3,
-      "universitas": 28,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 7,
-      "observatorium": 19,
-      "pusat_penelitian": 34,
-      "pusat_pengembangan": 14,
-      "literasi": 62
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 40,
-      "rumah_sakit_kecil": 3,
-      "pusat_diagnostik": 4,
-      "harapan_hidup": 26,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 28,
-      "pengadilan": 4,
-      "kejaksaan": 6,
-      "pos_polisi": 12,
-      "armada_mobil_polisi": 3984,
-      "akademi_polisi": 4,
-      "indeks_korupsi": 85,
-      "indeks_keamanan": 84
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 28,
-      "sirkuit_balap": 35,
-      "stadion": 7,
-      "stadion_internasional": 31
-  },
+  "pabrik_militer": republik_dominika_pabrik,
+    "pendidikan": republik_dominika_pendidikan,
+  "kesehatan": republik_dominika_kesehatan,
+  "hukum": republik_dominika_hukum,
+  "sektor_olahraga": republik_dominika_olahraga,
   "un_vote": 45,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { nikaragua_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { nikaragua_armada } from "../../modules/2_militer/2_armada_militer/na/171_nikaragua";
 import { nikaragua_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/171_nikaragua";
 import { nikaragua_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/171_nikaragua";
+import { nikaragua_hukum } from "../../modules/3_sosial/3_hukum/na/171_nikaragua";
 import { nikaragua_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/171_nikaragua";
 import { nikaragua_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/171_nikaragua";
+import { nikaragua_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/171_nikaragua";
 import { nikaragua_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/171_nikaragua";
 import { nikaragua_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/171_nikaragua";
 import { nikaragua_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/171_nikaragua";
+import { nikaragua_olahraga } from "../../modules/3_sosial/4_olahraga/na/171_nikaragua";
+import { nikaragua_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/171_nikaragua";
+import { nikaragua_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/171_nikaragua";
 import { nikaragua_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/171_nikaragua";
 import { nikaragua_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/171_nikaragua";
 import { nikaragua_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/171_nikaragua";
@@ -29,50 +34,11 @@ export const nikaragua: CountryData = {
   "armada_militer": nikaragua_armada,
   "militer_strategis": nikaragua_strategis,
   "armada_kepolisian": nikaragua_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 25,
-      "dasar": 21,
-      "menengah": 22,
-      "lanjutan": 19,
-      "universitas": 9,
-      "lembaga_pendidikan": 9,
-      "laboratorium": 26,
-      "observatorium": 34,
-      "pusat_penelitian": 9,
-      "pusat_pengembangan": 27,
-      "literasi": 75
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 40,
-      "rumah_sakit_kecil": 2,
-      "pusat_diagnostik": 16,
-      "harapan_hidup": 29,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 13,
-      "pengadilan": 39,
-      "kejaksaan": 11,
-      "pos_polisi": 32,
-      "armada_mobil_polisi": 2804,
-      "akademi_polisi": 12,
-      "indeks_korupsi": 88,
-      "indeks_keamanan": 85
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 37,
-      "sirkuit_balap": 7,
-      "stadion": 13,
-      "stadion_internasional": 31
-  },
+  "pabrik_militer": nikaragua_pabrik,
+    "pendidikan": nikaragua_pendidikan,
+  "kesehatan": nikaragua_kesehatan,
+  "hukum": nikaragua_hukum,
+  "sektor_olahraga": nikaragua_olahraga,
   "un_vote": 162,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

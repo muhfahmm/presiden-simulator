@@ -3,11 +3,16 @@ import { marshall_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { marshall_armada } from "../../modules/2_militer/2_armada_militer/oceania/183_marshall";
 import { marshall_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/183_marshall";
 import { marshall_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/183_marshall";
+import { marshall_hukum } from "../../modules/3_sosial/3_hukum/oceania/183_marshall";
 import { marshall_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/183_marshall";
 import { marshall_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/183_marshall";
+import { marshall_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/183_marshall";
 import { marshall_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/183_marshall";
 import { marshall_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/183_marshall";
 import { marshall_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/183_marshall";
+import { marshall_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/183_marshall";
+import { marshall_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/183_marshall";
+import { marshall_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/183_marshall";
 import { marshall_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/183_marshall";
 import { marshall_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/183_marshall";
 import { marshall_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/183_marshall";
@@ -29,50 +34,11 @@ export const marshall: CountryData = {
   "armada_militer": marshall_armada,
   "militer_strategis": marshall_strategis,
   "armada_kepolisian": marshall_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 31,
-      "dasar": 10,
-      "menengah": 13,
-      "lanjutan": 26,
-      "universitas": 12,
-      "lembaga_pendidikan": 11,
-      "laboratorium": 24,
-      "observatorium": 18,
-      "pusat_penelitian": 20,
-      "pusat_pengembangan": 27,
-      "literasi": 58
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 24,
-      "rumah_sakit_kecil": 21,
-      "pusat_diagnostik": 27,
-      "harapan_hidup": 37,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 7,
-      "pengadilan": 10,
-      "kejaksaan": 28,
-      "pos_polisi": 16,
-      "armada_mobil_polisi": 5615,
-      "akademi_polisi": 10,
-      "indeks_korupsi": 77,
-      "indeks_keamanan": 53
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 25,
-      "sirkuit_balap": 35,
-      "stadion": 40,
-      "stadion_internasional": 20
-  },
+  "pabrik_militer": marshall_pabrik,
+    "pendidikan": marshall_pendidikan,
+  "kesehatan": marshall_kesehatan,
+  "hukum": marshall_hukum,
+  "sektor_olahraga": marshall_olahraga,
   "un_vote": 4,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

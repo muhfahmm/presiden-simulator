@@ -3,11 +3,16 @@ import { vanuatu_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { vanuatu_armada } from "../../modules/2_militer/2_armada_militer/oceania/194_vanuatu";
 import { vanuatu_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/oceania/194_vanuatu";
 import { vanuatu_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/oceania/194_vanuatu";
+import { vanuatu_hukum } from "../../modules/3_sosial/3_hukum/oceania/194_vanuatu";
 import { vanuatu_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/oceania/194_vanuatu";
 import { vanuatu_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/oceania/194_vanuatu";
+import { vanuatu_kesehatan } from "../../modules/3_sosial/2_kesehatan/oceania/194_vanuatu";
 import { vanuatu_listrik } from "../../modules/1_ekonomi/2_kelistrikan/oceania/194_vanuatu";
 import { vanuatu_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/oceania/194_vanuatu";
 import { vanuatu_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/oceania/194_vanuatu";
+import { vanuatu_olahraga } from "../../modules/3_sosial/4_olahraga/oceania/194_vanuatu";
+import { vanuatu_pabrik } from "../../modules/2_militer/5_pabrik_militer/oceania/194_vanuatu";
+import { vanuatu_pendidikan } from "../../modules/3_sosial/1_pendidikan/oceania/194_vanuatu";
 import { vanuatu_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/oceania/194_vanuatu";
 import { vanuatu_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oceania/194_vanuatu";
 import { vanuatu_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/194_vanuatu";
@@ -29,50 +34,11 @@ export const vanuatu: CountryData = {
   "armada_militer": vanuatu_armada,
   "militer_strategis": vanuatu_strategis,
   "armada_kepolisian": vanuatu_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 40,
-      "dasar": 26,
-      "menengah": 25,
-      "lanjutan": 31,
-      "universitas": 23,
-      "lembaga_pendidikan": 31,
-      "laboratorium": 30,
-      "observatorium": 36,
-      "pusat_penelitian": 18,
-      "pusat_pengembangan": 39,
-      "literasi": 87
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 24,
-      "rumah_sakit_kecil": 6,
-      "pusat_diagnostik": 27,
-      "harapan_hidup": 24,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 14,
-      "pengadilan": 4,
-      "kejaksaan": 33,
-      "pos_polisi": 14,
-      "armada_mobil_polisi": 7080,
-      "akademi_polisi": 35,
-      "indeks_korupsi": 50,
-      "indeks_keamanan": 69
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 24,
-      "sirkuit_balap": 29,
-      "stadion": 39,
-      "stadion_internasional": 6
-  },
+  "pabrik_militer": vanuatu_pabrik,
+    "pendidikan": vanuatu_pendidikan,
+  "kesehatan": vanuatu_kesehatan,
+  "hukum": vanuatu_hukum,
+  "sektor_olahraga": vanuatu_olahraga,
   "un_vote": 1,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

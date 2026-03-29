@@ -100,15 +100,15 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
   const livingCostIndex = Math.min(100, Math.max(0, (avgSalary / (basicPriceAvg / 10)) * 2));
 
   // 2. QUALITY OF LIFE: Health Score & Life Expectancy
-  const rsBesarCount = (country.sektor_sosial?.kesehatan?.rumah_sakit_besar || 0) + (buildingDeltas["rumah_sakit_besar"] || 0);
-  const rsKecilCount = (country.sektor_sosial?.kesehatan?.rumah_sakit_kecil || 0) + (buildingDeltas["rumah_sakit_kecil"] || 0);
+  const rsBesarCount = (country.kesehatan?.rumah_sakit_besar || 0) + (buildingDeltas["rumah_sakit_besar"] || 0);
+  const rsKecilCount = (country.kesehatan?.rumah_sakit_kecil || 0) + (buildingDeltas["rumah_sakit_kecil"] || 0);
   const factoryCount = Object.values(country.sektor_manufaktur || {}).reduce((a: number, b: any) => a + (typeof b === 'number' ? b : 0), 0) +
     Object.values(buildingDeltas).filter((_, i) => Object.keys(buildingDeltas)[i].includes("pabrik")).reduce((a, b) => a + b, 0);
 
   const healthScore = Math.min(100, Math.max(0,
-    (country.sektor_sosial?.kesehatan?.indeks_kesehatan || 85) + (rsBesarCount * 2) + (rsKecilCount * 0.5) - (factoryCount * 0.1)
+    (country.kesehatan?.indeks_kesehatan || 85) + (rsBesarCount * 2) + (rsKecilCount * 0.5) - (factoryCount * 0.1)
   ));
-  const lifeExpectancy = (country.sektor_sosial?.kesehatan?.harapan_hidup || 72) + (healthScore > 90 ? 5 : healthScore > 70 ? 2 : healthScore < 50 ? -5 : 0);
+  const lifeExpectancy = (country.kesehatan?.harapan_hidup || 72) + (healthScore > 90 ? 5 : healthScore > 70 ? 2 : healthScore < 50 ? -5 : 0);
 
   const currentDateMs = getStoredGameDate().getTime();
   const diffTime = Math.abs(currentDateMs - INITIAL_GAME_DATE.getTime());
@@ -204,7 +204,7 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
 
   // 4. SECURITY: Crime Rate
   const policeStations = (country.armada_kepolisian?.armada_polisi?.pusat_komando?.kantor_polisi || 36) + (buildingDeltas["kantor_polisi"] || 0);
-  const securityIndex = (country.sektor_sosial?.hukum?.indeks_keamanan || 78) + (policeStations * 0.8) - (unemploymentRate * 0.5);
+  const securityIndex = (country.hukum?.indeks_keamanan || 78) + (policeStations * 0.8) - (unemploymentRate * 0.5);
   const crimeRate = Math.max(0, Math.min(100, 100 - securityIndex));
 
   return (

@@ -3,11 +3,16 @@ import { kroasia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { kroasia_armada } from "../../modules/2_militer/2_armada_militer/eropa/124_kroasia";
 import { kroasia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/124_kroasia";
 import { kroasia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/124_kroasia";
+import { kroasia_hukum } from "../../modules/3_sosial/3_hukum/eropa/124_kroasia";
 import { kroasia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/124_kroasia";
 import { kroasia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/124_kroasia";
+import { kroasia_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/124_kroasia";
 import { kroasia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/124_kroasia";
 import { kroasia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/124_kroasia";
 import { kroasia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/124_kroasia";
+import { kroasia_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/124_kroasia";
+import { kroasia_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/124_kroasia";
+import { kroasia_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/124_kroasia";
 import { kroasia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/124_kroasia";
 import { kroasia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/124_kroasia";
 import { kroasia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/124_kroasia";
@@ -29,50 +34,11 @@ export const kroasia: CountryData = {
   "armada_militer": kroasia_armada,
   "militer_strategis": kroasia_strategis,
   "armada_kepolisian": kroasia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 28,
-      "dasar": 13,
-      "menengah": 35,
-      "lanjutan": 19,
-      "universitas": 40,
-      "lembaga_pendidikan": 8,
-      "laboratorium": 22,
-      "observatorium": 4,
-      "pusat_penelitian": 30,
-      "pusat_pengembangan": 20,
-      "literasi": 55
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 9,
-      "rumah_sakit_kecil": 16,
-      "pusat_diagnostik": 26,
-      "harapan_hidup": 22,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 11,
-      "pengadilan": 12,
-      "kejaksaan": 21,
-      "pos_polisi": 22,
-      "armada_mobil_polisi": 6330,
-      "akademi_polisi": 9,
-      "indeks_korupsi": 62,
-      "indeks_keamanan": 91
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 37,
-      "sirkuit_balap": 37,
-      "stadion": 32,
-      "stadion_internasional": 12
-  },
+  "pabrik_militer": kroasia_pabrik,
+    "pendidikan": kroasia_pendidikan,
+  "kesehatan": kroasia_kesehatan,
+  "hukum": kroasia_hukum,
+  "sektor_olahraga": kroasia_olahraga,
   "un_vote": 129,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

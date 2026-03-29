@@ -3,11 +3,16 @@ import { kuba_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/na/
 import { kuba_armada } from "../../modules/2_militer/2_armada_militer/na/169_kuba";
 import { kuba_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/169_kuba";
 import { kuba_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/169_kuba";
+import { kuba_hukum } from "../../modules/3_sosial/3_hukum/na/169_kuba";
 import { kuba_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/169_kuba";
 import { kuba_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/169_kuba";
+import { kuba_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/169_kuba";
 import { kuba_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/169_kuba";
 import { kuba_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/169_kuba";
 import { kuba_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/169_kuba";
+import { kuba_olahraga } from "../../modules/3_sosial/4_olahraga/na/169_kuba";
+import { kuba_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/169_kuba";
+import { kuba_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/169_kuba";
 import { kuba_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/169_kuba";
 import { kuba_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/169_kuba";
 import { kuba_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/169_kuba";
@@ -29,50 +34,11 @@ export const kuba: CountryData = {
   "armada_militer": kuba_armada,
   "militer_strategis": kuba_strategis,
   "armada_kepolisian": kuba_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 18,
-      "dasar": 33,
-      "menengah": 9,
-      "lanjutan": 40,
-      "universitas": 9,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 23,
-      "observatorium": 11,
-      "pusat_penelitian": 27,
-      "pusat_pengembangan": 12,
-      "literasi": 59
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 4,
-      "rumah_sakit_kecil": 28,
-      "pusat_diagnostik": 18,
-      "harapan_hidup": 6,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 17,
-      "pengadilan": 7,
-      "kejaksaan": 14,
-      "pos_polisi": 5,
-      "armada_mobil_polisi": 2434,
-      "akademi_polisi": 13,
-      "indeks_korupsi": 77,
-      "indeks_keamanan": 80
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 22,
-      "sirkuit_balap": 8,
-      "stadion": 26,
-      "stadion_internasional": 19
-  },
+  "pabrik_militer": kuba_pabrik,
+    "pendidikan": kuba_pendidikan,
+  "kesehatan": kuba_kesehatan,
+  "hukum": kuba_hukum,
+  "sektor_olahraga": kuba_olahraga,
   "un_vote": 171,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

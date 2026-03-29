@@ -3,11 +3,16 @@ import { china_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/as
 import { china_armada } from "../../modules/2_militer/2_armada_militer/asia/62_china";
 import { china_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/62_china";
 import { china_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/62_china";
+import { china_hukum } from "../../modules/3_sosial/3_hukum/asia/62_china";
 import { china_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/62_china";
 import { china_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/62_china";
+import { china_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/62_china";
 import { china_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/62_china";
 import { china_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/62_china";
 import { china_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/62_china";
+import { china_olahraga } from "../../modules/3_sosial/4_olahraga/asia/62_china";
+import { china_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/62_china";
+import { china_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/62_china";
 import { china_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/62_china";
 import { china_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/62_china";
 import { china_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/62_china";
@@ -29,50 +34,11 @@ export const china: CountryData = {
   "armada_militer": china_armada,
   "militer_strategis": china_strategis,
   "armada_kepolisian": china_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 37,
-      "dasar": 33,
-      "menengah": 12,
-      "lanjutan": 34,
-      "universitas": 9,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 3,
-      "observatorium": 28,
-      "pusat_penelitian": 20,
-      "pusat_pengembangan": 27,
-      "literasi": 95
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 26,
-      "rumah_sakit_kecil": 35,
-      "pusat_diagnostik": 11,
-      "harapan_hidup": 3,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 30,
-      "pengadilan": 23,
-      "kejaksaan": 32,
-      "pos_polisi": 39,
-      "armada_mobil_polisi": 2965,
-      "akademi_polisi": 12,
-      "indeks_korupsi": 64,
-      "indeks_keamanan": 80
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 6,
-      "sirkuit_balap": 17,
-      "stadion": 31,
-      "stadion_internasional": 5
-  },
+  "pabrik_militer": china_pabrik,
+    "pendidikan": china_pendidikan,
+  "kesehatan": china_kesehatan,
+  "hukum": china_hukum,
+  "sektor_olahraga": china_olahraga,
   "un_vote": 201,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { somalia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { somalia_armada } from "../../modules/2_militer/2_armada_militer/afrika/49_somalia";
 import { somalia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/49_somalia";
 import { somalia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/49_somalia";
+import { somalia_hukum } from "../../modules/3_sosial/3_hukum/afrika/49_somalia";
 import { somalia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/49_somalia";
 import { somalia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/49_somalia";
+import { somalia_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/49_somalia";
 import { somalia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/49_somalia";
 import { somalia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/49_somalia";
 import { somalia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/49_somalia";
+import { somalia_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/49_somalia";
+import { somalia_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/49_somalia";
+import { somalia_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/49_somalia";
 import { somalia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/49_somalia";
 import { somalia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/49_somalia";
 import { somalia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/49_somalia";
@@ -29,50 +34,11 @@ export const somalia: CountryData = {
   "armada_militer": somalia_armada,
   "militer_strategis": somalia_strategis,
   "armada_kepolisian": somalia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 38,
-      "dasar": 19,
-      "menengah": 20,
-      "lanjutan": 24,
-      "universitas": 21,
-      "lembaga_pendidikan": 35,
-      "laboratorium": 1,
-      "observatorium": 1,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 3,
-      "literasi": 74
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 40,
-      "rumah_sakit_kecil": 23,
-      "pusat_diagnostik": 22,
-      "harapan_hidup": 40,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 11,
-      "pengadilan": 3,
-      "kejaksaan": 22,
-      "pos_polisi": 27,
-      "armada_mobil_polisi": 9421,
-      "akademi_polisi": 17,
-      "indeks_korupsi": 78,
-      "indeks_keamanan": 74
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 22,
-      "sirkuit_balap": 40,
-      "stadion": 37,
-      "stadion_internasional": 34
-  },
+  "pabrik_militer": somalia_pabrik,
+    "pendidikan": somalia_pendidikan,
+  "kesehatan": somalia_kesehatan,
+  "hukum": somalia_hukum,
+  "sektor_olahraga": somalia_olahraga,
   "un_vote": 98,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

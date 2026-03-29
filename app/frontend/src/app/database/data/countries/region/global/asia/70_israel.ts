@@ -3,11 +3,16 @@ import { israel_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/a
 import { israel_armada } from "../../modules/2_militer/2_armada_militer/asia/70_israel";
 import { israel_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/70_israel";
 import { israel_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/70_israel";
+import { israel_hukum } from "../../modules/3_sosial/3_hukum/asia/70_israel";
 import { israel_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/70_israel";
 import { israel_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/70_israel";
+import { israel_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/70_israel";
 import { israel_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/70_israel";
 import { israel_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/70_israel";
 import { israel_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/70_israel";
+import { israel_olahraga } from "../../modules/3_sosial/4_olahraga/asia/70_israel";
+import { israel_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/70_israel";
+import { israel_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/70_israel";
 import { israel_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/70_israel";
 import { israel_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/70_israel";
 import { israel_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/70_israel";
@@ -29,50 +34,11 @@ export const israel: CountryData = {
   "armada_militer": israel_armada,
   "militer_strategis": israel_strategis,
   "armada_kepolisian": israel_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 37,
-      "dasar": 7,
-      "menengah": 7,
-      "lanjutan": 2,
-      "universitas": 28,
-      "lembaga_pendidikan": 15,
-      "laboratorium": 11,
-      "observatorium": 5,
-      "pusat_penelitian": 31,
-      "pusat_pengembangan": 33,
-      "literasi": 76
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 27,
-      "rumah_sakit_kecil": 22,
-      "pusat_diagnostik": 4,
-      "harapan_hidup": 18,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 36,
-      "pengadilan": 22,
-      "kejaksaan": 11,
-      "pos_polisi": 31,
-      "armada_mobil_polisi": 5678,
-      "akademi_polisi": 28,
-      "indeks_korupsi": 79,
-      "indeks_keamanan": 61
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 38,
-      "sirkuit_balap": 37,
-      "stadion": 8,
-      "stadion_internasional": 33
-  },
+  "pabrik_militer": israel_pabrik,
+    "pendidikan": israel_pendidikan,
+  "kesehatan": israel_kesehatan,
+  "hukum": israel_hukum,
+  "sektor_olahraga": israel_olahraga,
   "un_vote": 199,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

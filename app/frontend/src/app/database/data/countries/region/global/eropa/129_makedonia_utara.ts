@@ -3,11 +3,16 @@ import { makedonia_utara_agrikultur } from "../../modules/1_ekonomi/7_sektor_agr
 import { makedonia_utara_armada } from "../../modules/2_militer/2_armada_militer/eropa/129_makedonia_utara";
 import { makedonia_utara_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/129_makedonia_utara";
 import { makedonia_utara_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/129_makedonia_utara";
+import { makedonia_utara_hukum } from "../../modules/3_sosial/3_hukum/eropa/129_makedonia_utara";
 import { makedonia_utara_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/129_makedonia_utara";
 import { makedonia_utara_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/129_makedonia_utara";
+import { makedonia_utara_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/129_makedonia_utara";
 import { makedonia_utara_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/129_makedonia_utara";
 import { makedonia_utara_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/129_makedonia_utara";
 import { makedonia_utara_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/129_makedonia_utara";
+import { makedonia_utara_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/129_makedonia_utara";
+import { makedonia_utara_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/129_makedonia_utara";
+import { makedonia_utara_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/129_makedonia_utara";
 import { makedonia_utara_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/129_makedonia_utara";
 import { makedonia_utara_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/129_makedonia_utara";
 import { makedonia_utara_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/129_makedonia_utara";
@@ -29,50 +34,11 @@ export const makedonia_utara: CountryData = {
   "armada_militer": makedonia_utara_armada,
   "militer_strategis": makedonia_utara_strategis,
   "armada_kepolisian": makedonia_utara_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 27,
-      "dasar": 33,
-      "menengah": 3,
-      "lanjutan": 7,
-      "universitas": 8,
-      "lembaga_pendidikan": 21,
-      "laboratorium": 15,
-      "observatorium": 21,
-      "pusat_penelitian": 24,
-      "pusat_pengembangan": 14,
-      "literasi": 65
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 12,
-      "rumah_sakit_kecil": 9,
-      "pusat_diagnostik": 24,
-      "harapan_hidup": 20,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 6,
-      "pengadilan": 11,
-      "kejaksaan": 36,
-      "pos_polisi": 4,
-      "armada_mobil_polisi": 3435,
-      "akademi_polisi": 37,
-      "indeks_korupsi": 68,
-      "indeks_keamanan": 63
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 7,
-      "sirkuit_balap": 18,
-      "stadion": 25,
-      "stadion_internasional": 7
-  },
+  "pabrik_militer": makedonia_utara_pabrik,
+    "pendidikan": makedonia_utara_pendidikan,
+  "kesehatan": makedonia_utara_kesehatan,
+  "hukum": makedonia_utara_hukum,
+  "sektor_olahraga": makedonia_utara_olahraga,
   "un_vote": 172,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

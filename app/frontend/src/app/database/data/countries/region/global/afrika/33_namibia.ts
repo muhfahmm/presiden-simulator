@@ -3,11 +3,16 @@ import { namibia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { namibia_armada } from "../../modules/2_militer/2_armada_militer/afrika/33_namibia";
 import { namibia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/33_namibia";
 import { namibia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/33_namibia";
+import { namibia_hukum } from "../../modules/3_sosial/3_hukum/afrika/33_namibia";
 import { namibia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/33_namibia";
 import { namibia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/33_namibia";
+import { namibia_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/33_namibia";
 import { namibia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/33_namibia";
 import { namibia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/33_namibia";
 import { namibia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/33_namibia";
+import { namibia_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/33_namibia";
+import { namibia_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/33_namibia";
+import { namibia_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/33_namibia";
 import { namibia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/33_namibia";
 import { namibia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/33_namibia";
 import { namibia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/33_namibia";
@@ -29,50 +34,11 @@ export const namibia: CountryData = {
   "armada_militer": namibia_armada,
   "militer_strategis": namibia_strategis,
   "armada_kepolisian": namibia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 15,
-      "dasar": 29,
-      "menengah": 36,
-      "lanjutan": 39,
-      "universitas": 40,
-      "lembaga_pendidikan": 29,
-      "laboratorium": 28,
-      "observatorium": 10,
-      "pusat_penelitian": 28,
-      "pusat_pengembangan": 27,
-      "literasi": 69
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 19,
-      "pusat_diagnostik": 19,
-      "harapan_hidup": 15,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 22,
-      "pengadilan": 28,
-      "kejaksaan": 4,
-      "pos_polisi": 6,
-      "armada_mobil_polisi": 4201,
-      "akademi_polisi": 29,
-      "indeks_korupsi": 51,
-      "indeks_keamanan": 64
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 6,
-      "sirkuit_balap": 4,
-      "stadion": 34,
-      "stadion_internasional": 31
-  },
+  "pabrik_militer": namibia_pabrik,
+    "pendidikan": namibia_pendidikan,
+  "kesehatan": namibia_kesehatan,
+  "hukum": namibia_hukum,
+  "sektor_olahraga": namibia_olahraga,
   "un_vote": 28,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

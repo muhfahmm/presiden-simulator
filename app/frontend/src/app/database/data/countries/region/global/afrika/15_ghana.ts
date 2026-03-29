@@ -3,11 +3,16 @@ import { ghana_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/af
 import { ghana_armada } from "../../modules/2_militer/2_armada_militer/afrika/15_ghana";
 import { ghana_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/15_ghana";
 import { ghana_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/15_ghana";
+import { ghana_hukum } from "../../modules/3_sosial/3_hukum/afrika/15_ghana";
 import { ghana_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/15_ghana";
 import { ghana_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/15_ghana";
+import { ghana_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/15_ghana";
 import { ghana_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/15_ghana";
 import { ghana_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/15_ghana";
 import { ghana_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/15_ghana";
+import { ghana_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/15_ghana";
+import { ghana_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/15_ghana";
+import { ghana_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/15_ghana";
 import { ghana_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/15_ghana";
 import { ghana_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/15_ghana";
 import { ghana_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/15_ghana";
@@ -29,50 +34,11 @@ export const ghana: CountryData = {
   "armada_militer": ghana_armada,
   "militer_strategis": ghana_strategis,
   "armada_kepolisian": ghana_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 29,
-      "dasar": 16,
-      "menengah": 24,
-      "lanjutan": 3,
-      "universitas": 37,
-      "lembaga_pendidikan": 39,
-      "laboratorium": 6,
-      "observatorium": 18,
-      "pusat_penelitian": 23,
-      "pusat_pengembangan": 18,
-      "literasi": 56
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 23,
-      "rumah_sakit_kecil": 9,
-      "pusat_diagnostik": 29,
-      "harapan_hidup": 18,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 33,
-      "pengadilan": 25,
-      "kejaksaan": 20,
-      "pos_polisi": 9,
-      "armada_mobil_polisi": 5653,
-      "akademi_polisi": 19,
-      "indeks_korupsi": 65,
-      "indeks_keamanan": 60
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 19,
-      "sirkuit_balap": 9,
-      "stadion": 13,
-      "stadion_internasional": 24
-  },
+  "pabrik_militer": ghana_pabrik,
+    "pendidikan": ghana_pendidikan,
+  "kesehatan": ghana_kesehatan,
+  "hukum": ghana_hukum,
+  "sektor_olahraga": ghana_olahraga,
   "un_vote": 125,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

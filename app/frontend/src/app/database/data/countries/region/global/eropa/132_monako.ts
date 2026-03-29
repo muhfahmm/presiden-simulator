@@ -3,11 +3,16 @@ import { monako_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/e
 import { monako_armada } from "../../modules/2_militer/2_armada_militer/eropa/132_monako";
 import { monako_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/132_monako";
 import { monako_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/132_monako";
+import { monako_hukum } from "../../modules/3_sosial/3_hukum/eropa/132_monako";
 import { monako_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/132_monako";
 import { monako_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/132_monako";
+import { monako_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/132_monako";
 import { monako_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/132_monako";
 import { monako_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/132_monako";
 import { monako_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/132_monako";
+import { monako_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/132_monako";
+import { monako_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/132_monako";
+import { monako_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/132_monako";
 import { monako_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/132_monako";
 import { monako_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/132_monako";
 import { monako_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/132_monako";
@@ -29,50 +34,11 @@ export const monako: CountryData = {
   "armada_militer": monako_armada,
   "militer_strategis": monako_strategis,
   "armada_kepolisian": monako_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 4,
-      "dasar": 22,
-      "menengah": 32,
-      "lanjutan": 16,
-      "universitas": 1,
-      "lembaga_pendidikan": 30,
-      "laboratorium": 18,
-      "observatorium": 9,
-      "pusat_penelitian": 23,
-      "pusat_pengembangan": 37,
-      "literasi": 68
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 33,
-      "rumah_sakit_kecil": 1,
-      "pusat_diagnostik": 34,
-      "harapan_hidup": 3,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 33,
-      "pengadilan": 34,
-      "kejaksaan": 13,
-      "pos_polisi": 24,
-      "armada_mobil_polisi": 4137,
-      "akademi_polisi": 22,
-      "indeks_korupsi": 67,
-      "indeks_keamanan": 81
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 10,
-      "sirkuit_balap": 19,
-      "stadion": 3,
-      "stadion_internasional": 25
-  },
+  "pabrik_militer": monako_pabrik,
+    "pendidikan": monako_pendidikan,
+  "kesehatan": monako_kesehatan,
+  "hukum": monako_hukum,
+  "sektor_olahraga": monako_olahraga,
   "un_vote": 88,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

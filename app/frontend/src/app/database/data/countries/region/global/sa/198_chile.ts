@@ -3,11 +3,16 @@ import { chile_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/sa
 import { chile_armada } from "../../modules/2_militer/2_armada_militer/sa/198_chile";
 import { chile_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/sa/198_chile";
 import { chile_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/sa/198_chile";
+import { chile_hukum } from "../../modules/3_sosial/3_hukum/sa/198_chile";
 import { chile_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/sa/198_chile";
 import { chile_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/sa/198_chile";
+import { chile_kesehatan } from "../../modules/3_sosial/2_kesehatan/sa/198_chile";
 import { chile_listrik } from "../../modules/1_ekonomi/2_kelistrikan/sa/198_chile";
 import { chile_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/sa/198_chile";
 import { chile_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/sa/198_chile";
+import { chile_olahraga } from "../../modules/3_sosial/4_olahraga/sa/198_chile";
+import { chile_pabrik } from "../../modules/2_militer/5_pabrik_militer/sa/198_chile";
+import { chile_pendidikan } from "../../modules/3_sosial/1_pendidikan/sa/198_chile";
 import { chile_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/sa/198_chile";
 import { chile_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/198_chile";
 import { chile_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/198_chile";
@@ -29,50 +34,11 @@ export const chile: CountryData = {
   "armada_militer": chile_armada,
   "militer_strategis": chile_strategis,
   "armada_kepolisian": chile_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 32,
-      "dasar": 16,
-      "menengah": 22,
-      "lanjutan": 5,
-      "universitas": 16,
-      "lembaga_pendidikan": 35,
-      "laboratorium": 10,
-      "observatorium": 38,
-      "pusat_penelitian": 7,
-      "pusat_pengembangan": 20,
-      "literasi": 88
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 14,
-      "rumah_sakit_kecil": 32,
-      "pusat_diagnostik": 32,
-      "harapan_hidup": 12,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 10,
-      "pengadilan": 20,
-      "kejaksaan": 25,
-      "pos_polisi": 2,
-      "armada_mobil_polisi": 2723,
-      "akademi_polisi": 34,
-      "indeks_korupsi": 58,
-      "indeks_keamanan": 56
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 7,
-      "sirkuit_balap": 28,
-      "stadion": 28,
-      "stadion_internasional": 40
-  },
+  "pabrik_militer": chile_pabrik,
+    "pendidikan": chile_pendidikan,
+  "kesehatan": chile_kesehatan,
+  "hukum": chile_hukum,
+  "sektor_olahraga": chile_olahraga,
   "un_vote": 147,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

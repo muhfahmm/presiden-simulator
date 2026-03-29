@@ -3,11 +3,16 @@ import { belarus_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { belarus_armada } from "../../modules/2_militer/2_armada_militer/eropa/107_belarus";
 import { belarus_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/107_belarus";
 import { belarus_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/107_belarus";
+import { belarus_hukum } from "../../modules/3_sosial/3_hukum/eropa/107_belarus";
 import { belarus_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/107_belarus";
 import { belarus_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/107_belarus";
+import { belarus_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/107_belarus";
 import { belarus_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/107_belarus";
 import { belarus_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/107_belarus";
 import { belarus_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/107_belarus";
+import { belarus_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/107_belarus";
+import { belarus_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/107_belarus";
+import { belarus_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/107_belarus";
 import { belarus_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/107_belarus";
 import { belarus_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/107_belarus";
 import { belarus_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/107_belarus";
@@ -29,50 +34,11 @@ export const belarus: CountryData = {
   "armada_militer": belarus_armada,
   "militer_strategis": belarus_strategis,
   "armada_kepolisian": belarus_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 36,
-      "dasar": 16,
-      "menengah": 11,
-      "lanjutan": 6,
-      "universitas": 16,
-      "lembaga_pendidikan": 13,
-      "laboratorium": 23,
-      "observatorium": 33,
-      "pusat_penelitian": 12,
-      "pusat_pengembangan": 13,
-      "literasi": 90
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 29,
-      "rumah_sakit_kecil": 10,
-      "pusat_diagnostik": 33,
-      "harapan_hidup": 11,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 14,
-      "pengadilan": 1,
-      "kejaksaan": 17,
-      "pos_polisi": 22,
-      "armada_mobil_polisi": 1365,
-      "akademi_polisi": 37,
-      "indeks_korupsi": 62,
-      "indeks_keamanan": 81
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 16,
-      "sirkuit_balap": 37,
-      "stadion": 30,
-      "stadion_internasional": 11
-  },
+  "pabrik_militer": belarus_pabrik,
+    "pendidikan": belarus_pendidikan,
+  "kesehatan": belarus_kesehatan,
+  "hukum": belarus_hukum,
+  "sektor_olahraga": belarus_olahraga,
   "un_vote": 102,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

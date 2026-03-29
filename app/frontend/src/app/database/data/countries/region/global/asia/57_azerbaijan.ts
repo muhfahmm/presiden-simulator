@@ -3,11 +3,16 @@ import { azerbaijan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { azerbaijan_armada } from "../../modules/2_militer/2_armada_militer/asia/57_azerbaijan";
 import { azerbaijan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/57_azerbaijan";
 import { azerbaijan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/57_azerbaijan";
+import { azerbaijan_hukum } from "../../modules/3_sosial/3_hukum/asia/57_azerbaijan";
 import { azerbaijan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/57_azerbaijan";
 import { azerbaijan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/57_azerbaijan";
+import { azerbaijan_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/57_azerbaijan";
 import { azerbaijan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/57_azerbaijan";
 import { azerbaijan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/57_azerbaijan";
 import { azerbaijan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/57_azerbaijan";
+import { azerbaijan_olahraga } from "../../modules/3_sosial/4_olahraga/asia/57_azerbaijan";
+import { azerbaijan_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/57_azerbaijan";
+import { azerbaijan_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/57_azerbaijan";
 import { azerbaijan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/57_azerbaijan";
 import { azerbaijan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/57_azerbaijan";
 import { azerbaijan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/57_azerbaijan";
@@ -29,50 +34,11 @@ export const azerbaijan: CountryData = {
   "armada_militer": azerbaijan_armada,
   "militer_strategis": azerbaijan_strategis,
   "armada_kepolisian": azerbaijan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 39,
-      "dasar": 11,
-      "menengah": 18,
-      "lanjutan": 17,
-      "universitas": 14,
-      "lembaga_pendidikan": 16,
-      "laboratorium": 11,
-      "observatorium": 30,
-      "pusat_penelitian": 29,
-      "pusat_pengembangan": 18,
-      "literasi": 63
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 21,
-      "rumah_sakit_kecil": 29,
-      "pusat_diagnostik": 1,
-      "harapan_hidup": 31,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 34,
-      "pengadilan": 13,
-      "kejaksaan": 22,
-      "pos_polisi": 28,
-      "armada_mobil_polisi": 6700,
-      "akademi_polisi": 35,
-      "indeks_korupsi": 56,
-      "indeks_keamanan": 82
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 37,
-      "sirkuit_balap": 13,
-      "stadion": 7,
-      "stadion_internasional": 10
-  },
+  "pabrik_militer": azerbaijan_pabrik,
+    "pendidikan": azerbaijan_pendidikan,
+  "kesehatan": azerbaijan_kesehatan,
+  "hukum": azerbaijan_hukum,
+  "sektor_olahraga": azerbaijan_olahraga,
   "un_vote": 140,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { greenland_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { greenland_armada } from "../../modules/2_militer/2_armada_militer/na/162_greenland";
 import { greenland_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/162_greenland";
 import { greenland_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/162_greenland";
+import { greenland_hukum } from "../../modules/3_sosial/3_hukum/na/162_greenland";
 import { greenland_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/162_greenland";
 import { greenland_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/162_greenland";
+import { greenland_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/162_greenland";
 import { greenland_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/162_greenland";
 import { greenland_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/162_greenland";
 import { greenland_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/162_greenland";
+import { greenland_olahraga } from "../../modules/3_sosial/4_olahraga/na/162_greenland";
+import { greenland_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/162_greenland";
+import { greenland_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/162_greenland";
 import { greenland_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/162_greenland";
 import { greenland_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/162_greenland";
 import { greenland_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/162_greenland";
@@ -29,50 +34,11 @@ export const greenland: CountryData = {
   "armada_militer": greenland_armada,
   "militer_strategis": greenland_strategis,
   "armada_kepolisian": greenland_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 5,
-      "dasar": 22,
-      "menengah": 27,
-      "lanjutan": 1,
-      "universitas": 29,
-      "lembaga_pendidikan": 21,
-      "laboratorium": 11,
-      "observatorium": 14,
-      "pusat_penelitian": 4,
-      "pusat_pengembangan": 10,
-      "literasi": 81
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 20,
-      "rumah_sakit_kecil": 10,
-      "pusat_diagnostik": 22,
-      "harapan_hidup": 11,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 40,
-      "pengadilan": 8,
-      "kejaksaan": 16,
-      "pos_polisi": 32,
-      "armada_mobil_polisi": 8496,
-      "akademi_polisi": 24,
-      "indeks_korupsi": 66,
-      "indeks_keamanan": 50
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 30,
-      "sirkuit_balap": 16,
-      "stadion": 2,
-      "stadion_internasional": 17
-  },
+  "pabrik_militer": greenland_pabrik,
+    "pendidikan": greenland_pendidikan,
+  "kesehatan": greenland_kesehatan,
+  "hukum": greenland_hukum,
+  "sektor_olahraga": greenland_olahraga,
   "un_vote": 43,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { kepulauan_faroe_agrikultur } from "../../modules/1_ekonomi/7_sektor_agr
 import { kepulauan_faroe_armada } from "../../modules/2_militer/2_armada_militer/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/122_kepulauan_faroe";
+import { kepulauan_faroe_hukum } from "../../modules/3_sosial/3_hukum/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/122_kepulauan_faroe";
+import { kepulauan_faroe_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/122_kepulauan_faroe";
+import { kepulauan_faroe_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/122_kepulauan_faroe";
+import { kepulauan_faroe_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/122_kepulauan_faroe";
+import { kepulauan_faroe_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/122_kepulauan_faroe";
@@ -29,50 +34,11 @@ export const kepulauan_faroe: CountryData = {
   "armada_militer": kepulauan_faroe_armada,
   "militer_strategis": kepulauan_faroe_strategis,
   "armada_kepolisian": kepulauan_faroe_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 19,
-      "dasar": 1,
-      "menengah": 20,
-      "lanjutan": 32,
-      "universitas": 40,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 18,
-      "observatorium": 39,
-      "pusat_penelitian": 13,
-      "pusat_pengembangan": 12,
-      "literasi": 86
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 39,
-      "rumah_sakit_kecil": 7,
-      "pusat_diagnostik": 23,
-      "harapan_hidup": 1,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 37,
-      "pengadilan": 31,
-      "kejaksaan": 17,
-      "pos_polisi": 39,
-      "armada_mobil_polisi": 5067,
-      "akademi_polisi": 6,
-      "indeks_korupsi": 94,
-      "indeks_keamanan": 68
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 1,
-      "sirkuit_balap": 39,
-      "stadion": 17,
-      "stadion_internasional": 10
-  },
+  "pabrik_militer": kepulauan_faroe_pabrik,
+    "pendidikan": kepulauan_faroe_pendidikan,
+  "kesehatan": kepulauan_faroe_kesehatan,
+  "hukum": kepulauan_faroe_hukum,
+  "sektor_olahraga": kepulauan_faroe_olahraga,
   "un_vote": 18,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { sao_tome_dan_principe_agrikultur } from "../../modules/1_ekonomi/7_sekt
 import { sao_tome_dan_principe_armada } from "../../modules/2_militer/2_armada_militer/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_hukum } from "../../modules/3_sosial/3_hukum/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/45_sao_tome_dan_principe";
@@ -29,50 +34,11 @@ export const sao_tome_dan_principe: CountryData = {
   "armada_militer": sao_tome_dan_principe_armada,
   "militer_strategis": sao_tome_dan_principe_strategis,
   "armada_kepolisian": sao_tome_dan_principe_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 11,
-      "dasar": 29,
-      "menengah": 31,
-      "lanjutan": 12,
-      "universitas": 32,
-      "lembaga_pendidikan": 22,
-      "laboratorium": 39,
-      "observatorium": 30,
-      "pusat_penelitian": 21,
-      "pusat_pengembangan": 26,
-      "literasi": 81
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 21,
-      "rumah_sakit_kecil": 27,
-      "pusat_diagnostik": 2,
-      "harapan_hidup": 15,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 6,
-      "pengadilan": 38,
-      "kejaksaan": 3,
-      "pos_polisi": 27,
-      "armada_mobil_polisi": 8625,
-      "akademi_polisi": 19,
-      "indeks_korupsi": 62,
-      "indeks_keamanan": 57
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 19,
-      "sirkuit_balap": 10,
-      "stadion": 18,
-      "stadion_internasional": 30
-  },
+  "pabrik_militer": sao_tome_dan_principe_pabrik,
+    "pendidikan": sao_tome_dan_principe_pendidikan,
+  "kesehatan": sao_tome_dan_principe_kesehatan,
+  "hukum": sao_tome_dan_principe_hukum,
+  "sektor_olahraga": sao_tome_dan_principe_olahraga,
   "un_vote": 86,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

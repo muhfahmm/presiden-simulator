@@ -3,11 +3,16 @@ import { republik_afrika_tengah_agrikultur } from "../../modules/1_ekonomi/7_sek
 import { republik_afrika_tengah_armada } from "../../modules/2_militer/2_armada_militer/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_hukum } from "../../modules/3_sosial/3_hukum/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/37_republik_afrika_tengah";
@@ -29,50 +34,11 @@ export const republik_afrika_tengah: CountryData = {
   "armada_militer": republik_afrika_tengah_armada,
   "militer_strategis": republik_afrika_tengah_strategis,
   "armada_kepolisian": republik_afrika_tengah_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 8,
-      "dasar": 36,
-      "menengah": 26,
-      "lanjutan": 35,
-      "universitas": 22,
-      "lembaga_pendidikan": 29,
-      "laboratorium": 38,
-      "observatorium": 18,
-      "pusat_penelitian": 39,
-      "pusat_pengembangan": 32,
-      "literasi": 65
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 33,
-      "rumah_sakit_kecil": 4,
-      "pusat_diagnostik": 11,
-      "harapan_hidup": 33,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 25,
-      "pengadilan": 30,
-      "kejaksaan": 37,
-      "pos_polisi": 20,
-      "armada_mobil_polisi": 684,
-      "akademi_polisi": 17,
-      "indeks_korupsi": 72,
-      "indeks_keamanan": 80
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 35,
-      "sirkuit_balap": 38,
-      "stadion": 4,
-      "stadion_internasional": 29
-  },
+  "pabrik_militer": republik_afrika_tengah_pabrik,
+    "pendidikan": republik_afrika_tengah_pendidikan,
+  "kesehatan": republik_afrika_tengah_kesehatan,
+  "hukum": republik_afrika_tengah_hukum,
+  "sektor_olahraga": republik_afrika_tengah_olahraga,
   "un_vote": 66,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

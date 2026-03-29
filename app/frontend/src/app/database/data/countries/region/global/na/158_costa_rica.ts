@@ -3,11 +3,16 @@ import { costa_rica_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { costa_rica_armada } from "../../modules/2_militer/2_armada_militer/na/158_costa_rica";
 import { costa_rica_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/158_costa_rica";
 import { costa_rica_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/158_costa_rica";
+import { costa_rica_hukum } from "../../modules/3_sosial/3_hukum/na/158_costa_rica";
 import { costa_rica_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/158_costa_rica";
 import { costa_rica_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/158_costa_rica";
+import { costa_rica_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/158_costa_rica";
 import { costa_rica_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/158_costa_rica";
 import { costa_rica_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/158_costa_rica";
 import { costa_rica_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/158_costa_rica";
+import { costa_rica_olahraga } from "../../modules/3_sosial/4_olahraga/na/158_costa_rica";
+import { costa_rica_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/158_costa_rica";
+import { costa_rica_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/158_costa_rica";
 import { costa_rica_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/158_costa_rica";
 import { costa_rica_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/158_costa_rica";
 import { costa_rica_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/158_costa_rica";
@@ -29,50 +34,11 @@ export const costa_rica: CountryData = {
   "armada_militer": costa_rica_armada,
   "militer_strategis": costa_rica_strategis,
   "armada_kepolisian": costa_rica_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 11,
-      "dasar": 18,
-      "menengah": 31,
-      "lanjutan": 15,
-      "universitas": 40,
-      "lembaga_pendidikan": 21,
-      "laboratorium": 22,
-      "observatorium": 16,
-      "pusat_penelitian": 23,
-      "pusat_pengembangan": 39,
-      "literasi": 52
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 22,
-      "rumah_sakit_kecil": 20,
-      "pusat_diagnostik": 40,
-      "harapan_hidup": 40,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 26,
-      "pengadilan": 19,
-      "kejaksaan": 19,
-      "pos_polisi": 16,
-      "armada_mobil_polisi": 2848,
-      "akademi_polisi": 40,
-      "indeks_korupsi": 69,
-      "indeks_keamanan": 52
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 36,
-      "sirkuit_balap": 31,
-      "stadion": 19,
-      "stadion_internasional": 37
-  },
+  "pabrik_militer": costa_rica_pabrik,
+    "pendidikan": costa_rica_pendidikan,
+  "kesehatan": costa_rica_kesehatan,
+  "hukum": costa_rica_hukum,
+  "sektor_olahraga": costa_rica_olahraga,
   "un_vote": 72,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

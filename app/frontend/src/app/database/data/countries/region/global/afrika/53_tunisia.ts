@@ -3,11 +3,16 @@ import { tunisia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { tunisia_armada } from "../../modules/2_militer/2_armada_militer/afrika/53_tunisia";
 import { tunisia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/53_tunisia";
 import { tunisia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/53_tunisia";
+import { tunisia_hukum } from "../../modules/3_sosial/3_hukum/afrika/53_tunisia";
 import { tunisia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/53_tunisia";
 import { tunisia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/53_tunisia";
+import { tunisia_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/53_tunisia";
 import { tunisia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/53_tunisia";
 import { tunisia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/53_tunisia";
 import { tunisia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/53_tunisia";
+import { tunisia_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/53_tunisia";
+import { tunisia_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/53_tunisia";
+import { tunisia_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/53_tunisia";
 import { tunisia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/53_tunisia";
 import { tunisia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/53_tunisia";
 import { tunisia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/53_tunisia";
@@ -29,50 +34,11 @@ export const tunisia: CountryData = {
   "armada_militer": tunisia_armada,
   "militer_strategis": tunisia_strategis,
   "armada_kepolisian": tunisia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 22,
-      "dasar": 40,
-      "menengah": 36,
-      "lanjutan": 33,
-      "universitas": 33,
-      "lembaga_pendidikan": 33,
-      "laboratorium": 20,
-      "observatorium": 10,
-      "pusat_penelitian": 10,
-      "pusat_pengembangan": 38,
-      "literasi": 64
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 13,
-      "rumah_sakit_kecil": 5,
-      "pusat_diagnostik": 9,
-      "harapan_hidup": 19,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 36,
-      "pengadilan": 16,
-      "kejaksaan": 16,
-      "pos_polisi": 21,
-      "armada_mobil_polisi": 2086,
-      "akademi_polisi": 19,
-      "indeks_korupsi": 87,
-      "indeks_keamanan": 83
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 4,
-      "sirkuit_balap": 18,
-      "stadion": 12,
-      "stadion_internasional": 21
-  },
+  "pabrik_militer": tunisia_pabrik,
+    "pendidikan": tunisia_pendidikan,
+  "kesehatan": tunisia_kesehatan,
+  "hukum": tunisia_hukum,
+  "sektor_olahraga": tunisia_olahraga,
   "un_vote": 59,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

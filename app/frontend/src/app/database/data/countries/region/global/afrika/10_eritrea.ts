@@ -3,11 +3,16 @@ import { eritrea_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/
 import { eritrea_armada } from "../../modules/2_militer/2_armada_militer/afrika/10_eritrea";
 import { eritrea_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/10_eritrea";
 import { eritrea_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/10_eritrea";
+import { eritrea_hukum } from "../../modules/3_sosial/3_hukum/afrika/10_eritrea";
 import { eritrea_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/10_eritrea";
 import { eritrea_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/10_eritrea";
+import { eritrea_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/10_eritrea";
 import { eritrea_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/10_eritrea";
 import { eritrea_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/10_eritrea";
 import { eritrea_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/10_eritrea";
+import { eritrea_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/10_eritrea";
+import { eritrea_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/10_eritrea";
+import { eritrea_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/10_eritrea";
 import { eritrea_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/10_eritrea";
 import { eritrea_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/10_eritrea";
 import { eritrea_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/10_eritrea";
@@ -29,50 +34,11 @@ export const eritrea: CountryData = {
   "armada_militer": eritrea_armada,
   "militer_strategis": eritrea_strategis,
   "armada_kepolisian": eritrea_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 35,
-      "dasar": 35,
-      "menengah": 38,
-      "lanjutan": 22,
-      "universitas": 26,
-      "lembaga_pendidikan": 37,
-      "laboratorium": 14,
-      "observatorium": 35,
-      "pusat_penelitian": 18,
-      "pusat_pengembangan": 11,
-      "literasi": 90
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 39,
-      "rumah_sakit_kecil": 27,
-      "pusat_diagnostik": 37,
-      "harapan_hidup": 27,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 27,
-      "pengadilan": 5,
-      "kejaksaan": 1,
-      "pos_polisi": 36,
-      "armada_mobil_polisi": 2156,
-      "akademi_polisi": 4,
-      "indeks_korupsi": 57,
-      "indeks_keamanan": 78
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 22,
-      "sirkuit_balap": 37,
-      "stadion": 33,
-      "stadion_internasional": 5
-  },
+  "pabrik_militer": eritrea_pabrik,
+    "pendidikan": eritrea_pendidikan,
+  "kesehatan": eritrea_kesehatan,
+  "hukum": eritrea_hukum,
+  "sektor_olahraga": eritrea_olahraga,
   "un_vote": 47,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

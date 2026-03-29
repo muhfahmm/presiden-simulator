@@ -3,11 +3,16 @@ import { amerika_serikat_agrikultur } from "../../modules/1_ekonomi/7_sektor_agr
 import { amerika_serikat_armada } from "../../modules/2_militer/2_armada_militer/na/152_amerika_serikat";
 import { amerika_serikat_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/152_amerika_serikat";
 import { amerika_serikat_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/152_amerika_serikat";
+import { amerika_serikat_hukum } from "../../modules/3_sosial/3_hukum/na/152_amerika_serikat";
 import { amerika_serikat_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/152_amerika_serikat";
 import { amerika_serikat_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/152_amerika_serikat";
+import { amerika_serikat_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/152_amerika_serikat";
 import { amerika_serikat_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/152_amerika_serikat";
 import { amerika_serikat_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/152_amerika_serikat";
 import { amerika_serikat_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/152_amerika_serikat";
+import { amerika_serikat_olahraga } from "../../modules/3_sosial/4_olahraga/na/152_amerika_serikat";
+import { amerika_serikat_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/152_amerika_serikat";
+import { amerika_serikat_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/152_amerika_serikat";
 import { amerika_serikat_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/152_amerika_serikat";
 import { amerika_serikat_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/152_amerika_serikat";
 import { amerika_serikat_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/152_amerika_serikat";
@@ -29,50 +34,11 @@ export const amerika_serikat: CountryData = {
   "armada_militer": amerika_serikat_armada,
   "militer_strategis": amerika_serikat_strategis,
   "armada_kepolisian": amerika_serikat_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 31,
-      "dasar": 14,
-      "menengah": 34,
-      "lanjutan": 12,
-      "universitas": 27,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 16,
-      "observatorium": 8,
-      "pusat_penelitian": 17,
-      "pusat_pengembangan": 31,
-      "literasi": 75
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 1,
-      "rumah_sakit_kecil": 5,
-      "pusat_diagnostik": 39,
-      "harapan_hidup": 26,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 22,
-      "pengadilan": 10,
-      "kejaksaan": 19,
-      "pos_polisi": 29,
-      "armada_mobil_polisi": 3884,
-      "akademi_polisi": 30,
-      "indeks_korupsi": 70,
-      "indeks_keamanan": 81
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 12,
-      "sirkuit_balap": 10,
-      "stadion": 37,
-      "stadion_internasional": 35
-  },
+  "pabrik_militer": amerika_serikat_pabrik,
+    "pendidikan": amerika_serikat_pendidikan,
+  "kesehatan": amerika_serikat_kesehatan,
+  "hukum": amerika_serikat_hukum,
+  "sektor_olahraga": amerika_serikat_olahraga,
   "un_vote": 203,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

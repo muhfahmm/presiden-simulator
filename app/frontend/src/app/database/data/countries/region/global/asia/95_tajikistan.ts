@@ -3,11 +3,16 @@ import { tajikistan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikult
 import { tajikistan_armada } from "../../modules/2_militer/2_armada_militer/asia/95_tajikistan";
 import { tajikistan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/95_tajikistan";
 import { tajikistan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/95_tajikistan";
+import { tajikistan_hukum } from "../../modules/3_sosial/3_hukum/asia/95_tajikistan";
 import { tajikistan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/95_tajikistan";
 import { tajikistan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/95_tajikistan";
+import { tajikistan_kesehatan } from "../../modules/3_sosial/2_kesehatan/asia/95_tajikistan";
 import { tajikistan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/95_tajikistan";
 import { tajikistan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/95_tajikistan";
 import { tajikistan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/95_tajikistan";
+import { tajikistan_olahraga } from "../../modules/3_sosial/4_olahraga/asia/95_tajikistan";
+import { tajikistan_pabrik } from "../../modules/2_militer/5_pabrik_militer/asia/95_tajikistan";
+import { tajikistan_pendidikan } from "../../modules/3_sosial/1_pendidikan/asia/95_tajikistan";
 import { tajikistan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/95_tajikistan";
 import { tajikistan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/95_tajikistan";
 import { tajikistan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/95_tajikistan";
@@ -29,50 +34,11 @@ export const tajikistan: CountryData = {
   "armada_militer": tajikistan_armada,
   "militer_strategis": tajikistan_strategis,
   "armada_kepolisian": tajikistan_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 1,
-      "dasar": 25,
-      "menengah": 23,
-      "lanjutan": 22,
-      "universitas": 28,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 38,
-      "observatorium": 1,
-      "pusat_penelitian": 30,
-      "pusat_pengembangan": 12,
-      "literasi": 79
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 40,
-      "rumah_sakit_kecil": 24,
-      "pusat_diagnostik": 27,
-      "harapan_hidup": 15,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 35,
-      "pengadilan": 23,
-      "kejaksaan": 21,
-      "pos_polisi": 26,
-      "armada_mobil_polisi": 3913,
-      "akademi_polisi": 29,
-      "indeks_korupsi": 54,
-      "indeks_keamanan": 95
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 2,
-      "sirkuit_balap": 14,
-      "stadion": 36,
-      "stadion_internasional": 6
-  },
+  "pabrik_militer": tajikistan_pabrik,
+    "pendidikan": tajikistan_pendidikan,
+  "kesehatan": tajikistan_kesehatan,
+  "hukum": tajikistan_hukum,
+  "sektor_olahraga": tajikistan_olahraga,
   "un_vote": 177,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

@@ -3,11 +3,16 @@ import { belgia_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/e
 import { belgia_armada } from "../../modules/2_militer/2_armada_militer/eropa/108_belgia";
 import { belgia_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/108_belgia";
 import { belgia_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/108_belgia";
+import { belgia_hukum } from "../../modules/3_sosial/3_hukum/eropa/108_belgia";
 import { belgia_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/108_belgia";
 import { belgia_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/108_belgia";
+import { belgia_kesehatan } from "../../modules/3_sosial/2_kesehatan/eropa/108_belgia";
 import { belgia_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/108_belgia";
 import { belgia_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/108_belgia";
 import { belgia_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/108_belgia";
+import { belgia_olahraga } from "../../modules/3_sosial/4_olahraga/eropa/108_belgia";
+import { belgia_pabrik } from "../../modules/2_militer/5_pabrik_militer/eropa/108_belgia";
+import { belgia_pendidikan } from "../../modules/3_sosial/1_pendidikan/eropa/108_belgia";
 import { belgia_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/108_belgia";
 import { belgia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/108_belgia";
 import { belgia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/108_belgia";
@@ -29,50 +34,11 @@ export const belgia: CountryData = {
   "armada_militer": belgia_armada,
   "militer_strategis": belgia_strategis,
   "armada_kepolisian": belgia_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 7,
-      "dasar": 30,
-      "menengah": 12,
-      "lanjutan": 21,
-      "universitas": 34,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 32,
-      "observatorium": 17,
-      "pusat_penelitian": 6,
-      "pusat_pengembangan": 38,
-      "literasi": 82
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 11,
-      "pusat_diagnostik": 36,
-      "harapan_hidup": 15,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 27,
-      "pengadilan": 13,
-      "kejaksaan": 24,
-      "pos_polisi": 7,
-      "armada_mobil_polisi": 1272,
-      "akademi_polisi": 18,
-      "indeks_korupsi": 77,
-      "indeks_keamanan": 76
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 3,
-      "sirkuit_balap": 36,
-      "stadion": 34,
-      "stadion_internasional": 11
-  },
+  "pabrik_militer": belgia_pabrik,
+    "pendidikan": belgia_pendidikan,
+  "kesehatan": belgia_kesehatan,
+  "hukum": belgia_hukum,
+  "sektor_olahraga": belgia_olahraga,
   "un_vote": 189,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

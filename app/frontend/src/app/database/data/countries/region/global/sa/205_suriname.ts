@@ -3,11 +3,16 @@ import { suriname_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur
 import { suriname_armada } from "../../modules/2_militer/2_armada_militer/sa/205_suriname";
 import { suriname_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/sa/205_suriname";
 import { suriname_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/sa/205_suriname";
+import { suriname_hukum } from "../../modules/3_sosial/3_hukum/sa/205_suriname";
 import { suriname_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/sa/205_suriname";
 import { suriname_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/sa/205_suriname";
+import { suriname_kesehatan } from "../../modules/3_sosial/2_kesehatan/sa/205_suriname";
 import { suriname_listrik } from "../../modules/1_ekonomi/2_kelistrikan/sa/205_suriname";
 import { suriname_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/sa/205_suriname";
 import { suriname_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/sa/205_suriname";
+import { suriname_olahraga } from "../../modules/3_sosial/4_olahraga/sa/205_suriname";
+import { suriname_pabrik } from "../../modules/2_militer/5_pabrik_militer/sa/205_suriname";
+import { suriname_pendidikan } from "../../modules/3_sosial/1_pendidikan/sa/205_suriname";
 import { suriname_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/sa/205_suriname";
 import { suriname_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/205_suriname";
 import { suriname_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/205_suriname";
@@ -29,50 +34,11 @@ export const suriname: CountryData = {
   "armada_militer": suriname_armada,
   "militer_strategis": suriname_strategis,
   "armada_kepolisian": suriname_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 36,
-      "dasar": 4,
-      "menengah": 9,
-      "lanjutan": 21,
-      "universitas": 28,
-      "lembaga_pendidikan": 29,
-      "laboratorium": 1,
-      "observatorium": 25,
-      "pusat_penelitian": 6,
-      "pusat_pengembangan": 40,
-      "literasi": 80
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 33,
-      "rumah_sakit_kecil": 15,
-      "pusat_diagnostik": 21,
-      "harapan_hidup": 7,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 33,
-      "pengadilan": 27,
-      "kejaksaan": 9,
-      "pos_polisi": 7,
-      "armada_mobil_polisi": 9880,
-      "akademi_polisi": 21,
-      "indeks_korupsi": 89,
-      "indeks_keamanan": 82
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 39,
-      "sirkuit_balap": 30,
-      "stadion": 39,
-      "stadion_internasional": 33
-  },
+  "pabrik_militer": suriname_pabrik,
+    "pendidikan": suriname_pendidikan,
+  "kesehatan": suriname_kesehatan,
+  "hukum": suriname_hukum,
+  "sektor_olahraga": suriname_olahraga,
   "un_vote": 3,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

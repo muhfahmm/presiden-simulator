@@ -3,11 +3,16 @@ import { republik_uganda_agrikultur } from "../../modules/1_ekonomi/7_sektor_agr
 import { republik_uganda_armada } from "../../modules/2_militer/2_armada_militer/afrika/41_republik_uganda";
 import { republik_uganda_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/41_republik_uganda";
 import { republik_uganda_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/41_republik_uganda";
+import { republik_uganda_hukum } from "../../modules/3_sosial/3_hukum/afrika/41_republik_uganda";
 import { republik_uganda_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/41_republik_uganda";
 import { republik_uganda_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/41_republik_uganda";
+import { republik_uganda_kesehatan } from "../../modules/3_sosial/2_kesehatan/afrika/41_republik_uganda";
 import { republik_uganda_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/41_republik_uganda";
 import { republik_uganda_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/41_republik_uganda";
 import { republik_uganda_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/41_republik_uganda";
+import { republik_uganda_olahraga } from "../../modules/3_sosial/4_olahraga/afrika/41_republik_uganda";
+import { republik_uganda_pabrik } from "../../modules/2_militer/5_pabrik_militer/afrika/41_republik_uganda";
+import { republik_uganda_pendidikan } from "../../modules/3_sosial/1_pendidikan/afrika/41_republik_uganda";
 import { republik_uganda_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/41_republik_uganda";
 import { republik_uganda_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/41_republik_uganda";
 import { republik_uganda_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/41_republik_uganda";
@@ -29,50 +34,11 @@ export const republik_uganda: CountryData = {
   "armada_militer": republik_uganda_armada,
   "militer_strategis": republik_uganda_strategis,
   "armada_kepolisian": republik_uganda_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 20,
-      "dasar": 5,
-      "menengah": 4,
-      "lanjutan": 7,
-      "universitas": 18,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 20,
-      "observatorium": 2,
-      "pusat_penelitian": 23,
-      "pusat_pengembangan": 25,
-      "literasi": 68
-  },
-    "kesehatan": {
-      "rumah_sakit_besar": 24,
-      "rumah_sakit_kecil": 11,
-      "pusat_diagnostik": 8,
-      "harapan_hidup": 13,
-      "indeks_kesehatan": 85
-  },
-    "hukum": {
-      "pusat_bantuan_hukum": 37,
-      "pengadilan": 20,
-      "kejaksaan": 25,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 5182,
-      "akademi_polisi": 33,
-      "indeks_korupsi": 78,
-      "indeks_keamanan": 51
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 33,
-      "sirkuit_balap": 3,
-      "stadion": 4,
-      "stadion_internasional": 40
-  },
+  "pabrik_militer": republik_uganda_pabrik,
+    "pendidikan": republik_uganda_pendidikan,
+  "kesehatan": republik_uganda_kesehatan,
+  "hukum": republik_uganda_hukum,
+  "sektor_olahraga": republik_uganda_olahraga,
   "un_vote": 101,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI

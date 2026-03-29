@@ -3,11 +3,16 @@ import { guatemala_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultu
 import { guatemala_armada } from "../../modules/2_militer/2_armada_militer/na/164_guatemala";
 import { guatemala_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/na/164_guatemala";
 import { guatemala_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/na/164_guatemala";
+import { guatemala_hukum } from "../../modules/3_sosial/3_hukum/na/164_guatemala";
 import { guatemala_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/na/164_guatemala";
 import { guatemala_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/na/164_guatemala";
+import { guatemala_kesehatan } from "../../modules/3_sosial/2_kesehatan/na/164_guatemala";
 import { guatemala_listrik } from "../../modules/1_ekonomi/2_kelistrikan/na/164_guatemala";
 import { guatemala_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/na/164_guatemala";
 import { guatemala_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/na/164_guatemala";
+import { guatemala_olahraga } from "../../modules/3_sosial/4_olahraga/na/164_guatemala";
+import { guatemala_pabrik } from "../../modules/2_militer/5_pabrik_militer/na/164_guatemala";
+import { guatemala_pendidikan } from "../../modules/3_sosial/1_pendidikan/na/164_guatemala";
 import { guatemala_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/na/164_guatemala";
 import { guatemala_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/164_guatemala";
 import { guatemala_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/164_guatemala";
@@ -29,50 +34,11 @@ export const guatemala: CountryData = {
   "armada_militer": guatemala_armada,
   "militer_strategis": guatemala_strategis,
   "armada_kepolisian": guatemala_kepolisian,
-  "pabrik_militer": {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
-    "pabrik_kendaraan_tempur": 0,
-    "pabrik_senjata_berat": 0
-  },
-  "sektor_sosial": {
-    "pendidikan": {
-      "prasekolah": 8,
-      "dasar": 13,
-      "menengah": 28,
-      "lanjutan": 37,
-      "universitas": 14,
-      "lembaga_pendidikan": 34,
-      "laboratorium": 21,
-      "observatorium": 19,
-      "pusat_penelitian": 11,
-      "pusat_pengembangan": 22,
-      "literasi": 91
-    },
-    "kesehatan": {
-      "rumah_sakit_besar": 28,
-      "rumah_sakit_kecil": 36,
-      "pusat_diagnostik": 7,
-      "harapan_hidup": 6,
-      "indeks_kesehatan": 85
-    },
-    "hukum": {
-      "pusat_bantuan_hukum": 40,
-      "pengadilan": 10,
-      "kejaksaan": 40,
-      "pos_polisi": 25,
-      "armada_mobil_polisi": 7558,
-      "akademi_polisi": 23,
-      "indeks_korupsi": 77,
-      "indeks_keamanan": 51
-  }
-  },
-  "sektor_olahraga": {
-      "kolam_renang": 22,
-      "sirkuit_balap": 13,
-      "stadion": 21,
-      "stadion_internasional": 27
-  },
+  "pabrik_militer": guatemala_pabrik,
+    "pendidikan": guatemala_pendidikan,
+  "kesehatan": guatemala_kesehatan,
+  "hukum": guatemala_hukum,
+  "sektor_olahraga": guatemala_olahraga,
   "un_vote": 142,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
