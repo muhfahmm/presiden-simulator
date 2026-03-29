@@ -62,7 +62,7 @@ export const somalia: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 5,
     "semen_beton": 12,
-    "pengolahan_daging": 34,    "sepeda_motor": 13,    "semikonduktor": 16,
+    "sepeda_motor": 13,    "semikonduktor": 16,
     "smelter": 39,    "kayu": 33
   },
   // =============================================================

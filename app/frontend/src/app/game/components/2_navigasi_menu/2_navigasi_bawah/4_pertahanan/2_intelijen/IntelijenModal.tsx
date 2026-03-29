@@ -9,23 +9,14 @@ import { formatGameDate, addDays, getStoredGameDate } from "@/app/game/component
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
 
-export default function IntelijenModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: boolean; onClose: () => void; data: any }) {
   const [activeConstructions, setActiveConstructions] = useState<any[]>([]);
   const [showQueue, setShowQueue] = useState(false);
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
   const [confirmBuild, setConfirmBuild] = useState<any>(null);
   const [quantity, setQuantity] = useState(1);
-  const [currentData, setCurrentData] = useState<any>(null);
   const [tick, setTick] = useState(0);
-
-  useEffect(() => {
-    const session = gameStorage.getSession();
-    if (session) {
-      const countryName = session.country || localStorage.getItem("selectedCountry") || "Indonesia";
-      const data = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
-      setCurrentData(data);
-    }
-  }, [isOpen]);
+  const currentData = data;
 
   useEffect(() => {
     if (!isOpen) return;

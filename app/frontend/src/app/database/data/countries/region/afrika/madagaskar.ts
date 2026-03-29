@@ -62,7 +62,7 @@ export const madagaskar: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 30,
     "semen_beton": 25,
-    "pengolahan_daging": 19,    "sepeda_motor": 39,    "semikonduktor": 13,
+    "sepeda_motor": 39,    "semikonduktor": 13,
     "smelter": 39,    "kayu": 28
   },
   // =============================================================

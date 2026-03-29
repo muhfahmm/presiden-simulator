@@ -62,7 +62,7 @@ export const liberia: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 19,
     "semen_beton": 38,
-    "pengolahan_daging": 4,    "sepeda_motor": 10,    "semikonduktor": 31,
+    "sepeda_motor": 10,    "semikonduktor": 31,
     "smelter": 36,    "kayu": 8
   },
   // =============================================================

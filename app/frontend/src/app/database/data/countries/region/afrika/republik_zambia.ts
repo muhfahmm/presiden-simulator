@@ -62,7 +62,7 @@ export const republik_zambia: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 32,
     "semen_beton": 37,
-    "pengolahan_daging": 5,    "sepeda_motor": 8,    "semikonduktor": 28,
+    "sepeda_motor": 8,    "semikonduktor": 28,
     "smelter": 35,    "kayu": 39
   },
   // =============================================================

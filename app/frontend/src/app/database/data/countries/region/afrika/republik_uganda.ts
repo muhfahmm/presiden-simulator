@@ -62,7 +62,7 @@ export const republik_uganda: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 8,
     "semen_beton": 29,
-    "pengolahan_daging": 26,    "sepeda_motor": 27,    "semikonduktor": 1,
+    "sepeda_motor": 27,    "semikonduktor": 1,
     "smelter": 8,    "kayu": 37
   },
   // =============================================================

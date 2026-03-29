@@ -19,7 +19,7 @@ export interface TradeTransaction {
 }
 
 export const historiImportStorage = {
-  saveImport: (transaction: Omit<TradeTransaction, 'id' | 'type' | 'timestamp' | 'gameDate'>) => {
+  saveImport: (transaction: Omit<TradeTransaction, 'id' | 'type' | 'timestamp' | 'gameDate' | 'gameStartDateMs'>) => {
     if (typeof window === 'undefined') return;
 
     const history = historiImportStorage.getHistory();

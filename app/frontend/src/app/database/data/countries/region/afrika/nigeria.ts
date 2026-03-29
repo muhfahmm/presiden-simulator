@@ -62,7 +62,7 @@ export const nigeria: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 31,
     "semen_beton": 31,
-    "pengolahan_daging": 26,    "sepeda_motor": 21,    "semikonduktor": 6,
+    "sepeda_motor": 21,    "semikonduktor": 6,
     "smelter": 30,    "kayu": 39
   },
   // =============================================================

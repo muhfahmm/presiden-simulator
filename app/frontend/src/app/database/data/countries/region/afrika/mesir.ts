@@ -62,7 +62,7 @@ export const mesir: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 16,
     "semen_beton": 13,
-    "pengolahan_daging": 38,    "sepeda_motor": 16,    "semikonduktor": 30,
+    "sepeda_motor": 16,    "semikonduktor": 30,
     "smelter": 12,    "kayu": 21
   },
   // =============================================================

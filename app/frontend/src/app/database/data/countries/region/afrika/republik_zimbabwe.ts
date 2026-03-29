@@ -62,7 +62,7 @@ export const republik_zimbabwe: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 19,
     "semen_beton": 40,
-    "pengolahan_daging": 25,    "sepeda_motor": 16,    "semikonduktor": 11,
+    "sepeda_motor": 16,    "semikonduktor": 11,
     "smelter": 24,    "kayu": 26
   },
   // =============================================================

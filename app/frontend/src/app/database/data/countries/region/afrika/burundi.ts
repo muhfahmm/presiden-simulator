@@ -62,7 +62,7 @@ export const burundi: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 13,
     "semen_beton": 1,
-    "pengolahan_daging": 35,    "sepeda_motor": 2,    "semikonduktor": 27,
+    "sepeda_motor": 2,    "semikonduktor": 27,
     "smelter": 14,    "kayu": 37
   },
   // =============================================================

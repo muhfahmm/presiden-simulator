@@ -62,7 +62,7 @@ export const republik_demokratik_kongo: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 20,
     "semen_beton": 25,
-    "pengolahan_daging": 21,    "sepeda_motor": 39,    "semikonduktor": 1,
+    "sepeda_motor": 39,    "semikonduktor": 1,
     "smelter": 13,    "kayu": 37
   },
   // =============================================================

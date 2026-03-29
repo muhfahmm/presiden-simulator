@@ -62,7 +62,7 @@ export const pantai_gading: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 30,
     "semen_beton": 32,
-    "pengolahan_daging": 19,    "sepeda_motor": 40,    "semikonduktor": 6,
+    "sepeda_motor": 40,    "semikonduktor": 6,
     "smelter": 4,    "kayu": 21
   },
   // =============================================================

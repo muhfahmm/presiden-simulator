@@ -99,7 +99,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
   const publicGroups = [
     {
       id: "infrastruktur",
-      title: "1. Sektor Infrastruktur & Logistik (8 jenis)",
+      title: "2. Sektor Infrastruktur & Logistik (8 jenis)",
       icon: Ship,
       color: "text-cyan-400",
       items: [
@@ -117,7 +117,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
     },
     {
       id: "layanan_sosial",
-      title: "2. Sektor Layanan Sosial & Publik (18 jenis)",
+      title: "10. Sektor Sosial & Pelayanan Publik (18 jenis)",
       icon: HeartPulse,
       color: "text-rose-400",
       items: [

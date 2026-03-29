@@ -62,7 +62,7 @@ export const gambia: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 5,
     "semen_beton": 17,
-    "pengolahan_daging": 22,    "sepeda_motor": 16,    "semikonduktor": 24,
+    "sepeda_motor": 16,    "semikonduktor": 24,
     "smelter": 5,    "kayu": 19
   },
   // =============================================================

@@ -62,7 +62,7 @@ export const republik_sudan: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 27,
     "semen_beton": 16,
-    "pengolahan_daging": 17,    "sepeda_motor": 21,    "semikonduktor": 20,
+    "sepeda_motor": 21,    "semikonduktor": 20,
     "smelter": 37,    "kayu": 30
   },
   // =============================================================

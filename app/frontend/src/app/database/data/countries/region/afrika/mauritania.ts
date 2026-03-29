@@ -62,7 +62,7 @@ export const mauritania: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 33,
     "semen_beton": 6,
-    "pengolahan_daging": 35,    "sepeda_motor": 24,    "semikonduktor": 1,
+    "sepeda_motor": 24,    "semikonduktor": 1,
     "smelter": 22,    "kayu": 7
   },
   // =============================================================

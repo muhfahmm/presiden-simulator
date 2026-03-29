@@ -62,7 +62,7 @@ export const botswana: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 19,
     "semen_beton": 22,
-    "pengolahan_daging": 32,    "sepeda_motor": 36,    "semikonduktor": 13,
+    "sepeda_motor": 36,    "semikonduktor": 13,
     "smelter": 7,    "kayu": 2
   },
   // =============================================================

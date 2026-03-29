@@ -62,7 +62,7 @@ export const mali: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 24,
     "semen_beton": 27,
-    "pengolahan_daging": 5,    "sepeda_motor": 2,    "semikonduktor": 20,
+    "sepeda_motor": 2,    "semikonduktor": 20,
     "smelter": 1,    "kayu": 1
   },
   // =============================================================

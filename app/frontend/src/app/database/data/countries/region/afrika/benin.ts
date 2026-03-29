@@ -62,7 +62,7 @@ export const benin: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 31,
     "semen_beton": 10,
-    "pengolahan_daging": 21,    "sepeda_motor": 2,    "semikonduktor": 23,
+    "sepeda_motor": 2,    "semikonduktor": 23,
     "smelter": 14,    "kayu": 23
   },
   // =============================================================

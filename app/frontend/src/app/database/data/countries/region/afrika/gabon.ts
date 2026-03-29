@@ -62,7 +62,7 @@ export const gabon: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 16,
     "semen_beton": 23,
-    "pengolahan_daging": 25,    "sepeda_motor": 4,    "semikonduktor": 10,
+    "sepeda_motor": 4,    "semikonduktor": 10,
     "smelter": 1,    "kayu": 31
   },
   // =============================================================

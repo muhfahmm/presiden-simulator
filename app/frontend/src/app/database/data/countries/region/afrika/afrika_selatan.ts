@@ -62,7 +62,7 @@ export const afrika_selatan: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 6,
     "semen_beton": 40,
-    "pengolahan_daging": 12,    "sepeda_motor": 39,    "semikonduktor": 37,
+    "sepeda_motor": 39,    "semikonduktor": 37,
     "smelter": 4,    "kayu": 9
   },
   // =============================================================

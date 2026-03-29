@@ -62,7 +62,7 @@ export const eritrea: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 11,
     "semen_beton": 7,
-    "pengolahan_daging": 18,    "sepeda_motor": 11,    "semikonduktor": 16,
+    "sepeda_motor": 11,    "semikonduktor": 16,
     "smelter": 32,    "kayu": 1
   },
   // =============================================================

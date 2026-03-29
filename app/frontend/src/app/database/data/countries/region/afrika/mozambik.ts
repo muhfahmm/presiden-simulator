@@ -62,7 +62,7 @@ export const mozambik: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 31,
     "semen_beton": 11,
-    "pengolahan_daging": 5,    "sepeda_motor": 5,    "semikonduktor": 13,
+    "sepeda_motor": 5,    "semikonduktor": 13,
     "smelter": 29,    "kayu": 28
   },
   // =============================================================

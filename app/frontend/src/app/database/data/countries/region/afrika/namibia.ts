@@ -62,7 +62,7 @@ export const namibia: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 13,
     "semen_beton": 27,
-    "pengolahan_daging": 39,    "sepeda_motor": 36,    "semikonduktor": 38,
+    "sepeda_motor": 36,    "semikonduktor": 38,
     "smelter": 7,    "kayu": 10
   },
   // =============================================================

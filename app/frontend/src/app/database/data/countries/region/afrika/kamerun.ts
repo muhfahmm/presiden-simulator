@@ -62,7 +62,7 @@ export const kamerun: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 5,
     "semen_beton": 33,
-    "pengolahan_daging": 16,    "sepeda_motor": 1,    "semikonduktor": 22,
+    "sepeda_motor": 1,    "semikonduktor": 22,
     "smelter": 23,    "kayu": 34
   },
   // =============================================================

@@ -62,7 +62,7 @@ export const ethiopia: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 33,
     "semen_beton": 20,
-    "pengolahan_daging": 15,    "sepeda_motor": 15,    "semikonduktor": 22,
+    "sepeda_motor": 15,    "semikonduktor": 22,
     "smelter": 22,    "kayu": 22
   },
   // =============================================================

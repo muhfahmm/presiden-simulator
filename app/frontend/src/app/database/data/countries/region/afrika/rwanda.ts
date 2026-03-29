@@ -62,7 +62,7 @@ export const rwanda: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 6,
     "semen_beton": 12,
-    "pengolahan_daging": 15,    "sepeda_motor": 34,    "semikonduktor": 38,
+    "sepeda_motor": 34,    "semikonduktor": 38,
     "smelter": 17,    "kayu": 11
   },
   // =============================================================

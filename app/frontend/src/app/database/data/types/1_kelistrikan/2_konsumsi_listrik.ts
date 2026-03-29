@@ -128,7 +128,7 @@ export function hitungKonsumsiPertahanan(
   );
 
   const policeCons = (
-    (police.armada_polisi.patroli_lantas.mobil_patroli ?? 0) * 0.1 +
+    (police.armada_polisi.patroli_lantas.mobil_patroli_interceptor ?? 0) * 0.1 +
     (police.armada_polisi.taktis_khusus.helikopter_polisi ?? 0) * 2
   );
 

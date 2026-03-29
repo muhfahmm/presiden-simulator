@@ -62,7 +62,7 @@ export const guinea: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 13,
     "semen_beton": 40,
-    "pengolahan_daging": 18,    "sepeda_motor": 33,    "semikonduktor": 21,
+    "sepeda_motor": 33,    "semikonduktor": 21,
     "smelter": 34,    "kayu": 27
   },
   // =============================================================

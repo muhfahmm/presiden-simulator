@@ -9,6 +9,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
+import { pertahananRate } from "@/app/database/data/types/4_militer";
 import { 
   calculateTotalInfantry, 
   calculateInfantryPower,
@@ -74,18 +75,15 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
   const [confirmBuild, setConfirmBuild] = useState<any>(null);
   const [quantity, setQuantity] = useState(1);
-  const [currentData, setCurrentData] = useState<any>(null);
-
   const [tick, setTick] = useState(0);
 
-  useEffect(() => {
-    const session = gameStorage.getSession();
-    if (session) {
-      const countryName = session.country || localStorage.getItem("selectedCountry") || "Indonesia";
-      const data = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
-      setCurrentData(data);
-    }
-  }, [isOpen]);
+  const session = gameStorage.getSession();
+  const currentCountryCode = session?.country || "Indonesia";
+  const currentData = countries.find((c: any) =>
+    c.name_id === currentCountryCode ||
+    c.name_en === currentCountryCode ||
+    (c.id && c.id === currentCountryCode)
+  ) || countries[0];
 
   // Sync queue data whenever tick or modal opens
   useEffect(() => {
@@ -129,7 +127,7 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
   const buildingData = buildingStorage.getData();
   const buildingDeltas = buildingData.buildingDeltas;
 
-  const totalPasokan = hitungTotalKapasitas(currentData);
+  const totalPasokan = hitungTotalKapasitas(currentData.sektor_listrik);
   const totalBeban = hitungTotalKonsumsiNasional(currentData);
 
   let adjustedTotalPasokan = totalPasokan;
@@ -186,23 +184,40 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
     }
   };
 
+  const getMilitaryIcon = (key: string) => {
+    switch (key) {
+      case "penjara": return Gavel;
+      case "gudang_senjata": return Archive;
+      case "hangar_tank": return Truck;
+      case "akademi_militer": return Landmark;
+      case "pusat_komando": return TowerControl;
+      case "pangkalan_udara": return MapPin;
+      case "pangkalan_laut": return Ship;
+      case "program_luar_angkasa": return Rocket;
+      case "cyber_shield": return ShieldAlert;
+      default: return Shield;
+    }
+  };
+
   const militaryGroups = [
     {
       id: "pertahanan_alutsista",
-      title: "1. Manajemen Pertahanan",
+      title: "7. Manajemen Pertahanan",
       icon: Shield,
       color: "text-red-500",
-      items: [
-        { key: "penjara", groupId: "pertahanan", label: "Penjara", icon: Gavel, desc: "Lembaga Pemasyarakatan", cost: 25, buildTime: 60, maintenanceCost: 20, lowongan_kerja: 200, count: (currentData.sektor_pertahanan?.penjara || 0) + ((buildingDeltas["penjara"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.penjara },
-        { key: "gudang_senjata", groupId: "pertahanan", label: "Gudang Senjata", icon: Archive, desc: "Penyimpanan Amunisi", cost: 30, buildTime: 30, maintenanceCost: 10, lowongan_kerja: 100, count: (currentData.sektor_pertahanan?.gudang_senjata || 0) + ((buildingDeltas["gudang_senjata"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.gudang_senjata },
-        { key: "hangar_tank", groupId: "pertahanan", label: "Hangar Tank", icon: Truck, desc: "Garasi Tempur", cost: 50, buildTime: 60, maintenanceCost: 35, lowongan_kerja: 150, count: (currentData.sektor_pertahanan?.hangar_tank || 0) + ((buildingDeltas["hangar_tank"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.hangar_tank },
-        { key: "akademi_militer", groupId: "pertahanan", label: "Akademi Militer", icon: Landmark, desc: "Pendidikan Perwira", cost: 150, buildTime: 180, maintenanceCost: 40, lowongan_kerja: 300, count: (currentData.sektor_pertahanan?.akademi_militer || 0) + ((buildingDeltas["akademi_militer"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.akademi_militer },
-        { key: "pusat_komando", groupId: "pertahanan", label: "Pusat Komando", icon: TowerControl, desc: "Komando Tertinggi", cost: 450, buildTime: 240, maintenanceCost: 150, lowongan_kerja: 250, count: (currentData.sektor_pertahanan?.pusat_komando || 0) + ((buildingDeltas["pusat_komando"] as number) || 0), consumption: KONSUMSI_STRATEGIC.pusat_komando },
-        { key: "pangkalan_udara", groupId: "pertahanan", label: "Pangkalan Udara", icon: MapPin, desc: "Fasilitas Dirgantara", cost: 280, buildTime: 180, maintenanceCost: 80, lowongan_kerja: 500, count: (currentData.sektor_pertahanan?.pangkalan_udara || 0) + ((buildingDeltas["pangkalan_udara"] as number) || 0), consumption: KONSUMSI_STRATEGIC.pangkalan_udara },
-        { key: "pangkalan_laut", groupId: "pertahanan", label: "Pangkalan Laut", icon: Ship, desc: "Fasilitas Maritim", cost: 320, buildTime: 210, maintenanceCost: 100, lowongan_kerja: 450, count: (currentData.sektor_pertahanan?.pangkalan_laut || 0) + ((buildingDeltas["pangkalan_laut"] as number) || 0), consumption: KONSUMSI_STRATEGIC.pangkalan_laut },
-        { key: "program_luar_angkasa", groupId: "pertahanan", label: "Program luar angkasa", icon: Rocket, desc: "Program Satelit", cost: 600, buildTime: 365, maintenanceCost: 250, lowongan_kerja: 800, count: (currentData.sektor_pertahanan?.program_luar_angkasa || 0) + ((buildingDeltas["program_luar_angkasa"] as number) || 0), consumption: KONSUMSI_STRATEGIC.program_luar_angkasa },
-        { key: "cyber_shield", groupId: "pertahanan", label: "Cyber Defense", icon: ShieldAlert, desc: "Keamanan Digital", cost: 180, buildTime: 120, maintenanceCost: 50, lowongan_kerja: 120, count: Math.floor(currentData.sektor_pertahanan?.pertahanan_siber || 0), consumption: 0 }
-      ]
+      items: Object.entries(pertahananRate).map(([key, val]: [string, any]) => ({
+        key,
+        groupId: "pertahanan",
+        label: val.label,
+        icon: getMilitaryIcon(val.key),
+        desc: val.desc,
+        cost: val.cost,
+        buildTime: val.buildTime,
+        maintenanceCost: val.maintenanceCost,
+        lowongan_kerja: val.lowongan_kerja,
+        count: Number(currentData.sektor_pertahanan?.[val.key as keyof typeof currentData.sektor_pertahanan] || 0) + ((buildingDeltas[key] as number) || 0),
+        consumption: (KONSUMSI_PERTAHANAN as any)[val.key] || (KONSUMSI_STRATEGIC as any)[val.key] || 0
+      }))
     }
   ];
 

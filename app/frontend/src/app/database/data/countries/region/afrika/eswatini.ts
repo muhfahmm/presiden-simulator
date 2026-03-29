@@ -62,7 +62,7 @@ export const eswatini: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 38,
     "semen_beton": 6,
-    "pengolahan_daging": 19,    "sepeda_motor": 31,    "semikonduktor": 25,
+    "sepeda_motor": 31,    "semikonduktor": 25,
     "smelter": 1,    "kayu": 20
   },
   // =============================================================

@@ -62,7 +62,7 @@ export const sao_tome_dan_principe: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 14,
     "semen_beton": 3,
-    "pengolahan_daging": 25,    "sepeda_motor": 33,    "semikonduktor": 31,
+    "sepeda_motor": 33,    "semikonduktor": 31,
     "smelter": 10,    "kayu": 8
   },
   // =============================================================

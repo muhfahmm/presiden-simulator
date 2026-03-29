@@ -62,7 +62,7 @@ export const burkina_faso: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 33,
     "semen_beton": 12,
-    "pengolahan_daging": 32,    "sepeda_motor": 32,    "semikonduktor": 34,
+    "sepeda_motor": 32,    "semikonduktor": 34,
     "smelter": 17,    "kayu": 39
   },
   // =============================================================

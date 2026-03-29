@@ -62,7 +62,7 @@ export const angola: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 2,
     "semen_beton": 20,
-    "pengolahan_daging": 31,    "sepeda_motor": 38,    "semikonduktor": 1,
+    "sepeda_motor": 38,    "semikonduktor": 1,
     "smelter": 4,    "kayu": 22
   },
   // =============================================================

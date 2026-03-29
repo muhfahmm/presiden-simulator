@@ -62,7 +62,7 @@ export const republik_afrika_tengah: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 19,
     "semen_beton": 31,
-    "pengolahan_daging": 8,    "sepeda_motor": 34,    "semikonduktor": 40,
+    "sepeda_motor": 34,    "semikonduktor": 40,
     "smelter": 5,    "kayu": 13
   },
   // =============================================================

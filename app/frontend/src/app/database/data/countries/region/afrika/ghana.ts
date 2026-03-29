@@ -62,7 +62,7 @@ export const ghana: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 36,
     "semen_beton": 13,
-    "pengolahan_daging": 24,    "sepeda_motor": 7,    "semikonduktor": 8,
+    "sepeda_motor": 7,    "semikonduktor": 8,
     "smelter": 38,    "kayu": 40
   },
   // =============================================================

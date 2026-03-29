@@ -62,7 +62,7 @@ export const senegal: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 20,
     "semen_beton": 21,
-    "pengolahan_daging": 14,    "sepeda_motor": 31,    "semikonduktor": 26,
+    "sepeda_motor": 31,    "semikonduktor": 26,
     "smelter": 37,    "kayu": 39
   },
   // =============================================================

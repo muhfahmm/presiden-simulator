@@ -62,7 +62,7 @@ export const sierra_leone: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 29,
     "semen_beton": 36,
-    "pengolahan_daging": 10,    "sepeda_motor": 11,    "semikonduktor": 38,
+    "sepeda_motor": 11,    "semikonduktor": 38,
     "smelter": 10,    "kayu": 40
   },
   // =============================================================

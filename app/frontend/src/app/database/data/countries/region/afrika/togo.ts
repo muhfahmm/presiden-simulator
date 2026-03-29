@@ -62,7 +62,7 @@ export const togo: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 16,
     "semen_beton": 4,
-    "pengolahan_daging": 5,    "sepeda_motor": 16,    "semikonduktor": 12,
+    "sepeda_motor": 16,    "semikonduktor": 12,
     "smelter": 16,    "kayu": 4
   },
   // =============================================================

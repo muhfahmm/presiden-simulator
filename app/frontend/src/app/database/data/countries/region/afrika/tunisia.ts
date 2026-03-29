@@ -62,7 +62,7 @@ export const tunisia: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 39,
     "semen_beton": 37,
-    "pengolahan_daging": 37,    "sepeda_motor": 23,    "semikonduktor": 14,
+    "sepeda_motor": 23,    "semikonduktor": 14,
     "smelter": 22,    "kayu": 12
   },
   // =============================================================

@@ -62,7 +62,7 @@ export const aljazair: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 2,
     "semen_beton": 21,
-    "pengolahan_daging": 36,    "sepeda_motor": 2,    "semikonduktor": 29,
+    "sepeda_motor": 2,    "semikonduktor": 29,
     "smelter": 12,    "kayu": 13
   },
   // =============================================================

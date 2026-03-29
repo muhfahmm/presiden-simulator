@@ -62,7 +62,7 @@ export const komoro: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 3,
     "semen_beton": 2,
-    "pengolahan_daging": 29,    "sepeda_motor": 20,    "semikonduktor": 17,
+    "sepeda_motor": 20,    "semikonduktor": 17,
     "smelter": 3,    "kayu": 19
   },
   // =============================================================

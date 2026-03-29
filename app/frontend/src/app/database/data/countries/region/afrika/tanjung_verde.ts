@@ -62,7 +62,7 @@ export const tanjung_verde: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 33,
     "semen_beton": 12,
-    "pengolahan_daging": 26,    "sepeda_motor": 20,    "semikonduktor": 17,
+    "sepeda_motor": 20,    "semikonduktor": 17,
     "smelter": 15,    "kayu": 15
   },
   // =============================================================

@@ -62,7 +62,7 @@ export const kongo: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 24,
     "semen_beton": 9,
-    "pengolahan_daging": 18,    "sepeda_motor": 34,    "semikonduktor": 25,
+    "sepeda_motor": 34,    "semikonduktor": 25,
     "smelter": 10,    "kayu": 20
   },
   // =============================================================

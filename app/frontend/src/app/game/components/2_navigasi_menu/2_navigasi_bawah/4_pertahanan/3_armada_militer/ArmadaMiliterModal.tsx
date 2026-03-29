@@ -16,16 +16,16 @@ import {
   INFANTRY_POWER_PER_UNIT, calculateTotalMilitaryPower
 } from "./kekuatanmiliter";
 
-export default function ArmadaMiliterModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: boolean; onClose: () => void; data: any }) {
   const [activeConstructions, setActiveConstructions] = useState<any[]>([]);
   const [showQueue, setShowQueue] = useState(false);
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
   const [confirmBuild, setConfirmBuild] = useState<any>(null);
   const [quantity, setQuantity] = useState(1);
-  const [currentData, setCurrentData] = useState<any>(null);
   const [tick, setTick] = useState(0);
   const [activeTab, setActiveTab] = useState<"nasional" | "global">("nasional");
   const [searchTerm, setSearchTerm] = useState("");
+  const currentData = data;
 
   const globalRankings = useMemo(() => {
     return countries
@@ -52,15 +52,6 @@ export default function ArmadaMiliterModal({ isOpen, onClose }: { isOpen: boolea
     const s = searchTerm.toLowerCase();
     return globalRankings.filter(r => r.name.toLowerCase().includes(s));
   }, [globalRankings, searchTerm]);
-
-  useEffect(() => {
-    const session = gameStorage.getSession();
-    if (session) {
-      const countryName = session.country || localStorage.getItem("selectedCountry") || "Indonesia";
-      const data = countries.find(c => c.name_id === countryName || c.name_en === countryName) || countries[0];
-      setCurrentData(data);
-    }
-  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -108,7 +99,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose }: { isOpen: boolea
   const militaryGroups = [
     {
       id: "armada_tempur",
-      title: "Manajemen Armada Tempur Nasional",
+      title: "8. Sektor Armada Tempur Nasional",
       icon: MilitaryIcon,
       color: "text-orange-500",
       items: [

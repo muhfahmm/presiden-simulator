@@ -62,7 +62,7 @@ export const libya: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 40,
     "semen_beton": 38,
-    "pengolahan_daging": 10,    "sepeda_motor": 37,    "semikonduktor": 20,
+    "sepeda_motor": 37,    "semikonduktor": 20,
     "smelter": 25,    "kayu": 22
   },
   // =============================================================

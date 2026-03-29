@@ -62,7 +62,7 @@ export const lesotho: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 19,
     "semen_beton": 7,
-    "pengolahan_daging": 17,    "sepeda_motor": 21,    "semikonduktor": 36,
+    "sepeda_motor": 21,    "semikonduktor": 36,
     "smelter": 2,    "kayu": 22
   },
   // =============================================================

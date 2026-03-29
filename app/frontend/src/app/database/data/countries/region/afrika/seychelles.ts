@@ -62,7 +62,7 @@ export const seychelles: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 27,
     "semen_beton": 24,
-    "pengolahan_daging": 36,    "sepeda_motor": 29,    "semikonduktor": 32,
+    "sepeda_motor": 29,    "semikonduktor": 32,
     "smelter": 3,    "kayu": 28
   },
   // =============================================================

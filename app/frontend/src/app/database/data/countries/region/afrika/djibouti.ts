@@ -62,7 +62,7 @@ export const djibouti: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 23,
     "semen_beton": 9,
-    "pengolahan_daging": 6,    "sepeda_motor": 24,    "semikonduktor": 16,
+    "sepeda_motor": 24,    "semikonduktor": 16,
     "smelter": 28,    "kayu": 34
   },
   // =============================================================

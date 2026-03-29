@@ -1,6 +1,13 @@
 import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain, Briefcase, Users } from "lucide-react"
-import { mineralKritisRate, produkIndustriRate, komoditasPanganRate, produksiMiliter, tempatUmum } from "@/app/database/data/types";
+import { mineralKritisRate } from "@/app/game/components/harga_bangunan/1_produksi/2_harga_bangunan_komoditas_ekstraksi";
+import { produkIndustriRate as manufakturRate } from "@/app/game/components/harga_bangunan/1_produksi/3_harga_bangunan_manufaktur";
+import { peternakanRate } from "@/app/game/components/harga_bangunan/1_produksi/4_harga_bangunan_peternakan";
+import { agrikulturRate } from "@/app/game/components/harga_bangunan/1_produksi/5_harga_bangunan_agrikultur";
+import { perikananRate } from "@/app/game/components/harga_bangunan/1_produksi/6_harga_bangunan_perikanan";
+import { olahanPanganRate } from "@/app/game/components/harga_bangunan/1_produksi/7_harga_bangunan_olahan_pangan";
+import { farmasiRate } from "@/app/game/components/harga_bangunan/1_produksi/8_harga_bangunan_farmasi";
+import { produksiMiliter, tempatUmum } from "@/app/database/data/types";
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PANGAN, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI } from "@/app/database/data/types/1_kelistrikan"
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
@@ -116,23 +123,35 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
       const dataKey = (mineralKritisRate as any)[key].dataKey;
       if (dataKey) (currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] = ((currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] || 0) + deltaValue;
     }
-    // 3. Industrial Products
-    else if ((produkIndustriRate as any)[key]) {
-      const dataKey = (produkIndustriRate as any)[key].dataKey;
+    // 3. Manufaktur
+    else if ((manufakturRate as any)[key]) {
+      const dataKey = (manufakturRate as any)[key].dataKey;
       if (dataKey) (currentDataWithDeltas.sektor_manufaktur as any)[dataKey] = ((currentDataWithDeltas.sektor_manufaktur as any)[dataKey] || 0) + deltaValue;
     }
-    // 4. Food Commodities
-    else if ((komoditasPanganRate as any)[key]) {
-      const dataKey = (komoditasPanganRate as any)[key].dataKey;
-      if (dataKey) {
-        if (currentDataWithDeltas.sektor_peternakan && (currentDataWithDeltas.sektor_peternakan as any)[dataKey] !== undefined) {
-          (currentDataWithDeltas.sektor_peternakan as any)[dataKey] = ((currentDataWithDeltas.sektor_peternakan as any)[dataKey] || 0) + deltaValue;
-        } else if (currentDataWithDeltas.sektor_perikanan && (currentDataWithDeltas.sektor_perikanan as any)[dataKey] !== undefined) {
-          (currentDataWithDeltas.sektor_perikanan as any)[dataKey] = ((currentDataWithDeltas.sektor_perikanan as any)[dataKey] || 0) + deltaValue;
-        } else if (currentDataWithDeltas.sektor_agrikultur && (currentDataWithDeltas.sektor_agrikultur as any)[dataKey] !== undefined) {
-          (currentDataWithDeltas.sektor_agrikultur as any)[dataKey] = ((currentDataWithDeltas.sektor_agrikultur as any)[dataKey] || 0) + deltaValue;
-        }
-      }
+    // 4. Peternakan
+    else if ((peternakanRate as any)[key]) {
+      const dataKey = (peternakanRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_peternakan as any)[dataKey] = ((currentDataWithDeltas.sektor_peternakan as any)[dataKey] || 0) + deltaValue;
+    }
+    // 5. Agrikultur
+    else if ((agrikulturRate as any)[key]) {
+      const dataKey = (agrikulturRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_agrikultur as any)[dataKey] = ((currentDataWithDeltas.sektor_agrikultur as any)[dataKey] || 0) + deltaValue;
+    }
+    // 6. Perikanan
+    else if ((perikananRate as any)[key]) {
+      const dataKey = (perikananRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_perikanan as any)[dataKey] = ((currentDataWithDeltas.sektor_perikanan as any)[dataKey] || 0) + deltaValue;
+    }
+    // 7. Olahan Pangan
+    else if ((olahanPanganRate as any)[key]) {
+      const dataKey = (olahanPanganRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_olahan_pangan as any)[dataKey] = ((currentDataWithDeltas.sektor_olahan_pangan as any)[dataKey] || 0) + deltaValue;
+    }
+    // 8. Farmasi
+    else if ((farmasiRate as any)[key]) {
+      const dataKey = (farmasiRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_farmasi as any)[dataKey] = ((currentDataWithDeltas.sektor_farmasi as any)[dataKey] || 0) + deltaValue;
     }
   });
 
@@ -250,7 +269,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
     },
     {
       id: "ekstraksi",
-      title: "2. Sektor Ekstraksi & Mineral Kritis",
+      title: "2. Sektor Mineral Kritis",
       icon: Pickaxe,
       color: "text-orange-500",
       items: Object.entries(mineralKritisRate)
@@ -277,18 +296,11 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         }))
     },
     {
-      id: "manufaktur_industri",
-      title: "3. Sektor Manufaktur & Industri",
+      id: "manufaktur",
+      title: "3. Sektor Manufaktur",
       icon: Factory,
       color: "text-emerald-500",
-      items: Object.entries(produkIndustriRate)
-        .filter(([_, val]) => ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu"].includes(val.dataKey))
-        .sort((a, b) => {
-          const order = ["semikonduktor", "mobil", "sepeda_motor", "smelter", "semen_beton", "kayu"];
-          const idxA = order.indexOf(a[1].dataKey);
-          const idxB = order.indexOf(b[1].dataKey);
-          return (idxA === -1 ? 999 : idxA) - (idxB === -1 ? 999 : idxB);
-        })
+      items: Object.entries(manufakturRate)
         .map(([key, val]: [string, any]) => ({
           key,
           groupId: "manufaktur",
@@ -306,82 +318,105 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         }))
     },
     {
-      id: "agri_peternakan",
-      title: "4. Sektor Agri dan Peternakan",
+      id: "peternakan",
+      title: "4. Sektor Peternakan",
+      icon: Beef,
+      color: "text-orange-400",
+      items: Object.entries(peternakanRate)
+        .map(([key, val]: [string, any]) => ({
+          key,
+          groupId: "peternakan",
+          label: val.desc,
+          icon: getIcon(key),
+          desc: "Peternakan",
+          tarif: val.production,
+          unit: val.unit,
+          count: (currentData.sektor_peternakan?.[val.dataKey as keyof typeof currentData.sektor_peternakan] || 0) + ((buildingDeltas[key] as number) || 0),
+          powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
+          pendapatan_nasional: val.pendapatan_nasional,
+          cost: val.buildCost || 15,
+          buildTime: val.buildTime || 25,
+          lowongan_kerja: val.lowongan_kerja || 0
+        }))
+    },
+    {
+      id: "agrikultur",
+      title: "5. Sektor Agrikultur",
       icon: Sprout,
       color: "text-lime-500",
-      items: [
-        // --- sub 1: PETERNAKAN ---
-        ...Object.entries(komoditasPanganRate)
-          .filter(([_, val]: [string, any]) => ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"].includes(val.dataKey))
-          .map(([key, val]: [string, any]) => ({
-            key,
-            groupId: "peternakan",
-            label: val.desc,
-            icon: getIcon(key),
-            desc: "Peternakan Nasional",
-            tarif: val.production,
-            unit: val.unit,
-            count: (currentData.sektor_peternakan?.[val.dataKey as keyof typeof currentData.sektor_peternakan] || 0) + ((buildingDeltas[key] as number) || 0),
-            powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
-            pendapatan_nasional: val.pendapatan_nasional,
-            cost: val.buildCost || 15,
-            buildTime: val.buildTime || 25,
-            lowongan_kerja: val.lowongan_kerja || 0
-          })),
-
-        // --- sub 2: AGRIKULTUR & PERTANIAN ---
-        ...Object.entries(komoditasPanganRate)
-          .filter(([_, val]: [string, any]) => ["padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"].includes(val.dataKey))
-          .map(([key, val]: [string, any]) => ({
-            key,
-            groupId: "agrikultur",
-            label: val.desc,
-            icon: getIcon(key),
-            desc: "Pertanian & Perkebunan",
-            tarif: val.production,
-            unit: val.unit,
-            count: (currentData.sektor_agrikultur?.[val.dataKey as keyof typeof currentData.sektor_agrikultur] || 0) + ((buildingDeltas[key] as number) || 0),
-            powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
-            pendapatan_nasional: val.pendapatan_nasional,
-            cost: val.buildCost || 10,
-            buildTime: val.buildTime || 30,
-            lowongan_kerja: val.lowongan_kerja || 0
-          })),
-
-        // --- sub 3: OLAHAN PANGAN ---
-        ...Object.entries(produkIndustriRate)
-          .filter(([_, val]) => ["air_mineral", "gula", "roti", "pengolahan_daging", "mie_instan"].includes(val.dataKey))
-          .map(([key, val]: [string, any]) => ({
-            key,
-            groupId: "olahan_pangan",
-            label: val.desc,
-            icon: getIcon(key),
-            desc: "Olahan Pangan",
-            tarif: val.production,
-            unit: val.unit,
-            count: (currentData.sektor_olahan_pangan?.[val.dataKey as keyof typeof currentData.sektor_olahan_pangan] || 0) + ((buildingDeltas[key] as number) || 0),
-            powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
-            pendapatan_nasional: val.pendapatan_nasional,
-            cost: val.buildCost || 25,
-            buildTime: val.buildTime || 35,
-            lowongan_kerja: val.lowongan_kerja || 0
-          }))
-      ]
+      items: Object.entries(agrikulturRate)
+        .map(([key, val]: [string, any]) => ({
+          key,
+          groupId: "agrikultur",
+          label: val.desc,
+          icon: getIcon(key),
+          desc: "Agrikultur",
+          tarif: val.production,
+          unit: val.unit,
+          count: (currentData.sektor_agrikultur?.[val.dataKey as keyof typeof currentData.sektor_agrikultur] || 0) + ((buildingDeltas[key] as number) || 0),
+          powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
+          pendapatan_nasional: val.pendapatan_nasional,
+          cost: val.buildCost || 10,
+          buildTime: val.buildTime || 30,
+          lowongan_kerja: val.lowongan_kerja || 0
+        }))
+    },
+    {
+      id: "perikanan",
+      title: "6 Sektor Perikanan",
+      icon: Fish,
+      color: "text-blue-400",
+      items: Object.entries(perikananRate)
+        .map(([key, val]: [string, any]) => ({
+          key,
+          groupId: "perikanan",
+          label: val.desc,
+          icon: getIcon(key),
+          desc: "Perikanan",
+          tarif: val.production,
+          unit: val.unit,
+          count: (currentData.sektor_perikanan?.[val.dataKey as keyof typeof currentData.sektor_perikanan] || 0) + ((buildingDeltas[key] as number) || 0),
+          powerUsage: (KONSUMSI_PANGAN as any)[val.dataKey] || 5,
+          pendapatan_nasional: val.pendapatan_nasional,
+          cost: val.buildCost || 12,
+          buildTime: val.buildTime || 20,
+          lowongan_kerja: val.lowongan_kerja || 0
+        }))
+    },
+    {
+      id: "olahan_pangan",
+      title: "7 Sektor Olahan Pangan",
+      icon: Utensils,
+      color: "text-amber-500",
+      items: Object.entries(olahanPanganRate)
+        .map(([key, val]: [string, any]) => ({
+          key,
+          groupId: "olahan_pangan",
+          label: val.desc,
+          icon: getIcon(key),
+          desc: "Olahan Pangan",
+          tarif: val.production,
+          unit: val.unit,
+          count: (currentData.sektor_olahan_pangan?.[val.dataKey as keyof typeof currentData.sektor_olahan_pangan] || 0) + ((buildingDeltas[key] as number) || 0),
+          powerUsage: (KONSUMSI_PRODUKSI as any)[val.dataKey] || 5,
+          pendapatan_nasional: val.pendapatan_nasional,
+          cost: val.buildCost || 25,
+          buildTime: val.buildTime || 35,
+          lowongan_kerja: val.lowongan_kerja || 0
+        }))
     },
     {
       id: "farmasi",
-      title: "5. Sektor Farmasi & Medis",
+      title: "8. Sektor Farmasi",
       icon: Pill,
       color: "text-rose-400",
-      items: Object.entries(produkIndustriRate)
-        .filter(([_, val]) => val.dataKey === "farmasi")
+      items: Object.entries(farmasiRate)
         .map(([key, val]: [string, any]) => ({
           key,
           groupId: "farmasi",
           label: val.desc,
           icon: getIcon(key),
-          desc: "Farmasi & Kesehatan",
+          desc: "Farmasi",
           tarif: val.production,
           unit: val.unit,
           count: (currentData.sektor_farmasi?.[val.dataKey as keyof typeof currentData.sektor_farmasi] || 0) + ((buildingDeltas[key] as number) || 0),
@@ -471,83 +506,54 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
           <div className="space-y-12">
-            {productionGroups.map((group) => (
-              <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
-                <div className="flex items-center gap-3 mb-5 px-1">
-                  <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}>
-                    <group.icon className={`h-4 w-4 ${group.color}`} />
+            {productionGroups.map((group) => {
+              return (
+                <div key={group.id} className="animate-in fade-in slide-in-from-bottom-2 duration-500">
+                  <div className="flex items-center gap-3 mb-5 px-1">
+                    <div className={`p-1.5 rounded-lg bg-zinc-900 border border-zinc-800`}>
+                      <group.icon className={`h-4 w-4 ${group.color}`} />
+                    </div>
+                    <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title} <span className="text-cyan-400 ml-3 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span></h3>
+                    <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
+
+                    {/* Hide/Show Toggle */}
+                    <button
+                      onClick={() => toggleSector(group.id)}
+                      className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all duration-700 cursor-pointer group/eye ml-4 shadow-lg active:scale-95"
+                      title={collapsedSectors.has(group.id) ? "Tampilkan Sektor" : "Sembunyikan Sektor"}
+                    >
+                      {collapsedSectors.has(group.id) ? (
+                        <EyeOff size={16} className="group-hover/eye:scale-110 transition-transform duration-700 rotate-12" />
+                      ) : (
+                        <Eye size={16} className="group-hover/eye:scale-110 transition-transform duration-700 text-cyan-400" />
+                      )}
+                    </button>
                   </div>
-                  <h3 className="text-xl font-black text-white uppercase tracking-widest italic">{group.title} <span className="text-cyan-400 ml-3 font-black lowercase italic text-xs tracking-normal bg-cyan-500/10 px-2 py-0.5 rounded-full border border-cyan-500/20">({group.items.length} Jenis)</span></h3>
-                  <div className="h-[1px] flex-1 bg-gradient-to-r from-zinc-800 to-transparent ml-4 opacity-50"></div>
 
-                  {/* Hide/Show Toggle */}
-                  <button
-                    onClick={() => toggleSector(group.id)}
-                    className="p-2 rounded-xl bg-zinc-900 border border-zinc-800 hover:bg-zinc-800 text-zinc-500 hover:text-white transition-all duration-700 cursor-pointer group/eye ml-4 shadow-lg active:scale-95"
-                    title={collapsedSectors.has(group.id) ? "Tampilkan Sektor" : "Sembunyikan Sektor"}
-                  >
-                    {collapsedSectors.has(group.id) ? (
-                      <EyeOff size={16} className="group-hover/eye:scale-110 transition-transform duration-700 rotate-12" />
-                    ) : (
-                      <Eye size={16} className="group-hover/eye:scale-110 transition-transform duration-700 text-cyan-400" />
-                    )}
-                  </button>
-                </div>
+                  {/* Collapsible Content Grid with Smooth Transition */}
+                  <div className={`grid transition-all duration-700 ease-in-out ${!collapsedSectors.has(group.id) ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
+                    <div className="overflow-hidden">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
+                        {group.items.map((item, idx) => {
+                          const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
 
-                {/* Collapsible Content Grid with Smooth Transition */}
-                <div className={`grid transition-all duration-700 ease-in-out ${!collapsedSectors.has(group.id) ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
-                  <div className="overflow-hidden">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
-                      {group.items.map((item, idx) => {
-                        const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
-                        const prevGroupId = idx > 0 ? group.items[idx - 1].groupId : null;
-                        const showPeternakanHeader = item.groupId === "peternakan" && prevGroupId !== "peternakan";
-                        const showAgrikulturHeader = item.groupId === "agrikultur" && prevGroupId !== "agrikultur";
-                        const showOlahanPanganHeader = item.groupId === "olahan_pangan" && prevGroupId !== "olahan_pangan";
-
-                        return (
-                          <Fragment key={item.key || idx}>
-                            {showPeternakanHeader && (
-                              <div className="col-span-full mt-2 mb-4 flex items-center gap-3">
-                                <Beef className="h-4 w-4 text-zinc-500" />
-                                <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
-                                  SUB MENU 1: PETERNAKAN NASIONAL
-                                </span>
-                              </div>
-                            )}
-
-                            {showAgrikulturHeader && (
-                              <div className="col-span-full mt-8 mb-4 flex items-center gap-3">
-                                <Sprout className="h-4 w-4 text-zinc-500" />
-                                <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
-                                   SUB MENU 2: AGRIKULTUR & PERTANIAN
-                                </span>
-                              </div>
-                            )}
-
-                            {showOlahanPanganHeader && (
-                              <div className="col-span-full mt-8 mb-4 flex items-center gap-3">
-                                <Utensils className="h-4 w-4 text-zinc-500" />
-                                <span className="text-[11px] font-black text-zinc-400 uppercase tracking-widest whitespace-nowrap">
-                                   SUB MENU 3: INDUSTRI OLAHAN PANGAN
-                                </span>
-                              </div>
-                            )}
-
-                            <BuildingCard
-                              item={item}
-                              onBuild={handleBuildRequest}
-                              construction={currentConstruction}
-                              cumulative={item.count || 0}
-                            />
-                          </Fragment>
-                        );
-                      })}
+                          return (
+                            <Fragment key={item.key || idx}>
+                              <BuildingCard
+                                item={item}
+                                onBuild={handleBuildRequest}
+                                construction={currentConstruction}
+                                cumulative={item.count || 0}
+                              />
+                            </Fragment>
+                          );
+                        })}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 

@@ -104,14 +104,17 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <ArmadaMiliterModal
         isOpen={activeMenu === "Menu:ArmadaMiliter"}
         onClose={() => setActiveMenu("Pertahanan")}
+        data={countryData}
       />
       <ArmadaPolisiModal
         isOpen={activeMenu === "Menu:ArmadaPolisi"}
         onClose={() => setActiveMenu("Pertahanan")}
+        data={countryData}
       />
       <IntelijenModal
         isOpen={activeMenu === "Menu:Intelijen"}
         onClose={() => setActiveMenu("Pertahanan")}
+        data={countryData}
       />
       <PBBModal
         isOpen={activeMenu.startsWith("Menu:PBB")}

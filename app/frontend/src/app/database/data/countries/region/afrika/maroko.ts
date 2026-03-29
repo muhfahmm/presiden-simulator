@@ -62,7 +62,7 @@ export const maroko: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 23,
     "semen_beton": 37,
-    "pengolahan_daging": 1,    "sepeda_motor": 13,    "semikonduktor": 33,
+    "sepeda_motor": 13,    "semikonduktor": 33,
     "smelter": 11,    "kayu": 35
   },
   // =============================================================

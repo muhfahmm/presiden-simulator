@@ -62,7 +62,7 @@ export const kenya: CountryData = {
 
   "sektor_manufaktur": {    "mobil": 30,
     "semen_beton": 9,
-    "pengolahan_daging": 34,    "sepeda_motor": 17,    "semikonduktor": 14,
+    "sepeda_motor": 17,    "semikonduktor": 14,
     "smelter": 29,    "kayu": 40
   },
   // =============================================================
