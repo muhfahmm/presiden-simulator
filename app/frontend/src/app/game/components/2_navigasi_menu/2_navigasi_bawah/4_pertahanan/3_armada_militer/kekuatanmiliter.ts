@@ -1,5 +1,5 @@
 // KONSTANTA KEKUATAN SATUAN
-export const INFANTRY_POWER_PER_UNIT = 1; // Per 10.000 Infanteri
+export const INFANTRY_POWER_PER_UNIT = 10000; // 1 Barak = 10.000 Pasukan = 10.000 Kekuatan
 export const TANK_POWER_PER_UNIT = 250;
 export const APC_POWER_PER_UNIT = 100;
 export const ARTILLERY_POWER_PER_UNIT = 150;
@@ -108,31 +108,31 @@ export const calculateTotalMilitaryPower = (armadaData: any, deltas: Record<stri
 
   const totalDarat =
     ((armadaData.barak || 0) + (deltas["barak"] || 0)) * INFANTRY_POWER_PER_UNIT +
-    (armadaData.darat?.tank_tempur_utama || 0) * TANK_POWER_PER_UNIT +
-    (armadaData.darat?.apc_ifv || 0) * APC_POWER_PER_UNIT +
-    (armadaData.darat?.artileri_berat || 0) * ARTILLERY_POWER_PER_UNIT +
-    (armadaData.darat?.sistem_peluncur_roket || 0) * ROCKET_POWER_PER_UNIT +
-    (armadaData.darat?.pertahanan_udara_mobile || 0) * SAM_POWER_PER_UNIT +
-    (armadaData.darat?.kendaraan_taktis || 0) * TACTICAL_POWER_PER_UNIT;
+    ((armadaData.darat?.tank_tempur_utama || 0) + (deltas["tank"] || 0)) * TANK_POWER_PER_UNIT +
+    ((armadaData.darat?.apc_ifv || 0) + (deltas["apc"] || 0)) * APC_POWER_PER_UNIT +
+    ((armadaData.darat?.artileri_berat || 0) + (deltas["artileri"] || 0)) * ARTILLERY_POWER_PER_UNIT +
+    ((armadaData.darat?.sistem_peluncur_roket || 0) + (deltas["rocket"] || 0)) * ROCKET_POWER_PER_UNIT +
+    ((armadaData.darat?.pertahanan_udara_mobile || 0) + (deltas["sam"] || 0)) * SAM_POWER_PER_UNIT +
+    ((armadaData.darat?.kendaraan_taktis || 0) + (deltas["tactical"] || 0)) * TACTICAL_POWER_PER_UNIT;
 
   const totalLaut =
-    (armadaData.laut?.kapal_induk || 0) * CARRIER_POWER_PER_UNIT +
-    (armadaData.laut?.kapal_destroyer || 0) * DESTROYER_POWER_PER_UNIT +
-    (armadaData.laut?.kapal_korvet || 0) * CORVETTE_POWER_PER_UNIT +
-    (armadaData.laut?.kapal_selam_nuklir || 0) * SUBMARINE_POWER_PER_UNIT +
-    (armadaData.laut?.kapal_selam_regular || 0) * REGULAR_SUB_POWER_PER_UNIT +
-    (armadaData.laut?.kapal_ranjau || 0) * MINE_SHIP_POWER_PER_UNIT +
-    (armadaData.laut?.kapal_logistik || 0) * LOGISTICS_POWER_PER_UNIT;
+    ((armadaData.laut?.kapal_induk || 0) + (deltas["carrier"] || 0)) * CARRIER_POWER_PER_UNIT +
+    ((armadaData.laut?.kapal_destroyer || 0) + (deltas["destroyer"] || 0)) * DESTROYER_POWER_PER_UNIT +
+    ((armadaData.laut?.kapal_korvet || 0) + (deltas["corvette"] || 0)) * CORVETTE_POWER_PER_UNIT +
+    ((armadaData.laut?.kapal_selam_nuklir || 0) + (deltas["submarine"] || 0)) * SUBMARINE_POWER_PER_UNIT +
+    ((armadaData.laut?.kapal_selam_regular || 0) + (deltas["reg_sub"] || 0)) * REGULAR_SUB_POWER_PER_UNIT +
+    ((armadaData.laut?.kapal_ranjau || 0) + (deltas["mine_ship"] || 0)) * MINE_SHIP_POWER_PER_UNIT +
+    ((armadaData.laut?.kapal_logistik || 0) + (deltas["logistics"] || 0)) * LOGISTICS_POWER_PER_UNIT;
 
   const totalUdara =
-    (armadaData.udara?.jet_tempur_siluman || 0) * STEALTH_POWER_PER_UNIT +
-    (armadaData.udara?.jet_tempur_interceptor || 0) * INTERCEPTOR_POWER_PER_UNIT +
-    (armadaData.udara?.pesawat_pengebom || 0) * BOMBER_POWER_PER_UNIT +
-    (armadaData.udara?.helikopter_serang || 0) * ATTACK_HELI_POWER_PER_UNIT +
-    (armadaData.udara?.pesawat_pengintai || 0) * RECON_POWER_PER_UNIT +
-    (armadaData.udara?.drone_intai_uav || 0) * UAV_POWER_PER_UNIT +
-    (armadaData.udara?.drone_kamikaze || 0) * KAMIKAZE_POWER_PER_UNIT +
-    (armadaData.udara?.pesawat_angkut || 0) * TRANSPORT_POWER_PER_UNIT;
+    ((armadaData.udara?.jet_tempur_siluman || 0) + (deltas["stealth_jet"] || 0)) * STEALTH_POWER_PER_UNIT +
+    ((armadaData.udara?.jet_tempur_interceptor || 0) + (deltas["interceptor"] || 0)) * INTERCEPTOR_POWER_PER_UNIT +
+    ((armadaData.udara?.pesawat_pengebom || 0) + (deltas["bomber"] || 0)) * BOMBER_POWER_PER_UNIT +
+    ((armadaData.udara?.helikopter_serang || 0) + (deltas["heli_attack"] || 0)) * ATTACK_HELI_POWER_PER_UNIT +
+    ((armadaData.udara?.pesawat_pengintai || 0) + (deltas["recon_plane"] || 0)) * RECON_POWER_PER_UNIT +
+    ((armadaData.udara?.drone_intai_uav || 0) + (deltas["uav"] || 0)) * UAV_POWER_PER_UNIT +
+    ((armadaData.udara?.drone_kamikaze || 0) + (deltas["kamikaze"] || 0)) * KAMIKAZE_POWER_PER_UNIT +
+    ((armadaData.udara?.pesawat_angkut || 0) + (deltas["transport"] || 0)) * TRANSPORT_POWER_PER_UNIT;
 
   return {
     darat: totalDarat,

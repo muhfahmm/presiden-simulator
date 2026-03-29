@@ -7,19 +7,17 @@ export const infrastrukturRate = {
     unit: "Unit",
     maintenanceCost: 1,
     buildTime: 15,
-    buildCost: 5,
-    lowongan_kerja: 50
+    buildCost: 5
   },
   jalan_tol: {
     key: "jalan_tol",
     dataKey: "jalan_tol",
-    desc: "Jalan Raya / Tol",
+    desc: "Jalan Raya",
     production: 1,
     unit: "Unit",
     maintenanceCost: 5,
     buildTime: 60,
-    buildCost: 80,
-    lowongan_kerja: 200
+    buildCost: 80
   },
   terminal_bus: {
     key: "terminal_bus",
@@ -30,7 +28,7 @@ export const infrastrukturRate = {
     maintenanceCost: 3,
     buildTime: 45,
     buildCost: 30,
-    lowongan_kerja: 100
+    lowongan_kerja: 150
   },
   jalur_kereta: {
     key: "jalur_kereta",

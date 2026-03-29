@@ -22,6 +22,7 @@ import PBBModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_g
 import OrgIntlModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/OrgIntlModal";
 import TingkatHubunganModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/3_tingkat_hubungan/TingkatHubunganModal";
 import BantuanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/4_bantuan/BantuanModal";
+import DiplomasiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/5_diplomasi/DiplomasiModal";
 import KementerianModal from "./7_kementrian/KementerianModal";
 import AgamaModal from "./6_sosial_budaya/1_agama/AgamaModal";
 import IdeologiModal from "./6_sosial_budaya/2_ideologi/IdeologiModal";
@@ -132,6 +133,12 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       />
       <BantuanModal
         isOpen={activeMenu === "Menu:Bantuan"}
+        onClose={() => setActiveMenu("Geopolitik")}
+      />
+      <DiplomasiModal
+        isOpen={activeMenu.startsWith("Menu:Diplomasi")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
         onClose={() => setActiveMenu("Geopolitik")}
       />
       <KementerianModal

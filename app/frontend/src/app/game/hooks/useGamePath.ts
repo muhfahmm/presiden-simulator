@@ -40,10 +40,12 @@ export function useGamePath(path: string[]) {
       else if (pbbTab === 'suara_PBB') initialMenu = "Menu:PBB:suara_PBB";
       else initialMenu = "Menu:PBB";
     }
-    else if (subMenu === 'organisasi-internasional') initialMenu = "Menu:OrganisasiInternasional";
-    else if (subMenu === 'tingkat-hubungan') initialMenu = "Menu:TingkatHubungan";
-    else if (subMenu === 'bantuan') initialMenu = "Menu:Bantuan";
-    else initialMenu = "Peta Taktis";
+    else if (subMenu === 'diplomasi') {
+      const detail = path[2];
+      if (detail) initialMenu = `Menu:Diplomasi:${detail}`;
+      else initialMenu = "Menu:Diplomasi";
+    }
+    else initialMenu = "Geopolitik";
   } else if (category === 'kementrian') {
     if (subMenu === 'kementrian-dashboard') initialMenu = "Dashboard:Kementerian";
     else initialMenu = "Kementerian";
@@ -97,6 +99,8 @@ export function useGamePath(path: string[]) {
       "Menu:OrganisasiInternasional": "/game/geopolitik/organisasi-internasional",
       "Menu:TingkatHubungan": "/game/geopolitik/tingkat-hubungan",
       "Menu:Bantuan": "/game/geopolitik/bantuan",
+      "Menu:Diplomasi": "/game/geopolitik/diplomasi",
+      "Geopolitik": "/game/geopolitik",
       "Kementerian": "/game/kementrian",
       "Dashboard:Kementerian": "/game/kementrian/kementrian-dashboard",
       "Menu:Berita": "/game/berita",
@@ -116,6 +120,12 @@ export function useGamePath(path: string[]) {
     if (!targetPath && activeMenu.startsWith("Menu:Perdagangan:")) {
       const detail = activeMenu.split(":")[2];
       targetPath = `/game/ekonomi/perdagangan/${detail}`;
+    }
+
+    // Dynamic path handling for Diplomasi details
+    if (!targetPath && activeMenu.startsWith("Menu:Diplomasi:")) {
+      const detail = activeMenu.split(":")[2];
+      targetPath = `/game/geopolitik/diplomasi/${detail}`;
     }
 
     targetPath = targetPath || "/game";

@@ -273,6 +273,9 @@ function BuildingCard({ item, onBuild, construction }: any) {
   const diffTime = Math.abs(currentDate - INITIAL_GAME_DATE.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
   const sixMonthIndex = Math.floor(diffDays / 180);
+  const nextUpdateMs = INITIAL_GAME_DATE.getTime() + (sixMonthIndex + 1) * 180 * 24 * 60 * 60 * 1000;
+  const nextUpdateDate = new Date(nextUpdateMs);
+  const nextDateStr = `${nextUpdateDate.getDate().toString().padStart(2, '0')}-${(nextUpdateDate.getMonth() + 1).toString().padStart(2, '0')}-${nextUpdateDate.getFullYear()}`;
   const seed = (sixMonthIndex + (item.label?.length || 0)) % 100;
   const occupancyPercentage = 0.75 + (seed % 20) / 100;
   const totalPositions = (item.lowongan_kerja || 0) * (item.count || 0);
@@ -331,6 +334,7 @@ function BuildingCard({ item, onBuild, construction }: any) {
                 </div>
                 <div className="flex flex-col items-end">
                   <span className="text-[14px] font-black text-emerald-400">{filledPositions.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-400">/ {totalPositions.toLocaleString('id-ID')}</span></span>
+                  <span className="text-[8px] font-black text-emerald-500 uppercase tracking-widest leading-none italic opacity-90">UPDATE: {nextDateStr}</span>
                 </div>
               </div>
             </div>
@@ -397,21 +401,21 @@ function BuildingCard({ item, onBuild, construction }: any) {
         <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-2 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
           {/* Row 1: Total Unit */}
           <div className="flex justify-between items-baseline gap-2">
-            <span className="text-[10px] font-black text-zinc-500 uppercase tracking-[0.15em] italic">Total Unit</span>
-            <span className="text-[15px] font-black text-emerald-400 tracking-tight">
+            <span className="text-[13px] font-black text-zinc-500 uppercase tracking-[0.15em] italic">Total Unit</span>
+            <span className="text-[22px] font-black text-emerald-400 tracking-tight">
               {(item.count || 0).toLocaleString('id-ID')}
-              <span className="text-[10px] text-emerald-500/50 font-normal uppercase italic ml-1">Unit</span>
+              <span className="text-[12px] text-emerald-500/50 font-normal uppercase italic ml-1">Unit</span>
             </span>
           </div>
           {/* Row 2: Kalkulasi Total Kekuatan */}
           <div className="flex items-center justify-between gap-1 pt-1 border-t border-zinc-800/30">
-            <span className="text-[9px] font-black text-zinc-600 uppercase tracking-[0.15em] italic whitespace-nowrap">
+            <span className="text-[12px] font-black text-zinc-600 uppercase tracking-[0.15em] italic whitespace-nowrap">
               {(item.count || 0).toLocaleString('id-ID')} × {(item.power || 0).toLocaleString('id-ID')}
             </span>
-            <span className="text-[9px] text-zinc-700 font-bold">=</span>
-            <span className="text-[14px] font-black text-amber-400 tracking-tight leading-none">
+            <span className="text-[12px] text-zinc-700 font-bold">=</span>
+            <span className="text-[19px] font-black text-amber-400 tracking-tight leading-none">
               {((item.count || 0) * (item.power || 0)).toLocaleString('id-ID')}
-              <span className="text-[8px] text-amber-500/50 font-bold uppercase ml-1 italic">Kekuatan</span>
+              <span className="text-[11px] text-amber-500/50 font-bold uppercase ml-1 italic">Kekuatan</span>
             </span>
           </div>
         </div>
@@ -435,8 +439,8 @@ function BuildingCard({ item, onBuild, construction }: any) {
         ) : (
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
-              <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Pengadaan</span>
-              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
+              <span className="text-[13px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Pengadaan</span>
+              <span className="text-xl font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
             </div>
             <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20">
               Bangun

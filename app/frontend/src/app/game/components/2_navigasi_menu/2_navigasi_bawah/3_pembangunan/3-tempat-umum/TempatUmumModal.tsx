@@ -8,6 +8,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
+import { infrastrukturRate } from "@/app/game/components/harga_bangunan/3_tempat_umum/2_harga_bangunan_infrastruktur";
 
 interface ModalProps {
   isOpen: boolean;
@@ -103,16 +104,16 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
       icon: Ship,
       color: "text-cyan-400",
       items: [
-        { key: "jalur_sepeda", groupId: "infra_darat", label: "Jalur Sepeda", icon: Bike, desc: "Logistik", tarif: 1, unit: "Unit", cost: 5, buildTime: 15, maintenanceCost: 1, count: (currentData.infrastruktur?.jalur_sepeda || 0) + ((buildingDeltas["jalur_sepeda"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_sepeda },
-        { key: "jalan_tol", groupId: "infra_darat", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", tarif: 1, unit: "Unit", cost: 80, buildTime: 60, maintenanceCost: 5, count: (currentData.infrastruktur?.jalan_tol || 0) + ((buildingDeltas["jalan_tol"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalan_tol },
-        { key: "terminal_bus", groupId: "infra_darat", label: "Terminal Bus", icon: Bus, desc: "Transportasi", tarif: 1, unit: "Unit", cost: 30, buildTime: 45, maintenanceCost: 3, count: (currentData.infrastruktur?.terminal_bus || 0) + ((buildingDeltas["terminal_bus"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.terminal_bus },
+        { ...infrastrukturRate.jalur_sepeda, groupId: "infra_darat", label: "Jalur Sepeda", icon: Bike, desc: "Logistik", tarif: 1, unit: "Unit", cost: infrastrukturRate.jalur_sepeda.buildCost, count: (currentData.infrastruktur?.jalur_sepeda || 0) + ((buildingDeltas["jalur_sepeda"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_sepeda },
+        { ...infrastrukturRate.jalan_tol, groupId: "infra_darat", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", tarif: 1, unit: "Unit", cost: infrastrukturRate.jalan_tol.buildCost, count: (currentData.infrastruktur?.jalan_tol || 0) + ((buildingDeltas["jalan_tol"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalan_tol },
+        { ...infrastrukturRate.terminal_bus, groupId: "infra_darat", label: "Terminal Bus", icon: Bus, desc: "Transportasi", tarif: 1, unit: "Unit", cost: infrastrukturRate.terminal_bus.buildCost, count: (currentData.infrastruktur?.terminal_bus || 0) + ((buildingDeltas["terminal_bus"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.terminal_bus },
         
-        { key: "jalur_kereta", groupId: "perkeretaapian", label: "Kereta Api", icon: TrainFront, desc: "Logistik", tarif: 1, unit: "Unit", cost: 120, buildTime: 90, maintenanceCost: 10, count: (currentData.infrastruktur?.jalur_kereta || 0) + ((buildingDeltas["jalur_kereta"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_kereta },
-        { key: "kereta_bawah_tanah", groupId: "perkeretaapian", label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transportasi", tarif: 1, unit: "Unit", cost: 150, buildTime: 120, maintenanceCost: 15, count: (currentData.infrastruktur?.kereta_bawah_tanah || 0) + ((buildingDeltas["kereta_bawah_tanah"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.kereta_bawah_tanah },
+        { ...infrastrukturRate.jalur_kereta, groupId: "perkeretaapian", label: "Stasiun Kereta Api", icon: TrainFront, desc: "Logistik", tarif: 1, unit: "Unit", cost: infrastrukturRate.jalur_kereta.buildCost, count: (currentData.infrastruktur?.jalur_kereta || 0) + ((buildingDeltas["jalur_kereta"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_kereta },
+        { ...infrastrukturRate.kereta_bawah_tanah, groupId: "perkeretaapian", label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transportasi", tarif: 1, unit: "Unit", cost: infrastrukturRate.kereta_bawah_tanah.buildCost, count: (currentData.infrastruktur?.kereta_bawah_tanah || 0) + ((buildingDeltas["kereta_bawah_tanah"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.kereta_bawah_tanah },
         
-        { key: "pelabuhan_laut", groupId: "maritim_udara", label: "Pelabuhan", icon: Ship, desc: "Maritim", tarif: 1, unit: "Unit", cost: 350, buildTime: 180, maintenanceCost: 40, count: (currentData.infrastruktur?.pelabuhan_laut || 0) + ((buildingDeltas["seaport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.pelabuhan_laut },
-        { key: "bandara", groupId: "maritim_udara", label: "Bandara", icon: Plane, desc: "Udara", tarif: 1, unit: "Unit", cost: 450, buildTime: 240, maintenanceCost: 60, count: (currentData.infrastruktur?.bandara || 0) + ((buildingDeltas["bandara"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bandara },
-        { key: "helipad", groupId: "maritim_udara", label: "Helipad", icon: Plane, desc: "Udara", tarif: 1, unit: "Unit", cost: 15, buildTime: 30, maintenanceCost: 5, count: (currentData.infrastruktur?.helipad || 0) + ((buildingDeltas["helipad"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.helipad },
+        { ...infrastrukturRate.pelabuhan_laut, groupId: "maritim_udara", label: "Pelabuhan", icon: Ship, desc: "Maritim", tarif: 1, unit: "Unit", cost: infrastrukturRate.pelabuhan_laut.buildCost, count: (currentData.infrastruktur?.pelabuhan_laut || 0) + ((buildingDeltas["seaport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.pelabuhan_laut },
+        { ...infrastrukturRate.bandara, groupId: "maritim_udara", label: "Bandara", icon: Plane, desc: "Udara", tarif: 1, unit: "Unit", cost: infrastrukturRate.bandara.buildCost, count: (currentData.infrastruktur?.bandara || 0) + ((buildingDeltas["bandara"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bandara },
+        { ...infrastrukturRate.helipad, groupId: "maritim_udara", label: "Helipad", icon: Plane, desc: "Udara", tarif: 1, unit: "Unit", cost: infrastrukturRate.helipad.buildCost, count: (currentData.infrastruktur?.helipad || 0) + ((buildingDeltas["helipad"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.helipad },
       ]
     },
     {
@@ -363,7 +364,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
   const filledVacancies = Math.floor(totalVacancies * occupancyPercentage);
 
   return (
-    <div className={`bg-zinc-900/40 border ${progress ? 'border-cyan-500/30 bg-cyan-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative overflow-hidden h-full min-h-[440px]`}>
+    <div className={`bg-zinc-900/40 border ${progress ? 'border-cyan-500/30 bg-cyan-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative overflow-hidden h-full min-h-[380px]`}>
       {progress && (
         <div className="absolute top-0 left-0 bottom-0 bg-cyan-500/5 transition-all duration-1000" style={{ width: `${progress.percentage}%` }} />
       )}
@@ -409,26 +410,34 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
                 <span className="text-[14px] font-black text-amber-500">{item.consumption > 0 ? `${item.consumption} MW` : 'SUPPLY'}</span>
               </div>
 
-              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-400"><Users size={12} /></div>
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Lowongan</span>
-                </div>
-                <span className="text-[14px] font-black text-blue-400">+{lowongan.toLocaleString('id-ID')} <span className="text-[9px] text-blue-500/50 italic opacity-80">/ UNIT</span></span>
-              </div>
-
-              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-cyan-500/10 rounded-lg text-cyan-500"><Briefcase size={12} /></div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Okupansi Tenaga Kerja</span>
+              {lowongan > 0 && (
+                <>
+                  <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-400">
+                        <Users size={12} />
+                      </div>
+                      <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Lowongan</span>
+                    </div>
+                    <span className="text-[14px] font-black text-blue-400">+{lowongan.toLocaleString('id-ID')} <span className="text-[9px] text-blue-500/50 italic opacity-80">/ UNIT</span></span>
                   </div>
-                </div>
-                <div className="flex flex-col items-end">
-                  <span className="text-[14px] font-black text-cyan-400">{filledVacancies.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-400">/ {totalVacancies.toLocaleString('id-ID')}</span></span>
-                  <span className="text-[8px] font-black text-cyan-500 uppercase tracking-widest leading-none italic opacity-90">UPDATE: {nextDateStr}</span>
-                </div>
-              </div>
+
+                  <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-1.5 bg-cyan-500/10 rounded-lg text-cyan-500">
+                        <Briefcase size={12} />
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Okupansi Tenaga Kerja</span>
+                      </div>
+                    </div>
+                    <div className="flex flex-col items-end">
+                      <span className="text-[14px] font-black text-cyan-400">{filledVacancies.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-400">/ {totalVacancies.toLocaleString('id-ID')}</span></span>
+                      <span className="text-[8px] font-black text-cyan-500 uppercase tracking-widest leading-none italic opacity-90">UPDATE: {nextDateStr}</span>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
@@ -492,7 +501,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
           {lowongan > 0 && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-blue-500/10 rounded-lg">
-                <Users size={12} className="text-blue-400" />
+                <Users size={12} />
               </div>
               <span className="text-[12px] font-bold text-blue-400/80">
                 Lowongan: {lowongan.toLocaleString('id-ID')} Jiwa/unit

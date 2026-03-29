@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import {
   Star, Wallet, Wrench, Shield, Globe, Landmark, LayoutGrid, ChevronLeft,
   Hammer, Swords as MilitaryIcon, Users2, BarChart3, TrendingUp,
-  ArrowRightLeft, FileText, CreditCard, Zap, Package, Home, ShieldAlert, Gem, Tag, Smile, Eye, HeartHandshake, HandHelping
+  ArrowRightLeft, FileText, CreditCard, Zap, Package, Home, ShieldAlert, Gem, Tag, Smile, Eye, HeartHandshake, HandHelping, Handshake
 } from "lucide-react";
 
 interface BottomNavProps {
@@ -55,6 +55,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
     ],
     "Geopolitik": [
       { id: "Menu:PBB", label: "PBB", icon: Globe },
+      { id: "Menu:Diplomasi", label: "Diplomasi", icon: Handshake },
       { id: "Menu:OrganisasiInternasional", label: "Organisasi Internasional", icon: Landmark },
       { id: "Menu:TingkatHubungan", label: "Tingkat Hubungan", icon: HeartHandshake },
       { id: "Menu:Bantuan", label: "Bantuan", icon: HandHelping },

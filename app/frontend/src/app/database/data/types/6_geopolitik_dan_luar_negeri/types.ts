@@ -1,5 +1,5 @@
 export interface SektorGeopolitik {
-  sekutu: string[];
+  sekutu?: string[];
   musuh?: string[];
   sikap: "Globalis" | "Isolasionis" | "Netral";
   pengaruh_internasional: {
@@ -16,4 +16,8 @@ export interface SektorGeopolitik {
     jenis: "Perdagangan" | "Militer" | "Penelitian" | "Politik";
     status: "Aktif" | "Tertunda" | "Pendinginan";
   }[];
+  reputasi_diplomatik: "Unggul" | "Baik" | "Netral" | "Buruk" | "Terisolasi";
+  aliansi_aktif: string[];
+  pengaruh_global: number;
+  peringkat_diplomasi: number;
 }
