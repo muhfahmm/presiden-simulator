@@ -32,7 +32,7 @@ export default function PertahananModal({ isOpen, onClose, data }: ModalProps) {
       title: "Alutsista & Unit",
       icon: Shield,
       items: [
-        { label: "Divisi Infanteri", icon: Users, desc: `${((fleet.personel?.infanteri_reguler || 0) / 1000).toFixed(1)}k Personel`, value: fleet.personel?.infanteri_reguler || 0 },
+
         { label: "Resimen Tank", icon: Truck, desc: `${fleet.darat.tank_tempur_utama} MBT Siaga`, value: fleet.darat.tank_tempur_utama },
         { label: "Armada Laut", icon: Anchor, desc: `${fleet.laut.kapal_destroyer} Destroyer Aktif`, value: fleet.laut.kapal_destroyer },
         { label: "Skuadron Udara", icon: Plane, desc: `${fleet.udara.jet_tempur_siluman} Jet Stealth Ready`, value: fleet.udara.jet_tempur_siluman },

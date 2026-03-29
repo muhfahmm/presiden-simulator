@@ -6,7 +6,7 @@ import { internationalHubs } from "../3_hub/hubs";
 import { getInitialAgreements } from "../../database_mitra/agreementsRegistry";
 import { tradeStorage } from "../../TradeStorage";
 import { allRelations } from "@/app/database/data/countries/relations/index";
-import { calculateTradeRoute, getHubForCountry, Point } from "../2_rute/TradeRoutes";
+import { calculateTradeRoute, getHubForCountry, Point } from "../2_rute/tradeRoutes";
 import { timeStorage } from "../../timeStorage";
 
 interface TradeMapCanvasProps {

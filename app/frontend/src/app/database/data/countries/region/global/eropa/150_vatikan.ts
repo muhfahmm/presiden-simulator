@@ -1,0 +1,187 @@
+import { CountryData } from "@/app/database/data/types";
+import { vatikan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/eropa/150_vatikan";
+import { vatikan_armada } from "../../modules/2_militer/2_armada_militer/eropa/150_vatikan";
+import { vatikan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/eropa/150_vatikan";
+import { vatikan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/eropa/150_vatikan";
+import { vatikan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/eropa/150_vatikan";
+import { vatikan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/eropa/150_vatikan";
+import { vatikan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/eropa/150_vatikan";
+import { vatikan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/eropa/150_vatikan";
+import { vatikan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/eropa/150_vatikan";
+import { vatikan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/eropa/150_vatikan";
+import { vatikan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/eropa/150_vatikan";
+import { vatikan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/150_vatikan";
+import { vatikan_profile } from "../../modules/0_profiles/eropa/150_vatikan";
+import { vatikan_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/150_vatikan";
+
+export const vatikan: CountryData = {
+  ...vatikan_profile,
+  "sektor_listrik": vatikan_listrik,
+  "infrastruktur": vatikan_infrastruktur,
+  "sektor_ekstraksi": vatikan_ekstraksi,
+  "sektor_manufaktur": vatikan_manufaktur,
+  "sektor_peternakan": vatikan_peternakan,
+  "sektor_agrikultur": vatikan_agrikultur,
+  "sektor_perikanan": vatikan_perikanan,
+  "sektor_olahan_pangan": vatikan_olahan_pangan,
+  "sektor_farmasi": vatikan_farmasi,
+  "sektor_pertahanan": vatikan_pertahanan,
+  "armada_militer": vatikan_armada,
+  "militer_strategis": vatikan_strategis,
+  "armada_kepolisian": vatikan_kepolisian,
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
+  },
+  "sektor_sosial": {
+    "pendidikan": {
+      "prasekolah": 11,
+      "dasar": 10,
+      "menengah": 4,
+      "lanjutan": 33,
+      "universitas": 11,
+      "lembaga_pendidikan": 20,
+      "laboratorium": 33,
+      "observatorium": 20,
+      "pusat_penelitian": 22,
+      "pusat_pengembangan": 18,
+      "literasi": 66
+    },
+    "kesehatan": {
+      "rumah_sakit_besar": 39,
+      "rumah_sakit_kecil": 11,
+      "pusat_diagnostik": 4,
+      "harapan_hidup": 14,
+      "indeks_kesehatan": 85
+    },
+    "hukum": {
+      "pusat_bantuan_hukum": 27,
+      "pengadilan": 30,
+      "kejaksaan": 38,
+      "pos_polisi": 29,
+      "armada_mobil_polisi": 1565,
+      "akademi_polisi": 33,
+      "indeks_korupsi": 55,
+      "indeks_keamanan": 74
+  }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 12,
+      "sirkuit_balap": 13,
+      "stadion": 33,
+      "stadion_internasional": 23
+  },
+  "un_vote": 34,
+  // =============================================================
+  // 11. 💰 PAJAK & EKONOMI
+  // =============================================================
+  "pajak": {
+    "ppn": {
+      "tarif": 15,
+      "kepuasan": 67,
+      "pendapatan": 2
+    },
+    "korporasi": {
+      "tarif": 1,
+      "kepuasan": 52,
+      "pendapatan": 0
+    },
+    "penghasilan": {
+      "tarif": 24,
+      "kepuasan": 61,
+      "pendapatan": 6
+    },
+    "bea_cukai": {
+      "tarif": 37,
+      "kepuasan": 86,
+      "pendapatan": 4
+    },
+    "lingkungan": {
+      "tarif": 26,
+      "kepuasan": 88,
+      "pendapatan": 4
+    },
+    "transit_sekutu": { "tarif": 5, "kepuasan": 85, "pendapatan": 1 },
+    "transit_non_sekutu": { "tarif": 15, "kepuasan": 75, "pendapatan": 2 },
+    "lainnya": {
+      "tarif": 4,
+      "kepuasan": 93,
+      "pendapatan": 0
+    }
+  },
+  // =============================================================
+  // 12. 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+  "gaji": {
+    "gaji_asn": 80,
+    "gaji_guru": 90,
+    "gaji_medis": 90,
+    "gaji_militer": 80
+  },
+  "subsidi": {
+    "subsidi_energi": 50,
+    "subsidi_pangan": 25,
+    "subsidi_kesehatan": 75,
+    "subsidi_pendidikan": 100,
+    "subsidi_umkm": 50,
+    "subsidi_transportasi": 75,
+    "subsidi_perumahan": 75
+  },
+  // =============================================================
+  // 13. 🛒 HARGA PASAR DOMESTIK
+  // =============================================================
+  "harga": {
+    "harga_beras": 16000,
+    "harga_daging_sapi": 52050,
+    "harga_ayam": 20500,
+    "harga_minyak_goreng": 30800,
+    "harga_gula": 14400,
+    "harga_telur": 31100,
+    "harga_bbm": 14980,
+    "harga_listrik": 3200,
+    "harga_air": 4160,
+    "harga_obat": 157900,
+    "harga_pendidikan": 241950
+  },
+    // =============================================================
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // =============================================================
+  "geopolitik": {
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 17,
+      "kekuatan_keras": 24,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  },
+  // =============================================================
+  // 16. 🏛️ KEMENTERIAN NEGARA
+  // =============================================================
+  "kementerian": {
+    "kesehatan": 17,
+    "pendidikan": 23,
+    "keamanan": 35,
+    "keuangan": 17,
+    "lingkungan": 60
+  }
+};

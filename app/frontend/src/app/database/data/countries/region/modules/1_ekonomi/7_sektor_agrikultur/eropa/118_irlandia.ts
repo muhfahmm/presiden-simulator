@@ -1,0 +1,8 @@
+export const irlandia_agrikultur = {
+    "padi": 37,
+    "gandum_jagung": 20,
+    "sayur_umbi": 22,
+    "kedelai": 16,
+    "kelapa_sawit": 4,
+    "kopi_teh_kakao": 10
+  } as const;

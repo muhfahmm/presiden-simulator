@@ -1,0 +1,187 @@
+import { CountryData } from "@/app/database/data/types";
+import { tanjung_verde_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/afrika/51_tanjung_verde";
+import { tanjung_verde_armada } from "../../modules/2_militer/2_armada_militer/afrika/51_tanjung_verde";
+import { tanjung_verde_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/51_tanjung_verde";
+import { tanjung_verde_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/51_tanjung_verde";
+import { tanjung_verde_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/51_tanjung_verde";
+import { tanjung_verde_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/51_tanjung_verde";
+import { tanjung_verde_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/51_tanjung_verde";
+import { tanjung_verde_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/51_tanjung_verde";
+import { tanjung_verde_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/51_tanjung_verde";
+import { tanjung_verde_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/51_tanjung_verde";
+import { tanjung_verde_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/51_tanjung_verde";
+import { tanjung_verde_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/51_tanjung_verde";
+import { tanjung_verde_profile } from "../../modules/0_profiles/afrika/51_tanjung_verde";
+import { tanjung_verde_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/51_tanjung_verde";
+
+export const tanjung_verde: CountryData = {
+  ...tanjung_verde_profile,
+  "sektor_listrik": tanjung_verde_listrik,
+  "infrastruktur": tanjung_verde_infrastruktur,
+  "sektor_ekstraksi": tanjung_verde_ekstraksi,
+  "sektor_manufaktur": tanjung_verde_manufaktur,
+  "sektor_peternakan": tanjung_verde_peternakan,
+  "sektor_agrikultur": tanjung_verde_agrikultur,
+  "sektor_perikanan": tanjung_verde_perikanan,
+  "sektor_olahan_pangan": tanjung_verde_olahan_pangan,
+  "sektor_farmasi": tanjung_verde_farmasi,
+  "sektor_pertahanan": tanjung_verde_pertahanan,
+  "armada_militer": tanjung_verde_armada,
+  "militer_strategis": tanjung_verde_strategis,
+  "armada_kepolisian": tanjung_verde_kepolisian,
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
+  },
+  "sektor_sosial": {
+    "pendidikan": {
+      "prasekolah": 1,
+      "dasar": 8,
+      "menengah": 15,
+      "lanjutan": 3,
+      "universitas": 7,
+      "lembaga_pendidikan": 13,
+      "laboratorium": 31,
+      "observatorium": 12,
+      "pusat_penelitian": 36,
+      "pusat_pengembangan": 11,
+      "literasi": 95
+  },
+    "kesehatan": {
+      "rumah_sakit_besar": 39,
+      "rumah_sakit_kecil": 16,
+      "pusat_diagnostik": 20,
+      "harapan_hidup": 37,
+      "indeks_kesehatan": 85
+  },
+    "hukum": {
+      "pusat_bantuan_hukum": 39,
+      "pengadilan": 19,
+      "kejaksaan": 23,
+      "pos_polisi": 18,
+      "armada_mobil_polisi": 5017,
+      "akademi_polisi": 37,
+      "indeks_korupsi": 79,
+      "indeks_keamanan": 51
+  }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 12,
+      "sirkuit_balap": 5,
+      "stadion": 24,
+      "stadion_internasional": 39
+  },
+  "un_vote": 97,
+  // =============================================================
+  // 11. 💰 PAJAK & EKONOMI
+  // =============================================================
+  "pajak": {
+    "ppn": {
+      "tarif": 40,
+      "kepuasan": 67,
+      "pendapatan": 7
+    },
+    "korporasi": {
+      "tarif": 31,
+      "kepuasan": 52,
+      "pendapatan": 6
+    },
+    "penghasilan": {
+      "tarif": 15,
+      "kepuasan": 61,
+      "pendapatan": 3
+    },
+    "bea_cukai": {
+      "tarif": 27,
+      "kepuasan": 86,
+      "pendapatan": 6
+    },
+    "lingkungan": {
+      "tarif": 18,
+      "kepuasan": 88,
+      "pendapatan": 4
+    },
+    "transit_sekutu": { "tarif": 5, "kepuasan": 85, "pendapatan": 1 },
+    "transit_non_sekutu": { "tarif": 15, "kepuasan": 75, "pendapatan": 2 },
+    "lainnya": {
+      "tarif": 20,
+      "kepuasan": 93,
+      "pendapatan": 2
+    }
+  },
+  // =============================================================
+  // 12. 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+  "gaji": {
+    "gaji_asn": 40,
+    "gaji_guru": 40,
+    "gaji_medis": 50,
+    "gaji_militer": 40
+  },
+  "subsidi": {
+    "subsidi_energi": 25,
+    "subsidi_pangan": 50,
+    "subsidi_kesehatan": 25,
+    "subsidi_pendidikan": 50,
+    "subsidi_umkm": 25,
+    "subsidi_transportasi": 25,
+    "subsidi_perumahan": 0
+  },
+  // =============================================================
+  // 13. 🛒 HARGA PASAR DOMESTIK
+  // =============================================================
+  "harga": {
+    "harga_beras": 12800,
+    "harga_daging_sapi": 52050,
+    "harga_ayam": 32800,
+    "harga_minyak_goreng": 15400,
+    "harga_gula": 14400,
+    "harga_telur": 31100,
+    "harga_bbm": 8560,
+    "harga_listrik": 3200,
+    "harga_air": 4160,
+    "harga_obat": 157900,
+    "harga_pendidikan": 483900
+  },
+    // =============================================================
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // =============================================================
+  "geopolitik": {
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 38,
+      "kekuatan_keras": 30,
+      "prestise_diplomatik": 57
+  },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+  },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+  },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+  }
+    ]
+  },
+  // =============================================================
+  // 16. 🏛️ KEMENTERIAN NEGARA
+  // =============================================================
+  "kementerian": {
+    "kesehatan": 17,
+    "pendidikan": 4,
+    "keamanan": 39,
+    "keuangan": 13,
+    "lingkungan": 60
+  }
+};

@@ -1,0 +1,187 @@
+import { CountryData } from "@/app/database/data/types";
+import { kirgizstan_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/asia/74_kirgizstan";
+import { kirgizstan_armada } from "../../modules/2_militer/2_armada_militer/asia/74_kirgizstan";
+import { kirgizstan_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/asia/74_kirgizstan";
+import { kirgizstan_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/asia/74_kirgizstan";
+import { kirgizstan_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/asia/74_kirgizstan";
+import { kirgizstan_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/asia/74_kirgizstan";
+import { kirgizstan_listrik } from "../../modules/1_ekonomi/2_kelistrikan/asia/74_kirgizstan";
+import { kirgizstan_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/asia/74_kirgizstan";
+import { kirgizstan_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/asia/74_kirgizstan";
+import { kirgizstan_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/asia/74_kirgizstan";
+import { kirgizstan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asia/74_kirgizstan";
+import { kirgizstan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/74_kirgizstan";
+import { kirgizstan_profile } from "../../modules/0_profiles/asia/74_kirgizstan";
+import { kirgizstan_strategis } from "../../modules/2_militer/3_militer_strategis/asia/74_kirgizstan";
+
+export const kirgizstan: CountryData = {
+  ...kirgizstan_profile,
+  "sektor_listrik": kirgizstan_listrik,
+  "infrastruktur": kirgizstan_infrastruktur,
+  "sektor_ekstraksi": kirgizstan_ekstraksi,
+  "sektor_manufaktur": kirgizstan_manufaktur,
+  "sektor_peternakan": kirgizstan_peternakan,
+  "sektor_agrikultur": kirgizstan_agrikultur,
+  "sektor_perikanan": kirgizstan_perikanan,
+  "sektor_olahan_pangan": kirgizstan_olahan_pangan,
+  "sektor_farmasi": kirgizstan_farmasi,
+  "sektor_pertahanan": kirgizstan_pertahanan,
+  "armada_militer": kirgizstan_armada,
+  "militer_strategis": kirgizstan_strategis,
+  "armada_kepolisian": kirgizstan_kepolisian,
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
+  },
+  "sektor_sosial": {
+    "pendidikan": {
+      "prasekolah": 6,
+      "dasar": 5,
+      "menengah": 21,
+      "lanjutan": 18,
+      "universitas": 40,
+      "lembaga_pendidikan": 28,
+      "laboratorium": 17,
+      "observatorium": 20,
+      "pusat_penelitian": 22,
+      "pusat_pengembangan": 14,
+      "literasi": 69
+    },
+    "kesehatan": {
+      "rumah_sakit_besar": 22,
+      "rumah_sakit_kecil": 22,
+      "pusat_diagnostik": 28,
+      "harapan_hidup": 15,
+      "indeks_kesehatan": 85
+    },
+    "hukum": {
+      "pusat_bantuan_hukum": 38,
+      "pengadilan": 15,
+      "kejaksaan": 37,
+      "pos_polisi": 9,
+      "armada_mobil_polisi": 5304,
+      "akademi_polisi": 33,
+      "indeks_korupsi": 90,
+      "indeks_keamanan": 77
+  }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 16,
+      "sirkuit_balap": 25,
+      "stadion": 23,
+      "stadion_internasional": 35
+  },
+  "un_vote": 19,
+  // =============================================================
+  // 11. 💰 PAJAK & EKONOMI
+  // =============================================================
+  "pajak": {
+    "ppn": {
+      "tarif": 34,
+      "kepuasan": 67,
+      "pendapatan": 6
+    },
+    "korporasi": {
+      "tarif": 6,
+      "kepuasan": 52,
+      "pendapatan": 1
+    },
+    "penghasilan": {
+      "tarif": 38,
+      "kepuasan": 61,
+      "pendapatan": 9
+    },
+    "bea_cukai": {
+      "tarif": 9,
+      "kepuasan": 86,
+      "pendapatan": 2
+    },
+    "lingkungan": {
+      "tarif": 19,
+      "kepuasan": 88,
+      "pendapatan": 2
+    },
+    "transit_sekutu": { "tarif": 5, "kepuasan": 85, "pendapatan": 1 },
+    "transit_non_sekutu": { "tarif": 15, "kepuasan": 75, "pendapatan": 2 },
+    "lainnya": {
+      "tarif": 5,
+      "kepuasan": 93,
+      "pendapatan": 0
+    }
+  },
+  // =============================================================
+  // 12. 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+  "gaji": {
+    "gaji_asn": 50,
+    "gaji_guru": 60,
+    "gaji_medis": 80,
+    "gaji_militer": 60
+  },
+  "subsidi": {
+    "subsidi_energi": 75,
+    "subsidi_pangan": 75,
+    "subsidi_kesehatan": 75,
+    "subsidi_pendidikan": 75,
+    "subsidi_umkm": 50,
+    "subsidi_transportasi": 50,
+    "subsidi_perumahan": 50
+  },
+  // =============================================================
+  // 13. 🛒 HARGA PASAR DOMESTIK
+  // =============================================================
+  "harga": {
+    "harga_beras": 16000,
+    "harga_daging_sapi": 52050,
+    "harga_ayam": 41000,
+    "harga_minyak_goreng": 15400,
+    "harga_gula": 14400,
+    "harga_telur": 43540,
+    "harga_bbm": 10700,
+    "harga_listrik": 800,
+    "harga_air": 5200,
+    "harga_obat": 315800,
+    "harga_pendidikan": 387120
+  },
+    // =============================================================
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // =============================================================
+  "geopolitik": {
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 15,
+      "kekuatan_keras": 2,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  },
+  // =============================================================
+  // 16. 🏛️ KEMENTERIAN NEGARA
+  // =============================================================
+  "kementerian": {
+    "kesehatan": 16,
+    "pendidikan": 1,
+    "keamanan": 37,
+    "keuangan": 26,
+    "lingkungan": 60
+  }
+};

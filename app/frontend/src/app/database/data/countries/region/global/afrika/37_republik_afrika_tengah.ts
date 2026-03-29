@@ -1,0 +1,187 @@
+import { CountryData } from "@/app/database/data/types";
+import { republik_afrika_tengah_agrikultur } from "../../modules/1_ekonomi/7_sektor_agrikultur/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_armada } from "../../modules/2_militer/2_armada_militer/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_ekstraksi } from "../../modules/1_ekonomi/4_sektor_ekstraksi/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_farmasi } from "../../modules/1_ekonomi/10_sektor_farmasi/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_infrastruktur } from "../../modules/1_ekonomi/3_infrastruktur/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_kepolisian } from "../../modules/2_militer/4_armada_kepolisian/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_listrik } from "../../modules/1_ekonomi/2_kelistrikan/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_manufaktur } from "../../modules/1_ekonomi/5_sektor_manufaktur/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_olahan_pangan } from "../../modules/1_ekonomi/9_sektor_olahan_pangan/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_perikanan } from "../../modules/1_ekonomi/8_sektor_perikanan/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_profile } from "../../modules/0_profiles/afrika/37_republik_afrika_tengah";
+import { republik_afrika_tengah_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/37_republik_afrika_tengah";
+
+export const republik_afrika_tengah: CountryData = {
+  ...republik_afrika_tengah_profile,
+  "sektor_listrik": republik_afrika_tengah_listrik,
+  "infrastruktur": republik_afrika_tengah_infrastruktur,
+  "sektor_ekstraksi": republik_afrika_tengah_ekstraksi,
+  "sektor_manufaktur": republik_afrika_tengah_manufaktur,
+  "sektor_peternakan": republik_afrika_tengah_peternakan,
+  "sektor_agrikultur": republik_afrika_tengah_agrikultur,
+  "sektor_perikanan": republik_afrika_tengah_perikanan,
+  "sektor_olahan_pangan": republik_afrika_tengah_olahan_pangan,
+  "sektor_farmasi": republik_afrika_tengah_farmasi,
+  "sektor_pertahanan": republik_afrika_tengah_pertahanan,
+  "armada_militer": republik_afrika_tengah_armada,
+  "militer_strategis": republik_afrika_tengah_strategis,
+  "armada_kepolisian": republik_afrika_tengah_kepolisian,
+  "pabrik_militer": {
+    "pabrik_drone_kamikaze": 0,
+    "pabrik_amunisi": 0,
+    "pabrik_kendaraan_tempur": 0,
+    "pabrik_senjata_berat": 0
+  },
+  "sektor_sosial": {
+    "pendidikan": {
+      "prasekolah": 8,
+      "dasar": 36,
+      "menengah": 26,
+      "lanjutan": 35,
+      "universitas": 22,
+      "lembaga_pendidikan": 29,
+      "laboratorium": 38,
+      "observatorium": 18,
+      "pusat_penelitian": 39,
+      "pusat_pengembangan": 32,
+      "literasi": 65
+  },
+    "kesehatan": {
+      "rumah_sakit_besar": 33,
+      "rumah_sakit_kecil": 4,
+      "pusat_diagnostik": 11,
+      "harapan_hidup": 33,
+      "indeks_kesehatan": 85
+  },
+    "hukum": {
+      "pusat_bantuan_hukum": 25,
+      "pengadilan": 30,
+      "kejaksaan": 37,
+      "pos_polisi": 20,
+      "armada_mobil_polisi": 684,
+      "akademi_polisi": 17,
+      "indeks_korupsi": 72,
+      "indeks_keamanan": 80
+  }
+  },
+  "sektor_olahraga": {
+      "kolam_renang": 35,
+      "sirkuit_balap": 38,
+      "stadion": 4,
+      "stadion_internasional": 29
+  },
+  "un_vote": 66,
+  // =============================================================
+  // 11. 💰 PAJAK & EKONOMI
+  // =============================================================
+  "pajak": {
+    "ppn": {
+      "tarif": 30,
+      "kepuasan": 67,
+      "pendapatan": 1
+    },
+    "korporasi": {
+      "tarif": 24,
+      "kepuasan": 52,
+      "pendapatan": 1
+    },
+    "penghasilan": {
+      "tarif": 4,
+      "kepuasan": 61,
+      "pendapatan": 0
+    },
+    "bea_cukai": {
+      "tarif": 30,
+      "kepuasan": 86,
+      "pendapatan": 1
+    },
+    "lingkungan": {
+      "tarif": 25,
+      "kepuasan": 88,
+      "pendapatan": 1
+    },
+    "transit_sekutu": { "tarif": 5, "kepuasan": 85, "pendapatan": 1 },
+    "transit_non_sekutu": { "tarif": 15, "kepuasan": 75, "pendapatan": 1 },
+    "lainnya": {
+      "tarif": 25,
+      "kepuasan": 93,
+      "pendapatan": 1
+    }
+  },
+  // =============================================================
+  // 12. 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+  "gaji": {
+    "gaji_asn": 40,
+    "gaji_guru": 40,
+    "gaji_medis": 40,
+    "gaji_militer": 40
+  },
+  "subsidi": {
+    "subsidi_energi": 25,
+    "subsidi_pangan": 50,
+    "subsidi_kesehatan": 25,
+    "subsidi_pendidikan": 50,
+    "subsidi_umkm": 50,
+    "subsidi_transportasi": 50,
+    "subsidi_perumahan": 25
+  },
+  // =============================================================
+  // 13. 🛒 HARGA PASAR DOMESTIK
+  // =============================================================
+  "harga": {
+    "harga_beras": 32000,
+    "harga_daging_sapi": 83280,
+    "harga_ayam": 41000,
+    "harga_minyak_goreng": 15400,
+    "harga_gula": 14400,
+    "harga_telur": 31100,
+    "harga_bbm": 14980,
+    "harga_listrik": 2240,
+    "harga_air": 4160,
+    "harga_obat": 221060,
+    "harga_pendidikan": 483900
+  },
+    // =============================================================
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // =============================================================
+  "geopolitik": {
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 23,
+      "kekuatan_keras": 20,
+      "prestise_diplomatik": 57
+  },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+  },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+  },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+  }
+    ]
+  },
+  // =============================================================
+  // 16. 🏛️ KEMENTERIAN NEGARA
+  // =============================================================
+  "kementerian": {
+    "kesehatan": 9,
+    "pendidikan": 38,
+    "keamanan": 22,
+    "keuangan": 32,
+    "lingkungan": 60
+  }
+};

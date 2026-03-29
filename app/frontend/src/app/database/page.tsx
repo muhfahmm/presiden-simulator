@@ -1182,7 +1182,7 @@ export default function DatabasePage() {
                       <div className={`grid ${getGridCols(rightWidth)} gap-4`}>
                         <div className="flex flex-col gap-1">
                           <span className="text-xs font-bold text-zinc-500 uppercase">Diplomacy</span>
-                          <span className="text-sm font-black text-blue-400">{currentData.geopolitik.pengaruh_internasional.prestise_diplomatik} IX</span>
+                          <span className="text-sm font-black text-blue-400">{currentData.geopolitik?.pengaruh_internasional?.prestise_diplomatik || 0} IX</span>
                         </div>
                       </div>
 
@@ -1190,19 +1190,19 @@ export default function DatabasePage() {
                         <div className="flex flex-col gap-1">
                           <div className="flex justify-between text-xs font-bold uppercase">
                             <span className="text-zinc-500">Soft Power</span>
-                            <span className="text-indigo-400">{currentData.geopolitik.pengaruh_internasional.kekuatan_lunak}%</span>
+                            <span className="text-indigo-400">{currentData.geopolitik?.pengaruh_internasional?.kekuatan_lunak || 0}%</span>
                           </div>
                           <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
-                            <div className="h-full bg-indigo-500 transition-all duration-500" style={{ width: `${currentData.geopolitik.pengaruh_internasional.kekuatan_lunak}%` }} />
+                            <div className="h-full bg-indigo-500 transition-all duration-500" style={{ width: `${currentData.geopolitik?.pengaruh_internasional?.kekuatan_lunak || 0}%` }} />
                           </div>
                         </div>
                         <div className="flex flex-col gap-1">
                           <div className="flex justify-between text-xs font-bold uppercase">
                             <span className="text-zinc-500">Hard Power</span>
-                            <span className="text-red-400">{currentData.geopolitik.pengaruh_internasional.kekuatan_keras}%</span>
+                            <span className="text-red-400">{currentData.geopolitik?.pengaruh_internasional?.kekuatan_keras || 0}%</span>
                           </div>
                           <div className="h-1 bg-zinc-800 rounded-full overflow-hidden">
-                            <div className="h-full bg-red-500 transition-all duration-500" style={{ width: `${currentData.geopolitik.pengaruh_internasional.kekuatan_keras}%` }} />
+                            <div className="h-full bg-red-500 transition-all duration-500" style={{ width: `${currentData.geopolitik?.pengaruh_internasional?.kekuatan_keras || 0}%` }} />
                           </div>
                         </div>
                       </div>
@@ -1210,7 +1210,7 @@ export default function DatabasePage() {
                       <div className="flex flex-col gap-1.5 scroll-area max-h-[60px] no-scrollbar overflow-y-auto">
                         <span className="text-xs font-bold text-zinc-500 uppercase">Sekutu Utama</span>
                         <div className="flex flex-wrap gap-1">
-                          {currentData.geopolitik.sekutu.map((a, i) => (
+                          {currentData.geopolitik?.sekutu?.map((a, i) => (
                             <span key={i} className="text-xs font-bold text-zinc-300 bg-zinc-800 px-1.5 py-0.5 rounded border border-zinc-700/50">{a}</span>
                           ))}
                         </div>
@@ -1222,7 +1222,7 @@ export default function DatabasePage() {
                     <div className="flex flex-col gap-2 animate-in fade-in slide-in-from-right-1 duration-300">
                       <span className="text-xs font-bold text-zinc-500 uppercase">Keanggotaan Organisasi</span>
                       <div className="flex flex-col gap-1.5">
-                        {currentData.geopolitik.organisasi_internasional.map((org, i) => (
+                        {currentData.geopolitik?.organisasi_internasional?.map((org, i) => (
                           <div key={i} className="flex items-center justify-between p-2 bg-zinc-800/40 rounded-lg border border-zinc-700/30">
                             <div className="flex items-center gap-2">
                               <Globe2 size={10} className="text-blue-400" />
