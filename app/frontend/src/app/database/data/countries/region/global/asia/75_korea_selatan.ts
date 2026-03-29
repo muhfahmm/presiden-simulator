@@ -18,6 +18,7 @@ import { korea_selatan_pertahanan } from "../../modules/2_militer/1_sektor_perta
 import { korea_selatan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/75_korea_selatan";
 import { korea_selatan_profile } from "../../modules/0_profiles/asia/75_korea_selatan";
 import { korea_selatan_strategis } from "../../modules/2_militer/3_militer_strategis/asia/75_korea_selatan";
+import { korea_selatan_geopolitik } from "../../modules/4_geopolitik/asia/75_korea_selatan";
 
 export const korea_selatan: CountryData = {
   ...korea_selatan_profile,
@@ -39,7 +40,6 @@ export const korea_selatan: CountryData = {
   "kesehatan": korea_selatan_kesehatan,
   "hukum": korea_selatan_hukum,
   "sektor_olahraga": korea_selatan_olahraga,
-  "un_vote": 185,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const korea_selatan: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 33,
-      "kekuatan_keras": 29,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": korea_selatan_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

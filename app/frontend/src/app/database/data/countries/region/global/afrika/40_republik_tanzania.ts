@@ -18,6 +18,7 @@ import { republik_tanzania_pertahanan } from "../../modules/2_militer/1_sektor_p
 import { republik_tanzania_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/40_republik_tanzania";
 import { republik_tanzania_profile } from "../../modules/0_profiles/afrika/40_republik_tanzania";
 import { republik_tanzania_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/40_republik_tanzania";
+import { republik_tanzania_geopolitik } from "../../modules/4_geopolitik/afrika/40_republik_tanzania";
 
 export const republik_tanzania: CountryData = {
   ...republik_tanzania_profile,
@@ -39,7 +40,6 @@ export const republik_tanzania: CountryData = {
   "kesehatan": republik_tanzania_kesehatan,
   "hukum": republik_tanzania_hukum,
   "sektor_olahraga": republik_tanzania_olahraga,
-  "un_vote": 178,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const republik_tanzania: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 40,
-      "kekuatan_keras": 11,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": republik_tanzania_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

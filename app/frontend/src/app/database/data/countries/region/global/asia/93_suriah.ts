@@ -18,6 +18,7 @@ import { suriah_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/a
 import { suriah_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/93_suriah";
 import { suriah_profile } from "../../modules/0_profiles/asia/93_suriah";
 import { suriah_strategis } from "../../modules/2_militer/3_militer_strategis/asia/93_suriah";
+import { suriah_geopolitik } from "../../modules/4_geopolitik/asia/93_suriah";
 
 export const suriah: CountryData = {
   ...suriah_profile,
@@ -39,7 +40,6 @@ export const suriah: CountryData = {
   "kesehatan": suriah_kesehatan,
   "hukum": suriah_hukum,
   "sektor_olahraga": suriah_olahraga,
-  "un_vote": 65,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const suriah: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 13,
-      "kekuatan_keras": 21,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": suriah_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

@@ -18,6 +18,7 @@ import { madagaskar_pertahanan } from "../../modules/2_militer/1_sektor_pertahan
 import { madagaskar_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/25_madagaskar";
 import { madagaskar_profile } from "../../modules/0_profiles/afrika/25_madagaskar";
 import { madagaskar_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/25_madagaskar";
+import { madagaskar_geopolitik } from "../../modules/4_geopolitik/afrika/25_madagaskar";
 
 export const madagaskar: CountryData = {
   ...madagaskar_profile,
@@ -39,7 +40,6 @@ export const madagaskar: CountryData = {
   "kesehatan": madagaskar_kesehatan,
   "hukum": madagaskar_hukum,
   "sektor_olahraga": madagaskar_olahraga,
-  "un_vote": 87,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const madagaskar: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 29,
-      "kekuatan_keras": 3,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": madagaskar_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

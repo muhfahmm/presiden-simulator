@@ -18,6 +18,7 @@ import { azerbaijan_pertahanan } from "../../modules/2_militer/1_sektor_pertahan
 import { azerbaijan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/57_azerbaijan";
 import { azerbaijan_profile } from "../../modules/0_profiles/asia/57_azerbaijan";
 import { azerbaijan_strategis } from "../../modules/2_militer/3_militer_strategis/asia/57_azerbaijan";
+import { azerbaijan_geopolitik } from "../../modules/4_geopolitik/asia/57_azerbaijan";
 
 export const azerbaijan: CountryData = {
   ...azerbaijan_profile,
@@ -39,7 +40,6 @@ export const azerbaijan: CountryData = {
   "kesehatan": azerbaijan_kesehatan,
   "hukum": azerbaijan_hukum,
   "sektor_olahraga": azerbaijan_olahraga,
-  "un_vote": 140,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const azerbaijan: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 13,
-      "kekuatan_keras": 40,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": azerbaijan_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

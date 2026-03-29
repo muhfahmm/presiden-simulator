@@ -18,6 +18,7 @@ import { vatikan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/
 import { vatikan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/150_vatikan";
 import { vatikan_profile } from "../../modules/0_profiles/eropa/150_vatikan";
 import { vatikan_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/150_vatikan";
+import { vatikan_geopolitik } from "../../modules/4_geopolitik/eropa/150_vatikan";
 
 export const vatikan: CountryData = {
   ...vatikan_profile,
@@ -39,7 +40,6 @@ export const vatikan: CountryData = {
   "kesehatan": vatikan_kesehatan,
   "hukum": vatikan_hukum,
   "sektor_olahraga": vatikan_olahraga,
-  "un_vote": 34,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const vatikan: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 17,
-      "kekuatan_keras": 24,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": vatikan_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

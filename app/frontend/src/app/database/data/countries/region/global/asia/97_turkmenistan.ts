@@ -18,6 +18,7 @@ import { turkmenistan_pertahanan } from "../../modules/2_militer/1_sektor_pertah
 import { turkmenistan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/97_turkmenistan";
 import { turkmenistan_profile } from "../../modules/0_profiles/asia/97_turkmenistan";
 import { turkmenistan_strategis } from "../../modules/2_militer/3_militer_strategis/asia/97_turkmenistan";
+import { turkmenistan_geopolitik } from "../../modules/4_geopolitik/asia/97_turkmenistan";
 
 export const turkmenistan: CountryData = {
   ...turkmenistan_profile,
@@ -39,7 +40,6 @@ export const turkmenistan: CountryData = {
   "kesehatan": turkmenistan_kesehatan,
   "hukum": turkmenistan_hukum,
   "sektor_olahraga": turkmenistan_olahraga,
-  "un_vote": 133,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const turkmenistan: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 25,
-      "kekuatan_keras": 22,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": turkmenistan_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

@@ -18,6 +18,7 @@ import { kuwait_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/a
 import { kuwait_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/77_kuwait";
 import { kuwait_profile } from "../../modules/0_profiles/asia/77_kuwait";
 import { kuwait_strategis } from "../../modules/2_militer/3_militer_strategis/asia/77_kuwait";
+import { kuwait_geopolitik } from "../../modules/4_geopolitik/asia/77_kuwait";
 
 export const kuwait: CountryData = {
   ...kuwait_profile,
@@ -39,7 +40,6 @@ export const kuwait: CountryData = {
   "kesehatan": kuwait_kesehatan,
   "hukum": kuwait_hukum,
   "sektor_olahraga": kuwait_olahraga,
-  "un_vote": 157,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const kuwait: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 36,
-      "kekuatan_keras": 6,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": kuwait_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

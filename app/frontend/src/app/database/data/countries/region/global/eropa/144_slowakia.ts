@@ -18,6 +18,7 @@ import { slowakia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { slowakia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/144_slowakia";
 import { slowakia_profile } from "../../modules/0_profiles/eropa/144_slowakia";
 import { slowakia_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/144_slowakia";
+import { slowakia_geopolitik } from "../../modules/4_geopolitik/eropa/144_slowakia";
 
 export const slowakia: CountryData = {
   ...slowakia_profile,
@@ -39,7 +40,6 @@ export const slowakia: CountryData = {
   "kesehatan": slowakia_kesehatan,
   "hukum": slowakia_hukum,
   "sektor_olahraga": slowakia_olahraga,
-  "un_vote": 176,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const slowakia: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 13,
-      "kekuatan_keras": 38,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": slowakia_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

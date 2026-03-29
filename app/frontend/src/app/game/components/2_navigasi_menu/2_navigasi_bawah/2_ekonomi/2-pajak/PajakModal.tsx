@@ -8,6 +8,7 @@ import { gameStorage } from "@/app/game/gamestorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
 import { taxStorage } from "./TaxStorage"
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi"
+import NavigasiWaktu from "../1-perdagangan/NavigasiWaktu";
 
 interface ModalProps {
   isOpen: boolean;
@@ -284,6 +285,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
               >
                  <Scale className="h-6 w-6 text-emerald-500 group-hover:scale-110 transition-transform" />
               </button>
+              <NavigasiWaktu />
               <button
                  onClick={onClose}
                  className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"

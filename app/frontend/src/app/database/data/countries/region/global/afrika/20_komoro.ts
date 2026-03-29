@@ -18,6 +18,7 @@ import { komoro_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/a
 import { komoro_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/20_komoro";
 import { komoro_profile } from "../../modules/0_profiles/afrika/20_komoro";
 import { komoro_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/20_komoro";
+import { komoro_geopolitik } from "../../modules/4_geopolitik/afrika/20_komoro";
 
 export const komoro: CountryData = {
   ...komoro_profile,
@@ -39,7 +40,6 @@ export const komoro: CountryData = {
   "kesehatan": komoro_kesehatan,
   "hukum": komoro_hukum,
   "sektor_olahraga": komoro_olahraga,
-  "un_vote": 61,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const komoro: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 24,
-      "kekuatan_keras": 27,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": komoro_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

@@ -18,6 +18,7 @@ import { ghana_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/af
 import { ghana_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/15_ghana";
 import { ghana_profile } from "../../modules/0_profiles/afrika/15_ghana";
 import { ghana_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/15_ghana";
+import { ghana_geopolitik } from "../../modules/4_geopolitik/afrika/15_ghana";
 
 export const ghana: CountryData = {
   ...ghana_profile,
@@ -39,7 +40,6 @@ export const ghana: CountryData = {
   "kesehatan": ghana_kesehatan,
   "hukum": ghana_hukum,
   "sektor_olahraga": ghana_olahraga,
-  "un_vote": 125,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const ghana: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 17,
-      "kekuatan_keras": 21,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": ghana_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

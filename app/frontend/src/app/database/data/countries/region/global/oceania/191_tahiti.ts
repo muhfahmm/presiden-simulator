@@ -18,6 +18,7 @@ import { tahiti_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/o
 import { tahiti_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/191_tahiti";
 import { tahiti_profile } from "../../modules/0_profiles/oceania/191_tahiti";
 import { tahiti_strategis } from "../../modules/2_militer/3_militer_strategis/oceania/191_tahiti";
+import { tahiti_geopolitik } from "../../modules/4_geopolitik/oceania/191_tahiti";
 
 export const tahiti: CountryData = {
   ...tahiti_profile,
@@ -39,7 +40,6 @@ export const tahiti: CountryData = {
   "kesehatan": tahiti_kesehatan,
   "hukum": tahiti_hukum,
   "sektor_olahraga": tahiti_olahraga,
-  "un_vote": 81,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const tahiti: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 14,
-      "kekuatan_keras": 37,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": tahiti_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

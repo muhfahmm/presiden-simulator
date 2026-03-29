@@ -18,6 +18,12 @@ import { indonesia_pertahanan } from "../../modules/2_militer/1_sektor_pertahana
 import { indonesia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/67_indonesia";
 import { indonesia_profile } from "../../modules/0_profiles/asia/67_indonesia";
 import { indonesia_strategis } from "../../modules/2_militer/3_militer_strategis/asia/67_indonesia";
+import { indonesia_geopolitik } from "../../modules/4_geopolitik/asia/67_indonesia";
+import { 
+  infrastruktur_options, pendidikan_options, sains_penelitian_options, kesehatan_options, olahraga_options, 
+  kehakiman_options, pertahanan_options, luar_negeri_options, kebudayaan_options, pariwisata_options, 
+  lingkungan_hidup_options, perumahan_options, pembangunan_options, perdagangan_options, keuangan_options 
+} from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/7_kementrian/1_database_menteri/index";
 
 export const indonesia: CountryData = {
   ...indonesia_profile,
@@ -39,8 +45,6 @@ export const indonesia: CountryData = {
   "kesehatan": indonesia_kesehatan,
   "hukum": indonesia_hukum,
   "sektor_olahraga": indonesia_olahraga,
-  
-  "un_vote": 128,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -115,40 +119,44 @@ export const indonesia: CountryData = {
   // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Unggul",
-    "aliansi_aktif": ["Amerika Serikat", "Jepang", "Australia", "India"],
-    "pengaruh_global": 78.2,
-    "peringkat_diplomasi": 12,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 8,
-      "kekuatan_keras": 7,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": indonesia_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
-    "kesehatan": 37,
-    "pendidikan": 19,
-    "keamanan": 9,
-    "keuangan": 2,
-    "lingkungan": 60
+    "kabinet": {
+      1: { ...infrastruktur_options[0], status: "Terisi" },
+      2: { ...pendidikan_options[0], status: "Terisi" },
+      3: { ...sains_penelitian_options[0], status: "Terisi" },
+      4: { ...kesehatan_options[0], status: "Terisi" },
+      5: { ...olahraga_options[0], status: "Terisi" },
+      6: { ...kehakiman_options[0], status: "Terisi" },
+      7: { ...pertahanan_options[0], status: "Terisi" },
+      8: { ...luar_negeri_options[0], status: "Terisi" },
+      9: { ...kebudayaan_options[0], status: "Terisi" },
+      10: { ...pariwisata_options[0], status: "Terisi" },
+      11: { ...lingkungan_hidup_options[0], status: "Terisi" },
+      12: { ...perumahan_options[0], status: "Terisi" },
+      13: { ...pembangunan_options[0], status: "Terisi" },
+      14: { ...perdagangan_options[0], status: "Terisi" },
+      15: { ...keuangan_options[0], status: "Terisi" },
+    },
+    "candidates": {
+      1: infrastruktur_options,
+      2: pendidikan_options,
+      3: sains_penelitian_options,
+      4: kesehatan_options,
+      5: olahraga_options,
+      6: kehakiman_options,
+      7: pertahanan_options,
+      8: luar_negeri_options,
+      9: kebudayaan_options,
+      10: pariwisata_options,
+      11: lingkungan_hidup_options,
+      12: perumahan_options,
+      13: pembangunan_options,
+      14: perdagangan_options,
+      15: keuangan_options,
+    }
   }
 };

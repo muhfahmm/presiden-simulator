@@ -18,6 +18,7 @@ import { jerman_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/e
 import { jerman_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/121_jerman";
 import { jerman_profile } from "../../modules/0_profiles/eropa/121_jerman";
 import { jerman_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/121_jerman";
+import { jerman_geopolitik } from "../../modules/4_geopolitik/eropa/121_jerman";
 
 export const jerman: CountryData = {
   ...jerman_profile,
@@ -39,7 +40,6 @@ export const jerman: CountryData = {
   "kesehatan": jerman_kesehatan,
   "hukum": jerman_hukum,
   "sektor_olahraga": jerman_olahraga,
-  "un_vote": 197,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const jerman: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 30,
-      "kekuatan_keras": 18,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": jerman_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

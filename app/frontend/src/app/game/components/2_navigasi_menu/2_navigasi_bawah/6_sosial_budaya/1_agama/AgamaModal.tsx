@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import { X, Star, Users, Heart, Sparkles, Activity, Moon, Book, Sun, Landmark, Compass, Wind, Globe, Info, Plus, Minus, CheckCircle2 } from "lucide-react"
 import { religions } from "@/app/database/data/religions"
+import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 interface ModalProps {
   isOpen: boolean;
@@ -200,6 +201,7 @@ export default function AgamaModal({ isOpen, onClose, countryData }: ModalProps)
             </div>
           </div>
           <div className="flex items-center gap-4">
+            <NavigasiWaktu />
             <button
               onClick={onClose}
               className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"

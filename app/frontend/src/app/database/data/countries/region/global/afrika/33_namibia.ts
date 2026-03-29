@@ -18,6 +18,7 @@ import { namibia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/
 import { namibia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/33_namibia";
 import { namibia_profile } from "../../modules/0_profiles/afrika/33_namibia";
 import { namibia_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/33_namibia";
+import { namibia_geopolitik } from "../../modules/4_geopolitik/afrika/33_namibia";
 
 export const namibia: CountryData = {
   ...namibia_profile,
@@ -39,7 +40,6 @@ export const namibia: CountryData = {
   "kesehatan": namibia_kesehatan,
   "hukum": namibia_hukum,
   "sektor_olahraga": namibia_olahraga,
-  "un_vote": 28,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const namibia: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 7,
-      "kekuatan_keras": 25,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": namibia_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

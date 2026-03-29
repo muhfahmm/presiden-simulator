@@ -18,6 +18,7 @@ import { bhutan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/a
 import { bhutan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/60_bhutan";
 import { bhutan_profile } from "../../modules/0_profiles/asia/60_bhutan";
 import { bhutan_strategis } from "../../modules/2_militer/3_militer_strategis/asia/60_bhutan";
+import { bhutan_geopolitik } from "../../modules/4_geopolitik/asia/60_bhutan";
 
 export const bhutan: CountryData = {
   ...bhutan_profile,
@@ -39,7 +40,6 @@ export const bhutan: CountryData = {
   "kesehatan": bhutan_kesehatan,
   "hukum": bhutan_hukum,
   "sektor_olahraga": bhutan_olahraga,
-  "un_vote": 149,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const bhutan: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 37,
-      "kekuatan_keras": 33,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": bhutan_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

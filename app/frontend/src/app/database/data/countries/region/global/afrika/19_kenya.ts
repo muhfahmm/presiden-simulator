@@ -18,6 +18,7 @@ import { kenya_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/af
 import { kenya_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/19_kenya";
 import { kenya_profile } from "../../modules/0_profiles/afrika/19_kenya";
 import { kenya_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/19_kenya";
+import { kenya_geopolitik } from "../../modules/4_geopolitik/afrika/19_kenya";
 
 export const kenya: CountryData = {
   ...kenya_profile,
@@ -39,7 +40,6 @@ export const kenya: CountryData = {
   "kesehatan": kenya_kesehatan,
   "hukum": kenya_hukum,
   "sektor_olahraga": kenya_olahraga,
-  "un_vote": 169,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const kenya: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 31,
-      "kekuatan_keras": 18,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": kenya_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

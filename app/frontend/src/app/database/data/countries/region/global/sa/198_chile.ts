@@ -18,6 +18,7 @@ import { chile_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa
 import { chile_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/198_chile";
 import { chile_profile } from "../../modules/0_profiles/sa/198_chile";
 import { chile_strategis } from "../../modules/2_militer/3_militer_strategis/sa/198_chile";
+import { chile_geopolitik } from "../../modules/4_geopolitik/sa/198_chile";
 
 export const chile: CountryData = {
   ...chile_profile,
@@ -39,7 +40,6 @@ export const chile: CountryData = {
   "kesehatan": chile_kesehatan,
   "hukum": chile_hukum,
   "sektor_olahraga": chile_olahraga,
-  "un_vote": 147,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const chile: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 26,
-      "kekuatan_keras": 4,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": chile_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

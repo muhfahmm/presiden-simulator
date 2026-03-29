@@ -18,6 +18,7 @@ import { turki_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/er
 import { turki_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/148_turki";
 import { turki_profile } from "../../modules/0_profiles/eropa/148_turki";
 import { turki_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/148_turki";
+import { turki_geopolitik } from "../../modules/4_geopolitik/eropa/148_turki";
 
 export const turki: CountryData = {
   ...turki_profile,
@@ -39,7 +40,6 @@ export const turki: CountryData = {
   "kesehatan": turki_kesehatan,
   "hukum": turki_hukum,
   "sektor_olahraga": turki_olahraga,
-  "un_vote": 83,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const turki: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 35,
-      "kekuatan_keras": 28,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": turki_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

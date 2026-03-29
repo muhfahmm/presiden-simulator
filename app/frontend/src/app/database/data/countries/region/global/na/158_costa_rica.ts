@@ -18,6 +18,7 @@ import { costa_rica_pertahanan } from "../../modules/2_militer/1_sektor_pertahan
 import { costa_rica_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/158_costa_rica";
 import { costa_rica_profile } from "../../modules/0_profiles/na/158_costa_rica";
 import { costa_rica_strategis } from "../../modules/2_militer/3_militer_strategis/na/158_costa_rica";
+import { costa_rica_geopolitik } from "../../modules/4_geopolitik/na/158_costa_rica";
 
 export const costa_rica: CountryData = {
   ...costa_rica_profile,
@@ -39,7 +40,6 @@ export const costa_rica: CountryData = {
   "kesehatan": costa_rica_kesehatan,
   "hukum": costa_rica_hukum,
   "sektor_olahraga": costa_rica_olahraga,
-  "un_vote": 72,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const costa_rica: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 4,
-      "kekuatan_keras": 23,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": costa_rica_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

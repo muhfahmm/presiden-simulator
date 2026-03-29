@@ -11,6 +11,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate, produksiMiliter, tempatUmum } from "@/app/database/data/types";
 import { KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/types/1_kelistrikan"
+import NavigasiWaktu from "../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 
 export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, onClose: () => void }) {
@@ -234,6 +235,7 @@ export default function PopulasiModal({ isOpen, onClose }: { isOpen: boolean, on
                 Stabilitas: <span className={totalDailyDelta >= 0 ? 'text-emerald-500' : 'text-rose-500'}>{totalDailyDelta >= 0 ? 'Optimal' : 'Kritis'}</span>
               </span>
             </div>
+            <NavigasiWaktu />
             <button
               onClick={onClose}
               className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"

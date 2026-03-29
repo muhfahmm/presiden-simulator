@@ -18,6 +18,7 @@ import { guam_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oce
 import { guam_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/181_guam";
 import { guam_profile } from "../../modules/0_profiles/oceania/181_guam";
 import { guam_strategis } from "../../modules/2_militer/3_militer_strategis/oceania/181_guam";
+import { guam_geopolitik } from "../../modules/4_geopolitik/oceania/181_guam";
 
 export const guam: CountryData = {
   ...guam_profile,
@@ -39,7 +40,6 @@ export const guam: CountryData = {
   "kesehatan": guam_kesehatan,
   "hukum": guam_hukum,
   "sektor_olahraga": guam_olahraga,
-  "un_vote": 151,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const guam: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 32,
-      "kekuatan_keras": 33,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": guam_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

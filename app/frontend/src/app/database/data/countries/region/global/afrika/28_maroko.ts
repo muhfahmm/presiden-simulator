@@ -18,6 +18,7 @@ import { maroko_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/a
 import { maroko_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/28_maroko";
 import { maroko_profile } from "../../modules/0_profiles/afrika/28_maroko";
 import { maroko_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/28_maroko";
+import { maroko_geopolitik } from "../../modules/4_geopolitik/afrika/28_maroko";
 
 export const maroko: CountryData = {
   ...maroko_profile,
@@ -39,7 +40,6 @@ export const maroko: CountryData = {
   "kesehatan": maroko_kesehatan,
   "hukum": maroko_hukum,
   "sektor_olahraga": maroko_olahraga,
-  "un_vote": 109,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const maroko: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 5,
-      "kekuatan_keras": 28,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": maroko_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

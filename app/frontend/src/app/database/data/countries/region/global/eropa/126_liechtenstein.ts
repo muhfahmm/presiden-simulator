@@ -18,6 +18,7 @@ import { liechtenstein_pertahanan } from "../../modules/2_militer/1_sektor_perta
 import { liechtenstein_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/126_liechtenstein";
 import { liechtenstein_profile } from "../../modules/0_profiles/eropa/126_liechtenstein";
 import { liechtenstein_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/126_liechtenstein";
+import { liechtenstein_geopolitik } from "../../modules/4_geopolitik/eropa/126_liechtenstein";
 
 export const liechtenstein: CountryData = {
   ...liechtenstein_profile,
@@ -39,7 +40,6 @@ export const liechtenstein: CountryData = {
   "kesehatan": liechtenstein_kesehatan,
   "hukum": liechtenstein_hukum,
   "sektor_olahraga": liechtenstein_olahraga,
-  "un_vote": 20,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const liechtenstein: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 1,
-      "kekuatan_keras": 28,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": liechtenstein_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

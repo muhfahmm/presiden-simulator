@@ -18,6 +18,7 @@ import { bosnia_dan_hercegovina_pertahanan } from "../../modules/2_militer/1_sek
 import { bosnia_dan_hercegovina_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_profile } from "../../modules/0_profiles/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_geopolitik } from "../../modules/4_geopolitik/eropa/109_bosnia_dan_hercegovina";
 
 export const bosnia_dan_hercegovina: CountryData = {
   ...bosnia_dan_hercegovina_profile,
@@ -39,7 +40,6 @@ export const bosnia_dan_hercegovina: CountryData = {
   "kesehatan": bosnia_dan_hercegovina_kesehatan,
   "hukum": bosnia_dan_hercegovina_hukum,
   "sektor_olahraga": bosnia_dan_hercegovina_olahraga,
-  "un_vote": 144,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const bosnia_dan_hercegovina: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 39,
-      "kekuatan_keras": 15,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": bosnia_dan_hercegovina_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

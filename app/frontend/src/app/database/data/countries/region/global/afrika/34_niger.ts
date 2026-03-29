@@ -18,6 +18,7 @@ import { niger_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/af
 import { niger_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/34_niger";
 import { niger_profile } from "../../modules/0_profiles/afrika/34_niger";
 import { niger_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/34_niger";
+import { niger_geopolitik } from "../../modules/4_geopolitik/afrika/34_niger";
 
 export const niger: CountryData = {
   ...niger_profile,
@@ -39,7 +40,6 @@ export const niger: CountryData = {
   "kesehatan": niger_kesehatan,
   "hukum": niger_hukum,
   "sektor_olahraga": niger_olahraga,
-  "un_vote": 30,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const niger: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 18,
-      "kekuatan_keras": 5,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": niger_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

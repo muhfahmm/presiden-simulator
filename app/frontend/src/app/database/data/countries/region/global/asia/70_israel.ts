@@ -18,6 +18,7 @@ import { israel_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/a
 import { israel_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/70_israel";
 import { israel_profile } from "../../modules/0_profiles/asia/70_israel";
 import { israel_strategis } from "../../modules/2_militer/3_militer_strategis/asia/70_israel";
+import { israel_geopolitik } from "../../modules/4_geopolitik/asia/70_israel";
 
 export const israel: CountryData = {
   ...israel_profile,
@@ -39,7 +40,6 @@ export const israel: CountryData = {
   "kesehatan": israel_kesehatan,
   "hukum": israel_hukum,
   "sektor_olahraga": israel_olahraga,
-  "un_vote": 199,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const israel: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 37,
-      "kekuatan_keras": 17,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": israel_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

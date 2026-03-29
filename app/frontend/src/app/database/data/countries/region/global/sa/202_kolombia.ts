@@ -18,6 +18,7 @@ import { kolombia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { kolombia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/202_kolombia";
 import { kolombia_profile } from "../../modules/0_profiles/sa/202_kolombia";
 import { kolombia_strategis } from "../../modules/2_militer/3_militer_strategis/sa/202_kolombia";
+import { kolombia_geopolitik } from "../../modules/4_geopolitik/sa/202_kolombia";
 
 export const kolombia: CountryData = {
   ...kolombia_profile,
@@ -39,7 +40,6 @@ export const kolombia: CountryData = {
   "kesehatan": kolombia_kesehatan,
   "hukum": kolombia_hukum,
   "sektor_olahraga": kolombia_olahraga,
-  "un_vote": 173,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const kolombia: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 27,
-      "kekuatan_keras": 15,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": kolombia_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

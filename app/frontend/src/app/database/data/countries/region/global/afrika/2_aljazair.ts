@@ -18,6 +18,7 @@ import { aljazair_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { aljazair_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/2_aljazair";
 import { aljazair_profile } from "../../modules/0_profiles/afrika/2_aljazair";
 import { aljazair_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/2_aljazair";
+import { aljazair_geopolitik } from "../../modules/4_geopolitik/afrika/2_aljazair";
 
 export const aljazair: CountryData = {
   ...aljazair_profile,
@@ -39,7 +40,6 @@ export const aljazair: CountryData = {
   "kesehatan": aljazair_kesehatan,
   "hukum": aljazair_hukum,
   "sektor_olahraga": aljazair_olahraga,
-  "un_vote": 84,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const aljazair: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 5,
-      "kekuatan_keras": 14,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": aljazair_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

@@ -18,6 +18,7 @@ import { georgia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/
 import { georgia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/64_georgia";
 import { georgia_profile } from "../../modules/0_profiles/asia/64_georgia";
 import { georgia_strategis } from "../../modules/2_militer/3_militer_strategis/asia/64_georgia";
+import { georgia_geopolitik } from "../../modules/4_geopolitik/asia/64_georgia";
 
 export const georgia: CountryData = {
   ...georgia_profile,
@@ -39,7 +40,6 @@ export const georgia: CountryData = {
   "kesehatan": georgia_kesehatan,
   "hukum": georgia_hukum,
   "sektor_olahraga": georgia_olahraga,
-  "un_vote": 127,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const georgia: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 18,
-      "kekuatan_keras": 32,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": georgia_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

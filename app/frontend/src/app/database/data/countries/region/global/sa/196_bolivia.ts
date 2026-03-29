@@ -18,6 +18,7 @@ import { bolivia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/
 import { bolivia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/196_bolivia";
 import { bolivia_profile } from "../../modules/0_profiles/sa/196_bolivia";
 import { bolivia_strategis } from "../../modules/2_militer/3_militer_strategis/sa/196_bolivia";
+import { bolivia_geopolitik } from "../../modules/4_geopolitik/sa/196_bolivia";
 
 export const bolivia: CountryData = {
   ...bolivia_profile,
@@ -39,7 +40,6 @@ export const bolivia: CountryData = {
   "kesehatan": bolivia_kesehatan,
   "hukum": bolivia_hukum,
   "sektor_olahraga": bolivia_olahraga,
-  "un_vote": 68,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const bolivia: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 16,
-      "kekuatan_keras": 9,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": bolivia_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

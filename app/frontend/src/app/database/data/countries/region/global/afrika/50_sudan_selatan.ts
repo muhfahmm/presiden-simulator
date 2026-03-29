@@ -18,6 +18,7 @@ import { sudan_selatan_pertahanan } from "../../modules/2_militer/1_sektor_perta
 import { sudan_selatan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/50_sudan_selatan";
 import { sudan_selatan_profile } from "../../modules/0_profiles/afrika/50_sudan_selatan";
 import { sudan_selatan_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/50_sudan_selatan";
+import { sudan_selatan_geopolitik } from "../../modules/4_geopolitik/afrika/50_sudan_selatan";
 
 export const sudan_selatan: CountryData = {
   ...sudan_selatan_profile,
@@ -39,7 +40,6 @@ export const sudan_selatan: CountryData = {
   "kesehatan": sudan_selatan_kesehatan,
   "hukum": sudan_selatan_hukum,
   "sektor_olahraga": sudan_selatan_olahraga,
-  "un_vote": 92,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const sudan_selatan: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 24,
-      "kekuatan_keras": 28,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": sudan_selatan_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

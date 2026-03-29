@@ -9,6 +9,7 @@ import { SektorGeopolitik } from "./6_geopolitik_dan_luar_negeri";
 import { SektorEkstraksi } from "./7_ekstraksi_mineral_kritis";
 import { OlahragaData } from "./8_olahraga";
 import { EkonomiData, PajakData } from "./ekonomi";
+import { Ministry } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/7_kementrian/1_database_menteri/types";
 
 export interface CountryData extends EkonomiData {
   name_en: string;
@@ -47,14 +48,15 @@ export interface CountryData extends EkonomiData {
   geopolitik: SektorGeopolitik;
 
   // Global & Politik
-  un_vote: number;
   pendapatan_nasional: string;
   kementerian: {
-    kesehatan: number;
-    pendidikan: number;
-    keamanan: number;
-    keuangan: number;
-    lingkungan: number;
+    kesehatan?: number;
+    pendidikan?: number;
+    keamanan?: number;
+    keuangan?: number;
+    lingkungan?: number;
+    kabinet?: Record<number, Ministry>;
+    candidates?: Record<number, any[]>;
   };
 }
 

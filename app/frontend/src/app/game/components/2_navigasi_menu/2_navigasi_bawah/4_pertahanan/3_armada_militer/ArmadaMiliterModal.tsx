@@ -9,6 +9,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
+import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import { 
   TANK_POWER_PER_UNIT, APC_POWER_PER_UNIT, ARTILLERY_POWER_PER_UNIT, ROCKET_POWER_PER_UNIT, SAM_POWER_PER_UNIT, TACTICAL_POWER_PER_UNIT,
   CARRIER_POWER_PER_UNIT, DESTROYER_POWER_PER_UNIT, CORVETTE_POWER_PER_UNIT, SUBMARINE_POWER_PER_UNIT, REGULAR_SUB_POWER_PER_UNIT, MINE_SHIP_POWER_PER_UNIT, LOGISTICS_POWER_PER_UNIT,
@@ -46,7 +47,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
           udara: power.udara,
           religion: c.religion,
           ideology: c.ideology,
-          un_vote: c.un_vote,
+          un_vote: c.geopolitik?.un_vote || 0,
           isUser: isUserCountry,
           armada_militer: c.armada_militer
         };
@@ -226,6 +227,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
                 <Clock className="h-6 w-6 text-cyan-500 group-hover:scale-110 group-hover:rotate-12 transition-transform" />
                 {activeConstructions.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-cyan-500 text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-zinc-950 shadow-lg animate-in zoom-in">{activeConstructions.length}</span>}
               </button>
+              <NavigasiWaktu />
               <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
                 <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
                 <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />

@@ -18,6 +18,7 @@ import { pantai_gading_pertahanan } from "../../modules/2_militer/1_sektor_perta
 import { pantai_gading_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/36_pantai_gading";
 import { pantai_gading_profile } from "../../modules/0_profiles/afrika/36_pantai_gading";
 import { pantai_gading_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/36_pantai_gading";
+import { pantai_gading_geopolitik } from "../../modules/4_geopolitik/afrika/36_pantai_gading";
 
 export const pantai_gading: CountryData = {
   ...pantai_gading_profile,
@@ -39,7 +40,6 @@ export const pantai_gading: CountryData = {
   "kesehatan": pantai_gading_kesehatan,
   "hukum": pantai_gading_hukum,
   "sektor_olahraga": pantai_gading_olahraga,
-  "un_vote": 51,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const pantai_gading: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 12,
-      "kekuatan_keras": 1,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": pantai_gading_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

@@ -18,6 +18,7 @@ import { lithuania_pertahanan } from "../../modules/2_militer/1_sektor_pertahana
 import { lithuania_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/127_lithuania";
 import { lithuania_profile } from "../../modules/0_profiles/eropa/127_lithuania";
 import { lithuania_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/127_lithuania";
+import { lithuania_geopolitik } from "../../modules/4_geopolitik/eropa/127_lithuania";
 
 export const lithuania: CountryData = {
   ...lithuania_profile,
@@ -39,7 +40,6 @@ export const lithuania: CountryData = {
   "kesehatan": lithuania_kesehatan,
   "hukum": lithuania_hukum,
   "sektor_olahraga": lithuania_olahraga,
-  "un_vote": 174,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const lithuania: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 31,
-      "kekuatan_keras": 33,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": lithuania_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

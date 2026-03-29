@@ -18,6 +18,7 @@ import { mauritius_pertahanan } from "../../modules/2_militer/1_sektor_pertahana
 import { mauritius_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/30_mauritius";
 import { mauritius_profile } from "../../modules/0_profiles/afrika/30_mauritius";
 import { mauritius_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/30_mauritius";
+import { mauritius_geopolitik } from "../../modules/4_geopolitik/afrika/30_mauritius";
 
 export const mauritius: CountryData = {
   ...mauritius_profile,
@@ -39,7 +40,6 @@ export const mauritius: CountryData = {
   "kesehatan": mauritius_kesehatan,
   "hukum": mauritius_hukum,
   "sektor_olahraga": mauritius_olahraga,
-  "un_vote": 69,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const mauritius: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 13,
-      "kekuatan_keras": 33,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": mauritius_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

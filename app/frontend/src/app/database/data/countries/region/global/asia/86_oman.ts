@@ -18,6 +18,7 @@ import { oman_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/asi
 import { oman_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/86_oman";
 import { oman_profile } from "../../modules/0_profiles/asia/86_oman";
 import { oman_strategis } from "../../modules/2_militer/3_militer_strategis/asia/86_oman";
+import { oman_geopolitik } from "../../modules/4_geopolitik/asia/86_oman";
 
 export const oman: CountryData = {
   ...oman_profile,
@@ -39,7 +40,6 @@ export const oman: CountryData = {
   "kesehatan": oman_kesehatan,
   "hukum": oman_hukum,
   "sektor_olahraga": oman_olahraga,
-  "un_vote": 165,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const oman: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 32,
-      "kekuatan_keras": 19,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": oman_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

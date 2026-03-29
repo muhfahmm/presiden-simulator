@@ -18,6 +18,7 @@ import { pakistan_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { pakistan_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/87_pakistan";
 import { pakistan_profile } from "../../modules/0_profiles/asia/87_pakistan";
 import { pakistan_strategis } from "../../modules/2_militer/3_militer_strategis/asia/87_pakistan";
+import { pakistan_geopolitik } from "../../modules/4_geopolitik/asia/87_pakistan";
 
 export const pakistan: CountryData = {
   ...pakistan_profile,
@@ -39,7 +40,6 @@ export const pakistan: CountryData = {
   "kesehatan": pakistan_kesehatan,
   "hukum": pakistan_hukum,
   "sektor_olahraga": pakistan_olahraga,
-  "un_vote": 180,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const pakistan: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 30,
-      "kekuatan_keras": 4,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": pakistan_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

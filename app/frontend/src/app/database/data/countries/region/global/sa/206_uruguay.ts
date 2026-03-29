@@ -18,6 +18,7 @@ import { uruguay_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/
 import { uruguay_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/206_uruguay";
 import { uruguay_profile } from "../../modules/0_profiles/sa/206_uruguay";
 import { uruguay_strategis } from "../../modules/2_militer/3_militer_strategis/sa/206_uruguay";
+import { uruguay_geopolitik } from "../../modules/4_geopolitik/sa/206_uruguay";
 
 export const uruguay: CountryData = {
   ...uruguay_profile,
@@ -39,7 +40,6 @@ export const uruguay: CountryData = {
   "kesehatan": uruguay_kesehatan,
   "hukum": uruguay_hukum,
   "sektor_olahraga": uruguay_olahraga,
-  "un_vote": 99,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const uruguay: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 8,
-      "kekuatan_keras": 29,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": uruguay_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

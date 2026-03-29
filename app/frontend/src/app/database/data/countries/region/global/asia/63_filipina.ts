@@ -18,6 +18,7 @@ import { filipina_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { filipina_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/63_filipina";
 import { filipina_profile } from "../../modules/0_profiles/asia/63_filipina";
 import { filipina_strategis } from "../../modules/2_militer/3_militer_strategis/asia/63_filipina";
+import { filipina_geopolitik } from "../../modules/4_geopolitik/asia/63_filipina";
 
 export const filipina: CountryData = {
   ...filipina_profile,
@@ -39,7 +40,6 @@ export const filipina: CountryData = {
   "kesehatan": filipina_kesehatan,
   "hukum": filipina_hukum,
   "sektor_olahraga": filipina_olahraga,
-  "un_vote": 139,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const filipina: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 8,
-      "kekuatan_keras": 21,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": filipina_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

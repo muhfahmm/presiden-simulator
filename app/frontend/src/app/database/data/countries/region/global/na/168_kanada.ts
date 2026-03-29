@@ -18,6 +18,7 @@ import { kanada_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/n
 import { kanada_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/168_kanada";
 import { kanada_profile } from "../../modules/0_profiles/na/168_kanada";
 import { kanada_strategis } from "../../modules/2_militer/3_militer_strategis/na/168_kanada";
+import { kanada_geopolitik } from "../../modules/4_geopolitik/na/168_kanada";
 
 export const kanada: CountryData = {
   ...kanada_profile,
@@ -39,7 +40,6 @@ export const kanada: CountryData = {
   "kesehatan": kanada_kesehatan,
   "hukum": kanada_hukum,
   "sektor_olahraga": kanada_olahraga,
-  "un_vote": 160,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const kanada: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 1,
-      "kekuatan_keras": 18,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": kanada_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

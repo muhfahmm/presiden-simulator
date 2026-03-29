@@ -15,6 +15,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
+import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 interface ModalProps {
   isOpen: boolean;
@@ -264,6 +265,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         pendapatan_nasional: 0,
         cost: val.buildCost || 35,
         buildTime: val.buildTime || 90,
+        maintenanceCost: val.maintenanceCost ?? 5,
         lowongan_kerja: val.lowongan_kerja || 0
       }))
     },
@@ -292,6 +294,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: 0,
           cost: val.buildCost || 30,
           buildTime: val.buildTime || 30,
+          maintenanceCost: val.maintenanceCost ?? 10,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -314,6 +317,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: val.pendapatan_nasional,
           cost: val.buildCost || 45,
           buildTime: val.buildTime || 45,
+          maintenanceCost: val.maintenanceCost ?? 15,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -336,6 +340,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: val.pendapatan_nasional,
           cost: val.buildCost || 15,
           buildTime: val.buildTime || 25,
+          maintenanceCost: val.maintenanceCost ?? 2,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -358,6 +363,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: val.pendapatan_nasional,
           cost: val.buildCost || 10,
           buildTime: val.buildTime || 30,
+          maintenanceCost: val.maintenanceCost ?? 1,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -380,6 +386,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: val.pendapatan_nasional,
           cost: val.buildCost || 12,
           buildTime: val.buildTime || 20,
+          maintenanceCost: val.maintenanceCost ?? 1.5,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -402,6 +409,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: val.pendapatan_nasional,
           cost: val.buildCost || 25,
           buildTime: val.buildTime || 35,
+          maintenanceCost: val.maintenanceCost ?? 8,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -424,6 +432,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: val.pendapatan_nasional,
           cost: val.buildCost || 60,
           buildTime: val.buildTime || 60,
+          maintenanceCost: val.maintenanceCost ?? 25,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     }
@@ -456,6 +465,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                 </span>
               )}
             </button>
+            <NavigasiWaktu />
             <button
               onClick={onClose}
               className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
@@ -764,15 +774,17 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
                 <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
               </div>
               
-              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500">
-                    <Zap size={12} />
+              {item.powerUsage > 0 && (
+                <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500">
+                      <Zap size={12} />
+                    </div>
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                   </div>
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
+                  <span className="text-[14px] font-black text-amber-500">{item.powerUsage} MW</span>
                 </div>
-                <span className="text-[14px] font-black text-amber-500">{item.groupId === "kelistrikan" ? "SUPPLY" : `${item.powerUsage} MW`}</span>
-              </div>
+              )}
 
               <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                 <div className="flex items-center gap-2.5">
@@ -839,6 +851,15 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
 
         <div className="flex flex-col gap-2.5 flex-1">
           <div className="flex items-center gap-2.5">
+            <div className="p-1.5 bg-rose-500/10 rounded-lg">
+              <Flame size={12} className="text-rose-400" />
+            </div>
+            <span className="text-[12px] font-bold text-rose-400/90">
+              Pemeliharaan: -{item.maintenanceCost || 5}/hari
+            </span>
+          </div>
+
+          <div className="flex items-center gap-2.5">
             <div className="p-1.5 bg-amber-500/10 rounded-lg">
               <TrendingUp size={12} className="text-amber-500" />
             </div>
@@ -847,7 +868,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
             </span>
           </div>
 
-          {item.groupId !== "kelistrikan" && (
+          {item.groupId !== "kelistrikan" && item.powerUsage > 0 && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-rose-500/10 rounded-lg">
                 <Zap size={12} className="text-rose-500/90" />

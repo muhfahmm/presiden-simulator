@@ -18,6 +18,7 @@ import { republik_rumania_pertahanan } from "../../modules/2_militer/1_sektor_pe
 import { republik_rumania_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/138_republik_rumania";
 import { republik_rumania_profile } from "../../modules/0_profiles/eropa/138_republik_rumania";
 import { republik_rumania_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/138_republik_rumania";
+import { republik_rumania_geopolitik } from "../../modules/4_geopolitik/eropa/138_republik_rumania";
 
 export const republik_rumania: CountryData = {
   ...republik_rumania_profile,
@@ -39,7 +40,6 @@ export const republik_rumania: CountryData = {
   "kesehatan": republik_rumania_kesehatan,
   "hukum": republik_rumania_hukum,
   "sektor_olahraga": republik_rumania_olahraga,
-  "un_vote": 143,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const republik_rumania: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 33,
-      "kekuatan_keras": 6,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": republik_rumania_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

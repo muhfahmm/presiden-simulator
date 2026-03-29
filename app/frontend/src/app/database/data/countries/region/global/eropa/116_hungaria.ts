@@ -18,6 +18,7 @@ import { hungaria_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { hungaria_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/116_hungaria";
 import { hungaria_profile } from "../../modules/0_profiles/eropa/116_hungaria";
 import { hungaria_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/116_hungaria";
+import { hungaria_geopolitik } from "../../modules/4_geopolitik/eropa/116_hungaria";
 
 export const hungaria: CountryData = {
   ...hungaria_profile,
@@ -39,7 +40,6 @@ export const hungaria: CountryData = {
   "kesehatan": hungaria_kesehatan,
   "hukum": hungaria_hukum,
   "sektor_olahraga": hungaria_olahraga,
-  "un_vote": 94,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const hungaria: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 1,
-      "kekuatan_keras": 16,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": hungaria_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

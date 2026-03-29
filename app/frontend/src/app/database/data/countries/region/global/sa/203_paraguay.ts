@@ -18,6 +18,7 @@ import { paraguay_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { paraguay_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/203_paraguay";
 import { paraguay_profile } from "../../modules/0_profiles/sa/203_paraguay";
 import { paraguay_strategis } from "../../modules/2_militer/3_militer_strategis/sa/203_paraguay";
+import { paraguay_geopolitik } from "../../modules/4_geopolitik/sa/203_paraguay";
 
 export const paraguay: CountryData = {
   ...paraguay_profile,
@@ -39,7 +40,6 @@ export const paraguay: CountryData = {
   "kesehatan": paraguay_kesehatan,
   "hukum": paraguay_hukum,
   "sektor_olahraga": paraguay_olahraga,
-  "un_vote": 71,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const paraguay: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 17,
-      "kekuatan_keras": 6,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": paraguay_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

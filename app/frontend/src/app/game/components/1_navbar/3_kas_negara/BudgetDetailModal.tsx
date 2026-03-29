@@ -9,6 +9,7 @@ import { expenseStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi
 import { priceStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 import { calculateTotalMaintenance, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
 import { produksiMiliter } from "@/app/database/data/types";
+import NavigasiWaktu from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 interface BudgetDetailModalProps {
   isOpen: boolean;
@@ -64,15 +65,18 @@ export default function BudgetDetailModal({ isOpen, onClose, countryData, buildi
             </div>
             <div>
               <h2 className="text-2xl font-black text-white tracking-tighter italic uppercase">Rincian Anggaran Negara</h2>
-              <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em]">National Fiscal Transparency Report</p>
+               <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-[0.2em]">National Fiscal Transparency Report</p>
             </div>
           </div>
-          <button
-            onClick={onClose}
-            className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-rose-500/20 hover:text-rose-500 transition-all cursor-pointer group"
-          >
-            <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
-          </button>
+          <div className="flex items-center gap-4">
+            <NavigasiWaktu />
+            <button
+              onClick={onClose}
+              className="p-3 rounded-2xl bg-zinc-900 border border-zinc-800 hover:bg-rose-500/20 hover:text-rose-500 transition-all cursor-pointer group"
+            >
+              <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+            </button>
+          </div>
         </div>
 
         {/* Content */}

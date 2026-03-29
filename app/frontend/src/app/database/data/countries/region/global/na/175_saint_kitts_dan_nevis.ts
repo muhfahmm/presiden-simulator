@@ -18,6 +18,7 @@ import { saint_kitts_dan_nevis_pertahanan } from "../../modules/2_militer/1_sekt
 import { saint_kitts_dan_nevis_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_profile } from "../../modules/0_profiles/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_strategis } from "../../modules/2_militer/3_militer_strategis/na/175_saint_kitts_dan_nevis";
+import { saint_kitts_dan_nevis_geopolitik } from "../../modules/4_geopolitik/na/175_saint_kitts_dan_nevis";
 
 export const saint_kitts_dan_nevis: CountryData = {
   ...saint_kitts_dan_nevis_profile,
@@ -39,7 +40,6 @@ export const saint_kitts_dan_nevis: CountryData = {
   "kesehatan": saint_kitts_dan_nevis_kesehatan,
   "hukum": saint_kitts_dan_nevis_hukum,
   "sektor_olahraga": saint_kitts_dan_nevis_olahraga,
-  "un_vote": 64,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const saint_kitts_dan_nevis: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 16,
-      "kekuatan_keras": 35,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": saint_kitts_dan_nevis_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

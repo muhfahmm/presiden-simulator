@@ -144,6 +144,7 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <KementerianModal
         isOpen={activeMenu === "Dashboard:Kementerian"}
         onClose={() => setActiveMenu("Kementerian")}
+        countryData={countryData}
       />
       <AgamaModal
         isOpen={activeMenu === "Menu:Agama"}

@@ -18,6 +18,7 @@ import { italia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/e
 import { italia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/120_italia";
 import { italia_profile } from "../../modules/0_profiles/eropa/120_italia";
 import { italia_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/120_italia";
+import { italia_geopolitik } from "../../modules/4_geopolitik/eropa/120_italia";
 
 export const italia: CountryData = {
   ...italia_profile,
@@ -39,7 +40,6 @@ export const italia: CountryData = {
   "kesehatan": italia_kesehatan,
   "hukum": italia_hukum,
   "sektor_olahraga": italia_olahraga,
-  "un_vote": 146,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const italia: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 5,
-      "kekuatan_keras": 22,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": italia_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

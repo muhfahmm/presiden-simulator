@@ -18,6 +18,7 @@ import { guyana_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/s
 import { guyana_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/201_guyana";
 import { guyana_profile } from "../../modules/0_profiles/sa/201_guyana";
 import { guyana_strategis } from "../../modules/2_militer/3_militer_strategis/sa/201_guyana";
+import { guyana_geopolitik } from "../../modules/4_geopolitik/sa/201_guyana";
 
 export const guyana: CountryData = {
   ...guyana_profile,
@@ -39,7 +40,6 @@ export const guyana: CountryData = {
   "kesehatan": guyana_kesehatan,
   "hukum": guyana_hukum,
   "sektor_olahraga": guyana_olahraga,
-  "un_vote": 74,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const guyana: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 5,
-      "kekuatan_keras": 39,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": guyana_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

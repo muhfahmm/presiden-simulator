@@ -18,6 +18,7 @@ import { norwegia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { norwegia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/134_norwegia";
 import { norwegia_profile } from "../../modules/0_profiles/eropa/134_norwegia";
 import { norwegia_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/134_norwegia";
+import { norwegia_geopolitik } from "../../modules/4_geopolitik/eropa/134_norwegia";
 
 export const norwegia: CountryData = {
   ...norwegia_profile,
@@ -39,7 +40,6 @@ export const norwegia: CountryData = {
   "kesehatan": norwegia_kesehatan,
   "hukum": norwegia_hukum,
   "sektor_olahraga": norwegia_olahraga,
-  "un_vote": 161,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const norwegia: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 10,
-      "kekuatan_keras": 31,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": norwegia_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

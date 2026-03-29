@@ -18,6 +18,7 @@ import { bahama_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/n
 import { bahama_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/154_bahama";
 import { bahama_profile } from "../../modules/0_profiles/na/154_bahama";
 import { bahama_strategis } from "../../modules/2_militer/3_militer_strategis/na/154_bahama";
+import { bahama_geopolitik } from "../../modules/4_geopolitik/na/154_bahama";
 
 export const bahama: CountryData = {
   ...bahama_profile,
@@ -39,7 +40,6 @@ export const bahama: CountryData = {
   "kesehatan": bahama_kesehatan,
   "hukum": bahama_hukum,
   "sektor_olahraga": bahama_olahraga,
-  "un_vote": 170,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const bahama: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 37,
-      "kekuatan_keras": 36,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": bahama_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

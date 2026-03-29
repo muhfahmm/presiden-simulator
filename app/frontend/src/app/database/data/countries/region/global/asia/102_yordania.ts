@@ -18,6 +18,7 @@ import { yordania_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { yordania_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/102_yordania";
 import { yordania_profile } from "../../modules/0_profiles/asia/102_yordania";
 import { yordania_strategis } from "../../modules/2_militer/3_militer_strategis/asia/102_yordania";
+import { yordania_geopolitik } from "../../modules/4_geopolitik/asia/102_yordania";
 
 export const yordania: CountryData = {
   ...yordania_profile,
@@ -39,7 +40,6 @@ export const yordania: CountryData = {
   "kesehatan": yordania_kesehatan,
   "hukum": yordania_hukum,
   "sektor_olahraga": yordania_olahraga,
-  "un_vote": 82,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const yordania: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 7,
-      "kekuatan_keras": 26,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": yordania_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

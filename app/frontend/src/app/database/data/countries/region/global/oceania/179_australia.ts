@@ -18,6 +18,7 @@ import { australia_pertahanan } from "../../modules/2_militer/1_sektor_pertahana
 import { australia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/179_australia";
 import { australia_profile } from "../../modules/0_profiles/oceania/179_australia";
 import { australia_strategis } from "../../modules/2_militer/3_militer_strategis/oceania/179_australia";
+import { australia_geopolitik } from "../../modules/4_geopolitik/oceania/179_australia";
 
 export const australia: CountryData = {
   ...australia_profile,
@@ -39,7 +40,6 @@ export const australia: CountryData = {
   "kesehatan": australia_kesehatan,
   "hukum": australia_hukum,
   "sektor_olahraga": australia_olahraga,
-  "un_vote": 112,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const australia: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 6,
-      "kekuatan_keras": 21,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": australia_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

@@ -18,6 +18,7 @@ import { greenland_pertahanan } from "../../modules/2_militer/1_sektor_pertahana
 import { greenland_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/162_greenland";
 import { greenland_profile } from "../../modules/0_profiles/na/162_greenland";
 import { greenland_strategis } from "../../modules/2_militer/3_militer_strategis/na/162_greenland";
+import { greenland_geopolitik } from "../../modules/4_geopolitik/na/162_greenland";
 
 export const greenland: CountryData = {
   ...greenland_profile,
@@ -39,7 +40,6 @@ export const greenland: CountryData = {
   "kesehatan": greenland_kesehatan,
   "hukum": greenland_hukum,
   "sektor_olahraga": greenland_olahraga,
-  "un_vote": 43,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const greenland: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 6,
-      "kekuatan_keras": 33,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": greenland_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

@@ -18,6 +18,7 @@ import { ekuador_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/
 import { ekuador_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/199_ekuador";
 import { ekuador_profile } from "../../modules/0_profiles/sa/199_ekuador";
 import { ekuador_strategis } from "../../modules/2_militer/3_militer_strategis/sa/199_ekuador";
+import { ekuador_geopolitik } from "../../modules/4_geopolitik/sa/199_ekuador";
 
 export const ekuador: CountryData = {
   ...ekuador_profile,
@@ -39,7 +40,6 @@ export const ekuador: CountryData = {
   "kesehatan": ekuador_kesehatan,
   "hukum": ekuador_hukum,
   "sektor_olahraga": ekuador_olahraga,
-  "un_vote": 32,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const ekuador: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 3,
-      "kekuatan_keras": 4,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": ekuador_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

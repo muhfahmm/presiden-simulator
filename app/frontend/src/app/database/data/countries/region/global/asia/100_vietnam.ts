@@ -18,6 +18,7 @@ import { vietnam_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/
 import { vietnam_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/100_vietnam";
 import { vietnam_profile } from "../../modules/0_profiles/asia/100_vietnam";
 import { vietnam_strategis } from "../../modules/2_militer/3_militer_strategis/asia/100_vietnam";
+import { vietnam_geopolitik } from "../../modules/4_geopolitik/asia/100_vietnam";
 
 export const vietnam: CountryData = {
   ...vietnam_profile,
@@ -39,7 +40,6 @@ export const vietnam: CountryData = {
   "kesehatan": vietnam_kesehatan,
   "hukum": vietnam_hukum,
   "sektor_olahraga": vietnam_olahraga,
-  "un_vote": 76,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const vietnam: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 10,
-      "kekuatan_keras": 3,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": vietnam_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

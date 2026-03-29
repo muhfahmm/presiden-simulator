@@ -18,6 +18,7 @@ import { mikronesia_pertahanan } from "../../modules/2_militer/1_sektor_pertahan
 import { mikronesia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/184_mikronesia";
 import { mikronesia_profile } from "../../modules/0_profiles/oceania/184_mikronesia";
 import { mikronesia_strategis } from "../../modules/2_militer/3_militer_strategis/oceania/184_mikronesia";
+import { mikronesia_geopolitik } from "../../modules/4_geopolitik/oceania/184_mikronesia";
 
 export const mikronesia: CountryData = {
   ...mikronesia_profile,
@@ -39,7 +40,6 @@ export const mikronesia: CountryData = {
   "kesehatan": mikronesia_kesehatan,
   "hukum": mikronesia_hukum,
   "sektor_olahraga": mikronesia_olahraga,
-  "un_vote": 14,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const mikronesia: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 9,
-      "kekuatan_keras": 29,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": mikronesia_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

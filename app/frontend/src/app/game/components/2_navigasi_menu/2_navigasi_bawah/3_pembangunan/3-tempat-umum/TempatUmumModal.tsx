@@ -8,6 +8,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
+import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import { infrastrukturRate } from "@/app/game/components/harga_bangunan/3_tempat_umum/2_harga_bangunan_infrastruktur";
 
 interface ModalProps {
@@ -199,6 +200,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
               <Clock className="h-6 w-6 text-cyan-500 group-hover:scale-110 group-hover:rotate-12 transition-transform" />
               {activeConstructions.length > 0 && <span className="absolute -top-1.5 -right-1.5 bg-cyan-500 text-white text-[10px] font-black w-5 h-5 flex items-center justify-center rounded-full border-2 border-zinc-950 shadow-lg animate-in zoom-in">{activeConstructions.length}</span>}
             </button>
+            <NavigasiWaktu />
             <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
               <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
               <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
@@ -399,16 +401,18 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
                   <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
                 </div>
-                <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
+                <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost ?? 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
               </div>
 
-              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
+              {item.consumption > 0 && (
+                <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
+                  </div>
+                  <span className="text-[14px] font-black text-amber-500">{item.consumption} MW</span>
                 </div>
-                <span className="text-[14px] font-black text-amber-500">{item.consumption > 0 ? `${item.consumption} MW` : 'SUPPLY'}</span>
-              </div>
+              )}
 
               {lowongan > 0 && (
                 <>
@@ -485,18 +489,20 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
               <Flame size={12} className="text-rose-400" />
             </div>
             <span className="text-[12px] font-bold text-rose-400/90">
-              Pemeliharaan: -{item.maintenanceCost || 5}/hari
+              Pemeliharaan: -{item.maintenanceCost ?? 5}/hari
             </span>
           </div>
 
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 bg-amber-500/10 rounded-lg">
-              <Zap size={12} className="text-amber-500/90" />
+          {item.consumption > 0 && (
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 bg-amber-500/10 rounded-lg">
+                <Zap size={12} className="text-amber-500/90" />
+              </div>
+              <span className="text-[12px] font-bold text-amber-500/80">
+                Konsumsi: {item.consumption} MW/unit
+              </span>
             </div>
-            <span className="text-[12px] font-bold text-amber-500/80">
-              Konsumsi: {item.consumption || 5} MW/unit
-            </span>
-          </div>
+          )}
 
           {lowongan > 0 && (
             <div className="flex items-center gap-2.5">

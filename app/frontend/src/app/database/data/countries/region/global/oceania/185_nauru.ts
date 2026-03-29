@@ -18,6 +18,7 @@ import { nauru_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oc
 import { nauru_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/185_nauru";
 import { nauru_profile } from "../../modules/0_profiles/oceania/185_nauru";
 import { nauru_strategis } from "../../modules/2_militer/3_militer_strategis/oceania/185_nauru";
+import { nauru_geopolitik } from "../../modules/4_geopolitik/oceania/185_nauru";
 
 export const nauru: CountryData = {
   ...nauru_profile,
@@ -39,7 +40,6 @@ export const nauru: CountryData = {
   "kesehatan": nauru_kesehatan,
   "hukum": nauru_hukum,
   "sektor_olahraga": nauru_olahraga,
-  "un_vote": 52,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const nauru: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 23,
-      "kekuatan_keras": 36,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": nauru_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

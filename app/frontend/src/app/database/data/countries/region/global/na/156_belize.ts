@@ -18,6 +18,7 @@ import { belize_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/n
 import { belize_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/156_belize";
 import { belize_profile } from "../../modules/0_profiles/na/156_belize";
 import { belize_strategis } from "../../modules/2_militer/3_militer_strategis/na/156_belize";
+import { belize_geopolitik } from "../../modules/4_geopolitik/na/156_belize";
 
 export const belize: CountryData = {
   ...belize_profile,
@@ -39,7 +40,6 @@ export const belize: CountryData = {
   "kesehatan": belize_kesehatan,
   "hukum": belize_hukum,
   "sektor_olahraga": belize_olahraga,
-  "un_vote": 15,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const belize: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 5,
-      "kekuatan_keras": 29,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": belize_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

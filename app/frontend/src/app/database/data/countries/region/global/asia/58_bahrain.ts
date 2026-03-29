@@ -18,6 +18,7 @@ import { bahrain_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/
 import { bahrain_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/58_bahrain";
 import { bahrain_profile } from "../../modules/0_profiles/asia/58_bahrain";
 import { bahrain_strategis } from "../../modules/2_militer/3_militer_strategis/asia/58_bahrain";
+import { bahrain_geopolitik } from "../../modules/4_geopolitik/asia/58_bahrain";
 
 export const bahrain: CountryData = {
   ...bahrain_profile,
@@ -39,7 +40,6 @@ export const bahrain: CountryData = {
   "kesehatan": bahrain_kesehatan,
   "hukum": bahrain_hukum,
   "sektor_olahraga": bahrain_olahraga,
-  "un_vote": 96,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const bahrain: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 27,
-      "kekuatan_keras": 14,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": bahrain_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

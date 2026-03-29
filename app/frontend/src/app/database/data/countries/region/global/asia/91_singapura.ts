@@ -18,6 +18,7 @@ import { singapura_pertahanan } from "../../modules/2_militer/1_sektor_pertahana
 import { singapura_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/91_singapura";
 import { singapura_profile } from "../../modules/0_profiles/asia/91_singapura";
 import { singapura_strategis } from "../../modules/2_militer/3_militer_strategis/asia/91_singapura";
+import { singapura_geopolitik } from "../../modules/4_geopolitik/asia/91_singapura";
 
 export const singapura: CountryData = {
   ...singapura_profile,
@@ -39,7 +40,6 @@ export const singapura: CountryData = {
   "kesehatan": singapura_kesehatan,
   "hukum": singapura_hukum,
   "sektor_olahraga": singapura_olahraga,
-  "un_vote": 148,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const singapura: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 12,
-      "kekuatan_keras": 26,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": singapura_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

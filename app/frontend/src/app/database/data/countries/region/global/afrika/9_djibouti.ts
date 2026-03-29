@@ -18,6 +18,7 @@ import { djibouti_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { djibouti_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/9_djibouti";
 import { djibouti_profile } from "../../modules/0_profiles/afrika/9_djibouti";
 import { djibouti_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/9_djibouti";
+import { djibouti_geopolitik } from "../../modules/4_geopolitik/afrika/9_djibouti";
 
 export const djibouti: CountryData = {
   ...djibouti_profile,
@@ -39,7 +40,6 @@ export const djibouti: CountryData = {
   "kesehatan": djibouti_kesehatan,
   "hukum": djibouti_hukum,
   "sektor_olahraga": djibouti_olahraga,
-  "un_vote": 13,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const djibouti: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 10,
-      "kekuatan_keras": 3,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": djibouti_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

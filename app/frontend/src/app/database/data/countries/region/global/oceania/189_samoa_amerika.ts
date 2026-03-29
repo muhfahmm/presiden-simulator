@@ -18,6 +18,7 @@ import { samoa_amerika_pertahanan } from "../../modules/2_militer/1_sektor_perta
 import { samoa_amerika_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/189_samoa_amerika";
 import { samoa_amerika_profile } from "../../modules/0_profiles/oceania/189_samoa_amerika";
 import { samoa_amerika_strategis } from "../../modules/2_militer/3_militer_strategis/oceania/189_samoa_amerika";
+import { samoa_amerika_geopolitik } from "../../modules/4_geopolitik/oceania/189_samoa_amerika";
 
 export const samoa_amerika: CountryData = {
   ...samoa_amerika_profile,
@@ -39,7 +40,6 @@ export const samoa_amerika: CountryData = {
   "kesehatan": samoa_amerika_kesehatan,
   "hukum": samoa_amerika_hukum,
   "sektor_olahraga": samoa_amerika_olahraga,
-  "un_vote": 24,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const samoa_amerika: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 21,
-      "kekuatan_keras": 3,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": samoa_amerika_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

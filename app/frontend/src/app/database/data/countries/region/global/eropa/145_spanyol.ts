@@ -18,6 +18,7 @@ import { spanyol_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/
 import { spanyol_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/145_spanyol";
 import { spanyol_profile } from "../../modules/0_profiles/eropa/145_spanyol";
 import { spanyol_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/145_spanyol";
+import { spanyol_geopolitik } from "../../modules/4_geopolitik/eropa/145_spanyol";
 
 export const spanyol: CountryData = {
   ...spanyol_profile,
@@ -39,7 +40,6 @@ export const spanyol: CountryData = {
   "kesehatan": spanyol_kesehatan,
   "hukum": spanyol_hukum,
   "sektor_olahraga": spanyol_olahraga,
-  "un_vote": 135,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const spanyol: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 8,
-      "kekuatan_keras": 2,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": spanyol_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

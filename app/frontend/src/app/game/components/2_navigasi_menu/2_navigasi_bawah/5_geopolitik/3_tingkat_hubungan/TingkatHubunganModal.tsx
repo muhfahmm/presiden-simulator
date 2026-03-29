@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { X, HeartHandshake, Search, MapPin, Globe2, SearchSlash, Info, TrendingUp, TrendingDown, Activity, Users, ShieldCheck, Zap, ChevronRight, Map as LucideMap, XCircle, Command } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
 import { allRelations } from "@/app/database/data/countries/relations/index";
+import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import { unSecurityCouncilStorage } from "../1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 import { countries as centersData } from "@/app/database/data/countries/region/index";
 
@@ -160,6 +161,7 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
               <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1.5 opacity-60">Registry: {currentCountry} • Global Status Monitoring</p>
             </div>
           </div>
+          <NavigasiWaktu />
           <button onClick={onClose} className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2">
             <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
             <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />

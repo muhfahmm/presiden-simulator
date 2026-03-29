@@ -18,6 +18,7 @@ import { kuba_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/na/
 import { kuba_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/169_kuba";
 import { kuba_profile } from "../../modules/0_profiles/na/169_kuba";
 import { kuba_strategis } from "../../modules/2_militer/3_militer_strategis/na/169_kuba";
+import { kuba_geopolitik } from "../../modules/4_geopolitik/na/169_kuba";
 
 export const kuba: CountryData = {
   ...kuba_profile,
@@ -39,7 +40,6 @@ export const kuba: CountryData = {
   "kesehatan": kuba_kesehatan,
   "hukum": kuba_hukum,
   "sektor_olahraga": kuba_olahraga,
-  "un_vote": 171,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const kuba: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 39,
-      "kekuatan_keras": 9,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": kuba_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

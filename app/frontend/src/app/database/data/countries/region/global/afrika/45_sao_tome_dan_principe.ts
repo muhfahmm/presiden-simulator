@@ -18,6 +18,7 @@ import { sao_tome_dan_principe_pertahanan } from "../../modules/2_militer/1_sekt
 import { sao_tome_dan_principe_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_profile } from "../../modules/0_profiles/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_geopolitik } from "../../modules/4_geopolitik/afrika/45_sao_tome_dan_principe";
 
 export const sao_tome_dan_principe: CountryData = {
   ...sao_tome_dan_principe_profile,
@@ -39,7 +40,6 @@ export const sao_tome_dan_principe: CountryData = {
   "kesehatan": sao_tome_dan_principe_kesehatan,
   "hukum": sao_tome_dan_principe_hukum,
   "sektor_olahraga": sao_tome_dan_principe_olahraga,
-  "un_vote": 86,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const sao_tome_dan_principe: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 37,
-      "kekuatan_keras": 38,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": sao_tome_dan_principe_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

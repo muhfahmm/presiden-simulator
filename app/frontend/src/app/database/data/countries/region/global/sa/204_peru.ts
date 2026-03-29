@@ -18,6 +18,7 @@ import { peru_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/sa/
 import { peru_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/204_peru";
 import { peru_profile } from "../../modules/0_profiles/sa/204_peru";
 import { peru_strategis } from "../../modules/2_militer/3_militer_strategis/sa/204_peru";
+import { peru_geopolitik } from "../../modules/4_geopolitik/sa/204_peru";
 
 export const peru: CountryData = {
   ...peru_profile,
@@ -39,7 +40,6 @@ export const peru: CountryData = {
   "kesehatan": peru_kesehatan,
   "hukum": peru_hukum,
   "sektor_olahraga": peru_olahraga,
-  "un_vote": 41,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const peru: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 2,
-      "kekuatan_keras": 11,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": peru_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

@@ -18,6 +18,7 @@ import { ethiopia_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { ethiopia_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/12_ethiopia";
 import { ethiopia_profile } from "../../modules/0_profiles/afrika/12_ethiopia";
 import { ethiopia_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/12_ethiopia";
+import { ethiopia_geopolitik } from "../../modules/4_geopolitik/afrika/12_ethiopia";
 
 export const ethiopia: CountryData = {
   ...ethiopia_profile,
@@ -39,7 +40,6 @@ export const ethiopia: CountryData = {
   "kesehatan": ethiopia_kesehatan,
   "hukum": ethiopia_hukum,
   "sektor_olahraga": ethiopia_olahraga,
-  "un_vote": 70,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const ethiopia: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 1,
-      "kekuatan_keras": 14,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": ethiopia_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

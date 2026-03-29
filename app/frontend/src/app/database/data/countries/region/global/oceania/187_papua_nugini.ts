@@ -18,6 +18,7 @@ import { papua_nugini_pertahanan } from "../../modules/2_militer/1_sektor_pertah
 import { papua_nugini_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/187_papua_nugini";
 import { papua_nugini_profile } from "../../modules/0_profiles/oceania/187_papua_nugini";
 import { papua_nugini_strategis } from "../../modules/2_militer/3_militer_strategis/oceania/187_papua_nugini";
+import { papua_nugini_geopolitik } from "../../modules/4_geopolitik/oceania/187_papua_nugini";
 
 export const papua_nugini: CountryData = {
   ...papua_nugini_profile,
@@ -39,7 +40,6 @@ export const papua_nugini: CountryData = {
   "kesehatan": papua_nugini_kesehatan,
   "hukum": papua_nugini_hukum,
   "sektor_olahraga": papua_nugini_olahraga,
-  "un_vote": 130,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const papua_nugini: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 36,
-      "kekuatan_keras": 6,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": papua_nugini_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

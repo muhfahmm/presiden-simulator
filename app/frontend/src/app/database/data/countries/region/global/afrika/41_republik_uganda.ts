@@ -18,6 +18,7 @@ import { republik_uganda_pertahanan } from "../../modules/2_militer/1_sektor_per
 import { republik_uganda_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/41_republik_uganda";
 import { republik_uganda_profile } from "../../modules/0_profiles/afrika/41_republik_uganda";
 import { republik_uganda_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/41_republik_uganda";
+import { republik_uganda_geopolitik } from "../../modules/4_geopolitik/afrika/41_republik_uganda";
 
 export const republik_uganda: CountryData = {
   ...republik_uganda_profile,
@@ -39,7 +40,6 @@ export const republik_uganda: CountryData = {
   "kesehatan": republik_uganda_kesehatan,
   "hukum": republik_uganda_hukum,
   "sektor_olahraga": republik_uganda_olahraga,
-  "un_vote": 101,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const republik_uganda: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 20,
-      "kekuatan_keras": 10,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": republik_uganda_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

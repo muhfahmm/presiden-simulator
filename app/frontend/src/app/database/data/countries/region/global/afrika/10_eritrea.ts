@@ -18,6 +18,7 @@ import { eritrea_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/
 import { eritrea_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/10_eritrea";
 import { eritrea_profile } from "../../modules/0_profiles/afrika/10_eritrea";
 import { eritrea_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/10_eritrea";
+import { eritrea_geopolitik } from "../../modules/4_geopolitik/afrika/10_eritrea";
 
 export const eritrea: CountryData = {
   ...eritrea_profile,
@@ -39,7 +40,6 @@ export const eritrea: CountryData = {
   "kesehatan": eritrea_kesehatan,
   "hukum": eritrea_hukum,
   "sektor_olahraga": eritrea_olahraga,
-  "un_vote": 47,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const eritrea: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 27,
-      "kekuatan_keras": 6,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": eritrea_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

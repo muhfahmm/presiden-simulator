@@ -18,6 +18,7 @@ import { portugal_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { portugal_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/eropa/136_portugal";
 import { portugal_profile } from "../../modules/0_profiles/eropa/136_portugal";
 import { portugal_strategis } from "../../modules/2_militer/3_militer_strategis/eropa/136_portugal";
+import { portugal_geopolitik } from "../../modules/4_geopolitik/eropa/136_portugal";
 
 export const portugal: CountryData = {
   ...portugal_profile,
@@ -39,7 +40,6 @@ export const portugal: CountryData = {
   "kesehatan": portugal_kesehatan,
   "hukum": portugal_hukum,
   "sektor_olahraga": portugal_olahraga,
-  "un_vote": 194,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const portugal: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 36,
-      "kekuatan_keras": 30,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": portugal_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

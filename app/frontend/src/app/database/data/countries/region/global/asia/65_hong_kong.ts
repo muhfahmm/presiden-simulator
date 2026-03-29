@@ -18,6 +18,7 @@ import { hong_kong_pertahanan } from "../../modules/2_militer/1_sektor_pertahana
 import { hong_kong_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/65_hong_kong";
 import { hong_kong_profile } from "../../modules/0_profiles/asia/65_hong_kong";
 import { hong_kong_strategis } from "../../modules/2_militer/3_militer_strategis/asia/65_hong_kong";
+import { hong_kong_geopolitik } from "../../modules/4_geopolitik/asia/65_hong_kong";
 
 export const hong_kong: CountryData = {
   ...hong_kong_profile,
@@ -39,7 +40,6 @@ export const hong_kong: CountryData = {
   "kesehatan": hong_kong_kesehatan,
   "hukum": hong_kong_hukum,
   "sektor_olahraga": hong_kong_olahraga,
-  "un_vote": 27,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const hong_kong: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 1,
-      "kekuatan_keras": 20,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": hong_kong_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

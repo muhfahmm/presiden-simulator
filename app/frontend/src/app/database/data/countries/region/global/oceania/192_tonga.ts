@@ -18,6 +18,7 @@ import { tonga_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/oc
 import { tonga_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/oceania/192_tonga";
 import { tonga_profile } from "../../modules/0_profiles/oceania/192_tonga";
 import { tonga_strategis } from "../../modules/2_militer/3_militer_strategis/oceania/192_tonga";
+import { tonga_geopolitik } from "../../modules/4_geopolitik/oceania/192_tonga";
 
 export const tonga: CountryData = {
   ...tonga_profile,
@@ -39,7 +40,6 @@ export const tonga: CountryData = {
   "kesehatan": tonga_kesehatan,
   "hukum": tonga_hukum,
   "sektor_olahraga": tonga_olahraga,
-  "un_vote": 5,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const tonga: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 5,
-      "kekuatan_keras": 18,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": tonga_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

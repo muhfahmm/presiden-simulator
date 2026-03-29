@@ -18,6 +18,7 @@ import { dominika_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { dominika_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/160_dominika";
 import { dominika_profile } from "../../modules/0_profiles/na/160_dominika";
 import { dominika_strategis } from "../../modules/2_militer/3_militer_strategis/na/160_dominika";
+import { dominika_geopolitik } from "../../modules/4_geopolitik/na/160_dominika";
 
 export const dominika: CountryData = {
   ...dominika_profile,
@@ -39,7 +40,6 @@ export const dominika: CountryData = {
   "kesehatan": dominika_kesehatan,
   "hukum": dominika_hukum,
   "sektor_olahraga": dominika_olahraga,
-  "un_vote": 54,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const dominika: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 21,
-      "kekuatan_keras": 18,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": dominika_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

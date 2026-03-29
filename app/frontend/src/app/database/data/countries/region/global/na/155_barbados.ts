@@ -18,6 +18,7 @@ import { barbados_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan
 import { barbados_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/155_barbados";
 import { barbados_profile } from "../../modules/0_profiles/na/155_barbados";
 import { barbados_strategis } from "../../modules/2_militer/3_militer_strategis/na/155_barbados";
+import { barbados_geopolitik } from "../../modules/4_geopolitik/na/155_barbados";
 
 export const barbados: CountryData = {
   ...barbados_profile,
@@ -39,7 +40,6 @@ export const barbados: CountryData = {
   "kesehatan": barbados_kesehatan,
   "hukum": barbados_hukum,
   "sektor_olahraga": barbados_olahraga,
-  "un_vote": 10,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const barbados: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 4,
-      "kekuatan_keras": 9,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": barbados_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

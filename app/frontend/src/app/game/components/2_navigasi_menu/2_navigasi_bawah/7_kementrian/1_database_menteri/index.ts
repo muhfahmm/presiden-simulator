@@ -15,40 +15,9 @@ import { perdagangan_options } from "./14_perdagangan"
 import { keuangan_options } from "./15_keuangan"
 import { Ministry } from "./types"
 
-export const INITIAL_KEMENTERIAN: Ministry[] = [
-  infrastruktur_options[0],
-  pendidikan_options[0],
-  sains_penelitian_options[0],
-  kesehatan_options[0],
-  olahraga_options[0],
-  kehakiman_options[0],
-  pertahanan_options[0],
-  luar_negeri_options[0],
-  kebudayaan_options[0],
-  pariwisata_options[0],
-  lingkungan_hidup_options[0],
-  perumahan_options[0],
-  pembangunan_options[0],
-  perdagangan_options[0],
-  keuangan_options[0],
-].map(m => ({ ...m, status: "Terisi" }));
-
-export const KEMENTERIAN_FULL_DATABASE = {
-  1: infrastruktur_options,
-  2: pendidikan_options,
-  3: sains_penelitian_options,
-  4: kesehatan_options,
-  5: olahraga_options,
-  6: kehakiman_options,
-  7: pertahanan_options,
-  8: luar_negeri_options,
-  9: kebudayaan_options,
-  10: pariwisata_options,
-  11: lingkungan_hidup_options,
-  12: perumahan_options,
-  13: pembangunan_options,
-  14: perdagangan_options,
-  15: keuangan_options,
+export {
+  infrastruktur_options, pendidikan_options, sains_penelitian_options, kesehatan_options, olahraga_options,
+  kehakiman_options, pertahanan_options, luar_negeri_options, kebudayaan_options, pariwisata_options,
+  lingkungan_hidup_options, perumahan_options, pembangunan_options, perdagangan_options, keuangan_options
 };
-
-export * from "./types"
+export type { Ministry };

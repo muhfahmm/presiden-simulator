@@ -18,6 +18,7 @@ import { lesotho_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/
 import { lesotho_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/afrika/22_lesotho";
 import { lesotho_profile } from "../../modules/0_profiles/afrika/22_lesotho";
 import { lesotho_strategis } from "../../modules/2_militer/3_militer_strategis/afrika/22_lesotho";
+import { lesotho_geopolitik } from "../../modules/4_geopolitik/afrika/22_lesotho";
 
 export const lesotho: CountryData = {
   ...lesotho_profile,
@@ -39,7 +40,6 @@ export const lesotho: CountryData = {
   "kesehatan": lesotho_kesehatan,
   "hukum": lesotho_hukum,
   "sektor_olahraga": lesotho_olahraga,
-  "un_vote": 115,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const lesotho: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 36,
-      "kekuatan_keras": 23,
-      "prestise_diplomatik": 57
-  },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-  },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-  },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-  }
-    ]
-  },
+  "geopolitik": lesotho_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

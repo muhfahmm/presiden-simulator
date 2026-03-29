@@ -1,16 +1,34 @@
 import { useState, useEffect } from "react"
 import { X, Landmark, Shield, Star, Zap, User, RefreshCw, ChevronRight, Info, FileText } from "lucide-react"
-import { INITIAL_KEMENTERIAN, Ministry, KEMENTERIAN_FULL_DATABASE } from "./1_database_menteri"
+import { Ministry } from "./1_database_menteri"
+import { DEFAULT_INITIAL_KEMENTERIAN, DEFAULT_KEMENTERIAN_FULL_DATABASE } from "./1_database_menteri/defaults"
 import { budgetStorage } from "../../../1_navbar/3_kas_negara"
 import UndangUndangTab from "./undangundang"
+import NavigasiWaktu from "../2_ekonomi/1-perdagangan/NavigasiWaktu"
+import { CountryData } from "@/app/database/data/types"
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  countryData?: CountryData;
 }
 
-export default function KementerianModal({ isOpen, onClose }: ModalProps) {
-  const [ministries, setMinistries] = useState<Ministry[]>(INITIAL_KEMENTERIAN);
+export default function KementerianModal({ isOpen, onClose, countryData }: ModalProps) {
+  const [ministries, setMinistries] = useState<Ministry[]>([]);
+  
+  // Use effect to initialize or synchronize ministries
+  useEffect(() => {
+    if (isOpen) {
+      if (countryData?.kementerian?.kabinet) {
+        // Convert Record<number, Ministry> to Ministry[] and sort by ID
+        const kabinetArray = Object.values(countryData.kementerian.kabinet).sort((a, b) => a.id - b.id);
+        setMinistries(kabinetArray);
+      } else {
+        const defaultArray = Object.values(DEFAULT_INITIAL_KEMENTERIAN).sort((a, b) => a.id - b.id);
+        setMinistries(defaultArray);
+      }
+    }
+  }, [isOpen, countryData]);
   const [selectingFor, setSelectingFor] = useState<number | null>(null);
   const [showInfoId, setShowInfoId] = useState<number | null>(null);
   const [activeTab, setActiveTab] = useState<"kabinet" | "undang-undang">("kabinet");
@@ -81,12 +99,15 @@ export default function KementerianModal({ isOpen, onClose }: ModalProps) {
 
   const getCandidates = () => {
     if (selectingFor === null) return [];
-    return KEMENTERIAN_FULL_DATABASE[selectingFor as keyof typeof KEMENTERIAN_FULL_DATABASE] || [];
+    
+    // Use country-specific candidates if available, otherwise fallback to defaults
+    const candidatesDb = countryData?.kementerian?.candidates || DEFAULT_KEMENTERIAN_FULL_DATABASE;
+    return candidatesDb[selectingFor as keyof typeof candidatesDb] || [];
   };
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-end justify-center backdrop-blur-sm bg-black/40 animate-in fade-in duration-300 no-scrollbar">
-      <div className="bg-zinc-950 border-x border-t border-zinc-800 rounded-t-[40px] w-full max-w-7xl h-[92vh] overflow-hidden shadow-2xl flex flex-col relative no-scrollbar">
+    <div className="absolute inset-0 bg-black/85 z-[100] flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8 overflow-hidden font-sans">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[92vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
         {/* Header - Compact */}
         <div className="px-6 py-4 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-4">
@@ -124,13 +145,16 @@ export default function KementerianModal({ isOpen, onClose }: ModalProps) {
             </button>
           </div>
 
-          <button
-            onClick={onClose}
-            className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
-          >
-            <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
-            <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
-          </button>
+          <div className="flex items-center gap-4">
+            <NavigasiWaktu />
+            <button
+              onClick={onClose}
+              className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"
+            >
+              <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
+              <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
+            </button>
+          </div>
         </div>
 
         {/* Content Area - Restored strategic density */}

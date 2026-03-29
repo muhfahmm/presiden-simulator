@@ -284,11 +284,11 @@ export default function DatabasePage() {
             <Globe2 size={12} className="text-blue-400" />
             <span className="text-xs text-zinc-500 font-medium uppercase tracking-wider">Suara PBB</span>
             <span className={`text-xs font-black px-1.5 py-0.5 rounded ${!hasSelection ? 'bg-zinc-800 text-zinc-600' :
-                currentData.un_vote >= 139 ? 'bg-emerald-500/20 text-emerald-400' :
-                  currentData.un_vote >= 28 ? 'bg-sky-500/20 text-sky-400' :
+                currentData.geopolitik.un_vote >= 139 ? 'bg-emerald-500/20 text-emerald-400' :
+                  currentData.geopolitik.un_vote >= 28 ? 'bg-sky-500/20 text-sky-400' :
                     'bg-red-500/20 text-red-400'
               }`}>
-              {hasSelection ? currentData.un_vote : "-"}
+              {hasSelection ? currentData.geopolitik.un_vote : "-"}
             </span>
           </div>
         </div>
@@ -796,13 +796,13 @@ export default function DatabasePage() {
                       <Users size={12} className="text-zinc-500" /> Personel Spesialis & Cadangan
                     </span>
                     <div className="grid grid-cols-2 gap-1.5">
-                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20 opacity-40">
                         <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none mb-1">Pasukan Khusus</span>
-                        <span className="text-xs font-black text-white leading-none">{((currentData.armada_militer?.personel?.pasukan_khusus || 0) / 1000).toFixed(1)}K</span>
+                        <span className="text-xs font-black text-white leading-none">-</span>
                       </div>
-                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20 opacity-40">
                         <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none mb-1">Pasukan Cadangan</span>
-                        <span className="text-xs font-black text-white leading-none">{((currentData.armada_militer?.personel?.pasukan_cadangan || 0) / 1000).toFixed(1)}K</span>
+                        <span className="text-xs font-black text-white leading-none">-</span>
                       </div>
                     </div>
                   </div>
@@ -876,13 +876,13 @@ export default function DatabasePage() {
                       <Users size={12} className="text-zinc-500" /> Personel Spesialis & Cadangan
                     </span>
                     <div className="grid grid-cols-2 gap-1.5">
-                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20 opacity-40">
                         <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none mb-1">Pasukan Khusus</span>
-                        <span className="text-xs font-black text-white leading-none">{(currentData.armada_militer.personel.pasukan_khusus / 1000).toFixed(1)}K</span>
+                        <span className="text-xs font-black text-white leading-none">-</span>
                       </div>
-                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20">
+                      <div className="flex flex-col bg-zinc-800/30 p-1.5 rounded-lg border border-zinc-700/20 opacity-40">
                         <span className="text-[9px] text-zinc-500 font-bold uppercase leading-none mb-1">Pasukan Cadangan</span>
-                        <span className="text-xs font-black text-white leading-none">{(currentData.armada_militer.personel.pasukan_cadangan / 1000).toFixed(1)}K</span>
+                        <span className="text-xs font-black text-white leading-none">-</span>
                       </div>
                     </div>
                   </div>

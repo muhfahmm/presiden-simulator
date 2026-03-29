@@ -18,6 +18,7 @@ import { venezuela_pertahanan } from "../../modules/2_militer/1_sektor_pertahana
 import { venezuela_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/sa/207_venezuela";
 import { venezuela_profile } from "../../modules/0_profiles/sa/207_venezuela";
 import { venezuela_strategis } from "../../modules/2_militer/3_militer_strategis/sa/207_venezuela";
+import { venezuela_geopolitik } from "../../modules/4_geopolitik/sa/207_venezuela";
 
 export const venezuela: CountryData = {
   ...venezuela_profile,
@@ -39,7 +40,6 @@ export const venezuela: CountryData = {
   "kesehatan": venezuela_kesehatan,
   "hukum": venezuela_hukum,
   "sektor_olahraga": venezuela_olahraga,
-  "un_vote": 195,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const venezuela: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 40,
-      "kekuatan_keras": 34,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": venezuela_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

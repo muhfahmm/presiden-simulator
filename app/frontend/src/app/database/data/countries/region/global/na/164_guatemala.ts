@@ -18,6 +18,7 @@ import { guatemala_pertahanan } from "../../modules/2_militer/1_sektor_pertahana
 import { guatemala_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/na/164_guatemala";
 import { guatemala_profile } from "../../modules/0_profiles/na/164_guatemala";
 import { guatemala_strategis } from "../../modules/2_militer/3_militer_strategis/na/164_guatemala";
+import { guatemala_geopolitik } from "../../modules/4_geopolitik/na/164_guatemala";
 
 export const guatemala: CountryData = {
   ...guatemala_profile,
@@ -39,7 +40,6 @@ export const guatemala: CountryData = {
   "kesehatan": guatemala_kesehatan,
   "hukum": guatemala_hukum,
   "sektor_olahraga": guatemala_olahraga,
-  "un_vote": 142,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const guatemala: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 31,
-      "kekuatan_keras": 5,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": guatemala_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================

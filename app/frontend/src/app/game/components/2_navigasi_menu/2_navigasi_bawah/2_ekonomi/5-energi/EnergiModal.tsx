@@ -7,6 +7,7 @@ import { CountryData } from "@/app/database/data/types/index"
 import { gameStorage } from "@/app/game/gamestorage"
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_PANGAN } from "@/app/database/data/types/1_kelistrikan"
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate, produksiMiliter, tempatUmum } from "@/app/database/data/types"
+import NavigasiWaktu from "../1-perdagangan/NavigasiWaktu"
 
 interface ModalProps {
    isOpen: boolean;
@@ -121,9 +122,6 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
             }
 
             if (key === "barak") return f.barak || 0;
-            if (key === "infanteri") return f.infanteri || 0;
-            if (key === "penerjun_payung") return f.penerjun_payung || 0;
-            if (key === "pasukan_khusus") return f.pasukan_khusus || 0;
 
             if (f.darat) {
                if (key === "tank") return f.darat.tank_tempur_utama || 0;
@@ -368,6 +366,7 @@ export default function EnergiModal({ isOpen, onClose }: ModalProps) {
                   >
                      <Clock className="h-6 w-6 text-cyan-500 group-hover:scale-110 group-hover:rotate-12 transition-transform" />
                   </button>
+                  <NavigasiWaktu />
                   <button
                      onClick={onClose}
                      className="p-3 rounded-2xl bg-rose-600 border border-rose-500 hover:bg-rose-500 text-white transition-all cursor-pointer shadow-[0_0_15px_rgba(225,29,72,0.3)] active:scale-95 group flex items-center gap-2"

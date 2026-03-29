@@ -18,6 +18,7 @@ import { brunei_pertahanan } from "../../modules/2_militer/1_sektor_pertahanan/a
 import { brunei_peternakan } from "../../modules/1_ekonomi/6_sektor_peternakan/asia/61_brunei";
 import { brunei_profile } from "../../modules/0_profiles/asia/61_brunei";
 import { brunei_strategis } from "../../modules/2_militer/3_militer_strategis/asia/61_brunei";
+import { brunei_geopolitik } from "../../modules/4_geopolitik/asia/61_brunei";
 
 export const brunei: CountryData = {
   ...brunei_profile,
@@ -39,7 +40,6 @@ export const brunei: CountryData = {
   "kesehatan": brunei_kesehatan,
   "hukum": brunei_hukum,
   "sektor_olahraga": brunei_olahraga,
-  "un_vote": 114,
   // =============================================================
   // 11. 💰 PAJAK & EKONOMI
   // =============================================================
@@ -114,32 +114,7 @@ export const brunei: CountryData = {
     // =============================================================
   // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
-  "geopolitik": {
-    "reputasi_diplomatik": "Netral",
-    "aliansi_aktif": [],
-    "pengaruh_global": 0,
-    "peringkat_diplomasi": 100,
-    "sikap": "Netral",
-    "pengaruh_internasional": {
-      "kekuatan_lunak": 33,
-      "kekuatan_keras": 22,
-      "prestise_diplomatik": 57
-    },
-    "organisasi_internasional": [
-      {
-        "name": "PBB (UN)",
-        "role": "Anggota"
-      },
-      {
-        "name": "WHO",
-        "role": "Anggota"
-      },
-      {
-        "name": "WTO",
-        "role": "Anggota"
-      }
-    ]
-  },
+  "geopolitik": brunei_geopolitik,
   // =============================================================
   // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
