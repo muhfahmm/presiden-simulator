@@ -580,7 +580,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                 <p className="text-zinc-400 text-sm font-medium">Anda akan membangun <span className="text-white font-black underline">{confirmBuild.label}</span> untuk meningkatkan kapasitas produksi nasional.</p>
               </div>
 
-              <div className="w-full grid grid-cols-2 gap-3">
+              <div className={`w-full grid ${confirmBuild.powerUsage || confirmBuild.tarif ? 'grid-cols-3' : 'grid-cols-2'} gap-3`}>
                 <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                   <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Total</span>
                   <span className="text-xl font-black text-amber-500 group-hover:scale-110 transition-transform duration-300 tracking-tight">{confirmBuild.cost * quantity}</span>
@@ -592,6 +592,19 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                     <span className="text-xl font-black text-white group-hover:scale-110 transition-transform duration-300 tracking-tight">{confirmBuild.buildTime * quantity} Hari</span>
                   </div>
                 </div>
+                {(confirmBuild.groupId === "kelistrikan" || (confirmBuild.powerUsage && confirmBuild.powerUsage > 0)) && (
+                  <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
+                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
+                      {confirmBuild.groupId === "kelistrikan" ? "Energi Dihasilkan" : "Energi Dikonsumsi"}
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <Zap size={14} className={confirmBuild.groupId === "kelistrikan" ? "text-cyan-400" : "text-rose-500"} />
+                      <span className={`text-xl font-black ${confirmBuild.groupId === "kelistrikan" ? "text-cyan-400" : "text-rose-500"} group-hover:scale-110 transition-transform duration-300 tracking-tight`}>
+                        {confirmBuild.groupId === "kelistrikan" ? (confirmBuild.tarif * quantity).toLocaleString('id-ID') : (confirmBuild.powerUsage * quantity).toLocaleString('id-ID')} MW
+                      </span>
+                    </div>
+                  </div>
+                )}
               </div>
 
               {/* Quantity Selector */}

@@ -31,6 +31,7 @@ export function useGamePath(path: string[]) {
     else if (subMenu === 'intelijen') initialMenu = "Menu:Intelijen";
     else if (subMenu === 'armada-militer') initialMenu = "Menu:ArmadaMiliter";
     else if (subMenu === 'armada-polisi') initialMenu = "Menu:ArmadaPolisi";
+    else if (subMenu === 'manajemen-pertahanan') initialMenu = "Menu:ManajemenPertahanan";
     else initialMenu = "Pertahanan";
   } else if (category === 'geopolitik') {
     if (subMenu === 'PBB') {
@@ -92,6 +93,7 @@ export function useGamePath(path: string[]) {
       "Menu:Intelijen": "/game/pertahanan/intelijen",
       "Menu:ArmadaMiliter": "/game/pertahanan/armada-militer",
       "Menu:ArmadaPolisi": "/game/pertahanan/armada-polisi",
+      "Menu:ManajemenPertahanan": "/game/pertahanan/manajemen-pertahanan",
       "Menu:PBB": "/game/geopolitik/PBB",
       "Menu:PBB:pemungutan_suara": "/game/geopolitik/PBB/pemungutan_suara",
       "Menu:PBB:dewan_keamanan": "/game/geopolitik/PBB/dewan_keamanan",

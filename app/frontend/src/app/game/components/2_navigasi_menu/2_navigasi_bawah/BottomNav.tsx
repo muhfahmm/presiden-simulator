@@ -52,6 +52,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
       { id: "Menu:Intelijen", label: "Intelijen", icon: Eye },
       { id: "Menu:ArmadaMiliter", label: "Armada Militer", icon: MilitaryIcon },
       { id: "Menu:ArmadaPolisi", label: "Armada Polisi", icon: ShieldAlert },
+      { id: "Menu:ManajemenPertahanan", label: "Manajemen Pertahanan", icon: Shield },
     ],
     "Geopolitik": [
       { id: "Menu:PBB", label: "PBB", icon: Globe },

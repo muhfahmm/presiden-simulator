@@ -18,6 +18,7 @@ import PertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_ba
 import IntelijenModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/2_intelijen/IntelijenModal";
 import ArmadaMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/3_armada_militer/ArmadaMiliterModal";
 import ArmadaPolisiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/4_armada_polisi/ArmadaPolisiModal";
+import ManajemenPertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/5_manajemen_pertahanan/ManajemenPertahananModal";
 import PBBModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB";
 import OrgIntlModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/OrgIntlModal";
 import TingkatHubunganModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/3_tingkat_hubungan/TingkatHubunganModal";
@@ -111,6 +112,10 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         isOpen={activeMenu === "Menu:ArmadaPolisi"}
         onClose={() => setActiveMenu("Pertahanan")}
         data={countryData}
+      />
+      <ManajemenPertahananModal
+        isOpen={activeMenu === "Menu:ManajemenPertahanan"}
+        onClose={() => setActiveMenu("Pertahanan")}
       />
       <IntelijenModal
         isOpen={activeMenu === "Menu:Intelijen"}

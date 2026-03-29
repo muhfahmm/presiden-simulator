@@ -306,15 +306,27 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
                 <h3 className="text-2xl font-black text-white uppercase tracking-tighter italic">Konfirmasi Bangun?</h3>
                 <p className="text-zinc-400 text-sm font-medium">Membangun <span className="text-white font-black underline">{confirmBuild.label}</span> untuk fasilitas publik.</p>
               </div>
-              <div className="w-full grid grid-cols-2 gap-3">
-                <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1">
-                  <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Bangun</span>
-                  <span className="text-[16px] font-black text-white tracking-tight">{confirmBuild.cost.toLocaleString('id-ID')}</span>
+               <div className={`w-full grid ${confirmBuild.consumption ? 'grid-cols-3' : 'grid-cols-2'} gap-3`}>
+                <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
+                  <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Total</span>
+                  <span className="text-[16px] font-black text-white tracking-tight group-hover:scale-110 transition-transform duration-300">{(confirmBuild.cost * quantity).toLocaleString('id-ID')}</span>
                 </div>
-                <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1">
-                  <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Waktu</span>
-                  <span className="text-[16px] font-black text-white tracking-tight">{confirmBuild.waktu_pembangunan * quantity} Hari</span>
+                <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
+                  <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Waktu Total</span>
+                  <div className="flex items-center gap-2">
+                    <Clock size={14} className="text-cyan-500" />
+                    <span className="text-[16px] font-black text-white tracking-tight group-hover:scale-110 transition-transform duration-300">{confirmBuild.waktu_pembangunan * quantity} Hari</span>
+                  </div>
                 </div>
+                {confirmBuild.consumption > 0 && (
+                  <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
+                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Energi Dikonsumsi</span>
+                    <div className="flex items-center gap-2">
+                      <Zap size={14} className="text-rose-500" />
+                      <span className="text-[16px] font-black text-rose-500 tracking-tight group-hover:scale-110 transition-transform duration-300">{(confirmBuild.consumption * quantity).toLocaleString('id-ID')} MW</span>
+                    </div>
+                  </div>
+                )}
               </div>
               <div className="w-full flex justify-center gap-4 bg-zinc-950/80 border border-zinc-800 p-2 rounded-2xl">
                 <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-700 font-black">-</button>

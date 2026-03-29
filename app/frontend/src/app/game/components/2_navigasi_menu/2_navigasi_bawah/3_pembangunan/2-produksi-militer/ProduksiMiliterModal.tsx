@@ -11,7 +11,7 @@ import { calculateConstructionProgress, getStatusText } from "@/app/game/data/co
 import { countries } from "@/app/database/data/countries/region/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MaterialRequirement from "../1-produksi/MaterialRequirement";
-import { pertahananRate, produksiMiliter } from "@/app/database/data/types/4_militer";
+import { pertahananRate, produksiMiliter, pabrikMiliterRate } from "@/app/database/data/types/4_militer";
 import { 
   calculateTotalInfantry, 
   calculateInfantryPower,
@@ -65,6 +65,8 @@ import {
   KAMIKAZE_POWER_PER_UNIT,
   TRANSPORT_POWER_PER_UNIT
 } from "../../4_pertahanan/3_armada_militer/kekuatanmiliter";
+
+
 
 interface ModalProps {
   isOpen: boolean;
@@ -208,38 +210,23 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
 
   const militaryGroups = [
     {
-      id: "pertahanan_alutsista",
-      title: "7. Manajemen Pertahanan",
-      icon: Shield,
-      color: "text-red-500",
-      items: Object.entries(pertahananRate).map(([key, val]: [string, any]) => ({
-        key,
-        groupId: "pertahanan",
-        label: val.label,
-        icon: getMilitaryIcon(val.key),
-        desc: val.desc,
-        cost: val.cost,
-        buildTime: val.buildTime,
-        maintenanceCost: val.maintenanceCost,
-        lowongan_kerja: val.lowongan_kerja,
-        count: Number(currentData.sektor_pertahanan?.[val.key as keyof typeof currentData.sektor_pertahanan] || 0) + ((buildingDeltas[key] as number) || 0),
-        consumption: (KONSUMSI_PERTAHANAN as any)[val.key] || (KONSUMSI_STRATEGIC as any)[val.key] || 0
-      }))
-    },
-    {
       id: "pabrik_militer_grup",
-      title: "8. Pabrik Militer Nasional",
+      title: "1. Pabrik Militer Nasional",
       icon: Factory,
       color: "text-purple-500",
-      items: produksiMiliter
-        .filter(item => item.category === "Pabrik")
-        .map((item: any) => ({
-          ...item,
-          groupId: "pabrik_militer",
-          icon: getMilitaryIcon(item.key),
-          count: Number(currentData.pabrik_militer?.[item.key as keyof typeof currentData.pabrik_militer] || 0) + ((buildingDeltas[item.key] as number) || 0),
-          consumption: (KONSUMSI_PERTAHANAN as any)[item.key] || 0
-        }))
+      items: Object.entries(pabrikMiliterRate).map(([key, val]: [string, any]) => ({
+          key: val.dataKey,
+          groupId: val.groupId,
+          label: val.label,
+          icon: getMilitaryIcon(val.dataKey),
+          desc: val.deskripsi,
+          cost: val.biaya_pembangunan,
+          buildTime: val.waktu_pembangunan,
+          maintenanceCost: val.biaya_pemeliharaan,
+          lowongan_kerja: val.lowongan_kerja,
+          count: Number(currentData.pabrik_militer?.[val.dataKey as keyof typeof currentData.pabrik_militer] || 0) + ((buildingDeltas[val.dataKey] as number) || 0),
+          consumption: val.konsumsi_listrik || 0
+      }))
     }
   ];
 
@@ -253,8 +240,8 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
               <Wrench className="h-6 w-6 text-purple-500" />
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white tracking-tight">Militer Hub</h2>
-              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Defense & Strategic Hub</p>
+              <h2 className="text-2xl font-bold text-white tracking-tight">Hub Produksi Militer</h2>
+              <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-0.5">National Military Production & Factories</p>
             </div>
           </div>
           <div className="flex items-center gap-4">
@@ -366,10 +353,27 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
                 </div>
               </div>
               <div className="space-y-4 mb-8">
-                <div className="bg-zinc-950/50 p-4 rounded-2xl border border-zinc-800/50 space-y-3">
-                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Biaya Pembangunan</span><span className="text-sm font-black text-white">{confirmBuild.cost}</span></div>
-                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Waktu Pengerjaan</span><span className="text-sm font-black text-cyan-400">{confirmBuild.buildTime} Hari</span></div>
-                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Beban Listrik</span><span className="text-sm font-black text-rose-500">{confirmBuild.consumption} MW / unit</span></div>
+                <div className={`w-full grid ${confirmBuild.consumption ? 'grid-cols-3' : 'grid-cols-2'} gap-3`}>
+                  <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
+                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Total</span>
+                    <span className="text-xl font-black text-amber-500 group-hover:scale-110 transition-transform duration-300 tracking-tight">{confirmBuild.cost * quantity}</span>
+                  </div>
+                  <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
+                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Waktu Total</span>
+                    <div className="flex items-center gap-2">
+                       <Clock size={14} className="text-cyan-500" />
+                       <span className="text-xl font-black text-white group-hover:scale-110 transition-transform duration-300 tracking-tight">{confirmBuild.buildTime * quantity} Hari</span>
+                    </div>
+                  </div>
+                  {confirmBuild.consumption > 0 && (
+                    <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
+                      <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Energi Dikonsumsi</span>
+                      <div className="flex items-center gap-2">
+                        <Zap size={14} className="text-rose-500" />
+                        <span className="text-xl font-black text-rose-500 group-hover:scale-110 transition-transform duration-300 tracking-tight">{(confirmBuild.consumption * quantity).toLocaleString('id-ID')} MW</span>
+                      </div>
+                    </div>
+                  )}
                 </div>
 
                 {/* Material Requirements */}
