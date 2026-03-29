@@ -9,7 +9,7 @@ import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
-import { infrastrukturRate } from "@/app/game/components/harga_bangunan/3_tempat_umum/2_harga_bangunan_infrastruktur";
+import { infrastrukturRate } from "@/app/database/data/harga_bangunan/3_tempat_umum/2_harga_bangunan_infrastruktur";
 
 interface ModalProps {
   isOpen: boolean;

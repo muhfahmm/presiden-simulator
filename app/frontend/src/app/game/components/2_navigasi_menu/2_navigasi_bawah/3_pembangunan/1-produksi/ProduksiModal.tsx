@@ -1,12 +1,12 @@
 import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain, Briefcase, Users } from "lucide-react"
-import { mineralKritisRate } from "@/app/game/components/harga_bangunan/1_produksi/2_harga_bangunan_komoditas_ekstraksi";
-import { produkIndustriRate as manufakturRate } from "@/app/game/components/harga_bangunan/1_produksi/3_harga_bangunan_manufaktur";
-import { peternakanRate } from "@/app/game/components/harga_bangunan/1_produksi/4_harga_bangunan_peternakan";
-import { agrikulturRate } from "@/app/game/components/harga_bangunan/1_produksi/5_harga_bangunan_agrikultur";
-import { perikananRate } from "@/app/game/components/harga_bangunan/1_produksi/6_harga_bangunan_perikanan";
-import { olahanPanganRate } from "@/app/game/components/harga_bangunan/1_produksi/7_harga_bangunan_olahan_pangan";
-import { farmasiRate } from "@/app/game/components/harga_bangunan/1_produksi/8_harga_bangunan_farmasi";
+import { mineralKritisRate } from "@/app/database/data/harga_bangunan/1_produksi/2_harga_bangunan_komoditas_ekstraksi";
+import { produkIndustriRate as manufakturRate } from "@/app/database/data/harga_bangunan/1_produksi/3_harga_bangunan_manufaktur";
+import { peternakanRate } from "@/app/database/data/harga_bangunan/1_produksi/4_harga_bangunan_peternakan";
+import { agrikulturRate } from "@/app/database/data/harga_bangunan/1_produksi/5_harga_bangunan_agrikultur";
+import { perikananRate } from "@/app/database/data/harga_bangunan/1_produksi/6_harga_bangunan_perikanan";
+import { olahanPanganRate } from "@/app/database/data/harga_bangunan/1_produksi/7_harga_bangunan_olahan_pangan";
+import { farmasiRate } from "@/app/database/data/harga_bangunan/1_produksi/8_harga_bangunan_farmasi";
 import { produksiMiliter, tempatUmum } from "@/app/database/data/types";
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PANGAN, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI } from "@/app/database/data/types/1_kelistrikan"
 import { gameStorage } from "@/app/game/gamestorage";
