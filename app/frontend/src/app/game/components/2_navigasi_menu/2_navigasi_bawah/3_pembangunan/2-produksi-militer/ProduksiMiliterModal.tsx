@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, Fragment } from "react";
-import { X, Wrench, Zap, Shield, Truck, MapPin, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship, Plane, Rocket, Crosshair, Activity, Wifi, Radio, Cctv, Search, Siren, Car, Bike, Dog, ShieldAlert, Anchor, Waves, Satellite, RadioTower, Cpu, Target, Radar, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, EyeOff, Building, Archive, Info, Briefcase, Users, Flame } from "lucide-react"
+import { X, Wrench, Zap, Shield, Truck, MapPin, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship, Plane, Rocket, Crosshair, Activity, Wifi, Radio, Cctv, Search, Siren, Car, Bike, Dog, ShieldAlert, Anchor, Waves, Satellite, RadioTower, Cpu, Target, Radar, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, EyeOff, Building, Archive, Info, Briefcase, Users, Flame, Factory } from "lucide-react"
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/types/1_kelistrikan";
 import { KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL } from "@/app/database/data/types/1_kelistrikan/2_konsumsi_listrik";
 import { gameStorage } from "@/app/game/gamestorage";
@@ -10,7 +10,8 @@ import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
-import { pertahananRate } from "@/app/database/data/types/4_militer";
+import MaterialRequirement from "../1-produksi/MaterialRequirement";
+import { pertahananRate, produksiMiliter } from "@/app/database/data/types/4_militer";
 import { 
   calculateTotalInfantry, 
   calculateInfantryPower,
@@ -138,7 +139,8 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
   deltaEntries.forEach(([key, deltaValue]) => {
     const meta = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA];
     if (meta && typeof deltaValue === 'number') {
-      adjustedTotalPasokan += (deltaValue * meta.production);
+      const prodValue = (meta as any).produksi || (meta as any).production || 0;
+      adjustedTotalPasokan += (deltaValue * prodValue);
     }
   });
 
@@ -196,6 +198,10 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
       case "pangkalan_laut": return Ship;
       case "program_luar_angkasa": return Rocket;
       case "cyber_shield": return ShieldAlert;
+      case "pabrik_drone_kamikaze": return Target;
+      case "pabrik_amunisi": return Archive;
+      case "pabrik_kendaraan_tempur": return Truck;
+      case "pabrik_senjata_berat": return Crosshair;
       default: return Shield;
     }
   };
@@ -219,6 +225,21 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
         count: Number(currentData.sektor_pertahanan?.[val.key as keyof typeof currentData.sektor_pertahanan] || 0) + ((buildingDeltas[key] as number) || 0),
         consumption: (KONSUMSI_PERTAHANAN as any)[val.key] || (KONSUMSI_STRATEGIC as any)[val.key] || 0
       }))
+    },
+    {
+      id: "pabrik_militer_grup",
+      title: "8. Pabrik Militer Nasional",
+      icon: Factory,
+      color: "text-purple-500",
+      items: produksiMiliter
+        .filter(item => item.category === "Pabrik")
+        .map((item: any) => ({
+          ...item,
+          groupId: "pabrik_militer",
+          icon: getMilitaryIcon(item.key),
+          count: Number(currentData.pabrik_militer?.[item.key as keyof typeof currentData.pabrik_militer] || 0) + ((buildingDeltas[item.key] as number) || 0),
+          consumption: (KONSUMSI_PERTAHANAN as any)[item.key] || 0
+        }))
     }
   ];
 
@@ -350,6 +371,10 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
                   <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Waktu Pengerjaan</span><span className="text-sm font-black text-cyan-400">{confirmBuild.buildTime} Hari</span></div>
                   <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Beban Listrik</span><span className="text-sm font-black text-rose-500">{confirmBuild.consumption} MW / unit</span></div>
                 </div>
+
+                {/* Material Requirements */}
+                <MaterialRequirement buildingKey={confirmBuild.key} quantity={quantity} />
+
                 <div className="flex items-center justify-between gap-4">
                   <span className="text-xs text-zinc-500 font-bold uppercase">Jumlah Unit</span>
                   <div className="flex items-center bg-zinc-950 rounded-xl border border-zinc-800 p-1">

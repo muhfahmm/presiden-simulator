@@ -16,6 +16,7 @@ import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/countries/region/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
+import MaterialRequirement from "./MaterialRequirement";
 
 interface ModalProps {
   isOpen: boolean;
@@ -616,6 +617,9 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                 </div>
               </div>
 
+              {/* Material Requirements */}
+              <MaterialRequirement buildingKey={confirmBuild.key} quantity={quantity} />
+
               <div className="w-full py-2 px-4 rounded-xl bg-cyan-500/5 border border-cyan-500/10 text-[10px] font-medium text-cyan-500/80 italic">
                 Selesai Bertahap S/D: {formatGameDate(addDays(getStoredGameDate(), confirmBuild.buildTime * quantity))}
               </div>
@@ -905,7 +909,10 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
               {item.groupId === "kelistrikan" ? "TOTAL PRODUKSI:" : "STOK GUDANG:"}
             </span>
             <span className="text-[16px] font-black text-cyan-400 tracking-tight">
-              {item.groupId === "kelistrikan" ? (Math.floor(item.tarif) * item.count).toLocaleString('id-ID') : Math.floor(cumulative).toLocaleString('id-ID')} <span className="text-[10px] text-cyan-500/50 font-normal uppercase italic ml-1">{item.unit}</span>
+              {item.groupId === "kelistrikan" 
+                ? (Math.floor(item.tarif) * item.count).toLocaleString('id-ID')
+                : (budgetStorage.getCumulativeProduction()[item.key] || 0).toLocaleString('id-ID')
+              } <span className="text-[10px] text-cyan-500/50 font-normal uppercase italic ml-1">{item.unit}</span>
             </span>
           </div>
         </div>
