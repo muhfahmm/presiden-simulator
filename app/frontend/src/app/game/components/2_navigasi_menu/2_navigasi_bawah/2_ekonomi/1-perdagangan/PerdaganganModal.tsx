@@ -335,16 +335,16 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   const getProductionRate = (key: string) => {
     // 1. Check Mineral
     const minRate = (mineralKritisRate as any)[Object.keys(mineralKritisRate).find(k => (mineralKritisRate as any)[k].dataKey === key) || ""];
-    if (minRate) return minRate.production;
+    if (minRate) return minRate.production ?? 1;
 
     // 2. Check Manufacturing / Industry (Categories 2, 4, 5)
     const mfgKey = Object.keys(baseKeyMapping).find(k => baseKeyMapping[k] === key) || key;
     const mfgRate = (produkIndustriRate as any)[mfgKey] || (produkIndustriRate as any)[key] || (produkIndustriRate as any)[key + "_factory"];
-    if (mfgRate) return mfgRate.production;
+    if (mfgRate) return mfgRate.production ?? 1;
 
     // 3. Check Military (Category 6)
     const milRate = (militerRate as any)[key];
-    if (milRate) return milRate.production;
+    if (milRate) return milRate.production ?? 1;
 
     return 1; // Default
   };
@@ -352,16 +352,16 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   const getUnit = (key: string) => {
     // 1. Check Mineral
     const minRate = (mineralKritisRate as any)[Object.keys(mineralKritisRate).find(k => (mineralKritisRate as any)[k].dataKey === key) || ""];
-    if (minRate) return minRate.unit;
+    if (minRate) return minRate.unit ?? "Unit";
 
     // 2. Check Manufacturing
     const mfgKey = Object.keys(baseKeyMapping).find(k => baseKeyMapping[k] === key) || key;
     const mfgRate = (produkIndustriRate as any)[mfgKey] || (produkIndustriRate as any)[key] || (produkIndustriRate as any)[key + "_factory"];
-    if (mfgRate) return mfgRate.unit;
+    if (mfgRate) return mfgRate.unit ?? "Unit";
 
     // 3. Check Military
     const milRate = (militerRate as any)[key];
-    if (milRate) return milRate.unit;
+    if (milRate) return milRate.unit ?? "Unit";
 
     return "Unit";
   };

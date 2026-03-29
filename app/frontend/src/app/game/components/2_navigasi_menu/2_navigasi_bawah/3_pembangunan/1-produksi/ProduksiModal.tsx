@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from "react";
-import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain, Briefcase, Users } from "lucide-react"
+import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain, Briefcase, Users2 } from "lucide-react"
 import { mineralKritisRate } from "@/app/database/data/harga_bangunan/1_produksi/2_harga_bangunan_komoditas_ekstraksi";
 import { produkIndustriRate as manufakturRate } from "@/app/database/data/harga_bangunan/1_produksi/3_harga_bangunan_manufaktur";
 import { peternakanRate } from "@/app/database/data/harga_bangunan/1_produksi/4_harga_bangunan_peternakan";
@@ -262,7 +262,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         desc: "Energi Listrik",
         tarif: val.produksi,
         unit: val.satuan,
-        count: (currentData.sektor_listrik?.[key as keyof typeof currentData.sektor_listrik] || 0) + ((buildingDeltas[key] as number) || 0),
+        count: (currentData.sektor_listrik?.[val.dataKey as keyof typeof currentData.sektor_listrik] || 0) + ((buildingDeltas[key] as number) || 0),
         pendapatan_nasional: 0,
         cost: val.biaya_pembangunan || 35,
         buildTime: val.waktu_pembangunan || 90,
@@ -805,9 +805,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
 
               <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-400">
-                    <Users size={12} />
-                  </div>
+                    <Users2 size={12} />
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Lowongan</span>
                 </div>
                 <span className="text-[14px] font-black text-blue-400">+{item.lowongan_kerja?.toLocaleString('id-ID')} <span className="text-[9px] text-blue-500/50 italic opacity-80">/ UNIT</span></span>
@@ -856,7 +854,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
             {item.desc || "Infrastruktur"}
           </div>
           <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-            Terbangun: {item.count} Unit {item.groupId !== "kelistrikan" && item.powerUsage && `(${item.count * item.powerUsage} MW)`}
+            Terbangun: {item.count} Unit {item.groupId !== "kelistrikan" && (item.powerUsage ?? 0) > 0 && `(${item.count * item.powerUsage} MW)`}
           </div>
         </div>
       </div>
@@ -898,7 +896,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
 
           <div className="flex items-center gap-2.5">
             <div className="p-1.5 bg-blue-500/10 rounded-lg">
-              <Users size={12} className="text-blue-400" />
+              <Users2 size={12} className="text-blue-400" />
             </div>
             <span className="text-[12px] font-bold text-blue-400/80">
               Lowongan: {item.lowongan_kerja?.toLocaleString('id-ID')} Jiwa/unit

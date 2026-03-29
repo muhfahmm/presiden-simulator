@@ -48,11 +48,11 @@ export const ImporHalaman: React.FC<ImporHalamanProps> = ({
             </div>
             <div className="flex flex-col gap-2">
               <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Produksi /Fasilitas</span>
-              <span className="text-zinc-300 text-base tracking-normal">{getProductionRate(selectedKey).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
+              <span className="text-zinc-300 text-base tracking-normal">{(getProductionRate(selectedKey) ?? 1).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
             </div>
             <div className="flex flex-col gap-2">
               <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Produksi Harian</span>
-              <span className="text-blue-400 text-base tracking-normal">{(selectedUnits * getProductionRate(selectedKey)).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
+              <span className="text-blue-400 text-base tracking-normal">{(selectedUnits * (getProductionRate(selectedKey) ?? 1)).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
             </div>
             <div className="flex flex-col gap-2 col-span-2 mt-2">
               <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Stok Tersedia</span>
@@ -60,7 +60,7 @@ export const ImporHalaman: React.FC<ImporHalamanProps> = ({
                 // Simulate partner stock based on days passed
                 const today = getStoredGameDate();
                 const daysPassed = Math.floor((today.getTime() - INITIAL_GAME_DATE.getTime()) / (1000 * 60 * 60 * 24));
-                const dailyProd = selectedUnits * getProductionRate(selectedKey);
+                const dailyProd = selectedUnits * (getProductionRate(selectedKey) ?? 1);
                 const totalSimulated = Math.floor(dailyProd * Math.max(0, daysPassed));
                 const alreadyImported = importStockStorage.getImportedAmount(selectedTradePartner, selectedKey);
                 const stock = Math.max(0, totalSimulated - alreadyImported);

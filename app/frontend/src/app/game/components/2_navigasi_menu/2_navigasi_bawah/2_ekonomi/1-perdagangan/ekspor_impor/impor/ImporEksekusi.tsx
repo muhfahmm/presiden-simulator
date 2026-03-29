@@ -36,7 +36,7 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
   const calculateAiStock = () => {
     const today = getStoredGameDate();
     const daysPassed = Math.floor((today.getTime() - INITIAL_GAME_DATE.getTime()) / (1000 * 60 * 60 * 24));
-    const aiDailyProd = selectedUnits * getProductionRate(selectedKey);
+    const aiDailyProd = selectedUnits * (getProductionRate(selectedKey) ?? 1);
     const totalSimulated = Math.floor(aiDailyProd * Math.max(0, daysPassed));
     const alreadyImported = importStockStorage.getImportedAmount(selectedTradePartner, selectedKey);
     return Math.max(0, totalSimulated - alreadyImported);

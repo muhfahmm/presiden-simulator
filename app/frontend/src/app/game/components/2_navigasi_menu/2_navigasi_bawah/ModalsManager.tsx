@@ -5,9 +5,6 @@ import PerdaganganModal from "@/app/game/components/2_navigasi_menu/2_navigasi_b
 import PajakModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/PajakModal";
 import HutangModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/3-hutang/HutangModal";
 import PemasukkanPengeluaranModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/PemasukkanPengeluaranModal";
-import EnergiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/5-energi/EnergiModal";
-import ProduksiBarangModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/6-produksi-barang/ProduksiBarangModal";
-import MineralsModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/7-minerals/MineralsModal";
 import HargaModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/HargaModal";
 
 // Other Modals
@@ -66,18 +63,7 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         isOpen={activeMenu === "Menu:Budget"}
         onClose={() => setActiveMenu("Ekonomi")}
       />
-      <EnergiModal
-        isOpen={activeMenu === "Menu:Energi"}
-        onClose={() => setActiveMenu("Ekonomi")}
-      />
-      <ProduksiBarangModal
-        isOpen={activeMenu === "Menu:ProduksiBarang"}
-        onClose={() => setActiveMenu("Ekonomi")}
-      />
-      <MineralsModal
-        isOpen={activeMenu === "Menu:Minerals"}
-        onClose={() => setActiveMenu("Ekonomi")}
-      />
+
       <HargaModal
         isOpen={activeMenu === "Menu:Harga"}
         onClose={() => setActiveMenu("Ekonomi")}

@@ -16,9 +16,6 @@ export function useGamePath(path: string[]) {
     else if (subMenu === 'pajak') initialMenu = "Menu:Pajak";
     else if (subMenu === 'hutang') initialMenu = "Menu:Hutang";
     else if (subMenu === 'pemasukkan-pengeluaran') initialMenu = "Menu:Budget";
-    else if (subMenu === 'energi') initialMenu = "Menu:Energi";
-    else if (subMenu === 'produksi-barang') initialMenu = "Menu:ProduksiBarang";
-    else if (subMenu === 'minerals') initialMenu = "Menu:Minerals";
     else if (subMenu === 'harga') initialMenu = "Menu:Harga";
     else initialMenu = "Ekonomi";
   } else if (category === 'pembangunan') {
@@ -60,11 +57,7 @@ export function useGamePath(path: string[]) {
     initialMenu = "Menu:Inbox";
   } else if (category === 'kependudukan') {
     initialMenu = "Dashboard:Populasi";
-  } else if (category === 'anggaran') {
-    if (subMenu === 'dashboard') initialMenu = "Dashboard:Budget";
-    else initialMenu = "Ekonomi";
-  } else if (category === 'minerals') {
-    initialMenu = "Menu:Minerals";
+
   } else if (category === 'agama') {
     initialMenu = "Menu:Agama";
   } else if (category === 'ideologi') {
@@ -80,9 +73,6 @@ export function useGamePath(path: string[]) {
       "Menu:Pajak": "/game/ekonomi/pajak",
       "Menu:Hutang": "/game/ekonomi/hutang",
       "Menu:Budget": "/game/ekonomi/pemasukkan-pengeluaran",
-      "Menu:Energi": "/game/ekonomi/energi",
-      "Menu:ProduksiBarang": "/game/ekonomi/produksi-barang",
-      "Menu:Minerals": "/game/ekonomi/minerals",
       "Menu:Harga": "/game/ekonomi/harga",
       "Pembangunan": "/game/pembangunan",
       "Menu:Produksi": "/game/pembangunan/produksi",
