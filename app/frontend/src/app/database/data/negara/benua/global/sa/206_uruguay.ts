@@ -1,0 +1,128 @@
+import { CountryData } from "@/app/database/data/types";
+import { uruguay_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/sa/206_uruguay";
+import { uruguay_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/sa/206_uruguay";
+import { uruguay_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/sa/206_uruguay";
+import { uruguay_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/10_sektor_farmasi/sa/206_uruguay";
+import { uruguay_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/sa/206_uruguay";
+import { uruguay_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_infrastruktur/sa/206_uruguay";
+import { uruguay_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/sa/206_uruguay";
+import { uruguay_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/sa/206_uruguay";
+import { uruguay_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/2_kelistrikan/sa/206_uruguay";
+import { uruguay_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_manufaktur/sa/206_uruguay";
+import { uruguay_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/9_sektor_olahan_pangan/sa/206_uruguay";
+import { uruguay_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/sa/206_uruguay";
+import { uruguay_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/sa/206_uruguay";
+import { uruguay_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/sa/206_uruguay";
+import { uruguay_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_perikanan/sa/206_uruguay";
+import { uruguay_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/sa/206_uruguay";
+import { uruguay_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_peternakan/sa/206_uruguay";
+import { uruguay_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/206_uruguay";
+import { uruguay_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/sa/206_uruguay";
+import { uruguay_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/sa/206_uruguay";
+
+export const uruguay: CountryData = {
+  ...uruguay_profile,
+  "sektor_listrik": uruguay_listrik,
+  "infrastruktur": uruguay_infrastruktur,
+  "sektor_ekstraksi": uruguay_ekstraksi,
+  "sektor_manufaktur": uruguay_manufaktur,
+  "sektor_peternakan": uruguay_peternakan,
+  "sektor_agrikultur": uruguay_agrikultur,
+  "sektor_perikanan": uruguay_perikanan,
+  "sektor_olahan_pangan": uruguay_olahan_pangan,
+  "sektor_farmasi": uruguay_farmasi,
+  "sektor_pertahanan": uruguay_pertahanan,
+  "armada_militer": uruguay_armada,
+  "militer_strategis": uruguay_strategis,
+  "armada_kepolisian": uruguay_kepolisian,
+  "pabrik_militer": uruguay_pabrik,
+    "pendidikan": uruguay_pendidikan,
+  "kesehatan": uruguay_kesehatan,
+  "hukum": uruguay_hukum,
+  "sektor_olahraga": uruguay_olahraga,
+  // =============================================================
+  // 11. 💰 PAJAK & EKONOMI
+  // =============================================================
+  "pajak": {
+    "ppn": {
+      "tarif": 11,
+      "kepuasan": 67,
+      "pendapatan": 16
+    },
+    "korporasi": {
+      "tarif": 1,
+      "kepuasan": 52,
+      "pendapatan": 0
+    },
+    "penghasilan": {
+      "tarif": 23,
+      "kepuasan": 61,
+      "pendapatan": 37
+    },
+    "bea_cukai": {
+      "tarif": 30,
+      "kepuasan": 86,
+      "pendapatan": 22
+    },
+    "lingkungan": {
+      "tarif": 33,
+      "kepuasan": 88,
+      "pendapatan": 66
+    },
+    "transit_sekutu": { "tarif": 5, "kepuasan": 85, "pendapatan": 4 },
+    "transit_non_sekutu": { "tarif": 15, "kepuasan": 75, "pendapatan": 11 },
+    "lainnya": {
+      "tarif": 19,
+      "kepuasan": 93,
+      "pendapatan": 20
+    }
+  },
+  // =============================================================
+  // 12. 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+  "gaji": {
+    "gaji_asn": 60,
+    "gaji_guru": 70,
+    "gaji_medis": 70,
+    "gaji_militer": 70
+  },
+  "subsidi": {
+    "subsidi_energi": 75,
+    "subsidi_pangan": 75,
+    "subsidi_kesehatan": 75,
+    "subsidi_pendidikan": 50,
+    "subsidi_umkm": 50,
+    "subsidi_transportasi": 75,
+    "subsidi_perumahan": 50
+  },
+  // =============================================================
+  // 13. 🛒 HARGA PASAR DOMESTIK
+  // =============================================================
+  "harga": {
+    "harga_beras": 22400,
+    "harga_daging_sapi": 208200,
+    "harga_ayam": 41000,
+    "harga_minyak_goreng": 12320,
+    "harga_gula": 14400,
+    "harga_telur": 62200,
+    "harga_bbm": 21400,
+    "harga_listrik": 3200,
+    "harga_air": 4160,
+    "harga_obat": 221060,
+    "harga_pendidikan": 483900
+  },
+    // =============================================================
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // =============================================================
+  "geopolitik": uruguay_geopolitik,
+  // =============================================================
+  // 16. 🏛️ KEMENTERIAN NEGARA
+  // =============================================================
+  "kementerian": {
+    "kesehatan": 6,
+    "pendidikan": 37,
+    "keamanan": 1,
+    "keuangan": 2,
+    "lingkungan": 60
+  }
+};

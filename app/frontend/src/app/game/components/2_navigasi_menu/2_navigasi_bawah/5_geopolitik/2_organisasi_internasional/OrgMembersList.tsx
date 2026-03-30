@@ -2,7 +2,7 @@
 
 import React, { useState, useMemo } from 'react';
 import { Search, MapPin, Globe, Users, SearchSlash, Command, CheckCircle2 } from "lucide-react";
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 
 interface OrgMembersListProps {
     orgId: string;

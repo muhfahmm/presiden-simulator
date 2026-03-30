@@ -4,7 +4,7 @@ import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { historiEksporStorage } from "./HistoriEksporStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { tradeStorage } from "../../TradeStorage";
-import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/countries/region/index";
+import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
 
 interface EksporEksekusiProps {
   selectedKey: string;

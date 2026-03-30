@@ -185,7 +185,8 @@ export default function HargaModal({ isOpen, onClose }: HargaModalProps) {
     if (val <= 1.5) return "Komersial (Mahal)";
     return "Mewah (Sangat Mahal)";
   };
-  return (
+
+  return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[92vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
 

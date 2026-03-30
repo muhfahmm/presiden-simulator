@@ -17,9 +17,9 @@ import DiplomacyTab from "./2_diplomasi_hubungan/DiplomacyTab";
 import MilitaryTab from "./3_aksi_militer_dan_intelijen/MilitaryTab";
 import AidTab from "./4_bantuan_dan_kerjasama/AidTab";
 
-import { allRelations } from "@/app/database/data/countries/relations";
+import { allRelations } from "@/app/database/data/negara/hubungan";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries as centersData } from "@/app/database/data/countries/region/index";
+import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLogic";

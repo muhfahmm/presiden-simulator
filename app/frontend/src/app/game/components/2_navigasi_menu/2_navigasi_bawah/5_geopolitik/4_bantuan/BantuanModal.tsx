@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { X, HandHelping, Coins, Building2, Landmark, GraduationCap, Heart, HelpCircle, Info, Clock, CheckCircle2, AlertCircle, TrendingUp, TrendingDown, DollarSign } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 export default function BantuanModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {

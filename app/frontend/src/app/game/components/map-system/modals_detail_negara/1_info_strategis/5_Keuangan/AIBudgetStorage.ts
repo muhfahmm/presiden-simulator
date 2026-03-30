@@ -1,6 +1,6 @@
 "use client"
 
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 
 const AI_BUDGET_KEY = "em4_ai_budgets";
 const LAST_PROCESSED_KEY = "em4_ai_last_processed";

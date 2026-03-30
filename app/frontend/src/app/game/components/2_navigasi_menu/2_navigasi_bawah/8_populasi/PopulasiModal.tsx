@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { X, Users, TrendingUp, TrendingDown, Minus, ShoppingCart, CalendarDays, Users2, Clock, Heart, Brain, ShieldAlert, BadgeDollarSign, Activity, GraduationCap, Gavel, Landmark, Briefcase, ChevronRight, Baby } from "lucide-react";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";

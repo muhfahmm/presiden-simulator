@@ -17,7 +17,7 @@ import { getInitialAgreements } from "./database_mitra/agreementsRegistry"
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage"
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
-import { countries } from "@/app/database/data/countries/region/index"
+import { countries } from "@/app/database/data/negara/benua/index"
 import { getExtractionData } from "@/app/database/data/types/7_ekstraksi_mineral_kritis/1_kualitas_ekstraksi";
 import { 
   getManufakturData, 

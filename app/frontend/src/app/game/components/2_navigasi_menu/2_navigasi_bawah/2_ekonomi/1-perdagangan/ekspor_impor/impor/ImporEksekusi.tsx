@@ -6,7 +6,7 @@ import { historiImportStorage } from "./HistoriImportStorage";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 import { tradeStorage } from "../../TradeStorage";
 import { importStockStorage } from "../../ImportStockStorage";
-import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/countries/region/index";
+import { asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
 
 interface ImporEksekusiProps {
   selectedKey: string;

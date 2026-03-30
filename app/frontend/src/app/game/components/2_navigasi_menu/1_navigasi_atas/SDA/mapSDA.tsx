@@ -1,10 +1,10 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react";
-import { countries as centersData } from "@/app/database/data/countries/region/index";
+import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { Layers, Mountain, Gem, Waves, Flame, Battery, Droplets, Box, Cpu, Pickaxe, Radio } from "lucide-react";
 import { getExtractionData } from "@/app/database/data/types/7_ekstraksi_mineral_kritis/1_kualitas_ekstraksi";
-import { allRelations } from "@/app/database/data/countries/relations/index";
+import { allRelations } from "@/app/database/data/negara/hubungan/index";
 
 export const sdaIcons: { [key: string]: { icon: any, color: string, label: string } } = {
   aluminium: { icon: Layers, color: "text-blue-200", label: "Alumunium" },

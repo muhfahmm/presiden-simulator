@@ -4,7 +4,7 @@ export const islamLogic = {
   name: "Islam",
   icon: Moon,
   effects: {
-    plus: ["Stabilitas & Harmoni Sosial +15%"],
+    plus: ["Pajak Sektor Komersial +10%"],
     minus: ["Biaya Diplomasi Barat +10%"]
   }
 };

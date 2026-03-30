@@ -1,6 +1,6 @@
 import { UNGroup, getCountriesByGroup, UN_GROUPS_CONFIG } from "./unGroups";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 
 const STORAGE_KEY = "em4_un_security_council";
 

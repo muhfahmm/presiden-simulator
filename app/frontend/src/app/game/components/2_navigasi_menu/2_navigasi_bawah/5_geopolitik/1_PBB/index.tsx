@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import { X, Globe, Shield, Gavel, Crown } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 // Import Modular Tabs

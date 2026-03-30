@@ -1,5 +1,5 @@
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 import { CountryData } from "@/app/database/data/types/index";
 import { historiImportStorage } from "./ekspor_impor/impor/HistoriImportStorage";
 import { historiEksporStorage } from "./ekspor_impor/ekspor/HistoriEksporStorage";

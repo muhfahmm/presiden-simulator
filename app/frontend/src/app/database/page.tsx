@@ -6,7 +6,7 @@ import { HelpCircle, Play, ArrowLeft, Filter, ChevronLeft, ChevronRight, Eye, Ey
 import { TransformWrapper, TransformComponent, ReactZoomPanPinchRef } from "react-zoom-pan-pinch";
 import WorldMapCanvas from "./databasemap";
 import MapHubungan from "../game/components/2_navigasi_menu/1_navigasi_atas/Hubungan/mapHubungan";
-import { countries } from "./data/countries/region/index";
+import { countries } from "./data/negara/benua/index";
 import { gameStorage } from "../game/gamestorage";
 import { taxStorage } from "../game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { CountryData } from "./data/types/index";

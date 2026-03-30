@@ -1,4 +1,4 @@
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 
 export type UNGroup = "African Group" | "Asia-Pacific Group" | "Eastern European Group" | "GRULAC" | "WEOG";
 

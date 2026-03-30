@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 
 export function useGamePath(path: string[]) {
   let initialMenu = "Peta Taktis";

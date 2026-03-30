@@ -8,9 +8,9 @@ import {
 } from "lucide-react";
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 import { CountryData } from "@/app/database/data/types/index";
-import { allRelations } from "@/app/database/data/countries/relations/index"; // Added relations import
+import { allRelations } from "@/app/database/data/negara/hubungan/index"; // Added relations import
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 // Import modular action components

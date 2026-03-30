@@ -1,0 +1,128 @@
+import { CountryData } from "@/app/database/data/types";
+import { republik_dominika_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/na/174_republik_dominika";
+import { republik_dominika_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/na/174_republik_dominika";
+import { republik_dominika_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/na/174_republik_dominika";
+import { republik_dominika_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/10_sektor_farmasi/na/174_republik_dominika";
+import { republik_dominika_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/na/174_republik_dominika";
+import { republik_dominika_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_infrastruktur/na/174_republik_dominika";
+import { republik_dominika_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/na/174_republik_dominika";
+import { republik_dominika_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/na/174_republik_dominika";
+import { republik_dominika_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/2_kelistrikan/na/174_republik_dominika";
+import { republik_dominika_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_manufaktur/na/174_republik_dominika";
+import { republik_dominika_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/9_sektor_olahan_pangan/na/174_republik_dominika";
+import { republik_dominika_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/na/174_republik_dominika";
+import { republik_dominika_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/na/174_republik_dominika";
+import { republik_dominika_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/na/174_republik_dominika";
+import { republik_dominika_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_perikanan/na/174_republik_dominika";
+import { republik_dominika_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/na/174_republik_dominika";
+import { republik_dominika_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_peternakan/na/174_republik_dominika";
+import { republik_dominika_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/174_republik_dominika";
+import { republik_dominika_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/na/174_republik_dominika";
+import { republik_dominika_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/na/174_republik_dominika";
+
+export const republik_dominika: CountryData = {
+  ...republik_dominika_profile,
+  "sektor_listrik": republik_dominika_listrik,
+  "infrastruktur": republik_dominika_infrastruktur,
+  "sektor_ekstraksi": republik_dominika_ekstraksi,
+  "sektor_manufaktur": republik_dominika_manufaktur,
+  "sektor_peternakan": republik_dominika_peternakan,
+  "sektor_agrikultur": republik_dominika_agrikultur,
+  "sektor_perikanan": republik_dominika_perikanan,
+  "sektor_olahan_pangan": republik_dominika_olahan_pangan,
+  "sektor_farmasi": republik_dominika_farmasi,
+  "sektor_pertahanan": republik_dominika_pertahanan,
+  "armada_militer": republik_dominika_armada,
+  "militer_strategis": republik_dominika_strategis,
+  "armada_kepolisian": republik_dominika_kepolisian,
+  "pabrik_militer": republik_dominika_pabrik,
+    "pendidikan": republik_dominika_pendidikan,
+  "kesehatan": republik_dominika_kesehatan,
+  "hukum": republik_dominika_hukum,
+  "sektor_olahraga": republik_dominika_olahraga,
+  // =============================================================
+  // 11. 💰 PAJAK & EKONOMI
+  // =============================================================
+  "pajak": {
+    "ppn": {
+      "tarif": 37,
+      "kepuasan": 67,
+      "pendapatan": 64
+    },
+    "korporasi": {
+      "tarif": 1,
+      "kepuasan": 52,
+      "pendapatan": 1
+    },
+    "penghasilan": {
+      "tarif": 28,
+      "kepuasan": 61,
+      "pendapatan": 34
+    },
+    "bea_cukai": {
+      "tarif": 12,
+      "kepuasan": 86,
+      "pendapatan": 28
+    },
+    "lingkungan": {
+      "tarif": 6,
+      "kepuasan": 88,
+      "pendapatan": 8
+    },
+    "transit_sekutu": { "tarif": 5, "kepuasan": 85, "pendapatan": 6 },
+    "transit_non_sekutu": { "tarif": 15, "kepuasan": 75, "pendapatan": 17 },
+    "lainnya": {
+      "tarif": 29,
+      "kepuasan": 93,
+      "pendapatan": 44
+    }
+  },
+  // =============================================================
+  // 12. 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+  "gaji": {
+    "gaji_asn": 100,
+    "gaji_guru": 90,
+    "gaji_medis": 90,
+    "gaji_militer": 80
+  },
+  "subsidi": {
+    "subsidi_energi": 50,
+    "subsidi_pangan": 50,
+    "subsidi_kesehatan": 100,
+    "subsidi_pendidikan": 100,
+    "subsidi_umkm": 50,
+    "subsidi_transportasi": 75,
+    "subsidi_perumahan": 50
+  },
+  // =============================================================
+  // 13. 🛒 HARGA PASAR DOMESTIK
+  // =============================================================
+  "harga": {
+    "harga_beras": 32000,
+    "harga_daging_sapi": 145740,
+    "harga_ayam": 32800,
+    "harga_minyak_goreng": 12320,
+    "harga_gula": 11520,
+    "harga_telur": 31100,
+    "harga_bbm": 8560,
+    "harga_listrik": 3200,
+    "harga_air": 7280,
+    "harga_obat": 157900,
+    "harga_pendidikan": 241950
+  },
+    // =============================================================
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // =============================================================
+  "geopolitik": republik_dominika_geopolitik,
+  // =============================================================
+  // 16. 🏛️ KEMENTERIAN NEGARA
+  // =============================================================
+  "kementerian": {
+    "kesehatan": 20,
+    "pendidikan": 20,
+    "keamanan": 9,
+    "keuangan": 25,
+    "lingkungan": 60
+  }
+};

@@ -1,6 +1,6 @@
 import { CountryData } from "../index";
 
-import { KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/harga_bangunan/1_produksi/1_harga_bangunan_listrik";
+import { KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/harga_bangunan_negara/1_pembangunan";
 export { KAPASITAS_LISTRIK_METADATA };
 
 export const KAPASITAS_LISTRIK = Object.fromEntries(

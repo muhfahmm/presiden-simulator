@@ -1,0 +1,128 @@
+import { CountryData } from "@/app/database/data/types";
+import { ekuador_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/sa/199_ekuador";
+import { ekuador_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/sa/199_ekuador";
+import { ekuador_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/sa/199_ekuador";
+import { ekuador_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/10_sektor_farmasi/sa/199_ekuador";
+import { ekuador_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/sa/199_ekuador";
+import { ekuador_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_infrastruktur/sa/199_ekuador";
+import { ekuador_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/sa/199_ekuador";
+import { ekuador_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/sa/199_ekuador";
+import { ekuador_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/2_kelistrikan/sa/199_ekuador";
+import { ekuador_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_manufaktur/sa/199_ekuador";
+import { ekuador_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/9_sektor_olahan_pangan/sa/199_ekuador";
+import { ekuador_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/sa/199_ekuador";
+import { ekuador_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/sa/199_ekuador";
+import { ekuador_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/sa/199_ekuador";
+import { ekuador_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_perikanan/sa/199_ekuador";
+import { ekuador_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/sa/199_ekuador";
+import { ekuador_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_peternakan/sa/199_ekuador";
+import { ekuador_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/199_ekuador";
+import { ekuador_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/sa/199_ekuador";
+import { ekuador_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/sa/199_ekuador";
+
+export const ekuador: CountryData = {
+  ...ekuador_profile,
+  "sektor_listrik": ekuador_listrik,
+  "infrastruktur": ekuador_infrastruktur,
+  "sektor_ekstraksi": ekuador_ekstraksi,
+  "sektor_manufaktur": ekuador_manufaktur,
+  "sektor_peternakan": ekuador_peternakan,
+  "sektor_agrikultur": ekuador_agrikultur,
+  "sektor_perikanan": ekuador_perikanan,
+  "sektor_olahan_pangan": ekuador_olahan_pangan,
+  "sektor_farmasi": ekuador_farmasi,
+  "sektor_pertahanan": ekuador_pertahanan,
+  "armada_militer": ekuador_armada,
+  "militer_strategis": ekuador_strategis,
+  "armada_kepolisian": ekuador_kepolisian,
+  "pabrik_militer": ekuador_pabrik,
+    "pendidikan": ekuador_pendidikan,
+  "kesehatan": ekuador_kesehatan,
+  "hukum": ekuador_hukum,
+  "sektor_olahraga": ekuador_olahraga,
+  // =============================================================
+  // 11. 💰 PAJAK & EKONOMI
+  // =============================================================
+  "pajak": {
+    "ppn": {
+      "tarif": 25,
+      "kepuasan": 67,
+      "pendapatan": 28
+    },
+    "korporasi": {
+      "tarif": 30,
+      "kepuasan": 52,
+      "pendapatan": 56
+    },
+    "penghasilan": {
+      "tarif": 40,
+      "kepuasan": 61,
+      "pendapatan": 61
+    },
+    "bea_cukai": {
+      "tarif": 28,
+      "kepuasan": 86,
+      "pendapatan": 91
+    },
+    "lingkungan": {
+      "tarif": 28,
+      "kepuasan": 88,
+      "pendapatan": 34
+    },
+    "transit_sekutu": { "tarif": 5, "kepuasan": 85, "pendapatan": 6 },
+    "transit_non_sekutu": { "tarif": 15, "kepuasan": 75, "pendapatan": 17 },
+    "lainnya": {
+      "tarif": 28,
+      "kepuasan": 93,
+      "pendapatan": 83
+    }
+  },
+  // =============================================================
+  // 12. 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+  "gaji": {
+    "gaji_asn": 60,
+    "gaji_guru": 60,
+    "gaji_medis": 70,
+    "gaji_militer": 50
+  },
+  "subsidi": {
+    "subsidi_energi": 50,
+    "subsidi_pangan": 75,
+    "subsidi_kesehatan": 50,
+    "subsidi_pendidikan": 75,
+    "subsidi_umkm": 50,
+    "subsidi_transportasi": 50,
+    "subsidi_perumahan": 50
+  },
+  // =============================================================
+  // 13. 🛒 HARGA PASAR DOMESTIK
+  // =============================================================
+  "harga": {
+    "harga_beras": 16000,
+    "harga_daging_sapi": 145740,
+    "harga_ayam": 41000,
+    "harga_minyak_goreng": 12320,
+    "harga_gula": 7200,
+    "harga_telur": 24880,
+    "harga_bbm": 10700,
+    "harga_listrik": 2240,
+    "harga_air": 7280,
+    "harga_obat": 157900,
+    "harga_pendidikan": 677460
+  },
+    // =============================================================
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // =============================================================
+  "geopolitik": ekuador_geopolitik,
+  // =============================================================
+  // 16. 🏛️ KEMENTERIAN NEGARA
+  // =============================================================
+  "kementerian": {
+    "kesehatan": 17,
+    "pendidikan": 40,
+    "keamanan": 3,
+    "keuangan": 22,
+    "lingkungan": 60
+  }
+};

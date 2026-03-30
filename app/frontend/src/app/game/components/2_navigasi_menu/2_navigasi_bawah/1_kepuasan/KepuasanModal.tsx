@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { X, Users, Heart, Star, Info, TrendingUp, BarChart, Smile, TrendingDown, Minus, ShoppingCart, Receipt, CalendarDays, Flame } from "lucide-react";
 import { happinessStorage, HappinessStats } from "./happinessStorage";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 
 interface KepuasanModalProps {

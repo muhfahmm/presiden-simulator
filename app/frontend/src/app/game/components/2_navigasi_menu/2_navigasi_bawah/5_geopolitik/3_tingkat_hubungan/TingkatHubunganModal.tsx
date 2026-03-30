@@ -3,10 +3,10 @@
 import { useState, useEffect, useMemo } from "react";
 import { X, HeartHandshake, Search, MapPin, Globe2, SearchSlash, Info, TrendingUp, TrendingDown, Activity, Users, ShieldCheck, Zap, ChevronRight, Map as LucideMap, XCircle, Command } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
-import { allRelations } from "@/app/database/data/countries/relations/index";
+import { allRelations } from "@/app/database/data/negara/hubungan/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import { unSecurityCouncilStorage } from "../1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
-import { countries as centersData } from "@/app/database/data/countries/region/index";
+import { countries as centersData } from "@/app/database/data/negara/benua/index";
 
 type Continent = "Asia" | "Afrika" | "Eropa" | "Amerika Utara" | "Amerika Selatan" | "Oseania";
 

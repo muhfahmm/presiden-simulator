@@ -1,0 +1,128 @@
+import { CountryData } from "@/app/database/data/types";
+import { jepang_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/asia/71_jepang";
+import { jepang_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/asia/71_jepang";
+import { jepang_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/asia/71_jepang";
+import { jepang_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/10_sektor_farmasi/asia/71_jepang";
+import { jepang_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/asia/71_jepang";
+import { jepang_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_infrastruktur/asia/71_jepang";
+import { jepang_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/asia/71_jepang";
+import { jepang_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/asia/71_jepang";
+import { jepang_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/2_kelistrikan/asia/71_jepang";
+import { jepang_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_manufaktur/asia/71_jepang";
+import { jepang_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/9_sektor_olahan_pangan/asia/71_jepang";
+import { jepang_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/asia/71_jepang";
+import { jepang_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/asia/71_jepang";
+import { jepang_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/asia/71_jepang";
+import { jepang_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_perikanan/asia/71_jepang";
+import { jepang_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/asia/71_jepang";
+import { jepang_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_peternakan/asia/71_jepang";
+import { jepang_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/71_jepang";
+import { jepang_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/asia/71_jepang";
+import { jepang_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/71_jepang";
+
+export const jepang: CountryData = {
+  ...jepang_profile,
+  "sektor_listrik": jepang_listrik,
+  "infrastruktur": jepang_infrastruktur,
+  "sektor_ekstraksi": jepang_ekstraksi,
+  "sektor_manufaktur": jepang_manufaktur,
+  "sektor_peternakan": jepang_peternakan,
+  "sektor_agrikultur": jepang_agrikultur,
+  "sektor_perikanan": jepang_perikanan,
+  "sektor_olahan_pangan": jepang_olahan_pangan,
+  "sektor_farmasi": jepang_farmasi,
+  "sektor_pertahanan": jepang_pertahanan,
+  "armada_militer": jepang_armada,
+  "militer_strategis": jepang_strategis,
+  "armada_kepolisian": jepang_kepolisian,
+  "pabrik_militer": jepang_pabrik,
+    "pendidikan": jepang_pendidikan,
+  "kesehatan": jepang_kesehatan,
+  "hukum": jepang_hukum,
+  "sektor_olahraga": jepang_olahraga,
+  // =============================================================
+  // 11. 💰 PAJAK & EKONOMI
+  // =============================================================
+  "pajak": {
+    "ppn": {
+      "tarif": 3,
+      "kepuasan": 67,
+      "pendapatan": 209
+    },
+    "korporasi": {
+      "tarif": 6,
+      "kepuasan": 52,
+      "pendapatan": 245
+    },
+    "penghasilan": {
+      "tarif": 23,
+      "kepuasan": 61,
+      "pendapatan": 1899
+    },
+    "bea_cukai": {
+      "tarif": 12,
+      "kepuasan": 86,
+      "pendapatan": 568
+    },
+    "lingkungan": {
+      "tarif": 5,
+      "kepuasan": 88,
+      "pendapatan": 433
+    },
+    "transit_sekutu": { "tarif": 5, "kepuasan": 85, "pendapatan": 200 },
+    "transit_non_sekutu": { "tarif": 15, "kepuasan": 75, "pendapatan": 600 },
+    "lainnya": {
+      "tarif": 16,
+      "kepuasan": 93,
+      "pendapatan": 1182
+    }
+  },
+  // =============================================================
+  // 12. 💰 GAJI & SUBSIDI (Default)
+  // =============================================================
+  "gaji": {
+    "gaji_asn": 70,
+    "gaji_guru": 70,
+    "gaji_medis": 70,
+    "gaji_militer": 60
+  },
+  "subsidi": {
+    "subsidi_energi": 75,
+    "subsidi_pangan": 75,
+    "subsidi_kesehatan": 50,
+    "subsidi_pendidikan": 75,
+    "subsidi_umkm": 50,
+    "subsidi_transportasi": 50,
+    "subsidi_perumahan": 25
+  },
+  // =============================================================
+  // 13. 🛒 HARGA PASAR DOMESTIK
+  // =============================================================
+  "harga": {
+    "harga_beras": 16000,
+    "harga_daging_sapi": 104100,
+    "harga_ayam": 82000,
+    "harga_minyak_goreng": 21560,
+    "harga_gula": 7200,
+    "harga_telur": 31100,
+    "harga_bbm": 10700,
+    "harga_listrik": 1600,
+    "harga_air": 2600,
+    "harga_obat": 157900,
+    "harga_pendidikan": 677460
+  },
+    // =============================================================
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // =============================================================
+  "geopolitik": jepang_geopolitik,
+  // =============================================================
+  // 16. 🏛️ KEMENTERIAN NEGARA
+  // =============================================================
+  "kementerian": {
+    "kesehatan": 20,
+    "pendidikan": 40,
+    "keamanan": 10,
+    "keuangan": 22,
+    "lingkungan": 60
+  }
+};

@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { FileText, AlertTriangle, Ban, ChevronLeft, Search, Clock, Globe, ThumbsUp, ThumbsDown } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/countries/region/index";
+import { countries, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
 import { unSecurityCouncilStorage } from "../2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 
 interface ResolutionItem {

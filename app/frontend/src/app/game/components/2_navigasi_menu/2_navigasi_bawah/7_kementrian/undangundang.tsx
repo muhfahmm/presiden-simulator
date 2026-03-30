@@ -4,7 +4,7 @@ import { Sparkles, Brain, Target, Info, Scale, FileText, ShieldCheck, Zap, Heart
 import { useState, useEffect } from "react";
 import { gameStorage } from "@/app/game/gamestorage";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { calculatePopulationHappiness } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan";
 

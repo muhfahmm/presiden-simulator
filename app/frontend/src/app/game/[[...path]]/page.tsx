@@ -15,7 +15,7 @@ import ModalsManager from "@/app/game/components/2_navigasi_menu/2_navigasi_bawa
 import GameOverOverlay from "@/app/game/components/6_overlays/GameOverOverlay";
 import WelcomeOverlay from "@/app/game/components/6_overlays/WelcomeOverlay";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries } from "@/app/database/data/countries/region/index";
+import { countries } from "@/app/database/data/negara/benua/index";
 import GameNavbar from "@/app/game/components/1_navbar";
 
 import { useGameState } from "../hooks/useGameState";
