@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, Shield, BookOpen, Scale, Landmark, Activity, Users, Coins, Heart, Handshake, Flag, Crown, Info, Plus, Minus, CheckCircle2 } from "lucide-react"
+import { X, Shield, BookOpen, Scale, Landmark, Activity, Users, Coins, Heart, Handshake, Flag, Crown, Info, Plus, Minus, CheckCircle2, ChevronRight } from "lucide-react"
 import { ideologies } from "@/app/database/data/ideologies"
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
@@ -59,6 +59,8 @@ const icons: Record<string, any> = {
 
 function IdeologyCard({ ideology, isActive, countryData }: { ideology: string; isActive: boolean; countryData: any }) {
   const [showInfo, setShowInfo] = useState(false);
+  const [showEffectDetail, setShowEffectDetail] = useState(false);
+  const [selectedEffect, setSelectedEffect] = useState("");
   const Icon = icons[ideology] || Landmark;
   const effects = ideologyEffects[ideology];
 
@@ -127,22 +129,38 @@ function IdeologyCard({ ideology, isActive, countryData }: { ideology: string; i
           <div className="flex-1 overflow-y-auto flex gap-4 pr-1 custom-scrollbar mt-2">
             <div className="flex-1 space-y-2">
               {effects.plus.map((eff, i) => (
-                <div key={i} className="flex items-center gap-2 group/eff">
+                <div 
+                  key={i} 
+                  className="flex items-center gap-2 group/eff cursor-pointer hover:bg-white/5 p-2 -mx-2 rounded-xl transition-all"
+                  onClick={() => {
+                    setSelectedEffect(eff);
+                    setShowEffectDetail(true);
+                  }}
+                >
                   <div className="p-1 bg-emerald-500/20 rounded-lg shrink-0">
-                    <CheckCircle2 className="h-3 w-3 text-emerald-500" />
+                    <CheckCircle2 className="h-4 w-4 text-emerald-500" />
                   </div>
-                  <span className="text-[11px] font-bold text-zinc-300 leading-none tracking-tight">{eff}</span>
+                  <span className="text-[16px] font-bold text-zinc-100 leading-tight tracking-tight flex-1">{eff}</span>
+                  <ChevronRight className="h-4 w-4 text-zinc-600 group-hover/eff:text-emerald-400 transition-colors" />
                 </div>
               ))}
             </div>
 
             <div className="flex-1 space-y-2 border-l border-white/5 pl-4">
               {effects.minus.map((eff, i) => (
-                <div key={i} className="flex items-center gap-2 group/eff">
+                <div 
+                  key={i} 
+                  className="flex items-center gap-2 group/eff cursor-pointer hover:bg-white/5 p-2 -mx-2 rounded-xl transition-all"
+                  onClick={() => {
+                    setSelectedEffect(eff);
+                    setShowEffectDetail(true);
+                  }}
+                >
                   <div className="p-1 bg-rose-500/20 rounded-lg shrink-0">
-                    <X className="h-3 w-3 text-rose-500" />
+                    <X className="h-4 w-4 text-rose-500" />
                   </div>
-                  <span className="text-[11px] font-bold text-zinc-300 leading-none tracking-tight">{eff}</span>
+                  <span className="text-[16px] font-bold text-zinc-100 leading-tight tracking-tight flex-1">{eff}</span>
+                  <ChevronRight className="h-4 w-4 text-zinc-600 group-hover/eff:text-rose-400 transition-colors" />
                 </div>
               ))}
             </div>
@@ -153,6 +171,40 @@ function IdeologyCard({ ideology, isActive, countryData }: { ideology: string; i
             className="mt-4 w-full py-2 bg-cyan-500/10 hover:bg-cyan-500/20 border border-cyan-500/20 rounded-xl text-[9px] font-black text-cyan-400 uppercase tracking-widest transition-all cursor-pointer"
           >
             Tutup Info
+          </button>
+        </div>
+      )}
+
+      {/* Effect Detail Placeholder Modal */}
+      {showEffectDetail && (
+        <div className="absolute inset-0 z-30 bg-zinc-950 flex flex-col p-6 animate-in zoom-in-95 duration-200">
+          <div className="flex justify-between items-center mb-6">
+            <h4 className="text-[10px] font-black text-cyan-400 uppercase tracking-widest italic">Detail Efek Ideologi</h4>
+            <button onClick={() => setShowEffectDetail(false)} className="p-1.5 hover:bg-white/5 rounded-lg transition-colors cursor-pointer">
+              <X className="h-4 w-4 text-zinc-500" />
+            </button>
+          </div>
+          
+          <div className="flex-1 flex flex-col items-center justify-center text-center space-y-6">
+            <div className="relative">
+              <div className="absolute inset-0 bg-cyan-500/20 blur-2xl rounded-full"></div>
+              <div className="relative p-6 bg-cyan-500/10 rounded-[32px] border border-cyan-500/20 shadow-2xl">
+                <Info className="h-10 w-10 text-cyan-400" />
+              </div>
+            </div>
+            
+            <div className="space-y-2 max-w-[200px]">
+              <h5 className="text-xl font-black text-white italic uppercase tracking-tighter leading-tight drop-shadow-sm">{selectedEffect}</h5>
+              <div className="h-px w-12 bg-zinc-800 mx-auto"></div>
+              <p className="text-[11px] text-zinc-500 font-medium leading-relaxed">Analisis mendalam mengenai implikasi politik dan fundamental ideologi dari efek ini sedang dalam tahap pengembangan.</p>
+            </div>
+          </div>
+
+          <button
+            onClick={() => setShowEffectDetail(false)}
+            className="w-full py-4 bg-zinc-900 hover:bg-zinc-800 border border-white/5 rounded-2xl text-[10px] font-black text-white uppercase tracking-[0.2em] transition-all cursor-pointer active:scale-95 shadow-xl"
+          >
+            Kembali Ke Dashboard
           </button>
         </div>
       )}
