@@ -1,11 +1,30 @@
 "use client"
 
+import { useState, useEffect } from "react";
+
 interface MapCategorySelectorProps {
   mapMode: "default" | "sda" | "hubungan" | "trade";
   setMapMode: (mode: "default" | "sda" | "hubungan" | "trade") => void;
 }
 
 export default function MapCategorySelector({ mapMode, setMapMode }: MapCategorySelectorProps) {
+  const [isTemporarilyHidden, setIsTemporarilyHidden] = useState(false);
+
+  useEffect(() => {
+    const handleHide = () => setIsTemporarilyHidden(true);
+    const handleShow = () => setIsTemporarilyHidden(false);
+    
+    window.addEventListener('hide_strategy_modal', handleHide);
+    window.addEventListener('show_strategy_modal', handleShow);
+    
+    return () => {
+      window.removeEventListener('hide_strategy_modal', handleHide);
+      window.removeEventListener('show_strategy_modal', handleShow);
+    };
+  }, []);
+
+  if (isTemporarilyHidden) return null;
+
   return (
     <div className="absolute bottom-32 left-1/2 -translate-x-1/2 z-20 flex bg-zinc-900/80 backdrop-blur-md p-1 rounded-xl border border-zinc-800 shadow-xl gap-1">
       <button

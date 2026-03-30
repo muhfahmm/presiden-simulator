@@ -39,16 +39,21 @@ export function calculateDailyProductionTotals(countryData: CountryData, buildin
   // 3. SEKTOR PANGAN & KOMODITAS (Peternakan, Agrikultur, Perikanan)
   // Catatan: Pangan seringkali menggunakan pengelompokan (Grouped) di UI
   const panganGroups = [
-    { key: "1_peternakan_ayam_unggas", base: "ayam_unggas", sector: "sektor_peternakan" },
+    { key: "1_peternakan_unggas", base: "ayam_unggas", sector: "sektor_peternakan" },
     { key: "2_peternakan_sapi_perah", base: "sapi_perah", sector: "sektor_peternakan" },
     { key: "3_peternakan_sapi_potong", base: "sapi_potong", sector: "sektor_peternakan" },
     { key: "4_peternakan_domba_kambing", base: "domba_kambing", sector: "sektor_peternakan" },
-    { key: "1_pertanian_padi", base: "padi", sector: "sektor_agrikultur" },
-    { key: "2_pertanian_gandum_jagung", base: "gandum_jagung", sector: "sektor_agrikultur" },
-    { key: "3_pertanian_sayur_umbi", base: "sayur_umbi", sector: "sektor_agrikultur" },
-    { key: "4_pertanian_kedelai", base: "kedelai", sector: "sektor_agrikultur" },
-    { key: "5_perkebunan_kelapa_sawit", base: "kelapa_sawit", sector: "sektor_agrikultur" },
-    { key: "6_perkebunan_kopi_teh_kakao", base: "kopi_teh_kakao", sector: "sektor_agrikultur" },
+    { key: "1_sawah_padi", base: "padi", sector: "sektor_agrikultur" },
+    { key: "2_ladang_gandum", base: "gandum_jagung", sector: "sektor_agrikultur" },
+    { key: "3_ladang_jagung", base: "gandum_jagung", sector: "sektor_agrikultur" },
+    { key: "4_ladang_umbi", base: "sayur_umbi", sector: "sektor_agrikultur" },
+    { key: "5_ladang_kedelai", base: "kedelai", sector: "sektor_agrikultur" },
+    { key: "6_perkebunan_sawit", base: "kelapa_sawit", sector: "sektor_agrikultur" },
+    { key: "7_perkebunan_teh", base: "kopi_teh_kakao", sector: "sektor_agrikultur" },
+    { key: "8_perkebunan_kopi", base: "kopi_teh_kakao", sector: "sektor_agrikultur" },
+    { key: "9_perkebunan_kakao", base: "kopi_teh_kakao", sector: "sektor_agrikultur" },
+    { key: "10_perkebunan_tebu", base: "tebu", sector: "sektor_agrikultur" },
+    { key: "11_kebun_sayur", base: "sayur_umbi", sector: "sektor_agrikultur" },
     { key: "1_budidaya_udang_kerang", base: "udang_kerang", sector: "sektor_perikanan" },
     { key: "2_budidaya_ikan", base: "ikan", sector: "sektor_perikanan" },
   ];

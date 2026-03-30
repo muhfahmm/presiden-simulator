@@ -18,6 +18,7 @@ import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inbox
 import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { aiBudgetStorage } from "@/app/game/components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { diplomacyStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/diplomacyStorage";
 
 export default function GameTimeControls() {
   const [state, setState] = useState(timeStorage.getState());
@@ -108,6 +109,9 @@ export default function GameTimeControls() {
 
       // Real-time & Monthly Happiness Sync
       happinessStorage.recalculateMonthlyHappiness(state.gameDate);
+
+      // --- Diplomacy & Construction Progression ---
+      diplomacyStorage.updateProgress(state.gameDate);
 
       // --- UN Security Council Rotation (Jan 1st) ---
       if (state.gameDate.getMonth() === 0 && state.gameDate.getDate() === 1) {

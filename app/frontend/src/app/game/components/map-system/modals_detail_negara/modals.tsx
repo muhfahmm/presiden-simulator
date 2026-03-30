@@ -76,6 +76,21 @@ const geoJsonToIndo: { [key: string]: string } = {
 export default function StrategyModal({ isOpen, onClose, targetCountry, userCountry, activeTab, onTabChange }: StrategyModalProps) {
   const [menuTab, setMenuTab] = useState<'info' | 'diplomacy' | 'military' | 'aid'>('info');
   const [liveStats, setLiveStats] = useState({ anggaran: 0, dailyDelta: 0 });
+  const [isTemporarilyHidden, setIsTemporarilyHidden] = useState(false);
+
+  // Listen for temporary hide/show events from sub-modals
+  useEffect(() => {
+    const handleHide = () => setIsTemporarilyHidden(true);
+    const handleShow = () => setIsTemporarilyHidden(false);
+    
+    window.addEventListener('hide_strategy_modal', handleHide);
+    window.addEventListener('show_strategy_modal', handleShow);
+    
+    return () => {
+      window.removeEventListener('hide_strategy_modal', handleHide);
+      window.removeEventListener('show_strategy_modal', handleShow);
+    };
+  }, []);
 
   // Sync internal state with prop from URL
   useEffect(() => {
@@ -153,7 +168,9 @@ export default function StrategyModal({ isOpen, onClose, targetCountry, userCoun
   if (!isOpen || !targetCountry || !countryEntry) return null;
 
   return (
-    <div className="absolute inset-0 bg-black/70 z-[1000] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
+    <div className={`absolute inset-0 z-[1000] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200 ${
+      isTemporarilyHidden ? 'hidden' : 'bg-black/70'
+    }`}>
       <div className="bg-[#181a1f] border border-zinc-800/80 rounded-2xl w-full max-w-2xl flex flex-col gap-0 text-white shadow-2xl relative">
         
         {/* 1. Modal Header with Flag title structure */}
@@ -221,7 +238,7 @@ export default function StrategyModal({ isOpen, onClose, targetCountry, userCoun
             </div>
           )}
 
-          {menuTab === 'diplomacy' && <DiplomacyTab />}
+          {menuTab === 'diplomacy' && <DiplomacyTab userCountry={userCountry} targetCountry={targetCountry} />}
           {menuTab === 'military' && <MilitaryTab />}
           {menuTab === 'aid' && <AidTab />}
         </div>

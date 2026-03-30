@@ -48,22 +48,30 @@ export const TradeExecutionModal: React.FC<TradeExecutionModalProps> = ({
   
   // Mapping trade keys to production buildings
   const productionMapping: Record<string, string> = {
-    // Minerals
-    emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", minyak_bumi: "oil_well",
-    gas_alam: "gas_well", garam: "salt_mine", nikel: "nickel_mine", litium: "lithium_mine",
-    tembaga: "copper_mine", aluminium: "aluminum_mine", logam_tanah_jarang: "rare_earth_mine", bijih_besi: "iron_ore_mine",
-    // Industry
-    semikonduktor: "electronics_factory", mobil: "car_factory", sepeda_motor: "motorcycle_factory", 
-    smelter: "smelter", semen_beton: "cement_factory", kayu: "sawmill",
-    air_mineral: "bottled_water_factory", gula: "sugar_factory", farmasi: "pharma_factory",
-    pupuk: "fertilizer_factory", pengolahan_daging: "meat_processing_factory", mie_instan: "noodle_factory",
-    roti: "bakery_factory",
-    // Food
-    ayam: "poultry_farm", unggas: "poultry_farm", sapi_perah: "dairy_farm", sapi_potong: "cattle_farm",
-    domba_kambing: "sheep_farm", udang: "shrimp_farm", ikan: "freshwater_fish_farm", kerang: "pearl_farm",
-    beras: "paddy_field", gandum: "wheat_field", jagung: "corn_field", umbi_umbian: "tuber_field", kedelai: "soybean_field",
-    kelapa_sawit: "palm_oil_plantation", teh: "tea_plantation", kopi: "coffee_plantation", cokelat: "cocoa_plantation",
-    tebu: "sugarcane_plantation", sayur_sayuran: "vegetable_farm"
+    // Minerals (from mineralKritisRate)
+    emas: "1_tambang_emas", uranium: "2_tambang_uranium", batu_bara: "3_tambang_batu_bara", 
+    minyak_bumi: "4_sumur_minyak", gas_alam: "5_sumur_gas", garam: "6_tambang_garam", 
+    nikel: "7_tambang_nikel", litium: "8_tambang_litium", tembaga: "9_tambang_tembaga", 
+    aluminium: "10_tambang_aluminium", logam_tanah_jarang: "11_tambang_ltj", bijih_besi: "12_tambang_bijih_besi",
+    // Industry (from produkIndustriRate)
+    semikonduktor: "1_pabrik_elektronik", mobil: "2_pabrik_mobil", sepeda_motor: "3_pabrik_motor", 
+    smelter: "4_smelter", semen_beton: "5_pabrik_semen", kayu: "6_penggergajian_kayu",
+    pupuk: "7_pabrik_pupuk",
+    // Olahan Pangan (from olahanPanganRate)
+    air_mineral: "1_pabrik_air_mineral", gula: "2_pabrik_gula", roti: "3_pabrik_roti",
+    pengolahan_daging: "4_pabrik_pengolahan_daging", mie_instan: "5_pabrik_mie_instan",
+    // Farmasi (from farmasiRate)
+    farmasi: "1_pabrik_farmasi",
+    // Food (from peternakanRate & agrikulturRate & perikananRate)
+    ayam: "1_peternakan_unggas", unggas: "1_peternakan_unggas", 
+    sapi_perah: "2_peternakan_sapi_perah", sapi_potong: "3_peternakan_sapi_potong",
+    domba_kambing: "4_peternakan_domba_kambing", 
+    beras: "1_sawah_padi", padi: "1_sawah_padi",
+    gandum: "2_ladang_gandum", jagung: "3_ladang_jagung", umbi_umbian: "4_ladang_umbi", 
+    kedelai: "5_ladang_kedelai", kelapa_sawit: "6_perkebunan_sawit", 
+    teh: "7_perkebunan_teh", kopi: "8_perkebunan_kopi", cokelat: "9_perkebunan_kakao",
+    tebu: "10_perkebunan_tebu", sayur_sayuran: "11_kebun_sayur",
+    udang: "1_budidaya_udang_kerang", kerang: "1_budidaya_udang_kerang", ikan: "2_budidaya_ikan"
   };
 
   const buildingKey = productionMapping[selectedKey] || selectedKey;

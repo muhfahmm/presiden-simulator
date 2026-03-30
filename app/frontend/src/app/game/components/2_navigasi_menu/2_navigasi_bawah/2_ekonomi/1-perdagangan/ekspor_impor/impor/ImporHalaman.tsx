@@ -41,18 +41,22 @@ export const ImporHalaman: React.FC<ImporHalamanProps> = ({
       <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-10">
         <div className="space-y-4">
           <h2 className="text-2xl font-black text-white tracking-widest uppercase flex items-center gap-4 leading-none">{selectedName}</h2>
-          <div className="grid grid-cols-3 gap-x-12 gap-y-8 text-[12px] font-black uppercase tracking-[0.2em] text-zinc-500 italic">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-8 text-[12px] font-black uppercase tracking-[0.2em] text-zinc-500 italic">
             <div className="flex flex-col gap-2">
               <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Fasilitas Aktif</span>
               <span className="text-white text-base tracking-normal">{selectedUnits.toLocaleString('id-ID')} Unit</span>
             </div>
             <div className="flex flex-col gap-2">
-              <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Produksi /Fasilitas</span>
-              <span className="text-zinc-300 text-base tracking-normal">{(getProductionRate(selectedKey) ?? 1).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
+              <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Produksi / Bangunan</span>
+              <span className="text-amber-500 text-base font-black">+{getProductionRate(selectedKey).toLocaleString('id-ID')} {getUnit(selectedKey)}/bangunan</span>
             </div>
             <div className="flex flex-col gap-2">
               <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Produksi Harian</span>
-              <span className="text-blue-400 text-base tracking-normal">{(selectedUnits * (getProductionRate(selectedKey) ?? 1)).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
+              <span className="text-blue-400 text-base tracking-normal">{(selectedUnits * getProductionRate(selectedKey)).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
+            </div>
+            <div className="flex flex-col gap-2 col-span-1 md:col-span-3 mt-4">
+              <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Estimasi Biaya Impor</span>
+              <span className="text-rose-400 text-2xl font-black tracking-tight">{Math.floor(selectedUnits * getProductionRate(selectedKey) * baseBuyPrice).toLocaleString('id-ID')}</span>
             </div>
             <div className="flex flex-col gap-2 col-span-2 mt-2">
               <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Stok Tersedia</span>

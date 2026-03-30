@@ -13,6 +13,21 @@ interface BottomNavProps {
 }
 
 export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps) {
+  const [isTemporarilyHidden, setIsTemporarilyHidden] = useState(false);
+
+  useEffect(() => {
+    const handleHide = () => setIsTemporarilyHidden(true);
+    const handleShow = () => setIsTemporarilyHidden(false);
+    
+    window.addEventListener('hide_strategy_modal', handleHide);
+    window.addEventListener('show_strategy_modal', handleShow);
+    
+    return () => {
+      window.removeEventListener('hide_strategy_modal', handleHide);
+      window.removeEventListener('show_strategy_modal', handleShow);
+    };
+  }, []);
+
   const menuItems = [
     { id: "Kepuasan", icon: Smile, label: "Kepuasan" },
     { id: "Populasi", icon: Users2, label: "Populasi" },
@@ -106,6 +121,8 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
 
   const isMenuSelected = activeTab !== null;
   const currentSubItems = activeTab ? subMenuItems[activeTab] : [];
+
+  if (isTemporarilyHidden) return null;
 
   return (
     <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-40 w-max max-w-[95vw]">

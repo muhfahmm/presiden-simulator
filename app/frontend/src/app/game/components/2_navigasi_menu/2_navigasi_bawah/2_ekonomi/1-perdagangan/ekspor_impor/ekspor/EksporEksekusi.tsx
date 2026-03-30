@@ -37,13 +37,22 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
     setBudgetData(initialBudgetData);
     if (!isManual) {
       const stockKeyMap: Record<string, string> = {
-        emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", minyak_bumi: "oil_well", gas_alam: "gas_well",
-        garam: "salt_mine", nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine", aluminium: "aluminum_mine",
-        logam_tanah_jarang: "rare_earth_mine", bijih_besi: "iron_ore_mine", 
-        ayam_unggas: "livestock_poultry", sapi_perah: "livestock_dairy",
-        sapi_potong: "livestock_beef", domba_kambing: "livestock_sheep", udang_kerang: "livestock_shrimp", ikan: "livestock_fish",
-        padi: "agri_rice", gandum_jagung: "agri_grains", sayur_umbi: "agri_veg", kedelai: "agri_soy", kelapa_sawit: "agri_palm", kopi_teh_kakao: "agri_luxury",
-        pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi", pabrik_kendaraan_tempur: "pabrik_kendaraan_tempur", pabrik_senjata_berat: "pabrik_senjata_berat"
+        // Minerals
+        emas: "1_tambang_emas", uranium: "2_tambang_uranium", batu_bara: "3_tambang_batu_bara", 
+        minyak_bumi: "4_sumur_minyak", gas_alam: "5_sumur_gas", garam: "6_tambang_garam", 
+        nikel: "7_tambang_nikel", litium: "8_tambang_litium", tembaga: "9_tambang_tembaga", 
+        aluminium: "10_tambang_aluminium", logam_tanah_jarang: "11_tambang_ltj", bijih_besi: "12_tambang_bijih_besi",
+        // Food (Peternakan)
+        ayam_unggas: "1_peternakan_unggas", sapi_perah: "2_peternakan_sapi_perah", 
+        sapi_potong: "3_peternakan_sapi_potong", domba_kambing: "4_peternakan_domba_kambing",
+        // Food (Perikanan)
+        udang_kerang: "1_budidaya_udang_kerang", ikan: "2_budidaya_ikan",
+        // Food (Agrikultur)
+        padi: "1_sawah_padi", gandum_jagung: "2_ladang_gandum", sayur_umbi: "4_ladang_umbi", 
+        kedelai: "5_ladang_kedelai", kelapa_sawit: "6_perkebunan_sawit", kopi_teh_kakao: "8_perkebunan_kopi",
+        // Militer
+        pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi", 
+        pabrik_kendaraan_tempur: "pabrik_kendaraan_tempur", pabrik_senjata_berat: "pabrik_senjata_berat"
       };
       const stockKey = stockKeyMap[selectedKey] || selectedKey;
       const latestStock = Math.floor(initialBudgetData.cumulativeProduction?.[stockKey] || 0);
@@ -60,13 +69,22 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
       // Auto-update quantity to max stock if not manually adjusted
       if (!isManual) {
         const stockKeyMap: Record<string, string> = {
-          emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", minyak_bumi: "oil_well", gas_alam: "gas_well",
-          garam: "salt_mine", nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine", aluminium: "aluminum_mine",
-          logam_tanah_jarang: "rare_earth_mine", bijih_besi: "iron_ore_mine", 
-          ayam_unggas: "livestock_poultry", sapi_perah: "livestock_dairy",
-          sapi_potong: "livestock_beef", domba_kambing: "livestock_sheep", udang_kerang: "livestock_shrimp", ikan: "livestock_fish",
-          padi: "agri_rice", gandum_jagung: "agri_grains", sayur_umbi: "agri_veg", kedelai: "agri_soy", kelapa_sawit: "agri_palm", kopi_teh_kakao: "agri_luxury",
-          pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi", pabrik_kendaraan_tempur: "pabrik_kendaraan_tempur", pabrik_senjata_berat: "pabrik_senjata_berat"
+          // Minerals
+          emas: "1_tambang_emas", uranium: "2_tambang_uranium", batu_bara: "3_tambang_batu_bara", 
+          minyak_bumi: "4_sumur_minyak", gas_alam: "5_sumur_gas", garam: "6_tambang_garam", 
+          nikel: "7_tambang_nikel", litium: "8_tambang_litium", tembaga: "9_tambang_tembaga", 
+          aluminium: "10_tambang_aluminium", logam_tanah_jarang: "11_tambang_ltj", bijih_besi: "12_tambang_bijih_besi",
+          // Food (Peternakan)
+          ayam_unggas: "1_peternakan_unggas", sapi_perah: "2_peternakan_sapi_perah", 
+          sapi_potong: "3_peternakan_sapi_potong", domba_kambing: "4_peternakan_domba_kambing",
+          // Food (Perikanan)
+          udang_kerang: "1_budidaya_udang_kerang", ikan: "2_budidaya_ikan",
+          // Food (Agrikultur)
+          padi: "1_sawah_padi", gandum_jagung: "2_ladang_gandum", sayur_umbi: "4_ladang_umbi", 
+          kedelai: "5_ladang_kedelai", kelapa_sawit: "6_perkebunan_sawit", kopi_teh_kakao: "8_perkebunan_kopi",
+          // Militer
+          pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi", 
+          pabrik_kendaraan_tempur: "pabrik_kendaraan_tempur", pabrik_senjata_berat: "pabrik_senjata_berat"
         };
         const stockKey = stockKeyMap[selectedKey] || selectedKey;
         const latestStock = Math.floor(latestData.cumulativeProduction?.[stockKey] || 0);
@@ -79,13 +97,22 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
 
   // Calculate User Stock (Inventory)
   const stockKeyMap: Record<string, string> = {
-    emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", minyak_bumi: "oil_well", gas_alam: "gas_well",
-    garam: "salt_mine", nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine", aluminium: "aluminum_mine",
-    logam_tanah_jarang: "rare_earth_mine", bijih_besi: "iron_ore_mine", 
-    ayam_unggas: "livestock_poultry", sapi_perah: "livestock_dairy",
-    sapi_potong: "livestock_beef", domba_kambing: "livestock_sheep", udang_kerang: "livestock_shrimp", ikan: "livestock_fish",
-    padi: "agri_rice", gandum_jagung: "agri_grains", sayur_umbi: "agri_veg", kedelai: "agri_soy", kelapa_sawit: "agri_palm", kopi_teh_kakao: "agri_luxury",
-    pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi", pabrik_kendaraan_tempur: "pabrik_kendaraan_tempur", pabrik_senjata_berat: "pabrik_senjata_berat"
+    // Minerals
+    emas: "1_tambang_emas", uranium: "2_tambang_uranium", batu_bara: "3_tambang_batu_bara", 
+    minyak_bumi: "4_sumur_minyak", gas_alam: "5_sumur_gas", garam: "6_tambang_garam", 
+    nikel: "7_tambang_nikel", litium: "8_tambang_litium", tembaga: "9_tambang_tembaga", 
+    aluminium: "10_tambang_aluminium", logam_tanah_jarang: "11_tambang_ltj", bijih_besi: "12_tambang_bijih_besi",
+    // Food (Peternakan)
+    ayam_unggas: "1_peternakan_unggas", sapi_perah: "2_peternakan_sapi_perah", 
+    sapi_potong: "3_peternakan_sapi_potong", domba_kambing: "4_peternakan_domba_kambing",
+    // Food (Perikanan)
+    udang_kerang: "1_budidaya_udang_kerang", ikan: "2_budidaya_ikan",
+    // Food (Agrikultur)
+    padi: "1_sawah_padi", gandum_jagung: "2_ladang_gandum", sayur_umbi: "4_ladang_umbi", 
+    kedelai: "5_ladang_kedelai", kelapa_sawit: "6_perkebunan_sawit", kopi_teh_kakao: "8_perkebunan_kopi",
+    // Militer
+    pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi", 
+    pabrik_kendaraan_tempur: "pabrik_kendaraan_tempur", pabrik_senjata_berat: "pabrik_senjata_berat"
   };
   const stockKey = stockKeyMap[selectedKey] || selectedKey;
   const userStock = Math.floor(budgetData.cumulativeProduction?.[stockKey] || 0);

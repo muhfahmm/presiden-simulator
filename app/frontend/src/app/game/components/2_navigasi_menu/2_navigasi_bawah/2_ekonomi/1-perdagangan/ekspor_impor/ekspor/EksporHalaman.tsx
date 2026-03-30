@@ -38,30 +38,43 @@ export const EksporHalaman: React.FC<EksporHalamanProps> = ({
       <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-10">
         <div className="space-y-4">
           <h2 className="text-2xl font-black text-white tracking-widest uppercase flex items-center gap-4 leading-none">{selectedName}</h2>
-          <div className="grid grid-cols-3 gap-x-12 gap-y-8 text-[12px] font-black uppercase tracking-[0.2em] text-zinc-500 italic">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-x-12 gap-y-8 text-[12px] font-black uppercase tracking-[0.2em] text-zinc-500 italic">
             <div className="flex flex-col gap-2">
               <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Fasilitas Aktif</span>
               <span className="text-white text-base tracking-normal">{selectedUnits.toLocaleString('id-ID')} Unit</span>
             </div>
             <div className="flex flex-col gap-2">
-              <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Produksi /Fasilitas</span>
-              <span className="text-zinc-300 text-base tracking-normal">{(getProductionRate(selectedKey) ?? 1).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
+              <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Produksi / Bangunan</span>
+              <span className="text-amber-500 text-base font-black">+{getProductionRate(selectedKey).toLocaleString('id-ID')} {getUnit(selectedKey)}/bangunan</span>
             </div>
             <div className="flex flex-col gap-2">
               <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Produksi Harian</span>
-              <span className="text-blue-400 text-base tracking-normal">{(selectedUnits * (getProductionRate(selectedKey) ?? 1)).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
+              <span className="text-blue-400 text-base tracking-normal">{(selectedUnits * getProductionRate(selectedKey)).toLocaleString('id-ID')} {getUnit(selectedKey)}</span>
+            </div>
+            <div className="flex flex-col gap-2 col-span-1 md:col-span-3 mt-4">
+              <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Estimasi Pendapatan Harian</span>
+              <span className="text-emerald-400 text-2xl font-black tracking-tight">{Math.floor(selectedUnits * getProductionRate(selectedKey) * baseSellPrice).toLocaleString('id-ID')}</span>
             </div>
             <div className="flex flex-col gap-2 col-span-2 mt-2">
               <span className="text-zinc-600 not-italic border-b border-zinc-900 pb-2 mb-1 h-10 flex items-end">Total Stok Tersedia</span>
               <span className="text-blue-500 text-base tracking-normal">{(() => {
                 const stockKeyMap: Record<string, string> = {
-                  emas: "gold_mine", uranium: "uranium_mine", batu_bara: "coal_mine", minyak_bumi: "oil_well", gas_alam: "gas_well",
-                  garam: "salt_mine", nikel: "nickel_mine", litium: "lithium_mine", tembaga: "copper_mine", aluminium: "aluminum_mine",
-                  logam_tanah_jarang: "rare_earth_mine", bijih_besi: "iron_ore_mine", 
-                  ayam_unggas: "livestock_poultry", sapi_perah: "livestock_dairy",
-                  sapi_potong: "livestock_beef", domba_kambing: "livestock_sheep", udang_kerang: "livestock_shrimp", ikan: "livestock_fish",
-                  padi: "agri_rice", gandum_jagung: "agri_grains", sayur_umbi: "agri_veg", kedelai: "agri_soy", kelapa_sawit: "agri_palm", kopi_teh_kakao: "agri_luxury",
-                  pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi", pabrik_kendaraan_tempur: "pabrik_kendaraan_tempur", pabrik_senjata_berat: "pabrik_senjata_berat"
+                  // Minerals
+                  emas: "1_tambang_emas", uranium: "2_tambang_uranium", batu_bara: "3_tambang_batu_bara", 
+                  minyak_bumi: "4_sumur_minyak", gas_alam: "5_sumur_gas", garam: "6_tambang_garam", 
+                  nikel: "7_tambang_nikel", litium: "8_tambang_litium", tembaga: "9_tambang_tembaga", 
+                  aluminium: "10_tambang_aluminium", logam_tanah_jarang: "11_tambang_ltj", bijih_besi: "12_tambang_bijih_besi",
+                  // Food (Peternakan)
+                  ayam_unggas: "1_peternakan_unggas", sapi_perah: "2_peternakan_sapi_perah", 
+                  sapi_potong: "3_peternakan_sapi_potong", domba_kambing: "4_peternakan_domba_kambing",
+                  // Food (Perikanan)
+                  udang_kerang: "1_budidaya_udang_kerang", ikan: "2_budidaya_ikan",
+                  // Food (Agrikultur)
+                  padi: "1_sawah_padi", gandum_jagung: "2_ladang_gandum", sayur_umbi: "4_ladang_umbi", 
+                  kedelai: "5_ladang_kedelai", kelapa_sawit: "6_perkebunan_sawit", kopi_teh_kakao: "8_perkebunan_kopi",
+                  // Militer
+                  pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi", 
+                  pabrik_kendaraan_tempur: "pabrik_kendaraan_tempur", pabrik_senjata_berat: "pabrik_senjata_berat"
                 };
                 const mfgKey = Object.keys(baseKeyMapping).find(k => baseKeyMapping[k] === selectedKey);
                 const stockKey = stockKeyMap[selectedKey] || mfgKey || selectedKey;
