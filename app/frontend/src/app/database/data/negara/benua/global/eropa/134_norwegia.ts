@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types";
+﻿import { CountryData } from "@/app/database/data/types";
 import { norwegia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/eropa/134_norwegia";
 import { norwegia_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/eropa/134_norwegia";
 import { norwegia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/eropa/134_norwegia";
@@ -41,7 +41,7 @@ export const norwegia: CountryData = {
   "hukum": norwegia_hukum,
   "sektor_olahraga": norwegia_olahraga,
   // =============================================================
-  // 11. 💰 PAJAK & EKONOMI
+  // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const norwegia: CountryData = {
     }
   },
   // =============================================================
-  // 12. 💰 GAJI & SUBSIDI (Default)
+  // 12. ðŸ’° GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 90,
@@ -96,7 +96,7 @@ export const norwegia: CountryData = {
     "subsidi_perumahan": 75
   },
   // =============================================================
-  // 13. 🛒 HARGA PASAR DOMESTIK
+  // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 22400,
@@ -112,11 +112,11 @@ export const norwegia: CountryData = {
     "harga_pendidikan": 677460
   },
     // =============================================================
-  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": norwegia_geopolitik,
   // =============================================================
-  // 16. 🏛️ KEMENTERIAN NEGARA
+  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 32,
@@ -126,3 +126,4 @@ export const norwegia: CountryData = {
     "lingkungan": 60
   }
 };
+

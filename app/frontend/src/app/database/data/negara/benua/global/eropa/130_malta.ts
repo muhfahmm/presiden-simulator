@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types";
+﻿import { CountryData } from "@/app/database/data/types";
 import { malta_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/eropa/130_malta";
 import { malta_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/eropa/130_malta";
 import { malta_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/eropa/130_malta";
@@ -41,7 +41,7 @@ export const malta: CountryData = {
   "hukum": malta_hukum,
   "sektor_olahraga": malta_olahraga,
   // =============================================================
-  // 11. 💰 PAJAK & EKONOMI
+  // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const malta: CountryData = {
     }
   },
   // =============================================================
-  // 12. 💰 GAJI & SUBSIDI (Default)
+  // 12. ðŸ’° GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 80,
@@ -96,7 +96,7 @@ export const malta: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. 🛒 HARGA PASAR DOMESTIK
+  // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 16000,
@@ -112,11 +112,11 @@ export const malta: CountryData = {
     "harga_pendidikan": 677460
   },
     // =============================================================
-  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": malta_geopolitik,
   // =============================================================
-  // 16. 🏛️ KEMENTERIAN NEGARA
+  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 17,
@@ -126,3 +126,4 @@ export const malta: CountryData = {
     "lingkungan": 60
   }
 };
+

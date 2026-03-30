@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types";
+﻿import { CountryData } from "@/app/database/data/types";
 import { peru_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/sa/204_peru";
 import { peru_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/sa/204_peru";
 import { peru_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/sa/204_peru";
@@ -41,7 +41,7 @@ export const peru: CountryData = {
   "hukum": peru_hukum,
   "sektor_olahraga": peru_olahraga,
   // =============================================================
-  // 11. 💰 PAJAK & EKONOMI
+  // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const peru: CountryData = {
     }
   },
   // =============================================================
-  // 12. 💰 GAJI & SUBSIDI (Default)
+  // 12. ðŸ’° GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 60,
@@ -96,7 +96,7 @@ export const peru: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. 🛒 HARGA PASAR DOMESTIK
+  // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 12800,
@@ -112,11 +112,11 @@ export const peru: CountryData = {
     "harga_pendidikan": 483900
   },
     // =============================================================
-  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": peru_geopolitik,
   // =============================================================
-  // 16. 🏛️ KEMENTERIAN NEGARA
+  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 19,
@@ -126,3 +126,4 @@ export const peru: CountryData = {
     "lingkungan": 60
   }
 };
+

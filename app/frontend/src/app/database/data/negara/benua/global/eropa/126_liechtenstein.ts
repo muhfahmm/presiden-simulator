@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types";
+﻿import { CountryData } from "@/app/database/data/types";
 import { liechtenstein_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/eropa/126_liechtenstein";
 import { liechtenstein_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/eropa/126_liechtenstein";
 import { liechtenstein_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/eropa/126_liechtenstein";
@@ -41,7 +41,7 @@ export const liechtenstein: CountryData = {
   "hukum": liechtenstein_hukum,
   "sektor_olahraga": liechtenstein_olahraga,
   // =============================================================
-  // 11. 💰 PAJAK & EKONOMI
+  // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const liechtenstein: CountryData = {
     }
   },
   // =============================================================
-  // 12. 💰 GAJI & SUBSIDI (Default)
+  // 12. ðŸ’° GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 90,
@@ -96,7 +96,7 @@ export const liechtenstein: CountryData = {
     "subsidi_perumahan": 75
   },
   // =============================================================
-  // 13. 🛒 HARGA PASAR DOMESTIK
+  // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 16000,
@@ -112,11 +112,11 @@ export const liechtenstein: CountryData = {
     "harga_pendidikan": 387120
   },
     // =============================================================
-  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": liechtenstein_geopolitik,
   // =============================================================
-  // 16. 🏛️ KEMENTERIAN NEGARA
+  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 24,
@@ -126,3 +126,4 @@ export const liechtenstein: CountryData = {
     "lingkungan": 60
   }
 };
+

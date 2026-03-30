@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types";
+﻿import { CountryData } from "@/app/database/data/types";
 import { malaysia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/asia/81_malaysia";
 import { malaysia_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/asia/81_malaysia";
 import { malaysia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/asia/81_malaysia";
@@ -41,7 +41,7 @@ export const malaysia: CountryData = {
   "hukum": malaysia_hukum,
   "sektor_olahraga": malaysia_olahraga,
   // =============================================================
-  // 11. 💰 PAJAK & EKONOMI
+  // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const malaysia: CountryData = {
     }
   },
   // =============================================================
-  // 12. 💰 GAJI & SUBSIDI (Default)
+  // 12. ðŸ’° GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 50,
@@ -96,7 +96,7 @@ export const malaysia: CountryData = {
     "subsidi_perumahan": 25
   },
   // =============================================================
-  // 13. 🛒 HARGA PASAR DOMESTIK
+  // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 8000,
@@ -112,11 +112,11 @@ export const malaysia: CountryData = {
     "harga_pendidikan": 483900
   },
     // =============================================================
-  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": malaysia_geopolitik,
   // =============================================================
-  // 16. 🏛️ KEMENTERIAN NEGARA
+  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 2,
@@ -126,3 +126,4 @@ export const malaysia: CountryData = {
     "lingkungan": 60
   }
 };
+

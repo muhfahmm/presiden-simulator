@@ -1,4 +1,4 @@
-export { amerika_serikat } from "./152_amerika_serikat";
+﻿export { amerika_serikat } from "./152_amerika_serikat";
 export { antigua_dan_barbuda } from "./153_antigua_dan_barbuda";
 export { bahama } from "./154_bahama";
 export { barbados } from "./155_barbados";
@@ -25,3 +25,4 @@ export { saint_kitts_dan_nevis } from "./175_saint_kitts_dan_nevis";
 export { saint_lucia } from "./176_saint_lucia";
 export { saint_vincent_dan_grenadine } from "./177_saint_vincent_dan_grenadine";
 export { trinidad_dan_tobago } from "./178_trinidad_dan_tobago";
+

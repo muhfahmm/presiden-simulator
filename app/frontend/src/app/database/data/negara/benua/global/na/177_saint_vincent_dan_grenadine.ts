@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types";
+﻿import { CountryData } from "@/app/database/data/types";
 import { saint_vincent_dan_grenadine_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/na/177_saint_vincent_dan_grenadine";
@@ -41,7 +41,7 @@ export const saint_vincent_dan_grenadine: CountryData = {
   "hukum": saint_vincent_dan_grenadine_hukum,
   "sektor_olahraga": saint_vincent_dan_grenadine_olahraga,
   // =============================================================
-  // 11. 💰 PAJAK & EKONOMI
+  // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const saint_vincent_dan_grenadine: CountryData = {
     }
   },
   // =============================================================
-  // 12. 💰 GAJI & SUBSIDI (Default)
+  // 12. ðŸ’° GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 90,
@@ -96,7 +96,7 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. 🛒 HARGA PASAR DOMESTIK
+  // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 32000,
@@ -112,11 +112,11 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "harga_pendidikan": 967800
   },
     // =============================================================
-  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": saint_vincent_dan_grenadine_geopolitik,
   // =============================================================
-  // 16. 🏛️ KEMENTERIAN NEGARA
+  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 22,
@@ -126,3 +126,4 @@ export const saint_vincent_dan_grenadine: CountryData = {
     "lingkungan": 60
   }
 };
+
