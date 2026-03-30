@@ -1,1 +1,1 @@
-export * from "./8_harga_bangunan_pabrik_militer";
+export * from "./8_db_pabrik_militer";

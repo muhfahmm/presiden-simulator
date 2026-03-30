@@ -36,6 +36,7 @@ export const infrastrukturRate = {
     lowongan_kerja: 150,
     konsumsi_listrik: 5
   },
+
   "4_jalur_kereta": {
     key: "4_jalur_kereta",
     dataKey: "jalur_kereta",
@@ -60,6 +61,7 @@ export const infrastrukturRate = {
     lowongan_kerja: 400,
     konsumsi_listrik: 20
   },
+  
   "6_pelabuhan_laut": {
     key: "6_pelabuhan_laut",
     dataKey: "pelabuhan_laut",
