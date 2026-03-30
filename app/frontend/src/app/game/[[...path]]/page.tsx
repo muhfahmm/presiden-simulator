@@ -1,5 +1,6 @@
 "use client"
 
+import { useEffect } from "react";
 import { useRouter, useParams } from "next/navigation";
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 import MapRenderer from "@/app/game/components/map-system/MapRenderer";
@@ -37,6 +38,22 @@ export default function GamePage() {
     isMenuOpen, setIsMenuOpen
   } = useMapData();
 
+  // Sync Modal with activeMenu (URL)
+  useEffect(() => {
+    if (activeMenu.startsWith("CountryModal:")) {
+      const parts = activeMenu.split(":");
+      const countryId = parts[1];
+      const country = countries.find(c => c.name_id === countryId);
+      if (country) {
+        setTargetCountry(country.name_id);
+        setIsMenuOpen(true);
+      }
+    } else if (isMenuOpen && !activeMenu.startsWith("CountryModal:")) {
+      // If menu is open but URL is not CountryModal, close it? 
+      // Actually, let's let the user close it manually or via bottom nav.
+    }
+  }, [activeMenu, setIsMenuOpen, setTargetCountry]);
+
   const countryData = countries.find(c => c.name_id === userCountry || c.name_en === userCountry) || countries[0];
 
   const handleSelect = (name: string) => {
@@ -47,6 +64,10 @@ export default function GamePage() {
       setTargetCountry(name);
       // Only open strategy menu if not in trade map mode
       if (mapMode !== "trade") {
+        const country = countries.find(c => c.name_id === name || c.name_en === name);
+        if (country) {
+          setActiveMenu(`CountryModal:${country.name_id}:info_strategis`);
+        }
         setIsMenuOpen(true);
       }
     }
@@ -119,9 +140,22 @@ export default function GamePage() {
           {/* Target Interaction Modal */}
           <StrategyModal
             isOpen={isMenuOpen}
-            onClose={() => { setIsMenuOpen(false); setTargetCountry(null); }}
+            onClose={() => { 
+                setIsMenuOpen(false); 
+                setTargetCountry(null); 
+                setActiveMenu("Peta Taktis");
+            }}
             targetCountry={targetCountry}
             userCountry={userCountry}
+            activeTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[2] : undefined}
+            onTabChange={(tab) => {
+                if (targetCountry) {
+                    const country = countries.find(c => c.name_id === targetCountry || c.name_en === targetCountry);
+                    if (country) {
+                        setActiveMenu(`CountryModal:${country.name_id}:${tab === 'info' ? 'info_strategis' : tab === 'diplomacy' ? 'diplomasi_hubungan' : tab === 'military' ? 'aksi_militer_intelijen' : 'bantuan_kerjasama'}`);
+                    }
+                }
+            }}
           />
 
           {/* Details Modal - Rendered Fixed Outside Scaling */}

@@ -285,7 +285,7 @@ export default function DatabasePage() {
             <span className="text-xs text-zinc-500 font-medium uppercase tracking-wider">Suara PBB</span>
             <span className={`text-xs font-black px-1.5 py-0.5 rounded ${!hasSelection ? 'bg-zinc-800 text-zinc-600' :
                 currentData.geopolitik.un_vote >= 139 ? 'bg-emerald-500/20 text-emerald-400' :
-                  currentData.geopolitik.un_vote >= 28 ? 'bg-sky-500/20 text-sky-400' :
+                  currentData.geopolitik.un_vote >= 70 ? 'bg-sky-500/20 text-sky-400' :
                     'bg-red-500/20 text-red-400'
               }`}>
               {hasSelection ? currentData.geopolitik.un_vote : "-"}

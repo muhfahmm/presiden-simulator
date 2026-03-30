@@ -5,9 +5,9 @@ import { Search, Crown } from "lucide-react"
 import { countries } from "@/app/database/data/countries/region/index";
 
 function getTier(vote: number): { label: string; color: string; bg: string } {
-  if (vote >= 139) return { label: "Kaya", color: "text-amber-400", bg: "bg-amber-500/10 border-amber-500/20" };
-  if (vote >= 28) return { label: "Menengah", color: "text-sky-400", bg: "bg-sky-500/10 border-sky-500/20" };
-  return { label: "Miskin", color: "text-rose-400", bg: "bg-rose-500/10 border-rose-500/20" };
+  if (vote >= 139) return { label: "Sangat Berpengaruh", color: "text-emerald-400", bg: "bg-emerald-500/10 border-emerald-500/20" };
+  if (vote >= 70) return { label: "Berpengaruh", color: "text-sky-400", bg: "bg-sky-500/10 border-sky-500/20" };
+  return { label: "Kurang Berpengaruh", color: "text-rose-400", bg: "bg-rose-500/10 border-rose-500/20" };
 }
 
 interface SuaraPBBTabProps {

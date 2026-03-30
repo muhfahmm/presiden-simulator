@@ -32,7 +32,23 @@ interface StrategyModalProps {
   onClose: () => void;
   targetCountry: string | null;
   userCountry: string;
+  activeTab?: string;
+  onTabChange?: (tab: 'info' | 'diplomacy' | 'military' | 'aid') => void;
 }
+
+export const tabSlugToMenu: Record<string, 'info' | 'diplomacy' | 'military' | 'aid'> = {
+  "info_strategis": "info",
+  "diplomasi_hubungan": "diplomacy",
+  "aksi_militer_intelijen": "military",
+  "bantuan_kerjasama": "aid"
+};
+
+export const menuToTabSlug: Record<string, string> = {
+  "info": "info_strategis",
+  "diplomacy": "diplomasi_hubungan",
+  "military": "aksi_militer_intelijen",
+  "aid": "bantuan_kerjasama"
+};
 
 const geoJsonToIndo: { [key: string]: string } = {
   "The Bahamas": "bahama",
@@ -57,9 +73,21 @@ const geoJsonToIndo: { [key: string]: string } = {
 };
 
 
-export default function StrategyModal({ isOpen, onClose, targetCountry, userCountry }: StrategyModalProps) {
+export default function StrategyModal({ isOpen, onClose, targetCountry, userCountry, activeTab, onTabChange }: StrategyModalProps) {
   const [menuTab, setMenuTab] = useState<'info' | 'diplomacy' | 'military' | 'aid'>('info');
   const [liveStats, setLiveStats] = useState({ anggaran: 0, dailyDelta: 0 });
+
+  // Sync internal state with prop from URL
+  useEffect(() => {
+    if (activeTab && tabSlugToMenu[activeTab]) {
+      setMenuTab(tabSlugToMenu[activeTab]);
+    }
+  }, [activeTab]);
+
+  const handleTabClick = (tab: 'info' | 'diplomacy' | 'military' | 'aid') => {
+    setMenuTab(tab);
+    if (onTabChange) onTabChange(tab);
+  };
 
 
   const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
@@ -125,20 +153,20 @@ export default function StrategyModal({ isOpen, onClose, targetCountry, userCoun
   if (!isOpen || !targetCountry || !countryEntry) return null;
 
   return (
-    <div className="absolute inset-0 bg-black/70 z-30 flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
-      <div className="bg-[#181a1f] border border-zinc-800/80 rounded-2xl w-full max-w-lg flex flex-col gap-0 text-white shadow-2xl relative">
+    <div className="absolute inset-0 bg-black/70 z-[1000] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200">
+      <div className="bg-[#181a1f] border border-zinc-800/80 rounded-2xl w-full max-w-2xl flex flex-col gap-0 text-white shadow-2xl relative">
         
         {/* 1. Modal Header with Flag title structure */}
-        <div className="flex justify-between items-center border-b border-zinc-800/80 p-5 bg-zinc-900/40">
-          <div className="flex items-center gap-3">
-            <div className="p-2 bg-blue-500/10 rounded-xl">
-              <Globe className="h-6 w-6 text-blue-400" />
+        <div className="flex justify-between items-center border-b border-zinc-800/80 p-6 bg-zinc-900/40">
+          <div className="flex items-center gap-4">
+            <div className="p-3 bg-blue-500/10 rounded-xl">
+              <Globe className="h-7 w-7 text-blue-400" />
             </div>
             <div>
-              <h2 className="font-bold text-xl text-amber-500">
+              <h2 className="font-bold text-2xl text-amber-500 tracking-tight">
                 {targetCountry}
               </h2>
-              <p className="text-xs text-zinc-400">
+              <p className="text-sm text-zinc-400">
                 Hubungan: <span className={`font-semibold ${relationColor}`}>{relationScore} ({relationLabel})</span>
               </p>
             </div>
@@ -152,15 +180,15 @@ export default function StrategyModal({ isOpen, onClose, targetCountry, userCoun
         </div>
 
         {/* 2. Content Views depending on menuTab */}
-        <div className="flex-1 p-5 overflow-y-auto">
+        <div className="flex-1 p-8 overflow-y-auto min-h-[400px]">
           {menuTab === 'info' && (
-            <div className="space-y-4">
-              <div className="bg-zinc-900/70 p-4 rounded-xl border border-zinc-800/50 space-y-3">
+            <div className="space-y-6">
+              <div className="bg-zinc-900/70 p-6 rounded-2xl border border-zinc-800/50 space-y-4">
                 <InfoRow label="Sumber Daya Alam" value={
                   <SDAInfoRow sektor_ekstraksi={countryEntry?.sektor_ekstraksi} />
                 } />
                 <InfoRow label="Jumlah suara di PBB" value={
-                  <UNVotesRow un_vote={countryEntry?.un_vote} />
+                  <UNVotesRow un_vote={countryEntry?.geopolitik?.un_vote} />
                 } />
                 <InfoRow label="Agama Mayoritas" value={
                   <ReligionRow religion={countryEntry?.religion} />
@@ -177,11 +205,17 @@ export default function StrategyModal({ isOpen, onClose, targetCountry, userCoun
                   } />
                 </div>
               </div>
-              <div className="space-y-2.5">
-                <p className="text-xs text-zinc-500 font-semibold">Keseimbangan Pasukan</p>
-                <div className="h-3 w-full bg-zinc-800/80 rounded-full overflow-hidden flex border border-zinc-800">
-                  <div className="bg-red-500/80 h-full" style={{ width: '60%' }} />
-                  <div className="bg-green-500/80 h-full" style={{ width: '40%' }} />
+              <div className="space-y-3 pt-2">
+                <div className="flex justify-between items-end">
+                  <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest">Keseimbangan Pasukan</p>
+                  <div className="flex gap-4 text-[10px] font-bold uppercase">
+                    <span className="text-red-400">Musuh: 60%</span>
+                    <span className="text-green-400">Kita: 40%</span>
+                  </div>
+                </div>
+                <div className="h-4 w-full bg-zinc-800/80 rounded-full overflow-hidden flex border border-zinc-800 shadow-inner">
+                  <div className="bg-gradient-to-r from-red-600 to-red-500 h-full shadow-[0_0_10px_rgba(239,68,68,0.3)]" style={{ width: '60%' }} />
+                  <div className="bg-gradient-to-r from-green-500 to-emerald-500 h-full shadow-[0_0_10px_rgba(16,185,129,0.3)]" style={{ width: '40%' }} />
                 </div>
               </div>
             </div>
@@ -194,10 +228,10 @@ export default function StrategyModal({ isOpen, onClose, targetCountry, userCoun
 
         {/* 3. Constant Bottom Navigation Tab Bar */}
         <div className="border-t border-zinc-800/80 bg-zinc-900/60 p-3 flex justify-evenly items-center gap-2 rounded-b-2xl">
-          <TabButton icon={<BarChart3 size={20} />} active={menuTab === 'info'} onClick={() => setMenuTab('info')} label="Info Strategis" />
-          <TabButton icon={<Handshake size={20} />} active={menuTab === 'diplomacy'} onClick={() => setMenuTab('diplomacy')} label="Diplomasi & Hubungan" />
-          <TabButton icon={<Swords size={20} />} active={menuTab === 'military'} onClick={() => setMenuTab('military')} label="Aksi Militer & Intelijen" />
-          <TabButton icon={<Gift size={20} />} active={menuTab === 'aid'} onClick={() => setMenuTab('aid')} label="Bantuan & Kerjasama" />
+          <TabButton icon={<BarChart3 size={20} />} active={menuTab === 'info'} onClick={() => handleTabClick('info')} label="Info Strategis" />
+          <TabButton icon={<Handshake size={20} />} active={menuTab === 'diplomacy'} onClick={() => handleTabClick('diplomacy')} label="Diplomasi & Hubungan" />
+          <TabButton icon={<Swords size={20} />} active={menuTab === 'military'} onClick={() => handleTabClick('military')} label="Aksi Militer & Intelijen" />
+          <TabButton icon={<Gift size={20} />} active={menuTab === 'aid'} onClick={() => handleTabClick('aid')} label="Bantuan & Kerjasama" />
         </div>
       </div>
     </div>
@@ -206,9 +240,9 @@ export default function StrategyModal({ isOpen, onClose, targetCountry, userCoun
 
 function InfoRow({ label, value }: { label: string, value: React.ReactNode }) {
   return (
-    <div className="flex items-center justify-between border-b border-zinc-800/40 pb-2.5">
-      <span className="text-xs text-zinc-400 font-medium">{label}</span>
-      <span className="text-xs font-bold text-zinc-200">{value}</span>
+    <div className="flex items-center justify-between border-b border-zinc-800/40 pb-3.5">
+      <span className="text-sm text-zinc-400 font-medium">{label}</span>
+      <span className="text-sm font-bold text-zinc-200">{value}</span>
     </div>
   );
 }

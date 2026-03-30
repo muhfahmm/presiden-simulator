@@ -1,9 +1,10 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { X, Star, Users, Heart, Sparkles, Activity, Moon, Book, Sun, Landmark, Compass, Wind, Globe, Info, Plus, Minus, CheckCircle2 } from "lucide-react"
+import { X, Info, Plus, Minus, CheckCircle2, Star } from "lucide-react"
 import { religions } from "@/app/database/data/religions"
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
+import { allReligionLogic } from "./logic";
 
 interface ModalProps {
   isOpen: boolean;
@@ -11,66 +12,16 @@ interface ModalProps {
   countryData: any;
 }
 
-const religionEffects: Record<string, { plus: string[]; minus: string[] }> = {
-  "Islam": {
-    plus: ["Stabilitas & Harmoni Sosial +15%"],
-    minus: ["Biaya Diplomasi Barat +10%"]
-  },
-  "Protestan": {
-    plus: ["Kecepatan Produksi Industri +15%", "Pertumbuhan Ekonomi +5%"],
-    minus: ["Biaya Subsidi Sosial +10%"]
-  },
-  "Katolik": {
-    plus: ["Loyalitas Warga +10%", "Pembangunan Infrastruktur +10%", "Bantuan Diplomasi Vatican"],
-    minus: ["Kecepatan Riset Teknologi -10%", "Risiko Protes Klerikal", "Biaya Perawatan Situs Suci"]
-  },
-  "Kristen Ortodoks": {
-    plus: ["Ketahanan Militer +10%", "Stabilitas Nasional +5%", "Konservasi Budaya Leluhur"],
-    minus: ["Hubungan Perdagangan Global -5%"]
-  },
-  "Hindu": {
-    plus: ["Keharmonisan Sosial +15%", "Produksi Pertanian +10%", "Pendapatan Wisata Budaya"],
-    minus: ["Mobilitas Tenaga Kerja -10%", "Biaya Ritual Kebudayaan", "Kerumitan Hukum Adat"]
-  },
-  "Buddha": {
-    plus: ["Indeks Kebahagiaan +20%", "Skor Kesehatan Masyarakat +5%", "Diplomasi Perdamaian Global"],
-    minus: ["Rekrutmen Militer -20%"]
-  },
-  "Ateisme": {
-    plus: ["Kecepatan Riset & Sains +25%", "Efisiensi Logistik +10%"],
-    minus: ["Approval Rating -15%", "Risiko Radikalisme Internal +10%", "Diplomasi Teokrasi Sulit"]
-  },
-  "Yahudi": {
-    plus: ["Pendapatan Sektor Komersial +20%", "Efektivitas Intelijen +10%", "Kualitas Pendidikan +10%"],
-    minus: ["Risiko Embargo Regional"]
-  },
-  "Konghucu": {
-    plus: ["Efisiensi Birokrasi +15%"],
-    minus: ["Indeks Demokrasi -10%", "Inovasi Disruptif Lambat", "Subsidi Jaring Pengaman Keluarga"]
-  },
-  "Taoisme": {
-    plus: ["Keberlanjutan Lingkungan +20%", "Efisiensi Biaya Energi -5%"],
-    minus: ["Pertumbuhan Industri Berat -10%"]
-  },
-  "Shinto": {
-    plus: ["Kualitas Alutsista +10%"],
-    minus: ["Biaya Diplomasi Global +15%"]
-  }
-};
+const religionEffects: Record<string, { plus: string[]; minus: string[] }> = allReligionLogic.reduce((acc, curr) => ({
+  ...acc,
+  [curr.name]: curr.effects
+}), {});
 
-const icons: Record<string, any> = {
-  "Islam": Moon,
-  "Protestan": Book,
-  "Katolik": Star,
-  "Kristen Ortodoks": Book,
-  "Hindu": Sun,
-  "Buddha": Wind,
-  "Ateisme": Globe,
-  "Yahudi": Star,
-  "Konghucu": Landmark,
-  "Taoisme": Compass,
-  "Shinto": Landmark
-};
+const icons: Record<string, any> = allReligionLogic.reduce((acc, curr) => ({
+  ...acc,
+  [curr.name]: curr.icon
+}), {});
+
 
 function ReligionCard({ religion, isActive, countryData }: { religion: string; isActive: boolean; countryData: any }) {
   const [showInfo, setShowInfo] = useState(false);

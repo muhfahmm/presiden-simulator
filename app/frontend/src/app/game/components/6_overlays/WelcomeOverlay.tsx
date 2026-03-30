@@ -23,7 +23,7 @@ export default function WelcomeOverlay({
   if (!showWelcome) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-zinc-950/90 backdrop-blur-2xl animate-in fade-in duration-700">
+    <div className="fixed inset-0 z-[1000] flex items-center justify-center bg-zinc-950/90 backdrop-blur-2xl animate-in fade-in duration-700">
       <div className="relative max-w-2xl w-full mx-4 overflow-hidden rounded-3xl border border-white/10 bg-zinc-900/50 shadow-[0_0_100px_rgba(34,211,238,0.15)] flex flex-col p-1 animate-in zoom-in-95 slide-in-from-bottom-10 duration-1000">
         
         {/* Background Branding */}

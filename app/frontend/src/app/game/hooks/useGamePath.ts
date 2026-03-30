@@ -1,13 +1,19 @@
 "use client"
 
 import { useState, useEffect } from "react";
+import { countries } from "@/app/database/data/countries/region/index";
 
 export function useGamePath(path: string[]) {
   let initialMenu = "Peta Taktis";
   const category = path[0];
   const subMenu = path[1];
 
-  if (category === 'ekonomi') {
+  // Try to find if path[0] is a country name ID (Slugified with underscores)
+  const countryByPath = countries.find(c => c.name_id.replace(/ /g, '_').toLowerCase() === category?.toLowerCase());
+  if (countryByPath) {
+    const tab = subMenu || "info_strategis";
+    initialMenu = `CountryModal:${countryByPath.name_id}:${tab}`;
+  } else if (category === 'ekonomi') {
     if (subMenu === 'perdagangan') {
       const detail = path[2];
       if (detail) initialMenu = `Menu:Perdagangan:${detail}`;
@@ -118,6 +124,15 @@ export function useGamePath(path: string[]) {
     if (!targetPath && activeMenu.startsWith("Menu:Diplomasi:")) {
       const detail = activeMenu.split(":")[2];
       targetPath = `/game/geopolitik/diplomasi/${detail}`;
+    }
+
+    // Dynamic path handling for Country Modals
+    if (!targetPath && activeMenu.startsWith("CountryModal:")) {
+      const parts = activeMenu.split(":");
+      const countryId = parts[1];
+      const tab = parts[2] || "info_strategis";
+      // URL Slug: Replace spaces with underscores
+      targetPath = `/game/${countryId.replace(/ /g, '_')}/${tab}`;
     }
 
     targetPath = targetPath || "/game";
