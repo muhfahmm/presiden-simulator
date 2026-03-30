@@ -33,6 +33,16 @@ import NewMessageToast from "@/app/game/components/sidemenu/2_kotak_masuk/NewMes
 import BudgetDetailModal from "@/app/game/components/1_navbar/3_kas_negara/BudgetDetailModal";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 
+// Diplomatic Sub-Modals
+import KedutaanModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/KedutaanModal";
+import PaktaNonAgresiModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/2_pakta_non_agresi/PaktaNonAgresiModal";
+import AliansiPertahananModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/3_aliansi_pertahanan/AliansiPertahananModal";
+import PerjanjianDagangModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/4_perjanjian_dagang/PerjanjianDagangModal";
+import KontrakPenelitianModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/5_kontrak_penelitian/KontrakPenelitianModal";
+import KirimPasukanModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/6_kirim_pasukan/KirimPasukanModal";
+// import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
+import { countries } from "@/app/database/data/negara/benua/index";
+
 interface ModalsManagerProps {
   isMounted: boolean;
   activeMenu: string;
@@ -42,6 +52,35 @@ interface ModalsManagerProps {
 
 export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, countryData }: ModalsManagerProps) {
   if (!isMounted) return null;
+
+  // URL Parsing for Country-specific Modals
+  // Format: CountryModal:CountryID:TabSlug:SubTabSlug
+  let targetCountryID = "";
+  let activeSubTab = "";
+  
+  if (activeMenu.startsWith("CountryModal:")) {
+    const parts = activeMenu.split(":");
+    targetCountryID = parts[1] || "";
+    activeSubTab = parts[3] || "";
+  }
+
+  // Find the actual country object for labels
+  const targetCountryData = countries.find(c => 
+    c.name_id.toLowerCase() === targetCountryID.toLowerCase() || 
+    c.name_en.toLowerCase() === targetCountryID.toLowerCase()
+  );
+
+  const userCountryID = countryData?.name_id || "";
+  const relationScore = 50; // Fallback to 50
+
+  // Relation Labels
+  let relationLabel = "Netral";
+  let relationColor = "text-yellow-400";
+  if (relationScore <= 25) { relationLabel = "Sangat Buruk"; relationColor = "text-red-500"; }
+  else if (relationScore <= 49) { relationLabel = "Buruk"; relationColor = "text-red-400"; }
+  else if (relationScore <= 69) { relationLabel = "Netral"; relationColor = "text-yellow-400"; }
+  else if (relationScore <= 79) { relationLabel = "Baik"; relationColor = "text-green-400"; }
+  else { relationLabel = "Cukup Baik"; relationColor = "text-emerald-500"; }
 
   return (
     <>
@@ -170,6 +209,37 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         buildingDeltas={buildingStorage.getData().buildingDeltas || {}}
       />
       <NewMessageToast />
+
+      {/* Diplomatic Modals - Moved to top-level for consistent rendering */}
+      <KedutaanModal 
+        isOpen={activeSubTab === 'kedutaan'} 
+        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 
+        userCountry={userCountryID}
+        targetCountry={targetCountryData?.name_id || targetCountryID}
+        relationScore={relationScore}
+        relationLabel={relationLabel}
+        relationColor={relationColor}
+      />
+      <PaktaNonAgresiModal 
+        isOpen={activeSubTab === 'pakta_non_agresi'} 
+        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 
+      />
+      <AliansiPertahananModal 
+        isOpen={activeSubTab === 'aliansi_pertahanan'} 
+        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 
+      />
+      <PerjanjianDagangModal 
+        isOpen={activeSubTab === 'perjanjian_dagang'} 
+        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 
+      />
+      <KontrakPenelitianModal 
+        isOpen={activeSubTab === 'kontrak_penelitian'} 
+        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 
+      />
+      <KirimPasukanModal 
+        isOpen={activeSubTab === 'kirim_pasukan'} 
+        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 
+      />
     </>
   );
 }

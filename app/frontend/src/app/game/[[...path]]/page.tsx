@@ -43,7 +43,10 @@ export default function GamePage() {
     if (activeMenu.startsWith("CountryModal:")) {
       const parts = activeMenu.split(":");
       const countryId = parts[1];
-      const country = countries.find(c => c.name_id === countryId);
+      const country = countries.find(c => 
+        c.name_id.toLowerCase() === countryId.toLowerCase() || 
+        c.name_en.toLowerCase() === countryId.toLowerCase()
+      );
       if (country) {
         setTargetCountry(country.name_id);
         setIsMenuOpen(true);
@@ -64,7 +67,10 @@ export default function GamePage() {
       setTargetCountry(name);
       // Only open strategy menu if not in trade map mode
       if (mapMode !== "trade") {
-        const country = countries.find(c => c.name_id === name || c.name_en === name);
+        const country = countries.find(c => 
+          c.name_id.toLowerCase() === name.toLowerCase() || 
+          c.name_en.toLowerCase() === name.toLowerCase()
+        );
         if (country) {
           setActiveMenu(`CountryModal:${country.name_id}:info_strategis`);
         }
@@ -148,9 +154,14 @@ export default function GamePage() {
             targetCountry={targetCountry}
             userCountry={userCountry}
             activeTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[2] : undefined}
+            activeSubTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[3] : undefined}
+            setActiveMenu={setActiveMenu}
             onTabChange={(tab) => {
                 if (targetCountry) {
-                    const country = countries.find(c => c.name_id === targetCountry || c.name_en === targetCountry);
+                    const country = countries.find(c => 
+                        c.name_id.toLowerCase() === targetCountry.toLowerCase() || 
+                        c.name_en.toLowerCase() === targetCountry.toLowerCase()
+                    );
                     if (country) {
                         setActiveMenu(`CountryModal:${country.name_id}:${tab === 'info' ? 'info_strategis' : tab === 'diplomacy' ? 'diplomasi_hubungan' : tab === 'military' ? 'aksi_militer_intelijen' : 'bantuan_kerjasama'}`);
                     }

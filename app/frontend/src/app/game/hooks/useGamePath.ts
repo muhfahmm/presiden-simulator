@@ -8,11 +8,12 @@ export function useGamePath(path: string[]) {
   const category = path[0];
   const subMenu = path[1];
 
-  // Try to find if path[0] is a country name ID (Slugified with underscores)
   const countryByPath = countries.find(c => c.name_id.replace(/ /g, '_').toLowerCase() === category?.toLowerCase());
   if (countryByPath) {
     const tab = subMenu || "info_strategis";
-    initialMenu = `CountryModal:${countryByPath.name_id}:${tab}`;
+    const subTab = path[2];
+    if (subTab) initialMenu = `CountryModal:${countryByPath.name_id}:${tab}:${subTab}`;
+    else initialMenu = `CountryModal:${countryByPath.name_id}:${tab}`;
   } else if (category === 'ekonomi') {
     if (subMenu === 'perdagangan') {
       const detail = path[2];
@@ -71,6 +72,11 @@ export function useGamePath(path: string[]) {
   }
 
   const [activeMenu, setActiveMenu] = useState<string>(initialMenu);
+
+  // Sync state with URL path changes (important for back/forward and direct URL access)
+  useEffect(() => {
+    setActiveMenu(initialMenu);
+  }, [path.join('/')]);
 
   useEffect(() => {
     const menuToPath: Record<string, string> = {
@@ -131,8 +137,10 @@ export function useGamePath(path: string[]) {
       const parts = activeMenu.split(":");
       const countryId = parts[1];
       const tab = parts[2] || "info_strategis";
+      const subTab = parts[3];
       // URL Slug: Replace spaces with underscores
       targetPath = `/game/${countryId.replace(/ /g, '_')}/${tab}`;
+      if (subTab) targetPath += `/${subTab}`;
     }
 
     targetPath = targetPath || "/game";

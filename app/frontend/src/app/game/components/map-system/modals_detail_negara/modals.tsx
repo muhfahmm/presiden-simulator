@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 
 import { 
   Globe, BarChart3, Handshake, Swords, Gift, X
@@ -18,6 +18,7 @@ import MilitaryTab from "./3_aksi_militer_dan_intelijen/MilitaryTab";
 import AidTab from "./4_bantuan_dan_kerjasama/AidTab";
 
 import { allRelations } from "@/app/database/data/negara/hubungan";
+// import { relationStorage } from "./2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
@@ -33,6 +34,8 @@ interface StrategyModalProps {
   targetCountry: string | null;
   userCountry: string;
   activeTab?: string;
+  activeSubTab?: string;
+  setActiveMenu: (menu: string) => void;
   onTabChange?: (tab: 'info' | 'diplomacy' | 'military' | 'aid') => void;
 }
 
@@ -73,10 +76,14 @@ const geoJsonToIndo: { [key: string]: string } = {
 };
 
 
-export default function StrategyModal({ isOpen, onClose, targetCountry, userCountry, activeTab, onTabChange }: StrategyModalProps) {
+export default function StrategyModal({ 
+  isOpen, onClose, targetCountry, userCountry, activeTab, activeSubTab, setActiveMenu, onTabChange 
+}: StrategyModalProps) {
   const [menuTab, setMenuTab] = useState<'info' | 'diplomacy' | 'military' | 'aid'>('info');
   const [liveStats, setLiveStats] = useState({ anggaran: 0, dailyDelta: 0 });
   const [isTemporarilyHidden, setIsTemporarilyHidden] = useState(false);
+  const [relationScore, setRelationScore] = useState(50);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // Listen for temporary hide/show events from sub-modals
   useEffect(() => {
@@ -102,22 +109,29 @@ export default function StrategyModal({ isOpen, onClose, targetCountry, userCoun
   const handleTabClick = (tab: 'info' | 'diplomacy' | 'military' | 'aid') => {
     setMenuTab(tab);
     if (onTabChange) onTabChange(tab);
+    
+    // Clear sub-tab in URL when switching main tabs
+    if (targetCountry) {
+      const country = centersData.find(c => c.name_id === targetCountry || c.name_en === targetCountry);
+      if (country) {
+        setActiveMenu(`CountryModal:${country.name_id}:${menuToTabSlug[tab]}`);
+      }
+    }
   };
 
 
   const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
   const userId = userEntry ? userEntry.name_id.toLowerCase().trim() : userCountry.toLowerCase().trim();
   
-  const countryEntry = targetCountry ? centersData.find(c => c.name_en === targetCountry || c.name_id === targetCountry) : undefined;
+  const countryEntry = targetCountry ? centersData.find(c => 
+    c.name_en.toLowerCase() === targetCountry.toLowerCase() || 
+    c.name_id.toLowerCase() === targetCountry.toLowerCase()
+  ) : undefined;
   let targetId = countryEntry ? countryEntry.name_id.toLowerCase().trim() : (targetCountry?.toLowerCase().trim() || "");
   
   if (targetCountry && geoJsonToIndo[targetCountry]) {
     targetId = geoJsonToIndo[targetCountry].toLowerCase().trim();
   }
-
-  const userRelations = allRelations[userId];
-  const relationItem = userRelations ? userRelations.find((item: any) => item.name.toLowerCase().trim() === targetId) : null;
-  const relationScore = relationItem ? relationItem.relation : 50;
 
   let relationLabel = "Netral";
   let relationColor = "text-yellow-400";
@@ -131,6 +145,9 @@ export default function StrategyModal({ isOpen, onClose, targetCountry, userCoun
   // 3. Subscription for Live Data (Real-time every game day)
   useEffect(() => {
     if (!isOpen || !targetId || !countryEntry) return;
+
+    // Initial load for relation
+    setRelationScore(50); // Fallback to 50 since logic folder was deleted
 
     const updateStats = () => {
       const isUser = targetId === userId;
@@ -153,15 +170,22 @@ export default function StrategyModal({ isOpen, onClose, targetCountry, userCoun
 
     updateStats(); // Initial load
 
+    // Subscribe to relation storage updates
+    // const handleRelationUpdate = () => {
+    //   setRelationScore(relationStorage.getRelationScore(userId, targetId));
+    // };
+
     // Subscribe to time ticks and budget updates
     const unsubscribeTime = timeStorage.subscribe(() => updateStats());
     window.addEventListener('budget_storage_updated', updateStats);
     window.addEventListener('ai_budget_updated', updateStats);
+    // window.addEventListener('relation_storage_updated', handleRelationUpdate);
     
     return () => {
       unsubscribeTime();
       window.removeEventListener('budget_storage_updated', updateStats);
       window.removeEventListener('ai_budget_updated', updateStats);
+      // window.removeEventListener('relation_storage_updated', handleRelationUpdate);
     };
   }, [isOpen, targetId, userId, countryEntry]);
 
@@ -169,7 +193,7 @@ export default function StrategyModal({ isOpen, onClose, targetCountry, userCoun
 
   return (
     <div className={`absolute inset-0 z-[1000] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200 ${
-      isTemporarilyHidden ? 'hidden' : 'bg-black/70'
+      isTemporarilyHidden ? 'opacity-0 pointer-events-none' : 'bg-black/70'
     }`}>
       <div className="bg-[#181a1f] border border-zinc-800/80 rounded-2xl w-full max-w-2xl flex flex-col gap-0 text-white shadow-2xl relative">
         
@@ -238,7 +262,17 @@ export default function StrategyModal({ isOpen, onClose, targetCountry, userCoun
             </div>
           )}
 
-          {menuTab === 'diplomacy' && <DiplomacyTab userCountry={userCountry} targetCountry={targetCountry} />}
+          {menuTab === 'diplomacy' && (
+            <DiplomacyTab 
+              userCountry={userCountry} 
+              targetCountry={targetCountry} 
+              activeSubTab={activeSubTab}
+              setActiveMenu={setActiveMenu}
+              relationScore={relationScore}
+              relationLabel={relationLabel}
+              relationColor={relationColor}
+            />
+          )}
           {menuTab === 'military' && <MilitaryTab />}
           {menuTab === 'aid' && <AidTab />}
         </div>
@@ -284,4 +318,3 @@ function TabButton({ icon, active, onClick, label }: { icon: React.ReactNode, ac
     </button>
   );
 }
-

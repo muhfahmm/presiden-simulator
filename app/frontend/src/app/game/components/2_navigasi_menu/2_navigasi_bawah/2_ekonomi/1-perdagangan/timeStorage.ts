@@ -1,5 +1,5 @@
 import { INITIAL_GAME_DATE, addDays, saveGameDate, getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
-import { diplomacyStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/diplomacyStorage";
+// import { diplomacyStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/diplomacyStorage";
 
 type TimeListener = (date: Date, isPaused: boolean, speed: number) => void;
 
@@ -24,7 +24,7 @@ class TimeStorage {
     this.timer = setInterval(() => {
       this.gameDate = addDays(this.gameDate, 1);
       saveGameDate(this.gameDate);
-      diplomacyStorage.updateProgress(this.gameDate);
+      // diplomacyStorage.updateProgress(this.gameDate);
       this.notify();
     }, 2000 / this.speed);
   }
