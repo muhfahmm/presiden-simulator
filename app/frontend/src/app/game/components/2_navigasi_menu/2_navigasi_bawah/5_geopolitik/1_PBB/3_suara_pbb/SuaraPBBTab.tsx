@@ -19,11 +19,11 @@ export default function SuaraPBBTab({ currentData }: SuaraPBBTabProps) {
 
   const sortedCountries = [...countries]
     .filter(c => c.name_id?.toLowerCase().includes(search.toLowerCase()) || c.name_en?.toLowerCase().includes(search.toLowerCase()))
-    .sort((a, b) => (b.un_vote ?? 0) - (a.un_vote ?? 0));
+    .sort((a, b) => (b.geopolitik?.un_vote ?? 0) - (a.geopolitik?.un_vote ?? 0));
 
-  const myVote = currentData.un_vote ?? 0;
+  const myVote = currentData.geopolitik?.un_vote ?? 0;
   const myTier = getTier(myVote);
-  const myRank = [...countries].sort((a, b) => (b.un_vote ?? 0) - (a.un_vote ?? 0)).findIndex(c => c.name_id === currentData.name_id) + 1;
+  const myRank = [...countries].sort((a, b) => (b.geopolitik?.un_vote ?? 0) - (a.geopolitik?.un_vote ?? 0)).findIndex(c => c.name_id === currentData.name_id) + 1;
 
   return (
     <div className="flex-1 overflow-hidden flex flex-col animate-in fade-in duration-300">
@@ -67,7 +67,7 @@ export default function SuaraPBBTab({ currentData }: SuaraPBBTabProps) {
       <div className="flex-1 overflow-y-auto px-8 py-4 no-scrollbar">
         <div className="flex flex-col gap-2">
           {sortedCountries.map((country, i) => {
-            const vote = country.un_vote ?? 0;
+            const vote = country.geopolitik?.un_vote ?? 0;
             const tier = getTier(vote);
             const isMyCountry = country.name_id === currentData.name_id;
             const maxVote = 207;

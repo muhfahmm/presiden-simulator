@@ -1,21 +1,28 @@
-===USERPAGE===
-frontend-desktop (Web - port 4000)
-cd "c:\fhm\EM1\app\frontend"
+=== PRESIDEN SIMULATOR (EM2) ===
+
+# Cara Install
+1. Frontend:
+   cd "c:\fhm\em2\app\frontend"
+   npm install
+
+2. Backend:
+   cd "c:\fhm\em2\app\backend"
+   go mod tidy
+
+# Cara Masuk (Mode Web)
+cd "c:\fhm\em2\app\frontend"
 npm run dev
+> Akses: http://localhost:4000
 
-frontend-desktop (Desktop - Tauri)
-cd "c:\fhm\EM1\app\frontend"
+# Cara Masuk (Mode Desktop - Tauri)
+cd "c:\fhm\em2\app\frontend"
 npx tauri dev
 
-server Go (User Game Server - port 4001)
-cd "c:\fhm\EM4\app\backend"
+# Cara Masuk (Server Backend)
+cd "c:\fhm\em2\app\backend"
 go run cmd/main.go
+> Server: port 4001
 
-force stop
-node js
-taskkill /F /IM node.exe
-
-go
-taskkill /F /IM main.ex
-cd ..; cd ..; cd "c:\fhm\EM1\app\frontend"
-npx tauri dev
+# Tutup / Force Stop
+Stop Frontend: taskkill /F /IM node.exe
+Stop Backend: taskkill /F /IM main.exe

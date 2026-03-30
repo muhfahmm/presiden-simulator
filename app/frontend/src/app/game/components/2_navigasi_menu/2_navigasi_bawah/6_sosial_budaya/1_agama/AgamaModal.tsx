@@ -13,48 +13,48 @@ interface ModalProps {
 
 const religionEffects: Record<string, { plus: string[]; minus: string[] }> = {
   "Islam": {
-    plus: ["Produksi Pangan +10%", "Efektivitas Pajak Zakat (Pendapatan) +5%"],
-    minus: ["Biaya Diplomasi Barat +10%", "Risiko Konflik jika UU Kontraband Aktif"]
+    plus: ["Stabilitas & Harmoni Sosial +15%"],
+    minus: ["Biaya Diplomasi Barat +10%"]
   },
   "Protestan": {
     plus: ["Kecepatan Produksi Industri +15%", "Pertumbuhan Ekonomi +5%"],
     minus: ["Biaya Subsidi Sosial +10%"]
   },
   "Katolik": {
-    plus: ["Loyalitas Warga +10%", "Kecepatan Pembangunan Infrastruktur +10%"],
-    minus: ["Kecepatan Riset Teknologi -10% (Doktrin Konservatif)"]
+    plus: ["Loyalitas Warga +10%", "Pembangunan Infrastruktur +10%", "Bantuan Diplomasi Vatican"],
+    minus: ["Kecepatan Riset Teknologi -10%", "Risiko Protes Klerikal", "Biaya Perawatan Situs Suci"]
   },
   "Kristen Ortodoks": {
-    plus: ["Ketahanan Militer +10%", "Stabilitas Nasional +5%"],
+    plus: ["Ketahanan Militer +10%", "Stabilitas Nasional +5%", "Konservasi Budaya Leluhur"],
     minus: ["Hubungan Perdagangan Global -5%"]
   },
   "Hindu": {
-    plus: ["Keharmonisan Sosial +15%", "Produksi Pertanian +10%"],
-    minus: ["Mobilitas Tenaga Kerja Industri -10%"]
+    plus: ["Keharmonisan Sosial +15%", "Produksi Pertanian +10%", "Pendapatan Wisata Budaya"],
+    minus: ["Mobilitas Tenaga Kerja -10%", "Biaya Ritual Kebudayaan", "Kerumitan Hukum Adat"]
   },
   "Buddha": {
-    plus: ["Happiness Index +20%", "Health Score +5%"],
-    minus: ["Kecepatan Rekrutmen Militer -20%"]
+    plus: ["Indeks Kebahagiaan +20%", "Skor Kesehatan Masyarakat +5%", "Diplomasi Perdamaian Global"],
+    minus: ["Rekrutmen Militer -20%"]
   },
   "Ateisme": {
-    plus: ["Kecepatan Riset & Teknologi +25%", "Efisiensi Logistik +10%"],
-    minus: ["Approval Rating -15%", "Risiko Radikalisme Internal +10%"]
+    plus: ["Kecepatan Riset & Sains +25%", "Efisiensi Logistik +10%"],
+    minus: ["Approval Rating -15%", "Risiko Radikalisme Internal +10%", "Diplomasi Teokrasi Sulit"]
   },
   "Yahudi": {
-    plus: ["Pendapatan Sektor Komersial +20%", "Efektivitas Intelijen +10%"],
-    minus: ["Risiko Embargo dari Blok Regional Tertentu"]
+    plus: ["Pendapatan Sektor Komersial +20%", "Efektivitas Intelijen +10%", "Kualitas Pendidikan +10%"],
+    minus: ["Risiko Embargo Regional"]
   },
   "Konghucu": {
-    plus: ["Efisiensi Birokrasi +15%", "Disiplin Kerja (Output Pabrik) +10%"],
-    minus: ["Indeks Demokrasi -10%"]
+    plus: ["Efisiensi Birokrasi +15%"],
+    minus: ["Indeks Demokrasi -10%", "Inovasi Disruptif Lambat", "Subsidi Jaring Pengaman Keluarga"]
   },
   "Taoisme": {
-    plus: ["Keberlanjutan Lingkungan +20%", "Biaya Energi -5%"],
+    plus: ["Keberlanjutan Lingkungan +20%", "Efisiensi Biaya Energi -5%"],
     minus: ["Pertumbuhan Industri Berat -10%"]
   },
   "Shinto": {
-    plus: ["Nasionalisme +25%", "Kualitas Alutsista +10%"],
-    minus: ["Biaya Diplomasi Internasional +15%"]
+    plus: ["Kualitas Alutsista +10%"],
+    minus: ["Biaya Diplomasi Global +15%"]
   }
 };
 
