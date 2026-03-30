@@ -23,6 +23,8 @@ import { unICAOStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/5_g
 import { unIMOStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/10_Organisasi_Maritim_Internasional/unIMOStorage";
 import { unITUStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/11_Organisasi_Telekomunikasi_Internasional/unITUStorage";
 import { unWMOStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/12_Organisasi_Meteorologi_Dunia/unWMOStorage";
+import { populationStorage } from "./components/1_navbar/2_populasi";
+import { populationDeltaStorage } from "./components/1_navbar/2_populasi/PopulationDeltaStorage";
 
 const STORAGE_KEY = "game_session";
 
@@ -81,6 +83,8 @@ export const gameStorage = {
     unIMOStorage.clear();
     unITUStorage.clear();
     unWMOStorage.clear();
+    populationStorage.clear();
+    populationDeltaStorage.clear();
   },
 
   getSession: (): GameSession | null => {
@@ -145,7 +149,11 @@ export const gameStorage = {
     unILOStorage.clear();
     unFAOStorage.clear();
     unICAOStorage.clear();
+    unIMOStorage.clear();
+    unITUStorage.clear();
     unWMOStorage.clear();
+    populationStorage.clear();
+    populationDeltaStorage.clear();
     
     window.location.href = '/database';
   },
@@ -188,5 +196,7 @@ export const gameStorage = {
     unIMOStorage.clear();
     unITUStorage.clear();
     unWMOStorage.clear();
+    populationStorage.clear();
+    populationDeltaStorage.clear();
   },
 };

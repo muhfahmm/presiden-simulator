@@ -98,6 +98,13 @@ export const populationStorage = {
     data.population = Math.max(0, data.population + delta);
     populationStorage.saveData(data);
     return data.population;
+  },
+
+  clear: () => {
+    if (typeof window === 'undefined') return;
+    localStorage.removeItem(POPULATION_STORAGE_KEY);
+    localStorage.removeItem("em4_population_version");
+    window.dispatchEvent(new Event('population_updated'));
   }
 };
 
