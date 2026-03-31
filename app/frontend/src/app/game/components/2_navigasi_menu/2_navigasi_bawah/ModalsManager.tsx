@@ -41,7 +41,7 @@ import AliansiPertahananModal from "@/app/game/components/map-system/modals_deta
 import PerjanjianDagangModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/4_perjanjian_dagang/PerjanjianDagangModal";
 import KontrakPenelitianModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/5_kontrak_penelitian/KontrakPenelitianModal";
 import KirimPasukanModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/6_kirim_pasukan/KirimPasukanModal";
-// import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
+import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { countries } from "@/app/database/data/negara/benua/index";
 
 interface ModalsManagerProps {
@@ -74,14 +74,9 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
   const userCountryID = countryData?.name_id || "";
   const relationScore = 50; // Fallback to 50
 
-  // Relation Labels
-  let relationLabel = "Netral";
-  let relationColor = "text-yellow-400";
-  if (relationScore <= 25) { relationLabel = "Sangat Buruk"; relationColor = "text-red-500"; }
-  else if (relationScore <= 49) { relationLabel = "Buruk"; relationColor = "text-red-400"; }
-  else if (relationScore <= 69) { relationLabel = "Netral"; relationColor = "text-yellow-400"; }
-  else if (relationScore <= 79) { relationLabel = "Baik"; relationColor = "text-green-400"; }
-  else { relationLabel = "Cukup Baik"; relationColor = "text-emerald-500"; }
+  const metadata = relationStorage.getRelationMetadata(relationScore);
+  const relationLabel = metadata.labelFull;
+  const relationColor = metadata.color;
 
   return (
     <>

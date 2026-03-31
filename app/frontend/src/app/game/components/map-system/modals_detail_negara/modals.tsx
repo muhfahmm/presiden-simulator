@@ -24,6 +24,7 @@ import { COUNTRY_REGIONS, getRegion } from "./2_diplomasi_hubungan/1_kedutaan/lo
 import { allRelations } from "@/app/database/data/negara/hubungan";
 import { relationStorage } from "./2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { gameStorage } from "@/app/game/gamestorage";
+import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 import { countries as centersData, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
 
 function getContinent(countryNameId: string): string {
@@ -135,92 +136,70 @@ export default function StrategyModal({
   };
 
 
-  const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+  const userEntry = centersData.find(c => c.name_id === userCountry || c.name_en === userCountry);
   const userId = userEntry ? userEntry.name_id.toLowerCase().trim() : userCountry.toLowerCase().trim();
-  
-  const countryEntry = targetCountry ? centersData.find(c => 
-    c.name_en.toLowerCase() === targetCountry.toLowerCase() || 
-    c.name_id.toLowerCase() === targetCountry.toLowerCase()
-  ) : undefined;
-  let targetId = countryEntry ? countryEntry.name_id.toLowerCase().trim() : (targetCountry?.toLowerCase().trim() || "");
-  
-  if (targetCountry && geoJsonToIndo[targetCountry]) {
-    targetId = geoJsonToIndo[targetCountry].toLowerCase().trim();
-  }
+  const targetId = relationStorage.normalizeTargetId(targetCountry || "", centersData);
+  const countryEntry = centersData.find(c => c.name_id.toLowerCase().trim() === targetId);
 
-  let relationLabel = "Netral";
-  let relationColor = "text-yellow-400";
+  // States
+  const [tick, setTick] = useState(0);
 
-  if (relationScore <= 25) { relationLabel = "Sangat Buruk"; relationColor = "text-red-500"; }
-  else if (relationScore <= 49) { relationLabel = "Buruk"; relationColor = "text-red-400"; }
-  else if (relationScore <= 69) { relationLabel = "Netral"; relationColor = "text-yellow-400"; }
-  else if (relationScore <= 79) { relationLabel = "Baik"; relationColor = "text-green-400"; }
-  else { relationLabel = "Cukup Baik"; relationColor = "text-emerald-500"; }
+  // 1. Tick for Global Real-time Updates
+  useEffect(() => {
+    const handleUpdate = () => setTick(t => t + 1);
+    window.addEventListener("relation_storage_updated", handleUpdate);
+    window.addEventListener("relation_status_updated", handleUpdate);
+    return () => {
+      window.removeEventListener("relation_storage_updated", handleUpdate);
+      window.removeEventListener("relation_status_updated", handleUpdate);
+    };
+  }, []);
 
-  // 3. Subscription for Live Data (Real-time every game day)
+  // 2. Score & Stats Logic
   useEffect(() => {
     if (!isOpen || !targetId || !countryEntry) return;
 
-    // Initial load for relation
-    const userK = userCountry?.toLowerCase() || "";
-    const targetK = targetCountry?.toLowerCase() || "";
-    const userRelations = (allRelations as any)[userK];
+    const targetK = targetId;
+    const userRelations = (allRelations as any)[userId];
     const relationData = Array.isArray(userRelations) 
-      ? userRelations.find((r: any) => r.name?.toLowerCase() === targetK)
+      ? userRelations.find((r: any) => r.name?.toLowerCase().trim() === targetK)
       : null;
     const baseScore = relationData?.relation !== undefined ? relationData.relation : 50;
-    setRelationScore(relationStorage.getRelationScore(targetK, baseScore));
-
-    const handleRelationUpdate = (e: any) => {
-      const updatedCountry = e.detail.targetCountry?.toLowerCase().trim();
-      const currentTarget = targetCountry?.toLowerCase().trim();
-      if (updatedCountry === currentTarget) {
-        setRelationScore(e.detail.newScore);
-      }
-    };
-
-    window.addEventListener('relation_status_updated', handleRelationUpdate as EventListener);
 
     const updateStats = () => {
       const isUser = targetId === userId;
       let currentAnggaran = 0;
-      
-      // Calculate daily income like the database page: Sum of tax revenues
       const currentTaxes = taxStorage.getTaxes(countryEntry.name_en) || countryEntry.pajak || {};
       const totalTaxRevenue = Object.values(currentTaxes as any).reduce((sum: number, v: any) => sum + (Number(v?.pendapatan) || 0), 0);
-      const currentDelta = totalTaxRevenue;
-
+      
       if (isUser) {
         currentAnggaran = budgetStorage.getBudget();
       } else {
-        // Pull AI budget from storage to show live progression
         currentAnggaran = aiBudgetStorage.getBudget(countryEntry.name_en);
       }
 
-      setLiveStats({ anggaran: currentAnggaran, dailyDelta: currentDelta });
+      setLiveStats({ anggaran: currentAnggaran, dailyDelta: totalTaxRevenue });
+      setRelationScore(relationStorage.getRelationScore(targetK, baseScore));
     };
 
-    updateStats(); // Initial load
+    updateStats();
 
-    // Subscribe to relation storage updates
-    // const handleRelationUpdate = () => {
-    //   setRelationScore(relationStorage.getRelationScore(userId, targetId));
-    // };
-
-    // Subscribe to time ticks and budget updates
     const unsubscribeTime = timeStorage.subscribe(() => updateStats());
     window.addEventListener('budget_storage_updated', updateStats);
     window.addEventListener('ai_budget_updated', updateStats);
-    window.addEventListener('relation_storage_updated', handleRelationUpdate as EventListener);
     
     return () => {
       unsubscribeTime();
-      window.removeEventListener('relation_status_updated', handleRelationUpdate as EventListener);
       window.removeEventListener('budget_storage_updated', updateStats);
       window.removeEventListener('ai_budget_updated', updateStats);
-      window.removeEventListener('relation_storage_updated', handleRelationUpdate as EventListener);
     };
-  }, [isOpen, targetId, userId, countryEntry]);
+  }, [isOpen, targetId, userId, countryEntry, tick]);
+
+  const isUNSCMember = unSecurityCouncilStorage.getData()?.members?.some(m => m.name === userCountry);
+  const finalScore = relationStorage.calculateFinalScore(relationScore, !!isUNSCMember);
+  const metadata = relationStorage.getRelationMetadata(finalScore);
+  const relationLabel = metadata.labelFull;
+  const relationColor = metadata.color;
 
   if (!isOpen || !targetCountry || !countryEntry) return null;
 
@@ -244,7 +223,7 @@ export default function StrategyModal({
                 {targetCountry}
               </h2>
               <p className="text-sm text-zinc-400">
-                Hubungan: <span className={`font-semibold ${relationColor}`}>{relationScore} ({relationLabel})</span>
+                Hubungan: <span className={`font-semibold ${relationColor}`}>{finalScore} ({relationLabel})</span>
               </p>
             </div>
           </div>

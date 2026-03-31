@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { allRelations } from "@/app/database/data/negara/hubungan/index";
+import { relationStorage } from "./modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
+import { unSecurityCouncilStorage } from "../2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 
 interface GameMapCanvasProps {
   userCountry: string;
@@ -36,21 +38,20 @@ const geoJsonToIndo: { [key: string]: string } = {
 const getRelation = (name: string, userCountry: string) => {
   if (name === userCountry) return 100;
   
-  const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+  const userEntry = centersData.find(c => c.name_id === userCountry || c.name_en === userCountry);
   const userId = userEntry ? userEntry.name_id.toLowerCase().trim() : userCountry.toLowerCase().trim();
+  const targetId = relationStorage.normalizeTargetId(name, centersData);
   
-  const countryEntry = centersData.find(c => c.name_en === name || c.name_id === name);
-  let targetId = countryEntry ? countryEntry.name_id.toLowerCase().trim() : name.toLowerCase().trim();
-  
-  if (geoJsonToIndo[name]) {
-    targetId = geoJsonToIndo[name].toLowerCase().trim();
-  }
-  
-  const userRelations = allRelations[userId];
-  if (!userRelations) return 50; 
-  
-  const relationItem = userRelations.find(item => item.name.toLowerCase().trim() === targetId);
-  return relationItem ? relationItem.relation : 50; 
+  const userRelations = (allRelations as any)[userId];
+  const relationData = Array.isArray(userRelations) 
+    ? userRelations.find((item: any) => item.name.toLowerCase().trim() === targetId)
+    : null;
+  const baseScore = relationData ? (relationData as any).relation : 50;
+  const rawScore = relationStorage.getRelationScore(targetId, baseScore);
+  const isUNSCMember = unSecurityCouncilStorage.getData()?.members?.some((m: any) => 
+    m.name.toLowerCase() === userCountry.toLowerCase()
+  );
+  return relationStorage.calculateFinalScore(rawScore, !!isUNSCMember);
 };
 
 // Tactical Maritime Labels (Oceans, Seas, Gulfs, Straits)
@@ -153,7 +154,18 @@ const getContinentColor = (name: string, id: string): string => {
 export default function GameMapCanvas({ userCountry, targetCountry, onSelect, mapMode = "default", active = true, geoData }: GameMapCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isHovering, setIsHovering] = useState(false);
+  const [tick, setTick] = useState(0);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
+
+  useEffect(() => {
+    const handleUpdate = () => setTick(t => t + 1);
+    window.addEventListener("relation_storage_updated", handleUpdate);
+    window.addEventListener("relation_status_updated", handleUpdate);
+    return () => {
+      window.removeEventListener("relation_storage_updated", handleUpdate);
+      window.removeEventListener("relation_status_updated", handleUpdate);
+    };
+  }, []);
 
   // Higher resolution for more detail and less "narrow" feel
   // 3:1 or 2.5:1 aspect ratio can feel more panoramic
@@ -247,16 +259,9 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
             ctx.shadowBlur = 15;
           } else if (isTarget) {
             const rel = getRelation(name, userCountry);
-            if (rel >= 70) {
-              fillColor = "rgba(34, 197, 94, 0.4)"; // Green
-              strokeColor = "#4ade80";
-            } else if (rel >= 41) {
-              fillColor = "rgba(234, 179, 8, 0.4)"; // Yellow
-              strokeColor = "#fbbf24";
-            } else {
-              fillColor = "rgba(239, 68, 68, 0.4)"; // Red
-              strokeColor = "#f87171";
-            }
+            const meta = relationStorage.getRelationMetadata(rel);
+            fillColor = `${meta.hex}66`; // Adding alpha
+            strokeColor = meta.hex;
             ctx.lineWidth = 2;
             ctx.shadowColor = strokeColor;
             ctx.shadowBlur = 15;
@@ -309,9 +314,11 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
         } else if (isTarget) {
           const rel = getRelation(center.name_en, userCountry);
           ctx.arc(x, y, 6, 0, Math.PI * 2);
-          if (rel >= 70) ctx.fillStyle = "#22c55e";
-          else if (rel >= 41) ctx.fillStyle = "#eab308";
-          else ctx.fillStyle = "#ef4444";
+          if (rel >= 80) ctx.fillStyle = "#10b981"; // Emerald
+          else if (rel >= 70) ctx.fillStyle = "#22c55e"; // Green
+          else if (rel >= 50) ctx.fillStyle = "#eab308"; // Yellow
+          else if (rel >= 26) ctx.fillStyle = "#f87171"; // Light Red
+          else ctx.fillStyle = "#ef4444"; // Red
           ctx.shadowColor = ctx.fillStyle as string;
           ctx.shadowBlur = 15;
         } else {
@@ -363,7 +370,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ma
       ctx.restore();
     });
 
-  }, [geoData, userCountry, targetCountry, centersData, mapMode]);
+  }, [geoData, userCountry, targetCountry, centersData, mapMode, tick]);
 
   // Define Custom Cursors
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;

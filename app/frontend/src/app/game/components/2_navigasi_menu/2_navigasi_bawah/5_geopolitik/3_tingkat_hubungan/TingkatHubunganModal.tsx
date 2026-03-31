@@ -1,12 +1,14 @@
 "use client"
 
 import { useState, useEffect, useMemo } from "react";
-import { X, HeartHandshake, Search, MapPin, Globe2, SearchSlash, Info, TrendingUp, TrendingDown, Activity, Users, ShieldCheck, Zap, ChevronRight, Map as LucideMap, XCircle, Command } from "lucide-react"
+import { X, HeartHandshake, Search, MapPin, Globe2, SearchSlash, Info, TrendingUp, TrendingDown, Activity, Users, ShieldCheck, Zap, ChevronRight, Map as LucideMap, XCircle, Command, ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
 import { allRelations } from "@/app/database/data/negara/hubungan/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import { unSecurityCouncilStorage } from "../1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
+import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
+import { timeStorage } from "../../2_ekonomi/1-perdagangan/timeStorage";
 
 type Continent = "Asia" | "Afrika" | "Eropa" | "Amerika Utara" | "Amerika Selatan" | "Oseania";
 
@@ -88,6 +90,8 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
   const [activeContinent, setActiveContinent] = useState<Continent | "Semua">("Semua");
   const [searchQuery, setSearchQuery] = useState("");
   const [isUNSCMember, setIsUNSCMember] = useState(false);
+  const [, setTick] = useState(0); // Force re-render on time/relation updates
+  const [sortOrder, setSortOrder] = useState<'none' | 'desc' | 'asc'>('none');
 
   useEffect(() => {
     const data = unSecurityCouncilStorage.getData();
@@ -101,6 +105,19 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
       setCurrentCountry(countryName);
     }
   }, [isOpen]);
+
+  // Subscribe to time ticks and relation updates for real-time score refresh
+  useEffect(() => {
+    const forceUpdate = () => setTick(t => t + 1);
+    const unsubscribeTime = timeStorage.subscribe(() => forceUpdate());
+    window.addEventListener('relation_storage_updated', forceUpdate);
+    window.addEventListener('relation_status_updated', forceUpdate);
+    return () => {
+      unsubscribeTime();
+      window.removeEventListener('relation_storage_updated', forceUpdate);
+      window.removeEventListener('relation_status_updated', forceUpdate);
+    };
+  }, []);
 
   const userRelations = useMemo(() => {
     const key = currentCountry.toLowerCase();
@@ -121,22 +138,38 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
   }, []);
 
   const getRelationStatus = (score: number) => {
-    // Apply UNSC Bonus if member (capped at 100)
-    const finalScore = isUNSCMember ? Math.min(100, Math.round(score * 1.2)) : score;
+    const finalScore = relationStorage.calculateFinalScore(score, isUNSCMember);
+    const metadata = relationStorage.getRelationMetadata(finalScore);
+    const icon = finalScore >= 70 ? ShieldCheck : (finalScore >= 50 ? Globe2 : Zap);
     
-    if (finalScore >= 70) return { label: "Aliansi Strategis", color: "text-green-500", bg: "bg-green-500/10", border: "border-green-500/30", icon: ShieldCheck, finalScore };
-    if (finalScore >= 41) return { label: "Status Netral", color: "text-yellow-500", bg: "bg-yellow-500/10", border: "border-yellow-500/30", icon: Globe2, finalScore };
-    return { label: "Konflik / Musuh", color: "text-red-500", bg: "bg-red-500/10", border: "border-red-500/30", icon: Zap, finalScore };
+    return { 
+      label: metadata.labelFull, 
+      color: metadata.color, 
+      bg: metadata.bg, 
+      border: metadata.border, 
+      icon, 
+      finalScore 
+    };
   };
 
   const filteredRelations = useMemo(() => {
-    return userRelations.filter(rel => {
+    const filtered = userRelations.filter(rel => {
       const normalizedName = rel.name.toLowerCase().replace(/_/g, ' ');
       const matchesSearch = normalizedName.includes(searchQuery.toLowerCase());
       const continent = CONTINENT_MAP[normalizedName] || "Lainnya";
       return matchesSearch && (activeContinent === "Semua" || continent === activeContinent);
     });
-  }, [userRelations, activeContinent, searchQuery]);
+
+    if (sortOrder !== 'none') {
+      filtered.sort((a: any, b: any) => {
+        const scoreA = relationStorage.getRelationScore(a.name?.toLowerCase().trim(), a.relation);
+        const scoreB = relationStorage.getRelationScore(b.name?.toLowerCase().trim(), b.relation);
+        return sortOrder === 'desc' ? scoreB - scoreA : scoreA - scoreB;
+      });
+    }
+
+    return filtered;
+  }, [userRelations, activeContinent, searchQuery, sortOrder]);
   
   const userCountryObj = useMemo(() => {
     return centersData.find(c => c.name_id === currentCountry || c.name_en === currentCountry);
@@ -225,6 +258,30 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
                   <span className="text-rose-500/60">Tidak ada hasil ditemukan</span>
                 )}
               </span>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={() => setSortOrder(prev => prev === 'desc' ? 'none' : 'desc')}
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all cursor-pointer border ${
+                    sortOrder === 'desc'
+                      ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.15)]'
+                      : 'bg-zinc-800/60 text-zinc-300 border-zinc-700/60 hover:text-white hover:border-zinc-600 hover:bg-zinc-800'
+                  }`}
+                >
+                  <ArrowDown size={14} />
+                  Tertinggi
+                </button>
+                <button
+                  onClick={() => setSortOrder(prev => prev === 'asc' ? 'none' : 'asc')}
+                  className={`flex items-center gap-2 px-5 py-2.5 rounded-xl text-xs font-black uppercase tracking-widest transition-all cursor-pointer border ${
+                    sortOrder === 'asc'
+                      ? 'bg-emerald-500/20 text-emerald-400 border-emerald-500/40 shadow-[0_0_15px_rgba(16,185,129,0.15)]'
+                      : 'bg-zinc-800/60 text-zinc-300 border-zinc-700/60 hover:text-white hover:border-zinc-600 hover:bg-zinc-800'
+                  }`}
+                >
+                  <ArrowUp size={14} />
+                  Terendah
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -234,7 +291,9 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
           {filteredRelations.length > 0 ? (
             <div className="flex flex-col gap-3.5 max-w-6xl mx-auto animate-in fade-in slide-in-from-bottom-10 duration-1000">
               {filteredRelations.map((rel, idx) => {
-                const status = getRelationStatus(rel.relation);
+                const targetK = relationStorage.normalizeTargetId(rel.name, centersData);
+                const liveScore = relationStorage.getRelationScore(targetK, rel.relation);
+                const status = getRelationStatus(liveScore);
                 const targetCountryObj = centersData.find(c => c.name_id === rel.name || c.name_en === rel.name);
                 
                 return (

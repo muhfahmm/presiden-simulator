@@ -3,6 +3,8 @@
 import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { allRelations } from "@/app/database/data/negara/hubungan";
+import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
+import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
 
 interface MapHubunganProps {
   userCountry: string;
@@ -38,21 +40,21 @@ const geoJsonToIndo: { [key: string]: string } = {
 const getRelation = (name: string, userCountry: string) => {
   if (name === userCountry) return 100;
   
-  const userEntry = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+  const userEntry = centersData.find(c => c.name_id === userCountry || c.name_en === userCountry);
   const userId = userEntry ? userEntry.name_id.toLowerCase().trim() : userCountry.toLowerCase().trim();
+  const targetId = relationStorage.normalizeTargetId(name, centersData);
   
-  const countryEntry = centersData.find(c => c.name_en === name || c.name_id === name);
-  let targetId = countryEntry ? countryEntry.name_id.toLowerCase().trim() : name.toLowerCase().trim();
+  const userRelations = (allRelations as any)[userId];
+  const relationData = Array.isArray(userRelations) 
+    ? userRelations.find((item: any) => item.name.toLowerCase().trim() === targetId)
+    : null;
+  const baseScore = relationData ? relationData.relation : 50;
   
-  if (geoJsonToIndo[name]) {
-    targetId = geoJsonToIndo[name].toLowerCase().trim();
-  }
-  
-  const userRelations = allRelations[userId];
-  if (!userRelations) return 50; 
-  
-  const relationItem = userRelations.find(item => item.name.toLowerCase().trim() === targetId);
-  return relationItem ? relationItem.relation : 50; 
+  const rawScore = relationStorage.getRelationScore(targetId, baseScore);
+  const isUNSCMember = unSecurityCouncilStorage.getData()?.members?.some((m: any) => 
+    m.name.toLowerCase() === userCountry.toLowerCase()
+  );
+  return relationStorage.calculateFinalScore(rawScore, !!isUNSCMember);
 };
 
 // Tactical Maritime Labels (Oceans, Seas, Gulfs, Straits)
@@ -105,7 +107,18 @@ const maritimeLabels = [
 export default function MapHubungan({ userCountry, targetCountry, onSelect, active = true, geoData }: MapHubunganProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
     const [isHovering, setIsHovering] = useState(false);
+  const [tick, setTick] = useState(0);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
+
+  useEffect(() => {
+    const handleUpdate = () => setTick(t => t + 1);
+    window.addEventListener("relation_storage_updated", handleUpdate);
+    window.addEventListener("relation_status_updated", handleUpdate);
+    return () => {
+      window.removeEventListener("relation_storage_updated", handleUpdate);
+      window.removeEventListener("relation_status_updated", handleUpdate);
+    };
+  }, []);
 
   const mapWidth = 6000;
   const mapHeight = 2400;
@@ -164,14 +177,11 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
 
         ctx.closePath();
 
-        // Hubungan Mode Style:
+        // Hubungan Mode Style (5-tier Classification):
         const relation = getRelation(name, userCountry);
-        let fillColor = "rgba(71, 85, 105, 0.3)";
+        const meta = relationStorage.getRelationMetadata(relation);
+        let fillColor = `${meta.hex}99`; // rgba approximate with 0.6 alpha
         let strokeColor = "rgba(255, 255, 255, 0.2)";
-
-        if (relation <= 40) fillColor = "rgba(239, 68, 68, 0.5)"; 
-        else if (relation <= 69) fillColor = "rgba(234, 179, 8, 0.5)"; 
-        else fillColor = "rgba(34, 197, 94, 0.5)"; 
 
         ctx.lineWidth = 1;
         ctx.fillStyle = fillColor;
@@ -216,18 +226,10 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
           ctx.shadowBlur = 15;
         } else {
           const relation = getRelation(center.name_en, userCountry);
+          const meta = relationStorage.getRelationMetadata(relation);
           ctx.arc(x, y, 4, 0, Math.PI * 2); 
-          
-          if (relation <= 40) {
-            ctx.fillStyle = "#ef4444"; 
-            ctx.shadowColor = "#ef4444";
-          } else if (relation <= 69) {
-            ctx.fillStyle = "#eab308"; 
-            ctx.shadowColor = "#eab308";
-          } else {
-            ctx.fillStyle = "#22c55e"; 
-            ctx.shadowColor = "#22c55e";
-          }
+          ctx.fillStyle = meta.hex;
+          ctx.shadowColor = meta.hex;
           ctx.shadowBlur = 10;
         }
         ctx.fill();
@@ -249,7 +251,7 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
       ctx.restore();
     });
 
-  }, [geoData, userCountry, targetCountry, centersData]);
+  }, [geoData, userCountry, targetCountry, centersData, tick]);
 
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
   const hoverCursor = "pointer";

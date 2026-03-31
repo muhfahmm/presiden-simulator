@@ -8,6 +8,7 @@ import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_ba
 import { embassyStorage, EmbassyStatus } from "./logic/embassyStorage";
 import ModalJikaUangKurang from "./modals_jika_uang_kurang";
 import ModalJikaTerbangun from "./modals_jika_terbangun";
+import ModalJikaHubunganKurang from "./modals_jika_hubungan_kurang";
 import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 
 interface KedutaanModalProps {
@@ -30,7 +31,7 @@ interface KedutaanModalProps {
 
 export default function KedutaanModal({ 
   isOpen, onClose,
-  userCountry, targetCountry,
+  userCountry, targetCountry, relationScore,
   userReligion = "Sekuler", targetReligion = "Sekuler",
   userIdeology = "Netral", targetIdeology = "Netral",
   userContinent = "Global", targetContinent = "Global",
@@ -47,6 +48,8 @@ export default function KedutaanModal({
   const [userBudget, setUserBudget] = useState<number>(0);
   const [isInsufficientFundsModalOpen, setIsInsufficientFundsModalOpen] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+  const [isRelationInsufficientModalOpen, setIsRelationInsufficientModalOpen] = useState(false);
+  const [syaratResult, setSyaratResult] = useState<{current_score: number, required_score: number} | null>(null);
 
   const sendNotification = async (type: string, extra?: string) => {
     try {
@@ -172,16 +175,41 @@ export default function KedutaanModal({
       });
   }, [isOpen, currentStatus, userCountry, targetCountry, userIdeology, targetIdeology, userReligion, targetReligion, userContinent, targetContinent, userRegion, targetRegion]);
 
-  const handleBuild = () => {
+  const handleBuild = async () => {
     if (!priceData) return;
+    setIsBuilding(true); // Disable button temporarily while verifying
     
-    const currentBudget = budgetStorage.getBudget();
-    if (currentBudget < priceData.final_price) {
-      setIsInsufficientFundsModalOpen(true);
+    // 1. Verifikasi Syarat Hubungan via Python API
+    try {
+      const syaratRes = await fetch(KEDUTAAN_ROUTES.GET_SYARAT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ relation_score: relationScore })
+      });
+      const syaratData = await syaratRes.json();
+      
+      if (!syaratData.eligible) {
+        setSyaratResult(syaratData);
+        setIsRelationInsufficientModalOpen(true);
+        setIsBuilding(false);
+        return;
+      }
+    } catch (err) {
+      console.error("Gagal memvalidasi syarat:", err);
+      // Fail open or fail safe? Let's fail safe and block if api errors
+      setError("Gagal memvalidasi kelayakan diplomasi");
+      setIsBuilding(false);
       return;
     }
 
-    setIsBuilding(true);
+    // 2. Verifikasi Uang
+    const currentBudget = budgetStorage.getBudget();
+    if (currentBudget < priceData.final_price) {
+      setIsInsufficientFundsModalOpen(true);
+      setIsBuilding(false);
+      return;
+    }
+
     setProgress(0);
     setBuildStartDate(timeStorage.getState().gameDate);
     sendNotification("CONSTRUCTION_START");
@@ -196,7 +224,7 @@ export default function KedutaanModal({
   return (
     <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
       <div className={`bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-xl max-h-[85vh] flex flex-col overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.6)] relative animate-in fade-in slide-in-from-bottom-4 duration-300 transition-all ${
-          isSuccessModalOpen || isInsufficientFundsModalOpen ? "opacity-0 scale-95 pointer-events-none" : "opacity-100 scale-100"
+          isSuccessModalOpen || isInsufficientFundsModalOpen || isRelationInsufficientModalOpen ? "opacity-0 scale-95 pointer-events-none" : "opacity-100 scale-100"
         }`}>
         {/* Top accent bar */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600"></div>
@@ -440,6 +468,15 @@ export default function KedutaanModal({
           onClose={() => setIsInsufficientFundsModalOpen(false)}
           currentBudget={userBudget}
           requiredCost={priceData.final_price}
+        />
+      )}
+
+      {syaratResult && (
+        <ModalJikaHubunganKurang
+          isOpen={isRelationInsufficientModalOpen}
+          onClose={() => setIsRelationInsufficientModalOpen(false)}
+          currentRelation={syaratResult.current_score}
+          requiredRelation={syaratResult.required_score}
         />
       )}
 

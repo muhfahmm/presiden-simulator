@@ -12,6 +12,9 @@ export const KEDUTAAN_ROUTES = {
 
   /** POST - Menghitung waktu pembangunan kedutaan */
   GET_TIME: '/api/game/diplomacy/kedutaan/time',
+
+  /** POST - Memvalidasi syarat minimal hubungan diplomatik */
+  GET_SYARAT: '/api/game/diplomacy/kedutaan/syarat',
 } as const;
 
 /**
