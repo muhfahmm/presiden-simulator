@@ -40,6 +40,19 @@ export const relationStorage = {
     // Calculate new score, potentially clamped between 0 and 100
     const newScore = Math.max(0, Math.min(100, currentScore + delta));
     
+    // Deterioration Check (entered Red zone)
+    if (newScore <= 49 && currentScore > 49) {
+      const meta = relationStorage.getRelationMetadata(newScore);
+      window.dispatchEvent(new CustomEvent("relation_alert", {
+        detail: {
+          countryId: key,
+          newScore: newScore,
+          status: meta.label,
+          color: meta.hex
+        }
+      }));
+    }
+
     data[key] = newScore;
     localStorage.setItem(RELATION_STORAGE_KEY, JSON.stringify(data));
     
@@ -100,9 +113,29 @@ export const relationStorage = {
 
       // Batch update all scores from Python output
       const storedData = relationStorage.getRelationData();
+      const oldScores = { ...storedData };
+
       for (const entry of data.results) {
-        storedData[entry.country_id] = entry.new_score;
+        const countryId = entry.country_id;
+        const newScore = entry.new_score;
+        const oldScore = oldScores[countryId] ?? 50;
+
+        // Deterioration Check for daily drift
+        if (newScore <= 49 && oldScore > 49) {
+          const meta = relationStorage.getRelationMetadata(newScore);
+          window.dispatchEvent(new CustomEvent("relation_alert", {
+            detail: {
+              countryId: countryId,
+              newScore: newScore,
+              status: meta.label,
+              color: meta.hex
+            }
+          }));
+        }
+
+        storedData[countryId] = newScore;
       }
+
       localStorage.setItem(RELATION_STORAGE_KEY, JSON.stringify(storedData));
       
       // Notify UI

@@ -286,6 +286,36 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
           </div>
         </div>
 
+        {/* Relationship Status Legend */}
+        <div className="px-8 py-3 bg-zinc-900/20 border-b border-zinc-800/30 flex items-center justify-center gap-3 overflow-x-auto no-scrollbar whitespace-nowrap">
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-600/10 border border-red-600/20">
+            <div className="w-2 h-2 rounded-full bg-red-600 shadow-[0_0_8px_rgba(220,38,38,0.5)]"></div>
+            <span className="text-[9px] font-black uppercase tracking-widest text-red-500">0-25: Sangat Buruk</span>
+          </div>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-rose-400/10 border border-rose-400/20">
+            <div className="w-2 h-2 rounded-full bg-rose-400 shadow-[0_0_8px_rgba(251,113,133,0.5)]"></div>
+            <span className="text-[9px] font-black uppercase tracking-widest text-rose-400">26-49: Buruk</span>
+          </div>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-yellow-500/10 border border-yellow-500/20">
+            <div className="w-2 h-2 rounded-full bg-yellow-500 shadow-[0_0_8px_rgba(234,179,8,0.5)]"></div>
+            <span className="text-[9px] font-black uppercase tracking-widest text-yellow-500">50-69: Netral</span>
+          </div>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-green-400/10 border border-green-400/20">
+            <div className="w-2 h-2 rounded-full bg-green-400 shadow-[0_0_8px_rgba(74,222,128,0.5)]"></div>
+            <span className="text-[9px] font-black uppercase tracking-widest text-green-400">70-79: Baik</span>
+          </div>
+          <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+            <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]"></div>
+            <span className="text-[9px] font-black uppercase tracking-widest text-emerald-500">80-100: Aliansi</span>
+          </div>
+          {isUNSCMember && (
+            <div className="ml-2 flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-500/20 border border-blue-500/40 animate-pulse">
+              <Zap size={10} className="text-blue-400" />
+              <span className="text-[9px] font-black uppercase tracking-widest text-blue-300">UNSC Bonus Active (+20%)</span>
+            </div>
+          )}
+        </div>
+
         {/* Content Section - SIMPLE VERTICAL LIST */}
         <div className="flex-1 overflow-y-auto px-8 py-10 no-scrollbar bg-[radial-gradient(circle_at_center,_#0a0a0f_0%,_#050508_100%)]">
           {filteredRelations.length > 0 ? (
