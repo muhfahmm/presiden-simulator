@@ -1,3 +1,5 @@
+import { getInitialAgreements } from "@/app/database/data/database_mitra_perdagangan/agreementsRegistry";
+
 export type EmbassyStatus = 'none' | 'building' | 'completed';
 
 const EMBASSY_STORAGE_KEY = "em2_embassy_status";
@@ -6,7 +8,26 @@ export const embassyStorage = {
   getEmbassyData: (): Record<string, EmbassyStatus> => {
     if (typeof window === "undefined") return {};
     const stored = localStorage.getItem(EMBASSY_STORAGE_KEY);
-    if (!stored) return {};
+    
+    // If not stored, initialize with trade partners
+    if (!stored) {
+      const playerCountry = localStorage.getItem("selectedCountry");
+      if (!playerCountry) return {};
+      
+      const defaultData: Record<string, EmbassyStatus> = {};
+      const agreements = getInitialAgreements(playerCountry, playerCountry);
+      
+      agreements.forEach((agreement: any) => {
+        if (agreement.status === "Aktif") {
+           const key = agreement.mitra.toLowerCase().trim();
+           defaultData[key] = 'completed';
+        }
+      });
+      
+      localStorage.setItem(EMBASSY_STORAGE_KEY, JSON.stringify(defaultData));
+      return defaultData;
+    }
+
     try {
       return JSON.parse(stored);
     } catch (e) {
@@ -35,3 +56,4 @@ export const embassyStorage = {
     window.dispatchEvent(new Event("embassy_status_updated"));
   }
 };
+
