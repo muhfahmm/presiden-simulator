@@ -82,7 +82,7 @@ export default function GamePage() {
   return (
     <div className="flex min-h-screen bg-zinc-950 text-white font-sans relative overflow-hidden">
       {/* Main Content Area */}
-      <main className="flex-1 z-10 flex flex-col h-screen overflow-hidden relative">
+      <main className="flex-1 z-10 flex flex-col h-screen overflow-hidden relative pt-[73px]">
 
         {/* Floating UI Elements */}
         <SideMenu

@@ -164,113 +164,122 @@ export default function KedutaanModal({
 
   return (
     <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
-      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.6)] relative animate-in fade-in slide-in-from-bottom-4 duration-300">
+      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-xl max-h-[85vh] flex flex-col overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.6)] relative animate-in fade-in slide-in-from-bottom-4 duration-300">
         {/* Top accent bar */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600"></div>
         
-        {/* Header */}
-        <div className="p-8 pb-4 flex items-center justify-between">
+        {/* Fixed Header */}
+        <div className="p-6 pb-4 flex items-center justify-between border-b border-zinc-800/50 bg-zinc-900/50 backdrop-blur-sm z-10">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-amber-500/10 rounded-xl flex items-center justify-center border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.1)]">
               <Landmark className="h-5 w-5 text-amber-500" />
             </div>
             <div>
-              <p className="text-[11px] text-zinc-500 font-medium">{userCountry} → {targetCountry}</p>
+              <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-wider">{userCountry} → {targetCountry}</p>
+              <h3 className="text-sm font-black text-white italic uppercase tracking-tight">Pengajuan Kedutaan</h3>
             </div>
           </div>
           <button 
             onClick={onClose}
-            className="text-zinc-500 hover:text-zinc-200 transition-colors p-1.5 hover:bg-zinc-800/60 rounded-lg"
+            className="text-zinc-500 hover:text-zinc-200 transition-colors p-2 hover:bg-zinc-800/60 rounded-xl border border-transparent hover:border-zinc-700/50 cursor-pointer"
           >
-            <X size={16} />
+            <X size={18} />
           </button>
         </div>
 
-        {/* Content */}
-        <div className="px-8 pb-8 space-y-4">
+        {/* Scrollable Body Content */}
+        <div className="flex-1 overflow-y-auto p-8 pt-6 space-y-5 custom-scrollbar">
           {currentStatus !== 'none' ? (
-            <div className="flex flex-col items-center justify-center py-12 text-center space-y-4">
-              <div className={`w-16 h-16 rounded-full flex items-center justify-center border-2 ${
+            <div className="flex flex-col items-center justify-center py-12 text-center space-y-6">
+              <div className={`w-20 h-20 rounded-full flex items-center justify-center border-2 ${
                 currentStatus === 'building' 
                   ? "bg-amber-500/10 border-amber-500/30 animate-pulse" 
-                  : "bg-emerald-500/10 border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.2)]"
+                  : "bg-emerald-500/10 border-emerald-500/30 shadow-[0_0_30px_rgba(16,185,129,0.2)]"
               }`}>
-                <Landmark className={`h-8 w-8 ${currentStatus === 'building' ? 'text-amber-500' : 'text-emerald-500'}`} />
+                <Landmark className={`h-10 w-10 ${currentStatus === 'building' ? 'text-amber-500' : 'text-emerald-500'}`} />
               </div>
-              <div>
-                <h4 className="text-sm font-bold text-zinc-100 italic uppercase tracking-widest">
-                  {currentStatus === 'building' ? "Dalam Pembangunan" : "Kedutaan Besar Aktif"}
+              <div className="space-y-2">
+                <h4 className="text-lg font-black text-zinc-100 italic uppercase tracking-[0.1em]">
+                  {currentStatus === 'building' ? "Status: Dalam Pembangunan" : "Status: Kedutaan Aktif"}
                 </h4>
-                <p className="text-xs text-zinc-500 mt-1 max-w-[200px]">
+                <p className="text-xs text-zinc-500 max-w-[240px] leading-relaxed">
                   {currentStatus === 'building' 
-                    ? "Arsitek kami sedang membangun kedutaan di negara tujuan." 
-                    : "Hubungan diplomatik telah terjalin melalui kedutaan besar."}
+                    ? "Arsitek kami sedang membangun kedutaan di negara tujuan. Harap bersabar sementara hubungan diplomatik didirikan." 
+                    : "Hubungan diplomatik resmi telah terjalin. Fasilitas ini memberikan akses penuh ke fungsi-fungsi diplomatik tingkat lanjut."}
                 </p>
               </div>
               {currentStatus === 'building' && (
-                <div className="w-full max-w-[250px] space-y-2 text-center">
-                  <div className="w-full h-2 bg-zinc-800 rounded-full overflow-hidden border border-zinc-700/50">
+                <div className="w-full max-w-[280px] space-y-3">
+                  <div className="w-full h-2.5 bg-zinc-800 rounded-full overflow-hidden border border-zinc-700/50 p-[1px]">
                     <div 
-                      className="h-full bg-gradient-to-r from-amber-600 to-yellow-500 transition-all duration-300 ease-out shadow-[0_0_10px_rgba(245,158,11,0.3)]" 
+                      className="h-full bg-gradient-to-r from-amber-600 via-yellow-400 to-amber-600 transition-all duration-300 ease-out shadow-[0_0_15px_rgba(245,158,11,0.4)] rounded-full" 
                       style={{ width: `${progress}%` }}
                     />
                   </div>
-                  <p className="text-[10px] font-black text-amber-500 uppercase tracking-[0.2em] animate-pulse">
-                    Proses: {Math.round(progress)}%
-                  </p>
+                  <div className="flex justify-between items-center px-1">
+                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Progress Pembangunan</span>
+                    <span className="text-[10px] font-black text-amber-500 uppercase tracking-[0.2em] animate-pulse">
+                      {Math.round(progress)}%
+                    </span>
+                  </div>
                 </div>
               )}
-              <button 
-                onClick={onClose}
-                className="px-6 py-2 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 text-xs font-bold rounded-lg transition-colors border border-zinc-700/50"
-              >
-                Tutup
-              </button>
             </div>
           ) : loading ? (
-            <div className="flex flex-col items-center justify-center py-10 gap-3">
-              <Loader2 className="h-7 w-7 text-amber-500 animate-spin" />
-              <p className="text-xs text-zinc-500 font-semibold uppercase tracking-widest">Menghitung biaya...</p>
+            <div className="flex flex-col items-center justify-center py-20 gap-4">
+              <div className="relative">
+                <Loader2 className="h-10 w-10 text-amber-500 animate-spin" />
+                <div className="absolute inset-0 bg-amber-500/20 blur-xl rounded-full animate-pulse" />
+              </div>
+              <p className="text-[10px] text-zinc-400 font-black uppercase tracking-[0.3em] animate-pulse">Menghitung Estimasi Biaya...</p>
             </div>
           ) : error ? (
-            <div className="text-center py-8">
-              <p className="text-red-400 text-sm font-medium">{error}</p>
+            <div className="text-center py-12 flex flex-col items-center gap-3">
+              <div className="text-red-500/20 p-4 border border-red-500/10 rounded-full">
+                <X size={40} />
+              </div>
+              <p className="text-red-400 text-sm font-bold uppercase tracking-tight">{error}</p>
             </div>
           ) : priceData && (
             <>
-              {/* Base Price */}
-              <div className="bg-zinc-800/40 rounded-xl p-3.5 border border-zinc-700/30">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-zinc-500 font-semibold uppercase tracking-wider">Harga Dasar</span>
-                  <span className="text-sm font-bold text-zinc-300">{formatCurrency(priceData.base_price)}</span>
-                </div>
+              {/* Info Grid - Visualized simple cards */}
+              <div className="grid grid-cols-2 gap-3">
+                 <div className="bg-zinc-800/40 rounded-xl p-3 border border-zinc-700/30">
+                    <p className="text-[9px] text-zinc-500 font-bold uppercase tracking-widest mb-1">Harga Dasar</p>
+                    <p className="text-xs font-black text-zinc-200">{formatCurrency(priceData.base_price)}</p>
+                 </div>
+                 <div className="bg-zinc-800/40 rounded-xl p-3 border border-zinc-700/30 text-right">
+                    <p className="text-[9px] text-zinc-500 font-bold uppercase tracking-widest mb-1 text-right">Pengali Global</p>
+                    <p className={`text-xs font-black ${priceData.multiplier > 1 ? 'text-red-400' : 'text-emerald-400'}`}>×{priceData.multiplier}</p>
+                 </div>
               </div>
 
-              {/* Adjustments */}
-              <div className="bg-zinc-800/40 rounded-xl border border-zinc-700/30 overflow-hidden">
-                <div className="px-3.5 pt-3 pb-1.5">
-                  <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Penyesuaian Harga</span>
+              {/* Adjustments Section */}
+              <div className="bg-zinc-800/40 rounded-2xl border border-zinc-700/30 overflow-hidden shadow-sm">
+                <div className="px-4 pt-4 pb-2 border-b border-zinc-700/20 bg-zinc-800/20 flex items-center gap-2">
+                  <TrendingUp size={14} className="text-zinc-500" />
+                  <span className="text-[10px] text-zinc-300 font-black uppercase tracking-[0.1em]">Analisis Penyesuaian</span>
                 </div>
                 <div className="divide-y divide-zinc-700/30">
                   {priceData.adjustments.map((adj, i) => {
                     const isSame = adj.status === "Sama";
                     return (
-                      <div key={i} className="flex items-center justify-between px-3.5 py-2.5">
-                        <div className="flex items-center gap-2.5">
-                          <div className={`w-6 h-6 rounded-lg flex items-center justify-center ${
-                            isSame ? "bg-emerald-500/10 border border-emerald-500/20" : "bg-red-500/10 border border-red-500/20"
+                      <div key={i} className="flex items-center justify-between px-4 py-3.5 hover:bg-zinc-800/40 transition-colors">
+                        <div className="flex items-center gap-3">
+                          <div className={`w-8 h-8 rounded-lg flex items-center justify-center border-2 ${
+                            isSame ? "bg-emerald-500/5 border-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.05)]" : "bg-red-500/5 border-red-500/10 shadow-[0_0_10px_rgba(239,68,68,0.05)]"
                           }`}>
                             {isSame 
-                              ? <TrendingDown size={12} className="text-emerald-400" />
-                              : <TrendingUp size={12} className="text-red-400" />
+                              ? <TrendingDown size={14} className="text-emerald-400" />
+                              : <TrendingUp size={14} className="text-red-400" />
                             }
                           </div>
                           <div>
-                            <p className="text-xs font-semibold text-zinc-300">{adj.category}</p>
-                            <p className="text-[10px] text-zinc-500">{adj.detail}</p>
+                            <p className="text-xs font-black text-zinc-100 uppercase tracking-tight">{adj.category}</p>
+                            <p className="text-[10px] text-zinc-500 font-medium italic">{adj.detail}</p>
                           </div>
                         </div>
-                        <span className={`text-xs font-bold ${isSame ? "text-emerald-400" : "text-red-400"}`}>
+                        <span className={`text-xs font-black ${isSame ? "text-emerald-400" : "text-red-400"} bg-zinc-950/40 px-2 py-1 rounded-md border border-zinc-700/50`}>
                           {adj.change}
                         </span>
                       </div>
@@ -279,103 +288,115 @@ export default function KedutaanModal({
                 </div>
               </div>
 
-              {/* Construction Time */}
+              {/* Construction Time Card */}
               {timeData && (
-                <div className="bg-zinc-800/20 rounded-xl p-4 border border-zinc-700/20 flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 bg-blue-500/10 rounded-lg flex items-center justify-center border border-blue-500/20">
-                      <TrendingDown size={14} className="text-blue-400" />
+                <div className="bg-gradient-to-r from-blue-500/5 to-transparent rounded-2xl p-4 border border-blue-500/20 flex items-center justify-between group">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 bg-blue-500/10 rounded-xl flex items-center justify-center border border-blue-500/20 group-hover:border-blue-400/30 transition-colors">
+                      <Loader2 size={18} className="text-blue-400 animate-[spin_4s_linear_infinite]" />
                     </div>
                     <div>
-                      <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Waktu Pembangunan</p>
-                      <p className="text-xs font-semibold text-zinc-300">{timeData.details}</p>
+                      <p className="text-[10px] font-black text-blue-500/70 uppercase tracking-[0.2em]">Estimasi Waktu</p>
+                      <p className="text-xs font-bold text-zinc-200 mt-0.5">{timeData.details}</p>
                     </div>
                   </div>
                   <div className="text-right">
-                    <p className="text-lg font-black text-blue-400 italic">{timeData.final_time} Hari</p>
-                    <p className="text-[9px] text-zinc-500 font-bold uppercase">Game Time</p>
+                    <p className="text-2xl font-black text-blue-400 italic tracking-tighter">{timeData.final_time} Hari</p>
+                    <div className="flex items-center justify-end gap-1">
+                       <div className="w-1 h-1 bg-blue-500 animate-pulse rounded-full" />
+                       <p className="text-[8px] text-zinc-500 font-black uppercase">Standard Game Time</p>
+                    </div>
                   </div>
                 </div>
               )}
 
-              {/* Multiplier */}
-              <div className="bg-zinc-800/40 rounded-xl p-3.5 border border-zinc-700/30">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-zinc-500 font-semibold uppercase tracking-wider">Pengali Total</span>
-                  <div className="flex items-center gap-1.5">
-                    {priceData.multiplier > 1 ? (
-                      <TrendingUp size={12} className="text-red-400" />
-                    ) : priceData.multiplier < 1 ? (
-                      <TrendingDown size={12} className="text-emerald-400" />
-                    ) : (
-                      <Minus size={12} className="text-zinc-400" />
-                    )}
-                    <span className={`text-sm font-bold ${
-                      priceData.multiplier > 1 ? "text-red-400" : priceData.multiplier < 1 ? "text-emerald-400" : "text-zinc-300"
-                    }`}>
-                      ×{priceData.multiplier}
-                    </span>
-                  </div>
+              {/* Financial State */}
+              <div className="space-y-2">
+                <div className="flex justify-between items-center px-1">
+                   <div className="flex items-center gap-2">
+                      <div className="w-1 h-3 bg-emerald-500/50 rounded-full" />
+                      <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest">Kondisi Finansial</span>
+                   </div>
+                   <span className="text-[10px] font-black text-zinc-300">{formatCurrency(userBudget)} <span className="text-[8px] text-zinc-500 underline decoration-zinc-700">Saldo Saat Ini</span></span>
                 </div>
-              </div>
-
-              {/* User Budget Detail */}
-              <div className="bg-zinc-800/20 rounded-xl border border-zinc-700/20 overflow-hidden">
-                <div className="px-4 py-3 border-b border-zinc-700/20 flex justify-between items-center bg-zinc-800/10">
-                  <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none mt-0.5">Saldo Kas Negara</span>
-                  <span className="text-sm font-black text-zinc-300 leading-none">{formatCurrency(userBudget)}</span>
-                </div>
-                <div className="px-4 py-3 flex justify-between items-center">
-                  <div className="flex items-center gap-1.5">
-                    <div className={`w-2 h-2 rounded-full ${userBudget >= priceData.final_price ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]'}`} />
-                    <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none mt-0.5">Sisa Saldo Estimasi</span>
+                <div className="bg-zinc-800/40 rounded-xl p-4 border border-zinc-700/30 flex justify-between items-center">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-8 h-8 rounded-full flex items-center justify-center ${userBudget >= priceData.final_price ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20' : 'bg-red-500/10 text-red-400 border border-red-500/20'}`}>
+                       <Minus size={14} />
+                    </div>
+                    <span className="text-xs text-zinc-400 font-bold uppercase">Estimasi Sisa Saldo</span>
                   </div>
-                  <span className={`text-sm font-black leading-none ${userBudget >= priceData.final_price ? 'text-emerald-400' : 'text-red-400'}`}>
+                  <span className={`text-md font-black italic ${userBudget >= priceData.final_price ? 'text-emerald-400' : 'text-red-400'}`}>
                     {formatCurrency(userBudget - priceData.final_price)}
                   </span>
                 </div>
               </div>
-
-              {/* Final Price */}
-              <div className="bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-amber-600/10 rounded-xl p-6 border border-amber-500/20 shadow-[0_0_30px_rgba(245,158,11,0.08)]">
-                <div className="flex justify-between items-center">
-                  <span className="text-xs text-amber-400/80 font-bold uppercase tracking-wider">Total Biaya</span>
-                  <span className={`text-2xl font-black select-none ${userBudget >= priceData.final_price ? 'text-amber-400' : 'text-red-500 drop-shadow-[0_0_8px_rgba(239,68,68,0.4)]'}`}>
-                    {formatCurrency(priceData.final_price)}
-                  </span>
-                </div>
-              </div>
-
-              {/* Build Button */}
-              <div className="pt-2 relative z-[3000]">
-                <button 
-                  type="button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    handleBuild();
-                  }}
-                  disabled={isBuilding}
-                  className="w-full py-4 bg-amber-500 hover:bg-amber-400 text-black font-black rounded-xl transition-all shadow-xl shadow-amber-500/20 active:scale-[0.95] cursor-pointer flex items-center justify-center gap-3 border-2 border-amber-400/50 text-sm uppercase tracking-widest pointer-events-auto relative z-[3001] overflow-hidden"
-                >
-                  {isBuilding ? (
-                    <>
-                      <div 
-                        className="absolute inset-0 bg-white/20 transition-all duration-300"
-                        style={{ width: `${progress}%` }}
-                      />
-                      <Loader2 size={18} className="animate-spin relative z-10" />
-                      <span className="relative z-10">Membangun... {Math.round(progress)}%</span>
-                    </>
-                  ) : (
-                    <>
-                      <Landmark size={18} />
-                      Bangun Kedutaan
-                    </>
-                  )}
-                </button>
-              </div>
             </>
+          )}
+        </div>
+
+        {/* Fixed Footer with Action Button */}
+        <div className="p-8 pt-4 border-t border-zinc-800/60 bg-zinc-900/80 backdrop-blur-md z-10">
+          {!loading && !error && currentStatus === 'none' && priceData && (
+             <div className="space-y-4">
+                <div className="bg-gradient-to-br from-amber-500/20 via-yellow-500/5 to-amber-600/10 rounded-2xl p-5 border border-amber-500/30 shadow-[0_10px_40px_rgba(245,158,11,0.1)] flex justify-between items-center">
+                  <div>
+                    <span className="text-[10px] text-amber-500 font-black uppercase tracking-[0.2em] block mb-1">Pengeluaran Total</span>
+                    <p className="text-xs text-zinc-500 italic">Disetujui oleh Kementerian Keuangan</p>
+                  </div>
+                  <div className="text-right">
+                    <span className={`text-3xl font-black italic tracking-tighter ${userBudget >= priceData.final_price ? 'text-amber-400 drop-shadow-[0_0_15px_rgba(245,158,11,0.3)]' : 'text-red-500 drop-shadow-[0_0_10px_rgba(239,68,68,0.4)]'}`}>
+                      {formatCurrency(priceData.final_price)}
+                    </span>
+                    <p className="text-[8px] text-zinc-500 font-bold uppercase mt-1">Sertifikasi Diplomatik</p>
+                  </div>
+                </div>
+
+                <div className="relative group">
+                  <button 
+                    type="button"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      handleBuild();
+                    }}
+                    disabled={isBuilding}
+                    className="w-full py-5 bg-amber-500 hover:bg-amber-400 text-black font-black rounded-2xl transition-all shadow-2xl shadow-amber-900/40 active:scale-[0.98] cursor-pointer flex items-center justify-center gap-4 border-b-4 border-amber-700 hover:border-amber-600 text-xs uppercase tracking-[0.25em] relative overflow-hidden group-hover:translate-y-[-2px]"
+                  >
+                    {isBuilding ? (
+                      <>
+                        <Loader2 size={20} className="animate-spin" />
+                        <span>Membangun... {Math.round(progress)}%</span>
+                      </>
+                    ) : (
+                      <>
+                        <Landmark size={20} className="group-hover:rotate-12 transition-transform duration-300" />
+                        Bangun Kedutaan Sekarang
+                      </>
+                    )}
+                  </button>
+                  {/* Subtle glow behind button */}
+                  <div className="absolute inset-x-4 top-0 h-full bg-amber-500/10 blur-2xl -z-10 group-hover:bg-amber-500/20 transition-all" />
+                </div>
+             </div>
+          )}
+
+          {currentStatus !== 'none' && (
+             <button 
+                onClick={onClose}
+                className="w-full py-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 font-black rounded-2xl transition-all border border-zinc-700/50 active:scale-[0.98] shadow-lg text-xs uppercase tracking-[0.2em]"
+             >
+                Kembali ke Diplomasi
+             </button>
+          )}
+
+          {error && (
+             <button 
+                onClick={onClose}
+                className="w-full py-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-400 font-black rounded-2xl transition-all border border-zinc-700/50"
+             >
+                Tutup Sesi
+             </button>
           )}
         </div>
       </div>

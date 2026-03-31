@@ -74,7 +74,7 @@ export default function GameNavbar({
 
   return (
     <>
-      <header className="relative z-[1000000] bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/80 px-8 py-4 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+      <header className="fixed top-0 left-0 w-full z-[100000] bg-zinc-950/80 backdrop-blur-xl border-b border-zinc-800/80 px-8 py-4 flex items-center justify-between shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
         <div className="flex items-center gap-4">
           {countryData && (
             <div className="flex items-center gap-2 bg-zinc-800/40 px-3 py-1.5 rounded-xl border border-zinc-700/50 shadow-sm backdrop-blur-md">

@@ -21,7 +21,7 @@ import ModalDetailKedubes from "./2_diplomasi_hubungan/1_kedutaan/modals_detail_
 
 import { COUNTRY_REGIONS, getRegion } from "./2_diplomasi_hubungan/1_kedutaan/logic/regions";
 import { allRelations } from "@/app/database/data/negara/hubungan";
-// import { relationStorage } from "./2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
+import { relationStorage } from "./2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries as centersData, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
 
@@ -161,7 +161,22 @@ export default function StrategyModal({
     if (!isOpen || !targetId || !countryEntry) return;
 
     // Initial load for relation
-    setRelationScore(50); // Fallback to 50 since logic folder was deleted
+    const userK = userCountry?.toLowerCase() || "";
+    const targetK = targetCountry?.toLowerCase() || "";
+    const userRelations = (allRelations as any)[userK];
+    const relationData = Array.isArray(userRelations) 
+      ? userRelations.find((r: any) => r.name?.toLowerCase() === targetK)
+      : null;
+    const baseScore = relationData?.relation !== undefined ? relationData.relation : 50;
+    setRelationScore(relationStorage.getRelationScore(targetK, baseScore));
+
+    const handleRelationUpdate = (e: any) => {
+      if (e.detail.targetCountry === targetCountry) {
+        setRelationScore(e.detail.newScore);
+      }
+    };
+
+    window.addEventListener('relation_status_updated', handleRelationUpdate as EventListener);
 
     const updateStats = () => {
       const isUser = targetId === userId;
@@ -193,13 +208,14 @@ export default function StrategyModal({
     const unsubscribeTime = timeStorage.subscribe(() => updateStats());
     window.addEventListener('budget_storage_updated', updateStats);
     window.addEventListener('ai_budget_updated', updateStats);
-    // window.addEventListener('relation_storage_updated', handleRelationUpdate);
+    window.addEventListener('relation_storage_updated', handleRelationUpdate as EventListener);
     
     return () => {
       unsubscribeTime();
+      window.removeEventListener('relation_status_updated', handleRelationUpdate as EventListener);
       window.removeEventListener('budget_storage_updated', updateStats);
       window.removeEventListener('ai_budget_updated', updateStats);
-      // window.removeEventListener('relation_storage_updated', handleRelationUpdate);
+      window.removeEventListener('relation_storage_updated', handleRelationUpdate as EventListener);
     };
   }, [isOpen, targetId, userId, countryEntry]);
 

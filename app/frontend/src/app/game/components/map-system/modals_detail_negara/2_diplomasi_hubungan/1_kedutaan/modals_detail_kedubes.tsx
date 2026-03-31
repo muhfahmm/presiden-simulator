@@ -2,6 +2,10 @@
 
 import React from "react";
 import { Landmark, X, ShieldCheck, Zap, Globe, Coins, Info, Trash2 } from "lucide-react";
+import { allRelations } from "@/app/database/data/negara/hubungan";
+import { relationStorage } from "./logic/relationStorage";
+import { embassyStorage } from "./logic/embassyStorage";
+import ModalKonfirmasiHancurkan from "./modals_konfirmasi_hancurkan";
 
 interface ModalDetailKedubesProps {
   isOpen: boolean;
@@ -14,6 +18,43 @@ export default function ModalDetailKedubes({
   onClose,
   targetCountry
 }: ModalDetailKedubesProps) {
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = React.useState(false);
+
+  const handleDestroy = () => {
+    // 1. Get current score
+    const relationEntry = (allRelations as any)["Malaysia"]?.[targetCountry];
+    const baseScore = relationEntry?.score || 50;
+    const currentScore = relationStorage.getRelationScore(targetCountry, baseScore);
+
+    // 2. Call Penalty API
+    fetch("/api/game/diplomacy/kedutaan/destroy", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ current_score: currentScore })
+    })
+    .then(res => res.json())
+    .then(data => {
+      // 3. Update Relation
+      const penalty = data.penalty || -30;
+      relationStorage.updateRelationScore(targetCountry, penalty, baseScore);
+      
+      // 4. Update Embassy Status
+      embassyStorage.updateEmbassyStatus(targetCountry, 'none');
+      
+      // 5. Success Feedback & Close
+      setIsConfirmModalOpen(false);
+      onClose();
+    })
+    .catch(err => {
+      console.error("Gagal menghancurkan kedutaan:", err);
+      // Fallback if API fails
+      relationStorage.updateRelationScore(targetCountry, -30, baseScore);
+      embassyStorage.updateEmbassyStatus(targetCountry, 'none');
+      setIsConfirmModalOpen(false);
+      onClose();
+    });
+  };
+
   if (!isOpen) return null;
 
   return (
@@ -94,22 +135,31 @@ export default function ModalDetailKedubes({
           </div>
 
           {/* Action Area */}
-          <div className="pt-6 border-t border-zinc-800/60 flex gap-4">
+          <div className="pt-6 border-t border-zinc-800/60 space-y-3">
+             <button 
+                onClick={() => setIsConfirmModalOpen(true)}
+                className="w-full py-4 bg-red-500/10 hover:bg-red-500 text-red-500 hover:text-white font-black rounded-2xl transition-all border border-red-500/20 active:scale-[0.98] shadow-lg text-xs uppercase tracking-[0.2em] flex items-center justify-center gap-3"
+             >
+                <Trash2 size={16} />
+                Hancurkan Kedutaan Besar
+             </button>
+
              <button 
                 onClick={onClose}
-                className="flex-1 py-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 font-black rounded-2xl transition-all border border-zinc-700/50 active:scale-[0.98] shadow-lg text-xs uppercase tracking-[0.2em]"
+                className="w-full py-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-100 font-black rounded-2xl transition-all border border-zinc-700/50 active:scale-[0.98] shadow-lg text-xs uppercase tracking-[0.2em]"
              >
                 Tutup Detail
-             </button>
-             <button 
-                className="w-14 items-center justify-center bg-red-500/5 hover:bg-red-500/10 text-red-500/40 hover:text-red-500 rounded-2xl border border-red-500/10 transition-all flex"
-                title="Hancurkan Kedutaan"
-             >
-                <Trash2 size={18} />
              </button>
           </div>
         </div>
       </div>
+
+      <ModalKonfirmasiHancurkan 
+        isOpen={isConfirmModalOpen}
+        onClose={() => setIsConfirmModalOpen(false)}
+        onConfirm={handleDestroy}
+        targetCountry={targetCountry}
+      />
     </div>
   );
 }
