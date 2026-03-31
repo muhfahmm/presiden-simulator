@@ -17,7 +17,7 @@ export default function ModalJikaTerbangun({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[4000] flex items-center justify-center p-4 bg-black/70 backdrop-blur-md animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-[4000] flex items-center justify-center p-4 bg-black/20 animate-in fade-in duration-300">
       <div className="bg-zinc-900 border border-emerald-500/30 rounded-3xl w-full max-w-md overflow-hidden shadow-[0_0_100px_rgba(16,185,129,0.15)] relative animate-in zoom-in-95 duration-300">
         {/* Success Accent */}
         <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-emerald-600 via-teal-400 to-emerald-600"></div>
@@ -26,7 +26,7 @@ export default function ModalJikaTerbangun({
         <div className="p-6 pb-2 flex justify-end">
           <button 
             onClick={onClose}
-            className="text-zinc-500 hover:text-zinc-200 transition-colors p-2 hover:bg-zinc-800/60 rounded-xl"
+            className="text-zinc-500 hover:text-zinc-200 transition-colors p-2 hover:bg-zinc-800/60 rounded-xl cursor-pointer"
           >
             <X size={20} />
           </button>
@@ -71,7 +71,7 @@ export default function ModalJikaTerbangun({
           {/* Close Button */}
           <button 
             onClick={onClose}
-            className="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl transition-all border border-emerald-400/20 active:scale-[0.98] shadow-lg text-xs uppercase tracking-[0.2em] shadow-emerald-900/20"
+            className="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-black rounded-2xl transition-all border border-emerald-400/20 active:scale-[0.98] shadow-lg text-xs uppercase tracking-[0.2em] shadow-emerald-900/20 cursor-pointer"
           >
             Lanjutkan Diplomasi
           </button>

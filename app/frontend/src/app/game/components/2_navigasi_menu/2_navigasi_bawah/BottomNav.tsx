@@ -69,6 +69,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
     "Geopolitik": [
       { id: "Menu:PBB", label: "PBB", icon: Globe },
       { id: "Menu:Diplomasi", label: "Diplomasi", icon: Handshake },
+      { id: "Menu:KedutaanBesar", label: "Kedutaan Besar", icon: Landmark },
       { id: "Menu:OrganisasiInternasional", label: "Organisasi Internasional", icon: Landmark },
       { id: "Menu:TingkatHubungan", label: "Tingkat Hubungan", icon: HeartHandshake },
       { id: "Menu:Bantuan", label: "Bantuan", icon: HandHelping },

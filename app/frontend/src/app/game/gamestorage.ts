@@ -25,8 +25,8 @@ import { unITUStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/5_ge
 import { unWMOStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/2_organisasi_internasional/1_organisasi_PBB/12_Organisasi_Meteorologi_Dunia/unWMOStorage";
 import { populationStorage } from "./components/1_navbar/2_populasi";
 import { populationDeltaStorage } from "./components/1_navbar/2_populasi/PopulationDeltaStorage";
-// import { diplomacyStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/diplomacyStorage";
-// import { relationStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
+import { embassyStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage";
+import { relationStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 
 const STORAGE_KEY = "game_session";
 
@@ -87,8 +87,8 @@ export const gameStorage = {
     unWMOStorage.clear();
     populationStorage.clear();
     populationDeltaStorage.clear();
-    // diplomacyStorage.clear();
-    // relationStorage.clear();
+    embassyStorage.clear();
+    relationStorage.clear();
   },
 
   getSession: (): GameSession | null => {
@@ -158,8 +158,8 @@ export const gameStorage = {
     unWMOStorage.clear();
     populationStorage.clear();
     populationDeltaStorage.clear();
-    // diplomacyStorage.clear();
-    // relationStorage.clear();
+    embassyStorage.clear();
+    relationStorage.clear();
     
     window.location.href = '/database';
   },
@@ -204,7 +204,7 @@ export const gameStorage = {
     unWMOStorage.clear();
     populationStorage.clear();
     populationDeltaStorage.clear();
-    // diplomacyStorage.clear();
-    // relationStorage.clear();
+    embassyStorage.clear();
+    relationStorage.clear();
   },
 };

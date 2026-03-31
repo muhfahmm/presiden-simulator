@@ -28,7 +28,7 @@ export default function ModalKonfirmasiHancurkan({
         <div className="p-6 pb-2 flex justify-end">
           <button 
             onClick={onClose}
-            className="text-zinc-500 hover:text-red-400 transition-colors p-2 hover:bg-red-500/10 rounded-xl"
+            className="text-zinc-500 hover:text-red-400 transition-colors p-2 hover:bg-red-500/10 rounded-xl cursor-pointer"
           >
             <X size={20} />
           </button>
@@ -61,14 +61,14 @@ export default function ModalKonfirmasiHancurkan({
           <div className="w-full flex flex-col gap-3">
             <button 
               onClick={onConfirm}
-              className="w-full py-4 bg-red-600 hover:bg-red-500 text-white font-black rounded-2xl transition-all border border-red-400/20 active:scale-[0.98] shadow-lg text-xs uppercase tracking-[0.2em] shadow-red-900/40 flex items-center justify-center gap-2"
+              className="w-full py-4 bg-red-600 hover:bg-red-500 text-white font-black rounded-2xl transition-all border border-red-400/20 active:scale-[0.98] shadow-lg text-xs uppercase tracking-[0.2em] shadow-red-900/40 flex items-center justify-center gap-2 cursor-pointer"
             >
               <Trash2 size={16} />
               Ya, Hancurkan Sekarang
             </button>
             <button 
               onClick={onClose}
-              className="w-full py-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white font-black rounded-2xl transition-all border border-zinc-700/50 active:scale-[0.98] text-xs uppercase tracking-[0.2em]"
+              className="w-full py-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-400 hover:text-white font-black rounded-2xl transition-all border border-zinc-700/50 active:scale-[0.98] text-xs uppercase tracking-[0.2em] cursor-pointer"
             >
               Batalkan
             </button>

@@ -22,24 +22,26 @@ export const relationStorage = {
 
   getRelationScore: (targetCountry: string, baseScore: number): number => {
     const data = relationStorage.getRelationData();
+    const key = targetCountry.toLowerCase().trim();
     // Return stored score if exists, else fallback to base score from database
-    return data[targetCountry] !== undefined ? data[targetCountry] : baseScore;
+    return data[key] !== undefined ? data[key] : baseScore;
   },
 
   updateRelationScore: (targetCountry: string, delta: number, currentBase: number) => {
     if (typeof window === "undefined") return;
     const data = relationStorage.getRelationData();
-    const currentScore = relationStorage.getRelationScore(targetCountry, currentBase);
+    const key = targetCountry.toLowerCase().trim();
+    const currentScore = relationStorage.getRelationScore(key, currentBase);
     
     // Calculate new score, potentially clamped between 0 and 100
     const newScore = Math.max(0, Math.min(100, currentScore + delta));
     
-    data[targetCountry] = newScore;
+    data[key] = newScore;
     localStorage.setItem(RELATION_STORAGE_KEY, JSON.stringify(data));
     
     // Dispatch event to notify UI components
     window.dispatchEvent(new CustomEvent("relation_status_updated", { 
-      detail: { targetCountry, newScore } 
+      detail: { targetCountry: key, newScore } 
     }));
   },
 

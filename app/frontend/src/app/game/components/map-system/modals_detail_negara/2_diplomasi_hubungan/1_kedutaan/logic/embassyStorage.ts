@@ -16,14 +16,22 @@ export const embassyStorage = {
   },
 
   getEmbassyStatus: (targetCountry: string): EmbassyStatus => {
-    return embassyStorage.getEmbassyData()[targetCountry] || 'none';
+    const key = targetCountry.toLowerCase().trim();
+    return embassyStorage.getEmbassyData()[key] || 'none';
   },
 
   updateEmbassyStatus: (targetCountry: string, status: EmbassyStatus) => {
     if (typeof window === "undefined") return;
     const data = embassyStorage.getEmbassyData();
-    data[targetCountry] = status;
+    const key = targetCountry.toLowerCase().trim();
+    data[key] = status;
     localStorage.setItem(EMBASSY_STORAGE_KEY, JSON.stringify(data));
+    window.dispatchEvent(new CustomEvent("embassy_status_updated", { detail: { targetCountry: key, status } }));
+  },
+
+  clear: () => {
+    if (typeof window === "undefined") return;
+    localStorage.removeItem(EMBASSY_STORAGE_KEY);
     window.dispatchEvent(new Event("embassy_status_updated"));
   }
 };

@@ -171,7 +171,9 @@ export default function StrategyModal({
     setRelationScore(relationStorage.getRelationScore(targetK, baseScore));
 
     const handleRelationUpdate = (e: any) => {
-      if (e.detail.targetCountry === targetCountry) {
+      const updatedCountry = e.detail.targetCountry?.toLowerCase().trim();
+      const currentTarget = targetCountry?.toLowerCase().trim();
+      if (updatedCountry === currentTarget) {
         setRelationScore(e.detail.newScore);
       }
     };
