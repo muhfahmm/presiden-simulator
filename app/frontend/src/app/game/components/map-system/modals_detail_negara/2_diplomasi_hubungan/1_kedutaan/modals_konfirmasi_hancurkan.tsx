@@ -19,7 +19,7 @@ export default function ModalKonfirmasiHancurkan({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[5000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
+    <div className="fixed inset-0 z-[5000] flex items-center justify-center p-4 bg-black/20 animate-in fade-in duration-300">
       <div className="bg-zinc-900 border border-zinc-800 rounded-3xl w-full max-w-md overflow-hidden shadow-[0_0_100px_rgba(0,0,0,0.6)] relative animate-in zoom-in-95 duration-300">
         {/* Warning Accent */}
         <div className="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-red-600 via-orange-500 to-red-600"></div>

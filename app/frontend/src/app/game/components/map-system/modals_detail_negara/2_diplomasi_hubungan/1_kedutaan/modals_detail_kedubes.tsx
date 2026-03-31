@@ -6,6 +6,8 @@ import { allRelations } from "@/app/database/data/negara/hubungan";
 import { relationStorage } from "./logic/relationStorage";
 import { embassyStorage } from "./logic/embassyStorage";
 import ModalKonfirmasiHancurkan from "./modals_konfirmasi_hancurkan";
+import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
+import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 
 interface ModalDetailKedubesProps {
   isOpen: boolean;
@@ -19,6 +21,34 @@ export default function ModalDetailKedubes({
   targetCountry
 }: ModalDetailKedubesProps) {
   const [isConfirmModalOpen, setIsConfirmModalOpen] = React.useState(false);
+
+  const sendNotification = async (type: string, extra?: string) => {
+    try {
+      const res = await fetch("/api/game/diplomacy/kedutaan/notifikasi", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event_type: type,
+          target_country: targetCountry,
+          extra_info: extra || ""
+        })
+      });
+      const data = await res.json();
+      if (!data.error) {
+        inboxStorage.addMessage({
+          source: data.source,
+          subject: data.subject,
+          priority: data.priority,
+          content: data.content,
+          time: timeStorage.getState().gameDate.toLocaleDateString('id-ID', { 
+            day: 'numeric', month: 'long', year: 'numeric' 
+          })
+        });
+      }
+    } catch (err) {
+      console.error("Gagal mengirim notifikasi:", err);
+    }
+  };
 
   const handleDestroy = () => {
     // 1. Get current score
@@ -42,6 +72,7 @@ export default function ModalDetailKedubes({
       embassyStorage.updateEmbassyStatus(targetCountry, 'none');
       
       // 5. Success Feedback & Close
+      sendNotification("DESTRUCTION", Math.abs(penalty).toString());
       setIsConfirmModalOpen(false);
       onClose();
     })

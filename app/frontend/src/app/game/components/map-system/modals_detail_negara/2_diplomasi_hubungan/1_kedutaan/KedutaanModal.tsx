@@ -8,6 +8,7 @@ import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_ba
 import { embassyStorage, EmbassyStatus } from "./logic/embassyStorage";
 import ModalJikaUangKurang from "./modals_jika_uang_kurang";
 import ModalJikaTerbangun from "./modals_jika_terbangun";
+import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inboxStorage";
 
 interface KedutaanModalProps {
   isOpen: boolean;
@@ -46,6 +47,34 @@ export default function KedutaanModal({
   const [userBudget, setUserBudget] = useState<number>(0);
   const [isInsufficientFundsModalOpen, setIsInsufficientFundsModalOpen] = useState(false);
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
+
+  const sendNotification = async (type: string, extra?: string) => {
+    try {
+      const res = await fetch("/api/game/diplomacy/kedutaan/notifikasi", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          event_type: type,
+          target_country: targetCountry,
+          extra_info: extra || ""
+        })
+      });
+      const data = await res.json();
+      if (!data.error) {
+        inboxStorage.addMessage({
+          source: data.source,
+          subject: data.subject,
+          priority: data.priority,
+          content: data.content,
+          time: timeStorage.getState().gameDate.toLocaleDateString('id-ID', { 
+            day: 'numeric', month: 'long', year: 'numeric' 
+          })
+        });
+      }
+    } catch (err) {
+      console.error("Gagal mengirim notifikasi:", err);
+    }
+  };
 
   useEffect(() => {
     setUserBudget(budgetStorage.getBudget());
@@ -90,6 +119,7 @@ export default function KedutaanModal({
         setBuildStartDate(null);
         setProgress(0);
         setIsSuccessModalOpen(true);
+        sendNotification("CONSTRUCTION_FINISH");
       }
     });
 
@@ -154,6 +184,7 @@ export default function KedutaanModal({
     setIsBuilding(true);
     setProgress(0);
     setBuildStartDate(timeStorage.getState().gameDate);
+    sendNotification("CONSTRUCTION_START");
   };
 
   if (!isOpen) return null;
