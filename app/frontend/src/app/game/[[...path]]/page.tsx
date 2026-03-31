@@ -163,7 +163,7 @@ export default function GamePage() {
                   c.name_en.toLowerCase() === targetCountry.toLowerCase()
                 );
                 if (country) {
-                  setActiveMenu(`CountryModal:${country.name_id}:${tab === 'info' ? 'info_strategis' : tab === 'diplomacy' ? 'diplomasi_hubungan' : tab === 'military' ? 'aksi_militer_intelijen' : 'bantuan_kerjasama'}`);
+                  setActiveMenu(`CountryModal:${country.name_id.toLowerCase()}:${tab === 'info' ? 'info_strategis' : tab === 'diplomacy' ? 'diplomasi_hubungan' : tab === 'military' ? 'aksi_militer_intelijen' : 'bantuan_kerjasama'}`);
                 }
               }
             }}

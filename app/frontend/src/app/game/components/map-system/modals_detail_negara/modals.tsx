@@ -17,7 +17,9 @@ import DiplomacyTab from "./2_diplomasi_hubungan/DiplomacyTab";
 import MilitaryTab from "./3_aksi_militer_dan_intelijen/MilitaryTab";
 import AidTab from "./4_bantuan_dan_kerjasama/AidTab";
 import KedutaanModal from "./2_diplomasi_hubungan/1_kedutaan/KedutaanModal";
+import ModalDetailKedubes from "./2_diplomasi_hubungan/1_kedutaan/modals_detail_kedubes";
 
+import { COUNTRY_REGIONS, getRegion } from "./2_diplomasi_hubungan/1_kedutaan/logic/regions";
 import { allRelations } from "@/app/database/data/negara/hubungan";
 // import { relationStorage } from "./2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { gameStorage } from "@/app/game/gamestorage";
@@ -126,7 +128,7 @@ export default function StrategyModal({
     if (targetCountry) {
       const country = centersData.find(c => c.name_id === targetCountry || c.name_en === targetCountry);
       if (country) {
-        setActiveMenu(`CountryModal:${country.name_id}:${menuToTabSlug[tab]}`);
+        setActiveMenu(`CountryModal:${country.name_id.toLowerCase()}:${menuToTabSlug[tab]}`);
       }
     }
   };
@@ -294,7 +296,9 @@ export default function StrategyModal({
         </div>
 
         {/* 3. Constant Bottom Navigation Tab Bar */}
-        <div className="border-t border-zinc-800/80 bg-zinc-900/60 p-3 flex justify-evenly items-center gap-2 rounded-b-2xl pointer-events-auto">
+        <div className={`border-t border-zinc-800/80 bg-zinc-900/60 p-3 flex justify-evenly items-center gap-2 rounded-b-2xl pointer-events-auto ${
+          activeSubTab ? 'pointer-events-none opacity-50' : ''
+        }`}>
           <TabButton icon={<BarChart3 size={20} />} active={menuTab === 'info'} onClick={() => handleTabClick('info')} label="Info Strategis" />
           <TabButton icon={<Handshake size={20} />} active={menuTab === 'diplomacy'} onClick={() => handleTabClick('diplomacy')} label="Diplomasi & Hubungan" />
           <TabButton icon={<Swords size={20} />} active={menuTab === 'military'} onClick={() => handleTabClick('military')} label="Aksi Militer & Intelijen" />
@@ -326,9 +330,21 @@ export default function StrategyModal({
             targetIdeology={targetEntry2?.ideology || "Netral"}
             userContinent={userEntry2 ? getContinent(userEntry2.name_id) : "Global"}
             targetContinent={targetEntry2 ? getContinent(targetEntry2.name_id) : "Global"}
+            userRegion={userEntry2 ? getRegion(userEntry2.name_id, getContinent(userEntry2.name_id)) : "Global"}
+            targetRegion={targetEntry2 ? getRegion(targetEntry2.name_id, getContinent(targetEntry2.name_id)) : "Global"}
           />
         );
       })()}
+
+      {activeSubTab === 'kedutaan_detail' && (
+        <ModalDetailKedubes 
+          isOpen={true}
+          onClose={() => {
+            setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);
+          }}
+          targetCountry={targetCountry || ""}
+        />
+      )}
     </>
   );
 }

@@ -9,7 +9,28 @@ export const KEDUTAAN_ROUTES = {
 
   /** POST - Menghancurkan kedutaan yang sudah dibangun */
   DESTROY: '/api/game/diplomacy/kedutaan/destroy',
+
+  /** POST - Menghitung waktu pembangunan kedutaan */
+  GET_TIME: '/api/game/diplomacy/kedutaan/time',
 } as const;
+
+/**
+ * Request untuk waktu kedutaan
+ */
+export interface KedutaanTimeRequest {
+  user_continent: string;
+  target_continent: string;
+}
+
+/**
+ * Response dari API waktu kedutaan (dalam Hari Game)
+ */
+export interface KedutaanTimeResponse {
+  base_time: number;
+  multiplier: number;
+  final_time: number; // Dalam satuan Hari
+  details: string;
+}
 
 /**
  * Payload untuk request harga kedutaan

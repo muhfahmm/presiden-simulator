@@ -2,9 +2,12 @@
 
 import React, { useEffect, useState } from "react";
 import { Landmark, X, TrendingUp, TrendingDown, Minus, Loader2 } from "lucide-react";
-import { KEDUTAAN_ROUTES, type KedutaanPriceResponse } from "./routes";
+import { KEDUTAAN_ROUTES, type KedutaanPriceResponse, type KedutaanTimeResponse } from "./routes";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
+import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 import { embassyStorage, EmbassyStatus } from "./logic/embassyStorage";
+import ModalJikaUangKurang from "./modals_jika_uang_kurang";
+import ModalJikaTerbangun from "./modals_jika_terbangun";
 
 interface KedutaanModalProps {
   isOpen: boolean;
@@ -20,6 +23,8 @@ interface KedutaanModalProps {
   targetIdeology?: string;
   userContinent?: string;
   targetContinent?: string;
+  userRegion?: string;
+  targetRegion?: string;
 }
 
 export default function KedutaanModal({ 
@@ -28,13 +33,19 @@ export default function KedutaanModal({
   userReligion = "Sekuler", targetReligion = "Sekuler",
   userIdeology = "Netral", targetIdeology = "Netral",
   userContinent = "Global", targetContinent = "Global",
+  userRegion = "Global", targetRegion = "Global",
 }: KedutaanModalProps) {
   const [priceData, setPriceData] = useState<KedutaanPriceResponse | null>(null);
+  const [timeData, setTimeData] = useState<KedutaanTimeResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isBuilding, setIsBuilding] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const [buildStartDate, setBuildStartDate] = useState<Date | null>(null);
   const [currentStatus, setCurrentStatus] = useState<EmbassyStatus>('none');
   const [userBudget, setUserBudget] = useState<number>(0);
+  const [isInsufficientFundsModalOpen, setIsInsufficientFundsModalOpen] = useState(false);
+  const [isSuccessModalOpen, setIsSuccessModalOpen] = useState(false);
 
   useEffect(() => {
     setUserBudget(budgetStorage.getBudget());
@@ -58,52 +69,91 @@ export default function KedutaanModal({
     };
   }, [targetCountry, isOpen]);
 
+  // Game Time Sync for Construction Progress
+  useEffect(() => {
+    if (!isBuilding || !buildStartDate || !timeData) return;
+
+    const unsubscribe = timeStorage.subscribe((gameDate) => {
+      const diffTime = gameDate.getTime() - buildStartDate.getTime();
+      const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+      
+      const totalDays = timeData.final_time;
+      const newProgress = Math.min((diffDays / totalDays) * 100, 100);
+      
+      setProgress(newProgress);
+
+      if (diffDays >= totalDays) {
+        // Construction Finished
+        budgetStorage.updateBudget(-priceData!.final_price);
+        embassyStorage.updateEmbassyStatus(targetCountry, 'completed');
+        setIsBuilding(false);
+        setBuildStartDate(null);
+        setProgress(0);
+        setIsSuccessModalOpen(true);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [isBuilding, buildStartDate, timeData, targetCountry, priceData, onClose]);
+
   useEffect(() => {
     if (!isOpen || currentStatus !== 'none') return;
     setLoading(true);
     setError(null);
 
-    fetch(KEDUTAAN_ROUTES.GET_PRICE, {
+    // Fetch Price Data
+    const fetchPrice = fetch(KEDUTAAN_ROUTES.GET_PRICE, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
+      body: JSON.stringify({ 
+        user_country: userCountry,
+        target_country: targetCountry,
         user_ideology: userIdeology,
         target_ideology: targetIdeology,
         user_religion: userReligion,
         target_religion: targetReligion,
         user_continent: userContinent,
         target_continent: targetContinent,
-      }),
-    })
-      .then(res => res.json())
-      .then(data => {
-        setPriceData(data);
+      })
+    }).then(res => res.json());
+
+    // Fetch Time Data
+    const fetchTime = fetch(KEDUTAAN_ROUTES.GET_TIME, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_region: userRegion,
+        target_region: targetRegion,
+        user_continent: userContinent,
+        target_continent: targetContinent,
+      })
+    }).then(res => res.json());
+
+    Promise.all([fetchPrice, fetchTime])
+      .then(([price, time]) => {
+        setPriceData(price);
+        setTimeData(time);
         setLoading(false);
       })
-      .catch(() => {
-        setError("Gagal memuat data harga");
+      .catch((err) => {
+        console.error("Fetch error:", err);
+        setError("Gagal memuat data diplomatik");
         setLoading(false);
       });
-  }, [isOpen, userIdeology, targetIdeology, userReligion, targetReligion, userContinent, targetContinent]);
+  }, [isOpen, currentStatus, userCountry, targetCountry, userIdeology, targetIdeology, userReligion, targetReligion, userContinent, targetContinent, userRegion, targetRegion]);
 
   const handleBuild = () => {
     if (!priceData) return;
     
     const currentBudget = budgetStorage.getBudget();
     if (currentBudget < priceData.final_price) {
-      alert("Saldo Kas Negara tidak cukup!");
+      setIsInsufficientFundsModalOpen(true);
       return;
     }
 
     setIsBuilding(true);
-    
-    // Simulate construction start
-    setTimeout(() => {
-      budgetStorage.updateBudget(-priceData.final_price);
-      embassyStorage.updateEmbassyStatus(targetCountry, 'building');
-      setIsBuilding(false);
-      onClose();
-    }, 1500);
+    setProgress(0);
+    setBuildStartDate(timeStorage.getState().gameDate);
   };
 
   if (!isOpen) return null;
@@ -158,8 +208,16 @@ export default function KedutaanModal({
                 </p>
               </div>
               {currentStatus === 'building' && (
-                <div className="w-full max-w-[200px] h-1.5 bg-zinc-800 rounded-full overflow-hidden">
-                  <div className="h-full bg-amber-500 w-1/3 animate-[loading_2s_ease-in-out_infinite]" />
+                <div className="w-full max-w-[250px] space-y-2 text-center">
+                  <div className="w-full h-2 bg-zinc-800 rounded-full overflow-hidden border border-zinc-700/50">
+                    <div 
+                      className="h-full bg-gradient-to-r from-amber-600 to-yellow-500 transition-all duration-300 ease-out shadow-[0_0_10px_rgba(245,158,11,0.3)]" 
+                      style={{ width: `${progress}%` }}
+                    />
+                  </div>
+                  <p className="text-[10px] font-black text-amber-500 uppercase tracking-[0.2em] animate-pulse">
+                    Proses: {Math.round(progress)}%
+                  </p>
                 </div>
               )}
               <button 
@@ -221,6 +279,25 @@ export default function KedutaanModal({
                 </div>
               </div>
 
+              {/* Construction Time */}
+              {timeData && (
+                <div className="bg-zinc-800/20 rounded-xl p-4 border border-zinc-700/20 flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="w-9 h-9 bg-blue-500/10 rounded-lg flex items-center justify-center border border-blue-500/20">
+                      <TrendingDown size={14} className="text-blue-400" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Waktu Pembangunan</p>
+                      <p className="text-xs font-semibold text-zinc-300">{timeData.details}</p>
+                    </div>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-lg font-black text-blue-400 italic">{timeData.final_time} Hari</p>
+                    <p className="text-[9px] text-zinc-500 font-bold uppercase">Game Time</p>
+                  </div>
+                </div>
+              )}
+
               {/* Multiplier */}
               <div className="bg-zinc-800/40 rounded-xl p-3.5 border border-zinc-700/30">
                 <div className="flex justify-between items-center">
@@ -279,12 +356,16 @@ export default function KedutaanModal({
                     handleBuild();
                   }}
                   disabled={isBuilding}
-                  className="w-full py-4 bg-amber-500 hover:bg-amber-400 text-black font-black rounded-xl transition-all shadow-xl shadow-amber-500/20 active:scale-[0.95] cursor-pointer flex items-center justify-center gap-3 border-2 border-amber-400/50 text-sm uppercase tracking-widest pointer-events-auto relative z-[3001]"
+                  className="w-full py-4 bg-amber-500 hover:bg-amber-400 text-black font-black rounded-xl transition-all shadow-xl shadow-amber-500/20 active:scale-[0.95] cursor-pointer flex items-center justify-center gap-3 border-2 border-amber-400/50 text-sm uppercase tracking-widest pointer-events-auto relative z-[3001] overflow-hidden"
                 >
                   {isBuilding ? (
                     <>
-                      <Loader2 size={18} className="animate-spin" />
-                      Memproses...
+                      <div 
+                        className="absolute inset-0 bg-white/20 transition-all duration-300"
+                        style={{ width: `${progress}%` }}
+                      />
+                      <Loader2 size={18} className="animate-spin relative z-10" />
+                      <span className="relative z-10">Membangun... {Math.round(progress)}%</span>
                     </>
                   ) : (
                     <>
@@ -298,6 +379,24 @@ export default function KedutaanModal({
           )}
         </div>
       </div>
+
+      {priceData && (
+        <ModalJikaUangKurang 
+          isOpen={isInsufficientFundsModalOpen}
+          onClose={() => setIsInsufficientFundsModalOpen(false)}
+          currentBudget={userBudget}
+          requiredCost={priceData.final_price}
+        />
+      )}
+
+      <ModalJikaTerbangun 
+        isOpen={isSuccessModalOpen}
+        onClose={() => {
+          setIsSuccessModalOpen(false);
+          onClose();
+        }}
+        targetCountry={targetCountry}
+      />
     </div>
   );
 }

@@ -43,46 +43,61 @@ export default function DiplomacyTab({
     <>
       <div className="grid grid-cols-2 gap-3">
         <ActionCard 
-          icon={embassyStatus === 'building' ? <Loader2 className="h-4 w-4 animate-spin text-amber-500" /> : <Landmark className="h-4 w-4" />} 
+          icon={
+            embassyStatus === 'building' ? <Loader2 className="h-4 w-4 animate-spin text-amber-500" /> : 
+            <Landmark className={`h-4 w-4 ${embassyStatus === 'completed' ? 'text-amber-500' : ''}`} />
+          } 
           label={
-            embassyStatus === 'none' ? "Kedutaan" : 
-            embassyStatus === 'building' ? "Dalam Pembangunan" : "Kedutaan Besar"
+            embassyStatus === 'none' ? "Kedutaan Besar" : 
+            embassyStatus === 'building' ? "Dalam Pembangunan" : 
+            <div className="flex items-center justify-center gap-1.5">
+              <span className="text-zinc-100">LIHAT KEDUTAAN</span>
+              <ChevronRight size={10} className="text-amber-500" />
+            </div>
           }
           bg={
-            embassyStatus === 'none' ? "from-blue-900/30 to-zinc-900" :
-            embassyStatus === 'building' ? "from-amber-900/30 to-zinc-900 shadow-[0_0_15px_rgba(245,158,11,0.1)]" :
-            "from-emerald-900/30 to-zinc-900"
+            embassyStatus === 'none' ? "from-blue-900/30 to-zinc-900/80" :
+            embassyStatus === 'building' ? "from-amber-900/40 to-zinc-900 shadow-[0_0_20px_rgba(245,158,11,0.05)]" :
+            "from-emerald-900/40 to-zinc-900 shadow-[0_0_20px_rgba(16,185,129,0.05)]"
           }
-          onClick={() => setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:kedutaan`)}
+          onClick={() => {
+            const menuSuffix = embassyStatus === 'completed' ? 'kedutaan_detail' : 'kedutaan';
+            setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:${menuSuffix}`);
+          }}
         />
         <ActionCard 
           icon={<Handshake className="h-4 w-4" />} 
           label="Pakta Non-Agresi"
           bg="from-indigo-900/20 to-zinc-900" 
+          disabled={embassyStatus !== 'completed'}
           onClick={() => handleOpenModal('Pakta Non-Agresi')}
         />
         <ActionCard 
           icon={<Shield className="h-4 w-4" />} 
           label="Aliansi Pertahanan"
           bg="from-teal-900/20 to-zinc-900" 
+          disabled={embassyStatus !== 'completed'}
           onClick={() => handleOpenModal('Aliansi Pertahanan')}
         />
         <ActionCard 
           icon={<FileText className="h-4 w-4" />} 
           label="Perjanjian Dagang"
           bg="from-amber-900/20 to-zinc-900" 
+          disabled={embassyStatus !== 'completed'}
           onClick={() => handleOpenModal('Perjanjian Dagang')}
         />
         <ActionCard 
           icon={<FlaskConical className="h-4 w-4" />} 
           label="Kontrak Penelitian"
           bg="from-cyan-900/20 to-zinc-900" 
+          disabled={embassyStatus !== 'completed'}
           onClick={() => handleOpenModal('Kontrak Penelitian')}
         />
         <ActionCard 
           icon={<Truck className="h-4 w-4" />} 
           label="Kirim Pasukan"
           bg="from-sky-900/20 to-zinc-900" 
+          disabled={embassyStatus !== 'completed'}
           onClick={() => handleOpenModal('Kirim Pasukan')}
         />
       </div>
