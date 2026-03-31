@@ -18,6 +18,7 @@ import MilitaryTab from "./3_aksi_militer_dan_intelijen/MilitaryTab";
 import AidTab from "./4_bantuan_dan_kerjasama/AidTab";
 import KedutaanModal from "./2_diplomasi_hubungan/1_kedutaan/KedutaanModal";
 import ModalDetailKedubes from "./2_diplomasi_hubungan/1_kedutaan/modals_detail_kedubes";
+import MitraPerdaganganModal from "./2_diplomasi_hubungan/7_mitra_perdagangan/MitraPerdaganganModal";
 
 import { COUNTRY_REGIONS, getRegion } from "./2_diplomasi_hubungan/1_kedutaan/logic/regions";
 import { allRelations } from "@/app/database/data/negara/hubungan";
@@ -356,6 +357,16 @@ export default function StrategyModal({
 
       {activeSubTab === 'kedutaan_detail' && (
         <ModalDetailKedubes 
+          isOpen={true}
+          onClose={() => {
+            setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);
+          }}
+          targetCountry={targetCountry || ""}
+        />
+      )}
+
+      {activeSubTab === 'mitra_dagang' && (
+        <MitraPerdaganganModal 
           isOpen={true}
           onClose={() => {
             setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Landmark, Handshake, Shield, FileText, FlaskConical, Truck, ChevronRight, Hammer, X, Loader2 } from "lucide-react";
+import { Landmark, Handshake, Shield, FileText, FlaskConical, Truck, ChevronRight, Hammer, X, Loader2, Briefcase, Ban } from "lucide-react";
 import ActionCard from "../shared/ActionCard";
 import { embassyStorage, EmbassyStatus } from "./1_kedutaan/logic/embassyStorage";
 
@@ -99,6 +99,21 @@ export default function DiplomacyTab({
           bg="from-sky-900/20 to-zinc-900" 
           disabled={embassyStatus !== 'completed'}
           onClick={() => handleOpenModal('Kirim Pasukan')}
+        />
+        <ActionCard
+          icon={<Briefcase className="h-4 w-4" />}
+          label="Lihat Mitra Dagang"
+          bg="from-orange-900/30 to-zinc-900/80"
+          onClick={() => {
+            setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:mitra_dagang`);
+          }}
+        />
+        <ActionCard
+          icon={<Ban className="h-4 w-4 text-red-400" />}
+          label="Sanksi Ekonomi"
+          bg="from-red-900/10 to-zinc-900/50"
+          disabled={true}
+          onClick={() => {}}
         />
       </div>
 
