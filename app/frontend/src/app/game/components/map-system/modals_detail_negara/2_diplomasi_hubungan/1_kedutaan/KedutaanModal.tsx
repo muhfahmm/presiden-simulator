@@ -34,6 +34,15 @@ export default function KedutaanModal({
   const [error, setError] = useState<string | null>(null);
   const [isBuilding, setIsBuilding] = useState(false);
   const [currentStatus, setCurrentStatus] = useState<EmbassyStatus>('none');
+  const [userBudget, setUserBudget] = useState<number>(0);
+
+  useEffect(() => {
+    setUserBudget(budgetStorage.getBudget());
+    
+    const handleUpdate = () => setUserBudget(budgetStorage.getBudget());
+    window.addEventListener('budget_storage_updated', handleUpdate);
+    return () => window.removeEventListener('budget_storage_updated', handleUpdate);
+  }, []);
 
   useEffect(() => {
     setCurrentStatus(embassyStorage.getEmbassyStatus(targetCountry));
@@ -104,13 +113,13 @@ export default function KedutaanModal({
   };
 
   return (
-    <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm animate-in fade-in duration-300">
-      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-sm overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] relative animate-in fade-in slide-in-from-bottom-4 duration-300">
+    <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
+      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.6)] relative animate-in fade-in slide-in-from-bottom-4 duration-300">
         {/* Top accent bar */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-500 via-yellow-500 to-amber-600"></div>
         
         {/* Header */}
-        <div className="p-5 pb-3 flex items-center justify-between">
+        <div className="p-8 pb-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 bg-amber-500/10 rounded-xl flex items-center justify-center border border-amber-500/20 shadow-[0_0_15px_rgba(245,158,11,0.1)]">
               <Landmark className="h-5 w-5 text-amber-500" />
@@ -128,7 +137,7 @@ export default function KedutaanModal({
         </div>
 
         {/* Content */}
-        <div className="px-5 pb-5 space-y-3">
+        <div className="px-8 pb-8 space-y-4">
           {currentStatus !== 'none' ? (
             <div className="flex flex-col items-center justify-center py-12 text-center space-y-4">
               <div className={`w-16 h-16 rounded-full flex items-center justify-center border-2 ${
@@ -233,11 +242,30 @@ export default function KedutaanModal({
                 </div>
               </div>
 
+              {/* User Budget Detail */}
+              <div className="bg-zinc-800/20 rounded-xl border border-zinc-700/20 overflow-hidden">
+                <div className="px-4 py-3 border-b border-zinc-700/20 flex justify-between items-center bg-zinc-800/10">
+                  <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none mt-0.5">Saldo Kas Negara</span>
+                  <span className="text-sm font-black text-zinc-300 leading-none">{formatCurrency(userBudget)}</span>
+                </div>
+                <div className="px-4 py-3 flex justify-between items-center">
+                  <div className="flex items-center gap-1.5">
+                    <div className={`w-2 h-2 rounded-full ${userBudget >= priceData.final_price ? 'bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.5)]' : 'bg-red-500 shadow-[0_0_8px_rgba(239,68,68,0.5)]'}`} />
+                    <span className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest leading-none mt-0.5">Sisa Saldo Estimasi</span>
+                  </div>
+                  <span className={`text-sm font-black leading-none ${userBudget >= priceData.final_price ? 'text-emerald-400' : 'text-red-400'}`}>
+                    {formatCurrency(userBudget - priceData.final_price)}
+                  </span>
+                </div>
+              </div>
+
               {/* Final Price */}
-              <div className="bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-amber-600/10 rounded-xl p-4 border border-amber-500/20 shadow-[0_0_20px_rgba(245,158,11,0.05)]">
+              <div className="bg-gradient-to-br from-amber-500/10 via-yellow-500/5 to-amber-600/10 rounded-xl p-6 border border-amber-500/20 shadow-[0_0_30px_rgba(245,158,11,0.08)]">
                 <div className="flex justify-between items-center">
                   <span className="text-xs text-amber-400/80 font-bold uppercase tracking-wider">Total Biaya</span>
-                  <span className="text-lg font-black text-amber-400">{formatCurrency(priceData.final_price)}</span>
+                  <span className={`text-2xl font-black select-none ${userBudget >= priceData.final_price ? 'text-amber-400' : 'text-red-500 drop-shadow-[0_0_8px_rgba(239,68,68,0.4)]'}`}>
+                    {formatCurrency(priceData.final_price)}
+                  </span>
                 </div>
               </div>
 
