@@ -17,7 +17,7 @@ export default function MilitaryTab() {
 
   return (
     <>
-      <div className="grid grid-cols-2 gap-3 max-h-[300px]">
+      <div className="grid grid-cols-2 gap-3">
         <ActionCard 
           icon={<Swords className="h-4 w-4" />} 
           label="Serang Negara" 

@@ -10,7 +10,7 @@ export default function SDADetailsModal({ selectedCountrySDA, sdaIcons, onClose 
   if (!selectedCountrySDA) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm pointer-events-auto" onClick={onClose}>
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/20 backdrop-blur-sm pointer-events-auto" onClick={onClose}>
       <div className="bg-zinc-900 border border-zinc-800 p-4 rounded-xl shadow-2xl max-w-sm w-full font-sans pointer-events-auto" onClick={(e) => e.stopPropagation()}>
         <div className="flex justify-between items-center mb-3">
           <h3 className="text-white font-semibold flex items-center gap-2">

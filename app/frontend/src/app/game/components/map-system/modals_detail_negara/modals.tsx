@@ -16,6 +16,7 @@ import PenghasilanHarian from "./1_info_strategis/5_Keuangan/2_PenghasilanHarian
 import DiplomacyTab from "./2_diplomasi_hubungan/DiplomacyTab";
 import MilitaryTab from "./3_aksi_militer_dan_intelijen/MilitaryTab";
 import AidTab from "./4_bantuan_dan_kerjasama/AidTab";
+import KedutaanModal from "./2_diplomasi_hubungan/1_kedutaan/KedutaanModal";
 
 import { allRelations } from "@/app/database/data/negara/hubungan";
 // import { relationStorage } from "./2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
@@ -192,10 +193,12 @@ export default function StrategyModal({
   if (!isOpen || !targetCountry || !countryEntry) return null;
 
   return (
-    <div className={`absolute inset-0 z-[1000] flex items-center justify-center p-4 backdrop-blur-md animate-in fade-in duration-200 ${
-      isTemporarilyHidden ? 'opacity-0 pointer-events-none' : 'bg-black/70'
+    <div className={`absolute inset-0 z-[1000] flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-200 ${
+      (isTemporarilyHidden || activeSubTab) ? 'pointer-events-none' : 'bg-black/20'
     }`}>
-      <div className="bg-[#181a1f] border border-zinc-800/80 rounded-2xl w-full max-w-2xl flex flex-col gap-0 text-white shadow-2xl relative">
+      <div className={`bg-zinc-900/60 backdrop-blur-md border border-zinc-800/80 rounded-2xl w-full max-w-2xl h-[600px] flex flex-col gap-0 text-white shadow-2xl relative transition-all duration-300 ${
+        (isTemporarilyHidden || activeSubTab) ? 'opacity-0 scale-95 translate-y-4' : 'opacity-100 scale-100'
+      }`}>
         
         {/* 1. Modal Header with Flag title structure */}
         <div className="flex justify-between items-center border-b border-zinc-800/80 p-6 bg-zinc-900/40">
@@ -221,7 +224,7 @@ export default function StrategyModal({
         </div>
 
         {/* 2. Content Views depending on menuTab */}
-        <div className="flex-1 p-8 overflow-y-auto min-h-[400px]">
+        <div className="flex-1 p-8 overflow-y-auto">
           {menuTab === 'info' && (
             <div className="space-y-6">
               <div className="bg-zinc-900/70 p-6 rounded-2xl border border-zinc-800/50 space-y-4">
@@ -266,6 +269,7 @@ export default function StrategyModal({
             <DiplomacyTab 
               userCountry={userCountry} 
               targetCountry={targetCountry} 
+              targetId={targetId}
               activeSubTab={activeSubTab}
               setActiveMenu={setActiveMenu}
               relationScore={relationScore}
@@ -285,6 +289,23 @@ export default function StrategyModal({
           <TabButton icon={<Gift size={20} />} active={menuTab === 'aid'} onClick={() => handleTabClick('aid')} label="Bantuan & Kerjasama" />
         </div>
       </div>
+
+      {/* Sub-Modals Overlay Area */}
+      {activeSubTab === 'kedutaan' && (
+        <KedutaanModal 
+          isOpen={true} 
+          onClose={() => {
+            if (targetId) {
+              setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);
+            }
+          }}
+          userCountry={userCountry}
+          targetCountry={targetCountry}
+          relationScore={relationScore}
+          relationLabel={relationLabel}
+          relationColor={relationColor}
+        />
+      )}
     </div>
   );
 }
