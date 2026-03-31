@@ -21,7 +21,18 @@ import KedutaanModal from "./2_diplomasi_hubungan/1_kedutaan/KedutaanModal";
 import { allRelations } from "@/app/database/data/negara/hubungan";
 // import { relationStorage } from "./2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { gameStorage } from "@/app/game/gamestorage";
-import { countries as centersData } from "@/app/database/data/negara/benua/index";
+import { countries as centersData, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
+
+function getContinent(countryNameId: string): string {
+  const lower = countryNameId.toLowerCase();
+  if (asiaCountries.some(c => c.name_id.toLowerCase() === lower)) return "Asia";
+  if (afrikaCountries.some(c => c.name_id.toLowerCase() === lower)) return "Afrika";
+  if (eropaCountries.some(c => c.name_id.toLowerCase() === lower)) return "Eropa";
+  if (naCountries.some(c => c.name_id.toLowerCase() === lower)) return "Amerika Utara";
+  if (saCountries.some(c => c.name_id.toLowerCase() === lower)) return "Amerika Selatan";
+  if (oceaniaCountries.some(c => c.name_id.toLowerCase() === lower)) return "Oceania";
+  return "Global";
+}
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { calculateDailyBudgetDelta } from "@/app/game/data/economy/BudgetDeltaLogic";
@@ -193,12 +204,13 @@ export default function StrategyModal({
   if (!isOpen || !targetCountry || !countryEntry) return null;
 
   return (
-    <div className={`absolute inset-0 z-[1000] flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in duration-200 ${
-      (isTemporarilyHidden || activeSubTab) ? 'pointer-events-none' : 'bg-black/20'
-    }`}>
-      <div className={`bg-zinc-900/60 backdrop-blur-md border border-zinc-800/80 rounded-2xl w-full max-w-2xl h-[600px] flex flex-col gap-0 text-white shadow-2xl relative transition-all duration-300 ${
-        (isTemporarilyHidden || activeSubTab) ? 'opacity-0 scale-95 translate-y-4' : 'opacity-100 scale-100'
+    <>
+      <div className={`absolute inset-0 z-[1000] flex items-center justify-center p-4 animate-in fade-in duration-200 ${
+        (isTemporarilyHidden || activeSubTab) ? 'pointer-events-none' : 'bg-black/20 backdrop-blur-sm'
       }`}>
+        <div className={`bg-zinc-900/60 backdrop-blur-md border border-zinc-800/80 rounded-2xl w-full max-w-2xl h-[600px] flex flex-col gap-0 text-white shadow-2xl relative transition-all duration-300 ${
+          (isTemporarilyHidden || activeSubTab) ? 'opacity-0 scale-95 translate-y-4' : 'opacity-100 scale-100'
+        }`}>
         
         {/* 1. Modal Header with Flag title structure */}
         <div className="flex justify-between items-center border-b border-zinc-800/80 p-6 bg-zinc-900/40">
@@ -217,7 +229,7 @@ export default function StrategyModal({
           </div>
           <button 
             onClick={onClose} 
-            className="h-8 w-8 rounded-full hover:bg-zinc-800 flex items-center justify-center text-zinc-500 hover:text-white transition cursor-pointer"
+            className="h-8 w-8 rounded-full hover:bg-zinc-800 flex items-center justify-center text-zinc-500 hover:text-white transition cursor-pointer pointer-events-auto"
           >
             <X className="h-5 w-5" />
           </button>
@@ -282,31 +294,42 @@ export default function StrategyModal({
         </div>
 
         {/* 3. Constant Bottom Navigation Tab Bar */}
-        <div className="border-t border-zinc-800/80 bg-zinc-900/60 p-3 flex justify-evenly items-center gap-2 rounded-b-2xl">
+        <div className="border-t border-zinc-800/80 bg-zinc-900/60 p-3 flex justify-evenly items-center gap-2 rounded-b-2xl pointer-events-auto">
           <TabButton icon={<BarChart3 size={20} />} active={menuTab === 'info'} onClick={() => handleTabClick('info')} label="Info Strategis" />
           <TabButton icon={<Handshake size={20} />} active={menuTab === 'diplomacy'} onClick={() => handleTabClick('diplomacy')} label="Diplomasi & Hubungan" />
           <TabButton icon={<Swords size={20} />} active={menuTab === 'military'} onClick={() => handleTabClick('military')} label="Aksi Militer & Intelijen" />
           <TabButton icon={<Gift size={20} />} active={menuTab === 'aid'} onClick={() => handleTabClick('aid')} label="Bantuan & Kerjasama" />
         </div>
       </div>
-
-      {/* Sub-Modals Overlay Area */}
-      {activeSubTab === 'kedutaan' && (
-        <KedutaanModal 
-          isOpen={true} 
-          onClose={() => {
-            if (targetId) {
-              setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);
-            }
-          }}
-          userCountry={userCountry}
-          targetCountry={targetCountry}
-          relationScore={relationScore}
-          relationLabel={relationLabel}
-          relationColor={relationColor}
-        />
-      )}
     </div>
+
+      {/* Sub-Modals Overlay Area - MOVED OUTSIDE to ensure clickability */}
+      {activeSubTab === 'kedutaan' && (() => {
+        const userEntry2 = centersData.find(c => c.name_en === userCountry || c.name_id === userCountry);
+        const targetEntry2 = countryEntry;
+        if (!targetId) return null;
+        
+        return (
+          <KedutaanModal 
+            isOpen={true} 
+            onClose={() => {
+              setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);
+            }}
+            userCountry={userCountry}
+            targetCountry={targetCountry}
+            relationScore={relationScore}
+            relationLabel={relationLabel}
+            relationColor={relationColor}
+            userReligion={userEntry2?.religion || "Sekuler"}
+            targetReligion={targetEntry2?.religion || "Sekuler"}
+            userIdeology={userEntry2?.ideology || "Netral"}
+            targetIdeology={targetEntry2?.ideology || "Netral"}
+            userContinent={userEntry2 ? getContinent(userEntry2.name_id) : "Global"}
+            targetContinent={targetEntry2 ? getContinent(targetEntry2.name_id) : "Global"}
+          />
+        );
+      })()}
+    </>
   );
 }
 

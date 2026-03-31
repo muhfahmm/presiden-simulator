@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Landmark, Handshake, Shield, FileText, FlaskConical, Truck, ChevronRight, Hammer, X } from "lucide-react";
+import { Landmark, Handshake, Shield, FileText, FlaskConical, Truck, ChevronRight, Hammer, X, Loader2 } from "lucide-react";
 import ActionCard from "../shared/ActionCard";
+import { embassyStorage, EmbassyStatus } from "./1_kedutaan/logic/embassyStorage";
 
 
 interface DiplomacyTabProps {
@@ -18,12 +19,19 @@ export default function DiplomacyTab({
   userCountry, targetCountry, targetId, activeSubTab, setActiveMenu,
   relationScore, relationLabel, relationColor
 }: DiplomacyTabProps) {
-  const [embassyStatus, setEmbassyStatus] = useState<'none' | 'building' | 'completed'>('none');
+  const [embassyStatus, setEmbassyStatus] = useState<EmbassyStatus>('none');
   const [isDevModalOpen, setIsDevModalOpen] = useState(false);
   const [devModalTitle, setDevModalTitle] = useState("");
 
   useEffect(() => {
-    setEmbassyStatus('none');
+    const updateStatus = () => {
+      setEmbassyStatus(embassyStorage.getEmbassyStatus(targetCountry));
+    };
+
+    updateStatus();
+    
+    window.addEventListener("embassy_status_updated", updateStatus);
+    return () => window.removeEventListener("embassy_status_updated", updateStatus);
   }, [targetCountry]);
 
   const handleOpenModal = (title: string) => {
@@ -35,9 +43,16 @@ export default function DiplomacyTab({
     <>
       <div className="grid grid-cols-2 gap-3">
         <ActionCard 
-          icon={<Landmark className="h-4 w-4" />} 
-          label="Kedutaan"
-          bg="from-blue-900/30 to-zinc-900" 
+          icon={embassyStatus === 'building' ? <Loader2 className="h-4 w-4 animate-spin text-amber-500" /> : <Landmark className="h-4 w-4" />} 
+          label={
+            embassyStatus === 'none' ? "Kedutaan" : 
+            embassyStatus === 'building' ? "Dalam Pembangunan" : "Kedutaan Besar"
+          }
+          bg={
+            embassyStatus === 'none' ? "from-blue-900/30 to-zinc-900" :
+            embassyStatus === 'building' ? "from-amber-900/30 to-zinc-900 shadow-[0_0_15px_rgba(245,158,11,0.1)]" :
+            "from-emerald-900/30 to-zinc-900"
+          }
           onClick={() => setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:kedutaan`)}
         />
         <ActionCard 

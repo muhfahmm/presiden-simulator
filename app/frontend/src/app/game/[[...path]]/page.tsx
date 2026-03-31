@@ -43,8 +43,8 @@ export default function GamePage() {
     if (activeMenu.startsWith("CountryModal:")) {
       const parts = activeMenu.split(":");
       const countryId = parts[1];
-      const country = countries.find(c => 
-        c.name_id.toLowerCase() === countryId.toLowerCase() || 
+      const country = countries.find(c =>
+        c.name_id.toLowerCase() === countryId.toLowerCase() ||
         c.name_en.toLowerCase() === countryId.toLowerCase()
       );
       if (country) {
@@ -67,8 +67,8 @@ export default function GamePage() {
       setTargetCountry(name);
       // Only open strategy menu if not in trade map mode
       if (mapMode !== "trade") {
-        const country = countries.find(c => 
-          c.name_id.toLowerCase() === name.toLowerCase() || 
+        const country = countries.find(c =>
+          c.name_id.toLowerCase() === name.toLowerCase() ||
           c.name_en.toLowerCase() === name.toLowerCase()
         );
         if (country) {
@@ -146,10 +146,10 @@ export default function GamePage() {
           {/* Target Interaction Modal */}
           <StrategyModal
             isOpen={isMenuOpen}
-            onClose={() => { 
-                setIsMenuOpen(false); 
-                setTargetCountry(null); 
-                setActiveMenu("Peta Taktis");
+            onClose={() => {
+              setIsMenuOpen(false);
+              setTargetCountry(null);
+              setActiveMenu("Peta Taktis");
             }}
             targetCountry={targetCountry}
             userCountry={userCountry}
@@ -157,15 +157,15 @@ export default function GamePage() {
             activeSubTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[3] : undefined}
             setActiveMenu={setActiveMenu}
             onTabChange={(tab) => {
-                if (targetCountry) {
-                    const country = countries.find(c => 
-                        c.name_id.toLowerCase() === targetCountry.toLowerCase() || 
-                        c.name_en.toLowerCase() === targetCountry.toLowerCase()
-                    );
-                    if (country) {
-                        setActiveMenu(`CountryModal:${country.name_id}:${tab === 'info' ? 'info_strategis' : tab === 'diplomacy' ? 'diplomasi_hubungan' : tab === 'military' ? 'aksi_militer_intelijen' : 'bantuan_kerjasama'}`);
-                    }
+              if (targetCountry) {
+                const country = countries.find(c =>
+                  c.name_id.toLowerCase() === targetCountry.toLowerCase() ||
+                  c.name_en.toLowerCase() === targetCountry.toLowerCase()
+                );
+                if (country) {
+                  setActiveMenu(`CountryModal:${country.name_id}:${tab === 'info' ? 'info_strategis' : tab === 'diplomacy' ? 'diplomasi_hubungan' : tab === 'military' ? 'aksi_militer_intelijen' : 'bantuan_kerjasama'}`);
                 }
+              }
             }}
           />
 
@@ -201,4 +201,4 @@ export default function GamePage() {
       />
     </div>
   );
-}
+}

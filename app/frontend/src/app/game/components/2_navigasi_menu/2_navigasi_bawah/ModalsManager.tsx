@@ -210,16 +210,6 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       />
       <NewMessageToast />
 
-      {/* Diplomatic Modals - Moved to top-level for consistent rendering */}
-      <KedutaanModal 
-        isOpen={activeSubTab === 'kedutaan'} 
-        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 
-        userCountry={userCountryID}
-        targetCountry={targetCountryData?.name_id || targetCountryID}
-        relationScore={relationScore}
-        relationLabel={relationLabel}
-        relationColor={relationColor}
-      />
       <PaktaNonAgresiModal 
         isOpen={activeSubTab === 'pakta_non_agresi'} 
         onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 
