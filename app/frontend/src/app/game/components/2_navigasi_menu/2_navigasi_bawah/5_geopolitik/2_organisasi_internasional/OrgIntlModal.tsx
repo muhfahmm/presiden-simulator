@@ -179,7 +179,7 @@ export default function OrgIntlModal({ isOpen, onClose }: { isOpen: boolean; onC
 
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8 overflow-hidden">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[92vh] overflow-hidden shadow-2xl flex flex-col relative text-zinc-100">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative text-zinc-100">
         
         {/* HEADER SECTION */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30 sticky top-0 z-[100] backdrop-blur-xl">
@@ -404,7 +404,7 @@ export default function OrgIntlModal({ isOpen, onClose }: { isOpen: boolean; onC
       {/* MEMBERS MODAL OVERLAY */}
       {viewingMembersOrgId && (
         <div className="absolute inset-0 z-[70] flex items-center justify-center p-4 md:p-10 bg-black/90 backdrop-blur-xl animate-in fade-in duration-300">
-          <div className="w-full max-w-[95vw] bg-zinc-950 border border-zinc-800 rounded-[40px] shadow-[0_0_150px_rgba(0,0,0,1)] relative overflow-hidden animate-in zoom-in-95 duration-500 flex flex-col h-[92vh]">
+          <div className="w-full max-w-[95vw] bg-zinc-950 border border-zinc-800 rounded-[40px] shadow-[0_0_150px_rgba(0,0,0,1)] relative overflow-hidden animate-in zoom-in-95 duration-500 flex flex-col h-[82vh]">
             
             {/* MODAL HEADER */}
             <div className="px-12 py-8 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30 backdrop-blur-3xl sticky top-0 z-20">

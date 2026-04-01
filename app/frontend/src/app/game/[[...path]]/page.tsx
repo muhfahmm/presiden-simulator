@@ -81,6 +81,24 @@ export default function GamePage() {
 
   return (
     <div className="flex min-h-screen bg-zinc-950 text-white font-sans relative overflow-hidden">
+      {/* Top Header / Status bar - MOVED OUTSIDE main to fix stacking context bug */}
+      <GameNavbar
+        countryData={countryData}
+        happiness={happiness}
+        budget={budget}
+        budgetDelta={budgetDelta}
+        stability={stability}
+        population={population}
+        populationDelta={populationDelta}
+        setActiveMenu={setActiveMenu}
+        onLogout={() => {
+          if (confirm("Apakah Anda yakin ingin mengakhiri sesi simulasi ini? Semua kemajuan akan hilang.")) {
+            gameStorage.clearSession();
+            router.push("/database");
+          }
+        }}
+      />
+
       {/* Main Content Area */}
       <main className="flex-1 z-10 flex flex-col h-screen overflow-hidden relative pt-[73px]">
 
@@ -89,24 +107,6 @@ export default function GamePage() {
           activeMenu={activeMenu}
           setActiveMenu={setActiveMenu}
           unreadCount={unreadCount}
-        />
-
-        {/* Top Header / Status bar */}
-        <GameNavbar
-          countryData={countryData}
-          happiness={happiness}
-          budget={budget}
-          budgetDelta={budgetDelta}
-          stability={stability}
-          population={population}
-          populationDelta={populationDelta}
-          setActiveMenu={setActiveMenu}
-          onLogout={() => {
-            if (confirm("Apakah Anda yakin ingin mengakhiri sesi simulasi ini? Semua kemajuan akan hilang.")) {
-              gameStorage.clearSession();
-              router.push("/database");
-            }
-          }}
         />
 
         {/* Main interactive map background viewport */}

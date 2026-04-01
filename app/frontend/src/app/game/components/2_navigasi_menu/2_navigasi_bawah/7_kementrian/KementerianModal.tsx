@@ -107,7 +107,7 @@ export default function KementerianModal({ isOpen, onClose, countryData }: Modal
 
   return (
     <div className="absolute inset-0 bg-black/85 z-[1000] flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8 overflow-hidden font-sans">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[92vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
         {/* Header - Compact */}
         <div className="px-6 py-4 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-4">
