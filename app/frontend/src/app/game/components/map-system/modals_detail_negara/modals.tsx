@@ -19,6 +19,7 @@ import AidTab from "./4_bantuan_dan_kerjasama/AidTab";
 import KedutaanModal from "./2_diplomasi_hubungan/1_kedutaan/KedutaanModal";
 import ModalDetailKedubes from "./2_diplomasi_hubungan/1_kedutaan/modals_detail_kedubes";
 import MitraPerdaganganModal from "./2_diplomasi_hubungan/7_mitra_perdagangan/MitraPerdaganganModal";
+import HubunganInternasional from "./2_diplomasi_hubungan/8_hubungan_internasional/HubunganInternasional";
 import TandaTanganPakta from "./2_diplomasi_hubungan/2_pakta_non_agresi/TandaTanganPakta";
 import TandaTanganAliansi from "./2_diplomasi_hubungan/3_aliansi_pertahanan/TandaTanganAliansi";
 import StatusPerjanjianDagang from "./2_diplomasi_hubungan/4_perjanjian_dagang/StatusPerjanjianDagang";
@@ -400,6 +401,16 @@ export default function StrategyModal({
           />
         );
       })()}
+
+      {activeSubTab === 'hubungan_internasional' && (
+        <HubunganInternasional 
+          isOpen={true}
+          onClose={() => {
+            setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);
+          }}
+          targetCountry={targetCountry || ""}
+        />
+      )}
     </>
   );
 }

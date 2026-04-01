@@ -174,7 +174,11 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
         tradeStorage.addTransaction({
             source: currentCountry.name_id,
             dest: selectedTradePartner,
-            type: 'sell'
+            type: 'sell',
+            commodity: selectedName,
+            amount: quantity,
+            unit: getUnit(selectedKey),
+            totalDays: parseInt(shippingTime.split("-")[1]?.split(" ")[0] || shippingTime.split(" ")[0]) || 10
         });
     }
 

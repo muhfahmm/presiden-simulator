@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState, useMemo } from "react";
+import { PlaneDetailCard } from "../2_map/PlaneDetailCard";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { internationalHubs } from "../3_hub/hubs";
 import { getInitialAgreements } from "@/app/database/data/database_mitra_perdagangan/agreementsRegistry";
@@ -61,7 +62,8 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
   const bgCanvasRef = useRef<HTMLCanvasElement>(null);
   const fgCanvasRef = useRef<HTMLCanvasElement>(null);
   
-  const [isHovering, setIsHovering] = useState(false);
+  const [isHoveringPlane, setIsHoveringPlane] = useState(false);
+  const [selectedPlane, setSelectedPlane] = useState<any>(null);
   const [sessionTrades, setSessionTrades] = useState<any[]>([]);
   const [activeTransactions, setActiveTransactions] = useState<any[]>([]);
   const [tick, setTick] = useState(0);
@@ -76,6 +78,7 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
   const lastTimestampRef = useRef<number>(Date.now());
   const txAccumulatedTimeRef = useRef<Record<number, number>>({});
   const activeRoutesCacheRef = useRef<Record<number, { pts: Point[], pixels: { x: number, y: number }[] }>>({});
+  const planePositionsRef = useRef<Record<number, { x: number, y: number, tx: any, progress: number }>>({});
 
   const projectMap = (lon: number, lat: number) => ({ x: ((lon + 180) / 360) * mapWidth, y: ((90 - lat) / 180) * mapHeight });
 
@@ -240,8 +243,39 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
               const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
 
               ctx.save(); ctx.translate(curX, curY); ctx.rotate(angle); ctx.fillStyle = "#ffffff";
-              ctx.beginPath(); ctx.moveTo(10, 0); ctx.lineTo(-6, -5); ctx.lineTo(-4, 0); ctx.lineTo(-6, 5); ctx.closePath(); ctx.fill();
+              // Plane Body & Wings
+              ctx.beginPath();
+              ctx.moveTo(16, 0);           // Nose
+              ctx.lineTo(2, -3);           // Body upper
+              ctx.lineTo(0, -12);          // Wing Tip top
+              ctx.lineTo(-3, -12);         // Wing back top
+              ctx.lineTo(-2, -3);          // Body side mid top
+              ctx.lineTo(-10, -3);         // Tail connector top
+              ctx.lineTo(-13, -7);         // Tail tip top
+              ctx.lineTo(-14, -7);         // Tail back top
+              ctx.lineTo(-14, 7);          // Tail back bottom
+              ctx.lineTo(-13, 7);          // Tail tip bottom
+              ctx.lineTo(-10, 3);          // Tail connector bottom
+              ctx.lineTo(-2, 3);           // Body side mid bottom
+              ctx.lineTo(-3, 12);          // Wing back bottom
+              ctx.lineTo(0, 12);           // Wing tip bottom
+              ctx.lineTo(2, 3);            // Body lower
+              ctx.closePath();
+              ctx.fill();
+              
+              // Cockpit / Nose detail (slightly different shade or highlight)
+              ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+              ctx.beginPath();
+              ctx.moveTo(16, 0);
+              ctx.lineTo(8, -2);
+              ctx.lineTo(8, 2);
+              ctx.closePath();
+              ctx.fill();
+
               ctx.restore();
+
+              // Update plane positions for hit detection
+              planePositionsRef.current[tx.id] = { x: curX, y: curY, tx, progress };
             }
           });
         }
@@ -254,34 +288,75 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
 
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
   
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!active || !fgCanvasRef.current) return;
+    const rect = fgCanvasRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * mapWidth;
+    const y = ((e.clientY - rect.top) / rect.height) * mapHeight;
+
+    // Check hit on planes (higher priority)
+    let planeHit = false;
+    Object.values(planePositionsRef.current).forEach(p => {
+        const dist = Math.sqrt((p.x - x)**2 + (p.y - y)**2);
+        if (dist < 40) planeHit = true; // Use larger radius for airplanes
+    });
+    
+    setIsHoveringPlane(planeHit);
+  };
+
+  const handleCanvasClick = (e: React.MouseEvent) => {
+    if (!active || !fgCanvasRef.current) return;
+    const rect = fgCanvasRef.current.getBoundingClientRect();
+    const x = ((e.clientX - rect.left) / rect.width) * mapWidth;
+    const y = ((e.clientY - rect.top) / rect.height) * mapHeight;
+
+    // 1. Check hit on planes
+    let clickedPlane: any = null;
+    let minDist = 50;
+    Object.values(planePositionsRef.current).forEach(p => {
+        const d = Math.sqrt((p.x - x)**2 + (p.y - y)**2);
+        if (d < minDist) {
+            minDist = d;
+            clickedPlane = p.tx;
+        }
+    });
+
+    if (clickedPlane) {
+        setSelectedPlane(clickedPlane);
+        return;
+    }
+
+    // 2. Click outside to close (Optional: Country clicks disabled as requested)
+    setSelectedPlane(null);
+  };
+
   return (
     <div className="relative h-full w-full overflow-hidden">
       <div className="flex h-full w-fit">
         <div className="relative h-full shrink-0">
           <canvas ref={bgCanvasRef} width={mapWidth} height={mapHeight} className="h-full w-auto max-w-none z-0" style={{ pointerEvents: "none" }} />
-          <canvas ref={fgCanvasRef} width={mapWidth} height={mapHeight} className="absolute inset-0 h-full w-auto max-w-none z-10" style={{ cursor: isHovering ? "pointer" : defaultCursor, pointerEvents: active ? "auto" : "none" }}
-            onMouseMove={(e) => {
-              if (!active) return;
-              const rect = fgCanvasRef.current!.getBoundingClientRect();
-              const x = ((e.clientX - rect.left) / rect.width) * mapWidth;
-              const y = ((e.clientY - rect.top) / rect.height) * mapHeight;
-              setIsHovering(centersData.some(c => Math.sqrt((((c.lon + 180) / 360) * mapWidth - x) ** 2 + (((90 - c.lat) / 180) * mapHeight - y) ** 2) < 60));
-            }}
-            onClick={(e) => {
-              if (!active) return;
-              const rect = fgCanvasRef.current!.getBoundingClientRect();
-              const x = ((e.clientX - rect.left) / rect.width) * mapWidth;
-              const y = ((e.clientY - rect.top) / rect.height) * mapHeight;
-              let closest: any = null, minDist = 100;
-              centersData.forEach(c => {
-                const d = Math.sqrt((((c.lon + 180) / 360) * mapWidth - x) ** 2 + (((90 - c.lat) / 180) * mapHeight - y) ** 2);
-                if (d < minDist) { minDist = d; closest = c; }
-              });
-              if (closest) onSelect(closest.name_en || closest.name);
-            }}
+          <canvas 
+            ref={fgCanvasRef} 
+            width={mapWidth} height={mapHeight} 
+            className="absolute inset-0 h-full w-auto max-w-none z-10" 
+            style={{ cursor: isHoveringPlane ? "pointer" : defaultCursor, pointerEvents: active ? "auto" : "none" }}
+            onMouseMove={handleMouseMove}
+            onClick={handleCanvasClick}
           />
         </div>
       </div>
+
+      {selectedPlane && (
+        <PlaneDetailCard 
+          selectedPlane={selectedPlane} 
+          onClose={() => setSelectedPlane(null)}
+          planePositionsRef={planePositionsRef}
+          mapWidth={mapWidth}
+          mapHeight={mapHeight}
+          fgCanvasRef={fgCanvasRef}
+        />
+      )}
     </div>
+
   );
 }

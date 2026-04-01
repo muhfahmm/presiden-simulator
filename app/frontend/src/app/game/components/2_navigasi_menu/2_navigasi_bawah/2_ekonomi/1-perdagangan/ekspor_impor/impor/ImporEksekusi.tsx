@@ -124,7 +124,11 @@ export const ImporEksekusi: React.FC<ImporEksekusiProps> = ({
         tradeStorage.addTransaction({
             source: selectedTradePartner,
             dest: currentCountry.name_id,
-            type: 'buy'
+            type: 'buy',
+            commodity: selectedName,
+            amount: quantity,
+            unit: getUnit(selectedKey),
+            totalDays: parseInt(shippingTime.split("-")[1]?.split(" ")[0] || shippingTime.split(" ")[0]) || 10
         });
     }
 

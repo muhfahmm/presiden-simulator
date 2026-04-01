@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Landmark, Handshake, Shield, FileText, FlaskConical, Truck, ChevronRight, Hammer, X, Loader2, Briefcase, Ban } from "lucide-react";
+import { Landmark, Handshake, Shield, FileText, FlaskConical, Truck, ChevronRight, Hammer, X, Loader2, Briefcase, Ban, Globe2 } from "lucide-react";
 import ActionCard from "../shared/ActionCard";
 import { embassyStorage, EmbassyStatus } from "./1_kedutaan/logic/embassyStorage";
 import { nonAggressionStorage, NonAggressionStatus } from "./2_pakta_non_agresi/logic/nonAggressionStorage";
@@ -140,6 +140,12 @@ export default function DiplomacyTab({
           onClick={() => {
             setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:mitra_dagang`);
           }}
+        />
+        <ActionCard
+          icon={<Globe2 className="h-4 w-4" />}
+          label="Hubungan Internasional"
+          bg="from-blue-900/20 to-zinc-900"
+          onClick={() => setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:hubungan_internasional`)}
         />
         <ActionCard
           icon={<Ban className="h-4 w-4 text-red-400" />}

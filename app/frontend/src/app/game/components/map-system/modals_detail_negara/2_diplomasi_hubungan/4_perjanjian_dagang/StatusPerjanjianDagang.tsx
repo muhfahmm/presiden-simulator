@@ -120,7 +120,7 @@ export default function StatusPerjanjianDagang({ isOpen, onClose, setActiveMenu,
             <button 
               className="flex-1 py-4 bg-amber-600 hover:bg-amber-500 text-white text-xs font-black rounded-xl transition-all shadow-lg shadow-amber-500/20 uppercase tracking-[0.2em] flex items-center justify-center gap-2 group"
               onClick={() => {
-                setActiveMenu("Menu:Perdagangan");
+                setActiveMenu("Menu:Perdagangan:partner=" + targetCountry);
               }}
             >
               Lihat Pasar Dagang

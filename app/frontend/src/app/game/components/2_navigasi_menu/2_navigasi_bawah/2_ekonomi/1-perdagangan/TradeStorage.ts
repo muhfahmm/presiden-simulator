@@ -75,7 +75,15 @@ export const tradeStorage = {
   },
 
   // --- Active Transactions (For Map Visuals) ---
-  addTransaction: (tx: { source: string, dest: string, type: 'buy' | 'sell' }) => {
+  addTransaction: (tx: { 
+    source: string, 
+    dest: string, 
+    type: 'buy' | 'sell',
+    commodity?: string,
+    amount?: number,
+    unit?: string,
+    totalDays?: number
+  }) => {
     if (typeof window === 'undefined') return;
     const txs = tradeStorage.getActiveTransactions();
     // Add unique transaction with timestamp and random factor to prevent collisions

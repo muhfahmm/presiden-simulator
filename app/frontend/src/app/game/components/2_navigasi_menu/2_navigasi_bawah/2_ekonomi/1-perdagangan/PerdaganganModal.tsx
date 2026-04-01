@@ -371,11 +371,15 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
       const detail = activeMenu.split(":")[2];
       if (detail.includes("=")) {
         const [action, item] = detail.split("=");
-        const type = action === "impor" ? "buy" : "sell";
-        setSelectedKey(item);
-        setExecutionModalItem({ type });
-        setTradeType(action as "impor" | "ekspor");
-        setActiveChartTab(type === "buy" ? "buy" : "sell");
+        if (action === "partner") {
+           setSelectedTradePartner(item);
+        } else {
+           const type = action === "impor" ? "buy" : "sell";
+           setSelectedKey(item);
+           setExecutionModalItem({ type });
+           setTradeType(action as "impor" | "ekspor");
+           setActiveChartTab(type === "buy" ? "buy" : "sell");
+        }
       }
     } else if (isOpen && activeMenu === "Menu:Perdagangan") {
        setExecutionModalItem(null);
