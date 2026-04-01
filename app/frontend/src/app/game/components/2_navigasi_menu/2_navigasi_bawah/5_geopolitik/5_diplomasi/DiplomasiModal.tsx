@@ -111,10 +111,13 @@ export default function DiplomasiModal({ isOpen, onClose, activeMenu, setActiveM
   };
 
   const renderActionComponent = () => {
+    if (!selectedTarget) return null;
+    const targetId = selectedTarget.name_id;
+
     switch (activeAction) {
       case "1_kedutaan": return <Kedutaan />;
       case "2_pakta_non_agresi": return <PaktaNonAgresi />;
-      case "3_aliansi_pertahanan": return <AliansiPertahanan />;
+      case "3_aliansi_pertahanan": return <AliansiPertahanan targetCountry={targetId} />;
       case "4_perjanjian_dagang": return <PerjanjianDagang />;
       case "5_kontrak_penelitian": return <KontrakPenelitian />;
       case "6_kirim_pasukan": return <KirimPasukan />;
@@ -134,8 +137,8 @@ export default function DiplomasiModal({ isOpen, onClose, activeMenu, setActiveM
   if (!isOpen) return null;
 
   return (
-    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8 overflow-hidden">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500 font-sans">
+    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8 pointer-events-none">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500 font-sans pointer-events-auto">
         
         {/* Glow Effects */}
         <div className="absolute top-0 left-1/4 w-1/2 h-1 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent blur-sm"></div>

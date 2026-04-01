@@ -3,6 +3,7 @@ import { Globe2, X, Search, ArrowUpDown, Users } from "lucide-react";
 import { allRelations } from "@/app/database/data/negara/hubungan";
 import { countries as centersData, asiaCountries, afrikaCountries, eropaCountries, naCountries, saCountries, oceaniaCountries } from "@/app/database/data/negara/benua/index";
 import { relationStorage } from "../1_kedutaan/logic/relationStorage";
+import { relationDeltaStorage } from "./logic/relationDeltaStorage";
 
 interface HubunganInternasionalProps {
   isOpen: boolean;
@@ -37,6 +38,17 @@ export default function HubunganInternasional({ isOpen, onClose, targetCountry }
   const [searchQuery, setSearchQuery] = useState("");
   const [sortMode, setSortMode] = useState<SortMode>('score-desc');
   const [continentFilter, setContinentFilter] = useState<string>("Semua");
+  const [refreshKey, setRefreshKey] = useState(0);
+
+  useEffect(() => {
+    const handleUpdate = () => setRefreshKey(prev => prev + 1);
+    window.addEventListener('relation_storage_updated', handleUpdate);
+    window.addEventListener('relation_deltas_updated', handleUpdate);
+    return () => {
+      window.removeEventListener('relation_storage_updated', handleUpdate);
+      window.removeEventListener('relation_deltas_updated', handleUpdate);
+    };
+  }, []);
 
   useEffect(() => {
     if (isOpen) {
@@ -64,17 +76,25 @@ export default function HubunganInternasional({ isOpen, onClose, targetCountry }
     if (!Array.isArray(rawRelations)) return [];
 
     return rawRelations.map((r: { id: number; name: string; relation: number }) => {
-      const countryEntry = centersData.find(c => c.name_id.toLowerCase() === r.name.toLowerCase());
+      const countryId = r.name.toLowerCase().trim();
+      const countryEntry = centersData.find(c => c.name_id.toLowerCase() === countryId);
       const continent = countryEntry ? getContinent(countryEntry.name_id) : "Global";
-      const meta = relationStorage.getRelationMetadata(r.relation);
+      
+      // Get dynamic score and delta
+      const dynamicScore = relationStorage.getRelationScore(countryId, r.relation);
+      const delta = relationDeltaStorage.getDelta(countryId);
+      const meta = relationStorage.getRelationMetadata(dynamicScore);
+      
       return {
         ...r,
+        relation: dynamicScore, // Use dynamic score
+        delta,
         continent,
         displayName: countryEntry ? countryEntry.name_id : r.name,
         meta,
       };
     });
-  }, [targetKey]);
+  }, [targetKey, refreshKey]);
 
   // Available continents for filter
   const continents = useMemo(() => {
@@ -117,7 +137,7 @@ export default function HubunganInternasional({ isOpen, onClose, targetCountry }
     const allies = relationsData.filter((r: any) => r.relation >= 70).length;
     const neutral = relationsData.filter((r: any) => r.relation >= 50 && r.relation < 70).length;
     const hostile = relationsData.filter((r: any) => r.relation < 50).length;
-    const avg = Math.round(relationsData.reduce((s: number, r: any) => s + r.relation, 0) / relationsData.length);
+    const avg = relationsData.reduce((s: number, r: any) => s + r.relation, 0) / relationsData.length;
     return { allies, neutral, hostile, avg };
   }, [relationsData]);
 
@@ -137,8 +157,8 @@ export default function HubunganInternasional({ isOpen, onClose, targetCountry }
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
-      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-xl max-h-[85vh] flex flex-col overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.6)] relative animate-in fade-in slide-in-from-bottom-4 duration-300 transition-all">
+    <div className="fixed inset-0 z-[2000] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md animate-in fade-in duration-300 pointer-events-none">
+      <div className="bg-zinc-900 border border-zinc-800 rounded-2xl w-full max-w-xl max-h-[85vh] flex flex-col overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.6)] relative animate-in fade-in slide-in-from-bottom-4 duration-300 transition-all pointer-events-auto">
         {/* Top accent bar */}
         <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-cyan-500 to-blue-600"></div>
         
@@ -165,7 +185,7 @@ export default function HubunganInternasional({ isOpen, onClose, targetCountry }
         <div className="px-6 py-3 border-b border-zinc-800/30 bg-zinc-950/40 grid grid-cols-4 gap-3">
           <div className="flex flex-col items-center">
             <span className="text-[9px] font-black text-zinc-600 uppercase tracking-widest">Rata-rata</span>
-            <span className="text-lg font-black text-white italic">{stats.avg}</span>
+            <span className="text-lg font-black text-white italic">{stats.avg.toFixed(2)}</span>
           </div>
           <div className="flex flex-col items-center">
             <span className="text-[9px] font-black text-emerald-600 uppercase tracking-widest">Sekutu</span>
@@ -271,10 +291,17 @@ export default function HubunganInternasional({ isOpen, onClose, targetCountry }
                   </div>
 
                   {/* Score Badge */}
-                  <div className="flex flex-col items-end shrink-0">
-                    <span className={`text-sm font-black italic ${r.meta.color}`}>
-                      {r.relation}
-                    </span>
+                  <div className="flex flex-col items-end shrink-0 min-w-[70px]">
+                    <div className="flex items-center gap-1.5">
+                      {r.delta !== 0 && (
+                        <span className={`text-[10px] font-black italic flex items-center ${r.delta > 0 ? 'text-emerald-400' : 'text-rose-500'}`}>
+                          {r.delta > 0 ? '+' : ''}{(r.delta / 100).toFixed(2)}%
+                        </span>
+                      )}
+                      <span className={`text-sm font-black italic ${r.meta.color}`}>
+                        {r.relation.toFixed(2)}
+                      </span>
+                    </div>
                     <span className={`text-[8px] font-black uppercase tracking-widest ${r.meta.color} opacity-70`}>
                       {r.meta.label}
                     </span>

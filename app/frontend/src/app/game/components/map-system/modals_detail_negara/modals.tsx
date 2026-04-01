@@ -211,10 +211,10 @@ export default function StrategyModal({
 
   return (
     <>
-      <div className={`absolute inset-0 z-[1000] flex items-center justify-center p-4 animate-in fade-in duration-200 ${
-        (isTemporarilyHidden || activeSubTab) ? 'pointer-events-none' : 'bg-black/20 backdrop-blur-sm'
+      <div className={`absolute inset-0 z-[1000] flex items-center justify-center p-4 animate-in fade-in duration-200 pointer-events-none ${
+        (isTemporarilyHidden || activeSubTab) ? '' : 'bg-black/20 backdrop-blur-sm'
       }`}>
-        <div className={`bg-zinc-900/60 backdrop-blur-md border border-zinc-800/80 rounded-2xl w-full max-w-2xl h-[600px] flex flex-col gap-0 text-white shadow-2xl relative transition-all duration-300 ${
+        <div className={`bg-zinc-900/60 backdrop-blur-md border border-zinc-800/80 rounded-2xl w-full max-w-2xl h-[600px] flex flex-col gap-0 text-white shadow-2xl relative transition-all duration-300 pointer-events-auto ${
           (isTemporarilyHidden || activeSubTab) ? 'opacity-0 scale-95 translate-y-4' : 'opacity-100 scale-100'
         }`}>
         

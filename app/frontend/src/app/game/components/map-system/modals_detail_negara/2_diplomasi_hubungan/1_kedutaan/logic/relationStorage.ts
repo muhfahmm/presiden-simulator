@@ -10,6 +10,7 @@ import { countries as centersData } from "@/app/database/data/negara/benua/index
 import { embassyStorage } from "./embassyStorage";
 import { nonAggressionStorage } from "../../2_pakta_non_agresi/logic/nonAggressionStorage";
 import { aliansiStorage } from "../../3_aliansi_pertahanan/logic/aliansiStorage";
+import { relationDeltaStorage } from "../../8_hubungan_internasional/logic/relationDeltaStorage";
 
 const RELATION_STORAGE_KEY = "em2_relation_scores";
 
@@ -143,6 +144,13 @@ export const relationStorage = {
       }
 
       localStorage.setItem(RELATION_STORAGE_KEY, JSON.stringify(storedData));
+      
+      // Save deltas
+      const deltas: Record<string, number> = {};
+      data.results.forEach((r: any) => {
+        deltas[r.country_id] = r.delta || 0;
+      });
+      relationDeltaStorage.updateDeltas(deltas);
       
       // Notify UI
       window.dispatchEvent(new Event("relation_storage_updated"));
