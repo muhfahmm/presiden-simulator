@@ -37,8 +37,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 
 // Diplomatic Sub-Modals
 import KedutaanModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/KedutaanModal";
-import PaktaNonAgresiModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/2_pakta_non_agresi/PaktaNonAgresiModal";
-import AliansiPertahananModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/3_aliansi_pertahanan/AliansiPertahananModal";
+// PaktaNonAgresiModal & AliansiPertahanan removed to be handled in StrategyModal/modals.tsx
 import PerjanjianDagangModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/4_perjanjian_dagang/PerjanjianDagangModal";
 import KontrakPenelitianModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/5_kontrak_penelitian/KontrakPenelitianModal";
 import KirimPasukanModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/6_kirim_pasukan/KirimPasukanModal";
@@ -213,14 +212,7 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <NewMessageToast />
       <RelationAlertToast />
 
-      <PaktaNonAgresiModal 
-        isOpen={activeSubTab === 'pakta_non_agresi'} 
-        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 
-      />
-      <AliansiPertahananModal 
-        isOpen={activeSubTab === 'aliansi_pertahanan'} 
-        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 
-      />
+      {/* Pakta & Aliansi now in StrategyModal */}
       <PerjanjianDagangModal 
         isOpen={activeSubTab === 'perjanjian_dagang'} 
         onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 

@@ -19,6 +19,8 @@ import AidTab from "./4_bantuan_dan_kerjasama/AidTab";
 import KedutaanModal from "./2_diplomasi_hubungan/1_kedutaan/KedutaanModal";
 import ModalDetailKedubes from "./2_diplomasi_hubungan/1_kedutaan/modals_detail_kedubes";
 import MitraPerdaganganModal from "./2_diplomasi_hubungan/7_mitra_perdagangan/MitraPerdaganganModal";
+import TandaTanganPakta from "./2_diplomasi_hubungan/2_pakta_non_agresi/TandaTanganPakta";
+import TandaTanganAliansi from "./2_diplomasi_hubungan/3_aliansi_pertahanan/TandaTanganAliansi";
 
 import { COUNTRY_REGIONS, getRegion } from "./2_diplomasi_hubungan/1_kedutaan/logic/regions";
 import { allRelations } from "@/app/database/data/negara/hubungan";
@@ -346,6 +348,26 @@ export default function StrategyModal({
 
       {activeSubTab === 'mitra_dagang' && (
         <MitraPerdaganganModal 
+          isOpen={true}
+          onClose={() => {
+            setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);
+          }}
+          targetCountry={targetCountry || ""}
+        />
+      )}
+
+      {activeSubTab === 'pakta_non_agresi' && (
+        <TandaTanganPakta 
+          isOpen={true}
+          onClose={() => {
+            setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);
+          }}
+          targetCountry={targetCountry || ""}
+        />
+      )}
+
+      {activeSubTab === 'aliansi_pertahanan' && (
+        <TandaTanganAliansi 
           isOpen={true}
           onClose={() => {
             setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);

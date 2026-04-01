@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Landmark, Handshake, Shield, FileText, FlaskConical, Truck, ChevronRight, Hammer, X, Loader2, Briefcase, Ban } from "lucide-react";
 import ActionCard from "../shared/ActionCard";
 import { embassyStorage, EmbassyStatus } from "./1_kedutaan/logic/embassyStorage";
+import { nonAggressionStorage, NonAggressionStatus } from "./2_pakta_non_agresi/logic/nonAggressionStorage";
+import { aliansiStorage, AliansiStatus } from "./3_aliansi_pertahanan/logic/aliansiStorage";
 
 
 interface DiplomacyTabProps {
@@ -20,18 +22,28 @@ export default function DiplomacyTab({
   relationScore, relationLabel, relationColor
 }: DiplomacyTabProps) {
   const [embassyStatus, setEmbassyStatus] = useState<EmbassyStatus>('none');
+  const [nonAggressionStatus, setNonAggressionStatus] = useState<NonAggressionStatus>('none');
+  const [aliansiStatus, setAliansiStatus] = useState<AliansiStatus>('none');
   const [isDevModalOpen, setIsDevModalOpen] = useState(false);
   const [devModalTitle, setDevModalTitle] = useState("");
 
   useEffect(() => {
     const updateStatus = () => {
       setEmbassyStatus(embassyStorage.getEmbassyStatus(targetCountry));
+      setNonAggressionStatus(nonAggressionStorage.getStatus(targetCountry));
+      setAliansiStatus(aliansiStorage.getStatus(targetCountry));
     };
 
     updateStatus();
     
     window.addEventListener("embassy_status_updated", updateStatus);
-    return () => window.removeEventListener("embassy_status_updated", updateStatus);
+    window.addEventListener("non_aggression_updated", updateStatus);
+    window.addEventListener("aliansi_updated", updateStatus);
+    return () => {
+      window.removeEventListener("embassy_status_updated", updateStatus);
+      window.removeEventListener("non_aggression_updated", updateStatus);
+      window.removeEventListener("aliansi_updated", updateStatus);
+    };
   }, [targetCountry]);
 
   const handleOpenModal = (title: string) => {
@@ -66,18 +78,31 @@ export default function DiplomacyTab({
           }}
         />
         <ActionCard 
-          icon={<Handshake className="h-4 w-4" />} 
-          label="Pakta Non-Agresi"
-          bg="from-indigo-900/20 to-zinc-900" 
+          icon={
+            nonAggressionStatus === 'active' ? <Handshake className="h-4 w-4 text-indigo-400" /> :
+            <Handshake className="h-4 w-4" />
+          } 
+          label={
+            nonAggressionStatus === 'active' ? "PAKTA AKTIF" : "Pakta Non-Agresi"
+          }
+          bg={
+            nonAggressionStatus === 'active' ? "from-indigo-900/40 to-zinc-900" : "from-indigo-900/20 to-zinc-900"
+          } 
           disabled={embassyStatus !== 'completed'}
-          onClick={() => handleOpenModal('Pakta Non-Agresi')}
+          onClick={() => setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:pakta_non_agresi`)}
         />
         <ActionCard 
-          icon={<Shield className="h-4 w-4" />} 
-          label="Aliansi Pertahanan"
-          bg="from-teal-900/20 to-zinc-900" 
+          icon={
+            aliansiStatus === 'active' ? <Shield className="h-4 w-4 text-teal-400" /> : <Shield className="h-4 w-4" />
+          } 
+          label={
+            aliansiStatus === 'active' ? "ALIANSI AKTIF" : "Aliansi Pertahanan"
+          }
+          bg={
+            aliansiStatus === 'active' ? "from-teal-900/40 to-zinc-900" : "from-teal-900/20 to-zinc-900"
+          } 
           disabled={embassyStatus !== 'completed'}
-          onClick={() => handleOpenModal('Aliansi Pertahanan')}
+          onClick={() => setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:aliansi_pertahanan`)}
         />
         <ActionCard 
           icon={<FileText className="h-4 w-4" />} 
