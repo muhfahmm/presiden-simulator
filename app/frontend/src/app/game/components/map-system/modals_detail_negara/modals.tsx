@@ -24,6 +24,7 @@ import TandaTanganPakta from "./2_diplomasi_hubungan/2_pakta_non_agresi/TandaTan
 import TandaTanganAliansi from "./2_diplomasi_hubungan/3_aliansi_pertahanan/TandaTanganAliansi";
 import StatusPerjanjianDagang from "./2_diplomasi_hubungan/4_perjanjian_dagang/StatusPerjanjianDagang";
 import TandaTanganDagang from "./2_diplomasi_hubungan/4_perjanjian_dagang/TandaTanganDagang";
+import ModalsTingkatkanHubungan from "./4_bantuan_dan_kerjasama/3_tingkatkan_hubungan/modalsTingkatkanHubungan";
 import { tradeStorage } from "./2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
 
 import { COUNTRY_REGIONS, getRegion } from "./2_diplomasi_hubungan/1_kedutaan/logic/regions";
@@ -105,6 +106,7 @@ export default function StrategyModal({
   const [liveStats, setLiveStats] = useState({ anggaran: 0, dailyDelta: 0 });
   const [isTemporarilyHidden, setIsTemporarilyHidden] = useState(false);
   const [relationScore, setRelationScore] = useState(50);
+  const [baseScore, setBaseScore] = useState(50);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Listen for temporary hide/show events from sub-modals
@@ -170,7 +172,8 @@ export default function StrategyModal({
     const relationData = Array.isArray(userRelations) 
       ? userRelations.find((r: any) => r.name?.toLowerCase().trim() === targetK)
       : null;
-    const baseScore = relationData?.relation !== undefined ? relationData.relation : 50;
+    const initialBase = relationData?.relation !== undefined ? relationData.relation : 50;
+    setBaseScore(initialBase);
 
     const updateStats = () => {
       const isUser = targetId === userId;
@@ -185,7 +188,7 @@ export default function StrategyModal({
       }
 
       setLiveStats({ anggaran: currentAnggaran, dailyDelta: totalTaxRevenue });
-      setRelationScore(relationStorage.getRelationScore(targetK, baseScore));
+      setRelationScore(relationStorage.getRelationScore(targetK, initialBase));
     };
 
     updateStats();
@@ -296,7 +299,12 @@ export default function StrategyModal({
             />
           )}
           {menuTab === 'military' && <MilitaryTab />}
-          {menuTab === 'aid' && <AidTab />}
+          {menuTab === 'aid' && (
+            <AidTab 
+              targetId={targetId}
+              setActiveMenu={setActiveMenu}
+            />
+          )}
         </div>
 
         {/* 3. Constant Bottom Navigation Tab Bar */}
@@ -409,6 +417,20 @@ export default function StrategyModal({
             setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);
           }}
           targetCountry={targetCountry || ""}
+        />
+      )}
+
+      {activeSubTab === 'tingkatkan_hubungan' && (
+        <ModalsTingkatkanHubungan 
+          isOpen={true}
+          onClose={() => {
+            setActiveMenu(`CountryModal:${targetId}:bantuan_kerjasama`);
+          }}
+          targetCountry={targetCountry || ""}
+          relationScore={finalScore}
+          baseScore={baseScore}
+          relationLabel={relationLabel}
+          relationColor={relationColor}
         />
       )}
     </>

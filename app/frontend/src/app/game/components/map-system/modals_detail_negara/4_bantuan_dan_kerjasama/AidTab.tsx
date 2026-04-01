@@ -12,7 +12,12 @@ import DukungKedaulatanModal from "./4_dukung_kedaulatan/DukungKedaulatanModal";
 import MintaBantuanModal from "./5_minta_bantuan/MintaBantuanModal";
 import TanamkanIdeologiModal from "./6_tanamkan_ideologi/TanamkanIdeologiModal";
 
-export default function AidTab() {
+interface AidTabProps {
+  targetId: string;
+  setActiveMenu: (menu: string) => void;
+}
+
+export default function AidTab({ targetId, setActiveMenu }: AidTabProps) {
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   return (
@@ -34,7 +39,7 @@ export default function AidTab() {
           icon={<Heart className="h-4 w-4" />} 
           label="Tingkatkan Hubungan" 
           bg="from-red-900/30 to-zinc-900" 
-          onClick={() => setActiveModal('hubungan')}
+          onClick={() => setActiveMenu(`CountryModal:${targetId}:bantuan_kerjasama:tingkatkan_hubungan`)}
         />
         <ActionCard 
           icon={<Shield className="h-4 w-4" />} 
@@ -59,7 +64,6 @@ export default function AidTab() {
       {/* Render Specific Modals */}
       <BeriTentaraModal isOpen={activeModal === 'tentara'} onClose={() => setActiveModal(null)} />
       <KirimHadiahModal isOpen={activeModal === 'hadiah'} onClose={() => setActiveModal(null)} />
-      <TingkatkanHubunganModal isOpen={activeModal === 'hubungan'} onClose={() => setActiveModal(null)} />
       <DukungKedaulatanModal isOpen={activeModal === 'kedaulatan'} onClose={() => setActiveModal(null)} />
       <MintaBantuanModal isOpen={activeModal === 'bantuan'} onClose={() => setActiveModal(null)} />
       <TanamkanIdeologiModal isOpen={activeModal === 'ideologi'} onClose={() => setActiveModal(null)} />
