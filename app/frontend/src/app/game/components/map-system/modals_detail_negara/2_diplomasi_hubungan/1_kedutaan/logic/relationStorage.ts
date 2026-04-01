@@ -8,6 +8,8 @@
 import { allRelations } from "@/app/database/data/negara/hubungan";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { embassyStorage } from "./embassyStorage";
+import { nonAggressionStorage } from "../../2_pakta_non_agresi/logic/nonAggressionStorage";
+import { aliansiStorage } from "../../3_aliansi_pertahanan/logic/aliansiStorage";
 
 const RELATION_STORAGE_KEY = "em2_relation_scores";
 
@@ -91,11 +93,15 @@ export const relationStorage = {
         const baseScore = baseRelationMap.get(countryId) ?? 50;
         const currentScore = relationStorage.getRelationScore(countryId, baseScore);
         const hasEmbassy = embassyStorage.getEmbassyStatus(countryId) === 'completed';
+        const hasPact = nonAggressionStorage.getStatus(countryId) === 'active';
+        const hasAlliance = aliansiStorage.getStatus(countryId) === 'active';
 
         return {
           country_id: countryId,
           current_score: currentScore,
-          has_embassy: hasEmbassy
+          has_embassy: hasEmbassy,
+          has_pact: hasPact,
+          has_alliance: hasAlliance
         };
       });
 
