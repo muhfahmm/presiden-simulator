@@ -65,6 +65,43 @@ export const relationStorage = {
     }));
   },
 
+  updateAllRelationScores: (delta: number, playerCountry: string) => {
+    if (typeof window === "undefined") return;
+    const data = relationStorage.getRelationData();
+    const normalizedPlayer = playerCountry.toLowerCase().trim();
+    
+    // Get all countries except the player
+    const targetCountries = centersData.filter(c => c.name_id.toLowerCase().trim() !== normalizedPlayer);
+    
+    // Build initial base scores map for fallback
+    const userRelations = (allRelations as any)[normalizedPlayer];
+    const baseRelationMap = new Map<string, number>();
+    if (Array.isArray(userRelations)) {
+      userRelations.forEach((rel: any) => {
+        if (rel.name) baseRelationMap.set(rel.name.toLowerCase().trim(), rel.relation);
+      });
+    }
+
+    targetCountries.forEach(country => {
+      const countryId = country.name_id.toLowerCase().trim();
+      const baseScore = baseRelationMap.get(countryId) ?? 50;
+      const currentScore = relationStorage.getRelationScore(countryId, baseScore);
+      const newScore = Math.max(0, Math.min(100, currentScore + delta));
+      
+      // We don't dispatch 206 alerts at once (too noisy), 
+      // but we update the storage
+      data[countryId] = newScore;
+    });
+
+    localStorage.setItem(RELATION_STORAGE_KEY, JSON.stringify(data));
+    
+    // Notify UI that a batch update occurred
+    window.dispatchEvent(new Event("relation_storage_updated"));
+    window.dispatchEvent(new CustomEvent("relation_status_updated", { 
+      detail: { targetCountry: "all", newScore: 0 } // Generic "all" flag
+    }));
+  },
+
   /**
    * Proses drift hubungan harian untuk SEMUA negara.
    * Dipanggil setiap pergantian hari game.

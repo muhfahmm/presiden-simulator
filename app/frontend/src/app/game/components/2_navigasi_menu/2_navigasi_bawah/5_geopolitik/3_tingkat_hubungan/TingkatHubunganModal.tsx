@@ -1,8 +1,9 @@
 "use client"
 
 import { useState, useEffect, useMemo } from "react";
-import { X, HeartHandshake, Search, MapPin, Globe2, SearchSlash, Info, TrendingUp, TrendingDown, Activity, Users, ShieldCheck, Zap, ChevronRight, Map as LucideMap, XCircle, Command, ArrowUpDown, ArrowUp, ArrowDown } from "lucide-react"
+import { X, HeartHandshake, Search, MapPin, Globe2, SearchSlash, Info, TrendingUp, TrendingDown, Activity, Users, ShieldCheck, Zap, ChevronRight, Map as LucideMap, XCircle, Command, ArrowUpDown, ArrowUp, ArrowDown, Sparkles } from "lucide-react"
 import { gameStorage } from "@/app/game/gamestorage";
+import ModalsTingkatkanHubunganGlobal from "./ModalsTingkatkanHubunganGlobal";
 import { allRelations } from "@/app/database/data/negara/hubungan/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import { unSecurityCouncilStorage } from "../1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
@@ -92,6 +93,7 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
   const [isUNSCMember, setIsUNSCMember] = useState(false);
   const [, setTick] = useState(0); // Force re-render on time/relation updates
   const [sortOrder, setSortOrder] = useState<'none' | 'desc' | 'asc'>('none');
+  const [isGlobalImproveOpen, setIsGlobalImproveOpen] = useState(false);
 
   useEffect(() => {
     const data = unSecurityCouncilStorage.getData();
@@ -281,6 +283,13 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
                   <ArrowUp size={14} />
                   Terendah
                 </button>
+                <button
+                  onClick={() => setIsGlobalImproveOpen(true)}
+                  className="flex items-center gap-2.5 px-6 py-3 rounded-xl text-xs font-black uppercase tracking-[0.1em] transition-all cursor-pointer bg-gradient-to-r from-emerald-600 to-emerald-700 text-white shadow-[0_0_20px_rgba(16,185,129,0.2)] hover:from-emerald-500 hover:to-emerald-600 hover:scale-105 active:scale-95 border border-white/10 ml-2 group"
+                >
+                  <Sparkles size={14} className="animate-pulse group-hover:rotate-12 transition-transform" />
+                  <span>Global Improve</span>
+                </button>
               </div>
             </div>
           </div>
@@ -427,6 +436,13 @@ export default function TingkatHubunganModal({ isOpen, onClose }: { isOpen: bool
             </div>
           </div>
         </div>
+
+        {/* Global Improvement Modal */}
+        <ModalsTingkatkanHubunganGlobal 
+          isOpen={isGlobalImproveOpen}
+          onClose={() => setIsGlobalImproveOpen(false)}
+          playerCountry={currentCountry}
+        />
       </div>
     </div>
   );

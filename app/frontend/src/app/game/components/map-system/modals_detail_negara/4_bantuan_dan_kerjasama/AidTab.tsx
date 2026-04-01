@@ -12,6 +12,11 @@ import DukungKedaulatanModal from "./4_dukung_kedaulatan/DukungKedaulatanModal";
 import MintaBantuanModal from "./5_minta_bantuan/MintaBantuanModal";
 import TanamkanIdeologiModal from "./6_tanamkan_ideologi/TanamkanIdeologiModal";
 
+// Import Storages for Gating
+import { embassyStorage } from "../2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage";
+import { nonAggressionStorage } from "../2_diplomasi_hubungan/2_pakta_non_agresi/logic/nonAggressionStorage";
+import { aliansiStorage } from "../2_diplomasi_hubungan/3_aliansi_pertahanan/logic/aliansiStorage";
+
 interface AidTabProps {
   targetId: string;
   setActiveMenu: (menu: string) => void;
@@ -19,6 +24,13 @@ interface AidTabProps {
 
 export default function AidTab({ targetId, setActiveMenu }: AidTabProps) {
   const [activeModal, setActiveModal] = useState<string | null>(null);
+
+  // Gating Logic for "Beri Tentara"
+  const hasEmbassy = embassyStorage.getEmbassyStatus(targetId) === 'completed';
+  const hasNonAggressionPact = nonAggressionStorage.getStatus(targetId) === 'active';
+  const hasDefenseAlliance = aliansiStorage.getStatus(targetId) === 'active';
+  
+  const canGiveTroops = hasEmbassy || hasNonAggressionPact || hasDefenseAlliance;
 
   return (
     <>
@@ -28,6 +40,7 @@ export default function AidTab({ targetId, setActiveMenu }: AidTabProps) {
           label="Beri Tentara" 
           bg="from-green-900/30 to-zinc-900" 
           onClick={() => setActiveModal('tentara')}
+          disabled={!canGiveTroops}
         />
         <ActionCard 
           icon={<Gift className="h-4 w-4" />} 
