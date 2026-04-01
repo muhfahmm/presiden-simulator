@@ -4,7 +4,7 @@ import ActionCard from "../shared/ActionCard";
 import { embassyStorage, EmbassyStatus } from "./1_kedutaan/logic/embassyStorage";
 import { nonAggressionStorage, NonAggressionStatus } from "./2_pakta_non_agresi/logic/nonAggressionStorage";
 import { aliansiStorage, AliansiStatus } from "./3_aliansi_pertahanan/logic/aliansiStorage";
-
+import { tradeStorage, TradeStatus } from "./4_perjanjian_dagang/logic/tradeStorage";
 
 interface DiplomacyTabProps {
   userCountry: string;
@@ -24,6 +24,7 @@ export default function DiplomacyTab({
   const [embassyStatus, setEmbassyStatus] = useState<EmbassyStatus>('none');
   const [nonAggressionStatus, setNonAggressionStatus] = useState<NonAggressionStatus>('none');
   const [aliansiStatus, setAliansiStatus] = useState<AliansiStatus>('none');
+  const [tradeStatus, setTradeStatus] = useState<TradeStatus>('none');
   const [isDevModalOpen, setIsDevModalOpen] = useState(false);
   const [devModalTitle, setDevModalTitle] = useState("");
 
@@ -32,6 +33,7 @@ export default function DiplomacyTab({
       setEmbassyStatus(embassyStorage.getEmbassyStatus(targetCountry));
       setNonAggressionStatus(nonAggressionStorage.getStatus(targetCountry));
       setAliansiStatus(aliansiStorage.getStatus(targetCountry));
+      setTradeStatus(tradeStorage.getTradeStatus(userCountry, targetCountry));
     };
 
     updateStatus();
@@ -44,7 +46,7 @@ export default function DiplomacyTab({
       window.removeEventListener("non_aggression_updated", updateStatus);
       window.removeEventListener("aliansi_updated", updateStatus);
     };
-  }, [targetCountry]);
+  }, [targetCountry, userCountry]);
 
   const handleOpenModal = (title: string) => {
     setDevModalTitle(title);
@@ -105,11 +107,17 @@ export default function DiplomacyTab({
           onClick={() => setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:aliansi_pertahanan`)}
         />
         <ActionCard 
-          icon={<FileText className="h-4 w-4" />} 
-          label="Perjanjian Dagang"
-          bg="from-amber-900/20 to-zinc-900" 
+          icon={
+            tradeStatus === 'active' ? <FileText className="h-4 w-4 text-amber-400" /> : <FileText className="h-4 w-4" />
+          } 
+          label={
+            tradeStatus === 'active' ? "DAGANG AKTIF" : "Perjanjian Dagang"
+          }
+          bg={
+            tradeStatus === 'active' ? "from-amber-700/40 to-zinc-900" : "from-amber-900/20 to-zinc-900"
+          } 
           disabled={embassyStatus !== 'completed'}
-          onClick={() => handleOpenModal('Perjanjian Dagang')}
+          onClick={() => setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan:perjanjian_dagang`)}
         />
         <ActionCard 
           icon={<FlaskConical className="h-4 w-4" />} 

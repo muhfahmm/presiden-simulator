@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 
 import { 
-  Globe, BarChart3, Handshake, Swords, Gift, X
+  Globe, BarChart3, Handshake, Swords, Gift, X, TrendingUp
 } from "lucide-react";
 
 import SDAInfoRow from "./1_info_strategis/1_SDA/SDAInfoRow";
@@ -21,6 +21,9 @@ import ModalDetailKedubes from "./2_diplomasi_hubungan/1_kedutaan/modals_detail_
 import MitraPerdaganganModal from "./2_diplomasi_hubungan/7_mitra_perdagangan/MitraPerdaganganModal";
 import TandaTanganPakta from "./2_diplomasi_hubungan/2_pakta_non_agresi/TandaTanganPakta";
 import TandaTanganAliansi from "./2_diplomasi_hubungan/3_aliansi_pertahanan/TandaTanganAliansi";
+import StatusPerjanjianDagang from "./2_diplomasi_hubungan/4_perjanjian_dagang/StatusPerjanjianDagang";
+import TandaTanganDagang from "./2_diplomasi_hubungan/4_perjanjian_dagang/TandaTanganDagang";
+import { tradeStorage } from "./2_diplomasi_hubungan/4_perjanjian_dagang/logic/tradeStorage";
 
 import { COUNTRY_REGIONS, getRegion } from "./2_diplomasi_hubungan/1_kedutaan/logic/regions";
 import { allRelations } from "@/app/database/data/negara/hubungan";
@@ -375,6 +378,28 @@ export default function StrategyModal({
           targetCountry={targetCountry || ""}
         />
       )}
+
+      {activeSubTab === 'perjanjian_dagang' && (() => {
+        const status = tradeStorage.getTradeStatus(userCountry, targetCountry || "");
+        return status === 'active' ? (
+          <StatusPerjanjianDagang 
+            isOpen={true}
+            onClose={() => {
+              setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);
+            }}
+            setActiveMenu={setActiveMenu}
+            targetCountry={targetCountry || ""}
+          />
+        ) : (
+          <TandaTanganDagang 
+            isOpen={true}
+            onClose={() => {
+              setActiveMenu(`CountryModal:${targetId}:diplomasi_hubungan`);
+            }}
+            targetCountry={targetCountry || ""}
+          />
+        );
+      })()}
     </>
   );
 }

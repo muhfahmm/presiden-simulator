@@ -9,6 +9,7 @@ import { aliansiStorage } from "./logic/aliansiStorage";
 import { gameStorage } from "@/app/game/gamestorage";
 import AliansiBerhasil from "./AliansiBerhasil";
 import { getStoredGameDate } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
+import KonfirmasiPemutusan from "../../shared/KonfirmasiPemutusan";
 
 interface TandaTanganAliansiProps {
   isOpen: boolean;
@@ -36,6 +37,7 @@ export default function TandaTanganAliansi({ isOpen, onClose, targetCountry }: T
   const [relationScore, setRelationScore] = useState(0);
   const [aliansiStatus, setAliansiStatus] = useState<string>('none');
   const [remainingDays, setRemainingDays] = useState<number | null>(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   // Load requirements on mount
   useEffect(() => {
@@ -132,6 +134,42 @@ export default function TandaTanganAliansi({ isOpen, onClose, targetCountry }: T
       } else {
         setError(result.message);
       }
+    } catch (err: any) {
+      setError(err.message);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleBreakAlliance = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch("/api/game/diplomacy/aliansi/break", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ target_country: targetCountry })
+      });
+
+      const result = await response.json();
+
+      if (!response.ok || result.error) throw new Error(result.error || "Gagal mengakhiri aliansi.");
+
+      // Apply Penalty
+      const userCountry = (typeof window !== 'undefined' ? localStorage.getItem("selectedCountry") : "") || "";
+      const userId = userCountry.toLowerCase().trim();
+      const targetId = targetCountry.toLowerCase().trim();
+      const userRelations = (allRelations as any)[userId];
+      const relationData = Array.isArray(userRelations) ? userRelations.find((r: any) => r.name?.toLowerCase().trim() === targetId) : null;
+      const baseScore = relationData?.relation !== undefined ? relationData.relation : 50;
+
+      relationStorage.updateRelationScore(targetId, result.penalty, baseScore);
+      
+      // Reset Storage
+      aliansiStorage.updateStatus(targetCountry, { status: 'none' });
+      
+      onClose();
     } catch (err: any) {
       setError(err.message);
     } finally {
@@ -258,25 +296,40 @@ export default function TandaTanganAliansi({ isOpen, onClose, targetCountry }: T
             )}
 
             <div className="flex gap-3 pt-2">
-              <button 
-                onClick={onClose}
-                className="px-6 py-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-400 text-xs font-black rounded-xl transition-all uppercase tracking-widest"
-              >
-                Tutup
-              </button>
-              <button 
-                onClick={handleSignAlliance}
-                disabled={isLoading || relationScore < REQUIRED_RELATION || currentBudget < currentCost || aliansiStatus === 'active'}
-                className="flex-1 py-4 bg-teal-600 hover:bg-teal-500 disabled:opacity-50 disabled:hover:bg-teal-600 text-white text-xs font-black rounded-xl transition-all shadow-lg shadow-teal-500/20 uppercase tracking-[0.2em] flex items-center justify-center gap-2"
-              >
-                {isLoading ? (
-                  <Loader2 className="animate-spin" size={16} />
-                ) : aliansiStatus === 'active' ? (
-                  "ALIANSI SEDANG AKTIF"
-                ) : (
-                  "Bentuk Aliansi Militer"
-                )}
-              </button>
+              {aliansiStatus === 'active' ? (
+                <button 
+                  onClick={() => setShowConfirmModal(true)}
+                  disabled={isLoading}
+                  className="flex-1 py-4 bg-red-600/10 hover:bg-red-600 text-red-500 hover:text-white border border-red-500/20 text-xs font-black rounded-xl transition-all uppercase tracking-[0.2em] flex items-center justify-center gap-2 group"
+                >
+                  {isLoading ? <Loader2 className="animate-spin" size={16} /> : (
+                    <>
+                      <AlertTriangle size={16} className="group-hover:animate-pulse" />
+                      Akhiri Aliansi Militer Sekarang
+                    </>
+                  )}
+                </button>
+              ) : (
+                <>
+                  <button 
+                    onClick={onClose}
+                    className="px-6 py-4 bg-zinc-800 hover:bg-zinc-700 text-zinc-400 text-xs font-black rounded-xl transition-all uppercase tracking-widest"
+                  >
+                    Tutup
+                  </button>
+                  <button 
+                    onClick={handleSignAlliance}
+                    disabled={isLoading || relationScore < REQUIRED_RELATION || currentBudget < currentCost}
+                    className="flex-1 py-4 bg-teal-600 hover:bg-teal-500 disabled:opacity-50 disabled:hover:bg-teal-600 text-white text-xs font-black rounded-xl transition-all shadow-lg shadow-teal-500/20 uppercase tracking-[0.2em] flex items-center justify-center gap-2"
+                  >
+                    {isLoading ? (
+                      <Loader2 className="animate-spin" size={16} />
+                    ) : (
+                      "Bentuk Aliansi Militer"
+                    )}
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -290,6 +343,14 @@ export default function TandaTanganAliansi({ isOpen, onClose, targetCountry }: T
         }}
         targetCountry={targetCountry}
         duration={duration}
+      />
+
+      <KonfirmasiPemutusan 
+        isOpen={showConfirmModal}
+        onClose={() => setShowConfirmModal(false)}
+        onConfirm={handleBreakAlliance}
+        targetCountry={targetCountry}
+        type="aliansi"
       />
     </>
   );
