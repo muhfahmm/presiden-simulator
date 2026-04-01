@@ -257,9 +257,9 @@ export default function TradeMapCanvas({ userCountry, targetCountry, onSelect, a
   return (
     <div className="relative h-full w-full overflow-hidden">
       <div className="flex h-full w-fit">
-        <div className="relative h-full w-[6000px] shrink-0">
-          <canvas ref={bgCanvasRef} width={mapWidth} height={mapHeight} className="h-full w-full z-0" style={{ pointerEvents: "none" }} />
-          <canvas ref={fgCanvasRef} width={mapWidth} height={mapHeight} className="absolute inset-0 h-full w-full z-10" style={{ cursor: isHovering ? "pointer" : defaultCursor, pointerEvents: active ? "auto" : "none" }}
+        <div className="relative h-full shrink-0">
+          <canvas ref={bgCanvasRef} width={mapWidth} height={mapHeight} className="h-full w-auto max-w-none z-0" style={{ pointerEvents: "none" }} />
+          <canvas ref={fgCanvasRef} width={mapWidth} height={mapHeight} className="absolute inset-0 h-full w-auto max-w-none z-10" style={{ cursor: isHovering ? "pointer" : defaultCursor, pointerEvents: active ? "auto" : "none" }}
             onMouseMove={(e) => {
               if (!active) return;
               const rect = fgCanvasRef.current!.getBoundingClientRect();
