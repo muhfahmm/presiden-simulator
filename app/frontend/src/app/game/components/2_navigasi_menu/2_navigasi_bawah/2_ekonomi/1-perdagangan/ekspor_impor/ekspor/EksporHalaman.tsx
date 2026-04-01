@@ -73,8 +73,7 @@ export const EksporHalaman: React.FC<EksporHalamanProps> = ({
                   padi: "1_sawah_padi", gandum_jagung: "2_ladang_gandum", sayur_umbi: "4_ladang_umbi", 
                   kedelai: "5_ladang_kedelai", kelapa_sawit: "6_perkebunan_sawit", kopi_teh_kakao: "8_perkebunan_kopi",
                   // Militer
-                  pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi", 
-                  pabrik_kendaraan_tempur: "pabrik_kendaraan_tempur", pabrik_senjata_berat: "pabrik_senjata_berat"
+                  pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi"
                 };
                 const mfgKey = Object.keys(baseKeyMapping).find(k => baseKeyMapping[k] === selectedKey);
                 const stockKey = stockKeyMap[selectedKey] || mfgKey || selectedKey;

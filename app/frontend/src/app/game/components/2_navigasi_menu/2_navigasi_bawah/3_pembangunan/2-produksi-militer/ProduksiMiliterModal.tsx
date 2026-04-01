@@ -12,6 +12,12 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MaterialRequirement from "../1-produksi/MaterialRequirement";
 import { pertahananRate, produksiMiliter, pabrikMiliterRate } from "@/app/database/data/types/4_militer";
+import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
+import JikaUangKurang from "../jika_uang_kurang";
+import JikaMaterialKurang from "../jika_material_kurang";
+import JikaMaterialDanUangKurang from "../jika_material_dan_uang_kurang";
+import { getBuildingRequirement } from "../1-produksi/MaterialRequirement";
+import { Layers, Hammer, TreePine } from "lucide-react";
 import { 
   calculateTotalInfantry, 
   calculateInfantryPower,
@@ -80,6 +86,11 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
   const [confirmBuild, setConfirmBuild] = useState<any>(null);
   const [quantity, setQuantity] = useState(1);
   const [tick, setTick] = useState(0);
+  const [isInsufficientFundsModalOpen, setIsInsufficientFundsModalOpen] = useState(false);
+  const [isInsufficientMaterialsModalOpen, setIsInsufficientMaterialsModalOpen] = useState(false);
+  const [isInsufficientBothModalOpen, setIsInsufficientBothModalOpen] = useState(false);
+  const [missingMaterialsData, setMissingMaterialsData] = useState<any[]>([]);
+  const [requiredAmount, setRequiredAmount] = useState(0);
 
   const session = gameStorage.getSession();
   const currentCountryCode = session?.country || "Indonesia";
@@ -165,6 +176,63 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
     handleConfirmBuild: () => {
       if (!confirmBuild) return;
       try {
+        // 1. Calculate total cost
+        const totalCost = confirmBuild.cost * quantity;
+        
+        // 2. Check if budget is sufficient
+        const currentBalance = budgetStorage.getBudget();
+        
+        if (currentBalance < totalCost) {
+          setRequiredAmount(totalCost);
+          setConfirmBuild(null); // Close the initial confirm modal
+          setIsInsufficientFundsModalOpen(true);
+          return;
+        }
+
+        // 3. Check for Material Sufficiency
+        const requirements = getBuildingRequirement(confirmBuild.key);
+        const cumulativeStock = budgetStorage.getCumulativeProduction();
+        const missing: any[] = [];
+
+        const checkMaterial = (label: string, req: number, stock: number, icon: any) => {
+          const totalReq = req * quantity;
+          if (stock < totalReq) {
+            missing.push({ label, required: totalReq, current: stock, icon });
+          }
+        };
+
+        checkMaterial("Beton", requirements.beton, cumulativeStock["5_pabrik_semen"] || 0, Layers);
+        checkMaterial("Baja", requirements.baja, cumulativeStock["12_tambang_bijih_besi"] || 0, Hammer);
+        checkMaterial("Kayu", requirements.kayu, cumulativeStock["6_penggergajian_kayu"] || 0, TreePine);
+
+        const isMoneyShort = currentBalance < totalCost;
+        const areMaterialsShort = missing.length > 0;
+
+        if (isMoneyShort && areMaterialsShort) {
+          setRequiredAmount(totalCost);
+          setMissingMaterialsData(missing);
+          setConfirmBuild(null);
+          setIsInsufficientBothModalOpen(true);
+          return;
+        }
+
+        if (isMoneyShort) {
+          setRequiredAmount(totalCost);
+          setConfirmBuild(null); // Close the initial confirm modal
+          setIsInsufficientFundsModalOpen(true);
+          return;
+        }
+
+        if (areMaterialsShort) {
+          setMissingMaterialsData(missing);
+          setConfirmBuild(null);
+          setIsInsufficientMaterialsModalOpen(true);
+          return;
+        }
+
+        // 4. Deduct construction cost from budget
+        budgetStorage.updateBudget(-totalCost);
+
         let currentStart = getStoredGameDate().getTime();
         const itemsToAdd: any[] = [];
         for (let i = 0; i < quantity; i++) {
@@ -225,7 +293,9 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
           maintenanceCost: val.biaya_pemeliharaan,
           lowongan_kerja: val.lowongan_kerja,
           count: Number(currentData.pabrik_militer?.[val.dataKey as keyof typeof currentData.pabrik_militer] || 0) + ((buildingDeltas[val.dataKey] as number) || 0),
-          consumption: val.konsumsi_listrik || 0
+          consumption: val.konsumsi_listrik || 0,
+          tarif: val.produksi || 0,
+          unit: val.satuan || "Unit"
       }))
     }
   ];
@@ -233,6 +303,31 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+        
+        {/* Insufficient Funds Modal */}
+        <JikaUangKurang 
+          isOpen={isInsufficientFundsModalOpen}
+          onClose={() => setIsInsufficientFundsModalOpen(false)}
+          requiredAmount={requiredAmount}
+          currentBalance={budgetStorage.getBudget()}
+        />
+
+        {/* Insufficient Material Modal */}
+        <JikaMaterialKurang 
+          isOpen={isInsufficientMaterialsModalOpen}
+          onClose={() => setIsInsufficientMaterialsModalOpen(false)}
+          missingMaterials={missingMaterialsData}
+        />
+
+        {/* Insufficient Both Modal */}
+        <JikaMaterialDanUangKurang 
+          isOpen={isInsufficientBothModalOpen}
+          onClose={() => setIsInsufficientBothModalOpen(false)}
+          requiredAmount={requiredAmount}
+          currentBalance={budgetStorage.getBudget()}
+          missingMaterials={missingMaterialsData}
+        />
+        
         {/* Header */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
@@ -481,6 +576,16 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
                 <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
               </div>
 
+              {item.tarif > 0 && (
+                <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><TrendingUp size={12} /></div>
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Produksi</span>
+                  </div>
+                  <span className="text-[14px] font-black text-amber-500">+{Math.floor(item.tarif)} <span className="text-[9px] text-amber-500/50 italic opacity-80">{item.unit}/HARI</span></span>
+                </div>
+              )}
+
               {item.consumption > 0 && (
                 <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                   <div className="flex items-center gap-2.5">
@@ -570,6 +675,17 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
             </span>
           </div>
 
+          {item.tarif > 0 && (
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 bg-amber-500/10 rounded-lg">
+                <TrendingUp size={12} className="text-amber-500" />
+              </div>
+              <span className="text-[12px] font-bold text-amber-500/90">
+                Produksi: +{Math.floor(item.tarif)} {item.unit}/bangunan
+              </span>
+            </div>
+          )}
+
           {item.consumption > 0 && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-amber-500/10 rounded-lg">
@@ -602,14 +718,14 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
           )}
         </div>
 
-        {/* Total Alutsista section */}
+        {/* Total Produksi section */}
         <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-1.5 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
           <div className="flex justify-between items-baseline gap-2">
             <span className="text-[11px] font-black text-cyan-500/80 uppercase tracking-[0.15em] italic">
-              TOTAL ALUTSISTA:
+              TOTAL PRODUKSI:
             </span>
             <span className="text-[16px] font-black text-cyan-400 tracking-tight">
-              {(item.count || 0).toLocaleString('id-ID')} <span className="text-[10px] text-cyan-500/50 font-normal uppercase italic ml-1">Unit</span>
+              {(budgetStorage.getCumulativeProduction()[item.key] || 0).toLocaleString('id-ID')} <span className="text-[10px] text-cyan-500/50 font-normal uppercase italic ml-1">{item.unit || "Unit"}</span>
             </span>
           </div>
         </div>

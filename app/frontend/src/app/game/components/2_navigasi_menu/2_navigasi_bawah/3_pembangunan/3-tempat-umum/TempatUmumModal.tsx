@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, Fragment } from "react";
-import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Building2, Microscope, Search, Trophy, Gavel, Siren as PoliceIcon, Home as HomeIcon, Truck, School, Lightbulb, Info, Briefcase, Users } from "lucide-react"
+import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Gem, Battery, Box, Cpu, Mountain, Waves, TreePine, Croissant, Soup, Shell, Milk, Sprout, Apple, Bean, Coffee, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Bird, Fish, Info, Building, Archive, Layers, Hammer, Microscope, Search, Building2, Library, Trophy, Gavel, Scale, Radar, Settings, Target, ShieldAlert, HeartPulse, Stethoscope, Briefcase, Users, Warehouse, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, GraduationCap, Landmark, Crosshair, TrainFront, HardHat, Siren, Leaf, Truck, School, Lightbulb } from "lucide-react"
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_PANGAN } from "@/app/database/data/types/1_kelistrikan"
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
@@ -10,6 +10,11 @@ import { calculateConstructionProgress, getStatusText } from "@/app/game/data/co
 import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import { infrastrukturRate, sosialRate } from "@/app/database/data/harga_bangunan_negara/1_pembangunan";
+import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
+import JikaUangKurang from "../jika_uang_kurang";
+import JikaMaterialKurang from "../jika_material_kurang";
+import JikaMaterialDanUangKurang from "../jika_material_dan_uang_kurang";
+import { getBuildingRequirement, MaterialRequirement } from "../1-produksi/MaterialRequirement";
 
 interface ModalProps {
   isOpen: boolean;
@@ -23,6 +28,11 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
   const [quantity, setQuantity] = useState(1);
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
   const [showQueue, setShowQueue] = useState(false);
+  const [isInsufficientFundsModalOpen, setIsInsufficientFundsModalOpen] = useState(false);
+  const [isInsufficientMaterialsModalOpen, setIsInsufficientMaterialsModalOpen] = useState(false);
+  const [isInsufficientBothModalOpen, setIsInsufficientBothModalOpen] = useState(false);
+  const [missingMaterialsData, setMissingMaterialsData] = useState<any[]>([]);
+  const [requiredAmount, setRequiredAmount] = useState(0);
 
   const toggleSector = (id: string) => {
     setCollapsedSectors(prev => {
@@ -154,6 +164,63 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
   const handleConfirmBuild = () => {
     if (!confirmBuild) return;
     try {
+      // 1. Calculate total cost
+      const totalCost = confirmBuild.cost * quantity;
+      
+      // 2. Check if budget is sufficient
+      const currentBalance = budgetStorage.getBudget();
+      
+      if (currentBalance < totalCost) {
+        setRequiredAmount(totalCost);
+        setConfirmBuild(null); // Close the initial confirm modal
+        setIsInsufficientFundsModalOpen(true);
+        return;
+      }
+
+      // 3. Check for Material Sufficiency
+      const requirements = getBuildingRequirement(confirmBuild.key);
+      const cumulativeStock = budgetStorage.getCumulativeProduction();
+      const missing: any[] = [];
+
+      const checkMaterial = (label: string, req: number, stock: number, icon: any) => {
+        const totalReq = req * quantity;
+        if (stock < totalReq) {
+          missing.push({ label, required: totalReq, current: stock, icon });
+        }
+      };
+
+      checkMaterial("Beton", requirements.beton, cumulativeStock["5_pabrik_semen"] || 0, Layers);
+      checkMaterial("Baja", requirements.baja, cumulativeStock["12_tambang_bijih_besi"] || 0, Hammer);
+      checkMaterial("Kayu", requirements.kayu, cumulativeStock["6_penggergajian_kayu"] || 0, TreePine);
+
+      const isMoneyShort = currentBalance < totalCost;
+      const areMaterialsShort = missing.length > 0;
+
+      if (isMoneyShort && areMaterialsShort) {
+        setRequiredAmount(totalCost);
+        setMissingMaterialsData(missing);
+        setConfirmBuild(null);
+        setIsInsufficientBothModalOpen(true);
+        return;
+      }
+
+      if (isMoneyShort) {
+        setRequiredAmount(totalCost);
+        setConfirmBuild(null); // Close the initial confirm modal
+        setIsInsufficientFundsModalOpen(true);
+        return;
+      }
+
+      if (areMaterialsShort) {
+        setMissingMaterialsData(missing);
+        setConfirmBuild(null);
+        setIsInsufficientMaterialsModalOpen(true);
+        return;
+      }
+
+      // 4. Deduct construction cost from budget
+      budgetStorage.updateBudget(-totalCost);
+
       let currentStart = getStoredGameDate().getTime();
       const itemsToAdd: any[] = [];
       for (let i = 0; i < quantity; i++) {
@@ -180,6 +247,31 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+        
+        {/* Insufficient Funds Modal */}
+        <JikaUangKurang 
+          isOpen={isInsufficientFundsModalOpen}
+          onClose={() => setIsInsufficientFundsModalOpen(false)}
+          requiredAmount={requiredAmount}
+          currentBalance={budgetStorage.getBudget()}
+        />
+
+        {/* Insufficient Material Modal */}
+        <JikaMaterialKurang 
+          isOpen={isInsufficientMaterialsModalOpen}
+          onClose={() => setIsInsufficientMaterialsModalOpen(false)}
+          missingMaterials={missingMaterialsData}
+        />
+
+        {/* Insufficient Both Modal */}
+        <JikaMaterialDanUangKurang 
+          isOpen={isInsufficientBothModalOpen}
+          onClose={() => setIsInsufficientBothModalOpen(false)}
+          requiredAmount={requiredAmount}
+          currentBalance={budgetStorage.getBudget()}
+          missingMaterials={missingMaterialsData}
+        />
+        
         {/* Header */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
@@ -324,6 +416,13 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
                   </div>
                 )}
               </div>
+
+              {/* Material Requirements Section */}
+              <MaterialRequirement 
+                buildingKey={confirmBuild.key} 
+                quantity={quantity} 
+              />
+
               <div className="w-full flex justify-center gap-4 bg-zinc-950/80 border border-zinc-800 p-2 rounded-2xl">
                 <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="w-10 h-10 rounded-lg bg-zinc-900 border border-zinc-700 font-black">-</button>
                 <div className="flex flex-col items-center min-w-[50px]"><span className="text-xl font-black text-white">{quantity}</span><span className="text-[10px] text-zinc-500">Unit</span></div>

@@ -51,8 +51,7 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
         padi: "1_sawah_padi", gandum_jagung: "2_ladang_gandum", sayur_umbi: "4_ladang_umbi", 
         kedelai: "5_ladang_kedelai", kelapa_sawit: "6_perkebunan_sawit", kopi_teh_kakao: "8_perkebunan_kopi",
         // Militer
-        pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi", 
-        pabrik_kendaraan_tempur: "pabrik_kendaraan_tempur", pabrik_senjata_berat: "pabrik_senjata_berat"
+        pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi"
       };
       const stockKey = stockKeyMap[selectedKey] || selectedKey;
       const latestStock = Math.floor(initialBudgetData.cumulativeProduction?.[stockKey] || 0);
@@ -83,8 +82,7 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
           padi: "1_sawah_padi", gandum_jagung: "2_ladang_gandum", sayur_umbi: "4_ladang_umbi", 
           kedelai: "5_ladang_kedelai", kelapa_sawit: "6_perkebunan_sawit", kopi_teh_kakao: "8_perkebunan_kopi",
           // Militer
-          pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi", 
-          pabrik_kendaraan_tempur: "pabrik_kendaraan_tempur", pabrik_senjata_berat: "pabrik_senjata_berat"
+          pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi"
         };
         const stockKey = stockKeyMap[selectedKey] || selectedKey;
         const latestStock = Math.floor(latestData.cumulativeProduction?.[stockKey] || 0);
@@ -111,8 +109,7 @@ export const EksporEksekusi: React.FC<EksporEksekusiProps> = ({
     padi: "1_sawah_padi", gandum_jagung: "2_ladang_gandum", sayur_umbi: "4_ladang_umbi", 
     kedelai: "5_ladang_kedelai", kelapa_sawit: "6_perkebunan_sawit", kopi_teh_kakao: "8_perkebunan_kopi",
     // Militer
-    pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi", 
-    pabrik_kendaraan_tempur: "pabrik_kendaraan_tempur", pabrik_senjata_berat: "pabrik_senjata_berat"
+    pabrik_drone_kamikaze: "pabrik_drone_kamikaze", pabrik_amunisi: "pabrik_amunisi"
   };
   const stockKey = stockKeyMap[selectedKey] || selectedKey;
   const userStock = Math.floor(budgetData.cumulativeProduction?.[stockKey] || 0);

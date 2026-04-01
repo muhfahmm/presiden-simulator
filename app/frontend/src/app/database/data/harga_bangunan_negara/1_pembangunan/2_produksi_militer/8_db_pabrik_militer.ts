@@ -12,7 +12,7 @@ export const pabrikMiliterRate = {
     waktu_pembangunan: 90,
     biaya_pemeliharaan: 500,
     lowongan_kerja: 1200,
-    konsumsi_listrik: 15,
+    konsumsi_listrik: 55,
     produksi: 5,
     satuan: "Unit"
   },
@@ -24,38 +24,10 @@ export const pabrikMiliterRate = {
     deskripsi: "Produksi Berbagai Jenis Amunisi",
     biaya_pembangunan: 1800,
     waktu_pembangunan: 45,
-    biaya_pemeliharaan: 100,
-    lowongan_kerja: 800,
-    konsumsi_listrik: 10,
-    produksi: 500,
-    satuan: "Ton"
-  },
-  "3_pabrik_kendaraan_tempur": {
-    key: "3_pabrik_kendaraan_tempur",
-    dataKey: "pabrik_kendaraan_tempur",
-    groupId: "pabrik_militer",
-    label: "Pabrik Kendaraan Tempur",
-    deskripsi: "Produksi Tank, APC, & Kendaraan Taktis",
-    biaya_pembangunan: 12000,
-    waktu_pembangunan: 180,
-    biaya_pemeliharaan: 1500,
-    lowongan_kerja: 2500,
-    konsumsi_listrik: 25,
-    produksi: 2,
-    satuan: "Unit"
-  },
-  "4_pabrik_senjata_berat": {
-    key: "4_pabrik_senjata_berat",
-    dataKey: "pabrik_senjata_berat",
-    groupId: "pabrik_militer",
-    label: "Pabrik Senjata Berat",
-    deskripsi: "Produksi Artileri, Roket, & SAM",
-    biaya_pembangunan: 8500,
-    waktu_pembangunan: 120,
-    biaya_pemeliharaan: 1000,
-    lowongan_kerja: 1800,
-    konsumsi_listrik: 20,
-    produksi: 1,
+    biaya_pemeliharaan: 500,
+    lowongan_kerja: 1200,
+    konsumsi_listrik: 40,
+    produksi: 5,
     satuan: "Unit"
   }
 };

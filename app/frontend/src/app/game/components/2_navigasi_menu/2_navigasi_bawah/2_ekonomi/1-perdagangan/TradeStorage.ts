@@ -19,6 +19,8 @@ export const tradeStorage = {
       historiImportStorage.clearHistory();
       historiEksporStorage.clearHistory();
       importStockStorage.clear();
+      // Reset active transactions (clears the flying planes/ships)
+      localStorage.removeItem(TRANSACTIONS_KEY);
 
       // Notify UI listeners for real-time synchronization
       window.dispatchEvent(new CustomEvent('trade_storage_updated'));

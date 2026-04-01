@@ -9,10 +9,14 @@ import {
   olahanPanganRate, 
   farmasiRate 
 } from "@/app/database/data/harga_bangunan_negara/1_pembangunan";
-import { produksiMiliter, tempatUmum } from "@/app/database/data/types";
+import { pertahananRate, produksiMiliter, pabrikMiliterRate } from "@/app/database/data/types/4_militer";
+import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
+import JikaUangKurang from "../jika_uang_kurang";
+import JikaMaterialKurang from "../jika_material_kurang";
+import JugaMaterialDanUangKurang from "../jika_material_dan_uang_kurang";
+import { getBuildingRequirement } from "./MaterialRequirement";
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI } from "@/app/database/data/types/1_kelistrikan"
 import { gameStorage } from "@/app/game/gamestorage";
-import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
@@ -30,6 +34,11 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   const [tick, setTick] = useState(0);
   const [activeConstructions, setActiveConstructions] = useState<any[]>([]);
   const [quantity, setQuantity] = useState(1);
+  const [isInsufficientFundsModalOpen, setIsInsufficientFundsModalOpen] = useState(false);
+  const [isInsufficientMaterialsModalOpen, setIsInsufficientMaterialsModalOpen] = useState(false);
+  const [isInsufficientBothModalOpen, setIsInsufficientBothModalOpen] = useState(false);
+  const [missingMaterialsData, setMissingMaterialsData] = useState<any[]>([]);
+  const [requiredAmount, setRequiredAmount] = useState(0);
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
   const [showQueue, setShowQueue] = useState(false);
 
@@ -171,8 +180,61 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
   const handleConfirmBuild = () => {
     if (!confirmBuild) return;
     try {
-      // Deduct construction cost from budget
+      // 1. Calculate total cost
       const totalCost = confirmBuild.cost * quantity;
+      
+      // 2. Check if budget is sufficient
+      const currentBalance = budgetStorage.getBudget();
+      
+      if (currentBalance < totalCost) {
+        setRequiredAmount(totalCost);
+        setConfirmBuild(null); // Close the initial confirm modal
+        setIsInsufficientFundsModalOpen(true);
+        return;
+      }
+
+      // 3. Check for Material Sufficiency
+      const requirements = getBuildingRequirement(confirmBuild.key);
+      const cumulativeStock = budgetStorage.getCumulativeProduction();
+      const missing: any[] = [];
+
+      const checkMaterial = (label: string, req: number, stock: number, icon: any) => {
+        const totalReq = req * quantity;
+        if (stock < totalReq) {
+          missing.push({ label, required: totalReq, current: stock, icon });
+        }
+      };
+
+      checkMaterial("Beton", requirements.beton, cumulativeStock["5_pabrik_semen"] || 0, Layers);
+      checkMaterial("Baja", requirements.baja, cumulativeStock["12_tambang_bijih_besi"] || 0, Hammer);
+      checkMaterial("Kayu", requirements.kayu, cumulativeStock["6_penggergajian_kayu"] || 0, TreePine);
+
+      const isMoneyShort = currentBalance < totalCost;
+      const areMaterialsShort = missing.length > 0;
+
+      if (isMoneyShort && areMaterialsShort) {
+        setRequiredAmount(totalCost);
+        setMissingMaterialsData(missing);
+        setConfirmBuild(null);
+        setIsInsufficientBothModalOpen(true);
+        return;
+      }
+
+      if (isMoneyShort) {
+        setRequiredAmount(totalCost);
+        setConfirmBuild(null); // Close the initial confirm modal
+        setIsInsufficientFundsModalOpen(true);
+        return;
+      }
+
+      if (areMaterialsShort) {
+        setMissingMaterialsData(missing);
+        setConfirmBuild(null);
+        setIsInsufficientMaterialsModalOpen(true);
+        return;
+      }
+
+      // 4. Deduct construction cost from budget
       budgetStorage.updateBudget(-totalCost);
 
       let currentStart = getStoredGameDate().getTime();
@@ -515,6 +577,30 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
             </div>
           </div>
         </div>
+
+        {/* Insufficient Funds Modal */}
+        <JikaUangKurang 
+          isOpen={isInsufficientFundsModalOpen}
+          onClose={() => setIsInsufficientFundsModalOpen(false)}
+          requiredAmount={requiredAmount}
+          currentBalance={budgetStorage.getBudget()}
+        />
+
+        {/* Insufficient Material Modal */}
+        <JikaMaterialKurang 
+          isOpen={isInsufficientMaterialsModalOpen}
+          onClose={() => setIsInsufficientMaterialsModalOpen(false)}
+          missingMaterials={missingMaterialsData}
+        />
+
+        {/* Insufficient Both Modal */}
+        <JugaMaterialDanUangKurang 
+          isOpen={isInsufficientBothModalOpen}
+          onClose={() => setIsInsufficientBothModalOpen(false)}
+          requiredAmount={requiredAmount}
+          currentBalance={budgetStorage.getBudget()}
+          missingMaterials={missingMaterialsData}
+        />
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
