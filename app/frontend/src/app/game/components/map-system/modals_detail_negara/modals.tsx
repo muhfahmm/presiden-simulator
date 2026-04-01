@@ -26,7 +26,6 @@ import StatusPerjanjianDagang from "./2_diplomasi_hubungan/4_perjanjian_dagang/S
 import TandaTanganDagang from "./2_diplomasi_hubungan/4_perjanjian_dagang/TandaTanganDagang";
 import ModalsTingkatkanHubungan from "./4_bantuan_dan_kerjasama/3_tingkatkan_hubungan/modalsTingkatkanHubungan";
 import BeriTentaraModal from "./4_bantuan_dan_kerjasama/1_beri_tentara/BeriTentaraModal";
-import KirimHadiahModal from "./4_bantuan_dan_kerjasama/2_kirim_hadiah/KirimHadiahModal";
 import DukungKedaulatanModal from "./4_bantuan_dan_kerjasama/4_dukung_kedaulatan/DukungKedaulatanModal";
 import MintaBantuanModal from "./4_bantuan_dan_kerjasama/5_minta_bantuan/MintaBantuanModal";
 import TanamkanIdeologiModal from "./4_bantuan_dan_kerjasama/6_tanamkan_ideologi/TanamkanIdeologiModal";
@@ -446,15 +445,6 @@ export default function StrategyModal({
             setActiveMenu(`CountryModal:${targetId}:bantuan_kerjasama`);
           }}
           targetCountry={targetId}
-        />
-      )}
-
-      {activeSubTab === 'kirim_hadiah' && (
-        <KirimHadiahModal 
-          isOpen={true}
-          onClose={() => {
-            setActiveMenu(`CountryModal:${targetId}:bantuan_kerjasama`);
-          }}
         />
       )}
 

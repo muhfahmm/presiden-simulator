@@ -10,7 +10,7 @@ export const mineralKritisRate = {
     satuan: "KG",
     biaya_pemeliharaan: 50,
     waktu_pembangunan: 30,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 5500,
     lowongan_kerja: 1000,
     konsumsi_listrik: 10
   },
@@ -22,7 +22,7 @@ export const mineralKritisRate = {
     satuan: "KG",
     biaya_pemeliharaan: 100,
     waktu_pembangunan: 90,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 6000,
     lowongan_kerja: 500,
     konsumsi_listrik: 40
   },
@@ -34,7 +34,7 @@ export const mineralKritisRate = {
     satuan: "TON",
     biaya_pemeliharaan: 30,
     waktu_pembangunan: 45,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 1200,
     lowongan_kerja: 2000,
     konsumsi_listrik: 15
   },
@@ -46,7 +46,7 @@ export const mineralKritisRate = {
     satuan: "BARREL",
     biaya_pemeliharaan: 60,
     waktu_pembangunan: 60,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 4500,
     lowongan_kerja: 300,
     konsumsi_listrik: 25
   },
@@ -58,7 +58,7 @@ export const mineralKritisRate = {
     satuan: "MMSCFD",
     biaya_pemeliharaan: 40,
     waktu_pembangunan: 60,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 3500,
     lowongan_kerja: 200,
     konsumsi_listrik: 20
   },
@@ -70,7 +70,7 @@ export const mineralKritisRate = {
     satuan: "TON",
     biaya_pemeliharaan: 10,
     waktu_pembangunan: 20,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 1000,
     lowongan_kerja: 400,
     konsumsi_listrik: 5
   },
@@ -82,7 +82,7 @@ export const mineralKritisRate = {
     satuan: "TON",
     biaya_pemeliharaan: 45,
     waktu_pembangunan: 60,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 2800,
     lowongan_kerja: 1500,
     konsumsi_listrik: 20
   },
@@ -94,7 +94,7 @@ export const mineralKritisRate = {
     satuan: "TON",
     biaya_pemeliharaan: 70,
     waktu_pembangunan: 90,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 3200,
     lowongan_kerja: 1200,
     konsumsi_listrik: 25
   },
@@ -106,7 +106,7 @@ export const mineralKritisRate = {
     satuan: "TON",
     biaya_pemeliharaan: 40,
     waktu_pembangunan: 60,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 1800,
     lowongan_kerja: 1500,
     konsumsi_listrik: 15
   },
@@ -118,7 +118,7 @@ export const mineralKritisRate = {
     satuan: "TON",
     biaya_pemeliharaan: 35,
     waktu_pembangunan: 45,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 2000,
     lowongan_kerja: 1400,
     konsumsi_listrik: 30
   },
@@ -130,7 +130,7 @@ export const mineralKritisRate = {
     satuan: "KG",
     biaya_pemeliharaan: 120,
     waktu_pembangunan: 120,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 7500,
     lowongan_kerja: 800,
     konsumsi_listrik: 35
   },
@@ -142,7 +142,7 @@ export const mineralKritisRate = {
     satuan: "TON",
     biaya_pemeliharaan: 25,
     waktu_pembangunan: 45,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 1500,
     lowongan_kerja: 1800,
     konsumsi_listrik: 15
   }

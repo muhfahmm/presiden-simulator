@@ -266,7 +266,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         unit: val.satuan,
         count: (currentData.sektor_listrik?.[val.dataKey as keyof typeof currentData.sektor_listrik] || 0) + ((buildingDeltas[key] as number) || 0),
         pendapatan_nasional: 0,
-        cost: val.biaya_pembangunan || 35,
+        cost: val.biaya_pembangunan || 1500,
         buildTime: val.waktu_pembangunan || 90,
         maintenanceCost: val.biaya_pemeliharaan ?? 5,
         lowongan_kerja: val.lowongan_kerja || 0
@@ -295,7 +295,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           count: (currentData.sektor_ekstraksi?.[val.dataKey as keyof typeof currentData.sektor_ekstraksi] || 0) + ((buildingDeltas[key] as number) || 0),
           powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: 0,
-          cost: val.biaya_pembangunan || 30,
+          cost: val.biaya_pembangunan || 1000,
           buildTime: val.waktu_pembangunan || 30,
           maintenanceCost: val.biaya_pemeliharaan ?? 10,
           lowongan_kerja: val.lowongan_kerja || 0
@@ -318,7 +318,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           count: (currentData.sektor_manufaktur?.[val.dataKey as keyof typeof currentData.sektor_manufaktur] || 0) + ((buildingDeltas[key] as number) || 0),
           powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: val.biaya_pembangunan || 45,
+          cost: val.biaya_pembangunan || 2000,
           buildTime: val.waktu_pembangunan || 45,
           maintenanceCost: val.biaya_pemeliharaan ?? 15,
           lowongan_kerja: val.lowongan_kerja || 0
@@ -341,7 +341,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           count: (currentData.sektor_peternakan?.[val.dataKey as keyof typeof currentData.sektor_peternakan] || 0) + ((buildingDeltas[key] as number) || 0),
           powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: val.biaya_pembangunan || 15,
+          cost: val.biaya_pembangunan || 1200,
           buildTime: val.waktu_pembangunan || 25,
           maintenanceCost: val.biaya_pemeliharaan ?? 2,
           lowongan_kerja: val.lowongan_kerja || 0
@@ -364,7 +364,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           count: (currentData.sektor_agrikultur?.[val.dataKey as keyof typeof currentData.sektor_agrikultur] || 0) + ((buildingDeltas[key] as number) || 0),
           powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: val.biaya_pembangunan || 10,
+          cost: val.biaya_pembangunan || 1000,
           buildTime: val.waktu_pembangunan || 30,
           maintenanceCost: val.biaya_pemeliharaan ?? 1,
           lowongan_kerja: val.lowongan_kerja || 0
@@ -387,7 +387,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           count: (currentData.sektor_perikanan?.[val.dataKey as keyof typeof currentData.sektor_perikanan] || 0) + ((buildingDeltas[key] as number) || 0),
           powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: val.biaya_pembangunan || 12,
+          cost: val.biaya_pembangunan || 1100,
           buildTime: val.waktu_pembangunan || 20,
           maintenanceCost: val.biaya_pemeliharaan ?? 1.5,
           lowongan_kerja: val.lowongan_kerja || 0
@@ -410,7 +410,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           count: (currentData.sektor_olahan_pangan?.[val.dataKey as keyof typeof currentData.sektor_olahan_pangan] || 0) + ((buildingDeltas[key] as number) || 0),
           powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: val.biaya_pembangunan || 25,
+          cost: val.biaya_pembangunan || 1500,
           buildTime: val.waktu_pembangunan || 35,
           maintenanceCost: val.biaya_pemeliharaan ?? 8,
           lowongan_kerja: val.lowongan_kerja || 0
@@ -433,7 +433,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           count: (currentData.sektor_farmasi?.[val.dataKey as keyof typeof currentData.sektor_farmasi] || 0) + ((buildingDeltas[key] as number) || 0),
           powerUsage: val.konsumsi_listrik || 0,
           pendapatan_nasional: val.pendapatan_nasional,
-          cost: val.biaya_pembangunan || 60,
+          cost: val.biaya_pembangunan || 4500,
           buildTime: val.waktu_pembangunan || 60,
           maintenanceCost: val.biaya_pemeliharaan ?? 25,
           lowongan_kerja: val.lowongan_kerja || 0

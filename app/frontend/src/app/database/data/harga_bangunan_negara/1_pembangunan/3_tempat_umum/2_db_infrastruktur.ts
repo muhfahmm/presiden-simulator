@@ -10,7 +10,7 @@ export const infrastrukturRate = {
     satuan: "Unit",
     biaya_pemeliharaan: 1,
     waktu_pembangunan: 15,
-    biaya_pembangunan: 5,
+    biaya_pembangunan: 1000,
     konsumsi_listrik: 0
   },
   "2_jalan_tol": {
@@ -21,7 +21,7 @@ export const infrastrukturRate = {
     satuan: "Unit",
     biaya_pemeliharaan: 5,
     waktu_pembangunan: 60,
-    biaya_pembangunan: 80,
+    biaya_pembangunan: 6000,
     konsumsi_listrik: 3
   },
   "3_terminal_bus": {
@@ -32,7 +32,7 @@ export const infrastrukturRate = {
     satuan: "Unit",
     biaya_pemeliharaan: 3,
     waktu_pembangunan: 45,
-    biaya_pembangunan: 30,
+    biaya_pembangunan: 3500,
     lowongan_kerja: 150,
     konsumsi_listrik: 5
   },
@@ -45,7 +45,7 @@ export const infrastrukturRate = {
     satuan: "Unit",
     biaya_pemeliharaan: 10,
     waktu_pembangunan: 90,
-    biaya_pembangunan: 120,
+    biaya_pembangunan: 12000,
     lowongan_kerja: 300,
     konsumsi_listrik: 15
   },
@@ -57,7 +57,7 @@ export const infrastrukturRate = {
     satuan: "Unit",
     biaya_pemeliharaan: 15,
     waktu_pembangunan: 120,
-    biaya_pembangunan: 150,
+    biaya_pembangunan: 20000,
     lowongan_kerja: 400,
     konsumsi_listrik: 20
   },
@@ -70,7 +70,7 @@ export const infrastrukturRate = {
     satuan: "Unit",
     biaya_pemeliharaan: 40,
     waktu_pembangunan: 180,
-    biaya_pembangunan: 350,
+    biaya_pembangunan: 35000,
     lowongan_kerja: 1000,
     konsumsi_listrik: 25
   },
@@ -82,7 +82,7 @@ export const infrastrukturRate = {
     satuan: "Unit",
     biaya_pemeliharaan: 60,
     waktu_pembangunan: 240,
-    biaya_pembangunan: 450,
+    biaya_pembangunan: 50000,
     lowongan_kerja: 1500,
     konsumsi_listrik: 30
   },
@@ -94,7 +94,7 @@ export const infrastrukturRate = {
     satuan: "Unit",
     biaya_pemeliharaan: 5,
     waktu_pembangunan: 30,
-    biaya_pembangunan: 15,
+    biaya_pembangunan: 2500,
     lowongan_kerja: 50,
     konsumsi_listrik: 2
   },
@@ -109,7 +109,7 @@ export const sosialRate = {
     key: "1_tk_sd", 
     dataKey: "tk_sd", 
     deskripsi: "Pendidikan", 
-    biaya_pembangunan: 13, 
+    biaya_pembangunan: 1500, 
     waktu_pembangunan: 40, 
     biaya_pemeliharaan: 2, 
     satuan: "Unit" 
@@ -118,7 +118,7 @@ export const sosialRate = {
     key: "2_smp_sma", 
     dataKey: "smp_sma", 
     deskripsi: "Pendidikan", 
-    biaya_pembangunan: 32, 
+    biaya_pembangunan: 3500, 
     waktu_pembangunan: 60, 
     biaya_pemeliharaan: 5, 
     satuan: "Unit" 
@@ -127,7 +127,7 @@ export const sosialRate = {
     key: "3_pt_lembaga", 
     dataKey: "pt_lembaga", 
     deskripsi: "Pendidikan", 
-    biaya_pembangunan: 230, 
+    biaya_pembangunan: 12000, 
     waktu_pembangunan: 150, 
     biaya_pemeliharaan: 20, 
     satuan: "Unit" 
@@ -136,7 +136,7 @@ export const sosialRate = {
     key: "4_lab_riset", 
     dataKey: "lab_riset", 
     deskripsi: "Riset", 
-    biaya_pembangunan: 290, 
+    biaya_pembangunan: 10000, 
     waktu_pembangunan: 120, 
     biaya_pemeliharaan: 30, 
     satuan: "Unit" 
@@ -145,7 +145,7 @@ export const sosialRate = {
     key: "5_observatorium", 
     dataKey: "observatorium", 
     deskripsi: "Riset", 
-    biaya_pembangunan: 120, 
+    biaya_pembangunan: 8000, 
     waktu_pembangunan: 180, 
     biaya_pemeliharaan: 15, 
     satuan: "Unit" 
@@ -154,7 +154,7 @@ export const sosialRate = {
     key: "6_pusat_pengembangan", 
     dataKey: "pusat_pengembangan", 
     deskripsi: "Inovasi", 
-    biaya_pembangunan: 180, 
+    biaya_pembangunan: 7500, 
     waktu_pembangunan: 90, 
     biaya_pemeliharaan: 20, 
     satuan: "Unit" 
@@ -165,7 +165,7 @@ export const sosialRate = {
     key: "7_rumah_sakit_besar", 
     dataKey: "rumah_sakit_besar", 
     deskripsi: "Kesehatan", 
-    biaya_pembangunan: 350, 
+    biaya_pembangunan: 25000, 
     waktu_pembangunan: 180, 
     biaya_pemeliharaan: 50, 
     satuan: "Unit" 
@@ -174,7 +174,7 @@ export const sosialRate = {
     key: "8_rumah_sakit_kecil", 
     dataKey: "rumah_sakit_kecil", 
     deskripsi: "Kesehatan", 
-    biaya_pembangunan: 80, 
+    biaya_pembangunan: 5500, 
     waktu_pembangunan: 45, 
     biaya_pemeliharaan: 15, 
     satuan: "Unit" 
@@ -183,7 +183,7 @@ export const sosialRate = {
     key: "9_pusat_diagnostik", 
     dataKey: "pusat_diagnostik", 
     deskripsi: "Kesehatan", 
-    biaya_pembangunan: 30, 
+    biaya_pembangunan: 3000, 
     waktu_pembangunan: 30, 
     biaya_pemeliharaan: 5, 
     satuan: "Unit" 
@@ -192,7 +192,7 @@ export const sosialRate = {
     key: "10_kolam_renang", 
     dataKey: "kolam_renang", 
     deskripsi: "Olahraga", 
-    biaya_pembangunan: 15, 
+    biaya_pembangunan: 1200, 
     waktu_pembangunan: 30, 
     biaya_pemeliharaan: 3, 
     satuan: "Unit" 
@@ -201,7 +201,7 @@ export const sosialRate = {
     key: "11_sirkuit_balap", 
     dataKey: "sirkuit_balap", 
     deskripsi: "Olahraga", 
-    biaya_pembangunan: 250, 
+    biaya_pembangunan: 18000, 
     waktu_pembangunan: 180, 
     biaya_pemeliharaan: 40, 
     satuan: "Unit" 
@@ -210,7 +210,7 @@ export const sosialRate = {
     key: "12_stadium_int", 
     dataKey: "stadium_int", 
     deskripsi: "Olahraga", 
-    biaya_pembangunan: 670, 
+    biaya_pembangunan: 35000, 
     waktu_pembangunan: 240, 
     biaya_pemeliharaan: 60, 
     satuan: "Unit" 
@@ -221,7 +221,7 @@ export const sosialRate = {
     key: "16_kejaksaan_court", 
     dataKey: "kejaksaan_court", 
     deskripsi: "Hukum", 
-    biaya_pembangunan: 120, 
+    biaya_pembangunan: 8500, 
     waktu_pembangunan: 90, 
     biaya_pemeliharaan: 15, 
     satuan: "Unit" 
@@ -230,7 +230,7 @@ export const sosialRate = {
     key: "17_legal_aid", 
     dataKey: "legal_aid", 
     deskripsi: "Hukum", 
-    biaya_pembangunan: 30, 
+    biaya_pembangunan: 2000, 
     waktu_pembangunan: 30, 
     biaya_pemeliharaan: 5, 
     satuan: "Unit" 

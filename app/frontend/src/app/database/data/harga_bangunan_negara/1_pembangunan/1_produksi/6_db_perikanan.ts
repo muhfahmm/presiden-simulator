@@ -10,7 +10,7 @@ export const perikananRate = {
     satuan: "KG",
     biaya_pemeliharaan: 50,
     waktu_pembangunan: 45,
-    biaya_pembangunan: 15,
+    biaya_pembangunan: 2800,
     lowongan_kerja: 250,
     konsumsi_listrik: 0.65
   },
@@ -22,7 +22,7 @@ export const perikananRate = {
     satuan: "KG",
     biaya_pemeliharaan: 30,
     waktu_pembangunan: 45,
-    biaya_pembangunan: 15,
+    biaya_pembangunan: 1500,
     lowongan_kerja: 200,
     konsumsi_listrik: 0.5
   },
@@ -34,7 +34,7 @@ export const perikananRate = {
     satuan: "GRAM",
     biaya_pemeliharaan: 80,
     waktu_pembangunan: 120,
-    biaya_pembangunan: 15,
+    biaya_pembangunan: 5500,
     lowongan_kerja: 150,
     konsumsi_listrik: 0.65
   }

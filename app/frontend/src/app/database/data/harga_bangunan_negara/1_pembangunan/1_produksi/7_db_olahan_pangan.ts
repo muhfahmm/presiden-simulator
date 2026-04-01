@@ -10,7 +10,7 @@ export const olahanPanganRate = {
     satuan: "LITER",
     biaya_pemeliharaan: 30,
     waktu_pembangunan: 30,
-    biaya_pembangunan: 25,
+    biaya_pembangunan: 1500,
     lowongan_kerja: 300,
     konsumsi_listrik: 2
   },
@@ -22,7 +22,7 @@ export const olahanPanganRate = {
     satuan: "TON",
     biaya_pemeliharaan: 50,
     waktu_pembangunan: 60,
-    biaya_pembangunan: 25,
+    biaya_pembangunan: 3500,
     lowongan_kerja: 800,
     konsumsi_listrik: 10
   },
@@ -34,7 +34,7 @@ export const olahanPanganRate = {
     satuan: "UNIT",
     biaya_pemeliharaan: 40,
     waktu_pembangunan: 30,
-    biaya_pembangunan: 25,
+    biaya_pembangunan: 2500,
     lowongan_kerja: 200,
     konsumsi_listrik: 2
   },
@@ -46,7 +46,7 @@ export const olahanPanganRate = {
     satuan: "TON",
     biaya_pemeliharaan: 100,
     waktu_pembangunan: 60,
-    biaya_pembangunan: 25,
+    biaya_pembangunan: 4000,
     lowongan_kerja: 400,
     konsumsi_listrik: 5
   },
@@ -58,7 +58,7 @@ export const olahanPanganRate = {
     satuan: "UNIT",
     biaya_pemeliharaan: 40,
     waktu_pembangunan: 30,
-    biaya_pembangunan: 25,
+    biaya_pembangunan: 2800,
     lowongan_kerja: 500,
     konsumsi_listrik: 10
   }

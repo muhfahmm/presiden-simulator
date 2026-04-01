@@ -1,12 +1,11 @@
 "use client"
 
 import React, { useState } from "react";
-import { Shield, Gift, Heart, AlertTriangle, Lightbulb } from "lucide-react";
+import { Shield, Heart, AlertTriangle, Lightbulb } from "lucide-react";
 import ActionCard from "../shared/ActionCard";
 
 // Import Modular Modals
 import BeriTentaraModal from "./1_beri_tentara/BeriTentaraModal";
-import KirimHadiahModal from "./2_kirim_hadiah/KirimHadiahModal";
 import TingkatkanHubunganModal from "./3_tingkatkan_hubungan/TingkatkanHubunganModal";
 import DukungKedaulatanModal from "./4_dukung_kedaulatan/DukungKedaulatanModal";
 import MintaBantuanModal from "./5_minta_bantuan/MintaBantuanModal";
@@ -42,12 +41,6 @@ export default function AidTab({ targetId, setActiveMenu }: AidTabProps) {
         bg="from-green-900/30 to-zinc-900" 
         onClick={() => navigateTo('beri_tentara')}
         disabled={!canGiveTroops}
-      />
-      <ActionCard 
-        icon={<Gift className="h-4 w-4" />} 
-        label="Kirim Hadiah" 
-        bg="from-pink-900/30 to-zinc-900" 
-        onClick={() => navigateTo('kirim_hadiah')}
       />
       <ActionCard 
         icon={<Heart className="h-4 w-4" />} 
