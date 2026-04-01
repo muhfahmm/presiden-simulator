@@ -17,6 +17,8 @@ import {
   INFANTRY_POWER_PER_UNIT, calculateTotalMilitaryPower
 } from "./kekuatanmiliter";
 import Perbandingan from "./1_menu_modal/1_umumkan_perang/perbandingan";
+import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
+import { playerMilitaryStorage } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
 
 export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: boolean; onClose: () => void; data: any }) {
   const [activeConstructions, setActiveConstructions] = useState<any[]>([]);
@@ -32,11 +34,40 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
   const currentData = data;
 
   const globalRankings = useMemo(() => {
+    const aidData = militaryAidStorage.getAid();
+    const playerDeductions = playerMilitaryStorage.getDeductions();
+
     return countries
       .map(c => {
         // Untuk negara user, kita gunakan buildingDeltas juga agar real-time saat dipesan
         const isUserCountry = c.name_id === currentData?.name_id || c.name_en === currentData?.name_en;
-        const power = calculateTotalMilitaryPower(c.armada_militer, isUserCountry ? buildingStorage.getData().buildingDeltas : {});
+        
+        // Gabungkan armada statis dengan bantuan (aid deltas) dan building deltas (hanya untuk user)
+        const countryAid = aidData[c.name_en.toLowerCase()] || aidData[c.name_id.toLowerCase()] || {};
+        const playerDeltas = isUserCountry ? buildingStorage.getData().buildingDeltas : {};
+        
+        // Convert countryAid keys to database paths if needed?
+        // calculateTotalMilitaryPower handles deltas as a record of unitKey -> count
+        // buildingStorage uses short keys (tank), but militaryAidStorage uses base unit names (tank_tempur_utama)
+        // Let's create a combined delta object
+        const finalDeltas: Record<string, number> = { ...playerDeltas };
+        
+        // Apply received aid
+        Object.entries(countryAid).forEach(([unit, count]) => {
+           finalDeltas[unit] = (finalDeltas[unit] || 0) + count;
+        });
+
+        // Apply sent aid deductions (only for player)
+        if (isUserCountry) {
+          Object.entries(playerDeductions).forEach(([unitKey, count]) => {
+            const shortKey = MILITARY_KEY_MAP[unitKey];
+            if (shortKey) {
+              finalDeltas[shortKey] = (finalDeltas[shortKey] || 0) - count;
+            }
+          });
+        }
+
+        const power = calculateTotalMilitaryPower(c.armada_militer, finalDeltas);
         return {
           id: c.name_id || c.name_en,
           name: c.name_id || c.name_en,
@@ -92,13 +123,33 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
         console.error("DEBUG: Armada Hub poll error", err);
       }
     }, 1000);
-    return () => clearInterval(interval);
-  }, [isOpen]);
 
-  if (!isOpen || !currentData) return null;
+    const handleUpdate = () => setTick(t => t + 1);
+    window.addEventListener('player_military_updated', handleUpdate);
+    window.addEventListener('building_storage_updated', handleUpdate);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('player_military_updated', handleUpdate);
+      window.removeEventListener('building_storage_updated', handleUpdate);
+    };
+  }, [isOpen]);
 
   const buildingData = buildingStorage.getData();
   const buildingDeltas = buildingData.buildingDeltas;
+  const playerDeductions = playerMilitaryStorage.getDeductions();
+  
+  // Create effective deltas for national badges/view
+  const effectiveDeltas = useMemo(() => {
+    const deltas = { ...buildingDeltas };
+    Object.entries(playerDeductions).forEach(([unitKey, count]) => {
+      const shortKey = MILITARY_KEY_MAP[unitKey];
+      if (shortKey) deltas[shortKey] = (deltas[shortKey] || 0) - count;
+    });
+    return deltas;
+  }, [buildingDeltas, playerDeductions]);
+
+  if (!isOpen || !currentData) return null;
 
   const totalPasokan = hitungTotalKapasitas(currentData);
   const totalBeban = hitungTotalKonsumsiNasional(currentData);
@@ -112,32 +163,32 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
       color: "text-orange-500",
       items: [
         // ARMADA DARAT
-        { key: "barak", groupId: "darat", label: "Barak Militer/Pasukan", icon: MilitaryIcon, desc: "Hunian Tentara", biaya_pembangunan: 40, waktu_pembangunan: 45, biaya_pemeliharaan: 15, count: (currentData.armada_militer.barak || 0) + ((buildingDeltas["barak"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.barak, power: INFANTRY_POWER_PER_UNIT },
-        { key: "tank", groupId: "darat", label: "Main Battle Tank", icon: Truck, desc: "Kavaleri Darat", biaya_pembangunan: 20, waktu_pembangunan: 30, biaya_pemeliharaan: 10, lowongan_kerja: 4, count: (currentData.armada_militer.darat.tank_tempur_utama || 0) + ((buildingDeltas["tank"] as number) || 0), consumption: 0, power: TANK_POWER_PER_UNIT },
-        { key: "apc", groupId: "darat", label: "APC / IFV", icon: Truck, desc: "Transportasi Taktis", biaya_pembangunan: 8, waktu_pembangunan: 15, biaya_pemeliharaan: 4, lowongan_kerja: 3, count: (currentData.armada_militer.darat.apc_ifv || 0) + ((buildingDeltas["apc"] as number) || 0), consumption: 0, power: APC_POWER_PER_UNIT },
-        { key: "artileri", groupId: "darat", label: "Artileri Berat", icon: Target, desc: "Pukulan Jarak Jauh", biaya_pembangunan: 15, waktu_pembangunan: 45, biaya_pemeliharaan: 8, lowongan_kerja: 6, count: (currentData.armada_militer.darat.artileri_berat || 0) + ((buildingDeltas["artileri"] as number) || 0), consumption: 0, power: ARTILLERY_POWER_PER_UNIT },
-        { key: "rocket", groupId: "darat", label: "MLRS Rocket", icon: Rocket, desc: "Sistem Roket", biaya_pembangunan: 18, waktu_pembangunan: 50, biaya_pemeliharaan: 12, lowongan_kerja: 5, count: (currentData.armada_militer.darat.sistem_peluncur_roket || 0) + ((buildingDeltas["rocket"] as number) || 0), consumption: 0, power: ROCKET_POWER_PER_UNIT },
-        { key: "sam", groupId: "darat", label: "Mobile SAM", icon: ShieldAlert, desc: "Hulu Ledak", biaya_pembangunan: 25, waktu_pembangunan: 60, biaya_pemeliharaan: 15, lowongan_kerja: 6, count: (currentData.armada_militer.darat.pertahanan_udara_mobile || 0) + ((buildingDeltas["sam"] as number) || 0), consumption: 0, power: SAM_POWER_PER_UNIT },
-        { key: "tactical", groupId: "darat", label: "Kendaraan Taktis", icon: Car, desc: "Patroli Tempur", biaya_pembangunan: 5, waktu_pembangunan: 10, biaya_pemeliharaan: 2, lowongan_kerja: 2, count: (currentData.armada_militer.darat.kendaraan_taktis || 0) + ((buildingDeltas["tactical"] as number) || 0), consumption: 0, power: TACTICAL_POWER_PER_UNIT },
+        { key: "barak", groupId: "darat", label: "Barak Militer/Pasukan", icon: MilitaryIcon, desc: "Hunian Tentara", biaya_pembangunan: 40, waktu_pembangunan: 45, biaya_pemeliharaan: 15, count: (currentData.armada_militer.barak || 0) + ((effectiveDeltas["barak"] as number) || 0), consumption: KONSUMSI_PERTAHANAN.barak, power: INFANTRY_POWER_PER_UNIT },
+        { key: "tank", groupId: "darat", label: "Main Battle Tank", icon: Truck, desc: "Kavaleri Darat", biaya_pembangunan: 20, waktu_pembangunan: 30, biaya_pemeliharaan: 10, lowongan_kerja: 4, count: (currentData.armada_militer.darat.tank_tempur_utama || 0) + ((effectiveDeltas["tank"] as number) || 0), consumption: 0, power: TANK_POWER_PER_UNIT },
+        { key: "apc", groupId: "darat", label: "APC / IFV", icon: Truck, desc: "Transportasi Taktis", biaya_pembangunan: 8, waktu_pembangunan: 15, biaya_pemeliharaan: 4, lowongan_kerja: 3, count: (currentData.armada_militer.darat.apc_ifv || 0) + ((effectiveDeltas["apc"] as number) || 0), consumption: 0, power: APC_POWER_PER_UNIT },
+        { key: "artileri", groupId: "darat", label: "Artileri Berat", icon: Target, desc: "Pukulan Jarak Jauh", biaya_pembangunan: 15, waktu_pembangunan: 45, biaya_pemeliharaan: 8, lowongan_kerja: 6, count: (currentData.armada_militer.darat.artileri_berat || 0) + ((effectiveDeltas["artileri"] as number) || 0), consumption: 0, power: ARTILLERY_POWER_PER_UNIT },
+        { key: "rocket", groupId: "darat", label: "MLRS Rocket", icon: Rocket, desc: "Sistem Roket", biaya_pembangunan: 18, waktu_pembangunan: 50, biaya_pemeliharaan: 12, lowongan_kerja: 5, count: (currentData.armada_militer.darat.sistem_peluncur_roket || 0) + ((effectiveDeltas["rocket"] as number) || 0), consumption: 0, power: ROCKET_POWER_PER_UNIT },
+        { key: "sam", groupId: "darat", label: "Mobile SAM", icon: ShieldAlert, desc: "Hulu Ledak", biaya_pembangunan: 25, waktu_pembangunan: 60, biaya_pemeliharaan: 15, lowongan_kerja: 6, count: (currentData.armada_militer.darat.pertahanan_udara_mobile || 0) + ((effectiveDeltas["sam"] as number) || 0), consumption: 0, power: SAM_POWER_PER_UNIT },
+        { key: "tactical", groupId: "darat", label: "Kendaraan Taktis", icon: Car, desc: "Patroli Tempur", biaya_pembangunan: 5, waktu_pembangunan: 10, biaya_pemeliharaan: 2, lowongan_kerja: 2, count: (currentData.armada_militer.darat.kendaraan_taktis || 0) + ((effectiveDeltas["tactical"] as number) || 0), consumption: 0, power: TACTICAL_POWER_PER_UNIT },
         
         // ARMADA LAUT
-        { key: "carrier", groupId: "laut", label: "Kapal Induk", icon: Ship, desc: "Pangkalan Apung", biaya_pembangunan: 750, waktu_pembangunan: 480, biaya_pemeliharaan: 200, lowongan_kerja: 5000, count: (currentData.armada_militer.laut.kapal_induk || 0) + ((buildingDeltas["carrier"] as number) || 0), consumption: 0, power: CARRIER_POWER_PER_UNIT },
-        { key: "destroyer", groupId: "laut", label: "Kapal Destroyer", icon: Waves, desc: "Perusak Maritim", biaya_pembangunan: 280, waktu_pembangunan: 360, biaya_pemeliharaan: 100, lowongan_kerja: 300, count: (currentData.armada_militer.laut.kapal_destroyer || 0) + ((buildingDeltas["destroyer"] as number) || 0), consumption: 0, power: DESTROYER_POWER_PER_UNIT },
-        { key: "corvette", groupId: "laut", label: "Kapal Korvet", icon: Anchor, desc: "Kapal Kawal", biaya_pembangunan: 120, waktu_pembangunan: 180, biaya_pemeliharaan: 45, lowongan_kerja: 100, count: (currentData.armada_militer.laut.kapal_korvet || 0) + ((buildingDeltas["corvette"] as number) || 0), consumption: 0, power: CORVETTE_POWER_PER_UNIT },
-        { key: "submarine", groupId: "laut", label: "Kapal Selam Nuklir", icon: RadioTower, desc: "Siluman Bawah Air", biaya_pembangunan: 420, waktu_pembangunan: 420, biaya_pemeliharaan: 150, lowongan_kerja: 80, count: (currentData.armada_militer.laut.kapal_selam_nuklir || 0) + ((buildingDeltas["submarine"] as number) || 0), consumption: 0, power: SUBMARINE_POWER_PER_UNIT },
-        { key: "reg_sub", groupId: "laut", label: "Kapal Selam Reguler", icon: RadioTower, desc: "Selam Reguler", biaya_pembangunan: 150, waktu_pembangunan: 240, biaya_pemeliharaan: 60, lowongan_kerja: 60, count: (currentData.armada_militer.laut.kapal_selam_regular || 0) + ((buildingDeltas["reg_sub"] as number) || 0), consumption: 0, power: REGULAR_SUB_POWER_PER_UNIT },
-        { key: "mine_ship", groupId: "laut", label: "Kapal Ranjau", icon: Ship, desc: "Penyapu Ranjau", biaya_pembangunan: 45, waktu_pembangunan: 90, biaya_pemeliharaan: 15, lowongan_kerja: 40, count: (currentData.armada_militer.laut.kapal_ranjau || 0) + ((buildingDeltas["mine_ship"] as number) || 0), consumption: 0, power: MINE_SHIP_POWER_PER_UNIT },
-        { key: "logistics", groupId: "laut", label: "Kapal Logistik", icon: Truck, desc: "Suplai Maritim", biaya_pembangunan: 60, waktu_pembangunan: 120, biaya_pemeliharaan: 25, lowongan_kerja: 50, count: (currentData.armada_militer.laut.kapal_logistik || 0) + ((buildingDeltas["logistics"] as number) || 0), consumption: 0, power: LOGISTICS_POWER_PER_UNIT },
+        { key: "carrier", groupId: "laut", label: "Kapal Induk", icon: Ship, desc: "Pangkalan Apung", biaya_pembangunan: 750, waktu_pembangunan: 480, biaya_pemeliharaan: 200, lowongan_kerja: 5000, count: (currentData.armada_militer.laut.kapal_induk || 0) + ((effectiveDeltas["carrier"] as number) || 0), consumption: 0, power: CARRIER_POWER_PER_UNIT },
+        { key: "destroyer", groupId: "laut", label: "Kapal Destroyer", icon: Waves, desc: "Perusak Maritim", biaya_pembangunan: 280, waktu_pembangunan: 360, biaya_pemeliharaan: 100, lowongan_kerja: 300, count: (currentData.armada_militer.laut.kapal_destroyer || 0) + ((effectiveDeltas["destroyer"] as number) || 0), consumption: 0, power: DESTROYER_POWER_PER_UNIT },
+        { key: "corvette", groupId: "laut", label: "Kapal Korvet", icon: Anchor, desc: "Kapal Kawal", biaya_pembangunan: 120, waktu_pembangunan: 180, biaya_pemeliharaan: 45, lowongan_kerja: 100, count: (currentData.armada_militer.laut.kapal_korvet || 0) + ((effectiveDeltas["corvette"] as number) || 0), consumption: 0, power: CORVETTE_POWER_PER_UNIT },
+        { key: "submarine", groupId: "laut", label: "Kapal Selam Nuklir", icon: RadioTower, desc: "Siluman Bawah Air", biaya_pembangunan: 420, waktu_pembangunan: 420, biaya_pemeliharaan: 150, lowongan_kerja: 80, count: (currentData.armada_militer.laut.kapal_selam_nuklir || 0) + ((effectiveDeltas["submarine"] as number) || 0), consumption: 0, power: SUBMARINE_POWER_PER_UNIT },
+        { key: "reg_sub", groupId: "laut", label: "Kapal Selam Reguler", icon: RadioTower, desc: "Selam Reguler", biaya_pembangunan: 150, waktu_pembangunan: 240, biaya_pemeliharaan: 60, lowongan_kerja: 60, count: (currentData.armada_militer.laut.kapal_selam_regular || 0) + ((effectiveDeltas["reg_sub"] as number) || 0), consumption: 0, power: REGULAR_SUB_POWER_PER_UNIT },
+        { key: "mine_ship", groupId: "laut", label: "Kapal Ranjau", icon: Ship, desc: "Penyapu Ranjau", biaya_pembangunan: 45, waktu_pembangunan: 90, biaya_pemeliharaan: 15, lowongan_kerja: 40, count: (currentData.armada_militer.laut.kapal_ranjau || 0) + ((effectiveDeltas["mine_ship"] as number) || 0), consumption: 0, power: MINE_SHIP_POWER_PER_UNIT },
+        { key: "logistics", groupId: "laut", label: "Kapal Logistik", icon: Truck, desc: "Suplai Maritim", biaya_pembangunan: 60, waktu_pembangunan: 120, biaya_pemeliharaan: 25, lowongan_kerja: 50, count: (currentData.armada_militer.laut.kapal_logistik || 0) + ((effectiveDeltas["logistics"] as number) || 0), consumption: 0, power: LOGISTICS_POWER_PER_UNIT },
         
         // ARMADA UDARA
-        { key: "stealth_jet", groupId: "udara", label: "Jet Stealth", icon: Plane, desc: "Supremasi Udara", biaya_pembangunan: 250, waktu_pembangunan: 300, biaya_pemeliharaan: 120, lowongan_kerja: 2, count: (currentData.armada_militer.udara.jet_tempur_siluman || 0) + ((buildingDeltas["stealth_jet"] as number) || 0), consumption: 0, power: STEALTH_POWER_PER_UNIT },
-        { key: "interceptor", groupId: "udara", label: "Jet Interceptor", icon: Plane, desc: "Satu Pencegat", biaya_pembangunan: 120, waktu_pembangunan: 180, biaya_pemeliharaan: 55, lowongan_kerja: 2, count: (currentData.armada_militer.udara.jet_tempur_interceptor || 0) + ((buildingDeltas["interceptor"] as number) || 0), consumption: 0, power: INTERCEPTOR_POWER_PER_UNIT },
-        { key: "bomber", groupId: "udara", label: "Pesawat Pengebom", icon: Radio, desc: "Serangan Udara", biaya_pembangunan: 350, waktu_pembangunan: 360, biaya_pemeliharaan: 180, lowongan_kerja: 3, count: (currentData.armada_militer.udara.pesawat_pengebom || 0) + ((buildingDeltas["bomber"] as number) || 0), consumption: 0, power: BOMBER_POWER_PER_UNIT },
-        { key: "heli_attack", groupId: "udara", label: "Heli Serang", icon: Radio, desc: "Bantuan Udara", biaya_pembangunan: 40, waktu_pembangunan: 90, biaya_pemeliharaan: 25, lowongan_kerja: 3, count: (currentData.armada_militer.udara.helikopter_serang || 0) + ((buildingDeltas["heli_attack"] as number) || 0), consumption: 0, power: ATTACK_HELI_POWER_PER_UNIT },
-        { key: "recon_plane", groupId: "udara", label: "Pesawat Intai", icon: Search, desc: "Intelijen Udara", biaya_pembangunan: 80, waktu_pembangunan: 120, biaya_pemeliharaan: 20, lowongan_kerja: 2, count: (currentData.armada_militer.udara.pesawat_pengintai || 0) + ((buildingDeltas["recon_plane"] as number) || 0), consumption: 0, power: RECON_POWER_PER_UNIT },
-        { key: "uav", groupId: "udara", label: "Drone UAV", icon: Satellite, desc: "Intai Tanpa Awak", biaya_pembangunan: 15, waktu_pembangunan: 30, biaya_pemeliharaan: 5, lowongan_kerja: 1, count: (currentData.armada_militer.udara.drone_intai_uav || 0) + ((buildingDeltas["uav"] as number) || 0), consumption: 0, power: UAV_POWER_PER_UNIT },
-        { key: "kamikaze", groupId: "udara", label: "Drone Kamikaze", icon: Target, desc: "Serangan Bunuh Diri", biaya_pembangunan: 5, waktu_pembangunan: 7, biaya_pemeliharaan: 1, lowongan_kerja: 1, count: (currentData.armada_militer.udara.drone_kamikaze || 0) + ((buildingDeltas["kamikaze"] as number) || 0), consumption: 0, power: KAMIKAZE_POWER_PER_UNIT },
-        { key: "transport", groupId: "udara", label: "Pesawat Angkut", icon: Truck, desc: "Logistik Udara", biaya_pembangunan: 45, waktu_pembangunan: 90, biaya_pemeliharaan: 15, lowongan_kerja: 3, count: (currentData.armada_militer.udara.pesawat_angkut || 0) + ((buildingDeltas["transport"] as number) || 0), consumption: 0, power: TRANSPORT_POWER_PER_UNIT }
+        { key: "stealth_jet", groupId: "udara", label: "Jet Stealth", icon: Plane, desc: "Supremasi Udara", biaya_pembangunan: 250, waktu_pembangunan: 300, biaya_pemeliharaan: 120, lowongan_kerja: 2, count: (currentData.armada_militer.udara.jet_tempur_siluman || 0) + ((effectiveDeltas["stealth_jet"] as number) || 0), consumption: 0, power: STEALTH_POWER_PER_UNIT },
+        { key: "interceptor", groupId: "udara", label: "Jet Interceptor", icon: Plane, desc: "Satu Pencegat", biaya_pembangunan: 120, waktu_pembangunan: 180, biaya_pemeliharaan: 55, lowongan_kerja: 2, count: (currentData.armada_militer.udara.jet_tempur_interceptor || 0) + ((effectiveDeltas["interceptor"] as number) || 0), consumption: 0, power: INTERCEPTOR_POWER_PER_UNIT },
+        { key: "bomber", groupId: "udara", label: "Pesawat Pengebom", icon: Radio, desc: "Serangan Udara", biaya_pembangunan: 350, waktu_pembangunan: 360, biaya_pemeliharaan: 180, lowongan_kerja: 3, count: (currentData.armada_militer.udara.pesawat_pengebom || 0) + ((effectiveDeltas["bomber"] as number) || 0), consumption: 0, power: BOMBER_POWER_PER_UNIT },
+        { key: "heli_attack", groupId: "udara", label: "Heli Serang", icon: Radio, desc: "Bantuan Udara", biaya_pembangunan: 40, waktu_pembangunan: 90, biaya_pemeliharaan: 25, lowongan_kerja: 3, count: (currentData.armada_militer.udara.helikopter_serang || 0) + ((effectiveDeltas["heli_attack"] as number) || 0), consumption: 0, power: ATTACK_HELI_POWER_PER_UNIT },
+        { key: "recon_plane", groupId: "udara", label: "Pesawat Intai", icon: Search, desc: "Intelijen Udara", biaya_pembangunan: 80, waktu_pembangunan: 120, biaya_pemeliharaan: 20, lowongan_kerja: 2, count: (currentData.armada_militer.udara.pesawat_pengintai || 0) + ((effectiveDeltas["recon_plane"] as number) || 0), consumption: 0, power: RECON_POWER_PER_UNIT },
+        { key: "uav", groupId: "udara", label: "Drone UAV", icon: Satellite, desc: "Intai Tanpa Awak", biaya_pembangunan: 15, waktu_pembangunan: 30, biaya_pemeliharaan: 5, lowongan_kerja: 1, count: (currentData.armada_militer.udara.drone_intai_uav || 0) + ((effectiveDeltas["uav"] as number) || 0), consumption: 0, power: UAV_POWER_PER_UNIT },
+        { key: "kamikaze", groupId: "udara", label: "Drone Kamikaze", icon: Target, desc: "Serangan Bunuh Diri", biaya_pembangunan: 5, waktu_pembangunan: 7, biaya_pemeliharaan: 1, lowongan_kerja: 1, count: (currentData.armada_militer.udara.drone_kamikaze || 0) + ((effectiveDeltas["kamikaze"] as number) || 0), consumption: 0, power: KAMIKAZE_POWER_PER_UNIT },
+        { key: "transport", groupId: "udara", label: "Pesawat Angkut", icon: Truck, desc: "Logistik Udara", biaya_pembangunan: 45, waktu_pembangunan: 90, biaya_pemeliharaan: 15, lowongan_kerja: 3, count: (currentData.armada_militer.udara.pesawat_angkut || 0) + ((effectiveDeltas["transport"] as number) || 0), consumption: 0, power: TRANSPORT_POWER_PER_UNIT }
       ]
     }
   ];
@@ -238,7 +289,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
 
         {/* Strength Badges Strip */}
         {(() => {
-          const power = calculateTotalMilitaryPower(currentData.armada_militer, buildingDeltas);
+          const power = calculateTotalMilitaryPower(currentData.armada_militer, effectiveDeltas);
 
           const badges = [
             { label: "Armada Darat", value: power.darat, icon: Truck, accent: "text-amber-400", glow: "shadow-[0_0_18px_rgba(251,191,36,0.15)]", border: "border-amber-500/20", bg: "bg-amber-500/5" },
@@ -299,7 +350,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
 
                           const showSubHeader = item.groupId && item.groupId !== prevGroupId;
 
-                          const power = calculateTotalMilitaryPower(currentData.armada_militer, buildingDeltas);
+                          const power = calculateTotalMilitaryPower(currentData.armada_militer, effectiveDeltas);
                           const subGroupPower: Record<string, number> = {
                             darat: power.darat,
                             laut: power.laut,
@@ -614,7 +665,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
         onClose={() => setShowWarComparison(false)}
         userCountryData={currentData}
         targetCountryData={selectedActionCountry}
-        userDeltas={buildingDeltas}
+        userDeltas={effectiveDeltas}
       />
     </div>
   )

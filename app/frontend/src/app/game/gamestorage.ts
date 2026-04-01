@@ -27,6 +27,8 @@ import { populationStorage } from "./components/1_navbar/2_populasi";
 import { populationDeltaStorage } from "./components/1_navbar/2_populasi/PopulationDeltaStorage";
 import { embassyStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/embassyStorage";
 import { relationStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
+import { militaryAidStorage } from "./components/map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
+import { playerMilitaryStorage } from "./components/map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
 
 const STORAGE_KEY = "game_session";
 
@@ -89,6 +91,8 @@ export const gameStorage = {
     populationDeltaStorage.clear();
     embassyStorage.clear();
     relationStorage.clear();
+    militaryAidStorage.clear();
+    playerMilitaryStorage.clear();
   },
 
   getSession: (): GameSession | null => {
@@ -160,6 +164,8 @@ export const gameStorage = {
     populationDeltaStorage.clear();
     embassyStorage.clear();
     relationStorage.clear();
+    militaryAidStorage.clear();
+    playerMilitaryStorage.clear();
     
     window.location.href = '/database';
   },
@@ -206,5 +212,7 @@ export const gameStorage = {
     populationDeltaStorage.clear();
     embassyStorage.clear();
     relationStorage.clear();
+    militaryAidStorage.clear();
+    playerMilitaryStorage.clear();
   },
 };

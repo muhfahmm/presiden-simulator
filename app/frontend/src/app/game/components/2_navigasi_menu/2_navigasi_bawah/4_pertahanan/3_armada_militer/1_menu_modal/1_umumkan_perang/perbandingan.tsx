@@ -3,6 +3,7 @@
 import { useState } from "react"
 import { X, Truck, Ship, Plane, Swords, TrendingUp, TrendingDown, Target, ShieldAlert, Info } from "lucide-react"
 import { calculateTotalMilitaryPower } from "../../kekuatanmiliter"
+import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage"
 
 interface PerbandinganProps {
   isOpen: boolean
@@ -16,8 +17,13 @@ export default function Perbandingan({ isOpen, onClose, userCountryData, targetC
   if (!isOpen || !userCountryData || !targetCountryData) return null
 
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null)
+  
+  // Calculate target deltas (received aid)
+  const aidData = militaryAidStorage.getAid();
+  const targetAid = targetCountryData ? (aidData[targetCountryData.name.toLowerCase()] || {}) : {};
+  
   const userPower = calculateTotalMilitaryPower(userCountryData.armada_militer, userDeltas)
-  const targetPower = calculateTotalMilitaryPower(targetCountryData.armada_militer)
+  const targetPower = calculateTotalMilitaryPower(targetCountryData.armada_militer, targetAid)
 
   const comparisonItems = [
     { id: 'total', label: "Total Kekuatan", user: userPower.total, target: targetPower.total, icon: Swords, color: "rose" },
@@ -33,34 +39,34 @@ export default function Perbandingan({ isOpen, onClose, userCountryData, targetC
     switch (categoryId) {
       case 'darat':
         return [
-          { label: "Barak Militer", user: (userArmada.barak || 0) + (userDeltas.barak || 0), target: targetArmada.barak || 0 },
-          { label: "Main Battle Tank", user: (userArmada.darat?.tank_tempur_utama || 0) + (userDeltas.tank || 0), target: targetArmada.darat?.tank_tempur_utama || 0 },
-          { label: "APC / IFV", user: (userArmada.darat?.apc_ifv || 0) + (userDeltas.apc || 0), target: targetArmada.darat?.apc_ifv || 0 },
-          { label: "Artileri Berat", user: (userArmada.darat?.artileri_berat || 0) + (userDeltas.artileri || 0), target: targetArmada.darat?.artileri_berat || 0 },
-          { label: "MLRS Rocket", user: (userArmada.darat?.sistem_peluncur_roket || 0) + (userDeltas.rocket || 0), target: targetArmada.darat?.sistem_peluncur_roket || 0 },
-          { label: "Mobile SAM", user: (userArmada.darat?.pertahanan_udara_mobile || 0) + (userDeltas.sam || 0), target: targetArmada.darat?.pertahanan_udara_mobile || 0 },
-          { label: "Kendaraan Taktis", user: (userArmada.darat?.kendaraan_taktis || 0) + (userDeltas.tactical || 0), target: targetArmada.darat?.kendaraan_taktis || 0 },
+          { label: "Barak Militer", user: (userArmada.barak || 0) + (userDeltas.barak || 0), target: (targetArmada.barak || 0) + (targetAid.barak || 0) },
+          { label: "Main Battle Tank", user: (userArmada.darat?.tank_tempur_utama || 0) + (userDeltas.tank || 0), target: (targetArmada.darat?.tank_tempur_utama || 0) + (targetAid.tank_tempur_utama || 0) },
+          { label: "APC / IFV", user: (userArmada.darat?.apc_ifv || 0) + (userDeltas.apc || 0), target: (targetArmada.darat?.apc_ifv || 0) + (targetAid.apc_ifv || 0) },
+          { label: "Artileri Berat", user: (userArmada.darat?.artileri_berat || 0) + (userDeltas.artileri || 0), target: (targetArmada.darat?.artileri_berat || 0) + (targetAid.artileri_berat || 0) },
+          { label: "MLRS Rocket", user: (userArmada.darat?.sistem_peluncur_roket || 0) + (userDeltas.rocket || 0), target: (targetArmada.darat?.sistem_peluncur_roket || 0) + (targetAid.sistem_peluncur_roket || 0) },
+          { label: "Mobile SAM", user: (userArmada.darat?.pertahanan_udara_mobile || 0) + (userDeltas.sam || 0), target: (targetArmada.darat?.pertahanan_udara_mobile || 0) + (targetAid.pertahanan_udara_mobile || 0) },
+          { label: "Kendaraan Taktis", user: (userArmada.darat?.kendaraan_taktis || 0) + (userDeltas.tactical || 0), target: (targetArmada.darat?.kendaraan_taktis || 0) + (targetAid.kendaraan_taktis || 0) },
         ]
       case 'laut':
         return [
-          { label: "Kapal Induk", user: (userArmada.laut?.kapal_induk || 0) + (userDeltas.carrier || 0), target: targetArmada.laut?.kapal_induk || 0 },
-          { label: "Kapal Destroyer", user: (userArmada.laut?.kapal_destroyer || 0) + (userDeltas.destroyer || 0), target: targetArmada.laut?.kapal_destroyer || 0 },
-          { label: "Kapal Korvet", user: (userArmada.laut?.kapal_korvet || 0) + (userDeltas.corvette || 0), target: targetArmada.laut?.kapal_korvet || 0 },
-          { label: "Kapal Selam Nuklir", user: (userArmada.laut?.kapal_selam_nuklir || 0) + (userDeltas.submarine || 0), target: targetArmada.laut?.kapal_selam_nuklir || 0 },
-          { label: "Kapal Selam Regular", user: (userArmada.laut?.kapal_selam_regular || 0) + (userDeltas.reg_sub || 0), target: targetArmada.laut?.kapal_selam_regular || 0 },
-          { label: "Kapal Ranjau", user: (userArmada.laut?.kapal_ranjau || 0) + (userDeltas.mine_ship || 0), target: targetArmada.laut?.kapal_ranjau || 0 },
-          { label: "Kapal Logistik", user: (userArmada.laut?.kapal_logistik || 0) + (userDeltas.logistics || 0), target: targetArmada.laut?.kapal_logistik || 0 },
+          { label: "Kapal Induk", user: (userArmada.laut?.kapal_induk || 0) + (userDeltas.carrier || 0), target: (targetArmada.laut?.kapal_induk || 0) + (targetAid.kapal_induk || 0) },
+          { label: "Kapal Destroyer", user: (userArmada.laut?.kapal_destroyer || 0) + (userDeltas.destroyer || 0), target: (targetArmada.laut?.kapal_destroyer || 0) + (targetAid.kapal_destroyer || 0) },
+          { label: "Kapal Korvet", user: (userArmada.laut?.kapal_korvet || 0) + (userDeltas.corvette || 0), target: (targetArmada.laut?.kapal_korvet || 0) + (targetAid.kapal_korvet || 0) },
+          { label: "Kapal Selam Nuklir", user: (userArmada.laut?.kapal_selam_nuklir || 0) + (userDeltas.submarine || 0), target: (targetArmada.laut?.kapal_selam_nuklir || 0) + (targetAid.kapal_selam_nuklir || 0) },
+          { label: "Kapal Selam Regular", user: (userArmada.laut?.kapal_selam_regular || 0) + (userDeltas.reg_sub || 0), target: (targetArmada.laut?.kapal_selam_regular || 0) + (targetAid.kapal_selam_regular || 0) },
+          { label: "Kapal Ranjau", user: (userArmada.laut?.kapal_ranjau || 0) + (userDeltas.mine_ship || 0), target: (targetArmada.laut?.kapal_ranjau || 0) + (targetAid.kapal_ranjau || 0) },
+          { label: "Kapal Logistik", user: (userArmada.laut?.kapal_logistik || 0) + (userDeltas.logistics || 0), target: (targetArmada.laut?.kapal_logistik || 0) + (targetAid.kapal_logistik || 0) },
         ]
       case 'udara':
         return [
-          { label: "Jet Stealth", user: (userArmada.udara?.jet_tempur_siluman || 0) + (userDeltas.stealth_jet || 0), target: targetArmada.udara?.jet_tempur_siluman || 0 },
-          { label: "Jet Interceptor", user: (userArmada.udara?.jet_tempur_interceptor || 0) + (userDeltas.interceptor || 0), target: targetArmada.udara?.jet_tempur_interceptor || 0 },
-          { label: "Pesawat Pengebom", user: (userArmada.udara?.pesawat_pengebom || 0) + (userDeltas.bomber || 0), target: targetArmada.udara?.pesawat_pengebom || 0 },
-          { label: "Heli Serang", user: (userArmada.udara?.helikopter_serang || 0) + (userDeltas.heli_attack || 0), target: targetArmada.udara?.helikopter_serang || 0 },
-          { label: "Pesawat Intai", user: (userArmada.udara?.pesawat_pengintai || 0) + (userDeltas.recon_plane || 0), target: targetArmada.udara?.pesawat_pengintai || 0 },
-          { label: "Drone UAV", user: (userArmada.udara?.drone_intai_uav || 0) + (userDeltas.uav || 0), target: targetArmada.udara?.drone_intai_uav || 0 },
-          { label: "Drone Kamikaze", user: (userArmada.udara?.drone_kamikaze || 0) + (userDeltas.kamikaze || 0), target: targetArmada.udara?.drone_kamikaze || 0 },
-          { label: "Pesawat Angkut", user: (userArmada.udara?.pesawat_angkut || 0) + (userDeltas.transport || 0), target: targetArmada.udara?.pesawat_angkut || 0 },
+          { label: "Jet Stealth", user: (userArmada.udara?.jet_tempur_siluman || 0) + (userDeltas.stealth_jet || 0), target: (targetArmada.udara?.jet_tempur_siluman || 0) + (targetAid.jet_tempur_siluman || 0) },
+          { label: "Jet Interceptor", user: (userArmada.udara?.jet_tempur_interceptor || 0) + (userDeltas.interceptor || 0), target: (targetArmada.udara?.jet_tempur_interceptor || 0) + (targetAid.jet_tempur_interceptor || 0) },
+          { label: "Pesawat Pengebom", user: (userArmada.udara?.pesawat_pengebom || 0) + (userDeltas.bomber || 0), target: (targetArmada.udara?.pesawat_pengebom || 0) + (targetAid.pesawat_pengebom || 0) },
+          { label: "Heli Serang", user: (userArmada.udara?.helikopter_serang || 0) + (userDeltas.heli_attack || 0), target: (targetArmada.udara?.helikopter_serang || 0) + (targetAid.helikopter_serang || 0) },
+          { label: "Pesawat Intai", user: (userArmada.udara?.pesawat_pengintai || 0) + (userDeltas.recon_plane || 0), target: (targetArmada.udara?.pesawat_pengintai || 0) + (targetAid.pesawat_pengintai || 0) },
+          { label: "Drone UAV", user: (userArmada.udara?.drone_intai_uav || 0) + (userDeltas.uav || 0), target: (targetArmada.udara?.drone_intai_uav || 0) + (targetAid.drone_intai_uav || 0) },
+          { label: "Drone Kamikaze", user: (userArmada.udara?.drone_kamikaze || 0) + (userDeltas.kamikaze || 0), target: (targetArmada.udara?.drone_kamikaze || 0) + (targetAid.drone_kamikaze || 0) },
+          { label: "Pesawat Angkut", user: (userArmada.udara?.pesawat_angkut || 0) + (userDeltas.transport || 0), target: (targetArmada.udara?.pesawat_angkut || 0) + (targetAid.pesawat_angkut || 0) },
         ]
       case 'total':
         return [

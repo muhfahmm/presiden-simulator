@@ -23,8 +23,6 @@ interface AidTabProps {
 }
 
 export default function AidTab({ targetId, setActiveMenu }: AidTabProps) {
-  const [activeModal, setActiveModal] = useState<string | null>(null);
-
   // Gating Logic for "Beri Tentara"
   const hasEmbassy = embassyStorage.getEmbassyStatus(targetId) === 'completed';
   const hasNonAggressionPact = nonAggressionStorage.getStatus(targetId) === 'active';
@@ -32,54 +30,49 @@ export default function AidTab({ targetId, setActiveMenu }: AidTabProps) {
   
   const canGiveTroops = hasEmbassy || hasNonAggressionPact || hasDefenseAlliance;
 
-  return (
-    <>
-      <div className="grid grid-cols-2 gap-3">
-        <ActionCard 
-          icon={<Shield className="h-4 w-4" />} 
-          label="Beri Tentara" 
-          bg="from-green-900/30 to-zinc-900" 
-          onClick={() => setActiveModal('tentara')}
-          disabled={!canGiveTroops}
-        />
-        <ActionCard 
-          icon={<Gift className="h-4 w-4" />} 
-          label="Kirim Hadiah" 
-          bg="from-pink-900/30 to-zinc-900" 
-          onClick={() => setActiveModal('hadiah')}
-        />
-        <ActionCard 
-          icon={<Heart className="h-4 w-4" />} 
-          label="Tingkatkan Hubungan" 
-          bg="from-red-900/30 to-zinc-900" 
-          onClick={() => setActiveMenu(`CountryModal:${targetId}:bantuan_kerjasama:tingkatkan_hubungan`)}
-        />
-        <ActionCard 
-          icon={<Shield className="h-4 w-4" />} 
-          label="Dukung Kedaulatan" 
-          bg="from-sky-900/30 to-zinc-900" 
-          onClick={() => setActiveModal('kedaulatan')}
-        />
-        <ActionCard 
-          icon={<AlertTriangle className="h-4 w-4" />} 
-          label="Minta Bantuan" 
-          bg="from-orange-900/30 to-zinc-900" 
-          onClick={() => setActiveModal('bantuan')}
-        />
-        <ActionCard 
-          icon={<Lightbulb className="h-4 w-4" />} 
-          label="Tanamkan Ideologi" 
-          bg="from-violet-900/30 to-zinc-900" 
-          onClick={() => setActiveModal('ideologi')}
-        />
-      </div>
+  const navigateTo = (subTab: string) => {
+    setActiveMenu(`CountryModal:${targetId}:bantuan_kerjasama:${subTab}`);
+  };
 
-      {/* Render Specific Modals */}
-      <BeriTentaraModal isOpen={activeModal === 'tentara'} onClose={() => setActiveModal(null)} />
-      <KirimHadiahModal isOpen={activeModal === 'hadiah'} onClose={() => setActiveModal(null)} />
-      <DukungKedaulatanModal isOpen={activeModal === 'kedaulatan'} onClose={() => setActiveModal(null)} />
-      <MintaBantuanModal isOpen={activeModal === 'bantuan'} onClose={() => setActiveModal(null)} />
-      <TanamkanIdeologiModal isOpen={activeModal === 'ideologi'} onClose={() => setActiveModal(null)} />
-    </>
+  return (
+    <div className="grid grid-cols-2 gap-3">
+      <ActionCard 
+        icon={<Shield className="h-4 w-4" />} 
+        label="Beri Tentara" 
+        bg="from-green-900/30 to-zinc-900" 
+        onClick={() => navigateTo('beri_tentara')}
+        disabled={!canGiveTroops}
+      />
+      <ActionCard 
+        icon={<Gift className="h-4 w-4" />} 
+        label="Kirim Hadiah" 
+        bg="from-pink-900/30 to-zinc-900" 
+        onClick={() => navigateTo('kirim_hadiah')}
+      />
+      <ActionCard 
+        icon={<Heart className="h-4 w-4" />} 
+        label="Tingkatkan Hubungan" 
+        bg="from-red-900/30 to-zinc-900" 
+        onClick={() => navigateTo('tingkatkan_hubungan')}
+      />
+      <ActionCard 
+        icon={<Shield className="h-4 w-4" />} 
+        label="Dukung Kedaulatan" 
+        bg="from-sky-900/30 to-zinc-900" 
+        onClick={() => navigateTo('dukung_kedaulatan')}
+      />
+      <ActionCard 
+        icon={<AlertTriangle className="h-4 w-4" />} 
+        label="Minta Bantuan" 
+        bg="from-orange-900/30 to-zinc-900" 
+        onClick={() => navigateTo('minta_bantuan')}
+      />
+      <ActionCard 
+        icon={<Lightbulb className="h-4 w-4" />} 
+        label="Tanamkan Ideologi" 
+        bg="from-violet-900/30 to-zinc-900" 
+        onClick={() => navigateTo('tanamkan_ideologi')}
+      />
+    </div>
   );
 }
