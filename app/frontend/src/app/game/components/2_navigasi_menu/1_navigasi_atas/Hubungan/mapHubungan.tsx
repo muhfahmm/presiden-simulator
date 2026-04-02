@@ -5,8 +5,6 @@ import { countries as centersData } from "@/app/database/data/negara/benua/index
 import { allRelations } from "@/app/database/data/negara/hubungan";
 import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
-import WarOverlayCanvas from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/modals/war_system/WarOverlayCanvas";
-import { WarDeclaration } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/modals/war_system/warTypes";
 
 interface MapHubunganProps {
   userCountry: string;
@@ -14,7 +12,6 @@ interface MapHubunganProps {
   onSelect: (name: string) => void;
   active?: boolean;
   geoData?: any;
-  onWarZoneClick?: (war: WarDeclaration) => void;
 }
 
 const geoJsonToIndo: { [key: string]: string } = {
@@ -97,7 +94,7 @@ const maritimeLabels = [
   { name: "Kanal Taiwan", lon: 119.5, lat: 24, size: 14, color: "rgba(2, 132, 199, 0.6)" }
 ];
 
-export default function MapHubungan({ userCountry, targetCountry, onSelect, active = true, geoData, onWarZoneClick }: MapHubunganProps) {
+export default function MapHubungan({ userCountry, targetCountry, onSelect, active = true, geoData }: MapHubunganProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [isHovering, setIsHovering] = useState(false);
   const [tick, setTick] = useState(0);
@@ -227,7 +224,6 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
         if (closest) onSelect(closest.name_en);
       }}
     />
-      <WarOverlayCanvas mapWidth={mapWidth} mapHeight={mapHeight} active={active} onWarZoneClick={onWarZoneClick} />
     </div>
   );
 }

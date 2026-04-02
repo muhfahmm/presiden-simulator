@@ -29,7 +29,6 @@ import { embassyStorage } from "./components/map-system/modals_detail_negara/2_d
 import { relationStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { militaryAidStorage } from "./components/map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
 import { playerMilitaryStorage } from "./components/map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
-import { warStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/modals/war_system/warStorage";
 
 const STORAGE_KEY = "game_session";
 
@@ -94,7 +93,6 @@ export const gameStorage = {
     relationStorage.clear();
     militaryAidStorage.clear();
     playerMilitaryStorage.clear();
-    warStorage.clear();
   },
 
   getSession: (): GameSession | null => {
@@ -168,7 +166,6 @@ export const gameStorage = {
     relationStorage.clear();
     militaryAidStorage.clear();
     playerMilitaryStorage.clear();
-    warStorage.clear();
     
     window.location.href = '/database';
   },
@@ -217,6 +214,5 @@ export const gameStorage = {
     relationStorage.clear();
     militaryAidStorage.clear();
     playerMilitaryStorage.clear();
-    warStorage.clear();
   },
 };

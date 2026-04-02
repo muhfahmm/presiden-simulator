@@ -4,8 +4,6 @@ import { useState } from "react";
 import { X, Shield, Swords, Eye, Bomb, Map as MapIcon, Radiation, Zap, Truck, Anchor, Plane, Search, Crosshair, Target, Clock, Loader2, EyeOff } from "lucide-react"
 import { CountryData } from "@/app/database/data/types/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
-import MisiSeranganModal from "./modals/1_misi_serangan";
-import { warStorage } from "./modals/war_system/warStorage";
 
 interface ModalProps {
   isOpen: boolean;
@@ -50,7 +48,7 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
       icon: Target,
       color: "text-rose-500",
       items: [
-        { label: "Misi Serangan", icon: Swords, desc: "Operasi Aktif", value: warStorage.getWarCount(), color: "text-red-500", btnLabel: "Mulai Misi" },
+        { label: "Misi Serangan", icon: Swords, desc: "Operasi Aktif", value: "SIAGA", color: "text-red-500", btnLabel: "Mulai Misi" },
         { label: "Misi Mata-mata", icon: Eye, desc: "Agen Lapangan", value: security.operasi_strategis?.misi_mata_mata ?? 0, color: "text-indigo-400", btnLabel: "Mulai Misi" },
         { label: "Misi Sabotase", icon: Bomb, desc: "Target Sabotase", value: security.operasi_strategis?.misi_sabotase ?? 0, color: "text-orange-500", btnLabel: "Mulai Misi" },
         { label: "Kontrol Wilayah", icon: MapIcon, desc: "Manajemen Administrasi", value: `${security.operasi_strategis?.manajemen_wilayah ?? 0}%`, color: "text-emerald-500", btnLabel: "Lihat Wilayah" },
@@ -179,13 +177,7 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
         </div>
       </div>
 
-      {/* Modals */}
-      <MisiSeranganModal 
-        isOpen={showMisiSerangan} 
-        onClose={() => setActiveMenu("Komando Pertahanan")} 
-        preselectedTarget={preselectedTarget}
-        userCountryData={data}
-      />
+      {/* MisiSeranganModal removed */}
     </div>
   )
 }
