@@ -12,6 +12,8 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MaterialRequirement from "../../3_pembangunan/1-produksi/MaterialRequirement";
 import { pertahananRate } from "@/app/database/data/types/4_militer";
+import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
+import { playerMilitaryStorage } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
 
 interface ModalProps {
   isOpen: boolean;
@@ -164,8 +166,9 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
         buildTime: val.waktu_pembangunan,
         maintenanceCost: val.maintenanceCost,
         lowongan_kerja: val.lowongan_kerja,
-        count: Number(currentData.sektor_pertahanan?.[val.key as keyof typeof currentData.sektor_pertahanan] || 0) + ((buildingDeltas[key] as number) || 0),
-        consumption: (KONSUMSI_PERTAHANAN as any)[val.key] || (KONSUMSI_STRATEGIC as any)[val.key] || 0
+        dataKey: val.dataKey,
+        count: Number(currentData.sektor_pertahanan?.[val.dataKey as keyof typeof currentData.sektor_pertahanan] || 0) + ((buildingDeltas[key] as number) || 0),
+        consumption: (KONSUMSI_PERTAHANAN as any)[val.dataKey] || (KONSUMSI_STRATEGIC as any)[val.dataKey] || 0
       }))
     }
   ];
@@ -238,8 +241,8 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
                   </button>
                 </div>
                 <div className={`grid transition-all duration-700 ease-in-out ${!collapsedSectors.has(group.id) ? 'grid-rows-[1fr] opacity-100 mt-2' : 'grid-rows-[0fr] opacity-0'}`}>
-                  <div className="overflow-hidden">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4">
+                  <div className="overflow-visible">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1 pb-4 pt-10">
                       {group.items.map((item: any, idx: number) => {
                         const currentConstruction = activeConstructions?.find(c => c && c.buildingKey === item.key);
                         return (
@@ -248,6 +251,8 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
                             item={item}
                             onBuild={handles.handleBuildRequest}
                             construction={currentConstruction}
+                            currentData={currentData}
+                            buildingDeltas={buildingDeltas}
                           />
                         );
                       })}
@@ -343,10 +348,13 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
   )
 }
 
-function BuildingCard({ item, onBuild, construction }: any) {
-  const [showDetail, setShowDetail] = useState(false);
+function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas }: any) {
+  const [activeDetail, setActiveDetail] = useState<"operasional" | "kapasitas" | null>(null);
   const currentDate = getStoredGameDate().getTime();
   const progress = construction ? calculateConstructionProgress(construction.startDate, construction.endDate, currentDate) : null;
+
+  // LOGIKA SINKRONISASI MBT UNTUK DETAIL HANGAR
+  const playerDeductions = playerMilitaryStorage.getDeductions();
 
   const diffTime = Math.abs(currentDate - INITIAL_GAME_DATE.getTime());
   const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
@@ -359,25 +367,86 @@ function BuildingCard({ item, onBuild, construction }: any) {
   const totalVacancies = (item.lowongan_kerja || 0) * (item.count || 0);
   const filledVacancies = Math.floor(totalVacancies * occupancyPercentage);
 
+  // LOGIKA PELAPORAN UNIT GLOBAL
+  const UNIT_LABELS: Record<string, string> = {
+    tank: "Main Battle Tank",
+    apc: "APC / IFV",
+    tactical: "Kendaraan Taktis",
+    artileri: "Artileri Berat",
+    rocket: "MLRS Rocket",
+    sam: "Mobile SAM",
+    stealth_jet: "Jet Stealth",
+    interceptor: "Jet Interceptor",
+    bomber: "Pesawat Pengebom",
+    heli_attack: "Heli Serang",
+    recon_plane: "Pesawat Intai",
+    uav: "Drone UAV",
+    kamikaze: "Drone Kamikaze",
+    transport: "Pesawat Angkut",
+    carrier: "Kapal Induk",
+    destroyer: "Kapal Destroyer",
+    corvette: "Kapal Korvet",
+    submarine: "Kapal Selam Nuklir",
+    reg_sub: "Kapal Selam Reguler",
+    mine_ship: "Kapal Ranjau",
+    logistics: "Kapal Logistik"
+  };
+
+  const STORAGE_MAP: Record<string, { units: string[], label: string, ratio: Record<string, number> }> = {
+    hangar_tank: { 
+      units: ["tank", "apc", "tactical"], 
+      label: "Armada Lapis Baja",
+      ratio: { tank: 50, apc: 100, tactical: 200 }
+    },
+    gudang_senjata: { 
+      units: ["artileri", "rocket", "sam"], 
+      label: "Sistem Senjata Berat",
+      ratio: { artileri: 50, rocket: 30, sam: 20 }
+    },
+    pangkalan_udara: { 
+      units: ["stealth_jet", "interceptor", "bomber", "heli_attack", "recon_plane", "uav", "kamikaze", "transport"], 
+      label: "Armada Udara",
+      ratio: { stealth_jet: 50, interceptor: 50, bomber: 50, heli_attack: 50, recon_plane: 50, uav: 50, kamikaze: 50, transport: 50 }
+    },
+    pangkalan_laut: { 
+      units: ["carrier", "destroyer", "corvette", "submarine", "reg_sub", "mine_ship", "logistics"], 
+      label: "Armada Laut",
+      ratio: { carrier: 20, destroyer: 20, corvette: 20, submarine: 20, reg_sub: 20, mine_ship: 20, logistics: 20 }
+    },
+  };
+
+  const storageInfo = STORAGE_MAP[item.dataKey];
+
+  const getEffectiveUnitCount = (uKey: string, groupId: string, dbKey: string) => {
+     const base = (currentData.armada_militer as any)[groupId]?.[dbKey] || (currentData.armada_militer as any)[dbKey] || 0;
+     const delta = (buildingStorage.getData().buildingDeltas[uKey] as number) || 0;
+     const deduction = playerDeductions[uKey] || 0;
+     return (typeof base === 'number' ? base : 0) + delta - deduction;
+  };
+
   return (
-    <div className={`bg-zinc-900/40 border ${progress ? 'border-cyan-500/30 bg-cyan-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative overflow-hidden h-full min-h-[380px]`}>
+    <div className={`bg-zinc-900/40 border ${progress ? 'border-cyan-500/30 bg-cyan-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative h-full min-h-[380px]`}>
       {progress && (
-        <div className="absolute top-0 left-0 bottom-0 bg-cyan-500/5 transition-all duration-1000" style={{ width: `${progress.percentage}%` }} />
+        <div className="absolute top-0 left-0 bottom-0 bg-cyan-500/5 transition-all duration-1000 rounded-2xl" style={{ width: `${progress.percentage}%` }} />
       )}
 
-      {showDetail && (
+      {activeDetail && (
         <div className="absolute inset-0 z-50 bg-zinc-950/98 backdrop-blur-md p-6 flex flex-col animate-in fade-in zoom-in-95 duration-200">
           <div className="flex justify-between items-center mb-6">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-cyan-500/10 rounded-xl border border-cyan-500/20 text-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
-                <Info size={18} />
+              <div className={`p-2.5 rounded-xl border ${activeDetail === 'operasional' ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.2)]' : 'bg-amber-500/10 border-amber-500/20 text-amber-500 shadow-[0_0_15px_rgba(245,158,11,0.2)]'}`}>
+                {activeDetail === 'operasional' ? <Activity size={18} /> : <Archive size={18} />}
               </div>
               <div>
-                 <h5 className="text-[14px] font-black text-white uppercase tracking-wider italic">Detail Fasilitas</h5>
-                 <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">Spesifikasi &amp; Biaya</p>
+                 <h5 className="text-[14px] font-black text-white uppercase tracking-wider italic">
+                    {activeDetail === 'operasional' ? 'Detail Operasional' : 'Detail Kapasitas'}
+                 </h5>
+                 <p className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest leading-none mt-0.5">
+                    {activeDetail === 'operasional' ? 'Spesifikasi & Biaya' : 'Logistik Armada'}
+                 </p>
               </div>
             </div>
-            <button onClick={() => setShowDetail(false)} className="p-2.5 hover:bg-zinc-800/80 rounded-xl text-zinc-500 hover:text-white transition-all cursor-pointer border border-transparent hover:border-zinc-700">
+            <button onClick={() => setActiveDetail(null)} className="p-2.5 hover:bg-zinc-800/80 rounded-xl text-zinc-500 hover:text-white transition-all cursor-pointer border border-transparent hover:border-zinc-700">
                <X size={20} />
             </button>
           </div>
@@ -388,77 +457,143 @@ function BuildingCard({ item, onBuild, construction }: any) {
                 <h4 className="text-xl font-black text-amber-400 uppercase italic leading-tight tracking-tight">{item.label}</h4>
              </div>
 
-             <div className="grid gap-2">
-                <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                   <div className="flex items-center gap-2.5">
-                      <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
-                      <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
-                   </div>
-                   <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
-                </div>
-
-                {item.consumption > 0 && (
+             {activeDetail === 'operasional' ? (
+                <div className="grid gap-2">
                    <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                       <div className="flex items-center gap-2.5">
-                         <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
-                         <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
+                         <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
+                         <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
                       </div>
-                      <span className="text-[14px] font-black text-amber-500">{item.consumption} MW</span>
+                      <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
                    </div>
-                )}
 
-                {item.lowongan_kerja > 0 && (
-                   <>
+                   {item.consumption > 0 && (
                       <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                          <div className="flex items-center gap-2.5">
-                            <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-400">
-                               <Users size={12} />
-                            </div>
-                            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Lowongan</span>
+                            <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
+                            <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                          </div>
-                         <span className="text-[14px] font-black text-blue-400">+{(item.lowongan_kerja || 0).toLocaleString('id-ID')} <span className="text-[9px] text-blue-500/50 italic opacity-80">/ UNIT</span></span>
+                         <span className="text-[14px] font-black text-amber-500">{item.consumption} MW</span>
                       </div>
+                   )}
 
-                      <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                         <div className="flex items-center gap-2.5">
-                            <div className="p-1.5 bg-cyan-500/10 rounded-lg text-cyan-500">
-                               <Briefcase size={12} />
+                   {item.lowongan_kerja > 0 && (
+                      <>
+                         <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                            <div className="flex items-center gap-2.5">
+                               <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-400">
+                                  <Users size={12} />
+                               </div>
+                               <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Lowongan</span>
                             </div>
-                            <div className="flex items-center gap-1.5">
-                               <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Okupansi</span>
+                            <span className="text-[14px] font-black text-blue-400">+{(item.lowongan_kerja || 0).toLocaleString('id-ID')} <span className="text-[9px] text-blue-500/50 italic opacity-80">/ UNIT</span></span>
+                         </div>
+
+                         <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                            <div className="flex items-center gap-2.5">
+                               <div className="p-1.5 bg-cyan-500/10 rounded-lg text-cyan-500">
+                                  <Briefcase size={12} />
+                               </div>
+                               <div className="flex items-center gap-1.5">
+                                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Okupansi</span>
+                               </div>
+                            </div>
+                            <div className="flex flex-col items-end">
+                               <span className="text-[14px] font-black text-cyan-400">{filledVacancies.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-400">/ {totalVacancies.toLocaleString('id-ID')}</span></span>
+                               <span className="text-[8px] font-black text-cyan-500 uppercase tracking-widest leading-none italic opacity-90">UPDATE: {nextDateStr}</span>
                             </div>
                          </div>
-                         <div className="flex flex-col items-end">
-                            <span className="text-[14px] font-black text-cyan-400">{filledVacancies.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-400">/ {totalVacancies.toLocaleString('id-ID')}</span></span>
-                            <span className="text-[8px] font-black text-cyan-500 uppercase tracking-widest leading-none italic opacity-90">UPDATE: {nextDateStr}</span>
+                      </>
+                   )}
+                </div>
+             ) : (
+                <div className="grid gap-2">
+                   {storageInfo && (
+                      <div className="flex flex-col gap-3 p-4 rounded-2xl bg-amber-500/5 border border-amber-500/20">
+                         <div className="flex items-center justify-between border-b border-amber-500/10 pb-2 mb-1">
+                            <div className="flex items-center gap-2.5">
+                               <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500">
+                                  <Archive size={12} />
+                               </div>
+                               <span className="text-[10px] font-black text-amber-500 uppercase tracking-widest">{storageInfo.label}</span>
+                            </div>
+                            <span className="text-[10px] font-bold text-zinc-500 uppercase italic">Kapasitas Unit</span>
+                         </div>
+                         
+                         <div className="space-y-3">
+                            {storageInfo.units.map(uKey => {
+                               const dbKey = Object.entries(MILITARY_KEY_MAP).find(([_, short]) => short === uKey)?.[0] || uKey;
+                               const groupId = ["tank", "apc", "tactical", "artileri", "rocket", "sam"].includes(uKey) ? "darat" : 
+                                              ["carrier", "destroyer", "corvette", "submarine", "reg_sub", "mine_ship", "logistics"].includes(uKey) ? "laut" : "udara";
+                               
+                               const totalUnitCount = getEffectiveUnitCount(uKey, groupId, dbKey);
+                               const maxCapacity = (item.count || 0) * (storageInfo.ratio[uKey] || 1);
+                               const usagePrc = maxCapacity > 0 ? Math.min(100, Math.round((totalUnitCount / maxCapacity) * 100)) : 0;
+
+                               return (
+                                  <div key={uKey} className="space-y-1.5">
+                                     <div className="flex justify-between items-center text-[10px]">
+                                        <span className="font-bold text-zinc-300">{UNIT_LABELS[uKey] || uKey}</span>
+                                        <span className={`font-black ${totalUnitCount >= maxCapacity ? 'text-rose-500' : 'text-amber-400'}`}>
+                                           {totalUnitCount.toLocaleString('id-ID')} / {maxCapacity.toLocaleString('id-ID')}
+                                        </span>
+                                     </div>
+                                     <div className="h-1 w-full bg-zinc-950 rounded-full overflow-hidden border border-zinc-800/30">
+                                        <div 
+                                           className={`h-full transition-all duration-700 ${totalUnitCount >= maxCapacity ? 'bg-rose-500' : 'bg-amber-500/60'}`}
+                                           style={{ width: `${usagePrc}%` }}
+                                        />
+                                     </div>
+                                  </div>
+                               );
+                            })}
                          </div>
                       </div>
-                   </>
-                )}
-             </div>
+                   )}
+                </div>
+             )}
           </div>
 
-          <button
-            onClick={() => setShowDetail(false)}
-            className="mt-6 w-full py-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-zinc-800 hover:text-white transition-all cursor-pointer active:scale-[0.98] shadow-lg"
-          >
-            Kembali
+          <button onClick={() => setActiveDetail(null)} className="mt-6 w-full py-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-zinc-800 hover:text-white transition-all cursor-pointer active:scale-[0.98] shadow-lg">
+             Kembali
           </button>
         </div>
       )}
 
       {/* Card header */}
       <div className="flex items-start justify-between relative z-10">
-         <div className="flex gap-2">
-            <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform">
+          <div className="flex gap-2">
+            <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform relative">
                <item.icon className={`h-5 w-5 ${progress ? 'text-white' : 'text-cyan-500'} shadow-[0_0_10px_rgba(6,182,212,0.3)]`} />
             </div>
-            <button
-               onClick={() => setShowDetail(!showDetail)}
-               className={`p-2.5 rounded-xl border transition-all cursor-pointer ${showDetail ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'}`}
-            >
-               <Info size={16} />
-            </button>
+
+            {/* Tombol Operasional */}
+            <div className="relative group/tooltip">
+               <button
+                  onClick={() => setActiveDetail(activeDetail === "operasional" ? null : "operasional")}
+                  className={`p-2.5 rounded-xl border transition-all cursor-pointer ${activeDetail === "operasional" ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'}`}
+               >
+                  <Activity size={16} />
+               </button>
+               <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-zinc-900 border border-zinc-700 rounded-lg whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 pointer-events-none transition-all z-50 shadow-2xl scale-95 group-hover/tooltip:scale-100">
+                  <span className="text-[9px] font-black text-cyan-400 uppercase tracking-[0.2em]">Detail Operasional</span>
+               </div>
+            </div>
+
+            {/* Tombol Kapasitas */}
+            {storageInfo && (
+               <div className="relative group/tooltip">
+                  <button
+                     onClick={() => setActiveDetail(activeDetail === "kapasitas" ? null : "kapasitas")}
+                     className={`p-2.5 rounded-xl border transition-all cursor-pointer ${activeDetail === "kapasitas" ? 'bg-amber-500/20 border-amber-500/50 text-amber-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-amber-400 hover:border-amber-500/30'}`}
+                  >
+                     <Archive size={16} />
+                  </button>
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-zinc-900 border border-zinc-700 rounded-lg whitespace-nowrap opacity-0 group-hover/tooltip:opacity-100 pointer-events-none transition-all z-50 shadow-2xl scale-95 group-hover/tooltip:scale-100">
+                     <span className="text-[9px] font-black text-amber-500 uppercase tracking-[0.2em]">Detail Kapasitas</span>
+                  </div>
+               </div>
+            )}
          </div>
          <div className="flex flex-col items-end gap-1">
             <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
@@ -493,6 +628,17 @@ function BuildingCard({ item, onBuild, construction }: any) {
                   </div>
                   <span className="text-[12px] font-bold text-amber-500/80">
                      Konsumsi: {item.consumption} MW/unit
+                  </span>
+               </div>
+            )}
+
+            {item.dataKey === "hangar_tank" && (
+               <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-cyan-500/10 rounded-lg">
+                     <Truck size={12} className="text-cyan-400" />
+                  </div>
+                  <span className="text-[12px] font-bold text-cyan-400/90 italic">
+                     Kapasitas: 50 Main Battle Tank/unit
                   </span>
                </div>
             )}

@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, Fragment, useMemo } from "react";
-import { X, Wrench, Zap, Shield, Truck, MapPin, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship, Plane, Rocket, Crosshair, Activity, Wifi, Radio, Cctv, Search, Siren, Car, Bike, Dog, ShieldAlert, Anchor, Waves, Satellite, RadioTower, Cpu, Target, Radar, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, EyeOff, Building, Archive, Info, Briefcase, Users, Flame, Coins, MessageSquare, Handshake, ThumbsUp, BookOpen, Scale } from "lucide-react"
+import { X, Wrench, Zap, Shield, Truck, MapPin, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship, Plane, Rocket, Crosshair, Activity, Wifi, Radio, Cctv, Search, Siren, Car, Bike, Dog, ShieldAlert, Anchor, Waves, Waypoints, Satellite, RadioTower, Cpu, Target, Radar, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, EyeOff, Building, Archive, Info, Briefcase, Users, Flame, Coins, MessageSquare, Handshake, ThumbsUp, BookOpen, Scale } from "lucide-react"
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/types/1_kelistrikan";
 import { KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL } from "@/app/database/data/types/1_kelistrikan/2_konsumsi_listrik";
 import { gameStorage } from "@/app/game/gamestorage";
@@ -136,9 +136,49 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
   }, [isOpen]);
 
   const buildingData = buildingStorage.getData();
-  const buildingDeltas = buildingData.buildingDeltas;
+  // LOGIKA STORAGE CONFIG
+  const STORAGE_CONFIG: Record<string, { storageKey: string, ratio: number, label: string, icon: any, isCumulative?: boolean }> = {
+    tank: { storageKey: "hangar_tank", ratio: 50, label: "Hangar Tank", icon: Truck },
+    apc: { storageKey: "hangar_tank", ratio: 100, label: "Hangar Tank", icon: Truck },
+    tactical: { storageKey: "hangar_tank", ratio: 200, label: "Hangar Tank", icon: Truck },
+    artileri: { storageKey: "gudang_senjata", ratio: 50, label: "Gudang Senjata", icon: Archive },
+    rocket: { storageKey: "gudang_senjata", ratio: 30, label: "Gudang Senjata", icon: Archive },
+    sam: { storageKey: "gudang_senjata", ratio: 20, label: "Gudang Senjata", icon: Archive },
+    hangar_tank: { storageKey: "hangar_tank", ratio: 1, label: "Kapasitas Hangar", icon: Archive, isCumulative: true },
+    gudang_senjata: { storageKey: "gudang_senjata", ratio: 1, label: "Kapasitas Gudang Senjata", icon: Archive, isCumulative: true },
+    pangkalan_udara: { storageKey: "pangkalan_udara", ratio: 1, label: "Kapasitas Pangkalan Udara", icon: Archive, isCumulative: true },
+    pangkalan_laut: { storageKey: "pangkalan_laut", ratio: 1, label: "Kapasitas Pangkalan Laut", icon: Archive, isCumulative: true },
+    
+    // AIR STORAGE (Cumulative)
+    stealth_jet: { storageKey: "pangkalan_udara", ratio: 50, label: "Pangkalan Udara", icon: Plane, isCumulative: true },
+    interceptor: { storageKey: "pangkalan_udara", ratio: 50, label: "Pangkalan Udara", icon: Plane, isCumulative: true },
+    bomber: { storageKey: "pangkalan_udara", ratio: 50, label: "Pangkalan Udara", icon: Plane, isCumulative: true },
+    heli_attack: { storageKey: "pangkalan_udara", ratio: 50, label: "Pangkalan Udara", icon: Plane, isCumulative: true },
+    recon_plane: { storageKey: "pangkalan_udara", ratio: 50, label: "Pangkalan Udara", icon: Plane, isCumulative: true },
+    uav: { storageKey: "pangkalan_udara", ratio: 50, label: "Pangkalan Udara", icon: Plane, isCumulative: true },
+    kamikaze: { storageKey: "pangkalan_udara", ratio: 50, label: "Pangkalan Udara", icon: Plane, isCumulative: true },
+    transport: { storageKey: "pangkalan_udara", ratio: 50, label: "Pangkalan Udara", icon: Plane, isCumulative: true },
+
+    // SEA STORAGE (Cumulative)
+    carrier: { storageKey: "pangkalan_laut", ratio: 20, label: "Pangkalan Laut", icon: Ship, isCumulative: true },
+    destroyer: { storageKey: "pangkalan_laut", ratio: 20, label: "Pangkalan Laut", icon: Ship, isCumulative: true },
+    corvette: { storageKey: "pangkalan_laut", ratio: 20, label: "Pangkalan Laut", icon: Ship, isCumulative: true },
+    submarine: { storageKey: "pangkalan_laut", ratio: 20, label: "Pangkalan Laut", icon: Ship, isCumulative: true },
+    reg_sub: { storageKey: "pangkalan_laut", ratio: 20, label: "Pangkalan Laut", icon: Ship, isCumulative: true },
+    mine_ship: { storageKey: "pangkalan_laut", ratio: 20, label: "Pangkalan Laut", icon: Ship, isCumulative: true },
+    logistics: { storageKey: "pangkalan_laut", ratio: 20, label: "Pangkalan Laut", icon: Ship, isCumulative: true },
+  };
+
+  const buildingDeltas = buildingStorage.getData()?.buildingDeltas || {};
   const playerDeductions = playerMilitaryStorage.getDeductions();
   
+  // LOGIKA SINKRONISASI HANGAR TANK
+  const TANKS_PER_HANGAR = 50;
+  const baseHangars = currentData.sektor_pertahanan?.hangar_tank || 0;
+  const deltaHangars = (buildingDeltas["hangar_tank"] as number) || 0;
+  const totalHangars = baseHangars + deltaHangars;
+  const tankCapacity = totalHangars * TANKS_PER_HANGAR;
+
   // Create effective deltas for national badges/view
   const effectiveDeltas = useMemo(() => {
     const deltas = { ...buildingDeltas };
@@ -173,7 +213,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
         
         // ARMADA LAUT
         { key: "carrier", groupId: "laut", label: "Kapal Induk", icon: Ship, desc: "Pangkalan Apung", biaya_pembangunan: 750, waktu_pembangunan: 480, biaya_pemeliharaan: 200, lowongan_kerja: 5000, count: (currentData.armada_militer.laut.kapal_induk || 0) + ((effectiveDeltas["carrier"] as number) || 0), consumption: 0, power: CARRIER_POWER_PER_UNIT },
-        { key: "destroyer", groupId: "laut", label: "Kapal Destroyer", icon: Waves, desc: "Perusak Maritim", biaya_pembangunan: 280, waktu_pembangunan: 360, biaya_pemeliharaan: 100, lowongan_kerja: 300, count: (currentData.armada_militer.laut.kapal_destroyer || 0) + ((effectiveDeltas["destroyer"] as number) || 0), consumption: 0, power: DESTROYER_POWER_PER_UNIT },
+        { key: "destroyer", groupId: "laut", label: "Kapal Destroyer", icon: Waypoints, desc: "Perusak Maritim", biaya_pembangunan: 280, waktu_pembangunan: 360, biaya_pemeliharaan: 100, lowongan_kerja: 300, count: (currentData.armada_militer.laut.kapal_destroyer || 0) + ((effectiveDeltas["destroyer"] as number) || 0), consumption: 0, power: DESTROYER_POWER_PER_UNIT },
         { key: "corvette", groupId: "laut", label: "Kapal Korvet", icon: Anchor, desc: "Kapal Kawal", biaya_pembangunan: 120, waktu_pembangunan: 180, biaya_pemeliharaan: 45, lowongan_kerja: 100, count: (currentData.armada_militer.laut.kapal_korvet || 0) + ((effectiveDeltas["corvette"] as number) || 0), consumption: 0, power: CORVETTE_POWER_PER_UNIT },
         { key: "submarine", groupId: "laut", label: "Kapal Selam Nuklir", icon: RadioTower, desc: "Siluman Bawah Air", biaya_pembangunan: 420, waktu_pembangunan: 420, biaya_pemeliharaan: 150, lowongan_kerja: 80, count: (currentData.armada_militer.laut.kapal_selam_nuklir || 0) + ((effectiveDeltas["submarine"] as number) || 0), consumption: 0, power: SUBMARINE_POWER_PER_UNIT },
         { key: "reg_sub", groupId: "laut", label: "Kapal Selam Reguler", icon: RadioTower, desc: "Selam Reguler", biaya_pembangunan: 150, waktu_pembangunan: 240, biaya_pemeliharaan: 60, lowongan_kerja: 60, count: (currentData.armada_militer.laut.kapal_selam_regular || 0) + ((effectiveDeltas["reg_sub"] as number) || 0), consumption: 0, power: REGULAR_SUB_POWER_PER_UNIT },
@@ -189,7 +229,45 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
         { key: "uav", groupId: "udara", label: "Drone UAV", icon: Satellite, desc: "Intai Tanpa Awak", biaya_pembangunan: 15, waktu_pembangunan: 30, biaya_pemeliharaan: 5, lowongan_kerja: 1, count: (currentData.armada_militer.udara.drone_intai_uav || 0) + ((effectiveDeltas["uav"] as number) || 0), consumption: 0, power: UAV_POWER_PER_UNIT },
         { key: "kamikaze", groupId: "udara", label: "Drone Kamikaze", icon: Target, desc: "Serangan Bunuh Diri", biaya_pembangunan: 5, waktu_pembangunan: 7, biaya_pemeliharaan: 1, lowongan_kerja: 1, count: (currentData.armada_militer.udara.drone_kamikaze || 0) + ((effectiveDeltas["kamikaze"] as number) || 0), consumption: 0, power: KAMIKAZE_POWER_PER_UNIT },
         { key: "transport", groupId: "udara", label: "Pesawat Angkut", icon: Truck, desc: "Logistik Udara", biaya_pembangunan: 45, waktu_pembangunan: 90, biaya_pemeliharaan: 15, lowongan_kerja: 3, count: (currentData.armada_militer.udara.pesawat_angkut || 0) + ((effectiveDeltas["transport"] as number) || 0), consumption: 0, power: TRANSPORT_POWER_PER_UNIT }
-      ]
+      ].map(unit => {
+        const config = STORAGE_CONFIG[unit.key];
+        if (!config) return unit;
+
+        const baseStorage = currentData.sektor_pertahanan?.[config.storageKey as keyof typeof currentData.sektor_pertahanan] || 0;
+        const deltaStorage = (buildingDeltas[config.storageKey] as number) || 0;
+        const totalStorageUnits = baseStorage + deltaStorage;
+        const storageMax = totalStorageUnits * config.ratio;
+
+        let storageUsed = unit.count;
+        if (config.isCumulative) {
+          // Hitung total unit dalam kategori yang sama (misal: semua pesawat)
+          const categoryItems = Object.entries(STORAGE_CONFIG).filter(([_, v]) => v.storageKey === config.storageKey);
+          storageUsed = categoryItems.reduce((acc, [k, _]) => {
+            const foundUnit = [
+              ...currentData.armada_militer.darat ? Object.entries(currentData.armada_militer.darat).map(([dk, v]: [string, any]) => ({ key: Object.entries(MILITARY_KEY_MAP).find(([mk, mv]) => mv === k)?.[0] === dk ? k : dk, count: v })) : [],
+              // Ini agak rumit karena kita butuh count yang sudah termasuk deltas.
+              // Lebih baik kita ambil dari list items yang sedang kita map jika sudah tersedia, 
+              // atau hitung ulang dengan cara yang sama.
+            ];
+            // Cara termudah: cari di items yang sudah didefinisikan sebelumnya di array.
+            // Tapi karena kita di dalam map, kita hitung ulang saja logic-nya:
+            const dbKey = Object.entries(MILITARY_KEY_MAP).find(([_, short]) => short === k)?.[0] || k;
+            const baseCount = (currentData.armada_militer as any)[unit.groupId]?.[dbKey] || 
+                             (currentData.armada_militer as any)[dbKey] || 0;
+            const deltaCount = (effectiveDeltas[k] as number) || 0;
+            return acc + (typeof baseCount === 'number' ? baseCount : 0) + (typeof deltaCount === 'number' ? deltaCount : 0);
+          }, 0);
+        }
+
+        return {
+          ...unit,
+          storageLabel: config.label,
+          storageIcon: config.icon,
+          storageUsed,
+          storageMax,
+          isFull: storageUsed >= storageMax
+        };
+      })
     }
   ];
 
@@ -395,6 +473,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
                                 item={item}
                                 onBuild={handleBuildRequest}
                                 construction={currentConstruction}
+                                tankCapacity={item.key === "tank" ? tankCapacity : undefined}
                               />
                             </Fragment>
                           );
@@ -671,7 +750,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
   )
 }
 
-function BuildingCard({ item, onBuild, construction }: any) {
+function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
   const [showDetail, setShowDetail] = useState(false);
   const currentDate = getStoredGameDate().getTime();
   const progress = construction ? calculateConstructionProgress(construction.startDate, construction.endDate, currentDate) : null;
@@ -850,6 +929,17 @@ function BuildingCard({ item, onBuild, construction }: any) {
             </div>
           )}
 
+          {item.storageLabel && typeof item.storageMax === 'number' && (
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 bg-amber-500/10 rounded-lg">
+                <item.storageIcon size={12} className="text-amber-500" />
+              </div>
+              <span className={`text-[12px] font-bold italic ${item.isFull ? 'text-rose-500' : 'text-amber-500/90'}`}>
+                Kapasitas {item.storageLabel.replace('Pangkalan ', '')}: {item.storageUsed} / {item.storageMax}
+              </span>
+            </div>
+          )}
+
 
           {!progress && (
             <div className="flex items-center gap-2.5">
@@ -908,9 +998,15 @@ function BuildingCard({ item, onBuild, construction }: any) {
               <span className="text-[13px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
               <span className="text-xl font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
             </div>
-            <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20">
-              Bangun
-            </button>
+            {item.isFull ? (
+              <button disabled className="flex-1 py-3.5 rounded-2xl bg-zinc-800 text-rose-500/50 text-[10px] font-black uppercase tracking-[0.1em] border border-rose-500/20 cursor-not-allowed">
+                {item.storageLabel.replace('Pangkalan ', '')} Penuh
+              </button>
+            ) : (
+              <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20">
+                Bangun
+              </button>
+            )}
           </div>
         )}
       </div>
