@@ -125,11 +125,12 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
 
   if (isTemporarilyHidden) return null;
 
-  const isModalOpen = activeMenu.startsWith("CountryModal:") || activeMenu.startsWith("Menu:") || activeMenu.startsWith("Dashboard:");
+  const isModalActive = activeMenu.startsWith("Komando Pertahanan");
+  const isOtherModalOpen = activeMenu.startsWith("CountryModal:") || activeMenu.startsWith("Menu:") || activeMenu.startsWith("Dashboard:");
 
   return (
     <div className={`absolute bottom-12 left-1/2 -translate-x-1/2 w-max max-w-[95vw] transition-all duration-500 ${
-      isModalOpen ? 'z-0 opacity-50' : 'z-40 opacity-100'
+      isOtherModalOpen ? 'z-0 opacity-50' : 'z-[100] opacity-100'
     }`}>
       <nav className={`flex items-center gap-2 bg-zinc-950 px-2.5 py-2 rounded-2xl border border-zinc-800/80 shadow-2xl transition-all duration-500 ease-in-out ${isMenuSelected ? 'min-w-[320px]' : ''}`}>
 

@@ -75,8 +75,16 @@ export function useGamePath(path: string[]) {
 
   } else if (category === 'agama') {
     initialMenu = "Menu:Agama";
+  } else if (category === 'misi-taktis') {
+    const target = path[1];
+    if (target) initialMenu = `Komando Pertahanan:HalamanMisiSerangan:${target}`;
+    else initialMenu = "Komando Pertahanan:HalamanMisiSerangan";
   } else if (category === 'ideologi') {
     initialMenu = "Menu:Ideologi";
+  } else if (category === 'pages_war') {
+    const target = path[1];
+    if (target) initialMenu = `Komando Pertahanan:Menu Perang:${target}`;
+    else initialMenu = "Komando Pertahanan:Menu Perang";
   }
 
   const [activeMenu, setActiveMenu] = useState<string>(initialMenu);
@@ -124,7 +132,9 @@ export function useGamePath(path: string[]) {
       "Dashboard:Populasi": "/game/kependudukan",
       "Dashboard:Budget": "/game/anggaran/dashboard",
       "Menu:Agama": "/game/agama",
-      "Menu:Ideologi": "/game/ideologi"
+      "Menu:Ideologi": "/game/ideologi",
+      "Komando Pertahanan:HalamanMisiSerangan": "/game/misi-taktis",
+      "Komando Pertahanan:Menu Perang": "/game/pages_war"
     };
 
     let targetPath = menuToPath[activeMenu];
@@ -133,6 +143,12 @@ export function useGamePath(path: string[]) {
     if (!targetPath && activeMenu.startsWith("Komando Pertahanan:Misi Serangan:")) {
       const target = activeMenu.split(":")[2];
       targetPath = `/game/pertahanan/komando-pertahanan/misi-serangan/${target}`;
+    }
+
+    // Dynamic path handling for Targeted Halaman Misi
+    if (!targetPath && activeMenu.startsWith("Komando Pertahanan:HalamanMisiSerangan:")) {
+      const target = activeMenu.split(":")[2];
+      targetPath = `/game/misi-taktis/${target}`;
     }
 
     // Dynamic path handling for Perdagangan details
@@ -158,11 +174,35 @@ export function useGamePath(path: string[]) {
       if (subTab) targetPath += `/${subTab}`;
     }
 
+    // Dynamic path handling for War Menu with target
+    if (!targetPath && activeMenu.startsWith("Komando Pertahanan:Menu Perang:")) {
+      const target = activeMenu.split(":")[2];
+      targetPath = `/game/pages_war/${target}`;
+    }
+
     targetPath = targetPath || "/game";
     if (window.location.pathname !== targetPath) {
       window.history.pushState(null, '', targetPath);
     }
   }, [activeMenu]);
+
+  // Global Event Listeners for Game-wide triggers (like map markers)
+  useEffect(() => {
+    const handleWarMode = (e: any) => {
+      setActiveMenu(`Komando Pertahanan:Menu Perang:${e.detail.target}`);
+    };
+    const handleHalamanMisi = (e: any) => {
+      setActiveMenu(`Komando Pertahanan:HalamanMisiSerangan:${e.detail.target}`);
+    };
+
+    window.addEventListener("war_mode_triggered", handleWarMode);
+    window.addEventListener("halaman_misi_triggered", handleHalamanMisi);
+
+    return () => {
+      window.removeEventListener("war_mode_triggered", handleWarMode);
+      window.removeEventListener("halaman_misi_triggered", handleHalamanMisi);
+    };
+  }, []);
 
   return { activeMenu, setActiveMenu };
 }

@@ -57,7 +57,7 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
   // Format: CountryModal:CountryID:TabSlug:SubTabSlug
   let targetCountryID = "";
   let activeSubTab = "";
-  
+
   if (activeMenu.startsWith("CountryModal:")) {
     const parts = activeMenu.split(":");
     targetCountryID = parts[1] || "";
@@ -65,8 +65,8 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
   }
 
   // Find the actual country object for labels
-  const targetCountryData = countries.find(c => 
-    c.name_id.toLowerCase() === targetCountryID.toLowerCase() || 
+  const targetCountryData = countries.find(c =>
+    c.name_id.toLowerCase() === targetCountryID.toLowerCase() ||
     c.name_en.toLowerCase() === targetCountryID.toLowerCase()
   );
 
@@ -76,6 +76,7 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
   const metadata = relationStorage.getRelationMetadata(relationScore);
   const relationLabel = metadata.labelFull;
   const relationColor = metadata.color;
+
 
   return (
     <>
@@ -215,13 +216,13 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <RelationAlertToast />
 
       {/* Pakta, Aliansi, & Dagang now in StrategyModal */}
-      <KontrakPenelitianModal 
-        isOpen={activeSubTab === 'kontrak_penelitian'} 
-        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 
+      <KontrakPenelitianModal
+        isOpen={activeSubTab === 'kontrak_penelitian'}
+        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)}
       />
-      <KirimPasukanModal 
-        isOpen={activeSubTab === 'kirim_pasukan'} 
-        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)} 
+      <KirimPasukanModal
+        isOpen={activeSubTab === 'kirim_pasukan'}
+        onClose={() => setActiveMenu(`CountryModal:${targetCountryID}:diplomasi_hubungan`)}
       />
     </>
   );

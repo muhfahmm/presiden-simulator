@@ -38,6 +38,8 @@ export default function GamePage() {
     isMenuOpen, setIsMenuOpen
   } = useMapData();
 
+  const isWarMode = activeMenu.startsWith("Komando Pertahanan:Menu Perang");
+
   // Sync Modal with activeMenu (URL)
   useEffect(() => {
     if (activeMenu.startsWith("CountryModal:")) {
@@ -81,7 +83,7 @@ export default function GamePage() {
 
   return (
     <div className="flex min-h-screen bg-zinc-950 text-white font-sans relative overflow-hidden">
-      {/* Top Header / Status bar - MOVED OUTSIDE main to fix stacking context bug */}
+      {/* Top Header / Status bar - ALWAYS VISIBLE for Page Feel */}
       <GameNavbar
         countryData={countryData}
         happiness={happiness}
@@ -103,79 +105,86 @@ export default function GamePage() {
       <main className="flex-1 z-10 flex flex-col h-screen overflow-hidden relative pt-[73px]">
 
         {/* Floating UI Elements */}
-        <SideMenu
-          activeMenu={activeMenu}
-          setActiveMenu={setActiveMenu}
-          unreadCount={unreadCount}
-        />
+        {!isWarMode && (
+          <SideMenu
+            activeMenu={activeMenu}
+            setActiveMenu={setActiveMenu}
+            unreadCount={unreadCount}
+          />
+        )}
 
         {/* Main interactive map background viewport */}
         <div className="flex-1 relative w-full overflow-hidden bg-[#070b13]">
           {/* Floating Bottom Navigation Menu */}
-          <BottomNav activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
+          {!isWarMode && <BottomNav activeMenu={activeMenu} setActiveMenu={setActiveMenu} />}
 
           {/* Map Mode Toggles */}
-          <MapCategorySelector mapMode={mapMode} setMapMode={setMapMode} />
+          {!isWarMode && <MapCategorySelector mapMode={mapMode} setMapMode={setMapMode} />}
 
           {/* Keterangan Rute (Pelat Menu Pendukung Navigasi) */}
-          <TradeRouteLegend isVisible={mapMode === "trade"} />
+          {!isWarMode && <TradeRouteLegend isVisible={mapMode === "trade"} />}
 
-          <TransformWrapper
-            initialScale={1}
-            minScale={1}
-            maxScale={8}
-            centerOnInit={!isCentered}
-            onInit={() => setIsCentered(true)}
-            limitToBounds={true}
-            doubleClick={{ disabled: true }}
-          >
-            <TransformComponent wrapperClass="!w-full !h-full" contentClass="!h-full flex items-center justify-center">
-              <div ref={containerRef} className="relative h-full flex items-center justify-center w-max">
-                <MapRenderer
-                  mapMode={mapMode}
-                  userCountry={userCountry}
-                  targetCountry={targetCountry}
-                  geoData={geoData}
-                  onSelect={handleSelect}
-                  onSelectSDA={(data) => setSelectedCountrySDA(data)}
-                />
-              </div>
-            </TransformComponent>
-          </TransformWrapper>
+          {!isWarMode && (
+            <TransformWrapper
+              initialScale={1}
+              minScale={1}
+              maxScale={8}
+              centerOnInit={!isCentered}
+              onInit={() => setIsCentered(true)}
+              limitToBounds={true}
+              doubleClick={{ disabled: true }}
+            >
+              <TransformComponent wrapperClass="!w-full !h-full" contentClass="!h-full flex items-center justify-center">
+                <div ref={containerRef} className="relative h-full flex items-center justify-center w-max">
+                  <MapRenderer
+                    mapMode={mapMode}
+                    userCountry={userCountry}
+                    targetCountry={targetCountry}
+                    geoData={geoData}
+                    onSelect={handleSelect}
+                    onSelectSDA={(data) => setSelectedCountrySDA(data)}
+                  />
+                </div>
+              </TransformComponent>
+            </TransformWrapper>
+          )}
 
           {/* Target Interaction Modal */}
-          <StrategyModal
-            isOpen={isMenuOpen}
-            onClose={() => {
-              setIsMenuOpen(false);
-              setTargetCountry(null);
-              setActiveMenu("Peta Taktis");
-            }}
-            targetCountry={targetCountry}
-            userCountry={userCountry}
-            activeTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[2] : undefined}
-            activeSubTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[3] : undefined}
-            setActiveMenu={setActiveMenu}
-            onTabChange={(tab) => {
-              if (targetCountry) {
-                const country = countries.find(c =>
-                  c.name_id.toLowerCase() === targetCountry.toLowerCase() ||
-                  c.name_en.toLowerCase() === targetCountry.toLowerCase()
-                );
-                if (country) {
-                  setActiveMenu(`CountryModal:${country.name_id.toLowerCase()}:${tab === 'info' ? 'info_strategis' : tab === 'diplomacy' ? 'diplomasi_hubungan' : tab === 'military' ? 'aksi_militer_intelijen' : 'bantuan_kerjasama'}`);
+          {!isWarMode && (
+            <StrategyModal
+              isOpen={isMenuOpen}
+              onClose={() => {
+                setIsMenuOpen(false);
+                setTargetCountry(null);
+                setActiveMenu("Peta Taktis");
+              }}
+              targetCountry={targetCountry}
+              userCountry={userCountry}
+              activeTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[2] : undefined}
+              activeSubTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[3] : undefined}
+              setActiveMenu={setActiveMenu}
+              onTabChange={(tab) => {
+                if (targetCountry) {
+                  const country = countries.find(c =>
+                    c.name_id.toLowerCase() === targetCountry.toLowerCase() ||
+                    c.name_en.toLowerCase() === targetCountry.toLowerCase()
+                  );
+                  if (country) {
+                    setActiveMenu(`CountryModal:${country.name_id.toLowerCase()}:${tab === 'info' ? 'info_strategis' : tab === 'diplomacy' ? 'diplomasi_hubungan' : tab === 'military' ? 'aksi_militer_intelijen' : 'bantuan_kerjasama'}`);
+                  }
                 }
-              }
-            }}
-          />
+              }}
+            />
+          )}
 
           {/* Details Modal - Rendered Fixed Outside Scaling */}
-          <SDADetailsModal
-            selectedCountrySDA={selectedCountrySDA}
-            sdaIcons={sdaIcons}
-            onClose={() => setSelectedCountrySDA(null)}
-          />
-
+          {!isWarMode && (
+            <SDADetailsModal
+              selectedCountrySDA={selectedCountrySDA}
+              sdaIcons={sdaIcons}
+              onClose={() => setSelectedCountrySDA(null)}
+            />
+          )}
         </div>
       </main>
 
