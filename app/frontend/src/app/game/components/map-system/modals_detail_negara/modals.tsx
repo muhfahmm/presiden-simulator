@@ -302,7 +302,12 @@ export default function StrategyModal({
               relationColor={relationColor}
             />
           )}
-          {menuTab === 'military' && <MilitaryTab />}
+          {menuTab === 'military' && (
+            <MilitaryTab 
+              setActiveMenu={setActiveMenu} 
+              targetId={targetId}
+            />
+          )}
           {menuTab === 'aid' && (
             <AidTab 
               targetId={targetId}

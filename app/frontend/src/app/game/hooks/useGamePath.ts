@@ -33,7 +33,11 @@ export function useGamePath(path: string[]) {
   } else if (category === 'pertahanan') {
     if (subMenu === 'komando-pertahanan') {
       const detail = path[2];
-      if (detail === 'misi-serangan') initialMenu = "Komando Pertahanan:Misi Serangan";
+      const target = path[3];
+      if (detail === 'misi-serangan') {
+        if (target) initialMenu = `Komando Pertahanan:Misi Serangan:${target}`;
+        else initialMenu = "Komando Pertahanan:Misi Serangan";
+      }
       else initialMenu = "Komando Pertahanan";
     }
     else if (subMenu === 'intelijen') initialMenu = "Menu:Intelijen";
@@ -125,6 +129,12 @@ export function useGamePath(path: string[]) {
 
     let targetPath = menuToPath[activeMenu];
     
+    // Dynamic path handling for Targeted Misi Serangan
+    if (!targetPath && activeMenu.startsWith("Komando Pertahanan:Misi Serangan:")) {
+      const target = activeMenu.split(":")[2];
+      targetPath = `/game/pertahanan/komando-pertahanan/misi-serangan/${target}`;
+    }
+
     // Dynamic path handling for Perdagangan details
     if (!targetPath && activeMenu.startsWith("Menu:Perdagangan:")) {
       const detail = activeMenu.split(":")[2];

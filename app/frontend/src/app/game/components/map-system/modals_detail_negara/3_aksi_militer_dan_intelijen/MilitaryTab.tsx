@@ -12,7 +12,12 @@ import PerangNuklirModal from "./4_perang_nuklir/PerangNuklirModal";
 import KudetaModal from "./5_kudeta/KudetaModal";
 import HinaModal from "./6_hina/HinaModal";
 
-export default function MilitaryTab() {
+interface MilitaryTabProps {
+  setActiveMenu: (menu: string) => void;
+  targetId: string;
+}
+
+export default function MilitaryTab({ setActiveMenu, targetId }: MilitaryTabProps) {
   const [activeModal, setActiveModal] = useState<string | null>(null);
 
   return (
@@ -22,14 +27,15 @@ export default function MilitaryTab() {
           icon={<Swords className="h-4 w-4" />} 
           label="Serang Negara" 
           bg="from-red-900/30 to-zinc-900" 
-          onClick={() => setActiveModal('serang')}
+          onClick={() => setActiveMenu(`Komando Pertahanan:Misi Serangan:${targetId}`)}
         />
         <ActionCard 
           icon={<Eye className="h-4 w-4" />} 
           label="Spionase" 
           bg="from-slate-900/30 to-zinc-900" 
-          onClick={() => setActiveModal('spionase')}
+          onClick={() => setActiveMenu('spionase')}
         />
+        {/* ... existing Spionase, Sabotase etc cards remain the same ... */}
         <ActionCard 
           icon={<Bomb className="h-4 w-4" />} 
           label="Sabotase" 
@@ -57,7 +63,6 @@ export default function MilitaryTab() {
       </div>
 
       {/* Render Specific Modals */}
-      <SerangNegaraModal isOpen={activeModal === 'serang'} onClose={() => setActiveModal(null)} />
       <SpionaseModal isOpen={activeModal === 'spionase'} onClose={() => setActiveModal(null)} />
       <SabotaseModal isOpen={activeModal === 'sabotase'} onClose={() => setActiveModal(null)} />
       <PerangNuklirModal isOpen={activeModal === 'nuklir'} onClose={() => setActiveModal(null)} />

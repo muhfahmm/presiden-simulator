@@ -12,12 +12,13 @@ interface ModalProps {
   onClose: () => void;
   activeMenu: string;
   setActiveMenu: (menu: string) => void;
+  preselectedTarget?: string;
   data: CountryData;
 }
 
-export default function PertahananModal({ isOpen, onClose, activeMenu, setActiveMenu, data }: ModalProps) {
+export default function PertahananModal({ isOpen, onClose, activeMenu, setActiveMenu, preselectedTarget, data }: ModalProps) {
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
-  const showMisiSerangan = activeMenu === "Komando Pertahanan:Misi Serangan";
+  const showMisiSerangan = activeMenu.startsWith("Komando Pertahanan:Misi Serangan");
   
   if (!isOpen || !data) return null;
 
@@ -182,6 +183,7 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
       <MisiSeranganModal 
         isOpen={showMisiSerangan} 
         onClose={() => setActiveMenu("Komando Pertahanan")} 
+        preselectedTarget={preselectedTarget}
         userCountryData={data}
       />
     </div>

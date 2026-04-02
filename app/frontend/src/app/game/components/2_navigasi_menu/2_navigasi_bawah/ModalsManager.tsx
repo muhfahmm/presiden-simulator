@@ -123,6 +123,7 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         onClose={() => setActiveMenu("Pertahanan")}
         activeMenu={activeMenu}
         setActiveMenu={setActiveMenu}
+        preselectedTarget={activeMenu.startsWith("Komando Pertahanan:Misi Serangan:") ? activeMenu.split(":")[2] : undefined}
         data={countryData}
       />
       <ArmadaMiliterModal

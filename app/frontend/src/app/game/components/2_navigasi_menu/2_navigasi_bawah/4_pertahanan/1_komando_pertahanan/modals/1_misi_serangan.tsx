@@ -14,15 +14,30 @@ interface MisiSeranganProps {
   isOpen: boolean
   onClose: () => void
   userCountryData: any
+  preselectedTarget?: string
 }
 
-export default function MisiSeranganModal({ isOpen, onClose, userCountryData }: MisiSeranganProps) {
+export default function MisiSeranganModal({ isOpen, onClose, userCountryData, preselectedTarget }: MisiSeranganProps) {
   const [targetCountry, setTargetCountry] = useState<any | null>(null)
   const [searchTerm, setSearchTerm] = useState("")
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null)
   const [sortBy, setSortBy] = useState<"name" | "power">("name")
   const [warDeclared, setWarDeclared] = useState(false)
   const [warResult, setWarResult] = useState<{ war: any; result: any; outcome: any } | null>(null)
+
+  // Handle preselected target from routing
+  useEffect(() => {
+    if (isOpen && preselectedTarget) {
+      const found = countries.find(c => 
+        c.name_id.toLowerCase() === preselectedTarget.toLowerCase() || 
+        c.name_id.replace(/ /g, '_').toLowerCase() === preselectedTarget.toLowerCase()
+      );
+      if (found) {
+        setTargetCountry(found);
+        setSearchTerm(found.name_id);
+      }
+    }
+  }, [isOpen, preselectedTarget]);
 
   // Listen for war results
   useEffect(() => {
