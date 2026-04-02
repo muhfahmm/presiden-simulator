@@ -7,6 +7,7 @@ import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import PilihAlutsistaMisi from "./modals/1_misi_serangan/PilihAlutsistaMisi";
 import ModalsPerbandingan from "./modals/1_misi_serangan/main_pages/modals_perbandingan/modals_perbandingan";
 import { warMissionStorage } from "./modals/1_misi_serangan/logic_jalur/warMissionStorage";
+import PertempuranIndex from "./modals/1_misi_serangan/main_pages/pertempuran/PertempuranIndex";
 
 interface ModalProps {
   isOpen: boolean;
@@ -21,6 +22,7 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
   const showMisiSerangan = activeMenu.startsWith("Komando Pertahanan:Misi Serangan");
   const showPerbandingan = activeMenu.startsWith("Komando Pertahanan:PerbandinganMisi:");
+  const showPertempuran = activeMenu.startsWith("Komando Pertahanan:Pertempuran:");
   
   // Mission Comparison Data handling
   let comparisonData = null;
@@ -31,6 +33,17 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
     const mission = warMissionStorage.getMission(missionId);
     if (mission) {
       comparisonData = { target, selection: mission.selection };
+    }
+  }
+
+  // Active Battle Data handling
+  let battleData = null;
+  if (showPertempuran) {
+    const target = activeMenu.split(":")[2];
+    const missionId = activeMenu.split(":")[3];
+    const mission = warMissionStorage.getMission(missionId);
+    if (mission) {
+      battleData = { target, selection: mission.selection };
     }
   }
   
@@ -207,11 +220,23 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
           isOpen={true}
           onClose={() => setActiveMenu("Pertahanan")}
           onConfirm={() => {
-            // Future: Trigger actual battle simulation
-            setActiveMenu("Pertahanan");
+            // Transition to actual battle simulation
+            const parts = activeMenu.split(":");
+            setActiveMenu(`Komando Pertahanan:Pertempuran:${parts[2]}:${parts[3]}`);
+          }}
+          onAutoResult={() => {
+            // Skip to results (simulated as immediately finishing)
+             setActiveMenu("Pertahanan");
           }}
           userSelection={comparisonData.selection}
           targetCountryName={comparisonData.target}
+        />
+      )}
+
+      {showPertempuran && battleData && (
+        <PertempuranIndex 
+          onClose={() => setActiveMenu("Pertahanan")}
+          missionData={battleData}
         />
       )}
     </div>

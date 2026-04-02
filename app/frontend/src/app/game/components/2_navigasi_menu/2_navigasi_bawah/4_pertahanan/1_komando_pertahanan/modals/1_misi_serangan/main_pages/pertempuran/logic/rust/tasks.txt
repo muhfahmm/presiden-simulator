@@ -1,0 +1,7 @@
+[RUST ENGINE TASKS]
+1. Execute high-performance A* pathfinding for ground/sea units.
+2. Calculate NavMesh updates to define passable/impassable areas.
+3. Compute Line of Sight (LOS) and concealment logic for tactical stealth.
+4. Manage high-speed quadtree data structures for unit distance queries.
+5. Provide ultra-low latency response for RTS movement commands.
+6. Handle WASM compilation for frontend accessibility.

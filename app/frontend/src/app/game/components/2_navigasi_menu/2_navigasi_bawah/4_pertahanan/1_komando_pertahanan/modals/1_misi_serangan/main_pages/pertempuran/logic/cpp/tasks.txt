@@ -1,0 +1,6 @@
+[CPP ENGINE TASKS]
+1. Implement high-fidelity ballistics trajectory calculations.
+2. Calculate armor penetration based on velocity, impact angle, and thickness.
+3. Manage physics-based collisions between projectiles and environmental objects.
+4. Optimize mathematical operations for real-time bullet physics.
+5. Interface with the main engine for collision event triggers.
