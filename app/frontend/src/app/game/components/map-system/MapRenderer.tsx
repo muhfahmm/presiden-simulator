@@ -1,9 +1,13 @@
 "use client"
 
+import { useState } from "react";
+import { useRouter } from "next/navigation";
 import GameMapCanvas from "./mainGameMap";
 import TradeMapCanvas from "../2_navigasi_menu/1_navigasi_atas/import_map_jalur_perdagangan/importTradeMapCanvas";
 import MapSDA from "../2_navigasi_menu/1_navigasi_atas/SDA/mapSDA";
 import MapHubungan from "../2_navigasi_menu/1_navigasi_atas/Hubungan/mapHubungan";
+import WarOverlayCanvas from "../2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/modals/war_system/WarOverlayCanvas";
+import { WarDeclaration } from "../2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/modals/war_system/warTypes";
 
 interface MapRendererProps {
   mapMode: "default" | "sda" | "hubungan" | "trade";
@@ -22,17 +26,32 @@ export default function MapRenderer({
   onSelect,
   onSelectSDA
 }: MapRendererProps) {
+  const router = useRouter();
+
+  const handleWarZoneClick = (war: WarDeclaration) => {
+    // Navigate to the tactical battle page
+    router.push(`/game/tactical?warId=${war.id}`);
+  };
+
   return (
     <>
       <div style={{ display: mapMode === "trade" ? "none" : "contents" }} className="h-full">
         {mapMode === "default" && (
-          <GameMapCanvas
-            userCountry={userCountry}
-            targetCountry={targetCountry}
-            mapMode={mapMode}
-            geoData={geoData}
-            onSelect={onSelect}
-          />
+          <div className="relative h-full">
+            <GameMapCanvas
+              userCountry={userCountry}
+              targetCountry={targetCountry}
+              mapMode={mapMode}
+              geoData={geoData}
+              onSelect={onSelect}
+            />
+            <WarOverlayCanvas
+              mapWidth={6000}
+              mapHeight={2400}
+              active={true}
+              onWarZoneClick={handleWarZoneClick}
+            />
+          </div>
         )}
         {mapMode === "sda" && (
           <MapSDA
@@ -49,6 +68,7 @@ export default function MapRenderer({
             targetCountry={targetCountry}
             geoData={geoData}
             onSelect={onSelect}
+            onWarZoneClick={handleWarZoneClick}
           />
         )}
       </div>

@@ -2,8 +2,76 @@
 
 // === War System Types ===
 
-export type WarPhase = 'deploying' | 'traveling' | 'battle' | 'finished';
+export type WarPhase = 'deploying' | 'traveling' | 'battle' | 'tactical' | 'finished';
 export type WarOutcome = 'victory' | 'defeat' | 'draw';
+
+// === Tactical Battle Types ===
+
+export type TileStatus = 'empty' | 'user' | 'enemy' | 'contested';
+export type TerrainType = 'plain' | 'forest' | 'mountain' | 'water';
+export type TacticalSubPhase = 'planning' | 'deployment' | 'engagement' | 'resolved';
+export type UnitSide = 'user' | 'enemy';
+
+export interface TileData {
+  gridX: number;
+  gridY: number;
+  pixelX: number;
+  pixelY: number;
+  status: TileStatus;
+  terrainType: TerrainType;
+  isInsideCountry: boolean;
+}
+
+export interface UnitStats {
+  hp: number;
+  maxHp: number;
+  damage: number;
+  range: number;       // tiles
+  minRange?: number;   // tiles (untuk Artileri)
+  moveSpeed: number;   // tiles per tick
+  armor: number;
+}
+
+export interface DeployedUnit {
+  id: string;
+  unitType: string;
+  label: string;
+  side: UnitSide;
+  gridX: number;
+  gridY: number;
+  stats: UnitStats;
+  isAlive: boolean;
+  targetId?: string;
+  lastAttackTick?: number;
+  sprite: 'tank' | 'infantry' | 'artillery' | 'rocket' | 'sam' | 'jet' | 'heli' | 'drone' | 'ship' | 'apc';
+}
+
+export interface BattlefieldState {
+  warId: string;
+  defenderCountry: string;
+  gridCols: number;
+  gridRows: number;
+  tileSize: number;
+  tiles: TileData[][];
+  userUnits: DeployedUnit[];
+  enemyUnits: DeployedUnit[];
+  subPhase: TacticalSubPhase;
+  occupationPercent: number;
+  tick: number;
+  /** Bounding box of defender country in pixel coords */
+  bounds: { minX: number; minY: number; maxX: number; maxY: number };
+  /** Center of defender country (lon/lat) */
+  center: { lon: number; lat: number };
+}
+
+export interface TerritoryProgress {
+  warId: string;
+  defenderCountry: string;
+  occupationPercent: number;
+  totalTiles: number;
+  occupiedTiles: number;
+  isConquered: boolean;
+}
 
 export interface FleetUnit {
   type: 'darat' | 'laut' | 'udara';

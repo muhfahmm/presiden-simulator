@@ -1,135 +1,105 @@
-"""
-War Engine: Military Combat Calculator
-=======================================
-Reads attacker/defender force data from stdin (JSON).
-Calculates battle outcome based on:
-- Total power comparison
-- Unit type matchups
-- Defender terrain advantage (+10%)
-- Random factor (±15%)
-Outputs JSON result to stdout.
-"""
-
 import sys
 import json
 import random
-import subprocess
-import os
+import math
 
-# Unit power multipliers (value per unit)
-UNIT_POWER = {
-    # Darat
-    "pasukan_infanteri": 1,
-    "tank_tempur_utama": 250,
-    "apc_ifv": 100,
-    "artileri_berat": 150,
-    "sistem_peluncur_roket": 400,
-    "pertahanan_udara_mobile": 300,
-    "kendaraan_taktis": 50,
-    # Laut
-    "kapal_induk": 5000,
-    "kapal_destroyer": 1200,
-    "kapal_korvet": 800,
-    "kapal_selam_nuklir": 2000,
-    "kapal_selam_regular": 1000,
-    # Udara
-    "jet_tempur_siluman": 1500,
-    "jet_tempur_interceptor": 800,
-    "pesawat_pengebom": 2500,
-    "helikopter_serang": 600,
-    "pesawat_pengintai": 200,
-    "drone_intai_uav": 100,
-}
+"""
+Strategic War AI (Python)
+=========================
+Handles high-level unit coordination, targeting, and behavior states.
+Processes battlefield state and outputs unit instructions.
+"""
 
-DEFENDER_BONUS = 1.10  # 10% defense advantage
+class TacticalAI:
+    def __init__(self, battlefield):
+        self.battlefield = battlefield
+        self.enemy_units = battlefield.get("enemyUnits", [])
+        self.user_units = battlefield.get("userUnits", [])
+        self.tiles = battlefield.get("tiles", [])
+        self.grid_cols = battlefield.get("gridCols", 40)
+        self.grid_rows = battlefield.get("gridRows", 30)
 
-def calculate_total_power(forces: dict) -> float:
-    total = 0.0
-    for category in forces.values():
-        if isinstance(category, dict):
-            for unit_type, count in category.items():
-                multiplier = UNIT_POWER.get(unit_type, 10)
-                total += count * multiplier
-    return total
+    def select_targets(self):
+        """Strategic targeting logic."""
+        instructions = []
+        alive_user_units = [u for u in self.user_units if u.get("isAlive")]
+        
+        for unit in self.enemy_units:
+            if not unit.get("isAlive"):
+                continue
+            
+            # 1. Check for immediate threats (user units in range)
+            target = self.find_priority_target(unit, alive_user_units)
+            
+            if target:
+                instructions.append({
+                    "unitId": unit["id"],
+                    "action": "attack",
+                    "targetId": target["id"],
+                    "priority": 1
+                })
+            else:
+                # 2. Strategic movement: recapture lost tiles
+                target_tile = self.find_recapture_tile(unit)
+                if target_tile:
+                    instructions.append({
+                        "unitId": unit["id"],
+                        "action": "move",
+                        "targetTile": {"x": target_tile["gridX"], "y": target_tile["gridY"]},
+                        "priority": 2
+                    })
 
-def calculate_casualties(forces: dict, loss_ratio: float) -> dict:
-    """Calculate casualties as percentage of each unit type."""
-    casualties = {}
-    for category_name, category in forces.items():
-        if isinstance(category, dict):
-            for unit_type, count in category.items():
-                lost = int(count * loss_ratio * random.uniform(0.5, 1.5))
-                lost = min(lost, count)  # Can't lose more than you have
-                if lost > 0:
-                    casualties[unit_type] = lost
-    return casualties
+        return instructions
 
-def simulate_battle(data: dict) -> dict:
-    attacker_forces = data.get("attacker_forces", {})
-    defender_forces = data.get("defender_forces", {})
-    
-    # Calculate raw power
-    attacker_power = data.get("attacker_power", calculate_total_power(attacker_forces))
-    defender_power = data.get("defender_power", calculate_total_power(defender_forces))
-    
-    # Apply defender bonus
-    effective_defender_power = defender_power * DEFENDER_BONUS
-    
-    # Random factor ±15%
-    attacker_roll = attacker_power * random.uniform(0.85, 1.15)
-    defender_roll = effective_defender_power * random.uniform(0.85, 1.15)
-    
-    # Determine winner
-    total = attacker_roll + defender_roll
-    if total == 0:
-        total = 1  # Avoid division by zero
-    
-    attacker_ratio = attacker_roll / total
-    defender_ratio = defender_roll / total
-    
-    winner = data.get("attacker", "attacker") if attacker_roll > defender_roll else data.get("defender", "defender")
-    
-    # Calculate casualty ratios
-    # Winner loses less, loser loses more
-    if attacker_roll > defender_roll:
-        attacker_loss_ratio = 0.05 + (defender_ratio * 0.15)  # 5-20%
-        defender_loss_ratio = 0.15 + (attacker_ratio * 0.35)   # 15-50%
-    else:
-        attacker_loss_ratio = 0.15 + (defender_ratio * 0.35)
-        defender_loss_ratio = 0.05 + (attacker_ratio * 0.15)
-    
-    attacker_casualties = calculate_casualties(attacker_forces, attacker_loss_ratio)
-    defender_casualties = calculate_casualties(defender_forces, defender_loss_ratio)
-    
-    # Calculate relation impact
-    relation_impact = -15 if winner == data.get("attacker") else -10
-    
-    return {
-        "winner": winner,
-        "attacker_power_effective": round(attacker_roll),
-        "defender_power_effective": round(defender_roll),
-        "power_ratio": round(attacker_ratio * 100, 1),
-        "casualties": {
-            "attacker": attacker_casualties,
-            "defender": defender_casualties,
-        },
-        "relation_impact": relation_impact,
-        "battle_summary": {
-            "decisive": abs(attacker_roll - defender_roll) > total * 0.2,
-            "margin": round(abs(attacker_roll - defender_roll)),
-        }
-    }
+    def find_priority_target(self, unit, candidates):
+        if not candidates:
+            return None
+        
+        # Priority: lowest HP unit in range, or closest
+        in_range = [c for c in candidates if self.dist(unit, c) <= unit["stats"]["range"]]
+        if in_range:
+            return min(in_range, key=lambda x: x["stats"]["hp"])
+        
+        # If no one in range, find closest
+        return min(candidates, key=lambda x: self.dist(unit, x))
 
-if __name__ == "__main__":
+    def find_recapture_tile(self, unit):
+        """Find the nearest tile occupied by user to recapture."""
+        best_tile = None
+        min_dist = float('inf')
+        
+        for row in self.tiles:
+            for tile in row:
+                if tile.get("status") == "user":
+                    d = self.dist_tile(unit, tile)
+                    if d < min_dist:
+                        min_dist = d
+                        best_tile = tile
+        return best_tile
+
+    def dist(self, u1, u2):
+        return math.sqrt((u1["gridX"] - u2["gridX"])**2 + (u1["gridY"] - u2["gridY"])**2)
+
+    def dist_tile(self, u, t):
+        return math.sqrt((u["gridX"] - t["gridX"])**2 + (u["gridY"] - t["gridY"])**2)
+
+def main():
     try:
         input_data = sys.stdin.read()
         if not input_data:
-            print(json.dumps({"error": "Input data kosong"}))
-            sys.exit(1)
+            print(json.dumps({"error": "No input"}))
+            return
+            
+        battlefield = json.loads(input_data)
+        ai = TacticalAI(battlefield)
+        instructions = ai.select_targets()
         
-        data = json.loads(input_data)
-        result = simulate_battle(data)
-        print(json.dumps(result))
+        print(json.dumps({
+            "status": "success",
+            "instructions": instructions
+        }))
     except Exception as e:
         print(json.dumps({"error": str(e)}))
-        sys.exit(1)
+
+if __name__ == "__main__":
+    main()

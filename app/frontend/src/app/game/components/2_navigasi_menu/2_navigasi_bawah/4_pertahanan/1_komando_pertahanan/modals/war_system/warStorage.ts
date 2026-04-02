@@ -1,6 +1,6 @@
 "use client"
 
-import { WarDeclaration, WarPhase, WarOutcome, WarForces, WarCasualties } from "./warTypes";
+import { WarDeclaration, WarPhase, WarOutcome, WarForces, WarCasualties, BattlefieldState, TerritoryProgress } from "./warTypes";
 
 const WAR_STORAGE_KEY = "em2_active_wars";
 const WAR_HISTORY_KEY = "em2_war_history";
@@ -141,6 +141,67 @@ export const warStorage = {
     if (typeof window === "undefined") return;
     localStorage.removeItem(WAR_STORAGE_KEY);
     localStorage.removeItem(WAR_HISTORY_KEY);
+    localStorage.removeItem("em2_battlefields");
     window.dispatchEvent(new Event("war_storage_updated"));
   },
+
+  // === Battlefield State (Tactical War) ===
+
+  /** Save battlefield state for a war */
+  saveBattlefield: (warId: string, state: BattlefieldState) => {
+    if (typeof window === "undefined") return;
+    const all = warStorage._getBattlefields();
+    all[warId] = state;
+    localStorage.setItem("em2_battlefields", JSON.stringify(all));
+
+    if (typeof window !== "undefined") {
+      window.dispatchEvent(new CustomEvent("war_territory_updated", {
+        detail: {
+          warId,
+          defenderCountry: state.defenderCountry,
+          occupationPercent: state.occupationPercent,
+        }
+      }));
+    }
+  },
+
+  /** Get battlefield state for a war */
+  getBattlefield: (warId: string): BattlefieldState | null => {
+    const all = warStorage._getBattlefields();
+    return all[warId] || null;
+  },
+
+  /** Get all battlefields */
+  _getBattlefields: (): Record<string, BattlefieldState> => {
+    if (typeof window === "undefined") return {};
+    const stored = localStorage.getItem("em2_battlefields");
+    if (!stored) return {};
+    try {
+      return JSON.parse(stored);
+    } catch {
+      return {};
+    }
+  },
+
+  /** Get territory progress for all active wars */
+  getTerritoryProgress: (): TerritoryProgress[] => {
+    const battlefields = warStorage._getBattlefields();
+    return Object.values(battlefields).map(bf => ({
+      warId: bf.warId,
+      defenderCountry: bf.defenderCountry,
+      occupationPercent: bf.occupationPercent,
+      totalTiles: bf.tiles.flat().filter(t => t.isInsideCountry).length,
+      occupiedTiles: bf.tiles.flat().filter(t => t.status === 'user').length,
+      isConquered: bf.occupationPercent >= 75,
+    }));
+  },
+
+  /** Remove battlefield when war is resolved */
+  removeBattlefield: (warId: string) => {
+    if (typeof window === "undefined") return;
+    const all = warStorage._getBattlefields();
+    delete all[warId];
+    localStorage.setItem("em2_battlefields", JSON.stringify(all));
+  },
 };
+

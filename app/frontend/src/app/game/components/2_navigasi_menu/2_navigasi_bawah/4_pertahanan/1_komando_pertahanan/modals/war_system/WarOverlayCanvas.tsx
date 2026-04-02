@@ -3,14 +3,18 @@
 /**
  * WarOverlayCanvas
  * ================
- * Canvas overlay that renders on top of the Hubungan map.
- * Shows animated military fleet (ships, jets, tanks) traveling
- * from attacker to defender along trade route paths.
+ * Canvas overlay yang merender di atas peta (Hubungan & Peta Utama).
+ * Menampilkan animasi fleet militer + overlay okupasi wilayah.
+ * 
+ * Fase:
+ * - deploying/traveling: animasi fleet bergerak dari A ke B
+ * - battle: transisi ke tactical (tidak auto-resolve lagi)
+ * - tactical: menampilkan progress okupasi di peta global
  */
 
-import { useEffect, useRef, useMemo } from "react";
+import { useEffect, useRef, useState } from "react";
 import { warStorage } from "./warStorage";
-import { WarDeclaration } from "./warTypes";
+import { WarDeclaration, TerritoryProgress } from "./warTypes";
 import { calculateSeaRoute, calculateAirRoute } from "./warRoutes";
 import { drawTank } from "./sprites/tankSprite";
 import { drawShip } from "./sprites/shipSprite";
@@ -23,6 +27,8 @@ interface WarOverlayProps {
   mapHeight: number;
   /** Whether the map is currently visible */
   active: boolean;
+  /** Callback when user clicks on a war zone to open tactical battle */
+  onWarZoneClick?: (war: WarDeclaration) => void;
 }
 
 /** Duration of fleet travel phase in real ms */
@@ -38,11 +44,12 @@ interface ActiveWarRoute {
   accumulatedElapsed: number;
 }
 
-export default function WarOverlayCanvas({ mapWidth, mapHeight, active }: WarOverlayProps) {
+export default function WarOverlayCanvas({ mapWidth, mapHeight, active, onWarZoneClick }: WarOverlayProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const activeWarsRef = useRef<ActiveWarRoute[]>([]);
   const requestRef = useRef<number | null>(null);
   const explosionParticlesRef = useRef<{ x: number; y: number; r: number; alpha: number; color: string }[]>([]);
+  const territoryProgressRef = useRef<TerritoryProgress[]>([]);
   
   // Time sync refs
   const lastFrameTimeRef = useRef<number>(performance.now());
@@ -97,11 +104,18 @@ export default function WarOverlayCanvas({ mapWidth, mapHeight, active }: WarOve
       speedRef.current = speed;
     });
 
+    // Listen for territory updates
+    const handleTerritoryUpdate = () => {
+      territoryProgressRef.current = warStorage.getTerritoryProgress();
+    };
+
     window.addEventListener("war_started", handleWarStarted);
     window.addEventListener("war_storage_updated", handleStorageUpdate);
+    window.addEventListener("war_territory_updated", handleTerritoryUpdate);
     return () => {
       window.removeEventListener("war_started", handleWarStarted);
       window.removeEventListener("war_storage_updated", handleStorageUpdate);
+      window.removeEventListener("war_territory_updated", handleTerritoryUpdate);
       unsubscribeTime();
     };
   }, []);
@@ -230,12 +244,25 @@ export default function WarOverlayCanvas({ mapWidth, mapHeight, active }: WarOve
             ctx.fillText(`${Math.round(travelProgress * 100)}%`, seaPos.x, seaPos.y - 30);
           }
         } else {
-          // === Battle Phase: Explosion effects at target ===
+          // === Battle/Tactical Phase: Territory occupation overlay ===
           const target = route.seaPixels[route.seaPixels.length - 1];
           if (target) {
-            // Pulsing red circle
-            const pulseSize = 30 + Math.sin(battleElapsed / 200) * 15;
-            const pulseAlpha = 0.3 + Math.sin(battleElapsed / 150) * 0.2;
+            // Find territory progress for this war
+            const progress = territoryProgressRef.current.find(
+              tp => tp.warId === route.war.id
+            );
+            const occPercent = progress?.occupationPercent || 0;
+
+            // Pulsing war zone indicator
+            const pulseSize = 35 + Math.sin(battleElapsed / 200) * 15;
+            const pulseAlpha = 0.2 + Math.sin(battleElapsed / 150) * 0.15;
+
+            // Occupation glow — opacity scales with occupation%
+            const occAlpha = 0.1 + (occPercent / 100) * 0.4;
+            ctx.beginPath();
+            ctx.arc(target.x, target.y, pulseSize * 1.5, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(239, 68, 68, ${occAlpha})`;
+            ctx.fill();
 
             ctx.beginPath();
             ctx.arc(target.x, target.y, pulseSize, 0, Math.PI * 2);
@@ -243,19 +270,27 @@ export default function WarOverlayCanvas({ mapWidth, mapHeight, active }: WarOve
             ctx.fill();
 
             ctx.beginPath();
-            ctx.arc(target.x, target.y, pulseSize * 0.6, 0, Math.PI * 2);
+            ctx.arc(target.x, target.y, pulseSize * 0.5, 0, Math.PI * 2);
             ctx.fillStyle = `rgba(251, 146, 60, ${pulseAlpha + 0.1})`;
             ctx.fill();
 
-            // "BATTLE" label
+            // Occupation label
             ctx.fillStyle = "#ef4444";
-            ctx.font = "bold 22px 'Inter', sans-serif";
+            ctx.font = "bold 20px 'Inter', sans-serif";
             ctx.textAlign = "center";
-            ctx.fillText("⚔ PERTEMPURAN", target.x, target.y - pulseSize - 10);
+            if (route.war.phase === 'tactical') {
+              ctx.fillText(`⚔ OKUPASI: ${occPercent.toFixed(0)}%`, target.x, target.y - pulseSize - 15);
+              // Sub-label: click to manage
+              ctx.fillStyle = "rgba(255, 255, 255, 0.5)";
+              ctx.font = "bold 14px 'Inter', sans-serif";
+              ctx.fillText("🖱 Klik untuk membuka medan perang", target.x, target.y - pulseSize + 2);
+            } else {
+              ctx.fillText("⚔ PERTEMPURAN", target.x, target.y - pulseSize - 10);
+            }
 
-            // Random explosion particles
-            if (Math.random() < 0.3) {
-              for (let i = 0; i < 3; i++) {
+            // Random battle particles
+            if (Math.random() < 0.25) {
+              for (let i = 0; i < 2; i++) {
                 const angle = Math.random() * Math.PI * 2;
                 const dist = Math.random() * pulseSize;
                 ctx.beginPath();
@@ -269,12 +304,29 @@ export default function WarOverlayCanvas({ mapWidth, mapHeight, active }: WarOve
                 ctx.fill();
               }
             }
+
+            // Occupation progress ring
+            if (occPercent > 0) {
+              ctx.beginPath();
+              ctx.arc(target.x, target.y, pulseSize + 8, -Math.PI / 2,
+                -Math.PI / 2 + (Math.PI * 2 * occPercent / 100));
+              ctx.strokeStyle = "#ef4444";
+              ctx.lineWidth = 4;
+              ctx.stroke();
+
+              // Background ring
+              ctx.beginPath();
+              ctx.arc(target.x, target.y, pulseSize + 8, 0, Math.PI * 2);
+              ctx.strokeStyle = "rgba(255, 255, 255, 0.1)";
+              ctx.lineWidth = 2;
+              ctx.stroke();
+            }
           }
 
-          // Trigger war resolution when battle is done
-          if (battleProgress >= 1 && route.war.phase !== 'finished') {
-            // Call API to calculate result
-            executeWarResult(route.war);
+          // Transition to tactical phase (instead of auto-resolve)
+          if (battleElapsed > 2000 && route.war.phase === 'battle') {
+            warStorage.updateWarPhase(route.war.id, 'tactical');
+            route.war.phase = 'tactical';
           }
         }
 
@@ -313,12 +365,45 @@ export default function WarOverlayCanvas({ mapWidth, mapHeight, active }: WarOve
     };
   }, [active, mapWidth, mapHeight]);
 
+  // Handle click on war zones
+  const handleCanvasClick = (e: React.MouseEvent<HTMLCanvasElement>) => {
+    if (!onWarZoneClick) return;
+
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const clickX = ((e.clientX - rect.left) / rect.width) * mapWidth;
+    const clickY = ((e.clientY - rect.top) / rect.height) * mapHeight;
+
+    // Check if click is near any tactical war zone
+    for (const route of activeWarsRef.current) {
+      if (route.war.phase !== 'tactical' && route.war.phase !== 'battle') continue;
+
+      const target = route.seaPixels[route.seaPixels.length - 1];
+      if (!target) continue;
+
+      const dist = Math.sqrt((clickX - target.x) ** 2 + (clickY - target.y) ** 2);
+      if (dist < 60) {
+        onWarZoneClick(route.war);
+        return;
+      }
+    }
+  };
+
+  const hasTacticalWars = activeWarsRef.current.some(
+    r => r.war.phase === 'tactical' || r.war.phase === 'battle'
+  );
+
   return (
     <canvas
       ref={canvasRef}
       width={mapWidth}
       height={mapHeight}
-      className="absolute inset-0 h-full w-auto max-w-none z-20 pointer-events-none"
+      onClick={handleCanvasClick}
+      className={`absolute inset-0 h-full w-auto max-w-none z-20 ${
+        hasTacticalWars && onWarZoneClick ? 'pointer-events-auto cursor-pointer' : 'pointer-events-none'
+      }`}
     />
   );
 }
