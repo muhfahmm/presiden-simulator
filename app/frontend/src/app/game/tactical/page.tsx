@@ -132,8 +132,6 @@ function TacticalPageContent() {
 
       {/* Main Battle Scene */}
       <main className="flex-1 p-8 overflow-hidden relative">
-        {/* Background Grid Pattern */}
-        <div className="absolute inset-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 0)', backgroundSize: '40px 40px' }} />
         
         <TacticalBattleCanvas
           war={war}

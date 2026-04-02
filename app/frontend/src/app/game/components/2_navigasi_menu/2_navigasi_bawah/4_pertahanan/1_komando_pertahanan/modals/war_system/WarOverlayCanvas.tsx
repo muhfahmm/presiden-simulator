@@ -90,11 +90,18 @@ export default function WarOverlayCanvas({ mapWidth, mapHeight, active, onWarZon
     existingWars.forEach(war => {
       const seaRoute = calculateSeaRoute(war.attacker, war.defender);
       const airRoute = calculateAirRoute(war.attacker, war.defender);
+      
+      // FIX: Ensure we don't restart travel if phase is already battle/tactical
+      let initialElapsed = Date.now() - war.startedAt;
+      if (war.phase === 'battle' || war.phase === 'tactical') {
+        initialElapsed = Math.max(initialElapsed, TRAVEL_DURATION_MS + 100);
+      }
+
       activeWarsRef.current.push({
         war,
         seaPixels: seaRoute.map(p => project(p.lon, p.lat)),
         airPixels: airRoute.map(p => project(p.lon, p.lat)),
-        accumulatedElapsed: Date.now() - war.startedAt,
+        accumulatedElapsed: initialElapsed,
       });
     });
 

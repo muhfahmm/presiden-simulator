@@ -13,8 +13,9 @@
 
 import { useEffect, useRef, useState, useCallback, useMemo } from "react";
 import { Shield, Swords, Zap, Crosshair } from "lucide-react";
+import { TransformWrapper, TransformComponent, useTransformContext } from "react-zoom-pan-pinch";
 import { BattlefieldState, DeployedUnit, WarForces, WarDeclaration } from "../warTypes";
-import { generateBattlefieldGrid, getDeploymentZones, updateOccupiedTiles, isCountryConquered, TILE_SIZE } from "../territory/territoryGrid";
+import { generateBattlefieldGrid, getDeploymentZones, updateOccupiedTiles, isCountryConquered, TILE_SIZE, isMaritimeCountry } from "../territory/territoryGrid";
 import { updateBattleTick, forcesToDeployableUnits, spawnEnemyUnits, determineBattleOutcome, UNIT_LABELS } from "../territory/battleEngine";
 import { drawTank } from "../sprites/tankSprite";
 import { drawShip } from "../sprites/shipSprite";
@@ -34,9 +35,9 @@ interface TacticalBattleProps {
   onBattleEnd: (outcome: 'victory' | 'defeat') => void;
 }
 
-// Canvas size for the tactical view
-const CANVAS_W = 1200;
-const CANVAS_H = 800;
+// Canvas size for the tactical view (Expanded to fill entire modal)
+const CANVAS_W = 2000;
+const CANVAS_H = 1200;
 
 // Sprite draw functions map
 const SPRITE_DRAWERS: Record<string, (ctx: CanvasRenderingContext2D, x: number, y: number, angle: number, color: string) => void> = {
@@ -63,30 +64,85 @@ export default function TacticalBattleCanvas({ war, geoData, onBattleEnd }: Tact
   const battlefieldRef = useRef<BattlefieldState | null>(null);
   const particlesRef = useRef<any[]>([]); // { x, y, life, color, type }
   const lastAiSyncRef = useRef<number>(0);
+  const transformRef = useRef<any>(null);
 
-  // Group deployable units for better UI
-  const groupedUnits = useMemo(() => {
+  // Helper to categorize unit based on sprite
+  const getUnitCategory = (sprite: string): 'Darat' | 'Udara' | 'Laut' => {
+    if (['tank', 'infantry', 'artillery', 'rocket', 'sam', 'apc'].includes(sprite)) return 'Darat';
+    if (['jet', 'heli', 'drone'].includes(sprite)) return 'Udara';
+    if (['ship'].includes(sprite)) return 'Laut';
+    return 'Darat';
+  };
+
+  // Group deployable units for better UI by category
+  const groupedByCategory = useMemo(() => {
+    const categories: Record<string, { units: any[], totalCount: number }> = { 
+      Darat: { units: [], totalCount: 0 }, 
+      Udara: { units: [], totalCount: 0 }, 
+      Laut: { units: [], totalCount: 0 } 
+    };
     const groups: Record<string, { unit: DeployedUnit, count: number, firstIdx: number }> = {};
+    
     deployableUnits.forEach((u, i) => {
       if (!groups[u.unitType]) {
         groups[u.unitType] = { unit: u, count: 0, firstIdx: i };
       }
       groups[u.unitType].count++;
     });
-    return Object.values(groups);
+
+    Object.values(groups).forEach(group => {
+      const cat = getUnitCategory(group.unit.sprite);
+      categories[cat].units.push(group);
+      categories[cat].totalCount += group.count;
+    });
+
+    return categories;
   }, [deployableUnits]);
 
   // Initialize battlefield
   useEffect(() => {
     const existing = warStorage.getBattlefield(war.id);
+    const isMaritime = isMaritimeCountry(war.defender, war.defenderForces);
+
     if (existing) {
+      // RECONSTRUCT: If tiles were excluded from storage (Quota Protection)
+      if (!existing.tiles || existing.tiles.length === 0) {
+        const reconstructed = generateBattlefieldGrid(war.defender, geoData, isMaritime);
+        if (reconstructed) {
+           reconstructed.userUnits = existing.userUnits || [];
+           reconstructed.enemyUnits = existing.enemyUnits || [];
+           reconstructed.subPhase = existing.subPhase || 'planning';
+           reconstructed.tick = existing.tick || 0;
+           reconstructed.warId = war.id;
+           reconstructed.occupationPercent = existing.occupationPercent || 0;
+           
+           // RE-SPAWN if enemies are missing (The fix!)
+           if (reconstructed.enemyUnits.length === 0 && reconstructed.subPhase === 'planning') {
+              spawnEnemyUnits(reconstructed, war.defenderForces);
+           }
+
+           setBattlefield(reconstructed);
+           battlefieldRef.current = reconstructed;
+           if (reconstructed.subPhase === 'engagement') setIsEngaging(true);
+           
+           // Run an initial occupation recalculation
+           updateOccupiedTiles(reconstructed);
+           return;
+        }
+      }
+
+      // Even if tiles exist, if enemies are missing, spawn them
+      if ((!existing.enemyUnits || existing.enemyUnits.length === 0) && existing.subPhase === 'planning') {
+        spawnEnemyUnits(existing, war.defenderForces);
+      }
+
       setBattlefield(existing);
       battlefieldRef.current = existing;
       if (existing.subPhase === 'engagement') setIsEngaging(true);
       return;
     }
 
-    const bf = generateBattlefieldGrid(war.defender, geoData);
+    const bf = generateBattlefieldGrid(war.defender, geoData, isMaritime);
     if (!bf) return;
 
     bf.warId = war.id;
@@ -97,7 +153,7 @@ export default function TacticalBattleCanvas({ war, geoData, onBattleEnd }: Tact
     setBattlefield(bf);
     battlefieldRef.current = bf;
     warStorage.saveBattlefield(war.id, bf);
-  }, [war.id]);
+  }, [war.id, geoData]);
 
   // Prepare deployable units from user forces
   useEffect(() => {
@@ -121,8 +177,13 @@ export default function TacticalBattleCanvas({ war, geoData, onBattleEnd }: Tact
     if (!canvas) return;
 
     const rect = canvas.getBoundingClientRect();
-    const scaleX = CANVAS_W / rect.width;
-    const scaleY = CANVAS_H / rect.height;
+    const internalW = CANVAS_W;
+    const internalH = CANVAS_H;
+    
+    // Scale-aware coordinate conversion
+    const scaleX = internalW / rect.width;
+    const scaleY = internalH / rect.height;
+    
     const clickX = (e.clientX - rect.left) * scaleX;
     const clickY = (e.clientY - rect.top) * scaleY;
 
@@ -342,91 +403,137 @@ export default function TacticalBattleCanvas({ war, geoData, onBattleEnd }: Tact
       ctx.fillStyle = "rgba(15, 23, 42, 0.8)";
       ctx.fill();
       
-      // Outer Glow Effect
-      ctx.shadowBlur = 40;
-      ctx.shadowColor = "#1e40af";
-      ctx.strokeStyle = "#3b82f6";
-      ctx.lineWidth = 3;
-      ctx.stroke();
-      
-      // Fine Inner Outline
-      ctx.shadowBlur = 0;
-      ctx.strokeStyle = "rgba(100, 200, 255, 0.3)";
-      ctx.lineWidth = 1;
-      ctx.stroke();
+      // Removed Outlines/Glow per user request (Bersih Total)
       ctx.closePath();
     };
 
     const tileW = CANVAS_W / battlefield.gridCols;
     const tileH = CANVAS_H / battlefield.gridRows;
 
-    // Clear
-    ctx.fillStyle = "#020617";
+    // --- VIEWPORT CULLING OPTIMIZATION ---
+    // If the grid is massive (1000x500+), we ONLY draw what is visible.
+    let startCol = 0;
+    let endCol = battlefield.gridCols;
+    let startRow = 0;
+    let endRow = battlefield.gridRows;
+
+    if (transformRef.current) {
+      const state = transformRef.current.instance.transformState;
+      const scale = state.scale;
+      const x = state.positionX;
+      const y = state.positionY;
+      
+      const wrapperRect = canvas.parentElement?.getBoundingClientRect();
+      if (wrapperRect && wrapperRect.width > 0) {
+        // Convert viewport corners to canvas-space coordinates
+        const viewX1 = -x / scale;
+        const viewX2 = (-x + wrapperRect.width) / scale;
+        const viewY1 = -y / scale;
+        const viewY2 = (-y + wrapperRect.height) / scale;
+
+        // Convert canvas-space to grid-space
+        startCol = Math.max(0, Math.floor(viewX1 / tileW));
+        endCol = Math.min(battlefield.gridCols, Math.ceil(viewX2 / tileW));
+        startRow = Math.max(0, Math.floor(viewY1 / tileH));
+        endRow = Math.min(battlefield.gridRows, Math.ceil(viewY2 / tileH));
+      } else {
+        return;
+      }
+    } else {
+        return;
+    }
+
+    // Performance Step (Always 1 for this 250-grid density)
+    const step = 1; 
+
+    // Clear background
+    ctx.fillStyle = "#0f172a"; 
     ctx.fillRect(0, 0, CANVAS_W, CANVAS_H);
 
-    // Draw the actual geographic shape first
-    ctx.save();
+    // DRAW UNIVERSAL MATRIX (Filling entire monitor with dark blue tiles)
+    ctx.beginPath();
+    ctx.fillStyle = "rgba(15, 23, 42, 0.5)"; // Dark Tactical Blue
+    for (let x = 0; x < CANVAS_W; x += tileW) {
+        for (let y = 0; y < CANVAS_H; y += tileH) {
+            // Consistent 0.4px gap for the 'kotak-kotak' look everywhere
+            ctx.rect(x, y, tileW - 0.4, tileH - 0.4);
+        }
+    }
+    ctx.fill();
+
+    // DRAW COUNTRY SHAPE (As a solid backdrop)
     drawCountryShape();
-    ctx.restore();
 
-    // Draw tiles
-    for (let row = 0; row < battlefield.gridRows; row++) {
-      for (let col = 0; col < battlefield.gridCols; col++) {
-        const tile = battlefield.tiles[row][col];
-        const tx = col * tileW;
-        const ty = row * tileH;
+    // DRAW TILES (Restored for 100x50 Grid)
+    const groups: Record<string, { col: number, row: number }[]> = {};
+    for (let row = startRow; row < endRow; row++) {
+      for (let col = startCol; col < endCol; col++) {
+        const tile = battlefield.tiles?.[row]?.[col];
+        if (!tile) continue;
 
+        let key: string = tile.terrainType;
         if (!tile.isInsideCountry) {
-          // Ocean/outside
-          ctx.fillStyle = "#0c1622";
-          ctx.fillRect(tx, ty, tileW, tileH);
-          continue;
+           key = 'ocean'; 
+        } else {
+           if (tile.status === 'user') key = 'user_occupied';
+           else if (tile.status === 'enemy') key = 'enemy_occupied';
         }
 
-        // Color based on terrain and status
-        switch (tile.terrainType) {
-          case 'forest':
-            ctx.fillStyle = "#1e3a1a"; // Dark Forest Green
-            break;
-          case 'mountain':
-            ctx.fillStyle = "#3f3f46"; // Mountain Grey
-            break;
-          case 'water':
-            ctx.fillStyle = "#1e3a5f"; // Deep Blue Sea
-            break;
-          default:
-            ctx.fillStyle = "#2d3a2a"; // Plain/Grass
-        }
-        ctx.fillRect(tx, ty, tileW, tileH);
-
-        // Overlay status color
-        if (tile.status === 'user') {
-          ctx.fillStyle = "rgba(239, 68, 68, 0.4)";
-          ctx.fillRect(tx, ty, tileW, tileH);
-        } else if (tile.status === 'enemy') {
-          ctx.fillStyle = "rgba(59, 130, 246, 0.1)";
-          ctx.fillRect(tx, ty, tileW, tileH);
+        // --- SMART HIGHLIGHT LOGIC ---
+        // If a unit is selected, check if this tile is a "valid" zone for it
+        if (selectedUnitIdx !== null && selectedUnitIdx < deployableUnits.length) {
+            const selUnit = deployableUnits[selectedUnitIdx];
+            const isLandUnit = ['infantry','tank','apc','artillery','sam','rocket'].includes(selUnit.sprite);
+            const isSeaUnit = ['ship'].includes(selUnit.sprite);
+            
+            // Highlight safe zone in Green
+            if (isLandUnit && tile.isInsideCountry) {
+                key = 'highlight_green';
+            } else if (isSeaUnit && !tile.isInsideCountry) {
+                key = 'highlight_green';
+            }
         }
 
-        // Grid lines
-        ctx.strokeStyle = "rgba(255, 255, 255, 0.03)";
-        ctx.lineWidth = 0.5;
-        ctx.strokeRect(tx, ty, tileW, tileH);
+        if (!groups[key]) groups[key] = [];
+        groups[key].push({ col, row });
       }
     }
 
-    // Highlight deployment zones (planning/deployment phase)
-    if (!isEngaging) {
-      deploymentZones.forEach(zone => {
-        const tx = zone.gridX * tileW;
-        const ty = zone.gridY * tileH;
-        ctx.fillStyle = "rgba(34, 197, 94, 0.15)";
-        ctx.fillRect(tx, ty, tileW, tileH);
-        ctx.strokeStyle = "rgba(34, 197, 94, 0.3)";
-        ctx.lineWidth = 1;
-        ctx.strokeRect(tx, ty, tileW, tileH);
+    Object.entries(groups).forEach(([key, list]) => {
+      ctx.beginPath();
+      switch (key) {
+        case 'forest': ctx.fillStyle = "#064e3b"; break; 
+        case 'mountain': ctx.fillStyle = "#334155"; break;
+        case 'water': ctx.fillStyle = "#0369a1"; break;
+        case 'ocean': ctx.fillStyle = "#1e293b"; break;
+        case 'user_occupied': ctx.fillStyle = "rgba(220, 38, 38, 0.75)"; break;
+        case 'enemy_occupied': ctx.fillStyle = "rgba(147, 197, 253, 0.25)"; break;
+        case 'highlight_green': ctx.fillStyle = "rgba(34, 197, 94, 0.35)"; break; // Semi-transparent Strategic Green
+        default: ctx.fillStyle = "rgba(255, 255, 255, 0.03)"; 
+      }
+      
+      list.forEach(pos => {
+        // Gap of 0.4px for the 'kotak-kotak' look
+        ctx.rect(pos.col * tileW, pos.row * tileH, tileW - 0.4, tileH - 0.4);
       });
+      ctx.fill();
+    });
+
+    // Draw mesh lines for clarity (100x50)
+    ctx.beginPath();
+    ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
+    ctx.lineWidth = 0.5;
+    for (let col = startCol; col <= endCol; col++) {
+      ctx.moveTo(col * tileW, startRow * tileH);
+      ctx.lineTo(col * tileW, endRow * tileH);
     }
+    for (let row = startRow; row <= endRow; row++) {
+      ctx.moveTo(startCol * tileW, row * tileH);
+      ctx.lineTo(endCol * tileW, row * tileH);
+    }
+    ctx.stroke();
+
+    // Draw units
 
     // Draw units
     const drawUnit = (unit: DeployedUnit) => {
@@ -503,7 +610,6 @@ export default function TacticalBattleCanvas({ war, geoData, onBattleEnd }: Tact
     battlefield.enemyUnits.forEach(drawUnit);
     battlefield.userUnits.forEach(drawUnit);
 
-    // Draw particles
     particlesRef.current.forEach(p => {
       ctx.globalAlpha = p.life;
       ctx.fillStyle = p.color;
@@ -586,56 +692,79 @@ export default function TacticalBattleCanvas({ war, geoData, onBattleEnd }: Tact
             </h4>
           </div>
           
-          <div className="flex-1 p-3 space-y-2 overflow-y-auto no-scrollbar">
-            {groupedUnits.map((group) => (
-              <button
-                key={group.unit.id}
-                onClick={() => setSelectedUnitIdx(group.firstIdx)}
-                disabled={isEngaging}
-                className={`w-full group relative p-3 rounded-2xl border transition-all duration-300 ${
-                  selectedUnitIdx === group.firstIdx
-                    ? 'bg-cyan-500/10 border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.1)]'
-                    : 'bg-transparent border-white/5 hover:bg-white/5 hover:border-white/10'
-                } ${isEngaging ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
-              >
-                {/* Active Indicator */}
-                {selectedUnitIdx === group.firstIdx && (
-                  <div className="absolute left-0 top-1/4 bottom-1/4 w-1 bg-cyan-500 rounded-r-full" />
-                )}
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex flex-col gap-1">
+          <div className="flex-1 p-3 space-y-8 overflow-y-auto no-scrollbar">
+            {Object.entries(groupedByCategory).map(([category, data]) => (
+              data.units.length > 0 && (
+                <div key={category} className="space-y-4">
+                  <div className="flex items-center justify-between px-3 py-2 bg-white/[0.02] border border-white/5 rounded-xl">
                     <div className="flex items-center gap-2">
-                      <span className={`text-[10px] font-black uppercase tracking-wider transition-colors ${
-                        selectedUnitIdx === group.firstIdx ? 'text-white' : 'text-zinc-400 group-hover:text-zinc-300'
-                      }`}>
-                        {group.unit.label}
-                      </span>
-                      <span className="px-1.5 py-0.5 rounded bg-white/5 text-[9px] font-black text-cyan-500/60 tabular-nums">
-                        x{group.count}
-                      </span>
+                       <div className={`w-1.5 h-1.5 rounded-full ${
+                        category === 'Darat' ? 'bg-emerald-500' : 
+                        category === 'Udara' ? 'bg-yellow-500' : 'bg-blue-500'
+                      } shadow-[0_0_8px_currentColor]`} />
+                      <h5 className="text-[10px] font-black text-white uppercase tracking-[0.2em]">{category}</h5>
                     </div>
-                    <div className="flex gap-3">
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-[7px] text-zinc-600 font-black uppercase">Armor</span>
-                        <span className="text-[9px] text-zinc-500 font-bold tabular-nums group-hover:text-zinc-400">{group.unit.stats.armor}</span>
-                      </div>
-                      <div className="flex flex-col gap-0.5">
-                        <span className="text-[7px] text-zinc-600 font-black uppercase">Range</span>
-                        <span className="text-[9px] text-zinc-500 font-bold tabular-nums group-hover:text-zinc-400">{group.unit.stats.range}</span>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className={`p-2 rounded-xl transition-colors ${
-                    selectedUnitIdx === group.firstIdx ? 'bg-cyan-500/20 text-cyan-400' : 'bg-white/5 text-zinc-600 group-hover:text-zinc-400'
-                  }`}>
-                    <span className="text-[9px] font-black uppercase tracking-tighter">
-                      {group.unit.sprite.substring(0, 4)}
+                    <span className="text-[9px] font-black text-zinc-500 tabular-nums uppercase tracking-tighter">
+                      {data.totalCount} Battalions
                     </span>
                   </div>
+                  
+                  <div className="space-y-2">
+                    {data.units.map((group) => (
+                      <button
+                        key={group.unit.id}
+                        onClick={() => setSelectedUnitIdx(group.firstIdx)}
+                        disabled={isEngaging}
+                        className={`w-full group relative p-3 rounded-2xl border transition-all duration-300 ${
+                          selectedUnitIdx === group.firstIdx
+                            ? 'bg-cyan-500/10 border-cyan-500/30 shadow-[0_0_20px_rgba(6,182,212,0.1)]'
+                            : 'bg-white/[0.01] border-white/5 hover:bg-white/5 hover:border-white/10'
+                        } ${isEngaging ? 'opacity-40 cursor-not-allowed' : 'cursor-pointer'}`}
+                      >
+                        {/* Active Indicator */}
+                        {selectedUnitIdx === group.firstIdx && (
+                          <div className="absolute left-0 top-1/4 bottom-1/4 w-1 bg-cyan-500 rounded-r-full shadow-[0_0_10px_rgba(6,182,212,0.8)]" />
+                        )}
+                        
+                        <div className="flex items-center justify-between">
+                          <div className="flex flex-col gap-1 text-left">
+                            <div className="flex items-center gap-2">
+                              <span className={`text-[10px] font-black uppercase tracking-wider transition-colors ${
+                                selectedUnitIdx === group.firstIdx ? 'text-white' : 'text-zinc-400 group-hover:text-zinc-300'
+                              }`}>
+                                {group.unit.label}
+                              </span>
+                              <span className="px-1.5 py-0.5 rounded bg-black/40 border border-white/5 text-[9px] font-black text-cyan-500/80 tabular-nums">
+                                x{group.count}
+                              </span>
+                            </div>
+                            <div className="flex gap-4">
+                              <div className="flex flex-col">
+                                <span className="text-[7px] text-zinc-500 font-extrabold uppercase tracking-widest opacity-60">Armor</span>
+                                <span className="text-[9px] text-zinc-400 font-bold tabular-nums group-hover:text-zinc-300">{group.unit.stats.armor}</span>
+                              </div>
+                              <div className="flex flex-col">
+                                <span className="text-[7px] text-zinc-500 font-extrabold uppercase tracking-widest opacity-60">Range</span>
+                                <span className="text-[9px] text-zinc-400 font-bold tabular-nums group-hover:text-zinc-400">{group.unit.stats.range}</span>
+                              </div>
+                            </div>
+                          </div>
+                          
+                          <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${
+                            selectedUnitIdx === group.firstIdx 
+                              ? 'bg-cyan-500/20 text-cyan-400 scale-110 shadow-lg' 
+                              : 'bg-black/20 text-zinc-600 group-hover:text-zinc-400 group-hover:bg-white/5'
+                          }`}>
+                            <span className="text-[8px] font-black uppercase tracking-tighter leading-none">
+                              {group.unit.sprite.substring(0, 4)}
+                            </span>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
-              </button>
+              )
             ))}
             
             {deployableUnits.length === 0 && (
@@ -724,15 +853,34 @@ export default function TacticalBattleCanvas({ war, geoData, onBattleEnd }: Tact
       </div>
 
       {/* Main Battle Canvas Wrapper */}
-      <div className="flex-1 relative rounded-[40px] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] group">
-        <canvas
-          ref={canvasRef}
-          width={CANVAS_W}
-          height={CANVAS_H}
-          onClick={handleCanvasClick}
-          className="w-full h-full cursor-default select-none pointer-events-auto"
-          style={{ imageRendering: "auto", touchAction: "none" }}
-        />
+      <div className="flex-1 relative rounded-[40px] overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.5)] group bg-[#0f172a]">
+        <TransformWrapper
+          initialScale={1.5}
+          minScale={1.5}
+          maxScale={1.5}
+          disabled={true}
+          limitToBounds={true}
+          centerOnInit={true}
+          doubleClick={{ disabled: true }}
+          panning={{ disabled: true }}
+          wheel={{ disabled: true }}
+          pinch={{ disabled: true }}
+          ref={transformRef}
+        >
+          <TransformComponent wrapperClass="!w-full !h-full" contentClass="!w-full !h-full flex items-center justify-center">
+            <div className="relative flex items-center justify-center">
+              <canvas
+                ref={canvasRef}
+                width={CANVAS_W}
+                height={CANVAS_H}
+                onClick={handleCanvasClick}
+                onContextMenu={(e) => e.preventDefault()}
+                className="max-w-none cursor-grab active:cursor-grabbing select-none pointer-events-auto"
+                style={{ imageRendering: "auto", touchAction: "none" }}
+              />
+            </div>
+          </TransformComponent>
+        </TransformWrapper>
 
         {/* Tactical Monitor Scanline Overlay */}
         <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.1)_50%),linear-gradient(90deg,rgba(255,0,0,0.02),rgba(0,255,0,0.01),rgba(0,0,255,0.02))] bg-[length:100%_2px,3px_100%] opacity-20" />
@@ -740,6 +888,8 @@ export default function TacticalBattleCanvas({ war, geoData, onBattleEnd }: Tact
         {/* Glow corner accents */}
         <div className="absolute top-0 left-0 w-24 h-24 bg-cyan-500/5 blur-3xl rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none" />
         <div className="absolute bottom-0 right-0 w-24 h-24 bg-rose-500/5 blur-3xl rounded-full translate-x-1/2 translate-y-1/2 pointer-events-none" />
+
+        {/* Reset Camera & Pan Instructions Removed per user request (Fixed Position) */}
 
         {/* Deployment instruction Floating Badge */}
         {!isEngaging && battlefield.subPhase !== 'resolved' && (

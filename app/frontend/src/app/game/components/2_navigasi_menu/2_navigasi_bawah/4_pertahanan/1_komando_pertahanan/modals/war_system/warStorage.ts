@@ -151,8 +151,22 @@ export const warStorage = {
   saveBattlefield: (warId: string, state: BattlefieldState) => {
     if (typeof window === "undefined") return;
     const all = warStorage._getBattlefields();
-    all[warId] = state;
-    localStorage.setItem("em2_battlefields", JSON.stringify(all));
+    
+    // EXCLUDE 'tiles' to avoid QuotaExceededError (JSON size 50MB -> <100KB)
+    // We only save units, phase, and progress. Geography is re-generated on load.
+    const { tiles, ...saveable } = state;
+    all[warId] = saveable as any;
+    
+    try {
+        localStorage.setItem("em2_battlefields", JSON.stringify(all));
+    } catch (e) {
+        console.error("Failed to save battlefield to localStorage:", e);
+        // Fallback: clear and try again (emergency)
+        if (e instanceof Error && e.name === 'QuotaExceededError') {
+            localStorage.removeItem("em2_battlefields");
+            localStorage.setItem("em2_battlefields", JSON.stringify({ [warId]: saveable }));
+        }
+    }
 
     if (typeof window !== "undefined") {
       window.dispatchEvent(new CustomEvent("war_territory_updated", {

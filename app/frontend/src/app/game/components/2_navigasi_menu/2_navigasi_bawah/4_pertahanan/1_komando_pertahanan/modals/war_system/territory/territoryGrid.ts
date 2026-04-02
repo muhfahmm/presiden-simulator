@@ -12,13 +12,14 @@
 
 import { TileData, TileStatus, BattlefieldState, DeployedUnit } from "../warTypes";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
+import { TERRITORY_METADATA } from "./geodata/index";
 
 // === Konstanta ===
-const DEFAULT_GRID_COLS = 40;
-const DEFAULT_GRID_ROWS = 30;
-const TILE_SIZE = 20; // pixel per tile di TacticalBattleCanvas
-const OCCUPATION_RADIUS = 2; // tile radius okopasi per unit
-const CONQUEST_THRESHOLD = 0.75; // 75% = negara menyerah
+const LANDLOCKED_GRID = { cols: 100, rows: 50 };
+const MARITIME_GRID = { cols: 100, rows: 50 };
+const TILE_SIZE = 5; 
+const OCCUPATION_RADIUS = 30; 
+const CONQUEST_THRESHOLD = 0.75; 
 
 /**
  * Mendapatkan center (lon/lat) dari negara berdasarkan nama.
@@ -33,15 +34,27 @@ export function getCountryCenter(countryName: string): { lon: number; lat: numbe
 }
 
 /**
- * Mendapatkan bounding box estimasi negara berdasarkan center + spread.
- * Karena kita tidak memiliki akses langsung ke GeoJSON path boundaries per negara,
- * kita estimasi berdasarkan ukuran negara.
+ * Mendapatkan bounding box negara dari metadata statis (geodata)
+ * atau fallback ke estimasi center + spread.
  */
-export function estimateCountryBounds(
+export function getCountryBounds(
+  countryName: string,
   center: { lon: number; lat: number },
   spreadLon = 8,
   spreadLat = 6
 ): { minLon: number; maxLon: number; minLat: number; maxLat: number } {
+  const meta = TERRITORY_METADATA[countryName.toLowerCase()];
+  
+  if (meta) {
+    return {
+      minLon: meta.minLon,
+      maxLon: meta.maxLon,
+      minLat: meta.minLat,
+      maxLat: meta.maxLat,
+    };
+  }
+
+  // Fallback estimasi
   return {
     minLon: center.lon - spreadLon,
     maxLon: center.lon + spreadLon,
@@ -71,13 +84,14 @@ export function projectToPixel(
 export function generateBattlefieldGrid(
   countryName: string,
   geoData?: any,
-  cols = DEFAULT_GRID_COLS,
-  rows = DEFAULT_GRID_ROWS
+  isMaritime = false
 ): BattlefieldState | null {
+  const cols = isMaritime ? MARITIME_GRID.cols : LANDLOCKED_GRID.cols;
+  const rows = isMaritime ? MARITIME_GRID.rows : LANDLOCKED_GRID.rows;
   const center = getCountryCenter(countryName);
   if (!center) return null;
 
-  const bounds = estimateCountryBounds(center);
+  const bounds = getCountryBounds(countryName, center);
   const mapWidth = 6000;
   const mapHeight = 2400;
 
@@ -140,6 +154,17 @@ export function generateBattlefieldGrid(
   };
 }
 
+
+/**
+ * Heuristic to detect if a country is maritime based on forces.
+ */
+export function isMaritimeCountry(countryName: string, forces?: any): boolean {
+  if (!forces) return false;
+  const navy = forces.laut || {};
+  const navyCount = Object.values(navy).reduce((acc: number, val: any) => acc + (Number(val) || 0), 0);
+  return navyCount > 20; 
+}
+
 /**
  * Membuat fungsi checker apakah titik berada di dalam polygon negara.
  * Menggunakan GeoJSON path jika tersedia, fallback ke ellipse estimation.
@@ -152,34 +177,33 @@ function createPointInCountryChecker(
 ): (px: number, py: number) => boolean {
   // Jika ada geoData, match feature ke negara
   if (geoData?.features) {
-    const geoJsonToIndo: { [key: string]: string } = {
-      "The Bahamas": "bahama",
-      "Democratic Republic of the Congo": "republik demokratik kongo",
-      "Northern Cyprus": "siprus",
-      "Czech Republic": "ceko",
-      "Guinea Bissau": "guinea-bissau",
-      "Equatorial Guinea": "guinea",
-      "Macedonia": "makedonia utara",
-      "Republic of Serbia": "republik serbia",
-      "Swaziland": "eswatini",
-      "East Timor": "timor-leste",
-      "Turkey": "turki",
-      "United Republic of Tanzania": "republik tanzania",
-      "United States of America": "amerika serikat",
-      "West Bank": "palestina",
-      "Falkland Islands": "argentina",
-      "Western Sahara": "maroko",
-      "Somaliland": "somalia",
-      "New Caledonia": "fiji",
-      "Solomon Islands": "marshall",
-      "United Kingdom": "inggris",
+    const nameMapping: { [key: string]: string } = {
+       "Yemen": "yaman",
+       "South Korea": "korea selatan",
+       "North Korea": "korea utara",
+       "Palestine": "palestina",
+       "United Kingdom": "inggris",
+       "United States of America": "amerika serikat",
+       "Democratic Republic of the Congo": "republik demokratik kongo",
+       "Republic of Serbia": "serbia",
+       "The Bahamas": "bahama",
+       "East Timor": "timor-leste",
+       "Turkey": "turki",
+       "Indonesia": "indonesia",
+       "Republic of Indonesia": "indonesia",
+       "India": "india",
+       "Republic of India": "india"
     };
 
     const feature = geoData.features.find((f: any) => {
-      const fName = f.properties?.name || '';
-      const mapped = geoJsonToIndo[fName] || fName;
-      return mapped.toLowerCase() === countryName.toLowerCase() ||
-        fName.toLowerCase() === countryName.toLowerCase();
+      const props = f.properties || {};
+      const fName = (props.name || "").toLowerCase();
+      const fAdmin = (props.admin || "").toLowerCase();
+      const cName = countryName.toLowerCase();
+      const mapped = (nameMapping[props.name] || "").toLowerCase();
+
+      return mapped === cName || fName === cName || fAdmin === cName || 
+             fName.includes(cName) || cName.includes(fName);
     });
 
     if (feature) {
@@ -231,7 +255,7 @@ function createPointInCountryChecker(
   if (!center) return () => true;
 
   const centerPx = projectToPixel(center.lon, center.lat, mapWidth, mapHeight);
-  const bounds = estimateCountryBounds(center);
+  const bounds = getCountryBounds(countryName, center);
   const topLeft = projectToPixel(bounds.minLon, bounds.maxLat, mapWidth, mapHeight);
   const bottomRight = projectToPixel(bounds.maxLon, bounds.minLat, mapWidth, mapHeight);
   const radiusX = (bottomRight.x - topLeft.x) / 2 * 0.7;
@@ -377,4 +401,4 @@ export function getDeploymentZones(battlefield: BattlefieldState): TileData[] {
   return zones;
 }
 
-export { CONQUEST_THRESHOLD, OCCUPATION_RADIUS, DEFAULT_GRID_COLS, DEFAULT_GRID_ROWS, TILE_SIZE };
+export { CONQUEST_THRESHOLD, OCCUPATION_RADIUS, LANDLOCKED_GRID, MARITIME_GRID, TILE_SIZE };
