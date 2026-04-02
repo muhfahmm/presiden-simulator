@@ -48,11 +48,12 @@ interface ModalsPerbandinganProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
+  onAutoResult?: () => void;
   userSelection: Record<string, number>;
   targetCountryName: string;
 }
 
-export default function ModalsPerbandingan({ isOpen, onClose, onConfirm, userSelection, targetCountryName }: ModalsPerbandinganProps) {
+export default function ModalsPerbandingan({ isOpen, onClose, onConfirm, onAutoResult, userSelection, targetCountryName }: ModalsPerbandinganProps) {
   const targetData = useMemo(() => {
     return countries.find(c => 
       c.name_en.toLowerCase() === targetCountryName.toLowerCase() || 
@@ -400,19 +401,31 @@ export default function ModalsPerbandingan({ isOpen, onClose, onConfirm, userSel
            <BarChart3 className="text-zinc-600 h-4 w-4" />
            <span className="text-[9px] font-black text-zinc-600 uppercase tracking-[0.2em]">Simulation ID: {Math.random().toString(36).substr(2, 9).toUpperCase()}</span>
         </div>
-        <div className="flex gap-4">
+        <div className="flex flex-wrap justify-center gap-4">
+           {/* Mundur (Close) */}
            <button 
              onClick={onClose}
-             className="px-10 py-4 bg-zinc-900 border border-zinc-800 rounded-[20px] text-zinc-400 font-black uppercase text-[10px] tracking-[0.3em] hover:bg-zinc-800 hover:text-white transition-all active:scale-95"
+             className="px-8 py-4 bg-zinc-900 border border-zinc-800 rounded-[20px] text-zinc-400 font-black uppercase text-[10px] tracking-[0.3em] hover:bg-zinc-800 hover:text-white transition-all active:scale-95"
            >
-             Dismiss Reports
+             Mundur
            </button>
+
+           {/* Hasil Otomatis (Secondary Action) */}
+           <button 
+             onClick={onAutoResult || onConfirm}
+             className="px-8 py-4 bg-zinc-900/50 border border-zinc-800/80 rounded-[20px] text-zinc-400 font-black uppercase text-[10px] tracking-[0.3em] hover:bg-zinc-800 hover:text-white transition-all active:scale-95 flex items-center gap-2"
+           >
+             <Zap size={14} className="text-amber-500" />
+             Hasil Otomatis
+           </button>
+
+           {/* Mulai Pertempuran (Primary Action) */}
            <button 
              onClick={onConfirm}
              className="px-10 py-4 bg-red-600 rounded-[20px] text-white font-black uppercase text-[10px] tracking-[0.4em] hover:bg-red-500 shadow-xl shadow-red-900/20 transition-all active:scale-95 flex items-center justify-center gap-3 group"
            >
-             Initiate Engagement
-             <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+             Mulai Pertempuran
+             <Sword size={18} className="group-hover:translate-x-1 transition-transform" />
            </button>
         </div>
       </div>
