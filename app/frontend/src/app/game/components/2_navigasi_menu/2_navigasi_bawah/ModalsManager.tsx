@@ -119,8 +119,10 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
         onClose={() => setActiveMenu("Kepuasan")}
       />
       <PertahananModal
-        isOpen={activeMenu === "Komando Pertahanan"}
+        isOpen={activeMenu.startsWith("Komando Pertahanan")}
         onClose={() => setActiveMenu("Pertahanan")}
+        activeMenu={activeMenu}
+        setActiveMenu={setActiveMenu}
         data={countryData}
       />
       <ArmadaMiliterModal

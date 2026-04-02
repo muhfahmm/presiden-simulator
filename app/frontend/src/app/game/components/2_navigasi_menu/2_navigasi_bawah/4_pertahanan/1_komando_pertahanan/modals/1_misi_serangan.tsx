@@ -1,11 +1,14 @@
 "use client"
 
-import { useState, useMemo } from "react"
+import { useState, useMemo, useEffect } from "react"
 import { X, Truck, Ship, Plane, Swords, TrendingUp, TrendingDown, Target, ShieldAlert, Info, Search } from "lucide-react"
 import { calculateTotalMilitaryPower } from "../../3_armada_militer/kekuatanmiliter"
 import { militaryAidStorage } from "../../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage"
 import { buildingStorage } from "../../../3_pembangunan/buildingStorage"
 import { countries } from "@/app/database/data/negara/benua/index"
+import { warStorage } from "./war_system/warStorage"
+import { WarForces } from "./war_system/warTypes"
+import WarResultModal from "./war_system/WarResultModal"
 
 interface MisiSeranganProps {
   isOpen: boolean
@@ -18,6 +21,18 @@ export default function MisiSeranganModal({ isOpen, onClose, userCountryData }: 
   const [searchTerm, setSearchTerm] = useState("")
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null)
   const [sortBy, setSortBy] = useState<"name" | "power">("name")
+  const [warDeclared, setWarDeclared] = useState(false)
+  const [warResult, setWarResult] = useState<{ war: any; result: any; outcome: any } | null>(null)
+
+  // Listen for war results
+  useEffect(() => {
+    const handleWarResult = (e: Event) => {
+      const detail = (e as CustomEvent).detail;
+      setWarResult(detail);
+    };
+    window.addEventListener("war_result", handleWarResult);
+    return () => window.removeEventListener("war_result", handleWarResult);
+  }, []);
 
   // Get Target Data mapping first so we can sort by power
   const aidData = useMemo(() => militaryAidStorage.getAid(), []);
@@ -99,6 +114,7 @@ export default function MisiSeranganModal({ isOpen, onClose, userCountryData }: 
   if (!isOpen || !userCountryData) return null
 
   return (
+    <>
     <div className="absolute inset-0 bg-black/80 backdrop-blur-md z-[200] flex items-center justify-center p-4 animate-in fade-in duration-300">
       <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-5xl max-h-[90vh] overflow-hidden shadow-2xl flex flex-col relative">
         {/* Header */}
@@ -293,9 +309,66 @@ export default function MisiSeranganModal({ isOpen, onClose, userCountryData }: 
                   </div>
 
                   {/* Start Button */}
-                  <button className="w-full py-4 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-black uppercase tracking-[0.3em] transition-all cursor-pointer shadow-xl shadow-rose-900/20 active:scale-[0.98] flex items-center justify-center gap-3 mt-4">
+                  <button 
+                    disabled={warDeclared}
+                    onClick={() => {
+                      if (!targetCountry || !userCountryData || warDeclared) return;
+
+                      const attackerForces: WarForces = {
+                        darat: {
+                          tank_tempur_utama: (userCountryData.armada_militer?.darat?.tank_tempur_utama || 0) + (userDeltas.tank || 0),
+                          apc_ifv: (userCountryData.armada_militer?.darat?.apc_ifv || 0) + (userDeltas.apc || 0),
+                          artileri_berat: (userCountryData.armada_militer?.darat?.artileri_berat || 0) + (userDeltas.artileri || 0),
+                          sistem_peluncur_roket: (userCountryData.armada_militer?.darat?.sistem_peluncur_roket || 0) + (userDeltas.rocket || 0),
+                          pertahanan_udara_mobile: (userCountryData.armada_militer?.darat?.pertahanan_udara_mobile || 0) + (userDeltas.sam || 0),
+                          kendaraan_taktis: (userCountryData.armada_militer?.darat?.kendaraan_taktis || 0) + (userDeltas.tactical || 0),
+                        },
+                        laut: {
+                          kapal_induk: (userCountryData.armada_militer?.laut?.kapal_induk || 0) + (userDeltas.carrier || 0),
+                          kapal_destroyer: (userCountryData.armada_militer?.laut?.kapal_destroyer || 0) + (userDeltas.destroyer || 0),
+                          kapal_korvet: (userCountryData.armada_militer?.laut?.kapal_korvet || 0) + (userDeltas.corvette || 0),
+                          kapal_selam_nuklir: (userCountryData.armada_militer?.laut?.kapal_selam_nuklir || 0) + (userDeltas.submarine || 0),
+                          kapal_selam_regular: (userCountryData.armada_militer?.laut?.kapal_selam_regular || 0) + (userDeltas.reg_sub || 0),
+                        },
+                        udara: {
+                          jet_tempur_siluman: (userCountryData.armada_militer?.udara?.jet_tempur_siluman || 0) + (userDeltas.stealth_jet || 0),
+                          jet_tempur_interceptor: (userCountryData.armada_militer?.udara?.jet_tempur_interceptor || 0) + (userDeltas.interceptor || 0),
+                          pesawat_pengebom: (userCountryData.armada_militer?.udara?.pesawat_pengebom || 0) + (userDeltas.bomber || 0),
+                          helikopter_serang: (userCountryData.armada_militer?.udara?.helikopter_serang || 0) + (userDeltas.heli_attack || 0),
+                          pesawat_pengintai: (userCountryData.armada_militer?.udara?.pesawat_pengintai || 0) + (userDeltas.recon_plane || 0),
+                          drone_intai_uav: (userCountryData.armada_militer?.udara?.drone_intai_uav || 0) + (userDeltas.uav || 0),
+                        },
+                      };
+
+                      const defenderForces: WarForces = {
+                        darat: targetCountry.armada_militer?.darat || {},
+                        laut: targetCountry.armada_militer?.laut || {},
+                        udara: targetCountry.armada_militer?.udara || {},
+                      };
+
+                      warStorage.declareWar(
+                        userCountryData.name_id,
+                        targetCountry.name_id || targetCountry.name_en,
+                        attackerForces,
+                        defenderForces,
+                        userPower.total,
+                        targetPower.total
+                      );
+
+                      setWarDeclared(true);
+                      setTimeout(() => {
+                        onClose();
+                        setWarDeclared(false);
+                      }, 1500);
+                    }}
+                    className={`w-full py-4 rounded-2xl text-white font-black uppercase tracking-[0.3em] transition-all cursor-pointer shadow-xl shadow-rose-900/20 active:scale-[0.98] flex items-center justify-center gap-3 mt-4 ${
+                      warDeclared 
+                        ? 'bg-emerald-600 cursor-not-allowed' 
+                        : 'bg-rose-600 hover:bg-rose-500'
+                    }`}
+                  >
                     <Swords size={18} />
-                    Eksekusi Serangan
+                    {warDeclared ? 'Armada Dikerahkan!' : 'Eksekusi Serangan'}
                   </button>
                </div>
             )}
@@ -303,5 +376,15 @@ export default function MisiSeranganModal({ isOpen, onClose, userCountryData }: 
         </div>
       </div>
     </div>
+
+    {/* War Result Modal */}
+    <WarResultModal
+      isOpen={!!warResult}
+      onClose={() => setWarResult(null)}
+      war={warResult?.war || null}
+      outcome={warResult?.outcome || null}
+      result={warResult?.result || null}
+    />
+    </>
   )
 }

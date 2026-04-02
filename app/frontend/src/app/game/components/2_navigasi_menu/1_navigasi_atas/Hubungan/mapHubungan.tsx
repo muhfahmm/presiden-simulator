@@ -5,6 +5,7 @@ import { countries as centersData } from "@/app/database/data/negara/benua/index
 import { allRelations } from "@/app/database/data/negara/hubungan";
 import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
+import WarOverlayCanvas from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/modals/war_system/WarOverlayCanvas";
 
 interface MapHubunganProps {
   userCountry: string;
@@ -190,6 +191,7 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
 
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
   return (
+    <div className="relative h-full">
     <canvas
       ref={canvasRef} width={mapWidth} height={mapHeight}
       className="h-full w-auto max-w-none z-10"
@@ -223,5 +225,7 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
         if (closest) onSelect(closest.name_en);
       }}
     />
+      <WarOverlayCanvas mapWidth={mapWidth} mapHeight={mapHeight} active={active} />
+    </div>
   );
 }

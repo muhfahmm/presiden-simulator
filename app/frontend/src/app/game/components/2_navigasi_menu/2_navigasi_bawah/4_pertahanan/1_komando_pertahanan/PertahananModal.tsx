@@ -5,16 +5,19 @@ import { X, Shield, Swords, Eye, Bomb, Map as MapIcon, Radiation, Zap, Truck, An
 import { CountryData } from "@/app/database/data/types/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MisiSeranganModal from "./modals/1_misi_serangan";
+import { warStorage } from "./modals/war_system/warStorage";
 
 interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
+  activeMenu: string;
+  setActiveMenu: (menu: string) => void;
   data: CountryData;
 }
 
-export default function PertahananModal({ isOpen, onClose, data }: ModalProps) {
+export default function PertahananModal({ isOpen, onClose, activeMenu, setActiveMenu, data }: ModalProps) {
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
-  const [showMisiSerangan, setShowMisiSerangan] = useState(false);
+  const showMisiSerangan = activeMenu === "Komando Pertahanan:Misi Serangan";
   
   if (!isOpen || !data) return null;
 
@@ -46,7 +49,7 @@ export default function PertahananModal({ isOpen, onClose, data }: ModalProps) {
       icon: Target,
       color: "text-rose-500",
       items: [
-        { label: "Misi Serangan", icon: Swords, desc: "Operasi Aktif", value: 0, color: "text-red-500", btnLabel: "Mulai Misi" },
+        { label: "Misi Serangan", icon: Swords, desc: "Operasi Aktif", value: warStorage.getWarCount(), color: "text-red-500", btnLabel: "Mulai Misi" },
         { label: "Misi Mata-mata", icon: Eye, desc: "Agen Lapangan", value: security.operasi_strategis?.misi_mata_mata ?? 0, color: "text-indigo-400", btnLabel: "Mulai Misi" },
         { label: "Misi Sabotase", icon: Bomb, desc: "Target Sabotase", value: security.operasi_strategis?.misi_sabotase ?? 0, color: "text-orange-500", btnLabel: "Mulai Misi" },
         { label: "Kontrol Wilayah", icon: MapIcon, desc: "Manajemen Administrasi", value: `${security.operasi_strategis?.manajemen_wilayah ?? 0}%`, color: "text-emerald-500", btnLabel: "Lihat Wilayah" },
@@ -152,8 +155,11 @@ export default function PertahananModal({ isOpen, onClose, data }: ModalProps) {
                           <div 
                             className="mt-2 w-full py-2 rounded-xl bg-zinc-900/50 border border-zinc-800/80 text-center group-hover:border-red-500/20 transition-all cursor-pointer hover:bg-zinc-800"
                             onClick={() => {
-                               if (item.btnLabel === "Mulai Misi") {
-                                  setShowMisiSerangan(true);
+                               if (item.label === "Misi Serangan") {
+                                  setActiveMenu("Komando Pertahanan:Misi Serangan");
+                               } else if (item.btnLabel === "Mulai Misi") {
+                                  // For other missions, we can still use local state or add routes later
+                                  // For now, let's keep consistency with the user request
                                }
                             }}
                           >
@@ -175,7 +181,7 @@ export default function PertahananModal({ isOpen, onClose, data }: ModalProps) {
       {/* Modals */}
       <MisiSeranganModal 
         isOpen={showMisiSerangan} 
-        onClose={() => setShowMisiSerangan(false)} 
+        onClose={() => setActiveMenu("Komando Pertahanan")} 
         userCountryData={data}
       />
     </div>

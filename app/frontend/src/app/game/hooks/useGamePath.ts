@@ -31,7 +31,11 @@ export function useGamePath(path: string[]) {
     else if (subMenu === 'tempat-umum') initialMenu = "Menu:TempatUmum";
     else initialMenu = "Pembangunan";
   } else if (category === 'pertahanan') {
-    if (subMenu === 'komando-pertahanan') initialMenu = "Komando Pertahanan";
+    if (subMenu === 'komando-pertahanan') {
+      const detail = path[2];
+      if (detail === 'misi-serangan') initialMenu = "Komando Pertahanan:Misi Serangan";
+      else initialMenu = "Komando Pertahanan";
+    }
     else if (subMenu === 'intelijen') initialMenu = "Menu:Intelijen";
     else if (subMenu === 'armada-militer') initialMenu = "Menu:ArmadaMiliter";
     else if (subMenu === 'armada-polisi') initialMenu = "Menu:ArmadaPolisi";
@@ -92,6 +96,7 @@ export function useGamePath(path: string[]) {
       "Menu:TempatUmum": "/game/pembangunan/tempat-umum",
       "Pertahanan": "/game/pertahanan",
       "Komando Pertahanan": "/game/pertahanan/komando-pertahanan",
+      "Komando Pertahanan:Misi Serangan": "/game/pertahanan/komando-pertahanan/misi-serangan",
       "Menu:Intelijen": "/game/pertahanan/intelijen",
       "Menu:ArmadaMiliter": "/game/pertahanan/armada-militer",
       "Menu:ArmadaPolisi": "/game/pertahanan/armada-polisi",
