@@ -29,6 +29,8 @@ export interface WarForces {
     kapal_korvet: number;
     kapal_selam_nuklir: number;
     kapal_selam_regular: number;
+    kapal_ranjau: number;
+    kapal_logistik: number;
   };
   udara: {
     jet_tempur_siluman: number;
@@ -37,6 +39,8 @@ export interface WarForces {
     helikopter_serang: number;
     pesawat_pengintai: number;
     drone_intai_uav: number;
+    drone_kamikaze: number;
+    pesawat_angkut: number;
   };
 }
 

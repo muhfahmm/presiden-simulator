@@ -113,6 +113,8 @@ export default function MisiSeranganModal({ isOpen, onClose, userCountryData, pr
           { label: "Kapal Korvet", user: (userArmada.laut?.kapal_korvet || 0) + (userDeltas.corvette || 0), target: (targetArmada.laut?.kapal_korvet || 0) + (targetAid.kapal_korvet || 0) },
           { label: "Kapal Selam Nuklir", user: (userArmada.laut?.kapal_selam_nuklir || 0) + (userDeltas.submarine || 0), target: (targetArmada.laut?.kapal_selam_nuklir || 0) + (targetAid.kapal_selam_nuklir || 0) },
           { label: "Kapal Selam Regular", user: (userArmada.laut?.kapal_selam_regular || 0) + (userDeltas.reg_sub || 0), target: (targetArmada.laut?.kapal_selam_regular || 0) + (targetAid.kapal_selam_regular || 0) },
+          { label: "Kapal Ranjau", user: (userArmada.laut?.kapal_ranjau || 0) + (userDeltas.mine_ship || 0), target: (targetArmada.laut?.kapal_ranjau || 0) + (targetAid.kapal_ranjau || 0) },
+          { label: "Kapal Logistik", user: (userArmada.laut?.kapal_logistik || 0) + (userDeltas.logistics || 0), target: (targetArmada.laut?.kapal_logistik || 0) + (targetAid.kapal_logistik || 0) },
         ]
       case 'udara':
         return [
@@ -122,6 +124,8 @@ export default function MisiSeranganModal({ isOpen, onClose, userCountryData, pr
           { label: "Heli Serang", user: (userArmada.udara?.helikopter_serang || 0) + (userDeltas.heli_attack || 0), target: (targetArmada.udara?.helikopter_serang || 0) + (targetAid.helikopter_serang || 0) },
           { label: "Pesawat Intai", user: (userArmada.udara?.pesawat_pengintai || 0) + (userDeltas.recon_plane || 0), target: (targetArmada.udara?.pesawat_pengintai || 0) + (targetAid.pesawat_pengintai || 0) },
           { label: "Drone UAV", user: (userArmada.udara?.drone_intai_uav || 0) + (userDeltas.uav || 0), target: (targetArmada.udara?.drone_intai_uav || 0) + (targetAid.drone_intai_uav || 0) },
+          { label: "Drone Kamikaze", user: (userArmada.udara?.drone_kamikaze || 0) + (userDeltas.kamikaze || 0), target: (targetArmada.udara?.drone_kamikaze || 0) + (targetAid.drone_kamikaze || 0) },
+          { label: "Pesawat Angkut", user: (userArmada.udara?.pesawat_angkut || 0) + (userDeltas.transport || 0), target: (targetArmada.udara?.pesawat_angkut || 0) + (targetAid.pesawat_angkut || 0) },
         ]
       default:
         return []
@@ -384,6 +388,8 @@ export default function MisiSeranganModal({ isOpen, onClose, userCountryData, pr
               kapal_korvet: (targetCountry.armada_militer?.laut?.kapal_korvet || 0) + (targetAid.kapal_korvet || 0),
               kapal_selam_nuklir: (targetCountry.armada_militer?.laut?.kapal_selam_nuklir || 0) + (targetAid.kapal_selam_nuklir || 0),
               kapal_selam_regular: (targetCountry.armada_militer?.laut?.kapal_selam_regular || 0) + (targetAid.kapal_selam_regular || 0),
+              kapal_ranjau: (targetCountry.armada_militer?.laut?.kapal_ranjau || 0) + (targetAid.kapal_ranjau || 0),
+              kapal_logistik: (targetCountry.armada_militer?.laut?.kapal_logistik || 0) + (targetAid.kapal_logistik || 0),
             },
             udara: {
               jet_tempur_siluman: (targetCountry.armada_militer?.udara?.jet_tempur_siluman || 0) + (targetAid.jet_tempur_siluman || 0),
@@ -392,6 +398,8 @@ export default function MisiSeranganModal({ isOpen, onClose, userCountryData, pr
               helikopter_serang: (targetCountry.armada_militer?.udara?.helikopter_serang || 0) + (targetAid.helikopter_serang || 0),
               pesawat_pengintai: (targetCountry.armada_militer?.udara?.pesawat_pengintai || 0) + (targetAid.pesawat_pengintai || 0),
               drone_intai_uav: (targetCountry.armada_militer?.udara?.drone_intai_uav || 0) + (targetAid.drone_intai_uav || 0),
+              drone_kamikaze: (targetCountry.armada_militer?.udara?.drone_kamikaze || 0) + (targetAid.drone_kamikaze || 0),
+              pesawat_angkut: (targetCountry.armada_militer?.udara?.pesawat_angkut || 0) + (targetAid.pesawat_angkut || 0),
             },
           };
 

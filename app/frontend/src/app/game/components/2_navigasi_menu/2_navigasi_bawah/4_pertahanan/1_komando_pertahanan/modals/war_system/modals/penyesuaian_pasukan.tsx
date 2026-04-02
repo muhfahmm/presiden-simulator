@@ -5,6 +5,7 @@ import { X, Swords, Truck, Ship, Plane, Info, Shield, Target, Plus, Minus, Zap }
 import { WarForces } from "../warTypes";
 import { calculateForcesPower } from "../../../../3_armada_militer/kekuatanmiliter";
 import { buildingStorage } from "../../../../../3_pembangunan/buildingStorage";
+import { isLandlocked } from "../utils/landlockedUtils";
 
 interface PenyesuaianPasukanProps {
   isOpen: boolean;
@@ -20,6 +21,7 @@ export default function PenyesuaianPasukanModal({
 }: PenyesuaianPasukanProps) {
   
   const userDeltas = buildingStorage.getData().buildingDeltas || {};
+  const isTargetLandlocked = useMemo(() => isLandlocked(targetCountry), [targetCountry]);
   
   // Initialize with max available forces
   const [forces, setForces] = useState<WarForces>({
@@ -38,6 +40,8 @@ export default function PenyesuaianPasukanModal({
       kapal_korvet: 0,
       kapal_selam_nuklir: 0,
       kapal_selam_regular: 0,
+      kapal_ranjau: 0,
+      kapal_logistik: 0,
     },
     udara: {
       jet_tempur_siluman: 0,
@@ -46,6 +50,8 @@ export default function PenyesuaianPasukanModal({
       helikopter_serang: 0,
       pesawat_pengintai: 0,
       drone_intai_uav: 0,
+      drone_kamikaze: 0,
+      pesawat_angkut: 0,
     }
   });
 
@@ -63,12 +69,22 @@ export default function PenyesuaianPasukanModal({
         pertahanan_udara_mobile: (base.darat?.pertahanan_udara_mobile || 0) + (userDeltas.sam || 0),
         kendaraan_taktis: (base.darat?.kendaraan_taktis || 0) + (userDeltas.tactical || 0),
       },
-      laut: {
+      laut: isTargetLandlocked ? {
+        kapal_induk: 0,
+        kapal_destroyer: 0,
+        kapal_korvet: 0,
+        kapal_selam_nuklir: 0,
+        kapal_selam_regular: 0,
+        kapal_ranjau: 0,
+        kapal_logistik: 0,
+      } : {
         kapal_induk: (base.laut?.kapal_induk || 0) + (userDeltas.carrier || 0),
         kapal_destroyer: (base.laut?.kapal_destroyer || 0) + (userDeltas.destroyer || 0),
         kapal_korvet: (base.laut?.kapal_korvet || 0) + (userDeltas.corvette || 0),
         kapal_selam_nuklir: (base.laut?.kapal_selam_nuklir || 0) + (userDeltas.submarine || 0),
         kapal_selam_regular: (base.laut?.kapal_selam_regular || 0) + (userDeltas.reg_sub || 0),
+        kapal_ranjau: (base.laut?.kapal_ranjau || 0) + (userDeltas.mine_ship || 0),
+        kapal_logistik: (base.laut?.kapal_logistik || 0) + (userDeltas.logistics || 0),
       },
       udara: {
         jet_tempur_siluman: (base.udara?.jet_tempur_siluman || 0) + (userDeltas.stealth_jet || 0),
@@ -77,6 +93,8 @@ export default function PenyesuaianPasukanModal({
         helikopter_serang: (base.udara?.helikopter_serang || 0) + (userDeltas.heli_attack || 0),
         pesawat_pengintai: (base.udara?.pesawat_pengintai || 0) + (userDeltas.recon_plane || 0),
         drone_intai_uav: (base.udara?.drone_intai_uav || 0) + (userDeltas.uav || 0),
+        drone_kamikaze: (base.udara?.drone_kamikaze || 0) + (userDeltas.kamikaze || 0),
+        pesawat_angkut: (base.udara?.pesawat_angkut || 0) + (userDeltas.transport || 0),
       }
     };
   }, [userCountryData, isOpen]);
@@ -102,9 +120,9 @@ export default function PenyesuaianPasukanModal({
   if (!isOpen) return null;
 
   const sections = [
-    { id: 'darat', label: 'Matra Darat', icon: Truck, color: 'text-amber-500', bg: 'bg-amber-500/10' },
-    { id: 'laut', label: 'Matra Laut', icon: Ship, color: 'text-cyan-500', bg: 'bg-cyan-500/10' },
-    { id: 'udara', label: 'Matra Udara', icon: Plane, color: 'text-violet-500', bg: 'bg-violet-500/10' },
+    { id: 'darat', label: 'Darat', icon: Truck, color: 'text-amber-500', bg: 'bg-amber-500/10' },
+    { id: 'laut', label: 'Laut', icon: Ship, color: 'text-cyan-500', bg: 'bg-cyan-500/10' },
+    { id: 'udara', label: 'Udara', icon: Plane, color: 'text-violet-500', bg: 'bg-violet-500/10' },
   ];
 
   const unitLabels: Record<string, string> = {
@@ -120,12 +138,16 @@ export default function PenyesuaianPasukanModal({
     kapal_korvet: "Korvet",
     kapal_selam_nuklir: "Sub Nuklir",
     kapal_selam_regular: "Sub Regular",
+    kapal_ranjau: "Kapal Ranjau",
+    kapal_logistik: "Kapal Logistik",
     jet_tempur_siluman: "Stealth Jet",
     jet_tempur_interceptor: "Interceptor",
     pesawat_pengebom: "Pengebom",
     helikopter_serang: "Heli Serang",
     pesawat_pengintai: "Intai",
     drone_intai_uav: "UAV",
+    drone_kamikaze: "Drone Kamikaze",
+    pesawat_angkut: "Pesawat Angkut",
   };
 
   return (
@@ -175,53 +197,80 @@ export default function PenyesuaianPasukanModal({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {sections.map(section => (
               <div key={section.id} className="space-y-4">
-                <div className="flex items-center gap-3 px-2">
-                  <div className={`p-2 rounded-lg ${section.bg} ${section.color}`}>
-                    <section.icon size={16} />
+                <div className="flex items-center justify-between px-2">
+                  <div className="flex items-center gap-3">
+                    <div className={`p-2 rounded-lg ${section.bg} ${section.color}`}>
+                      <section.icon size={16} />
+                    </div>
+                    <h4 className="text-sm font-black text-white uppercase italic tracking-tight">{section.label}</h4>
                   </div>
-                  <h4 className="text-sm font-black text-white uppercase italic tracking-tight">{section.label}</h4>
+                  <div className="flex flex-col items-end">
+                    <span className="text-[10px] font-black text-white tabular-nums uppercase tracking-widest">
+                      {Object.values(forces[section.id as keyof WarForces]).reduce((a: number, b: number) => a + b, 0).toLocaleString()} <span className="text-zinc-500 opacity-50">Unit</span>
+                    </span>
+                    <span className="text-[8px] font-bold text-zinc-500 uppercase tracking-[0.2em]">
+                      {Object.keys(forces[section.id as keyof WarForces]).length} Jenis Aset
+                    </span>
+                  </div>
                 </div>
 
                 <div className="space-y-2">
-                   {Object.keys((forces as any)[section.id]).map(unitKey => {
-                     const current = (forces as any)[section.id][unitKey];
-                     const max = (maxAvailable as any)[section.id][unitKey];
-                     if (max === 0) return null;
+                   {isTargetLandlocked && section.id === 'laut' ? (
+                     <div className="bg-rose-500/5 border border-rose-500/20 p-6 rounded-3xl flex flex-col items-center text-center gap-4 animate-in fade-in slide-in-from-bottom-2 duration-500">
+                        <div className="p-3 bg-rose-500/10 rounded-2xl text-rose-500">
+                          <Ship size={32} />
+                        </div>
+                        <div className="space-y-2">
+                          <p className="text-xs font-black text-rose-500 uppercase italic tracking-widest">Akses Laut Terputus</p>
+                          <p className="text-[10px] text-zinc-500 font-bold uppercase leading-relaxed max-w-[200px]">
+                            Target adalah negara Landlocked. Armada laut tidak dapat dikerahkan untuk misi ini.
+                          </p>
+                        </div>
+                     </div>
+                   ) : (
+                     Object.keys((forces as any)[section.id]).map(unitKey => {
+                       const current = (forces as any)[section.id][unitKey];
+                       const max = (maxAvailable as any)[section.id][unitKey];
+                       const isDisabled = max === 0;
 
-                     return (
-                       <div key={unitKey} className="bg-zinc-900/30 border border-zinc-800/30 p-4 rounded-2xl group hover:border-zinc-700/50 transition-all">
-                         <div className="flex justify-between items-center mb-3">
-                           <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">{unitLabels[unitKey]}</span>
-                           <span className="text-xs font-black text-white tabular-nums">{current} <span className="text-zinc-600">/ {max}</span></span>
-                         </div>
-                         
-                         <div className="flex items-center gap-3">
-                            <button 
-                              onClick={() => handleUpdate(section.id as any, unitKey, current - 1)}
-                              className="p-1.5 rounded-lg bg-zinc-950 border border-zinc-800 text-zinc-500 hover:text-white cursor-pointer active:scale-95 transition-all"
-                            >
-                              <Minus size={12} />
-                            </button>
-                            
-                            <input 
-                              type="range"
-                              min="0"
-                              max={max}
-                              value={current}
-                              onChange={(e) => handleUpdate(section.id as any, unitKey, parseInt(e.target.value))}
-                              className="flex-1 accent-cyan-500 h-1.5 bg-zinc-900 rounded-lg appearance-none cursor-pointer"
-                            />
+                       return (
+                         <div key={unitKey} className={`bg-zinc-900/30 border border-zinc-800/30 p-4 rounded-2xl group transition-all ${isDisabled ? 'opacity-40 grayscale-[0.5]' : 'hover:border-zinc-700/50'}`}>
+                           <div className="flex justify-between items-center mb-3">
+                             <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider">{unitLabels[unitKey]}</span>
+                             <span className={`text-xs font-black tabular-nums ${isDisabled ? 'text-zinc-600' : 'text-white'}`}>{current} <span className="text-zinc-600">/ {max}</span></span>
+                           </div>
+                           
+                           <div className="flex items-center gap-3">
+                              <button 
+                                disabled={isDisabled || current <= 0}
+                                onClick={() => handleUpdate(section.id as any, unitKey, current - 1)}
+                                className={`p-1.5 rounded-lg bg-zinc-950 border border-zinc-800 text-zinc-500 transition-all ${isDisabled || current <= 0 ? 'opacity-50 cursor-not-allowed' : 'hover:text-white cursor-pointer active:scale-95'}`}
+                              >
+                                <Minus size={12} />
+                              </button>
+                              
+                              <input 
+                                type="range"
+                                min="0"
+                                max={max}
+                                value={current}
+                                disabled={isDisabled}
+                                onChange={(e) => handleUpdate(section.id as any, unitKey, parseInt(e.target.value))}
+                                className={`flex-1 h-1.5 rounded-lg appearance-none transition-all ${isDisabled ? 'bg-zinc-800 accent-zinc-700 cursor-not-allowed' : 'bg-zinc-900 accent-cyan-500 cursor-pointer'}`}
+                              />
 
-                            <button 
-                              onClick={() => handleUpdate(section.id as any, unitKey, current + 1)}
-                              className="p-1.5 rounded-lg bg-zinc-950 border border-zinc-800 text-zinc-500 hover:text-white cursor-pointer active:scale-95 transition-all"
-                            >
-                              <Plus size={12} />
-                            </button>
+                              <button 
+                                disabled={isDisabled || current >= max}
+                                onClick={() => handleUpdate(section.id as any, unitKey, current + 1)}
+                                className={`p-1.5 rounded-lg bg-zinc-950 border border-zinc-800 text-zinc-500 transition-all ${isDisabled || current >= max ? 'opacity-50 cursor-not-allowed' : 'hover:text-white cursor-pointer active:scale-95'}`}
+                              >
+                                <Plus size={12} />
+                              </button>
+                           </div>
                          </div>
-                       </div>
-                     );
-                   })}
+                       );
+                     })
+                   )}
                 </div>
               </div>
             ))}

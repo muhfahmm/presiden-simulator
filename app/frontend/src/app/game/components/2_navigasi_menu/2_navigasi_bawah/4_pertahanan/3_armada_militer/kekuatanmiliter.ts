@@ -162,7 +162,9 @@ export const calculateForcesPower = (forces: any) => {
     (forces.laut?.kapal_destroyer || 0) * DESTROYER_POWER_PER_UNIT +
     (forces.laut?.kapal_korvet || 0) * CORVETTE_POWER_PER_UNIT +
     (forces.laut?.kapal_selam_nuklir || 0) * SUBMARINE_POWER_PER_UNIT +
-    (forces.laut?.kapal_selam_regular || 0) * REGULAR_SUB_POWER_PER_UNIT;
+    (forces.laut?.kapal_selam_regular || 0) * REGULAR_SUB_POWER_PER_UNIT +
+    (forces.laut?.kapal_ranjau || 0) * MINE_SHIP_POWER_PER_UNIT +
+    (forces.laut?.kapal_logistik || 0) * LOGISTICS_POWER_PER_UNIT;
 
   const totalUdara =
     (forces.udara?.jet_tempur_siluman || 0) * STEALTH_POWER_PER_UNIT +
@@ -170,7 +172,9 @@ export const calculateForcesPower = (forces: any) => {
     (forces.udara?.pesawat_pengebom || 0) * BOMBER_POWER_PER_UNIT +
     (forces.udara?.helikopter_serang || 0) * ATTACK_HELI_POWER_PER_UNIT +
     (forces.udara?.pesawat_pengintai || 0) * RECON_POWER_PER_UNIT +
-    (forces.udara?.drone_intai_uav || 0) * UAV_POWER_PER_UNIT;
+    (forces.udara?.drone_intai_uav || 0) * UAV_POWER_PER_UNIT +
+    (forces.udara?.drone_kamikaze || 0) * KAMIKAZE_POWER_PER_UNIT +
+    (forces.udara?.pesawat_angkut || 0) * TRANSPORT_POWER_PER_UNIT;
 
   return {
     darat: totalDarat,
