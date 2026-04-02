@@ -19,25 +19,26 @@ import os
 # Unit power multipliers (value per unit)
 UNIT_POWER = {
     # Darat
-    "tank_tempur_utama": 50,
-    "apc_ifv": 20,
-    "artileri_berat": 35,
-    "sistem_peluncur_roket": 45,
-    "pertahanan_udara_mobile": 30,
-    "kendaraan_taktis": 10,
+    "pasukan_infanteri": 1,
+    "tank_tempur_utama": 250,
+    "apc_ifv": 100,
+    "artileri_berat": 150,
+    "sistem_peluncur_roket": 400,
+    "pertahanan_udara_mobile": 300,
+    "kendaraan_taktis": 50,
     # Laut
-    "kapal_induk": 200,
-    "kapal_destroyer": 80,
-    "kapal_korvet": 40,
-    "kapal_selam_nuklir": 120,
-    "kapal_selam_regular": 60,
+    "kapal_induk": 5000,
+    "kapal_destroyer": 1200,
+    "kapal_korvet": 800,
+    "kapal_selam_nuklir": 2000,
+    "kapal_selam_regular": 1000,
     # Udara
-    "jet_tempur_siluman": 100,
-    "jet_tempur_interceptor": 70,
-    "pesawat_pengebom": 90,
-    "helikopter_serang": 55,
-    "pesawat_pengintai": 15,
-    "drone_intai_uav": 25,
+    "jet_tempur_siluman": 1500,
+    "jet_tempur_interceptor": 800,
+    "pesawat_pengebom": 2500,
+    "helikopter_serang": 600,
+    "pesawat_pengintai": 200,
+    "drone_intai_uav": 100,
 }
 
 DEFENDER_BONUS = 1.10  # 10% defense advantage

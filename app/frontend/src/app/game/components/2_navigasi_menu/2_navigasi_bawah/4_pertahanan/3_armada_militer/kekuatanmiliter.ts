@@ -142,3 +142,41 @@ export const calculateTotalMilitaryPower = (armadaData: any, deltas: Record<stri
   };
 };
 
+/**
+ * Menghitung total kekuatan militer dari objek WarForces (pasukan yang dikirim).
+ */
+export const calculateForcesPower = (forces: any) => {
+  if (!forces) return { darat: 0, laut: 0, udara: 0, total: 0 };
+
+  const totalDarat =
+    (forces.darat?.pasukan_infanteri || 0) * 1 +
+    (forces.darat?.tank_tempur_utama || 0) * TANK_POWER_PER_UNIT +
+    (forces.darat?.apc_ifv || 0) * APC_POWER_PER_UNIT +
+    (forces.darat?.artileri_berat || 0) * ARTILLERY_POWER_PER_UNIT +
+    (forces.darat?.sistem_peluncur_roket || 0) * ROCKET_POWER_PER_UNIT +
+    (forces.darat?.pertahanan_udara_mobile || 0) * SAM_POWER_PER_UNIT +
+    (forces.darat?.kendaraan_taktis || 0) * TACTICAL_POWER_PER_UNIT;
+
+  const totalLaut =
+    (forces.laut?.kapal_induk || 0) * CARRIER_POWER_PER_UNIT +
+    (forces.laut?.kapal_destroyer || 0) * DESTROYER_POWER_PER_UNIT +
+    (forces.laut?.kapal_korvet || 0) * CORVETTE_POWER_PER_UNIT +
+    (forces.laut?.kapal_selam_nuklir || 0) * SUBMARINE_POWER_PER_UNIT +
+    (forces.laut?.kapal_selam_regular || 0) * REGULAR_SUB_POWER_PER_UNIT;
+
+  const totalUdara =
+    (forces.udara?.jet_tempur_siluman || 0) * STEALTH_POWER_PER_UNIT +
+    (forces.udara?.jet_tempur_interceptor || 0) * INTERCEPTOR_POWER_PER_UNIT +
+    (forces.udara?.pesawat_pengebom || 0) * BOMBER_POWER_PER_UNIT +
+    (forces.udara?.helikopter_serang || 0) * ATTACK_HELI_POWER_PER_UNIT +
+    (forces.udara?.pesawat_pengintai || 0) * RECON_POWER_PER_UNIT +
+    (forces.udara?.drone_intai_uav || 0) * UAV_POWER_PER_UNIT;
+
+  return {
+    darat: totalDarat,
+    laut: totalLaut,
+    udara: totalUdara,
+    total: totalDarat + totalLaut + totalUdara
+  };
+};
+

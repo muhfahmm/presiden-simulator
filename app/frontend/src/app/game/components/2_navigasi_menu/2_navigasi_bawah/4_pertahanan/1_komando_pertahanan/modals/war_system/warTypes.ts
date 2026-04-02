@@ -15,6 +15,7 @@ export interface FleetUnit {
 
 export interface WarForces {
   darat: {
+    pasukan_infanteri: number;
     tank_tempur_utama: number;
     apc_ifv: number;
     artileri_berat: number;

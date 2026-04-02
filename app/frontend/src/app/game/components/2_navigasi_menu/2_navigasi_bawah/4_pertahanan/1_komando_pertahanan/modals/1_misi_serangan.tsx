@@ -9,6 +9,7 @@ import { countries } from "@/app/database/data/negara/benua/index"
 import { warStorage } from "./war_system/warStorage"
 import { WarForces } from "./war_system/warTypes"
 import WarResultModal from "./war_system/WarResultModal"
+import PenyesuaianPasukanModal from "./war_system/modals/penyesuaian_pasukan"
 
 interface MisiSeranganProps {
   isOpen: boolean
@@ -24,6 +25,7 @@ export default function MisiSeranganModal({ isOpen, onClose, userCountryData, pr
   const [sortBy, setSortBy] = useState<"name" | "power">("name")
   const [warDeclared, setWarDeclared] = useState(false)
   const [warResult, setWarResult] = useState<{ war: any; result: any; outcome: any } | null>(null)
+  const [showAdjustment, setShowAdjustment] = useState(false)
 
   // Handle preselected target from routing
   useEffect(() => {
@@ -328,53 +330,7 @@ export default function MisiSeranganModal({ isOpen, onClose, userCountryData, pr
                     disabled={warDeclared}
                     onClick={() => {
                       if (!targetCountry || !userCountryData || warDeclared) return;
-
-                      const attackerForces: WarForces = {
-                        darat: {
-                          tank_tempur_utama: (userCountryData.armada_militer?.darat?.tank_tempur_utama || 0) + (userDeltas.tank || 0),
-                          apc_ifv: (userCountryData.armada_militer?.darat?.apc_ifv || 0) + (userDeltas.apc || 0),
-                          artileri_berat: (userCountryData.armada_militer?.darat?.artileri_berat || 0) + (userDeltas.artileri || 0),
-                          sistem_peluncur_roket: (userCountryData.armada_militer?.darat?.sistem_peluncur_roket || 0) + (userDeltas.rocket || 0),
-                          pertahanan_udara_mobile: (userCountryData.armada_militer?.darat?.pertahanan_udara_mobile || 0) + (userDeltas.sam || 0),
-                          kendaraan_taktis: (userCountryData.armada_militer?.darat?.kendaraan_taktis || 0) + (userDeltas.tactical || 0),
-                        },
-                        laut: {
-                          kapal_induk: (userCountryData.armada_militer?.laut?.kapal_induk || 0) + (userDeltas.carrier || 0),
-                          kapal_destroyer: (userCountryData.armada_militer?.laut?.kapal_destroyer || 0) + (userDeltas.destroyer || 0),
-                          kapal_korvet: (userCountryData.armada_militer?.laut?.kapal_korvet || 0) + (userDeltas.corvette || 0),
-                          kapal_selam_nuklir: (userCountryData.armada_militer?.laut?.kapal_selam_nuklir || 0) + (userDeltas.submarine || 0),
-                          kapal_selam_regular: (userCountryData.armada_militer?.laut?.kapal_selam_regular || 0) + (userDeltas.reg_sub || 0),
-                        },
-                        udara: {
-                          jet_tempur_siluman: (userCountryData.armada_militer?.udara?.jet_tempur_siluman || 0) + (userDeltas.stealth_jet || 0),
-                          jet_tempur_interceptor: (userCountryData.armada_militer?.udara?.jet_tempur_interceptor || 0) + (userDeltas.interceptor || 0),
-                          pesawat_pengebom: (userCountryData.armada_militer?.udara?.pesawat_pengebom || 0) + (userDeltas.bomber || 0),
-                          helikopter_serang: (userCountryData.armada_militer?.udara?.helikopter_serang || 0) + (userDeltas.heli_attack || 0),
-                          pesawat_pengintai: (userCountryData.armada_militer?.udara?.pesawat_pengintai || 0) + (userDeltas.recon_plane || 0),
-                          drone_intai_uav: (userCountryData.armada_militer?.udara?.drone_intai_uav || 0) + (userDeltas.uav || 0),
-                        },
-                      };
-
-                      const defenderForces: WarForces = {
-                        darat: targetCountry.armada_militer?.darat || {},
-                        laut: targetCountry.armada_militer?.laut || {},
-                        udara: targetCountry.armada_militer?.udara || {},
-                      };
-
-                      warStorage.declareWar(
-                        userCountryData.name_id,
-                        targetCountry.name_id || targetCountry.name_en,
-                        attackerForces,
-                        defenderForces,
-                        userPower.total,
-                        targetPower.total
-                      );
-
-                      setWarDeclared(true);
-                      setTimeout(() => {
-                        onClose();
-                        setWarDeclared(false);
-                      }, 1500);
+                      setShowAdjustment(true);
                     }}
                     className={`w-full py-4 rounded-2xl text-white font-black uppercase tracking-[0.3em] transition-all cursor-pointer shadow-xl shadow-rose-900/20 active:scale-[0.98] flex items-center justify-center gap-3 mt-4 ${
                       warDeclared 
@@ -383,7 +339,7 @@ export default function MisiSeranganModal({ isOpen, onClose, userCountryData, pr
                     }`}
                   >
                     <Swords size={18} />
-                    {warDeclared ? 'Armada Dikerahkan!' : 'Eksekusi Serangan'}
+                    {warDeclared ? 'Pasukan Bergerak!' : 'Siapkan Serangan'}
                   </button>
                </div>
             )}
@@ -399,6 +355,60 @@ export default function MisiSeranganModal({ isOpen, onClose, userCountryData, pr
       war={warResult?.war || null}
       outcome={warResult?.outcome || null}
       result={warResult?.result || null}
+    />
+
+    {/* Troop Adjustment Modal */}
+    <PenyesuaianPasukanModal 
+       isOpen={showAdjustment}
+       onClose={() => setShowAdjustment(false)}
+       userCountryData={userCountryData}
+       targetCountry={targetCountry}
+       targetPower={targetPower.total}
+       onConfirm={(selectedForces, totalAttackerPower) => {
+          setShowAdjustment(false);
+          setWarDeclared(true);
+
+          const defenderForces: WarForces = {
+            darat: {
+              pasukan_infanteri: ((targetCountry.armada_militer?.barak || 0) + (targetAid.barak || 0)) * 10000,
+              tank_tempur_utama: (targetCountry.armada_militer?.darat?.tank_tempur_utama || 0) + (targetAid.tank_tempur_utama || 0),
+              apc_ifv: (targetCountry.armada_militer?.darat?.apc_ifv || 0) + (targetAid.apc_ifv || 0),
+              artileri_berat: (targetCountry.armada_militer?.darat?.artileri_berat || 0) + (targetAid.artileri_berat || 0),
+              sistem_peluncur_roket: (targetCountry.armada_militer?.darat?.sistem_peluncur_roket || 0) + (targetAid.sistem_peluncur_roket || 0),
+              pertahanan_udara_mobile: (targetCountry.armada_militer?.darat?.pertahanan_udara_mobile || 0) + (targetAid.pertahanan_udara_mobile || 0),
+              kendaraan_taktis: (targetCountry.armada_militer?.darat?.kendaraan_taktis || 0) + (targetAid.kendaraan_taktis || 0),
+            },
+            laut: {
+              kapal_induk: (targetCountry.armada_militer?.laut?.kapal_induk || 0) + (targetAid.kapal_induk || 0),
+              kapal_destroyer: (targetCountry.armada_militer?.laut?.kapal_destroyer || 0) + (targetAid.kapal_destroyer || 0),
+              kapal_korvet: (targetCountry.armada_militer?.laut?.kapal_korvet || 0) + (targetAid.kapal_korvet || 0),
+              kapal_selam_nuklir: (targetCountry.armada_militer?.laut?.kapal_selam_nuklir || 0) + (targetAid.kapal_selam_nuklir || 0),
+              kapal_selam_regular: (targetCountry.armada_militer?.laut?.kapal_selam_regular || 0) + (targetAid.kapal_selam_regular || 0),
+            },
+            udara: {
+              jet_tempur_siluman: (targetCountry.armada_militer?.udara?.jet_tempur_siluman || 0) + (targetAid.jet_tempur_siluman || 0),
+              jet_tempur_interceptor: (targetCountry.armada_militer?.udara?.jet_tempur_interceptor || 0) + (targetAid.jet_tempur_interceptor || 0),
+              pesawat_pengebom: (targetCountry.armada_militer?.udara?.pesawat_pengebom || 0) + (targetAid.pesawat_pengebom || 0),
+              helikopter_serang: (targetCountry.armada_militer?.udara?.helikopter_serang || 0) + (targetAid.helikopter_serang || 0),
+              pesawat_pengintai: (targetCountry.armada_militer?.udara?.pesawat_pengintai || 0) + (targetAid.pesawat_pengintai || 0),
+              drone_intai_uav: (targetCountry.armada_militer?.udara?.drone_intai_uav || 0) + (targetAid.drone_intai_uav || 0),
+            },
+          };
+
+          warStorage.declareWar(
+            userCountryData.name_id,
+            targetCountry.name_id || targetCountry.name_en,
+            selectedForces,
+            defenderForces,
+            totalAttackerPower,
+            targetPower.total
+          );
+
+          setTimeout(() => {
+            onClose();
+            setWarDeclared(false);
+          }, 1500);
+       }}
     />
     </>
   )

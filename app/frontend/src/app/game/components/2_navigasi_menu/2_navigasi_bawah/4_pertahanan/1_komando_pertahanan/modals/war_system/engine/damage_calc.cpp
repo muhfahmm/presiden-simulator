@@ -31,23 +31,24 @@ struct UnitData {
 
 // Power per unit type
 std::map<std::string, double> UNIT_POWER = {
-    {"tank_tempur_utama", 50.0},
-    {"apc_ifv", 20.0},
-    {"artileri_berat", 35.0},
-    {"sistem_peluncur_roket", 45.0},
-    {"pertahanan_udara_mobile", 30.0},
-    {"kendaraan_taktis", 10.0},
-    {"kapal_induk", 200.0},
-    {"kapal_destroyer", 80.0},
-    {"kapal_korvet", 40.0},
-    {"kapal_selam_nuklir", 120.0},
-    {"kapal_selam_regular", 60.0},
-    {"jet_tempur_siluman", 100.0},
-    {"jet_tempur_interceptor", 70.0},
-    {"pesawat_pengebom", 90.0},
-    {"helikopter_serang", 55.0},
-    {"pesawat_pengintai", 15.0},
-    {"drone_intai_uav", 25.0}
+    {"pasukan_infanteri", 1.0},
+    {"tank_tempur_utama", 250.0},
+    {"apc_ifv", 100.0},
+    {"artileri_berat", 150.0},
+    {"sistem_peluncur_roket", 400.0},
+    {"pertahanan_udara_mobile", 300.0},
+    {"kendaraan_taktis", 50.0},
+    {"kapal_induk", 5000.0},
+    {"kapal_destroyer", 1200.0},
+    {"kapal_korvet", 800.0},
+    {"kapal_selam_nuklir", 2000.0},
+    {"kapal_selam_regular", 1000.0},
+    {"jet_tempur_siluman", 1500.0},
+    {"jet_tempur_interceptor", 800.0},
+    {"pesawat_pengebom", 2500.0},
+    {"helikopter_serang", 600.0},
+    {"pesawat_pengintai", 200.0},
+    {"drone_intai_uav", 100.0}
 };
 
 // Type advantage matrix (attacker_type vs defender_type -> multiplier)
