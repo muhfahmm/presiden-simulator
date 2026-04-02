@@ -5,7 +5,8 @@ import { X, Shield, Swords, Eye, Bomb, Map as MapIcon, Radiation, Zap, Truck, An
 import { CountryData } from "@/app/database/data/types/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import PilihAlutsistaMisi from "./modals/1_misi_serangan/PilihAlutsistaMisi";
-import WarIndex from "./modals/1_misi_serangan/pages/WarIndex";
+import ModalsPerbandingan from "./modals/1_misi_serangan/main_pages/modals_perbandingan/modals_perbandingan";
+import { warMissionStorage } from "./modals/1_misi_serangan/logic_jalur/warMissionStorage";
 
 interface ModalProps {
   isOpen: boolean;
@@ -19,8 +20,19 @@ interface ModalProps {
 export default function PertahananModal({ isOpen, onClose, activeMenu, setActiveMenu, preselectedTarget, data }: ModalProps) {
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
   const showMisiSerangan = activeMenu.startsWith("Komando Pertahanan:Misi Serangan");
-  const showMenuPerang = activeMenu.startsWith("Komando Pertahanan:Menu Perang");
-  const showHalamanMisi = activeMenu.startsWith("Komando Pertahanan:HalamanMisiSerangan");
+  const showPerbandingan = activeMenu.startsWith("Komando Pertahanan:PerbandinganMisi:");
+  
+  // Mission Comparison Data handling
+  let comparisonData = null;
+  if (showPerbandingan) {
+    const parts = activeMenu.split(":");
+    const target = parts[2];
+    const missionId = parts[3];
+    const mission = warMissionStorage.getMission(missionId);
+    if (mission) {
+      comparisonData = { target, selection: mission.selection };
+    }
+  }
   
   if (!isOpen || !data) return null;
 
@@ -94,8 +106,7 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
 
   return (
     <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
-      {!showHalamanMisi && (
-        <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
         {/* Header */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
@@ -181,9 +192,8 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
           </div>
         </div>
       </div>
-      )}
 
-      {showMisiSerangan && !showHalamanMisi && (
+      {showMisiSerangan && (
         <PilihAlutsistaMisi 
           isOpen={showMisiSerangan}
           onClose={() => setActiveMenu("Komando Pertahanan")}
@@ -192,8 +202,17 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
         />
       )}
 
-      {showHalamanMisi && (
-        <WarIndex onClose={() => setActiveMenu("Peta Taktis")} />
+      {showPerbandingan && comparisonData && (
+        <ModalsPerbandingan 
+          isOpen={true}
+          onClose={() => setActiveMenu("Pertahanan")}
+          onConfirm={() => {
+            // Future: Trigger actual battle simulation
+            setActiveMenu("Pertahanan");
+          }}
+          userSelection={comparisonData.selection}
+          targetCountryName={comparisonData.target}
+        />
       )}
     </div>
   )

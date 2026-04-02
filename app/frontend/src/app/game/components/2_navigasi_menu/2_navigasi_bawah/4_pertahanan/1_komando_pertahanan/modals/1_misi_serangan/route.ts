@@ -42,7 +42,8 @@ export async function initializeWarMission(
     startTime: Date.now(),
     duration: 60000, // 60 seconds travel time for presentation
     path,
-    status: "active"
+    status: "active",
+    selection: selectedUnits
   };
 
   warMissionStorage.addMission(mission);

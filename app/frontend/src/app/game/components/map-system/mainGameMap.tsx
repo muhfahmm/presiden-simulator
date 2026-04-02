@@ -116,6 +116,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
   const requestRef = useRef<number>(null);
   const lastTimeRef = useRef<number>(Date.now());
   const missionProgressRef = useRef<Record<string, number>>({});
+  const autoTriggeredMissionsRef = useRef<Set<string>>(new Set());
 
   const mapWidth = 6000;
   const mapHeight = 2400;
@@ -174,6 +175,16 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
             if (newProgress >= 1 && m.status === "active") {
                // Update storage to mark as arrived
                warMissionStorage.updateMission(m.id, { status: "arrived" });
+
+               // AUTO TRIGGER MODAL ON ARRIVAL (Only once per mission ID)
+               if (!autoTriggeredMissionsRef.current.has(m.id)) {
+                 autoTriggeredMissionsRef.current.add(m.id);
+                 setTimeout(() => {
+                   window.dispatchEvent(new CustomEvent("halaman_misi_triggered", { 
+                     detail: { target: m.target, missionId: m.id } 
+                   }));
+                 }, 0);
+               }
             }
             return m;
           });
@@ -415,8 +426,7 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
         });
 
         if (arrived) {
-           // NAVIGATE TO NEW MISSION PAGE
-           window.dispatchEvent(new CustomEvent("halaman_misi_triggered", { detail: { target: arrived.target } }));
+           window.dispatchEvent(new CustomEvent("halaman_misi_triggered", { detail: { target: arrived.target, missionId: arrived.id } }));
            return;
         }
 

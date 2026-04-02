@@ -11,40 +11,36 @@ export interface WarMission {
   duration: number; // ms
   path: { lon: number; lat: number }[];
   status: "active" | "arrived" | "completed";
+  selection: Record<string, number>;
 }
 
-const STORAGE_KEY = "em1_war_missions";
+let missions: WarMission[] = [];
 
 export const warMissionStorage = {
   getMissions: (): WarMission[] => {
-    if (typeof window === "undefined") return [];
-    const stored = localStorage.getItem(STORAGE_KEY);
-    return stored ? JSON.parse(stored) : [];
+    return [...missions];
   },
 
   addMission: (mission: WarMission) => {
-    if (typeof window === "undefined") return;
-    const missions = warMissionStorage.getMissions();
     missions.push(mission);
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(missions));
     window.dispatchEvent(new Event("war_mission_updated"));
   },
 
   updateMission: (id: string, updates: Partial<WarMission>) => {
-    if (typeof window === "undefined") return;
-    const missions = warMissionStorage.getMissions();
     const idx = missions.findIndex(m => m.id === id);
     if (idx !== -1) {
       missions[idx] = { ...missions[idx], ...updates };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(missions));
       window.dispatchEvent(new Event("war_mission_updated"));
     }
   },
 
   clearMissions: () => {
-    if (typeof window === "undefined") return;
-    localStorage.removeItem(STORAGE_KEY);
+    missions = [];
     window.dispatchEvent(new Event("war_mission_updated"));
+  },
+
+  getMission: (id: string): WarMission | undefined => {
+    return missions.find(m => m.id === id);
   },
 
   getCountryCoords: (countryName: string) => {

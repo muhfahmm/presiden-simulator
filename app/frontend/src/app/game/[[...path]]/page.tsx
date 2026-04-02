@@ -38,7 +38,6 @@ export default function GamePage() {
     isMenuOpen, setIsMenuOpen
   } = useMapData();
 
-  const isWarMode = activeMenu.startsWith("Komando Pertahanan:Menu Perang");
 
   // Sync Modal with activeMenu (URL)
   useEffect(() => {
@@ -105,27 +104,24 @@ export default function GamePage() {
       <main className="flex-1 z-10 flex flex-col h-screen overflow-hidden relative pt-[73px]">
 
         {/* Floating UI Elements */}
-        {!isWarMode && (
-          <SideMenu
-            activeMenu={activeMenu}
-            setActiveMenu={setActiveMenu}
-            unreadCount={unreadCount}
-          />
-        )}
+        <SideMenu
+          activeMenu={activeMenu}
+          setActiveMenu={setActiveMenu}
+          unreadCount={unreadCount}
+        />
 
         {/* Main interactive map background viewport */}
         <div className="flex-1 relative w-full overflow-hidden bg-[#070b13]">
           {/* Floating Bottom Navigation Menu */}
-          {!isWarMode && <BottomNav activeMenu={activeMenu} setActiveMenu={setActiveMenu} />}
+          <BottomNav activeMenu={activeMenu} setActiveMenu={setActiveMenu} />
 
           {/* Map Mode Toggles */}
-          {!isWarMode && <MapCategorySelector mapMode={mapMode} setMapMode={setMapMode} />}
+          <MapCategorySelector mapMode={mapMode} setMapMode={setMapMode} />
 
           {/* Keterangan Rute (Pelat Menu Pendukung Navigasi) */}
-          {!isWarMode && <TradeRouteLegend isVisible={mapMode === "trade"} />}
+          <TradeRouteLegend isVisible={mapMode === "trade"} />
 
-          {!isWarMode && (
-            <TransformWrapper
+          <TransformWrapper
               initialScale={1}
               minScale={1}
               maxScale={8}
@@ -147,44 +143,39 @@ export default function GamePage() {
                 </div>
               </TransformComponent>
             </TransformWrapper>
-          )}
 
           {/* Target Interaction Modal */}
-          {!isWarMode && (
-            <StrategyModal
-              isOpen={isMenuOpen}
-              onClose={() => {
-                setIsMenuOpen(false);
-                setTargetCountry(null);
-                setActiveMenu("Peta Taktis");
-              }}
-              targetCountry={targetCountry}
-              userCountry={userCountry}
-              activeTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[2] : undefined}
-              activeSubTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[3] : undefined}
-              setActiveMenu={setActiveMenu}
-              onTabChange={(tab) => {
-                if (targetCountry) {
-                  const country = countries.find(c =>
-                    c.name_id.toLowerCase() === targetCountry.toLowerCase() ||
-                    c.name_en.toLowerCase() === targetCountry.toLowerCase()
-                  );
-                  if (country) {
-                    setActiveMenu(`CountryModal:${country.name_id.toLowerCase()}:${tab === 'info' ? 'info_strategis' : tab === 'diplomacy' ? 'diplomasi_hubungan' : tab === 'military' ? 'aksi_militer_intelijen' : 'bantuan_kerjasama'}`);
-                  }
+          <StrategyModal
+            isOpen={isMenuOpen}
+            onClose={() => {
+              setIsMenuOpen(false);
+              setTargetCountry(null);
+              setActiveMenu("Peta Taktis");
+            }}
+            targetCountry={targetCountry}
+            userCountry={userCountry}
+            activeTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[2] : undefined}
+            activeSubTab={activeMenu.startsWith("CountryModal:") ? activeMenu.split(":")[3] : undefined}
+            setActiveMenu={setActiveMenu}
+            onTabChange={(tab) => {
+              if (targetCountry) {
+                const country = countries.find(c =>
+                  c.name_id.toLowerCase() === targetCountry.toLowerCase() ||
+                  c.name_en.toLowerCase() === targetCountry.toLowerCase()
+                );
+                if (country) {
+                  setActiveMenu(`CountryModal:${country.name_id.toLowerCase()}:${tab === 'info' ? 'info_strategis' : tab === 'diplomacy' ? 'diplomasi_hubungan' : tab === 'military' ? 'aksi_militer_intelijen' : 'bantuan_kerjasama'}`);
                 }
-              }}
-            />
-          )}
+              }
+            }}
+          />
 
           {/* Details Modal - Rendered Fixed Outside Scaling */}
-          {!isWarMode && (
-            <SDADetailsModal
-              selectedCountrySDA={selectedCountrySDA}
-              sdaIcons={sdaIcons}
-              onClose={() => setSelectedCountrySDA(null)}
-            />
-          )}
+          <SDADetailsModal
+            selectedCountrySDA={selectedCountrySDA}
+            sdaIcons={sdaIcons}
+            onClose={() => setSelectedCountrySDA(null)}
+          />
         </div>
       </main>
 
