@@ -41,7 +41,8 @@ export const calculateDaratFormation = (darat: any, barak: number, startY: numbe
         });
     }
 
-    // 2. Infantry (Pasukan Infanteri from Barak)
+    /* 
+    // 2. Infantry (Pasukan Infanteri from Barak) - REMOVED: Personnel stay inside barracks buildings
     if (barak > 0) {
         const numToSpawnInfanteri = Math.min(barak, 30);
         const stats = getUnitStats("pasukan_infanteri");
@@ -66,6 +67,7 @@ export const calculateDaratFormation = (darat: any, barak: number, startY: numbe
         const numRows = Math.ceil(numToSpawnInfanteri / unitsPerRow);
         currentY += (numRows * spacingY) + groupGapY;
     }
+    */
 
     return { units: enemyInitial, nextY: currentY };
 };

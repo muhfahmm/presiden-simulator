@@ -23,14 +23,32 @@ interface GameplayProps {
       fogCells?: FogCell[],
       heatmapCells?: HeatmapCell[],
       meshData?: TerrainMeshData,
-      mousePos?: { x: number, y: number }
+      mousePos?: { x: number, y: number },
+      barakCount?: number,
+      phase?: string,
+      barracksState?: any[]
    ) => void;
    hasSea?: boolean;
+   barakCount?: number;
+   phase?: string;
+   barracksState?: any[];
    width?: number;
    height?: number;
 }
 
-export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapClick, drawMapBackground, hasSea = false, width = 1200, height = 800 }: GameplayProps) {
+export default function Gameplay({ 
+   units, 
+   combatVfx = [], 
+   onUnitSelect, 
+   onMapClick, 
+   drawMapBackground, 
+   hasSea = false, 
+   barakCount = 0,
+   phase = "deployment",
+   barracksState = [],
+   width = 1200, 
+   height = 800 
+}: GameplayProps) {
    const containerRef = useRef<HTMLDivElement>(null);
    const canvasRef = useRef<HTMLCanvasElement>(null);
    const minimapRef = useRef<HTMLCanvasElement>(null); // New Minimap Ref
@@ -322,7 +340,10 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
             fogCellsRef.current, 
             heatmapCellsRef.current, 
             meshDataRef.current,
-            mouseWorldPosRef.current
+            mouseWorldPosRef.current,
+            barakCount,
+            phase,
+            barracksState
          );
 
          const camera = cameraRef.current;

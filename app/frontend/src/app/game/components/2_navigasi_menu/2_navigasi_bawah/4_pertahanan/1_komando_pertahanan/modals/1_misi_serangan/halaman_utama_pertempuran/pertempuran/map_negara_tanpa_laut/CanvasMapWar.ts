@@ -46,7 +46,10 @@ export function drawWarMapBackground(
    fogCells: FogCell[] = [],
    heatmapCells: HeatmapCell[] = [],
    meshData?: TerrainMeshData,
-   mousePos?: { x: number, y: number }
+   mousePos?: { x: number, y: number },
+   barakCount: number = 0,
+   phase: string = "deployment",
+   barracksState?: any[]
 ) {
    ctx.save();
 
@@ -87,7 +90,7 @@ export function drawWarMapBackground(
    HelipadEngine.drawHelipad(ctx, baseHeliX + 1500, baseHeliY, camera.zoom);
 
    // 3.3 DRAW MILITARY BARRACKS (BARAK) - NEW MOD
-   BarakEngine.drawBarracks(ctx, 12000, 1850, camera.zoom, 10, 6, mousePos);
+   BarakEngine.drawBarracks(ctx, 12000, 1850, camera.zoom, 10, barakCount, mousePos, phase, barracksState);
 
    // 4. POTENTIAL FIELD MESH - REMOVED AS PER USER REQUEST
 

@@ -143,50 +143,43 @@ export class BarakEngine {
       x: number, 
       y: number, 
       zoom: number, 
-      cols: number = 3, 
-      rows: number = 3,
-      mousePos?: { x: number, y: number }
+      cols: number = 10, 
+      count: number = 0,
+      mousePos?: { x: number, y: number },
+      phase: string = "deployment",
+      barracksState?: any[] // Optional state for dynamic personnel
    ): void {
+      if (count <= 0) return;
+
+      const barracks = barracksState || BarakUtils.calculateBarracksPositions(x, y, count, cols);
+      
       ctx.save();
       
-      const bw = 400; // Barrack width
-      const bh = 200; // Barrack height
-      const gx = 150; // Gap X
-      const gy = 150; // Gap Y
-      
-      const totalWidth = cols * bw + (cols - 1) * gx;
-      const startX = x - totalWidth / 2 + bw / 2;
-
       let hoveredUnit: { px: number, py: number, personnel: string } | null = null;
 
-      for (let r = 0; r < rows; r++) {
-         for (let c = 0; c < cols; c++) {
-            const px = startX + c * (bw + gx);
-            const py = y + r * (bh + gy);
+      barracks.forEach((b: any) => {
+         const px = b.pos.x;
+         const py = b.pos.y;
 
-            // Hover Detection (AABB)
-            if (mousePos) {
-               const isHovered = (
-                  mousePos.x >= px - bw / 2 && 
-                  mousePos.x <= px + bw / 2 && 
-                  mousePos.y >= py && 
-                  mousePos.y <= py + bh
-               );
-               
-               if (isHovered) {
-                  // Stable seed for personnel count
-                  const seed = Math.abs(Math.sin(px * 12.9898 + py * 78.233));
-                  const count = Math.floor(seed * 10000).toLocaleString('id-ID');
-                  hoveredUnit = { px, py, personnel: count };
-               }
+         // Hover Detection (AABB)
+         if (mousePos) {
+            const isHovered = (
+               mousePos.x >= px - BarakUtils.WIDTH / 2 && 
+               mousePos.x <= px + BarakUtils.WIDTH / 2 && 
+               mousePos.y >= py && 
+               mousePos.y <= py + BarakUtils.HEIGHT
+            );
+            
+            if (isHovered) {
+               hoveredUnit = { px, py, personnel: b.currentPersonnel?.toLocaleString('id-ID') || "10.000" };
             }
-
-            ctx.save();
-            ctx.translate(px, py);
-            this.drawSingleBarrack(ctx, bw, bh);
-            ctx.restore();
          }
-      }
+
+         ctx.save();
+         ctx.translate(px, py);
+         this.drawSingleBarrack(ctx, BarakUtils.WIDTH, BarakUtils.HEIGHT);
+         ctx.restore();
+      });
 
       // Draw Hover Tooltip (Above all units)
       if (hoveredUnit) {
@@ -225,3 +218,5 @@ export class BarakEngine {
       ctx.restore();
    }
 }
+
+import { BarakUtils } from "./BarakUtils";

@@ -14,6 +14,8 @@ import { calculateLautFormation } from "./logic/formasi_armada/laut/grid_formati
 import { calculateDaratFormation } from "./logic/formasi_armada/darat/grid_formation";
 import { drawWarMapBackground as drawMapWithSea } from "./map_negara_dengan_laut/CanvasMapWar";
 import { drawWarMapBackground as drawMapNoSea } from "./map_negara_tanpa_laut/CanvasMapWar";
+import { BarakUtils, BarrackState } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/BarakUtils";
+import { InfantryDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/logika_infanteri_keluar_barak/ts/route";
 
 interface PertempuranIndexProps {
   onClose: () => void;
@@ -34,6 +36,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
     udara: true
   });
   const [targetArmada, setTargetArmada] = useState<any>(null);
+  const [barracks, setBarracks] = useState<BarrackState[]>([]);
 
   // Calculate deployment budget based on Total SPW (Simulated)
   const maxPoints = useMemo(() => {
@@ -83,6 +86,12 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
         setTargetArmada(armada);
         setUnits(prev => [...prev.filter(u => u.side !== 'enemy'), ...cumulativeUnits]);
+
+        // Initialize barracks positions
+        if (armada.barak > 0) {
+           const initialBarracks = BarakUtils.calculateBarracksPositions(12000, 1850, armada.barak, 10);
+           setBarracks(initialBarracks);
+        }
     }, [missionData.target]);
 
   const handleManualDeployment = useCallback((unitType: string | null, x: number, y: number) => {
@@ -144,16 +153,45 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
         setUnits(prev => {
            // MIGRATED: Logic moved to polyglotRouter.processTick for performance (Rust/C++/Python)
-           const tickUpdate = async () => {
-              const result = await polyglotService.processTick(prev, dt);
-              if (phase === "combat") {
-                 setUnits(result.units);
-                 setCombatVfx(prevVfx => {
-                    const active = prevVfx.filter(v => now - v.timestamp < 300);
-                    return result.vfx.length > 0 ? [...active, ...result.vfx] : active;
-                 });
-              }
-           };
+            const tickUpdate = async () => {
+               const result = await polyglotService.processTick(prev, dt);
+               
+               // NEW: Check for infantry deployment from barracks
+               let spawnedInfanteri: UnitState[] = [];
+               const updatedBarracks = barracks.map(b => {
+                   if (b.currentPersonnel > 0 && InfantryDeploymentLogic.isEnemyNearby(b.pos, prev)) {
+                       // Deploy 1000 personnel as a single tactical unit
+                       const personnelToDeploy = 1000;
+                       b.currentPersonnel -= personnelToDeploy;
+                       
+                       const stats = getUnitStats("pasukan_infanteri");
+                       spawnedInfanteri.push({
+                           id: `deploy_${b.id}_${Date.now()}_${Math.random()}`,
+                           type: "pasukan_infanteri",
+                           side: "enemy",
+                           pos: { x: b.pos.x, y: b.pos.y + 100 },
+                           health: stats.maxHealth,
+                           rotation: Math.PI,
+                           influence: 100
+                       });
+                   }
+                   return b;
+               });
+
+               if (phase === "combat") {
+                  if (spawnedInfanteri.length > 0) {
+                     setUnits([...result.units, ...spawnedInfanteri]);
+                     setBarracks(updatedBarracks);
+                  } else {
+                     setUnits(result.units);
+                  }
+                  
+                  setCombatVfx(prevVfx => {
+                     const active = prevVfx.filter(v => now - v.timestamp < 300);
+                     return result.vfx.length > 0 ? [...active, ...result.vfx] : active;
+                  });
+               }
+            };
            tickUpdate();
            return prev; // State will be updated asynchronously by the tickUpdate
         });
@@ -223,9 +261,19 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
             <div className="flex-1 p-4 bg-black flex flex-col items-center justify-center relative overflow-hidden">
                <div className="w-full h-full relative">
-                  <Gameplay units={units} combatVfx={combatVfx} onUnitSelect={setSelectedUnitId} drawMapBackground={activeMapRenderer} hasSea={hasSea} onMapClick={(x, y, isRightClick) => {
-                     if (phase === "deployment") { if (isRightClick) handleRemoveUnit(x, y); else handleManualDeployment(selectedUnitType, x, y); }
-                  }} />
+                  <Gameplay 
+                      units={units} 
+                      combatVfx={combatVfx} 
+                      onUnitSelect={setSelectedUnitId} 
+                      drawMapBackground={activeMapRenderer} 
+                      hasSea={hasSea} 
+                      barracksState={barracks}
+                      barakCount={targetArmada?.barak || 0}
+                      phase={phase}
+                      onMapClick={(x, y, isRightClick) => {
+                         if (phase === "deployment") { if (isRightClick) handleRemoveUnit(x, y); else handleManualDeployment(selectedUnitType, x, y); }
+                      }} 
+                   />
                </div>
                {phase === "combat" && (
                   <div className="absolute top-1/2 left-0 w-full h-[1px] bg-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.5)] z-20 flex items-center justify-center">
