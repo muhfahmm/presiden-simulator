@@ -309,9 +309,8 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                </div>
             )}
 
-            <div className="flex-1 p-6 bg-black flex flex-col items-center justify-center relative overflow-hidden">
-               <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-10 bg-[radial-gradient(circle_at_center,_#ffffff_0%,_transparent_100%)]" />
-               <div className="relative">
+            <div className="flex-1 p-4 bg-black flex flex-col items-center justify-center relative overflow-hidden">
+               <div className="w-full h-full relative">
                   <Gameplay units={units} combatVfx={combatVfx} onUnitSelect={setSelectedUnitId} drawMapBackground={activeMapRenderer} hasSea={hasSea} onMapClick={(x, y, isRightClick) => {
                      if (phase === "deployment") { if (isRightClick) handleRemoveUnit(x, y); else handleManualDeployment(selectedUnitType, x, y); }
                   }} />

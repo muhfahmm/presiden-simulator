@@ -408,10 +408,6 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
             if (mCtx) {
                mCtx.clearRect(0, 0, mCanvas.width, mCanvas.height);
 
-               // Optimized Scanlines: Single semi-transparent overlay instead of heavy loop
-               ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-               ctx.fillRect(0, 0, canvas.width, canvas.height);
-
                // Radar Base
                mCtx.fillStyle = "rgba(9, 9, 11, 0.9)"; // zinc-950
                mCtx.fillRect(0, 0, 200, 200);
@@ -435,14 +431,6 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
 
                // Draw bounds (Simulated 30000x30000 map scale down to 200x200 canvas)
                const offsetY = 15000;
-
-               // Map Grid for aesthetics
-               mCtx.strokeStyle = "rgba(39, 39, 42, 0.5)"; // zinc-800
-               mCtx.lineWidth = 1;
-               for (let i = 0; i < 200; i += 25) {
-                  mCtx.beginPath(); mCtx.moveTo(i, 0); mCtx.lineTo(i, 200); mCtx.stroke();
-                  mCtx.beginPath(); mCtx.moveTo(0, i); mCtx.lineTo(200, i); mCtx.stroke();
-               }
 
                // Draw Blips
                units.forEach(u => {
@@ -539,7 +527,7 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
    return (
       <div
          ref={containerRef}
-         className="relative border border-zinc-800 rounded-3xl overflow-hidden shadow-2xl bg-black w-full h-full cursor-crosshair min-h-[600px]"
+         className="relative border border-zinc-900/50 rounded-[40px] overflow-hidden shadow-2xl bg-[#020617] w-full h-full cursor-crosshair"
          onMouseDown={handleMouseDown}
          onMouseMove={handleMouseMove}
          onMouseUp={handleMouseUp}

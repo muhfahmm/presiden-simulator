@@ -7,8 +7,8 @@ export function drawWarMapBackground(
 ) {
    ctx.save();
 
-   // 1. Black Background (The Void)
-   ctx.fillStyle = "#000000";
+   // 1. Dark Slate Background (Seamless base)
+   ctx.fillStyle = "#020617";
    ctx.fillRect(0, 0, width, height);
 
    ctx.save();
@@ -27,7 +27,7 @@ export function drawWarMapBackground(
    ctx.rect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT * 2);
    ctx.clip();
 
-   // Base Land Color (Uniform Dark Slate)
+   // Base Land Color (Premium Dark Slate)
    ctx.fillStyle = "#020617";
    ctx.fillRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT * 2);
 
@@ -46,42 +46,8 @@ export function drawWarMapBackground(
    ctx.stroke();
    ctx.setLineDash([]); // Reset dash for subsequent drawing
 
-   // 3. Structured Tactical Grid
-   const gridSize = 500;
-   const subGridSize = 100;
-
-   // Sub-grid
-   ctx.strokeStyle = "rgba(16, 185, 129, 0.03)";
-   ctx.lineWidth = 1 / camera.zoom;
-   for (let x = Math.floor(worldStartX / subGridSize) * subGridSize; x <= worldEndX; x += subGridSize) {
-      ctx.beginPath(); ctx.moveTo(x, worldStartY); ctx.lineTo(x, worldEndY); ctx.stroke();
-   }
-   for (let y = Math.floor(worldStartY / subGridSize) * subGridSize; y <= worldEndY; y += subGridSize) {
-      ctx.beginPath(); ctx.moveTo(worldStartX, y); ctx.lineTo(worldEndX, y); ctx.stroke();
-   }
-
-   // Main Grid with Labels
-   ctx.strokeStyle = "rgba(16, 185, 129, 0.1)";
-   ctx.fillStyle = "rgba(16, 185, 129, 0.4)";
-   ctx.font = `${12 / camera.zoom}px 'Inter', monospace`;
-
-   for (let x = Math.floor(worldStartX / gridSize) * gridSize; x <= worldEndX; x += gridSize) {
-      ctx.beginPath(); ctx.moveTo(x, worldStartY); ctx.lineTo(x, worldEndY); ctx.stroke();
-      ctx.fillText(x.toString(), x + 5 / camera.zoom, worldStartY + 40 / camera.zoom);
-   }
-   for (let y = Math.floor(worldStartY / gridSize) * gridSize; y <= worldEndY; y += gridSize) {
-      ctx.beginPath(); ctx.moveTo(worldStartX, y); ctx.lineTo(worldEndX, y); ctx.stroke();
-      ctx.fillText(y.toString(), worldStartX + 95 / camera.zoom, y - 5 / camera.zoom);
-   }
-
    ctx.restore();
 
-   // 4. Post-Process Overlay
-   const vignette = ctx.createRadialGradient(width / 2, height / 2, width * 0.2, width / 2, height / 2, width * 0.7);
-   vignette.addColorStop(0, "rgba(0,0,0,0)");
-   vignette.addColorStop(1, "rgba(0,0,0,0.6)");
-   ctx.fillStyle = vignette;
-   ctx.fillRect(0, 0, width, height);
 
    ctx.restore();
 }
