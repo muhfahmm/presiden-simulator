@@ -21,13 +21,14 @@ export interface UnitState {
   health: number;
   rotation: number;
   influence: number;
+  lastAttack?: number;
 }
 
 class PolyglotRouter {
   /**
    * ==========================================
    * [RUST ENGINE] - Performance Workload
-   * Source: ./logic/rust/pathfinding.rs
+   * Source: ../rust/pathfinding.rs
    * ==========================================
    */
   async calculatePathfinding(start: Vector2, end: Vector2): Promise<Vector2[]> {
@@ -47,7 +48,7 @@ class PolyglotRouter {
   /**
    * ==========================================
    * [CPP ENGINE] - Ballistics & Logic
-   * Source: ./logic/cpp/ballistics.cpp
+   * Source: ../cpp/ballistics.cpp
    * ==========================================
    */
   calculateBallistics(attacker: Vector2, target: Vector2): number {
@@ -59,7 +60,7 @@ class PolyglotRouter {
   /**
    * ==========================================
    * [PYTHON AI] - Tactical Strategy
-   * Source: ./logic/python/strategy.py
+   * Source: ../python/strategy.py
    * ==========================================
    */
   async getStrategyCommand(snapshot: UnitState[]): Promise<string> {
@@ -76,7 +77,9 @@ class PolyglotRouter {
     let influence = 0;
     units.forEach(u => {
       const dist = Math.sqrt((u.pos.x - point.x) ** 2 + (u.pos.y - point.y) ** 2);
-      const impact = (u.side === 'user' ? 1 : -1) * (u.influence / (1 + dist / 50));
+      if (dist > 2000) return; // Hard tactical horizon cutoff
+      
+      const impact = (u.side === 'user' ? 1 : -1) * (u.influence / (1 + Math.pow(dist / 100, 2)));
       influence += impact;
     });
     return influence;

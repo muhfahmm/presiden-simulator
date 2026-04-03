@@ -72,7 +72,7 @@ export default function Perbandingan({ isOpen, onClose, userCountryData, targetC
     switch (categoryId) {
       case 'darat':
         return [
-          { label: "Barak Militer", user: (userArmada.barak || 0) + (userDeltas.barak || 0), target: (targetArmada.barak || 0) + (targetAid.barak || 0) },
+          { label: "Pasukan Infanteri", user: ((userArmada.barak || 0) + (userDeltas.barak || 0)) * 10000, target: ((targetArmada.barak || 0) + (targetAid.barak || 0)) * 10000 },
           { label: "Main Battle Tank", user: (userArmada.darat?.tank_tempur_utama || 0) + (userDeltas.tank || 0), target: (targetArmada.darat?.tank_tempur_utama || 0) + (targetAid.tank_tempur_utama || 0) },
           { label: "APC / IFV", user: (userArmada.darat?.apc_ifv || 0) + (userDeltas.apc || 0), target: (targetArmada.darat?.apc_ifv || 0) + (targetAid.apc_ifv || 0) },
           { label: "Artileri Berat", user: (userArmada.darat?.artileri_berat || 0) + (userDeltas.artileri || 0), target: (targetArmada.darat?.artileri_berat || 0) + (targetAid.artileri_berat || 0) },
