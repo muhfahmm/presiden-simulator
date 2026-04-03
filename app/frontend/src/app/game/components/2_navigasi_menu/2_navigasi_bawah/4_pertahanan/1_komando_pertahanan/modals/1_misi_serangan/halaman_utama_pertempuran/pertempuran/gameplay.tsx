@@ -1,9 +1,8 @@
-"use client"
-
 import React, { useRef, useEffect, useState, useMemo } from "react";
-import { polyglotService, UnitState, Vector2 } from "./logic/polyglot/ts/polyglot-router";
+import { polyglotService, UnitState, Vector2, FogCell, HeatmapCell, StrategicZone, TerrainMeshData } from "./logic/polyglot/ts/polyglot-router";
 import { getUnitStats } from "./logic/polyglot/ts/unit_stats";
 import { HP_Logic } from "./logic/polyglot/ts/HP_Logic";
+import { MapTextureEngine } from "./logic/mapTexture/MapTextureGenerator";
 import {
    drawInfanteri, drawTank,
    drawStealth, drawInterceptor, drawBomber, drawHeli, drawUAV, drawKamikaze, drawTransport,
@@ -16,7 +15,16 @@ interface GameplayProps {
    combatVfx?: { id: string, startX: number, startY: number, endX: number, endY: number, timestamp: number }[];
    onUnitSelect: (id: string | null) => void;
    onMapClick?: (x: number, y: number, isRightClick: boolean) => void;
-   drawMapBackground: (ctx: CanvasRenderingContext2D, camera: { x: number; y: number; zoom: number }, width: number, height: number) => void;
+   drawMapBackground: (
+      ctx: CanvasRenderingContext2D,
+      camera: { x: number; y: number; zoom: number },
+      width: number,
+      height: number,
+      fogCells?: FogCell[],
+      heatmapCells?: HeatmapCell[],
+      meshData?: TerrainMeshData,
+      mousePos?: { x: number, y: number }
+   ) => void;
    hasSea?: boolean;
    width?: number;
    height?: number;
@@ -28,11 +36,22 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
    const minimapRef = useRef<HTMLCanvasElement>(null); // New Minimap Ref
 
    const [viewport, setViewport] = useState({ w: width, h: height });
-   const viewportRef = useRef({ w: width, h: height }); // Robust dimensions for event handlers
+   const viewportRef = useRef({ w: width, h: height }); 
    const hoveredUnitRef = useRef<UnitState | null>(null);
 
-   // Use refs for camera and drag to avoid triggering React react-renders continuously
-   const cameraRef = useRef({ x: 0, y: 0, zoom: 1 });
+   // --- POLYGLOT TACTICAL STATE ---
+   // --- POLYGLOT TACTICAL STATE (Converted to Refs to prevent Render Loop Flicker) ---
+   const fogCellsRef = useRef<FogCell[]>([]);
+   const heatmapCellsRef = useRef<HeatmapCell[]>([]);
+   const strategicZonesRef = useRef<StrategicZone[]>([]);
+   const meshDataRef = useRef<TerrainMeshData | undefined>(undefined);
+   const mouseWorldPosRef = useRef<{ x: number, y: number } | undefined>(undefined);
+
+   // --- CINEMATIC SMOOTH CAMERA (TARGET-BASED) ---
+   const cameraRef = useRef({ 
+      x: 0, y: 0, zoom: 0.1, // Current
+      tx: 0, ty: 0, tz: 0.1, // Target
+   });
    const isDraggingRef = useRef(false);
    const dragStartRef = useRef<{ x: number, y: number } | null>(null);
    const dragDistanceRef = useRef<number>(0);
@@ -47,16 +66,16 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
       const el = containerRef.current;
       if (!el) return;
 
-      // Automatically adjust canvas sizes to fill the container wrapper perfectly without black borders
       const ro = new ResizeObserver(entries => {
          if (entries.length > 0) {
             const { width: w, height: h } = entries[0].contentRect;
             setViewport({ w, h });
 
-            // INITIAL CAMERA CENTERING: Run once when dimensions are known
             if (!hasCenteredRef.current && w > 0) {
                cameraRef.current.x = w / 2;
                cameraRef.current.y = h / 2;
+               cameraRef.current.tx = w / 2;
+               cameraRef.current.ty = h / 2;
                hasCenteredRef.current = true;
             }
          }
@@ -64,45 +83,50 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
       ro.observe(el);
 
       const THEATER_LIMIT = 15000;
-      const applyConstraints = (cam: { x: number, y: number, zoom: number }, w: number, h: number) => {
-         // 1. Zoom Constraint: Prevent zooming out too far (Tactical Focus)
-         // Previously: Math.max(w, h) / (THEATER_LIMIT * 2) which allowed seeing ALL 30k units.
-         const minZoom = Math.max(w, h) / 10000; // Limits view to 10k units maximum
-         cam.zoom = Math.max(minZoom, Math.min(5, cam.zoom));
+      const applyConstraints = (cam: { tx: number, ty: number, tz: number }, w: number, h: number) => {
+         // Allow zooming out enough to see the whole 30k theater
+         const minZoomMap = Math.min(w, h) / 30000; 
+         cam.tz = Math.max(minZoomMap * 0.9, Math.min(5, cam.tz));
 
-         // 2. Position Constraint: Ensure viewport stays within [-THEATER_LIMIT, THEATER_LIMIT]
-         // World range: [-15000, 15000]. Screen view: [-cam.x/zoom, (-cam.x + w)/zoom]
-         const minX = w - (THEATER_LIMIT * cam.zoom);
-         const maxX = (THEATER_LIMIT * cam.zoom);
-         const minY = h - (THEATER_LIMIT * cam.zoom);
-         const maxY = (THEATER_LIMIT * cam.zoom);
+         const worldSize = (THEATER_LIMIT * 2) * cam.tz;
 
-         cam.x = Math.max(minX, Math.min(maxX, cam.x));
-         cam.y = Math.max(minY, Math.min(maxY, cam.y));
+         // If world is smaller than screen, center it. Otherwise constraint within boundaries.
+         if (worldSize <= w) {
+            cam.tx = w / 2;
+         } else {
+            const minX = w - (THEATER_LIMIT * cam.tz);
+            const maxX = (THEATER_LIMIT * cam.tz);
+            cam.tx = Math.max(minX, Math.min(maxX, cam.tx));
+         }
+
+         if (worldSize <= h) {
+            cam.ty = h / 2;
+         } else {
+            const minY = h - (THEATER_LIMIT * cam.tz);
+            const maxY = (THEATER_LIMIT * cam.tz);
+            cam.ty = Math.max(minY, Math.min(maxY, cam.ty));
+         }
       };
 
       const onWheel = (e: WheelEvent) => {
          e.preventDefault();
-
          const rect = el.getBoundingClientRect();
          const mouseX = e.clientX - rect.left;
          const mouseY = e.clientY - rect.top;
 
          const cam = cameraRef.current;
-         const oldZoom = cam.zoom;
+         const oldTargetZoom = cam.tz;
 
-         // 1. Calculate and clamp the new zoom FIRST
-         let nextZoom = cam.zoom - e.deltaY * 0.001;
-         const minZoom = Math.max(viewportRef.current.w, viewportRef.current.h) / 10000;
-         nextZoom = Math.max(minZoom, Math.min(5, nextZoom));
+         // Smoother mouse wheel sensitivity
+         let nextTargetZoom = cam.tz - e.deltaY * 0.0005;
+         const minZoomLimit = Math.min(viewportRef.current.w, viewportRef.current.h) / 32000;
+         nextTargetZoom = Math.max(minZoomLimit, Math.min(5, nextTargetZoom));
 
-         // 2. Calculate pivot based on the ACTUAL zoom change
-         const ratio = nextZoom / oldZoom;
-         cam.x = mouseX - (mouseX - cam.x) * ratio;
-         cam.y = mouseY - (mouseY - cam.y) * ratio;
-         cam.zoom = nextZoom;
+         const ratio = nextTargetZoom / oldTargetZoom;
+         cam.tx = mouseX - (mouseX - cam.tx) * ratio;
+         cam.ty = mouseY - (mouseY - cam.ty) * ratio;
+         cam.tz = nextTargetZoom;
 
-         // 3. Apply position constraints
          applyConstraints(cam, viewportRef.current.w, viewportRef.current.h);
       };
 
@@ -113,30 +137,60 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
       };
    }, []);
 
+   const frameCountRef = useRef(0);
+
+   // Optimized Tactical Data Update (Throttled via useEffect with cleanup)
+   useEffect(() => {
+      let isMounted = true;
+      let lastUnitsHash = "";
+      
+      const updateLoop = async () => {
+         if (!isMounted) return;
+         
+         // Only update if units changed or enough time passed
+         const currentUnits = latestUnitsRef.current;
+         const currentHash = JSON.stringify(currentUnits.length); // Simple hash for demo
+         
+         if (currentHash !== lastUnitsHash || frameCountRef.current % 10 === 0) {
+            const [fog, heatmap, zones, mesh] = await Promise.all([
+               polyglotService.getFogOverlay(currentUnits),
+               polyglotService.getTerritorialHeatmap(currentUnits),
+               polyglotService.getStrategicZones(currentUnits, hasSea),
+               polyglotService.getOptimizedMapGeometry(currentUnits, cameraRef.current)
+            ]);
+
+            if (isMounted) {
+               fogCellsRef.current = fog;
+               heatmapCellsRef.current = heatmap;
+               strategicZonesRef.current = zones;
+               meshDataRef.current = mesh as any;
+               lastUnitsHash = currentHash;
+            }
+         }
+         
+         setTimeout(updateLoop, 150); // Throttle to ~6Hz for heavy background data
+      };
+
+      updateLoop();
+      return () => { isMounted = false; };
+   }, [hasSea]);
+
    const handleMouseDown = (e: React.MouseEvent) => {
-      if (e.button !== 0) return; // Only drag on left click or middle click
+      if (e.button !== 0) return; 
       isDraggingRef.current = true;
       dragDistanceRef.current = 0;
-      const cam = cameraRef.current;
-      dragStartRef.current = { x: e.clientX - cam.x, y: e.clientY - cam.y };
+      dragStartRef.current = { x: e.clientX, y: e.clientY };
    };
 
-   const handleMouseMove = (e: React.MouseEvent) => {
+   const handleMouseMove = async (e: React.MouseEvent) => {
       const cam = cameraRef.current;
       if (isDraggingRef.current && dragStartRef.current) {
-         dragDistanceRef.current += Math.abs(e.movementX) + Math.abs(e.movementY);
-         cam.x = e.clientX - dragStartRef.current.x;
-         cam.y = e.clientY - dragStartRef.current.y;
-
-         // Apply bounds constraint after pan
-         const THEATER_LIMIT = 15000;
-         const minX = viewport.w - (THEATER_LIMIT * cam.zoom);
-         const maxX = (THEATER_LIMIT * cam.zoom);
-         const minY = viewport.h - (THEATER_LIMIT * cam.zoom);
-         const maxY = (THEATER_LIMIT * cam.zoom);
-
-         cam.x = Math.max(minX, Math.min(maxX, cam.x));
-         cam.y = Math.max(minY, Math.min(maxY, cam.y));
+         const dx = e.clientX - dragStartRef.current.x;
+         const dy = e.clientY - dragStartRef.current.y;
+         cam.tx += dx;
+         cam.ty += dy;
+         dragStartRef.current = { x: e.clientX, y: e.clientY };
+         dragDistanceRef.current += Math.sqrt(dx * dx + dy * dy);
       }
       if (containerRef.current) {
          const rect = containerRef.current.getBoundingClientRect();
@@ -146,23 +200,14 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
          const worldX = (mouseX - cam.x) / cam.zoom;
          const worldY = (mouseY - cam.y) / cam.zoom;
 
-         // Detect hovered unit
-         let closest: UnitState | null = null;
-         let minDist = 30 / cam.zoom; // Adjustable threshold
-
-         latestUnitsRef.current.forEach(u => {
-            const dx = u.pos.x - worldX;
-            const dy = u.pos.y - worldY;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-            if (dist < minDist) {
-               minDist = dist;
-               closest = u;
-            }
-         });
-
+         // Use Polyglot Spatial Index (Rust) for hover detection
+         const closest = await polyglotService.getSpatialNearestUnit({x: worldX, y: worldY}, latestUnitsRef.current, 30 / cam.zoom);
          if (closest !== hoveredUnitRef.current) {
             hoveredUnitRef.current = closest;
          }
+         
+         // NEW MOD: Track background hover
+         mouseWorldPosRef.current = { x: worldX, y: worldY };
       }
    };
 
@@ -209,7 +254,6 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
       const mouseX = e.clientX - rect.left;
       const mouseY = e.clientY - rect.top;
       const cam = cameraRef.current;
-
       const worldX = (mouseX - cam.x) / cam.zoom;
       const worldY = (mouseY - cam.y) / cam.zoom;
       onMapClick(worldX, worldY, true);
@@ -217,33 +261,26 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
 
    const handleClick = (e: React.MouseEvent) => {
       if (e.button !== 0) return;
-      if (dragDistanceRef.current > 5) return; // Ignore click if user was dragging map
-
+      if (dragDistanceRef.current > 5) return; 
       if (!containerRef.current || !onMapClick) return;
       const rect = containerRef.current.getBoundingClientRect();
       const mouseX = e.clientX - rect.left;
       const mouseY = e.clientY - rect.top;
       const cam = cameraRef.current;
-
       const worldX = (mouseX - cam.x) / cam.zoom;
       const worldY = (mouseY - cam.y) / cam.zoom;
       onMapClick(worldX, worldY, false);
    };
 
-   const setZoomLevel = (targetZoom: number) => {
+   const setZoomLevel = (lvl: number) => {
       const cam = cameraRef.current;
-      const centerViewportX = viewport.w / 2;
-      const centerViewportY = viewport.h / 2;
+      const oldTargetZoom = cam.tz;
+      const newTargetZoom = lvl;
+      const ratio = newTargetZoom / oldTargetZoom;
 
-      // Calculate world coordinates at the center of the screen
-      const worldCenterX = (centerViewportX - cam.x) / cam.zoom;
-      const worldCenterY = (centerViewportY - cam.y) / cam.zoom;
-
-      cam.zoom = targetZoom;
-
-      // Re-adjust camera so we zoom smoothly towards the center of the screen
-      cam.x = centerViewportX - worldCenterX * targetZoom;
-      cam.y = centerViewportY - worldCenterY * targetZoom;
+      cam.tx = viewport.w / 2 - (viewport.w / 2 - cam.tx) * ratio;
+      cam.ty = viewport.h / 2 - (viewport.h / 2 - cam.ty) * ratio;
+      cam.tz = newTargetZoom;
    };
 
    const latestUnitsRef = useRef(units);
@@ -257,262 +294,136 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
       if (!ctx) return;
 
       const renderLoop = () => {
-         // Safe conditional resize (Huge performance gain without breaking size)
+         const canvas = canvasRef.current;
+         const ctx = canvas?.getContext("2d");
+         if (!canvas || !ctx) return;
+
          if (canvas.width !== viewport.w || canvas.height !== viewport.h) {
             canvas.width = viewport.w;
             canvas.height = viewport.h;
          }
 
-         ctx.clearRect(0, 0, canvas.width, canvas.height);
+         // 0. CINEMATIC INTERPOLATION (LEADER SMOOTHING)
+         const cam = cameraRef.current;
+         const smoothingFactor = 0.15; // Lower = smoother/slower, higher = snappier
+         cam.x += (cam.tx - cam.x) * smoothingFactor;
+         cam.y += (cam.ty - cam.y) * smoothingFactor;
+         cam.zoom += (cam.tz - cam.zoom) * smoothingFactor;
 
-         // Topographic Tactical Map via CanvasMapWar
-         drawMapBackground(ctx, cameraRef.current, canvas.width, canvas.height);
+         ctx.clearRect(0, 0, canvas.width, canvas.height);
+         frameCountRef.current++;
+
+         // Pass tactical data + 3D mesh to background renderer (Using Refs)
+         drawMapBackground(
+            ctx, 
+            cameraRef.current, 
+            canvas.width, 
+            canvas.height, 
+            fogCellsRef.current, 
+            heatmapCellsRef.current, 
+            meshDataRef.current,
+            mouseWorldPosRef.current
+         );
 
          const camera = cameraRef.current;
-
          ctx.save();
          ctx.translate(camera.x, camera.y);
          ctx.scale(camera.zoom, camera.zoom);
 
-         // Viewport Math for Native Culling
-         const worldStartX = -camera.x / camera.zoom;
-         const worldStartY = -camera.y / camera.zoom;
-         const worldEndX = worldStartX + canvas.width / camera.zoom;
-         const worldEndY = worldStartY + canvas.height / camera.zoom;
+         // Use Polyglot Culling Logic (C++)
+         const currentUnits = latestUnitsRef.current;
+         const visibleUnits = polyglotService.getVisibleUnits(currentUnits, camera, canvas.width, canvas.height);
 
          // 3. Draw Tactical Warfare Units
-         units.forEach(u => {
-            // FRUSTUM CULLING: Skip drawing units that are off-screen
-            const margin = 100 / camera.zoom;
-            if (u.pos.x < worldStartX - margin || u.pos.x > worldEndX + margin ||
-               u.pos.y < worldStartY - margin || u.pos.y > worldEndY + margin) return;
-
+         visibleUnits.forEach(u => {
             ctx.save();
             ctx.translate(u.pos.x, u.pos.y);
             ctx.rotate(u.rotation);
 
             const baseColor = u.side === 'user' ? "239, 68, 68" : "161, 161, 170";
             const hexColor = u.side === 'user' ? "#ef4444" : "#a1a1aa";
-
-            // Anti-Shrink Dynamic Scaling (Ensures visibility at high zoom-out)
             const dynamicScale = 1.5 / Math.sqrt(camera.zoom);
             ctx.scale(dynamicScale, dynamicScale);
-
-            // Responsive Line Width
             ctx.lineWidth = Math.max(0.5, 1.2 / dynamicScale);
 
             const typeLower = u.type.toLowerCase();
-
             if (u.type === "air" || typeLower.includes("pesawat") || typeLower.includes("jet") || typeLower.includes("heli") || typeLower.includes("drone")) {
-               if (typeLower.includes("stealth")) {
-                  drawStealth(ctx, hexColor, baseColor);
-               } else if (typeLower.includes("interceptor") || typeLower.includes("cegat")) {
-                  drawInterceptor(ctx, hexColor, baseColor);
-               } else if (typeLower.includes("bomber") || typeLower.includes("pembom")) {
-                  drawBomber(ctx, hexColor, baseColor);
-               } else if (typeLower.includes("heli") || typeLower.includes("helikopter")) {
-                  drawHeli(ctx, hexColor, baseColor);
-               } else if (typeLower.includes("uav") || typeLower.includes("recon") || typeLower.includes("intai")) {
-                  drawUAV(ctx, hexColor, baseColor);
-               } else if (typeLower.includes("kamikaze")) {
-                  drawKamikaze(ctx, hexColor, baseColor);
-               } else if (typeLower.includes("transport") || typeLower.includes("angkut")) {
-                  drawTransport(ctx, hexColor, baseColor);
-               } else {
-                  drawInterceptor(ctx, hexColor, baseColor); // Fallback for generic jets
-               }
+               if (typeLower.includes("stealth")) drawStealth(ctx, hexColor, baseColor);
+               else if (typeLower.includes("interceptor") || typeLower.includes("cegat")) drawInterceptor(ctx, hexColor, baseColor);
+               else if (typeLower.includes("bomber") || typeLower.includes("pembom")) drawBomber(ctx, hexColor, baseColor);
+               else if (typeLower.includes("heli") || typeLower.includes("helikopter")) drawHeli(ctx, hexColor, baseColor);
+               else if (typeLower.includes("uav") || typeLower.includes("recon") || typeLower.includes("intai")) drawUAV(ctx, hexColor, baseColor);
+               else if (typeLower.includes("kamikaze")) drawKamikaze(ctx, hexColor, baseColor);
+               else if (typeLower.includes("transport") || typeLower.includes("angkut")) drawTransport(ctx, hexColor, baseColor);
+               else drawInterceptor(ctx, hexColor, baseColor);
             } else if (u.type === "sea" || typeLower.includes("kapal") || typeLower.includes("destroyer") || typeLower.includes("selam") || typeLower.includes("corvette")) {
-               if (typeLower.includes("induk")) {
-                  drawKapalInduk(ctx, hexColor, baseColor);
-               } else if (typeLower.includes("destroyer")) {
-                  drawDestroyer(ctx, hexColor, baseColor);
-               } else if (typeLower.includes("korvet") || typeLower.includes("corvette")) {
-                  drawKorvet(ctx, hexColor, baseColor);
-               } else if (typeLower.includes("selam")) {
-                  if (typeLower.includes("nuklir")) {
-                     drawKapalSelamNuklir(ctx, hexColor, baseColor);
-                  } else {
-                     drawKapalSelamReguler(ctx, hexColor, baseColor);
-                  }
-               } else if (typeLower.includes("ranjau")) {
-                  drawKapalRanjau(ctx, hexColor, baseColor);
-               } else if (typeLower.includes("logistik")) {
-                  drawKapalLogistik(ctx, hexColor, baseColor);
-               } else {
-                  drawDestroyer(ctx, hexColor, baseColor); // Fallback for generic ships
-               }
-            } else if (typeLower.includes("infanteri") || typeLower.includes("pasukan") || typeLower.includes("barak")) {
-               drawInfanteri(ctx, hexColor, baseColor);
-            } else if (typeLower.includes("apc") || typeLower.includes("personel")) {
-               drawAPC(ctx, hexColor, baseColor);
-            } else if (typeLower.includes("artileri") || typeLower.includes("artillery")) {
-               drawArtileri(ctx, hexColor, baseColor);
-            } else if (typeLower.includes("roket") || typeLower.includes("rocket") || typeLower.includes("mlrs")) {
-               drawRoket(ctx, hexColor, baseColor);
-            } else if (typeLower.includes("sam") || typeLower.includes("pertahanan_udara")) {
-               drawSAM(ctx, hexColor, baseColor);
-            } else if (typeLower.includes("taktis") || typeLower.includes("tactical")) {
-               drawTactical(ctx, hexColor, baseColor);
-            } else {
-               drawTank(ctx, hexColor, baseColor);
-            }
+               if (typeLower.includes("induk")) drawKapalInduk(ctx, hexColor, baseColor);
+               else if (typeLower.includes("destroyer")) drawDestroyer(ctx, hexColor, baseColor);
+               else if (typeLower.includes("korvet") || typeLower.includes("corvette")) drawKorvet(ctx, hexColor, baseColor);
+               else if (typeLower.includes("selam")) typeLower.includes("nuklir") ? drawKapalSelamNuklir(ctx, hexColor, baseColor) : drawKapalSelamReguler(ctx, hexColor, baseColor);
+               else if (typeLower.includes("ranjau")) drawKapalRanjau(ctx, hexColor, baseColor);
+               else if (typeLower.includes("logistik")) drawKapalLogistik(ctx, hexColor, baseColor);
+               else drawDestroyer(ctx, hexColor, baseColor);
+            } else if (typeLower.includes("infanteri") || typeLower.includes("pasukan") || typeLower.includes("barak")) drawInfanteri(ctx, hexColor, baseColor);
+            else if (typeLower.includes("apc") || typeLower.includes("personel")) drawAPC(ctx, hexColor, baseColor);
+            else if (typeLower.includes("artileri") || typeLower.includes("artillery")) drawArtileri(ctx, hexColor, baseColor);
+            else if (typeLower.includes("roket") || typeLower.includes("rocket") || typeLower.includes("mlrs")) drawRoket(ctx, hexColor, baseColor);
+            else if (typeLower.includes("sam") || typeLower.includes("pertahanan_udara")) drawSAM(ctx, hexColor, baseColor);
+            else if (typeLower.includes("taktis") || typeLower.includes("tactical")) drawTactical(ctx, hexColor, baseColor);
+            else drawTank(ctx, hexColor, baseColor);
 
-            // 4. Tactical Health Bar (Standardized Length, Dynamic Durability)
             const stats = getUnitStats(u.type);
             const healthRatio = HP_Logic.getHealthRatio(u.health, stats.maxHealth);
-            const barW = 32; // Standardized total width
-            const barH = 3;  // Sleek tactical height
-
-            // Bar Border/Background
-            ctx.fillStyle = "rgba(24, 24, 27, 0.8)"; // zinc-900
+            const barW = 32; const barH = 3;
+            ctx.fillStyle = "rgba(24, 24, 27, 0.8)";
             ctx.fillRect(-barW / 2, 22, barW, barH);
-
-            // Progress Bar
-            ctx.fillStyle = healthRatio > 0.3 ? "#22c55e" : "#ef4444"; // Green to Red warning
+            ctx.fillStyle = healthRatio > 0.3 ? "#22c55e" : "#ef4444";
             ctx.fillRect(-barW / 2, 22, barW * healthRatio, barH);
-
             ctx.restore();
          });
 
-         // 4. Draw VFX Tracers (Laser/Cannons)
+         // 4. Draw VFX Tracers
          const now = Date.now();
          combatVfx.forEach(vfx => {
             const age = now - vfx.timestamp;
-            if (age > 300) return; // fade out over 300ms
-
-            // FRUSTUM CULLING for VFX: Skip if both start and end are off-screen
-            const margin = 100 / camera.zoom;
-            if ((vfx.startX < worldStartX - margin && vfx.endX < worldStartX - margin) ||
-               (vfx.startX > worldEndX + margin && vfx.endX > worldEndX + margin) ||
-               (vfx.startY < worldStartY - margin && vfx.endY < worldStartY - margin) ||
-               (vfx.startY > worldEndY + margin && vfx.endY > worldEndY + margin)) return;
-
+            if (age > 300) return;
             const alpha = 1 - (age / 300);
             ctx.beginPath();
             ctx.moveTo(vfx.startX, vfx.startY);
             ctx.lineTo(vfx.endX, vfx.endY);
-            ctx.strokeStyle = `rgba(252, 211, 77, ${alpha})`; // amber-300
+            ctx.strokeStyle = `rgba(252, 211, 77, ${alpha})`;
             ctx.lineWidth = 3;
-            // Add a slight blur shadow for glowing laser
-            ctx.shadowColor = "rgba(252, 211, 77, 1)";
-            ctx.shadowBlur = 10 * alpha;
-            ctx.stroke();
-
-            ctx.shadowBlur = 0; // reset
+            ctx.shadowColor = "rgba(252, 211, 77, 1)"; ctx.shadowBlur = 10 * alpha;
+            ctx.stroke(); ctx.shadowBlur = 0;
          });
 
-         // 5. Draw High-Performance Native Minimap
-         const mCanvas = minimapRef.current;
-         if (mCanvas) {
-            const mCtx = mCanvas.getContext("2d");
-            if (mCtx) {
-               mCtx.clearRect(0, 0, mCanvas.width, mCanvas.height);
+         // 5. Draw Strategic Zone Markers (Python Intelligence)
+         strategicZonesRef.current.forEach(zone => {
+            ctx.save();
+            ctx.beginPath();
+            ctx.arc(zone.center.x, zone.center.y, zone.radius, 0, Math.PI * 2);
+            ctx.strokeStyle = zone.priority === "CRITICAL" ? "rgba(239, 68, 68, 0.5)" : "rgba(251, 191, 36, 0.3)";
+            ctx.lineWidth = 2 / camera.zoom;
+            ctx.setLineDash([100 / camera.zoom, 60 / camera.zoom]); // Match tactical dash
+            ctx.stroke();
+            ctx.restore();
+         });
 
-               // Radar Base
-               mCtx.fillStyle = "rgba(9, 9, 11, 0.9)"; // zinc-950
-               mCtx.fillRect(0, 0, 200, 200);
-
-               // Draw Sea area on Minimap if applicable
-               const mapScale = 200 / 30000;
-               const offsetX = 15000;
-               if (hasSea) {
-                  const seaBottomY = (-6000 + offsetX) * mapScale; // Sea ends at -6000
-                  mCtx.fillStyle = "#075985"; // Ocean Blue
-                  mCtx.fillRect(0, 0, 200, seaBottomY);
-                  
-                  // Coastline separator on minimap
-                  mCtx.strokeStyle = "rgba(56, 189, 248, 0.5)";
-                  mCtx.lineWidth = 1;
-                  mCtx.beginPath();
-                  mCtx.moveTo(0, seaBottomY);
-                  mCtx.lineTo(200, seaBottomY);
-                  mCtx.stroke();
-               }
-
-               // Draw bounds (Simulated 30000x30000 map scale down to 200x200 canvas)
-               const offsetY = 15000;
-
-               // Draw Blips
-               units.forEach(u => {
-                  mCtx.fillStyle = u.side === 'user' ? '#ef4444' : '#a1a1aa';
-                  mCtx.fillRect((u.pos.x + offsetX) * mapScale, (u.pos.y + offsetY) * mapScale, 3, 3);
-               });
-
-               // Draw Viewport Camera Box
-               const camW = canvas.width / camera.zoom;
-               const camH = canvas.height / camera.zoom;
-               const camX = -camera.x / camera.zoom;
-               const camY = -camera.y / camera.zoom;
-
-               mCtx.strokeStyle = "rgba(16, 185, 129, 0.8)"; // emerald-500 box
-               mCtx.lineWidth = 1.5;
-               mCtx.strokeRect((camX + offsetX) * mapScale, (camY + offsetY) * mapScale, camW * mapScale, camH * mapScale);
-            }
-         }
-
-         // 6. Tactical Tooltip Rendering (Premium Visuals)
+         // 7. Tactical Tooltip
          const hoveredUnit = hoveredUnitRef.current;
          if (hoveredUnit) {
             const label = getHumanLabel(hoveredUnit.type).toUpperCase();
             const sideColor = hoveredUnit.side === 'user' ? "rgba(239, 68, 68, 1)" : "rgba(161, 161, 170, 1)";
-            const glowColor = hoveredUnit.side === 'user' ? "rgba(239, 68, 68, 0.4)" : "rgba(161, 161, 170, 0.4)";
-
             ctx.save();
             ctx.translate(hoveredUnit.pos.x, hoveredUnit.pos.y);
-
-            // Dynamic Tooltip Scaling for Readability
-            const tooltipScale = 1.2 / Math.sqrt(camera.zoom);
-            ctx.scale(tooltipScale, tooltipScale);
-
-            ctx.font = "bold 13px Inter, system-ui, sans-serif";
-            const textWidth = ctx.measureText(label).width;
-            const boxW = textWidth + 24;
-            const boxH = 32;
-            const ry = -50;
-
-            // Animated Pulse Logic
-            const pulse = (Math.sin(Date.now() / 150) + 1) / 2;
-
-            // Background with Tactical blur-like effect
-            ctx.fillStyle = "rgba(9, 9, 11, 0.95)";
-            ctx.shadowBlur = 15;
-            ctx.shadowColor = glowColor;
-
-            // Draw Box
-            const rx = -boxW / 2;
-            ctx.beginPath();
-            ctx.roundRect(rx, ry, boxW, boxH, 8);
-            ctx.fill();
-
-            // Glowing Border
-            ctx.strokeStyle = sideColor;
-            ctx.lineWidth = 1.5 + (pulse * 0.5);
-            ctx.stroke();
-
-            // Label Text
-            ctx.shadowBlur = 0;
-            ctx.fillStyle = "#ffffff";
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            ctx.letterSpacing = "1px";
-
-            const isInfantry = label.includes("INFANTERI") || label.includes("PASUKAN");
-            if (isInfantry) {
-               // Render split-screen like feeling for infantry (Personnel Count)
-               ctx.font = "bold 11px Inter, sans-serif";
-               ctx.fillText(label, 0, ry + 12);
-               ctx.font = "bold 9px Inter, sans-serif";
-               ctx.fillStyle = "rgba(255, 255, 255, 0.6)";
-               ctx.fillText("10.000 PERSONEL", 0, ry + 22);
-            } else {
-               ctx.fillText(label, 0, ry + boxH / 2 + 1);
-            }
-
-            // Origin Indicator (Mini side tag)
-            ctx.font = "bold 7px Inter, sans-serif";
-            ctx.fillStyle = hoveredUnit.side === 'user' ? "#ef4444" : "#a1a1aa";
-            ctx.fillText(hoveredUnit.side === 'user' ? "NATIONAL UNIT" : "HOSTILE UNIT", 0, ry - 8);
-
+            const tooltipScale = 1.2 / Math.sqrt(camera.zoom); ctx.scale(tooltipScale, tooltipScale);
+            ctx.font = "bold 13px Inter, sans-serif";
+            const textWidth = ctx.measureText(label).width; const boxW = textWidth + 24; const boxH = 32; const ry = -50;
+            ctx.fillStyle = "rgba(9, 9, 11, 0.95)"; ctx.shadowBlur = 15; ctx.shadowColor = sideColor;
+            ctx.beginPath(); ctx.roundRect(-boxW / 2, ry, boxW, boxH, 8); ctx.fill();
+            ctx.strokeStyle = sideColor; ctx.lineWidth = 1.5; ctx.stroke();
+            ctx.shadowBlur = 0; ctx.fillStyle = "#ffffff"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+            ctx.fillText(label, 0, ry + boxH / 2 + 1);
             ctx.restore();
          }
 
@@ -522,7 +433,7 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
 
       const animId = requestAnimationFrame(renderLoop);
       return () => cancelAnimationFrame(animId);
-   }, [units, viewport]); // viewport bounds change requires canvas size adjustment
+   }, [viewport]);
 
    return (
       <div
@@ -540,34 +451,30 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
             className="block pointer-events-none"
          />
 
-         {/* Minimap Canvas Overlay */}
-         <div className="absolute top-4 right-4 z-20 shadow-2xl rounded-2xl overflow-hidden border border-zinc-800 pointer-events-none">
-            <canvas
-               ref={minimapRef}
-               width={200}
-               height={200}
-               className="block bg-black/50 backdrop-blur-md"
-            />
-            {/* Minimap overlays */}
-            <div className="absolute top-3 left-3 flex items-center gap-2">
-               <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(16,185,129,0.8)]" />
-               <span className="text-[9px] font-black tracking-widest text-emerald-500 uppercase">Radar Link</span>
-            </div>
-         </div>
-
-         {/* Optics / Zoom Quick Controls */}
          <div className="absolute top-4 left-4 flex gap-1 z-20 shadow-xl bg-zinc-950/50 backdrop-blur-sm p-1 rounded-xl pointer-events-auto">
-            {[25, 50, 75, 100].map(zm => (
+            <button
+               onClick={(e) => { 
+                  e.stopPropagation(); 
+                  const targetZ = Math.min(viewport.w, viewport.h) / 30000;
+                  const cam = cameraRef.current;
+                  cam.tz = targetZ;
+                  cam.tx = viewport.w / 2;
+                  cam.ty = viewport.h / 2;
+               }}
+               className="bg-emerald-500/20 hover:bg-emerald-500/40 text-emerald-400 border border-emerald-500/50 px-3 py-1.5 rounded-lg text-[10px] font-black transition-all uppercase tracking-tight"
+            >
+               Full View
+            </button>
+            {[25, 50, 100].map(zm => (
                <button
                   key={zm}
                   onClick={(e) => { e.stopPropagation(); setZoomLevel(zm / 100); }}
-                  className="bg-zinc-950/80 hover:bg-emerald-500/20 text-zinc-400 hover:text-emerald-400 border border-zinc-800 px-3 py-1.5 rounded-lg text-[10px] font-black transition-all"
+                  className="bg-zinc-950/80 hover:bg-zinc-800 text-zinc-400 border border-zinc-800 px-3 py-1.5 rounded-lg text-[10px] font-black transition-all"
                >
                   {zm}%
                </button>
             ))}
          </div>
-
       </div>
    );
 }

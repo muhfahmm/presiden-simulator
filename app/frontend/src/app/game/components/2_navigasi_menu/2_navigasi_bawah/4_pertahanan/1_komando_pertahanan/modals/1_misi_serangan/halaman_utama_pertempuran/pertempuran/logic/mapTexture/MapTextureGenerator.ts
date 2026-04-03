@@ -13,6 +13,14 @@ export interface TerrainNode {
     rotation?: number;
 }
 
+export interface RoadSegment {
+    startX: number;
+    startY: number;
+    endX: number;
+    endY: number;
+    width: number;
+}
+
 export class MapTextureEngine {
     /**
      * Membangkitkan lokasi gunung / pegunungan secara prosedural
@@ -40,13 +48,113 @@ export class MapTextureEngine {
     }
 
     /**
-     * Membangkitkan rute jalan tol antar koordinat
+     * Membangkitkan rute jalan untuk map dengan laut (coastal roads)
      */
-    static generateHighways(): {startX: number, startY: number, endX: number, endY: number}[] {
-        // Contoh rute jembatan tol horizontal konstan di tengah map
+    static generateHighways(): RoadSegment[] {
+        const coastalRoadY = -5800;  // Jalan pesisir, sedikit di atas laut
+        
         return [
-            { startX: -8000, startY: 0, endX: 8000, endY: 0 }
+            // Jalan pesisir horizontal (parallel dengan laut)
+            { startX: -15000, startY: coastalRoadY, endX: 15000, endY: coastalRoadY, width: 40 },
+            
+            // Jalan horizontal tengah
+            { startX: -15000, startY: 0, endX: 15000, endY: 0, width: 40 },
+            
+            // Jalan horizontal tambahan (biru muda)
+            { startX: -15000, startY: 3500, endX: 15000, endY: 3500, width: 30 },
+            { startX: -15000, startY: 7500, endX: 15000, endY: 7500, width: 30 },
+            
+            // Jalan vertikal tengah (hanya di area daratan)
+            { startX: 0, startY: coastalRoadY, endX: 0, endY: 15000, width: 40 },
+            { startX: -5000, startY: coastalRoadY, endX: -5000, endY: 15000, width: 25 },
+            { startX: 5000, startY: coastalRoadY, endX: 5000, endY: 15000, width: 25 },
+            
+            // Jalan vertikal pinggir (biru muda - border roads)
+            { startX: -15000, startY: coastalRoadY, endX: -15000, endY: 15000, width: 35 },
+            { startX: 15000, startY: coastalRoadY, endX: 15000, endY: 15000, width: 35 },
         ];
+    }
+
+    /**
+     * Membangkitkan rute jalan untuk map tanpa laut (landlocked)
+     */
+    static generateHighwaysLandlocked(): RoadSegment[] {
+        return [
+            // Jalan horizontal utama
+            { startX: -15000, startY: 0, endX: 15000, endY: 0, width: 40 },
+            { startX: -15000, startY: -7000, endX: 15000, endY: -7000, width: 40 },
+            
+            // Jalan horizontal tambahan (biru muda)
+            { startX: -15000, startY: 3500, endX: 15000, endY: 3500, width: 30 },
+            { startX: -15000, startY: 7500, endX: 15000, endY: 7500, width: 30 },
+            
+            // Jalan vertikal tengah (full map)
+            { startX: 0, startY: -15000, endX: 0, endY: 15000, width: 40 },
+            { startX: -5000, startY: -15000, endX: -5000, endY: 15000, width: 25 },
+            { startX: 5000, startY: -15000, endX: 5000, endY: 15000, width: 25 },
+            
+            // Jalan vertikal pinggir (biru muda - border roads)
+            { startX: -15000, startY: -15000, endX: -15000, endY: 15000, width: 35 },
+            { startX: 15000, startY: -15000, endX: 15000, endY: 15000, width: 35 },
+        ];
+    }
+
+    /**
+     * Menggambar jalan dengan garis putus-putus di tengah
+     */
+    static drawRoads(
+        ctx: CanvasRenderingContext2D,
+        roads: RoadSegment[],
+        zoom: number
+    ): void {
+        ctx.save();
+        
+        roads.forEach(road => {
+            const { startX, startY, endX, endY, width } = road;
+            
+            // Gambar border jalan (lebih gelap) - dirender dulu
+            ctx.strokeStyle = '#1a1a1a';
+            ctx.lineWidth = width + 2;  // Border tipis
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            ctx.setLineDash([]);
+            
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+            
+            // Gambar jalan abu-abu gelap (aspal) - di atas border
+            ctx.strokeStyle = '#2a2a2a';
+            ctx.lineWidth = width;
+            
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+            
+            // Gambar garis putus-putus kuning terang di tengah
+            const dashLength = 200;
+            const gapLength = 150;
+            
+            ctx.strokeStyle = '#ffff00';
+            ctx.lineWidth = Math.max(2, width * 0.1);
+            ctx.lineCap = 'butt';
+            ctx.setLineDash([dashLength, gapLength]);
+            ctx.shadowColor = '#ffff00';
+            ctx.shadowBlur = 3;
+            
+            ctx.beginPath();
+            ctx.moveTo(startX, startY);
+            ctx.lineTo(endX, endY);
+            ctx.stroke();
+            
+            // Reset
+            ctx.setLineDash([]);
+            ctx.shadowBlur = 0;
+        });
+        
+        ctx.restore();
     }
 
     /**

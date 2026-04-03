@@ -142,109 +142,21 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
        const dt = (now - lastTick) / 1000;
        lastTick = now;
 
-       setUnits(prev => {
-          let nextState = prev.map(u => ({ ...u }));
-          const newVfx: typeof combatVfx = [];
-
-          // Filter units that have 0 HP using HP_Logic
-          const aliveUnits = HP_Logic.filterDestroyedUnits(nextState);
-
-          // Update Battle Over state
-          const userAlive = aliveUnits.some(u => u.side === 'user');
-          const enemyAlive = aliveUnits.some(u => u.side === 'enemy');
-
-          // Optimized AI: Pre-sort units by side once per tick to avoid O(N^2) filtering in the loop
-          const userUnits = nextState.filter(u => u.side === 'user' && u.health > 0);
-          const enemyUnits = nextState.filter(u => u.side === 'enemy' && u.health > 0);
-
-          nextState.forEach(u => {
-             const enemies = u.side === 'user' ? enemyUnits : userUnits;
-             const allies = u.side === 'user' ? userUnits : enemyUnits;
-             if (enemies.length === 0) return;
-
-             // 1. Separation Logic: Avoid clumping with allies
-             let sepX = 0;
-             let sepY = 0;
-             const sepRadius = 80; // Distance to maintain between allies
-             
-             allies.forEach(a => {
-                if (a.id === u.id) return;
-                const dx = u.pos.x - a.pos.x;
-                const dy = u.pos.y - a.pos.y;
-                const d2 = dx * dx + dy * dy;
-                if (d2 < sepRadius * sepRadius && d2 > 0) {
-                   const d = Math.sqrt(d2);
-                   const force = (sepRadius - d) / sepRadius;
-                   sepX += (dx / d) * force * 150 * dt;
-                   sepY += (dy / d) * force * 150 * dt;
-                }
-             });
-
-             // 2. Target Logic: Find closest enemy
-             let closest = enemies[0];
-             let minSqDist = Infinity;
-             
-             for (let i = 0; i < enemies.length; i++) {
-                const e = enemies[i];
-                const dx = u.pos.x - e.pos.x;
-                const dy = u.pos.y - e.pos.y;
-                const sqDist = dx * dx + dy * dy;
-                if (sqDist < minSqDist) {
-                   minSqDist = sqDist;
-                   closest = e;
-                }
-             }
-
-             const uStats = getUnitStats(u.type);
-             const eStats = getUnitStats(closest.type);
-             const rangeSq = uStats.range * uStats.range;
-
-             if (minSqDist > rangeSq) {
-                // Move towards nearest enemy + separation force
-                const actualDist = Math.sqrt(minSqDist);
-                const dx = closest.pos.x - u.pos.x;
-                const dy = closest.pos.y - u.pos.y;
-                
-                // Directional movement
-                const moveX = (dx / actualDist) * uStats.speed * dt * 4;
-                const moveY = (dy / actualDist) * uStats.speed * dt * 4;
-                
-                // Combine and Apply
-                u.pos.x += moveX + sepX;
-                u.pos.y += moveY + sepY;
-                u.rotation = Math.atan2(moveY + sepY, moveX + sepX);
-             } else {
-                // Stay and Shoot, but still separate slightly to avoid stack overlapping during fire
-                u.pos.x += sepX * 0.5;
-                u.pos.y += sepY * 0.5;
-
-                // Attack logic according to dynamic unit reload speed
-                if ((now - ((u as any).lastAttack || 0)) > uStats.reloadSpeed) {
-                   (u as any).lastAttack = now;
-                   
-                   const damageDealt = Power_Logic.calculateActualDamage(uStats, eStats);
-                   closest.health = HP_Logic.applyDamage(closest.health, damageDealt);
-                   
-                   newVfx.push({
-                      id: `vfx_${Math.random()}`,
-                      startX: u.pos.x, startY: u.pos.y,
-                      endX: closest.pos.x, endY: closest.pos.y,
-                      timestamp: now
-                   });
-                   u.rotation = Math.atan2(closest.pos.y - u.pos.y, closest.pos.x - u.pos.x);
-
-                   if (u.type === "pesawat_kamikaze") u.health = 0; 
-                }
-             }
-          });
-
-          setCombatVfx(prevVfx => {
-             const active = prevVfx.filter(v => now - v.timestamp < 300);
-             return newVfx.length > 0 ? [...active, ...newVfx] : active;
-          });
-
-          return nextState.filter(u => u.health > 0);
-       });
+        setUnits(prev => {
+           // MIGRATED: Logic moved to polyglotRouter.processTick for performance (Rust/C++/Python)
+           const tickUpdate = async () => {
+              const result = await polyglotService.processTick(prev, dt);
+              if (phase === "combat") {
+                 setUnits(result.units);
+                 setCombatVfx(prevVfx => {
+                    const active = prevVfx.filter(v => now - v.timestamp < 300);
+                    return result.vfx.length > 0 ? [...active, ...result.vfx] : active;
+                 });
+              }
+           };
+           tickUpdate();
+           return prev; // State will be updated asynchronously by the tickUpdate
+        });
        
     }, 1000 / 30); // 30Hz simulation loop
 

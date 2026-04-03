@@ -1,13 +1,70 @@
-// Tactical Map Renderer with Coastline/Sea indicators
+import { FogCell, HeatmapCell, TerrainMeshData } from "../logic/polyglot/ts/polyglot-router";
+import { portRouter } from "../logic/polyglot/ts/port-router";
+import { MapTextureEngine } from "../logic/mapTexture/MapTextureGenerator";
+import { PelabuhanEngine } from "../logic/mapTexture/gambar-tempat-armada/laut/pelabuhan/PelabuhanGenerator";
+import { BandaraEngine } from "../logic/mapTexture/gambar-tempat-armada/udara/bandara/bandara";
+import { HelipadEngine } from "../logic/mapTexture/gambar-tempat-armada/udara/bandara/helipad";
+import { BarakEngine } from "../logic/mapTexture/gambar-tempat-armada/darat/barak/barak";
+
+// ============================================================
+// Tactical Map Renderer - 3D Potential Field Mesh (WITH SEA)
+// Draws a wireframe surface mesh where:
+//   Peaks (+Z) = User force dominance (Red/White)
+//   Valleys (-Z) = Enemy force dominance (Blue)
+//   Flat (0) = Neutral/Contested (Cyan grid)
+// ============================================================
+
+const THEATER_LIMIT = 15000;
+const Z_VISUAL_SCALE = 3.0;   // How much Z affects visual Y displacement
+const PERSPECTIVE = 0.35;      // Oblique projection factor
+
+/**
+ * Convert Z height to RGB color string.
+ * Negative → Blue (enemy valley)
+ * Zero → Cyan (neutral)
+ * Positive → Red/White (user peak)
+ */
+function zToColor(z: number, zMin: number, zMax: number): string {
+   const range = Math.max(0.01, Math.max(Math.abs(zMin), Math.abs(zMax)));
+   let t = z / range;
+   t = Math.max(-1, Math.min(1, t));
+
+   if (t > 0) {
+      const r = 255;
+      const g = Math.floor(255 - t * 200);
+      const b = Math.floor(255 - t * 230);
+      const a = 0.2 + 0.6 * t;
+      return `rgba(${r}, ${g}, ${b}, ${a})`;
+   } else {
+      const nt = -t;
+      const r = Math.floor(255 - nt * 230);
+      const g = Math.floor(255 - nt * 180);
+      const b = 255;
+      const a = 0.2 + 0.6 * nt;
+      return `rgba(${r}, ${g}, ${b}, ${a})`;
+   }
+}
+
+/**
+ * Project world coordinates + Z height to screen Y with oblique displacement.
+ */
+function projectY(worldY: number, z: number): number {
+   return worldY - z * Z_VISUAL_SCALE * PERSPECTIVE;
+}
+
 export function drawWarMapBackground(
    ctx: CanvasRenderingContext2D,
    camera: { x: number; y: number; zoom: number },
    width: number,
-   height: number
+   height: number,
+   fogCells: FogCell[] = [],
+   heatmapCells: HeatmapCell[] = [],
+   meshData?: TerrainMeshData,
+   mousePos?: { x: number, y: number }
 ) {
    ctx.save();
 
-   // 1. Dark Slate Background (Seamless base)
+   // 1. Deep Dark Background
    ctx.fillStyle = "#020617";
    ctx.fillRect(0, 0, width, height);
 
@@ -20,48 +77,67 @@ export function drawWarMapBackground(
    const worldEndX = worldStartX + width / camera.zoom;
    const worldEndY = worldStartY + height / camera.zoom;
 
-   const THEATER_LIMIT = 15000;
-
    // 2. Tactical Clipping
    ctx.beginPath();
    ctx.rect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT * 2);
    ctx.clip();
 
-   // Base Land Color (Premium Dark Slate)
-   ctx.fillStyle = "#020617";
+   ctx.fillStyle = "#0a4d0a";
    ctx.fillRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT * 2);
 
-   // 2.2 Tactical Boundary (Red Area Lines)
-   ctx.strokeStyle = "rgba(220, 38, 38, 0.8)"; // Red-600
-   ctx.lineWidth = 5 / camera.zoom;
+   // 3. DRAW ROADS (Jalan dengan garis putus-putus)
+   const roads = MapTextureEngine.generateHighways();
+   MapTextureEngine.drawRoads(ctx, roads, camera.zoom);
+
+   // 3.1 DRAW TACTICAL HARBOR (PELABUHAN HD) - NEW MOD
+   const harborData = portRouter.getTacticalHarbor();
+   PelabuhanEngine.drawHarbor(ctx, harborData, camera.zoom);
+
+   // 3.2 DRAW TACTICAL AIRBASE (BANDARA & HELIPADS) - NEW MOD
+   BandaraEngine.drawAirfield(ctx, 12000, -1000, camera.zoom);
+   
+   // 4-Pad Helibase Complex (Flanking the terminal)
+   const baseHeliX = 12000;
+   const baseHeliY = 350;
+   HelipadEngine.drawHelipad(ctx, baseHeliX - 1100, baseHeliY, camera.zoom);
+   HelipadEngine.drawHelipad(ctx, baseHeliX - 1500, baseHeliY, camera.zoom);
+   HelipadEngine.drawHelipad(ctx, baseHeliX + 1100, baseHeliY, camera.zoom);
+   HelipadEngine.drawHelipad(ctx, baseHeliX + 1500, baseHeliY, camera.zoom);
+
+   // 3.3 DRAW MILITARY BARRACKS (BARAK) - NEW MOD
+   BarakEngine.drawBarracks(ctx, 12000, 1850, camera.zoom, 10, 6, mousePos);
+
+   // 4. POTENTIAL FIELD MESH - REMOVED AS PER USER REQUEST
+
+   // 5. HEATMAP & FOG - REMOVED AS PER USER REQUEST
+
+   // 6. Tactical Boundary (RESTORED)
+   ctx.strokeStyle = "rgba(220, 38, 38, 0.8)";
+   ctx.lineWidth = 10 / camera.zoom;
    ctx.strokeRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT * 2);
 
-   // 2.3 Tactical Frontline (X=0)
-   ctx.setLineDash([50 / camera.zoom, 30 / camera.zoom]);
-   ctx.strokeStyle = "rgba(239, 68, 68, 0.5)"; // Red-500 semi-transparent
-   ctx.lineWidth = 2 / camera.zoom;
+   // 7. Tactical Frontline (X=0) (RESTORED)
+   ctx.setLineDash([100 / camera.zoom, 60 / camera.zoom]);
+   ctx.strokeStyle = "rgba(239, 68, 68, 0.4)";
+   ctx.lineWidth = 4 / camera.zoom;
    ctx.beginPath();
    ctx.moveTo(0, -THEATER_LIMIT);
    ctx.lineTo(0, THEATER_LIMIT);
    ctx.stroke();
-   ctx.setLineDash([]); // Reset dash for subsequent drawing
+   ctx.setLineDash([]);
 
-   // --- SEA VISUALS (DENGAN LAUT) ---
-   // Draw water area at the very top (beyond enemy lines) - CHANGED TO RED
-   const seaLevel = -6000; // Above enemy deployment zone
-   ctx.fillStyle = "rgba(153, 27, 27, 0.3)"; // Red-800 translucent
-   ctx.fillRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT - (Math.abs(seaLevel)));
-   
-   // Coastline Shore/Wave effect - CHANGED TO RED
-   ctx.strokeStyle = "rgba(239, 68, 68, 0.5)"; // Red-500
-   ctx.lineWidth = 20 / camera.zoom;
+   // 8. Sea visuals (RESTORED)
+   const seaLevel = -6000;
+   ctx.fillStyle = "rgba(153, 27, 27, 0.3)";
+   ctx.fillRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT - Math.abs(seaLevel));
+
+   ctx.strokeStyle = "rgba(239, 68, 68, 0.5)";
+   ctx.lineWidth = 10 / camera.zoom;
    ctx.beginPath();
    ctx.moveTo(-THEATER_LIMIT, seaLevel);
    ctx.lineTo(THEATER_LIMIT, seaLevel);
    ctx.stroke();
 
    ctx.restore();
-
-
    ctx.restore();
 }
