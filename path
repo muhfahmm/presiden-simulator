@@ -2,20 +2,20 @@
 
 # Cara Install
 1. Frontend:
-   cd "c:\fhm\em1\app\frontend"
+   cd "c:\fhm\em\app\frontend"
    npm install
 
 2. Backend:
-   cd "c:\fhm\em1\app\backend"
+   cd "c:\fhm\em\app\backend"
    go mod tidy
 
 # Cara Masuk (Mode Web)
-cd "c:\fhm\em1\app\frontend"
+cd "c:\fhm\em\app\frontend"
 npm run dev
 > Akses: http://localhost:4000
 
 # Cara Masuk (Mode Desktop - Tauri)
-cd "c:\fhm\em1\app\frontend"
+cd "c:\fhm\em\app\frontend"
 npx tauri dev
 
 # Cara Masuk (Server Backend)
