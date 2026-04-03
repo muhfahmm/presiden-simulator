@@ -316,6 +316,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                       onUnitSelect={setSelectedUnitId} 
                       drawMapBackground={activeMapRenderer} 
                       hasSea={hasSea} 
+                      targetArmada={targetArmada}
                       barracksState={barracks}
                       barakCount={targetArmada?.barak || 0}
                       phase={phase}

@@ -27,9 +27,12 @@ interface GameplayProps {
       mousePos?: { x: number, y: number },
       barakCount?: number,
       phase?: string,
-      barracksState?: any[]
+      barracksState?: any[],
+      units?: UnitState[],
+      targetArmada?: any
    ) => void;
    hasSea?: boolean;
+   targetArmada?: any;
    barakCount?: number;
    phase?: string;
    barracksState?: any[];
@@ -45,6 +48,7 @@ export default function Gameplay({
    onAreaSelected,
    drawMapBackground, 
    hasSea = false, 
+   targetArmada = null,
    barakCount = 0,
    phase = "deployment",
    barracksState = [],
@@ -292,7 +296,8 @@ export default function Gameplay({
       if (t.includes("interceptor") || t.includes("cegat")) return "Jet Interceptor";
       if (t.includes("bomber") || t.includes("pengebom")) return "Pesawat Pengebom";
       if (t.includes("heli") || t.includes("helikopter")) return "Helikopter Serang";
-      if (t.includes("uav") || t.includes("intai")) return "Drone UAV";
+      if (t.includes("uav")) return "Drone UAV";
+      if (t.includes("intai") || t.includes("pengintai")) return "Pesawat Intai";
       if (t.includes("kamikaze")) return "Drone Kamikaze";
       if (t.includes("transport") || t.includes("angkut")) return "Pesawat Angkut";
 
@@ -398,7 +403,9 @@ export default function Gameplay({
             mouseWorldPosRef.current,
             barakCount,
             phase,
-            barracksState
+            barracksState,
+            latestUnitsRef.current,
+            targetArmada
          );
 
          const camera = cameraRef.current;
@@ -427,8 +434,8 @@ export default function Gameplay({
                if (typeLower.includes("stealth")) drawStealth(ctx, hexColor, baseColor);
                else if (typeLower.includes("interceptor") || typeLower.includes("cegat")) drawInterceptor(ctx, hexColor, baseColor);
                else if (typeLower.includes("bomber") || typeLower.includes("pembom")) drawBomber(ctx, hexColor, baseColor);
-               else if (typeLower.includes("heli") || typeLower.includes("helikopter")) drawHeli(ctx, hexColor, baseColor);
-               else if (typeLower.includes("uav") || typeLower.includes("recon") || typeLower.includes("intai")) drawUAV(ctx, hexColor, baseColor);
+               else if (typeLower.includes("uav")) drawUAV(ctx, hexColor, baseColor);
+               else if (typeLower.includes("recon") || typeLower.includes("intai")) drawInterceptor(ctx, hexColor, baseColor); // Use Jet icon for Recon Planes
                else if (typeLower.includes("kamikaze")) drawKamikaze(ctx, hexColor, baseColor);
                else if (typeLower.includes("transport") || typeLower.includes("angkut")) drawTransport(ctx, hexColor, baseColor);
                else drawInterceptor(ctx, hexColor, baseColor);

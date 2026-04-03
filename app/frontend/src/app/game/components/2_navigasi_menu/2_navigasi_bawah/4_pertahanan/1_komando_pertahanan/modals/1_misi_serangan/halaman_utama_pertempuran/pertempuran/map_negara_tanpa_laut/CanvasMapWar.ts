@@ -1,6 +1,7 @@
 import { FogCell, HeatmapCell, TerrainMeshData } from "../logic/polyglot/ts/polyglot-router";
 import { BandaraEngine } from "../logic/mapTexture/gambar-tempat-armada/udara/bandara/bandara";
-import { HelipadEngine } from "../logic/mapTexture/gambar-tempat-armada/udara/bandara/helipad";
+import { HelipadEngine } from "../logic/mapTexture/gambar-tempat-armada/udara/helipad/index";
+import { HangarTankEngine } from "../logic/mapTexture/gambar-tempat-armada/darat/hangar_tank/index";
 import { BarakEngine } from "../logic/mapTexture/gambar-tempat-armada/darat/barak/barak";
 import { MapTextureEngine } from "../logic/mapTexture/MapTextureGenerator";
 
@@ -49,7 +50,9 @@ export function drawWarMapBackground(
    mousePos?: { x: number, y: number },
    barakCount: number = 0,
    phase: string = "deployment",
-   barracksState?: any[]
+   barracksState?: any[],
+   units: any[] = [],
+   targetArmada: any = null
 ) {
    ctx.save();
 
@@ -79,15 +82,18 @@ export function drawWarMapBackground(
    MapTextureEngine.drawRoads(ctx, roads, camera.zoom);
 
    // 3.2 DRAW TACTICAL AIRBASE (BANDARA & HELIPADS) - NEW MOD
-   BandaraEngine.drawAirfield(ctx, 12000, -1000, camera.zoom);
-   
+   BandaraEngine.drawAirfield(ctx, 12000, -2350, camera.zoom, mousePos, units, targetArmada);
+
    // 4-Pad Helibase Complex (Flanking the terminal)
    const baseHeliX = 12000;
-   const baseHeliY = 350;
-   HelipadEngine.drawHelipad(ctx, baseHeliX - 1100, baseHeliY, camera.zoom);
-   HelipadEngine.drawHelipad(ctx, baseHeliX - 1500, baseHeliY, camera.zoom);
-   HelipadEngine.drawHelipad(ctx, baseHeliX + 1100, baseHeliY, camera.zoom);
-   HelipadEngine.drawHelipad(ctx, baseHeliX + 1500, baseHeliY, camera.zoom);
+   const baseHeliY = -550;
+   HelipadEngine.drawHelipad(ctx, baseHeliX - 1100, baseHeliY, camera.zoom, mousePos, "Heli Serang 1", units, targetArmada);
+   HelipadEngine.drawHelipad(ctx, baseHeliX - 1500, baseHeliY, camera.zoom, mousePos, "Heli Serang 2", units, targetArmada);
+   HelipadEngine.drawHelipad(ctx, baseHeliX + 1100, baseHeliY, camera.zoom, mousePos, "Heli Serang 3", units, targetArmada);
+   HelipadEngine.drawHelipad(ctx, baseHeliX + 1500, baseHeliY, camera.zoom, mousePos, "Heli Serang 4", units, targetArmada);
+
+   // 3.2.1 DRAW TACTICAL TANK HANGAR - NEW MOD
+   HangarTankEngine.drawTankHangar(ctx, 12000, 650, camera.zoom, mousePos, units, targetArmada);
 
    // 3.3 DRAW MILITARY BARRACKS (BARAK) - NEW MOD
    BarakEngine.drawBarracks(ctx, 12000, 1850, camera.zoom, 10, barakCount, mousePos, phase, barracksState);
