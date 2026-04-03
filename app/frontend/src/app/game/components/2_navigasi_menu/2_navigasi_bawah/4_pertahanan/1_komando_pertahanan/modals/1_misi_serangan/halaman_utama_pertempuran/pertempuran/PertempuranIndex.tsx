@@ -15,6 +15,7 @@ import { calculateDaratFormation } from "./logic/formasi_armada/darat/grid_forma
 import { drawWarMapBackground as drawMapWithSea } from "./map_negara_dengan_laut/CanvasMapWar";
 import { drawWarMapBackground as drawMapNoSea } from "./map_negara_tanpa_laut/CanvasMapWar";
 import { BarakUtils, BarrackState } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/BarakUtils";
+import { HangarUtils, HangarState } from "./logic/mapTexture/gambar-tempat-armada/darat/hangar_tank/HangarUtils";
 import { InfantryDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/logika_infanteri_keluar_barak/ts/route";
 import { BlockDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/fitur_blok_input/ts/route";
 
@@ -38,6 +39,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
   });
   const [targetArmada, setTargetArmada] = useState<any>(null);
   const [barracks, setBarracks] = useState<BarrackState[]>([]);
+  const [tankHangars, setTankHangars] = useState<HangarState[]>([]);
   const [showBlockModal, setShowBlockModal] = useState(false);
   const [blockSelection, setBlockSelection] = useState<{ x1: number, y1: number, x2: number, y2: number } | null>(null);
   const [blockUnitCount, setBlockUnitCount] = useState("1000");
@@ -101,8 +103,16 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
         // Initialize barracks positions
         if (armada.barak > 0) {
-           const initialBarracks = BarakUtils.calculateBarracksPositions(12000, 1850, armada.barak, 10);
+           const initialBarracks = BarakUtils.calculateBarracksPositions(12000, 850, armada.barak, 10);
            setBarracks(initialBarracks);
+        }
+
+        // Initialize tank hangars (50 tanks per unit) based on database sectors
+        const totalTanks = armada.darat.tank_tempur_utama || 0;
+        const hangarCount = targetCountry.sektor_pertahanan?.hangar_tank || 0;
+        if (hangarCount > 0) {
+           const initialHangars = HangarUtils.calculateHangarPositions(10400, 4500, totalTanks, hangarCount, 10);
+           setTankHangars(initialHangars);
         }
     }, [missionData.target]);
 
@@ -318,6 +328,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                       hasSea={hasSea} 
                       targetArmada={targetArmada}
                       barracksState={barracks}
+                      tankHangarsState={tankHangars}
                       barakCount={targetArmada?.barak || 0}
                       phase={phase}
                       onAreaSelected={(rect) => {

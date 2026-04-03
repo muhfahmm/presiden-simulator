@@ -66,7 +66,8 @@ export function drawWarMapBackground(
    phase: string = "deployment",
    barracksState?: any[],
    units: any[] = [],
-   targetArmada: any = null
+   targetArmada: any = null,
+   tankHangarsState: any[] = []
 ) {
    ctx.save();
 
@@ -111,10 +112,10 @@ export function drawWarMapBackground(
    HelipadEngine.drawHelipad(ctx, baseHeliX + 1500, baseHeliY, camera.zoom, mousePos, "Heli Serang 4", units, targetArmada);
 
    // 3.2.1 DRAW TACTICAL TANK HANGAR - NEW MOD
-   HangarTankEngine.drawTankHangar(ctx, 12000, 650, camera.zoom, mousePos, units, targetArmada);
+   HangarTankEngine.drawTankHangar(ctx, 12000, 3000, camera.zoom, mousePos, units, targetArmada, tankHangarsState);
 
    // 3.3 DRAW MILITARY BARRACKS (BARAK) - NEW MOD
-   BarakEngine.drawBarracks(ctx, 12000, 1850, camera.zoom, 10, barakCount, mousePos, phase, barracksState);
+   BarakEngine.drawBarracks(ctx, 12000, 850, camera.zoom, 10, barakCount, mousePos, phase, barracksState);
 
    // 4. POTENTIAL FIELD MESH - REMOVED AS PER USER REQUEST
 

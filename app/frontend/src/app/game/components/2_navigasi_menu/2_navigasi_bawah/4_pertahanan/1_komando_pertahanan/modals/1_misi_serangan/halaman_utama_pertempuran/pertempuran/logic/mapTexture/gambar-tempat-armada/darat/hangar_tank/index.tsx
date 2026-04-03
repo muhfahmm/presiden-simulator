@@ -14,35 +14,34 @@ export class HangarTankEngine {
       zoom: number,
       mousePos?: { x: number, y: number },
       units: any[] = [],
-      targetArmada: any = null
+      targetArmada: any = null,
+      tankHangarsState: any[] = []
    ): void {
-      ctx.save();
-      ctx.translate(x, y);
+      if (!tankHangarsState || tankHangarsState.length === 0) return;
 
       const hangarW = 700;
       const hangarH = 450;
-      const spacingX = 850;
-      const numHangars = 3;
-      const totalWidth = (numHangars - 1) * spacingX;
 
-      let hoveredHangar = false;
+      ctx.save();
+      // Note: We don't translate to (x,y) globally here because each hangar has its own world pos in state
 
-      for (let i = 0; i < numHangars; i++) {
-         const xOff = (i * spacingX) - (totalWidth / 2);
+      tankHangarsState.forEach((hangar) => {
+         const hX = hangar.pos.x;
+         const hY = hangar.pos.y;
 
          // Hover Detection (AABB)
+         let isHovered = false;
          if (mousePos) {
-            const isHovered = (
-               mousePos.x >= x + xOff - hangarW / 2 &&
-               mousePos.x <= x + xOff + hangarW / 2 &&
-               mousePos.y >= y - hangarH / 2 &&
-               mousePos.y <= y + hangarH / 2
+            isHovered = (
+               mousePos.x >= hX - hangarW / 2 &&
+               mousePos.x <= hX + hangarW / 2 &&
+               mousePos.y >= hY - hangarH / 2 &&
+               mousePos.y <= hY + hangarH / 2
             );
-            if (isHovered) hoveredHangar = true;
          }
 
          ctx.save();
-         ctx.translate(xOff, 0);
+         ctx.translate(hX, hY);
 
          // 1. CONCRETE PAD (Outer Shadow)
          ctx.shadowBlur = 15;
@@ -85,44 +84,42 @@ export class HangarTankEngine {
          }
          ctx.stroke();
 
-         ctx.restore();
-      }
+         // Tooltip if hovered
+         if (isHovered) {
+             ctx.save();
+             ctx.translate(0, -hangarH / 2 - 80);
+             
+             const text = `${hangar.currentCount}/50`;
+             ctx.font = "bold 28px Inter, sans-serif";
+             const tw = ctx.measureText(text).width;
+             const pad = 25;
+             
+             ctx.shadowColor = "rgba(239, 68, 68, 0.8)";
+             ctx.shadowBlur = 15;
+             ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
+             ctx.strokeStyle = "#ef4444";
+             ctx.lineWidth = 2;
+             ctx.beginPath();
+             ctx.roundRect(-tw/2 - pad, -40, tw + pad*2, 60, 12);
+             ctx.fill();
+             ctx.stroke();
+             
+             ctx.shadowBlur = 0;
+             ctx.fillStyle = "#ffffff";
+             ctx.textAlign = "center";
+             ctx.textBaseline = "middle";
+             ctx.fillText(text, 0, -10);
 
-      // Draw Tooltip if any hangar is hovered
-      if (hoveredHangar) {
-         ctx.save();
-         ctx.translate(0, -hangarH / 2 - 120);
-         
-         const total = targetArmada?.darat?.tank_tempur_utama || 0;
-         const used = units.filter(u => u.side === 'enemy' && (u.type === 'tank_tempur_utama' || u.type === 'tank')).length;
-         const text = `Main Battle Tank - (${used}/${total})`;
-         
-         ctx.font = "bold 32px Inter, sans-serif";
-         const tw = ctx.measureText(text).width;
-         const pad = 40;
-         
-         // Glow Effect
-         ctx.shadowColor = "rgba(239, 68, 68, 0.8)";
-         ctx.shadowBlur = 15;
-         
-         // Tooltip Box
-         ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
-         ctx.strokeStyle = "#ef4444";
-         ctx.lineWidth = 2;
-         ctx.beginPath();
-         ctx.roundRect(-tw/2 - pad, -40, tw + pad*2, 70, 12);
-         ctx.fill();
-         ctx.stroke();
-         
-         // Text
-         ctx.shadowBlur = 0;
-         ctx.fillStyle = "#ffffff";
-         ctx.textAlign = "center";
-         ctx.textBaseline = "middle";
-         ctx.fillText(text, 0, -5);
-         
+             // Label Above "MAIN BATTLE TANK"
+             ctx.font = "bold 16px Inter, sans-serif";
+             ctx.fillStyle = "#ef4444";
+             ctx.fillText("MAIN BATTLE TANK", 0, -55);
+             
+             ctx.restore();
+         }
+
          ctx.restore();
-      }
+      });
 
       ctx.restore();
    }
