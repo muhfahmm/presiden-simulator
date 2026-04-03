@@ -18,6 +18,7 @@ import { BarakUtils, BarrackState } from "./logic/mapTexture/gambar-tempat-armad
 import { HangarUtils, HangarState } from "./logic/mapTexture/gambar-tempat-armada/darat/hangar_tank/HangarUtils";
 import { InfantryDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/logika_infanteri_keluar_barak/ts/route";
 import { BlockDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/fitur_blok_input/ts/route";
+import { TankDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/hangar_tank/logika_tank_keluar_hangar/ts/route";
 
 interface PertempuranIndexProps {
   onClose: () => void;
@@ -95,7 +96,12 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
         currentY = udaraRes.nextY + groupGapY;
         
         // 3. DARAT (Main Theater / Bottom)
-        const daratRes = calculateDaratFormation(armada.darat, armada.barak, currentY);
+        // Filter out units handled by buildings (hangars/barracks) to prevent duplication
+        const fieldUnits = { ...armada.darat };
+        delete (fieldUnits as any).tank_tempur_utama;
+        delete (fieldUnits as any).pasukan_infanteri;
+
+        const daratRes = calculateDaratFormation(fieldUnits, armada.barak, currentY);
         cumulativeUnits = [...cumulativeUnits, ...daratRes.units];
 
         setTargetArmada(armada);
@@ -242,13 +248,36 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                    return b;
                });
 
-               if (phase === "combat") {
-                  if (spawnedInfanteri.length > 0) {
-                     setUnits([...result.units, ...spawnedInfanteri]);
-                     setBarracks(updatedBarracks);
-                  } else {
-                     setUnits(result.units);
-                  }
+                if (phase === "combat") {
+                   // NEW: Check for tank deployment from hangars
+                   let spawnedTanks: UnitState[] = [];
+                   const updatedHangars = tankHangars.map(h => {
+                       if (h.currentCount > 0 && TankDeploymentLogic.isEnemyNearby(h.pos, prev)) {
+                           // Deploy 1 tank (which represents a tactical unit)
+                           h.currentCount -= 1;
+                           
+                           const stats = getUnitStats("tank_tempur_utama");
+                           spawnedTanks.push({
+                               id: `deploy_tank_${h.id}_${Date.now()}_${Math.random()}`,
+                               type: "tank_tempur_utama",
+                               side: "enemy",
+                               pos: { x: h.pos.x, y: h.pos.y + 200 }, // Tanks need more space
+                               health: stats.maxHealth,
+                               rotation: Math.PI,
+                               influence: 300
+                           });
+                       }
+                       return h;
+                   });
+
+                   const allNewUnits = [...result.units, ...spawnedInfanteri, ...spawnedTanks];
+                   if (spawnedInfanteri.length > 0 || spawnedTanks.length > 0) {
+                      setUnits(allNewUnits);
+                      if (spawnedInfanteri.length > 0) setBarracks(updatedBarracks);
+                      if (spawnedTanks.length > 0) setTankHangars(updatedHangars);
+                   } else {
+                      setUnits(result.units);
+                   }
                   
                   setCombatVfx(prevVfx => {
                      const active = prevVfx.filter(v => now - v.timestamp < 300);
