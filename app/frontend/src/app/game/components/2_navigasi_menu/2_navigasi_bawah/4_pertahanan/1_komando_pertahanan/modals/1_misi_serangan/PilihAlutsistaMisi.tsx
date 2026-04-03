@@ -12,6 +12,7 @@ import {
   INFANTRY_POWER_PER_UNIT, calculateForcesPower 
 } from "../../../3_armada_militer/kekuatanmiliter";
 import { initializeWarMission } from "./route";
+import { countries as centersData } from "@/app/database/data/negara/benua/index";
 
 interface PilihAlutsistaMisiProps {
   isOpen: boolean;
@@ -24,6 +25,24 @@ export default function PilihAlutsistaMisi({ isOpen, onClose, data, targetCountr
   const [activeTab, setActiveTab] = useState<"darat" | "laut" | "udara">("darat");
   const [selection, setSelection] = useState<Record<string, number>>({});
   const [tick, setTick] = useState(0);
+
+  // Sea access intelligence
+  const hasSea = useMemo(() => {
+    if (!targetCountry) return true; 
+    const target = centersData.find(c => 
+      c.name_id.toLowerCase() === targetCountry.toLowerCase() || 
+      c.name_en.toLowerCase() === targetCountry.toLowerCase()
+    );
+    if (!target || !target.armada_militer?.laut) return false;
+    return Object.values(target.armada_militer.laut).some(count => (count as number) > 0);
+  }, [targetCountry]);
+
+  // Security Logic: Auto-switch away from "laut" if the target has no sea
+  useEffect(() => {
+    if (!hasSea && activeTab === "laut") {
+      setActiveTab("darat");
+    }
+  }, [hasSea, activeTab]);
 
   // Sync with storage for real-time updates
   useEffect(() => {
@@ -187,18 +206,28 @@ export default function PilihAlutsistaMisi({ isOpen, onClose, data, targetCountr
           <div className="w-24 border-r border-zinc-800/50 flex flex-col gap-2 p-3 bg-zinc-950">
             {(["darat", "laut", "udara"] as const).map((tab) => {
               const Icon = tab === "darat" ? Truck : tab === "laut" ? Anchor : Plane;
+              const isSeaDisabled = tab === "laut" && !hasSea;
+              
               return (
                 <button
                   key={tab}
+                  disabled={isSeaDisabled}
                   onClick={() => setActiveTab(tab)}
-                  className={`flex flex-col items-center justify-center gap-1.5 p-3 rounded-2xl transition-all cursor-pointer ${
-                    activeTab === tab 
-                      ? "bg-red-600 text-white shadow-lg shadow-red-900/40" 
-                      : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900 border border-transparent"
+                  className={`relative flex flex-col items-center justify-center gap-1.5 p-3 rounded-2xl transition-all ${
+                    isSeaDisabled
+                      ? "opacity-20 grayscale border-zinc-900 cursor-not-allowed"
+                      : activeTab === tab 
+                        ? "bg-red-600 text-white shadow-lg shadow-red-900/40" 
+                        : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900 border border-transparent"
                   }`}
                 >
                   <Icon size={24} />
                   <span className="text-[8px] font-black uppercase tracking-widest">{tab}</span>
+                  {isSeaDisabled && (
+                    <div className="absolute inset-0 bg-black/40 rounded-2xl flex items-center justify-center">
+                       <X className="h-4 w-4 text-red-500/50" />
+                    </div>
+                  )}
                 </button>
               );
             })}

@@ -9,8 +9,8 @@ export const sudan_selatan_armada = {
         "kendaraan_taktis": 0
   },
   "laut": {
-        "kapal_induk": 16,
-        "kapal_destroyer": 115,
+        "kapal_induk": 0,
+        "kapal_destroyer": 0,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,
         "kapal_selam_regular": 0,

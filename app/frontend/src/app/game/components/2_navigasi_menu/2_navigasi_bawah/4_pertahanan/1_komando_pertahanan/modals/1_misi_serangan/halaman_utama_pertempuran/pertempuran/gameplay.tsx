@@ -2,14 +2,13 @@
 
 import React, { useRef, useEffect, useState, useMemo } from "react";
 import { polyglotService, UnitState, Vector2 } from "./logic/polyglot/ts/polyglot-router";
-import { drawWarMapBackground } from "./CanvasMapWar";
 import { getUnitStats } from "./logic/polyglot/ts/unit_stats";
 import { HP_Logic } from "./logic/polyglot/ts/HP_Logic";
-import { 
-   drawInfanteri, drawTank, 
+import {
+   drawInfanteri, drawTank,
    drawStealth, drawInterceptor, drawBomber, drawHeli, drawUAV, drawKamikaze, drawTransport,
    drawKapalInduk, drawDestroyer, drawKorvet, drawKapalSelamReguler, drawKapalSelamNuklir, drawKapalRanjau, drawKapalLogistik,
-   drawAPC, drawArtileri, drawRoket, drawSAM, drawTactical 
+   drawAPC, drawArtileri, drawRoket, drawSAM, drawTactical
 } from "./logic/icon_armada_pertempuran";
 
 interface GameplayProps {
@@ -17,11 +16,13 @@ interface GameplayProps {
    combatVfx?: { id: string, startX: number, startY: number, endX: number, endY: number, timestamp: number }[];
    onUnitSelect: (id: string | null) => void;
    onMapClick?: (x: number, y: number, isRightClick: boolean) => void;
+   drawMapBackground: (ctx: CanvasRenderingContext2D, camera: { x: number; y: number; zoom: number }, width: number, height: number) => void;
+   hasSea?: boolean;
    width?: number;
    height?: number;
 }
 
-export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapClick, width = 1700, height = 950 }: GameplayProps) {
+export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapClick, drawMapBackground, hasSea = false, width = 1200, height = 800 }: GameplayProps) {
    const containerRef = useRef<HTMLDivElement>(null);
    const canvasRef = useRef<HTMLCanvasElement>(null);
    const minimapRef = useRef<HTMLCanvasElement>(null); // New Minimap Ref
@@ -141,7 +142,7 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
          const rect = containerRef.current.getBoundingClientRect();
          const mouseX = e.clientX - rect.left;
          const mouseY = e.clientY - rect.top;
-         
+
          const worldX = (mouseX - cam.x) / cam.zoom;
          const worldY = (mouseY - cam.y) / cam.zoom;
 
@@ -158,7 +159,7 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
                closest = u;
             }
          });
-         
+
          if (closest !== hoveredUnitRef.current) {
             hoveredUnitRef.current = closest;
          }
@@ -174,7 +175,7 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
       if (t.includes("roket") || t.includes("mlrs")) return "MLRS Rocket";
       if (t.includes("sam") || t.includes("pertahanan_udara")) return "Mobile SAM";
       if (t.includes("taktis")) return "Kendaraan Taktis";
-      
+
       if (t.includes("kapal_induk")) return "Kapal Induk";
       if (t.includes("destroyer")) return "Kapal Destroyer";
       if (t.includes("korvet") || t.includes("corvette")) return "Kapal Korvet";
@@ -265,7 +266,7 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
          ctx.clearRect(0, 0, canvas.width, canvas.height);
 
          // Topographic Tactical Map via CanvasMapWar
-         drawWarMapBackground(ctx, cameraRef.current, canvas.width, canvas.height);
+         drawMapBackground(ctx, cameraRef.current, canvas.width, canvas.height);
 
          const camera = cameraRef.current;
 
@@ -279,42 +280,12 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
          const worldEndX = worldStartX + canvas.width / camera.zoom;
          const worldEndY = worldStartY + canvas.height / camera.zoom;
 
-         // 2.5 Draw Tactical Boundary Box (Center, Left, Right)
-         const vertLinesX = [-15000, 0, 15000];
-         ctx.save();
-         ctx.beginPath();
-         ctx.setLineDash([30, 20]);
-         ctx.strokeStyle = "rgba(239, 68, 68, 0.6)";
-         ctx.lineWidth = 4 / camera.zoom;
-         ctx.shadowBlur = 10;
-         ctx.shadowColor = "#ef4444";
-
-         vertLinesX.forEach(x => {
-            ctx.beginPath();
-            ctx.moveTo(x, -15000);
-            ctx.lineTo(x, 15000);
-            ctx.stroke();
-         });
-
-         // Horizontal Deployment Boundaries (Left & Right 15000 units)
-         const horizLinesY = [-15000, 15000]; // Absolute theater limits
-         horizLinesY.forEach(y => {
-            ctx.beginPath();
-            ctx.moveTo(-15000, y);
-            ctx.lineTo(15000, y);
-            ctx.stroke();
-         });
-         ctx.setLineDash([]);
-
-         // Boundary Labels removed by user request
-         ctx.restore();
-
          // 3. Draw Tactical Warfare Units
          units.forEach(u => {
             // FRUSTUM CULLING: Skip drawing units that are off-screen
             const margin = 100 / camera.zoom;
             if (u.pos.x < worldStartX - margin || u.pos.x > worldEndX + margin ||
-                u.pos.y < worldStartY - margin || u.pos.y > worldEndY + margin) return;
+               u.pos.y < worldStartY - margin || u.pos.y > worldEndY + margin) return;
 
             ctx.save();
             ctx.translate(u.pos.x, u.pos.y);
@@ -412,9 +383,9 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
             // FRUSTUM CULLING for VFX: Skip if both start and end are off-screen
             const margin = 100 / camera.zoom;
             if ((vfx.startX < worldStartX - margin && vfx.endX < worldStartX - margin) ||
-                (vfx.startX > worldEndX + margin && vfx.endX > worldEndX + margin) ||
-                (vfx.startY < worldStartY - margin && vfx.endY < worldStartY - margin) ||
-                (vfx.startY > worldEndY + margin && vfx.endY > worldEndY + margin)) return;
+               (vfx.startX > worldEndX + margin && vfx.endX > worldEndX + margin) ||
+               (vfx.startY < worldStartY - margin && vfx.endY < worldStartY - margin) ||
+               (vfx.startY > worldEndY + margin && vfx.endY > worldEndY + margin)) return;
 
             const alpha = 1 - (age / 300);
             ctx.beginPath();
@@ -439,15 +410,30 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
 
                // Optimized Scanlines: Single semi-transparent overlay instead of heavy loop
                ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
-               ctx.fillRect(0, 0, canvas.width, canvas.height); 
+               ctx.fillRect(0, 0, canvas.width, canvas.height);
 
                // Radar Base
                mCtx.fillStyle = "rgba(9, 9, 11, 0.9)"; // zinc-950
                mCtx.fillRect(0, 0, 200, 200);
 
-               // Draw bounds (Simulated 30000x30000 map scale down to 200x200 canvas)
+               // Draw Sea area on Minimap if applicable
                const mapScale = 200 / 30000;
                const offsetX = 15000;
+               if (hasSea) {
+                  const seaBottomY = (-6000 + offsetX) * mapScale; // Sea ends at -6000
+                  mCtx.fillStyle = "#075985"; // Ocean Blue
+                  mCtx.fillRect(0, 0, 200, seaBottomY);
+                  
+                  // Coastline separator on minimap
+                  mCtx.strokeStyle = "rgba(56, 189, 248, 0.5)";
+                  mCtx.lineWidth = 1;
+                  mCtx.beginPath();
+                  mCtx.moveTo(0, seaBottomY);
+                  mCtx.lineTo(200, seaBottomY);
+                  mCtx.stroke();
+               }
+
+               // Draw bounds (Simulated 30000x30000 map scale down to 200x200 canvas)
                const offsetY = 15000;
 
                // Map Grid for aesthetics
@@ -457,28 +443,6 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
                   mCtx.beginPath(); mCtx.moveTo(i, 0); mCtx.lineTo(i, 200); mCtx.stroke();
                   mCtx.beginPath(); mCtx.moveTo(0, i); mCtx.lineTo(200, i); mCtx.stroke();
                }
-
-               // Operational Boundary Box (Center, Left, Right)
-               const vertLinesXMinimap = [-15000, 0, 15000];
-               mCtx.strokeStyle = "rgba(239, 68, 68, 0.5)";
-               mCtx.lineWidth = 1;
-               mCtx.setLineDash([5, 5]);
-               vertLinesXMinimap.forEach(x => {
-                  mCtx.beginPath();
-                  mCtx.moveTo((x + offsetX) * mapScale, 0);
-                  mCtx.lineTo((x + offsetX) * mapScale, 200);
-                  mCtx.stroke();
-               });
-
-               // Horizontal boundaries on Minimap
-               horizLinesY.forEach(y => {
-                  mCtx.beginPath();
-                  mCtx.moveTo((-15000 + offsetX) * mapScale, (y + offsetY) * mapScale);
-                  mCtx.lineTo((15000 + offsetX) * mapScale, (y + offsetY) * mapScale);
-                  mCtx.stroke();
-               });
-
-               mCtx.setLineDash([]);
 
                // Draw Blips
                units.forEach(u => {
@@ -504,10 +468,10 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
             const label = getHumanLabel(hoveredUnit.type).toUpperCase();
             const sideColor = hoveredUnit.side === 'user' ? "rgba(239, 68, 68, 1)" : "rgba(161, 161, 170, 1)";
             const glowColor = hoveredUnit.side === 'user' ? "rgba(239, 68, 68, 0.4)" : "rgba(161, 161, 170, 0.4)";
-            
+
             ctx.save();
             ctx.translate(hoveredUnit.pos.x, hoveredUnit.pos.y);
-            
+
             // Dynamic Tooltip Scaling for Readability
             const tooltipScale = 1.2 / Math.sqrt(camera.zoom);
             ctx.scale(tooltipScale, tooltipScale);
@@ -516,7 +480,7 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
             const textWidth = ctx.measureText(label).width;
             const boxW = textWidth + 24;
             const boxH = 32;
-            const ry = -50; 
+            const ry = -50;
 
             // Animated Pulse Logic
             const pulse = (Math.sin(Date.now() / 150) + 1) / 2;
@@ -525,13 +489,13 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
             ctx.fillStyle = "rgba(9, 9, 11, 0.95)";
             ctx.shadowBlur = 15;
             ctx.shadowColor = glowColor;
-            
+
             // Draw Box
             const rx = -boxW / 2;
             ctx.beginPath();
             ctx.roundRect(rx, ry, boxW, boxH, 8);
             ctx.fill();
-            
+
             // Glowing Border
             ctx.strokeStyle = sideColor;
             ctx.lineWidth = 1.5 + (pulse * 0.5);
@@ -543,7 +507,7 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
             ctx.letterSpacing = "1px";
-            
+
             const isInfantry = label.includes("INFANTERI") || label.includes("PASUKAN");
             if (isInfantry) {
                // Render split-screen like feeling for infantry (Personnel Count)
@@ -616,20 +580,6 @@ export default function Gameplay({ units, combatVfx = [], onUnitSelect, onMapCli
             ))}
          </div>
 
-         {/* Architecture Routing Indicators */}
-         <div className="absolute bottom-4 left-4 flex gap-2 z-20 pointer-events-none bg-zinc-950/50 backdrop-blur-sm p-1 rounded-xl">
-            {[
-               { label: "Engine (WASM/C++)", status: "FRUSTUM CULLING", color: "text-emerald-400" },
-               { label: "AI Core (Python)", status: "SPATIAL MAP", color: "text-amber-400" },
-               { label: "Procedural (Rust)", status: "TILE GENERATION", color: "text-blue-400" }
-            ].map(h => (
-               <div key={h.label} className="bg-zinc-950 border border-zinc-800 px-3 py-1.5 rounded-lg flex items-center gap-2 shadow-lg">
-                  <div className={`w-1.5 h-1.5 rounded-full ${h.color.replace('text', 'bg')} animate-pulse`} />
-                  <span className="text-[8px] font-black text-zinc-500 uppercase tracking-widest">{h.label}</span>
-                  <span className={`text-[9px] font-black ${h.color} uppercase`}>{h.status}</span>
-               </div>
-            ))}
-         </div>
       </div>
    );
 }

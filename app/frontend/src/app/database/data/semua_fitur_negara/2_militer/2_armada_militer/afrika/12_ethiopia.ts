@@ -9,8 +9,8 @@ export const ethiopia_armada = {
         "kendaraan_taktis": 0
   },
   "laut": {
-        "kapal_induk": 25,
-        "kapal_destroyer": 36,
+        "kapal_induk": 0,
+        "kapal_destroyer": 0,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,
         "kapal_selam_regular": 0,

@@ -53,6 +53,16 @@ const getRelation = (name: string, userCountry: string) => {
   return relationStorage.calculateFinalScore(rawScore, !!isUNSCMember);
 };
 
+const checkCountryHasSea = (name: string): boolean => {
+  const target = centersData.find(c => 
+    c.name_id.toLowerCase() === name.toLowerCase() || 
+    c.name_en.toLowerCase() === name.toLowerCase()
+  );
+  if (!target || !target.armada_militer?.laut) return false;
+  // Check if any naval asset has a count > 0
+  return Object.values(target.armada_militer.laut).some(count => (count as number) > 0);
+};
+
 const maritimeLabels = [
   { name: "S A M U D R A   P A S I F I K", lon: -140, lat: 0, size: 36, color: "rgba(56, 189, 248, 0.15)" },
   { name: "S A M U D R A   P A S I F I K", lon: 160, lat: 10, size: 36, color: "rgba(56, 189, 248, 0.15)" },
@@ -179,9 +189,12 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
                // AUTO TRIGGER MODAL ON ARRIVAL (Only once per mission ID)
                if (!autoTriggeredMissionsRef.current.has(m.id)) {
                  autoTriggeredMissionsRef.current.add(m.id);
+                 const hasSea = checkCountryHasSea(m.target);
+                 console.log(`[Military Intelligence] Mission arrived at ${m.target}. Coastal access: ${hasSea}`);
+                 
                  setTimeout(() => {
                    window.dispatchEvent(new CustomEvent("halaman_misi_triggered", { 
-                     detail: { target: m.target, missionId: m.id } 
+                     detail: { target: m.target, missionId: m.id, hasSea } 
                    }));
                  }, 0);
                }
@@ -492,7 +505,8 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
         });
 
         if (arrived) {
-           window.dispatchEvent(new CustomEvent("halaman_misi_triggered", { detail: { target: arrived.target, missionId: arrived.id } }));
+           const hasSea = checkCountryHasSea(arrived.target);
+           window.dispatchEvent(new CustomEvent("halaman_misi_triggered", { detail: { target: arrived.target, missionId: arrived.id, hasSea } }));
            return;
         }
 

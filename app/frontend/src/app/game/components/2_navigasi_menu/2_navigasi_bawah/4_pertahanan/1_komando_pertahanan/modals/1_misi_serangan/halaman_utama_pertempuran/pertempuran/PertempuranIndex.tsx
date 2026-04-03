@@ -12,6 +12,8 @@ import { countries } from "@/app/database/data/negara/benua/index";
 import { calculateUdaraFormation } from "./logic/formasi_armada/udara/grid_formation";
 import { calculateLautFormation } from "./logic/formasi_armada/laut/grid_formation";
 import { calculateDaratFormation } from "./logic/formasi_armada/darat/grid_formation";
+import { drawWarMapBackground as drawMapWithSea } from "./map_negara_dengan_laut/CanvasMapWar";
+import { drawWarMapBackground as drawMapNoSea } from "./map_negara_tanpa_laut/CanvasMapWar";
 
 interface PertempuranIndexProps {
   onClose: () => void;
@@ -42,6 +44,14 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
     return units.filter(u => u.side === 'user').reduce((acc, u) => acc + (u.type.includes('tank') ? 50 : 10), 0);
   }, [units]);
 
+  // Determine mapping based on target country geography
+  const hasSea = useMemo(() => {
+    if (!targetArmada?.laut) return false;
+    return Object.values(targetArmada.laut).some(count => (count as number) > 0);
+  }, [targetArmada]);
+
+  const activeMapRenderer = hasSea ? drawMapWithSea : drawMapNoSea;
+
     // Initial Enemy Setup (National Defense Forces)
     useEffect(() => {
         const targetCountry = countries.find(c => 
@@ -53,20 +63,21 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
         const armada = targetCountry.armada_militer;
         let cumulativeUnits: UnitState[] = [];
-        let currentY = -4500; // Start from top of the theater
+        let currentY = -12000; // Start deep in the sea zone (Top)
         const groupGapY = 800;
 
-        // 1. UDARA (Top)
+        // 1. LAUT (Sea Zone: -15000 to -6000)
+        const lautRes = calculateLautFormation(armada.laut, currentY);
+        cumulativeUnits = [...cumulativeUnits, ...lautRes.units];
+        // Ensure UDARA starts after sea zones or after LAUT formation
+        currentY = Math.max(lautRes.nextY, -5000) + groupGapY;
+        
+        // 2. UDARA (High Ground / Air Corridor)
         const udaraRes = calculateUdaraFormation(armada.udara, currentY);
         cumulativeUnits = [...cumulativeUnits, ...udaraRes.units];
         currentY = udaraRes.nextY + groupGapY;
         
-        // 2. LAUT (Middle)
-        const lautRes = calculateLautFormation(armada.laut, currentY);
-        cumulativeUnits = [...cumulativeUnits, ...lautRes.units];
-        currentY = lautRes.nextY + groupGapY;
-        
-        // 3. DARAT (Bottom)
+        // 3. DARAT (Main Theater / Bottom)
         const daratRes = calculateDaratFormation(armada.darat, armada.barak, currentY);
         cumulativeUnits = [...cumulativeUnits, ...daratRes.units];
 
@@ -301,7 +312,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
             <div className="flex-1 p-6 bg-black flex flex-col items-center justify-center relative overflow-hidden">
                <div className="absolute inset-0 pointer-events-none opacity-[0.03] z-10 bg-[radial-gradient(circle_at_center,_#ffffff_0%,_transparent_100%)]" />
                <div className="relative">
-                  <Gameplay units={units} combatVfx={combatVfx} onUnitSelect={setSelectedUnitId} onMapClick={(x, y, isRightClick) => {
+                  <Gameplay units={units} combatVfx={combatVfx} onUnitSelect={setSelectedUnitId} drawMapBackground={activeMapRenderer} hasSea={hasSea} onMapClick={(x, y, isRightClick) => {
                      if (phase === "deployment") { if (isRightClick) handleRemoveUnit(x, y); else handleManualDeployment(selectedUnitType, x, y); }
                   }} />
                </div>

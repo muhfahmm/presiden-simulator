@@ -9,8 +9,8 @@ export const republik_afrika_tengah_armada = {
         "kendaraan_taktis": 0
   },
   "laut": {
-        "kapal_induk": 9,
-        "kapal_destroyer": 133,
+        "kapal_induk": 0,
+        "kapal_destroyer": 0,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,
         "kapal_selam_regular": 0,
