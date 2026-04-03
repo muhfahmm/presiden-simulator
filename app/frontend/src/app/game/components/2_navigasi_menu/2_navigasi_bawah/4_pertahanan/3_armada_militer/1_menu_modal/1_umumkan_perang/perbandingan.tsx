@@ -11,9 +11,10 @@ interface PerbandinganProps {
   userCountryData: any
   targetCountryData: any
   userDeltas: Record<string, any>
+  onConfirmWar?: (target: string) => void
 }
 
-export default function Perbandingan({ isOpen, onClose, userCountryData, targetCountryData, userDeltas }: PerbandinganProps) {
+export default function Perbandingan({ isOpen, onClose, userCountryData, targetCountryData, userDeltas, onConfirmWar }: PerbandinganProps) {
   if (!isOpen || !userCountryData || !targetCountryData) return null
 
   const [expandedCategory, setExpandedCategory] = useState<string | null>(null)
@@ -308,6 +309,12 @@ export default function Perbandingan({ isOpen, onClose, userCountryData, targetC
             Tarik Mundur
           </button>
           <button 
+            onClick={() => {
+              if (onConfirmWar) {
+                const targetName = targetCountryData.name_id || targetCountryData.name_en || targetCountryData.name;
+                onConfirmWar(targetName.toLowerCase());
+              }
+            }}
             className="flex-[2] py-5 rounded-2xl bg-rose-600 hover:bg-rose-500 text-white font-black uppercase tracking-[0.3em] transition-all cursor-pointer shadow-xl shadow-rose-900/20 active:scale-[0.98] flex items-center justify-center gap-3"
           >
             <Swords size={20} />

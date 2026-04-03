@@ -25,6 +25,11 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
   const [selectedTarget, setSelectedTarget] = useState<string | undefined>(preselectedTarget);
   
   const showMisiSerangan = activeMenu.startsWith("Komando Pertahanan:Misi Serangan");
+  const menuTarget = activeMenu.startsWith("Komando Pertahanan:Misi Serangan:") 
+    ? activeMenu.split(":")[2] 
+    : undefined;
+
+  const currentTarget = selectedTarget || menuTarget || preselectedTarget;
   const showPerbandingan = activeMenu.startsWith("Komando Pertahanan:PerbandinganMisi:");
   const showPertempuran = activeMenu.startsWith("Komando Pertahanan:Pertempuran:");
   
@@ -217,7 +222,7 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
           onSelect={(target) => {
             setSelectedTarget(target);
             setMissionTargetSelection(false);
-            setActiveMenu("Komando Pertahanan:Misi Serangan");
+            setActiveMenu(`Komando Pertahanan:Misi Serangan:${target}`);
           }}
           userCountry={data.name_id}
         />
@@ -228,7 +233,7 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
           isOpen={showMisiSerangan}
           onClose={() => setActiveMenu("Komando Pertahanan")}
           data={data}
-          targetCountry={selectedTarget}
+          targetCountry={currentTarget}
         />
       )}
 

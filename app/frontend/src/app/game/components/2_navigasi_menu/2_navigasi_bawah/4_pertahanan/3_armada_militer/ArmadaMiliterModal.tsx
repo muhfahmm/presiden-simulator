@@ -20,7 +20,7 @@ import Perbandingan from "./1_menu_modal/1_umumkan_perang/perbandingan";
 import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
 import { playerMilitaryStorage } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
 
-export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: boolean; onClose: () => void; data: any }) {
+export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, setActiveMenu }: { isOpen: boolean; onClose: () => void; data: any; activeMenu?: string; setActiveMenu?: (menu: string) => void }) {
   const [activeConstructions, setActiveConstructions] = useState<any[]>([]);
   const [showQueue, setShowQueue] = useState(false);
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
@@ -32,6 +32,14 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
   const [selectedActionCountry, setSelectedActionCountry] = useState<any | null>(null);
   const [showWarComparison, setShowWarComparison] = useState(false);
   const currentData = data;
+
+  useEffect(() => {
+    if (activeMenu === "Menu:ArmadaMiliter:AnalisisKekuatan") {
+      setShowWarComparison(true);
+    } else {
+      setShowWarComparison(false);
+    }
+  }, [activeMenu]);
 
   const globalRankings = useMemo(() => {
     const aidData = militaryAidStorage.getAid();
@@ -708,7 +716,12 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
                 <button
                   key={action.id}
                   onClick={() => {
-                    if (action.id === 'perang') setShowWarComparison(true);
+                    if (action.id === 'perang') {
+                      if (setActiveMenu) {
+                        setActiveMenu("Menu:ArmadaMiliter:AnalisisKekuatan");
+                      }
+                      setShowWarComparison(true);
+                    }
                   }}
                   className={`w-full group p-5 bg-zinc-950 border border-zinc-800 rounded-3xl flex items-center gap-5 transition-all hover:bg-zinc-800/50 hover:border-zinc-700 text-left relative overflow-hidden active:scale-[0.98] cursor-pointer`}
                 >
@@ -741,10 +754,18 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data }: { isOpen: 
       {/* War Comparison Modal */}
       <Perbandingan
         isOpen={showWarComparison}
-        onClose={() => setShowWarComparison(false)}
+        onClose={() => {
+          setShowWarComparison(false);
+          if (setActiveMenu) setActiveMenu("Menu:ArmadaMiliter");
+        }}
         userCountryData={currentData}
         targetCountryData={selectedActionCountry}
         userDeltas={effectiveDeltas}
+        onConfirmWar={(target) => {
+          if (setActiveMenu) {
+            setActiveMenu(`Komando Pertahanan:Misi Serangan:${target}`);
+          }
+        }}
       />
     </div>
   )
