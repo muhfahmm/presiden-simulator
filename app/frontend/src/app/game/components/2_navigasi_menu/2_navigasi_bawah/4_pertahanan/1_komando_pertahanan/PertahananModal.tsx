@@ -67,27 +67,6 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
 
     if (mission) {
       battleData = { target, selection: mission.selection };
-    } else if (target) {
-      // Fallback/Mock data for direct URL access (e.g., /game/misi-taktis/malaysia/pertempuran)
-      battleData = { 
-        target, 
-        selection: { 
-          "pasukan_infanteri": 340000, 
-          "tank_tempur_utama": 31,
-          "apc_ifv": 45,
-          "artileri_berat": 26,
-          "sistem_peluncur_roket": 12,
-          "pertahanan_udara_mobile": 20,
-          "kendaraan_taktis": 50,
-          "kapal_destroyer": 40,
-          "kapal_induk": 29,
-          "kapal_korvet": 15,
-          "kapal_selam_regular": 10,
-          "jet_tempur_siluman": 8,
-          "helikopter_serang": 8,
-          "pesawat_pengintai": 5
-        } 
-      };
     }
   }
   

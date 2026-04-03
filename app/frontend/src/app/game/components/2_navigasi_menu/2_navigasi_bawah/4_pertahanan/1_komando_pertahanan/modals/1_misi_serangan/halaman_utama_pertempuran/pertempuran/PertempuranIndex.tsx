@@ -107,7 +107,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
     }, [missionData.target]);
 
   const handleManualDeployment = useCallback((unitType: string | null, x: number, y: number) => {
-    if (phase !== "deployment" || !unitType) return;
+    if ((phase !== "deployment" && phase !== "combat") || !unitType) return;
     
     // Check if player has remaining stock for this unit
     const multiplier = 1;
@@ -132,7 +132,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
   }, [phase, units, missionData.selection, currentPoints, maxPoints]);
 
   const handleRemoveUnit = useCallback((x: number, y: number) => {
-    if (phase !== "deployment") return;
+    if (phase !== "deployment" && phase !== "combat") return;
 
     // Find nearest user unit within click threshold (25px)
     const threshold = 25;
@@ -294,39 +294,19 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
       {(phase === "deployment" || phase === "combat") && (
          <div className="flex-1 flex overflow-hidden">
-            {phase === "deployment" ? (
-               <DeploymentEngine 
-                  availableUnits={missionData.selection}
-                  deployedUnits={units}
-                  selectedType={selectedUnitType}
-                  onSelect={setSelectedUnitType}
-                  currentPoints={currentPoints}
-                  maxPoints={maxPoints}
-                  troopAmount={blockUnitCount}
-                  setTroopAmount={setBlockUnitCount}
-                  deploymentMode={deploymentMode}
-                  setDeploymentMode={setDeploymentMode}
-                  onOpenCountModal={() => setShowBlockModal(true)}
-               />
-            ) : (
-               <div className="w-80 bg-zinc-950 border-r border-zinc-900 p-8 flex flex-col gap-6 overflow-y-auto no-scrollbar">
-                  <div className="space-y-6">
-                     <h3 className="text-[10px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-2"><Target size={14} className="text-red-500" />Active Targets</h3>
-                     {units.filter(u => u.side === 'enemy').map(u => (
-                        <div key={u.id} className="p-4 bg-zinc-900/40 border border-zinc-800 rounded-2xl flex items-center justify-between group hover:border-red-500/30 transition-all">
-                           <div className="flex items-center gap-3"><div className="p-2 bg-zinc-950 rounded-lg border border-zinc-800"><Shield size={16} className="text-zinc-500" /></div><div><span className="text-[10px] font-black text-white uppercase block leading-none">Armored Unit</span><span className="text-[8px] font-bold text-zinc-600 uppercase tracking-tighter">Status: DEFENSIVE</span></div></div>
-                           <span className="text-[11px] font-black text-red-500 tabular-nums">100%</span>
-                        </div>
-                     ))}
-                  </div>
-                  <div className="flex-1" />
-                  <div className="p-5 bg-red-600/5 border border-red-500/20 rounded-[28px] relative group overflow-hidden">
-                     <div className="absolute top-0 right-0 p-4 opacity-5"><Activity size={60} /></div>
-                     <span className="text-[9px] font-black text-red-500/60 uppercase tracking-widest block mb-1 italic">Tactical Insight</span>
-                     <p className="text-[10px] text-zinc-400 font-bold leading-relaxed tracking-wider uppercase">Enemy forces are maintaining a low-profile stance. Satellite relay suggests <span className="text-white">Heavy Armor</span> presence in sector Delta.</p>
-                  </div>
-               </div>
-            )}
+            <DeploymentEngine 
+               availableUnits={missionData.selection}
+               deployedUnits={units}
+               selectedType={selectedUnitType}
+               onSelect={setSelectedUnitType}
+               currentPoints={currentPoints}
+               maxPoints={maxPoints}
+               troopAmount={blockUnitCount}
+               setTroopAmount={setBlockUnitCount}
+               deploymentMode={deploymentMode}
+               setDeploymentMode={setDeploymentMode}
+               onOpenCountModal={() => setShowBlockModal(true)}
+            />
 
             <div className="flex-1 p-4 bg-black flex flex-col items-center justify-center relative overflow-hidden">
                <div className="w-full h-full relative">
@@ -340,7 +320,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                       barakCount={targetArmada?.barak || 0}
                       phase={phase}
                       onAreaSelected={(rect) => {
-                          if (phase === "deployment" && selectedUnitType) {
+                          if ((phase === "deployment" || phase === "combat") && selectedUnitType) {
                              if (deploymentMode === "area") {
                                 // Instant Deployment without modal
                                  const amount = parseInt(blockUnitCount) || 0;
@@ -381,7 +361,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                           }
                        }}
                       onMapClick={(x, y, isRightClick) => {
-                         if (phase === "deployment") { 
+                         if (phase === "deployment" || phase === "combat") { 
                             if (isRightClick) {
                                handleRemoveUnit(x, y); 
                             } else {
