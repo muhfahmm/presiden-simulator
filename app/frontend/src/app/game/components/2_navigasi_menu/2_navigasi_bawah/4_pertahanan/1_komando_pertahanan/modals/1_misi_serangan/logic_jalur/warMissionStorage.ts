@@ -14,7 +14,27 @@ export interface WarMission {
   selection: Record<string, number>;
 }
 
+const STORAGE_KEY = "tactical_war_missions";
+
 let missions: WarMission[] = [];
+
+// Initialize from local storage
+if (typeof window !== "undefined") {
+  const stored = localStorage.getItem(STORAGE_KEY);
+  if (stored) {
+    try {
+      missions = JSON.parse(stored);
+    } catch (e) {
+      console.error("Failed to parse stored missions", e);
+    }
+  }
+}
+
+const saveMissions = () => {
+  if (typeof window !== "undefined") {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(missions));
+  }
+};
 
 export const warMissionStorage = {
   getMissions: (): WarMission[] => {
@@ -23,6 +43,7 @@ export const warMissionStorage = {
 
   addMission: (mission: WarMission) => {
     missions.push(mission);
+    saveMissions();
     window.dispatchEvent(new Event("war_mission_updated"));
   },
 
@@ -30,12 +51,14 @@ export const warMissionStorage = {
     const idx = missions.findIndex(m => m.id === id);
     if (idx !== -1) {
       missions[idx] = { ...missions[idx], ...updates };
+      saveMissions();
       window.dispatchEvent(new Event("war_mission_updated"));
     }
   },
 
   clearMissions: () => {
     missions = [];
+    saveMissions();
     window.dispatchEvent(new Event("war_mission_updated"));
   },
 

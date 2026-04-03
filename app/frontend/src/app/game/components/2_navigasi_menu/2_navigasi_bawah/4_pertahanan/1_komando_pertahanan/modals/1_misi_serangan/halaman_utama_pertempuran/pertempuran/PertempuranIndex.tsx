@@ -16,6 +16,7 @@ import { drawWarMapBackground as drawMapWithSea } from "./map_negara_dengan_laut
 import { drawWarMapBackground as drawMapNoSea } from "./map_negara_tanpa_laut/CanvasMapWar";
 import { BarakUtils, BarrackState } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/BarakUtils";
 import { InfantryDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/logika_infanteri_keluar_barak/ts/route";
+import { BlockDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/fitur_blok_input/ts/route";
 
 interface PertempuranIndexProps {
   onClose: () => void;
@@ -37,14 +38,25 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
   });
   const [targetArmada, setTargetArmada] = useState<any>(null);
   const [barracks, setBarracks] = useState<BarrackState[]>([]);
+  const [showBlockModal, setShowBlockModal] = useState(false);
+  const [blockSelection, setBlockSelection] = useState<{ x1: number, y1: number, x2: number, y2: number } | null>(null);
+  const [blockUnitCount, setBlockUnitCount] = useState("1000");
+  const [deploymentMode, setDeploymentMode] = useState<"manual" | "area">("area");
 
-  // Calculate deployment budget based on Total SPW (Simulated)
+  // Calculate deployment budget based on proper unit costs
   const maxPoints = useMemo(() => {
-    return Object.values(missionData.selection).reduce((a, b) => a + b, 0) * 10;
+    return Object.entries(missionData.selection).reduce((acc, [id, count]) => {
+      const stats = getUnitStats(id);
+      return acc + (stats.cost * count);
+    }, 0);
   }, [missionData.selection]);
 
   const currentPoints = useMemo(() => {
-    return units.filter(u => u.side === 'user').reduce((acc, u) => acc + (u.type.includes('tank') ? 50 : 10), 0);
+    return units.filter(u => u.side === 'user').reduce((acc, u) => {
+      const stats = getUnitStats(u.type);
+      const multiplier = 1;
+      return acc + (stats.cost * multiplier);
+    }, 0);
   }, [units]);
 
   // Determine mapping based on target country geography
@@ -98,14 +110,14 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
     if (phase !== "deployment" || !unitType) return;
     
     // Check if player has remaining stock for this unit
-    const deployedCount = units.filter(u => u.type === unitType).length;
+    const multiplier = 1;
+    const deployedQuantity = units.filter(u => u.side === 'user' && u.type === unitType).length * multiplier;
     const available = missionData.selection[unitType] || 0;
     
     // Check points
-    const unitCost = unitType.includes('tank') ? 50 : unitType.includes('infanteri') ? 10 : 20; // Simplified for demo
-    if (deployedCount >= available || currentPoints + unitCost > maxPoints) return;
-
     const stats = getUnitStats(unitType);
+    const unitCost = stats.cost * multiplier;
+    if (deployedQuantity + multiplier > available || currentPoints + unitCost > maxPoints) return;
 
     const newUnit: UnitState = {
        id: `u_${Date.now()}`,
@@ -136,6 +148,48 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
     }
     return false; // No unit found
   }, [phase, units]);
+
+  const handleBlockDeployment = useCallback(() => {
+    if (!blockSelection || !selectedUnitType) return;
+    
+    const count = parseInt(blockUnitCount);
+    if (isNaN(count) || count <= 0) return;
+
+    // Check availability
+    const multiplier = 1;
+    const deployedQuantity = units.filter(u => u.type === selectedUnitType).length * multiplier;
+    const available = missionData.selection[selectedUnitType] || 0;
+    const remaining = available - deployedQuantity;
+    
+    // When deploying a block, count represents the number of tactical units
+    // or if the user is deploying a specific personnel count
+    const actualCount = Math.min(count, remaining);
+    if (actualCount <= 0) {
+       setShowBlockModal(false);
+       setBlockSelection(null);
+       return;
+    }
+
+    const unitStats = getUnitStats(selectedUnitType);
+    const deploymentCost = unitStats.cost * actualCount;
+    if (currentPoints + deploymentCost > maxPoints) return;
+
+    const positions = BlockDeploymentLogic.calculateGridPositions(blockSelection, actualCount);
+    
+    const newUnits: UnitState[] = positions.map((pos, i) => ({
+        id: `u_${selectedUnitType}_${Date.now()}_${i}`,
+        type: selectedUnitType,
+        side: "user",
+        pos,
+        health: unitStats.maxHealth,
+        rotation: 0,
+        influence: selectedUnitType.includes('tank') ? 300 : 100
+    }));
+
+    setUnits(prev => [...prev, ...newUnits]);
+    setShowBlockModal(false);
+    setBlockSelection(null);
+  }, [blockSelection, blockUnitCount, selectedUnitType, units, missionData.selection]);
 
 
   // Visual Tracers
@@ -202,7 +256,10 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
   }, [phase]);
 
   return (
-    <div className="absolute inset-0 bg-black z-[110] flex flex-col animate-in fade-in duration-500 overflow-hidden select-none">
+    <div 
+      className="absolute inset-0 bg-black z-[110] flex flex-col animate-in fade-in duration-500 overflow-hidden select-none"
+      onContextMenu={(e) => e.preventDefault()}
+    >
       
       {/* Header HUD */}
       <div className="px-8 py-5 border-b border-zinc-900 flex items-center justify-between shrink-0 bg-zinc-950/80 backdrop-blur-md relative z-20">
@@ -238,7 +295,19 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
       {(phase === "deployment" || phase === "combat") && (
          <div className="flex-1 flex overflow-hidden">
             {phase === "deployment" ? (
-               <DeploymentEngine availableUnits={missionData.selection} deployedUnits={units} selectedType={selectedUnitType} onSelect={setSelectedUnitType} maxPoints={maxPoints} currentPoints={currentPoints} />
+               <DeploymentEngine 
+                  availableUnits={missionData.selection}
+                  deployedUnits={units}
+                  selectedType={selectedUnitType}
+                  onSelect={setSelectedUnitType}
+                  currentPoints={currentPoints}
+                  maxPoints={maxPoints}
+                  troopAmount={blockUnitCount}
+                  setTroopAmount={setBlockUnitCount}
+                  deploymentMode={deploymentMode}
+                  setDeploymentMode={setDeploymentMode}
+                  onOpenCountModal={() => setShowBlockModal(true)}
+               />
             ) : (
                <div className="w-80 bg-zinc-950 border-r border-zinc-900 p-8 flex flex-col gap-6 overflow-y-auto no-scrollbar">
                   <div className="space-y-6">
@@ -270,8 +339,57 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                       barracksState={barracks}
                       barakCount={targetArmada?.barak || 0}
                       phase={phase}
+                      onAreaSelected={(rect) => {
+                          if (phase === "deployment" && selectedUnitType) {
+                             if (deploymentMode === "area") {
+                                // Instant Deployment without modal
+                                 const amount = parseInt(blockUnitCount) || 0;
+                                 const multiplier = 1;
+                                 const deployedQuantity = units.filter(u => u.side === 'user' && u.type === selectedUnitType).length * multiplier;
+                                 const available = missionData.selection[selectedUnitType] || 0;
+                                 const remaining = available - deployedQuantity;
+
+                                 const actualAmount = Math.min(amount, remaining);
+                                 if (actualAmount <= 0) return;
+                                 
+                                 const unitStats = getUnitStats(selectedUnitType);
+                                 if (!unitStats) return;
+
+                                 const cost = unitStats.cost * actualAmount;
+                                 if (currentPoints + cost > maxPoints) return;
+
+                                const positions = BlockDeploymentLogic.calculateGridPositions(
+                                   rect, 
+                                   actualAmount
+                                );
+
+                                const newUnits: UnitState[] = positions.map((pos, i) => ({
+                                   id: `u_${selectedUnitType}_area_${Date.now()}_${i}`,
+                                   type: selectedUnitType,
+                                   side: "user",
+                                   pos: pos,
+                                   health: unitStats.maxHealth,
+                                   rotation: 0,
+                                   influence: selectedUnitType.includes('tank') ? 300 : 100
+                                }));
+
+                                setUnits(prev => [...prev, ...newUnits]);
+                             } else {
+                                // Could potentially do something else or just ignore
+                                setBlockSelection(rect);
+                             }
+                          }
+                       }}
                       onMapClick={(x, y, isRightClick) => {
-                         if (phase === "deployment") { if (isRightClick) handleRemoveUnit(x, y); else handleManualDeployment(selectedUnitType, x, y); }
+                         if (phase === "deployment") { 
+                            if (isRightClick) {
+                               handleRemoveUnit(x, y); 
+                            } else {
+                               if (deploymentMode === "manual") {
+                                  handleManualDeployment(selectedUnitType, x, y); 
+                               }
+                            }
+                         }
                       }} 
                    />
                </div>
@@ -341,6 +459,56 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
             <button onClick={onClose} className="px-10 py-4 bg-zinc-900 border border-zinc-800 rounded-2xl text-zinc-400 font-black uppercase text-[10px] tracking-[0.3em] hover:bg-zinc-800 hover:text-white transition-all active:scale-95">Exit Theater</button>
          </div>
       </div>
+
+      {/* Block Deployment Modal */}
+      {showBlockModal && (
+          <div className="absolute inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
+             <div className="w-[400px] bg-zinc-950 border border-zinc-800 rounded-[32px] p-8 shadow-2xl shadow-red-500/10 flex flex-col gap-6 relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-5 text-red-500"><Sword size={120} /></div>
+                
+                <div className="flex flex-col gap-1">
+                   <h3 className="text-xl font-black text-white uppercase tracking-widest italic">Mass Deployment</h3>
+                   <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest tracking-[0.3em]">Configure Area Engagement</span>
+                </div>
+
+                <div className="space-y-4">
+                   <div className="flex flex-col gap-2">
+                      <label className="text-[10px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-2">
+                         <Target size={12} className="text-red-500" /> Troop Deployment Count
+                      </label>
+                      <input 
+                         type="number"
+                         value={blockUnitCount}
+                         onChange={(e) => setBlockUnitCount(e.target.value)}
+                         className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl px-6 py-4 text-white font-black text-lg focus:outline-none focus:border-red-500/50 transition-all"
+                         autoFocus
+                         placeholder="1000"
+                         onKeyDown={(e) => e.key === "Enter" && handleBlockDeployment()}
+                      />
+                   </div>
+                   
+                   <p className="text-[9px] text-zinc-600 font-bold uppercase leading-relaxed tracking-wider">
+                      Selected area units will be deployed in an optimized tactical formation based on terrain availability.
+                   </p>
+                </div>
+
+                <div className="flex gap-4">
+                   <button 
+                      onClick={() => { setShowBlockModal(false); setBlockSelection(null); }}
+                      className="flex-1 py-4 bg-zinc-900 border border-zinc-800 rounded-2xl text-zinc-400 font-black uppercase text-[10px] tracking-widest hover:text-white transition-all"
+                   >
+                      Cancel
+                   </button>
+                   <button 
+                      onClick={handleBlockDeployment}
+                      className="flex-1 py-4 bg-red-600 rounded-2xl text-white font-black uppercase text-[10px] tracking-[0.3em] hover:bg-red-500 transition-all shadow-lg shadow-red-900/20"
+                   >
+                      Execute
+                   </button>
+                </div>
+             </div>
+          </div>
+       )}
     </div>
   );
 }

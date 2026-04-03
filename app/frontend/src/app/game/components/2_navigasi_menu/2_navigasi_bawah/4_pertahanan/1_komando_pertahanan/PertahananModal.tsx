@@ -40,7 +40,12 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
     const target = parts[2];
     const missionId = parts[3];
     let mission = missionId ? warMissionStorage.getMission(missionId) : null;
-    if (!mission && target) mission = warMissionStorage.getMissions().find((m: any) => m.target.toLowerCase() === target.toLowerCase() && m.status === 'arrived');
+    if (!mission && target) {
+      const allTargetMissions = warMissionStorage.getMissions()
+        .filter((m: any) => m.target.toLowerCase() === target.toLowerCase())
+        .sort((a, b) => b.startTime - a.startTime);
+      mission = allTargetMissions.find((m: any) => m.status === 'arrived') || allTargetMissions[0];
+    }
     if (mission) {
       comparisonData = { target, selection: mission.selection };
     }
@@ -53,8 +58,12 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
     const target = parts[2];
     const missionId = parts[3];
     let mission = missionId ? warMissionStorage.getMission(missionId) : null;
-    if (!mission && target) mission = warMissionStorage.getMissions().find((m: any) => m.target.toLowerCase() === target.toLowerCase() && m.status === 'arrived');
-    if (!mission && target) mission = warMissionStorage.getMissions().find((m: any) => m.target.toLowerCase() === target.toLowerCase());
+    if (!mission && target) {
+      const allTargetMissions = warMissionStorage.getMissions()
+        .filter((m: any) => m.target.toLowerCase() === target.toLowerCase())
+        .sort((a, b) => b.startTime - a.startTime);
+      mission = allTargetMissions.find((m: any) => m.status === 'arrived') || allTargetMissions[0];
+    }
 
     if (mission) {
       battleData = { target, selection: mission.selection };
@@ -65,11 +74,18 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
         selection: { 
           "pasukan_infanteri": 340000, 
           "tank_tempur_utama": 31,
+          "apc_ifv": 45,
           "artileri_berat": 26,
+          "sistem_peluncur_roket": 12,
+          "pertahanan_udara_mobile": 20,
+          "kendaraan_taktis": 50,
           "kapal_destroyer": 40,
           "kapal_induk": 29,
+          "kapal_korvet": 15,
+          "kapal_selam_regular": 10,
           "jet_tempur_siluman": 8,
-          "helikopter_serang": 8
+          "helikopter_serang": 8,
+          "pesawat_pengintai": 5
         } 
       };
     }
