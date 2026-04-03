@@ -5,9 +5,10 @@ import { X, Shield, Swords, Eye, Bomb, Map as MapIcon, Radiation, Zap, Truck, An
 import { CountryData } from "@/app/database/data/types/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import PilihAlutsistaMisi from "./modals/1_misi_serangan/PilihAlutsistaMisi";
-import ModalsPerbandingan from "./modals/1_misi_serangan/main_pages/modals_perbandingan/modals_perbandingan";
+import ModalsPerbandingan from "./modals/1_misi_serangan/halaman_utama_pertempuran/modals_perbandingan/modals_perbandingan";
 import { warMissionStorage } from "./modals/1_misi_serangan/logic_jalur/warMissionStorage";
-import PertempuranIndex from "./modals/1_misi_serangan/main_pages/pertempuran/PertempuranIndex";
+import PertempuranIndex from "./modals/1_misi_serangan/halaman_utama_pertempuran/pertempuran/PertempuranIndex";
+import PilihTargetMisi from "./modals/1_misi_serangan/PilihTargetMisi";
 
 interface ModalProps {
   isOpen: boolean;
@@ -20,6 +21,9 @@ interface ModalProps {
 
 export default function PertahananModal({ isOpen, onClose, activeMenu, setActiveMenu, preselectedTarget, data }: ModalProps) {
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
+  const [missionTargetSelection, setMissionTargetSelection] = useState(false);
+  const [selectedTarget, setSelectedTarget] = useState<string | undefined>(preselectedTarget);
+  
   const showMisiSerangan = activeMenu.startsWith("Komando Pertahanan:Misi Serangan");
   const showPerbandingan = activeMenu.startsWith("Komando Pertahanan:PerbandinganMisi:");
   const showPertempuran = activeMenu.startsWith("Komando Pertahanan:Pertempuran:");
@@ -118,8 +122,8 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
   };
 
   return (
-    <div className="absolute inset-0 bg-black/85 z-50 flex items-center justify-center animate-in fade-in duration-300 p-4 md:p-8">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-2xl flex flex-col relative animate-in zoom-in-95 duration-500">
+    <div className="absolute inset-0 bg-black/95 z-[70] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-500">
+      <div className="bg-zinc-950 border border-red-500/20 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-[0_0_100px_rgba(239,68,68,0.1)] flex flex-col relative animate-in zoom-in-95 duration-500">
         {/* Header */}
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
@@ -184,7 +188,7 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
                             className="mt-2 w-full py-2 rounded-xl bg-zinc-900/50 border border-zinc-800/80 text-center group-hover:border-red-500/20 transition-all cursor-pointer hover:bg-zinc-800"
                             onClick={() => {
                                if (item.label === "Misi Serangan") {
-                                  setActiveMenu("Komando Pertahanan:Misi Serangan");
+                                  setMissionTargetSelection(true);
                                } else if (item.btnLabel === "Mulai Misi") {
                                   // For other missions, we can still use local state or add routes later
                                   // For now, let's keep consistency with the user request
@@ -206,12 +210,25 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
         </div>
       </div>
 
+      {missionTargetSelection && (
+        <PilihTargetMisi 
+          isOpen={missionTargetSelection}
+          onClose={() => setMissionTargetSelection(false)}
+          onSelect={(target) => {
+            setSelectedTarget(target);
+            setMissionTargetSelection(false);
+            setActiveMenu("Komando Pertahanan:Misi Serangan");
+          }}
+          userCountry={data.name_id}
+        />
+      )}
+
       {showMisiSerangan && (
         <PilihAlutsistaMisi 
           isOpen={showMisiSerangan}
           onClose={() => setActiveMenu("Komando Pertahanan")}
           data={data}
-          targetCountry={preselectedTarget}
+          targetCountry={selectedTarget}
         />
       )}
 

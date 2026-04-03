@@ -151,7 +151,7 @@ export default function PilihAlutsistaMisi({ isOpen, onClose, data, targetCountr
 
   return (
     <div className="absolute inset-0 bg-black/95 z-[60] flex items-center justify-center p-4 md:p-8 animate-in fade-in duration-500">
-      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-6xl h-[85vh] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,1)] flex flex-col relative animate-in zoom-in-95 duration-500 border-red-500/10">
+      <div className="bg-zinc-950 border border-zinc-800 rounded-[40px] w-full max-w-[95vw] h-[82vh] overflow-hidden shadow-[0_0_50px_rgba(0,0,0,1)] flex flex-col relative animate-in zoom-in-95 duration-500 border-red-500/10">
         
         {/* Background Gradients */}
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-red-600/5 blur-[120px] -translate-y-1/2 translate-x-1/2 rounded-full pointer-events-none" />
