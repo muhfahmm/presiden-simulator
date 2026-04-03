@@ -15,7 +15,8 @@ export class HelipadEngine {
       mousePos?: { x: number, y: number },
       name: string = "Heli Serang",
       units: any[] = [],
-      targetArmada: any = null
+      targetArmada: any = null,
+      helipadState: any = null
    ): void {
       ctx.save();
       ctx.translate(x, y);
@@ -79,9 +80,9 @@ export class HelipadEngine {
          ctx.save();
          ctx.translate(0, -radius - 40);
          
-         const total = targetArmada?.udara?.helikopter_serang || 0;
-         const used = units.filter(u => u.side === 'enemy' && u.type === 'helikopter_serang').length;
-         const text = `${name} - (${used}/${total})`;
+         const total = helipadState ? helipadState.maxCapacity : (targetArmada?.udara?.helikopter_serang || 0);
+         const available = helipadState ? helipadState.currentCount : (targetArmada?.udara?.helikopter_serang || 0);
+         const text = `${name} - (${available}/${total})`;
          
          ctx.font = "bold 28px Inter, sans-serif";
          const tw = ctx.measureText(text).width;

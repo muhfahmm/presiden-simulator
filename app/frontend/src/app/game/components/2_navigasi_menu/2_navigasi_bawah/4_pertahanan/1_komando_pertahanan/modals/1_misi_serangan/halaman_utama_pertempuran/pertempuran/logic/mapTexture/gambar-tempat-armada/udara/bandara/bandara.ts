@@ -14,7 +14,8 @@ export class BandaraEngine {
       zoom: number,
       mousePos?: { x: number, y: number },
       units: any[] = [],
-      targetArmada: any = null
+      targetArmada: any = null,
+      hangarsState: any[] = []
    ): void {
       ctx.save();
       ctx.translate(x, y);
@@ -50,9 +51,11 @@ export class BandaraEngine {
                mousePos.y <= y + yOff + runwayWidth / 2
             );
             if (isHovered) {
+               // NEW: Use state for current count (available in hangar)
+               const hangar = hangarsState.find(h => h.id.includes(config.key));
                const total = targetArmada?.udara?.[config.key] || 0;
-               const used = units.filter(u => u.side === 'enemy' && u.type === config.key).length;
-               hoveredRunway = { y: yOff, name: config.name, used, total };
+               const available = hangar ? hangar.currentCount : total;
+               hoveredRunway = { y: yOff, name: config.name, used: available, total: total };
             }
          }
 

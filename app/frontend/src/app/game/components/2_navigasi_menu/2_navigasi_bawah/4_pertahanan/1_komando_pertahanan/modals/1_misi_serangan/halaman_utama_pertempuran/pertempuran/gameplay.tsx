@@ -30,11 +30,15 @@ interface GameplayProps {
       barracksState?: any[],
       units?: UnitState[],
       targetArmada?: any,
-      tankHangarsState?: any[]
+      tankHangarsState?: any[],
+      airfieldHangarsState?: any[],
+      helipadsState?: any[]
    ) => void;
    hasSea?: boolean;
    targetArmada?: any;
    tankHangarsState?: any[];
+   airfieldHangarsState?: any[];
+   helipadsState?: any[];
    barakCount?: number;
    phase?: string;
    barracksState?: any[];
@@ -52,6 +56,8 @@ export default function Gameplay({
    hasSea = false, 
    targetArmada = null,
    tankHangarsState = [],
+   airfieldHangarsState = [],
+   helipadsState = [],
    barakCount = 0,
    phase = "deployment",
    barracksState = [],
@@ -409,7 +415,9 @@ export default function Gameplay({
             barracksState,
             latestUnitsRef.current,
             targetArmada,
-            tankHangarsState
+            tankHangarsState,
+            airfieldHangarsState,
+            helipadsState
          );
 
          const camera = cameraRef.current;

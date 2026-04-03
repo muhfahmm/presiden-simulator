@@ -135,7 +135,10 @@ export default function DeploymentEngine({
                   {isExpanded && (
                      <div className="space-y-3 animate-in fade-in slide-in-from-top-1 duration-200">
                         {unitsInGroup.map((u) => {
-                           const multiplier = 1;
+                           // Tactical Scaling: sync with PertempuranIndex logic
+                           const isInfantry = u.id === 'pasukan_infanteri';
+                           const multiplier = isInfantry ? 1000 : 1;
+
                            const totalInMission = availableUnits[u.id] || 0;
                            const currentlyDeployed = deployedUnits.filter(unit => unit.side === 'user' && unit.type === u.id).length * multiplier;
                            const remaining = Math.max(0, totalInMission - currentlyDeployed);
