@@ -325,22 +325,88 @@ export default function GameMapCanvas({ userCountry, targetCountry, onSelect, ac
           ctx.translate(0, (idx - (mission.unitTypes.length - 1) / 2) * 40); // Offset multiset
           
           if (type === "air") {
+            ctx.fillStyle = "rgba(255, 255, 255, 0.2)";
+            ctx.strokeStyle = "#ffffff";
+            ctx.lineWidth = 2;
+            
+            ctx.beginPath();
+            ctx.moveTo(18, 0);
+            ctx.lineTo(8, -4);
+            ctx.lineTo(-6, -18);
+            ctx.lineTo(-12, -18);
+            ctx.lineTo(-6, -4);
+            ctx.lineTo(-12, -4);
+            ctx.lineTo(-18, -12);
+            ctx.lineTo(-20, -12);
+            ctx.lineTo(-17, 0);
+            ctx.lineTo(-20, 12);
+            ctx.lineTo(-18, 12);
+            ctx.lineTo(-12, 4);
+            ctx.lineTo(-6, 4);
+            ctx.lineTo(-12, 18);
+            ctx.lineTo(-6, 18);
+            ctx.lineTo(8, 4);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
             ctx.fillStyle = "#ffffff";
+            ctx.beginPath(); ctx.moveTo(8,0); ctx.lineTo(1, -2); ctx.lineTo(-2, 0); ctx.lineTo(1, 2); ctx.fill();
+
             ctx.beginPath();
-            ctx.moveTo(20, 0); ctx.lineTo(-10, -15); ctx.lineTo(-10, 15); ctx.closePath();
+            ctx.arc(-20, 0, 3, 0, Math.PI * 2);
+            ctx.fillStyle = "#38bdf8";
+            ctx.shadowColor = "#38bdf8";
+            ctx.shadowBlur = 12;
             ctx.fill();
-            // Wings
-            ctx.fillRect(-5, -25, 4, 50);
+            ctx.shadowBlur = 0;
+            
           } else if (type === "sea") {
-            ctx.fillStyle = "#3b82f6";
+            ctx.fillStyle = "rgba(59, 130, 246, 0.2)";
+            ctx.strokeStyle = "#3b82f6";
+            ctx.lineWidth = 1.5;
+
             ctx.beginPath();
-            ctx.moveTo(-20, -10); ctx.lineTo(20, -10); ctx.lineTo(15, 10); ctx.lineTo(-15, 10); ctx.closePath();
+            ctx.moveTo(25, 0);
+            ctx.lineTo(10, 5);
+            ctx.lineTo(-20, 5);
+            ctx.lineTo(-20, -5);
+            ctx.lineTo(10, -5);
+            ctx.closePath();
             ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = "#3b82f6";
+            ctx.fillRect(-10, -2, 16, 4);
+            ctx.fillRect(-5, -1, 6, 2);
+
+            ctx.beginPath(); ctx.arc(8, 0, 2, 0, Math.PI*2); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(8, 0); ctx.lineTo(16, 0); ctx.lineWidth = 1.5; ctx.stroke();
+
+            ctx.beginPath(); ctx.arc(-14, 0, 1.5, 0, Math.PI*2); ctx.fill();
+            ctx.beginPath(); ctx.moveTo(-14, 0); ctx.lineTo(-20, 0); ctx.stroke();
+
           } else {
-             // Land / Tank
+             ctx.fillStyle = "rgba(249, 115, 22, 0.2)";
+             ctx.strokeStyle = "#f97316";
+             ctx.lineWidth = 1.5;
+
+             ctx.strokeRect(-16, -11, 32, 5);
+             ctx.strokeRect(-16, 6, 32, 5);
+
+             ctx.fillRect(-12, -7, 24, 14);
+             ctx.strokeRect(-12, -7, 24, 14);
+
              ctx.fillStyle = "#f97316";
-             ctx.fillRect(-15, -10, 30, 20); // Tank Body
-             ctx.fillRect(0, -3, 20, 6); // Barrel
+             ctx.beginPath();
+             ctx.arc(0, 0, 5, 0, Math.PI * 2);
+             ctx.fill();
+
+             ctx.beginPath();
+             ctx.moveTo(0, 0);
+             ctx.lineTo(20, 0);
+             ctx.lineWidth = 2.5;
+             ctx.stroke();
           }
           ctx.restore();
         });

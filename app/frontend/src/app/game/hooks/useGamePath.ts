@@ -81,7 +81,11 @@ export function useGamePath(path: string[]) {
     initialMenu = "Menu:Agama";
   } else if (category === 'misi-taktis') {
     const target = path[1];
-    if (target) initialMenu = `Komando Pertahanan:PerbandinganMisi:${target}`;
+    const detail = path[2];
+    if (target) {
+       if (detail === 'pertempuran') initialMenu = `Komando Pertahanan:Pertempuran:${target}`;
+       else initialMenu = `Komando Pertahanan:PerbandinganMisi:${target}`;
+    }
     else initialMenu = "Komando Pertahanan:PerbandinganMisi";
   } else if (category === 'ideologi') {
     initialMenu = "Menu:Ideologi";
@@ -139,10 +143,14 @@ export function useGamePath(path: string[]) {
 
     let targetPath = menuToPath[activeMenu];
     
-    // Dynamic path handling for Perbandingan Misi
+    // Dynamic path handling for misi-taktis (Perbandingan and Pertempuran)
     if (!targetPath && activeMenu.startsWith("Komando Pertahanan:PerbandinganMisi:")) {
       const target = activeMenu.split(":")[2];
       targetPath = `/game/misi-taktis/${target}`;
+    }
+    if (!targetPath && activeMenu.startsWith("Komando Pertahanan:Pertempuran:")) {
+      const target = activeMenu.split(":")[2];
+      targetPath = `/game/misi-taktis/${target}/pertempuran`;
     }
 
     // Dynamic path handling for Targeted Misi Serangan

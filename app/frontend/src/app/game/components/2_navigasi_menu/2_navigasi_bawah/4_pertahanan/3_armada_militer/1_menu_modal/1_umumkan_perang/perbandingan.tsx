@@ -1,9 +1,41 @@
 "use client"
 
 import { useState } from "react"
-import { X, Truck, Ship, Plane, Swords, TrendingUp, TrendingDown, Target, ShieldAlert, Info } from "lucide-react"
+import { X, Swords, TrendingUp, TrendingDown, Target, ShieldAlert, Info } from "lucide-react"
 import { calculateTotalMilitaryPower } from "../../kekuatanmiliter"
 import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage"
+
+// Custom Realistic Icons
+const TankIcon = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <rect x="2" y="14" width="20" height="6" rx="3" />
+    <circle cx="6" cy="17" r="1.5" fill="currentColor" />
+    <circle cx="12" cy="17" r="1.5" fill="currentColor" />
+    <circle cx="18" cy="17" r="1.5" fill="currentColor" />
+    <path d="M4 14l2-3h12l2 3" />
+    <path d="M8 11V8a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v3" />
+    <path d="M16 9h6" />
+  </svg>
+)
+
+const JetIcon = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M12 2l-2 5-6 6a1 1 0 0 0 .7 1.7h4.3L8 20h8l-1-5.3h4.3a1 1 0 0 0 .7-1.7l-6-6-2-5z" />
+    <path d="M12 6v4" />
+  </svg>
+)
+
+const BattleshipIcon = ({ size = 24, className = "" }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
+    <path d="M2 16l3 4h14l3-4z" />
+    <path d="M2 16q6-2 18 0" />
+    <path d="M8 14V9h8v5" />
+    <path d="M12 9V5" />
+    <path d="M11 5h2" />
+    <path d="M16 11v-2h3" />
+    <path d="M8 11v-2H5" />
+  </svg>
+)
 
 interface PerbandinganProps {
   isOpen: boolean
@@ -28,9 +60,9 @@ export default function Perbandingan({ isOpen, onClose, userCountryData, targetC
 
   const comparisonItems = [
     { id: 'total', label: "Total Kekuatan", user: userPower.total, target: targetPower.total, icon: Swords, color: "rose" },
-    { id: 'darat', label: "Armada Darat", user: userPower.darat, target: targetPower.darat, icon: Truck, color: "amber" },
-    { id: 'laut', label: "Armada Laut", user: userPower.laut, target: targetPower.laut, icon: Ship, color: "cyan" },
-    { id: 'udara', label: "Armada Udara", user: userPower.udara, target: targetPower.udara, icon: Plane, color: "violet" },
+    { id: 'darat', label: "Armada Darat", user: userPower.darat, target: targetPower.darat, icon: TankIcon, color: "amber" },
+    { id: 'laut', label: "Armada Laut", user: userPower.laut, target: targetPower.laut, icon: BattleshipIcon, color: "cyan" },
+    { id: 'udara', label: "Armada Udara", user: userPower.udara, target: targetPower.udara, icon: JetIcon, color: "violet" },
   ]
 
   const getDetailData = (categoryId: string) => {

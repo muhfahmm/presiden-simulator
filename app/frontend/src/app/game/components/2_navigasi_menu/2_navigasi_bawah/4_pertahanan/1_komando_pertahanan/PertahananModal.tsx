@@ -39,7 +39,8 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
     const parts = activeMenu.split(":");
     const target = parts[2];
     const missionId = parts[3];
-    const mission = warMissionStorage.getMission(missionId);
+    let mission = missionId ? warMissionStorage.getMission(missionId) : null;
+    if (!mission && target) mission = warMissionStorage.getMissions().find((m: any) => m.target.toLowerCase() === target.toLowerCase() && m.status === 'arrived');
     if (mission) {
       comparisonData = { target, selection: mission.selection };
     }
@@ -48,9 +49,13 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
   // Active Battle Data handling
   let battleData = null;
   if (showPertempuran) {
-    const target = activeMenu.split(":")[2];
-    const missionId = activeMenu.split(":")[3];
-    const mission = warMissionStorage.getMission(missionId);
+    const parts = activeMenu.split(":");
+    const target = parts[2];
+    const missionId = parts[3];
+    let mission = missionId ? warMissionStorage.getMission(missionId) : null;
+    if (!mission && target) mission = warMissionStorage.getMissions().find((m: any) => m.target.toLowerCase() === target.toLowerCase() && m.status === 'arrived');
+    if (!mission && target) mission = warMissionStorage.getMissions().find((m: any) => m.target.toLowerCase() === target.toLowerCase());
+
     if (mission) {
       battleData = { target, selection: mission.selection };
     }
