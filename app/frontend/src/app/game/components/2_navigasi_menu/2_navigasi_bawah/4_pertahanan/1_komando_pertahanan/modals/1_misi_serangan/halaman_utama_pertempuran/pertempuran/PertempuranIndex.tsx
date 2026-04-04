@@ -60,6 +60,14 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
    const [deploymentMode, setDeploymentMode] = useState<"manual" | "area">("area");
    const [cumulativeDeployment, setCumulativeDeployment] = useState<Record<string, number>>({});
 
+   // User-side buildings
+   const [userBarracks, setUserBarracks] = useState<BarrackState[]>([]);
+   const [userTankHangars, setUserTankHangars] = useState<HangarState[]>([]);
+   const [userAirfieldHangars, setUserAirfieldHangars] = useState<AirfieldHangarState[]>([]);
+   const [userHelipads, setUserHelipads] = useState<HelipadState[]>([]);
+   const [userPortShips, setUserPortShips] = useState<PortShipState[]>([]);
+   const [userArmory, setUserArmory] = useState<ArmoryState[]>([]);
+
    // SIMULATION REFS: Ensuring the tactical loop remains stable and counters are reliable.
    // By using refs, we avoid restarting the setInterval every time a state changes.
    const unitsRef = useRef<UnitState[]>([]);
@@ -69,6 +77,13 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
    const helipadsRef = useRef<HelipadState[]>([]);
    const portShipsRef = useRef<PortShipState[]>([]);
    const armoryRef = useRef<ArmoryState[]>([]);
+
+   const userBarracksRef = useRef<BarrackState[]>([]);
+   const userTankHangarsRef = useRef<HangarState[]>([]);
+   const userAirfieldHangarsRef = useRef<AirfieldHangarState[]>([]);
+   const userHelipadsRef = useRef<HelipadState[]>([]);
+   const userPortShipsRef = useRef<PortShipState[]>([]);
+   const userArmoryRef = useRef<ArmoryState[]>([]);
    const isPausedRef = useRef(isPaused);
 
    // Sync refs with React state for simulation access
@@ -79,6 +94,15 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
    useEffect(() => { helipadsRef.current = helipads; }, [helipads]);
    useEffect(() => { portShipsRef.current = portShips; }, [portShips]);
    useEffect(() => { armoryRef.current = armory; }, [armory]);
+
+   // Sync User refs
+   useEffect(() => { userBarracksRef.current = userBarracks; }, [userBarracks]);
+   useEffect(() => { userTankHangarsRef.current = userTankHangars; }, [userTankHangars]);
+   useEffect(() => { userAirfieldHangarsRef.current = userAirfieldHangars; }, [userAirfieldHangars]);
+   useEffect(() => { userHelipadsRef.current = userHelipads; }, [userHelipads]);
+   useEffect(() => { userPortShipsRef.current = userPortShips; }, [userPortShips]);
+   useEffect(() => { userArmoryRef.current = userArmory; }, [userArmory]);
+
    useEffect(() => { isPausedRef.current = isPaused; }, [isPaused]);
 
    // Sync with global game time pause/resume
@@ -113,22 +137,32 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
    const activeMapRenderer = hasSea ? drawMapWithSea : drawMapNoSea;
 
-   // Initial Enemy Setup (National Defense Forces)
+   // Initial Factions Setup (User & AI Bases)
    useEffect(() => {
       try {
-         const result = TheaterSetupLogic.initializeTheater(missionData.target);
-         setTargetArmada(result.targetCountry.armada_militer);
-         setUnits(prev => [...prev.filter(u => u.side !== 'enemy'), ...result.initialUnits]);
-         setBarracks(result.barracks);
-         setTankHangars(result.tankHangars);
-         setAirfieldHangars(result.airfieldHangars);
-         setHelipads(result.helipads);
-         setPortShips(result.portShips);
-         setArmory(result.armory);
+         // Initialize AI Theater
+         const aiResult = TheaterSetupLogic.initializeTheater(missionData.target);
+         setTargetArmada(aiResult.targetCountry.armada_militer);
+         setUnits(prev => [...prev.filter(u => u.side !== 'enemy'), ...aiResult.initialUnits]);
+         setBarracks(aiResult.barracks);
+         setTankHangars(aiResult.tankHangars);
+         setAirfieldHangars(aiResult.airfieldHangars);
+         setHelipads(aiResult.helipads);
+         setPortShips(aiResult.portShips);
+         setArmory(aiResult.armory);
+
+         // Initialize User Theater (Functional Base on left)
+         const userResult = TheaterSetupLogic.initializeUserTheater(missionData.selection);
+         setUserBarracks(userResult.barracks);
+         setUserTankHangars(userResult.tankHangars);
+         setUserAirfieldHangars(userResult.airfieldHangars);
+         setUserHelipads(userResult.helipads);
+         setUserPortShips(userResult.portShips);
+         setUserArmory(userResult.armory);
       } catch (error) {
          console.error(error);
       }
-   }, [missionData.target]);
+   }, [missionData.target, missionData.selection]);
 
    // Terrain Restriction Definitions
    const NAVAL_UNITS = TheaterSetupLogic.NAVAL_UNITS;
@@ -169,6 +203,17 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
       if (unitToRemove) {
          setUnits(prev => prev.filter(u => u.id !== unitToRemove.id));
+         
+         // UNDO LOGIC: Return units to sidebar
+         const unitType = unitToRemove.type;
+         const isInfantry = unitType === 'pasukan_infanteri';
+         const amount = isInfantry ? 10000 : 1;
+
+         setCumulativeDeployment(prev => ({
+            ...prev,
+            [unitType]: Math.max(0, (prev[unitType] || 0) - amount)
+         }));
+
          return true; // Unit removed
       }
       return false; // No unit found
@@ -221,7 +266,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          // 1. Core Physics (Polyglot) - Use ref to avoid closure staleness
          const result = await polyglotService.processTick(unitsRef.current, dt);
 
-         // 2. Tactical Deployment (Spawn Logic)
+         // 2. Tactical Deployment (Spawn Logic - AI)
          const infRes = InfantryDeploymentLogic.processBarracksTick(barracksRef.current, unitsRef.current, now);
          const tankRes = TankDeploymentLogic.processTankHangarTick(tankHangarsRef.current, unitsRef.current, now);
 
@@ -232,8 +277,16 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          const navalRes = NavalDeploymentLogic.processNavalPortTick(portShipsRef.current, unitsRef.current, now);
          const armoryRes = ArmoryDeploymentLogic.processArmoryTick(armoryRef.current, unitsRef.current, now);
 
+         // 2.1 Tactical Deployment (Spawn Logic - USER)
+         // User base is always active for deployment
+         const userInfRes = InfantryDeploymentLogic.processBarracksTick(userBarracksRef.current, unitsRef.current, now);
+         const userTankRes = TankDeploymentLogic.processTankHangarTick(userTankHangarsRef.current, unitsRef.current, now);
+         const userAirfieldRes = AircraftDeploymentLogic.processAirfieldTick(userAirfieldHangarsRef.current, unitsRef.current, now, true);
+         const userHeliRes = HelicopterDeploymentLogic.processHelipadTick(userHelipadsRef.current, unitsRef.current, now, true);
+         const userNavalRes = NavalDeploymentLogic.processNavalPortTick(userPortShipsRef.current, unitsRef.current, now);
+         const userArmoryRes = ArmoryDeploymentLogic.processArmoryTick(userArmoryRef.current, unitsRef.current, now);
+
          // 3. Post-Combat (Landing/Recovery)
-         // IMPORTANT: Use airfieldResult.nextHangars to ensure spawn counts are preserved
          const postCombatRes = AircraftDeploymentLogic.processPostCombatTick(unitsRef.current, airfieldResult.nextHangars, now);
 
          // 4. Consolidation & State Updates
@@ -243,7 +296,14 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
             ...airfieldResult.newSpawned,
             ...heliRes.newSpawned,
             ...navalRes.newSpawned,
-            ...armoryRes.newSpawned
+            ...armoryRes.newSpawned,
+            // User-side spawned
+            ...userInfRes.newSpawned,
+            ...userTankRes.newSpawned,
+            ...userAirfieldRes.newSpawned,
+            ...userHeliRes.newSpawned,
+            ...userNavalRes.newSpawned,
+            ...userArmoryRes.newSpawned
          ];
 
          let finalUnits = result.units;
@@ -266,6 +326,14 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          setHelipads(heliRes.nextHelipads);
          setPortShips(navalRes.nextPortShips);
          setArmory(armoryRes.nextArmories);
+
+         // User-side state updates
+         setUserBarracks(userInfRes.nextBarracks);
+         setUserTankHangars(userTankRes.nextHangars);
+         setUserAirfieldHangars(userAirfieldRes.nextHangars);
+         setUserHelipads(userHeliRes.nextHelipads);
+         setUserPortShips(userNavalRes.nextPortShips);
+         setUserArmory(userArmoryRes.nextArmories);
 
          if (result.vfx.length > 0) {
             setCombatVfx(v => [...v.filter(fx => Date.now() - fx.timestamp < 1000), ...result.vfx]);
@@ -343,6 +411,12 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                         helipadsState={helipads}
                         portShipsState={portShips}
                         armoryState={armory}
+                        userBarracksState={userBarracks}
+                        userTankHangarsState={userTankHangars}
+                        userAirfieldHangarsState={userAirfieldHangars}
+                        userHelipadsState={userHelipads}
+                        userPortShipsState={userPortShips}
+                        userArmoryState={userArmory}
                         barakCount={targetArmada?.barak || 0}
                         phase={phase}
                         onAreaSelected={(rect) => {

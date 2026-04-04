@@ -109,4 +109,51 @@ export class TheaterSetupLogic {
             armory
         };
     }
+
+    /**
+     * Initializes the user's theater (base and buildings) on the left side (X < 0).
+     */
+    static initializeUserTheater(selection: Record<string, number>): {
+        barracks: BarrackState[];
+        tankHangars: HangarState[];
+        airfieldHangars: AirfieldHangarState[];
+        helipads: HelipadState[];
+        portShips: PortShipState[];
+        armory: ArmoryState[];
+    } {
+        // Mocking an armada object for user from selection
+        const userArmada: any = {
+            barak: Math.ceil((selection['pasukan_infanteri'] || 0) / 10000),
+            darat: { ...selection },
+            udara: { ...selection },
+            laut: { ...selection }
+        };
+
+        const barracks = userArmada.barak > 0 ? BarakUtils.calculateBarracksPositions(-12000, 850, userArmada.barak, 10) : [];
+        const tankHangars = HangarUtils.calculateMultiCategoryHangars(-10400, 4500, userArmada, 10);
+        const airfieldHangars = AirfieldUtils.calculateAirfieldHangars(-12000, -2350, userArmada);
+        
+        const totalHelis = selection['helikopter_serang'] || 0;
+        const helipadCount = totalHelis > 0 ? Math.ceil(totalHelis / 10) : 0;
+        const helipads = helipadCount > 0 ? AirfieldUtils.calculateHelipadPositions(-12000, -550, helipadCount, totalHelis) : [];
+
+        const portShips: PortShipState[] = userArmada.laut ? Object.entries(userArmada.laut)
+            .filter(([type]) => this.NAVAL_UNITS.includes(type))
+            .map(([type, count]) => ({
+                type,
+                currentCount: count as number,
+                maxCapacity: count as number
+            })) : [];
+
+        const armory = ArmoryUtils.calculateArmoryPositions(-10400, 8500, userArmada, 8);
+
+        return {
+            barracks,
+            tankHangars,
+            airfieldHangars,
+            helipads,
+            portShips,
+            armory
+        };
+    }
 }

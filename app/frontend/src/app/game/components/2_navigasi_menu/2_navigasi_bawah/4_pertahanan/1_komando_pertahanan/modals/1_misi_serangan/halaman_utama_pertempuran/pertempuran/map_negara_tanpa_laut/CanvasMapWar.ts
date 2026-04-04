@@ -58,7 +58,13 @@ export function drawWarMapBackground(
    airfieldHangarsState: any[] = [],
    helipadsState: any[] = [],
    portShipsState: any[] = [],
-   armoryState: any[] = []
+   armoryState: any[] = [],
+   userBarracksState: any[] = [],
+   userTankHangarsState: any[] = [],
+   userAirfieldHangarsState: any[] = [],
+   userHelipadsState: any[] = [],
+   userPortShipsState: any[] = [],
+   userArmoryState: any[] = []
 ) {
    ctx.save();
 
@@ -85,8 +91,8 @@ export function drawWarMapBackground(
    ctx.fillRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT * 2);
 
    // 2.2 Tactical Base Area (Slate - Right Side)
-   ctx.fillStyle = "#0f172a";
-   ctx.fillRect(5000, -THEATER_LIMIT, THEATER_LIMIT - 5000, THEATER_LIMIT * 2);
+   // ctx.fillStyle = "#0f172a";
+   // ctx.fillRect(5000, -THEATER_LIMIT, THEATER_LIMIT - 5000, THEATER_LIMIT * 2);
 
    // 3. DRAW ROADS
    const roads = MapTextureEngine.generateHighwaysLandlocked();
@@ -94,6 +100,9 @@ export function drawWarMapBackground(
 
    // 3.2 DRAW TACTICAL AIRBASE (BANDARA & HELIPADS) - NEW MOD
    BandaraEngine.drawAirfield(ctx, 12000, -2350, camera.zoom, mousePos, units, targetArmada, airfieldHangarsState);
+   
+   // Mirror User Airbase (LEFT)
+   BandaraEngine.drawAirfield(ctx, -12000, -2350, camera.zoom, mousePos, units, null, userAirfieldHangarsState);
 
    // Dynamic Helipad Rendering – Iterates over all helipads in state
    helipadsState.forEach((pad: any, i: number) => {
@@ -102,14 +111,31 @@ export function drawWarMapBackground(
       }
    });
 
+   // User Helipads (LEFT)
+   userHelipadsState.forEach((pad: any, i: number) => {
+      if (pad?.pos) {
+         HelipadEngine.drawHelipad(ctx, pad.pos.x, pad.pos.y, camera.zoom, mousePos, `Heli User ${i + 1}`, units, null, pad);
+      }
+   });
+
    // 3.2.1 DRAW TACTICAL TANK HANGAR - NEW MOD
    HangarTankEngine.drawTankHangar(ctx, 12000, 3000, camera.zoom, mousePos, units, targetArmada, tankHangarsState);
+   
+   // Mirror User Hangar (LEFT)
+   HangarTankEngine.drawTankHangar(ctx, -12000, 3000, camera.zoom, mousePos, units, null, userTankHangarsState);
 
    // 3.3 DRAW MILITARY BARRACKS (BARAK) - NEW MOD
    BarakEngine.drawBarracks(ctx, 12000, 850, camera.zoom, 10, barakCount, mousePos, phase, barracksState);
+   
+   // Mirror User Barracks (LEFT)
+   const userBarakCount = userBarracksState.length; 
+   BarakEngine.drawBarracks(ctx, -12000, 850, camera.zoom, 10, userBarakCount, mousePos, phase, userBarracksState);
 
    // 3.4 DRAW ARMORIES (GUDANG SENJATA) - NEW MOD
    ArmoryEngine.drawArmory(ctx, 10400, 8500, camera.zoom, mousePos, units, targetArmada, armoryState);
+   
+   // Mirror User Armory (LEFT)
+   ArmoryEngine.drawArmory(ctx, -10400, 8500, camera.zoom, mousePos, units, null, userArmoryState);
 
    // 4. POTENTIAL FIELD MESH - REMOVED AS PER USER REQUEST
 

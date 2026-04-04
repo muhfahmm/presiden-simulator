@@ -37,6 +37,9 @@ export class PlayerTacticalLogic {
         maxPoints: number,
         hasSea: boolean
     ): UnitState | null {
+        // GEOFENCING: User can only deploy on the left side (X < 0)
+        if (x > 0) return null;
+        
         if (!this.isValidTerrain(unitType, y, hasSea)) return null;
 
         const isInfantry = unitType === 'pasukan_infanteri';
@@ -89,7 +92,11 @@ export class PlayerTacticalLogic {
         const tacticalUnits = isInfantry ? Math.ceil(actualAmount / 1000) : actualAmount;
         
         const rawPositions = BlockDeploymentLogic.calculateGridPositions(rect, tacticalUnits);
-        const positions = rawPositions.filter(pos => this.isValidTerrain(unitType, pos.y, hasSea));
+        
+        // GEOFENCING: Filter out positions on the AI side (X > 0)
+        const positions = rawPositions.filter(pos => 
+            pos.x < 0 && this.isValidTerrain(unitType, pos.y, hasSea)
+        );
 
         return positions.map((pos, i) => ({
             id: `u_${unitType}_area_${Date.now()}_${i}`,

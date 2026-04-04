@@ -35,7 +35,13 @@ interface GameplayProps {
       airfieldHangarsState?: any[],
       helipadsState?: any[],
       portShipsState?: any[],
-      armoryState?: any[]
+      armoryState?: any[],
+      userBarracksState?: any[],
+      userTankHangarsState?: any[],
+      userAirfieldHangarsState?: any[],
+      userHelipadsState?: any[],
+      userPortShipsState?: any[],
+      userArmoryState?: any[]
    ) => void;
    hasSea?: boolean;
    targetArmada?: any;
@@ -44,6 +50,12 @@ interface GameplayProps {
    helipadsState?: any[];
    portShipsState?: any[];
    armoryState?: any[];
+   userBarracksState?: any[];
+   userTankHangarsState?: any[];
+   userAirfieldHangarsState?: any[];
+   userHelipadsState?: any[];
+   userPortShipsState?: any[];
+   userArmoryState?: any[];
    barakCount?: number;
    phase?: string;
    barracksState?: any[];
@@ -65,6 +77,12 @@ export default function Gameplay({
    helipadsState = [],
    portShipsState = [],
    armoryState = [],
+   userBarracksState = [],
+   userTankHangarsState = [],
+   userAirfieldHangarsState = [],
+   userHelipadsState = [],
+   userPortShipsState = [],
+   userArmoryState = [],
    barakCount = 0,
    phase = "deployment",
    barracksState = [],
@@ -347,6 +365,19 @@ export default function Gameplay({
    const latestArmoryRef = useRef(armoryState);
    latestArmoryRef.current = armoryState;
 
+   const latestUserBarracksRef = useRef(userBarracksState);
+   latestUserBarracksRef.current = userBarracksState;
+   const latestUserTankHangarsRef = useRef(userTankHangarsState);
+   latestUserTankHangarsRef.current = userTankHangarsState;
+   const latestUserAirfieldHangarsRef = useRef(userAirfieldHangarsState);
+   latestUserAirfieldHangarsRef.current = userAirfieldHangarsState;
+   const latestUserHelipadsRef = useRef(userHelipadsState);
+   latestUserHelipadsRef.current = userHelipadsState;
+   const latestUserPortShipsRef = useRef(userPortShipsState);
+   latestUserPortShipsRef.current = userPortShipsState;
+   const latestUserArmoryRef = useRef(userArmoryState);
+   latestUserArmoryRef.current = userArmoryState;
+
    useEffect(() => {
       const canvas = canvasRef.current;
       if (!canvas) return;
@@ -373,7 +404,13 @@ export default function Gameplay({
             mouseWorldPosRef.current, barakCount, phase,
             latestBarracksRef.current, latestUnitsRef.current, targetArmada,
             latestTankHangarsRef.current, latestAirfieldHangarsRef.current,
-            latestHelipadsRef.current, portShipsState, latestArmoryRef.current
+            latestHelipadsRef.current, portShipsState, latestArmoryRef.current,
+            latestUserBarracksRef.current,
+            latestUserTankHangarsRef.current,
+            latestUserAirfieldHangarsRef.current,
+            latestUserHelipadsRef.current,
+            latestUserPortShipsRef.current,
+            latestUserArmoryRef.current
          );
 
          const camera = cameraRef.current;
