@@ -59,7 +59,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
    const [blockUnitCount, setBlockUnitCount] = useState("1000");
    const [deploymentMode, setDeploymentMode] = useState<"manual" | "area">("area");
    const [cumulativeDeployment, setCumulativeDeployment] = useState<Record<string, number>>({});
-   
+
    // SIMULATION REFS: Ensuring the tactical loop remains stable and counters are reliable.
    // By using refs, we avoid restarting the setInterval every time a state changes.
    const unitsRef = useRef<UnitState[]>([]);
@@ -140,7 +140,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
    const handleManualDeployment = useCallback((unitType: string | null, x: number, y: number) => {
       if ((phase !== "deployment" && phase !== "combat") || !unitType) return;
-      
+
       const newUnit = PlayerTacticalLogic.deployManual(
          unitType, x, y, units, missionData.selection, currentPoints, maxPoints, hasSea
       );
@@ -189,12 +189,12 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          const isInfantry = selectedUnitType === 'pasukan_infanteri';
          const amountPerUnit = isInfantry ? 10000 : 1;
          const totalIncrease = newUnits.length * amountPerUnit;
-         
+
          setCumulativeDeployment(prev => ({
             ...prev,
             [selectedUnitType]: (prev[selectedUnitType] || 0) + totalIncrease
          }));
-         
+
          setShowBlockModal(false);
          setBlockSelection(null);
       }
@@ -220,11 +220,11 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
          // 1. Core Physics (Polyglot) - Use ref to avoid closure staleness
          const result = await polyglotService.processTick(unitsRef.current, dt);
-         
+
          // 2. Tactical Deployment (Spawn Logic)
          const infRes = InfantryDeploymentLogic.processBarracksTick(barracksRef.current, unitsRef.current, now);
          const tankRes = TankDeploymentLogic.processTankHangarTick(tankHangarsRef.current, unitsRef.current, now);
-         
+
          // Activation Trigger: User crossed X = 5000 / Final Sector
          const isAirfieldActivated = unitsRef.current.some(u => u.side === 'user' && u.pos.x > 5000);
          const airfieldResult = AircraftDeploymentLogic.processAirfieldTick(airfieldHangarsRef.current, unitsRef.current, now, isAirfieldActivated);
@@ -238,10 +238,10 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
          // 4. Consolidation & State Updates
          const newSpawned = [
-            ...infRes.newSpawned, 
-            ...tankRes.newSpawned, 
-            ...airfieldResult.newSpawned, 
-            ...heliRes.newSpawned, 
+            ...infRes.newSpawned,
+            ...tankRes.newSpawned,
+            ...airfieldResult.newSpawned,
+            ...heliRes.newSpawned,
             ...navalRes.newSpawned,
             ...armoryRes.newSpawned
          ];
@@ -249,7 +249,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          let finalUnits = result.units;
          if (newSpawned.length > 0 || postCombatRes.nextUnits.length !== unitsRef.current.length) {
             const mergedUnits = [
-               ...postCombatRes.nextUnits.filter(u => !newSpawned.some(ns => ns.id === u.id)), 
+               ...postCombatRes.nextUnits.filter(u => !newSpawned.some(ns => ns.id === u.id)),
                ...newSpawned
             ];
             finalUnits = mergedUnits;
@@ -257,7 +257,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
          // Enforce continuous movement / geofencing
          const enforcedUnits = AircraftDeploymentLogic.enforceAirborneMovement(finalUnits);
-         
+
          // Batch State Updates - These are now reliable because the interval doesn't reset
          setUnits(enforcedUnits);
          setBarracks(infRes.nextBarracks);
@@ -362,7 +362,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                                     const isInfantry = selectedUnitType === 'pasukan_infanteri';
                                     const amountPerUnit = isInfantry ? 10000 : 1;
                                     const totalIncrease = newUnits.length * amountPerUnit;
-                                    
+
                                     setCumulativeDeployment(prev => ({
                                        ...prev,
                                        [selectedUnitType]: (prev[selectedUnitType] || 0) + totalIncrease

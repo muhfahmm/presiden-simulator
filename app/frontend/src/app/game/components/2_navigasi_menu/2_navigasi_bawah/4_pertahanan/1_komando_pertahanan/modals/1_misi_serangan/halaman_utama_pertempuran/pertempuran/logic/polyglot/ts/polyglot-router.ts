@@ -312,13 +312,13 @@ class PolyglotRouter {
       const isTargetableByMe = (target: UnitState) => {
         const targetType = target.type;
         const targetDomain = getUnitDomain(targetType);
-        
+
         // GROUND PROTECTION: Aircraft on ground (taxi/takeoff) cannot be targeted
         if (targetType.includes('pesawat') || targetType.includes('jet')) {
-            if (!AircraftShootingLogic.isVulnerable(target)) return false;
+          if (!AircraftShootingLogic.isVulnerable(target)) return false;
         }
 
-        if (domain === 'air') return true; 
+        if (domain === 'air') return true;
         if (domain === 'land') return targetDomain === 'land' || targetDomain === 'air';
         if (domain === 'sea') return targetDomain === 'sea' || targetDomain === 'air';
         return true;
@@ -327,66 +327,66 @@ class PolyglotRouter {
       // 1.1 PATH NAVIGATION (Takeoff, Patrol, Landing)
       if (u.path && u.path.length > 0) {
         const target = u.path[0];
-        
+
         // Update unit's airborne state from waypoint metadata if available
         if ((target as any).airState) {
-            (u as any).airState = (target as any).airState;
+          (u as any).airState = (target as any).airState;
         }
 
         // RADAR CHECK: Priority targeting for maneuvering aircraft
         const perceptionRadiusSq = (stats.range * 3) * (stats.range * 3);
-        
+
         const hasHostileNearby = enemies.some(e => {
-            const dx = u.pos.x - e.pos.x;
-            const dy = u.pos.y - e.pos.y;
-            return (dx*dx+dy*dy) < perceptionRadiusSq && isTargetableByMe(e);
+          const dx = u.pos.x - e.pos.x;
+          const dy = u.pos.y - e.pos.y;
+          return (dx * dx + dy * dy) < perceptionRadiusSq && isTargetableByMe(e);
         });
 
         // Break path ONLY IF maneuvering/patrolling. Taxing/Takeoff units cannot break path.
         const currentState = (u as any).airState || 'maneuver';
-        const canBreakPath = (currentState === 'maneuver' || currentState === 'patrol') && u.path.length > 3; 
+        const canBreakPath = (currentState === 'maneuver' || currentState === 'patrol') && u.path.length > 3;
 
         if (hasHostileNearby && canBreakPath) {
-           u.path = []; 
-           (u as any).airState = 'maneuver';
+          u.path = [];
+          (u as any).airState = 'maneuver';
         } else {
-           let speedMult = 2;
-           if (u.path.length === 2 || (u as any).airState === 'takeoff_roll') speedMult = 8;
-           if (u.path.length === 1 || (u as any).airState === 'liftoff') speedMult = 4;
-           
-           // Normal Path Following with Continuous Traversal (Prevents micro-stutter)
-           let moveBudget = stats.speed * dt * speedMult;
-           
-           while (u.path && u.path.length > 0 && moveBudget > 0) {
-              const target = u.path[0];
-              if ((target as any).airState) (u as any).airState = (target as any).airState;
+          let speedMult = 2;
+          if (u.path.length === 2 || (u as any).airState === 'takeoff_roll') speedMult = 8;
+          if (u.path.length === 1 || (u as any).airState === 'liftoff') speedMult = 4;
 
-              const dx = target.x - u.pos.x;
-              const dy = target.y - u.pos.y;
-              const dist = Math.sqrt(dx * dx + dy * dy);
+          // Normal Path Following with Continuous Traversal (Prevents micro-stutter)
+          let moveBudget = stats.speed * dt * speedMult;
 
-              if (dist < moveBudget) {
-                 // Reached current point with budget remaining
-                 u.pos.x = target.x;
-                 u.pos.y = target.y;
-                 moveBudget -= dist;
-                 u.path.shift();
-                 if (u.path.length === 0) (u as any).airState = 'maneuver';
-              } else {
-                 // Move partial distance toward target
-                 u.pos.x += (dx / dist) * moveBudget;
-                 u.pos.y += (dy / dist) * moveBudget;
-                 
-                 const targetRotation = Math.atan2(dy, dx);
-                 // ROTATION DEADZONE: Avoid jitter when extremely close
-                 if (dist > 50) {
-                    const turnSpeed = (u.type.includes('pesawat') || u.type.includes('jet')) ? 0.08 : 1.0;
-                    u.rotation = lerpAngle(u.rotation, targetRotation, turnSpeed);
-                 }
-                 moveBudget = 0; // Budget exhausted
+          while (u.path && u.path.length > 0 && moveBudget > 0) {
+            const target = u.path[0];
+            if ((target as any).airState) (u as any).airState = (target as any).airState;
+
+            const dx = target.x - u.pos.x;
+            const dy = target.y - u.pos.y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+
+            if (dist < moveBudget) {
+              // Reached current point with budget remaining
+              u.pos.x = target.x;
+              u.pos.y = target.y;
+              moveBudget -= dist;
+              u.path.shift();
+              if (u.path.length === 0) (u as any).airState = 'maneuver';
+            } else {
+              // Move partial distance toward target
+              u.pos.x += (dx / dist) * moveBudget;
+              u.pos.y += (dy / dist) * moveBudget;
+
+              const targetRotation = Math.atan2(dy, dx);
+              // ROTATION DEADZONE: Avoid jitter when extremely close
+              if (dist > 50) {
+                const turnSpeed = (u.type.includes('pesawat') || u.type.includes('jet')) ? 0.08 : 1.0;
+                u.rotation = lerpAngle(u.rotation, targetRotation, turnSpeed);
               }
-           }
-           return; 
+              moveBudget = 0; // Budget exhausted
+            }
+          }
+          return;
         }
       }
 
@@ -417,11 +417,11 @@ class PolyglotRouter {
         return sqDist < perceptionRadiusSq && isTargetableByMe(e);
       });
 
-      let targetPool = sameDomainEnemies; 
+      let targetPool = sameDomainEnemies;
 
       let closest = targetPool[0] || null;
       let minSqDist = Infinity;
-      
+
       if (targetPool.length > 0) {
         targetPool.forEach(e => {
           const dx = u.pos.x - e.pos.x;
@@ -439,14 +439,14 @@ class PolyglotRouter {
         const moveY = ((closest.pos.y - u.pos.y) / actualDist) * stats.speed * dt * 4;
         u.pos.x += moveX + sepX;
         u.pos.y += moveY + sepY;
-        
+
         const targetRotation = Math.atan2(moveY + sepY, moveX + sepX);
         const turnSpeed = (u.type.includes('pesawat') || u.type.includes('jet')) ? 0.08 : 1.0;
         u.rotation = lerpAngle(u.rotation, targetRotation, turnSpeed);
       } else if (closest && minSqDist <= rangeSq) {
         u.pos.x += sepX * 0.5;
         u.pos.y += sepY * 0.5;
-        
+
         const targetRotation = Math.atan2(closest.pos.y - u.pos.y, closest.pos.x - u.pos.x);
         u.rotation = lerpAngle(u.rotation, targetRotation, 0.15);
 
@@ -458,7 +458,7 @@ class PolyglotRouter {
           (u as any).lastAttack = now;
           const targetStats = getUnitStats(closest.type);
           const damageDealt = Power_Logic.calculateActualDamage(stats, targetStats);
-          
+
           const oldHealth = closest.health;
           closest.health = HP_Logic.applyDamage(closest.health, damageDealt);
 
@@ -506,26 +506,26 @@ class PolyglotRouter {
       } else {
         u.pos.x += sepX * 0.5;
         u.pos.y += sepY * 0.5;
-        
+
         // Idle/Patrol: move towards nearest enemy slowly if not focused
         if (enemies.filter(e => isTargetableByMe(e)).length > 0) {
           const e = enemies.filter(e => isTargetableByMe(e))[0];
           const dx = e.pos.x - u.pos.x;
           const dy = e.pos.y - u.pos.y;
-          const d = Math.sqrt(dx*dx + dy*dy);
-          u.pos.x += (dx/d) * stats.speed * dt * 0.5;
-          u.pos.y += (dy/d) * stats.speed * dt * 0.5;
+          const d = Math.sqrt(dx * dx + dy * dy);
+          u.pos.x += (dx / d) * stats.speed * dt * 0.5;
+          u.pos.y += (dy / d) * stats.speed * dt * 0.5;
           u.rotation = Math.atan2(dy, dx);
         }
       }
 
       // 4. TERRAIN COORDINATE CLAMPING (Y-Axis Shoreline)
       if (domain === 'land') {
-          // Land units stay in the green (Bottom)
-          if (u.pos.y < SHORELINE_Y + 100) u.pos.y = SHORELINE_Y + 100;
+        // Land units stay in the green (Bottom)
+        if (u.pos.y < SHORELINE_Y + 100) u.pos.y = SHORELINE_Y + 100;
       } else if (domain === 'sea') {
-          // Ships stay in the blue (Top)
-          if (u.pos.y > SHORELINE_Y - 100) u.pos.y = SHORELINE_Y - 100;
+        // Ships stay in the blue (Top)
+        if (u.pos.y > SHORELINE_Y - 100) u.pos.y = SHORELINE_Y - 100;
       }
 
       // GLOBAL THEATER LIMITS
