@@ -185,8 +185,10 @@ export const KONSUMSI_SOSIAL = {
     pusat_penelitian: 20, pusat_pengembangan: 15
   },
   kesehatan: { rumah_sakit_besar: 20, rumah_sakit_kecil: 5, pusat_diagnostik: 10 },
-  olahraga: { kolam_renang: 5, sirkuit_balap: 15, stadion: 10, stadion_internasional: 20 },
-  hukum: { akademi_polisi: 10, pos_polisi: 3, armada_mobil_polisi: 0.1, kejaksaan: 5, pengadilan: 10, pusat_bantuan_hukum: 3 }
+  olahraga: { kolam_renang: 5, sirkuit_balap: 15, stadion: 10, stadion_internasional: 20, gym: 5, golf: 8, esports: 10, gokart: 6 },
+  hukum: { akademi_polisi: 10, pos_polisi: 3, armada_mobil_polisi: 0.1, kejaksaan: 5, pengadilan: 10, pusat_bantuan_hukum: 3 },
+  komersial: { mall: 25 },
+  hiburan: { bioskop: 15, teater: 12 }
 };
 
 export function hitungKonsumsiSosial(data: Partial<CountryData>) {
@@ -210,6 +212,18 @@ export function hitungKonsumsiOlahraga(olahraga: CountryData["sektor_olahraga"])
   if (!olahraga) return 0;
   return Object.keys(KONSUMSI_SOSIAL.olahraga).reduce((total, key) =>
     total + ((olahraga as any)[key] ?? 0) * (KONSUMSI_SOSIAL.olahraga as any)[key], 0);
+}
+
+export function hitungKonsumsiKomersial(komersial?: CountryData["sektor_komersial"]) {
+  if (!komersial) return 0;
+  return Object.keys(KONSUMSI_SOSIAL.komersial).reduce((total, key) =>
+    total + ((komersial as any)[key] ?? 0) * (KONSUMSI_SOSIAL.komersial as any)[key], 0);
+}
+
+export function hitungKonsumsiHiburan(hiburan?: CountryData["sektor_hiburan"]) {
+  if (!hiburan) return 0;
+  return Object.keys(KONSUMSI_SOSIAL.hiburan).reduce((total, key) =>
+    total + ((hiburan as any)[key] ?? 0) * (KONSUMSI_SOSIAL.hiburan as any)[key], 0);
 }
 
 // 6. Konsumsi Transportasi
@@ -240,6 +254,8 @@ export function hitungTotalKonsumsiNasional(data: CountryData) {
     hitungKonsumsiPertahanan(data.sektor_pertahanan, data.armada_militer, data.militer_strategis, data.armada_kepolisian, data.pabrik_militer) +
     hitungKonsumsiSosial(data) +
     hitungKonsumsiOlahraga(data.sektor_olahraga) +
+    hitungKonsumsiKomersial(data.sektor_komersial) +
+    hitungKonsumsiHiburan(data.sektor_hiburan) +
     hitungKonsumsiTransportasi(data.infrastruktur)
   );
 }

@@ -4,11 +4,7 @@ import { useState } from "react";
 import { X, Shield, Swords, Eye, Bomb, Map as MapIcon, Radiation, Zap, Truck, Anchor, Plane, Search, Crosshair, Target, Clock, Loader2, EyeOff } from "lucide-react"
 import { CountryData } from "@/app/database/data/types/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
-import PilihAlutsistaMisi from "./modals/1_misi_serangan/PilihAlutsistaMisi";
-import ModalsPerbandingan from "./modals/1_misi_serangan/halaman_utama_pertempuran/modals_perbandingan/modals_perbandingan";
-import { warMissionStorage } from "./modals/1_misi_serangan/logic_jalur/warMissionStorage";
-import PertempuranIndex from "./modals/1_misi_serangan/halaman_utama_pertempuran/pertempuran/PertempuranIndex";
-import PilihTargetMisi from "./modals/1_misi_serangan/PilihTargetMisi";
+import ProgramNuklirModal from "./5_program_nuklir/5_program_nuklir";
 
 interface ModalProps {
   isOpen: boolean;
@@ -21,54 +17,6 @@ interface ModalProps {
 
 export default function PertahananModal({ isOpen, onClose, activeMenu, setActiveMenu, preselectedTarget, data }: ModalProps) {
   const [collapsedSectors, setCollapsedSectors] = useState<Set<string>>(new Set());
-  const [missionTargetSelection, setMissionTargetSelection] = useState(false);
-  const [selectedTarget, setSelectedTarget] = useState<string | undefined>(preselectedTarget);
-  
-  const showMisiSerangan = activeMenu.startsWith("Komando Pertahanan:Misi Serangan");
-  const menuTarget = activeMenu.startsWith("Komando Pertahanan:Misi Serangan:") 
-    ? activeMenu.split(":")[2] 
-    : undefined;
-
-  const currentTarget = selectedTarget || menuTarget || preselectedTarget;
-  const showPerbandingan = activeMenu.startsWith("Komando Pertahanan:PerbandinganMisi:");
-  const showPertempuran = activeMenu.startsWith("Komando Pertahanan:Pertempuran:");
-  
-  // Mission Comparison Data handling
-  let comparisonData = null;
-  if (showPerbandingan) {
-    const parts = activeMenu.split(":");
-    const target = parts[2];
-    const missionId = parts[3];
-    let mission = missionId ? warMissionStorage.getMission(missionId) : null;
-    if (!mission && target) {
-      const allTargetMissions = warMissionStorage.getMissions()
-        .filter((m: any) => m.target.toLowerCase() === target.toLowerCase())
-        .sort((a, b) => b.startTime - a.startTime);
-      mission = allTargetMissions.find((m: any) => m.status === 'arrived') || allTargetMissions[0];
-    }
-    if (mission) {
-      comparisonData = { target, selection: mission.selection };
-    }
-  }
-
-  // Active Battle Data handling
-  let battleData = null;
-  if (showPertempuran) {
-    const parts = activeMenu.split(":");
-    const target = parts[2];
-    const missionId = parts[3];
-    let mission = missionId ? warMissionStorage.getMission(missionId) : null;
-    if (!mission && target) {
-      const allTargetMissions = warMissionStorage.getMissions()
-        .filter((m: any) => m.target.toLowerCase() === target.toLowerCase())
-        .sort((a, b) => b.startTime - a.startTime);
-      mission = allTargetMissions.find((m: any) => m.status === 'arrived') || allTargetMissions[0];
-    }
-
-    if (mission) {
-      battleData = { target, selection: mission.selection };
-    }
-  }
   
   if (!isOpen || !data) return null;
 
@@ -105,17 +53,6 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
         { label: "Misi Sabotase", icon: Bomb, desc: "Target Sabotase", value: security.operasi_strategis?.misi_sabotase ?? 0, color: "text-orange-500", btnLabel: "Mulai Misi" },
         { label: "Kontrol Wilayah", icon: MapIcon, desc: "Manajemen Administrasi", value: `${security.operasi_strategis?.manajemen_wilayah ?? 0}%`, color: "text-emerald-500", btnLabel: "Lihat Wilayah" },
         { label: "Program Nuklir", icon: Radiation, desc: "Kesiapan Strategis", value: `${security.operasi_strategis?.program_nuklir ?? 0}%`, color: "text-yellow-500", btnLabel: "Lihat Program Nuklir" },
-      ]
-    },
-    {
-      id: "alutsista",
-      title: "Kesiapan Alutsista Nasional",
-      icon: Shield,
-      color: "text-cyan-400",
-      items: [
-        { label: "Tank Tempur Utama", icon: Truck, desc: "Unit MBT", value: fleet.darat.tank_tempur_utama, color: "text-amber-500" },
-        { label: "Armada Destroyer", icon: Anchor, desc: "Kapal Perusak", value: fleet.laut.kapal_destroyer, color: "text-blue-500" },
-        { label: "Jet Tempur Siluman", icon: Plane, desc: "Pesawat Stealth", value: fleet.udara.jet_tempur_siluman, color: "text-zinc-400" },
       ]
     },
     {
@@ -207,10 +144,11 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
                             className="mt-2 w-full py-2 rounded-xl bg-zinc-900/50 border border-zinc-800/80 text-center group-hover:border-red-500/20 transition-all cursor-pointer hover:bg-zinc-800"
                             onClick={() => {
                                if (item.label === "Misi Serangan") {
-                                  setMissionTargetSelection(true);
-                               } else if (item.btnLabel === "Mulai Misi") {
-                                  // For other missions, we can still use local state or add routes later
-                                  // For now, let's keep consistency with the user request
+                                  // Modul Pertempuran telah dihapus sementara
+                                  console.log("Misi Serangan dinonaktifkan");
+                               }
+                               if (item.label === "Program Nuklir") {
+                                  setActiveMenu("Komando Pertahanan:Program Nuklir");
                                }
                             }}
                           >
@@ -229,52 +167,11 @@ export default function PertahananModal({ isOpen, onClose, activeMenu, setActive
         </div>
       </div>
 
-      {missionTargetSelection && (
-        <PilihTargetMisi 
-          isOpen={missionTargetSelection}
-          onClose={() => setMissionTargetSelection(false)}
-          onSelect={(target) => {
-            setSelectedTarget(target);
-            setMissionTargetSelection(false);
-            setActiveMenu(`Komando Pertahanan:Misi Serangan:${target}`);
-          }}
-          userCountry={data.name_id}
-        />
-      )}
-
-      {showMisiSerangan && (
-        <PilihAlutsistaMisi 
-          isOpen={showMisiSerangan}
-          onClose={() => setActiveMenu("Komando Pertahanan")}
-          data={data}
-          targetCountry={currentTarget}
-        />
-      )}
-
-      {showPerbandingan && comparisonData && (
-        <ModalsPerbandingan 
-          isOpen={true}
-          onClose={() => setActiveMenu("Pertahanan")}
-          onConfirm={() => {
-            // Transition to actual battle simulation
-            const parts = activeMenu.split(":");
-            setActiveMenu(`Komando Pertahanan:Pertempuran:${parts[2]}:${parts[3]}`);
-          }}
-          onAutoResult={() => {
-            // Skip to results (simulated as immediately finishing)
-             setActiveMenu("Pertahanan");
-          }}
-          userSelection={comparisonData.selection}
-          targetCountryName={comparisonData.target}
-        />
-      )}
-
-      {showPertempuran && battleData && (
-        <PertempuranIndex 
-          onClose={() => setActiveMenu("Pertahanan")}
-          missionData={battleData}
-        />
-      )}
+      <ProgramNuklirModal 
+        isOpen={activeMenu === "Komando Pertahanan:Program Nuklir"} 
+        onClose={() => setActiveMenu("Komando Pertahanan")} 
+        data={data} 
+      />
     </div>
   )
 }

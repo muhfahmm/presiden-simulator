@@ -8,6 +8,7 @@ import { PendidikanData, KesehatanData, HukumData } from "./5_layanan_sosial";
 import { SektorGeopolitik } from "./6_geopolitik_dan_luar_negeri";
 import { SektorEkstraksi } from "./7_ekstraksi_mineral_kritis";
 import { OlahragaData } from "./8_olahraga";
+import { SektorKomersial, SektorHiburan } from "./9_komersial_hiburan";
 import { EkonomiData, PajakData } from "./ekonomi";
 import { Ministry } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/7_kementrian/1_database_menteri/types";
 
@@ -45,8 +46,10 @@ export interface CountryData extends EkonomiData {
   hukum: HukumData;
 
   sektor_olahraga: OlahragaData;
+  sektor_komersial?: SektorKomersial;
+  sektor_hiburan?: SektorHiburan;
   geopolitik: SektorGeopolitik;
-
+  
   // Global & Politik
   pendapatan_nasional: string;
   kementerian: {
@@ -69,4 +72,5 @@ export * from "./5_layanan_sosial";
 export * from "./6_geopolitik_dan_luar_negeri";
 export * from "./7_ekstraksi_mineral_kritis";
 export * from "./8_olahraga";
+export * from "./9_komersial_hiburan";
 export * from "./ekonomi";

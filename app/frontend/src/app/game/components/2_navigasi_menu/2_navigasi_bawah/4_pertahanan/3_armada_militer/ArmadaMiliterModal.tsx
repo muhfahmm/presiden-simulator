@@ -4,6 +4,7 @@ import { useState, useEffect, Fragment, useMemo } from "react";
 import { X, Wrench, Zap, Shield, Truck, MapPin, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship, Plane, Rocket, Crosshair, Activity, Wifi, Radio, Cctv, Search, Siren, Car, Bike, Dog, ShieldAlert, Anchor, Waves, Waypoints, Satellite, RadioTower, Cpu, Target, Radar, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, EyeOff, Building, Archive, Info, Briefcase, Users, Flame, Coins, MessageSquare, Handshake, ThumbsUp, BookOpen, Scale } from "lucide-react"
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/types/1_kelistrikan";
 import { KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL } from "@/app/database/data/types/1_kelistrikan/2_konsumsi_listrik";
+import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
@@ -14,9 +15,10 @@ import {
   TANK_POWER_PER_UNIT, APC_POWER_PER_UNIT, ARTILLERY_POWER_PER_UNIT, ROCKET_POWER_PER_UNIT, SAM_POWER_PER_UNIT, TACTICAL_POWER_PER_UNIT,
   CARRIER_POWER_PER_UNIT, DESTROYER_POWER_PER_UNIT, CORVETTE_POWER_PER_UNIT, SUBMARINE_POWER_PER_UNIT, REGULAR_SUB_POWER_PER_UNIT, MINE_SHIP_POWER_PER_UNIT, LOGISTICS_POWER_PER_UNIT,
   STEALTH_POWER_PER_UNIT, INTERCEPTOR_POWER_PER_UNIT, BOMBER_POWER_PER_UNIT, ATTACK_HELI_POWER_PER_UNIT, RECON_POWER_PER_UNIT, UAV_POWER_PER_UNIT, KAMIKAZE_POWER_PER_UNIT, TRANSPORT_POWER_PER_UNIT,
-  INFANTRY_POWER_PER_UNIT, calculateTotalMilitaryPower
+  INFANTRY_POWER_PER_UNIT, calculateTotalMilitaryPower 
 } from "./kekuatanmiliter";
 import Perbandingan from "./1_menu_modal/1_umumkan_perang/perbandingan";
+import MaterialRequirement from "../../3_pembangunan/1-produksi/MaterialRequirement";
 import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
 import { playerMilitaryStorage } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
 
@@ -31,6 +33,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedActionCountry, setSelectedActionCountry] = useState<any | null>(null);
   const [showWarComparison, setShowWarComparison] = useState(false);
+  const [oilStock, setOilStock] = useState(0);
   const currentData = data;
 
   useEffect(() => {
@@ -40,6 +43,17 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
       setShowWarComparison(false);
     }
   }, [activeMenu]);
+
+  useEffect(() => {
+    const updateStock = () => {
+      const prod = budgetStorage.getCumulativeProduction();
+      setOilStock(prod["4_sumur_minyak"] || 0);
+    };
+
+    updateStock();
+    window.addEventListener('budget_storage_updated', updateStock);
+    return () => window.removeEventListener('budget_storage_updated', updateStock);
+  }, []);
 
   const globalRankings = useMemo(() => {
     const aidData = militaryAidStorage.getAid();
@@ -197,87 +211,87 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
     return deltas;
   }, [buildingDeltas, playerDeductions]);
 
-  if (!isOpen || !currentData) return null;
+  const militaryGroups = useMemo(() => {
+    if (!currentData) return [];
+    return [
+      {
+        id: "armada_tempur",
+        title: "Sektor Armada Tempur Nasional",
+        icon: MilitaryIcon,
+        color: "text-orange-500",
+        items: [
+          // ARMADA DARAT
+          { key: "barak", groupId: "darat", label: "Pasukan Infanteri", icon: MilitaryIcon, desc: "Hunian Tentara", biaya_pembangunan: 40, waktu_pembangunan: 45, biaya_pemeliharaan: 15, count: ((currentData.armada_militer.barak || 0) + ((effectiveDeltas["barak"] as number) || 0)) * 10000, consumption: KONSUMSI_PERTAHANAN.barak, power: 1 },
+          { key: "tank", groupId: "darat", label: "Main Battle Tank", icon: Truck, desc: "Kavaleri Darat", biaya_pembangunan: 20, waktu_pembangunan: 30, biaya_pemeliharaan: 10, lowongan_kerja: 4, count: (currentData.armada_militer.darat.tank_tempur_utama || 0) + ((effectiveDeltas["tank"] as number) || 0), consumption: 0, fuel_consumption: 12, power: TANK_POWER_PER_UNIT },
+          { key: "apc", groupId: "darat", label: "APC / IFV", icon: Truck, desc: "Transportasi Taktis", biaya_pembangunan: 8, waktu_pembangunan: 15, biaya_pemeliharaan: 4, lowongan_kerja: 3, count: (currentData.armada_militer.darat.apc_ifv || 0) + ((effectiveDeltas["apc"] as number) || 0), consumption: 0, fuel_consumption: 8, power: APC_POWER_PER_UNIT },
+          { key: "artileri", groupId: "darat", label: "Artileri Berat", icon: Target, desc: "Pukulan Jarak Jauh", biaya_pembangunan: 15, waktu_pembangunan: 45, biaya_pemeliharaan: 8, lowongan_kerja: 6, count: (currentData.armada_militer.darat.artileri_berat || 0) + ((effectiveDeltas["artileri"] as number) || 0), consumption: 0, fuel_consumption: 6, power: ARTILLERY_POWER_PER_UNIT },
+          { key: "rocket", groupId: "darat", label: "MLRS Rocket", icon: Rocket, desc: "Sistem Roket", biaya_pembangunan: 18, waktu_pembangunan: 50, biaya_pemeliharaan: 12, lowongan_kerja: 5, count: (currentData.armada_militer.darat.sistem_peluncur_roket || 0) + ((effectiveDeltas["rocket"] as number) || 0), consumption: 0, fuel_consumption: 10, power: ROCKET_POWER_PER_UNIT },
+          { key: "sam", groupId: "darat", label: "Mobile SAM", icon: ShieldAlert, desc: "Hulu Ledak", biaya_pembangunan: 25, waktu_pembangunan: 60, biaya_pemeliharaan: 15, lowongan_kerja: 6, count: (currentData.armada_militer.darat.pertahanan_udara_mobile || 0) + ((effectiveDeltas["sam"] as number) || 0), consumption: 0, fuel_consumption: 5, power: SAM_POWER_PER_UNIT },
+          { key: "tactical", groupId: "darat", label: "Kendaraan Taktis", icon: Car, desc: "Patroli Tempur", biaya_pembangunan: 5, waktu_pembangunan: 10, biaya_pemeliharaan: 2, lowongan_kerja: 2, count: (currentData.armada_militer.darat.kendaraan_taktis || 0) + ((effectiveDeltas["tactical"] as number) || 0), consumption: 0, fuel_consumption: 4, power: TACTICAL_POWER_PER_UNIT },
+          
+          // ARMADA LAUT
+          { key: "carrier", groupId: "laut", label: "Kapal Induk", icon: Ship, desc: "Pangkalan Apung", biaya_pembangunan: 750, waktu_pembangunan: 480, biaya_pemeliharaan: 200, lowongan_kerja: 5000, count: (currentData.armada_militer.laut.kapal_induk || 0) + ((effectiveDeltas["carrier"] as number) || 0), consumption: 0, fuel_consumption: 500, power: CARRIER_POWER_PER_UNIT },
+          { key: "destroyer", groupId: "laut", label: "Kapal Destroyer", icon: Waypoints, desc: "Perusak Maritim", biaya_pembangunan: 280, waktu_pembangunan: 360, biaya_pemeliharaan: 100, lowongan_kerja: 300, count: (currentData.armada_militer.laut.kapal_destroyer || 0) + ((effectiveDeltas["destroyer"] as number) || 0), consumption: 0, fuel_consumption: 150, power: DESTROYER_POWER_PER_UNIT },
+          { key: "corvette", groupId: "laut", label: "Kapal Korvet", icon: Anchor, desc: "Kapal Kawal", biaya_pembangunan: 120, waktu_pembangunan: 180, biaya_pemeliharaan: 45, lowongan_kerja: 100, count: (currentData.armada_militer.laut.kapal_korvet || 0) + ((effectiveDeltas["corvette"] as number) || 0), consumption: 0, fuel_consumption: 80, power: CORVETTE_POWER_PER_UNIT },
+          { key: "submarine", groupId: "laut", label: "Kapal Selam Nuklir", icon: RadioTower, desc: "Siluman Bawah Air", biaya_pembangunan: 420, waktu_pembangunan: 420, biaya_pemeliharaan: 150, lowongan_kerja: 80, count: (currentData.armada_militer.laut.kapal_selam_nuklir || 0) + ((effectiveDeltas["submarine"] as number) || 0), consumption: 0, fuel_consumption: 42, power: SUBMARINE_POWER_PER_UNIT },
+          { key: "reg_sub", groupId: "laut", label: "Kapal Selam Reguler", icon: RadioTower, desc: "Selam Reguler", biaya_pembangunan: 150, waktu_pembangunan: 240, biaya_pemeliharaan: 60, lowongan_kerja: 60, count: (currentData.armada_militer.laut.kapal_selam_regular || 0) + ((effectiveDeltas["reg_sub"] as number) || 0), consumption: 0, fuel_consumption: 40, power: REGULAR_SUB_POWER_PER_UNIT },
+          { key: "mine_ship", groupId: "laut", label: "Kapal Ranjau", icon: Ship, desc: "Penyapu Ranjau", biaya_pembangunan: 45, waktu_pembangunan: 90, biaya_pemeliharaan: 15, lowongan_kerja: 40, count: (currentData.armada_militer.laut.kapal_ranjau || 0) + ((effectiveDeltas["mine_ship"] as number) || 0), consumption: 0, fuel_consumption: 30, power: MINE_SHIP_POWER_PER_UNIT },
+          { key: "logistics", groupId: "laut", label: "Kapal Logistik", icon: Truck, desc: "Suplai Maritim", biaya_pembangunan: 60, waktu_pembangunan: 120, biaya_pemeliharaan: 25, lowongan_kerja: 50, count: (currentData.armada_militer.laut.kapal_logistik || 0) + ((effectiveDeltas["logistics"] as number) || 0), consumption: 0, fuel_consumption: 60, power: LOGISTICS_POWER_PER_UNIT },
+          
+          // ARMADA UDARA
+          { key: "stealth_jet", groupId: "udara", label: "Jet Stealth", icon: Plane, desc: "Supremasi Udara", biaya_pembangunan: 250, waktu_pembangunan: 300, biaya_pemeliharaan: 120, lowongan_kerja: 2, count: (currentData.armada_militer.udara.jet_tempur_siluman || 0) + ((effectiveDeltas["stealth_jet"] as number) || 0), consumption: 0, fuel_consumption: 120, power: STEALTH_POWER_PER_UNIT },
+          { key: "interceptor", groupId: "udara", label: "Jet Interceptor", icon: Plane, desc: "Satu Pencegat", biaya_pembangunan: 120, waktu_pembangunan: 180, biaya_pemeliharaan: 55, lowongan_kerja: 2, count: (currentData.armada_militer.udara.jet_tempur_interceptor || 0) + ((effectiveDeltas["interceptor"] as number) || 0), consumption: 0, fuel_consumption: 100, power: INTERCEPTOR_POWER_PER_UNIT },
+          { key: "bomber", groupId: "udara", label: "Pesawat Pengebom", icon: Radio, desc: "Serangan Udara", biaya_pembangunan: 350, waktu_pembangunan: 360, biaya_pemeliharaan: 180, lowongan_kerja: 3, count: (currentData.armada_militer.udara.pesawat_pengebom || 0) + ((effectiveDeltas["bomber"] as number) || 0), consumption: 0, fuel_consumption: 200, power: BOMBER_POWER_PER_UNIT },
+          { key: "heli_attack", groupId: "udara", label: "Heli Serang", icon: Radio, desc: "Bantuan Udara", biaya_pembangunan: 40, waktu_pembangunan: 90, biaya_pemeliharaan: 25, lowongan_kerja: 3, count: (currentData.armada_militer.udara.helikopter_serang || 0) + ((effectiveDeltas["heli_attack"] as number) || 0), consumption: 0, fuel_consumption: 50, power: ATTACK_HELI_POWER_PER_UNIT },
+          { key: "recon_plane", groupId: "udara", label: "Pesawat Intai", icon: Search, desc: "Intelijen Udara", biaya_pembangunan: 80, waktu_pembangunan: 120, biaya_pemeliharaan: 20, lowongan_kerja: 2, count: (currentData.armada_militer.udara.pesawat_pengintai || 0) + ((effectiveDeltas["recon_plane"] as number) || 0), consumption: 0, fuel_consumption: 40, power: RECON_POWER_PER_UNIT },
+          { key: "uav", groupId: "udara", label: "Drone UAV", icon: Satellite, desc: "Intai Tanpa Awak", biaya_pembangunan: 15, waktu_pembangunan: 30, biaya_pemeliharaan: 5, lowongan_kerja: 1, count: (currentData.armada_militer.udara.drone_intai_uav || 0) + ((effectiveDeltas["uav"] as number) || 0), consumption: 0, fuel_consumption: 5, power: UAV_POWER_PER_UNIT },
+          { key: "kamikaze", groupId: "udara", label: "Drone Kamikaze", icon: Target, desc: "Serangan Bunuh Diri", biaya_pembangunan: 5, waktu_pembangunan: 7, biaya_pemeliharaan: 1, lowongan_kerja: 1, count: (currentData.armada_militer.udara.drone_kamikaze || 0) + ((effectiveDeltas["kamikaze"] as number) || 0), consumption: 0, fuel_consumption: 2, power: KAMIKAZE_POWER_PER_UNIT },
+          { key: "transport", groupId: "udara", label: "Pesawat Angkut", icon: Truck, desc: "Logistik Udara", biaya_pembangunan: 45, waktu_pembangunan: 90, biaya_pemeliharaan: 15, lowongan_kerja: 3, count: (currentData.armada_militer.udara.pesawat_angkut || 0) + ((effectiveDeltas["transport"] as number) || 0), consumption: 0, fuel_consumption: 80, power: TRANSPORT_POWER_PER_UNIT }
+        ].map(unit => {
+          const config = STORAGE_CONFIG[unit.key];
+          if (!config) return unit;
+
+          const baseStorage = currentData.sektor_pertahanan?.[config.storageKey as keyof typeof currentData.sektor_pertahanan] || 0;
+          const deltaStorage = (buildingDeltas[config.storageKey] as number) || 0;
+          const totalStorageUnits = baseStorage + deltaStorage;
+          const storageMax = totalStorageUnits * config.ratio;
+
+          let storageUsed = unit.count;
+          if (config.isCumulative) {
+            const dbKey = Object.entries(MILITARY_KEY_MAP).find(([_, short]) => short === unit.key)?.[0] || unit.key;
+            const baseCount = (currentData.armada_militer as any)[unit.groupId]?.[dbKey] || 
+                             (currentData.armada_militer as any)[dbKey] || 0;
+            const deltaCount = (effectiveDeltas[unit.key] as number) || 0;
+            storageUsed = (typeof baseCount === 'number' ? baseCount : 0) + (typeof deltaCount === 'number' ? deltaCount : 0);
+          }
+
+          return {
+            ...unit,
+            storageLabel: config.label,
+            storageIcon: config.icon,
+            storageUsed,
+            storageMax,
+            storageFull: storageUsed >= storageMax && storageMax > 0
+          };
+        })
+      }
+    ];
+  }, [currentData, effectiveDeltas, buildingDeltas]);
+
+  const totalFuelConsumption = useMemo(() => {
+    return militaryGroups.reduce((acc, group) => {
+      return acc + group.items.reduce((itemAcc, item: any) => {
+        if (item.key === 'barak') return itemAcc;
+        return itemAcc + ((item.count || 0) * (item.fuel_consumption || 0));
+      }, 0);
+    }, 0);
+  }, [militaryGroups]);
+
+   if (!isOpen || !currentData) return null;
 
   const totalPasokan = hitungTotalKapasitas(currentData);
   const totalBeban = hitungTotalKonsumsiNasional(currentData);
   const surplus = totalPasokan - totalBeban;
-
-  const militaryGroups = [
-    {
-      id: "armada_tempur",
-      title: "Sektor Armada Tempur Nasional",
-      icon: MilitaryIcon,
-      color: "text-orange-500",
-      items: [
-        // ARMADA DARAT
-        { key: "barak", groupId: "darat", label: "Pasukan Infanteri", icon: MilitaryIcon, desc: "Hunian Tentara", biaya_pembangunan: 40, waktu_pembangunan: 45, biaya_pemeliharaan: 15, count: ((currentData.armada_militer.barak || 0) + ((effectiveDeltas["barak"] as number) || 0)) * 10000, consumption: KONSUMSI_PERTAHANAN.barak, power: INFANTRY_POWER_PER_UNIT },
-        { key: "tank", groupId: "darat", label: "Main Battle Tank", icon: Truck, desc: "Kavaleri Darat", biaya_pembangunan: 20, waktu_pembangunan: 30, biaya_pemeliharaan: 10, lowongan_kerja: 4, count: (currentData.armada_militer.darat.tank_tempur_utama || 0) + ((effectiveDeltas["tank"] as number) || 0), consumption: 0, power: TANK_POWER_PER_UNIT },
-        { key: "apc", groupId: "darat", label: "APC / IFV", icon: Truck, desc: "Transportasi Taktis", biaya_pembangunan: 8, waktu_pembangunan: 15, biaya_pemeliharaan: 4, lowongan_kerja: 3, count: (currentData.armada_militer.darat.apc_ifv || 0) + ((effectiveDeltas["apc"] as number) || 0), consumption: 0, power: APC_POWER_PER_UNIT },
-        { key: "artileri", groupId: "darat", label: "Artileri Berat", icon: Target, desc: "Pukulan Jarak Jauh", biaya_pembangunan: 15, waktu_pembangunan: 45, biaya_pemeliharaan: 8, lowongan_kerja: 6, count: (currentData.armada_militer.darat.artileri_berat || 0) + ((effectiveDeltas["artileri"] as number) || 0), consumption: 0, power: ARTILLERY_POWER_PER_UNIT },
-        { key: "rocket", groupId: "darat", label: "MLRS Rocket", icon: Rocket, desc: "Sistem Roket", biaya_pembangunan: 18, waktu_pembangunan: 50, biaya_pemeliharaan: 12, lowongan_kerja: 5, count: (currentData.armada_militer.darat.sistem_peluncur_roket || 0) + ((effectiveDeltas["rocket"] as number) || 0), consumption: 0, power: ROCKET_POWER_PER_UNIT },
-        { key: "sam", groupId: "darat", label: "Mobile SAM", icon: ShieldAlert, desc: "Hulu Ledak", biaya_pembangunan: 25, waktu_pembangunan: 60, biaya_pemeliharaan: 15, lowongan_kerja: 6, count: (currentData.armada_militer.darat.pertahanan_udara_mobile || 0) + ((effectiveDeltas["sam"] as number) || 0), consumption: 0, power: SAM_POWER_PER_UNIT },
-        { key: "tactical", groupId: "darat", label: "Kendaraan Taktis", icon: Car, desc: "Patroli Tempur", biaya_pembangunan: 5, waktu_pembangunan: 10, biaya_pemeliharaan: 2, lowongan_kerja: 2, count: (currentData.armada_militer.darat.kendaraan_taktis || 0) + ((effectiveDeltas["tactical"] as number) || 0), consumption: 0, power: TACTICAL_POWER_PER_UNIT },
-        
-        // ARMADA LAUT
-        { key: "carrier", groupId: "laut", label: "Kapal Induk", icon: Ship, desc: "Pangkalan Apung", biaya_pembangunan: 750, waktu_pembangunan: 480, biaya_pemeliharaan: 200, lowongan_kerja: 5000, count: (currentData.armada_militer.laut.kapal_induk || 0) + ((effectiveDeltas["carrier"] as number) || 0), consumption: 0, power: CARRIER_POWER_PER_UNIT },
-        { key: "destroyer", groupId: "laut", label: "Kapal Destroyer", icon: Waypoints, desc: "Perusak Maritim", biaya_pembangunan: 280, waktu_pembangunan: 360, biaya_pemeliharaan: 100, lowongan_kerja: 300, count: (currentData.armada_militer.laut.kapal_destroyer || 0) + ((effectiveDeltas["destroyer"] as number) || 0), consumption: 0, power: DESTROYER_POWER_PER_UNIT },
-        { key: "corvette", groupId: "laut", label: "Kapal Korvet", icon: Anchor, desc: "Kapal Kawal", biaya_pembangunan: 120, waktu_pembangunan: 180, biaya_pemeliharaan: 45, lowongan_kerja: 100, count: (currentData.armada_militer.laut.kapal_korvet || 0) + ((effectiveDeltas["corvette"] as number) || 0), consumption: 0, power: CORVETTE_POWER_PER_UNIT },
-        { key: "submarine", groupId: "laut", label: "Kapal Selam Nuklir", icon: RadioTower, desc: "Siluman Bawah Air", biaya_pembangunan: 420, waktu_pembangunan: 420, biaya_pemeliharaan: 150, lowongan_kerja: 80, count: (currentData.armada_militer.laut.kapal_selam_nuklir || 0) + ((effectiveDeltas["submarine"] as number) || 0), consumption: 0, power: SUBMARINE_POWER_PER_UNIT },
-        { key: "reg_sub", groupId: "laut", label: "Kapal Selam Reguler", icon: RadioTower, desc: "Selam Reguler", biaya_pembangunan: 150, waktu_pembangunan: 240, biaya_pemeliharaan: 60, lowongan_kerja: 60, count: (currentData.armada_militer.laut.kapal_selam_regular || 0) + ((effectiveDeltas["reg_sub"] as number) || 0), consumption: 0, power: REGULAR_SUB_POWER_PER_UNIT },
-        { key: "mine_ship", groupId: "laut", label: "Kapal Ranjau", icon: Ship, desc: "Penyapu Ranjau", biaya_pembangunan: 45, waktu_pembangunan: 90, biaya_pemeliharaan: 15, lowongan_kerja: 40, count: (currentData.armada_militer.laut.kapal_ranjau || 0) + ((effectiveDeltas["mine_ship"] as number) || 0), consumption: 0, power: MINE_SHIP_POWER_PER_UNIT },
-        { key: "logistics", groupId: "laut", label: "Kapal Logistik", icon: Truck, desc: "Suplai Maritim", biaya_pembangunan: 60, waktu_pembangunan: 120, biaya_pemeliharaan: 25, lowongan_kerja: 50, count: (currentData.armada_militer.laut.kapal_logistik || 0) + ((effectiveDeltas["logistics"] as number) || 0), consumption: 0, power: LOGISTICS_POWER_PER_UNIT },
-        
-        // ARMADA UDARA
-        { key: "stealth_jet", groupId: "udara", label: "Jet Stealth", icon: Plane, desc: "Supremasi Udara", biaya_pembangunan: 250, waktu_pembangunan: 300, biaya_pemeliharaan: 120, lowongan_kerja: 2, count: (currentData.armada_militer.udara.jet_tempur_siluman || 0) + ((effectiveDeltas["stealth_jet"] as number) || 0), consumption: 0, power: STEALTH_POWER_PER_UNIT },
-        { key: "interceptor", groupId: "udara", label: "Jet Interceptor", icon: Plane, desc: "Satu Pencegat", biaya_pembangunan: 120, waktu_pembangunan: 180, biaya_pemeliharaan: 55, lowongan_kerja: 2, count: (currentData.armada_militer.udara.jet_tempur_interceptor || 0) + ((effectiveDeltas["interceptor"] as number) || 0), consumption: 0, power: INTERCEPTOR_POWER_PER_UNIT },
-        { key: "bomber", groupId: "udara", label: "Pesawat Pengebom", icon: Radio, desc: "Serangan Udara", biaya_pembangunan: 350, waktu_pembangunan: 360, biaya_pemeliharaan: 180, lowongan_kerja: 3, count: (currentData.armada_militer.udara.pesawat_pengebom || 0) + ((effectiveDeltas["bomber"] as number) || 0), consumption: 0, power: BOMBER_POWER_PER_UNIT },
-        { key: "heli_attack", groupId: "udara", label: "Heli Serang", icon: Radio, desc: "Bantuan Udara", biaya_pembangunan: 40, waktu_pembangunan: 90, biaya_pemeliharaan: 25, lowongan_kerja: 3, count: (currentData.armada_militer.udara.helikopter_serang || 0) + ((effectiveDeltas["heli_attack"] as number) || 0), consumption: 0, power: ATTACK_HELI_POWER_PER_UNIT },
-        { key: "recon_plane", groupId: "udara", label: "Pesawat Intai", icon: Search, desc: "Intelijen Udara", biaya_pembangunan: 80, waktu_pembangunan: 120, biaya_pemeliharaan: 20, lowongan_kerja: 2, count: (currentData.armada_militer.udara.pesawat_pengintai || 0) + ((effectiveDeltas["recon_plane"] as number) || 0), consumption: 0, power: RECON_POWER_PER_UNIT },
-        { key: "uav", groupId: "udara", label: "Drone UAV", icon: Satellite, desc: "Intai Tanpa Awak", biaya_pembangunan: 15, waktu_pembangunan: 30, biaya_pemeliharaan: 5, lowongan_kerja: 1, count: (currentData.armada_militer.udara.drone_intai_uav || 0) + ((effectiveDeltas["uav"] as number) || 0), consumption: 0, power: UAV_POWER_PER_UNIT },
-        { key: "kamikaze", groupId: "udara", label: "Drone Kamikaze", icon: Target, desc: "Serangan Bunuh Diri", biaya_pembangunan: 5, waktu_pembangunan: 7, biaya_pemeliharaan: 1, lowongan_kerja: 1, count: (currentData.armada_militer.udara.drone_kamikaze || 0) + ((effectiveDeltas["kamikaze"] as number) || 0), consumption: 0, power: KAMIKAZE_POWER_PER_UNIT },
-        { key: "transport", groupId: "udara", label: "Pesawat Angkut", icon: Truck, desc: "Logistik Udara", biaya_pembangunan: 45, waktu_pembangunan: 90, biaya_pemeliharaan: 15, lowongan_kerja: 3, count: (currentData.armada_militer.udara.pesawat_angkut || 0) + ((effectiveDeltas["transport"] as number) || 0), consumption: 0, power: TRANSPORT_POWER_PER_UNIT }
-      ].map(unit => {
-        const config = STORAGE_CONFIG[unit.key];
-        if (!config) return unit;
-
-        const baseStorage = currentData.sektor_pertahanan?.[config.storageKey as keyof typeof currentData.sektor_pertahanan] || 0;
-        const deltaStorage = (buildingDeltas[config.storageKey] as number) || 0;
-        const totalStorageUnits = baseStorage + deltaStorage;
-        const storageMax = totalStorageUnits * config.ratio;
-
-        let storageUsed = unit.count;
-        if (config.isCumulative) {
-          // Hitung total unit dalam kategori yang sama (misal: semua pesawat)
-          const categoryItems = Object.entries(STORAGE_CONFIG).filter(([_, v]) => v.storageKey === config.storageKey);
-          storageUsed = categoryItems.reduce((acc, [k, _]) => {
-            const foundUnit = [
-              ...currentData.armada_militer.darat ? Object.entries(currentData.armada_militer.darat).map(([dk, v]: [string, any]) => ({ key: Object.entries(MILITARY_KEY_MAP).find(([mk, mv]) => mv === k)?.[0] === dk ? k : dk, count: v })) : [],
-              // Ini agak rumit karena kita butuh count yang sudah termasuk deltas.
-              // Lebih baik kita ambil dari list items yang sedang kita map jika sudah tersedia, 
-              // atau hitung ulang dengan cara yang sama.
-            ];
-            // Cara termudah: cari di items yang sudah didefinisikan sebelumnya di array.
-            // Tapi karena kita di dalam map, kita hitung ulang saja logic-nya:
-            const dbKey = Object.entries(MILITARY_KEY_MAP).find(([_, short]) => short === k)?.[0] || k;
-            const baseCount = (currentData.armada_militer as any)[unit.groupId]?.[dbKey] || 
-                             (currentData.armada_militer as any)[dbKey] || 0;
-            const deltaCount = (effectiveDeltas[k] as number) || 0;
-            return acc + (typeof baseCount === 'number' ? baseCount : 0) + (typeof deltaCount === 'number' ? deltaCount : 0);
-          }, 0);
-        }
-
-        return {
-          ...unit,
-          storageLabel: config.label,
-          storageIcon: config.icon,
-          storageUsed,
-          storageMax,
-          isFull: storageUsed >= storageMax
-        };
-      })
-    }
-  ];
 
   const handleBuildRequest = (item: any) => {
     setConfirmBuild(item);
@@ -406,6 +420,41 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
             </div>
           );
         })()}
+
+        {/* Fuel Status Strip */}
+        <div className="px-8 py-4 border-b border-zinc-800/40 bg-zinc-900/40 flex items-stretch gap-3">
+          <div className="flex-1 flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-amber-500/20 bg-amber-500/5 shadow-[0_0_18px_rgba(245,158,11,0.1)] transition-all duration-300 group">
+            <div className="p-2 rounded-xl bg-zinc-950/60 border border-zinc-800/50">
+              <Flame size={16} className="text-amber-500" />
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.25em] leading-none truncate">Stok Minyak Bumi Nasional</span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-xl font-black text-amber-500 tracking-tight leading-tight">{oilStock.toLocaleString('id-ID')}</span>
+                <span className="text-[8px] font-bold text-zinc-600 uppercase tracking-widest leading-none">BARREL</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex-1 flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-rose-500/20 bg-rose-500/5 shadow-[0_0_18px_rgba(244,63,94,0.1)] transition-all duration-300 group">
+            <div className="p-2 rounded-xl bg-zinc-950/60 border border-zinc-800/50">
+              <Activity size={16} className="text-rose-500" />
+            </div>
+            <div className="flex flex-col gap-0.5">
+              <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.25em] leading-none truncate">Konsumsi Minyak Bumi Armada</span>
+              <div className="flex items-baseline gap-2">
+                <span className="text-xl font-black text-rose-500 tracking-tight leading-tight">{totalFuelConsumption.toLocaleString('id-ID')}</span>
+                <span className="text-[8px] font-bold text-zinc-600 uppercase tracking-widest leading-none">L / Hari</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Info Card - Taking up space to maintain symmetry if needed, or just showing the info */}
+          <div className="flex-[0.5] hidden lg:flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl border border-zinc-800/50 bg-zinc-900/10 opacity-40 italic">
+            <Info size={12} className="text-zinc-500" />
+            <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Update Real-time Nasional</span>
+          </div>
+        </div>
 
         {/* Content */}
         <div className="flex-1 overflow-y-auto p-8 no-scrollbar bg-zinc-950/20">
@@ -598,32 +647,123 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
         {/* Confirmation Modal */}
         {confirmBuild && (
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-3xl w-full max-w-md p-8 shadow-2xl scale-in-center animate-in zoom-in duration-300">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-4 bg-cyan-500/10 rounded-2xl border border-cyan-500/20"><confirmBuild.icon className="h-8 w-8 text-cyan-500" /></div>
-                <div>
-                  <h3 className="text-xl font-black text-white">{confirmBuild.label}</h3>
-                  <p className="text-xs text-zinc-500 font-bold uppercase tracking-wider">{confirmBuild.desc}</p>
+            <div className="bg-zinc-900 border border-zinc-800 rounded-[40px] w-full max-w-lg p-8 shadow-2xl scale-in-center animate-in zoom-in duration-300 flex flex-col relative overflow-hidden">
+              
+              {/* Decorative Header Icon */}
+              <div className="absolute -top-12 -right-12 w-40 h-40 bg-cyan-500/5 rounded-full blur-3xl"></div>
+              
+              <div className="flex flex-col items-center text-center mb-8 relative z-10">
+                <div className="p-5 bg-cyan-500/10 rounded-[32px] border border-cyan-500/20 mb-4 shadow-[0_0_30px_rgba(6,182,212,0.15)] group-hover:scale-110 transition-transform">
+                  <confirmBuild.icon className="h-10 w-10 text-cyan-500" />
                 </div>
+                <h3 className="text-2xl font-black text-white uppercase italic tracking-tight">Konfirmasi Bangun?</h3>
+                <p className="text-xs text-zinc-500 font-bold uppercase tracking-[0.2em] mt-1 italic">
+                  Anda akan membangun <span className="text-cyan-400">{confirmBuild.label}</span> untuk armada militer.
+                </p>
               </div>
-              <div className="space-y-4 mb-8">
-                <div className="bg-zinc-950/50 p-4 rounded-2xl border border-zinc-800/50 space-y-3">
-                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Biaya Pembangunan</span><span className="text-sm font-black text-white">{confirmBuild.biaya_pembangunan}</span></div>
-                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Waktu Pengerjaan</span><span className="text-sm font-black text-cyan-400">{confirmBuild.waktu_pembangunan} Hari</span></div>
-                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Beban Listrik</span><span className="text-sm font-black text-rose-500">{confirmBuild.consumption} MW / unit</span></div>
-                </div>
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-xs text-zinc-500 font-bold uppercase">Jumlah Unit</span>
-                  <div className="flex items-center bg-zinc-950 rounded-xl border border-zinc-800 p-1">
-                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-2 text-zinc-400 hover:text-white">-</button>
-                    <input type="number" value={quantity} onChange={e => setQuantity(Math.max(1, parseInt(e.target.value) || 1))} className="w-12 text-center bg-transparent text-white font-black text-sm outline-none" />
-                    <button onClick={() => setQuantity(quantity + 1)} className="p-2 text-zinc-400 hover:text-white">+</button>
+
+              <div className="space-y-6 relative z-10 flex-1 overflow-y-auto no-scrollbar pr-1">
+                {/* Stats Grid */}
+                <div className={`grid grid-cols-2 gap-3`}>
+                  <div className="bg-zinc-950/50 border border-zinc-800/80 rounded-3xl p-5 flex flex-col items-center gap-1.5 group hover:bg-zinc-900/50 transition-colors">
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">Biaya Total</span>
+                    <span className="text-2xl font-black text-amber-500 tracking-tight leading-none overflow-hidden text-ellipsis w-full text-center">
+                      {(confirmBuild.biaya_pembangunan * quantity).toLocaleString('id-ID')}
+                    </span>
                   </div>
+                  
+                  <div className="bg-zinc-950/50 border border-zinc-800/80 rounded-3xl p-5 flex flex-col items-center gap-1.5 group hover:bg-zinc-900/50 transition-colors">
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">Waktu Total</span>
+                    <div className="flex items-center gap-2">
+                       <Clock size={16} className="text-cyan-500" />
+                       <span className="text-2xl font-black text-white tracking-tight leading-none">
+                        {confirmBuild.waktu_pembangunan * quantity}<span className="text-xs text-zinc-500 font-bold uppercase ml-1">Hari</span>
+                       </span>
+                    </div>
+                  </div>
+
+                  {confirmBuild.consumption > 0 && (
+                    <div className="bg-zinc-950/50 border border-zinc-800/80 rounded-3xl p-5 flex flex-col items-center gap-1.5 group hover:bg-zinc-900/50 transition-colors">
+                      <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">Energi</span>
+                      <div className="flex items-center gap-2">
+                        <Zap size={14} className="text-rose-500 fill-rose-500/20" />
+                        <span className="text-2xl font-black text-rose-500 tracking-tight leading-none overflow-hidden text-ellipsis w-full text-center">
+                          {(confirmBuild.consumption * quantity).toLocaleString('id-ID')} <span className="text-[10px] font-bold">MW</span>
+                        </span>
+                      </div>
+                    </div>
+                  )}
+
+                  {confirmBuild.fuel_consumption > 0 && (
+                    <div className="bg-zinc-950/50 border border-zinc-800/80 rounded-3xl p-5 flex flex-col items-center gap-1.5 group hover:bg-zinc-900/50 transition-colors">
+                      <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">Bahan Bakar</span>
+                      <div className="flex items-center gap-2">
+                        <Flame size={14} className="text-amber-500 fill-amber-500/20" />
+                        <span className="text-2xl font-black text-amber-500 tracking-tight leading-none overflow-hidden text-ellipsis w-full text-center">
+                          {(confirmBuild.fuel_consumption * quantity).toLocaleString('id-ID')} <span className="text-[10px] font-bold">L/Hari</span>
+                        </span>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                {/* Quantity Input Section */}
+                <div className="flex flex-col gap-3">
+                    <div className="flex items-center justify-between px-1">
+                        <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest italic">Jumlah Unit Pembangunan</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-4 p-2.5 bg-zinc-950/80 rounded-[28px] border border-zinc-800/80 shadow-inner">
+                        <button 
+                            onClick={() => setQuantity(Math.max(1, quantity - 1))} 
+                            className="w-14 h-14 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-90 transition-all flex items-center justify-center font-black text-2xl shadow-xl cursor-pointer"
+                        >
+                            -
+                        </button>
+                        
+                        <div className="flex flex-col items-center">
+                            <input 
+                                type="number" 
+                                value={quantity} 
+                                onChange={e => setQuantity(Math.max(1, parseInt(e.target.value) || 1))} 
+                                className="w-20 text-center bg-transparent text-white font-black text-3xl outline-none tracking-tighter" 
+                            />
+                            <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest -mt-1">Unit</span>
+                        </div>
+
+                        <button 
+                            onClick={() => setQuantity(quantity + 1)} 
+                            className="w-14 h-14 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-cyan-400 hover:bg-cyan-500/10 active:scale-90 transition-all flex items-center justify-center font-black text-2xl shadow-xl cursor-pointer"
+                        >
+                            +
+                        </button>
+                    </div>
+                </div>
+
+                {/* Material Requirements Grid Component */}
+                <MaterialRequirement buildingKey={confirmBuild.key} quantity={quantity} />
+
+                {/* Estimation Date Badge */}
+                <div className="bg-cyan-500/5 border border-cyan-500/10 rounded-2xl py-3 px-6 text-center">
+                    <p className="text-[11px] font-black text-cyan-500/70 uppercase tracking-[0.2em] italic">
+                        Selesai Bertahap S/D: {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
+                    </p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-3">
-                <button onClick={() => setConfirmBuild(null)} className="py-3 rounded-xl border border-zinc-800 text-zinc-400 font-black uppercase text-xs hover:bg-zinc-800 transition-all">Batal</button>
-                <button onClick={handleConfirmBuild} className="py-3 rounded-xl bg-cyan-600 text-white font-black uppercase text-xs shadow-lg shadow-cyan-900/40 hover:bg-cyan-500 transition-all">Konfirmasi</button>
+
+              {/* Action Buttons */}
+              <div className="grid grid-cols-2 gap-4 mt-8 sticky bottom-0 pt-2 bg-zinc-900">
+                <button 
+                    onClick={() => setConfirmBuild(null)} 
+                    className="py-5 rounded-3xl border border-zinc-800 text-zinc-500 font-black uppercase text-xs tracking-[0.2em] hover:bg-zinc-800 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95"
+                >
+                    Batal
+                </button>
+                <button 
+                    onClick={handleConfirmBuild} 
+                    className="py-5 rounded-3xl bg-cyan-600 text-white font-black uppercase text-xs tracking-[0.2em] shadow-[0_0_25px_rgba(6,182,212,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_35px_rgba(6,182,212,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20"
+                >
+                    Bangun Sekarang
+                </button>
               </div>
             </div>
           </div>
@@ -844,6 +984,16 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
                 </div>
               )}
 
+              {item.fuel_consumption > 0 && (
+                <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+                  <div className="flex items-center gap-2.5">
+                    <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Flame size={12} /></div>
+                    <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Konsumsi BBM</span>
+                  </div>
+                  <span className="text-[14px] font-black text-amber-500">{item.fuel_consumption} L/Hari</span>
+                </div>
+              )}
+
               {item.lowongan_kerja > 0 && (
                 <>
                   <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
@@ -904,7 +1054,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
             {item.desc}
           </div>
           <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-            Aktif: {item.count} Unit
+            Aktif: {item.count.toLocaleString('id-ID')} {item.key === 'barak' ? 'Pasukan' : 'Unit'}
           </div>
         </div>
       </div>
@@ -921,7 +1071,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
               <MilitaryIcon size={12} className="text-cyan-400" />
             </div>
             <span className="text-[12px] font-bold text-cyan-400/90">
-              Daya Tempur: +{item.power?.toLocaleString('id-ID')} / unit
+              Daya Tempur: +{item.power?.toLocaleString('id-ID')} / {item.key === 'barak' ? 'person' : 'unit'}
             </span>
           </div>
 
@@ -935,7 +1085,14 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
           {item.consumption > 0 && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-amber-500/10 rounded-lg"><Zap size={12} className="text-amber-500/90" /></div>
-              <span className="text-[12px] font-bold text-amber-500/80">Konsumsi: {item.consumption} MW/unit</span>
+              <span className="text-[12px] font-bold text-amber-500/80">Energi: {item.consumption} MW/unit</span>
+            </div>
+          )}
+
+          {item.fuel_consumption > 0 && (
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 bg-amber-500/10 rounded-lg"><Flame size={12} className="text-amber-500/90" /></div>
+              <span className="text-[12px] font-bold text-amber-500/80">BBM: {item.fuel_consumption} L/hari</span>
             </div>
           )}
 
@@ -977,7 +1134,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
             <span className="text-[13px] font-black text-zinc-500 uppercase tracking-[0.15em] italic">Total Unit</span>
             <span className="text-[22px] font-black text-cyan-400 tracking-tight">
               {(item.count || 0).toLocaleString('id-ID')}
-              <span className="text-[12px] text-cyan-500/50 font-normal uppercase italic ml-1">Unit</span>
+              <span className="text-[12px] text-cyan-500/50 font-normal uppercase italic ml-1">{item.key === 'barak' ? 'Pasukan' : 'Unit'}</span>
             </span>
           </div>
           {/* Row 2: Kalkulasi Total Kekuatan */}

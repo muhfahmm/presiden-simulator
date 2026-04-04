@@ -38,6 +38,9 @@ export function useGamePath(path: string[]) {
         if (target) initialMenu = `Komando Pertahanan:Misi Serangan:${target}`;
         else initialMenu = "Komando Pertahanan:Misi Serangan";
       }
+      else if (detail === 'program_nuklir') {
+        initialMenu = "Komando Pertahanan:Program Nuklir";
+      }
       else initialMenu = "Komando Pertahanan";
     }
     else if (subMenu === 'intelijen') initialMenu = "Menu:Intelijen";
@@ -112,6 +115,7 @@ export function useGamePath(path: string[]) {
       "Menu:TempatUmum": "/game/pembangunan/tempat-umum",
       "Pertahanan": "/game/pertahanan",
       "Komando Pertahanan": "/game/pertahanan/komando-pertahanan",
+      "Komando Pertahanan:Program Nuklir": "/game/pertahanan/komando-pertahanan/program_nuklir",
       "Komando Pertahanan:Misi Serangan": "/game/pertahanan/komando-pertahanan/misi-serangan",
       "Menu:Intelijen": "/game/pertahanan/intelijen",
       "Menu:ArmadaMiliter": "/game/pertahanan/armada-militer",

@@ -101,6 +101,58 @@ export const BUILDING_REQUIREMENTS: Record<string, BuildingRequirement> = {
   "pabrik_amunisi": { beton: 600, baja: 900, kayu: 150 },
   "pabrik_kendaraan_tempur": { beton: 1200, baja: 1800, kayu: 0 },
   "pabrik_senjata_berat": { beton: 1500, baja: 2200, kayu: 0 },
+
+  // --- 12. PERTAHANAN NASIONAL ---
+  "1_penjara": { beton: 1200, baja: 800, kayu: 200 },
+  "2_gudang_senjata": { beton: 800, baja: 1400, kayu: 100 },
+  "3_hangar_tank": { beton: 1500, baja: 2500, kayu: 0 },
+  "4_akademi_militer": { beton: 2500, baja: 1800, kayu: 0 },
+  "5_pusat_komando": { beton: 4000, baja: 3000, kayu: 0 },
+  "6_pangkalan_udara": { beton: 3500, baja: 5000, kayu: 200 },
+  "7_pangkalan_laut": { beton: 4500, baja: 7000, kayu: 500 },
+  "8_program_luar_angkasa": { beton: 8000, baja: 15000, kayu: 0 },
+  "9_pertahanan_siber": { beton: 1000, baja: 600, kayu: 0 },
+
+  // --- 13. KEPOLISIAN NEGARA ---
+  "1_pusat_komando": { beton: 1500, baja: 1200, kayu: 0 },
+  "2_akademi_polisi": { beton: 1000, baja: 800, kayu: 0 },
+  "3_pusat_forensik": { beton: 600, baja: 400, kayu: 0 },
+  "4_kantor_polisi": { beton: 400, baja: 200, kayu: 50 },
+  "5_pos_polisi": { beton: 100, baja: 50, kayu: 20 },
+  "6_network_cctv": { beton: 50, baja: 300, kayu: 0 },
+  "7_armada_mobil": { beton: 0, baja: 150, kayu: 0 },
+  "8_mobil_interceptor": { beton: 0, baja: 200, kayu: 0 },
+  "9_unit_r2": { beton: 0, baja: 50, kayu: 0 },
+  "10_heli_polisi": { beton: 100, baja: 1200, kayu: 0 },
+  "11_unit_k9": { beton: 50, baja: 20, kayu: 100 },
+  "12_swat": { beton: 200, baja: 400, kayu: 0 },
+  "13_anti_huru_hara": { beton: 150, baja: 300, kayu: 0 },
+
+  // --- 14. UNIT MILITER (ARMADA MILITER) ---
+  "barak": { beton: 400, baja: 300, kayu: 50 },
+  "tank": { beton: 150, baja: 800, kayu: 0 },
+  "apc": { beton: 80, baja: 400, kayu: 0 },
+  "artileri": { beton: 120, baja: 500, kayu: 0 },
+  "rocket": { beton: 150, baja: 600, kayu: 0 },
+  "sam": { beton: 180, baja: 700, kayu: 0 },
+  "tactical": { beton: 50, baja: 200, kayu: 0 },
+  
+  "carrier": { beton: 2500, baja: 8000, kayu: 200 },
+  "destroyer": { beton: 800, baja: 3500, kayu: 50 },
+  "corvette": { beton: 500, baja: 2000, kayu: 30 },
+  "submarine": { beton: 600, baja: 4500, kayu: 0 },
+  "reg_sub": { beton: 400, baja: 2500, kayu: 0 },
+  "mine_ship": { beton: 200, baja: 800, kayu: 20 },
+  "logistics": { beton: 300, baja: 1200, kayu: 100 },
+
+  "stealth_jet": { beton: 100, baja: 600, kayu: 0 },
+  "interceptor": { beton: 80, baja: 400, kayu: 0 },
+  "bomber": { beton: 150, baja: 900, kayu: 0 },
+  "heli_attack": { beton: 60, baja: 300, kayu: 0 },
+  "recon_plane": { beton: 40, baja: 200, kayu: 0 },
+  "uav": { beton: 10, baja: 50, kayu: 0 },
+  "kamikaze": { beton: 5, baja: 20, kayu: 0 },
+  "transport": { beton: 120, baja: 500, kayu: 20 },
 };
 
 /**

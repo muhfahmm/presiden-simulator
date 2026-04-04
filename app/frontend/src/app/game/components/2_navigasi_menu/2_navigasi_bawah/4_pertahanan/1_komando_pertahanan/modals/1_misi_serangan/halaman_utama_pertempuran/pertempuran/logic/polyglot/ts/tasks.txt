@@ -1,7 +1,0 @@
-[FRONTEND TS/TSX TASKS]
-1. Manage UI/UX for deployment and combat phases.
-2. Render the interactive'Hybrid Geospatial' map using Canvas API.
-3. Calculate and visualize Zone of Control (ZoC) influence maps.
-4. Synchronize data between specialized polyglot engines (CPP, Rust, Python).
-5. Handle user interactions, unit selections, and drag-and-drop deployment.
-6. Manage real-time state updates for unit health and positions.

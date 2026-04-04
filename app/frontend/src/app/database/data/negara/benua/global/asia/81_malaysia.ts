@@ -1,4 +1,4 @@
-﻿import { CountryData } from "@/app/database/data/types";
+import { CountryData } from "@/app/database/data/types";
 import { malaysia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/asia/81_malaysia";
 import { malaysia_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/asia/81_malaysia";
 import { malaysia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/asia/81_malaysia";
@@ -11,6 +11,8 @@ import { malaysia_listrik } from "@/app/database/data/semua_fitur_negara/1_produ
 import { malaysia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_manufaktur/asia/81_malaysia";
 import { malaysia_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/9_sektor_olahan_pangan/asia/81_malaysia";
 import { malaysia_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/asia/81_malaysia";
+import { malaysia_komersial } from "@/app/database/data/semua_fitur_negara/3_sosial/5_komersial/asia/81_malaysia";
+import { malaysia_hiburan } from "@/app/database/data/semua_fitur_negara/3_sosial/6_hiburan/asia/81_malaysia";
 import { malaysia_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/asia/81_malaysia";
 import { malaysia_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/asia/81_malaysia";
 import { malaysia_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_perikanan/asia/81_malaysia";
@@ -40,6 +42,8 @@ export const malaysia: CountryData = {
   "kesehatan": malaysia_kesehatan,
   "hukum": malaysia_hukum,
   "sektor_olahraga": malaysia_olahraga,
+  "sektor_komersial": malaysia_komersial,
+  "sektor_hiburan": malaysia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

@@ -267,53 +267,106 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
         {/* Confirmation Modal */}
         {confirmBuild && (
           <div className="absolute inset-0 bg-black/60 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
-            <div className="bg-zinc-900 border border-zinc-800 rounded-3xl w-full max-w-md p-8 shadow-2xl scale-in-center animate-in zoom-in duration-300">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-4 bg-cyan-500/10 rounded-2xl border border-cyan-500/20"><confirmBuild.icon className="h-8 w-8 text-cyan-500" /></div>
-                <div>
-                   <h3 className="text-xl font-black text-white">{confirmBuild.label}</h3>
-                   <p className="text-xs text-zinc-500 font-bold uppercase tracking-wider">{confirmBuild.desc}</p>
+            <div className="bg-zinc-900 border border-zinc-800 rounded-[40px] w-full max-w-lg p-8 shadow-2xl scale-in-center animate-in zoom-in duration-300 flex flex-col relative overflow-hidden">
+              
+              {/* Decorative Header Icon */}
+              <div className="absolute -top-12 -right-12 w-40 h-40 bg-cyan-500/5 rounded-full blur-3xl"></div>
+              
+              <div className="flex flex-col items-center text-center mb-8 relative z-10">
+                <div className="p-5 bg-cyan-500/10 rounded-full border border-cyan-500/20 mb-4 shadow-[0_0_30px_rgba(6,182,212,0.15)] group-hover:scale-110 transition-transform">
+                  <confirmBuild.icon className="h-10 w-10 text-cyan-500" />
                 </div>
+                <h3 className="text-3xl font-black text-white uppercase italic tracking-tight">Konfirmasi Bangun?</h3>
+                <p className="text-xs text-zinc-500 font-bold uppercase tracking-[0.2em] mt-1 italic">
+                  Anda akan membangun <span className="text-cyan-400 border-b border-cyan-500/30">{confirmBuild.label}</span> untuk infrastruktur pertahanan.
+                </p>
               </div>
-              <div className="space-y-4 mb-8">
-                <div className={`w-full grid ${confirmBuild.consumption ? 'grid-cols-3' : 'grid-cols-2'} gap-3`}>
-                  <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
-                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Total</span>
-                    <span className="text-xl font-black text-amber-500 group-hover:scale-110 transition-transform duration-300 tracking-tight">{confirmBuild.cost * quantity}</span>
+
+              <div className="space-y-6 relative z-10 flex-1 overflow-y-auto no-scrollbar pr-1">
+                {/* Stats Grid - 3 Columns */}
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="bg-zinc-950/50 border border-zinc-800/80 rounded-3xl p-5 flex flex-col items-center gap-1.5 group hover:bg-zinc-900/50 transition-colors">
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">Biaya Total</span>
+                    <span className="text-2xl font-black text-amber-500 tracking-tight leading-none overflow-hidden text-ellipsis w-full text-center">
+                      {(confirmBuild.cost * quantity).toLocaleString('id-ID')}
+                    </span>
                   </div>
-                  <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
-                    <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Waktu Total</span>
+                  
+                  <div className="bg-zinc-950/50 border border-zinc-800/80 rounded-3xl p-5 flex flex-col items-center gap-1.5 group hover:bg-zinc-900/50 transition-colors">
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">Waktu Total</span>
                     <div className="flex items-center gap-2">
-                       <Clock size={14} className="text-cyan-500" />
-                       <span className="text-xl font-black text-white group-hover:scale-110 transition-transform duration-300 tracking-tight">{confirmBuild.buildTime * quantity} Hari</span>
+                       <Clock size={16} className="text-cyan-500" />
+                       <span className="text-2xl font-black text-white tracking-tight leading-none">
+                        {confirmBuild.buildTime * quantity}<span className="text-xs text-zinc-500 font-bold uppercase ml-1">Hari</span>
+                       </span>
                     </div>
                   </div>
-                  {confirmBuild.consumption > 0 && (
-                    <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
-                      <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Energi Dikonsumsi</span>
-                      <div className="flex items-center gap-2">
-                        <Zap size={14} className="text-rose-500" />
-                        <span className="text-xl font-black text-rose-500 group-hover:scale-110 transition-transform duration-300 tracking-tight">{(confirmBuild.consumption * quantity).toLocaleString('id-ID')} MW</span>
-                      </div>
+
+                  <div className="bg-zinc-950/50 border border-zinc-800/80 rounded-3xl p-5 flex flex-col items-center gap-1.5 group hover:bg-zinc-900/50 transition-colors">
+                    <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">Konsumsi Energi</span>
+                    <div className="flex items-center gap-2">
+                      <Zap size={14} className="text-rose-500 fill-rose-500/20" />
+                      <span className="text-2xl font-black text-rose-500 tracking-tight leading-none overflow-hidden text-ellipsis w-full text-center">
+                        {(confirmBuild.consumption * quantity).toLocaleString('id-ID')} <span className="text-[10px] font-bold">MW</span>
+                      </span>
                     </div>
-                  )}
+                  </div>
                 </div>
-                
-                {/* Material Requirements */}
+
+                {/* Material Requirements Grid Component */}
                 <MaterialRequirement buildingKey={confirmBuild.key} quantity={quantity} />
 
-                <div className="flex items-center justify-between gap-4">
-                  <span className="text-xs text-zinc-500 font-bold uppercase">Jumlah Unit</span>
-                  <div className="flex items-center bg-zinc-950 rounded-xl border border-zinc-800 p-1">
-                    <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="p-2 text-zinc-400 hover:text-white">-</button>
-                    <input type="number" value={quantity} onChange={e => setQuantity(Math.max(1, parseInt(e.target.value) || 1))} className="w-12 text-center bg-transparent text-white font-black text-sm outline-none" />
-                    <button onClick={() => setQuantity(quantity + 1)} className="p-2 text-zinc-400 hover:text-white">+</button>
-                  </div>
+                {/* Quantity Input Section - Full Width Bar */}
+                <div className="flex flex-col gap-3">
+                    <div className="flex items-center justify-between px-1">
+                        <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest italic">Jumlah Unit Pembangunan</span>
+                    </div>
+                    <div className="flex items-center justify-between gap-4 p-2.5 bg-zinc-950/80 rounded-[28px] border border-zinc-800/80 shadow-inner">
+                        <button 
+                            onClick={() => setQuantity(Math.max(1, quantity - 1))} 
+                            className="w-14 h-14 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-white hover:bg-zinc-800 active:scale-90 transition-all flex items-center justify-center font-black text-2xl shadow-xl cursor-pointer"
+                        >
+                            -
+                        </button>
+                        
+                        <div className="flex flex-col items-center flex-1">
+                            <div className="flex items-baseline gap-1">
+                                <span className="text-3xl font-black text-white tracking-tighter">{quantity}</span>
+                                <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">Unit</span>
+                            </div>
+                        </div>
+
+                        <button 
+                            onClick={() => setQuantity(quantity + 1)} 
+                            className="w-14 h-14 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 hover:text-cyan-400 hover:bg-cyan-500/10 active:scale-90 transition-all flex items-center justify-center font-black text-2xl shadow-xl cursor-pointer"
+                        >
+                            +
+                        </button>
+                    </div>
+                </div>
+
+                {/* Estimation Date Badge */}
+                <div className="text-center">
+                    <p className="text-[11px] font-black text-cyan-500 italic">
+                        Selesai Bertahap S/D: {formatGameDate(addDays(getStoredGameDate(), confirmBuild.buildTime * quantity))}
+                    </p>
                 </div>
               </div>
-              <div className="grid grid-cols-2 gap-3">
-                <button onClick={() => setConfirmBuild(null)} className="py-3 rounded-xl border border-zinc-800 text-zinc-400 font-black uppercase text-xs hover:bg-zinc-800 transition-all">Batal</button>
-                <button onClick={handles.handleConfirmBuild} className="py-3 rounded-xl bg-cyan-600 text-white font-black uppercase text-xs shadow-lg shadow-cyan-900/40 hover:bg-cyan-500 transition-all">Konfirmasi</button>
+
+              {/* Action Buttons */}
+              <div className="grid grid-cols-2 gap-4 mt-8 pt-2 bg-zinc-900">
+                <button 
+                    onClick={() => setConfirmBuild(null)} 
+                    className="py-5 rounded-3xl border border-zinc-800 text-zinc-500 font-black uppercase text-xs tracking-[0.2em] hover:bg-zinc-800 hover:text-white transition-all cursor-pointer shadow-lg active:scale-95"
+                >
+                    Batal
+                </button>
+                <button 
+                    onClick={handles.handleConfirmBuild} 
+                    className="py-5 rounded-3xl bg-cyan-600 text-white font-black uppercase text-xs tracking-[0.2em] shadow-[0_0_25px_rgba(6,182,212,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_35px_rgba(6,182,212,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20"
+                >
+                    Bangun Sekarang
+                </button>
               </div>
             </div>
           </div>

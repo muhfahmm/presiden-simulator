@@ -1,0 +1,4 @@
+export const arab_saudi_hiburan = {
+  "bioskop": 0,
+  "teater": 0
+} as const;

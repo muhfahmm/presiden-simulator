@@ -1,4 +1,4 @@
-﻿import { CountryData } from "@/app/database/data/types";
+import { CountryData } from "@/app/database/data/types";
 import { indonesia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/asia/67_indonesia";
 import { indonesia_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/asia/67_indonesia";
 import { indonesia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/asia/67_indonesia";
@@ -11,6 +11,8 @@ import { indonesia_listrik } from "@/app/database/data/semua_fitur_negara/1_prod
 import { indonesia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_manufaktur/asia/67_indonesia";
 import { indonesia_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/9_sektor_olahan_pangan/asia/67_indonesia";
 import { indonesia_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/asia/67_indonesia";
+import { indonesia_komersial } from "@/app/database/data/semua_fitur_negara/3_sosial/5_komersial/asia/67_indonesia";
+import { indonesia_hiburan } from "@/app/database/data/semua_fitur_negara/3_sosial/6_hiburan/asia/67_indonesia";
 import { indonesia_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/asia/67_indonesia";
 import { indonesia_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/asia/67_indonesia";
 import { indonesia_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_perikanan/asia/67_indonesia";
@@ -45,6 +47,8 @@ export const indonesia: CountryData = {
   "kesehatan": indonesia_kesehatan,
   "hukum": indonesia_hukum,
   "sektor_olahraga": indonesia_olahraga,
+  "sektor_komersial": indonesia_komersial,
+  "sektor_hiburan": indonesia_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

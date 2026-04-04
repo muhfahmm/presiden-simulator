@@ -1,4 +1,4 @@
-﻿import { CountryData } from "@/app/database/data/types";
+import { CountryData } from "@/app/database/data/types";
 import { afrika_selatan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_agrikultur/afrika/1_afrika_selatan";
 import { afrika_selatan_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/afrika/1_afrika_selatan";
 import { afrika_selatan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_ekstraksi/afrika/1_afrika_selatan";
@@ -11,6 +11,8 @@ import { afrika_selatan_listrik } from "@/app/database/data/semua_fitur_negara/1
 import { afrika_selatan_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_manufaktur/afrika/1_afrika_selatan";
 import { afrika_selatan_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/9_sektor_olahan_pangan/afrika/1_afrika_selatan";
 import { afrika_selatan_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/afrika/1_afrika_selatan";
+import { afrika_selatan_komersial } from "@/app/database/data/semua_fitur_negara/3_sosial/5_komersial/afrika/1_afrika_selatan";
+import { afrika_selatan_hiburan } from "@/app/database/data/semua_fitur_negara/3_sosial/6_hiburan/afrika/1_afrika_selatan";
 import { afrika_selatan_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/afrika/1_afrika_selatan";
 import { afrika_selatan_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/afrika/1_afrika_selatan";
 import { afrika_selatan_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_perikanan/afrika/1_afrika_selatan";
@@ -40,6 +42,8 @@ export const afrika_selatan: CountryData = {
   "kesehatan": afrika_selatan_kesehatan,
   "hukum": afrika_selatan_hukum,
   "sektor_olahraga": afrika_selatan_olahraga,
+  "sektor_komersial": afrika_selatan_komersial,
+  "sektor_hiburan": afrika_selatan_hiburan,
   // =============================================================
   // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================

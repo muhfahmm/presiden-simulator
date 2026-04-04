@@ -160,7 +160,7 @@ export const sosialRate = {
     satuan: "Unit" 
   },
 
-  // KESEHATAN & OLAHRAGA
+  // KESEHATAN
   "7_rumah_sakit_besar": { 
     key: "7_rumah_sakit_besar", 
     dataKey: "rumah_sakit_besar", 
@@ -188,6 +188,8 @@ export const sosialRate = {
     biaya_pemeliharaan: 5, 
     satuan: "Unit" 
   },
+
+  // OLAHRAGA
   "10_kolam_renang": { 
     key: "10_kolam_renang", 
     dataKey: "kolam_renang", 
@@ -215,10 +217,75 @@ export const sosialRate = {
     biaya_pemeliharaan: 60, 
     satuan: "Unit" 
   },
+  "13_gym_center": { 
+    key: "13_gym_center", 
+    dataKey: "gym_center", 
+    deskripsi: "Olahraga", 
+    biaya_pembangunan: 2500, 
+    waktu_pembangunan: 45, 
+    biaya_pemeliharaan: 10, 
+    satuan: "Unit" 
+  },
+  "14_lapangan_golf": { 
+    key: "14_lapangan_golf", 
+    dataKey: "lapangan_golf", 
+    deskripsi: "Olahraga", 
+    biaya_pembangunan: 15000, 
+    waktu_pembangunan: 120, 
+    biaya_pemeliharaan: 35, 
+    satuan: "Unit" 
+  },
+  "15_esports_arena": { 
+    key: "15_esports_arena", 
+    dataKey: "esports_arena", 
+    deskripsi: "Olahraga", 
+    biaya_pembangunan: 12000, 
+    waktu_pembangunan: 90, 
+    biaya_pemeliharaan: 30, 
+    satuan: "Unit" 
+  },
+  "16_gokart_circuit": { 
+    key: "16_gokart_circuit", 
+    dataKey: "gokart_circuit", 
+    deskripsi: "Olahraga", 
+    biaya_pembangunan: 5000, 
+    waktu_pembangunan: 60, 
+    biaya_pemeliharaan: 15, 
+    satuan: "Unit" 
+  },
+
+  // FASILITAS KOMERSIAL & HIBURAN
+  "17_pusat_belanja": { 
+    key: "17_pusat_belanja", 
+    dataKey: "pusat_belanja", 
+    deskripsi: "Komersial", 
+    biaya_pembangunan: 45000, 
+    waktu_pembangunan: 360, 
+    biaya_pemeliharaan: 120, 
+    satuan: "Unit" 
+  },
+  "18_bioskop": { 
+    key: "18_bioskop", 
+    dataKey: "bioskop", 
+    deskripsi: "Hiburan", 
+    biaya_pembangunan: 8000, 
+    waktu_pembangunan: 90, 
+    biaya_pemeliharaan: 20, 
+    satuan: "Unit" 
+  },
+  "19_gedung_teater": { 
+    key: "19_gedung_teater", 
+    dataKey: "gedung_teater", 
+    deskripsi: "Hiburan", 
+    biaya_pembangunan: 10000, 
+    waktu_pembangunan: 120, 
+    biaya_pemeliharaan: 25, 
+    satuan: "Unit" 
+  },
 
   // HUKUM & KEAMANAN
-  "16_kejaksaan_court": { 
-    key: "16_kejaksaan_court", 
+  "20_kejaksaan_court": { 
+    key: "20_kejaksaan_court", 
     dataKey: "kejaksaan_court", 
     deskripsi: "Hukum", 
     biaya_pembangunan: 8500, 
@@ -226,8 +293,8 @@ export const sosialRate = {
     biaya_pemeliharaan: 15, 
     satuan: "Unit" 
   },
-  "17_legal_aid": { 
-    key: "17_legal_aid", 
+  "21_legal_aid": { 
+    key: "21_legal_aid", 
     dataKey: "legal_aid", 
     deskripsi: "Hukum", 
     biaya_pembangunan: 2000, 

@@ -5,7 +5,6 @@ import { countries as centersData } from "@/app/database/data/negara/benua/index
 import { allRelations } from "@/app/database/data/negara/hubungan";
 import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { unSecurityCouncilStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/1_PBB/2_dewan_keamanan/storageKeamanan/dewan_keamanan/unSecurityCouncilStorage";
-import { warMissionStorage, WarMission } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/modals/1_misi_serangan/logic_jalur/warMissionStorage";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 
 interface MapHubunganProps {
@@ -102,10 +101,8 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
   const [tick, setTick] = useState(0);
   const debounceTimerRef = useRef<NodeJS.Timeout | null>(null);
   const mouseDownPosRef = useRef<{ x: number; y: number } | null>(null);
-  const [activeMissions, setActiveMissions] = useState<WarMission[]>([]);
   const requestRef = useRef<number>(null);
   const lastTimeRef = useRef<number>(Date.now());
-  const missionProgressRef = useRef<Record<string, number>>({});
 
   const mapWidth = 6000;
   const mapHeight = 2400;
@@ -121,21 +118,11 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
     };
     window.addEventListener("relation_storage_updated", handleUpdate);
     window.addEventListener("relation_status_updated", handleUpdate);
-    
-    const updateMissions = () => {
-      const missions = warMissionStorage.getMissions().filter(m => m.status === "active");
-      setActiveMissions(missions);
-    };
-    updateMissions();
-    window.addEventListener("war_mission_updated", updateMissions);
-    window.addEventListener("operation_started", updateMissions);
 
     return () => {
       if (debounceTimerRef.current) clearTimeout(debounceTimerRef.current);
       window.removeEventListener("relation_storage_updated", handleUpdate);
       window.removeEventListener("relation_status_updated", handleUpdate);
-      window.removeEventListener("war_mission_updated", updateMissions);
-      window.removeEventListener("operation_started", updateMissions);
     };
   }, []);
 
@@ -149,24 +136,7 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
       const { isPaused, speed } = timeStorage.getState();
       
       if (!isPaused) {
-        setActiveMissions(prev => {
-          let Changed = false;
-          const next = prev.map(m => {
-            const currentProgress = missionProgressRef.current[m.id] || 0;
-            const delta = (dt * speed) / m.duration;
-            const newProgress = Math.min(1, currentProgress + delta);
-            
-            if (newProgress !== currentProgress) {
-              missionProgressRef.current[m.id] = newProgress;
-              Changed = true;
-            }
-            if (newProgress >= 1 && m.status === "active") {
-               warMissionStorage.updateMission(m.id, { status: "arrived" });
-            }
-            return m;
-          });
-          return Changed ? [...next] : prev;
-        });
+        // Mission progress logic removed
       }
       
       requestRef.current = requestAnimationFrame(animate);
@@ -240,98 +210,7 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
       ctx.fill(); ctx.shadowBlur = 0;
     });
 
-    // --- WAR MISSION RENDERING ---
-    activeMissions.forEach(mission => {
-      const progress = missionProgressRef.current[mission.id] || 0;
-      if (progress >= 1) return;
-
-      const pathPixels = mission.path.map(p => project(p.lon, p.lat));
-      
-      // Draw Path Line
-      ctx.beginPath();
-      ctx.moveTo(pathPixels[0].x, pathPixels[0].y);
-      for (let i = 1; i < pathPixels.length; i++) {
-        ctx.lineTo(pathPixels[i].x, pathPixels[i].y);
-      }
-      ctx.setLineDash([15, 10]);
-      ctx.strokeStyle = "rgba(239, 68, 68, 0.4)";
-      ctx.lineWidth = 4;
-      ctx.stroke();
-      ctx.setLineDash([]);
-
-      // Draw Units
-      const totalSegs = pathPixels.length - 1;
-      const curSeg = Math.floor(progress * totalSegs);
-      const segProg = (progress * totalSegs) - curSeg;
-      if (curSeg < totalSegs) {
-        const p1 = pathPixels[curSeg];
-        const p2 = pathPixels[curSeg + 1];
-        const curX = p1.x + (p2.x - p1.x) * segProg;
-        const curY = p1.y + (p2.y - p1.y) * segProg;
-        const angle = Math.atan2(p2.y - p1.y, p2.x - p1.x);
-
-        ctx.save();
-        ctx.translate(curX, curY);
-        ctx.rotate(angle);
-        
-        mission.unitTypes.forEach((type, idx) => {
-          ctx.save();
-          ctx.translate(0, (idx - (mission.unitTypes.length - 1) / 2) * 40);
-          
-          if (type === "air") {
-            ctx.fillStyle = "#ffffff";
-            ctx.beginPath();
-            ctx.moveTo(20, 0); ctx.lineTo(-10, -15); ctx.lineTo(-10, 15); ctx.closePath();
-            ctx.fill();
-            ctx.fillRect(-5, -25, 4, 50);
-          } else if (type === "sea") {
-            ctx.fillStyle = "#3b82f6";
-            ctx.beginPath();
-            ctx.moveTo(-20, -10); ctx.lineTo(20, -10); ctx.lineTo(15, 10); ctx.lineTo(-15, 10); ctx.closePath();
-            ctx.fill();
-          } else {
-             ctx.fillStyle = "#f97316";
-             ctx.fillRect(-15, -10, 30, 20);
-             ctx.fillRect(0, -3, 20, 6);
-          }
-          ctx.restore();
-        });
-        ctx.restore();
-      }
-    });
-
-    // --- ARRIVED MISSION PULSATING ALERTS ---
-    const pulsingMissions = warMissionStorage.getMissions().filter(m => m.status === "arrived");
-    pulsingMissions.forEach(m => {
-      const coords = warMissionStorage.getCountryCoords(m.target);
-      if (coords) {
-        const { x, y } = project(coords.lon, coords.lat);
-        const pulse = (Math.sin(Date.now() / 300) + 1) / 2;
-        const radius = 40 + pulse * 25;
-        
-        ctx.save();
-        ctx.beginPath();
-        ctx.arc(x, y, radius, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(239, 68, 68, ${0.8 - pulse * 0.5})`;
-        ctx.lineWidth = 3;
-        ctx.stroke();
-        
-        ctx.beginPath();
-        ctx.arc(x, y, 20, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(239, 68, 68, 0.3)";
-        ctx.fill();
-        
-        ctx.font = "bold 24px sans-serif";
-        ctx.fillStyle = "#ffffff";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText("!", x, y);
-        
-        ctx.restore();
-      }
-    });
-
-  }, [geoData, paths, userCountry, targetCountry, tick, activeMissions]);
+  }, [geoData, paths, userCountry, targetCountry, tick]);
 
   const defaultCursor = `url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'><circle cx='8' cy='8' r='4' fill='none' stroke='%2322d3ee' stroke-width='1.5'/><circle cx='8' cy='8' r='1' fill='%2322d3ee'/></svg>") 8 8, auto`;
   return (
@@ -366,19 +245,6 @@ export default function MapHubungan({ userCountry, targetCountry, onSelect, acti
           const dist = Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2);
           if (dist < minDist) { minDist = dist; closest = c; }
         });
-
-        // Check for click on mission alerts
-        const arrived = warMissionStorage.getMissions().find(m => {
-           const coords = warMissionStorage.getCountryCoords(m.target);
-           if (!coords) return false;
-           const { x, y } = project(coords.lon, coords.lat);
-           return Math.sqrt((clickX - x) ** 2 + (clickY - y) ** 2) < 60;
-        });
-
-        if (arrived) {
-           window.dispatchEvent(new CustomEvent("war_mode_triggered", { detail: { target: arrived.target } }));
-           return;
-        }
 
         if (closest) onSelect(closest.name_en);
       }}

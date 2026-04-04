@@ -1,6 +1,0 @@
-[PYTHON STRATEGY AI TASKS]
-1. Analyze real-time battlefield status snapshot (ZOC dominance, unit positions).
-2. Execute tactical counter-moves based on player deployment strategy.
-3. Determine flanking and tactical withdrawal maneuvers.
-4. Calculate 'Influence Map' updates for Strategic AI consideration.
-5. Provide high-level AI-driven tactical commands via REST/gRPC simulation.

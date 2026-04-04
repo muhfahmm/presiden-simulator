@@ -1,10 +1,12 @@
 import { Moon } from "lucide-react";
+import { islamPlus } from "./1_plus/plus";
+import { islamMinus } from "./2_minus/minus";
 
 export const islamLogic = {
   name: "Islam",
   icon: Moon,
   effects: {
-    plus: ["Pajak Sektor Komersial +10%"],
-    minus: ["Biaya Diplomasi Barat +10%"]
+    plus: islamPlus,
+    minus: islamMinus
   }
 };

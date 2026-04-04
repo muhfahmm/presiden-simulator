@@ -1,0 +1,20 @@
+# RENCANA FITUR: PROGRAM NUKLIR (RISET & PENGAYAAN)
+# STATUS: STRATEGIS LEVEL OMEGA
+
+1. PENGAYAAN URANIUM (Manual & Otomatis)
+   - Kelola sentrifugasi uranium untuk mencapai tingkat kemurnian senjata (90%+).
+   - Biaya operasional tinggi: Membutuhkan suplai listrik nasional yang besar.
+   - Risiko kebocoran radiasi: Berdampak pada opini publik dan kesehatan warga.
+
+2. PENGEMBANGAN HULU LEDAK (WARHEADS)
+   - Riset miniaturisasi hulu ledak agar bisa dipasang pada rudal balistik.
+   - Jenis hulu ledak: Taktis (daya ledak rendah) vs Strategis (daya ledak tinggi/Thermonuclear).
+   - Biaya riset per hulu ledak: Membutuhkan Ilmuwan & Teknisi level tinggi.
+
+3. UPGRADE LABORATORIUM RAHASIA
+   - Tingkatkan kecepatan riset dan efisiensi energi.
+   - Pemasangan sistem pelindung (Anti-Sabotase) untuk mencegah intelijen asing mencuri data.
+
+4. MANAJEMEN LIMBAH RADIOAKTIF
+   - Kelola pembuangan limbah nuklir tanpa terdeteksi oleh inspektur internasional (IAEA).
+   - Sanksi Internasional: Jika terdeteksi, negara akan menerima embargo ekonomi berat.
