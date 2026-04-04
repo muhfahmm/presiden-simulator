@@ -37,9 +37,11 @@ export class HelicopterDeploymentLogic {
     static processHelipadTick(
         helipads: HelipadState[],
         units: UnitState[],
-        now: number
+        now: number,
+        isActivated: boolean = true
     ): { nextHelipads: HelipadState[], newSpawned: UnitState[] } {
         const newSpawned: UnitState[] = [];
+        if (!isActivated) return { nextHelipads: helipads, newSpawned: [] };
         const spawnCooldown = 15000; // 15s between launches from SAME pad (Retaining stock)
         const globalCooldown = 3500; // 4s between ANY helipad launch
 

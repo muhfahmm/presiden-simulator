@@ -40,7 +40,7 @@ export class PlayerTacticalLogic {
         if (!this.isValidTerrain(unitType, y, hasSea)) return null;
 
         const isInfantry = unitType === 'pasukan_infanteri';
-        const unitScale = isInfantry ? 1000 : 1;
+        const unitScale = isInfantry ? 10000 : 1;
         
         const deployedQuantity = units.filter(u => u.side === 'user' && u.type === unitType).length * unitScale;
         const available = selection[unitType] || 0;
@@ -54,7 +54,7 @@ export class PlayerTacticalLogic {
             type: unitType,
             side: "user",
             pos: { x, y },
-            health: stats.maxHealth * (isInfantry ? 10 : 1),
+            health: stats.maxHealth,
             rotation: 0,
             influence: unitType.includes('tank') ? 300 : 100
         };
@@ -96,7 +96,7 @@ export class PlayerTacticalLogic {
             type: unitType,
             side: "user",
             pos,
-            health: stats.maxHealth * (isInfantry ? 10 : 1),
+            health: stats.maxHealth,
             rotation: 0,
             influence: unitType.includes('tank') ? 300 : 100
         }));

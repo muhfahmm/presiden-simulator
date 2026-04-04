@@ -49,7 +49,7 @@ export class InfantryDeploymentLogic {
                     id: `dep_inf_${b.id}_${now}_${Math.random()}`,
                     type: "pasukan_infanteri", side: "enemy",
                     pos: { x: b.pos.x, y: b.pos.y + 100 },
-                    health: stats.maxHealth * 10, rotation: Math.PI, influence: 100
+                    health: stats.maxHealth, rotation: Math.PI, influence: 100
                 });
             }
             return b;

@@ -87,13 +87,12 @@ export function drawWarMapBackground(
    // 3.2 DRAW TACTICAL AIRBASE (BANDARA & HELIPADS) - NEW MOD
    BandaraEngine.drawAirfield(ctx, 12000, -2350, camera.zoom, mousePos, units, targetArmada, airfieldHangarsState);
 
-   // 4-Pad Helibase Complex (Flanking the terminal)
-   const baseHeliX = 12000;
-   const baseHeliY = -550;
-   HelipadEngine.drawHelipad(ctx, baseHeliX - 1100, baseHeliY, camera.zoom, mousePos, "Heli Serang 1", units, targetArmada, helipadsState[0]);
-   HelipadEngine.drawHelipad(ctx, baseHeliX - 1500, baseHeliY, camera.zoom, mousePos, "Heli Serang 2", units, targetArmada, helipadsState[1]);
-   HelipadEngine.drawHelipad(ctx, baseHeliX + 1100, baseHeliY, camera.zoom, mousePos, "Heli Serang 3", units, targetArmada, helipadsState[2]);
-   HelipadEngine.drawHelipad(ctx, baseHeliX + 1500, baseHeliY, camera.zoom, mousePos, "Heli Serang 4", units, targetArmada, helipadsState[3]);
+   // Dynamic Helipad Rendering – Iterates over all helipads in state
+   helipadsState.forEach((pad: any, i: number) => {
+      if (pad?.pos) {
+         HelipadEngine.drawHelipad(ctx, pad.pos.x, pad.pos.y, camera.zoom, mousePos, `Heli Serang ${i + 1}`, units, targetArmada, pad);
+      }
+   });
 
    // 3.2.1 DRAW TACTICAL TANK HANGAR - NEW MOD
    HangarTankEngine.drawTankHangar(ctx, 12000, 3000, camera.zoom, mousePos, units, targetArmada, tankHangarsState);

@@ -70,8 +70,11 @@ export class TheaterSetupLogic {
 
         const airfieldHangars = AirfieldUtils.calculateAirfieldHangars(12000, -2350, armada);
         
-        const heliCount = (targetCountry.sektor_pertahanan as any)?.helipad || (targetCountry.sektor_pertahanan as any)?.pangkalan_udara || 0;
-        const helipads = heliCount > 0 ? AirfieldUtils.calculateHelipadPositions(12000, -550, heliCount, armada.udara.helikopter_serang || 0) : [];
+        // Helipads: Dynamic count. 1 helipad = max 10 helicopters.
+        // e.g. 31 helis → ceil(31/10) = 4 pads (10,10,10,1)
+        const totalHelis = armada.udara?.helikopter_serang || 0;
+        const helipadCount = totalHelis > 0 ? Math.ceil(totalHelis / 10) : 0;
+        const helipads = helipadCount > 0 ? AirfieldUtils.calculateHelipadPositions(12000, -550, helipadCount, totalHelis) : [];
 
         const portShips: PortShipState[] = armada.laut ? Object.entries(armada.laut).map(([type, count]) => ({
             type,

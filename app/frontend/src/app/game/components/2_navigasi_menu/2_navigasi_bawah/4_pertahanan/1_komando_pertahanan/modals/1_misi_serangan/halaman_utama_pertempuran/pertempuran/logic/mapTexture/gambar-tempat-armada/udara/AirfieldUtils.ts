@@ -57,27 +57,36 @@ export class AirfieldUtils {
     }
 
     /**
-     * Calculate positions for helipads aligned with CanvasMapWar offsets.
+     * Calculate positions for helipads dynamically.
+     * 1 helipad = max 10 helicopters.
+     * Pads are placed in two groups flanking the airfield center, 
+     * expanding outward as more pads are needed.
      */
     static calculateHelipadPositions(centerX: number, topY: number, count: number, totalHelis: number): HelipadState[] {
-        if (count <= 0) return [];
+        if (count <= 0 || totalHelis <= 0) return [];
         
-        // Match the 4 manual offsets from CanvasMapWar.ts
-        const offsets = [-1100, -1500, 1100, 1500];
-        const helisPerPad = Math.ceil(totalHelis / count);
+        const MAX_PER_PAD = 10;
+        const padSpacing = 400; // Spacing between pads in the same group
+        const groupGap = 600;   // Half-gap between left group and right group
 
         const helipads: HelipadState[] = [];
         let remainingHelis = totalHelis;
 
         for (let i = 0; i < count; i++) {
-            const hCount = Math.min(remainingHelis, helisPerPad);
+            const hCount = Math.min(remainingHelis, MAX_PER_PAD);
             remainingHelis -= hCount;
+
+            // Position: alternate left-right groups, expanding outward
+            // i=0 → left close, i=1 → right close, i=2 → left far, i=3 → right far, etc.
+            const side = i % 2 === 0 ? -1 : 1; // left or right
+            const rank = Math.floor(i / 2);     // how far out
+            const offsetX = side * (groupGap + rank * padSpacing);
 
             helipads.push({
                 id: `helipad_${i}`,
-                pos: { x: centerX + (offsets[i] || 0), y: topY },
+                pos: { x: centerX + offsetX, y: topY },
                 currentCount: hCount,
-                maxCapacity: helisPerPad
+                maxCapacity: MAX_PER_PAD
             });
         }
         return helipads;

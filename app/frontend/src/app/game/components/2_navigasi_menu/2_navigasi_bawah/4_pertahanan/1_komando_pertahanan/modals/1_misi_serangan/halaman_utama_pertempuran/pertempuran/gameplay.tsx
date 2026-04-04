@@ -376,6 +376,18 @@ export default function Gameplay({
    const latestUnitsRef = useRef(units);
    latestUnitsRef.current = units;
 
+   const latestAirfieldHangarsRef = useRef(airfieldHangarsState);
+   latestAirfieldHangarsRef.current = airfieldHangarsState;
+
+   const latestHelipadsRef = useRef(helipadsState);
+   latestHelipadsRef.current = helipadsState;
+
+   const latestTankHangarsRef = useRef(tankHangarsState);
+   latestTankHangarsRef.current = tankHangarsState;
+
+   const latestBarracksRef = useRef(barracksState);
+   latestBarracksRef.current = barracksState;
+
    // High-Performance Consolidated Rendering Loop
    useEffect(() => {
       const canvas = canvasRef.current;
@@ -415,12 +427,12 @@ export default function Gameplay({
             mouseWorldPosRef.current,
             barakCount,
             phase,
-            barracksState,
+            latestBarracksRef.current,
             latestUnitsRef.current,
             targetArmada,
-            tankHangarsState,
-            airfieldHangarsState,
-            helipadsState,
+            latestTankHangarsRef.current,
+            latestAirfieldHangarsRef.current,
+            latestHelipadsRef.current,
             portShipsState
          );
 
@@ -512,18 +524,25 @@ export default function Gameplay({
          // 7. Tactical Tooltip
          const hoveredUnit = hoveredUnitRef.current;
          if (hoveredUnit) {
+            const stats = getUnitStats(hoveredUnit.type);
+            const currentHP = Math.ceil(hoveredUnit.health).toLocaleString('id-ID');
+            const maxHP = stats.maxHealth.toLocaleString('id-ID');
+            const hpText = `${currentHP} / ${maxHP}`;
+            
             const label = getHumanLabel(hoveredUnit.type).toUpperCase();
+            const fullLabel = `${label} | ${hpText}`;
+            
             const sideColor = hoveredUnit.side === 'user' ? "rgba(239, 68, 68, 1)" : "rgba(161, 161, 170, 1)";
             ctx.save();
             ctx.translate(hoveredUnit.pos.x, hoveredUnit.pos.y);
             const tooltipScale = 1.2 / Math.sqrt(camera.zoom); ctx.scale(tooltipScale, tooltipScale);
             ctx.font = "bold 13px Inter, sans-serif";
-            const textWidth = ctx.measureText(label).width; const boxW = textWidth + 24; const boxH = 32; const ry = -50;
+            const textWidth = ctx.measureText(fullLabel).width; const boxW = textWidth + 24; const boxH = 32; const ry = -50;
             ctx.fillStyle = "rgba(9, 9, 11, 0.95)"; ctx.shadowBlur = 15; ctx.shadowColor = sideColor;
             ctx.beginPath(); ctx.roundRect(-boxW / 2, ry, boxW, boxH, 8); ctx.fill();
             ctx.strokeStyle = sideColor; ctx.lineWidth = 1.5; ctx.stroke();
             ctx.shadowBlur = 0; ctx.fillStyle = "#ffffff"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-            ctx.fillText(label, 0, ry + boxH / 2 + 1);
+            ctx.fillText(fullLabel, 0, ry + boxH / 2 + 1);
             ctx.restore();
          }
 

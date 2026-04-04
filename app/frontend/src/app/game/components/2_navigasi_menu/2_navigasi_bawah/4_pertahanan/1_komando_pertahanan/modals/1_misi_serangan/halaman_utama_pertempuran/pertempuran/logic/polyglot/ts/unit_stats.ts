@@ -15,8 +15,8 @@ export interface UnitCombatStats {
 // Simulasi database statistik dasar menurut Doktrin Peperangan
 export const UnitStatsDatabase: Record<string, UnitCombatStats> = {
   // === DARAT ===
-  "infanteri": { maxHealth: 100, damage: 15, range: 400, speed: 15, reloadSpeed: 800, armor: 0.05, cost: 10 },
-  "infantry_enemy": { maxHealth: 100, damage: 15, range: 400, speed: 15, reloadSpeed: 800, armor: 0.05, cost: 10 },
+  "infanteri": { maxHealth: 10000, damage: 15, range: 400, speed: 15, reloadSpeed: 800, armor: 0.05, cost: 10 },
+  "infantry_enemy": { maxHealth: 10000, damage: 15, range: 400, speed: 15, reloadSpeed: 800, armor: 0.05, cost: 10 },
   "tank": { maxHealth: 800, damage: 120, range: 1200, speed: 45, reloadSpeed: 3000, armor: 0.65, cost: 50 },
   "tank_enemy": { maxHealth: 800, damage: 120, range: 1200, speed: 45, reloadSpeed: 3000, armor: 0.65, cost: 50 },
   "apc": { maxHealth: 450, damage: 40, range: 800, speed: 65, reloadSpeed: 1500, armor: 0.35, cost: 20 },

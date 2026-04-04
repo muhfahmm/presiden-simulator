@@ -47,9 +47,11 @@ export class AircraftDeploymentLogic {
     static processAirfieldTick(
         hangars: AirfieldHangarState[],
         units: UnitState[],
-        now: number
+        now: number,
+        isActivated: boolean = true
     ): { nextHangars: AirfieldHangarState[], newSpawned: UnitState[] } {
         const newSpawned: UnitState[] = [];
+        if (!isActivated) return { nextHangars: hangars, newSpawned: [] };
         const globalCooldown = 4500; // 4.5 seconds between any plane takeoff
 
         // Find if ANY hangar recently spawned
@@ -110,8 +112,26 @@ export class AircraftDeploymentLogic {
         hangars: AirfieldHangarState[],
         now: number
     ): { nextUnits: UnitState[], nextHangars: AirfieldHangarState[] } {
-        const isVictory = AircraftPhysicsRouter.checkVictory(units);
-        const { nextUnits, nextHangars } = AircraftReturnLogic.processLandingTick(units, hangars);
+        // 1. REPAIR LOGIC: Check units for low HP and command landing
+        const unitsWithLandingOrders = units.map(u => {
+            // Only process enemy aircraft that are not already landing
+            if (u.side !== 'enemy' || !(u as any).isAirType || (u as any).aiState === 'landing') return u;
+
+            const stats = getUnitStats(u.type);
+            // TRIGGER: HP < 50%
+            if (u.health < stats.maxHealth / 2) {
+                // Find corresponding hangar for this type
+                const myHangar = hangars.find(h => h.type === u.type);
+                if (myHangar) {
+                    console.log(`[Hangar:REPAIR] Unit ${u.type} (HP: ${u.health.toFixed(1)}/${stats.maxHealth}) initiated emergency return.`);
+                    return AircraftReturnLogic.commandLanding(u, myHangar.pos);
+                }
+            }
+            return u;
+        });
+
+        // 2. LANDING LOGIC: Process touchdown and hangar entry
+        const { nextUnits, nextHangars } = AircraftReturnLogic.processLandingTick(unitsWithLandingOrders, hangars);
         
         return { nextUnits, nextHangars };
     }

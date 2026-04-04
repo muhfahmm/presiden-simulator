@@ -15,6 +15,7 @@ interface DeploymentEngineProps {
   setTroopAmount: (val: string) => void;
   deploymentMode: "manual" | "area";
   setDeploymentMode: (mode: "manual" | "area") => void;
+  cumulativeDeployment: Record<string, number>;
   onOpenCountModal?: () => void;
 }
 
@@ -29,6 +30,7 @@ export default function DeploymentEngine({
   setTroopAmount,
   deploymentMode,
   setDeploymentMode,
+  cumulativeDeployment,
   onOpenCountModal
 }: DeploymentEngineProps) {
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
@@ -137,11 +139,11 @@ export default function DeploymentEngine({
                         {unitsInGroup.map((u) => {
                            // Tactical Scaling: sync with PertempuranIndex logic
                            const isInfantry = u.id === 'pasukan_infanteri';
-                           const multiplier = isInfantry ? 1000 : 1;
+                           const multiplier = isInfantry ? 10000 : 1;
 
                            const totalInMission = availableUnits[u.id] || 0;
-                           const currentlyDeployed = deployedUnits.filter(unit => unit.side === 'user' && unit.type === u.id).length * multiplier;
-                           const remaining = Math.max(0, totalInMission - currentlyDeployed);
+                           const spentSoFar = cumulativeDeployment[u.id] || 0;
+                           const remaining = Math.max(0, totalInMission - spentSoFar);
                            
                            const isClickable = remaining >= multiplier && currentPoints + (u.cost * multiplier) <= maxPoints;
                            const isSelected = selectedType === u.id;

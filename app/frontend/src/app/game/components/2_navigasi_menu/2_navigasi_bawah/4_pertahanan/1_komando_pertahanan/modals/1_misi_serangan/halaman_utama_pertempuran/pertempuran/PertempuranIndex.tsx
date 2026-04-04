@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useMemo, useCallback, useRef } from "react";
 import { X, Sword, Target, Activity, Shield, ChevronRight, ChevronDown, Zap, Play, RotateCcw, Truck, Anchor, Plane } from "lucide-react";
 import Gameplay from "./gameplay";
 import DeploymentEngine from "./DeploymentEngine";
@@ -24,6 +24,7 @@ import { HelicopterDeploymentLogic } from "./logic/mapTexture/gambar-tempat-arma
 import { NavalDeploymentLogic, PortShipState } from "./logic/mapTexture/gambar-tempat-armada/laut/pelabuhan/logika_kapal_keluar_pelabuhan/logic";
 import { TheaterSetupLogic } from "./logic/TheaterSetupLogic";
 import { PlayerTacticalLogic } from "./logic/PlayerTacticalLogic";
+import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
 
 interface PertempuranIndexProps {
    onClose: () => void;
@@ -35,6 +36,7 @@ interface PertempuranIndexProps {
 
 export default function PertempuranIndex({ onClose, missionData }: PertempuranIndexProps) {
    const [phase, setPhase] = useState<"deployment" | "combat" | "result">("deployment");
+   const [isPaused, setIsPaused] = useState(timeStorage.getState().isPaused);
    const [units, setUnits] = useState<UnitState[]>([]);
    const [selectedUnitId, setSelectedUnitId] = useState<string | null>(null);
    const [selectedUnitType, setSelectedUnitType] = useState<string | null>(null);
@@ -53,6 +55,34 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
    const [blockSelection, setBlockSelection] = useState<{ x1: number, y1: number, x2: number, y2: number } | null>(null);
    const [blockUnitCount, setBlockUnitCount] = useState("1000");
    const [deploymentMode, setDeploymentMode] = useState<"manual" | "area">("area");
+   const [cumulativeDeployment, setCumulativeDeployment] = useState<Record<string, number>>({});
+   
+   // SIMULATION REFS: Ensuring the tactical loop remains stable and counters are reliable.
+   // By using refs, we avoid restarting the setInterval every time a state changes.
+   const unitsRef = useRef<UnitState[]>([]);
+   const barracksRef = useRef<BarrackState[]>([]);
+   const tankHangarsRef = useRef<HangarState[]>([]);
+   const airfieldHangarsRef = useRef<AirfieldHangarState[]>([]);
+   const helipadsRef = useRef<HelipadState[]>([]);
+   const portShipsRef = useRef<PortShipState[]>([]);
+   const isPausedRef = useRef(isPaused);
+
+   // Sync refs with React state for simulation access
+   useEffect(() => { unitsRef.current = units; }, [units]);
+   useEffect(() => { barracksRef.current = barracks; }, [barracks]);
+   useEffect(() => { tankHangarsRef.current = tankHangars; }, [tankHangars]);
+   useEffect(() => { airfieldHangarsRef.current = airfieldHangars; }, [airfieldHangars]);
+   useEffect(() => { helipadsRef.current = helipads; }, [helipads]);
+   useEffect(() => { portShipsRef.current = portShips; }, [portShips]);
+   useEffect(() => { isPausedRef.current = isPaused; }, [isPaused]);
+
+   // Sync with global game time pause/resume
+   useEffect(() => {
+      const unsubscribe = timeStorage.subscribe((date, paused) => {
+         setIsPaused(paused);
+      });
+      return () => unsubscribe();
+   }, []);
 
    // Calculate deployment budget based on proper unit costs
    const maxPoints = useMemo(() => {
@@ -111,6 +141,12 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
       if (newUnit) {
          setUnits(prev => [...prev, newUnit]);
+         const isInfantry = unitType === 'pasukan_infanteri';
+         const amount = isInfantry ? 10000 : 1;
+         setCumulativeDeployment(prev => ({
+            ...prev,
+            [unitType]: (prev[unitType] || 0) + amount
+         }));
       }
    }, [phase, units, missionData.selection, currentPoints, maxPoints, hasSea]);
 
@@ -144,6 +180,15 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
       if (newUnits.length > 0) {
          setUnits(prev => [...prev, ...newUnits]);
+         const isInfantry = selectedUnitType === 'pasukan_infanteri';
+         const amountPerUnit = isInfantry ? 10000 : 1;
+         const totalIncrease = newUnits.length * amountPerUnit;
+         
+         setCumulativeDeployment(prev => ({
+            ...prev,
+            [selectedUnitType]: (prev[selectedUnitType] || 0) + totalIncrease
+         }));
+         
          setShowBlockModal(false);
          setBlockSelection(null);
       }
@@ -160,69 +205,66 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
       let lastTick = Date.now();
       const interval = setInterval(async () => {
          const now = Date.now();
+         if (isPausedRef.current) {
+            lastTick = now;
+            return;
+         }
          const dt = Math.min((now - lastTick) / 1000, 0.1);
          lastTick = now;
 
-         setUnits(prev => {
-            const runTacticalTick = async () => {
-               const result = await polyglotService.processTick(prev, dt);
-               let newSpawned: UnitState[] = [];
+         // 1. Core Physics (Polyglot) - Use ref to avoid closure staleness
+         const result = await polyglotService.processTick(unitsRef.current, dt);
+         
+         // 2. Tactical Deployment (Spawn Logic)
+         const infRes = InfantryDeploymentLogic.processBarracksTick(barracksRef.current, unitsRef.current, now);
+         const tankRes = TankDeploymentLogic.processTankHangarTick(tankHangarsRef.current, unitsRef.current, now);
+         
+         // Activation Trigger: User crossed X = 5000 / Final Sector
+         const isAirfieldActivated = unitsRef.current.some(u => u.side === 'user' && u.pos.x > 5000);
+         const airfieldResult = AircraftDeploymentLogic.processAirfieldTick(airfieldHangarsRef.current, unitsRef.current, now, isAirfieldActivated);
+         const heliRes = HelicopterDeploymentLogic.processHelipadTick(helipadsRef.current, unitsRef.current, now, isAirfieldActivated);
+         const navalRes = NavalDeploymentLogic.processNavalPortTick(portShipsRef.current, unitsRef.current, now);
 
-               // 1. DARAT: INFANTRY & TANKS
-               const infRes = InfantryDeploymentLogic.processBarracksTick(barracks, prev, now);
-               const tankRes = TankDeploymentLogic.processTankHangarTick(tankHangars, prev, now);
-               
-               // 2. UDARA: AIRCRAFT & HELICOPTER
-               const airfieldResult = AircraftDeploymentLogic.processAirfieldTick(airfieldHangars, prev, now);
-               const heliRes = HelicopterDeploymentLogic.processHelipadTick(helipads, prev, now);
+         // 3. Post-Combat (Landing/Recovery)
+         // IMPORTANT: Use airfieldResult.nextHangars to ensure spawn counts are preserved
+         const postCombatRes = AircraftDeploymentLogic.processPostCombatTick(unitsRef.current, airfieldResult.nextHangars, now);
 
-               // 3. LAUT: PORT SHIPS
-               const navalRes = NavalDeploymentLogic.processNavalPortTick(portShips, prev, now);
+         // 4. Consolidation & State Updates
+         const newSpawned = [
+            ...infRes.newSpawned, 
+            ...tankRes.newSpawned, 
+            ...airfieldResult.newSpawned, 
+            ...heliRes.newSpawned, 
+            ...navalRes.newSpawned
+         ];
 
-               // 4. POST-COMBAT: PATROL & LANDING (AIR)
-               // IMPORTANT: Use airfieldResult.nextHangars to ensure spawn counts are preserved
-               const postCombatRes = AircraftDeploymentLogic.processPostCombatTick(prev, airfieldResult.nextHangars, now);
+         let finalUnits = result.units;
+         if (newSpawned.length > 0 || postCombatRes.nextUnits.length !== unitsRef.current.length) {
+            const mergedUnits = [
+               ...postCombatRes.nextUnits.filter(u => !newSpawned.some(ns => ns.id === u.id)), 
+               ...newSpawned
+            ];
+            finalUnits = mergedUnits;
+         }
 
-               // Consolidate updates
-               newSpawned = [
-                  ...infRes.newSpawned, 
-                  ...tankRes.newSpawned, 
-                  ...airfieldResult.newSpawned, 
-                  ...heliRes.newSpawned, 
-                  ...navalRes.newSpawned
-               ];
+         // Enforce continuous movement / geofencing
+         const enforcedUnits = AircraftDeploymentLogic.enforceAirborneMovement(finalUnits);
+         
+         // Batch State Updates - These are now reliable because the interval doesn't reset
+         setUnits(enforcedUnits);
+         setBarracks(infRes.nextBarracks);
+         setTankHangars(tankRes.nextHangars);
+         setAirfieldHangars(postCombatRes.nextHangars);
+         setHelipads(heliRes.nextHelipads);
+         setPortShips(navalRes.nextPortShips);
 
-               if (newSpawned.length > 0 || postCombatRes.nextUnits.length !== prev.length) {
-                  const mergedUnits = [
-                     ...postCombatRes.nextUnits.filter(u => !newSpawned.some(ns => ns.id === u.id)), 
-                     ...newSpawned
-                  ];
-                  // Final check to ensure no airborne units are idling
-                  const enforcedUnits = AircraftDeploymentLogic.enforceAirborneMovement(mergedUnits);
-                  setUnits(enforcedUnits);
-                  
-                  setBarracks(infRes.nextBarracks);
-                  setTankHangars(tankRes.nextHangars);
-                  setAirfieldHangars(postCombatRes.nextHangars); // Updated with both spawns and landed units
-                  setHelipads(heliRes.nextHelipads);
-                  setPortShips(navalRes.nextPortShips);
-               } else {
-                  // Ensure active combat units also stay moving if they lose targets
-                  const enforcedUnits = AircraftDeploymentLogic.enforceAirborneMovement(result.units);
-                  setUnits(enforcedUnits);
-               }
-
-               if (result.vfx.length > 0) {
-                  setCombatVfx(v => [...v.filter(fx => Date.now() - fx.timestamp < 300), ...result.vfx]);
-               }
-            };
-            runTacticalTick();
-            return prev;
-         });
-      }, 33);
+         if (result.vfx.length > 0) {
+            setCombatVfx(v => [...v.filter(fx => Date.now() - fx.timestamp < 300), ...result.vfx]);
+         }
+      }, 100); // 10 ticks per second is enough for strategic UI updates
 
       return () => clearInterval(interval);
-   }, [phase, barracks, tankHangars, airfieldHangars, helipads]);
+   }, [phase]);
 
    return (
       <div
@@ -273,6 +315,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                   setTroopAmount={setBlockUnitCount}
                   deploymentMode={deploymentMode}
                   setDeploymentMode={setDeploymentMode}
+                  cumulativeDeployment={cumulativeDeployment}
                   onOpenCountModal={() => setShowBlockModal(true)}
                />
 
@@ -305,6 +348,14 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
                                  if (newUnits.length > 0) {
                                     setUnits(prev => [...prev, ...newUnits]);
+                                    const isInfantry = selectedUnitType === 'pasukan_infanteri';
+                                    const amountPerUnit = isInfantry ? 10000 : 1;
+                                    const totalIncrease = newUnits.length * amountPerUnit;
+                                    
+                                    setCumulativeDeployment(prev => ({
+                                       ...prev,
+                                       [selectedUnitType]: (prev[selectedUnitType] || 0) + totalIncrease
+                                    }));
                                  }
                               } else {
                                  // Could potentially do something else or just ignore
@@ -325,11 +376,6 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                         }}
                      />
                   </div>
-                  {phase === "combat" && (
-                     <div className="absolute top-1/2 left-0 w-full h-[1px] bg-red-500/20 shadow-[0_0_15px_rgba(239,68,68,0.5)] z-20 flex items-center justify-center">
-                        <span className="bg-black px-4 py-1 text-[8px] font-black text-red-500 uppercase tracking-[0.4em] border border-red-500/20 rounded-full">Dynamic Frontline Transition</span>
-                     </div>
-                  )}
                </div>
 
                {phase === "deployment" && (
