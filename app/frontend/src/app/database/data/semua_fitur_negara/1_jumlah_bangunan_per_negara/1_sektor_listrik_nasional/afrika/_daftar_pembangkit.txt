@@ -1,0 +1,6 @@
+pembangkit_listrik_tenaga_gas
+pembangkit_listrik_tenaga_air
+pembangkit_listrik_tenaga_nuklir
+pembangkit_listrik_tenaga_surya
+pembangkit_listrik_tenaga_uap
+pembangkit_listrik_tenaga_angin
