@@ -201,8 +201,8 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
    }, [blockSelection, blockUnitCount, selectedUnitType, units, missionData.selection, currentPoints, maxPoints, hasSea]);
 
 
-   // Visual Tracers
-   const [combatVfx, setCombatVfx] = useState<{ id: string, startX: number, startY: number, endX: number, endY: number, timestamp: number }[]>([]);
+   // Visual Tracers & Combat VFX
+   const [combatVfx, setCombatVfx] = useState<any[]>([]);
 
    // Simulation Loop during Combat Phase
    useEffect(() => {
@@ -268,7 +268,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          setArmory(armoryRes.nextArmories);
 
          if (result.vfx.length > 0) {
-            setCombatVfx(v => [...v.filter(fx => Date.now() - fx.timestamp < 300), ...result.vfx]);
+            setCombatVfx(v => [...v.filter(fx => Date.now() - fx.timestamp < 1000), ...result.vfx]);
          }
       }, 100); // 10 ticks per second is enough for strategic UI updates
 
@@ -389,7 +389,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                   </div>
                </div>
 
-               {phase === "deployment" && (
+               {(phase === "deployment" || phase === "combat") && (
                   <div className="w-80 bg-zinc-950 border-l border-zinc-900 flex flex-col h-full shrink-0">
                      <div className="p-6 border-b border-zinc-900 bg-red-950/10">
                         <span className="text-[10px] font-black text-red-500 uppercase tracking-widest leading-none">Intelligence Report</span>

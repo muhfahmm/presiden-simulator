@@ -339,57 +339,111 @@ class PolyglotRouter {
         }
       });
 
-      let closest = enemies[0];
+      const stats = getUnitStats(u.type);
+      const domain = getUnitDomain(u.type);
+      const SHORELINE_X = 5000;
+
+      // 2. TARGETING (Domain-Aware Priority)
+      // Prioritize enemies in the same domain (Land vs Land, Sea vs Sea)
+      let sameDomainEnemies = enemies.filter(e => getUnitDomain(e.type) === domain);
+      let targetPool = sameDomainEnemies.length > 0 ? sameDomainEnemies : enemies;
+
+      let closest = targetPool[0];
       let minSqDist = Infinity;
-      enemies.forEach(e => {
+      targetPool.forEach(e => {
         const dx = u.pos.x - e.pos.x;
         const dy = u.pos.y - e.pos.y;
         const sqDist = dx * dx + dy * dy;
         if (sqDist < minSqDist) { minSqDist = sqDist; closest = e; }
       });
-
-      const stats = getUnitStats(u.type);
       const rangeSq = stats.range * stats.range;
 
-      if (minSqDist > rangeSq) {
+      if (closest && minSqDist > rangeSq) {
         const actualDist = Math.sqrt(minSqDist);
         const moveX = ((closest.pos.x - u.pos.x) / actualDist) * stats.speed * dt * 4;
         const moveY = ((closest.pos.y - u.pos.y) / actualDist) * stats.speed * dt * 4;
         u.pos.x += moveX + sepX;
         u.pos.y += moveY + sepY;
         u.rotation = Math.atan2(moveY + sepY, moveX + sepX);
-      } else {
+      } else if (closest && minSqDist <= rangeSq) {
         u.pos.x += sepX * 0.5;
         u.pos.y += sepY * 0.5;
 
         // 3. COMBAT & DAMAGE (C++-style Resolution)
-        if ((now - ((u as any).lastAttack || 0)) > stats.reloadSpeed) {
+        if (closest.side !== u.side && (now - ((u as any).lastAttack || 0)) > stats.reloadSpeed) {
           (u as any).lastAttack = now;
           const targetStats = getUnitStats(closest.type);
           const damageDealt = Power_Logic.calculateActualDamage(stats, targetStats);
+          
+          const oldHealth = closest.health;
           closest.health = HP_Logic.applyDamage(closest.health, damageDealt);
 
+          // 3.1 [CPP] Generate Muzzle Flash VFX with Sparks (Percikan Api)
+          const flashSparks = [];
+          const sparkCount = (u.type === 'tank' || u.type === 'artileri') ? 20 : 8;
+          for (let i = 0; i < sparkCount; i++) {
+            const angle = u.rotation + (Math.random() - 0.5) * 0.8;
+            const speed = 2 + Math.random() * 5;
+            flashSparks.push({
+              vx: Math.cos(angle) * speed,
+              vy: Math.sin(angle) * speed,
+              size: 1 + Math.random() * 2,
+              life: 0.5 + Math.random() * 0.5
+            });
+          }
+
+          newVfx.push({
+            id: `flash_${Math.random()}`,
+            type: 'MUZZLE_FLASH',
+            x: u.pos.x, y: u.pos.y,
+            rotation: u.rotation,
+            unitType: u.type,
+            sparks: flashSparks,
+            timestamp: now,
+            duration: 150 // Slightly longer for sparks
+          });
+
+          // 3.2 [CPP] Generate Bullet Tracer
           newVfx.push({
             id: `vfx_${Math.random()}`,
+            type: 'TRACER',
             startX: u.pos.x, startY: u.pos.y,
             endX: closest.pos.x, endY: closest.pos.y,
             timestamp: now
           });
+
+          // 3.3 [RUST] Generate Explosion VFX with Debris Sparks
+          if (oldHealth > 0 && closest.health <= 0) {
+            const explosionSparks = [];
+            for (let i = 0; i < 30; i++) {
+              const angle = Math.random() * Math.PI * 2;
+              const speed = 1 + Math.random() * 8;
+              explosionSparks.push({
+                vx: Math.cos(angle) * speed,
+                vy: Math.sin(angle) * speed,
+                size: 2 + Math.random() * 3,
+                life: 0.8 + Math.random() * 0.4
+              });
+            }
+
+            newVfx.push({
+              id: `exp_${Math.random()}`,
+              type: 'EXPLOSION',
+              x: closest.pos.x, y: closest.pos.y,
+              sourceType: closest.type,
+              isCritical: damageDealt > 50,
+              sparks: explosionSparks,
+              timestamp: now,
+              duration: 800 // ms
+            });
+          }
+
           u.rotation = Math.atan2(closest.pos.y - u.pos.y, closest.pos.x - u.pos.x);
           if (u.type === "pesawat_kamikaze") u.health = 0;
         }
-      }
-
-      // 4. TERRAIN CONSTRAINTS (Clamping based on Domain)
-      const domain = getUnitDomain(u.type);
-      const SHORELINE_Y = -6000; // Moving up to the Port
-
-      if (domain === 'land') {
-        // Land units stay in Y > SHORELINE_Y (Bottom half)
-        if (u.pos.y < SHORELINE_Y) u.pos.y = SHORELINE_Y;
-      } else if (domain === 'sea') {
-        // Naval units stay in Y < SHORELINE_Y (Top half)
-        if (u.pos.y > SHORELINE_Y) u.pos.y = SHORELINE_Y;
+      } else {
+        u.pos.x += sepX * 0.5;
+        u.pos.y += sepY * 0.5;
       }
 
       // GLOBAL THEATER LIMITS
