@@ -16,11 +16,13 @@ export class LandingPhysicsRouter {
     ): Vector2[] {
         console.log("[Route:Landing] Orchestrating ILS Approach via Polyglot Engine...");
 
-        // 1. INSTRUMENT APPROACH (Glide Path)
-        const approachPath = LandingPhysicsEngine.calculateApproach(currentPos, runwayEnd);
+        // 1. INSTRUMENT APPROACH (Glide Path) - Still airborne and maneuvering
+        const approachPath = LandingPhysicsEngine.calculateApproach(currentPos, runwayEnd)
+            .map(p => ({ ...p, airState: 'maneuver' }));
 
-        // 2. ROLLOUT & TAXI (Deceleration on Runway)
-        const rolloutPath = LandingPhysicsEngine.calculateRollout(runwayEnd, runwayStart);
+        // 2. ROLLOUT & TAXI (Deceleration on Runway) - Grounded and Protected
+        const rolloutPath = LandingPhysicsEngine.calculateRollout(runwayEnd, runwayStart)
+            .map(p => ({ ...p, airState: 'taxi' }));
 
         return [
             ...approachPath,

@@ -20,20 +20,24 @@ export class AircraftPhysicsRouter {
         runwayEnd: Vector2,
         now: number
     ): Vector2[] {
-        console.log("[Route:Aircraft] Routing physics with Separation Jitter...");
+        console.log("[Route:Aircraft] Routing physics with Runway Alignment...");
 
-        const verticalOffset = Math.random() * 600 - 300; // Separation height
-        const lateralJitter = Math.random() * 400 - 200;
+        // Vertical and lateral jitter for separation (ONLY in air)
+        const verticalOffset = Math.random() * 600 - 300; 
 
         // 1. TACTICAL TAXI (Hangar -> Runway)
-        const taxiPath: Vector2[] = [{ x: runwayStart.x, y: runwayStart.y + lateralJitter }];
+        // Ensure unit is grounded and taxiing to start of runway
+        const taxiPath: Vector2[] = [
+            { x: runwayStart.x, y: runwayStart.y, airState: 'taxi' } as any,
+        ];
 
-        // 2. [CPP/RUST] TAKEOFF ROLL (Acceleration Roll)
+        // 2. [CPP/RUST] TAKEOFF ROLL (High-speed Acceleration on Tarmac)
+        // Stays perfectly on the runway line (X=12000)
         const rollPath = AircraftPhysicsEngine.calculateTakeoffRoll(
-            { x: runwayStart.x, y: runwayStart.y + lateralJitter }, 
-            { x: runwayEnd.x, y: runwayEnd.y + lateralJitter }, 
-            8
-        );
+            { x: runwayStart.x, y: runwayStart.y }, 
+            { x: runwayEnd.x, y: runwayEnd.y }, 
+            12
+        ).map(p => ({ ...p, airState: 'takeoff_roll' }));
 
         // 3. [PYTHON] LIFTOFF & CLIMB (Aerodynamic Departure)
         const departureTarget = { 
@@ -41,10 +45,10 @@ export class AircraftPhysicsRouter {
             y: runwayEnd.y + verticalOffset 
         };
         const liftoffPath = AircraftPhysicsEngine.calculateLiftoffPath(
-            { x: runwayEnd.x, y: runwayEnd.y + lateralJitter }, 
+            { x: runwayEnd.x, y: runwayEnd.y }, 
             departureTarget, 
             now
-        );
+        ).map(p => ({ ...p, airState: 'liftoff' }));
 
         return [...taxiPath, ...rollPath, ...liftoffPath];
     }

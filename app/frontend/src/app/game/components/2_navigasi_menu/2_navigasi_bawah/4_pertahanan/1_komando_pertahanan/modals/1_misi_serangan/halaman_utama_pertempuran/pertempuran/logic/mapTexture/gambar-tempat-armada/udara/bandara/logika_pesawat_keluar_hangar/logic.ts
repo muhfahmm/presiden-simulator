@@ -102,26 +102,26 @@ export class AircraftDeploymentLogic {
             if (canSpawn && this.isEnemyNearby(h.pos, units, this.RADAR_THRESHOLD)) {
                 const stats = getUnitStats(h.type);
                 
-                // LANDASAN COORDINATES
-                const runwayCenterX = 12000;
-                const runwayLen = 5000;
-                const runwayStartX = runwayCenterX + runwayLen / 2;
-                const runwayEndX = runwayCenterX - runwayLen / 2;
+                // FIXED RUNWAY: Center at 12000, Length 5000
+                const runwayStartX = 12000; 
+                const runwayEndX = runwayStartX - 5000;
+                const runwayY = h.pos.y; // Stay aligned with Hangar Y
 
                 const trajectory = AircraftPhysicsRouter.generateTrajectory(
                     { x: h.pos.x, y: h.pos.y },
-                    { x: runwayStartX, y: h.pos.y },
-                    { x: runwayEndX, y: h.pos.y },
+                    { x: runwayStartX, y: runwayY },
+                    { x: runwayEndX, y: runwayY },
                     now
                 );
 
                 newSpawned.push({
-                    id: `dep_air_${h.id}_s${now}`, // 's' for sequential
+                    id: `dep_air_${h.id}_s${now}`, 
                     type: h.type, side: "enemy",
                     pos: { x: h.pos.x, y: h.pos.y },
                     health: stats.maxHealth, rotation: Math.PI, influence: 300,
                     path: trajectory,
-                    isAirType: true
+                    isAirType: true,
+                    airState: 'taxi' // INITIAL STATE: Grounded/Safe
                 } as any);
 
                 return {

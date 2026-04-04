@@ -31,14 +31,12 @@ export class AircraftPhysicsEngine {
      */
     static calculateLiftoffPath(start: Vector2, target: Vector2, now: number): Vector2[] {
         const path: Vector2[] = [];
-        const segments = 5;
+        const segments = 8; // More segments for smoother climb
         for (let i = 1; i <= segments; i++) {
             const t = i / segments;
-            // Slight noise based on 'now' to simulate per-launch wind variance
-            const windJitter = Math.sin(now + i) * 15; 
             path.push({
                 x: start.x + (target.x - start.x) * t,
-                y: start.y + (target.y - start.y) * t + windJitter
+                y: start.y + (target.y - start.y) * t
             });
         }
         return path;

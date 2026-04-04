@@ -11,6 +11,7 @@
 import { getUnitStats, getUnitDomain } from "./unit_stats";
 import { HP_Logic } from "./HP_Logic";
 import { Power_Logic } from "./Power_Logic";
+import { AircraftShootingLogic } from "./tembakan_pesawat/logic";
 
 export interface Vector2 {
   x: number;
@@ -295,7 +296,11 @@ class PolyglotRouter {
     const enemyUnits = nextState.filter(u => u.side === 'enemy' && u.health > 0);
 
     nextState.forEach(u => {
-      // 1.1 PATH FOLLOWING (Special logic for Takeoff/Patrol)
+      const stats = getUnitStats(u.type);
+      const domain = getUnitDomain(u.type);
+      const enemies = u.side === 'user' ? enemyUnits : userUnits;
+      const allies = u.side === 'user' ? userUnits : enemyUnits;
+
       // HELPER: Smooth Angle Interpolation (Turning Radius Simulation)
       const lerpAngle = (current: number, target: number, t: number) => {
         let diff = (target - current + Math.PI) % (Math.PI * 2) - Math.PI;
@@ -303,63 +308,88 @@ class PolyglotRouter {
         return current + diff * t;
       };
 
-      // 1. PATH NAVIGATION (Takeoff, Patrol, Landing)
-      if (u.path && u.path.length > 0) {
-        // RADAR CHECK: If unit is on a loiter/patrol path but sees an enemy, BREAK path and engage
-        // (Only for units NOT in takeoff roll)
-        const enemies = u.side === 'user' ? enemyUnits : userUnits;
-        const stats = getUnitStats(u.type);
-        const perceptionRadiusSq = (stats.range * 3) * (stats.range * 3);
-        const isTargetableByMe = (targetType: string) => {
-           const domain = getUnitDomain(u.type);
-           const targetDomain = getUnitDomain(targetType);
-           if (domain === 'air') return true;
-           if (domain === 'land') return targetDomain === 'land' || targetDomain === 'air';
-           if (domain === 'sea') return targetDomain === 'sea' || targetDomain === 'air';
-           return true;
-        };
+      // 1. UNIT TARGETING CAPABILITY (Shared logic for Combat & Navigation)
+      const isTargetableByMe = (target: UnitState) => {
+        const targetType = target.type;
+        const targetDomain = getUnitDomain(targetType);
+        
+        // GROUND PROTECTION: Aircraft on ground (taxi/takeoff) cannot be targeted
+        if (targetType.includes('pesawat') || targetType.includes('jet')) {
+            if (!AircraftShootingLogic.isVulnerable(target)) return false;
+        }
 
+        if (domain === 'air') return true; 
+        if (domain === 'land') return targetDomain === 'land' || targetDomain === 'air';
+        if (domain === 'sea') return targetDomain === 'sea' || targetDomain === 'air';
+        return true;
+      };
+
+      // 1.1 PATH NAVIGATION (Takeoff, Patrol, Landing)
+      if (u.path && u.path.length > 0) {
+        const target = u.path[0];
+        
+        // Update unit's airborne state from waypoint metadata if available
+        if ((target as any).airState) {
+            (u as any).airState = (target as any).airState;
+        }
+
+        // RADAR CHECK: Priority targeting for maneuvering aircraft
+        const perceptionRadiusSq = (stats.range * 3) * (stats.range * 3);
+        
         const hasHostileNearby = enemies.some(e => {
             const dx = u.pos.x - e.pos.x;
             const dy = u.pos.y - e.pos.y;
-            return (dx*dx+dy*dy) < perceptionRadiusSq && isTargetableByMe(e.type);
+            return (dx*dx+dy*dy) < perceptionRadiusSq && isTargetableByMe(e);
         });
 
-        // If hostile nearby and unit has a path, check if it's a loiter path (generic ID or length > 3)
-        // We allow breaking loiter/patrol but NOT takeoff/landing paths
-        const canBreakPath = u.path.length > 3 || u.id.includes('_w'); 
+        // Break path ONLY IF maneuvering/patrolling. Taxing/Takeoff units cannot break path.
+        const currentState = (u as any).airState || 'maneuver';
+        const canBreakPath = (currentState === 'maneuver' || currentState === 'patrol') && u.path.length > 3; 
+
         if (hasHostileNearby && canBreakPath) {
-           u.path = []; // Break path to engage target
+           u.path = []; 
+           (u as any).airState = 'maneuver';
         } else {
-           // Normal Path Following
-           const target = u.path[0];
-           const dx = target.x - u.pos.x;
-           const dy = target.y - u.pos.y;
-           const dist = Math.sqrt(dx * dx + dy * dy);
-
            let speedMult = 2;
-           if (u.path.length === 2) speedMult = 10;
-           if (u.path.length === 1) speedMult = 4;
+           if (u.path.length === 2 || (u as any).airState === 'takeoff_roll') speedMult = 8;
+           if (u.path.length === 1 || (u as any).airState === 'liftoff') speedMult = 4;
+           
+           // Normal Path Following with Continuous Traversal (Prevents micro-stutter)
+           let moveBudget = stats.speed * dt * speedMult;
+           
+           while (u.path && u.path.length > 0 && moveBudget > 0) {
+              const target = u.path[0];
+              if ((target as any).airState) (u as any).airState = (target as any).airState;
 
-           if (dist < 100) {
-             u.path.shift(); // Reached waypoint
-             // Don't return, let the next loop handle movement to next point if needed
-           } else {
-             const moveSpeed = stats.speed * dt * speedMult;
-             u.pos.x += (dx / dist) * Math.min(dist, moveSpeed);
-             u.pos.y += (dy / dist) * Math.min(dist, moveSpeed);
-             
-             const targetRotation = Math.atan2(dy, dx);
-             // JETS turn slower (simulated)
-             const turnSpeed = (u.type.includes('pesawat') || u.type.includes('jet')) ? 0.08 : 1.0;
-             u.rotation = lerpAngle(u.rotation, targetRotation, turnSpeed);
-             return; 
+              const dx = target.x - u.pos.x;
+              const dy = target.y - u.pos.y;
+              const dist = Math.sqrt(dx * dx + dy * dy);
+
+              if (dist < moveBudget) {
+                 // Reached current point with budget remaining
+                 u.pos.x = target.x;
+                 u.pos.y = target.y;
+                 moveBudget -= dist;
+                 u.path.shift();
+                 if (u.path.length === 0) (u as any).airState = 'maneuver';
+              } else {
+                 // Move partial distance toward target
+                 u.pos.x += (dx / dist) * moveBudget;
+                 u.pos.y += (dy / dist) * moveBudget;
+                 
+                 const targetRotation = Math.atan2(dy, dx);
+                 // ROTATION DEADZONE: Avoid jitter when extremely close
+                 if (dist > 50) {
+                    const turnSpeed = (u.type.includes('pesawat') || u.type.includes('jet')) ? 0.08 : 1.0;
+                    u.rotation = lerpAngle(u.rotation, targetRotation, turnSpeed);
+                 }
+                 moveBudget = 0; // Budget exhausted
+              }
            }
+           return; 
         }
       }
 
-      const enemies = u.side === 'user' ? enemyUnits : userUnits;
-      const allies = u.side === 'user' ? userUnits : enemyUnits;
       if (enemies.length === 0) return;
 
       // 2. MOVEMENT & SPATIAL (Rust-style Performance)
@@ -377,24 +407,14 @@ class PolyglotRouter {
         }
       });
 
-      const stats = getUnitStats(u.type);
-      const domain = getUnitDomain(u.type);
       const SHORELINE_Y = -6000;
-
       const perceptionRadiusSq = (stats.range * 2) * (stats.range * 2);
-      const isTargetableByMe = (targetType: string) => {
-        const targetDomain = getUnitDomain(targetType);
-        if (domain === 'air') return true; 
-        if (domain === 'land') return targetDomain === 'land' || targetDomain === 'air';
-        if (domain === 'sea') return targetDomain === 'sea' || targetDomain === 'air';
-        return true;
-      };
 
       let sameDomainEnemies = enemies.filter(e => {
         const dx = u.pos.x - e.pos.x;
         const dy = u.pos.y - e.pos.y;
         const sqDist = dx * dx + dy * dy;
-        return sqDist < perceptionRadiusSq && isTargetableByMe(e.type);
+        return sqDist < perceptionRadiusSq && isTargetableByMe(e);
       });
 
       let targetPool = sameDomainEnemies; 
@@ -431,7 +451,10 @@ class PolyglotRouter {
         u.rotation = lerpAngle(u.rotation, targetRotation, 0.15);
 
         // 3. COMBAT & DAMAGE
-        if (closest.side !== u.side && (now - ((u as any).lastAttack || 0)) > stats.reloadSpeed) {
+        const isAttackerAir = u.type.includes('pesawat') || u.type.includes('jet');
+        const canFire = isAttackerAir ? AircraftShootingLogic.canEngage(u) : true;
+
+        if (canFire && closest.side !== u.side && (now - ((u as any).lastAttack || 0)) > stats.reloadSpeed) {
           (u as any).lastAttack = now;
           const targetStats = getUnitStats(closest.type);
           const damageDealt = Power_Logic.calculateActualDamage(stats, targetStats);
@@ -485,8 +508,8 @@ class PolyglotRouter {
         u.pos.y += sepY * 0.5;
         
         // Idle/Patrol: move towards nearest enemy slowly if not focused
-        if (enemies.filter(e => isTargetableByMe(e.type)).length > 0) {
-          const e = enemies.filter(e => isTargetableByMe(e.type))[0];
+        if (enemies.filter(e => isTargetableByMe(e)).length > 0) {
+          const e = enemies.filter(e => isTargetableByMe(e))[0];
           const dx = e.pos.x - u.pos.x;
           const dy = e.pos.y - u.pos.y;
           const d = Math.sqrt(dx*dx + dy*dy);
