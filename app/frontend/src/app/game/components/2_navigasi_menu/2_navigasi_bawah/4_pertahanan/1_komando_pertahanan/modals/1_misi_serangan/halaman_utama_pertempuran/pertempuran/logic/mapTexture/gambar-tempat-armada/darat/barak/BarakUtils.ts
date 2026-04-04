@@ -4,6 +4,8 @@ export interface BarrackState {
     currentPersonnel: number;
     maxCapacity: number;
     lastSpawned?: number;
+    rallyPoint?: { x: number, y: number };
+    trainingQueue?: { type: string, progress: number, totalTime: number }[];
 }
 
 export class BarakUtils {

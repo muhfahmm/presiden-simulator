@@ -95,7 +95,8 @@ export class ArmoryEngine {
       mousePos?: { x: number, y: number },
       units: any[] = [],
       targetArmada: any = null,
-      armoryState: any[] = []
+      armoryState: any[] = [],
+      selectedId?: string | null
    ): void {
       if (!armoryState || armoryState.length === 0) return;
 
@@ -111,6 +112,7 @@ export class ArmoryEngine {
          try {
             const aX = armory.pos.x;
             const aY = armory.pos.y;
+            const isActive = selectedId === armory.id;
             const config = this.getWeaponConfig(armory.weaponType);
 
             // Hover Detection
@@ -127,25 +129,25 @@ export class ArmoryEngine {
             ctx.save();
             ctx.translate(aX, aY);
 
-            // 1. REINFORCED CONCRETE PLATFORM
+            // 1. REINFORCED CONCRETE PLATFORM (RED IF ACTIVE)
             ctx.shadowBlur = 20;
-            ctx.shadowColor = "rgba(0, 0, 0, 0.6)";
-            ctx.fillStyle = "#1e293b";
+            ctx.shadowColor = isActive ? "rgba(239, 68, 68, 0.5)" : "rgba(0, 0, 0, 0.6)";
+            ctx.fillStyle = isActive ? "#7f1d1d" : "#1e293b";
             ctx.fillRect(-buildW / 2 - 30, -buildH / 2 - 30, buildW + 60, buildH + 60);
             ctx.shadowBlur = 0;
 
-            // 2. MAIN WAREHOUSE STRUCTURE
-            ctx.fillStyle = "#0f172a";
-            ctx.strokeStyle = "#475569"; ctx.lineWidth = 4;
+            // 2. MAIN WAREHOUSE STRUCTURE (Red Tint if Active)
+            ctx.fillStyle = isActive ? "#991b1b" : "#0f172a";
+            ctx.strokeStyle = isActive ? "#ef4444" : "#475569"; ctx.lineWidth = 4;
             ctx.fillRect(-buildW / 2, -buildH / 2, buildW, buildH);
             ctx.strokeRect(-buildW / 2, -buildH / 2, buildW, buildH);
 
-            // 3. HAZARD STRIPING (Yellow/Black)
+            // 3. HAZARD STRIPING (Yellow/Black - Red/Black if Active)
             ctx.save();
             ctx.beginPath();
             ctx.rect(-buildW / 2, -buildH / 2, buildW, buildH);
             ctx.clip();
-            ctx.strokeStyle = "#fbbf24"; ctx.lineWidth = 15;
+            ctx.strokeStyle = isActive ? "#f87171" : "#fbbf24"; ctx.lineWidth = 15;
             ctx.setLineDash([20, 20]);
             ctx.strokeRect(-buildW / 2 + 7.5, -buildH / 2 + 7.5, buildW - 15, buildH - 15);
             ctx.restore();
@@ -153,26 +155,26 @@ export class ArmoryEngine {
             // 4. BLAST DOORS
             const doorW = buildW - 150;
             const doorH = 350;
-            ctx.fillStyle = "#1e293b";
+            ctx.fillStyle = isActive ? "#450a0a" : "#1e293b";
             ctx.fillRect(-doorW / 2, -doorH / 2, doorW, doorH);
-            ctx.strokeStyle = "#334155";
+            ctx.strokeStyle = isActive ? "#991b1b" : "#334155";
             ctx.strokeRect(-doorW / 2, -doorH / 2, doorW, doorH);
 
             // 4.1 DRAW WEAPON ICON INSIDE
             ctx.save();
             ctx.scale(8, 8);
-            config.drawFn(ctx, config.color, "100, 116, 139");
+            config.drawFn(ctx, isActive ? "#ffffff" : config.color, "100, 116, 139");
             ctx.restore();
 
             // 5. STATUS LABEL (Fixed Overlay)
             ctx.font = "bold 20px Inter, sans-serif";
-            ctx.fillStyle = "#475569";
+            ctx.fillStyle = isActive ? "#f87171" : "#475569";
             ctx.textAlign = "center";
             ctx.fillText(`STORAGE ID: ${armory.id.split('_').pop()}`, 0, buildH / 2 - 25);
 
             // Tooltip if hovered
             if (isHovered) {
-               this.drawTooltip(ctx, armory, config);
+               this.drawTooltip(ctx, armory, config, isActive);
             }
 
             ctx.restore();
@@ -184,7 +186,7 @@ export class ArmoryEngine {
       ctx.restore();
    }
 
-   private static drawTooltip(ctx: CanvasRenderingContext2D, armory: any, config: any): void {
+   private static drawTooltip(ctx: CanvasRenderingContext2D, armory: any, config: any, isActive: boolean = false): void {
       ctx.save();
       ctx.translate(0, -350);
 
@@ -194,10 +196,10 @@ export class ArmoryEngine {
       const pad = 35;
 
       // GLOW BOX
-      ctx.shadowColor = `${config.color}cc`;
+      ctx.shadowColor = isActive ? "#f87171cc" : `${config.color}cc`;
       ctx.shadowBlur = 20;
       ctx.fillStyle = "rgba(15, 23, 42, 0.98)";
-      ctx.strokeStyle = config.color;
+      ctx.strokeStyle = isActive ? "#f87171" : config.color;
       ctx.lineWidth = 3;
       ctx.strokeRect(-tw / 2 - pad, -45, tw + pad * 2, 75);
       ctx.fillRect(-tw / 2 - pad, -45, tw + pad * 2, 75);
@@ -211,7 +213,7 @@ export class ArmoryEngine {
 
       // CATEGORY LABEL
       ctx.font = "bold 18px Inter, sans-serif";
-      ctx.fillStyle = config.color;
+      ctx.fillStyle = isActive ? "#f87171" : config.color;
       ctx.fillText(config.label, 0, -55);
 
       ctx.restore();

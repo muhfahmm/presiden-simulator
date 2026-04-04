@@ -333,22 +333,20 @@ class PolyglotRouter {
           (u as any).airState = (target as any).airState;
         }
 
-        // RADAR CHECK: Priority targeting for maneuvering aircraft
-        const perceptionRadiusSq = (stats.range * 3) * (stats.range * 3);
-
-        const hasHostileNearby = enemies.some(e => {
+        // ATTACK MOVE: Check if there's any enemy in firing range
+        const rangeSq = stats.range * stats.range;
+        const enemiesInRange = enemies.some(e => {
           const dx = u.pos.x - e.pos.x;
           const dy = u.pos.y - e.pos.y;
-          return (dx * dx + dy * dy) < perceptionRadiusSq && isTargetableByMe(e);
+          return (dx * dx + dy * dy) <= rangeSq && isTargetableByMe(e);
         });
 
-        // Break path ONLY IF maneuvering/patrolling. Taxing/Takeoff units cannot break path.
+        // Only attack move if maneuvering/patrolling. Taxing/Takeoff units cannot stop.
         const currentState = (u as any).airState || 'maneuver';
-        const canBreakPath = (currentState === 'maneuver' || currentState === 'patrol') && u.path.length > 3;
+        const canAttackMove = (currentState === 'maneuver' || currentState === 'patrol');
 
-        if (hasHostileNearby && canBreakPath) {
-          u.path = [];
-          (u as any).airState = 'maneuver';
+        if (enemiesInRange && canAttackMove) {
+          // ATTACK MOVE: Stop moving, do not break path, let it fall through to COMBAT block
         } else {
           let speedMult = 2;
           if (u.path.length === 2 || (u as any).airState === 'takeoff_roll') speedMult = 8;
@@ -386,7 +384,7 @@ class PolyglotRouter {
               moveBudget = 0; // Budget exhausted
             }
           }
-          return;
+          return; // Skip combat while actively moving and no enemies in range
         }
       }
 

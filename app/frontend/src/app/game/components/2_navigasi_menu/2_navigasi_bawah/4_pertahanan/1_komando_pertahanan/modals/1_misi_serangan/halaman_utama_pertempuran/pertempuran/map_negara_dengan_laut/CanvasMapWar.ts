@@ -78,7 +78,8 @@ export function drawWarMapBackground(
    userAirfieldHangarsState: any[] = [],
    userHelipadsState: any[] = [],
    userPortShipsState: any[] = [],
-   userArmoryState: any[] = []
+   userArmoryState: any[] = [],
+   selectedBuildingId?: string | null
 ) {
    ctx.save();
 
@@ -139,14 +140,14 @@ export function drawWarMapBackground(
    // User Harbor (Mirrored Left -8000)
    ctx.save();
    ctx.translate(-8000, 0); // Shift for mirrored base coast
-   PelabuhanEngine.drawHarbor(ctx, harborData, camera.zoom, mousePos ? { x: mousePos.x + 8000, y: mousePos.y } : undefined, userPortShipsState, units, null);
+   PelabuhanEngine.drawHarbor(ctx, harborData, camera.zoom, mousePos ? { x: mousePos.x + 8000, y: mousePos.y } : undefined, userPortShipsState, units, null, selectedBuildingId);
    ctx.restore();
 
    // 3.2 DRAW TACTICAL AIRBASE (BANDARA & HELIPADS) - NEW MOD
    BandaraEngine.drawAirfield(ctx, 12000, -2350, camera.zoom, mousePos, units, targetArmada, airfieldHangarsState);
    
    // Mirror User Airbase (LEFT)
-   BandaraEngine.drawAirfield(ctx, -12000, -2350, camera.zoom, mousePos, units, null, userAirfieldHangarsState);
+   BandaraEngine.drawAirfield(ctx, -12000, -2350, camera.zoom, mousePos, units, null, userAirfieldHangarsState, selectedBuildingId);
 
    // Dynamic Helipad Rendering – Iterates over all helipads in state
    helipadsState.forEach((pad: any, i: number) => {
@@ -158,7 +159,7 @@ export function drawWarMapBackground(
    // User Helipads (LEFT)
    userHelipadsState.forEach((pad: any, i: number) => {
       if (pad?.pos) {
-         HelipadEngine.drawHelipad(ctx, pad.pos.x, pad.pos.y, camera.zoom, mousePos, `Heli User ${i + 1}`, units, null, pad);
+         HelipadEngine.drawHelipad(ctx, pad.pos.x, pad.pos.y, camera.zoom, mousePos, `Heli User ${i + 1}`, units, null, pad, selectedBuildingId);
       }
    });
 
@@ -166,39 +167,20 @@ export function drawWarMapBackground(
    HangarTankEngine.drawTankHangar(ctx, 12000, 3000, camera.zoom, mousePos, units, targetArmada, tankHangarsState);
    
    // Mirror User Hangar (LEFT)
-   HangarTankEngine.drawTankHangar(ctx, -12000, 3000, camera.zoom, mousePos, units, null, userTankHangarsState);
+   HangarTankEngine.drawTankHangar(ctx, -12000, 3000, camera.zoom, mousePos, units, null, userTankHangarsState, selectedBuildingId);
 
    // 3.3 DRAW MILITARY BARRACKS (BARAK) - NEW MOD
    BarakEngine.drawBarracks(ctx, 12000, 850, camera.zoom, 10, barakCount, mousePos, phase, barracksState);
    
    // Mirror User Barracks (LEFT)
    const userBarakCount = userBarracksState.length; 
-   BarakEngine.drawBarracks(ctx, -12000, 850, camera.zoom, 10, userBarakCount, mousePos, phase, userBarracksState);
+   BarakEngine.drawBarracks(ctx, -12000, 850, camera.zoom, 10, userBarakCount, mousePos, phase, userBarracksState, selectedBuildingId);
 
    // 3.4 DRAW ARMORIES (GUDANG SENJATA) - NEW MOD
    ArmoryEngine.drawArmory(ctx, 10400, 8500, camera.zoom, mousePos, units, targetArmada, armoryState);
    
    // Mirror User Armory (LEFT)
-   ArmoryEngine.drawArmory(ctx, -10400, 8500, camera.zoom, mousePos, units, null, userArmoryState);
-
-   // 4. POTENTIAL FIELD MESH - REMOVED AS PER USER REQUEST
-
-   // 5. HEATMAP & FOG - REMOVED AS PER USER REQUEST
-
-   // 6. Tactical Boundary (RESTORED)
-   ctx.strokeStyle = "rgba(220, 38, 38, 0.8)";
-   ctx.lineWidth = 10 / camera.zoom;
-   ctx.strokeRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT * 2);
-
-   // 7. Tactical Frontline (X=0) (RESTORED)
-   ctx.setLineDash([100 / camera.zoom, 60 / camera.zoom]);
-   ctx.strokeStyle = "rgba(239, 68, 68, 0.4)";
-   ctx.lineWidth = 4 / camera.zoom;
-   ctx.beginPath();
-   ctx.moveTo(0, -THEATER_LIMIT);
-   ctx.lineTo(0, THEATER_LIMIT);
-   ctx.stroke();
-   ctx.setLineDash([]);
+   ArmoryEngine.drawArmory(ctx, -10400, 8500, camera.zoom, mousePos, units, null, userArmoryState, selectedBuildingId);
 
    ctx.restore();
 

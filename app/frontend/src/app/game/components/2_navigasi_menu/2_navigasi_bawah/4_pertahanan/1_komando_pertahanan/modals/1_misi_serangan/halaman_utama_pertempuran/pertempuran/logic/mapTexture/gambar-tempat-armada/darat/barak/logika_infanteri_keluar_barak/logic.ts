@@ -1,6 +1,7 @@
 import { UnitState, Vector2 } from "../../../../../polyglot/ts/polyglot-router";
 import { getUnitStats } from "../../../../../polyglot/ts/unit_stats";
 import { BarrackState } from "../BarakUtils";
+import { PlayerTacticalLogic } from "../../../../../PlayerTacticalLogic";
 
 /**
  * Infantry Deployment Logic - Barracks Management
@@ -39,7 +40,7 @@ export class InfantryDeploymentLogic {
         side: 'user' | 'enemy' = 'enemy'
     ): { nextBarracks: BarrackState[], newSpawned: UnitState[] } {
         const newSpawned: UnitState[] = [];
-        const cooldown = 1500;
+        const cooldown = 1500 * PlayerTacticalLogic.getEmbargoCooldownMultiplier();
 
         // Step 1: Find the ACTIVE barrack index
         let activeIndex = -1;

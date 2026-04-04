@@ -6,6 +6,8 @@ export interface AirfieldHangarState {
     currentCount: number;
     maxCapacity: number;
     lastSpawned?: number;
+    rallyPoint?: { x: number, y: number };
+    trainingQueue?: { type: string, progress: number, totalTime: number }[];
 }
 
 export interface HelipadState {
@@ -14,21 +16,19 @@ export interface HelipadState {
     currentCount: number;
     maxCapacity: number;
     lastSpawned?: number;
+    rallyPoint?: { x: number, y: number };
+    trainingQueue?: { type: string, progress: number, totalTime: number }[];
 }
 
 export class AirfieldUtils {
     /**
      * Calculate positions for airfield hangars based on BandaraEngine's runway configs.
+     * Dynamic: Only returns hangars for types the user actually has.
      */
     static calculateAirfieldHangars(centerX: number, centerY: number, armada: any): AirfieldHangarState[] {
         const runwayLen = 5000;
         const spacingY = 450;
-        const numRunways = 7;
-        const totalSpan = (numRunways - 1) * spacingY;
         
-        // Match visual hangar position in BandaraEngine
-        const hangarX = centerX + runwayLen / 2 + 250;
-
         const runwayConfigs = [
             { name: "Jet Stealth", key: "jet_tempur_siluman" },
             { name: "Jet Interceptor", key: "jet_tempur_interceptor" },
@@ -39,10 +39,21 @@ export class AirfieldUtils {
             { name: "Pesawat Angkut", key: "pesawat_angkut" }
         ];
 
+        // 1. Filter only types that are in inventory
+        const activeConfigs = runwayConfigs.filter(cfg => (armada?.udara?.[cfg.key] || 0) > 0);
+        
+        if (activeConfigs.length === 0) return [];
+
+        const numRunways = activeConfigs.length;
+        const totalSpan = (numRunways - 1) * spacingY;
+        
+        // Match visual hangar position in BandaraEngine
+        const hangarX = centerX + runwayLen / 2 + 250;
+
         const hangars: AirfieldHangarState[] = [];
         for (let i = 0; i < numRunways; i++) {
             const yOff = i * spacingY - totalSpan / 2;
-            const config = runwayConfigs[i];
+            const config = activeConfigs[i];
             const count = armada?.udara?.[config.key] || 0;
 
             hangars.push({

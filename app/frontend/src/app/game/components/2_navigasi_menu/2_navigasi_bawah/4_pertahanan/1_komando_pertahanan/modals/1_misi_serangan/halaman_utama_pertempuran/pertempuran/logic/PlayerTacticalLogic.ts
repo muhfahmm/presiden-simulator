@@ -10,6 +10,13 @@ export class PlayerTacticalLogic {
     static readonly NAVAL_UNITS = ["kapal_induk", "kapal_destroyer", "kapal_korvet", "kapal_selam_nuklir", "kapal_selam_regular", "kapal_ranjau", "kapal_logistik"];
     static readonly AIR_UNITS = ["jet_tempur_siluman", "jet_tempur_interceptor", "pesawat_pengebom", "helikopter_serang", "pesawat_pengintai", "drone_intai_uav", "drone_kamikaze", "pesawat_angkut"];
 
+    // GLOBAL STATUS: DIPLOMATIC DECREES (UN Embargo)
+    static isEmbargoActive: boolean = false;
+    
+    static getEmbargoCooldownMultiplier(): number {
+        return this.isEmbargoActive ? 1.4 : 1.0; // 40% slower respawn when embargoed
+    }
+
     /**
      * Validates if a unit type can be deployed at the given Y coordinate.
      */

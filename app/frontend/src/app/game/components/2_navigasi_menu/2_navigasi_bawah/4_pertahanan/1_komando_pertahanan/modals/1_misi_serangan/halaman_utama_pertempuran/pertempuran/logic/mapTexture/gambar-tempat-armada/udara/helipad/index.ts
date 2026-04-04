@@ -16,12 +16,14 @@ export class HelipadEngine {
       name: string = "Heli Serang",
       units: any[] = [],
       targetArmada: any = null,
-      helipadState: any = null
+      helipadState: any = null,
+      selectedId?: string | null
    ): void {
       ctx.save();
       ctx.translate(x, y);
 
       const radius = 150;
+      const isActive = selectedId === helipadState?.id;
 
       // Hover Detection (Circular)
       let isHovered = false;
@@ -31,18 +33,18 @@ export class HelipadEngine {
          isHovered = (Math.sqrt(dx * dx + dy * dy) <= radius);
       }
 
-      // 1. CONCRETE BASE (Grid circle)
-      ctx.fillStyle = isHovered ? '#64748b' : '#475569';
+      // 1. CONCRETE BASE (Grid circle - RED IF ACTIVE)
+      ctx.fillStyle = isActive ? '#7f1d1d' : (isHovered ? '#64748b' : '#475569');
       ctx.beginPath();
       ctx.arc(0, 0, radius, 0, Math.PI * 2);
       ctx.fill();
 
       // Concrete pattern (Border)
-      ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 4;
+      ctx.strokeStyle = isActive ? '#450a0a' : '#1e293b'; ctx.lineWidth = 4;
       ctx.stroke();
 
-      // 2. INNER BORDER (Safety Circle)
-      ctx.strokeStyle = '#facc15'; ctx.lineWidth = 6;
+      // 2. INNER BORDER (Safety Circle - WHITE IF ACTIVE)
+      ctx.strokeStyle = isActive ? '#ffffff' : '#facc15'; ctx.lineWidth = 6;
       ctx.beginPath();
       ctx.arc(0, 0, radius - 20, 0, Math.PI * 2);
       ctx.stroke();
@@ -59,11 +61,11 @@ export class HelipadEngine {
       // Center bar
       ctx.fillRect(-hSide / 2, -hThickness / 2, hSide, hThickness);
 
-      // 4. PERIMETER LIGHTS (Teal/Green)
+      // 4. PERIMETER LIGHTS (Teal/Green - RED IF ACTIVE)
       const numLights = 8;
       ctx.shadowBlur = 10;
-      ctx.shadowColor = '#10b981';
-      ctx.fillStyle = '#10b981';
+      ctx.shadowColor = isActive ? '#ef4444' : '#10b981';
+      ctx.fillStyle = isActive ? '#ef4444' : '#10b981';
 
       for (let i = 0; i < numLights; i++) {
          const angle = (i / numLights) * Math.PI * 2;

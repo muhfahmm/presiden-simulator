@@ -12,6 +12,8 @@ interface DeploymentEngineProps {
   currentPoints: number;
   maxPoints: number;
   cumulativeDeployment: Record<string, number>;
+  selectedBuildingId?: string | null;
+  onAddUnitToQueue?: (type: string) => void;
 }
 
 export default function DeploymentEngine({ 
@@ -22,6 +24,8 @@ export default function DeploymentEngine({
   currentPoints, 
   maxPoints,
   cumulativeDeployment,
+  selectedBuildingId,
+  onAddUnitToQueue
 }: DeploymentEngineProps) {
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
     darat: true,
@@ -143,10 +147,21 @@ export default function DeploymentEngine({
                                   key={u.id}
                                   role="button"
                                   tabIndex={totalInMission === 0 ? -1 : 0}
-                                  onClick={() => totalInMission > 0 && onSelect(isSelected ? null : u.id)}
+                                  onClick={() => {
+                                     if (totalInMission === 0) return;
+                                     if (selectedBuildingId && onAddUnitToQueue) {
+                                        onAddUnitToQueue(u.id);
+                                        return;
+                                     }
+                                     onSelect(isSelected ? null : u.id);
+                                  }}
                                   onKeyDown={(e) => {
                                      if (totalInMission > 0 && (e.key === 'Enter' || e.key === ' ')) {
                                         e.preventDefault();
+                                        if (selectedBuildingId && onAddUnitToQueue) {
+                                           onAddUnitToQueue(u.id);
+                                           return;
+                                        }
                                         onSelect(isSelected ? null : u.id);
                                      }
                                   }}

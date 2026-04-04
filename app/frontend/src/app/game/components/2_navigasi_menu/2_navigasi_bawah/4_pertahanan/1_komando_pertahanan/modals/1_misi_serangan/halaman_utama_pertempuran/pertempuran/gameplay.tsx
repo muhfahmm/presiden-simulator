@@ -40,7 +40,8 @@ interface GameplayProps {
       userAirfieldHangarsState?: any[],
       userHelipadsState?: any[],
       userPortShipsState?: any[],
-      userArmoryState?: any[]
+      userArmoryState?: any[],
+      selectedBuildingId?: string | null
    ) => void;
    hasSea?: boolean;
    targetArmada?: any;
@@ -60,6 +61,9 @@ interface GameplayProps {
    barracksState?: any[];
    width?: number;
    height?: number;
+   selectedUnitIds?: string[];
+   activeWaypoints?: {id: number, x: number, y: number}[];
+   selectedBuildingId?: string | null;
 }
 
 export default function Gameplay({
@@ -85,7 +89,10 @@ export default function Gameplay({
    phase = "deployment",
    barracksState = [],
    width = 1200,
-   height = 800
+   height = 800,
+   selectedUnitIds = [],
+   activeWaypoints = [],
+   selectedBuildingId = null
 }: GameplayProps) {
    const containerRef = useRef<HTMLDivElement>(null);
    const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -94,6 +101,9 @@ export default function Gameplay({
    const [viewport, setViewport] = useState({ w: width, h: height });
    const viewportRef = useRef({ w: width, h: height });
    const hoveredUnitRef = useRef<UnitState | null>(null);
+
+   const [isHoveringBuilding, setIsHoveringBuilding] = useState(false);
+   const isHoveringBuildingRef = useRef(false);
 
    const fogCellsRef = useRef<FogCell[]>([]);
    const heatmapCellsRef = useRef<HeatmapCell[]>([]);
@@ -238,6 +248,30 @@ export default function Gameplay({
             hoveredUnitRef.current = closest;
          }
          mouseWorldPosRef.current = { x: worldX, y: worldY };
+
+         // Check if hovering over user buildings
+         const checkHover = (pos: {x: number, y: number}, radius: number) => {
+            if (!pos) return false;
+            return Math.sqrt((pos.x - worldX)**2 + (pos.y - worldY)**2) < radius;
+         };
+
+         let isNowHovering = false;
+         if (
+            latestUserBarracksRef.current.some(b => checkHover(b.pos, 800)) ||
+            latestUserTankHangarsRef.current.some(h => checkHover(h.pos, 800)) ||
+            latestUserAirfieldHangarsRef.current.some(h => checkHover(h.pos, 1000)) ||
+            latestUserHelipadsRef.current.some(h => checkHover(h.pos, 500)) ||
+            latestUserArmoryRef.current.some(a => checkHover(a.pos, 800)) ||
+            // Harbor roughly at x:-8000 at shoreline 
+            (worldX > -10000 && worldX < -6000 && worldY > -6500 && worldY < -5500)
+         ) {
+            isNowHovering = true;
+         }
+
+         if (isNowHovering !== isHoveringBuildingRef.current) {
+            isHoveringBuildingRef.current = isNowHovering;
+            setIsHoveringBuilding(isNowHovering);
+         }
       }
    };
 
@@ -355,13 +389,96 @@ export default function Gameplay({
             latestUserAirfieldHangarsRef.current,
             latestUserHelipadsRef.current,
             latestUserPortShipsRef.current,
-            latestUserArmoryRef.current
+            latestUserArmoryRef.current,
+            selectedBuildingId
          );
 
+         // DRAW OVERLAYS (SELECTION, RALLY, PROGRESS)
          const camera = cameraRef.current;
+         const drawBuildingOverlays = (list: any[]) => {
+            list.forEach(b => {
+               if (!b.pos) return;
+               ctx.save();
+               ctx.translate(b.pos.x, b.pos.y);
+
+               // 1. Selection Highlight
+               if (selectedBuildingId === b.id) {
+                  const pulse = Math.sin(Date.now() / 200) * 0.1;
+                  const baseRadius = b.id.includes('air_hangar') ? 1000 : 800;
+                  ctx.beginPath();
+                  ctx.arc(0, 0, baseRadius * (1.1 + pulse), 0, Math.PI * 2);
+                  ctx.strokeStyle = "rgba(14, 165, 233, 0.9)"; // Neon Cyan
+                  ctx.lineWidth = 20 / camera.zoom;
+                  ctx.stroke();
+
+                  // Inner glow
+                  ctx.beginPath();
+                  ctx.arc(0, 0, 800, 0, Math.PI * 2);
+                  ctx.fillStyle = "rgba(14, 165, 233, 0.1)";
+                  ctx.fill();
+
+                  // 2. Rally Point Line & Marker
+                  if (b.rallyPoint) {
+                     ctx.restore();
+                     ctx.save();
+                     ctx.beginPath();
+                     ctx.setLineDash([50, 30]);
+                     ctx.moveTo(b.pos.x, b.pos.y);
+                     ctx.lineTo(b.rallyPoint.x, b.rallyPoint.y);
+                     ctx.strokeStyle = "rgba(14, 165, 233, 0.6)";
+                     ctx.lineWidth = 12 / camera.zoom;
+                     ctx.stroke();
+                     ctx.setLineDash([]);
+
+                     // Flag/Marker at target
+                     ctx.translate(b.rallyPoint.x, b.rallyPoint.y);
+                     ctx.beginPath();
+                     ctx.arc(0, 0, 150, 0, Math.PI * 2);
+                     ctx.fillStyle = "#0ea5e9";
+                     ctx.fill();
+                     ctx.strokeStyle = "white";
+                     ctx.lineWidth = 5;
+                     ctx.stroke();
+                     ctx.restore();
+                     ctx.save();
+                     ctx.translate(b.pos.x, b.pos.y);
+                  }
+               }
+
+               // 3. Training Progress Bar
+               if (b.trainingQueue && b.trainingQueue.length > 0) {
+                  const q = b.trainingQueue[0];
+                  const progress = q.progress / q.totalTime;
+                  const barW = 1200;
+                  const barH = 150;
+
+                  ctx.fillStyle = "rgba(0,0,0,0.8)";
+                  ctx.fillRect(-barW / 2, -1200, barW, barH);
+                  ctx.fillStyle = "#0ea5e9";
+                  ctx.fillRect(-barW / 2, -1200, barW * progress, barH);
+                  ctx.strokeStyle = "white";
+                  ctx.lineWidth = 10;
+                  ctx.strokeRect(-barW / 2, -1200, barW, barH);
+                  
+                  // Text "Training..."
+                  ctx.fillStyle = "white";
+                  ctx.font = "bold 100px Arial";
+                  ctx.textAlign = "center";
+                  ctx.fillText("PRODUCING...", 0, -1250);
+               }
+
+               ctx.restore();
+            });
+         };
+
+         drawBuildingOverlays(latestUserBarracksRef.current);
+         drawBuildingOverlays(latestUserTankHangarsRef.current);
+         drawBuildingOverlays(latestUserAirfieldHangarsRef.current);
+         drawBuildingOverlays(latestUserHelipadsRef.current);
+         drawBuildingOverlays(latestUserPortShipsRef.current);
+         drawBuildingOverlays(latestUserArmoryRef.current);
+
          ctx.save();
-         ctx.translate(camera.x, camera.y);
-         ctx.scale(camera.zoom, camera.zoom);
 
          const currentUnits = latestUnitsRef.current;
          const visibleUnits = polyglotService.getVisibleUnits(currentUnits, camera, canvas.width, canvas.height);
@@ -403,6 +520,22 @@ export default function Gameplay({
             else if (typeLower.includes("taktis") || typeLower.includes("tactical")) drawTactical(ctx, hexColor, baseColor);
             else drawTank(ctx, hexColor, baseColor);
 
+            // HIGHLIGHT JIKA TERPILIH
+            if (selectedUnitIds.includes(u.id)) {
+               ctx.beginPath();
+               ctx.arc(0, 0, 40, 0, Math.PI * 2);
+               ctx.strokeStyle = "rgba(74, 222, 128, 0.8)"; // Neon green
+               ctx.lineWidth = 3;
+               ctx.stroke();
+               
+               // Outer fading ring
+               ctx.beginPath();
+               ctx.arc(0, 0, 48 + Math.sin(Date.now() / 150) * 5, 0, Math.PI * 2);
+               ctx.strokeStyle = "rgba(74, 222, 128, 0.3)";
+               ctx.lineWidth = 1;
+               ctx.stroke();
+            }
+
             const stats = getUnitStats(u.type);
             const healthRatio = HP_Logic.getHealthRatio(u.health, stats.maxHealth);
             const barW = 32; const barH = 3;
@@ -415,14 +548,44 @@ export default function Gameplay({
 
          VFXRenderer.drawVFXList(ctx, combatVfx as any, Date.now());
 
-         strategicZonesRef.current.forEach(zone => {
+         // GAMBAR ACTIVE WAYPOINTS (MOVEMENT TARGETS)
+         activeWaypoints.forEach(wp => {
             ctx.save();
+            ctx.translate(wp.x, wp.y);
+            const scale = 1 / Math.sqrt(camera.zoom); // Menjaga ukuran tetap konsisten relative thd zoom
+            ctx.scale(scale, scale);
+
+            // Ripple effect
+            const time = Date.now() / 150;
+            const radius1 = 40 + Math.sin(time) * 10;
+            const radius2 = 60 + Math.sin(time + Math.PI / 2) * 10;
+
             ctx.beginPath();
-            ctx.arc(zone.center.x, zone.center.y, zone.radius, 0, Math.PI * 2);
-            ctx.strokeStyle = zone.priority === "CRITICAL" ? "rgba(239, 68, 68, 0.5)" : "rgba(251, 191, 36, 0.3)";
-            ctx.lineWidth = 2 / camera.zoom;
-            ctx.setLineDash([100 / camera.zoom, 60 / camera.zoom]);
+            ctx.arc(0, 0, radius1, 0, Math.PI * 2);
+            ctx.strokeStyle = "rgba(16, 185, 129, 0.8)"; // Emerald green target
+            ctx.lineWidth = 4;
             ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(0, 0, radius2, 0, Math.PI * 2);
+            ctx.strokeStyle = "rgba(16, 185, 129, 0.3)";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // Center dot
+            ctx.beginPath();
+            ctx.arc(0, 0, 5, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(16, 185, 129, 1)";
+            ctx.fill();
+
+            // Line ke atas
+            ctx.beginPath();
+            ctx.moveTo(0, -20);
+            ctx.lineTo(0, -radius2 - 20);
+            ctx.strokeStyle = "rgba(16, 185, 129, 0.5)";
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
             ctx.restore();
          });
 
@@ -449,12 +612,12 @@ export default function Gameplay({
       };
       const animId = requestAnimationFrame(renderLoop);
       return () => cancelAnimationFrame(animId);
-   }, [viewport, combatVfx]);
+   }, [viewport, combatVfx, selectedBuildingId]);
 
    return (
       <div
          ref={containerRef}
-         className="relative border border-zinc-900/50 rounded-[40px] overflow-hidden shadow-2xl bg-[#020617] w-full h-full cursor-crosshair select-none"
+         className={`relative border border-zinc-900/50 rounded-[40px] overflow-hidden shadow-2xl bg-[#020617] w-full h-full select-none ${isHoveringBuilding ? 'cursor-pointer' : 'cursor-crosshair'}`}
          onMouseDown={handleMouseDown}
          onMouseMove={handleMouseMove}
          onMouseUp={handleMouseUp}

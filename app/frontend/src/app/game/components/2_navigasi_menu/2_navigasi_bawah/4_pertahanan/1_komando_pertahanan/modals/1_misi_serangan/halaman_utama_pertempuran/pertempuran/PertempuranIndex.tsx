@@ -56,6 +56,13 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
    const [armory, setArmory] = useState<ArmoryState[]>([]);
    const [cumulativeDeployment, setCumulativeDeployment] = useState<Record<string, number>>({});
 
+   // Unit Selection & Waypoints (Mekanik RTS)
+   const [selectedUnitIds, setSelectedUnitIds] = useState<string[]>([]);
+   const [activeWaypoints, setActiveWaypoints] = useState<{id: number, x: number, y: number}[]>([]);
+
+   // Building Interaction
+   const [selectedBuildingId, setSelectedBuildingId] = useState<string | null>(null);
+
    // User-side buildings
    const [userBarracks, setUserBarracks] = useState<BarrackState[]>([]);
    const [userTankHangars, setUserTankHangars] = useState<HangarState[]>([]);
@@ -160,6 +167,16 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
       }
    }, [missionData.target, missionData.selection]);
 
+   // Auto-Select user units when a building is clicked in the deployment sidebar
+   useEffect(() => {
+      if (selectedUnitType) {
+         const matchingUnits = units.filter(u => u.side === 'user' && u.type === selectedUnitType).map(u => u.id);
+         setSelectedUnitIds(matchingUnits);
+      } else {
+         setSelectedUnitIds([]);
+      }
+   }, [selectedUnitType, units.length]);
+
    // Terrain Restriction Definitions
    const NAVAL_UNITS = TheaterSetupLogic.NAVAL_UNITS;
    const AIR_UNITS = TheaterSetupLogic.AIR_UNITS;
@@ -215,6 +232,47 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
       return false; // No unit found
    }, [phase, units]);
 
+   const handleTacticalMoveOrder = useCallback((x: number, y: number) => {
+      if ((phase !== "deployment" && phase !== "combat") || selectedUnitIds.length === 0) return;
+
+      const newTarget = { id: Date.now(), x, y };
+      setActiveWaypoints(prev => {
+         const updated = [...prev, newTarget];
+         if (updated.length > 5) return updated.slice(updated.length - 5);
+         return updated;
+      });
+
+      setUnits(prev => prev.map(u => {
+         if (selectedUnitIds.includes(u.id)) {
+            return {
+               ...u,
+               path: [{ x, y }]
+            };
+         }
+         return u;
+      }));
+   }, [phase, selectedUnitIds]);
+
+   const handleAddItemToQueue = useCallback((unitType: string) => {
+      if (!selectedBuildingId) return;
+
+      const updateQueue = (prev: any[]) => prev.map(b => {
+         if (b.id !== selectedBuildingId) return b;
+         
+         const stats = getUnitStats(unitType);
+         const trainingTime = stats.reloadSpeed * 5; 
+         const newQueue = [...(b.trainingQueue || []), { type: unitType, progress: 0, totalTime: trainingTime }];
+         
+         return { ...b, trainingQueue: newQueue };
+      });
+
+      setUserBarracks(updateQueue);
+      setUserTankHangars(updateQueue);
+      setUserAirfieldHangars(updateQueue);
+      setUserHelipads(updateQueue);
+      setUserArmory(updateQueue);
+   }, [selectedBuildingId]);
+
 
    // Visual Tracers & Combat VFX
    const [combatVfx, setCombatVfx] = useState<any[]>([]);
@@ -263,6 +321,54 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          const userNavalRes = NavalDeploymentLogic.processNavalPortTick(userPortShipsRef.current, unitsRef.current, now, 'user');
          const userArmoryRes = ArmoryDeploymentLogic.processArmoryTick(userArmoryRef.current, unitsRef.current, now, 'user');
 
+         const processUserQueues = (buildings: any[]) => {
+            let spawned: UnitState[] = [];
+            const nextBuildings = buildings.map(b => {
+               if (!b.trainingQueue || b.trainingQueue.length === 0) return b;
+               const q = [...b.trainingQueue];
+               const currentTask = { ...q[0] };
+               currentTask.progress += (dt * 1000); 
+
+               if (currentTask.progress >= currentTask.totalTime) {
+                  const stats = getUnitStats(currentTask.type);
+                  const isInfantry = currentTask.type === 'pasukan_infanteri';
+                  const amount = isInfantry ? 10000 : 1;
+                  const spawnPos = { x: b.pos.x + 100, y: b.pos.y };
+                  const newUnit: UnitState = {
+                     id: `manual_${currentTask.type}_${now}_${Math.random()}`,
+                     type: currentTask.type,
+                     side: 'user',
+                     pos: spawnPos,
+                     health: stats.maxHealth,
+                     rotation: 0,
+                     influence: 100,
+                     path: b.rallyPoint ? [b.rallyPoint] : []
+                  };
+                  spawned.push(newUnit);
+                  setCumulativeDeployment(prev => ({
+                     ...prev,
+                     [currentTask.type]: (prev[currentTask.type] || 0) + amount
+                  }));
+                  q.shift();
+               } else {
+                  q[0] = currentTask;
+               }
+               return { ...b, trainingQueue: q };
+            });
+            return { nextBuildings, spawned };
+         };
+
+         const barakQ = processUserQueues(userBarracksRef.current);
+         const tankQ = processUserQueues(userTankHangarsRef.current);
+         const airQ = processUserQueues(userAirfieldHangarsRef.current);
+         const heliQ = processUserQueues(userHelipadsRef.current);
+         const armoryQ = processUserQueues(userArmoryRef.current);
+
+         const userManualSpawned = [
+            ...barakQ.spawned, ...tankQ.spawned, ...airQ.spawned, 
+            ...heliQ.spawned, ...armoryQ.spawned
+         ];
+
          // 3. Post-Combat (Landing/Recovery)
          const postCombatRes = AircraftDeploymentLogic.processPostCombatTick(unitsRef.current, airfieldResult.nextHangars, now, 'enemy');
          const userPostCombatRes = AircraftDeploymentLogic.processPostCombatTick(unitsRef.current, userAirfieldRes.nextHangars, now, 'user');
@@ -281,7 +387,8 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
             ...(isAirfieldSelected ? userAirfieldRes.newSpawned : []),
             ...(isHeliSelected ? userHeliRes.newSpawned : []),
             ...(isNavalSelected ? userNavalRes.newSpawned : []),
-            ...(isArmorySelected ? userArmoryRes.newSpawned : [])
+            ...(isArmorySelected ? userArmoryRes.newSpawned : []),
+            ...userManualSpawned
          ];
 
          let finalUnits = result.units;
@@ -309,13 +416,16 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          setPortShips(navalRes.nextPortShips);
          setArmory(armoryRes.nextArmories);
 
-         // 5. User-side state updates
-         setUserBarracks(userInfRes.nextBarracks);
-         setUserTankHangars(userTankRes.nextHangars);
-         setUserAirfieldHangars(userPostCombatRes.nextHangars);
-         setUserHelipads(userHeliRes.nextHelipads);
+         // 5. User-side state updates (Combine Queue + Auto Logic)
+         setUserBarracks(barakQ.nextBuildings);
+         setUserTankHangars(tankQ.nextBuildings);
+         setUserAirfieldHangars(userPostCombatRes.nextHangars.map(h => {
+            const queueMatch = airQ.nextBuildings.find(q => q.id === h.id);
+            return queueMatch ? { ...h, trainingQueue: queueMatch.trainingQueue } : h;
+         }));
+         setUserHelipads(heliQ.nextBuildings);
          setUserPortShips(userNavalRes.nextPortShips);
-         setUserArmory(userArmoryRes.nextArmories);
+         setUserArmory(armoryQ.nextBuildings);
 
          if (result.vfx.length > 0) {
             setCombatVfx(v => [...v.filter(fx => Date.now() - fx.timestamp < 1000), ...result.vfx]);
@@ -371,6 +481,8 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                   currentPoints={currentPoints}
                   maxPoints={maxPoints}
                   cumulativeDeployment={cumulativeDeployment}
+                  selectedBuildingId={selectedBuildingId}
+                  onAddUnitToQueue={handleAddItemToQueue}
                />
 
                <div className="flex-1 p-4 bg-black flex flex-col items-center justify-center relative overflow-hidden">
@@ -396,15 +508,128 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                         userArmoryState={userArmory}
                         barakCount={targetArmada?.barak || 0}
                         phase={phase}
+                        selectedUnitIds={selectedUnitIds}
+                        activeWaypoints={activeWaypoints}
                         onMapClick={(x, y, isRightClick) => {
                            if (phase === "deployment" || phase === "combat") {
+                              const worldX = x;
+                              const worldY = y;
+                              const clickRadius = 500; // detect radius
+
                               if (isRightClick) {
-                                 handleRemoveUnit(x, y);
+                                 // RALLY POINT LOGIC
+                                 if (selectedBuildingId) {
+                                    const updateRally = (prev: any[]) => prev.map(b => 
+                                       b.id === selectedBuildingId ? { ...b, rallyPoint: { x, y } } : b
+                                    );
+                                    setUserBarracks(updateRally);
+                                    setUserTankHangars(updateRally);
+                                    setUserAirfieldHangars(updateRally);
+                                    setUserHelipads(updateRally);
+                                    setUserArmory(updateRally);
+                                 } else {
+                                    handleRemoveUnit(x, y);
+                                 }
                               } else {
-                                 handleManualDeployment(selectedUnitType, x, y);
+                                 // SELECTION & DEPLOYMENT LOGIC (Radius increased for better hitbox matching)
+                                 const allUserBuildings = [
+                                    ...userBarracks, ...userTankHangars, ...userAirfieldHangars, 
+                                    ...userHelipads, ...userArmory
+                                 ];
+                                 
+                                 let clickedBuildingId: string | null = null;
+                                 
+                                 // Check positional buildings
+                                 // Check positional buildings with high-precision hitboxes
+                                 const foundPosBuilding = allUserBuildings.find(b => {
+                                    const dx = b.pos.x - worldX;
+                                    const dy = b.pos.y - worldY;
+
+                                    if (b.id.includes('air_hangar')) {
+                                       // Specialized AABB for Runway (5000x250) + Hangar (500x400)
+                                       const runwayLen = 5000; const hangarW = 500; const hangarH = 400; const runwayH = 250;
+                                       const hangarLeft = b.pos.x - hangarW / 2;
+                                       const runwayCenterX = hangarLeft - runwayLen / 2;
+                                       const inHangar = Math.abs(dx) <= hangarW / 2 && Math.abs(dy) <= hangarH / 2;
+                                       const inRunway = Math.abs(worldX - runwayCenterX) <= runwayLen / 2 && Math.abs(dy) <= runwayH / 2;
+                                       return inHangar || inRunway;
+                                    }
+
+                                    if (b.id.includes('barack')) {
+                                       // Barracks: 400 x 200
+                                       return Math.abs(dx) <= 200 && Math.abs(dy) <= 100;
+                                    }
+
+                                    if (b.id.includes('hangar_')) {
+                                       // Hangar Tank/APC/Tactical: 700 x 450
+                                       return Math.abs(dx) <= 350 && Math.abs(dy) <= 225;
+                                    }
+
+                                    if (b.id.includes('armory')) {
+                                       // Armory: 800 x 500
+                                       return Math.abs(dx) <= 400 && Math.abs(dy) <= 250;
+                                    }
+
+                                    if (b.id.includes('helipad')) {
+                                       // Helipad: Radius 150 (Circular)
+                                       return Math.sqrt(dx * dx + dy * dy) <= 150;
+                                    }
+                                    
+                                    // Default fallback
+                                    return Math.sqrt(dx*dx + dy*dy) < 500;
+                                 });
+                                 
+                                 if (foundPosBuilding) {
+                                    clickedBuildingId = foundPosBuilding.id;
+                                 } else {
+                                    // Check special harbor zone (matches CanvasMapWar mirrored harbor)
+                                    if (worldX > -10000 && worldX < -6000 && worldY > -6500 && worldY < -5500) {
+                                       clickedBuildingId = "user_harbor";
+                                    }
+                                 }
+
+                                 if (clickedBuildingId) {
+                                    if (selectedBuildingId === clickedBuildingId) {
+                                       // TOGGLE OFF: If already selected, deselect it
+                                       setSelectedBuildingId(null);
+                                       setSelectedUnitType(null);
+                                    } else {
+                                       // SELECT: Highlighting red and auto-selecting unit type
+                                       setSelectedBuildingId(clickedBuildingId);
+                                       
+                                       // Auto-select primary unit type for the building to make it feel "active"
+                                       if (clickedBuildingId.includes("barack")) {
+                                          setSelectedUnitType("pasukan_infanteri");
+                                       } else if (clickedBuildingId.includes("tank_hangar")) {
+                                          setSelectedUnitType("tank_tempur_utama");
+                                       } else if (clickedBuildingId.includes("armory")) {
+                                          setSelectedUnitType("artileri_berat");
+                                       } else if (clickedBuildingId.includes("air_hangar")) {
+                                          // Find the specific type for this hangar
+                                          const h = userAirfieldHangars.find(h => h.id === clickedBuildingId);
+                                          if (h) setSelectedUnitType(h.type);
+                                       } else if (clickedBuildingId.includes("helipad")) {
+                                          setSelectedUnitType("helikopter_serang");
+                                       } else if (clickedBuildingId === "user_harbor") {
+                                          setSelectedUnitType("kapal_induk");
+                                       }
+                                    }
+                                    
+                                    setSelectedUnitIds([]); 
+                                    return;
+                                 }
+
+                                 setSelectedBuildingId(null);
+
+                                 if (selectedUnitIds.length > 0) {
+                                    handleTacticalMoveOrder(x, y);
+                                 } else {
+                                    handleManualDeployment(selectedUnitType, x, y);
+                                 }
                               }
                            }
                         }}
+                        selectedBuildingId={selectedBuildingId}
                      />
                   </div>
                </div>

@@ -16,17 +16,17 @@ export class BarakEngine {
    /**
     * Draws a single tactical barrack unit at the translated origin
     */
-   private static drawSingleBarrack(ctx: CanvasRenderingContext2D, width: number, height: number): void {
-      // 1. MAIN STRUCTURE (Tactical Olive/Drab)
-      ctx.fillStyle = '#365314';
+   private static drawSingleBarrack(ctx: CanvasRenderingContext2D, width: number, height: number, isActive: boolean = false): void {
+      // 1. MAIN STRUCTURE (Tactical Olive/Drab or RED IF ACTIVE)
+      ctx.fillStyle = isActive ? '#7f1d1d' : '#365314';
       ctx.fillRect(-width / 2, 0, width, height);
 
       // Outline
-      ctx.strokeStyle = '#1a2e05'; ctx.lineWidth = 3;
+      ctx.strokeStyle = isActive ? '#450a0a' : '#1a2e05'; ctx.lineWidth = 3;
       ctx.strokeRect(-width / 2, 0, width, height);
 
       // 2. REINFORCED ROOF (Slanted)
-      ctx.fillStyle = '#1e293b';
+      ctx.fillStyle = isActive ? '#450a0a' : '#1e293b';
       const roofPeak = 60;
       ctx.beginPath();
       ctx.moveTo(-width / 2 - 10, 0);
@@ -52,7 +52,8 @@ export class BarakEngine {
       const entryHeight = 60;
       ctx.fillRect(-entryWidth / 2, height - entryHeight, entryWidth, entryHeight);
 
-      ctx.fillStyle = '#facc15';
+      // High-Vis Windows (Red Glow if Active)
+      ctx.fillStyle = isActive ? '#f87171' : '#facc15';
       const winSize = 15;
       for (let wx = -width / 2 + 60; wx < width / 2; wx += 80) {
          if (Math.abs(wx) > 60) {
@@ -147,7 +148,8 @@ export class BarakEngine {
       count: number = 0,
       mousePos?: { x: number, y: number },
       phase: string = "deployment",
-      barracksState?: any[] // Optional state for dynamic personnel
+      barracksState?: any[], // Optional state for dynamic personnel
+      selectedId?: string | null
    ): void {
       if (count <= 0) return;
 
@@ -160,6 +162,7 @@ export class BarakEngine {
       barracks.forEach((b: any) => {
          const px = b.pos.x;
          const py = b.pos.y;
+         const isActive = selectedId === b.id;
 
          // Hover Detection (AABB)
          if (mousePos) {
@@ -177,7 +180,7 @@ export class BarakEngine {
 
          ctx.save();
          ctx.translate(px, py);
-         this.drawSingleBarrack(ctx, BarakUtils.WIDTH, BarakUtils.HEIGHT);
+         this.drawSingleBarrack(ctx, BarakUtils.WIDTH, BarakUtils.HEIGHT, isActive);
          ctx.restore();
       });
 

@@ -93,7 +93,8 @@ export class HangarTankEngine {
       mousePos?: { x: number, y: number },
       units: any[] = [],
       targetArmada: any = null,
-      tankHangarsState: any[] = []
+      tankHangarsState: any[] = [],
+      selectedId?: string | null
    ): void {
       if (!tankHangarsState || tankHangarsState.length === 0) return;
 
@@ -108,6 +109,7 @@ export class HangarTankEngine {
       tankHangarsState.forEach((hangar) => {
          const hX = hangar.pos.x;
          const hY = hangar.pos.y;
+         const isActive = selectedId === hangar.id;
          const config = this.getVehicleConfig(hangar.vehicleType || 'tank_tempur_utama');
 
          // Hover Detection (AABB)
@@ -126,17 +128,17 @@ export class HangarTankEngine {
 
          // 1. CONCRETE PAD (Outer Shadow)
          ctx.shadowBlur = 15;
-         ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
-         ctx.fillStyle = "#334155";
+         ctx.shadowColor = isActive ? "rgba(220, 38, 38, 0.5)" : "rgba(0, 0, 0, 0.5)";
+         ctx.fillStyle = isActive ? "#7f1d1d" : "#334155";
          ctx.fillRect(-hangarW / 2 - 20, -hangarH / 2 - 20, hangarW + 40, hangarH + 40);
          ctx.shadowBlur = 0;
 
-         // 2. MAIN STRUCTURE (Asphalt/Concrete)
-         ctx.fillStyle = "#1e293b";
+         // 2. MAIN STRUCTURE (Asphalt/Concrete or RED if Active)
+         ctx.fillStyle = isActive ? "#991b1b" : "#1e293b";
          ctx.fillRect(-hangarW / 2, -hangarH / 2, hangarW, hangarH);
 
-         // 3. TACTICAL MARKINGS (Yellow safety lines)
-         ctx.strokeStyle = "#facc15";
+         // 3. TACTICAL MARKINGS (Yellow safety lines - become RED if Active)
+         ctx.strokeStyle = isActive ? "#f87171" : "#facc15";
          ctx.lineWidth = 6;
          ctx.setLineDash([25, 25]);
          ctx.strokeRect(-hangarW / 2 + 20, -hangarH / 2 + 20, hangarW - 40, hangarH - 40);
@@ -146,9 +148,9 @@ export class HangarTankEngine {
          const doorW = hangarW - 80;
          const doorH = 100;
 
-         ctx.fillStyle = "#0f172a";
+         ctx.fillStyle = isActive ? "#450a0a" : "#0f172a";
          ctx.fillRect(-doorW / 2, -hangarH / 2 + 40, doorW, doorH);
-         ctx.strokeStyle = "#334155"; ctx.lineWidth = 3;
+         ctx.strokeStyle = isActive ? "#991b1b" : "#334155"; ctx.lineWidth = 3;
          ctx.strokeRect(-doorW / 2, -hangarH / 2 + 40, doorW, doorH);
          ctx.fillRect(-doorW / 2, hangarH / 2 - 40 - doorH, doorW, doorH);
          ctx.strokeRect(-doorW / 2, hangarH / 2 - 40 - doorH, doorW, doorH);
@@ -156,7 +158,7 @@ export class HangarTankEngine {
          // 4.1 DRAW VEHICLE ICON INSIDE HANGAR
          ctx.save();
          ctx.scale(8, 8); // Scaled up to 8x for premium visibility
-         config.drawFn(ctx, config.color, "71, 85, 105");
+         config.drawFn(ctx, isActive ? "#ffffff" : config.color, "71, 85, 105");
          ctx.restore();
 
          // 5. DOOR PANEL LINES
@@ -178,10 +180,10 @@ export class HangarTankEngine {
             const tw = ctx.measureText(text).width;
             const pad = 25;
 
-            ctx.shadowColor = `${config.color}cc`;
+            ctx.shadowColor = isActive ? "#f87171cc" : `${config.color}cc`;
             ctx.shadowBlur = 15;
             ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
-            ctx.strokeStyle = config.color;
+            ctx.strokeStyle = isActive ? "#f87171" : config.color;
             ctx.lineWidth = 2;
 
             ctx.fillRect(-tw / 2 - pad, -40, tw + pad * 2, 60);
@@ -195,7 +197,7 @@ export class HangarTankEngine {
 
             // Label
             ctx.font = "bold 16px Inter, sans-serif";
-            ctx.fillStyle = config.color;
+            ctx.fillStyle = isActive ? "#f87171" : config.color;
             ctx.fillText(config.label, 0, -55);
 
             ctx.restore();

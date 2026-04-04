@@ -9,7 +9,8 @@ import {
 
 export class BandaraEngine {
    /**
-    * Draws the main tactical airfield with hover interactions and capacity details
+    * Draws the main tactical airfield with hover interactions and capacity details.
+    * Dynamic: Renders runways based on the provided hangarsState.
     */
    static drawAirfield(
       ctx: CanvasRenderingContext2D,
@@ -19,32 +20,41 @@ export class BandaraEngine {
       mousePos?: { x: number, y: number },
       units: any[] = [],
       targetArmada: any = null,
-      hangarsState: any[] = []
+      hangarsState: any[] = [],
+      selectedId?: string | null
    ): void {
+      if (!hangarsState || hangarsState.length === 0) return;
+
       ctx.save();
       ctx.translate(x, y);
 
       const runwayLen = 5000;
       const runwayWidth = 250;
       const spacingY = 450; // Spacing between parallel runways
-      const numRunways = 7;
+      const numRunways = hangarsState.length;
       const totalSpan = (numRunways - 1) * spacingY;
 
-      const runwayConfigs = [
-         { name: "Jet Stealth", key: "jet_tempur_siluman" },
-         { name: "Jet Interceptor", key: "jet_tempur_interceptor" },
-         { name: "Pesawat Pengebom", key: "pesawat_pengebom" },
-         { name: "Pesawat Intai", key: "pesawat_pengintai" },
-         { name: "Drone UAV", key: "drone_intai_uav" },
-         { name: "Drone Kamikaze", key: "drone_kamikaze" },
-         { name: "Pesawat Angkut", key: "pesawat_angkut" }
-      ];
+      // Master config to map keys to labels
+      const configMap: Record<string, string> = {
+         "jet_tempur_siluman": "Jet Stealth",
+         "jet_tempur_interceptor": "Jet Interceptor",
+         "pesawat_pengebom": "Pesawat Pengebom",
+         "pesawat_pengintai": "Pesawat Intai",
+         "drone_intai_uav": "Drone UAV",
+         "drone_kamikaze": "Drone Kamikaze",
+         "pesawat_angkut": "Pesawat Angkut"
+      };
 
       let hoveredRunway: { y: number, name: string, used: number, total: number } | null = null;
 
       for (let rIdx = 0; rIdx < numRunways; rIdx++) {
+         const hangar = hangarsState[rIdx];
+         const typeKey = hangar.type;
          const yOff = rIdx * spacingY - totalSpan / 2;
-         const config = runwayConfigs[rIdx] || { name: `P${rIdx + 1}`, key: "unknown" };
+         const displayName = configMap[typeKey] || "Unknown Aircraft";
+         
+         // Selection detection: air_hangar_jet_tempur_siluman, etc.
+         const isActive = selectedId === hangar.id;
 
          // Hover Detection (AABB)
          if (mousePos) {
@@ -55,26 +65,24 @@ export class BandaraEngine {
                mousePos.y <= y + yOff + runwayWidth / 2
             );
             if (isHovered) {
-               // NEW: Use state for current count (available in hangar)
-               const hangar = hangarsState.find(h => h.id.includes(config.key));
-               const total = targetArmada?.udara?.[config.key] || 0;
-               const available = hangar ? hangar.currentCount : total;
-               hoveredRunway = { y: yOff, name: config.name, used: available, total: total };
+               const total = targetArmada?.udara?.[typeKey] || hangar.maxCapacity || 0;
+               const available = hangar.currentCount;
+               hoveredRunway = { y: yOff, name: displayName, used: available, total: total };
             }
          }
 
          ctx.save();
          ctx.translate(0, yOff);
 
-         // 1. MAIN RUNWAY (Dark Asphalt)
-         ctx.fillStyle = '#1e293b';
+         // 1. MAIN RUNWAY (Dark Asphalt or Red if Active)
+         ctx.fillStyle = isActive ? '#7f1d1d' : '#1e293b';
          ctx.fillRect(-runwayLen / 2, -runwayWidth / 2, runwayLen, runwayWidth);
 
          // Runway Outline
-         ctx.strokeStyle = '#006affff'; ctx.lineWidth = 6;
+         ctx.strokeStyle = isActive ? '#ef4444' : '#006affff'; ctx.lineWidth = 6;
          ctx.strokeRect(-runwayLen / 2, -runwayWidth / 2, runwayLen, runwayWidth);
 
-         // 2. RUNWAY THRESHOLDS ("Piano Keys") - Both ends
+         // 2. RUNWAY THRESHOLDS ("Piano Keys")
          ctx.fillStyle = '#ffffff';
          const drawThreshold = (tx: number) => {
             const keyW = 15; const keyH = 100;
@@ -82,11 +90,11 @@ export class BandaraEngine {
                ctx.fillRect(tx + (i * 25), -keyH / 2, keyW, keyH);
             }
          };
-         drawThreshold(-runwayLen / 2 + 30); // Left
-         drawThreshold(runwayLen / 2 - 230); // Right
+         drawThreshold(-runwayLen / 2 + 30);
+         drawThreshold(runwayLen / 2 - 230);
 
-         // 3. CENTER LINE (Dashed Yellow)
-         ctx.strokeStyle = '#facc15'; ctx.lineWidth = 8;
+         // 3. CENTER LINE (Dashed Yellow - White if Active)
+         ctx.strokeStyle = isActive ? '#ffffff' : '#facc15'; ctx.lineWidth = 8;
          ctx.setLineDash([150, 100]);
          ctx.beginPath();
          ctx.moveTo(-runwayLen / 2 + 300, 0); ctx.lineTo(runwayLen / 2 - 300, 0);
@@ -97,27 +105,27 @@ export class BandaraEngine {
          const hangarX = runwayLen / 2 + 250;
          const hangarW = 500; const hangarH = 400;
 
-         ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 20;
+         ctx.strokeStyle = isActive ? '#7f1d1d' : '#1e293b'; ctx.lineWidth = 20;
          ctx.beginPath();
          ctx.moveTo(runwayLen / 2, 0);
          ctx.lineTo(hangarX - hangarW / 2, 0);
          ctx.stroke();
 
-         // 3.2 HANGAR BOX (Dark Tactical Box)
-         ctx.fillStyle = '#0f172a';
+         // 3.2 HANGAR BOX (Dark Tactical Box or Red if Active)
+         ctx.fillStyle = isActive ? '#991b1b' : '#0f172a';
          ctx.fillRect(hangarX - hangarW / 2, -hangarH / 2, hangarW, hangarH);
-         ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 3;
+         ctx.strokeStyle = isActive ? '#ef4444' : '#1e293b'; ctx.lineWidth = 3;
          ctx.strokeRect(hangarX - hangarW / 2, -hangarH / 2, hangarW, hangarH);
 
          // 3.3 DRAW AIRCRAFT ICON INSIDE HANGAR (Visual Feedback)
          ctx.save();
          ctx.translate(hangarX, 0);
-         ctx.scale(5, 5); // Scale up for visibility inside hangar
+         ctx.scale(5, 5); 
 
-         const iconColor = "#475569"; // Tactical Zinc
-         const baseColor = "71, 85, 105";
+         const iconColor = isActive ? "#ffffff" : "#475569";
+         const baseColor = isActive ? "185, 28, 28" : "71, 85, 105";
 
-         switch (config.key) {
+         switch (typeKey) {
             case "jet_tempur_siluman": drawStealth(ctx, iconColor, baseColor); break;
             case "jet_tempur_interceptor": drawInterceptor(ctx, iconColor, baseColor); break;
             case "pesawat_pengebom": drawBomber(ctx, iconColor, baseColor); break;
@@ -131,34 +139,26 @@ export class BandaraEngine {
          ctx.restore();
       }
 
-      // Draw Tooltip if hovered
+      // Tooltip
       if (hoveredRunway) {
          ctx.save();
          ctx.translate(0, hoveredRunway.y - 180);
-
          const text = `${hoveredRunway.name} - (${hoveredRunway.used}/${hoveredRunway.total})`;
          ctx.font = "bold 32px Inter, sans-serif";
          const tw = ctx.measureText(text).width;
          const pad = 40;
-
-         // Glow Effect
          ctx.shadowColor = "rgba(239, 68, 68, 0.8)";
          ctx.shadowBlur = 15;
-
-         // Tooltip Box
          ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
          ctx.strokeStyle = "#ef4444";
          ctx.lineWidth = 2;
          ctx.fillRect(-tw / 2 - pad, -40, tw + pad * 2, 70);
          ctx.strokeRect(-tw / 2 - pad, -40, tw + pad * 2, 70);
-
-         // Text
          ctx.shadowBlur = 0;
          ctx.fillStyle = "#ffffff";
          ctx.textAlign = "center";
          ctx.textBaseline = "middle";
          ctx.fillText(text, 0, -5);
-
          ctx.restore();
       }
 
