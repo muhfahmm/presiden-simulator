@@ -296,28 +296,66 @@ class PolyglotRouter {
 
     nextState.forEach(u => {
       // 1.1 PATH FOLLOWING (Special logic for Takeoff/Patrol)
+      // HELPER: Smooth Angle Interpolation (Turning Radius Simulation)
+      const lerpAngle = (current: number, target: number, t: number) => {
+        let diff = (target - current + Math.PI) % (Math.PI * 2) - Math.PI;
+        if (diff < -Math.PI) diff += Math.PI * 2;
+        return current + diff * t;
+      };
+
+      // 1. PATH NAVIGATION (Takeoff, Patrol, Landing)
       if (u.path && u.path.length > 0) {
-        const target = u.path[0];
-        const dx = target.x - u.pos.x;
-        const dy = target.y - u.pos.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-
+        // RADAR CHECK: If unit is on a loiter/patrol path but sees an enemy, BREAK path and engage
+        // (Only for units NOT in takeoff roll)
+        const enemies = u.side === 'user' ? enemyUnits : userUnits;
         const stats = getUnitStats(u.type);
+        const perceptionRadiusSq = (stats.range * 3) * (stats.range * 3);
+        const isTargetableByMe = (targetType: string) => {
+           const domain = getUnitDomain(u.type);
+           const targetDomain = getUnitDomain(targetType);
+           if (domain === 'air') return true;
+           if (domain === 'land') return targetDomain === 'land' || targetDomain === 'air';
+           if (domain === 'sea') return targetDomain === 'sea' || targetDomain === 'air';
+           return true;
+        };
 
-        // DYNAMIC TAKEOFF SPEED: 
-        // 3 points left = Taxiing (Slow), 2 points left = Runway Roll (Fast), 1 point left = Liftoff
-        let speedMult = 2; // Default Taxiing Speed
-        if (u.path.length === 2) speedMult = 10; // Intense Acceleration on Runway
-        if (u.path.length === 1) speedMult = 4;  // Liftoff climb
+        const hasHostileNearby = enemies.some(e => {
+            const dx = u.pos.x - e.pos.x;
+            const dy = u.pos.y - e.pos.y;
+            return (dx*dx+dy*dy) < perceptionRadiusSq && isTargetableByMe(e.type);
+        });
 
-        if (dist < 80) {
-          u.path.shift(); // Reached waypoint
+        // If hostile nearby and unit has a path, check if it's a loiter path (generic ID or length > 3)
+        // We allow breaking loiter/patrol but NOT takeoff/landing paths
+        const canBreakPath = u.path.length > 3 || u.id.includes('_w'); 
+        if (hasHostileNearby && canBreakPath) {
+           u.path = []; // Break path to engage target
         } else {
-          u.pos.x += (dx / dist) * stats.speed * dt * speedMult;
-          u.pos.y += (dy / dist) * stats.speed * dt * speedMult;
-          u.rotation = Math.atan2(dy, dx);
+           // Normal Path Following
+           const target = u.path[0];
+           const dx = target.x - u.pos.x;
+           const dy = target.y - u.pos.y;
+           const dist = Math.sqrt(dx * dx + dy * dy);
+
+           let speedMult = 2;
+           if (u.path.length === 2) speedMult = 10;
+           if (u.path.length === 1) speedMult = 4;
+
+           if (dist < 100) {
+             u.path.shift(); // Reached waypoint
+             // Don't return, let the next loop handle movement to next point if needed
+           } else {
+             const moveSpeed = stats.speed * dt * speedMult;
+             u.pos.x += (dx / dist) * Math.min(dist, moveSpeed);
+             u.pos.y += (dy / dist) * Math.min(dist, moveSpeed);
+             
+             const targetRotation = Math.atan2(dy, dx);
+             // JETS turn slower (simulated)
+             const turnSpeed = (u.type.includes('pesawat') || u.type.includes('jet')) ? 0.08 : 1.0;
+             u.rotation = lerpAngle(u.rotation, targetRotation, turnSpeed);
+             return; 
+           }
         }
-        return; // Skip normal AI while on path
       }
 
       const enemies = u.side === 'user' ? enemyUnits : userUnits;
@@ -341,21 +379,38 @@ class PolyglotRouter {
 
       const stats = getUnitStats(u.type);
       const domain = getUnitDomain(u.type);
-      const SHORELINE_X = 5000;
+      const SHORELINE_Y = -6000;
 
-      // 2. TARGETING (Domain-Aware Priority)
-      // Prioritize enemies in the same domain (Land vs Land, Sea vs Sea)
-      let sameDomainEnemies = enemies.filter(e => getUnitDomain(e.type) === domain);
-      let targetPool = sameDomainEnemies.length > 0 ? sameDomainEnemies : enemies;
+      const perceptionRadiusSq = (stats.range * 2) * (stats.range * 2);
+      const isTargetableByMe = (targetType: string) => {
+        const targetDomain = getUnitDomain(targetType);
+        if (domain === 'air') return true; 
+        if (domain === 'land') return targetDomain === 'land' || targetDomain === 'air';
+        if (domain === 'sea') return targetDomain === 'sea' || targetDomain === 'air';
+        return true;
+      };
 
-      let closest = targetPool[0];
-      let minSqDist = Infinity;
-      targetPool.forEach(e => {
+      let sameDomainEnemies = enemies.filter(e => {
         const dx = u.pos.x - e.pos.x;
         const dy = u.pos.y - e.pos.y;
         const sqDist = dx * dx + dy * dy;
-        if (sqDist < minSqDist) { minSqDist = sqDist; closest = e; }
+        return sqDist < perceptionRadiusSq && isTargetableByMe(e.type);
       });
+
+      let targetPool = sameDomainEnemies; 
+
+      let closest = targetPool[0] || null;
+      let minSqDist = Infinity;
+      
+      if (targetPool.length > 0) {
+        targetPool.forEach(e => {
+          const dx = u.pos.x - e.pos.x;
+          const dy = u.pos.y - e.pos.y;
+          const sqDist = dx * dx + dy * dy;
+          if (sqDist < minSqDist) { minSqDist = sqDist; closest = e; }
+        });
+      }
+
       const rangeSq = stats.range * stats.range;
 
       if (closest && minSqDist > rangeSq) {
@@ -364,12 +419,18 @@ class PolyglotRouter {
         const moveY = ((closest.pos.y - u.pos.y) / actualDist) * stats.speed * dt * 4;
         u.pos.x += moveX + sepX;
         u.pos.y += moveY + sepY;
-        u.rotation = Math.atan2(moveY + sepY, moveX + sepX);
+        
+        const targetRotation = Math.atan2(moveY + sepY, moveX + sepX);
+        const turnSpeed = (u.type.includes('pesawat') || u.type.includes('jet')) ? 0.08 : 1.0;
+        u.rotation = lerpAngle(u.rotation, targetRotation, turnSpeed);
       } else if (closest && minSqDist <= rangeSq) {
         u.pos.x += sepX * 0.5;
         u.pos.y += sepY * 0.5;
+        
+        const targetRotation = Math.atan2(closest.pos.y - u.pos.y, closest.pos.x - u.pos.x);
+        u.rotation = lerpAngle(u.rotation, targetRotation, 0.15);
 
-        // 3. COMBAT & DAMAGE (C++-style Resolution)
+        // 3. COMBAT & DAMAGE
         if (closest.side !== u.side && (now - ((u as any).lastAttack || 0)) > stats.reloadSpeed) {
           (u as any).lastAttack = now;
           const targetStats = getUnitStats(closest.type);
@@ -378,63 +439,41 @@ class PolyglotRouter {
           const oldHealth = closest.health;
           closest.health = HP_Logic.applyDamage(closest.health, damageDealt);
 
-          // 3.1 [CPP] Generate Muzzle Flash VFX with Sparks (Percikan Api)
+          // VFX Logic...
           const flashSparks = [];
           const sparkCount = (u.type === 'tank' || u.type === 'artileri') ? 20 : 8;
           for (let i = 0; i < sparkCount; i++) {
             const angle = u.rotation + (Math.random() - 0.5) * 0.8;
             const speed = 2 + Math.random() * 5;
-            flashSparks.push({
-              vx: Math.cos(angle) * speed,
-              vy: Math.sin(angle) * speed,
-              size: 1 + Math.random() * 2,
-              life: 0.5 + Math.random() * 0.5
-            });
+            flashSparks.push({ vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, size: 1 + Math.random() * 2, life: 0.5 + Math.random() * 0.5 });
           }
 
           newVfx.push({
-            id: `flash_${Math.random()}`,
-            type: 'MUZZLE_FLASH',
-            x: u.pos.x, y: u.pos.y,
-            rotation: u.rotation,
-            unitType: u.type,
-            sparks: flashSparks,
-            timestamp: now,
-            duration: 150 // Slightly longer for sparks
+            id: `flash_${Math.random()}`, type: 'MUZZLE_FLASH',
+            x: u.pos.x, y: u.pos.y, rotation: u.rotation, unitType: u.type, sparks: flashSparks, timestamp: now, duration: 150
           });
 
-          // 3.2 [CPP] Generate Bullet Tracer
           newVfx.push({
-            id: `vfx_${Math.random()}`,
-            type: 'TRACER',
-            startX: u.pos.x, startY: u.pos.y,
-            endX: closest.pos.x, endY: closest.pos.y,
-            timestamp: now
+            id: `vfx_${Math.random()}`, type: 'TRACER',
+            startX: u.pos.x, startY: u.pos.y, endX: closest.pos.x, endY: closest.pos.y, timestamp: now
           });
 
-          // 3.3 [RUST] Generate Explosion VFX with Debris Sparks
           if (oldHealth > 0 && closest.health <= 0) {
-            const explosionSparks = [];
+            const expSparks = [];
             for (let i = 0; i < 30; i++) {
-              const angle = Math.random() * Math.PI * 2;
-              const speed = 1 + Math.random() * 8;
-              explosionSparks.push({
-                vx: Math.cos(angle) * speed,
-                vy: Math.sin(angle) * speed,
-                size: 2 + Math.random() * 3,
-                life: 0.8 + Math.random() * 0.4
-              });
+              const angle = Math.random() * Math.PI * 2; const speed = 1 + Math.random() * 8;
+              expSparks.push({ vx: Math.cos(angle) * speed, vy: Math.sin(angle) * speed, size: 2 + Math.random() * 3, life: 0.8 + Math.random() * 0.4 });
             }
-
             newVfx.push({
               id: `exp_${Math.random()}`,
               type: 'EXPLOSION',
-              x: closest.pos.x, y: closest.pos.y,
+              x: closest.pos.x,
+              y: closest.pos.y,
               sourceType: closest.type,
               isCritical: damageDealt > 50,
-              sparks: explosionSparks,
+              sparks: expSparks,
               timestamp: now,
-              duration: 800 // ms
+              duration: 800
             });
           }
 
@@ -444,6 +483,26 @@ class PolyglotRouter {
       } else {
         u.pos.x += sepX * 0.5;
         u.pos.y += sepY * 0.5;
+        
+        // Idle/Patrol: move towards nearest enemy slowly if not focused
+        if (enemies.filter(e => isTargetableByMe(e.type)).length > 0) {
+          const e = enemies.filter(e => isTargetableByMe(e.type))[0];
+          const dx = e.pos.x - u.pos.x;
+          const dy = e.pos.y - u.pos.y;
+          const d = Math.sqrt(dx*dx + dy*dy);
+          u.pos.x += (dx/d) * stats.speed * dt * 0.5;
+          u.pos.y += (dy/d) * stats.speed * dt * 0.5;
+          u.rotation = Math.atan2(dy, dx);
+        }
+      }
+
+      // 4. TERRAIN COORDINATE CLAMPING (Y-Axis Shoreline)
+      if (domain === 'land') {
+          // Land units stay in the green (Bottom)
+          if (u.pos.y < SHORELINE_Y + 100) u.pos.y = SHORELINE_Y + 100;
+      } else if (domain === 'sea') {
+          // Ships stay in the blue (Top)
+          if (u.pos.y > SHORELINE_Y - 100) u.pos.y = SHORELINE_Y - 100;
       }
 
       // GLOBAL THEATER LIMITS

@@ -73,23 +73,37 @@ export class InfantryDeploymentLogic {
         const nextBarracks = barracks.map((b, i) => {
             if (i !== activeIndex) return { ...b }; // Return copy, no changes
 
-            if (b.currentPersonnel > 0 && 
+            // WAVE CHECK: Count active infantry from THIS specific barrack
+            const activeCount = units.filter(u => 
+                u.side === 'enemy' && 
+                u.type === 'pasukan_infanteri' && 
+                u.id.includes(`dep_inf_${b.id}_`) && 
+                u.health > 0
+            ).length;
+
+            const waveSize = 10;
+            const canSpawnWave = activeCount === 0 && b.currentPersonnel > 0;
+
+            if (canSpawnWave && 
                 (now - (b.lastSpawned || 0)) > cooldown &&
                 this.isEnemyNearby(b.pos, units, this.ENGAGEMENT_THRESHOLD)) {
                 
                 const stats = getUnitStats("pasukan_infanteri");
+                const spawnAmount = Math.min(Math.floor(b.currentPersonnel / 1000), waveSize);
                 
-                newSpawned.push({
-                    id: `dep_inf_${b.id}_${now}_${Math.random()}`,
-                    type: "pasukan_infanteri", side: "enemy",
-                    pos: { x: b.pos.x, y: b.pos.y + 100 },
-                    health: stats.maxHealth, rotation: Math.PI, influence: 100
-                });
+                for (let j = 0; j < spawnAmount; j++) {
+                    newSpawned.push({
+                        id: `dep_inf_${b.id}_w${now}_${j}`,
+                        type: "pasukan_infanteri", side: "enemy",
+                        pos: { x: b.pos.x + (j % 5) * 30, y: b.pos.y + 100 + Math.floor(j/5) * 30 },
+                        health: stats.maxHealth, rotation: Math.PI, influence: 100
+                    });
+                }
 
                 // IMMUTABLE: Return new object with reduced personnel
                 return {
                     ...b,
-                    currentPersonnel: b.currentPersonnel - 1000,
+                    currentPersonnel: b.currentPersonnel - (spawnAmount * 1000),
                     lastSpawned: now
                 };
             }

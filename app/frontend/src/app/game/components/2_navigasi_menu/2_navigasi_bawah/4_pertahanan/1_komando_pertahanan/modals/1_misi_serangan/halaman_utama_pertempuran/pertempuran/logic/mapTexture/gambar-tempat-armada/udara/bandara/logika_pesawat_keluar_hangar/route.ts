@@ -94,21 +94,21 @@ export class AircraftPhysicsRouter {
      * Prevents aircraft from stalling by ensuring constant movement.
      * Includes random center variation for unit separation.
      */
-    static generateLoiterPath(currentPos: Vector2, radius: number = 2000): Vector2[] {
+    static generateLoiterPath(currentPos: Vector2, radius: number = 2500): Vector2[] {
         console.log("[Route:RUST] Generating circular loiter pattern...");
         const path: Vector2[] = [];
-        const steps = 8;
-        const offsetX = Math.random() * 1000 - 500;
-        const offsetY = Math.random() * 1000 - 500;
+        const steps = 12; // More steps for smoother circle
+        const offsetX = 0; 
+        const offsetY = 0;
         
         for (let i = 1; i <= steps; i++) {
             const angle = (i / steps) * Math.PI * 2;
-            let tx = currentPos.x + offsetX + Math.cos(angle) * (radius + Math.random() * 200);
+            let tx = currentPos.x + offsetX + Math.cos(angle) * radius;
             // Secure the Loiter Radius within boundaries
             tx = Math.max(1000, Math.min(14000, tx));
             path.push({
                 x: tx,
-                y: currentPos.y + offsetY + Math.sin(angle) * (radius + Math.random() * 200)
+                y: currentPos.y + offsetY + Math.sin(angle) * radius
             });
         }
         return path;

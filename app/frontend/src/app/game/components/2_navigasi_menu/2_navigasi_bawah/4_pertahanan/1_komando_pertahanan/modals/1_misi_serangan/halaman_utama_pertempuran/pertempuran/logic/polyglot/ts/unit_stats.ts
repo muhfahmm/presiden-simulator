@@ -15,29 +15,29 @@ export interface UnitCombatStats {
 // Simulasi database statistik dasar menurut Doktrin Peperangan
 export const UnitStatsDatabase: Record<string, UnitCombatStats> = {
   // === DARAT ===
-  "infanteri": { maxHealth: 10000, damage: 15, range: 400, speed: 15, reloadSpeed: 800, armor: 0.05, cost: 10 },
-  "infantry_enemy": { maxHealth: 10000, damage: 15, range: 400, speed: 15, reloadSpeed: 800, armor: 0.05, cost: 10 },
-  "tank": { maxHealth: 800, damage: 120, range: 1200, speed: 45, reloadSpeed: 3000, armor: 0.65, cost: 50 },
-  "tank_enemy": { maxHealth: 800, damage: 120, range: 1200, speed: 45, reloadSpeed: 3000, armor: 0.65, cost: 50 },
-  "apc": { maxHealth: 450, damage: 40, range: 800, speed: 65, reloadSpeed: 1500, armor: 0.35, cost: 20 },
-  "artillery": { maxHealth: 200, damage: 350, range: 4000, speed: 25, reloadSpeed: 6000, armor: 0.15, cost: 40 },
-  "rocket": { maxHealth: 250, damage: 500, range: 5000, speed: 30, reloadSpeed: 10000, armor: 0.20, cost: 60 },
-  "sam": { maxHealth: 300, damage: 250, range: 2500, speed: 35, reloadSpeed: 4000, armor: 0.20, cost: 55 },
+  "infanteri": { maxHealth: 120, damage: 15, range: 450, speed: 450, reloadSpeed: 800, armor: 0.05, cost: 10 },
+  "infantry_enemy": { maxHealth: 120, damage: 15, range: 450, speed: 450, reloadSpeed: 800, armor: 0.05, cost: 10 },
+  "tank": { maxHealth: 1500, damage: 180, range: 1300, speed: 1000, reloadSpeed: 3500, armor: 0.70, cost: 50 },
+  "tank_enemy": { maxHealth: 1500, damage: 180, range: 1300, speed: 1000, reloadSpeed: 3500, armor: 0.70, cost: 50 },
+  "apc": { maxHealth: 650, damage: 45, range: 900, speed: 1625, reloadSpeed: 1200, armor: 0.35, cost: 20 },
+  "artillery": { maxHealth: 400, damage: 450, range: 4500, speed: 625, reloadSpeed: 8000, armor: 0.15, cost: 40 },
+  "rocket": { maxHealth: 500, damage: 700, range: 5500, speed: 750, reloadSpeed: 12000, armor: 0.20, cost: 60 },
+  "sam": { maxHealth: 600, damage: 350, range: 3500, speed: 875, reloadSpeed: 5000, armor: 0.20, cost: 55 },
   
   // === LAUT ===
-  "kapal_induk": { maxHealth: 5000, damage: 0, range: 0, speed: 25, reloadSpeed: 99999, armor: 0.85, cost: 250 },
-  "kapal_destroyer": { maxHealth: 2500, damage: 300, range: 3000, speed: 35, reloadSpeed: 4000, armor: 0.70, cost: 150 },
-  "kapal_corvette": { maxHealth: 1500, damage: 180, range: 2000, speed: 45, reloadSpeed: 2500, armor: 0.60, cost: 90 },
-  "kapal_selam_nuklir": { maxHealth: 1000, damage: 1200, range: 4500, speed: 30, reloadSpeed: 15000, armor: 0.50, cost: 200 },
-  "kapal_selam": { maxHealth: 800, damage: 600, range: 3000, speed: 25, reloadSpeed: 8000, armor: 0.40, cost: 120 },
+  "kapal_induk": { maxHealth: 10000, damage: 0, range: 0, speed: 500, reloadSpeed: 99999, armor: 0.90, cost: 250 },
+  "kapal_destroyer": { maxHealth: 4500, damage: 350, range: 3500, speed: 800, reloadSpeed: 4500, armor: 0.75, cost: 150 },
+  "kapal_corvette": { maxHealth: 2500, damage: 200, range: 2500, speed: 1000, reloadSpeed: 2800, armor: 0.65, cost: 90 },
+  "kapal_selam_nuklir": { maxHealth: 1800, damage: 1500, range: 5000, speed: 700, reloadSpeed: 18000, armor: 0.55, cost: 200 },
+  "kapal_selam": { maxHealth: 1400, damage: 800, range: 3500, speed: 550, reloadSpeed: 10000, armor: 0.45, cost: 120 },
   
   // === UDARA ===
-  "pesawat_stealth": { maxHealth: 400, damage: 450, range: 2000, speed: 350, reloadSpeed: 5000, armor: 0.20, cost: 100 },
-  "pesawat_tempur": { maxHealth: 500, damage: 250, range: 1800, speed: 280, reloadSpeed: 2500, armor: 0.25, cost: 80 },
-  "pesawat_bomber": { maxHealth: 800, damage: 1500, range: 1000, speed: 180, reloadSpeed: 12000, armor: 0.40, cost: 150 },
-  "pesawat_heli_serang": { maxHealth: 600, damage: 150, range: 1200, speed: 150, reloadSpeed: 1200, armor: 0.35, cost: 60 },
-  "pesawat_heli_uav": { maxHealth: 150, damage: 50, range: 1500, speed: 90, reloadSpeed: 2000, armor: 0.05, cost: 30 },
-  "pesawat_kamikaze": { maxHealth: 50, damage: 800, range: 500, speed: 200, reloadSpeed: 99999, armor: 0.00, cost: 20 },
+  "pesawat_stealth": { maxHealth: 600, damage: 550, range: 2500, speed: 500, reloadSpeed: 6000, armor: 0.25, cost: 100 },
+  "pesawat_tempur": { maxHealth: 750, damage: 350, range: 2000, speed: 500, reloadSpeed: 3000, armor: 0.30, cost: 80 },
+  "pesawat_bomber": { maxHealth: 1200, damage: 2000, range: 1200, speed: 500, reloadSpeed: 15000, armor: 0.45, cost: 150 },
+  "pesawat_heli_serang": { maxHealth: 900, damage: 200, range: 1500, speed: 750, reloadSpeed: 1500, armor: 0.35, cost: 60 },
+  "pesawat_heli_uav": { maxHealth: 250, damage: 60, range: 1800, speed: 500, reloadSpeed: 2000, armor: 0.10, cost: 30 },
+  "pesawat_kamikaze": { maxHealth: 80, damage: 1000, range: 600, speed: 500, reloadSpeed: 99999, armor: 0.00, cost: 20 },
 };
 
 // Mapping Kunci Database Armada (bahasa_id) ke Kunci Statistik Tempur

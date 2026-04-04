@@ -87,12 +87,19 @@ export class AircraftDeploymentLogic {
         const nextHangars = hangars.map((h, i) => {
             if (i !== activeIdx || hasSpawnedRecently) return { ...h };
 
-            const isAuthorized = AircraftPhysicsRouter.canAuthorizeLaunch(units, this.MAX_ACTIVE_AIRBORNE);
+            // WAVE CHECK: Count active aircraft from THIS specific hangar
+            const activeCount = units.filter(u => 
+                u.side === 'enemy' && 
+                u.type === h.type && 
+                u.id.includes(`dep_air_${h.id}_`) && 
+                u.health > 0
+            ).length;
 
-            if (h.currentCount > 0 && 
-                this.isEnemyNearby(h.pos, units, this.RADAR_THRESHOLD) &&
-                isAuthorized) {
-                
+            // STRATEGY: Sequential 1-by-1 Deployment
+            // Only spawn 1 aircraft, and only if the previous one from this hangar is dead
+            const canSpawn = activeCount === 0 && h.currentCount > 0;
+
+            if (canSpawn && this.isEnemyNearby(h.pos, units, this.RADAR_THRESHOLD)) {
                 const stats = getUnitStats(h.type);
                 
                 // LANDASAN COORDINATES
@@ -102,20 +109,20 @@ export class AircraftDeploymentLogic {
                 const runwayEndX = runwayCenterX - runwayLen / 2;
 
                 const trajectory = AircraftPhysicsRouter.generateTrajectory(
-                    h.pos,
+                    { x: h.pos.x, y: h.pos.y },
                     { x: runwayStartX, y: h.pos.y },
                     { x: runwayEndX, y: h.pos.y },
                     now
                 );
 
                 newSpawned.push({
-                    id: `dep_air_${h.id}_${now}_${Math.random()}`,
+                    id: `dep_air_${h.id}_s${now}`, // 's' for sequential
                     type: h.type, side: "enemy",
                     pos: { x: h.pos.x, y: h.pos.y },
                     health: stats.maxHealth, rotation: Math.PI, influence: 300,
                     path: trajectory,
                     isAirType: true
-                });
+                } as any);
 
                 return {
                     ...h,
