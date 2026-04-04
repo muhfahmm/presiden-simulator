@@ -89,12 +89,12 @@ class PolyglotRouter {
    */
   async getSpatialNearestUnit(point: Vector2, units: UnitState[], maxDist: number): Promise<UnitState | null> {
     console.log("[Route:RUST] Querying Quadtree Spatial Index for nearest unit...");
-    
+
     // Fallback logic jika WASM belum terload
     let closest: UnitState | null = null;
     let minDist = maxDist;
     units.forEach(u => {
-      const d = Math.sqrt((u.pos.x - point.x)**2 + (u.pos.y - point.y)**2);
+      const d = Math.sqrt((u.pos.x - point.x) ** 2 + (u.pos.y - point.y) ** 2);
       if (d < minDist) {
         minDist = d;
         closest = u;
@@ -111,7 +111,7 @@ class PolyglotRouter {
    */
   calculateBallistics(attacker: Vector2, target: Vector2): number {
     console.log("[Route:CPP] Calculating ballistic trajectory & penetration...");
-    const distance = Math.sqrt((target.x - attacker.x)**2 + (target.y - attacker.y)**2);
+    const distance = Math.sqrt((target.x - attacker.x) ** 2 + (target.y - attacker.y) ** 2);
     return Math.max(0, 100 - distance / 10); // Simulated damage falloff
   }
 
@@ -119,14 +119,14 @@ class PolyglotRouter {
    * Mendapatkan unit yang masuk dalam viewport (Frustum Culling di C++).
    * Mengurangi beban render loop di TSX.
    */
-  getVisibleUnits(units: UnitState[], camera: {x: number, y: number, zoom: number}, w: number, h: number): UnitState[] {
+  getVisibleUnits(units: UnitState[], camera: { x: number, y: number, zoom: number }, w: number, h: number): UnitState[] {
     const margin = 100 / camera.zoom;
     const worldStartX = -camera.x / camera.zoom - margin;
     const worldStartY = -camera.y / camera.zoom - margin;
     const worldEndX = worldStartX + w / camera.zoom + (margin * 2);
     const worldEndY = worldStartY + h / camera.zoom + (margin * 2);
 
-    return units.filter(u => 
+    return units.filter(u =>
       u.pos.x >= worldStartX && u.pos.x <= worldEndX &&
       u.pos.y >= worldStartY && u.pos.y <= worldEndY
     );
@@ -155,7 +155,7 @@ class PolyglotRouter {
     const THEATER_LIMIT = 15000;
     const GRID_SIZE = 1000;
     const res: FogCell[] = [];
-    
+
     for (let x = -THEATER_LIMIT; x < THEATER_LIMIT; x += GRID_SIZE) {
       for (let y = -THEATER_LIMIT; y < THEATER_LIMIT; y += GRID_SIZE) {
         const isVisible = userUnits.some(u => Math.hypot(u.pos.x - (x + 500), u.pos.y - (y + 500)) < 2500);
@@ -175,13 +175,13 @@ class PolyglotRouter {
       for (let y = -THEATER_LIMIT; y < THEATER_LIMIT; y += GRID_RES) {
         let influence = 0;
         for (const u of units) {
-           const d = Math.hypot(u.pos.x - (x + 500), u.pos.y - (y + 500));
-           if (d < 3000) influence += (u.side === 'user' ? 20 : -20) / (1 + d / 500);
+          const d = Math.hypot(u.pos.x - (x + 500), u.pos.y - (y + 500));
+          if (d < 3000) influence += (u.side === 'user' ? 20 : -20) / (1 + d / 500);
         }
         if (Math.abs(influence) > 3) {
           heatmap.push({
             x, y, size: GRID_RES, value: influence,
-            color: influence > 0 ? `rgba(239, 68, 68, ${Math.min(0.3, influence/100)})` : `rgba(161, 161, 170, ${Math.min(0.3, Math.abs(influence)/100)})`
+            color: influence > 0 ? `rgba(239, 68, 68, ${Math.min(0.3, influence / 100)})` : `rgba(161, 161, 170, ${Math.min(0.3, Math.abs(influence) / 100)})`
           });
         }
       }
@@ -196,8 +196,8 @@ class PolyglotRouter {
     console.log("[Route:PYTHON] Identifying strategic tactical zones...");
     // Mocking StrategicZoneEvaluator
     return [
-      { name: "Central Pass", type: "CHOKEPOINT", center: {x: 0, y: 0}, radius: 1500, priority: "CRITICAL" },
-      { name: "Beachhead Alpha", type: "LANDING_ZONE", center: {x: 5000, y: -6000}, radius: 2000, priority: "HIGH" }
+      { name: "Central Pass", type: "CHOKEPOINT", center: { x: 0, y: 0 }, radius: 1500, priority: "CRITICAL" },
+      { name: "Beachhead Alpha", type: "LANDING_ZONE", center: { x: 5000, y: -6000 }, radius: 2000, priority: "HIGH" }
     ];
   }
 
@@ -211,7 +211,7 @@ class PolyglotRouter {
     units.forEach(u => {
       const dist = Math.sqrt((u.pos.x - point.x) ** 2 + (u.pos.y - point.y) ** 2);
       if (dist > 2000) return;
-      
+
       const impact = (u.side === 'user' ? 1 : -1) * (u.influence / (1 + Math.pow(dist / 100, 2)));
       influence += impact;
     });
@@ -285,7 +285,7 @@ class PolyglotRouter {
    */
   async processTick(units: UnitState[], dt: number): Promise<{ units: UnitState[], vfx: any[] }> {
     console.log("[Route:POLYGLOT] Executing unified simulation tick...");
-    
+
     let nextState = units.map(u => ({ ...u }));
     const newVfx: any[] = [];
     const now = Date.now();
@@ -301,15 +301,15 @@ class PolyglotRouter {
         const dx = target.x - u.pos.x;
         const dy = target.y - u.pos.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
-        
+
         const stats = getUnitStats(u.type);
-        
+
         // DYNAMIC TAKEOFF SPEED: 
         // 3 points left = Taxiing (Slow), 2 points left = Runway Roll (Fast), 1 point left = Liftoff
         let speedMult = 2; // Default Taxiing Speed
         if (u.path.length === 2) speedMult = 10; // Intense Acceleration on Runway
         if (u.path.length === 1) speedMult = 4;  // Liftoff climb
-        
+
         if (dist < 80) {
           u.path.shift(); // Reached waypoint
         } else {
@@ -368,7 +368,7 @@ class PolyglotRouter {
           const targetStats = getUnitStats(closest.type);
           const damageDealt = Power_Logic.calculateActualDamage(stats, targetStats);
           closest.health = HP_Logic.applyDamage(closest.health, damageDealt);
-          
+
           newVfx.push({
             id: `vfx_${Math.random()}`,
             startX: u.pos.x, startY: u.pos.y,
@@ -383,13 +383,13 @@ class PolyglotRouter {
       // 4. TERRAIN CONSTRAINTS (Clamping based on Domain)
       const domain = getUnitDomain(u.type);
       const SHORELINE_Y = -6000; // Moving up to the Port
-      
+
       if (domain === 'land') {
-         // Land units stay in Y > SHORELINE_Y (Bottom half)
-         if (u.pos.y < SHORELINE_Y) u.pos.y = SHORELINE_Y;
+        // Land units stay in Y > SHORELINE_Y (Bottom half)
+        if (u.pos.y < SHORELINE_Y) u.pos.y = SHORELINE_Y;
       } else if (domain === 'sea') {
-         // Naval units stay in Y < SHORELINE_Y (Top half)
-         if (u.pos.y > SHORELINE_Y) u.pos.y = SHORELINE_Y;
+        // Naval units stay in Y < SHORELINE_Y (Top half)
+        if (u.pos.y > SHORELINE_Y) u.pos.y = SHORELINE_Y;
       }
 
       // GLOBAL THEATER LIMITS
@@ -398,9 +398,9 @@ class PolyglotRouter {
       u.pos.y = Math.max(-THEATER_LIMIT, Math.min(THEATER_LIMIT, u.pos.y));
     });
 
-    return { 
-       units: nextState.filter(u => u.health > 0), 
-       vfx: newVfx 
+    return {
+      units: nextState.filter(u => u.health > 0),
+      vfx: newVfx
     };
   }
 
@@ -413,14 +413,14 @@ class PolyglotRouter {
   async getOptimizedMapGeometry(
     units: UnitState[],
     camera: { x: number, y: number, zoom: number }
-  ): Promise<{ 
+  ): Promise<{
     lineBatches: { [color: string]: number[] },
     contours: { x: number, y: number }[],
     markers: { x: number, y: number, text: string, color: string }[]
   }> {
     const mesh = await this.getTerrainMesh(units);
     const { gridRes, cellSize, zGrid, zMin, zMax } = mesh;
-    
+
     const lineBatches: { [color: string]: number[] } = {};
     const contours: any[] = [];
     const markers: any[] = [];
@@ -430,56 +430,56 @@ class PolyglotRouter {
 
     const projectY = (y: number, z: number) => y - z * zScale * perspective;
     const project = (x: number, y: number, z: number) => ({
-       x: x * camera.zoom + camera.x,
-       y: projectY(y, z) * camera.zoom + camera.y
+      x: x * camera.zoom + camera.x,
+      y: projectY(y, z) * camera.zoom + camera.y
     });
 
     const addLine = (color: string, x1: number, y1: number, x2: number, y2: number) => {
-       if (!lineBatches[color]) lineBatches[color] = [];
-       lineBatches[color].push(x1, y1, x2, y2);
+      if (!lineBatches[color]) lineBatches[color] = [];
+      lineBatches[color].push(x1, y1, x2, y2);
     };
 
     const theaterLimit = 15000;
     for (let r = 0; r < gridRes; r++) {
-       for (let c = 0; c < gridRes; c++) {
-          const wx = -theaterLimit + (c + 0.5) * cellSize;
-          const wy = -theaterLimit + (r + 0.5) * cellSize;
-          const z = zGrid[r][c];
+      for (let c = 0; c < gridRes; c++) {
+        const wx = -theaterLimit + (c + 0.5) * cellSize;
+        const wy = -theaterLimit + (r + 0.5) * cellSize;
+        const z = zGrid[r][c];
 
-          const color = this.zToColor(z, zMin, zMax);
+        const color = this.zToColor(z, zMin, zMax);
 
-          if (c < gridRes - 1) {
-             const p1 = project(wx, wy, z);
-             const p2 = project(-theaterLimit + (c + 1.5) * cellSize, wy, zGrid[r][c+1]);
-             addLine(color, p1.x, p1.y, p2.x, p2.y);
-          }
-          if (r < gridRes - 1) {
-             const p1 = project(wx, wy, z);
-             const p2 = project(wx, -theaterLimit + (r + 1.5) * cellSize, zGrid[r+1][c]);
-             addLine(color, p1.x, p1.y, p2.x, p2.y);
-          }
+        if (c < gridRes - 1) {
+          const p1 = project(wx, wy, z);
+          const p2 = project(-theaterLimit + (c + 1.5) * cellSize, wy, zGrid[r][c + 1]);
+          addLine(color, p1.x, p1.y, p2.x, p2.y);
+        }
+        if (r < gridRes - 1) {
+          const p1 = project(wx, wy, z);
+          const p2 = project(wx, -theaterLimit + (r + 1.5) * cellSize, zGrid[r + 1][c]);
+          addLine(color, p1.x, p1.y, p2.x, p2.y);
+        }
 
-          if (r < gridRes - 1 && c < gridRes - 1) {
-             const z10 = zGrid[r][c+1]; const z01 = zGrid[r+1][c];
-             if ((z > 0) !== (z10 > 0)) {
-                const t = z / (z - z10);
-                contours.push(project(-theaterLimit + (c + 0.5 + t) * cellSize, wy, 0));
-             }
-             if ((z > 0) !== (z01 > 0)) {
-                const t = z / (z - z01);
-                contours.push(project(wx, -theaterLimit + (r + 0.5 + t) * cellSize, 0));
-             }
+        if (r < gridRes - 1 && c < gridRes - 1) {
+          const z10 = zGrid[r][c + 1]; const z01 = zGrid[r + 1][c];
+          if ((z > 0) !== (z10 > 0)) {
+            const t = z / (z - z10);
+            contours.push(project(-theaterLimit + (c + 0.5 + t) * cellSize, wy, 0));
           }
-       }
+          if ((z > 0) !== (z01 > 0)) {
+            const t = z / (z - z01);
+            contours.push(project(wx, -theaterLimit + (r + 0.5 + t) * cellSize, 0));
+          }
+        }
+      }
     }
 
     for (let r = 1; r < gridRes - 1; r += 4) {
-       for (let c = 1; c < gridRes - 1; c += 4) {
-          const z = zGrid[r][c];
-          if (Math.abs(z) < Math.max(Math.abs(zMax), Math.abs(zMin)) * 0.4) continue;
-          const p = project(-theaterLimit + (c + 0.5) * cellSize, -theaterLimit + (r + 0.5) * cellSize, z);
-          markers.push({ x: p.x, y: p.y, text: z > 0 ? "+" : "−", color: z > 0 ? "rgba(239, 68, 68, 0.7)" : "rgba(59, 130, 246, 0.7)" });
-       }
+      for (let c = 1; c < gridRes - 1; c += 4) {
+        const z = zGrid[r][c];
+        if (Math.abs(z) < Math.max(Math.abs(zMax), Math.abs(zMin)) * 0.4) continue;
+        const p = project(-theaterLimit + (c + 0.5) * cellSize, -theaterLimit + (r + 0.5) * cellSize, z);
+        markers.push({ x: p.x, y: p.y, text: z > 0 ? "+" : "−", color: z > 0 ? "rgba(239, 68, 68, 0.7)" : "rgba(59, 130, 246, 0.7)" });
+      }
     }
 
     return { lineBatches, contours, markers };
@@ -493,10 +493,10 @@ class PolyglotRouter {
     t = Math.round(t * steps) / steps;
 
     if (t > 0) {
-       return `rgba(255, ${Math.floor(255 - t * 200)}, ${Math.floor(255 - t * 230)}, ${Math.max(0.2, 0.2 + 0.6 * t)})`;
+      return `rgba(255, ${Math.floor(255 - t * 200)}, ${Math.floor(255 - t * 230)}, ${Math.max(0.2, 0.2 + 0.6 * t)})`;
     } else {
-       const nt = -t;
-       return `rgba(${Math.floor(255 - nt * 230)}, ${Math.floor(255 - nt * 180)}, 255, ${Math.max(0.2, 0.2 + 0.6 * nt)})`;
+      const nt = -t;
+      return `rgba(${Math.floor(255 - nt * 230)}, ${Math.floor(255 - nt * 180)}, 255, ${Math.max(0.2, 0.2 + 0.6 * nt)})`;
     }
   }
 }

@@ -50,14 +50,14 @@ interface GameplayProps {
    height?: number;
 }
 
-export default function Gameplay({ 
-   units, 
-   combatVfx = [], 
-   onUnitSelect, 
-   onMapClick, 
+export default function Gameplay({
+   units,
+   combatVfx = [],
+   onUnitSelect,
+   onMapClick,
    onAreaSelected,
-   drawMapBackground, 
-   hasSea = false, 
+   drawMapBackground,
+   hasSea = false,
    targetArmada = null,
    tankHangarsState = [],
    airfieldHangarsState = [],
@@ -67,15 +67,15 @@ export default function Gameplay({
    barakCount = 0,
    phase = "deployment",
    barracksState = [],
-   width = 1200, 
-   height = 800 
+   width = 1200,
+   height = 800
 }: GameplayProps) {
    const containerRef = useRef<HTMLDivElement>(null);
    const canvasRef = useRef<HTMLCanvasElement>(null);
    const minimapRef = useRef<HTMLCanvasElement>(null); // New Minimap Ref
 
    const [viewport, setViewport] = useState({ w: width, h: height });
-   const viewportRef = useRef({ w: width, h: height }); 
+   const viewportRef = useRef({ w: width, h: height });
    const hoveredUnitRef = useRef<UnitState | null>(null);
 
    // --- POLYGLOT TACTICAL STATE ---
@@ -87,14 +87,14 @@ export default function Gameplay({
    const mouseWorldPosRef = useRef<{ x: number, y: number } | undefined>(undefined);
 
    // --- CINEMATIC SMOOTH CAMERA (TARGET-BASED) ---
-   const cameraRef = useRef({ 
+   const cameraRef = useRef({
       x: 0, y: 0, zoom: 0.1, // Current
       tx: 0, ty: 0, tz: 0.1, // Target
    });
    const isDraggingRef = useRef(false);
    const dragStartRef = useRef<{ x: number, y: number } | null>(null);
    const dragDistanceRef = useRef<number>(0);
- 
+
    const selectionBoxRef = useRef<{ x1: number, y1: number, x2: number, y2: number } | null>(null);
    const isSelectingRef = useRef(false);
    const selectionStartWorldRef = useRef<{ x: number, y: number } | null>(null);
@@ -128,7 +128,7 @@ export default function Gameplay({
       const THEATER_LIMIT = 15000;
       const applyConstraints = (cam: { tx: number, ty: number, tz: number }, w: number, h: number) => {
          // Allow zooming out enough to see the whole 30k theater
-         const minZoomMap = Math.min(w, h) / 30000; 
+         const minZoomMap = Math.min(w, h) / 30000;
          cam.tz = Math.max(minZoomMap * 0.9, Math.min(5, cam.tz));
 
          const worldSize = (THEATER_LIMIT * 2) * cam.tz;
@@ -186,14 +186,14 @@ export default function Gameplay({
    useEffect(() => {
       let isMounted = true;
       let lastUnitsHash = "";
-      
+
       const updateLoop = async () => {
          if (!isMounted) return;
-         
+
          // Only update if units changed or enough time passed
          const currentUnits = latestUnitsRef.current;
          const currentHash = JSON.stringify(currentUnits.length); // Simple hash for demo
-         
+
          if (currentHash !== lastUnitsHash || frameCountRef.current % 10 === 0) {
             const [fog, heatmap, zones, mesh] = await Promise.all([
                polyglotService.getFogOverlay(currentUnits),
@@ -210,7 +210,7 @@ export default function Gameplay({
                lastUnitsHash = currentHash;
             }
          }
-         
+
          setTimeout(updateLoop, 150); // Throttle to ~6Hz for heavy background data
       };
 
@@ -234,7 +234,7 @@ export default function Gameplay({
          return;
       }
 
-      if (e.button !== 0) return; 
+      if (e.button !== 0) return;
       isDraggingRef.current = true;
       dragDistanceRef.current = 0;
       dragStartRef.current = { x: e.clientX, y: e.clientY };
@@ -248,11 +248,11 @@ export default function Gameplay({
          const mouseY = e.clientY - rect.top;
          const worldX = (mouseX - cam.x) / cam.zoom;
          const worldY = (mouseY - cam.y) / cam.zoom;
-         
+
          const dx = worldX - selectionStartWorldRef.current.x;
          const dy = worldY - selectionStartWorldRef.current.y;
-         dragDistanceRef.current = Math.sqrt(dx*dx + dy*dy);
- 
+         dragDistanceRef.current = Math.sqrt(dx * dx + dy * dy);
+
          selectionBoxRef.current = {
             x1: selectionStartWorldRef.current.x,
             y1: selectionStartWorldRef.current.y,
@@ -279,11 +279,11 @@ export default function Gameplay({
          const worldY = (mouseY - cam.y) / cam.zoom;
 
          // Use Polyglot Spatial Index (Rust) for hover detection
-         const closest = await polyglotService.getSpatialNearestUnit({x: worldX, y: worldY}, latestUnitsRef.current, 30 / cam.zoom);
+         const closest = await polyglotService.getSpatialNearestUnit({ x: worldX, y: worldY }, latestUnitsRef.current, 30 / cam.zoom);
          if (closest !== hoveredUnitRef.current) {
             hoveredUnitRef.current = closest;
          }
-         
+
          // NEW MOD: Track background hover
          mouseWorldPosRef.current = { x: worldX, y: worldY };
       }
@@ -323,7 +323,7 @@ export default function Gameplay({
       if (isSelectingRef.current && e.button === 2) {
          isSelectingRef.current = false;
          const box = selectionBoxRef.current;
-         
+
          if (box && onAreaSelected && dragDistanceRef.current > 50) {
             onAreaSelected(box);
          } else if (onMapClick && dragDistanceRef.current <= 50) {
@@ -336,7 +336,7 @@ export default function Gameplay({
             const worldY = (mouseY - cam.y) / cam.zoom;
             onMapClick(worldX, worldY, true);
          }
- 
+
          selectionBoxRef.current = null;
          selectionStartWorldRef.current = null;
          return;
@@ -354,7 +354,7 @@ export default function Gameplay({
 
    const handleClick = (e: React.MouseEvent) => {
       if (e.button !== 0) return;
-      if (dragDistanceRef.current > 5) return; 
+      if (dragDistanceRef.current > 5) return;
       if (!containerRef.current || !onMapClick) return;
       const rect = containerRef.current.getBoundingClientRect();
       const mouseX = e.clientX - rect.left;
@@ -423,12 +423,12 @@ export default function Gameplay({
 
          // Pass tactical data + 3D mesh to background renderer (Using Refs)
          drawMapBackground(
-            ctx, 
-            cameraRef.current, 
-            canvas.width, 
-            canvas.height, 
-            fogCellsRef.current, 
-            heatmapCellsRef.current, 
+            ctx,
+            cameraRef.current,
+            canvas.width,
+            canvas.height,
+            fogCellsRef.current,
+            heatmapCellsRef.current,
             meshDataRef.current,
             mouseWorldPosRef.current,
             barakCount,
@@ -535,10 +535,10 @@ export default function Gameplay({
             const currentHP = Math.ceil(hoveredUnit.health).toLocaleString('id-ID');
             const maxHP = stats.maxHealth.toLocaleString('id-ID');
             const hpText = `${currentHP} / ${maxHP}`;
-            
+
             const label = getHumanLabel(hoveredUnit.type).toUpperCase();
             const fullLabel = `${label} | ${hpText}`;
-            
+
             const sideColor = hoveredUnit.side === 'user' ? "rgba(239, 68, 68, 1)" : "rgba(161, 161, 170, 1)";
             ctx.save();
             ctx.translate(hoveredUnit.pos.x, hoveredUnit.pos.y);
@@ -561,17 +561,17 @@ export default function Gameplay({
             const sy = Math.min(sBox.y1, sBox.y2);
             const sw = Math.max(0.1, Math.abs(sBox.x2 - sBox.x1));
             const sh = Math.max(0.1, Math.abs(sBox.y2 - sBox.y1));
-            
+
             // Windows-style stroke (Thin blue)
             ctx.strokeStyle = "#0078d7";
             ctx.lineWidth = 1 / camera.zoom;
             ctx.setLineDash([]);
             ctx.strokeRect(sx, sy, sw, sh);
-            
+
             // Windows-style fill (Semi-transparent blue)
             ctx.fillStyle = "rgba(0, 120, 215, 0.25)";
             ctx.fillRect(sx, sy, sw, sh);
-            
+
             ctx.restore();
          }
 
@@ -601,8 +601,8 @@ export default function Gameplay({
 
          <div className="absolute top-4 left-4 flex gap-1 z-20 shadow-xl bg-zinc-950/50 backdrop-blur-sm p-1 rounded-xl pointer-events-auto">
             <button
-               onClick={(e) => { 
-                  e.stopPropagation(); 
+               onClick={(e) => {
+                  e.stopPropagation();
                   const targetZ = Math.min(viewport.w, viewport.h) / 30000;
                   const cam = cameraRef.current;
                   cam.tz = targetZ;
