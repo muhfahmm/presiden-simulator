@@ -54,10 +54,6 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
    const [helipads, setHelipads] = useState<HelipadState[]>([]);
    const [portShips, setPortShips] = useState<PortShipState[]>([]);
    const [armory, setArmory] = useState<ArmoryState[]>([]);
-   const [showBlockModal, setShowBlockModal] = useState(false);
-   const [blockSelection, setBlockSelection] = useState<{ x1: number, y1: number, x2: number, y2: number } | null>(null);
-   const [blockUnitCount, setBlockUnitCount] = useState("1000");
-   const [deploymentMode, setDeploymentMode] = useState<"manual" | "area">("area");
    const [cumulativeDeployment, setCumulativeDeployment] = useState<Record<string, number>>({});
 
    // User-side buildings
@@ -219,32 +215,6 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
       return false; // No unit found
    }, [phase, units]);
 
-   const handleBlockDeployment = useCallback(() => {
-      if (!blockSelection || !selectedUnitType) return;
-
-      const count = parseInt(blockUnitCount);
-      if (isNaN(count) || count <= 0) return;
-
-      const newUnits = PlayerTacticalLogic.deployBlock(
-         selectedUnitType, blockSelection, count, units, missionData.selection, currentPoints, maxPoints, hasSea
-      );
-
-      if (newUnits.length > 0) {
-         setUnits(prev => [...prev, ...newUnits]);
-         const isInfantry = selectedUnitType === 'pasukan_infanteri';
-         const amountPerUnit = isInfantry ? 10000 : 1;
-         const totalIncrease = newUnits.length * amountPerUnit;
-
-         setCumulativeDeployment(prev => ({
-            ...prev,
-            [selectedUnitType]: (prev[selectedUnitType] || 0) + totalIncrease
-         }));
-
-         setShowBlockModal(false);
-         setBlockSelection(null);
-      }
-   }, [blockSelection, blockUnitCount, selectedUnitType, units, missionData.selection, currentPoints, maxPoints, hasSea]);
-
 
    // Visual Tracers & Combat VFX
    const [combatVfx, setCombatVfx] = useState<any[]>([]);
@@ -267,27 +237,35 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          const result = await polyglotService.processTick(unitsRef.current, dt);
 
          // 2. Tactical Deployment (Spawn Logic - AI)
-         const infRes = InfantryDeploymentLogic.processBarracksTick(barracksRef.current, unitsRef.current, now);
-         const tankRes = TankDeploymentLogic.processTankHangarTick(tankHangarsRef.current, unitsRef.current, now);
+         const infRes = InfantryDeploymentLogic.processBarracksTick(barracksRef.current, unitsRef.current, now, 'enemy');
+         const tankRes = TankDeploymentLogic.processTankHangarTick(tankHangarsRef.current, unitsRef.current, now, 'enemy');
 
          // Activation Trigger: User crossed X = 5000 / Final Sector
          const isAirfieldActivated = unitsRef.current.some(u => u.side === 'user' && u.pos.x > 5000);
-         const airfieldResult = AircraftDeploymentLogic.processAirfieldTick(airfieldHangarsRef.current, unitsRef.current, now, isAirfieldActivated);
-         const heliRes = HelicopterDeploymentLogic.processHelipadTick(helipadsRef.current, unitsRef.current, now, isAirfieldActivated);
-         const navalRes = NavalDeploymentLogic.processNavalPortTick(portShipsRef.current, unitsRef.current, now);
-         const armoryRes = ArmoryDeploymentLogic.processArmoryTick(armoryRef.current, unitsRef.current, now);
+         const airfieldResult = AircraftDeploymentLogic.processAirfieldTick(airfieldHangarsRef.current, unitsRef.current, now, isAirfieldActivated, 'enemy');
+         const heliRes = HelicopterDeploymentLogic.processHelipadTick(helipadsRef.current, unitsRef.current, now, isAirfieldActivated, 'enemy');
+         const navalRes = NavalDeploymentLogic.processNavalPortTick(portShipsRef.current, unitsRef.current, now, 'enemy');
+         const armoryRes = ArmoryDeploymentLogic.processArmoryTick(armoryRef.current, unitsRef.current, now, 'enemy');
 
          // 2.1 Tactical Deployment (Spawn Logic - USER)
-         // User base is always active for deployment
-         const userInfRes = InfantryDeploymentLogic.processBarracksTick(userBarracksRef.current, unitsRef.current, now);
-         const userTankRes = TankDeploymentLogic.processTankHangarTick(userTankHangarsRef.current, unitsRef.current, now);
-         const userAirfieldRes = AircraftDeploymentLogic.processAirfieldTick(userAirfieldHangarsRef.current, unitsRef.current, now, true);
-         const userHeliRes = HelicopterDeploymentLogic.processHelipadTick(userHelipadsRef.current, unitsRef.current, now, true);
-         const userNavalRes = NavalDeploymentLogic.processNavalPortTick(userPortShipsRef.current, unitsRef.current, now);
-         const userArmoryRes = ArmoryDeploymentLogic.processArmoryTick(userArmoryRef.current, unitsRef.current, now);
+         // Authorization: Only spawn if the building's product category is selected in the sidebar
+         const isBarracksSelected = selectedUnitType === 'pasukan_infanteri';
+         const isTankSelected = ['tank_tempur_utama', 'apc_ifv', 'kendaraan_taktis'].includes(selectedUnitType || '');
+         const isAirfieldSelected = TheaterSetupLogic.AIR_UNITS.includes(selectedUnitType || '');
+         const isHeliSelected = selectedUnitType === 'helikopter_serang';
+         const isNavalSelected = TheaterSetupLogic.NAVAL_UNITS.includes(selectedUnitType || '');
+         const isArmorySelected = ['artileri_berat', 'sistem_peluncur_roket', 'pertahanan_udara_mobile'].includes(selectedUnitType || '');
+
+         const userInfRes = InfantryDeploymentLogic.processBarracksTick(userBarracksRef.current, unitsRef.current, now, 'user');
+         const userTankRes = TankDeploymentLogic.processTankHangarTick(userTankHangarsRef.current, unitsRef.current, now, 'user');
+         const userAirfieldRes = AircraftDeploymentLogic.processAirfieldTick(userAirfieldHangarsRef.current, unitsRef.current, now, true, 'user');
+         const userHeliRes = HelicopterDeploymentLogic.processHelipadTick(userHelipadsRef.current, unitsRef.current, now, true, 'user');
+         const userNavalRes = NavalDeploymentLogic.processNavalPortTick(userPortShipsRef.current, unitsRef.current, now, 'user');
+         const userArmoryRes = ArmoryDeploymentLogic.processArmoryTick(userArmoryRef.current, unitsRef.current, now, 'user');
 
          // 3. Post-Combat (Landing/Recovery)
-         const postCombatRes = AircraftDeploymentLogic.processPostCombatTick(unitsRef.current, airfieldResult.nextHangars, now);
+         const postCombatRes = AircraftDeploymentLogic.processPostCombatTick(unitsRef.current, airfieldResult.nextHangars, now, 'enemy');
+         const userPostCombatRes = AircraftDeploymentLogic.processPostCombatTick(unitsRef.current, userAirfieldRes.nextHangars, now, 'user');
 
          // 4. Consolidation & State Updates
          const newSpawned = [
@@ -297,20 +275,24 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
             ...heliRes.newSpawned,
             ...navalRes.newSpawned,
             ...armoryRes.newSpawned,
-            // User-side spawned
-            ...userInfRes.newSpawned,
-            ...userTankRes.newSpawned,
-            ...userAirfieldRes.newSpawned,
-            ...userHeliRes.newSpawned,
-            ...userNavalRes.newSpawned,
-            ...userArmoryRes.newSpawned
+            // User-side spawned (ONLY IF AUTHORIZED)
+            ...(isBarracksSelected ? userInfRes.newSpawned : []),
+            ...(isTankSelected ? userTankRes.newSpawned : []),
+            ...(isAirfieldSelected ? userAirfieldRes.newSpawned : []),
+            ...(isHeliSelected ? userHeliRes.newSpawned : []),
+            ...(isNavalSelected ? userNavalRes.newSpawned : []),
+            ...(isArmorySelected ? userArmoryRes.newSpawned : [])
          ];
 
          let finalUnits = result.units;
-         if (newSpawned.length > 0 || postCombatRes.nextUnits.length !== unitsRef.current.length) {
+         if (newSpawned.length > 0 || postCombatRes.nextUnits.length !== unitsRef.current.length || userPostCombatRes.nextUnits.length !== unitsRef.current.length) {
+            // Merge all units, prioritizing updated individual units from physics/spawn
             const mergedUnits = [
-               ...postCombatRes.nextUnits.filter(u => !newSpawned.some(ns => ns.id === u.id)),
-               ...newSpawned
+               ...postCombatRes.nextUnits.filter(u => u.side === 'enemy' && !newSpawned.some(ns => ns.id === u.id)),
+               ...userPostCombatRes.nextUnits.filter(u => u.side === 'user' && !newSpawned.some(ns => ns.id === u.id)),
+               ...newSpawned,
+               // Keep non-aircraft units that weren't in postCombatRes
+               ...result.units.filter(u => !u.isAirType && !newSpawned.some(ns => ns.id === u.id))
             ];
             finalUnits = mergedUnits;
          }
@@ -327,10 +309,10 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          setPortShips(navalRes.nextPortShips);
          setArmory(armoryRes.nextArmories);
 
-         // User-side state updates
+         // 5. User-side state updates
          setUserBarracks(userInfRes.nextBarracks);
          setUserTankHangars(userTankRes.nextHangars);
-         setUserAirfieldHangars(userAirfieldRes.nextHangars);
+         setUserAirfieldHangars(userPostCombatRes.nextHangars);
          setUserHelipads(userHeliRes.nextHelipads);
          setUserPortShips(userNavalRes.nextPortShips);
          setUserArmory(userArmoryRes.nextArmories);
@@ -388,12 +370,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                   onSelect={setSelectedUnitType}
                   currentPoints={currentPoints}
                   maxPoints={maxPoints}
-                  troopAmount={blockUnitCount}
-                  setTroopAmount={setBlockUnitCount}
-                  deploymentMode={deploymentMode}
-                  setDeploymentMode={setDeploymentMode}
                   cumulativeDeployment={cumulativeDeployment}
-                  onOpenCountModal={() => setShowBlockModal(true)}
                />
 
                <div className="flex-1 p-4 bg-black flex flex-col items-center justify-center relative overflow-hidden">
@@ -419,43 +396,12 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                         userArmoryState={userArmory}
                         barakCount={targetArmada?.barak || 0}
                         phase={phase}
-                        onAreaSelected={(rect) => {
-                           if ((phase === "deployment" || phase === "combat") && selectedUnitType) {
-                              if (deploymentMode === "area") {
-                                 // Instant Deployment without modal
-                                 const amount = parseInt(blockUnitCount) || 0;
-                                 const multiplier = 1;
-                                 const deployedQuantity = units.filter(u => u.side === 'user' && u.type === selectedUnitType).length * multiplier;
-                                 const available = missionData.selection[selectedUnitType] || 0;
-                                 const newUnits = PlayerTacticalLogic.deployBlock(
-                                    selectedUnitType, rect, amount, units, missionData.selection, currentPoints, maxPoints, hasSea
-                                 );
-
-                                 if (newUnits.length > 0) {
-                                    setUnits(prev => [...prev, ...newUnits]);
-                                    const isInfantry = selectedUnitType === 'pasukan_infanteri';
-                                    const amountPerUnit = isInfantry ? 10000 : 1;
-                                    const totalIncrease = newUnits.length * amountPerUnit;
-
-                                    setCumulativeDeployment(prev => ({
-                                       ...prev,
-                                       [selectedUnitType]: (prev[selectedUnitType] || 0) + totalIncrease
-                                    }));
-                                 }
-                              } else {
-                                 // Could potentially do something else or just ignore
-                                 setBlockSelection(rect);
-                              }
-                           }
-                        }}
                         onMapClick={(x, y, isRightClick) => {
                            if (phase === "deployment" || phase === "combat") {
                               if (isRightClick) {
                                  handleRemoveUnit(x, y);
                               } else {
-                                 if (deploymentMode === "manual") {
-                                    handleManualDeployment(selectedUnitType, x, y);
-                                 }
+                                 handleManualDeployment(selectedUnitType, x, y);
                               }
                            }
                         }}
@@ -524,54 +470,6 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          </div>
 
          {/* Block Deployment Modal */}
-         {showBlockModal && (
-            <div className="absolute inset-0 z-[200] flex items-center justify-center bg-black/60 backdrop-blur-md animate-in fade-in duration-300">
-               <div className="w-[400px] bg-zinc-950 border border-zinc-800 rounded-[32px] p-8 shadow-2xl shadow-red-500/10 flex flex-col gap-6 relative overflow-hidden">
-                  <div className="absolute top-0 right-0 p-8 opacity-5 text-red-500"><Sword size={120} /></div>
-
-                  <div className="flex flex-col gap-1">
-                     <h3 className="text-xl font-black text-white uppercase tracking-widest italic">Mass Deployment</h3>
-                     <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest tracking-[0.3em]">Configure Area Engagement</span>
-                  </div>
-
-                  <div className="space-y-4">
-                     <div className="flex flex-col gap-2">
-                        <label className="text-[10px] font-black text-zinc-400 uppercase tracking-widest flex items-center gap-2">
-                           <Target size={12} className="text-red-500" /> Troop Deployment Count
-                        </label>
-                        <input
-                           type="number"
-                           value={blockUnitCount}
-                           onChange={(e) => setBlockUnitCount(e.target.value)}
-                           className="w-full bg-zinc-900 border border-zinc-800 rounded-2xl px-6 py-4 text-white font-black text-lg focus:outline-none focus:border-red-500/50 transition-all"
-                           autoFocus
-                           placeholder="1000"
-                           onKeyDown={(e) => e.key === "Enter" && handleBlockDeployment()}
-                        />
-                     </div>
-
-                     <p className="text-[9px] text-zinc-600 font-bold uppercase leading-relaxed tracking-wider">
-                        Selected area units will be deployed in an optimized tactical formation based on terrain availability.
-                     </p>
-                  </div>
-
-                  <div className="flex gap-4">
-                     <button
-                        onClick={() => { setShowBlockModal(false); setBlockSelection(null); }}
-                        className="flex-1 py-4 bg-zinc-900 border border-zinc-800 rounded-2xl text-zinc-400 font-black uppercase text-[10px] tracking-widest hover:text-white transition-all"
-                     >
-                        Cancel
-                     </button>
-                     <button
-                        onClick={handleBlockDeployment}
-                        className="flex-1 py-4 bg-red-600 rounded-2xl text-white font-black uppercase text-[10px] tracking-[0.3em] hover:bg-red-500 transition-all shadow-lg shadow-red-900/20"
-                     >
-                        Execute
-                     </button>
-                  </div>
-               </div>
-            </div>
-         )}
       </div>
    );
 }

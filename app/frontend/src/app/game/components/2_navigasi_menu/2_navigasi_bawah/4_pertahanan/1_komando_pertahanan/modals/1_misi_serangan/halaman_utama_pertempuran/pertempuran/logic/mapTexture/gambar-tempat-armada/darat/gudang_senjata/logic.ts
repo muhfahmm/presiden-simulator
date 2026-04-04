@@ -14,9 +14,10 @@ import { ArmoryState } from "./ArmoryUtils";
 export class ArmoryDeploymentLogic {
     static readonly ENGAGEMENT_THRESHOLD = 30000; // Long-range detection for heavy weapons
 
-    static isEnemyNearby(pos: Vector2, units: UnitState[], threshold: number): boolean {
+    static isEnemyNearby(pos: Vector2, units: UnitState[], side: 'user' | 'enemy', threshold: number): boolean {
+        const targetSide = side === 'user' ? 'enemy' : 'user';
         return units.some(u => {
-            if (u.side !== 'user') return false;
+            if (u.side !== targetSide) return false;
             const dx = u.pos.x - pos.x;
             const dy = u.pos.y - pos.y;
             return (dx * dx + dy * dy) < (threshold * threshold);
@@ -29,12 +30,13 @@ export class ArmoryDeploymentLogic {
     static processArmoryTick(
         armories: ArmoryState[],
         units: UnitState[],
-        now: number
+        now: number,
+        side: 'user' | 'enemy' = 'enemy'
     ): { nextArmories: ArmoryState[], newSpawned: UnitState[] } {
         const newSpawned: UnitState[] = [];
-        const cooldown = 5000; // Heavy weapons have longer cooldown (5s)
+        const cooldown = 5000;
 
-        // Step 1: Find ACTIVE armory per weaponType (Sequential Doctrine)
+        // Step 1: Find ACTIVE armory per weaponType
         const activeIndices: Record<string, number> = {};
         const types = ['artileri_berat', 'sistem_peluncur_roket', 'pertahanan_udara_mobile'];
 
@@ -50,15 +52,14 @@ export class ArmoryDeploymentLogic {
                     break;
                 }
 
-                // Building empty — check if its units are still alive
                 const hasLivingUnits = units.some(u =>
-                    u.side === 'enemy' &&
+                    u.side === side &&
                     u.id.includes(a.id) &&
                     u.health > 0
                 );
 
                 if (hasLivingUnits) {
-                    activeIdxForType = -1; // Wait for wave to clear
+                    activeIdxForType = -1;
                     break;
                 }
             }
@@ -69,9 +70,8 @@ export class ArmoryDeploymentLogic {
         const nextArmories = armories.map((a, i) => {
             if (i !== activeIndices[a.weaponType]) return { ...a };
 
-            // WAVE CHECK: Count active units from THIS specific armory
             const activeCount = units.filter(u => 
-                u.side === 'enemy' && 
+                u.side === side && 
                 u.id.includes(`dep_heavy_${a.id}_`) && 
                 u.health > 0
             ).length;
@@ -81,17 +81,23 @@ export class ArmoryDeploymentLogic {
 
             if (canSpawnWave && 
                 (now - (a.lastSpawned || 0)) > cooldown &&
-                this.isEnemyNearby(a.pos, units, this.ENGAGEMENT_THRESHOLD)) {
+                this.isEnemyNearby(a.pos, units, side, this.ENGAGEMENT_THRESHOLD)) {
                 
                 const stats = getUnitStats(a.weaponType);
                 const spawnAmount = Math.min(a.currentCount, waveSize);
                 
                 for (let j = 0; j < spawnAmount; j++) {
+                    const rotation = side === 'enemy' ? Math.PI : 0;
+                    const offsetX = side === 'user' ? 300 : -300;
+
                     newSpawned.push({
                         id: `dep_heavy_${a.id}_w${now}_${j}`,
-                        type: a.weaponType, side: "enemy",
-                        pos: { x: a.pos.x + (j % 5) * 80, y: a.pos.y + 300 + Math.floor(j/5) * 80 },
-                        health: stats.maxHealth, rotation: Math.PI, influence: 500
+                        type: a.weaponType, side: side,
+                        pos: { 
+                            x: a.pos.x + (j % 5) * 80 + offsetX, 
+                            y: a.pos.y + Math.floor(j/5) * 80 
+                        },
+                        health: stats.maxHealth, rotation: rotation, influence: 500
                     });
                 }
 

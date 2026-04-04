@@ -16,9 +16,10 @@ export class HelicopterDeploymentLogic {
     static readonly RADAR_THRESHOLD = 20000;
     static readonly MAX_ACTIVE_PER_PAD = 1;
 
-    static isEnemyNearby(pos: { x: number, y: number }, units: UnitState[]): boolean {
+    static isEnemyNearby(pos: { x: number, y: number }, units: UnitState[], side: 'user' | 'enemy'): boolean {
+        const targetSide = side === 'user' ? 'enemy' : 'user';
         return units.some(u => {
-            if (u.side !== 'user') return false;
+            if (u.side !== targetSide) return false;
             const dx = u.pos.x - pos.x;
             const dy = u.pos.y - pos.y;
             return (dx * dx + dy * dy) < (this.RADAR_THRESHOLD * this.RADAR_THRESHOLD);
@@ -32,7 +33,8 @@ export class HelicopterDeploymentLogic {
         helipads: HelipadState[],
         units: UnitState[],
         now: number,
-        isActivated: boolean = true
+        isActivated: boolean = true,
+        side: 'user' | 'enemy' = 'enemy'
     ): { nextHelipads: HelipadState[], newSpawned: UnitState[] } {
         const newSpawned: UnitState[] = [];
         if (!isActivated) return { nextHelipads: helipads, newSpawned: [] };
@@ -40,7 +42,7 @@ export class HelicopterDeploymentLogic {
         const spawnCooldown = 15000; 
         const globalCooldown = 3500;
 
-        // Step 1: Find the ACTIVE helipad index (sequential order)
+        // Step 1: Find the ACTIVE helipad index
         let activeIdx = -1;
         for (let i = 0; i < helipads.length; i++) {
             const h = helipads[i];
@@ -50,21 +52,19 @@ export class HelicopterDeploymentLogic {
                 break;
             }
 
-            // Helipad is empty — check if its helicopter is still alive
             const hasLivingHeli = units.some(u => 
-                u.side === 'enemy' && 
+                u.side === side && 
                 u.type === 'helikopter_serang' && 
                 u.id.includes(h.id) && 
                 u.health > 0
             );
 
             if (hasLivingHeli) {
-                activeIdx = -1; // Wait for it to die
+                activeIdx = -1;
                 break;
             }
         }
 
-        // Find if ANY helipad recently spawned (global pacing)
         const lastGlobalSpawn = Math.max(...helipads.map(h => h.lastSpawned || 0));
         let hasSpawnedRecently = (now - lastGlobalSpawn) < globalCooldown;
 
@@ -78,18 +78,19 @@ export class HelicopterDeploymentLogic {
 
             if (h.currentCount > 0 && 
                 timeSinceLast > spawnCooldown && 
-                this.isEnemyNearby(h.pos, units) &&
+                this.isEnemyNearby(h.pos, units, side) &&
                 isAuthorized) {
                 
                 const stats = getUnitStats("helikopter_serang");
+                const rotation = side === 'enemy' ? Math.PI : 0;
 
                 newSpawned.push({
                     id: `heli_${h.id}_${now}`,
                     type: "helikopter_serang",
-                    side: "enemy",
+                    side: side,
                     pos: { ...h.pos },
                     health: stats.maxHealth,
-                    rotation: 0,
+                    rotation: rotation,
                     sourceId: h.id, 
                     path: HelicopterPhysicsRouter.generateTakeoff(h.pos)
                 } as any);

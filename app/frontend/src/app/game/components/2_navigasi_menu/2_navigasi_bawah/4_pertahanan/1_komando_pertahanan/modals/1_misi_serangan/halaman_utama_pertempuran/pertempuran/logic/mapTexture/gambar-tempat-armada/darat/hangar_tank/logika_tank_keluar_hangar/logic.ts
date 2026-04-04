@@ -17,10 +17,12 @@ export class TankDeploymentLogic {
     static isEnemyNearby(
         hangarPos: Vector2, 
         units: UnitState[], 
+        side: 'user' | 'enemy',
         threshold: number = this.ENGAGEMENT_THRESHOLD
     ): boolean {
+        const targetSide = side === 'user' ? 'enemy' : 'user';
         return units.some(unit => {
-            if (unit.side !== 'user') return false;
+            if (unit.side !== targetSide) return false;
             const dx = unit.pos.x - hangarPos.x;
             const dy = unit.pos.y - hangarPos.y;
             return (dx * dx + dy * dy) < (threshold * threshold);
@@ -33,18 +35,18 @@ export class TankDeploymentLogic {
     static processTankHangarTick(
         hangars: HangarState[],
         units: UnitState[],
-        now: number
+        now: number,
+        side: 'user' | 'enemy' = 'enemy'
     ): { nextHangars: HangarState[], newSpawned: UnitState[] } {
         const newSpawned: UnitState[] = [];
         const cooldown = 2000;
 
-        // Step 1: Find the ACTIVE hangar per vehicleType (sequential within each category)
+        // Step 1: Find the ACTIVE hangar per vehicleType
         const activeIndices: Record<string, number> = {};
         const types = ['tank_tempur_utama', 'apc_ifv', 'kendaraan_taktis'];
 
         types.forEach(vType => {
             let activeIdxForType = -1;
-            const typeHangars = hangars.filter(h => (h.vehicleType || 'tank_tempur_utama') === vType);
             
             for (let i = 0; i < hangars.length; i++) {
                 const h = hangars[i];
@@ -55,15 +57,14 @@ export class TankDeploymentLogic {
                     break;
                 }
 
-                // Hangar is empty — check if its vehicles are still alive
                 const hasLivingVehicles = units.some(u =>
-                    u.side === 'enemy' &&
+                    u.side === side &&
                     u.id.includes(h.id) &&
                     u.health > 0
                 );
 
                 if (hasLivingVehicles) {
-                    activeIdxForType = -1; // Wait for this hangar's units to die before next hangar
+                    activeIdxForType = -1;
                     break;
                 }
             }
@@ -75,9 +76,8 @@ export class TankDeploymentLogic {
             const vType = h.vehicleType || 'tank_tempur_utama';
             if (i !== activeIndices[vType]) return { ...h };
 
-            // WAVE CHECK: Count active units from THIS specific hangar
             const activeCount = units.filter(u => 
-                u.side === 'enemy' && 
+                u.side === side && 
                 u.id.includes(`dep_vehicle_${h.id}_`) && 
                 u.health > 0
             ).length;
@@ -87,17 +87,23 @@ export class TankDeploymentLogic {
 
             if (canSpawnWave && 
                 (now - (h.lastSpawned || 0)) > cooldown &&
-                this.isEnemyNearby(h.pos, units, this.ENGAGEMENT_THRESHOLD)) {
+                this.isEnemyNearby(h.pos, units, side, this.ENGAGEMENT_THRESHOLD)) {
                 
                 const stats = getUnitStats(vType);
                 const spawnAmount = Math.min(h.currentCount, waveSize);
                 
                 for (let j = 0; j < spawnAmount; j++) {
+                    const rotation = side === 'enemy' ? Math.PI : 0;
+                    const offsetX = side === 'user' ? 200 : -200;
+
                     newSpawned.push({
                         id: `dep_vehicle_${h.id}_w${now}_${j}`,
-                        type: vType, side: "enemy",
-                        pos: { x: h.pos.x + (j % 5) * 60, y: h.pos.y + 200 + Math.floor(j/5) * 60 },
-                        health: stats.maxHealth, rotation: Math.PI, influence: 300
+                        type: vType, side: side,
+                        pos: { 
+                            x: h.pos.x + (j % 5) * 60 + offsetX, 
+                            y: h.pos.y + Math.floor(j/5) * 60 
+                        },
+                        health: stats.maxHealth, rotation: rotation, influence: 300
                     });
                 }
 

@@ -27,10 +27,12 @@ export class AircraftDeploymentLogic {
     static isEnemyNearby(
         airfieldPos: Vector2, 
         units: UnitState[], 
+        side: 'user' | 'enemy',
         threshold: number = this.RADAR_THRESHOLD
     ): boolean {
+        const targetSide = side === 'user' ? 'enemy' : 'user';
         return units.some(unit => {
-            if (unit.side !== 'user') return false;
+            if (unit.side !== targetSide) return false;
             
             const dx = unit.pos.x - airfieldPos.x;
             const dy = unit.pos.y - airfieldPos.y;
@@ -42,20 +44,20 @@ export class AircraftDeploymentLogic {
 
     /**
      * Process airbase tactical tick for all hangars with SEQUENTIAL logic.
-     * Advances to next hangar only when current hangar is empty AND all its planes are clear.
      */
     static processAirfieldTick(
         hangars: AirfieldHangarState[],
         units: UnitState[],
         now: number,
-        isActivated: boolean = true
+        isActivated: boolean = true,
+        side: 'user' | 'enemy' = 'enemy'
     ): { nextHangars: AirfieldHangarState[], newSpawned: UnitState[] } {
         const newSpawned: UnitState[] = [];
         if (!isActivated) return { nextHangars: hangars, newSpawned: [] };
 
-        const globalCooldown = 4500; // 4.5 seconds between any plane takeoff
+        const globalCooldown = 4500;
 
-        // Step 1: Find the ACTIVE hangar index (sequential order)
+        // Step 1: Find the ACTIVE hangar index
         let activeIdx = -1;
         for (let i = 0; i < hangars.length; i++) {
             const h = hangars[i];
@@ -65,47 +67,43 @@ export class AircraftDeploymentLogic {
                 break;
             }
 
-            // Hangar is empty — check if its aircraft are still in the air (active)
             const hasLivingPlanes = units.some(u => 
-                u.side === 'enemy' && 
+                u.side === side && 
                 u.type === h.type && 
                 u.id.includes(h.id) && 
                 u.health > 0 &&
-                (u as any).aiState !== 'landing' // Don't block if they are landing/returning
+                (u as any).aiState !== 'landing'
             );
 
             if (hasLivingPlanes) {
-                activeIdx = -1; // Wait for current wave to clear or start landing
+                activeIdx = -1;
                 break;
             }
         }
 
-        // Find if ANY hangar recently spawned (global throttling)
         const lastGlobalSpawn = Math.max(...hangars.map(h => h.lastSpawned || 0));
         let hasSpawnedRecently = (now - lastGlobalSpawn) < globalCooldown;
 
         const nextHangars = hangars.map((h, i) => {
             if (i !== activeIdx || hasSpawnedRecently) return { ...h };
 
-            // WAVE CHECK: Count active aircraft from THIS specific hangar
             const activeCount = units.filter(u => 
-                u.side === 'enemy' && 
+                u.side === side && 
                 u.type === h.type && 
                 u.id.includes(`dep_air_${h.id}_`) && 
                 u.health > 0
             ).length;
 
-            // STRATEGY: Sequential 1-by-1 Deployment
-            // Only spawn 1 aircraft, and only if the previous one from this hangar is dead
             const canSpawn = activeCount === 0 && h.currentCount > 0;
 
-            if (canSpawn && this.isEnemyNearby(h.pos, units, this.RADAR_THRESHOLD)) {
+            if (canSpawn && this.isEnemyNearby(h.pos, units, side, this.RADAR_THRESHOLD)) {
                 const stats = getUnitStats(h.type);
                 
-                // FIXED RUNWAY: Center at 12000, Length 5000
-                const runwayStartX = 12000; 
-                const runwayEndX = runwayStartX - 5000;
-                const runwayY = h.pos.y; // Stay aligned with Hangar Y
+                // Runway is side-dependent
+                const runwayLength = 5000;
+                const runwayStartX = side === 'enemy' ? 12000 : -12000; 
+                const runwayEndX = side === 'enemy' ? runwayStartX - runwayLength : runwayStartX + runwayLength;
+                const runwayY = h.pos.y;
 
                 const trajectory = AircraftPhysicsRouter.generateTrajectory(
                     { x: h.pos.x, y: h.pos.y },
@@ -114,14 +112,16 @@ export class AircraftDeploymentLogic {
                     now
                 );
 
+                const rotation = side === 'enemy' ? Math.PI : 0;
+
                 newSpawned.push({
                     id: `dep_air_${h.id}_s${now}`, 
-                    type: h.type, side: "enemy",
+                    type: h.type, side: side,
                     pos: { x: h.pos.x, y: h.pos.y },
-                    health: stats.maxHealth, rotation: Math.PI, influence: 300,
+                    health: stats.maxHealth, rotation: rotation, influence: 300,
                     path: trajectory,
                     isAirType: true,
-                    airState: 'taxi' // INITIAL STATE: Grounded/Safe
+                    airState: 'taxi'
                 } as any);
 
                 return {
@@ -138,16 +138,17 @@ export class AircraftDeploymentLogic {
 
     /**
      * Process existing airborne units for post-combat behavior (Patrol/Landing).
-     * Delegates recovery/restocking to AircraftReturnLogic.
      */
     static processPostCombatTick(
         units: UnitState[],
         hangars: AirfieldHangarState[],
-        now: number
+        now: number,
+        side: 'user' | 'enemy' = 'enemy'
     ): { nextUnits: UnitState[], nextHangars: AirfieldHangarState[] } {
         // 1. REPAIR LOGIC: Check units for low HP and command landing
         const unitsWithLandingOrders = units.map(u => {
-            // Only process enemy aircraft that are not already landing
+            if (u.side !== side || !u.isAirType) return u;
+            // ... (rest of logic will handle side natively via unit properties)
             if (u.side !== 'enemy' || !(u as any).isAirType || (u as any).aiState === 'landing') return u;
 
             const stats = getUnitStats(u.type);

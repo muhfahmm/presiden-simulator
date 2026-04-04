@@ -17,10 +17,12 @@ export class InfantryDeploymentLogic {
     static isEnemyNearby(
         barrackPos: Vector2, 
         units: UnitState[], 
+        side: 'user' | 'enemy',
         threshold: number = this.ENGAGEMENT_THRESHOLD
     ): boolean {
+        const targetSide = side === 'user' ? 'enemy' : 'user';
         return units.some(unit => {
-            if (unit.side !== 'user') return false;
+            if (unit.side !== targetSide) return false;
             const dx = unit.pos.x - barrackPos.x;
             const dy = unit.pos.y - barrackPos.y;
             return (dx * dx + dy * dy) < (threshold * threshold);
@@ -29,53 +31,46 @@ export class InfantryDeploymentLogic {
 
     /**
      * Process barracks tactical tick for SEQUENTIAL squad deployment.
-     * Only the active barrack (first non-empty) spawns troops.
-     * Next barrack activates only when current barrack is empty AND
-     * all its troops on the battlefield have been eliminated.
      */
     static processBarracksTick(
         barracks: BarrackState[],
         units: UnitState[],
-        now: number
+        now: number,
+        side: 'user' | 'enemy' = 'enemy'
     ): { nextBarracks: BarrackState[], newSpawned: UnitState[] } {
         const newSpawned: UnitState[] = [];
         const cooldown = 1500;
 
-        // Step 1: Find the ACTIVE barrack index (sequential order: 0→1→2→...)
+        // Step 1: Find the ACTIVE barrack index
         let activeIndex = -1;
 
         for (let i = 0; i < barracks.length; i++) {
             const b = barracks[i];
             
             if (b.currentPersonnel > 0) {
-                // This barrack still has troops inside → it's the active one
                 activeIndex = i;
                 break;
             }
             
-            // Barrack is empty — check if its troops are still fighting
             const hasLivingTroops = units.some(u => 
-                u.side === 'enemy' && 
+                u.side === side && 
                 u.type === 'pasukan_infanteri' && 
                 u.id.includes(b.id) && 
                 u.health > 0
             );
             
             if (hasLivingTroops) {
-                // Troops from this barrack are still alive → WAIT, don't advance
                 activeIndex = -1;
                 break;
             }
-            // All troops from this barrack are dead → check next barrack
         }
 
-        // Step 2: Only spawn from the active barrack (IMMUTABLE updates)
+        // Step 2: Only spawn from the active barrack
         const nextBarracks = barracks.map((b, i) => {
-            if (i !== activeIndex) return { ...b }; // Return copy, no changes
+            if (i !== activeIndex) return { ...b };
 
-            // WAVE CHECK: Count active infantry from THIS specific barrack
             const activeCount = units.filter(u => 
-                u.side === 'enemy' && 
+                u.side === side && 
                 u.type === 'pasukan_infanteri' && 
                 u.id.includes(`dep_inf_${b.id}_`) && 
                 u.health > 0
@@ -86,17 +81,23 @@ export class InfantryDeploymentLogic {
 
             if (canSpawnWave && 
                 (now - (b.lastSpawned || 0)) > cooldown &&
-                this.isEnemyNearby(b.pos, units, this.ENGAGEMENT_THRESHOLD)) {
+                this.isEnemyNearby(b.pos, units, side, this.ENGAGEMENT_THRESHOLD)) {
                 
                 const stats = getUnitStats("pasukan_infanteri");
                 const spawnAmount = Math.min(Math.floor(b.currentPersonnel / 1000), waveSize);
                 
                 for (let j = 0; j < spawnAmount; j++) {
+                    const rotation = side === 'enemy' ? Math.PI : 0;
+                    const offsetX = side === 'user' ? 100 : -100;
+
                     newSpawned.push({
                         id: `dep_inf_${b.id}_w${now}_${j}`,
-                        type: "pasukan_infanteri", side: "enemy",
-                        pos: { x: b.pos.x + (j % 5) * 30, y: b.pos.y + 100 + Math.floor(j/5) * 30 },
-                        health: stats.maxHealth, rotation: Math.PI, influence: 100
+                        type: "pasukan_infanteri", side: side,
+                        pos: { 
+                            x: b.pos.x + (j % 5) * 30 + offsetX, 
+                            y: b.pos.y + Math.floor(j/5) * 30 
+                        },
+                        health: stats.maxHealth, rotation: rotation, influence: 100
                     });
                 }
 

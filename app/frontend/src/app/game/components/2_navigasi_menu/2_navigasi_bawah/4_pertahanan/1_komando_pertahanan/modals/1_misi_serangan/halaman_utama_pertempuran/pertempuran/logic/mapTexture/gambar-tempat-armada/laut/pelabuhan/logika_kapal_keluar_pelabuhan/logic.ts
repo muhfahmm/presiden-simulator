@@ -18,10 +18,12 @@ export class NavalDeploymentLogic {
     static isEnemyNearby(
         harborPos: Vector2, 
         units: UnitState[], 
+        side: 'user' | 'enemy',
         threshold: number = this.RADAR_THRESHOLD
     ): boolean {
+        const targetSide = side === 'user' ? 'enemy' : 'user';
         return units.some(unit => {
-            if (unit.side !== 'user') return false;
+            if (unit.side !== targetSide) return false;
             
             const dx = unit.pos.x - harborPos.x;
             const dy = unit.pos.y - harborPos.y;
@@ -37,21 +39,25 @@ export class NavalDeploymentLogic {
     static processNavalPortTick(
         portShips: PortShipState[],
         units: UnitState[],
-        now: number
+        now: number,
+        side: 'user' | 'enemy' = 'enemy'
     ): { nextPortShips: PortShipState[], newSpawned: UnitState[] } {
         const newSpawned: UnitState[] = [];
         const cooldown = 3500; // 3.5s
 
-        // REACTIVE LOGIC: AI only spawns ships if user has ships in the sea
-        const userHasShips = units.some(u => u.side === 'user' && getUnitDomain(u.type) === 'sea');
-        if (!userHasShips) {
+        // REACTIVE LOGIC: Only spawn ships if OPPOSITE side has ships in the sea
+        const targetSide = side === 'user' ? 'enemy' : 'user';
+        const targetHasShips = units.some(u => u.side === targetSide && getUnitDomain(u.type) === 'sea');
+        
+        // But for User, maybe they can spawn whenever? Or just keep it symmetric for now.
+        if (!targetHasShips) {
             return { nextPortShips: portShips, newSpawned: [] };
         }
 
         const harbor = portRouter.getTacticalHarbor();
         const harborCenter = { x: 0, y: -6000 };
 
-        // Step 1: Find ACTIVE ship type (sequential)
+        // Step 1: Find ACTIVE ship type
         let activeIdx = -1;
         for (let i = 0; i < portShips.length; i++) {
             if (portShips[i].currentCount > 0) {
@@ -63,9 +69,8 @@ export class NavalDeploymentLogic {
         const nextPortShips = portShips.map((p, i) => {
             if (i !== activeIdx) return { ...p };
 
-            // WAVE CHECK: Count active ships of THIS type from enemy side
             const activeCount = units.filter(u => 
-                u.side === 'enemy' && 
+                u.side === side && 
                 u.type === p.type && 
                 u.id.includes(`dep_ship_`) && 
                 u.health > 0
@@ -76,7 +81,7 @@ export class NavalDeploymentLogic {
 
             if (canSpawnWave && 
                 (now - (p.lastSpawned || 0)) > cooldown &&
-                this.isEnemyNearby(harborCenter, units, this.RADAR_THRESHOLD)) {
+                this.isEnemyNearby(harborCenter, units, side, this.RADAR_THRESHOLD)) {
                 
                 const stats = getUnitStats(p.type);
                 const spawnAmount = Math.min(p.currentCount, waveSize);
@@ -87,7 +92,7 @@ export class NavalDeploymentLogic {
                     
                     newSpawned.push({
                         id: `dep_ship_${p.type}_w${now}_${j}`,
-                        type: p.type, side: "enemy",
+                        type: p.type, side: side,
                         pos: { x: pier.endX + (j * 40), y: startY },
                         health: stats.maxHealth, rotation: -Math.PI / 2, influence: 500,
                         path: [

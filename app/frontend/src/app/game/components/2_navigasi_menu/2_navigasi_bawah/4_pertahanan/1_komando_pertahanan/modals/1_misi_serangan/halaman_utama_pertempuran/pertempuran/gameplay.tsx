@@ -16,7 +16,6 @@ interface GameplayProps {
    combatVfx?: any[];
    onUnitSelect: (id: string | null) => void;
    onMapClick?: (x: number, y: number, isRightClick: boolean) => void;
-   onAreaSelected?: (rect: { x1: number, y1: number, x2: number, y2: number }) => void;
    drawMapBackground: (
       ctx: CanvasRenderingContext2D,
       camera: { x: number; y: number; zoom: number },
@@ -68,7 +67,6 @@ export default function Gameplay({
    combatVfx = [],
    onUnitSelect,
    onMapClick,
-   onAreaSelected,
    drawMapBackground,
    hasSea = false,
    targetArmada = null,
@@ -110,10 +108,6 @@ export default function Gameplay({
    const isDraggingRef = useRef(false);
    const dragStartRef = useRef<{ x: number, y: number } | null>(null);
    const dragDistanceRef = useRef<number>(0);
-
-   const selectionBoxRef = useRef<{ x1: number, y1: number, x2: number, y2: number } | null>(null);
-   const isSelectingRef = useRef(false);
-   const selectionStartWorldRef = useRef<{ x: number, y: number } | null>(null);
 
    useEffect(() => {
       viewportRef.current = viewport;
@@ -217,20 +211,6 @@ export default function Gameplay({
    }, [hasSea]);
 
    const handleMouseDown = (e: React.MouseEvent) => {
-      if (e.button === 2) {
-         e.preventDefault();
-         isSelectingRef.current = true;
-         const cam = cameraRef.current;
-         const rect = containerRef.current!.getBoundingClientRect();
-         const mouseX = e.clientX - rect.left;
-         const mouseY = e.clientY - rect.top;
-         const worldX = (mouseX - cam.x) / cam.zoom;
-         const worldY = (mouseY - cam.y) / cam.zoom;
-         selectionStartWorldRef.current = { x: worldX, y: worldY };
-         selectionBoxRef.current = { x1: worldX, y1: worldY, x2: worldX, y2: worldY };
-         dragDistanceRef.current = 0;
-         return;
-      }
       if (e.button !== 0) return;
       isDraggingRef.current = true;
       dragDistanceRef.current = 0;
@@ -239,23 +219,6 @@ export default function Gameplay({
 
    const handleMouseMove = async (e: React.MouseEvent) => {
       const cam = cameraRef.current;
-      if (isSelectingRef.current && selectionStartWorldRef.current && containerRef.current) {
-         const rect = containerRef.current.getBoundingClientRect();
-         const mouseX = e.clientX - rect.left;
-         const mouseY = e.clientY - rect.top;
-         const worldX = (mouseX - cam.x) / cam.zoom;
-         const worldY = (mouseY - cam.y) / cam.zoom;
-         const dx = worldX - selectionStartWorldRef.current.x;
-         const dy = worldY - selectionStartWorldRef.current.y;
-         dragDistanceRef.current = Math.sqrt(dx * dx + dy * dy);
-         selectionBoxRef.current = {
-            x1: selectionStartWorldRef.current.x,
-            y1: selectionStartWorldRef.current.y,
-            x2: worldX,
-            y2: worldY
-         };
-         return;
-      }
       if (isDraggingRef.current && dragStartRef.current) {
          const dx = e.clientX - dragStartRef.current.x;
          const dy = e.clientY - dragStartRef.current.y;
@@ -306,24 +269,6 @@ export default function Gameplay({
    };
 
    const handleMouseUp = (e: React.MouseEvent) => {
-      if (isSelectingRef.current && e.button === 2) {
-         isSelectingRef.current = false;
-         const box = selectionBoxRef.current;
-         if (box && onAreaSelected && dragDistanceRef.current > 50) {
-            onAreaSelected(box);
-         } else if (onMapClick && dragDistanceRef.current <= 50) {
-            const rect = containerRef.current!.getBoundingClientRect();
-            const mouseX = e.clientX - rect.left;
-            const mouseY = e.clientY - rect.top;
-            const cam = cameraRef.current;
-            const worldX = (mouseX - cam.x) / cam.zoom;
-            const worldY = (mouseY - cam.y) / cam.zoom;
-            onMapClick(worldX, worldY, true);
-         }
-         selectionBoxRef.current = null;
-         selectionStartWorldRef.current = null;
-         return;
-      }
       if (e.button === 0) {
          isDraggingRef.current = false;
          dragStartRef.current = null;
@@ -499,20 +444,6 @@ export default function Gameplay({
             ctx.restore();
          }
 
-         const sBox = selectionBoxRef.current;
-         if (sBox) {
-            ctx.save();
-            const sx = Math.min(sBox.x1, sBox.x2);
-            const sy = Math.min(sBox.y1, sBox.y2);
-            const sw = Math.abs(sBox.x2 - sBox.x1);
-            const sh = Math.abs(sBox.y2 - sBox.y1);
-            ctx.strokeStyle = "#0078d7";
-            ctx.lineWidth = 1 / camera.zoom;
-            ctx.strokeRect(sx, sy, sw, sh);
-            ctx.fillStyle = "rgba(0, 120, 215, 0.25)";
-            ctx.fillRect(sx, sy, sw, sh);
-            ctx.restore();
-         }
          ctx.restore();
          requestAnimationFrame(renderLoop);
       };

@@ -11,12 +11,7 @@ interface DeploymentEngineProps {
   onSelect: (type: string | null) => void;
   currentPoints: number;
   maxPoints: number;
-  troopAmount: string;
-  setTroopAmount: (val: string) => void;
-  deploymentMode: "manual" | "area";
-  setDeploymentMode: (mode: "manual" | "area") => void;
   cumulativeDeployment: Record<string, number>;
-  onOpenCountModal?: () => void;
 }
 
 export default function DeploymentEngine({ 
@@ -26,12 +21,7 @@ export default function DeploymentEngine({
   onSelect, 
   currentPoints, 
   maxPoints,
-  troopAmount,
-  setTroopAmount,
-  deploymentMode,
-  setDeploymentMode,
   cumulativeDeployment,
-  onOpenCountModal
 }: DeploymentEngineProps) {
   const [expandedGroups, setExpandedGroups] = useState<Record<string, boolean>>({
     darat: true,
@@ -195,60 +185,8 @@ export default function DeploymentEngine({
 
                                  {isSelected && (
                                     <div className="pt-4 border-t border-white/10 animate-in fade-in slide-in-from-top-1 space-y-4">
-                                       {/* Troop Count Input Block */}
-                                       <div className="space-y-2">
-                                          <div className="flex items-center justify-between">
-                                             <span className="text-[9px] font-black text-zinc-500 uppercase tracking-widest leading-none">Troop Amount</span>
-                                             <button 
-                                                onClick={(e) => { e.stopPropagation(); onOpenCountModal?.(); }}
-                                                className="text-[8px] font-black text-blue-400 uppercase tracking-tighter hover:text-white transition-colors"
-                                             >
-                                                Open Modal
-                                             </button>
-                                          </div>
-                                           <div className="relative group/input">
-                                              <input 
-                                                 type="number"
-                                                 value={troopAmount}
-                                                 onChange={(e) => setTroopAmount(e.target.value)}
-                                                 onClick={(e) => e.stopPropagation()}
-                                                 className="w-full bg-zinc-950 border border-white/5 rounded-xl px-3 py-2.5 text-xs font-black text-white outline-none focus:border-red-500/50 transition-all font-mono [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
-                                                 placeholder="1000"
-                                              />
-                                              <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2 pointer-events-none">
-                                                 <span className="text-[8px] font-black text-zinc-700 uppercase tracking-tighter underline decoration-red-500/20">Personnel</span>
-                                              </div>
-                                           </div>
-                                        </div>
-
-                                       {/* Mode Selector Buttons */}
-                                       <div className="grid grid-cols-2 gap-2">
-                                          <button 
-                                             onClick={(e) => { e.stopPropagation(); setDeploymentMode("area"); }}
-                                             className={`flex flex-col items-center gap-1.5 p-2 rounded-xl border transition-all ${
-                                                deploymentMode === "area" 
-                                                   ? "bg-emerald-500/10 border-emerald-500/50 text-emerald-400" 
-                                                   : "bg-zinc-950/20 border-white/5 text-zinc-600 hover:border-white/10"
-                                             }`}
-                                          >
-                                             <Zap size={12} />
-                                             <span className="text-[8px] font-black uppercase tracking-tighter">Konfirmasi Area</span>
-                                          </button>
-                                          <button 
-                                             onClick={(e) => { e.stopPropagation(); setDeploymentMode("manual"); }}
-                                             className={`flex flex-col items-center gap-1.5 p-2 rounded-xl border transition-all ${
-                                                deploymentMode === "manual" 
-                                                   ? "bg-blue-500/10 border-blue-500/50 text-blue-400" 
-                                                   : "bg-zinc-950/20 border-white/5 text-zinc-600 hover:border-white/10"
-                                             }`}
-                                          >
-                                             <Sword size={12} />
-                                             <span className="text-[8px] font-black uppercase tracking-tighter">Isi Manual</span>
-                                          </button>
-                                       </div>
-
                                        <p className="text-[8px] text-zinc-600 font-bold uppercase tracking-wider leading-relaxed text-center italic">
-                                          {deploymentMode === "area" ? "Right-Click Drag on map to mass deploy." : "Left-Click on map to place single unit."}
+                                          Tap on map to deploy. Right-click to remove.
                                        </p>
                                     </div>
                                  )}
