@@ -198,12 +198,10 @@ export class BarakEngine {
          
          // Tooltip Box
          ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
-         ctx.strokeStyle = "#ef4444";
+         ctx.strokeStyle = "#3b82f6";
          ctx.lineWidth = 2;
-         ctx.beginPath();
-         ctx.roundRect(-tw/2 - pad, -40, tw + pad*2, 60, 12);
-         ctx.fill();
-         ctx.stroke();
+         ctx.fillRect(-tw/2 - pad, -40, tw + pad*2, 60);
+         ctx.strokeRect(-tw/2 - pad, -40, tw + pad*2, 60);
          
          // Text
          ctx.shadowBlur = 0;

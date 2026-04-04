@@ -4,6 +4,7 @@ import { HelipadEngine } from "../logic/mapTexture/gambar-tempat-armada/udara/he
 import { HangarTankEngine } from "../logic/mapTexture/gambar-tempat-armada/darat/hangar_tank/index";
 import { BarakEngine } from "../logic/mapTexture/gambar-tempat-armada/darat/barak/barak";
 import { MapTextureEngine } from "../logic/mapTexture/MapTextureGenerator";
+import { ArmoryEngine } from "../logic/mapTexture/gambar-tempat-armada/darat/gudang_senjata/index";
 
 // ============================================================
 // Tactical Map Renderer - 3D Potential Field Mesh (LANDLOCKED)
@@ -55,7 +56,9 @@ export function drawWarMapBackground(
    targetArmada: any = null,
    tankHangarsState: any[] = [],
    airfieldHangarsState: any[] = [],
-   helipadsState: any[] = []
+   helipadsState: any[] = [],
+   portShipsState: any[] = [],
+   armoryState: any[] = []
 ) {
    ctx.save();
 
@@ -99,6 +102,9 @@ export function drawWarMapBackground(
 
    // 3.3 DRAW MILITARY BARRACKS (BARAK) - NEW MOD
    BarakEngine.drawBarracks(ctx, 12000, 850, camera.zoom, 10, barakCount, mousePos, phase, barracksState);
+
+   // 3.4 DRAW ARMORIES (GUDANG SENJATA) - NEW MOD
+   ArmoryEngine.drawArmory(ctx, 10400, 8500, camera.zoom, mousePos, units, targetArmada, armoryState);
 
    // 4. POTENTIAL FIELD MESH - REMOVED AS PER USER REQUEST
 

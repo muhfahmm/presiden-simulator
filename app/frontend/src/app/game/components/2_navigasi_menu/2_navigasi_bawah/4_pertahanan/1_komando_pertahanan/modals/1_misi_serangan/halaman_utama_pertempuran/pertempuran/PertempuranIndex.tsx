@@ -22,6 +22,8 @@ import { AirfieldUtils, AirfieldHangarState, HelipadState } from "./logic/mapTex
 import { AircraftDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/udara/bandara/logika_pesawat_keluar_hangar/logic";
 import { HelicopterDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/udara/helipad/logika_helikopter_keluar_helipad/logic";
 import { NavalDeploymentLogic, PortShipState } from "./logic/mapTexture/gambar-tempat-armada/laut/pelabuhan/logika_kapal_keluar_pelabuhan/logic";
+import { ArmoryDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/gudang_senjata/logic";
+import { ArmoryState } from "./logic/mapTexture/gambar-tempat-armada/darat/gudang_senjata/ArmoryUtils";
 import { TheaterSetupLogic } from "./logic/TheaterSetupLogic";
 import { PlayerTacticalLogic } from "./logic/PlayerTacticalLogic";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";
@@ -51,6 +53,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
    const [airfieldHangars, setAirfieldHangars] = useState<AirfieldHangarState[]>([]);
    const [helipads, setHelipads] = useState<HelipadState[]>([]);
    const [portShips, setPortShips] = useState<PortShipState[]>([]);
+   const [armory, setArmory] = useState<ArmoryState[]>([]);
    const [showBlockModal, setShowBlockModal] = useState(false);
    const [blockSelection, setBlockSelection] = useState<{ x1: number, y1: number, x2: number, y2: number } | null>(null);
    const [blockUnitCount, setBlockUnitCount] = useState("1000");
@@ -65,6 +68,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
    const airfieldHangarsRef = useRef<AirfieldHangarState[]>([]);
    const helipadsRef = useRef<HelipadState[]>([]);
    const portShipsRef = useRef<PortShipState[]>([]);
+   const armoryRef = useRef<ArmoryState[]>([]);
    const isPausedRef = useRef(isPaused);
 
    // Sync refs with React state for simulation access
@@ -74,6 +78,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
    useEffect(() => { airfieldHangarsRef.current = airfieldHangars; }, [airfieldHangars]);
    useEffect(() => { helipadsRef.current = helipads; }, [helipads]);
    useEffect(() => { portShipsRef.current = portShips; }, [portShips]);
+   useEffect(() => { armoryRef.current = armory; }, [armory]);
    useEffect(() => { isPausedRef.current = isPaused; }, [isPaused]);
 
    // Sync with global game time pause/resume
@@ -119,6 +124,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          setAirfieldHangars(result.airfieldHangars);
          setHelipads(result.helipads);
          setPortShips(result.portShips);
+         setArmory(result.armory);
       } catch (error) {
          console.error(error);
       }
@@ -224,6 +230,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          const airfieldResult = AircraftDeploymentLogic.processAirfieldTick(airfieldHangarsRef.current, unitsRef.current, now, isAirfieldActivated);
          const heliRes = HelicopterDeploymentLogic.processHelipadTick(helipadsRef.current, unitsRef.current, now, isAirfieldActivated);
          const navalRes = NavalDeploymentLogic.processNavalPortTick(portShipsRef.current, unitsRef.current, now);
+         const armoryRes = ArmoryDeploymentLogic.processArmoryTick(armoryRef.current, unitsRef.current, now);
 
          // 3. Post-Combat (Landing/Recovery)
          // IMPORTANT: Use airfieldResult.nextHangars to ensure spawn counts are preserved
@@ -235,7 +242,8 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
             ...tankRes.newSpawned, 
             ...airfieldResult.newSpawned, 
             ...heliRes.newSpawned, 
-            ...navalRes.newSpawned
+            ...navalRes.newSpawned,
+            ...armoryRes.newSpawned
          ];
 
          let finalUnits = result.units;
@@ -257,6 +265,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
          setAirfieldHangars(postCombatRes.nextHangars);
          setHelipads(heliRes.nextHelipads);
          setPortShips(navalRes.nextPortShips);
+         setArmory(armoryRes.nextArmories);
 
          if (result.vfx.length > 0) {
             setCombatVfx(v => [...v.filter(fx => Date.now() - fx.timestamp < 300), ...result.vfx]);
@@ -332,6 +341,8 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                         tankHangarsState={tankHangars}
                         airfieldHangarsState={airfieldHangars}
                         helipadsState={helipads}
+                        portShipsState={portShips}
+                        armoryState={armory}
                         barakCount={targetArmada?.barak || 0}
                         phase={phase}
                         onAreaSelected={(rect) => {

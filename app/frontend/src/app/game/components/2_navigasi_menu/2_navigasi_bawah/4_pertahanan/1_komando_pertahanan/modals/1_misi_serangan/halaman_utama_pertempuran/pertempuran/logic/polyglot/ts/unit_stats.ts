@@ -72,6 +72,33 @@ export const DatabaseToTacticalMapping: Record<string, string> = {
   "pesawat_angkut": "pesawat_tempur"
 };
 
+
+// --- DOMAIN CATEGORIZATION ---
+export const LAND_UNITS = [
+  "tank_tempur_utama", "apc_ifv", "artileri_berat", "sistem_peluncur_roket", 
+  "pertahanan_udara_mobile", "kendaraan_taktis", "pasukan_infanteri", "barak",
+  "tank", "apc", "artillery", "rocket", "sam", "infanteri", "infantry_enemy", "tank_enemy"
+];
+
+export const NAVAL_UNITS = [
+  "kapal_induk", "kapal_destroyer", "kapal_korvet", "kapal_selam_nuklir", 
+  "kapal_selam_regular", "kapal_ranjau", "kapal_logistik", "kapal_corvette", "kapal_selam"
+];
+
+export const AIR_UNITS = [
+  "jet_tempur_siluman", "jet_tempur_interceptor", "pesawat_pengebom", 
+  "helikopter_serang", "pesawat_pengintai", "drone_intai_uav", "drone_kamikaze", 
+  "pesawat_angkut", "pesawat_stealth", "pesawat_tempur", "pesawat_bomber", 
+  "pesawat_heli_serang", "pesawat_heli_uav", "pesawat_kamikaze"
+];
+
+export function getUnitDomain(type: string): 'land' | 'sea' | 'air' {
+  const t = type.toLowerCase();
+  if (AIR_UNITS.some(k => t.includes(k))) return 'air';
+  if (NAVAL_UNITS.some(k => t.includes(k))) return 'sea';
+  return 'land';
+}
+
 /**
  * Mencari spesifikasi lengkap dari id/tipe unit.
  * Jika tipe tidak dikenal, akan me-return stat rata-rata (Fallback).

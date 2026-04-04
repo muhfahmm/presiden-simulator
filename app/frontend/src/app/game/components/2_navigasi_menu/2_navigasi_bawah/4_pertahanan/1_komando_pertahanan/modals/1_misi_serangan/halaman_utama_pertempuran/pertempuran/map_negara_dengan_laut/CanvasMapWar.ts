@@ -6,6 +6,7 @@ import { BandaraEngine } from "../logic/mapTexture/gambar-tempat-armada/udara/ba
 import { HelipadEngine } from "../logic/mapTexture/gambar-tempat-armada/udara/helipad/index";
 import { HangarTankEngine } from "../logic/mapTexture/gambar-tempat-armada/darat/hangar_tank/index";
 import { BarakEngine } from "../logic/mapTexture/gambar-tempat-armada/darat/barak/barak";
+import { ArmoryEngine } from "../logic/mapTexture/gambar-tempat-armada/darat/gudang_senjata/index";
 
 // ============================================================
 // Tactical Map Renderer - 3D Potential Field Mesh (WITH SEA)
@@ -70,7 +71,8 @@ export function drawWarMapBackground(
    tankHangarsState: any[] = [],
    airfieldHangarsState: any[] = [],
    helipadsState: any[] = [],
-   portShipsState: any[] = []
+   portShipsState: any[] = [],
+   armoryState: any[] = []
 ) {
    ctx.save();
 
@@ -119,6 +121,9 @@ export function drawWarMapBackground(
    // 3.3 DRAW MILITARY BARRACKS (BARAK) - NEW MOD
    BarakEngine.drawBarracks(ctx, 12000, 850, camera.zoom, 10, barakCount, mousePos, phase, barracksState);
 
+   // 3.4 DRAW ARMORIES (GUDANG SENJATA) - NEW MOD
+   ArmoryEngine.drawArmory(ctx, 10400, 8500, camera.zoom, mousePos, units, targetArmada, armoryState);
+
    // 4. POTENTIAL FIELD MESH - REMOVED AS PER USER REQUEST
 
    // 5. HEATMAP & FOG - REMOVED AS PER USER REQUEST
@@ -138,16 +143,20 @@ export function drawWarMapBackground(
    ctx.stroke();
    ctx.setLineDash([]);
 
-   // 8. Sea visuals (RESTORED)
-   const seaLevel = -6000;
-   ctx.fillStyle = "rgba(153, 27, 27, 0.3)";
-   ctx.fillRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT - Math.abs(seaLevel));
+   // 8. Sea visuals (Simplified for this maritime-only file)
+   const SHORELINE_Y = -6000;
+
+   // 2.1 Shoreline Sandy Tint (Optional but premium)
+   ctx.fillStyle = "rgba(234, 179, 8, 0.1)"; // Golden sand glow
+   ctx.fillRect(-THEATER_LIMIT, SHORELINE_Y, THEATER_LIMIT * 2, 500);
+
+   // 2.2 Deep Water Blue
+   ctx.fillStyle = "rgba(30, 41, 59, 0.5)"; 
+   ctx.fillRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT + SHORELINE_Y);
 
    ctx.strokeStyle = "rgba(239, 68, 68, 0.5)";
    ctx.lineWidth = 10 / camera.zoom;
    ctx.beginPath();
-   ctx.moveTo(-THEATER_LIMIT, seaLevel);
-   ctx.lineTo(THEATER_LIMIT, seaLevel);
    ctx.stroke();
 
    ctx.restore();

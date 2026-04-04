@@ -32,7 +32,7 @@ export class NavalDeploymentLogic {
     }
 
     /**
-     * Process port tactical tick.
+     * Process port tactical tick with SEQUENTIAL deployment.
      */
     static processNavalPortTick(
         portShips: PortShipState[],
@@ -45,13 +45,22 @@ export class NavalDeploymentLogic {
         const harbor = portRouter.getTacticalHarbor();
         const harborCenter = { x: 0, y: -6000 };
 
-        const nextPortShips = portShips.map(p => {
+        // Step 1: Find ACTIVE ship type (sequential)
+        let activeIdx = -1;
+        for (let i = 0; i < portShips.length; i++) {
+            if (portShips[i].currentCount > 0) {
+                activeIdx = i;
+                break;
+            }
+        }
+
+        const nextPortShips = portShips.map((p, i) => {
+            if (i !== activeIdx) return { ...p };
+
             if (p.currentCount > 0 && 
                 (now - (p.lastSpawned || 0)) > cooldown &&
                 this.isEnemyNearby(harborCenter, units, this.RADAR_THRESHOLD)) {
                 
-                p.currentCount -= 1;
-                p.lastSpawned = now;
                 const stats = getUnitStats(p.type);
                 
                 const pier = harbor.piers[Math.floor(Math.random() * harbor.piers.length)];
@@ -67,8 +76,14 @@ export class NavalDeploymentLogic {
                         { x: pier.endX + (Math.random() * 2000 - 1000), y: startY - 2500 }
                     ]
                 });
+
+                return {
+                    ...p,
+                    currentCount: p.currentCount - 1,
+                    lastSpawned: now
+                };
             }
-            return p;
+            return { ...p };
         });
 
         return { nextPortShips, newSpawned };

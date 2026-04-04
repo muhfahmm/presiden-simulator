@@ -8,7 +8,7 @@
  * @[CPP]   - Engine Logic: Ballistics, Physics, and NavMesh calculations
  */
 
-import { getUnitStats } from "./unit_stats";
+import { getUnitStats, getUnitDomain } from "./unit_stats";
 import { HP_Logic } from "./HP_Logic";
 import { Power_Logic } from "./Power_Logic";
 
@@ -379,6 +379,23 @@ class PolyglotRouter {
           if (u.type === "pesawat_kamikaze") u.health = 0;
         }
       }
+
+      // 4. TERRAIN CONSTRAINTS (Clamping based on Domain)
+      const domain = getUnitDomain(u.type);
+      const SHORELINE_Y = -6000; // Moving up to the Port
+      
+      if (domain === 'land') {
+         // Land units stay in Y > SHORELINE_Y (Bottom half)
+         if (u.pos.y < SHORELINE_Y) u.pos.y = SHORELINE_Y;
+      } else if (domain === 'sea') {
+         // Naval units stay in Y < SHORELINE_Y (Top half)
+         if (u.pos.y > SHORELINE_Y) u.pos.y = SHORELINE_Y;
+      }
+
+      // GLOBAL THEATER LIMITS
+      const THEATER_LIMIT = 15000;
+      u.pos.x = Math.max(-THEATER_LIMIT, Math.min(THEATER_LIMIT, u.pos.x));
+      u.pos.y = Math.max(-THEATER_LIMIT, Math.min(THEATER_LIMIT, u.pos.y));
     });
 
     return { 

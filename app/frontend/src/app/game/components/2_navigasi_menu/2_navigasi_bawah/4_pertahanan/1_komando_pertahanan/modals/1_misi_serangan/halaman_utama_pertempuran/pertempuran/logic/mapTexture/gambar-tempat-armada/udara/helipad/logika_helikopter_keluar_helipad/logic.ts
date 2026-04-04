@@ -5,21 +5,17 @@ import { HelicopterPhysicsRouter } from "./route";
 
 /**
  * HelicopterDeploymentLogic - Helipad Automation & Launch Authorization
+ * 
+ * SEQUENTIAL DOCTRINE:
+ * Only 1 helipad is active at a time.
+ * The next helipad activates only when:
+ *   1. The current helipad is empty (currentCount === 0)
+ *   2. The helicopter spawned from that helipad is destroyed on the battlefield
  */
 export class HelicopterDeploymentLogic {
-    /**
-     * Detection radius for helipads (~20,000 for local defensive response)
-     */
     static readonly RADAR_THRESHOLD = 20000;
-
-    /**
-     * Maximum units allowed per helipad in the air.
-     */
     static readonly MAX_ACTIVE_PER_PAD = 1;
 
-    /**
-     * Checks if enemy is nearby the helipad complex.
-     */
     static isEnemyNearby(pos: { x: number, y: number }, units: UnitState[]): boolean {
         return units.some(u => {
             if (u.side !== 'user') return false;
@@ -30,9 +26,7 @@ export class HelicopterDeploymentLogic {
     }
 
     /**
-     * Process helipad tactical loop.
-     * Enforces limit of 1 active helicopter per helipad source.
-     * Also enforces global sequential launch (one-by-one across all helipads).
+     * Process helipad tactical loop with SEQUENTIAL execution.
      */
     static processHelipadTick(
         helipads: HelipadState[],
@@ -42,20 +36,42 @@ export class HelicopterDeploymentLogic {
     ): { nextHelipads: HelipadState[], newSpawned: UnitState[] } {
         const newSpawned: UnitState[] = [];
         if (!isActivated) return { nextHelipads: helipads, newSpawned: [] };
-        const spawnCooldown = 15000; // 15s between launches from SAME pad (Retaining stock)
-        const globalCooldown = 3500; // 4s between ANY helipad launch
+        
+        const spawnCooldown = 15000; 
+        const globalCooldown = 3500;
 
-        // Find if ANY helipad recently spawned
+        // Step 1: Find the ACTIVE helipad index (sequential order)
+        let activeIdx = -1;
+        for (let i = 0; i < helipads.length; i++) {
+            const h = helipads[i];
+
+            if (h.currentCount > 0) {
+                activeIdx = i;
+                break;
+            }
+
+            // Helipad is empty — check if its helicopter is still alive
+            const hasLivingHeli = units.some(u => 
+                u.side === 'enemy' && 
+                u.type === 'helikopter_serang' && 
+                u.id.includes(h.id) && 
+                u.health > 0
+            );
+
+            if (hasLivingHeli) {
+                activeIdx = -1; // Wait for it to die
+                break;
+            }
+        }
+
+        // Find if ANY helipad recently spawned (global pacing)
         const lastGlobalSpawn = Math.max(...helipads.map(h => h.lastSpawned || 0));
-        let hasSpawnedThisTick = (now - lastGlobalSpawn) < globalCooldown;
+        let hasSpawnedRecently = (now - lastGlobalSpawn) < globalCooldown;
 
-        const nextHelipads = helipads.map(h => {
+        const nextHelipads = helipads.map((h, i) => {
+            if (i !== activeIdx || hasSpawnedRecently) return { ...h };
+
             const timeSinceLast = now - (h.lastSpawned || 0);
-            
-            // 1. SEQUENTIAL CHECK (Wait for other helipads)
-            if (hasSpawnedThisTick) return h;
-
-            // 2. LAUNCH AUTHORIZATION PROTOCOL (Limit 1 active / Global Count)
             const isAuthorized = HelicopterPhysicsRouter.canAuthorizeHeliLaunch(
                 units, h.id, this.MAX_ACTIVE_PER_PAD
             );
@@ -66,7 +82,6 @@ export class HelicopterDeploymentLogic {
                 isAuthorized) {
                 
                 const stats = getUnitStats("helikopter_serang");
-                console.log(`[Heli:POLYGLOT] Launching Unit from ${h.id}. Global cooldown active.`);
 
                 newSpawned.push({
                     id: `heli_${h.id}_${now}`,
@@ -79,10 +94,9 @@ export class HelicopterDeploymentLogic {
                     path: HelicopterPhysicsRouter.generateTakeoff(h.pos)
                 } as any);
 
-                hasSpawnedThisTick = true; // Lock global spawn for this tick
                 return { ...h, currentCount: h.currentCount - 1, lastSpawned: now };
             }
-            return h;
+            return { ...h };
         });
 
         return { nextHelipads, newSpawned };

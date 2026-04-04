@@ -149,10 +149,8 @@ export class BandaraEngine {
          ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
          ctx.strokeStyle = "#ef4444";
          ctx.lineWidth = 2;
-         ctx.beginPath();
-         ctx.roundRect(-tw/2 - pad, -40, tw + pad*2, 70, 12);
-         ctx.fill();
-         ctx.stroke();
+         ctx.fillRect(-tw/2 - pad, -40, tw + pad*2, 70);
+         ctx.strokeRect(-tw/2 - pad, -40, tw + pad*2, 70);
          
          // Text
          ctx.shadowBlur = 0;

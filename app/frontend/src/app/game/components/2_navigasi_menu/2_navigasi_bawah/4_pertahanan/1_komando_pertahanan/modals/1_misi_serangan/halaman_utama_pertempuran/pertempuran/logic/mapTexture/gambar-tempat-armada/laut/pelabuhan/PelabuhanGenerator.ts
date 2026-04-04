@@ -126,7 +126,8 @@ export class PelabuhanEngine {
       ctx.fillStyle = "rgba(9, 9, 11, 0.95)";
       ctx.strokeStyle = "#3b82f6";
       ctx.lineWidth = 2;
-      ctx.beginPath(); ctx.roundRect(-boxW/2, 0, boxW, boxH, 12); ctx.fill(); ctx.stroke();
+      ctx.fillRect(-boxW/2, 0, boxW, boxH);
+      ctx.strokeRect(-boxW/2, 0, boxW, boxH);
       ctx.shadowBlur = 0;
 
       // Header

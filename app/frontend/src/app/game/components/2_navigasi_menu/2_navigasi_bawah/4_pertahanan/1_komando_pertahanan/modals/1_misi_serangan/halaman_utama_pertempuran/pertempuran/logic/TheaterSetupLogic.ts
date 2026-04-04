@@ -7,6 +7,7 @@ import { BarakUtils, BarrackState } from "./mapTexture/gambar-tempat-armada/dara
 import { HangarUtils, HangarState } from "./mapTexture/gambar-tempat-armada/darat/hangar_tank/HangarUtils";
 import { AirfieldUtils, AirfieldHangarState, HelipadState } from "./mapTexture/gambar-tempat-armada/udara/AirfieldUtils";
 import { PortShipState } from "./mapTexture/gambar-tempat-armada/laut/pelabuhan/logika_kapal_keluar_pelabuhan/logic";
+import { ArmoryUtils, ArmoryState } from "./mapTexture/gambar-tempat-armada/darat/gudang_senjata/ArmoryUtils";
 
 /**
  * Theater Setup Logic - Initial Battlefield Configuration
@@ -27,6 +28,7 @@ export class TheaterSetupLogic {
         airfieldHangars: AirfieldHangarState[];
         helipads: HelipadState[];
         portShips: PortShipState[];
+        armory: ArmoryState[];
     } {
         const targetCountry = countries.find(c =>
             c.name_id.toLowerCase() === targetName.toLowerCase() ||
@@ -54,19 +56,23 @@ export class TheaterSetupLogic {
         cumulativeUnits = [...cumulativeUnits, ...udaraRes.units];
         currentY = udaraRes.nextY + groupGapY;
 
-        // 3. DARAT
+        // 3. DARAT (field units: artileri, roket, SAM — NOT tanks, APC, tactical, infantry)
         const fieldUnits = { ...armada.darat };
         delete (fieldUnits as any).tank_tempur_utama;
         delete (fieldUnits as any).pasukan_infanteri;
+        delete (fieldUnits as any).apc_ifv;
+        delete (fieldUnits as any).kendaraan_taktis;
+        delete (fieldUnits as any).artileri_berat;
+        delete (fieldUnits as any).sistem_peluncur_roket;
+        delete (fieldUnits as any).pertahanan_udara_mobile;
         const daratRes = calculateDaratFormation(fieldUnits, armada.barak, currentY);
         cumulativeUnits = [...cumulativeUnits, ...daratRes.units];
 
         // 4. STRATEGIC BUILDINGS
         const barracks = armada.barak > 0 ? BarakUtils.calculateBarracksPositions(12000, 850, armada.barak, 10) : [];
         
-        const totalTanks = armada.darat.tank_tempur_utama || 0;
-        const hangarCount = targetCountry.sektor_pertahanan?.hangar_tank || 0;
-        const tankHangars = hangarCount > 0 ? HangarUtils.calculateHangarPositions(10400, 4500, totalTanks, hangarCount, 10) : [];
+        // Multi-category hangars: Tank, APC/IFV, Kendaraan Taktis (all in same compound)
+        const tankHangars = HangarUtils.calculateMultiCategoryHangars(10400, 4500, armada, 10);
 
         const airfieldHangars = AirfieldUtils.calculateAirfieldHangars(12000, -2350, armada);
         
@@ -82,6 +88,9 @@ export class TheaterSetupLogic {
             maxCapacity: count as number
         })) : [];
 
+        // Gudang Senjata: Artileri, MLRS, SAM
+        const armory = ArmoryUtils.calculateArmoryPositions(10400, 8500, armada, 8);
+
         // Final filtering to move base-dependent units inside
         const filteredUnits = cumulativeUnits.filter(u => {
             const isNaval = this.NAVAL_UNITS.includes(u.type);
@@ -96,7 +105,8 @@ export class TheaterSetupLogic {
             tankHangars,
             airfieldHangars,
             helipads,
-            portShips
+            portShips,
+            armory
         };
     }
 }

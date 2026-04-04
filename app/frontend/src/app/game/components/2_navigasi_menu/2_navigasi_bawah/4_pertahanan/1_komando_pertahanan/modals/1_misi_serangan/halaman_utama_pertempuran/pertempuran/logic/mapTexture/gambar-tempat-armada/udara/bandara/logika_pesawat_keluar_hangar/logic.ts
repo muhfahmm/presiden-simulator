@@ -41,8 +41,8 @@ export class AircraftDeploymentLogic {
     }
 
     /**
-     * Process airbase tactical tick for all hangars.
-     * Manages sequential global takeoff roll logic (one-by-one for the whole base).
+     * Process airbase tactical tick for all hangars with SEQUENTIAL logic.
+     * Advances to next hangar only when current hangar is empty AND all its planes are clear.
      */
     static processAirfieldTick(
         hangars: AirfieldHangarState[],
@@ -52,32 +52,59 @@ export class AircraftDeploymentLogic {
     ): { nextHangars: AirfieldHangarState[], newSpawned: UnitState[] } {
         const newSpawned: UnitState[] = [];
         if (!isActivated) return { nextHangars: hangars, newSpawned: [] };
+
         const globalCooldown = 4500; // 4.5 seconds between any plane takeoff
 
-        // Find if ANY hangar recently spawned
-        const lastGlobalSpawn = Math.max(...hangars.map(h => h.lastSpawned || 0));
-        
-        let hasSpawnedThisTick = (now - lastGlobalSpawn) < globalCooldown;
+        // Step 1: Find the ACTIVE hangar index (sequential order)
+        let activeIdx = -1;
+        for (let i = 0; i < hangars.length; i++) {
+            const h = hangars[i];
 
-        const nextHangars = hangars.map(h => {
-            if (!hasSpawnedThisTick && 
-                h.currentCount > 0 && 
+            if (h.currentCount > 0) {
+                activeIdx = i;
+                break;
+            }
+
+            // Hangar is empty — check if its aircraft are still in the air (active)
+            const hasLivingPlanes = units.some(u => 
+                u.side === 'enemy' && 
+                u.type === h.type && 
+                u.id.includes(h.id) && 
+                u.health > 0 &&
+                (u as any).aiState !== 'landing' // Don't block if they are landing/returning
+            );
+
+            if (hasLivingPlanes) {
+                activeIdx = -1; // Wait for current wave to clear or start landing
+                break;
+            }
+        }
+
+        // Find if ANY hangar recently spawned (global throttling)
+        const lastGlobalSpawn = Math.max(...hangars.map(h => h.lastSpawned || 0));
+        let hasSpawnedRecently = (now - lastGlobalSpawn) < globalCooldown;
+
+        const nextHangars = hangars.map((h, i) => {
+            if (i !== activeIdx || hasSpawnedRecently) return { ...h };
+
+            const isAuthorized = AircraftPhysicsRouter.canAuthorizeLaunch(units, this.MAX_ACTIVE_AIRBORNE);
+
+            if (h.currentCount > 0 && 
                 this.isEnemyNearby(h.pos, units, this.RADAR_THRESHOLD) &&
-                AircraftPhysicsRouter.canAuthorizeLaunch(units, this.MAX_ACTIVE_AIRBORNE)) { // <--- UPDATED GLOBAL LIMIT
+                isAuthorized) {
                 
                 const stats = getUnitStats(h.type);
                 
-                // LANDASAN COORDINATES (Base configuration)
+                // LANDASAN COORDINATES
                 const runwayCenterX = 12000;
                 const runwayLen = 5000;
-                const runwayStartX = runwayCenterX + runwayLen / 2; // Right end
-                const runwayEndX = runwayCenterX - runwayLen / 2;   // Left end
+                const runwayStartX = runwayCenterX + runwayLen / 2;
+                const runwayEndX = runwayCenterX - runwayLen / 2;
 
-                // 3. [POLYGLOT ROUTING] - Generate trajectory via AircraftPhysicsRouter (C++/Rust/Python)
                 const trajectory = AircraftPhysicsRouter.generateTrajectory(
                     h.pos,
-                    { x: runwayStartX, y: h.pos.y },  // Runway Entrance
-                    { x: runwayEndX, y: h.pos.y },    // Runway Threshold
+                    { x: runwayStartX, y: h.pos.y },
+                    { x: runwayEndX, y: h.pos.y },
                     now
                 );
 
@@ -87,10 +114,9 @@ export class AircraftDeploymentLogic {
                     pos: { x: h.pos.x, y: h.pos.y },
                     health: stats.maxHealth, rotation: Math.PI, influence: 300,
                     path: trajectory,
-                    isAirType: true // IDENTIFIER FOR RECOVERY
+                    isAirType: true
                 });
 
-                hasSpawnedThisTick = true; // Block others for this tick and global cooldown
                 return {
                     ...h,
                     currentCount: h.currentCount - 1,

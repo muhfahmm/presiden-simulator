@@ -33,7 +33,8 @@ interface GameplayProps {
       tankHangarsState?: any[],
       airfieldHangarsState?: any[],
       helipadsState?: any[],
-      portShipsState?: any[]
+      portShipsState?: any[],
+      armoryState?: any[]
    ) => void;
    hasSea?: boolean;
    targetArmada?: any;
@@ -41,6 +42,7 @@ interface GameplayProps {
    airfieldHangarsState?: any[];
    helipadsState?: any[];
    portShipsState?: any[];
+   armoryState?: any[];
    barakCount?: number;
    phase?: string;
    barracksState?: any[];
@@ -61,6 +63,7 @@ export default function Gameplay({
    airfieldHangarsState = [],
    helipadsState = [],
    portShipsState = [],
+   armoryState = [],
    barakCount = 0,
    phase = "deployment",
    barracksState = [],
@@ -388,6 +391,9 @@ export default function Gameplay({
    const latestBarracksRef = useRef(barracksState);
    latestBarracksRef.current = barracksState;
 
+   const latestArmoryRef = useRef(armoryState);
+   latestArmoryRef.current = armoryState;
+
    // High-Performance Consolidated Rendering Loop
    useEffect(() => {
       const canvas = canvasRef.current;
@@ -433,7 +439,8 @@ export default function Gameplay({
             latestTankHangarsRef.current,
             latestAirfieldHangarsRef.current,
             latestHelipadsRef.current,
-            portShipsState
+            portShipsState,
+            latestArmoryRef.current
          );
 
          const camera = cameraRef.current;
