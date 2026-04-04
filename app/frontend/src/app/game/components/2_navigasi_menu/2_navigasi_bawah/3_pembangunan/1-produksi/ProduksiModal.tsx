@@ -1,5 +1,5 @@
 import { useState, useEffect, Fragment } from "react";
-import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain, Briefcase, Users2 } from "lucide-react"
+import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain, Briefcase, Users2, Cloud } from "lucide-react"
 import { 
   mineralKritisRate, 
   produkIndustriRate as manufakturRate, 
@@ -308,7 +308,13 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
     if (key.includes("veg") || key.includes("sayur") || key.includes("apple")) return Apple;
     if (key.includes("soy") || key.includes("kedelai")) return Bean;
     if (key.includes("palm") || key.includes("sawit")) return Droplets;
-    if (key.includes("coffee") || key.includes("tea") || key.includes("kopi") || key.includes("teh") || key.includes("kakao")) return Coffee;
+    if (key.includes("minyak_goreng")) return Droplets;
+    if (key.includes("susu")) return Milk;
+    if (key.includes("pakan_ternak")) return Leaf;
+    if (key.includes("kopi") || key.includes("teh") || key.includes("kakao")) return Coffee;
+    if (key.includes("karet")) return Droplets;
+    if (key.includes("kapas")) return Cloud;
+    if (key.includes("tembakau")) return Flame;
     return Pickaxe;
   };
 

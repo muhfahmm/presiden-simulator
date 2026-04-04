@@ -4,5 +4,8 @@ export const curacao_agrikultur = {
     "sayur_umbi": 24,
     "kedelai": 31,
     "kelapa_sawit": 7,
-    "kopi_teh_kakao": 14
+    "kopi_teh_kakao": 14,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

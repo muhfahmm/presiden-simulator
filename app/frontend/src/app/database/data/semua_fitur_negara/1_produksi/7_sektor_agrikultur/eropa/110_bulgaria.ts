@@ -4,5 +4,8 @@ export const bulgaria_agrikultur = {
     "sayur_umbi": 12,
     "kedelai": 28,
     "kelapa_sawit": 20,
-    "kopi_teh_kakao": 39
+    "kopi_teh_kakao": 39,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

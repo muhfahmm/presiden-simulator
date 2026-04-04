@@ -4,5 +4,8 @@ export const republik_demokratik_kongo_agrikultur = {
     "sayur_umbi": 33,
     "kedelai": 32,
     "kelapa_sawit": 32,
-    "kopi_teh_kakao": 27
+    "kopi_teh_kakao": 27,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

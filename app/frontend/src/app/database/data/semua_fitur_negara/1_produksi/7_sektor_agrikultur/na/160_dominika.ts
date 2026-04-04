@@ -4,5 +4,8 @@ export const dominika_agrikultur = {
     "sayur_umbi": 18,
     "kedelai": 33,
     "kelapa_sawit": 7,
-    "kopi_teh_kakao": 27
+    "kopi_teh_kakao": 27,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

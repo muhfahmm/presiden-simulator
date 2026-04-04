@@ -4,5 +4,8 @@ export const irlandia_agrikultur = {
     "sayur_umbi": 22,
     "kedelai": 16,
     "kelapa_sawit": 4,
-    "kopi_teh_kakao": 10
+    "kopi_teh_kakao": 10,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

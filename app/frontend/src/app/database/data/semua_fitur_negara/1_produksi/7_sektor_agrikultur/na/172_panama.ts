@@ -4,5 +4,8 @@ export const panama_agrikultur = {
     "sayur_umbi": 14,
     "kedelai": 39,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 21
+    "kopi_teh_kakao": 21,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

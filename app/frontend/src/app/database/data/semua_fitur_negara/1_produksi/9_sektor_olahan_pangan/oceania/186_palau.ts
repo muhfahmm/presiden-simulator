@@ -3,5 +3,10 @@ export const palau_olahan_pangan = {
     "gula": 21,
     "roti": 28,
     "pengolahan_daging": 9,
-    "mie_instan": 15
+    "mie_instan": 15,
+    "minyak_goreng": 0,
+    "susu": 0,
+    "pakan_ternak": 0,
+    "ikan_kaleng": 0,
+    "kopi_teh": 0
   } as const;

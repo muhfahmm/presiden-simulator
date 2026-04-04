@@ -4,5 +4,8 @@ export const maroko_agrikultur = {
     "sayur_umbi": 42,
     "kedelai": 22,
     "kelapa_sawit": 25,
-    "kopi_teh_kakao": 9
+    "kopi_teh_kakao": 9,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

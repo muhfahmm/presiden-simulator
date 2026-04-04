@@ -4,5 +4,8 @@ export const denmark_agrikultur = {
     "sayur_umbi": 16,
     "kedelai": 30,
     "kelapa_sawit": 6,
-    "kopi_teh_kakao": 23
+    "kopi_teh_kakao": 23,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

@@ -3,5 +3,10 @@ export const gibraltar_olahan_pangan = {
     "gula": 2,
     "roti": 40,
     "pengolahan_daging": 24,
-    "mie_instan": 29
+    "mie_instan": 29,
+    "minyak_goreng": 0,
+    "susu": 0,
+    "pakan_ternak": 0,
+    "ikan_kaleng": 0,
+    "kopi_teh": 0
   } as const;

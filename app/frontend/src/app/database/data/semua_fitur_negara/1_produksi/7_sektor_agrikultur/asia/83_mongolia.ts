@@ -4,5 +4,8 @@ export const mongolia_agrikultur = {
     "sayur_umbi": 38,
     "kedelai": 23,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 30
+    "kopi_teh_kakao": 30,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

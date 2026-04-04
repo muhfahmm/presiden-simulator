@@ -4,5 +4,8 @@ export const seychelles_agrikultur = {
     "sayur_umbi": 24,
     "kedelai": 40,
     "kelapa_sawit": 26,
-    "kopi_teh_kakao": 22
+    "kopi_teh_kakao": 22,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

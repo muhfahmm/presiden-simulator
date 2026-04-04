@@ -4,5 +4,8 @@ export const laos_agrikultur = {
     "sayur_umbi": 4,
     "kedelai": 18,
     "kelapa_sawit": 19,
-    "kopi_teh_kakao": 9
+    "kopi_teh_kakao": 9,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

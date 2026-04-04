@@ -4,5 +4,8 @@ export const selandia_baru_agrikultur = {
     "sayur_umbi": 14,
     "kedelai": 32,
     "kelapa_sawit": 19,
-    "kopi_teh_kakao": 13
+    "kopi_teh_kakao": 13,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

@@ -4,5 +4,8 @@ export const tahiti_agrikultur = {
     "sayur_umbi": 13,
     "kedelai": 34,
     "kelapa_sawit": 24,
-    "kopi_teh_kakao": 14
+    "kopi_teh_kakao": 14,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

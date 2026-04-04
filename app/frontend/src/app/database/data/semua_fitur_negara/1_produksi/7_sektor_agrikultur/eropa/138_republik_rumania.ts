@@ -4,5 +4,8 @@ export const republik_rumania_agrikultur = {
     "sayur_umbi": 34,
     "kedelai": 29,
     "kelapa_sawit": 5,
-    "kopi_teh_kakao": 31
+    "kopi_teh_kakao": 31,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

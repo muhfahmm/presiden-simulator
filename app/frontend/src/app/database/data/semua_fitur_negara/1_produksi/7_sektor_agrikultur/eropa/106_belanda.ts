@@ -4,5 +4,8 @@ export const belanda_agrikultur = {
     "sayur_umbi": 31,
     "kedelai": 14,
     "kelapa_sawit": 38,
-    "kopi_teh_kakao": 31
+    "kopi_teh_kakao": 31,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

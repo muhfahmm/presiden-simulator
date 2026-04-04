@@ -4,5 +4,8 @@ export const nauru_agrikultur = {
     "sayur_umbi": 23,
     "kedelai": 7,
     "kelapa_sawit": 8,
-    "kopi_teh_kakao": 17
+    "kopi_teh_kakao": 17,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

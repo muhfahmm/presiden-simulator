@@ -4,5 +4,8 @@ export const namibia_agrikultur = {
     "sayur_umbi": 12,
     "kedelai": 36,
     "kelapa_sawit": 22,
-    "kopi_teh_kakao": 10
+    "kopi_teh_kakao": 10,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

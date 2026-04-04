@@ -4,5 +4,8 @@ export const afganistan_agrikultur = {
     "sayur_umbi": 8,
     "kedelai": 34,
     "kelapa_sawit": 21,
-    "kopi_teh_kakao": 25
+    "kopi_teh_kakao": 25,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

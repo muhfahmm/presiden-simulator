@@ -4,5 +4,8 @@ export const hong_kong_agrikultur = {
     "sayur_umbi": 14,
     "kedelai": 30,
     "kelapa_sawit": 11,
-    "kopi_teh_kakao": 18
+    "kopi_teh_kakao": 18,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

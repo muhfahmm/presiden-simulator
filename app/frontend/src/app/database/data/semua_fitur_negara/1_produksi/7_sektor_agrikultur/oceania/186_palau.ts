@@ -4,5 +4,8 @@ export const palau_agrikultur = {
     "sayur_umbi": 14,
     "kedelai": 39,
     "kelapa_sawit": 23,
-    "kopi_teh_kakao": 17
+    "kopi_teh_kakao": 17,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

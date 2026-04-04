@@ -4,5 +4,8 @@ export const saint_kitts_dan_nevis_agrikultur = {
     "sayur_umbi": 22,
     "kedelai": 40,
     "kelapa_sawit": 30,
-    "kopi_teh_kakao": 26
+    "kopi_teh_kakao": 26,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

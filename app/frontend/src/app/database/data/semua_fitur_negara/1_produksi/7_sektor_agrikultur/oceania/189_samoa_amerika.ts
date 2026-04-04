@@ -4,5 +4,8 @@ export const samoa_amerika_agrikultur = {
     "sayur_umbi": 34,
     "kedelai": 22,
     "kelapa_sawit": 12,
-    "kopi_teh_kakao": 25
+    "kopi_teh_kakao": 25,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

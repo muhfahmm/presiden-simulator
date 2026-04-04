@@ -4,5 +4,8 @@ export const mesir_agrikultur = {
     "sayur_umbi": 40,
     "kedelai": 4,
     "kelapa_sawit": 34,
-    "kopi_teh_kakao": 16
+    "kopi_teh_kakao": 16,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

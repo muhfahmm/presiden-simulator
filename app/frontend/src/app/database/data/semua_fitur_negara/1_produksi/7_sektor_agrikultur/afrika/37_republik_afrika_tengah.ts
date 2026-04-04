@@ -4,5 +4,8 @@ export const republik_afrika_tengah_agrikultur = {
     "sayur_umbi": 34,
     "kedelai": 10,
     "kelapa_sawit": 1,
-    "kopi_teh_kakao": 30
+    "kopi_teh_kakao": 30,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

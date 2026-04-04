@@ -4,5 +4,8 @@ export const grenada_agrikultur = {
     "sayur_umbi": 6,
     "kedelai": 37,
     "kelapa_sawit": 34,
-    "kopi_teh_kakao": 29
+    "kopi_teh_kakao": 29,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

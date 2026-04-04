@@ -4,5 +4,8 @@ export const slovenia_agrikultur = {
     "sayur_umbi": 34,
     "kedelai": 21,
     "kelapa_sawit": 1,
-    "kopi_teh_kakao": 15
+    "kopi_teh_kakao": 15,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

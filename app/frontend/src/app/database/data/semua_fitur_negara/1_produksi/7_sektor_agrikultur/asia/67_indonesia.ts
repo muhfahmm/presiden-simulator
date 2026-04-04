@@ -4,5 +4,8 @@ export const indonesia_agrikultur = {
     "sayur_umbi": 20,
     "kedelai": 14,
     "kelapa_sawit": 31,
-    "kopi_teh_kakao": 23
+    "kopi_teh_kakao": 23,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

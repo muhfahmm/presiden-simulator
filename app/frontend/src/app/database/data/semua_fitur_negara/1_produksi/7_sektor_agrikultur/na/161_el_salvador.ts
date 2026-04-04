@@ -4,5 +4,8 @@ export const el_salvador_agrikultur = {
     "sayur_umbi": 28,
     "kedelai": 18,
     "kelapa_sawit": 6,
-    "kopi_teh_kakao": 21
+    "kopi_teh_kakao": 21,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

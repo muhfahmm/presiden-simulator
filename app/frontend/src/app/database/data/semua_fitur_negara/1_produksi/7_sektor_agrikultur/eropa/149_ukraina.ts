@@ -4,5 +4,8 @@ export const ukraina_agrikultur = {
     "sayur_umbi": 39,
     "kedelai": 38,
     "kelapa_sawit": 6,
-    "kopi_teh_kakao": 28
+    "kopi_teh_kakao": 28,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

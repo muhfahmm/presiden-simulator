@@ -4,5 +4,8 @@ export const bolivia_agrikultur = {
     "sayur_umbi": 24,
     "kedelai": 13,
     "kelapa_sawit": 31,
-    "kopi_teh_kakao": 24
+    "kopi_teh_kakao": 24,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

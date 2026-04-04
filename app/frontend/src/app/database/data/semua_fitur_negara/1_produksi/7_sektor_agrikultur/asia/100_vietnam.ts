@@ -4,5 +4,8 @@ export const vietnam_agrikultur = {
     "sayur_umbi": 24,
     "kedelai": 5,
     "kelapa_sawit": 35,
-    "kopi_teh_kakao": 23
+    "kopi_teh_kakao": 23,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

@@ -4,5 +4,8 @@ export const belize_agrikultur = {
     "sayur_umbi": 15,
     "kedelai": 32,
     "kelapa_sawit": 4,
-    "kopi_teh_kakao": 22
+    "kopi_teh_kakao": 22,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

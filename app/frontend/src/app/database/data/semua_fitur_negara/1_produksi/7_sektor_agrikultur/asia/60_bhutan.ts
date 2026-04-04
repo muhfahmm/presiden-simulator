@@ -4,5 +4,8 @@ export const bhutan_agrikultur = {
     "sayur_umbi": 30,
     "kedelai": 7,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 23
+    "kopi_teh_kakao": 23,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

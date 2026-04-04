@@ -4,5 +4,8 @@ export const finlandia_agrikultur = {
     "sayur_umbi": 36,
     "kedelai": 9,
     "kelapa_sawit": 19,
-    "kopi_teh_kakao": 13
+    "kopi_teh_kakao": 13,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

@@ -133,5 +133,41 @@ export const agrikulturRate = {
     biaya_pembangunan: 1000,
     lowongan_kerja: 120,
     konsumsi_listrik: 0.15
+  },
+  "12_perkebunan_karet": {
+    key: "12_perkebunan_karet",
+    dataKey: "karet",
+    deskripsi: "Perkebunan Karet",
+    produksi: 2000,
+    satuan: "KG",
+    biaya_pemeliharaan: 60,
+    waktu_pembangunan: 240,
+    biaya_pembangunan: 4000,
+    lowongan_kerja: 600,
+    konsumsi_listrik: 0.5
+  },
+  "13_perkebunan_kapas": {
+    key: "13_perkebunan_kapas",
+    dataKey: "kapas",
+    deskripsi: "Perkebunan Kapas",
+    produksi: 5000,
+    satuan: "KG",
+    biaya_pemeliharaan: 25,
+    waktu_pembangunan: 120,
+    biaya_pembangunan: 1800,
+    lowongan_kerja: 400,
+    konsumsi_listrik: 0.2
+  },
+  "14_perkebunan_tembakau": {
+    key: "14_perkebunan_tembakau",
+    dataKey: "tembakau",
+    deskripsi: "Perkebunan Tembakau",
+    produksi: 1000,
+    satuan: "KG",
+    biaya_pemeliharaan: 45,
+    waktu_pembangunan: 180,
+    biaya_pembangunan: 3500,
+    lowongan_kerja: 800,
+    konsumsi_listrik: 0.3
   }
 };

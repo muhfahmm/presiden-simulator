@@ -21,6 +21,9 @@ export interface SektorAgrikultur {
   kedelai: number;
   kelapa_sawit: number;
   kopi_teh_kakao: number;
+  karet: number;
+  kapas: number;
+  tembakau: number;
 }
 
 export interface SektorPerikanan {
@@ -34,6 +37,11 @@ export interface SektorOlahanPangan {
   roti: number;
   pengolahan_daging: number;
   mie_instan: number;
+  minyak_goreng: number;
+  susu: number;
+  pakan_ternak: number;
+  ikan_kaleng: number;
+  kopi_teh: number;
 }
 
 export interface SektorFarmasi {

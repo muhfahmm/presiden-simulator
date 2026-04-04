@@ -4,5 +4,8 @@ export const republik_timor_leste_agrikultur = {
     "sayur_umbi": 30,
     "kedelai": 9,
     "kelapa_sawit": 40,
-    "kopi_teh_kakao": 18
+    "kopi_teh_kakao": 18,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

@@ -4,5 +4,8 @@ export const burkina_faso_agrikultur = {
     "sayur_umbi": 14,
     "kedelai": 28,
     "kelapa_sawit": 39,
-    "kopi_teh_kakao": 20
+    "kopi_teh_kakao": 20,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

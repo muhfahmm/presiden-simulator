@@ -4,5 +4,8 @@ export const taiwan_agrikultur = {
     "sayur_umbi": 28,
     "kedelai": 39,
     "kelapa_sawit": 13,
-    "kopi_teh_kakao": 17
+    "kopi_teh_kakao": 17,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

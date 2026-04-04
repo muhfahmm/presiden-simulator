@@ -4,5 +4,8 @@ export const china_agrikultur = {
     "sayur_umbi": 25,
     "kedelai": 24,
     "kelapa_sawit": 38,
-    "kopi_teh_kakao": 18
+    "kopi_teh_kakao": 18,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

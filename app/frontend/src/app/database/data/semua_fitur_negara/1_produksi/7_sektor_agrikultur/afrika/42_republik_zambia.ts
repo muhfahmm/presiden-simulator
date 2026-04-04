@@ -4,5 +4,8 @@ export const republik_zambia_agrikultur = {
     "sayur_umbi": 10,
     "kedelai": 34,
     "kelapa_sawit": 2,
-    "kopi_teh_kakao": 24
+    "kopi_teh_kakao": 24,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

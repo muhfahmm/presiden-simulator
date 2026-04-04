@@ -4,5 +4,8 @@ export const polandia_agrikultur = {
     "sayur_umbi": 22,
     "kedelai": 6,
     "kelapa_sawit": 7,
-    "kopi_teh_kakao": 11
+    "kopi_teh_kakao": 11,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;

@@ -4,5 +4,8 @@ export const aljazair_agrikultur = {
     "sayur_umbi": 29,
     "kedelai": 28,
     "kelapa_sawit": 18,
-    "kopi_teh_kakao": 28
+    "kopi_teh_kakao": 28,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
   } as const;
