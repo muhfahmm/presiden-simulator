@@ -32,13 +32,15 @@ interface GameplayProps {
       targetArmada?: any,
       tankHangarsState?: any[],
       airfieldHangarsState?: any[],
-      helipadsState?: any[]
+      helipadsState?: any[],
+      portShipsState?: any[]
    ) => void;
    hasSea?: boolean;
    targetArmada?: any;
    tankHangarsState?: any[];
    airfieldHangarsState?: any[];
    helipadsState?: any[];
+   portShipsState?: any[];
    barakCount?: number;
    phase?: string;
    barracksState?: any[];
@@ -58,6 +60,7 @@ export default function Gameplay({
    tankHangarsState = [],
    airfieldHangarsState = [],
    helipadsState = [],
+   portShipsState = [],
    barakCount = 0,
    phase = "deployment",
    barracksState = [],
@@ -417,7 +420,8 @@ export default function Gameplay({
             targetArmada,
             tankHangarsState,
             airfieldHangarsState,
-            helipadsState
+            helipadsState,
+            portShipsState
          );
 
          const camera = cameraRef.current;
@@ -450,6 +454,7 @@ export default function Gameplay({
                else if (typeLower.includes("recon") || typeLower.includes("intai")) drawInterceptor(ctx, hexColor, baseColor); // Use Jet icon for Recon Planes
                else if (typeLower.includes("kamikaze")) drawKamikaze(ctx, hexColor, baseColor);
                else if (typeLower.includes("transport") || typeLower.includes("angkut")) drawTransport(ctx, hexColor, baseColor);
+               else if (typeLower.includes("heli")) drawHeli(ctx, hexColor, baseColor);
                else drawInterceptor(ctx, hexColor, baseColor);
             } else if (u.type === "sea" || typeLower.includes("kapal") || typeLower.includes("destroyer") || typeLower.includes("selam") || typeLower.includes("corvette")) {
                if (typeLower.includes("induk")) drawKapalInduk(ctx, hexColor, baseColor);

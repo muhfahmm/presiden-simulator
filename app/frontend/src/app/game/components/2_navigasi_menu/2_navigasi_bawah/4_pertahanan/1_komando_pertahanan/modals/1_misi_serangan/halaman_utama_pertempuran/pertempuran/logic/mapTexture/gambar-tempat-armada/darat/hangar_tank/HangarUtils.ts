@@ -4,6 +4,7 @@ export interface HangarState {
     pos: { x: number, y: number };
     currentCount: number;
     maxCapacity: number;
+    lastSpawned?: number;
 }
 
 export class HangarUtils {

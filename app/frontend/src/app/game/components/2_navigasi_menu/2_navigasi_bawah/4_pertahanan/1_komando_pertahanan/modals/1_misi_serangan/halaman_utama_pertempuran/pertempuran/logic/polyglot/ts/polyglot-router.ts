@@ -26,6 +26,9 @@ export interface UnitState {
   rotation: number;
   influence: number;
   lastAttack?: number;
+  path?: Vector2[]; // NEW: For takeoff or strategic routes
+  isAirType?: boolean; // NEW: For recovery & hangar limit logic
+  sourceId?: string; // NEW: Tracks the spawning pad/hangar
 }
 
 export interface FogCell {
@@ -292,6 +295,31 @@ class PolyglotRouter {
     const enemyUnits = nextState.filter(u => u.side === 'enemy' && u.health > 0);
 
     nextState.forEach(u => {
+      // 1.1 PATH FOLLOWING (Special logic for Takeoff/Patrol)
+      if (u.path && u.path.length > 0) {
+        const target = u.path[0];
+        const dx = target.x - u.pos.x;
+        const dy = target.y - u.pos.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        
+        const stats = getUnitStats(u.type);
+        
+        // DYNAMIC TAKEOFF SPEED: 
+        // 3 points left = Taxiing (Slow), 2 points left = Runway Roll (Fast), 1 point left = Liftoff
+        let speedMult = 2; // Default Taxiing Speed
+        if (u.path.length === 2) speedMult = 10; // Intense Acceleration on Runway
+        if (u.path.length === 1) speedMult = 4;  // Liftoff climb
+        
+        if (dist < 80) {
+          u.path.shift(); // Reached waypoint
+        } else {
+          u.pos.x += (dx / dist) * stats.speed * dt * speedMult;
+          u.pos.y += (dy / dist) * stats.speed * dt * speedMult;
+          u.rotation = Math.atan2(dy, dx);
+        }
+        return; // Skip normal AI while on path
+      }
+
       const enemies = u.side === 'user' ? enemyUnits : userUnits;
       const allies = u.side === 'user' ? userUnits : enemyUnits;
       if (enemies.length === 0) return;

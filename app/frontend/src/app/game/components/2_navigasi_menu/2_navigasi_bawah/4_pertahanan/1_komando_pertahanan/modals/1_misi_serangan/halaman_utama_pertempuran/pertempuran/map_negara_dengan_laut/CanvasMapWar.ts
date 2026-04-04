@@ -69,7 +69,8 @@ export function drawWarMapBackground(
    targetArmada: any = null,
    tankHangarsState: any[] = [],
    airfieldHangarsState: any[] = [],
-   helipadsState: any[] = []
+   helipadsState: any[] = [],
+   portShipsState: any[] = []
 ) {
    ctx.save();
 
@@ -100,7 +101,7 @@ export function drawWarMapBackground(
 
    // 3.1 DRAW TACTICAL HARBOR (PELABUHAN HD) - NEW MOD
    const harborData = portRouter.getTacticalHarbor();
-   PelabuhanEngine.drawHarbor(ctx, harborData, camera.zoom);
+   PelabuhanEngine.drawHarbor(ctx, harborData, camera.zoom, mousePos, portShipsState, units, targetArmada);
 
    // 3.2 DRAW TACTICAL AIRBASE (BANDARA & HELIPADS) - NEW MOD
    BandaraEngine.drawAirfield(ctx, 12000, -2350, camera.zoom, mousePos, units, targetArmada, airfieldHangarsState);

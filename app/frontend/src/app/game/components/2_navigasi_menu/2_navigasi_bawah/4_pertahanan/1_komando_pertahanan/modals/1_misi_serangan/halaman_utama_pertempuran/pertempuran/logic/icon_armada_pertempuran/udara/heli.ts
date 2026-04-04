@@ -8,43 +8,57 @@ export const drawHeli = (ctx: CanvasRenderingContext2D, hexColor: string, baseCo
    ctx.save();
    ctx.fillStyle = `rgba(${baseColor}, 0.2)`;
    ctx.strokeStyle = hexColor;
-   ctx.lineWidth = 1.2;
+   ctx.lineWidth = 1.5;
 
-   // Main Fuselage (Cocking forward)
+   // 1. Main Fuselage - Bulbous Cockpit / Body
    ctx.beginPath();
-   ctx.moveTo(12, 0);
-   ctx.lineTo(4, -4);
-   ctx.lineTo(-6, -4);
-   ctx.lineTo(-24, -1); // Tail boom
-   ctx.lineTo(-24, 1);
-   ctx.lineTo(-6, 4);
-   ctx.lineTo(4, 4);
+   ctx.moveTo(14, 0);       // Nose
+   ctx.bezierCurveTo(12, -8, 0, -8, -6, -4); // Top rounded hood
+   ctx.lineTo(-26, -1);     // Top of tail boom
+   ctx.lineTo(-28, -6);     // Tail vertical fin top
+   ctx.lineTo(-29, 0);      // Tail tip
+   ctx.lineTo(-26, 1);      // Bottom of tail boom
+   ctx.lineTo(-6, 4);       // Rear body
+   ctx.bezierCurveTo(0, 8, 12, 8, 14, 0);    // Bottom rounded belly
    ctx.closePath();
    ctx.fill();
    ctx.stroke();
 
-   // Main Rotor Blade (Tactical cross/circle)
-   ctx.lineWidth = 1;
-   ctx.strokeStyle = `rgba(${baseColor}, 0.6)`;
+   // 2. Landing Skids (DISTINCTIVE HELI FEATURE)
+   ctx.lineWidth = 1.2;
    ctx.beginPath();
-   ctx.arc(0, 0, 18, 0, Math.PI * 2);
+   // Struts
+   ctx.moveTo(4, 6); ctx.lineTo(4, 10);
+   ctx.moveTo(-2, 5); ctx.lineTo(-2, 10);
+   // Horizontal Skid
+   ctx.moveTo(10, 10); ctx.lineTo(-8, 10);
    ctx.stroke();
+
+   // 3. Main Rotor (Large tactical circle + blades)
+   ctx.lineWidth = 0.8;
+   ctx.setLineDash([4, 2]); // Spinning effect
+   ctx.beginPath();
+   ctx.arc(0, -2, 22, 0, Math.PI * 2);
+   ctx.stroke();
+   ctx.setLineDash([]); // Reset
    
-   // Blades (X shape)
+   // Blades (4-blade cross)
+   ctx.lineWidth = 1.2;
+   ctx.strokeStyle = `rgba(${baseColor}, 0.8)`;
    ctx.beginPath();
-   ctx.moveTo(-16, -16); ctx.lineTo(16, 16);
-   ctx.moveTo(-16, 16); ctx.lineTo(16, -16);
+   ctx.moveTo(-20, -2); ctx.lineTo(20, -2);
+   ctx.moveTo(0, -22); ctx.lineTo(0, 18);
    ctx.stroke();
 
-   // Weapon Pylons (Side stubs)
+   // 4. Tail Rotor
+   ctx.beginPath();
+   ctx.arc(-26, -2, 5, 0, Math.PI * 2);
+   ctx.stroke();
+
+   // 5. Weapon pods (Center-aligned)
    ctx.fillStyle = hexColor;
-   ctx.fillRect(-2, -6, 5, 2);
-   ctx.fillRect(-2, 4, 5, 2);
-
-   // Tail Rotor
-   ctx.beginPath();
-   ctx.arc(-24, 0, 4, 0, Math.PI * 2);
-   ctx.stroke();
+   ctx.fillRect(-2, -6, 4, 2);
+   ctx.fillRect(-2, 4, 4, 2);
 
    ctx.restore();
 };

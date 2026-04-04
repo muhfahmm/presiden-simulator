@@ -8,8 +8,25 @@ export class PelabuhanEngine {
    /**
     * Main drawing function for the Tactical Harbor
     */
-   static drawHarbor(ctx: CanvasRenderingContext2D, harbor: HarborData, zoom: number): void {
+   static drawHarbor(
+      ctx: CanvasRenderingContext2D, 
+      harbor: HarborData, 
+      zoom: number,
+      mousePos?: { x: number, y: number },
+      portShipsState: any[] = [],
+      units: any[] = [],
+      targetArmada: any = null
+   ): void {
       ctx.save();
+
+      // NEW: Draw Tactical HUD (Port Capacity)
+      const shoreY = -6000;
+      const centerX = 0;
+      const isHovered = mousePos && Math.abs(mousePos.x - centerX) < 2000 && Math.abs(mousePos.y - shoreY) < 1500;
+
+      if (isHovered && portShipsState.length > 0) {
+         this.drawTacticalInventory(ctx, centerX, shoreY - 1800, zoom, portShipsState, targetArmada);
+      }
 
       // 1. Draw Concrete Piers (Dermaga)
       ctx.lineCap = 'butt';
@@ -70,6 +87,72 @@ export class PelabuhanEngine {
       // 4. Draw Gantry Cranes (SVG HD Detail)
       harbor.cranes.forEach(crane => {
          this.drawGantryCrane(ctx, crane.x, crane.y, zoom);
+      });
+
+      ctx.restore();
+   }
+
+   /**
+    * Draws a tactical list of ship inventories inside the port
+    */
+   private static drawTacticalInventory(
+      ctx: CanvasRenderingContext2D, 
+      x: number, 
+      y: number, 
+      zoom: number, 
+      portState: any[],
+      targetArmada: any
+   ): void {
+      ctx.save();
+      ctx.translate(x, y);
+      const s = 1.2 / Math.sqrt(zoom);
+      ctx.scale(s, s);
+
+      const items = portState.filter(p => p.maxCapacity > 0);
+      if (items.length === 0) {
+         ctx.restore();
+         return;
+      }
+
+      const rowH = 25;
+      const boxW = 280;
+      const boxH = (items.length * rowH) + 40;
+
+      // Glow effect
+      ctx.shadowBlur = 20;
+      ctx.shadowColor = "rgba(59, 130, 246, 0.5)";
+
+      // Backdrop
+      ctx.fillStyle = "rgba(9, 9, 11, 0.95)";
+      ctx.strokeStyle = "#3b82f6";
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.roundRect(-boxW/2, 0, boxW, boxH, 12); ctx.fill(); ctx.stroke();
+      ctx.shadowBlur = 0;
+
+      // Header
+      ctx.fillStyle = "#3b82f6";
+      ctx.font = "black 10px Inter, sans-serif";
+      ctx.textAlign = "center";
+      ctx.fillText("TANJUNG TACTICAL HUB - NAVAL INVENTORY", 0, 25);
+
+      // Divider
+      ctx.strokeStyle = "rgba(59, 130, 246, 0.3)";
+      ctx.beginPath(); ctx.moveTo(-boxW/2 + 20, 35); ctx.lineTo(boxW/2 - 20, 35); ctx.stroke();
+
+      // List Items
+      items.forEach((p, i) => {
+         const yy = 60 + (i * rowH);
+         const label = p.type.replace(/_/g, ' ').toUpperCase();
+         
+         ctx.textAlign = "left";
+         ctx.fillStyle = p.currentCount > 0 ? "#ffffff" : "#475569";
+         ctx.font = "bold 11px Inter, sans-serif";
+         ctx.fillText(label, -boxW/2 + 25, yy);
+
+         ctx.textAlign = "right";
+         ctx.fillStyle = p.currentCount > 0 ? "#60a5fa" : "#ef4444";
+         ctx.font = "black 12px 'JetBrains Mono', monospace";
+         ctx.fillText(`${p.currentCount}/${p.maxCapacity}`, boxW/2 - 25, yy);
       });
 
       ctx.restore();

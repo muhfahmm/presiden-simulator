@@ -5,7 +5,7 @@ import { X, Sword, Target, Activity, Shield, ChevronRight, ChevronDown, Zap, Pla
 import Gameplay from "./gameplay";
 import DeploymentEngine from "./DeploymentEngine";
 import { polyglotService, UnitState } from "./logic/polyglot/ts/polyglot-router";
-import { getUnitStats, DatabaseToTacticalMapping } from "./logic/polyglot/ts/unit_stats";
+import { getUnitStats } from "./logic/polyglot/ts/unit_stats";
 import { HP_Logic } from "./logic/polyglot/ts/HP_Logic";
 import { Power_Logic } from "./logic/polyglot/ts/Power_Logic";
 import { countries } from "@/app/database/data/negara/benua/index";
@@ -16,12 +16,14 @@ import { drawWarMapBackground as drawMapWithSea } from "./map_negara_dengan_laut
 import { drawWarMapBackground as drawMapNoSea } from "./map_negara_tanpa_laut/CanvasMapWar";
 import { BarakUtils, BarrackState } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/BarakUtils";
 import { HangarUtils, HangarState } from "./logic/mapTexture/gambar-tempat-armada/darat/hangar_tank/HangarUtils";
-import { InfantryDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/logika_infanteri_keluar_barak/ts/route";
-import { BlockDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/fitur_blok_input/ts/route";
-import { TankDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/hangar_tank/logika_tank_keluar_hangar/ts/route";
+import { InfantryDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/barak/logika_infanteri_keluar_barak/logic";
+import { TankDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/darat/hangar_tank/logika_tank_keluar_hangar/logic";
 import { AirfieldUtils, AirfieldHangarState, HelipadState } from "./logic/mapTexture/gambar-tempat-armada/udara/AirfieldUtils";
-import { AircraftDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/udara/bandara/logika_pesawat_keluar_hangar/ts/route";
-import { HelicopterDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/udara/helipad/logika_helikopter_keluar_helipad/ts/route";
+import { AircraftDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/udara/bandara/logika_pesawat_keluar_hangar/logic";
+import { HelicopterDeploymentLogic } from "./logic/mapTexture/gambar-tempat-armada/udara/helipad/logika_helikopter_keluar_helipad/logic";
+import { NavalDeploymentLogic, PortShipState } from "./logic/mapTexture/gambar-tempat-armada/laut/pelabuhan/logika_kapal_keluar_pelabuhan/logic";
+import { TheaterSetupLogic } from "./logic/TheaterSetupLogic";
+import { PlayerTacticalLogic } from "./logic/PlayerTacticalLogic";
 
 interface PertempuranIndexProps {
    onClose: () => void;
@@ -46,6 +48,7 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
    const [tankHangars, setTankHangars] = useState<HangarState[]>([]);
    const [airfieldHangars, setAirfieldHangars] = useState<AirfieldHangarState[]>([]);
    const [helipads, setHelipads] = useState<HelipadState[]>([]);
+   const [portShips, setPortShips] = useState<PortShipState[]>([]);
    const [showBlockModal, setShowBlockModal] = useState(false);
    const [blockSelection, setBlockSelection] = useState<{ x1: number, y1: number, x2: number, y2: number } | null>(null);
    const [blockUnitCount, setBlockUnitCount] = useState("1000");
@@ -77,117 +80,39 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
 
    // Initial Enemy Setup (National Defense Forces)
    useEffect(() => {
-      const targetCountry = countries.find(c =>
-         c.name_id.toLowerCase() === missionData.target.toLowerCase() ||
-         c.name_en.toLowerCase() === missionData.target.toLowerCase()
-      );
-
-      if (!targetCountry) return;
-
-      const armada = targetCountry.armada_militer;
-      let cumulativeUnits: UnitState[] = [];
-      let currentY = -12000; // Start deep in the sea zone (Top)
-      const groupGapY = 800;
-
-      // 1. LAUT (Sea Zone: -15000 to -6000)
-      const lautRes = calculateLautFormation(armada.laut, currentY);
-      cumulativeUnits = [...cumulativeUnits, ...lautRes.units];
-      // Ensure UDARA starts after sea zones or after LAUT formation
-      currentY = Math.max(lautRes.nextY, -5000) + groupGapY;
-
-      // 2. UDARA (High Ground / Air Corridor)
-      // Filter out stealth jets and helis from grid formation (moved to hangars/helipads)
-      const airArmada = { ...armada.udara };
-      delete (airArmada as any).jet_tempur_siluman;
-      delete (airArmada as any).helikopter_serang;
-
-      const udaraRes = calculateUdaraFormation(airArmada, currentY);
-      cumulativeUnits = [...cumulativeUnits, ...udaraRes.units];
-      currentY = udaraRes.nextY + groupGapY;
-
-      // 3. DARAT (Main Theater / Bottom)
-      // Filter out units handled by buildings (hangars/barracks) to prevent duplication
-      const fieldUnits = { ...armada.darat };
-      delete (fieldUnits as any).tank_tempur_utama;
-      delete (fieldUnits as any).pasukan_infanteri;
-
-      const daratRes = calculateDaratFormation(fieldUnits, armada.barak, currentY);
-      cumulativeUnits = [...cumulativeUnits, ...daratRes.units];
-
-      setTargetArmada(armada);
-      setUnits(prev => [...prev.filter(u => u.side !== 'enemy'), ...cumulativeUnits]);
-
-      // Initialize barracks positions
-      if (armada.barak > 0) {
-         const initialBarracks = BarakUtils.calculateBarracksPositions(12000, 850, armada.barak, 10);
-         setBarracks(initialBarracks);
-      }
-
-      // Initialize tank hangars (50 tanks per unit) based on database sectors
-      const totalTanks = armada.darat.tank_tempur_utama || 0;
-      const hangarCount = targetCountry.sektor_pertahanan?.hangar_tank || 0;
-      if (hangarCount > 0) {
-         const initialHangars = HangarUtils.calculateHangarPositions(10400, 4500, totalTanks, hangarCount, 10);
-         setTankHangars(initialHangars);
-      }
-
-      // Initialize air facilities (Airfield & Helipads) - SYNCED WITH MAP (12000)
-      const initialAirHangars = AirfieldUtils.calculateAirfieldHangars(12000, -2350, armada);
-      setAirfieldHangars(initialAirHangars);
-
-      const heliCount = (targetCountry.sektor_pertahanan as any)?.helipad || (targetCountry.sektor_pertahanan as any)?.pangkalan_udara || 0;
-      const totalHelis = armada.udara.helikopter_serang || 0;
-      if (heliCount > 0) {
-         const initialHelipads = AirfieldUtils.calculateHelipadPositions(12000, -550, heliCount, totalHelis);
-         setHelipads(initialHelipads);
+      try {
+         const result = TheaterSetupLogic.initializeTheater(missionData.target);
+         setTargetArmada(result.targetCountry.armada_militer);
+         setUnits(prev => [...prev.filter(u => u.side !== 'enemy'), ...result.initialUnits]);
+         setBarracks(result.barracks);
+         setTankHangars(result.tankHangars);
+         setAirfieldHangars(result.airfieldHangars);
+         setHelipads(result.helipads);
+         setPortShips(result.portShips);
+      } catch (error) {
+         console.error(error);
       }
    }, [missionData.target]);
 
    // Terrain Restriction Definitions
-   const NAVAL_UNITS = ["kapal_induk", "kapal_destroyer", "kapal_korvet", "kapal_selam_nuklir", "kapal_selam_regular", "kapal_ranjau", "kapal_logistik"];
-   const AIR_UNITS = ["jet_tempur_siluman", "jet_tempur_interceptor", "pesawat_pengebom", "helikopter_serang", "pesawat_pengintai", "drone_intai_uav", "drone_kamikaze", "pesawat_angkut"];
+   const NAVAL_UNITS = TheaterSetupLogic.NAVAL_UNITS;
+   const AIR_UNITS = TheaterSetupLogic.AIR_UNITS;
 
    const isValidTerrain = useCallback((unitType: string, y: number) => {
-      const isNaval = NAVAL_UNITS.includes(unitType);
-      const isAir = AIR_UNITS.includes(unitType);
-      
-      if (isAir) return true; // Air units can go anywhere
-      if (!hasSea) return !isNaval; // If no sea, naval units are restricted
-      
-      const SEA_THRESHOLD = -6000;
-      if (isNaval) return y < SEA_THRESHOLD;
-      return y >= SEA_THRESHOLD; // Land units (Infantry/Tanks)
+      return PlayerTacticalLogic.isValidTerrain(unitType, y, hasSea);
    }, [hasSea]);
 
    const handleManualDeployment = useCallback((unitType: string | null, x: number, y: number) => {
       if ((phase !== "deployment" && phase !== "combat") || !unitType) return;
       
-      // Terrain check
-      if (!isValidTerrain(unitType, y)) return;
+      const newUnit = PlayerTacticalLogic.deployManual(
+         unitType, x, y, units, missionData.selection, currentPoints, maxPoints, hasSea
+      );
 
-      // 1 unit icon scale: Infantry 1:1000, Others (inc. Tank) 1:1
-      const isInfantry = unitType === 'pasukan_infanteri';
-      const unitScale = isInfantry ? 1000 : 1;
-      
-      const deployedQuantity = units.filter(u => u.side === 'user' && u.type === unitType).length * unitScale;
-      const available = missionData.selection[unitType] || 0;
-
-      // Check points & availability
-      const stats = getUnitStats(unitType);
-      const unitCost = stats.cost * unitScale;
-      if (deployedQuantity + unitScale > available || currentPoints + unitCost > maxPoints) return;
-
-      const newUnit: UnitState = {
-         id: `u_${Date.now()}`,
-         type: unitType,
-         side: "user",
-         pos: { x, y },
-         health: stats.maxHealth * (isInfantry ? 10 : 1), // Only infantry gets HP multiplier
-         rotation: 0,
-         influence: unitType.includes('tank') ? 300 : 100
-      };
-      setUnits(prev => [...prev, newUnit]);
-   }, [phase, units, missionData.selection, currentPoints, maxPoints, isValidTerrain]);
+      if (newUnit) {
+         setUnits(prev => [...prev, newUnit]);
+      }
+   }, [phase, units, missionData.selection, currentPoints, maxPoints, hasSea]);
 
    const handleRemoveUnit = useCallback((x: number, y: number) => {
       if (phase !== "deployment" && phase !== "combat") return;
@@ -213,49 +138,16 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
       const count = parseInt(blockUnitCount);
       if (isNaN(count) || count <= 0) return;
 
-      // Check availability
-      const multiplier = 1;
-      const deployedQuantity = units.filter(u => u.type === selectedUnitType).length * multiplier;
-      const available = missionData.selection[selectedUnitType] || 0;
-      const remaining = available - deployedQuantity;
+      const newUnits = PlayerTacticalLogic.deployBlock(
+         selectedUnitType, blockSelection, count, units, missionData.selection, currentPoints, maxPoints, hasSea
+      );
 
-      // When deploying a block, count represents the number of tactical units
-      // or if the user is deploying a specific personnel count
-      const actualCount = Math.min(count, remaining);
-      if (actualCount <= 0) {
+      if (newUnits.length > 0) {
+         setUnits(prev => [...prev, ...newUnits]);
          setShowBlockModal(false);
          setBlockSelection(null);
-         return;
       }
-
-      const unitStats = getUnitStats(selectedUnitType);
-      const deploymentCost = unitStats.cost * actualCount;
-      if (currentPoints + deploymentCost > maxPoints) return;
-
-      // Tactical Scaling: 1 icon = 1000 infantry, others (Tank) are 1:1
-      const isInfantry = selectedUnitType === 'pasukan_infanteri';
-      const tacticalUnits = isInfantry ? Math.ceil(actualCount / 1000) : actualCount;
-      
-      // Generate positions and filter by terrain
-      const rawPositions = BlockDeploymentLogic.calculateGridPositions(blockSelection, tacticalUnits);
-      const positions = rawPositions.filter(pos => isValidTerrain(selectedUnitType, pos.y));
-
-      if (positions.length === 0) return; // No valid placement found in area
-
-      const newUnits: UnitState[] = positions.map((pos, i) => ({
-         id: `u_${selectedUnitType}_${Date.now()}_${i}`,
-         type: selectedUnitType,
-         side: "user",
-         pos,
-         health: unitStats.maxHealth * (isInfantry ? 10 : 1),
-         rotation: 0,
-         influence: selectedUnitType.includes('tank') ? 300 : 100
-      }));
-
-      setUnits(prev => [...prev, ...newUnits]);
-      setShowBlockModal(false);
-      setBlockSelection(null);
-   }, [blockSelection, blockUnitCount, selectedUnitType, units, missionData.selection]);
+   }, [blockSelection, blockUnitCount, selectedUnitType, units, missionData.selection, currentPoints, maxPoints, hasSea]);
 
 
    // Visual Tracers
@@ -276,72 +168,48 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                const result = await polyglotService.processTick(prev, dt);
                let newSpawned: UnitState[] = [];
 
-               const nextBarracks = barracks.map(b => {
-                  if (b.currentPersonnel > 0 && InfantryDeploymentLogic.isEnemyNearby(b.pos, prev, 3000)) {
-                     // Optimization: 1 icon = 1,000 personnel, Health x10
-                     b.currentPersonnel -= 1000;
-                     const stats = getUnitStats("pasukan_infanteri");
-                     newSpawned.push({
-                        id: `dep_inf_${b.id}_${Date.now()}_${Math.random()}`,
-                        type: "pasukan_infanteri", side: "enemy",
-                        pos: { x: b.pos.x, y: b.pos.y + 100 },
-                        health: stats.maxHealth * 10, rotation: Math.PI, influence: 100
-                     });
-                  }
-                  return b;
-               });
+               // 1. DARAT: INFANTRY & TANKS
+               const infRes = InfantryDeploymentLogic.processBarracksTick(barracks, prev, now);
+               const tankRes = TankDeploymentLogic.processTankHangarTick(tankHangars, prev, now);
+               
+               // 2. UDARA: AIRCRAFT & HELICOPTER
+               const airfieldResult = AircraftDeploymentLogic.processAirfieldTick(airfieldHangars, prev, now);
+               const heliRes = HelicopterDeploymentLogic.processHelipadTick(helipads, prev, now);
 
-               const nextTankHangars = tankHangars.map(h => {
-                  if (h.currentCount > 0 && TankDeploymentLogic.isEnemyNearby(h.pos, prev, 4000)) {
-                     // Tanks remain 1:1 as requested
-                     h.currentCount -= 1;
-                     const stats = getUnitStats("tank_tempur_utama");
-                     newSpawned.push({
-                        id: `dep_tank_${h.id}_${Date.now()}_${Math.random()}`,
-                        type: "tank_tempur_utama", side: "enemy",
-                        pos: { x: h.pos.x, y: h.pos.y + 200 },
-                        health: stats.maxHealth, rotation: Math.PI, influence: 300
-                     });
-                  }
-                  return h;
-               });
+               // 3. LAUT: PORT SHIPS
+               const navalRes = NavalDeploymentLogic.processNavalPortTick(portShips, prev, now);
 
-               const nextAirHangars = airfieldHangars.map(h => {
-                  if (h.currentCount > 0 && AircraftDeploymentLogic.isEnemyNearby(h.pos, prev, 6000)) {
-                     h.currentCount -= 1;
-                     const stats = getUnitStats(h.type);
-                     newSpawned.push({
-                        id: `dep_air_${h.id}_${Date.now()}_${Math.random()}`,
-                        type: h.type, side: "enemy",
-                        pos: { x: h.pos.x - 200, y: h.pos.y },
-                        health: stats.maxHealth, rotation: Math.PI / 2, influence: 500
-                     });
-                  }
-                  return h;
-               });
+               // 4. POST-COMBAT: PATROL & LANDING (AIR)
+               // IMPORTANT: Use airfieldResult.nextHangars to ensure spawn counts are preserved
+               const postCombatRes = AircraftDeploymentLogic.processPostCombatTick(prev, airfieldResult.nextHangars, now);
 
-               const nextHelipads = helipads.map(h => {
-                  if (h.currentCount > 0 && HelicopterDeploymentLogic.isEnemyNearby(h.pos, prev, 4500)) {
-                     h.currentCount -= 1;
-                     const stats = getUnitStats("helikopter_serang");
-                     newSpawned.push({
-                        id: `dep_heli_${h.id}_${Date.now()}_${Math.random()}`,
-                        type: "helikopter_serang", side: "enemy",
-                        pos: { x: h.pos.x, y: h.pos.y + 50 },
-                        health: stats.maxHealth, rotation: Math.PI, influence: 200
-                     });
-                  }
-                  return h;
-               });
+               // Consolidate updates
+               newSpawned = [
+                  ...infRes.newSpawned, 
+                  ...tankRes.newSpawned, 
+                  ...airfieldResult.newSpawned, 
+                  ...heliRes.newSpawned, 
+                  ...navalRes.newSpawned
+               ];
 
-               if (newSpawned.length > 0) {
-                  setUnits([...result.units, ...newSpawned]);
-                  setBarracks(nextBarracks);
-                  setTankHangars(nextTankHangars);
-                  setAirfieldHangars(nextAirHangars);
-                  setHelipads(nextHelipads);
+               if (newSpawned.length > 0 || postCombatRes.nextUnits.length !== prev.length) {
+                  const mergedUnits = [
+                     ...postCombatRes.nextUnits.filter(u => !newSpawned.some(ns => ns.id === u.id)), 
+                     ...newSpawned
+                  ];
+                  // Final check to ensure no airborne units are idling
+                  const enforcedUnits = AircraftDeploymentLogic.enforceAirborneMovement(mergedUnits);
+                  setUnits(enforcedUnits);
+                  
+                  setBarracks(infRes.nextBarracks);
+                  setTankHangars(tankRes.nextHangars);
+                  setAirfieldHangars(postCombatRes.nextHangars); // Updated with both spawns and landed units
+                  setHelipads(heliRes.nextHelipads);
+                  setPortShips(navalRes.nextPortShips);
                } else {
-                  setUnits(result.units);
+                  // Ensure active combat units also stay moving if they lose targets
+                  const enforcedUnits = AircraftDeploymentLogic.enforceAirborneMovement(result.units);
+                  setUnits(enforcedUnits);
                }
 
                if (result.vfx.length > 0) {
@@ -431,33 +299,13 @@ export default function PertempuranIndex({ onClose, missionData }: PertempuranIn
                                  const multiplier = 1;
                                  const deployedQuantity = units.filter(u => u.side === 'user' && u.type === selectedUnitType).length * multiplier;
                                  const available = missionData.selection[selectedUnitType] || 0;
-                                 const remaining = available - deployedQuantity;
-
-                                 const actualAmount = Math.min(amount, remaining);
-                                 if (actualAmount <= 0) return;
-
-                                 const unitStats = getUnitStats(selectedUnitType);
-                                 if (!unitStats) return;
-
-                                 const cost = unitStats.cost * actualAmount;
-                                 if (currentPoints + cost > maxPoints) return;
-
-                                 const positions = BlockDeploymentLogic.calculateGridPositions(
-                                    rect,
-                                    actualAmount
+                                 const newUnits = PlayerTacticalLogic.deployBlock(
+                                    selectedUnitType, rect, amount, units, missionData.selection, currentPoints, maxPoints, hasSea
                                  );
 
-                                 const newUnits: UnitState[] = positions.map((pos, i) => ({
-                                    id: `u_${selectedUnitType}_area_${Date.now()}_${i}`,
-                                    type: selectedUnitType,
-                                    side: "user",
-                                    pos: pos,
-                                    health: unitStats.maxHealth,
-                                    rotation: 0,
-                                    influence: selectedUnitType.includes('tank') ? 300 : 100
-                                 }));
-
-                                 setUnits(prev => [...prev, ...newUnits]);
+                                 if (newUnits.length > 0) {
+                                    setUnits(prev => [...prev, ...newUnits]);
+                                 }
                               } else {
                                  // Could potentially do something else or just ignore
                                  setBlockSelection(rect);

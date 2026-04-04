@@ -1,3 +1,7 @@
+import { 
+   drawStealth, drawInterceptor, drawBomber, drawUAV, drawKamikaze, drawTransport 
+} from "../../../../icon_armada_pertempuran/index";
+
 /**
  * Bandara (Airport) Drawing Utility
  * Renders high-detail runways, taxiways, and terminal buildings.
@@ -104,6 +108,25 @@ export class BandaraEngine {
          ctx.fillRect(hangarX - hangarW / 2, -hangarH / 2, hangarW, hangarH);
          ctx.strokeStyle = '#1e293b'; ctx.lineWidth = 3;
          ctx.strokeRect(hangarX - hangarW / 2, -hangarH / 2, hangarW, hangarH);
+
+         // 3.3 DRAW AIRCRAFT ICON INSIDE HANGAR (Visual Feedback)
+         ctx.save();
+         ctx.translate(hangarX, 0);
+         ctx.scale(5, 5); // Scale up for visibility inside hangar
+         
+         const iconColor = "#475569"; // Tactical Zinc
+         const baseColor = "71, 85, 105";
+
+         switch(config.key) {
+            case "jet_tempur_siluman": drawStealth(ctx, iconColor, baseColor); break;
+            case "jet_tempur_interceptor": drawInterceptor(ctx, iconColor, baseColor); break;
+            case "pesawat_pengebom": drawBomber(ctx, iconColor, baseColor); break;
+            case "drone_intai_uav": drawUAV(ctx, iconColor, baseColor); break;
+            case "drone_kamikaze": drawKamikaze(ctx, iconColor, baseColor); break;
+            case "pesawat_angkut": drawTransport(ctx, iconColor, baseColor); break;
+            case "pesawat_pengintai": drawInterceptor(ctx, iconColor, baseColor); break;
+         }
+         ctx.restore();
 
          ctx.restore();
       }

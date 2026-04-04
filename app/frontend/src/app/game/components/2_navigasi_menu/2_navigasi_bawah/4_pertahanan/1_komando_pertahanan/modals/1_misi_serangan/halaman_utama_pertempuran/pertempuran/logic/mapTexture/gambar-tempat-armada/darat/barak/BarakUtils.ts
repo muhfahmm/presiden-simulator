@@ -2,6 +2,8 @@ export interface BarrackState {
     id: string;
     pos: { x: number, y: number };
     currentPersonnel: number;
+    maxCapacity: number;
+    lastSpawned?: number;
 }
 
 export class BarakUtils {
@@ -31,7 +33,8 @@ export class BarakUtils {
                     x: startX + col * (this.WIDTH + this.GAP_X),
                     y: topY + row * (this.HEIGHT + this.GAP_Y)
                 },
-                currentPersonnel: 10000
+                currentPersonnel: 10000,
+                maxCapacity: 10000
             });
         }
         return barracks;

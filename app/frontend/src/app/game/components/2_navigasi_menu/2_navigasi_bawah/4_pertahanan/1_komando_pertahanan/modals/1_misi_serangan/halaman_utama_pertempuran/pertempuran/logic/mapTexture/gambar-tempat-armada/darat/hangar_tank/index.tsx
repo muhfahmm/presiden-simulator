@@ -1,4 +1,6 @@
 
+import { drawTank } from "../../../../icon_armada_pertempuran/index";
+
 /**
  * HangarTankEngine.tsx
  * Engine for rendering tactical tank hangars on the war map.
@@ -74,6 +76,12 @@ export class HangarTankEngine {
          // Bottom Door
          ctx.fillRect(-doorW / 2, hangarH / 2 - 40 - doorH, doorW, doorH);
          ctx.strokeRect(-doorW / 2, hangarH / 2 - 40 - doorH, doorW, doorH);
+
+         // 4.1 DRAW TANK ICON INSIDE HANGAR (Visual Feedback)
+         ctx.save();
+         ctx.scale(6, 6);
+         drawTank(ctx, "#475569", "71, 85, 105");
+         ctx.restore();
 
          // 5. DOOR PANEL LINES
          ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
