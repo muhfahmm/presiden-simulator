@@ -21,68 +21,68 @@ export class ArmoryEngine {
       }
    }
 
-    /**
-     * Draws a tactical perimeter fence around the entire Armory complex
-     */
-    private static drawPerimeter(ctx: CanvasRenderingContext2D, armories: any[]): void {
-        if (armories.length === 0) return;
+   /**
+    * Draws a tactical perimeter fence around the entire Armory complex
+    */
+   private static drawPerimeter(ctx: CanvasRenderingContext2D, armories: any[]): void {
+      if (armories.length === 0) return;
 
-        const buildW = 800;
-        const buildH = 500;
-        const padding = 250;
+      const buildW = 800;
+      const buildH = 500;
+      const padding = 250;
 
-        // 1. Calculate Bounding Box
-        const minX = Math.min(...armories.map(a => a.pos.x)) - buildW / 2 - padding;
-        const maxX = Math.max(...armories.map(a => a.pos.x)) + buildW / 2 + padding;
-        const minY = Math.min(...armories.map(a => a.pos.y)) - buildH / 2 - padding;
-        const maxY = Math.max(...armories.map(a => a.pos.y)) + buildH / 2 + padding;
+      // 1. Calculate Bounding Box
+      const minX = Math.min(...armories.map(a => a.pos.x)) - buildW / 2 - padding;
+      const maxX = Math.max(...armories.map(a => a.pos.x)) + buildW / 2 + padding;
+      const minY = Math.min(...armories.map(a => a.pos.y)) - buildH / 2 - padding;
+      const maxY = Math.max(...armories.map(a => a.pos.y)) + buildH / 2 + padding;
 
-        const width = maxX - minX;
-        const height = maxY - minY;
+      const width = maxX - minX;
+      const height = maxY - minY;
 
-        ctx.save();
-        
-        // 2. MAIN BORDER (Dashed Tactical Line)
-        ctx.strokeStyle = "rgba(100, 116, 139, 0.4)";
-        ctx.lineWidth = 4;
-        ctx.setLineDash([40, 20]);
-        ctx.strokeRect(minX, minY, width, height);
-        ctx.setLineDash([]);
+      ctx.save();
 
-        // 3. GLOWING CORNER MARKERS
-        const cornerSize = 100;
-        const drawCorner = (cx: number, cy: number, flipX: number, flipY: number) => {
-            ctx.save();
-            ctx.translate(cx, cy);
-            ctx.scale(flipX, flipY);
-            
-            ctx.shadowColor = "#f59e0b"; // Golden/Amber for ordnance
-            ctx.shadowBlur = 10;
-            ctx.strokeStyle = "#f59e0b";
-            ctx.lineWidth = 12;
-            ctx.lineCap = "square";
-            
-            ctx.beginPath();
-            ctx.moveTo(0, cornerSize);
-            ctx.lineTo(0, 0);
-            ctx.lineTo(cornerSize, 0);
-            ctx.stroke();
-            ctx.restore();
-        };
+      // 2. MAIN BORDER (Dashed Tactical Line)
+      ctx.strokeStyle = "rgba(100, 116, 139, 0.4)";
+      ctx.lineWidth = 4;
+      ctx.setLineDash([40, 20]);
+      ctx.strokeRect(minX, minY, width, height);
+      ctx.setLineDash([]);
 
-        drawCorner(minX, minY, 1, 1);     // Top Left
-        drawCorner(maxX, minY, -1, 1);    // Top Right
-        drawCorner(minX, maxY, 1, -1);    // Bottom Left
-        drawCorner(maxX, maxY, -1, -1);   // Bottom Right
+      // 3. GLOWING CORNER MARKERS
+      const cornerSize = 100;
+      const drawCorner = (cx: number, cy: number, flipX: number, flipY: number) => {
+         ctx.save();
+         ctx.translate(cx, cy);
+         ctx.scale(flipX, flipY);
 
-        // 4. COMPLEX LABEL
-        ctx.font = "black 24px Inter, sans-serif";
-        ctx.fillStyle = "rgba(245, 158, 11, 0.6)";
-        ctx.textAlign = "left";
-        ctx.fillText("SEKTOR ARTILERI & ROKET STRATEGIS", minX + 20, minY - 20);
-        
-        ctx.restore();
-    }
+         ctx.shadowColor = "#f59e0b"; // Golden/Amber for ordnance
+         ctx.shadowBlur = 10;
+         ctx.strokeStyle = "#f59e0b";
+         ctx.lineWidth = 12;
+         ctx.lineCap = "square";
+
+         ctx.beginPath();
+         ctx.moveTo(0, cornerSize);
+         ctx.lineTo(0, 0);
+         ctx.lineTo(cornerSize, 0);
+         ctx.stroke();
+         ctx.restore();
+      };
+
+      drawCorner(minX, minY, 1, 1);     // Top Left
+      drawCorner(maxX, minY, -1, 1);    // Top Right
+      drawCorner(minX, maxY, 1, -1);    // Bottom Left
+      drawCorner(maxX, maxY, -1, -1);   // Bottom Right
+
+      // 4. COMPLEX LABEL
+      ctx.font = "black 24px Inter, sans-serif";
+      ctx.fillStyle = "rgba(245, 158, 11, 0.6)";
+      ctx.textAlign = "left";
+      ctx.fillText("SEKTOR ARTILERI & ROKET STRATEGIS", minX + 20, minY - 20);
+
+      ctx.restore();
+   }
 
    /**
     * Renders all Armory buildings in the tactical theater.
@@ -147,7 +147,7 @@ export class ArmoryEngine {
             ctx.clip();
             ctx.strokeStyle = "#fbbf24"; ctx.lineWidth = 15;
             ctx.setLineDash([20, 20]);
-            ctx.strokeRect(-buildW/2 + 7.5, -buildH/2 + 7.5, buildW - 15, buildH - 15);
+            ctx.strokeRect(-buildW / 2 + 7.5, -buildH / 2 + 7.5, buildW - 15, buildH - 15);
             ctx.restore();
 
             // 4. BLAST DOORS
@@ -172,7 +172,7 @@ export class ArmoryEngine {
 
             // Tooltip if hovered
             if (isHovered) {
-                this.drawTooltip(ctx, armory, config);
+               this.drawTooltip(ctx, armory, config);
             }
 
             ctx.restore();
@@ -185,35 +185,35 @@ export class ArmoryEngine {
    }
 
    private static drawTooltip(ctx: CanvasRenderingContext2D, armory: any, config: any): void {
-       ctx.save();
-       ctx.translate(0, -350);
-       
-       const text = `${armory.currentCount}/${armory.maxCapacity}`;
-       ctx.font = "bold 32px Inter, sans-serif";
-       const tw = ctx.measureText(text).width;
-       const pad = 35;
-       
-       // GLOW BOX
-       ctx.shadowColor = `${config.color}cc`;
-       ctx.shadowBlur = 20;
-       ctx.fillStyle = "rgba(15, 23, 42, 0.98)";
-       ctx.strokeStyle = config.color;
-       ctx.lineWidth = 3;
-       ctx.strokeRect(-tw/2 - pad, -45, tw + pad*2, 75);
-       ctx.fillRect(-tw/2 - pad, -45, tw + pad*2, 75);
-       
-       // QUANTITY
-       ctx.shadowBlur = 0;
-       ctx.fillStyle = "#ffffff";
-       ctx.textAlign = "center";
-       ctx.textBaseline = "middle";
-       ctx.fillText(text, 0, -10);
+      ctx.save();
+      ctx.translate(0, -350);
 
-       // CATEGORY LABEL
-       ctx.font = "bold 18px Inter, sans-serif";
-       ctx.fillStyle = config.color;
-       ctx.fillText(config.label, 0, -55);
-       
-       ctx.restore();
+      const text = `${armory.currentCount}/${armory.maxCapacity}`;
+      ctx.font = "bold 32px Inter, sans-serif";
+      const tw = ctx.measureText(text).width;
+      const pad = 35;
+
+      // GLOW BOX
+      ctx.shadowColor = `${config.color}cc`;
+      ctx.shadowBlur = 20;
+      ctx.fillStyle = "rgba(15, 23, 42, 0.98)";
+      ctx.strokeStyle = config.color;
+      ctx.lineWidth = 3;
+      ctx.strokeRect(-tw / 2 - pad, -45, tw + pad * 2, 75);
+      ctx.fillRect(-tw / 2 - pad, -45, tw + pad * 2, 75);
+
+      // QUANTITY
+      ctx.shadowBlur = 0;
+      ctx.fillStyle = "#ffffff";
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      ctx.fillText(text, 0, -10);
+
+      // CATEGORY LABEL
+      ctx.font = "bold 18px Inter, sans-serif";
+      ctx.fillStyle = config.color;
+      ctx.fillText(config.label, 0, -55);
+
+      ctx.restore();
    }
 }

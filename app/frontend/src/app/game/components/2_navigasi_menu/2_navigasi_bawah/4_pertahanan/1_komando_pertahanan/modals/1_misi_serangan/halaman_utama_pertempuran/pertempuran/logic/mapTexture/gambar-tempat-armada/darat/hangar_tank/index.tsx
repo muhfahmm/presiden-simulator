@@ -38,7 +38,7 @@ export class HangarTankEngine {
       const height = maxY - minY;
 
       ctx.save();
-      
+
       // 2. MAIN BORDER (Dashed Tactical Line)
       ctx.strokeStyle = "rgba(100, 116, 139, 0.3)";
       ctx.lineWidth = 4;
@@ -52,13 +52,13 @@ export class HangarTankEngine {
          ctx.save();
          ctx.translate(cx, cy);
          ctx.scale(flipX, flipY);
-         
+
          ctx.shadowColor = "#3b82f6";
          ctx.shadowBlur = 10;
          ctx.strokeStyle = "#3b82f6";
          ctx.lineWidth = 12;
          ctx.lineCap = "square";
-         
+
          ctx.beginPath();
          ctx.moveTo(0, cornerSize);
          ctx.lineTo(0, 0);
@@ -78,7 +78,7 @@ export class HangarTankEngine {
       ctx.textAlign = "left";
       ctx.textBaseline = "bottom";
       ctx.fillText("SEKTOR OPS DARAT // HANGAR COMPLEX", minX + 20, minY - 30);
-      
+
       ctx.restore();
    }
 
@@ -101,7 +101,7 @@ export class HangarTankEngine {
       const hangarH = 450;
 
       ctx.save();
-      
+
       // Draw perimeter first (Background of the complex)
       this.drawPerimeter(ctx, tankHangarsState);
 
@@ -145,7 +145,7 @@ export class HangarTankEngine {
          // 4. HANGAR DOORS (Sliding Panel Look)
          const doorW = hangarW - 80;
          const doorH = 100;
-         
+
          ctx.fillStyle = "#0f172a";
          ctx.fillRect(-doorW / 2, -hangarH / 2 + 40, doorW, doorH);
          ctx.strokeStyle = "#334155"; ctx.lineWidth = 3;
@@ -162,7 +162,7 @@ export class HangarTankEngine {
          // 5. DOOR PANEL LINES
          ctx.strokeStyle = "rgba(255, 255, 255, 0.05)";
          ctx.beginPath();
-         for(let l = -doorW/2 + 80; l < doorW/2; l += 100) {
+         for (let l = -doorW / 2 + 80; l < doorW / 2; l += 100) {
             ctx.moveTo(l, -hangarH / 2 + 40); ctx.lineTo(l, -hangarH / 2 + 40 + doorH);
             ctx.moveTo(l, hangarH / 2 - 40 - doorH); ctx.lineTo(l, hangarH / 2 - 40);
          }
@@ -170,35 +170,35 @@ export class HangarTankEngine {
 
          // Tooltip if hovered
          if (isHovered) {
-             ctx.save();
-             ctx.translate(0, -hangarH / 2 - 80);
-             
-             const text = `${hangar.currentCount}/${hangar.maxCapacity}`;
-             ctx.font = "bold 28px Inter, sans-serif";
-             const tw = ctx.measureText(text).width;
-             const pad = 25;
-             
-             ctx.shadowColor = `${config.color}cc`;
-             ctx.shadowBlur = 15;
-             ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
-             ctx.strokeStyle = config.color;
-             ctx.lineWidth = 2;
-             
-             ctx.fillRect(-tw/2 - pad, -40, tw + pad*2, 60);
-             ctx.strokeRect(-tw/2 - pad, -40, tw + pad*2, 60);
-             
-             ctx.shadowBlur = 0;
-             ctx.fillStyle = "#ffffff";
-             ctx.textAlign = "center";
-             ctx.textBaseline = "middle";
-             ctx.fillText(text, 0, -10);
+            ctx.save();
+            ctx.translate(0, -hangarH / 2 - 80);
 
-             // Label
-             ctx.font = "bold 16px Inter, sans-serif";
-             ctx.fillStyle = config.color;
-             ctx.fillText(config.label, 0, -55);
-             
-             ctx.restore();
+            const text = `${hangar.currentCount}/${hangar.maxCapacity}`;
+            ctx.font = "bold 28px Inter, sans-serif";
+            const tw = ctx.measureText(text).width;
+            const pad = 25;
+
+            ctx.shadowColor = `${config.color}cc`;
+            ctx.shadowBlur = 15;
+            ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
+            ctx.strokeStyle = config.color;
+            ctx.lineWidth = 2;
+
+            ctx.fillRect(-tw / 2 - pad, -40, tw + pad * 2, 60);
+            ctx.strokeRect(-tw / 2 - pad, -40, tw + pad * 2, 60);
+
+            ctx.shadowBlur = 0;
+            ctx.fillStyle = "#ffffff";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText(text, 0, -10);
+
+            // Label
+            ctx.font = "bold 16px Inter, sans-serif";
+            ctx.fillStyle = config.color;
+            ctx.fillText(config.label, 0, -55);
+
+            ctx.restore();
          }
 
          ctx.restore();

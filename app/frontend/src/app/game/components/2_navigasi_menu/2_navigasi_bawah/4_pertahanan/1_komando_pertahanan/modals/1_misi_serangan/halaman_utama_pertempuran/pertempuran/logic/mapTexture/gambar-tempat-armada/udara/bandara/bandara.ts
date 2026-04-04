@@ -1,5 +1,5 @@
-import { 
-   drawStealth, drawInterceptor, drawBomber, drawUAV, drawKamikaze, drawTransport 
+import {
+   drawStealth, drawInterceptor, drawBomber, drawUAV, drawKamikaze, drawTransport
 } from "../../../../icon_armada_pertempuran/index";
 
 /**
@@ -12,9 +12,9 @@ export class BandaraEngine {
     * Draws the main tactical airfield with hover interactions and capacity details
     */
    static drawAirfield(
-      ctx: CanvasRenderingContext2D, 
-      x: number, 
-      y: number, 
+      ctx: CanvasRenderingContext2D,
+      x: number,
+      y: number,
       zoom: number,
       mousePos?: { x: number, y: number },
       units: any[] = [],
@@ -71,7 +71,7 @@ export class BandaraEngine {
          ctx.fillRect(-runwayLen / 2, -runwayWidth / 2, runwayLen, runwayWidth);
 
          // Runway Outline
-         ctx.strokeStyle = '#334155'; ctx.lineWidth = 6;
+         ctx.strokeStyle = '#006affff'; ctx.lineWidth = 6;
          ctx.strokeRect(-runwayLen / 2, -runwayWidth / 2, runwayLen, runwayWidth);
 
          // 2. RUNWAY THRESHOLDS ("Piano Keys") - Both ends
@@ -113,11 +113,11 @@ export class BandaraEngine {
          ctx.save();
          ctx.translate(hangarX, 0);
          ctx.scale(5, 5); // Scale up for visibility inside hangar
-         
+
          const iconColor = "#475569"; // Tactical Zinc
          const baseColor = "71, 85, 105";
 
-         switch(config.key) {
+         switch (config.key) {
             case "jet_tempur_siluman": drawStealth(ctx, iconColor, baseColor); break;
             case "jet_tempur_interceptor": drawInterceptor(ctx, iconColor, baseColor); break;
             case "pesawat_pengebom": drawBomber(ctx, iconColor, baseColor); break;
@@ -135,30 +135,30 @@ export class BandaraEngine {
       if (hoveredRunway) {
          ctx.save();
          ctx.translate(0, hoveredRunway.y - 180);
-         
+
          const text = `${hoveredRunway.name} - (${hoveredRunway.used}/${hoveredRunway.total})`;
          ctx.font = "bold 32px Inter, sans-serif";
          const tw = ctx.measureText(text).width;
          const pad = 40;
-         
+
          // Glow Effect
          ctx.shadowColor = "rgba(239, 68, 68, 0.8)";
          ctx.shadowBlur = 15;
-         
+
          // Tooltip Box
          ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
          ctx.strokeStyle = "#ef4444";
          ctx.lineWidth = 2;
-         ctx.fillRect(-tw/2 - pad, -40, tw + pad*2, 70);
-         ctx.strokeRect(-tw/2 - pad, -40, tw + pad*2, 70);
-         
+         ctx.fillRect(-tw / 2 - pad, -40, tw + pad * 2, 70);
+         ctx.strokeRect(-tw / 2 - pad, -40, tw + pad * 2, 70);
+
          // Text
          ctx.shadowBlur = 0;
          ctx.fillStyle = "#ffffff";
          ctx.textAlign = "center";
          ctx.textBaseline = "middle";
          ctx.fillText(text, 0, -5);
-         
+
          ctx.restore();
       }
 

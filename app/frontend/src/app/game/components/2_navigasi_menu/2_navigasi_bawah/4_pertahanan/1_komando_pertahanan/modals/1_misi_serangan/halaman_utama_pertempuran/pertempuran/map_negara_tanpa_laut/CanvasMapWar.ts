@@ -80,8 +80,13 @@ export function drawWarMapBackground(
    ctx.rect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT * 2);
    ctx.clip();
 
+   // 2.1 Battlefield Terrain (Green)
    ctx.fillStyle = "#0a4d0a";
    ctx.fillRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT * 2);
+
+   // 2.2 Tactical Base Area (Slate - Right Side)
+   ctx.fillStyle = "#0f172a";
+   ctx.fillRect(5000, -THEATER_LIMIT, THEATER_LIMIT - 5000, THEATER_LIMIT * 2);
 
    // 3. DRAW ROADS
    const roads = MapTextureEngine.generateHighwaysLandlocked();

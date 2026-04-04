@@ -8,9 +8,9 @@ export class HelipadEngine {
     * Draws a high-detail tactical helipad with hover interaction and capacity details
     */
    static drawHelipad(
-      ctx: CanvasRenderingContext2D, 
-      x: number, 
-      y: number, 
+      ctx: CanvasRenderingContext2D,
+      x: number,
+      y: number,
       zoom: number,
       mousePos?: { x: number, y: number },
       name: string = "Heli Serang",
@@ -22,13 +22,13 @@ export class HelipadEngine {
       ctx.translate(x, y);
 
       const radius = 150;
-      
+
       // Hover Detection (Circular)
       let isHovered = false;
       if (mousePos) {
          const dx = mousePos.x - x;
          const dy = mousePos.y - y;
-         isHovered = (Math.sqrt(dx*dx + dy*dy) <= radius);
+         isHovered = (Math.sqrt(dx * dx + dy * dy) <= radius);
       }
 
       // 1. CONCRETE BASE (Grid circle)
@@ -64,7 +64,7 @@ export class HelipadEngine {
       ctx.shadowBlur = 10;
       ctx.shadowColor = '#10b981';
       ctx.fillStyle = '#10b981';
-      
+
       for (let i = 0; i < numLights; i++) {
          const angle = (i / numLights) * Math.PI * 2;
          const lx = Math.cos(angle) * (radius - 10);
@@ -79,33 +79,33 @@ export class HelipadEngine {
       if (isHovered) {
          ctx.save();
          ctx.translate(0, -radius - 40);
-         
+
          const total = helipadState ? helipadState.maxCapacity : (targetArmada?.udara?.helikopter_serang || 0);
          const available = helipadState ? helipadState.currentCount : (targetArmada?.udara?.helikopter_serang || 0);
          const text = `${name} - (${available}/${total})`;
-         
+
          ctx.font = "bold 28px Inter, sans-serif";
          const tw = ctx.measureText(text).width;
          const pad = 25;
-         
+
          // Glow Effect
          ctx.shadowColor = "rgba(239, 68, 68, 0.8)";
          ctx.shadowBlur = 15;
-         
+
          // Tooltip Box
          ctx.fillStyle = "rgba(15, 23, 42, 0.95)";
          ctx.strokeStyle = "#ef4444";
          ctx.lineWidth = 2;
          ctx.fillRect(-tw / 2 - 20, -60, tw + 40, 80);
          ctx.strokeRect(-tw / 2 - 20, -60, tw + 40, 80);
-         
+
          // Text
          ctx.shadowBlur = 0;
          ctx.fillStyle = "#ffffff";
          ctx.textAlign = "center";
          ctx.textBaseline = "middle";
          ctx.fillText(text, 0, -10);
-         
+
          ctx.restore();
       }
 

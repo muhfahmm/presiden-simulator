@@ -94,8 +94,32 @@ export function drawWarMapBackground(
    ctx.rect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT * 2);
    ctx.clip();
 
+   const SHORELINE_Y = -6000;
+
+   // 2.1 Battlefield Terrain (Green)
    ctx.fillStyle = "#0a4d0a";
    ctx.fillRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT * 2);
+
+   // 2.2 Tactical Base Area (Slate - Right Side, LAND ONLY)
+   ctx.fillStyle = "#0f172a";
+   ctx.fillRect(5000, SHORELINE_Y, THEATER_LIMIT - 5000, THEATER_LIMIT - SHORELINE_Y);
+
+   // 2.3 Sea visuals (Sky Blue / Sea Blue) - Drawn BEFORE buildings so they sit on top
+   // 2.3.1 Shoreline Sandy Tint (Yellowish Glow)
+   ctx.fillStyle = "rgba(253, 224, 71, 0.2)"; // Yellow tint
+   ctx.fillRect(-THEATER_LIMIT, SHORELINE_Y, THEATER_LIMIT * 2, 500);
+
+   // 2.3.2 Sea Water (Sky Blue / Sea Blue)
+   ctx.fillStyle = "rgba(14, 165, 233, 0.6)";
+   ctx.fillRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT + SHORELINE_Y);
+
+   // 2.3.3 Shoreline Border Line (Solid Marker)
+   ctx.strokeStyle = "#5d5d5dff";
+   ctx.lineWidth = 20 / camera.zoom;
+   ctx.beginPath();
+   ctx.moveTo(-THEATER_LIMIT, SHORELINE_Y);
+   ctx.lineTo(THEATER_LIMIT, SHORELINE_Y);
+   ctx.stroke();
 
    // 3. DRAW ROADS (Jalan dengan garis putus-putus)
    const roads = MapTextureEngine.generateHighways();
@@ -143,21 +167,7 @@ export function drawWarMapBackground(
    ctx.stroke();
    ctx.setLineDash([]);
 
-   // 8. Sea visuals (Simplified for this maritime-only file)
-   const SHORELINE_Y = -6000;
-
-   // 2.1 Shoreline Sandy Tint (Optional but premium)
-   ctx.fillStyle = "rgba(234, 179, 8, 0.1)"; // Golden sand glow
-   ctx.fillRect(-THEATER_LIMIT, SHORELINE_Y, THEATER_LIMIT * 2, 500);
-
-   // 2.2 Deep Water Blue
-   ctx.fillStyle = "rgba(30, 41, 59, 0.5)"; 
-   ctx.fillRect(-THEATER_LIMIT, -THEATER_LIMIT, THEATER_LIMIT * 2, THEATER_LIMIT + SHORELINE_Y);
-
-   ctx.strokeStyle = "rgba(239, 68, 68, 0.5)";
-   ctx.lineWidth = 10 / camera.zoom;
-   ctx.beginPath();
-   ctx.stroke();
+   ctx.restore();
 
    ctx.restore();
    ctx.restore();

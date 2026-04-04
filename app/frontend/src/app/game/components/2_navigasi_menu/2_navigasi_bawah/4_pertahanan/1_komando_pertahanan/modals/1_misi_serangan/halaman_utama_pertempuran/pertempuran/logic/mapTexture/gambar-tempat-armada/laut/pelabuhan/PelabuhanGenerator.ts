@@ -32,11 +32,11 @@ export class PelabuhanEngine {
       ctx.lineCap = 'butt';
       ctx.lineJoin = 'miter';
       harbor.piers.forEach(pier => {
-         // Concrete structure (light gray with tactical stroke)
-         ctx.strokeStyle = '#334155'; ctx.lineWidth = pier.width + 4;
+         // Industrial Concrete (Dark neutral greys)
+         ctx.strokeStyle = '#1e293b'; ctx.lineWidth = pier.width + 4;
          ctx.beginPath(); ctx.moveTo(pier.startX, pier.startY); ctx.lineTo(pier.endX, pier.endY); ctx.stroke();
 
-         ctx.strokeStyle = '#64748b'; ctx.lineWidth = pier.width;
+         ctx.strokeStyle = '#475569'; ctx.lineWidth = pier.width;
          ctx.beginPath(); ctx.moveTo(pier.startX, pier.startY); ctx.lineTo(pier.endX, pier.endY); ctx.stroke();
 
          // Bollards (small tactical dots at the edge)
@@ -55,10 +55,10 @@ export class PelabuhanEngine {
       // 2. Draw Warehouses (Gudang)
       harbor.warehouses.forEach(w => {
          // Main building body
-         ctx.fillStyle = '#0f172a';
+         ctx.fillStyle = '#111827';
          ctx.fillRect(w.x, w.y, w.w, w.h);
          // Roof highlight (Tactical industrial look)
-         ctx.strokeStyle = '#334155'; ctx.lineWidth = 2;
+         ctx.strokeStyle = '#374151'; ctx.lineWidth = 2;
          ctx.strokeRect(w.x, w.y, w.w, w.h);
          // Loading bays
          ctx.fillStyle = '#475569';
