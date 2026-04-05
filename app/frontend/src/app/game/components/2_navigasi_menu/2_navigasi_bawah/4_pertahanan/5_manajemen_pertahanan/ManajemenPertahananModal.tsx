@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Shield, Truck, MapPin, Gavel, TowerControl, Ship, Rocket, Activity, TrendingUp, TrendingDown, Clock, Loader2, Eye, EyeOff, Building, Archive, Info, Briefcase, Users, Flame, Landmark, ShieldAlert } from "lucide-react"
@@ -10,7 +10,7 @@ import { calculateConstructionProgress, getStatusText } from "@/app/game/data/co
 import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MaterialRequirement from "../../3_pembangunan/1-produksi/MaterialRequirement";
-import { pertahananRate } from "@/app/database/data/semua_fitur_negara/2_militer";
+import { pertahananRate } from "@/app/database/data/semua_fitur_negara/2_produksi_militer";
 import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
 import { playerMilitaryStorage } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
 

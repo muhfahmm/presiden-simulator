@@ -1,4 +1,4 @@
-﻿import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain, Briefcase, Users2, Cloud } from "lucide-react"
 import { 
   mineralKritisRate, 
@@ -9,7 +9,7 @@ import {
   olahanPanganRate, 
   farmasiRate 
 } from "@/app/database/data/harga_bangunan_negara/1_pembangunan";
-import { pertahananRate, produksiMiliter, pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/2_militer";
+import { pertahananRate, produksiMiliter, pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/2_produksi_militer";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";

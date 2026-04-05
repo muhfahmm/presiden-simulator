@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Shield, Truck, MapPin, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship, Plane, Rocket, Crosshair, Activity, Wifi, Radio, Cctv, Search, Siren, Car, Bike, Dog, ShieldAlert, Anchor, Waves, Satellite, RadioTower, Cpu, Target, Radar, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, EyeOff, Building, Archive, Info, Briefcase, Users, Flame, Factory } from "lucide-react"
@@ -10,7 +10,7 @@ import { calculateConstructionProgress, getStatusText } from "@/app/game/data/co
 import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MaterialRequirement from "../1-produksi/MaterialRequirement";
-import { pertahananRate, produksiMiliter, pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/2_militer";
+import { pertahananRate, produksiMiliter, pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/2_produksi_militer";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
@@ -542,7 +542,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
         <div className="absolute top-0 left-0 bottom-0 bg-cyan-500/5 transition-all duration-1000" style={{ width: `${progress.percentage}%` }} />
       )}
 
-      {/* Info overlay Ã¢â‚¬â€ absolute, same as ProduksiModal */}
+      {/* Info overlay â€” absolute, same as ProduksiModal */}
       {showDetail && (
         <div className="absolute inset-0 z-50 bg-zinc-950/98 backdrop-blur-md p-6 flex flex-col animate-in fade-in zoom-in-95 duration-200">
           <div className="flex justify-between items-center mb-6">

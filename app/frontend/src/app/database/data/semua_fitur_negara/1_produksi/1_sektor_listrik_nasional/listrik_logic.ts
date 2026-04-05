@@ -1,4 +1,4 @@
-import { SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian, SektorPabrikMiliter } from "../../2_militer";
+import { SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian, SektorPabrikMiliter } from "../../2_produksi_militer";
 import { SektorEkstraksi } from "../2_sektor_mineral_kritis";
 import { SektorInfrastruktur } from "../9_infrastruktur";
 import { 
@@ -8,8 +8,8 @@ import {
   SektorOlahanPangan, 
   SektorFarmasi 
 } from "../index";
-import { PendidikanData, KesehatanData, HukumData, SektorKomersial, SektorHiburan } from "../../3_sosial";
-import { OlahragaData } from "../../3_sosial/4_olahraga";
+import { PendidikanData, KesehatanData, HukumData, SektorKomersial, SektorHiburan } from "../../3_tempat_umum";
+import { OlahragaData } from "../../3_tempat_umum/4_olahraga";
 import { SektorListrik, KAPASITAS_LISTRIK_METADATA } from "./1_sektor_listrik_nasional";
 
 export const KAPASITAS_LISTRIK = Object.fromEntries(

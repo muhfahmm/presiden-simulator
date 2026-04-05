@@ -1,25 +1,25 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { indonesia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/asia/67_indonesia";
-import { indonesia_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/asia/67_indonesia";
+import { indonesia_armada } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/2_armada_militer/asia/67_indonesia";
 import { indonesia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/asia/67_indonesia";
 import { indonesia_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/asia/67_indonesia";
-import { indonesia_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/asia/67_indonesia";
+import { indonesia_hukum } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/3_hukum/asia/67_indonesia";
 import { indonesia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/asia/67_indonesia";
-import { indonesia_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/asia/67_indonesia";
-import { indonesia_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/asia/67_indonesia";
+import { indonesia_kepolisian } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/4_armada_kepolisian/asia/67_indonesia";
+import { indonesia_kesehatan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/2_kesehatan/asia/67_indonesia";
 import { indonesia_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/asia/67_indonesia";
 import { indonesia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/asia/67_indonesia";
 import { indonesia_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/asia/67_indonesia";
-import { indonesia_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/asia/67_indonesia";
-import { indonesia_komersial } from "@/app/database/data/semua_fitur_negara/3_sosial/5_komersial/asia/67_indonesia";
-import { indonesia_hiburan } from "@/app/database/data/semua_fitur_negara/3_sosial/6_hiburan/asia/67_indonesia";
-import { indonesia_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/asia/67_indonesia";
-import { indonesia_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/asia/67_indonesia";
+import { indonesia_olahraga } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/4_olahraga/asia/67_indonesia";
+import { indonesia_komersial } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/5_komersial/asia/67_indonesia";
+import { indonesia_hiburan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/6_hiburan/asia/67_indonesia";
+import { indonesia_pabrik } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/5_pabrik_militer/asia/67_indonesia";
+import { indonesia_pendidikan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/1_pendidikan/asia/67_indonesia";
 import { indonesia_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/asia/67_indonesia";
-import { indonesia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/asia/67_indonesia";
+import { indonesia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/1_sektor_pertahanan/asia/67_indonesia";
 import { indonesia_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/67_indonesia";
 import { indonesia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/67_indonesia";
-import { indonesia_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/asia/67_indonesia";
+import { indonesia_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/asia/67_indonesia";
 import { indonesia_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/67_indonesia";
 import { 
   infrastruktur_options, pendidikan_options, sains_penelitian_options, kesehatan_options, olahraga_options, 
