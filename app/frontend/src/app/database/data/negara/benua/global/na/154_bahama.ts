@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { bahama_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/na/154_bahama";
+import { CountryData } from "@/app/database/data/types";
+import { bahama_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/na/154_bahama";
 import { bahama_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/na/154_bahama";
-import { bahama_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/na/154_bahama";
-import { bahama_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/na/154_bahama";
+import { bahama_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/na/154_bahama";
+import { bahama_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/na/154_bahama";
 import { bahama_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/na/154_bahama";
-import { bahama_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/na/154_bahama";
+import { bahama_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/na/154_bahama";
 import { bahama_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/na/154_bahama";
 import { bahama_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/na/154_bahama";
-import { bahama_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/na/154_bahama";
-import { bahama_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/na/154_bahama";
-import { bahama_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/na/154_bahama";
+import { bahama_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/na/154_bahama";
+import { bahama_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/na/154_bahama";
+import { bahama_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/na/154_bahama";
 import { bahama_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/na/154_bahama";
 import { bahama_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/na/154_bahama";
 import { bahama_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/na/154_bahama";
-import { bahama_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/na/154_bahama";
+import { bahama_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/na/154_bahama";
 import { bahama_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/na/154_bahama";
-import { bahama_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/na/154_bahama";
+import { bahama_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/na/154_bahama";
 import { bahama_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/154_bahama";
 import { bahama_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/na/154_bahama";
 import { bahama_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/na/154_bahama";
@@ -41,7 +41,7 @@ export const bahama: CountryData = {
   "hukum": bahama_hukum,
   "sektor_olahraga": bahama_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const bahama: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 90,
@@ -96,7 +96,7 @@ export const bahama: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 32000,
@@ -112,11 +112,11 @@ export const bahama: CountryData = {
     "harga_pendidikan": 677460
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": bahama_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 19,

@@ -1,0 +1,11 @@
+export const tajikistan_agrikultur = {
+    "padi": 19,
+    "gandum": 14, "jagung": 14,
+    "sayur": 27, "umbi": 27,
+    "kedelai": 23,
+    "kelapa_sawit": 37,
+    "kopi": 20, "teh": 20, "kakao": 20, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

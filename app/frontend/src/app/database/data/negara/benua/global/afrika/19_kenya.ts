@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { kenya_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/afrika/19_kenya";
+import { CountryData } from "@/app/database/data/types";
+import { kenya_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/afrika/19_kenya";
 import { kenya_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/afrika/19_kenya";
-import { kenya_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/afrika/19_kenya";
-import { kenya_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/afrika/19_kenya";
+import { kenya_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/afrika/19_kenya";
+import { kenya_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/afrika/19_kenya";
 import { kenya_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/afrika/19_kenya";
-import { kenya_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/afrika/19_kenya";
+import { kenya_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/afrika/19_kenya";
 import { kenya_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/afrika/19_kenya";
 import { kenya_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/afrika/19_kenya";
-import { kenya_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/afrika/19_kenya";
-import { kenya_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/afrika/19_kenya";
-import { kenya_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/afrika/19_kenya";
+import { kenya_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/afrika/19_kenya";
+import { kenya_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/afrika/19_kenya";
+import { kenya_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/afrika/19_kenya";
 import { kenya_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/afrika/19_kenya";
 import { kenya_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/afrika/19_kenya";
 import { kenya_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/afrika/19_kenya";
-import { kenya_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/afrika/19_kenya";
+import { kenya_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/afrika/19_kenya";
 import { kenya_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/afrika/19_kenya";
-import { kenya_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/afrika/19_kenya";
+import { kenya_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/afrika/19_kenya";
 import { kenya_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/19_kenya";
 import { kenya_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/afrika/19_kenya";
 import { kenya_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/afrika/19_kenya";
@@ -41,7 +41,7 @@ export const kenya: CountryData = {
   "hukum": kenya_hukum,
   "sektor_olahraga": kenya_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const kenya: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 50,
@@ -96,7 +96,7 @@ export const kenya: CountryData = {
     "subsidi_perumahan": 25
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 16000,
@@ -112,11 +112,11 @@ export const kenya: CountryData = {
     "harga_pendidikan": 483900
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": kenya_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 27,

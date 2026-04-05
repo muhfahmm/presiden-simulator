@@ -1,0 +1,11 @@
+export const greenland_agrikultur = {
+    "padi": 32,
+    "gandum": 24, "jagung": 24,
+    "sayur": 30, "umbi": 30,
+    "kedelai": 13,
+    "kelapa_sawit": 27,
+    "kopi": 26, "teh": 26, "kakao": 26, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

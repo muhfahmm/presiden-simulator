@@ -1,4 +1,4 @@
-﻿export { eritreaEmbassyConfig } from './10_eritrea';
+export { eritreaEmbassyConfig } from './10_eritrea';
 export { eswatiniEmbassyConfig } from './11_eswatini';
 export { ethiopiaEmbassyConfig } from './12_ethiopia';
 export { gabonEmbassyConfig } from './13_gabon';

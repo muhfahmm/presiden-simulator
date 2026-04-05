@@ -1,0 +1,11 @@
+export const papua_nugini_agrikultur = {
+    "padi": 12,
+    "gandum": 22, "jagung": 22,
+    "sayur": 36, "umbi": 36,
+    "kedelai": 9,
+    "kelapa_sawit": 23,
+    "kopi": 11, "teh": 11, "kakao": 11, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

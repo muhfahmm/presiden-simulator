@@ -1,0 +1,11 @@
+export const maldives_agrikultur = {
+    "padi": 36,
+    "gandum": 24, "jagung": 24,
+    "sayur": 19, "umbi": 19,
+    "kedelai": 17,
+    "kelapa_sawit": 7,
+    "kopi": 20, "teh": 20, "kakao": 20, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

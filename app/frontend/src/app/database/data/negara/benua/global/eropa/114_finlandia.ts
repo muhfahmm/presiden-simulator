@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { finlandia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/eropa/114_finlandia";
+import { CountryData } from "@/app/database/data/types";
+import { finlandia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/eropa/114_finlandia";
 import { finlandia_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/eropa/114_finlandia";
-import { finlandia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/eropa/114_finlandia";
-import { finlandia_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/eropa/114_finlandia";
+import { finlandia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/eropa/114_finlandia";
+import { finlandia_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/eropa/114_finlandia";
 import { finlandia_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/eropa/114_finlandia";
-import { finlandia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/eropa/114_finlandia";
+import { finlandia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/eropa/114_finlandia";
 import { finlandia_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/eropa/114_finlandia";
 import { finlandia_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/eropa/114_finlandia";
-import { finlandia_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/eropa/114_finlandia";
-import { finlandia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/eropa/114_finlandia";
-import { finlandia_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/eropa/114_finlandia";
+import { finlandia_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/eropa/114_finlandia";
+import { finlandia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/eropa/114_finlandia";
+import { finlandia_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/eropa/114_finlandia";
 import { finlandia_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/eropa/114_finlandia";
 import { finlandia_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/eropa/114_finlandia";
 import { finlandia_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/eropa/114_finlandia";
-import { finlandia_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/eropa/114_finlandia";
+import { finlandia_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/eropa/114_finlandia";
 import { finlandia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/eropa/114_finlandia";
-import { finlandia_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/eropa/114_finlandia";
+import { finlandia_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/eropa/114_finlandia";
 import { finlandia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/114_finlandia";
 import { finlandia_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/eropa/114_finlandia";
 import { finlandia_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/eropa/114_finlandia";
@@ -41,7 +41,7 @@ export const finlandia: CountryData = {
   "hukum": finlandia_hukum,
   "sektor_olahraga": finlandia_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const finlandia: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 90,
@@ -96,7 +96,7 @@ export const finlandia: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 8000,
@@ -112,11 +112,11 @@ export const finlandia: CountryData = {
     "harga_pendidikan": 967800
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": finlandia_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 13,

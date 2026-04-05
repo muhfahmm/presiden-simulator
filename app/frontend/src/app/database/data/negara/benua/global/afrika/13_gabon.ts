@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { gabon_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/afrika/13_gabon";
+import { CountryData } from "@/app/database/data/types";
+import { gabon_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/afrika/13_gabon";
 import { gabon_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/afrika/13_gabon";
-import { gabon_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/afrika/13_gabon";
-import { gabon_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/afrika/13_gabon";
+import { gabon_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/afrika/13_gabon";
+import { gabon_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/afrika/13_gabon";
 import { gabon_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/afrika/13_gabon";
-import { gabon_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/afrika/13_gabon";
+import { gabon_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/afrika/13_gabon";
 import { gabon_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/afrika/13_gabon";
 import { gabon_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/afrika/13_gabon";
-import { gabon_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/afrika/13_gabon";
-import { gabon_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/afrika/13_gabon";
-import { gabon_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/afrika/13_gabon";
+import { gabon_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/afrika/13_gabon";
+import { gabon_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/afrika/13_gabon";
+import { gabon_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/afrika/13_gabon";
 import { gabon_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/afrika/13_gabon";
 import { gabon_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/afrika/13_gabon";
 import { gabon_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/afrika/13_gabon";
-import { gabon_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/afrika/13_gabon";
+import { gabon_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/afrika/13_gabon";
 import { gabon_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/afrika/13_gabon";
-import { gabon_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/afrika/13_gabon";
+import { gabon_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/afrika/13_gabon";
 import { gabon_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/13_gabon";
 import { gabon_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/afrika/13_gabon";
 import { gabon_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/afrika/13_gabon";
@@ -41,7 +41,7 @@ export const gabon: CountryData = {
   "hukum": gabon_hukum,
   "sektor_olahraga": gabon_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const gabon: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 30,
@@ -96,7 +96,7 @@ export const gabon: CountryData = {
     "subsidi_perumahan": 25
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 22400,
@@ -112,11 +112,11 @@ export const gabon: CountryData = {
     "harga_pendidikan": 677460
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": gabon_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 27,

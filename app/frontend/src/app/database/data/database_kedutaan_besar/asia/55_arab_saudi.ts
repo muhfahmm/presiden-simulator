@@ -1,4 +1,4 @@
-﻿export const arab_saudiEmbassyConfig = {
+export const arab_saudiEmbassyConfig = {
   level: 1, // 1: Konsulat, 2: Kedubes Utama, 3: Hub Regional
   staffSlots: [
     { id: 1, type: "Atase Militer", active: false },

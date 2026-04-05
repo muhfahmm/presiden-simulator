@@ -1,4 +1,4 @@
-﻿export { argentina } from "./195_argentina";
+export { argentina } from "./195_argentina";
 export { bolivia } from "./196_bolivia";
 export { brazil } from "./197_brazil";
 export { chile } from "./198_chile";

@@ -1,0 +1,11 @@
+export const maroko_agrikultur = {
+    "padi": 32,
+    "gandum": 9, "jagung": 9,
+    "sayur": 42, "umbi": 42,
+    "kedelai": 22,
+    "kelapa_sawit": 25,
+    "kopi": 9, "teh": 9, "kakao": 9, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

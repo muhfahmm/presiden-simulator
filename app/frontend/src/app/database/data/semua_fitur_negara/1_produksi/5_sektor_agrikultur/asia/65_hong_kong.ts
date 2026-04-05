@@ -1,0 +1,11 @@
+export const hong_kong_agrikultur = {
+    "padi": 4,
+    "gandum": 22, "jagung": 22,
+    "sayur": 14, "umbi": 14,
+    "kedelai": 30,
+    "kelapa_sawit": 11,
+    "kopi": 18, "teh": 18, "kakao": 18, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

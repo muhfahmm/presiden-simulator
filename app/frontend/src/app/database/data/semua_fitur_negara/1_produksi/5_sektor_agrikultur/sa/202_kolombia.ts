@@ -1,0 +1,11 @@
+export const kolombia_agrikultur = {
+    "padi": 13,
+    "gandum": 8, "jagung": 8,
+    "sayur": 23, "umbi": 23,
+    "kedelai": 27,
+    "kelapa_sawit": 22,
+    "kopi": 12, "teh": 12, "kakao": 12, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

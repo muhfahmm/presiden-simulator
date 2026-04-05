@@ -1,0 +1,11 @@
+export const ukraina_agrikultur = {
+    "padi": 19,
+    "gandum": 26, "jagung": 26,
+    "sayur": 39, "umbi": 39,
+    "kedelai": 38,
+    "kelapa_sawit": 6,
+    "kopi": 28, "teh": 28, "kakao": 28, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

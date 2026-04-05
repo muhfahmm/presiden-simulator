@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { montenegro_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/eropa/133_montenegro";
+import { CountryData } from "@/app/database/data/types";
+import { montenegro_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/eropa/133_montenegro";
 import { montenegro_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/eropa/133_montenegro";
-import { montenegro_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/eropa/133_montenegro";
-import { montenegro_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/eropa/133_montenegro";
+import { montenegro_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/eropa/133_montenegro";
+import { montenegro_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/eropa/133_montenegro";
 import { montenegro_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/eropa/133_montenegro";
-import { montenegro_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/eropa/133_montenegro";
+import { montenegro_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/eropa/133_montenegro";
 import { montenegro_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/eropa/133_montenegro";
 import { montenegro_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/eropa/133_montenegro";
-import { montenegro_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/eropa/133_montenegro";
-import { montenegro_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/eropa/133_montenegro";
-import { montenegro_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/eropa/133_montenegro";
+import { montenegro_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/eropa/133_montenegro";
+import { montenegro_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/eropa/133_montenegro";
+import { montenegro_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/eropa/133_montenegro";
 import { montenegro_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/eropa/133_montenegro";
 import { montenegro_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/eropa/133_montenegro";
 import { montenegro_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/eropa/133_montenegro";
-import { montenegro_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/eropa/133_montenegro";
+import { montenegro_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/eropa/133_montenegro";
 import { montenegro_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/eropa/133_montenegro";
-import { montenegro_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/eropa/133_montenegro";
+import { montenegro_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/eropa/133_montenegro";
 import { montenegro_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/133_montenegro";
 import { montenegro_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/eropa/133_montenegro";
 import { montenegro_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/eropa/133_montenegro";
@@ -41,7 +41,7 @@ export const montenegro: CountryData = {
   "hukum": montenegro_hukum,
   "sektor_olahraga": montenegro_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const montenegro: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 80,
@@ -96,7 +96,7 @@ export const montenegro: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 12800,
@@ -112,11 +112,11 @@ export const montenegro: CountryData = {
     "harga_pendidikan": 677460
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": montenegro_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 4,

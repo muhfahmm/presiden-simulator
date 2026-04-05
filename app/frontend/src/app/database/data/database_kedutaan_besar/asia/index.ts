@@ -1,4 +1,4 @@
-﻿export { vietnamEmbassyConfig } from './100_vietnam';
+export { vietnamEmbassyConfig } from './100_vietnam';
 export { yamanEmbassyConfig } from './101_yaman';
 export { yordaniaEmbassyConfig } from './102_yordania';
 export { afganistanEmbassyConfig } from './54_afganistan';

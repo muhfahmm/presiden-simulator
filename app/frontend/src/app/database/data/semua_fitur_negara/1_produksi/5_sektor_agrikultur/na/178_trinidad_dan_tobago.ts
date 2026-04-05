@@ -1,0 +1,11 @@
+export const trinidad_dan_tobago_agrikultur = {
+    "padi": 35,
+    "gandum": 19, "jagung": 19,
+    "sayur": 25, "umbi": 25,
+    "kedelai": 8,
+    "kelapa_sawit": 34,
+    "kopi": 27, "teh": 27, "kakao": 27, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

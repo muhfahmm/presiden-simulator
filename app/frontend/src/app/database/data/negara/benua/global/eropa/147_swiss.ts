@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { swiss_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/eropa/147_swiss";
+import { CountryData } from "@/app/database/data/types";
+import { swiss_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/eropa/147_swiss";
 import { swiss_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/eropa/147_swiss";
-import { swiss_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/eropa/147_swiss";
-import { swiss_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/eropa/147_swiss";
+import { swiss_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/eropa/147_swiss";
+import { swiss_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/eropa/147_swiss";
 import { swiss_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/eropa/147_swiss";
-import { swiss_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/eropa/147_swiss";
+import { swiss_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/eropa/147_swiss";
 import { swiss_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/eropa/147_swiss";
 import { swiss_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/eropa/147_swiss";
-import { swiss_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/eropa/147_swiss";
-import { swiss_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/eropa/147_swiss";
-import { swiss_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/eropa/147_swiss";
+import { swiss_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/eropa/147_swiss";
+import { swiss_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/eropa/147_swiss";
+import { swiss_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/eropa/147_swiss";
 import { swiss_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/eropa/147_swiss";
 import { swiss_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/eropa/147_swiss";
 import { swiss_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/eropa/147_swiss";
-import { swiss_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/eropa/147_swiss";
+import { swiss_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/eropa/147_swiss";
 import { swiss_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/eropa/147_swiss";
-import { swiss_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/eropa/147_swiss";
+import { swiss_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/eropa/147_swiss";
 import { swiss_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/147_swiss";
 import { swiss_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/eropa/147_swiss";
 import { swiss_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/eropa/147_swiss";
@@ -41,7 +41,7 @@ export const swiss: CountryData = {
   "hukum": swiss_hukum,
   "sektor_olahraga": swiss_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const swiss: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 90,
@@ -96,7 +96,7 @@ export const swiss: CountryData = {
     "subsidi_perumahan": 75
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 16000,
@@ -112,11 +112,11 @@ export const swiss: CountryData = {
     "harga_pendidikan": 483900
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": swiss_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 34,

@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { meksiko_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/na/170_meksiko";
+import { CountryData } from "@/app/database/data/types";
+import { meksiko_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/na/170_meksiko";
 import { meksiko_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/na/170_meksiko";
-import { meksiko_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/na/170_meksiko";
-import { meksiko_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/na/170_meksiko";
+import { meksiko_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/na/170_meksiko";
+import { meksiko_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/na/170_meksiko";
 import { meksiko_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/na/170_meksiko";
-import { meksiko_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/na/170_meksiko";
+import { meksiko_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/na/170_meksiko";
 import { meksiko_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/na/170_meksiko";
 import { meksiko_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/na/170_meksiko";
-import { meksiko_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/na/170_meksiko";
-import { meksiko_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/na/170_meksiko";
-import { meksiko_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/na/170_meksiko";
+import { meksiko_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/na/170_meksiko";
+import { meksiko_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/na/170_meksiko";
+import { meksiko_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/na/170_meksiko";
 import { meksiko_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/na/170_meksiko";
 import { meksiko_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/na/170_meksiko";
 import { meksiko_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/na/170_meksiko";
-import { meksiko_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/na/170_meksiko";
+import { meksiko_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/na/170_meksiko";
 import { meksiko_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/na/170_meksiko";
-import { meksiko_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/na/170_meksiko";
+import { meksiko_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/na/170_meksiko";
 import { meksiko_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/170_meksiko";
 import { meksiko_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/na/170_meksiko";
 import { meksiko_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/na/170_meksiko";
@@ -41,7 +41,7 @@ export const meksiko: CountryData = {
   "hukum": meksiko_hukum,
   "sektor_olahraga": meksiko_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const meksiko: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 100,
@@ -96,7 +96,7 @@ export const meksiko: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 22400,
@@ -112,11 +112,11 @@ export const meksiko: CountryData = {
     "harga_pendidikan": 387120
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": meksiko_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 4,

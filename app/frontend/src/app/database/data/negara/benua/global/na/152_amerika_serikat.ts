@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { amerika_serikat_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/na/152_amerika_serikat";
+import { CountryData } from "@/app/database/data/types";
+import { amerika_serikat_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/na/152_amerika_serikat";
 import { amerika_serikat_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/na/152_amerika_serikat";
-import { amerika_serikat_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/na/152_amerika_serikat";
-import { amerika_serikat_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/na/152_amerika_serikat";
+import { amerika_serikat_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/na/152_amerika_serikat";
+import { amerika_serikat_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/na/152_amerika_serikat";
 import { amerika_serikat_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/na/152_amerika_serikat";
-import { amerika_serikat_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/na/152_amerika_serikat";
+import { amerika_serikat_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/na/152_amerika_serikat";
 import { amerika_serikat_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/na/152_amerika_serikat";
 import { amerika_serikat_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/na/152_amerika_serikat";
-import { amerika_serikat_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/na/152_amerika_serikat";
-import { amerika_serikat_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/na/152_amerika_serikat";
-import { amerika_serikat_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/na/152_amerika_serikat";
+import { amerika_serikat_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/na/152_amerika_serikat";
+import { amerika_serikat_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/na/152_amerika_serikat";
+import { amerika_serikat_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/na/152_amerika_serikat";
 import { amerika_serikat_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/na/152_amerika_serikat";
 import { amerika_serikat_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/na/152_amerika_serikat";
 import { amerika_serikat_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/na/152_amerika_serikat";
-import { amerika_serikat_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/na/152_amerika_serikat";
+import { amerika_serikat_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/na/152_amerika_serikat";
 import { amerika_serikat_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/na/152_amerika_serikat";
-import { amerika_serikat_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/na/152_amerika_serikat";
+import { amerika_serikat_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/na/152_amerika_serikat";
 import { amerika_serikat_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/152_amerika_serikat";
 import { amerika_serikat_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/na/152_amerika_serikat";
 import { amerika_serikat_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/na/152_amerika_serikat";
@@ -41,7 +41,7 @@ export const amerika_serikat: CountryData = {
   "hukum": amerika_serikat_hukum,
   "sektor_olahraga": amerika_serikat_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const amerika_serikat: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 80,
@@ -96,7 +96,7 @@ export const amerika_serikat: CountryData = {
     "subsidi_perumahan": 75
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 32000,
@@ -112,11 +112,11 @@ export const amerika_serikat: CountryData = {
     "harga_pendidikan": 967800
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": amerika_serikat_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 6,

@@ -1,0 +1,11 @@
+export const togo_agrikultur = {
+    "padi": 35,
+    "gandum": 10, "jagung": 10,
+    "sayur": 11, "umbi": 11,
+    "kedelai": 32,
+    "kelapa_sawit": 27,
+    "kopi": 14, "teh": 14, "kakao": 14, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

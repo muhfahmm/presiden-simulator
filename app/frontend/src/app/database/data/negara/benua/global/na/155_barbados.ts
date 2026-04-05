@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { barbados_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/na/155_barbados";
+import { CountryData } from "@/app/database/data/types";
+import { barbados_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/na/155_barbados";
 import { barbados_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/na/155_barbados";
-import { barbados_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/na/155_barbados";
-import { barbados_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/na/155_barbados";
+import { barbados_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/na/155_barbados";
+import { barbados_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/na/155_barbados";
 import { barbados_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/na/155_barbados";
-import { barbados_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/na/155_barbados";
+import { barbados_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/na/155_barbados";
 import { barbados_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/na/155_barbados";
 import { barbados_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/na/155_barbados";
-import { barbados_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/na/155_barbados";
-import { barbados_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/na/155_barbados";
-import { barbados_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/na/155_barbados";
+import { barbados_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/na/155_barbados";
+import { barbados_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/na/155_barbados";
+import { barbados_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/na/155_barbados";
 import { barbados_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/na/155_barbados";
 import { barbados_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/na/155_barbados";
 import { barbados_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/na/155_barbados";
-import { barbados_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/na/155_barbados";
+import { barbados_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/na/155_barbados";
 import { barbados_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/na/155_barbados";
-import { barbados_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/na/155_barbados";
+import { barbados_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/na/155_barbados";
 import { barbados_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/155_barbados";
 import { barbados_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/na/155_barbados";
 import { barbados_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/na/155_barbados";
@@ -41,7 +41,7 @@ export const barbados: CountryData = {
   "hukum": barbados_hukum,
   "sektor_olahraga": barbados_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const barbados: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 80,
@@ -96,7 +96,7 @@ export const barbados: CountryData = {
     "subsidi_perumahan": 75
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 32000,
@@ -112,11 +112,11 @@ export const barbados: CountryData = {
     "harga_pendidikan": 483900
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": barbados_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 35,

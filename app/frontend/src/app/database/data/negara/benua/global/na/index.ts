@@ -1,4 +1,4 @@
-﻿export { amerika_serikat } from "./152_amerika_serikat";
+export { amerika_serikat } from "./152_amerika_serikat";
 export { antigua_dan_barbuda } from "./153_antigua_dan_barbuda";
 export { bahama } from "./154_bahama";
 export { barbados } from "./155_barbados";

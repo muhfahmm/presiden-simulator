@@ -1,4 +1,4 @@
-﻿export { argentinaEmbassyConfig } from './195_argentina';
+export { argentinaEmbassyConfig } from './195_argentina';
 export { boliviaEmbassyConfig } from './196_bolivia';
 export { brazilEmbassyConfig } from './197_brazil';
 export { chileEmbassyConfig } from './198_chile';

@@ -1,0 +1,11 @@
+export const liberia_agrikultur = {
+    "padi": 28,
+    "gandum": 28, "jagung": 28,
+    "sayur": 32, "umbi": 32,
+    "kedelai": 29,
+    "kelapa_sawit": 30,
+    "kopi": 25, "teh": 25, "kakao": 25, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

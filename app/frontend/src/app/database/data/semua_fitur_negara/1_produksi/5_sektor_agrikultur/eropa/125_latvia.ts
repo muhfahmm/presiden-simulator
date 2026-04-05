@@ -1,0 +1,11 @@
+export const latvia_agrikultur = {
+    "padi": 14,
+    "gandum": 7, "jagung": 7,
+    "sayur": 24, "umbi": 24,
+    "kedelai": 21,
+    "kelapa_sawit": 10,
+    "kopi": 31, "teh": 31, "kakao": 31, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

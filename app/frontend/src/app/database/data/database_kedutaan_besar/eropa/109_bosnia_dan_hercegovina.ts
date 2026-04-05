@@ -1,4 +1,4 @@
-﻿export const bosnia_dan_hercegovinaEmbassyConfig = {
+export const bosnia_dan_hercegovinaEmbassyConfig = {
   level: 1, // 1: Konsulat, 2: Kedubes Utama, 3: Hub Regional
   staffSlots: [
     { id: 1, type: "Atase Militer", active: false },

@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { sri_lanka_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/asia/92_sri_lanka";
+import { CountryData } from "@/app/database/data/types";
+import { sri_lanka_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/asia/92_sri_lanka";
 import { sri_lanka_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/asia/92_sri_lanka";
-import { sri_lanka_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/asia/92_sri_lanka";
-import { sri_lanka_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/asia/92_sri_lanka";
+import { sri_lanka_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/asia/92_sri_lanka";
+import { sri_lanka_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/asia/92_sri_lanka";
 import { sri_lanka_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/asia/92_sri_lanka";
-import { sri_lanka_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/asia/92_sri_lanka";
+import { sri_lanka_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/asia/92_sri_lanka";
 import { sri_lanka_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/asia/92_sri_lanka";
 import { sri_lanka_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/asia/92_sri_lanka";
-import { sri_lanka_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/asia/92_sri_lanka";
-import { sri_lanka_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/asia/92_sri_lanka";
-import { sri_lanka_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/asia/92_sri_lanka";
+import { sri_lanka_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/asia/92_sri_lanka";
+import { sri_lanka_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/asia/92_sri_lanka";
+import { sri_lanka_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/asia/92_sri_lanka";
 import { sri_lanka_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/asia/92_sri_lanka";
 import { sri_lanka_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/asia/92_sri_lanka";
 import { sri_lanka_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/asia/92_sri_lanka";
-import { sri_lanka_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/asia/92_sri_lanka";
+import { sri_lanka_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/asia/92_sri_lanka";
 import { sri_lanka_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/asia/92_sri_lanka";
-import { sri_lanka_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/asia/92_sri_lanka";
+import { sri_lanka_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/92_sri_lanka";
 import { sri_lanka_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/92_sri_lanka";
 import { sri_lanka_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/asia/92_sri_lanka";
 import { sri_lanka_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/92_sri_lanka";
@@ -41,7 +41,7 @@ export const sri_lanka: CountryData = {
   "hukum": sri_lanka_hukum,
   "sektor_olahraga": sri_lanka_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const sri_lanka: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 50,
@@ -96,7 +96,7 @@ export const sri_lanka: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 32000,
@@ -112,11 +112,11 @@ export const sri_lanka: CountryData = {
     "harga_pendidikan": 387120
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": sri_lanka_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 7,

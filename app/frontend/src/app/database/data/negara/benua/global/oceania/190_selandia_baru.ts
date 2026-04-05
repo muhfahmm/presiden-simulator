@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { selandia_baru_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/oceania/190_selandia_baru";
+import { CountryData } from "@/app/database/data/types";
+import { selandia_baru_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/oceania/190_selandia_baru";
 import { selandia_baru_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/oceania/190_selandia_baru";
-import { selandia_baru_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/oceania/190_selandia_baru";
-import { selandia_baru_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/oceania/190_selandia_baru";
+import { selandia_baru_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/oceania/190_selandia_baru";
+import { selandia_baru_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/oceania/190_selandia_baru";
 import { selandia_baru_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/oceania/190_selandia_baru";
-import { selandia_baru_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/oceania/190_selandia_baru";
+import { selandia_baru_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/oceania/190_selandia_baru";
 import { selandia_baru_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/oceania/190_selandia_baru";
 import { selandia_baru_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/oceania/190_selandia_baru";
-import { selandia_baru_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/oceania/190_selandia_baru";
-import { selandia_baru_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/oceania/190_selandia_baru";
-import { selandia_baru_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/oceania/190_selandia_baru";
+import { selandia_baru_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/oceania/190_selandia_baru";
+import { selandia_baru_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/oceania/190_selandia_baru";
+import { selandia_baru_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/oceania/190_selandia_baru";
 import { selandia_baru_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/oceania/190_selandia_baru";
 import { selandia_baru_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/oceania/190_selandia_baru";
 import { selandia_baru_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/oceania/190_selandia_baru";
-import { selandia_baru_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/oceania/190_selandia_baru";
+import { selandia_baru_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/oceania/190_selandia_baru";
 import { selandia_baru_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/oceania/190_selandia_baru";
-import { selandia_baru_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/oceania/190_selandia_baru";
+import { selandia_baru_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/oceania/190_selandia_baru";
 import { selandia_baru_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/190_selandia_baru";
 import { selandia_baru_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/oceania/190_selandia_baru";
 import { selandia_baru_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/oceania/190_selandia_baru";
@@ -41,7 +41,7 @@ export const selandia_baru: CountryData = {
   "hukum": selandia_baru_hukum,
   "sektor_olahraga": selandia_baru_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const selandia_baru: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 90,
@@ -96,7 +96,7 @@ export const selandia_baru: CountryData = {
     "subsidi_perumahan": 75
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 12800,
@@ -112,11 +112,11 @@ export const selandia_baru: CountryData = {
     "harga_pendidikan": 483900
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": selandia_baru_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 1,

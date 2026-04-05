@@ -1,0 +1,11 @@
+export const gibraltar_agrikultur = {
+    "padi": 15,
+    "gandum": 3, "jagung": 3,
+    "sayur": 18, "umbi": 18,
+    "kedelai": 6,
+    "kelapa_sawit": 9,
+    "kopi": 26, "teh": 26, "kakao": 26, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

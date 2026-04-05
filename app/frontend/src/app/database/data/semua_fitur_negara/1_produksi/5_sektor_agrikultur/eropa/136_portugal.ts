@@ -1,0 +1,11 @@
+export const portugal_agrikultur = {
+    "padi": 20,
+    "gandum": 21, "jagung": 21,
+    "sayur": 15, "umbi": 15,
+    "kedelai": 15,
+    "kelapa_sawit": 28,
+    "kopi": 21, "teh": 21, "kakao": 21, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

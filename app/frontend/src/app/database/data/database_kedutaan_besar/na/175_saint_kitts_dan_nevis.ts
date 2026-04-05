@@ -1,4 +1,4 @@
-﻿export const saint_kitts_dan_nevisEmbassyConfig = {
+export const saint_kitts_dan_nevisEmbassyConfig = {
   level: 1, // 1: Konsulat, 2: Kedubes Utama, 3: Hub Regional
   staffSlots: [
     { id: 1, type: "Atase Militer", active: false },

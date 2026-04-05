@@ -1,0 +1,11 @@
+export const pakistan_agrikultur = {
+    "padi": 30,
+    "gandum": 10, "jagung": 10,
+    "sayur": 20, "umbi": 20,
+    "kedelai": 37,
+    "kelapa_sawit": 10,
+    "kopi": 22, "teh": 22, "kakao": 22, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

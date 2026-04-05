@@ -1,4 +1,4 @@
-﻿export { albaniaEmbassyConfig } from './103_albania';
+export { albaniaEmbassyConfig } from './103_albania';
 export { andorraEmbassyConfig } from './104_andorra';
 export { austriaEmbassyConfig } from './105_austria';
 export { belandaEmbassyConfig } from './106_belanda';

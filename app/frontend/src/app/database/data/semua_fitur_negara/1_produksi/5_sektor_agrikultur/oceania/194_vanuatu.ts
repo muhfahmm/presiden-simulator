@@ -1,0 +1,11 @@
+export const vanuatu_agrikultur = {
+    "padi": 32,
+    "gandum": 32, "jagung": 32,
+    "sayur": 26, "umbi": 26,
+    "kedelai": 8,
+    "kelapa_sawit": 26,
+    "kopi": 23, "teh": 23, "kakao": 23, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

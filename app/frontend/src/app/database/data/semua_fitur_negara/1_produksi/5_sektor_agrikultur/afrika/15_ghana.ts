@@ -1,0 +1,11 @@
+export const ghana_agrikultur = {
+    "padi": 39,
+    "gandum": 14, "jagung": 14,
+    "sayur": 28, "umbi": 28,
+    "kedelai": 11,
+    "kelapa_sawit": 22,
+    "kopi": 52, "teh": 52, "kakao": 52, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

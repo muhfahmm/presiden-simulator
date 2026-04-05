@@ -1,0 +1,11 @@
+export const kosovo_agrikultur = {
+    "padi": 26,
+    "gandum": 22, "jagung": 22,
+    "sayur": 15, "umbi": 15,
+    "kedelai": 33,
+    "kelapa_sawit": 1,
+    "kopi": 31, "teh": 31, "kakao": 31, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

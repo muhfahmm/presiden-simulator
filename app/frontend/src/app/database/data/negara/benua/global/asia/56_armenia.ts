@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { armenia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/asia/56_armenia";
+import { CountryData } from "@/app/database/data/types";
+import { armenia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/asia/56_armenia";
 import { armenia_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/asia/56_armenia";
-import { armenia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/asia/56_armenia";
-import { armenia_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/asia/56_armenia";
+import { armenia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/asia/56_armenia";
+import { armenia_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/asia/56_armenia";
 import { armenia_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/asia/56_armenia";
-import { armenia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/asia/56_armenia";
+import { armenia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/asia/56_armenia";
 import { armenia_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/asia/56_armenia";
 import { armenia_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/asia/56_armenia";
-import { armenia_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/asia/56_armenia";
-import { armenia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/asia/56_armenia";
-import { armenia_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/asia/56_armenia";
+import { armenia_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/asia/56_armenia";
+import { armenia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/asia/56_armenia";
+import { armenia_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/asia/56_armenia";
 import { armenia_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/asia/56_armenia";
 import { armenia_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/asia/56_armenia";
 import { armenia_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/asia/56_armenia";
-import { armenia_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/asia/56_armenia";
+import { armenia_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/asia/56_armenia";
 import { armenia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/asia/56_armenia";
-import { armenia_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/asia/56_armenia";
+import { armenia_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/56_armenia";
 import { armenia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/56_armenia";
 import { armenia_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/asia/56_armenia";
 import { armenia_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/56_armenia";
@@ -41,7 +41,7 @@ export const armenia: CountryData = {
   "hukum": armenia_hukum,
   "sektor_olahraga": armenia_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const armenia: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 70,
@@ -96,7 +96,7 @@ export const armenia: CountryData = {
     "subsidi_perumahan": 25
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 16000,
@@ -112,11 +112,11 @@ export const armenia: CountryData = {
     "harga_pendidikan": 967800
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": armenia_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 40,

@@ -1,4 +1,4 @@
-﻿export { australiaEmbassyConfig } from './179_australia';
+export { australiaEmbassyConfig } from './179_australia';
 export { fijiEmbassyConfig } from './180_fiji';
 export { guamEmbassyConfig } from './181_guam';
 export { kiribatiEmbassyConfig } from './182_kiribati';

@@ -1,4 +1,4 @@
-﻿export { afrika_selatan } from "./1_afrika_selatan";
+export { afrika_selatan } from "./1_afrika_selatan";
 export { aljazair } from "./2_aljazair";
 export { angola } from "./3_angola";
 export { benin } from "./4_benin";

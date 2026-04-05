@@ -1,0 +1,11 @@
+export const moldova_agrikultur = {
+    "padi": 40,
+    "gandum": 34, "jagung": 34,
+    "sayur": 20, "umbi": 20,
+    "kedelai": 16,
+    "kelapa_sawit": 20,
+    "kopi": 12, "teh": 12, "kakao": 12, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

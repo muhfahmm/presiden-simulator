@@ -1,0 +1,11 @@
+export const puerto_rico_agrikultur = {
+    "padi": 4,
+    "gandum": 31, "jagung": 31,
+    "sayur": 20, "umbi": 20,
+    "kedelai": 17,
+    "kelapa_sawit": 20,
+    "kopi": 10, "teh": 10, "kakao": 10, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

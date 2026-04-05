@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { bermuda_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/na/157_bermuda";
+import { CountryData } from "@/app/database/data/types";
+import { bermuda_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/na/157_bermuda";
 import { bermuda_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/na/157_bermuda";
-import { bermuda_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/na/157_bermuda";
-import { bermuda_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/na/157_bermuda";
+import { bermuda_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/na/157_bermuda";
+import { bermuda_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/na/157_bermuda";
 import { bermuda_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/na/157_bermuda";
-import { bermuda_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/na/157_bermuda";
+import { bermuda_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/na/157_bermuda";
 import { bermuda_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/na/157_bermuda";
 import { bermuda_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/na/157_bermuda";
-import { bermuda_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/na/157_bermuda";
-import { bermuda_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/na/157_bermuda";
-import { bermuda_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/na/157_bermuda";
+import { bermuda_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/na/157_bermuda";
+import { bermuda_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/na/157_bermuda";
+import { bermuda_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/na/157_bermuda";
 import { bermuda_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/na/157_bermuda";
 import { bermuda_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/na/157_bermuda";
 import { bermuda_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/na/157_bermuda";
-import { bermuda_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/na/157_bermuda";
+import { bermuda_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/na/157_bermuda";
 import { bermuda_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/na/157_bermuda";
-import { bermuda_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/na/157_bermuda";
+import { bermuda_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/na/157_bermuda";
 import { bermuda_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/157_bermuda";
 import { bermuda_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/na/157_bermuda";
 import { bermuda_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/na/157_bermuda";
@@ -41,7 +41,7 @@ export const bermuda: CountryData = {
   "hukum": bermuda_hukum,
   "sektor_olahraga": bermuda_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const bermuda: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 90,
@@ -96,7 +96,7 @@ export const bermuda: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 8000,
@@ -112,11 +112,11 @@ export const bermuda: CountryData = {
     "harga_pendidikan": 483900
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": bermuda_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 33,

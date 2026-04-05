@@ -1,0 +1,11 @@
+export const lithuania_agrikultur = {
+    "padi": 9,
+    "gandum": 26, "jagung": 26,
+    "sayur": 22, "umbi": 22,
+    "kedelai": 2,
+    "kelapa_sawit": 5,
+    "kopi": 10, "teh": 10, "kakao": 10, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

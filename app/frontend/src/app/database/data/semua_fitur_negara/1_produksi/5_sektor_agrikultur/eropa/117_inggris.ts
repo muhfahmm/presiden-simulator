@@ -1,0 +1,11 @@
+export const inggris_agrikultur = {
+    "padi": 6,
+    "gandum": 18, "jagung": 18,
+    "sayur": 12, "umbi": 12,
+    "kedelai": 31,
+    "kelapa_sawit": 29,
+    "kopi": 8, "teh": 8, "kakao": 8, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

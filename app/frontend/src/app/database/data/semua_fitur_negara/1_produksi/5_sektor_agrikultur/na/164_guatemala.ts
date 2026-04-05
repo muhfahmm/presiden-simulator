@@ -1,0 +1,11 @@
+export const guatemala_agrikultur = {
+    "padi": 27,
+    "gandum": 22, "jagung": 22,
+    "sayur": 22, "umbi": 22,
+    "kedelai": 25,
+    "kelapa_sawit": 30,
+    "kopi": 19, "teh": 19, "kakao": 19, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

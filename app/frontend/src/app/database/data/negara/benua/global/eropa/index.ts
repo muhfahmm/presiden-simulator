@@ -1,4 +1,4 @@
-﻿export { albania } from "./103_albania";
+export { albania } from "./103_albania";
 export { andorra } from "./104_andorra";
 export { austria } from "./105_austria";
 export { belanda } from "./106_belanda";

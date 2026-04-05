@@ -1,4 +1,4 @@
-﻿export const costa_ricaEmbassyConfig = {
+export const costa_ricaEmbassyConfig = {
   level: 1, // 1: Konsulat, 2: Kedubes Utama, 3: Hub Regional
   staffSlots: [
     { id: 1, type: "Atase Militer", active: false },

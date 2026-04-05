@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { grenada_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/na/163_grenada";
+import { CountryData } from "@/app/database/data/types";
+import { grenada_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/na/163_grenada";
 import { grenada_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/na/163_grenada";
-import { grenada_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/na/163_grenada";
-import { grenada_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/na/163_grenada";
+import { grenada_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/na/163_grenada";
+import { grenada_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/na/163_grenada";
 import { grenada_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/na/163_grenada";
-import { grenada_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/na/163_grenada";
+import { grenada_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/na/163_grenada";
 import { grenada_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/na/163_grenada";
 import { grenada_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/na/163_grenada";
-import { grenada_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/na/163_grenada";
-import { grenada_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/na/163_grenada";
-import { grenada_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/na/163_grenada";
+import { grenada_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/na/163_grenada";
+import { grenada_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/na/163_grenada";
+import { grenada_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/na/163_grenada";
 import { grenada_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/na/163_grenada";
 import { grenada_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/na/163_grenada";
 import { grenada_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/na/163_grenada";
-import { grenada_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/na/163_grenada";
+import { grenada_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/na/163_grenada";
 import { grenada_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/na/163_grenada";
-import { grenada_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/na/163_grenada";
+import { grenada_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/na/163_grenada";
 import { grenada_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/163_grenada";
 import { grenada_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/na/163_grenada";
 import { grenada_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/na/163_grenada";
@@ -41,7 +41,7 @@ export const grenada: CountryData = {
   "hukum": grenada_hukum,
   "sektor_olahraga": grenada_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const grenada: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 80,
@@ -96,7 +96,7 @@ export const grenada: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 16000,
@@ -112,11 +112,11 @@ export const grenada: CountryData = {
     "harga_pendidikan": 387120
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": grenada_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 8,

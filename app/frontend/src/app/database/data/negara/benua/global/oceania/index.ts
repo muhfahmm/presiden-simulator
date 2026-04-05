@@ -1,4 +1,4 @@
-﻿export { australia } from "./179_australia";
+export { australia } from "./179_australia";
 export { fiji } from "./180_fiji";
 export { guam } from "./181_guam";
 export { kiribati } from "./182_kiribati";

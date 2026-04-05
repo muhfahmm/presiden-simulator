@@ -1,4 +1,4 @@
-﻿export const republik_serbiaEmbassyConfig = {
+export const republik_serbiaEmbassyConfig = {
   level: 1, // 1: Konsulat, 2: Kedubes Utama, 3: Hub Regional
   staffSlots: [
     { id: 1, type: "Atase Militer", active: false },

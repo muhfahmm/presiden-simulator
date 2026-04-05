@@ -1,0 +1,11 @@
+export const iran_agrikultur = {
+    "padi": 21,
+    "gandum": 10, "jagung": 10,
+    "sayur": 20, "umbi": 20,
+    "kedelai": 7,
+    "kelapa_sawit": 16,
+    "kopi": 28, "teh": 28, "kakao": 28, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

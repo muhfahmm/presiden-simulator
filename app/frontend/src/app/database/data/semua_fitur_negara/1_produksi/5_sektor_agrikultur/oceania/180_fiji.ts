@@ -1,0 +1,11 @@
+export const fiji_agrikultur = {
+    "padi": 6,
+    "gandum": 30, "jagung": 30,
+    "sayur": 33, "umbi": 33,
+    "kedelai": 15,
+    "kelapa_sawit": 22,
+    "kopi": 29, "teh": 29, "kakao": 29, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { arab_saudi_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/asia/55_arab_saudi";
+import { CountryData } from "@/app/database/data/types";
+import { arab_saudi_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/asia/55_arab_saudi";
 import { arab_saudi_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/asia/55_arab_saudi";
-import { arab_saudi_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/asia/55_arab_saudi";
-import { arab_saudi_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/asia/55_arab_saudi";
+import { arab_saudi_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/asia/55_arab_saudi";
+import { arab_saudi_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/asia/55_arab_saudi";
 import { arab_saudi_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/asia/55_arab_saudi";
-import { arab_saudi_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/asia/55_arab_saudi";
+import { arab_saudi_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/asia/55_arab_saudi";
 import { arab_saudi_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/asia/55_arab_saudi";
 import { arab_saudi_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/asia/55_arab_saudi";
-import { arab_saudi_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/asia/55_arab_saudi";
-import { arab_saudi_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/asia/55_arab_saudi";
-import { arab_saudi_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/asia/55_arab_saudi";
+import { arab_saudi_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/asia/55_arab_saudi";
+import { arab_saudi_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/asia/55_arab_saudi";
+import { arab_saudi_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/asia/55_arab_saudi";
 import { arab_saudi_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/asia/55_arab_saudi";
 import { arab_saudi_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/asia/55_arab_saudi";
 import { arab_saudi_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/asia/55_arab_saudi";
-import { arab_saudi_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/asia/55_arab_saudi";
+import { arab_saudi_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/asia/55_arab_saudi";
 import { arab_saudi_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/asia/55_arab_saudi";
-import { arab_saudi_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/asia/55_arab_saudi";
+import { arab_saudi_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/55_arab_saudi";
 import { arab_saudi_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/55_arab_saudi";
 import { arab_saudi_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/asia/55_arab_saudi";
 import { arab_saudi_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/55_arab_saudi";
@@ -41,7 +41,7 @@ export const arab_saudi: CountryData = {
   "hukum": arab_saudi_hukum,
   "sektor_olahraga": arab_saudi_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const arab_saudi: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 60,
@@ -96,7 +96,7 @@ export const arab_saudi: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 32000,
@@ -112,11 +112,11 @@ export const arab_saudi: CountryData = {
     "harga_pendidikan": 241950
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": arab_saudi_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 33,

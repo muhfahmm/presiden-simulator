@@ -1,0 +1,11 @@
+export const costa_rica_agrikultur = {
+    "padi": 19,
+    "gandum": 24, "jagung": 24,
+    "sayur": 10, "umbi": 10,
+    "kedelai": 34,
+    "kelapa_sawit": 6,
+    "kopi": 32, "teh": 32, "kakao": 32, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

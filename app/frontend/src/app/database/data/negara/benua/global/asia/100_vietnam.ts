@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { vietnam_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/asia/100_vietnam";
+import { CountryData } from "@/app/database/data/types";
+import { vietnam_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/asia/100_vietnam";
 import { vietnam_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/asia/100_vietnam";
-import { vietnam_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/asia/100_vietnam";
-import { vietnam_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/asia/100_vietnam";
+import { vietnam_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/asia/100_vietnam";
+import { vietnam_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/asia/100_vietnam";
 import { vietnam_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/asia/100_vietnam";
-import { vietnam_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/asia/100_vietnam";
+import { vietnam_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/asia/100_vietnam";
 import { vietnam_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/asia/100_vietnam";
 import { vietnam_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/asia/100_vietnam";
-import { vietnam_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/asia/100_vietnam";
-import { vietnam_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/asia/100_vietnam";
-import { vietnam_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/asia/100_vietnam";
+import { vietnam_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/asia/100_vietnam";
+import { vietnam_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/asia/100_vietnam";
+import { vietnam_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/asia/100_vietnam";
 import { vietnam_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/asia/100_vietnam";
 import { vietnam_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/asia/100_vietnam";
 import { vietnam_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/asia/100_vietnam";
-import { vietnam_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/asia/100_vietnam";
+import { vietnam_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/asia/100_vietnam";
 import { vietnam_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/asia/100_vietnam";
-import { vietnam_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/asia/100_vietnam";
+import { vietnam_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/100_vietnam";
 import { vietnam_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/100_vietnam";
 import { vietnam_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/asia/100_vietnam";
 import { vietnam_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/100_vietnam";
@@ -41,7 +41,7 @@ export const vietnam: CountryData = {
   "hukum": vietnam_hukum,
   "sektor_olahraga": vietnam_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const vietnam: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 60,
@@ -96,7 +96,7 @@ export const vietnam: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 22400,
@@ -112,11 +112,11 @@ export const vietnam: CountryData = {
     "harga_pendidikan": 483900
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": vietnam_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 28,

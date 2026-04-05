@@ -1,21 +1,21 @@
-﻿import { CountryData } from "@/app/database/data/types";
-import { yordania_agrikultur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/5_sektor_agrikultur/asia/102_yordania";
+import { CountryData } from "@/app/database/data/types";
+import { yordania_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/asia/102_yordania";
 import { yordania_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/asia/102_yordania";
-import { yordania_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/2_sektor_mineral_kritis/asia/102_yordania";
-import { yordania_farmasi } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/8_sektor_farmasi/asia/102_yordania";
+import { yordania_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/asia/102_yordania";
+import { yordania_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/asia/102_yordania";
 import { yordania_hukum } from "@/app/database/data/semua_fitur_negara/3_sosial/3_hukum/asia/102_yordania";
-import { yordania_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/9_infrastruktur/asia/102_yordania";
+import { yordania_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/asia/102_yordania";
 import { yordania_kepolisian } from "@/app/database/data/semua_fitur_negara/2_militer/4_armada_kepolisian/asia/102_yordania";
 import { yordania_kesehatan } from "@/app/database/data/semua_fitur_negara/3_sosial/2_kesehatan/asia/102_yordania";
-import { yordania_listrik } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/1_sektor_listrik_nasional/asia/102_yordania";
-import { yordania_manufaktur } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/3_manufaktur/asia/102_yordania";
-import { yordania_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/7_sektor_olahan_pangan/asia/102_yordania";
+import { yordania_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/asia/102_yordania";
+import { yordania_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/asia/102_yordania";
+import { yordania_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/asia/102_yordania";
 import { yordania_olahraga } from "@/app/database/data/semua_fitur_negara/3_sosial/4_olahraga/asia/102_yordania";
 import { yordania_pabrik } from "@/app/database/data/semua_fitur_negara/2_militer/5_pabrik_militer/asia/102_yordania";
 import { yordania_pendidikan } from "@/app/database/data/semua_fitur_negara/3_sosial/1_pendidikan/asia/102_yordania";
-import { yordania_perikanan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/6_sektor_perikanan/asia/102_yordania";
+import { yordania_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/asia/102_yordania";
 import { yordania_pertahanan } from "@/app/database/data/semua_fitur_negara/2_militer/1_sektor_pertahanan/asia/102_yordania";
-import { yordania_peternakan } from "@/app/database/data/semua_fitur_negara/1_jumlah_bangunan_per_negara/4_sektor_peternakan/asia/102_yordania";
+import { yordania_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/102_yordania";
 import { yordania_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/102_yordania";
 import { yordania_strategis } from "@/app/database/data/semua_fitur_negara/2_militer/3_militer_strategis/asia/102_yordania";
 import { yordania_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/102_yordania";
@@ -41,7 +41,7 @@ export const yordania: CountryData = {
   "hukum": yordania_hukum,
   "sektor_olahraga": yordania_olahraga,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. 💰 PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const yordania: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. 💰 GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 60,
@@ -96,7 +96,7 @@ export const yordania: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. 🛒 HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 16000,
@@ -112,11 +112,11 @@ export const yordania: CountryData = {
     "harga_pendidikan": 241950
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": yordania_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. 🏛️ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 27,

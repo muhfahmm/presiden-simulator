@@ -1,0 +1,11 @@
+export const paraguay_agrikultur = {
+    "padi": 26,
+    "gandum": 20, "jagung": 20,
+    "sayur": 12, "umbi": 12,
+    "kedelai": 14,
+    "kelapa_sawit": 5,
+    "kopi": 17, "teh": 17, "kakao": 17, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

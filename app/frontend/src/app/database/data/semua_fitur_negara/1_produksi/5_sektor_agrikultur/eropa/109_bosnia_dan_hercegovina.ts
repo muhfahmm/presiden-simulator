@@ -1,0 +1,11 @@
+export const bosnia_dan_hercegovina_agrikultur = {
+    "padi": 39,
+    "gandum": 34, "jagung": 34,
+    "sayur": 6, "umbi": 6,
+    "kedelai": 5,
+    "kelapa_sawit": 25,
+    "kopi": 23, "teh": 23, "kakao": 23, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

@@ -1,4 +1,4 @@
-﻿export { amerika_serikatEmbassyConfig } from './152_amerika_serikat';
+export { amerika_serikatEmbassyConfig } from './152_amerika_serikat';
 export { antigua_dan_barbudaEmbassyConfig } from './153_antigua_dan_barbuda';
 export { bahamaEmbassyConfig } from './154_bahama';
 export { barbadosEmbassyConfig } from './155_barbados';

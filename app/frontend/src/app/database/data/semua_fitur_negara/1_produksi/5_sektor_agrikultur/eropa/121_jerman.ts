@@ -1,0 +1,11 @@
+export const jerman_agrikultur = {
+    "padi": 33,
+    "gandum": 17, "jagung": 17,
+    "sayur": 20, "umbi": 20,
+    "kedelai": 9,
+    "kelapa_sawit": 28,
+    "kopi": 14, "teh": 14, "kakao": 14, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

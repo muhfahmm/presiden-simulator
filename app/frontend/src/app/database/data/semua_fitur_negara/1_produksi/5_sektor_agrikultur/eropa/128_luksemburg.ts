@@ -1,0 +1,11 @@
+export const luksemburg_agrikultur = {
+    "padi": 3,
+    "gandum": 22, "jagung": 22,
+    "sayur": 4, "umbi": 4,
+    "kedelai": 23,
+    "kelapa_sawit": 22,
+    "kopi": 24, "teh": 24, "kakao": 24, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

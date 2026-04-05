@@ -1,0 +1,11 @@
+export const nauru_agrikultur = {
+    "padi": 1,
+    "gandum": 27, "jagung": 27,
+    "sayur": 23, "umbi": 23,
+    "kedelai": 7,
+    "kelapa_sawit": 8,
+    "kopi": 17, "teh": 17, "kakao": 17, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

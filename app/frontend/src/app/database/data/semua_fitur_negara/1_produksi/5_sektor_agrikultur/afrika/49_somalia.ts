@@ -1,0 +1,11 @@
+export const somalia_agrikultur = {
+    "padi": 31,
+    "gandum": 26, "jagung": 26,
+    "sayur": 24, "umbi": 24,
+    "kedelai": 15,
+    "kelapa_sawit": 22,
+    "kopi": 23, "teh": 23, "kakao": 23, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;

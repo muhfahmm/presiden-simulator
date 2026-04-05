@@ -1,0 +1,11 @@
+export const republik_serbia_agrikultur = {
+    "padi": 9,
+    "gandum": 18, "jagung": 18,
+    "sayur": 6, "umbi": 6,
+    "kedelai": 19,
+    "kelapa_sawit": 24,
+    "kopi": 21, "teh": 21, "kakao": 21, "tebu": 0,
+    "karet": 0,
+    "kapas": 0,
+    "tembakau": 0
+  } as const;
