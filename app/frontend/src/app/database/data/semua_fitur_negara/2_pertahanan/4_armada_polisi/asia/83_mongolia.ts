@@ -1,19 +1,17 @@
 export const mongolia_kepolisian = {
     "armada_polisi": {
-      "patroli_lantas": {
-        "mobil_patroli_interceptor": 14,
-        "unit_interceptor_r2": 30,
-        "unit_k9": 23
-  },
-        "taktis_khusus": {
-          "swat": 17,
-          "helikopter_polisi": 22,
-          "anti_huru_hara": 62
-        },
-        "pusat_komando": {
-          "kantor_polisi": 12,
-          "kamera_pengawas": 40,
-          "pusat_forensik": 1
-        }
+      "markas_besar_polri": 0,
+      "akademi_kepolisian": 0,
+      "pusat_forensik": 1,
+      "kantor_polisi": 12,
+      "pos_polisi": 0,
+      "network_cctv": 40,
+      "armada_mobil_polisi": 0,
+      "mobil_patroli_interceptor": 14,
+      "unit_roda_dua": 30,
+      "helikopter_polisi": 22,
+      "unit_k9": 23,
+      "pasukan_swat": 17,
+      "samapta": 62
     }
   } as const;

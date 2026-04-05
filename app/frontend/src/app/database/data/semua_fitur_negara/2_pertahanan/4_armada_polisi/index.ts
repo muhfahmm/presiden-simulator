@@ -1,20 +1,18 @@
 export interface SektorArmadaKepolisian {
   armada_polisi: {
-    patroli_lantas: {
-      mobil_patroli_interceptor: number;
-      unit_interceptor_r2: number;
-      unit_k9: number;
-    };
-    taktis_khusus: {
-      swat: number;
-      helikopter_polisi: number;
-      anti_huru_hara: number;
-    };
-    pusat_komando: {
-      kantor_polisi: number;
-      kamera_pengawas: number;
-      pusat_forensik: number;
-    };
+    markas_besar_polri: number;
+    akademi_kepolisian: number;
+    pusat_forensik: number;
+    kantor_polisi: number;
+    pos_polisi: number;
+    network_cctv: number;
+    armada_mobil_polisi: number;
+    mobil_patroli_interceptor: number;
+    unit_roda_dua: number;
+    helikopter_polisi: number;
+    unit_k9: number;
+    pasukan_swat: number;
+    samapta: number;
   };
 }
 
@@ -25,7 +23,7 @@ export const armadaPolisiRate: Record<string, any> = {
   // --- PUSAT KOMANDO & PENDIDIKAN ---
   "1_pusat_komando": {
     key: "1_pusat_komando",
-    dataKey: "stasiun_komando",
+    dataKey: "markas_besar_polri",
     label: "Markas Besar Polri",
     desc: "Pusat Komando Nasional",
     biaya_pembangunan: 80,
@@ -37,19 +35,19 @@ export const armadaPolisiRate: Record<string, any> = {
   },
   "2_akademi_polisi": {
     key: "2_akademi_polisi",
-    dataKey: "akademi_polisi",
+    dataKey: "akademi_kepolisian",
     label: "Akademi Kepolisian",
     desc: "Pendidikan & Pelatihan",
     biaya_pembangunan: 40,
     waktu_pembangunan: 60,
     biaya_pemeliharaan: 10,
     lowongan_kerja: 100,
-    power: 0,
+    power: 80,
     satuan: "Unit"
   },
   "3_pusat_forensik": {
     key: "3_pusat_forensik",
-    dataKey: "forensik",
+    dataKey: "pusat_forensik",
     label: "Pusat Forensik",
     desc: "Identifikasi & Lab",
     biaya_pembangunan: 30,
@@ -63,7 +61,7 @@ export const armadaPolisiRate: Record<string, any> = {
   // --- UNIT PELAYANAN & KEWILAYAHAN ---
   "4_kantor_polisi": {
     key: "4_kantor_polisi",
-    dataKey: "pos_polisi",
+    dataKey: "kantor_polisi",
     label: "Kantor Polisi (Polres)",
     desc: "Komando Wilayah",
     biaya_pembangunan: 25,
@@ -75,7 +73,7 @@ export const armadaPolisiRate: Record<string, any> = {
   },
   "5_pos_polisi": {
     key: "5_pos_polisi",
-    dataKey: "pos_polisi_kecil",
+    dataKey: "pos_polisi",
     label: "Pos Polisi (Polsek)",
     desc: "Pelayanan Publik",
     biaya_pembangunan: 10,
@@ -87,7 +85,7 @@ export const armadaPolisiRate: Record<string, any> = {
   },
   "6_network_cctv": {
     key: "6_network_cctv",
-    dataKey: "cctv_network",
+    dataKey: "network_cctv",
     label: "Network CCTV",
     desc: "Surveillance Kota",
     biaya_pembangunan: 10,
@@ -101,7 +99,7 @@ export const armadaPolisiRate: Record<string, any> = {
   // --- ARMADA & RESPON CEPAT ---
   "7_armada_mobil": {
     key: "7_armada_mobil",
-    dataKey: "armada_polisi",
+    dataKey: "armada_mobil_polisi",
     label: "Armada Mobil Polisi",
     desc: "Logistik & Transportasi",
     biaya_pembangunan: 5,
@@ -125,7 +123,7 @@ export const armadaPolisiRate: Record<string, any> = {
   },
   "9_unit_r2": {
     key: "9_unit_r2",
-    dataKey: "unit_interceptor_r2",
+    dataKey: "unit_roda_dua",
     label: "Unit Roda Dua",
     desc: "Patroli Cepat",
     biaya_pembangunan: 1,
@@ -137,7 +135,7 @@ export const armadaPolisiRate: Record<string, any> = {
   },
   "10_heli_polisi": {
     key: "10_heli_polisi",
-    dataKey: "police_heli",
+    dataKey: "helikopter_polisi",
     label: "Helikopter Polisi",
     desc: "Patroli Udara",
     biaya_pembangunan: 15,
@@ -163,7 +161,7 @@ export const armadaPolisiRate: Record<string, any> = {
   },
   "12_swat": {
     key: "12_swat",
-    dataKey: "swat",
+    dataKey: "pasukan_swat",
     label: "Pasukan SWAT (Brimob)",
     desc: "Taktis Khusus",
     biaya_pembangunan: 5,
@@ -175,7 +173,7 @@ export const armadaPolisiRate: Record<string, any> = {
   },
   "13_anti_huru_hara": {
     key: "13_anti_huru_hara",
-    dataKey: "riot_control",
+    dataKey: "samapta",
     label: "Samapta (Huru-Hara)",
     desc: "Ketertiban Umum",
     biaya_pembangunan: 4,

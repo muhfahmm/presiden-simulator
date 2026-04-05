@@ -1,19 +1,17 @@
 export const india_kepolisian = {
     "armada_polisi": {
-      "patroli_lantas": {
-        "mobil_patroli_interceptor": 8,
-        "unit_interceptor_r2": 10,
-        "unit_k9": 23
-  },
-        "taktis_khusus": {
-          "swat": 8,
-          "helikopter_polisi": 8,
-          "anti_huru_hara": 62
-        },
-        "pusat_komando": {
-          "kantor_polisi": 29,
-          "kamera_pengawas": 35,
-          "pusat_forensik": 1
-        }
+      "markas_besar_polri": 0,
+      "akademi_kepolisian": 0,
+      "pusat_forensik": 1,
+      "kantor_polisi": 29,
+      "pos_polisi": 0,
+      "network_cctv": 35,
+      "armada_mobil_polisi": 0,
+      "mobil_patroli_interceptor": 8,
+      "unit_roda_dua": 10,
+      "helikopter_polisi": 8,
+      "unit_k9": 23,
+      "pasukan_swat": 8,
+      "samapta": 62
     }
   } as const;

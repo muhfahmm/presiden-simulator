@@ -16,6 +16,7 @@ import { OlahragaData } from "../../3_tempat_umum/5_olahraga";
 import { SektorListrik, KAPASITAS_LISTRIK_METADATA } from "./1_db_listrik";
 import { intelijenRate } from "../../../2_pertahanan/2_intelijen";
 import { armadaMiliterRate } from "../../../2_pertahanan/3_armada_militer";
+import { armadaPolisiRate } from "../../../2_pertahanan/4_armada_polisi";
 
 export const KAPASITAS_LISTRIK = Object.fromEntries(
   Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]) => [val.dataKey, val.produksi])
@@ -183,10 +184,10 @@ export function hitungKonsumsiPertahanan(
     (management.pertahanan_siber ?? 0) * withMin1MW(0)
   );
 
-  const policeCons = (
-    (police.armada_polisi.patroli_lantas.mobil_patroli_interceptor ?? 0) * withMin1MW(0.1) +
-    (police.armada_polisi.taktis_khusus.helikopter_polisi ?? 0) * withMin1MW(2)
-  );
+  const policeCons = Object.values(armadaPolisiRate).reduce((total, item) => {
+    const count = (police.armada_polisi as any)?.[item.dataKey] ?? 0;
+    return total + (count * withMin1MW(item.power));
+  }, 0);
 
   const pabrikCons = (
     (pabrik.pabrik_drone_kamikaze ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_drone_kamikaze) +

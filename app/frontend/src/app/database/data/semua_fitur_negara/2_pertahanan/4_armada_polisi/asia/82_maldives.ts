@@ -1,19 +1,17 @@
 export const maldives_kepolisian = {
     "armada_polisi": {
-      "patroli_lantas": {
-        "mobil_patroli_interceptor": 21,
-        "unit_interceptor_r2": 29,
-        "unit_k9": 23
-  },
-        "taktis_khusus": {
-          "swat": 28,
-          "helikopter_polisi": 28,
-          "anti_huru_hara": 62
-        },
-        "pusat_komando": {
-          "kantor_polisi": 34,
-          "kamera_pengawas": 4,
-          "pusat_forensik": 1
-        }
+      "markas_besar_polri": 0,
+      "akademi_kepolisian": 0,
+      "pusat_forensik": 1,
+      "kantor_polisi": 34,
+      "pos_polisi": 0,
+      "network_cctv": 4,
+      "armada_mobil_polisi": 0,
+      "mobil_patroli_interceptor": 21,
+      "unit_roda_dua": 29,
+      "helikopter_polisi": 28,
+      "unit_k9": 23,
+      "pasukan_swat": 28,
+      "samapta": 62
     }
   } as const;

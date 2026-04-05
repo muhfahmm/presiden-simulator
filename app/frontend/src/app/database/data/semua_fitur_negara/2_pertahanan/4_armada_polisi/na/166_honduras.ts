@@ -1,19 +1,17 @@
 export const honduras_kepolisian = {
     "armada_polisi": {
-      "patroli_lantas": {
-        "mobil_patroli_interceptor": 38,
-        "unit_interceptor_r2": 6,
-        "unit_k9": 23
-  },
-        "taktis_khusus": {
-          "swat": 26,
-          "helikopter_polisi": 22,
-          "anti_huru_hara": 62
-        },
-        "pusat_komando": {
-          "kantor_polisi": 27,
-          "kamera_pengawas": 17,
-          "pusat_forensik": 1
-        }
+      "markas_besar_polri": 0,
+      "akademi_kepolisian": 0,
+      "pusat_forensik": 1,
+      "kantor_polisi": 27,
+      "pos_polisi": 0,
+      "network_cctv": 17,
+      "armada_mobil_polisi": 0,
+      "mobil_patroli_interceptor": 38,
+      "unit_roda_dua": 6,
+      "helikopter_polisi": 22,
+      "unit_k9": 23,
+      "pasukan_swat": 26,
+      "samapta": 62
     }
   } as const;

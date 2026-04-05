@@ -1,19 +1,17 @@
 export const arab_saudi_kepolisian = {
     "armada_polisi": {
-      "patroli_lantas": {
-        "mobil_patroli_interceptor": 33,
-        "unit_interceptor_r2": 24,
-        "unit_k9": 23
-  },
-        "taktis_khusus": {
-          "swat": 37,
-          "helikopter_polisi": 2,
-          "anti_huru_hara": 62
-        },
-        "pusat_komando": {
-          "kantor_polisi": 27,
-          "kamera_pengawas": 16,
-          "pusat_forensik": 1
-        }
+      "markas_besar_polri": 0,
+      "akademi_kepolisian": 0,
+      "pusat_forensik": 1,
+      "kantor_polisi": 27,
+      "pos_polisi": 0,
+      "network_cctv": 16,
+      "armada_mobil_polisi": 0,
+      "mobil_patroli_interceptor": 33,
+      "unit_roda_dua": 24,
+      "helikopter_polisi": 2,
+      "unit_k9": 23,
+      "pasukan_swat": 37,
+      "samapta": 62
     }
   } as const;

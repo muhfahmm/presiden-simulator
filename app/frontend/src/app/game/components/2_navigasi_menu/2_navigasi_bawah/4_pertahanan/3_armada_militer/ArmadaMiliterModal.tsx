@@ -33,7 +33,6 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedActionCountry, setSelectedActionCountry] = useState<any | null>(null);
   const [showWarComparison, setShowWarComparison] = useState(false);
-  const [oilStock, setOilStock] = useState(0);
   const currentData = data;
 
   useEffect(() => {
@@ -44,16 +43,6 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
     }
   }, [activeMenu]);
 
-  useEffect(() => {
-    const updateStock = () => {
-      const prod = budgetStorage.getCumulativeProduction();
-      setOilStock(prod["4_sumur_minyak"] || 0);
-    };
-
-    updateStock();
-    window.addEventListener('budget_storage_updated', updateStock);
-    return () => window.removeEventListener('budget_storage_updated', updateStock);
-  }, []);
 
   const globalRankings = useMemo(() => {
     const aidData = militaryAidStorage.getAid();
@@ -278,14 +267,6 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
     ];
   }, [currentData, effectiveDeltas, buildingDeltas]);
 
-  const totalFuelConsumption = useMemo(() => {
-    return militaryGroups.reduce((acc, group) => {
-      return acc + group.items.reduce((itemAcc, item: any) => {
-        if (item.key === 'barak') return itemAcc;
-        return itemAcc + ((item.count || 0) * (item.fuel_consumption || 0));
-      }, 0);
-    }, 0);
-  }, [militaryGroups]);
 
    if (!isOpen || !currentData) return null;
 
@@ -433,40 +414,6 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
           );
         })()}
 
-        {/* Fuel Status Strip */}
-        <div className="px-8 py-4 border-b border-zinc-800/40 bg-zinc-900/40 flex items-stretch gap-3">
-          <div className="flex-1 flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-amber-500/20 bg-amber-500/5 shadow-[0_0_18px_rgba(245,158,11,0.1)] transition-all duration-300 group">
-            <div className="p-2 rounded-xl bg-zinc-950/60 border border-zinc-800/50">
-              <Flame size={16} className="text-amber-500" />
-            </div>
-            <div className="flex flex-col gap-0.5">
-              <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.25em] leading-none truncate">Stok Minyak Bumi Nasional</span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-xl font-black text-amber-500 tracking-tight leading-tight">{oilStock.toLocaleString('id-ID')}</span>
-                <span className="text-[8px] font-bold text-zinc-600 uppercase tracking-widest leading-none">BARREL</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex-1 flex items-center gap-3 px-5 py-3.5 rounded-2xl border border-rose-500/20 bg-rose-500/5 shadow-[0_0_18px_rgba(244,63,94,0.1)] transition-all duration-300 group">
-            <div className="p-2 rounded-xl bg-zinc-950/60 border border-zinc-800/50">
-              <Activity size={16} className="text-rose-500" />
-            </div>
-            <div className="flex flex-col gap-0.5">
-              <span className="text-[9px] font-black text-zinc-500 uppercase tracking-[0.25em] leading-none truncate">Konsumsi Minyak Bumi Armada</span>
-              <div className="flex items-baseline gap-2">
-                <span className="text-xl font-black text-rose-500 tracking-tight leading-tight">{totalFuelConsumption.toLocaleString('id-ID')}</span>
-                <span className="text-[8px] font-bold text-zinc-600 uppercase tracking-widest leading-none">L / Hari</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Info Card - Taking up space to maintain symmetry if needed, or just showing the info */}
-          <div className="flex-[0.5] hidden lg:flex items-center justify-center gap-2 px-5 py-3.5 rounded-2xl border border-zinc-800/50 bg-zinc-900/10 opacity-40 italic">
-            <Info size={12} className="text-zinc-500" />
-            <span className="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Update Real-time Nasional</span>
-          </div>
-        </div>
 
         {/* Dashboard Summary Listrik (Nasional) */}
         <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50">
@@ -1151,7 +1098,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
           {item.fuel_consumption > 0 && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-amber-500/10 rounded-lg"><Flame size={12} className="text-amber-500/90" /></div>
-              <span className="text-[12px] font-bold text-amber-500/80">BBM: {item.fuel_consumption} L/hari</span>
+              <span className="text-[12px] font-bold text-amber-500/80">Konsumsi BBM: {item.fuel_consumption} L/hari</span>
             </div>
           )}
 
@@ -1194,17 +1141,6 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
             <span className="text-[22px] font-black text-cyan-400 tracking-tight">
               {(item.count || 0).toLocaleString('id-ID')}
               <span className="text-[12px] text-cyan-500/50 font-normal uppercase italic ml-1">{item.key === 'barak' ? 'Pasukan' : 'Unit'}</span>
-            </span>
-          </div>
-          {/* Row 2: Kalkulasi Total Kekuatan */}
-          <div className="flex items-center justify-between gap-1 pt-1 border-t border-zinc-800/30">
-            <span className="text-[12px] font-black text-zinc-600 uppercase tracking-[0.15em] italic whitespace-nowrap">
-              {(item.count || 0).toLocaleString('id-ID')} × {(item.power || 0).toLocaleString('id-ID')}
-            </span>
-            <span className="text-[12px] text-zinc-700 font-bold">=</span>
-            <span className="text-[19px] font-black text-amber-400 tracking-tight leading-none">
-              {((item.count || 0) * (item.power || 0)).toLocaleString('id-ID')}
-              <span className="text-[11px] text-amber-500/50 font-bold uppercase ml-1 italic">Kekuatan</span>
             </span>
           </div>
         </div>

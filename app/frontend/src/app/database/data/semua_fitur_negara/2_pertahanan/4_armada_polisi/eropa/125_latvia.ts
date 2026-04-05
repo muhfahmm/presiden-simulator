@@ -1,19 +1,17 @@
 export const latvia_kepolisian = {
     "armada_polisi": {
-      "patroli_lantas": {
-        "mobil_patroli_interceptor": 38,
-        "unit_interceptor_r2": 32,
-        "unit_k9": 23
-  },
-        "taktis_khusus": {
-          "swat": 28,
-          "helikopter_polisi": 5,
-          "anti_huru_hara": 62
-        },
-        "pusat_komando": {
-          "kantor_polisi": 11,
-          "kamera_pengawas": 4,
-          "pusat_forensik": 1
-        }
+      "markas_besar_polri": 0,
+      "akademi_kepolisian": 0,
+      "pusat_forensik": 1,
+      "kantor_polisi": 11,
+      "pos_polisi": 0,
+      "network_cctv": 4,
+      "armada_mobil_polisi": 0,
+      "mobil_patroli_interceptor": 38,
+      "unit_roda_dua": 32,
+      "helikopter_polisi": 5,
+      "unit_k9": 23,
+      "pasukan_swat": 28,
+      "samapta": 62
     }
   } as const;

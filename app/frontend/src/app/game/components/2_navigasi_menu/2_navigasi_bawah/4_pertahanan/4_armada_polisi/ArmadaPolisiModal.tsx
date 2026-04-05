@@ -83,9 +83,9 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       icon: Shield,
       color: "text-blue-500",
       items: [
-        { ...armadaPolisiRate["1_pusat_komando"], groupId: "komando", icon: Shield, cost: armadaPolisiRate["1_pusat_komando"].biaya_pembangunan, buildTime: armadaPolisiRate["1_pusat_komando"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["1_pusat_komando"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.stasiun_komando || 0) + ((buildingDeltas["stasiun_komando"] as number) || 0) },
-        { ...armadaPolisiRate["2_akademi_polisi"], groupId: "komando", icon: GraduationCap, cost: armadaPolisiRate["2_akademi_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["2_akademi_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["2_akademi_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.akademi_polisi || 0) + ((buildingDeltas["akademi_polisi"] as number) || 0) },
-        { ...armadaPolisiRate["3_pusat_forensik"], groupId: "komando", icon: Search, cost: armadaPolisiRate["3_pusat_forensik"].biaya_pembangunan, buildTime: armadaPolisiRate["3_pusat_forensik"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["3_pusat_forensik"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.pusat_forensik || 0) + ((buildingDeltas["forensik"] as number) || 0) },
+        { ...armadaPolisiRate["1_pusat_komando"], groupId: "komando", icon: Shield, cost: armadaPolisiRate["1_pusat_komando"].biaya_pembangunan, buildTime: armadaPolisiRate["1_pusat_komando"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["1_pusat_komando"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.markas_besar_polri || 0) + ((buildingDeltas["markas_besar_polri"] as number) || 0) },
+        { ...armadaPolisiRate["2_akademi_polisi"], groupId: "komando", icon: GraduationCap, cost: armadaPolisiRate["2_akademi_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["2_akademi_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["2_akademi_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.akademi_kepolisian || 0) + ((buildingDeltas["akademi_kepolisian"] as number) || 0) },
+        { ...armadaPolisiRate["3_pusat_forensik"], groupId: "komando", icon: Search, cost: armadaPolisiRate["3_pusat_forensik"].biaya_pembangunan, buildTime: armadaPolisiRate["3_pusat_forensik"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["3_pusat_forensik"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_forensik || 0) + ((buildingDeltas["pusat_forensik"] as number) || 0) },
       ]
     },
     {
@@ -94,9 +94,9 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       icon: Building,
       color: "text-emerald-500",
       items: [
-        { ...armadaPolisiRate["4_kantor_polisi"], groupId: "wilayah", icon: Siren, cost: armadaPolisiRate["4_kantor_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["4_kantor_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["4_kantor_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.kantor_polisi || 0) + ((buildingDeltas["pos_polisi"] as number) || 0) },
-        { ...armadaPolisiRate["5_pos_polisi"], groupId: "wilayah", icon: ShieldAlert, cost: armadaPolisiRate["5_pos_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["5_pos_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["5_pos_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.pos_polisi_kecil || 0) + ((buildingDeltas["pos_polisi_kecil"] as number) || 0) },
-        { ...armadaPolisiRate["6_network_cctv"], groupId: "wilayah", icon: Cctv, cost: armadaPolisiRate["6_network_cctv"].biaya_pembangunan, buildTime: armadaPolisiRate["6_network_cctv"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["6_network_cctv"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.kamera_pengawas || 0) + ((buildingDeltas["cctv_network"] as number) || 0) },
+        { ...armadaPolisiRate["4_kantor_polisi"], groupId: "wilayah", icon: Siren, cost: armadaPolisiRate["4_kantor_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["4_kantor_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["4_kantor_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.kantor_polisi || 0) + ((buildingDeltas["kantor_polisi"] as number) || 0) },
+        { ...armadaPolisiRate["5_pos_polisi"], groupId: "wilayah", icon: ShieldAlert, cost: armadaPolisiRate["5_pos_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["5_pos_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["5_pos_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pos_polisi || 0) + ((buildingDeltas["pos_polisi"] as number) || 0) },
+        { ...armadaPolisiRate["6_network_cctv"], groupId: "wilayah", icon: Cctv, cost: armadaPolisiRate["6_network_cctv"].biaya_pembangunan, buildTime: armadaPolisiRate["6_network_cctv"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["6_network_cctv"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.network_cctv || 0) + ((buildingDeltas["network_cctv"] as number) || 0) },
       ]
     },
     {
@@ -105,10 +105,10 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       icon: Car,
       color: "text-amber-500",
       items: [
-        { ...armadaPolisiRate["7_armada_mobil"], groupId: "armada", icon: Car, cost: armadaPolisiRate["7_armada_mobil"].biaya_pembangunan, buildTime: armadaPolisiRate["7_armada_mobil"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["7_armada_mobil"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.armada_mobil || 0) + ((buildingDeltas["armada_polisi"] as number) || 0) },
-        { ...armadaPolisiRate["8_mobil_interceptor"], groupId: "armada", icon: Car, cost: armadaPolisiRate["8_mobil_interceptor"].biaya_pembangunan, buildTime: armadaPolisiRate["8_mobil_interceptor"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["8_mobil_interceptor"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.mobil_patroli_interceptor || 0) + ((buildingDeltas["mobil_patroli_interceptor"] as number) || 0) },
-        { ...armadaPolisiRate["9_unit_r2"], groupId: "armada", icon: Bike, cost: armadaPolisiRate["9_unit_r2"].biaya_pembangunan, buildTime: armadaPolisiRate["9_unit_r2"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["9_unit_r2"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.unit_interceptor_r2 || 0) + ((buildingDeltas["unit_interceptor_r2"] as number) || 0) },
-        { ...armadaPolisiRate["10_heli_polisi"], groupId: "armada", icon: Radio, cost: armadaPolisiRate["10_heli_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["10_heli_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["10_heli_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.helikopter_polisi || 0) + ((buildingDeltas["police_heli"] as number) || 0) },
+        { ...armadaPolisiRate["7_armada_mobil"], groupId: "armada", icon: Car, cost: armadaPolisiRate["7_armada_mobil"].biaya_pembangunan, buildTime: armadaPolisiRate["7_armada_mobil"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["7_armada_mobil"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.armada_mobil_polisi || 0) + ((buildingDeltas["armada_mobil_polisi"] as number) || 0) },
+        { ...armadaPolisiRate["8_mobil_interceptor"], groupId: "armada", icon: Car, cost: armadaPolisiRate["8_mobil_interceptor"].biaya_pembangunan, buildTime: armadaPolisiRate["8_mobil_interceptor"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["8_mobil_interceptor"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.mobil_patroli_interceptor || 0) + ((buildingDeltas["mobil_patroli_interceptor"] as number) || 0) },
+        { ...armadaPolisiRate["9_unit_r2"], groupId: "armada", icon: Bike, cost: armadaPolisiRate["9_unit_r2"].biaya_pembangunan, buildTime: armadaPolisiRate["9_unit_r2"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["9_unit_r2"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.unit_roda_dua || 0) + ((buildingDeltas["unit_roda_dua"] as number) || 0) },
+        { ...armadaPolisiRate["10_heli_polisi"], groupId: "armada", icon: Radio, cost: armadaPolisiRate["10_heli_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["10_heli_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["10_heli_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.helikopter_polisi || 0) + ((buildingDeltas["helikopter_polisi"] as number) || 0) },
       ]
     },
     {
@@ -117,9 +117,9 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       icon: Crosshair,
       color: "text-rose-500",
       items: [
-        { ...armadaPolisiRate["11_unit_k9"], groupId: "khusus", icon: Dog, cost: armadaPolisiRate["11_unit_k9"].biaya_pembangunan, buildTime: armadaPolisiRate["11_unit_k9"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["11_unit_k9"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.unit_k9 || 0) + ((buildingDeltas["unit_k9"] as number) || 0) },
-        { ...armadaPolisiRate["12_swat"], groupId: "khusus", icon: Crosshair, cost: armadaPolisiRate["12_swat"].biaya_pembangunan, buildTime: armadaPolisiRate["12_swat"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["12_swat"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.swat || 0) + ((buildingDeltas["swat"] as number) || 0) },
-        { ...armadaPolisiRate["13_anti_huru_hara"], groupId: "khusus", icon: ShieldAlert, cost: armadaPolisiRate["13_anti_huru_hara"].biaya_pembangunan, buildTime: armadaPolisiRate["13_anti_huru_hara"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["13_anti_huru_hara"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.anti_huru_hara || 0) + ((buildingDeltas["riot_control"] as number) || 0) },
+        { ...armadaPolisiRate["11_unit_k9"], groupId: "khusus", icon: Dog, cost: armadaPolisiRate["11_unit_k9"].biaya_pembangunan, buildTime: armadaPolisiRate["11_unit_k9"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["11_unit_k9"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.unit_k9 || 0) + ((buildingDeltas["unit_k9"] as number) || 0) },
+        { ...armadaPolisiRate["12_swat"], groupId: "khusus", icon: Crosshair, cost: armadaPolisiRate["12_swat"].biaya_pembangunan, buildTime: armadaPolisiRate["12_swat"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["12_swat"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pasukan_swat || 0) + ((buildingDeltas["pasukan_swat"] as number) || 0) },
+        { ...armadaPolisiRate["13_anti_huru_hara"], groupId: "khusus", icon: ShieldAlert, cost: armadaPolisiRate["13_anti_huru_hara"].biaya_pembangunan, buildTime: armadaPolisiRate["13_anti_huru_hara"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["13_anti_huru_hara"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.samapta || 0) + ((buildingDeltas["samapta"] as number) || 0) },
       ]
     }
   ];
@@ -439,16 +439,22 @@ function BuildingCard({ item, onBuild, construction }: any) {
   const filledPositions = Math.floor(totalPositions * occupancyPercentage);
 
   return (
-    <div className={`bg-zinc-900/40 border ${progress ? 'border-emerald-500/30 bg-emerald-900/5' : 'border-zinc-800/60'} p-4 rounded-2xl transition-all group flex flex-col gap-3 relative overflow-hidden h-full min-h-[440px]`}>
+    <div className={`group relative flex flex-col p-6 rounded-[32px] border transition-all duration-300 overflow-hidden ${
+      progress 
+        ? "bg-cyan-500/5 border-cyan-500/30 shadow-[0_0_40px_rgba(6,182,212,0.1)] ring-1 ring-cyan-500/10" 
+        : "bg-zinc-900/40 border-zinc-800/50 hover:bg-zinc-900/60 hover:border-zinc-700/50 shadow-xl"
+    } h-full min-h-[440px]`}>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-transparent pointer-events-none" />
+      
       {progress && (
-        <div className="absolute top-0 left-0 bottom-0 bg-emerald-500/5 transition-all duration-1000" style={{ width: `${progress.percentage}%` }} />
+        <div className="absolute top-0 left-0 bottom-0 bg-cyan-500/5 transition-all duration-1000" style={{ width: `${progress.percentage}%` }} />
       )}
 
       {showDetail && (
-        <div className="absolute inset-0 z-50 bg-zinc-950/98 backdrop-blur-md p-6 flex flex-col animate-in fade-in zoom-in-95 duration-200">
+        <div className="absolute inset-0 z-50 bg-zinc-950/98 backdrop-blur-md p-7 flex flex-col animate-in fade-in zoom-in-95 duration-200">
           <div className="flex justify-between items-center mb-6">
             <div className="flex items-center gap-3">
-              <div className="p-2.5 bg-emerald-500/10 rounded-xl border border-emerald-500/20 text-emerald-500 shadow-[0_0_15px_rgba(16,185,129,0.2)]">
+              <div className="p-2.5 bg-cyan-500/10 rounded-xl border border-cyan-500/20 text-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.2)]">
                 <Info size={18} />
               </div>
               <div>
@@ -468,143 +474,153 @@ function BuildingCard({ item, onBuild, construction }: any) {
             </div>
 
             <div className="grid gap-2">
-              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+              <div className="flex items-center justify-between p-3 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
+                  <div className="p-2 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={14} /></div>
+                  <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
                 </div>
                 <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
               </div>
 
-              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+              <div className="flex items-center justify-between p-3 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-400"><Users size={12} /></div>
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Personel</span>
+                  <div className="p-2 bg-blue-500/10 rounded-lg text-blue-400"><Users size={14} /></div>
+                  <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">Personel</span>
                 </div>
                 <span className="text-[14px] font-black text-blue-400">+{(item.lowongan_kerja || 0).toLocaleString('id-ID')} <span className="text-[9px] text-blue-500/50 italic opacity-80">/ UNIT</span></span>
               </div>
 
-              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
+              <div className="flex items-center justify-between p-3 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                 <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-emerald-500/10 rounded-lg text-emerald-500"><Briefcase size={12} /></div>
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Okupansi</span>
+                  <div className="p-2 bg-cyan-500/10 rounded-lg text-cyan-400"><Briefcase size={14} /></div>
+                  <span className="text-[11px] font-bold text-zinc-400 uppercase tracking-widest">Okupansi</span>
                 </div>
                 <div className="flex flex-col items-end">
-                  <span className="text-[14px] font-black text-emerald-400">{filledPositions.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-400">/ {totalPositions.toLocaleString('id-ID')}</span></span>
-                  <span className="text-[8px] font-black text-emerald-500 uppercase tracking-widest leading-none italic opacity-90">UPDATE: {nextDateStr}</span>
+                  <span className="text-[14px] font-black text-cyan-400">{filledPositions.toLocaleString('id-ID')} <span className="text-[9px] text-zinc-400">/ {totalPositions.toLocaleString('id-ID')}</span></span>
+                  <span className="text-[8px] font-black text-cyan-500 uppercase tracking-widest leading-none italic opacity-90">UPDATE: {nextDateStr}</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <button onClick={() => setShowDetail(false)} className="mt-6 w-full py-3 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-zinc-800 hover:text-white transition-all cursor-pointer active:scale-[0.98] shadow-lg">
+          <button onClick={() => setShowDetail(false)} className="mt-6 w-full py-4 rounded-2xl bg-zinc-900 border border-zinc-800 text-zinc-400 text-[11px] font-black uppercase tracking-[0.25em] hover:bg-zinc-800 hover:text-white transition-all cursor-pointer active:scale-[0.98] shadow-lg">
             Kembali
           </button>
         </div>
       )}
 
-      {/* Card header */}
-      <div className="flex items-start justify-between relative z-10">
-        <div className="flex gap-2">
-          <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform">
-            <item.icon className={`h-5 w-5 ${progress ? 'text-white' : 'text-emerald-500'} shadow-[0_0_10px_rgba(16,185,129,0.3)]`} />
-          </div>
-          <button onClick={() => setShowDetail(!showDetail)} className={`p-2.5 rounded-xl border transition-all cursor-pointer ${showDetail ? 'bg-emerald-500/20 border-emerald-500/50 text-emerald-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-emerald-400 hover:border-emerald-500/30'}`}>
-            <Info size={16} />
-          </button>
-        </div>
-        <div className="flex flex-col items-end gap-1">
-          <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-emerald-400 transition-colors uppercase tracking-tight">
-            {item.desc}
-          </div>
-          <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-            Aktif: {item.count} Unit
-          </div>
-        </div>
-      </div>
-
-      {/* Card body */}
-      <div className="flex-1 flex flex-col relative z-10 mt-1">
-        <h4 className="text-[17px] font-black text-zinc-100 tracking-tight group-hover:text-amber-400 transition-colors uppercase italic leading-tight mb-3">
-          {item.label}
-        </h4>
-
-        <div className="flex flex-col gap-2.5 flex-1">
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 bg-blue-500/10 rounded-lg">
-              <Users size={12} className="text-blue-400" />
+      {/* Main content box */}
+      <div className="flex flex-col gap-5 relative z-10 flex-1">
+        <div className="flex items-start justify-between relative z-10">
+          <div className="flex gap-2">
+            <div className="p-2.5 bg-zinc-950/80 rounded-xl border border-zinc-800 group-hover:scale-110 transition-transform">
+              <item.icon className={`h-5 w-5 ${progress ? 'text-white' : 'text-cyan-500'} shadow-[0_0_10px_rgba(6,182,212,0.3)]`} />
             </div>
-            <span className="text-[12px] font-bold text-blue-400/90">
-              Personel: +{(item.lowongan_kerja || 0).toLocaleString('id-ID')} / unit
-            </span>
+            <button onClick={() => setShowDetail(!showDetail)} className={`p-2.5 rounded-xl border transition-all cursor-pointer ${showDetail ? 'bg-cyan-500/20 border-cyan-500/50 text-cyan-400' : 'bg-zinc-950/80 border-zinc-800 text-zinc-500 hover:text-cyan-400 hover:border-cyan-500/30'}`}>
+              <Info size={16} />
+            </button>
           </div>
-
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 bg-rose-500/10 rounded-lg">
-              <Flame size={12} className="text-rose-400" />
+          <div className="flex flex-col items-end gap-1">
+            <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[10px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
+              {item.desc}
             </div>
-            <span className="text-[12px] font-bold text-rose-400/90">Pemeliharaan: -{item.maintenanceCost || 5}/hari</span>
+            <div className="px-2.5 py-1 rounded-full bg-cyan-500/20 border border-cyan-500/40 text-[10px] font-black text-cyan-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(6,182,212,0.2)]">
+              Aktif: {item.count.toLocaleString('id-ID')} UNIT
+            </div>
           </div>
+        </div>
 
-          {!progress && (
+        <div className="flex-1 flex flex-col relative z-10 mt-1">
+          <h4 className="text-[17px] font-black text-zinc-100 tracking-tight group-hover:text-amber-400 transition-colors uppercase italic leading-tight mb-4">
+            {item.label}
+          </h4>
+
+          <div className="flex flex-col gap-2.5 flex-1">
             <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-zinc-800/50 rounded-lg"><Clock size={12} className="text-zinc-500" /></div>
-              <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
+              <div className="p-1.5 bg-blue-500/10 rounded-lg">
+                <Users size={12} className="text-blue-400" />
+              </div>
+              <span className="text-[12px] font-bold text-blue-400/90 italic">
+                Personel: +{(item.lowongan_kerja || 0).toLocaleString('id-ID')} / unit
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                <Flame size={12} className="text-rose-400" />
+              </div>
+              <span className="text-[12px] font-bold text-rose-400/90 italic">Pemeliharaan: -{item.maintenanceCost || 5}/hari</span>
+            </div>
+
+            {item.power > 0 && (
+              <>
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-amber-500/10 rounded-lg">
+                    <Zap size={12} className="text-amber-400" />
+                  </div>
+                  <span className="text-[12px] font-bold text-amber-400/90 italic">Energi: {item.power} MW / unit</span>
+                </div>
+                
+                <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                  <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                    <Activity size={12} className="text-rose-400/70" />
+                  </div>
+                  <span className="text-[11px] font-bold text-rose-400/70 uppercase italic tracking-tight">
+                    Total Konsumsi Listrik: {((item.count || 0) * (item.power || 0)).toLocaleString('id-ID')} MW
+                  </span>
+                </div>
+              </>
+            )}
+
+            {!progress && (
+              <div className="flex items-center gap-2.5 mt-1 opacity-60">
+                <div className="p-1.5 bg-zinc-800/50 rounded-lg"><Clock size={12} className="text-zinc-500" /></div>
+                <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
+              </div>
+            )}
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-2 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
+            <div className="flex justify-between items-baseline gap-2">
+              <span className="text-[13px] font-black text-zinc-500 uppercase tracking-[0.15em] italic">Total Unit</span>
+              <span className="text-[22px] font-black text-cyan-400 tracking-tight">
+                {(item.count || 0).toLocaleString('id-ID')}
+                <span className="text-[12px] text-cyan-500/50 font-normal uppercase italic ml-1">Unit</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-auto pt-2 relative z-10">
+          {progress ? (
+            <div className="space-y-3 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50 shadow-inner">
+              <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-zinc-400">
+                <span className="flex items-center gap-1.5">
+                  <Loader2 size={12} className={`animate-spin ${progress.isWaiting ? 'text-zinc-600' : 'text-cyan-400'}`} />
+                  {getStatusText(progress.percentage, progress.isWaiting)}
+                </span>
+                <span className={progress.colorClass.replace('bg-', 'text-')}>{progress.percentage}%</span>
+              </div>
+              <div className="h-2 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/30 p-0.5">
+                <div className={`h-full transition-all duration-1000 ${progress.colorClass} rounded-full shadow-[0_0_15px_rgba(6,182,212,0.3)]`} style={{ width: `${progress.percentage}%` }} />
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center justify-between gap-4">
+              <div className="flex flex-col">
+                <span className="text-[11px] font-black text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
+                <span className="text-xl font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
+              </div>
+              <button 
+                onClick={(e) => { e.stopPropagation(); onBuild(item); }} 
+                className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.15em] shadow-[0_10px_20px_rgba(8,145,178,0.2)] hover:bg-cyan-500 hover:shadow-[0_15px_30px_rgba(8,145,178,0.3)] hover:-translate-y-0.5 transition-all cursor-pointer active:scale-95 border border-cyan-400/20"
+              >
+                Bangun
+              </button>
             </div>
           )}
         </div>
-
-        {/* Total stats section */}
-        <div className="mt-4 pt-4 border-t border-zinc-800/30 flex flex-col gap-2 bg-zinc-950/30 rounded-2xl p-4 border border-zinc-800/20 shadow-inner">
-          {/* Row 1: Total Unit */}
-          <div className="flex justify-between items-baseline gap-2">
-            <span className="text-[13px] font-black text-zinc-500 uppercase tracking-[0.15em] italic">Total Unit</span>
-            <span className="text-[22px] font-black text-emerald-400 tracking-tight">
-              {(item.count || 0).toLocaleString('id-ID')}
-              <span className="text-[12px] text-emerald-500/50 font-normal uppercase italic ml-1">Unit</span>
-            </span>
-          </div>
-          {/* Row 2: Kalkulasi Total Kekuatan */}
-          <div className="flex items-center justify-between gap-1 pt-1 border-t border-zinc-800/30">
-            <span className="text-[12px] font-black text-zinc-600 uppercase tracking-[0.15em] italic whitespace-nowrap">
-              {(item.count || 0).toLocaleString('id-ID')} × {(item.power || 0).toLocaleString('id-ID')}
-            </span>
-            <span className="text-[12px] text-zinc-700 font-bold">=</span>
-            <span className="text-[19px] font-black text-amber-400 tracking-tight leading-none">
-              {((item.count || 0) * (item.power || 0)).toLocaleString('id-ID')}
-              <span className="text-[11px] text-amber-500/50 font-bold uppercase ml-1 italic">Kekuatan</span>
-            </span>
-          </div>
-        </div>
-      </div>
-
-      {/* Build button / progress */}
-      <div className="mt-auto pt-4 relative z-10">
-        {progress ? (
-          <div className="space-y-3 bg-zinc-950/50 p-3 rounded-2xl border border-zinc-800/50">
-            <div className="flex justify-between items-center text-[10px] font-black uppercase tracking-widest text-zinc-400">
-              <span className="flex items-center gap-1.5">
-                <Loader2 size={12} className={`animate-spin ${progress.isWaiting ? 'text-zinc-600' : 'text-emerald-400'}`} />
-                {getStatusText(progress.percentage, progress.isWaiting)}
-              </span>
-              <span className={progress.colorClass.replace('bg-', 'text-')}>{progress.percentage}%</span>
-            </div>
-            <div className="h-2 w-full bg-zinc-900 rounded-full overflow-hidden border border-zinc-800/30 p-0.5">
-              <div className={`h-full transition-all duration-1000 ${progress.colorClass} rounded-full shadow-[0_0_15px_rgba(16,185,129,0.3)]`} style={{ width: `${progress.percentage}%` }} />
-            </div>
-          </div>
-        ) : (
-          <div className="flex items-center justify-between gap-4">
-            <div className="flex flex-col">
-              <span className="text-[13px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Pengadaan</span>
-              <span className="text-xl font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
-            </div>
-            <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20">
-              Bangun
-            </button>
-          </div>
-        )}
       </div>
     </div>
-  )
+  );
 }

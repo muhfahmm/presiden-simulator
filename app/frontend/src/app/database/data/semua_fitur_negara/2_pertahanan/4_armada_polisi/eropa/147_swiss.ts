@@ -1,19 +1,17 @@
 export const swiss_kepolisian = {
     "armada_polisi": {
-      "patroli_lantas": {
-        "mobil_patroli_interceptor": 20,
-        "unit_interceptor_r2": 20,
-        "unit_k9": 23
-  },
-        "taktis_khusus": {
-          "swat": 38,
-          "helikopter_polisi": 22,
-          "anti_huru_hara": 62
-        },
-        "pusat_komando": {
-          "kantor_polisi": 24,
-          "kamera_pengawas": 28,
-          "pusat_forensik": 1
-        }
+      "markas_besar_polri": 0,
+      "akademi_kepolisian": 0,
+      "pusat_forensik": 1,
+      "kantor_polisi": 24,
+      "pos_polisi": 0,
+      "network_cctv": 28,
+      "armada_mobil_polisi": 0,
+      "mobil_patroli_interceptor": 20,
+      "unit_roda_dua": 20,
+      "helikopter_polisi": 22,
+      "unit_k9": 23,
+      "pasukan_swat": 38,
+      "samapta": 62
     }
   } as const;

@@ -1,19 +1,17 @@
 export const siprus_kepolisian = {
     "armada_polisi": {
-      "patroli_lantas": {
-        "mobil_patroli_interceptor": 29,
-        "unit_interceptor_r2": 10,
-        "unit_k9": 23
-  },
-        "taktis_khusus": {
-          "swat": 27,
-          "helikopter_polisi": 34,
-          "anti_huru_hara": 62
-        },
-        "pusat_komando": {
-          "kantor_polisi": 10,
-          "kamera_pengawas": 22,
-          "pusat_forensik": 1
-        }
+      "markas_besar_polri": 0,
+      "akademi_kepolisian": 0,
+      "pusat_forensik": 1,
+      "kantor_polisi": 10,
+      "pos_polisi": 0,
+      "network_cctv": 22,
+      "armada_mobil_polisi": 0,
+      "mobil_patroli_interceptor": 29,
+      "unit_roda_dua": 10,
+      "helikopter_polisi": 34,
+      "unit_k9": 23,
+      "pasukan_swat": 27,
+      "samapta": 62
     }
   } as const;

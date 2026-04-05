@@ -1,19 +1,17 @@
 export const afganistan_kepolisian = {
     "armada_polisi": {
-      "patroli_lantas": {
-        "mobil_patroli_interceptor": 15,
-        "unit_interceptor_r2": 28,
-        "unit_k9": 23
-  },
-        "taktis_khusus": {
-          "swat": 23,
-          "helikopter_polisi": 9,
-          "anti_huru_hara": 62
-        },
-        "pusat_komando": {
-          "kantor_polisi": 16,
-          "kamera_pengawas": 38,
-          "pusat_forensik": 1
-        }
+      "markas_besar_polri": 0,
+      "akademi_kepolisian": 0,
+      "pusat_forensik": 1,
+      "kantor_polisi": 16,
+      "pos_polisi": 0,
+      "network_cctv": 38,
+      "armada_mobil_polisi": 0,
+      "mobil_patroli_interceptor": 15,
+      "unit_roda_dua": 28,
+      "helikopter_polisi": 9,
+      "unit_k9": 23,
+      "pasukan_swat": 23,
+      "samapta": 62
     }
   } as const;

@@ -1,19 +1,17 @@
 export const dominika_kepolisian = {
     "armada_polisi": {
-      "patroli_lantas": {
-        "mobil_patroli_interceptor": 19,
-        "unit_interceptor_r2": 9,
-        "unit_k9": 23
-  },
-        "taktis_khusus": {
-          "swat": 19,
-          "helikopter_polisi": 31,
-          "anti_huru_hara": 62
-        },
-        "pusat_komando": {
-          "kantor_polisi": 7,
-          "kamera_pengawas": 8,
-          "pusat_forensik": 1
-        }
+      "markas_besar_polri": 0,
+      "akademi_kepolisian": 0,
+      "pusat_forensik": 1,
+      "kantor_polisi": 7,
+      "pos_polisi": 0,
+      "network_cctv": 8,
+      "armada_mobil_polisi": 0,
+      "mobil_patroli_interceptor": 19,
+      "unit_roda_dua": 9,
+      "helikopter_polisi": 31,
+      "unit_k9": 23,
+      "pasukan_swat": 19,
+      "samapta": 62
     }
   } as const;
