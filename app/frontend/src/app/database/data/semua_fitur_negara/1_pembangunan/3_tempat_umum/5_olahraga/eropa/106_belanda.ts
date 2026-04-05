@@ -1,10 +1,10 @@
 export const belanda_olahraga = {
-  "kolam_renang": 38,
-  "sirkuit_balap": 21,
-  "stadion": 35,
-  "stadion_internasional": 13,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 323,
+  "sirkuit_balap": 12,
+  "stadion": 104,
+  "stadion_internasional": 11,
+  "gym": 274,
+  "golf": 56,
+  "esports": 47,
+  "gokart": 139
 } as const;

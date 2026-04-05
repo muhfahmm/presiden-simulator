@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { togo_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/52_togo";
-import { togo_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/afrika/52_togo";
+import { togo_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/52_togo";
 import { togo_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/52_togo";
 import { togo_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/52_togo";
 import { togo_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/52_togo";
 import { togo_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/52_togo";
-import { togo_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/afrika/52_togo";
+import { togo_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/52_togo";
 import { togo_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/52_togo";
 import { togo_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/52_togo";
 import { togo_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/52_togo";
@@ -14,10 +14,10 @@ import { togo_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangu
 import { togo_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/52_togo";
 import { togo_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/52_togo";
 import { togo_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/52_togo";
-import { togo_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/afrika/52_togo";
+import { togo_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/52_togo";
 import { togo_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/52_togo";
 import { togo_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/52_togo";
-import { togo_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/afrika/52_togo";
+import { togo_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/52_togo";
 const togo_geopolitik = {
     "un_vote": 122,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const togo: CountryData = {
     "lingkungan": 60
   }
 };
+
 

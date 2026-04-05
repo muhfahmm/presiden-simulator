@@ -1,4 +1,4 @@
 export const aljazair_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 121,
+  "teater": 27
 } as const;

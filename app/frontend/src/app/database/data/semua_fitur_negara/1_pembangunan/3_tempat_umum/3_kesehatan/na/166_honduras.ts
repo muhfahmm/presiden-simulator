@@ -1,7 +1,7 @@
 export const honduras_kesehatan = {
-      "rumah_sakit_besar": 6,
-      "rumah_sakit_kecil": 8,
-      "pusat_diagnostik": 24,
-      "harapan_hidup": 38,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 4,
+      "rumah_sakit_kecil": 51,
+      "pusat_diagnostik": 13,
+      "harapan_hidup": 69,
+      "indeks_kesehatan": 57
     } as const;

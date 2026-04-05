@@ -1,10 +1,10 @@
 export const guam_hukum = {
-      "pusat_bantuan_hukum": 37,
-      "pengadilan": 36,
-      "kejaksaan": 15,
-      "pos_polisi": 33,
-      "armada_mobil_polisi": 5805,
-      "akademi_polisi": 37,
-      "indeks_korupsi": 60,
-      "indeks_keamanan": 86
+      "pusat_bantuan_hukum": 5,
+      "pengadilan": 10,
+      "kejaksaan": 2,
+      "pos_polisi": 15,
+      "armada_mobil_polisi": 728,
+      "akademi_polisi": 4,
+      "indeks_korupsi": 43,
+      "indeks_keamanan": 50
   } as const;

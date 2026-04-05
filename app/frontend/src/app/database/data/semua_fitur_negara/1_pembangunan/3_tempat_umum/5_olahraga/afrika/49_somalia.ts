@@ -1,10 +1,10 @@
 export const somalia_olahraga = {
-  "kolam_renang": 22,
-  "sirkuit_balap": 40,
-  "stadion": 37,
-  "stadion_internasional": 34,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 20,
+  "sirkuit_balap": 3,
+  "stadion": 2,
+  "stadion_internasional": 0,
+  "gym": 28,
+  "golf": 3,
+  "esports": 1,
+  "gokart": 12
 } as const;

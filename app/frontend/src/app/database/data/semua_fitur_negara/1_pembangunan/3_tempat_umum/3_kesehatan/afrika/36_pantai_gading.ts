@@ -1,7 +1,7 @@
 export const pantai_gading_kesehatan = {
-      "rumah_sakit_besar": 35,
-      "rumah_sakit_kecil": 38,
-      "pusat_diagnostik": 38,
-      "harapan_hidup": 10,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 2,
+      "rumah_sakit_kecil": 75,
+      "pusat_diagnostik": 14,
+      "harapan_hidup": 65,
+      "indeks_kesehatan": 53
   } as const;

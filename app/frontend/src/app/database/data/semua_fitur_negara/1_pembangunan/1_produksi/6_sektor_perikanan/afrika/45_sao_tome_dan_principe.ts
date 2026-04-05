@@ -1,5 +1,5 @@
 export const sao_tome_dan_principe_perikanan = {
-  udang: 15,
-  mutiara: 15,
-  ikan: 10,
+  udang: 20,
+  mutiara: 152,
+  ikan: 88,
 } as const;

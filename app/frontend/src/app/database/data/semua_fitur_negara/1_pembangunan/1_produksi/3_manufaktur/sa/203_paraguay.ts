@@ -1,8 +1,9 @@
 export const paraguay_manufaktur = {
-  semikonduktor: 12,
-  mobil: 18,
-  sepeda_motor: 9,
-  smelter: 34,
-  semen_beton: 11,
-  kayu: 4,
+  semikonduktor: 20,
+  mobil: 60,
+  sepeda_motor: 65,
+  smelter: 35,
+  semen_beton: 55,
+  kayu: 45,
+  pupuk: 45,
 } as const;

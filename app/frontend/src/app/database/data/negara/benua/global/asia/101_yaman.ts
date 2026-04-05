@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { yaman_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/101_yaman";
-import { yaman_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/asia/101_yaman";
+import { yaman_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/101_yaman";
 import { yaman_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/101_yaman";
 import { yaman_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/101_yaman";
 import { yaman_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/101_yaman";
 import { yaman_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/101_yaman";
-import { yaman_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/asia/101_yaman";
+import { yaman_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/101_yaman";
 import { yaman_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/101_yaman";
 import { yaman_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/101_yaman";
 import { yaman_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/101_yaman";
@@ -14,10 +14,10 @@ import { yaman_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembang
 import { yaman_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/101_yaman";
 import { yaman_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/101_yaman";
 import { yaman_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/101_yaman";
-import { yaman_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/asia/101_yaman";
+import { yaman_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/101_yaman";
 import { yaman_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/101_yaman";
 import { yaman_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/101_yaman";
-import { yaman_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/asia/101_yaman";
+import { yaman_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/101_yaman";
 const yaman_geopolitik = {
     "un_vote": 111,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const yaman: CountryData = {
     "lingkungan": 60
   }
 };
+
 

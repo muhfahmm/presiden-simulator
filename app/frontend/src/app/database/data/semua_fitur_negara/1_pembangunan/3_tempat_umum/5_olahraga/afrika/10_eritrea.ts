@@ -1,10 +1,10 @@
 export const eritrea_olahraga = {
-  "kolam_renang": 22,
-  "sirkuit_balap": 37,
-  "stadion": 33,
-  "stadion_internasional": 5,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 13,
+  "sirkuit_balap": 2,
+  "stadion": 10,
+  "stadion_internasional": 1,
+  "gym": 18,
+  "golf": 3,
+  "esports": 2,
+  "gokart": 3
 } as const;

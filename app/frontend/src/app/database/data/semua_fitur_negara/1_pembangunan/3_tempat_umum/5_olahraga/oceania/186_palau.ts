@@ -1,10 +1,10 @@
 export const palau_olahraga = {
-  "kolam_renang": 18,
-  "sirkuit_balap": 4,
-  "stadion": 19,
-  "stadion_internasional": 24,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 2,
+  "sirkuit_balap": 2,
+  "stadion": 10,
+  "stadion_internasional": 0,
+  "gym": 30,
+  "golf": 5,
+  "esports": 1,
+  "gokart": 10
 } as const;

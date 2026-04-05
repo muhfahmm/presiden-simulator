@@ -1,8 +1,9 @@
 export const latvia_manufaktur = {
-  semikonduktor: 28,
-  mobil: 17,
-  sepeda_motor: 29,
-  smelter: 39,
-  semen_beton: 40,
-  kayu: 23,
+  semikonduktor: 36,
+  mobil: 28,
+  sepeda_motor: 36,
+  smelter: 20,
+  semen_beton: 52,
+  kayu: 20,
+  pupuk: 8,
 } as const;

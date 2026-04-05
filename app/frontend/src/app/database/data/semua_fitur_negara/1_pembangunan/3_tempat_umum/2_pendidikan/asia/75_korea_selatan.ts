@@ -1,13 +1,13 @@
 export const korea_selatan_pendidikan = {
-      "prasekolah": 31,
-      "dasar": 28,
-      "menengah": 3,
-      "lanjutan": 18,
-      "universitas": 26,
-      "lembaga_pendidikan": 9,
-      "laboratorium": 12,
-      "observatorium": 1,
-      "pusat_penelitian": 1,
-      "pusat_pengembangan": 39,
-      "literasi": 94
+      "prasekolah": 878,
+      "dasar": 1590,
+      "menengah": 896,
+      "lanjutan": 950,
+      "universitas": 344,
+      "lembaga_pendidikan": 265,
+      "laboratorium": 72,
+      "observatorium": 4,
+      "pusat_penelitian": 78,
+      "pusat_pengembangan": 37,
+      "literasi": 86
     } as const;

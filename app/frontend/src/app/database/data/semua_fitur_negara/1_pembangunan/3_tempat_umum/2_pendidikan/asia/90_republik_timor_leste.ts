@@ -1,13 +1,13 @@
 export const republik_timor_leste_pendidikan = {
-      "prasekolah": 8,
-      "dasar": 7,
-      "menengah": 32,
-      "lanjutan": 8,
-      "universitas": 16,
-      "lembaga_pendidikan": 26,
-      "laboratorium": 36,
-      "observatorium": 8,
-      "pusat_penelitian": 13,
-      "pusat_pengembangan": 19,
-      "literasi": 79
+      "prasekolah": 74,
+      "dasar": 65,
+      "menengah": 44,
+      "lanjutan": 32,
+      "universitas": 8,
+      "lembaga_pendidikan": 5,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 0,
+      "literasi": 82
     } as const;

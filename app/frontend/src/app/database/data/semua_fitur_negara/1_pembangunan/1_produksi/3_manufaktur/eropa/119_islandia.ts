@@ -1,8 +1,9 @@
 export const islandia_manufaktur = {
-  semikonduktor: 18,
-  mobil: 39,
-  sepeda_motor: 38,
-  smelter: 18,
-  semen_beton: 32,
-  kayu: 5,
+  semikonduktor: 32,
+  mobil: 36,
+  sepeda_motor: 28,
+  smelter: 20,
+  semen_beton: 20,
+  kayu: 48,
+  pupuk: 32,
 } as const;

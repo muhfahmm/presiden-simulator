@@ -1,13 +1,13 @@
 export const australia_pendidikan = {
-      "prasekolah": 7,
-      "dasar": 15,
-      "menengah": 20,
-      "lanjutan": 33,
-      "universitas": 29,
-      "lembaga_pendidikan": 27,
-      "laboratorium": 20,
-      "observatorium": 17,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 33,
-      "literasi": 50
+      "prasekolah": 1293,
+      "dasar": 1368,
+      "menengah": 1371,
+      "lanjutan": 500,
+      "universitas": 292,
+      "lembaga_pendidikan": 178,
+      "laboratorium": 67,
+      "observatorium": 4,
+      "pusat_penelitian": 23,
+      "pusat_pengembangan": 39,
+      "literasi": 95
     } as const;

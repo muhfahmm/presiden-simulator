@@ -1,13 +1,13 @@
 export const liberia_pendidikan = {
-      "prasekolah": 16,
-      "dasar": 7,
-      "menengah": 31,
-      "lanjutan": 18,
-      "universitas": 7,
-      "lembaga_pendidikan": 32,
-      "laboratorium": 34,
-      "observatorium": 3,
-      "pusat_penelitian": 24,
-      "pusat_pengembangan": 36,
-      "literasi": 50
+      "prasekolah": 27,
+      "dasar": 138,
+      "menengah": 35,
+      "lanjutan": 28,
+      "universitas": 18,
+      "lembaga_pendidikan": 6,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 0,
+      "literasi": 67
   } as const;

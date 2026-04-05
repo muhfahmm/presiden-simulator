@@ -1,4 +1,4 @@
 export const guiana_prancis_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 9,
+  "teater": 20
 } as const;

@@ -1,13 +1,13 @@
 export const irlandia_pendidikan = {
-      "prasekolah": 23,
-      "dasar": 22,
-      "menengah": 37,
-      "lanjutan": 24,
-      "universitas": 35,
-      "lembaga_pendidikan": 1,
-      "laboratorium": 10,
-      "observatorium": 37,
-      "pusat_penelitian": 10,
-      "pusat_pengembangan": 25,
-      "literasi": 92
+      "prasekolah": 206,
+      "dasar": 223,
+      "menengah": 284,
+      "lanjutan": 102,
+      "universitas": 81,
+      "lembaga_pendidikan": 85,
+      "laboratorium": 17,
+      "observatorium": 3,
+      "pusat_penelitian": 17,
+      "pusat_pengembangan": 2,
+      "literasi": 84
     } as const;

@@ -1,8 +1,9 @@
 export const antigua_dan_barbuda_manufaktur = {
-  semikonduktor: 33,
-  mobil: 1,
-  sepeda_motor: 16,
-  smelter: 16,
-  semen_beton: 2,
-  kayu: 25,
+  semikonduktor: 30,
+  mobil: 16,
+  sepeda_motor: 26,
+  smelter: 22,
+  semen_beton: 26,
+  kayu: 12,
+  pupuk: 16,
 } as const;

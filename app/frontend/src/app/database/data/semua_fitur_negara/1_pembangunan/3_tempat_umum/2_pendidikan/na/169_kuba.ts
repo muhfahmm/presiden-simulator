@@ -1,13 +1,13 @@
 export const kuba_pendidikan = {
-      "prasekolah": 18,
-      "dasar": 33,
-      "menengah": 9,
-      "lanjutan": 40,
-      "universitas": 9,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 23,
-      "observatorium": 11,
-      "pusat_penelitian": 27,
-      "pusat_pengembangan": 12,
-      "literasi": 59
+      "prasekolah": 98,
+      "dasar": 36,
+      "menengah": 40,
+      "lanjutan": 46,
+      "universitas": 19,
+      "lembaga_pendidikan": 5,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 2,
+      "literasi": 73
     } as const;

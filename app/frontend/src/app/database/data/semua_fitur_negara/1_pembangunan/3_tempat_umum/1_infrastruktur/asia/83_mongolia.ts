@@ -1,10 +1,10 @@
 export const mongolia_infrastruktur = {
-  jalur_sepeda: 12,
-  jalan_raya: 33,
-  terminal_bus: 12,
-  stasiun_kereta_api: 37,
-  kereta_bawah_tanah: 17,
-  pelabuhan: 40,
-  bandara: 32,
-  helipad: 23,
+  jalur_sepeda: 3,
+  jalan_raya: 7,
+  terminal_bus: 7,
+  stasiun_kereta_api: 4,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 1,
+  bandara: 5,
+  helipad: 2,
 } as const;

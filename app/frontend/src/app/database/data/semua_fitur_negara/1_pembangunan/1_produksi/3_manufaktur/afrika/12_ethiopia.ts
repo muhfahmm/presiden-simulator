@@ -1,8 +1,9 @@
 export const ethiopia_manufaktur = {
-  mobil: 33,
-  semen_beton: 20,
-  sepeda_motor: 15,
-  semikonduktor: 22,
-  smelter: 22,
-  kayu: 22,
+  mobil: 180,
+  semen_beton: 126,
+  sepeda_motor: 180,
+  semikonduktor: 108,
+  smelter: 180,
+  kayu: 252,
+  pupuk: 162,
 } as const;

@@ -1,10 +1,10 @@
 export const filipina_olahraga = {
-  "kolam_renang": 31,
-  "sirkuit_balap": 15,
-  "stadion": 39,
-  "stadion_internasional": 12,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 97,
+  "sirkuit_balap": 10,
+  "stadion": 43,
+  "stadion_internasional": 2,
+  "gym": 124,
+  "golf": 12,
+  "esports": 6,
+  "gokart": 35
 } as const;

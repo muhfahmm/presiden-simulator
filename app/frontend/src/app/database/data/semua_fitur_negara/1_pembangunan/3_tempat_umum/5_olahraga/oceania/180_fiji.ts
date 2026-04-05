@@ -1,10 +1,10 @@
 export const fiji_olahraga = {
-  "kolam_renang": 17,
-  "sirkuit_balap": 32,
-  "stadion": 6,
-  "stadion_internasional": 20,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 13,
+  "sirkuit_balap": 3,
+  "stadion": 8,
+  "stadion_internasional": 0,
+  "gym": 38,
+  "golf": 4,
+  "esports": 4,
+  "gokart": 3
 } as const;

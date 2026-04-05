@@ -1,13 +1,13 @@
 export const jerman_pendidikan = {
-      "prasekolah": 11,
-      "dasar": 25,
-      "menengah": 18,
-      "lanjutan": 15,
-      "universitas": 1,
-      "lembaga_pendidikan": 10,
-      "laboratorium": 6,
-      "observatorium": 15,
-      "pusat_penelitian": 30,
-      "pusat_pengembangan": 28,
-      "literasi": 84
+      "prasekolah": 731,
+      "dasar": 819,
+      "menengah": 1281,
+      "lanjutan": 759,
+      "universitas": 462,
+      "lembaga_pendidikan": 142,
+      "laboratorium": 40,
+      "observatorium": 12,
+      "pusat_penelitian": 58,
+      "pusat_pengembangan": 20,
+      "literasi": 86
     } as const;

@@ -1,10 +1,10 @@
 export const jepang_olahraga = {
-  "kolam_renang": 13,
-  "sirkuit_balap": 39,
-  "stadion": 39,
-  "stadion_internasional": 12,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 289,
+  "sirkuit_balap": 14,
+  "stadion": 131,
+  "stadion_internasional": 10,
+  "gym": 645,
+  "golf": 36,
+  "esports": 49,
+  "gokart": 91
 } as const;

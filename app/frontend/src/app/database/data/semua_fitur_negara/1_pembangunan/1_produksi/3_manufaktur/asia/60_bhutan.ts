@@ -1,8 +1,9 @@
 export const bhutan_manufaktur = {
-  semikonduktor: 32,
-  mobil: 26,
-  sepeda_motor: 8,
-  smelter: 14,
-  semen_beton: 30,
-  kayu: 40,
+  semikonduktor: 21,
+  mobil: 39,
+  sepeda_motor: 36,
+  smelter: 42,
+  semen_beton: 45,
+  kayu: 30,
+  pupuk: 24,
 } as const;

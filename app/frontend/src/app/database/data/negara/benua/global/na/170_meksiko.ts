@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { meksiko_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/170_meksiko";
-import { meksiko_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/na/170_meksiko";
+import { meksiko_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/170_meksiko";
 import { meksiko_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/170_meksiko";
 import { meksiko_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/170_meksiko";
 import { meksiko_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/170_meksiko";
 import { meksiko_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/170_meksiko";
-import { meksiko_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/na/170_meksiko";
+import { meksiko_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/170_meksiko";
 import { meksiko_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/170_meksiko";
 import { meksiko_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/170_meksiko";
 import { meksiko_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/170_meksiko";
@@ -14,10 +14,10 @@ import { meksiko_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { meksiko_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/170_meksiko";
 import { meksiko_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/170_meksiko";
 import { meksiko_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/170_meksiko";
-import { meksiko_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/na/170_meksiko";
+import { meksiko_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/170_meksiko";
 import { meksiko_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/170_meksiko";
 import { meksiko_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/170_meksiko";
-import { meksiko_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/na/170_meksiko";
+import { meksiko_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/170_meksiko";
 const meksiko_geopolitik = {
     "un_vote": 186,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const meksiko: CountryData = {
     "lingkungan": 60
   }
 };
+
 

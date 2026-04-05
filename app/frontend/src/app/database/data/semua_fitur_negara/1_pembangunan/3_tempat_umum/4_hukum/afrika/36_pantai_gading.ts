@@ -1,10 +1,10 @@
 export const pantai_gading_hukum = {
-      "pusat_bantuan_hukum": 20,
-      "pengadilan": 38,
-      "kejaksaan": 5,
-      "pos_polisi": 20,
-      "armada_mobil_polisi": 787,
-      "akademi_polisi": 18,
-      "indeks_korupsi": 90,
-      "indeks_keamanan": 64
+      "pusat_bantuan_hukum": 8,
+      "pengadilan": 11,
+      "kejaksaan": 8,
+      "pos_polisi": 10,
+      "armada_mobil_polisi": 587,
+      "akademi_polisi": 4,
+      "indeks_korupsi": 38,
+      "indeks_keamanan": 52
   } as const;

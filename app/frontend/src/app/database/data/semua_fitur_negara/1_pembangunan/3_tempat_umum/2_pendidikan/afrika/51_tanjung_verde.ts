@@ -1,13 +1,13 @@
 export const tanjung_verde_pendidikan = {
-      "prasekolah": 1,
-      "dasar": 8,
-      "menengah": 15,
-      "lanjutan": 3,
-      "universitas": 7,
+      "prasekolah": 41,
+      "dasar": 68,
+      "menengah": 73,
+      "lanjutan": 43,
+      "universitas": 9,
       "lembaga_pendidikan": 13,
-      "laboratorium": 31,
-      "observatorium": 12,
-      "pusat_penelitian": 36,
-      "pusat_pengembangan": 11,
-      "literasi": 95
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 0,
+      "literasi": 84
   } as const;

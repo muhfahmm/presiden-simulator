@@ -1,10 +1,10 @@
 export const tahiti_infrastruktur = {
-  jalur_sepeda: 17,
-  jalan_raya: 36,
-  terminal_bus: 24,
-  stasiun_kereta_api: 25,
-  kereta_bawah_tanah: 30,
-  pelabuhan: 13,
-  bandara: 31,
-  helipad: 16,
+  jalur_sepeda: 3,
+  jalan_raya: 10,
+  terminal_bus: 8,
+  stasiun_kereta_api: 4,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 5,
+  bandara: 3,
+  helipad: 3,
 } as const;

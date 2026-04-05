@@ -1,8 +1,9 @@
 export const belanda_manufaktur = {
-  semikonduktor: 22,
-  mobil: 15,
-  sepeda_motor: 12,
-  smelter: 22,
-  semen_beton: 20,
-  kayu: 32,
+  semikonduktor: 1080,
+  mobil: 540,
+  sepeda_motor: 1890,
+  smelter: 1620,
+  semen_beton: 675,
+  kayu: 675,
+  pupuk: 1080,
 } as const;

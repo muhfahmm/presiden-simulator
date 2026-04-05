@@ -1,10 +1,10 @@
 export const indonesia_infrastruktur = {
-  jalur_sepeda: 22,
-  jalan_raya: 6,
-  terminal_bus: 16,
-  stasiun_kereta_api: 17,
-  kereta_bawah_tanah: 34,
-  pelabuhan: 3,
-  bandara: 30,
-  helipad: 2,
+  jalur_sepeda: 67,
+  jalan_raya: 162,
+  terminal_bus: 60,
+  stasiun_kereta_api: 60,
+  kereta_bawah_tanah: 19,
+  pelabuhan: 32,
+  bandara: 24,
+  helipad: 17,
 } as const;

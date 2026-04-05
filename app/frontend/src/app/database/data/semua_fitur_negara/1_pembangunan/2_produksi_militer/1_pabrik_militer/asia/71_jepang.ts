@@ -1,4 +1,4 @@
 export const jepang_pabrik = {
-    "pabrik_drone_kamikaze": 0,
-    "pabrik_amunisi": 0,
+    "pabrik_drone_kamikaze": 9,
+    "pabrik_amunisi": 11,
   } as const;

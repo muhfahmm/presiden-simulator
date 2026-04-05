@@ -1,7 +1,7 @@
 export const palau_kesehatan = {
-      "rumah_sakit_besar": 4,
-      "rumah_sakit_kecil": 15,
-      "pusat_diagnostik": 13,
-      "harapan_hidup": 8,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 6,
+      "rumah_sakit_kecil": 41,
+      "pusat_diagnostik": 19,
+      "harapan_hidup": 56,
+      "indeks_kesehatan": 67
     } as const;

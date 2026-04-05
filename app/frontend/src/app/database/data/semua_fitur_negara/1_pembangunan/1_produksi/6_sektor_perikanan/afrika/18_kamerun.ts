@@ -1,5 +1,5 @@
 export const kamerun_perikanan = {
-  udang: 24,
-  mutiara: 24,
-  ikan: 6,
+  udang: 224,
+  mutiara: 144,
+  ikan: 240,
 } as const;

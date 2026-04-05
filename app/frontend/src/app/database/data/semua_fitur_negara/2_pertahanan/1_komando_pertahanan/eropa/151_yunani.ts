@@ -1,0 +1,13 @@
+import { yunani_intelijen } from "../../2_intelijen/eropa/151_yunani";
+
+export const yunani_strategis = {
+    "waktu_respon": 8,
+    "intelijen": 33,
+    "status_nuklir": false,
+    "intel_radar": yunani_intelijen,
+    "operasi_strategis": { "misi_serangan": 16,
+      "misi_mata_mata": 25,
+      "misi_sabotase": 29,
+      "manajemen_wilayah": 29,
+      "program_nuklir": 0 }
+  } as const;

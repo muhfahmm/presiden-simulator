@@ -1,10 +1,10 @@
 export const hungaria_infrastruktur = {
-  jalur_sepeda: 5,
-  jalan_raya: 32,
-  terminal_bus: 4,
-  stasiun_kereta_api: 7,
-  kereta_bawah_tanah: 12,
-  pelabuhan: 31,
-  bandara: 37,
-  helipad: 26,
+  jalur_sepeda: 17,
+  jalan_raya: 72,
+  terminal_bus: 18,
+  stasiun_kereta_api: 8,
+  kereta_bawah_tanah: 5,
+  pelabuhan: 9,
+  bandara: 7,
+  helipad: 6,
 } as const;

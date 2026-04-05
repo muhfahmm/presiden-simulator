@@ -1,0 +1,14 @@
+import { gambia_intelijen } from "../../2_intelijen/afrika/14_gambia";
+
+export const gambia_strategis = {
+    "waktu_respon": 2,
+    "intelijen": 12,
+    "status_nuklir": false,
+    "intel_radar": gambia_intelijen,
+    "operasi_strategis": { "misi_serangan": 17,
+      "misi_mata_mata": 26,
+      "misi_sabotase": 22,
+      "manajemen_wilayah": 2,
+      "program_nuklir": 0
+  }
+  } as const;

@@ -1,10 +1,10 @@
 export const saint_vincent_dan_grenadine_hukum = {
-      "pusat_bantuan_hukum": 32,
-      "pengadilan": 18,
-      "kejaksaan": 5,
-      "pos_polisi": 5,
-      "armada_mobil_polisi": 5603,
-      "akademi_polisi": 31,
-      "indeks_korupsi": 73,
-      "indeks_keamanan": 87
+      "pusat_bantuan_hukum": 6,
+      "pengadilan": 9,
+      "kejaksaan": 9,
+      "pos_polisi": 21,
+      "armada_mobil_polisi": 822,
+      "akademi_polisi": 3,
+      "indeks_korupsi": 35,
+      "indeks_keamanan": 46
   } as const;

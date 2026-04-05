@@ -1,4 +1,4 @@
 export const mauritius_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 20,
+  "teater": 5
 } as const;

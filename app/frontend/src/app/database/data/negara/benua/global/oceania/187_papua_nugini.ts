@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { papua_nugini_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/187_papua_nugini";
-import { papua_nugini_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/oceania/187_papua_nugini";
+import { papua_nugini_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/187_papua_nugini";
 import { papua_nugini_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/187_papua_nugini";
 import { papua_nugini_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/oceania/187_papua_nugini";
 import { papua_nugini_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/oceania/187_papua_nugini";
 import { papua_nugini_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/oceania/187_papua_nugini";
-import { papua_nugini_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/oceania/187_papua_nugini";
+import { papua_nugini_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/oceania/187_papua_nugini";
 import { papua_nugini_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/oceania/187_papua_nugini";
 import { papua_nugini_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/oceania/187_papua_nugini";
 import { papua_nugini_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/oceania/187_papua_nugini";
@@ -14,10 +14,10 @@ import { papua_nugini_olahraga } from "@/app/database/data/semua_fitur_negara/1_
 import { papua_nugini_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/oceania/187_papua_nugini";
 import { papua_nugini_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/oceania/187_papua_nugini";
 import { papua_nugini_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/oceania/187_papua_nugini";
-import { papua_nugini_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/oceania/187_papua_nugini";
+import { papua_nugini_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/oceania/187_papua_nugini";
 import { papua_nugini_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/oceania/187_papua_nugini";
 import { papua_nugini_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/187_papua_nugini";
-import { papua_nugini_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/oceania/187_papua_nugini";
+import { papua_nugini_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/oceania/187_papua_nugini";
 const papua_nugini_geopolitik = {
     "un_vote": 130,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const papua_nugini: CountryData = {
     "lingkungan": 60
   }
 };
+
 

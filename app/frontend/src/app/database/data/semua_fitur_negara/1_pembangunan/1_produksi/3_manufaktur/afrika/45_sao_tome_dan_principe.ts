@@ -1,8 +1,9 @@
 export const sao_tome_dan_principe_manufaktur = {
-  mobil: 14,
-  semen_beton: 3,
-  sepeda_motor: 33,
-  semikonduktor: 31,
-  smelter: 10,
-  kayu: 8,
+  mobil: 24,
+  semen_beton: 52,
+  sepeda_motor: 24,
+  semikonduktor: 52,
+  smelter: 44,
+  kayu: 40,
+  pupuk: 28,
 } as const;

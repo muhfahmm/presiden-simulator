@@ -1,5 +1,5 @@
 export const republik_zambia_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 10,
+  "hotel": 3,
+  "pusat_grosir_tekstil": 2
 } as const;

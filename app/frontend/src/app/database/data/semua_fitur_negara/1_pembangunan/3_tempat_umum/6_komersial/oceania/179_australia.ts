@@ -1,5 +1,5 @@
 export const australia_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 145,
+  "hotel": 145,
+  "pusat_grosir_tekstil": 45
 } as const;

@@ -1,13 +1,13 @@
 export const lesotho_pendidikan = {
-      "prasekolah": 1,
-      "dasar": 20,
-      "menengah": 22,
-      "lanjutan": 6,
-      "universitas": 1,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 17,
-      "observatorium": 6,
-      "pusat_penelitian": 14,
-      "pusat_pengembangan": 1,
-      "literasi": 67
+      "prasekolah": 37,
+      "dasar": 68,
+      "menengah": 28,
+      "lanjutan": 23,
+      "universitas": 13,
+      "lembaga_pendidikan": 13,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 0,
+      "pusat_pengembangan": 2,
+      "literasi": 76
   } as const;

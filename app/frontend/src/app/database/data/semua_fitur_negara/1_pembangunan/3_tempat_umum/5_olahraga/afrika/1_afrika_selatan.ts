@@ -1,10 +1,10 @@
 export const afrika_selatan_olahraga = {
-  "kolam_renang": 16,
-  "sirkuit_balap": 21,
-  "stadion": 18,
-  "stadion_internasional": 32,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 72,
+  "sirkuit_balap": 4,
+  "stadion": 42,
+  "stadion_internasional": 4,
+  "gym": 179,
+  "golf": 15,
+  "esports": 13,
+  "gokart": 11
 } as const;

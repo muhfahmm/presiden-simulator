@@ -1,8 +1,9 @@
 export const kosovo_manufaktur = {
-  semikonduktor: 4,
-  mobil: 2,
-  sepeda_motor: 8,
-  smelter: 18,
-  semen_beton: 4,
-  kayu: 40,
+  semikonduktor: 33,
+  mobil: 15,
+  sepeda_motor: 27,
+  smelter: 45,
+  semen_beton: 42,
+  kayu: 33,
+  pupuk: 12,
 } as const;

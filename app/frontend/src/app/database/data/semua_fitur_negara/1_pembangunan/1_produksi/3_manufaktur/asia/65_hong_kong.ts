@@ -1,8 +1,9 @@
 export const hong_kong_manufaktur = {
-  semikonduktor: 10,
-  mobil: 19,
-  sepeda_motor: 21,
-  smelter: 9,
-  semen_beton: 32,
-  kayu: 24,
+  semikonduktor: 15,
+  mobil: 15,
+  sepeda_motor: 13,
+  smelter: 5,
+  semen_beton: 6,
+  kayu: 4,
+  pupuk: 10,
 } as const;

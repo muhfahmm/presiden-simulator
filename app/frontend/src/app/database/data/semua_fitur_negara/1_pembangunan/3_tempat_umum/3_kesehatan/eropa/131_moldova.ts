@@ -1,7 +1,7 @@
 export const moldova_kesehatan = {
-      "rumah_sakit_besar": 20,
-      "rumah_sakit_kecil": 14,
-      "pusat_diagnostik": 38,
-      "harapan_hidup": 2,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 3,
+      "rumah_sakit_kecil": 26,
+      "pusat_diagnostik": 13,
+      "harapan_hidup": 60,
+      "indeks_kesehatan": 74
     } as const;

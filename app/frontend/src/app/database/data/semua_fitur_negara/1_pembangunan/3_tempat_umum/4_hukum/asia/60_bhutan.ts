@@ -1,10 +1,10 @@
 export const bhutan_hukum = {
-      "pusat_bantuan_hukum": 40,
-      "pengadilan": 3,
-      "kejaksaan": 9,
-      "pos_polisi": 5,
-      "armada_mobil_polisi": 865,
+      "pusat_bantuan_hukum": 3,
+      "pengadilan": 2,
+      "kejaksaan": 5,
+      "pos_polisi": 6,
+      "armada_mobil_polisi": 244,
       "akademi_polisi": 1,
-      "indeks_korupsi": 71,
-      "indeks_keamanan": 73
+      "indeks_korupsi": 21,
+      "indeks_keamanan": 50
   } as const;

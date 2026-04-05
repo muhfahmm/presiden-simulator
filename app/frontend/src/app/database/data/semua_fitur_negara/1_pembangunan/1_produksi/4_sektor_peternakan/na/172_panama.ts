@@ -1,6 +1,6 @@
 export const panama_peternakan = {
-  ayam_unggas: 19,
-  sapi_perah: 24,
-  sapi_potong: 40,
-  domba_kambing: 4,
+  ayam_unggas: 100,
+  sapi_perah: 100,
+  sapi_potong: 225,
+  domba_kambing: 155,
 } as const;

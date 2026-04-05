@@ -1,10 +1,10 @@
 export const tunisia_olahraga = {
-  "kolam_renang": 4,
-  "sirkuit_balap": 18,
-  "stadion": 12,
-  "stadion_internasional": 21,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 8,
+  "sirkuit_balap": 1,
+  "stadion": 9,
+  "stadion_internasional": 1,
+  "gym": 31,
+  "golf": 2,
+  "esports": 1,
+  "gokart": 4
 } as const;

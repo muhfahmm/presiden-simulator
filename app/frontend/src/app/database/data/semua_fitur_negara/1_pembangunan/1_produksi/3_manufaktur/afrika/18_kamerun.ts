@@ -1,8 +1,9 @@
 export const kamerun_manufaktur = {
-  mobil: 5,
-  semen_beton: 33,
-  sepeda_motor: 1,
-  semikonduktor: 22,
-  smelter: 23,
-  kayu: 34,
+  mobil: 80,
+  semen_beton: 112,
+  sepeda_motor: 40,
+  semikonduktor: 112,
+  smelter: 48,
+  kayu: 40,
+  pupuk: 64,
 } as const;

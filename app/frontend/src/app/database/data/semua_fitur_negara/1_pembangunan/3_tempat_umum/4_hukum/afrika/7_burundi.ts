@@ -1,10 +1,10 @@
 export const burundi_hukum = {
-      "pusat_bantuan_hukum": 37,
-      "pengadilan": 18,
-      "kejaksaan": 31,
-      "pos_polisi": 9,
-      "armada_mobil_polisi": 9272,
-      "akademi_polisi": 12,
-      "indeks_korupsi": 75,
-      "indeks_keamanan": 59
+      "pusat_bantuan_hukum": 2,
+      "pengadilan": 11,
+      "kejaksaan": 8,
+      "pos_polisi": 25,
+      "armada_mobil_polisi": 1929,
+      "akademi_polisi": 4,
+      "indeks_korupsi": 13,
+      "indeks_keamanan": 63
   } as const;

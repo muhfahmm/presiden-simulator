@@ -1,4 +1,4 @@
 export const kuba_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 48,
+  "teater": 17
 } as const;

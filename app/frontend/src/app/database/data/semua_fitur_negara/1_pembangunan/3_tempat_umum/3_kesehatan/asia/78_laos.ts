@@ -1,7 +1,7 @@
 export const laos_kesehatan = {
-      "rumah_sakit_besar": 34,
-      "rumah_sakit_kecil": 36,
-      "pusat_diagnostik": 10,
-      "harapan_hidup": 21,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 3,
+      "rumah_sakit_kecil": 56,
+      "pusat_diagnostik": 17,
+      "harapan_hidup": 62,
+      "indeks_kesehatan": 55
     } as const;

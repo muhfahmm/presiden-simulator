@@ -1,10 +1,10 @@
 export const barbados_infrastruktur = {
-  jalur_sepeda: 23,
-  jalan_raya: 11,
-  terminal_bus: 23,
-  stasiun_kereta_api: 23,
-  kereta_bawah_tanah: 35,
+  jalur_sepeda: 7,
+  jalan_raya: 9,
+  terminal_bus: 4,
+  stasiun_kereta_api: 0,
+  kereta_bawah_tanah: 0,
   pelabuhan: 3,
-  bandara: 30,
-  helipad: 31,
+  bandara: 3,
+  helipad: 3,
 } as const;

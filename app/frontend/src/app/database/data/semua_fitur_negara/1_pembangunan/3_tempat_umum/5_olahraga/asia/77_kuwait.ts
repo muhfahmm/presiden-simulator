@@ -1,10 +1,10 @@
 export const kuwait_olahraga = {
-  "kolam_renang": 17,
-  "sirkuit_balap": 19,
-  "stadion": 28,
-  "stadion_internasional": 9,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 4,
+  "sirkuit_balap": 2,
+  "stadion": 7,
+  "stadion_internasional": 1,
+  "gym": 20,
+  "golf": 2,
+  "esports": 3,
+  "gokart": 3
 } as const;

@@ -1,7 +1,7 @@
 export const andorra_kesehatan = {
-      "rumah_sakit_besar": 16,
-      "rumah_sakit_kecil": 10,
-      "pusat_diagnostik": 3,
-      "harapan_hidup": 10,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 7,
+      "rumah_sakit_kecil": 76,
+      "pusat_diagnostik": 6,
+      "harapan_hidup": 61,
+      "indeks_kesehatan": 68
     } as const;

@@ -1,10 +1,10 @@
 export const vatikan_hukum = {
-      "pusat_bantuan_hukum": 27,
-      "pengadilan": 30,
-      "kejaksaan": 38,
+      "pusat_bantuan_hukum": 2,
+      "pengadilan": 2,
+      "kejaksaan": 10,
       "pos_polisi": 29,
-      "armada_mobil_polisi": 1565,
-      "akademi_polisi": 33,
-      "indeks_korupsi": 55,
-      "indeks_keamanan": 74
+      "armada_mobil_polisi": 1949,
+      "akademi_polisi": 3,
+      "indeks_korupsi": 44,
+      "indeks_keamanan": 68
   } as const;

@@ -1,5 +1,5 @@
 export const maldives_perikanan = {
-  udang: 7,
-  mutiara: 7,
-  ikan: 12,
+  udang: 54,
+  mutiara: 24,
+  ikan: 18,
 } as const;

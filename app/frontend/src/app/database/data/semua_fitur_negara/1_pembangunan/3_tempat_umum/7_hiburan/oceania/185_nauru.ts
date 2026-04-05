@@ -1,4 +1,4 @@
 export const nauru_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 8,
+  "teater": 16
 } as const;

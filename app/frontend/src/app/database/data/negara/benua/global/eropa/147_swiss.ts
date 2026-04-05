@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { swiss_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/147_swiss";
-import { swiss_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/eropa/147_swiss";
+import { swiss_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/147_swiss";
 import { swiss_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/147_swiss";
 import { swiss_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/147_swiss";
 import { swiss_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/147_swiss";
 import { swiss_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/147_swiss";
-import { swiss_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/eropa/147_swiss";
+import { swiss_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/147_swiss";
 import { swiss_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/147_swiss";
 import { swiss_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/147_swiss";
 import { swiss_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/147_swiss";
@@ -14,10 +14,10 @@ import { swiss_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembang
 import { swiss_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/147_swiss";
 import { swiss_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/147_swiss";
 import { swiss_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/147_swiss";
-import { swiss_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/eropa/147_swiss";
+import { swiss_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/147_swiss";
 import { swiss_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/147_swiss";
 import { swiss_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/147_swiss";
-import { swiss_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/eropa/147_swiss";
+import { swiss_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/147_swiss";
 const swiss_geopolitik = {
     "un_vote": 198,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const swiss: CountryData = {
     "lingkungan": 60
   }
 };
+
 

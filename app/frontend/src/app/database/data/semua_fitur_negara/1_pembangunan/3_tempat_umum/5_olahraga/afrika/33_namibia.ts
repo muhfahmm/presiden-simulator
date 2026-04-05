@@ -1,10 +1,10 @@
 export const namibia_olahraga = {
-  "kolam_renang": 6,
-  "sirkuit_balap": 4,
-  "stadion": 34,
-  "stadion_internasional": 31,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 18,
+  "sirkuit_balap": 3,
+  "stadion": 2,
+  "stadion_internasional": 0,
+  "gym": 5,
+  "golf": 2,
+  "esports": 4,
+  "gokart": 11
 } as const;

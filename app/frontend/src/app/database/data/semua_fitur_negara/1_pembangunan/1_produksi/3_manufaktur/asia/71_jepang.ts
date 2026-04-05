@@ -1,8 +1,9 @@
 export const jepang_manufaktur = {
-  semikonduktor: 28,
-  mobil: 13,
-  sepeda_motor: 31,
-  smelter: 28,
-  semen_beton: 39,
-  kayu: 17,
+  semikonduktor: 3094,
+  mobil: 1428,
+  sepeda_motor: 1428,
+  smelter: 1904,
+  semen_beton: 3332,
+  kayu: 1904,
+  pupuk: 952,
 } as const;

@@ -1,10 +1,10 @@
 export const chile_infrastruktur = {
-  jalur_sepeda: 16,
-  jalan_raya: 40,
-  terminal_bus: 9,
-  stasiun_kereta_api: 40,
-  kereta_bawah_tanah: 24,
-  pelabuhan: 17,
-  bandara: 34,
-  helipad: 15,
+  jalur_sepeda: 49,
+  jalan_raya: 73,
+  terminal_bus: 30,
+  stasiun_kereta_api: 13,
+  kereta_bawah_tanah: 4,
+  pelabuhan: 11,
+  bandara: 5,
+  helipad: 8,
 } as const;

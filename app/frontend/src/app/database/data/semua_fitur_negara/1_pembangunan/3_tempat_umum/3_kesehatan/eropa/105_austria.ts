@@ -1,7 +1,7 @@
 export const austria_kesehatan = {
-      "rumah_sakit_besar": 23,
-      "rumah_sakit_kecil": 6,
-      "pusat_diagnostik": 14,
-      "harapan_hidup": 13,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 26,
+      "rumah_sakit_kecil": 118,
+      "pusat_diagnostik": 94,
+      "harapan_hidup": 74,
+      "indeks_kesehatan": 73
     } as const;

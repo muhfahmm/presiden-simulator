@@ -1,7 +1,7 @@
 export const mauritius_kesehatan = {
-      "rumah_sakit_besar": 26,
-      "rumah_sakit_kecil": 17,
-      "pusat_diagnostik": 10,
-      "harapan_hidup": 11,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 14,
+      "rumah_sakit_kecil": 31,
+      "pusat_diagnostik": 19,
+      "harapan_hidup": 66,
+      "indeks_kesehatan": 69
   } as const;

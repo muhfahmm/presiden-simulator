@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { guam_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/181_guam";
-import { guam_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/oceania/181_guam";
+import { guam_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/181_guam";
 import { guam_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/181_guam";
 import { guam_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/oceania/181_guam";
 import { guam_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/oceania/181_guam";
 import { guam_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/oceania/181_guam";
-import { guam_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/oceania/181_guam";
+import { guam_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/oceania/181_guam";
 import { guam_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/oceania/181_guam";
 import { guam_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/oceania/181_guam";
 import { guam_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/oceania/181_guam";
@@ -14,10 +14,10 @@ import { guam_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangu
 import { guam_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/oceania/181_guam";
 import { guam_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/oceania/181_guam";
 import { guam_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/oceania/181_guam";
-import { guam_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/oceania/181_guam";
+import { guam_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/oceania/181_guam";
 import { guam_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/oceania/181_guam";
 import { guam_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/181_guam";
-import { guam_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/oceania/181_guam";
+import { guam_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/oceania/181_guam";
 const guam_geopolitik = {
     "un_vote": 151,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const guam: CountryData = {
     "lingkungan": 60
   }
 };
+
 

@@ -1,10 +1,10 @@
 export const norwegia_olahraga = {
-  "kolam_renang": 24,
-  "sirkuit_balap": 22,
-  "stadion": 40,
-  "stadion_internasional": 25,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 71,
+  "sirkuit_balap": 10,
+  "stadion": 30,
+  "stadion_internasional": 2,
+  "gym": 168,
+  "golf": 18,
+  "esports": 12,
+  "gokart": 24
 } as const;

@@ -1,8 +1,9 @@
 export const dominika_manufaktur = {
-  semikonduktor: 15,
-  mobil: 34,
-  sepeda_motor: 10,
-  smelter: 19,
-  semen_beton: 36,
-  kayu: 25,
+  semikonduktor: 44,
+  mobil: 40,
+  sepeda_motor: 60,
+  smelter: 48,
+  semen_beton: 32,
+  kayu: 44,
+  pupuk: 36,
 } as const;

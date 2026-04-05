@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { maroko_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/28_maroko";
-import { maroko_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/afrika/28_maroko";
+import { maroko_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/28_maroko";
 import { maroko_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/28_maroko";
 import { maroko_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/28_maroko";
 import { maroko_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/28_maroko";
 import { maroko_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/28_maroko";
-import { maroko_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/afrika/28_maroko";
+import { maroko_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/28_maroko";
 import { maroko_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/28_maroko";
 import { maroko_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/28_maroko";
 import { maroko_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/28_maroko";
@@ -14,10 +14,10 @@ import { maroko_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemban
 import { maroko_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/28_maroko";
 import { maroko_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/28_maroko";
 import { maroko_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/28_maroko";
-import { maroko_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/afrika/28_maroko";
+import { maroko_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/28_maroko";
 import { maroko_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/28_maroko";
 import { maroko_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/28_maroko";
-import { maroko_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/afrika/28_maroko";
+import { maroko_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/28_maroko";
 const maroko_geopolitik = {
     "un_vote": 109,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const maroko: CountryData = {
     "lingkungan": 60
   }
 };
+
 

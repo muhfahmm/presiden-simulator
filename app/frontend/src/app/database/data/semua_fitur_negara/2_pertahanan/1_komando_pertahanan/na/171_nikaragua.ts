@@ -1,0 +1,13 @@
+import { nikaragua_intelijen } from "../../2_intelijen/na/171_nikaragua";
+
+export const nikaragua_strategis = {
+    "waktu_respon": 36,
+    "intelijen": 24,
+    "status_nuklir": false,
+    "intel_radar": nikaragua_intelijen,
+    "operasi_strategis": { "misi_serangan": 4,
+      "misi_mata_mata": 26,
+      "misi_sabotase": 15,
+      "manajemen_wilayah": 40,
+      "program_nuklir": 0 }
+  } as const;

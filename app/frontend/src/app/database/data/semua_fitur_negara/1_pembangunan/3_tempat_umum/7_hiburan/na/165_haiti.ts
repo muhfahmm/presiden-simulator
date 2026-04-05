@@ -1,4 +1,4 @@
 export const haiti_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 25,
+  "teater": 15
 } as const;

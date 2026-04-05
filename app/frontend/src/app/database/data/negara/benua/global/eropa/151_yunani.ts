@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { yunani_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/151_yunani";
-import { yunani_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/eropa/151_yunani";
+import { yunani_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/151_yunani";
 import { yunani_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/151_yunani";
 import { yunani_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/151_yunani";
 import { yunani_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/151_yunani";
 import { yunani_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/151_yunani";
-import { yunani_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/eropa/151_yunani";
+import { yunani_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/151_yunani";
 import { yunani_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/151_yunani";
 import { yunani_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/151_yunani";
 import { yunani_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/151_yunani";
@@ -14,10 +14,10 @@ import { yunani_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemban
 import { yunani_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/151_yunani";
 import { yunani_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/151_yunani";
 import { yunani_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/151_yunani";
-import { yunani_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/eropa/151_yunani";
+import { yunani_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/151_yunani";
 import { yunani_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/151_yunani";
 import { yunani_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/151_yunani";
-import { yunani_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/eropa/151_yunani";
+import { yunani_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/151_yunani";
 const yunani_geopolitik = {
     "un_vote": 179,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const yunani: CountryData = {
     "lingkungan": 60
   }
 };
+
 

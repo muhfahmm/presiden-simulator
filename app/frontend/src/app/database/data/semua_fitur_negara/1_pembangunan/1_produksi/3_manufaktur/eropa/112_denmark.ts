@@ -1,8 +1,9 @@
 export const denmark_manufaktur = {
-  semikonduktor: 18,
-  mobil: 30,
-  sepeda_motor: 19,
-  smelter: 24,
-  semen_beton: 34,
-  kayu: 33,
+  semikonduktor: 396,
+  mobil: 220,
+  sepeda_motor: 220,
+  smelter: 176,
+  semen_beton: 396,
+  kayu: 308,
+  pupuk: 308,
 } as const;

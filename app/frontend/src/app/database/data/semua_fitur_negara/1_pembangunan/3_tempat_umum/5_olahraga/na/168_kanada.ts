@@ -1,10 +1,10 @@
 export const kanada_olahraga = {
-  "kolam_renang": 14,
-  "sirkuit_balap": 14,
-  "stadion": 17,
-  "stadion_internasional": 39,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 306,
+  "sirkuit_balap": 24,
+  "stadion": 149,
+  "stadion_internasional": 7,
+  "gym": 276,
+  "golf": 41,
+  "esports": 36,
+  "gokart": 192
 } as const;

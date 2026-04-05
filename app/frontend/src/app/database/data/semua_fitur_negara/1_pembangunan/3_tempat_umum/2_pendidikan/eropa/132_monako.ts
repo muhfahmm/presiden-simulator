@@ -1,13 +1,13 @@
 export const monako_pendidikan = {
-      "prasekolah": 4,
-      "dasar": 22,
-      "menengah": 32,
-      "lanjutan": 16,
-      "universitas": 1,
-      "lembaga_pendidikan": 30,
-      "laboratorium": 18,
-      "observatorium": 9,
-      "pusat_penelitian": 23,
-      "pusat_pengembangan": 37,
-      "literasi": 68
+      "prasekolah": 17,
+      "dasar": 146,
+      "menengah": 67,
+      "lanjutan": 44,
+      "universitas": 5,
+      "lembaga_pendidikan": 14,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 1,
+      "literasi": 75
     } as const;

@@ -1,7 +1,7 @@
 export const india_kesehatan = {
-      "rumah_sakit_besar": 4,
-      "rumah_sakit_kecil": 18,
-      "pusat_diagnostik": 40,
-      "harapan_hidup": 3,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 191,
+      "rumah_sakit_kecil": 685,
+      "pusat_diagnostik": 402,
+      "harapan_hidup": 77,
+      "indeks_kesehatan": 81
     } as const;

@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { suriah_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/93_suriah";
-import { suriah_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/asia/93_suriah";
+import { suriah_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/93_suriah";
 import { suriah_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/93_suriah";
 import { suriah_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/93_suriah";
 import { suriah_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/93_suriah";
 import { suriah_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/93_suriah";
-import { suriah_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/asia/93_suriah";
+import { suriah_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/93_suriah";
 import { suriah_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/93_suriah";
 import { suriah_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/93_suriah";
 import { suriah_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/93_suriah";
@@ -14,10 +14,10 @@ import { suriah_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemban
 import { suriah_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/93_suriah";
 import { suriah_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/93_suriah";
 import { suriah_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/93_suriah";
-import { suriah_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/asia/93_suriah";
+import { suriah_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/93_suriah";
 import { suriah_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/93_suriah";
 import { suriah_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/93_suriah";
-import { suriah_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/asia/93_suriah";
+import { suriah_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/93_suriah";
 const suriah_geopolitik = {
     "un_vote": 65,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const suriah: CountryData = {
     "lingkungan": 60
   }
 };
+
 

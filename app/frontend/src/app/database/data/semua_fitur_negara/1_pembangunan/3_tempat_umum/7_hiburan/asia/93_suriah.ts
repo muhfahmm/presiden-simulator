@@ -1,4 +1,4 @@
 export const suriah_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 14,
+  "teater": 11
 } as const;

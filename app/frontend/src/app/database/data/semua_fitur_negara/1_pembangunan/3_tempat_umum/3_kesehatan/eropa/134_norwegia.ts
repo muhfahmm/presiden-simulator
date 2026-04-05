@@ -1,7 +1,7 @@
 export const norwegia_kesehatan = {
-      "rumah_sakit_besar": 14,
-      "rumah_sakit_kecil": 37,
-      "pusat_diagnostik": 22,
-      "harapan_hidup": 27,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 43,
+      "rumah_sakit_kecil": 284,
+      "pusat_diagnostik": 136,
+      "harapan_hidup": 75,
+      "indeks_kesehatan": 76
     } as const;

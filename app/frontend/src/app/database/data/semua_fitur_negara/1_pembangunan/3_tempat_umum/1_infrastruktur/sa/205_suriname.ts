@@ -1,10 +1,10 @@
 export const suriname_infrastruktur = {
-  jalur_sepeda: 26,
-  jalan_raya: 22,
-  terminal_bus: 39,
-  stasiun_kereta_api: 22,
-  kereta_bawah_tanah: 31,
+  jalur_sepeda: 6,
+  jalan_raya: 6,
+  terminal_bus: 3,
+  stasiun_kereta_api: 0,
+  kereta_bawah_tanah: 0,
   pelabuhan: 5,
-  bandara: 36,
-  helipad: 17,
+  bandara: 1,
+  helipad: 2,
 } as const;

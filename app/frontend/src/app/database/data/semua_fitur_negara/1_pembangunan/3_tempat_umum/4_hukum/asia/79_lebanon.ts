@@ -1,10 +1,10 @@
 export const lebanon_hukum = {
-      "pusat_bantuan_hukum": 12,
-      "pengadilan": 5,
-      "kejaksaan": 39,
-      "pos_polisi": 24,
-      "armada_mobil_polisi": 1509,
-      "akademi_polisi": 30,
-      "indeks_korupsi": 54,
-      "indeks_keamanan": 57
+      "pusat_bantuan_hukum": 7,
+      "pengadilan": 4,
+      "kejaksaan": 5,
+      "pos_polisi": 22,
+      "armada_mobil_polisi": 573,
+      "akademi_polisi": 5,
+      "indeks_korupsi": 15,
+      "indeks_keamanan": 60
   } as const;

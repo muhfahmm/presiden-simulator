@@ -1,13 +1,13 @@
 export const madagaskar_pendidikan = {
-      "prasekolah": 27,
-      "dasar": 21,
-      "menengah": 35,
-      "lanjutan": 27,
-      "universitas": 8,
-      "lembaga_pendidikan": 7,
-      "laboratorium": 21,
-      "observatorium": 28,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 18,
-      "literasi": 68
+      "prasekolah": 76,
+      "dasar": 26,
+      "menengah": 75,
+      "lanjutan": 7,
+      "universitas": 13,
+      "lembaga_pendidikan": 14,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 3,
+      "pusat_pengembangan": 1,
+      "literasi": 78
   } as const;

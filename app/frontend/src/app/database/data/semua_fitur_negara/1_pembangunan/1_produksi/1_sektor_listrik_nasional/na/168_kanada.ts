@@ -1,5 +1,5 @@
 export const kanada_listrik = {
-  pembangkit_listrik_tenaga_nuklir: 19,
+  pembangkit_listrik_tenaga_nuklir: 2822,
   pembangkit_listrik_tenaga_air: 10,
   pembangkit_listrik_tenaga_surya: 10,
   pembangkit_listrik_tenaga_uap: 15,

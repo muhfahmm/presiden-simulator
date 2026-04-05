@@ -1,4 +1,4 @@
 export const afrika_selatan_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 141,
+  "teater": 98
 } as const;

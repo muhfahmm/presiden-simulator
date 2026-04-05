@@ -1,8 +1,9 @@
 export const sierra_leone_manufaktur = {
-  mobil: 29,
-  semen_beton: 36,
-  sepeda_motor: 11,
-  semikonduktor: 38,
-  smelter: 10,
-  kayu: 40,
+  mobil: 32,
+  semen_beton: 24,
+  sepeda_motor: 24,
+  semikonduktor: 56,
+  smelter: 60,
+  kayu: 28,
+  pupuk: 36,
 } as const;

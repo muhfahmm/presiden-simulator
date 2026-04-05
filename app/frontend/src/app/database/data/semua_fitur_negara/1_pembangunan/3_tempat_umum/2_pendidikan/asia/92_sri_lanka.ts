@@ -1,13 +1,13 @@
 export const sri_lanka_pendidikan = {
-      "prasekolah": 27,
-      "dasar": 26,
-      "menengah": 34,
-      "lanjutan": 27,
-      "universitas": 34,
-      "lembaga_pendidikan": 38,
-      "laboratorium": 34,
-      "observatorium": 38,
-      "pusat_penelitian": 25,
-      "pusat_pengembangan": 8,
-      "literasi": 80
+      "prasekolah": 63,
+      "dasar": 128,
+      "menengah": 91,
+      "lanjutan": 47,
+      "universitas": 9,
+      "lembaga_pendidikan": 9,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 0,
+      "literasi": 61
     } as const;

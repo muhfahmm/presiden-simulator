@@ -1,8 +1,9 @@
 export const tonga_manufaktur = {
-  semikonduktor: 40,
-  mobil: 22,
-  sepeda_motor: 2,
-  smelter: 39,
-  semen_beton: 28,
-  kayu: 38,
+  semikonduktor: 4,
+  mobil: 11,
+  sepeda_motor: 4,
+  smelter: 12,
+  semen_beton: 6,
+  kayu: 12,
+  pupuk: 9,
 } as const;

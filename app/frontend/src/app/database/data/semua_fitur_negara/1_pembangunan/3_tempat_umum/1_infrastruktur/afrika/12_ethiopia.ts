@@ -1,10 +1,10 @@
 export const ethiopia_infrastruktur = {
-  jalur_sepeda: 8,
-  jalan_raya: 29,
-  terminal_bus: 29,
-  stasiun_kereta_api: 24,
-  kereta_bawah_tanah: 28,
-  pelabuhan: 20,
-  bandara: 16,
-  helipad: 3,
+  jalur_sepeda: 2,
+  jalan_raya: 6,
+  terminal_bus: 5,
+  stasiun_kereta_api: 2,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 4,
+  bandara: 3,
+  helipad: 5,
 } as const;

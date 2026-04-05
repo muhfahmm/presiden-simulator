@@ -2,12 +2,13 @@
 
 import { useState, useEffect, Fragment } from "react";
 import { X, Zap, Shield, Eye, Target, Radar, Satellite, Cpu, Radio, Search, ShieldAlert, Clock, Loader2, Info, Flame, Users, TrendingUp, TrendingDown, Activity, Globe, Bomb, Radiation, Map as MapIcon, RadioTower, EyeOff, Briefcase } from "lucide-react"
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS } from "@/app/database/data/semua_fitur_negara";
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/semua_fitur_negara";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/negara/benua/index";
+import { intelijenRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: boolean; onClose: () => void; data: any }) {
@@ -58,8 +59,20 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
   const buildingData = buildingStorage.getData();
   const buildingDeltas = buildingData.buildingDeltas;
 
-  const totalPasokan = hitungTotalKapasitas(currentData);
-  const totalBeban = hitungTotalKonsumsiNasional(currentData);
+  // 2. Logic Sinkronisasi Listrik Nasional (dengan Deltas)
+  const currentDataWithDeltas = JSON.parse(JSON.stringify(currentData));
+  Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
+    if (typeof deltaValue !== 'number') return;
+    
+    // Sektor Listrik
+    if (KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA]) {
+      const dataKey = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA].dataKey;
+      (currentDataWithDeltas.sektor_listrik as any)[dataKey] = ((currentDataWithDeltas.sektor_listrik as any)[dataKey] || 0) + deltaValue;
+    }
+  });
+
+  const totalPasokan = hitungTotalKapasitas(currentDataWithDeltas.sektor_listrik);
+  const totalBeban = hitungTotalKonsumsiNasional(currentDataWithDeltas);
   const surplus = totalPasokan - totalBeban;
 
   const intelGroups = [
@@ -69,9 +82,9 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
       icon: Search,
       color: "text-cyan-400",
       items: [
-        { key: "satellite", groupId: "infra", label: "Sistem Satelit", icon: Satellite, desc: "Orbit Intelijen", cost: 350, buildTime: 180, maintenanceCost: 100, lowongan_kerja: 80, count: (currentData.militer_strategis?.intel_radar?.sistem_satelit || 0) + ((buildingDeltas["satellite"] as number) || 0), consumption: 0 },
-        { key: "radar", groupId: "infra", label: "Jaringan Radar", icon: Radar, desc: "Deteksi Dini", cost: 120, buildTime: 90, maintenanceCost: 30, lowongan_kerja: 50, count: (currentData.militer_strategis?.intel_radar?.jaringan_radar || 0) + ((buildingDeltas["radar"] as number) || 0), consumption: 5 },
-        { key: "operasi_siber", groupId: "infra", label: "Operasi Siber", icon: Cpu, desc: "Perang Digital", cost: 180, buildTime: 120, maintenanceCost: 40, lowongan_kerja: 120, count: (currentData.militer_strategis?.intel_radar?.operasi_siber || 0) + ((buildingDeltas["operasi_siber"] as number) || 0), consumption: 10 }
+        { ...intelijenRate["satellite"], groupId: "infra", icon: Satellite, count: (currentData.militer_strategis?.intel_radar?.sistem_satelit || 0) + ((buildingDeltas["satellite"] as number) || 0), consumption: 0 },
+        { ...intelijenRate["radar"], groupId: "infra", icon: Radar, count: (currentData.militer_strategis?.intel_radar?.jaringan_radar || 0) + ((buildingDeltas["radar"] as number) || 0), consumption: 5 },
+        { ...intelijenRate["operasi_siber"], groupId: "infra", icon: Cpu, count: (currentData.militer_strategis?.intel_radar?.operasi_siber || 0) + ((buildingDeltas["operasi_siber"] as number) || 0), consumption: 10 }
       ]
     },
     {
@@ -154,6 +167,42 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
               <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
               <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
             </button>
+          </div>
+        </div>
+        {/* Dashboard Summary Listrik (Nasional) */}
+        <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 group hover:bg-zinc-900 transition-colors">
+              <div className="p-3 bg-cyan-500/10 rounded-xl">
+                <Zap className="h-6 w-6 text-cyan-500" />
+              </div>
+              <div>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.supply.title}</p>
+                <p className="text-xl font-black text-white leading-tight">{totalPasokan.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
+              </div>
+            </div>
+
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 group hover:bg-zinc-900 transition-colors">
+              <div className="p-3 bg-rose-500/10 rounded-xl">
+                <Activity className="h-6 w-6 text-rose-500" />
+              </div>
+              <div>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.usage.title}</p>
+                <p className="text-xl font-black text-white leading-tight">{totalBeban.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
+              </div>
+            </div>
+
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 relative overflow-hidden group hover:bg-zinc-900 transition-colors">
+              <div className={`p-3 rounded-xl ${surplus >= 0 ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>
+                {surplus >= 0 ? <TrendingUp className="h-6 w-6 text-emerald-500" /> : <TrendingDown className="h-6 w-6 text-rose-500" />}
+              </div>
+              <div className="relative z-10">
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.balance.title}</p>
+                <p className={`text-xl font-black leading-tight ${surplus >= 0 ? "text-emerald-500" : "text-rose-500"}`}>
+                  {surplus.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 

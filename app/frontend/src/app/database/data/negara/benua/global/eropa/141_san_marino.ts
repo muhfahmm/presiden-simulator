@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { san_marino_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/141_san_marino";
-import { san_marino_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/eropa/141_san_marino";
+import { san_marino_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/141_san_marino";
 import { san_marino_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/141_san_marino";
 import { san_marino_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/141_san_marino";
 import { san_marino_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/141_san_marino";
 import { san_marino_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/141_san_marino";
-import { san_marino_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/eropa/141_san_marino";
+import { san_marino_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/141_san_marino";
 import { san_marino_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/141_san_marino";
 import { san_marino_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/141_san_marino";
 import { san_marino_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/141_san_marino";
@@ -14,10 +14,10 @@ import { san_marino_olahraga } from "@/app/database/data/semua_fitur_negara/1_pe
 import { san_marino_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/141_san_marino";
 import { san_marino_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/141_san_marino";
 import { san_marino_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/141_san_marino";
-import { san_marino_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/eropa/141_san_marino";
+import { san_marino_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/141_san_marino";
 import { san_marino_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/141_san_marino";
 import { san_marino_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/141_san_marino";
-import { san_marino_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/eropa/141_san_marino";
+import { san_marino_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/141_san_marino";
 const san_marino_geopolitik = {
     "un_vote": 31,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const san_marino: CountryData = {
     "lingkungan": 60
   }
 };
+
 

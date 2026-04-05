@@ -1,10 +1,10 @@
 export const libya_infrastruktur = {
-  jalur_sepeda: 33,
-  jalan_raya: 8,
-  terminal_bus: 20,
-  stasiun_kereta_api: 9,
-  kereta_bawah_tanah: 28,
-  pelabuhan: 29,
-  bandara: 30,
-  helipad: 11,
+  jalur_sepeda: 6,
+  jalan_raya: 12,
+  terminal_bus: 2,
+  stasiun_kereta_api: 4,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 4,
+  bandara: 5,
+  helipad: 3,
 } as const;

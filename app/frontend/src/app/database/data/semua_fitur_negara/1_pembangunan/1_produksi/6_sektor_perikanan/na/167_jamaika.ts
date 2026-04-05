@@ -1,5 +1,5 @@
 export const jamaika_perikanan = {
-  udang: 17,
-  mutiara: 17,
-  ikan: 10,
+  udang: 68,
+  mutiara: 148,
+  ikan: 148,
 } as const;

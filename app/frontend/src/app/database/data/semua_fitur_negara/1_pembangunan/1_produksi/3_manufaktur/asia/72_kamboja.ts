@@ -1,8 +1,9 @@
 export const kamboja_manufaktur = {
-  semikonduktor: 1,
-  mobil: 24,
-  sepeda_motor: 22,
+  semikonduktor: 24,
+  mobil: 21,
+  sepeda_motor: 24,
   smelter: 24,
-  semen_beton: 20,
-  kayu: 7,
+  semen_beton: 24,
+  kayu: 42,
+  pupuk: 21,
 } as const;

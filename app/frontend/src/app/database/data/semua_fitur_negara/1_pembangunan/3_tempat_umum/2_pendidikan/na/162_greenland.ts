@@ -1,13 +1,13 @@
 export const greenland_pendidikan = {
-      "prasekolah": 5,
-      "dasar": 22,
-      "menengah": 27,
-      "lanjutan": 1,
-      "universitas": 29,
-      "lembaga_pendidikan": 21,
-      "laboratorium": 11,
-      "observatorium": 14,
-      "pusat_penelitian": 4,
-      "pusat_pengembangan": 10,
-      "literasi": 81
+      "prasekolah": 33,
+      "dasar": 24,
+      "menengah": 41,
+      "lanjutan": 24,
+      "universitas": 6,
+      "lembaga_pendidikan": 12,
+      "laboratorium": 2,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 2,
+      "literasi": 66
     } as const;

@@ -1,10 +1,10 @@
 export const maldives_infrastruktur = {
-  jalur_sepeda: 39,
-  jalan_raya: 38,
-  terminal_bus: 31,
-  stasiun_kereta_api: 18,
-  kereta_bawah_tanah: 25,
-  pelabuhan: 27,
-  bandara: 29,
-  helipad: 18,
+  jalur_sepeda: 8,
+  jalan_raya: 5,
+  terminal_bus: 5,
+  stasiun_kereta_api: 4,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 4,
+  bandara: 2,
+  helipad: 2,
 } as const;

@@ -1,10 +1,10 @@
 export const guyana_olahraga = {
-  "kolam_renang": 35,
-  "sirkuit_balap": 27,
-  "stadion": 2,
-  "stadion_internasional": 7,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 8,
+  "sirkuit_balap": 1,
+  "stadion": 3,
+  "stadion_internasional": 0,
+  "gym": 10,
+  "golf": 1,
+  "esports": 5,
+  "gokart": 5
 } as const;

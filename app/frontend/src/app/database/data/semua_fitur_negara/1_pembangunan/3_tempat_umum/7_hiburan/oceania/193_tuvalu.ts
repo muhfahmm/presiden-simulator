@@ -1,4 +1,4 @@
 export const tuvalu_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 36,
+  "teater": 4
 } as const;

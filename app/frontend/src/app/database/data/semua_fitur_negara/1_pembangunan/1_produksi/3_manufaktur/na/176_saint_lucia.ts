@@ -1,8 +1,9 @@
 export const saint_lucia_manufaktur = {
-  semikonduktor: 33,
-  mobil: 2,
-  sepeda_motor: 22,
-  smelter: 27,
+  semikonduktor: 7,
+  mobil: 12,
+  sepeda_motor: 8,
+  smelter: 13,
   semen_beton: 15,
-  kayu: 1,
+  kayu: 15,
+  pupuk: 8,
 } as const;

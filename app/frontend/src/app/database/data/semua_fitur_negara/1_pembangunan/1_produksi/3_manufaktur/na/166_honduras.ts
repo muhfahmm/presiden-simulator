@@ -1,8 +1,9 @@
 export const honduras_manufaktur = {
-  semikonduktor: 14,
-  mobil: 33,
-  sepeda_motor: 27,
-  smelter: 20,
-  semen_beton: 23,
-  kayu: 27,
+  semikonduktor: 39,
+  mobil: 18,
+  sepeda_motor: 15,
+  smelter: 12,
+  semen_beton: 27,
+  kayu: 30,
+  pupuk: 30,
 } as const;

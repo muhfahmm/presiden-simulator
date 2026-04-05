@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { guyana_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/201_guyana";
-import { guyana_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/sa/201_guyana";
+import { guyana_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/201_guyana";
 import { guyana_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/201_guyana";
 import { guyana_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/sa/201_guyana";
 import { guyana_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/sa/201_guyana";
 import { guyana_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/sa/201_guyana";
-import { guyana_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/sa/201_guyana";
+import { guyana_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/sa/201_guyana";
 import { guyana_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/sa/201_guyana";
 import { guyana_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/sa/201_guyana";
 import { guyana_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/sa/201_guyana";
@@ -14,10 +14,10 @@ import { guyana_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemban
 import { guyana_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/sa/201_guyana";
 import { guyana_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/sa/201_guyana";
 import { guyana_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/sa/201_guyana";
-import { guyana_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/sa/201_guyana";
+import { guyana_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/sa/201_guyana";
 import { guyana_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/sa/201_guyana";
 import { guyana_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/201_guyana";
-import { guyana_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/sa/201_guyana";
+import { guyana_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/sa/201_guyana";
 const guyana_geopolitik = {
     "un_vote": 74,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const guyana: CountryData = {
     "lingkungan": 60
   }
 };
+
 

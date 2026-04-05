@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { nikaragua_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/171_nikaragua";
-import { nikaragua_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/na/171_nikaragua";
+import { nikaragua_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/171_nikaragua";
 import { nikaragua_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/171_nikaragua";
 import { nikaragua_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/171_nikaragua";
 import { nikaragua_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/171_nikaragua";
 import { nikaragua_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/171_nikaragua";
-import { nikaragua_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/na/171_nikaragua";
+import { nikaragua_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/171_nikaragua";
 import { nikaragua_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/171_nikaragua";
 import { nikaragua_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/171_nikaragua";
 import { nikaragua_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/171_nikaragua";
@@ -14,10 +14,10 @@ import { nikaragua_olahraga } from "@/app/database/data/semua_fitur_negara/1_pem
 import { nikaragua_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/171_nikaragua";
 import { nikaragua_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/171_nikaragua";
 import { nikaragua_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/171_nikaragua";
-import { nikaragua_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/na/171_nikaragua";
+import { nikaragua_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/171_nikaragua";
 import { nikaragua_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/171_nikaragua";
 import { nikaragua_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/171_nikaragua";
-import { nikaragua_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/na/171_nikaragua";
+import { nikaragua_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/171_nikaragua";
 const nikaragua_geopolitik = {
     "un_vote": 162,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const nikaragua: CountryData = {
     "lingkungan": 60
   }
 };
+
 

@@ -1,7 +1,7 @@
 export const dominika_kesehatan = {
-      "rumah_sakit_besar": 6,
-      "rumah_sakit_kecil": 24,
-      "pusat_diagnostik": 33,
-      "harapan_hidup": 35,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 8,
+      "rumah_sakit_kecil": 74,
+      "pusat_diagnostik": 8,
+      "harapan_hidup": 70,
+      "indeks_kesehatan": 57
     } as const;

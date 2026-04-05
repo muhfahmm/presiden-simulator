@@ -1,10 +1,10 @@
 export const ukraina_infrastruktur = {
-  jalur_sepeda: 26,
-  jalan_raya: 25,
-  terminal_bus: 25,
-  stasiun_kereta_api: 6,
-  kereta_bawah_tanah: 25,
-  pelabuhan: 12,
-  bandara: 36,
-  helipad: 6,
+  jalur_sepeda: 2,
+  jalan_raya: 9,
+  terminal_bus: 2,
+  stasiun_kereta_api: 0,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 4,
+  bandara: 1,
+  helipad: 5,
 } as const;

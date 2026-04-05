@@ -1,10 +1,10 @@
 export const makau_infrastruktur = {
-  jalur_sepeda: 5,
-  jalan_raya: 39,
-  terminal_bus: 22,
-  stasiun_kereta_api: 27,
-  kereta_bawah_tanah: 2,
-  pelabuhan: 28,
-  bandara: 4,
-  helipad: 16,
+  jalur_sepeda: 10,
+  jalan_raya: 20,
+  terminal_bus: 7,
+  stasiun_kereta_api: 3,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 3,
+  bandara: 2,
+  helipad: 2,
 } as const;

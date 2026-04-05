@@ -1,8 +1,9 @@
 export const mongolia_manufaktur = {
-  semikonduktor: 26,
+  semikonduktor: 20,
   mobil: 16,
-  sepeda_motor: 32,
-  smelter: 16,
-  semen_beton: 28,
-  kayu: 22,
+  sepeda_motor: 60,
+  smelter: 36,
+  semen_beton: 60,
+  kayu: 36,
+  pupuk: 8,
 } as const;

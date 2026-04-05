@@ -1,8 +1,9 @@
 export const kepulauan_faroe_manufaktur = {
-  semikonduktor: 12,
-  mobil: 30,
-  sepeda_motor: 36,
-  smelter: 29,
-  semen_beton: 30,
-  kayu: 16,
+  semikonduktor: 10,
+  mobil: 6,
+  sepeda_motor: 11,
+  smelter: 9,
+  semen_beton: 15,
+  kayu: 4,
+  pupuk: 9,
 } as const;

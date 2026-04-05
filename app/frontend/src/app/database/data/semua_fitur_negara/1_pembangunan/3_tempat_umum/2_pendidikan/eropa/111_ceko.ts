@@ -1,13 +1,13 @@
 export const ceko_pendidikan = {
-      "prasekolah": 36,
-      "dasar": 30,
-      "menengah": 6,
-      "lanjutan": 26,
-      "universitas": 12,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 9,
-      "observatorium": 13,
-      "pusat_penelitian": 27,
-      "pusat_pengembangan": 37,
-      "literasi": 87
+      "prasekolah": 139,
+      "dasar": 443,
+      "menengah": 229,
+      "lanjutan": 262,
+      "universitas": 103,
+      "lembaga_pendidikan": 31,
+      "laboratorium": 17,
+      "observatorium": 3,
+      "pusat_penelitian": 19,
+      "pusat_pengembangan": 4,
+      "literasi": 89
     } as const;

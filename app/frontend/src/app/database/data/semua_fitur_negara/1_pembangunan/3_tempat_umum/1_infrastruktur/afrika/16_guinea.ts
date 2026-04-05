@@ -1,10 +1,10 @@
 export const guinea_infrastruktur = {
-  jalur_sepeda: 19,
-  jalan_raya: 9,
-  terminal_bus: 8,
-  stasiun_kereta_api: 33,
-  kereta_bawah_tanah: 9,
-  pelabuhan: 24,
-  bandara: 2,
-  helipad: 27,
+  jalur_sepeda: 10,
+  jalan_raya: 13,
+  terminal_bus: 4,
+  stasiun_kereta_api: 4,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 3,
+  bandara: 1,
+  helipad: 2,
 } as const;

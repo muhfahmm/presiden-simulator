@@ -1,10 +1,10 @@
 export const mesir_hukum = {
-      "pusat_bantuan_hukum": 12,
-      "pengadilan": 3,
-      "kejaksaan": 4,
-      "pos_polisi": 25,
-      "armada_mobil_polisi": 8480,
-      "akademi_polisi": 19,
-      "indeks_korupsi": 72,
-      "indeks_keamanan": 87
+      "pusat_bantuan_hukum": 31,
+      "pengadilan": 38,
+      "kejaksaan": 26,
+      "pos_polisi": 77,
+      "armada_mobil_polisi": 8260,
+      "akademi_polisi": 7,
+      "indeks_korupsi": 22,
+      "indeks_keamanan": 70
   } as const;

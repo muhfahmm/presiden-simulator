@@ -1,10 +1,10 @@
 export const denmark_infrastruktur = {
-  jalur_sepeda: 2,
-  jalan_raya: 1,
-  terminal_bus: 32,
-  stasiun_kereta_api: 14,
+  jalur_sepeda: 24,
+  jalan_raya: 65,
+  terminal_bus: 28,
+  stasiun_kereta_api: 10,
   kereta_bawah_tanah: 4,
-  pelabuhan: 25,
-  bandara: 15,
-  helipad: 16,
+  pelabuhan: 6,
+  bandara: 7,
+  helipad: 6,
 } as const;

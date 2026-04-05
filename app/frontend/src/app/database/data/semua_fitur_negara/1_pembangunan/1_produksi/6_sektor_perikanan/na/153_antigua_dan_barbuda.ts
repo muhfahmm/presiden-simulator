@@ -1,5 +1,5 @@
 export const antigua_dan_barbuda_perikanan = {
-  udang: 24,
-  mutiara: 24,
-  ikan: 4,
+  udang: 52,
+  mutiara: 66,
+  ikan: 32,
 } as const;

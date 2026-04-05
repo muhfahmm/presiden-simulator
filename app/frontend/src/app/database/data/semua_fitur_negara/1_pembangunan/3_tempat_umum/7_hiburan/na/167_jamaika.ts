@@ -1,4 +1,4 @@
 export const jamaika_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 20,
+  "teater": 10
 } as const;

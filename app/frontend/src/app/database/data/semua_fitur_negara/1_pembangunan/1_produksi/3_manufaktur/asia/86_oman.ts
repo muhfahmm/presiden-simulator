@@ -1,8 +1,9 @@
 export const oman_manufaktur = {
-  semikonduktor: 11,
-  mobil: 2,
-  sepeda_motor: 14,
-  smelter: 21,
-  semen_beton: 23,
-  kayu: 30,
+  semikonduktor: 143,
+  mobil: 110,
+  sepeda_motor: 110,
+  smelter: 88,
+  semen_beton: 121,
+  kayu: 165,
+  pupuk: 66,
 } as const;

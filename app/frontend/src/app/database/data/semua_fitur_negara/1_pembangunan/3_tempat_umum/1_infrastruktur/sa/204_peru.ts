@@ -1,10 +1,10 @@
 export const peru_infrastruktur = {
-  jalur_sepeda: 5,
-  jalan_raya: 11,
-  terminal_bus: 38,
-  stasiun_kereta_api: 15,
-  kereta_bawah_tanah: 26,
-  pelabuhan: 17,
-  bandara: 13,
-  helipad: 33,
+  jalur_sepeda: 27,
+  jalan_raya: 45,
+  terminal_bus: 22,
+  stasiun_kereta_api: 12,
+  kereta_bawah_tanah: 2,
+  pelabuhan: 12,
+  bandara: 7,
+  helipad: 8,
 } as const;

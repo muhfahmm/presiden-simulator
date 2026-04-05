@@ -1,5 +1,5 @@
 export const samoa_perikanan = {
-  udang: 30,
-  mutiara: 30,
-  ikan: 12,
+  udang: 78,
+  mutiara: 80,
+  ikan: 10,
 } as const;

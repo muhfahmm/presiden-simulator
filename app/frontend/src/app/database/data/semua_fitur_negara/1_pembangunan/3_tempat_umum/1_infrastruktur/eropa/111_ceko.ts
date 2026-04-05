@@ -1,10 +1,10 @@
 export const ceko_infrastruktur = {
-  jalur_sepeda: 12,
-  jalan_raya: 40,
-  terminal_bus: 25,
-  stasiun_kereta_api: 36,
-  kereta_bawah_tanah: 5,
-  pelabuhan: 38,
-  bandara: 38,
-  helipad: 28,
+  jalur_sepeda: 32,
+  jalan_raya: 95,
+  terminal_bus: 21,
+  stasiun_kereta_api: 13,
+  kereta_bawah_tanah: 1,
+  pelabuhan: 5,
+  bandara: 6,
+  helipad: 6,
 } as const;

@@ -1,5 +1,5 @@
 export const luksemburg_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 2,
+  "hotel": 2,
+  "pusat_grosir_tekstil": 5
 } as const;

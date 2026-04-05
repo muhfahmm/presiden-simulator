@@ -1,13 +1,13 @@
 export const turki_pendidikan = {
-      "prasekolah": 31,
-      "dasar": 11,
-      "menengah": 38,
-      "lanjutan": 38,
-      "universitas": 1,
-      "lembaga_pendidikan": 23,
-      "laboratorium": 30,
-      "observatorium": 19,
-      "pusat_penelitian": 33,
-      "pusat_pengembangan": 15,
-      "literasi": 93
+      "prasekolah": 68,
+      "dasar": 144,
+      "menengah": 25,
+      "lanjutan": 18,
+      "universitas": 18,
+      "lembaga_pendidikan": 5,
+      "laboratorium": 0,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 0,
+      "literasi": 76
     } as const;

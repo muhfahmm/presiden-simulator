@@ -1,10 +1,10 @@
 export const montenegro_hukum = {
-      "pusat_bantuan_hukum": 3,
-      "pengadilan": 12,
-      "kejaksaan": 37,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 5087,
-      "akademi_polisi": 14,
-      "indeks_korupsi": 95,
-      "indeks_keamanan": 72
+      "pusat_bantuan_hukum": 2,
+      "pengadilan": 2,
+      "kejaksaan": 4,
+      "pos_polisi": 25,
+      "armada_mobil_polisi": 508,
+      "akademi_polisi": 5,
+      "indeks_korupsi": 47,
+      "indeks_keamanan": 43
   } as const;

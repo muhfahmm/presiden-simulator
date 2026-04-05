@@ -1,10 +1,10 @@
 export const afganistan_olahraga = {
-  "kolam_renang": 25,
-  "sirkuit_balap": 32,
-  "stadion": 11,
-  "stadion_internasional": 33,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 13,
+  "sirkuit_balap": 2,
+  "stadion": 9,
+  "stadion_internasional": 1,
+  "gym": 31,
+  "golf": 1,
+  "esports": 2,
+  "gokart": 15
 } as const;

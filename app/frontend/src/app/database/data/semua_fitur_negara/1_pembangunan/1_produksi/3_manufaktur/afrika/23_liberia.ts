@@ -1,8 +1,9 @@
 export const liberia_manufaktur = {
-  mobil: 19,
-  semen_beton: 38,
-  sepeda_motor: 10,
-  semikonduktor: 31,
-  smelter: 36,
-  kayu: 8,
+  mobil: 21,
+  semen_beton: 21,
+  sepeda_motor: 18,
+  semikonduktor: 21,
+  smelter: 30,
+  kayu: 36,
+  pupuk: 15,
 } as const;

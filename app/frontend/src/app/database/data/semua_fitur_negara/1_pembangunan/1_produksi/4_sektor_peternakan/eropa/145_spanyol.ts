@@ -1,6 +1,6 @@
 export const spanyol_peternakan = {
-  ayam_unggas: 26,
-  sapi_perah: 31,
-  sapi_potong: 12,
-  domba_kambing: 12,
+  ayam_unggas: 3944,
+  sapi_perah: 3944,
+  sapi_potong: 4408,
+  domba_kambing: 3248,
 } as const;

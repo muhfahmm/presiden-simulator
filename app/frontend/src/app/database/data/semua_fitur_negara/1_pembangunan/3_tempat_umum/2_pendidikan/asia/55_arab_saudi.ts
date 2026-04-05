@@ -1,13 +1,13 @@
 export const arab_saudi_pendidikan = {
-      "prasekolah": 28,
-      "dasar": 40,
-      "menengah": 32,
-      "lanjutan": 6,
-      "universitas": 16,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 2,
-      "observatorium": 11,
-      "pusat_penelitian": 5,
-      "pusat_pengembangan": 28,
-      "literasi": 78
+      "prasekolah": 1115,
+      "dasar": 1617,
+      "menengah": 520,
+      "lanjutan": 476,
+      "universitas": 433,
+      "lembaga_pendidikan": 252,
+      "laboratorium": 86,
+      "observatorium": 3,
+      "pusat_penelitian": 69,
+      "pusat_pengembangan": 37,
+      "literasi": 87
     } as const;

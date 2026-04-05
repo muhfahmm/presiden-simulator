@@ -1,10 +1,10 @@
 export const venezuela_infrastruktur = {
-  jalur_sepeda: 2,
-  jalan_raya: 30,
-  terminal_bus: 25,
-  stasiun_kereta_api: 39,
-  kereta_bawah_tanah: 18,
-  pelabuhan: 30,
-  bandara: 21,
-  helipad: 37,
+  jalur_sepeda: 9,
+  jalan_raya: 8,
+  terminal_bus: 2,
+  stasiun_kereta_api: 1,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 5,
+  bandara: 4,
+  helipad: 5,
 } as const;

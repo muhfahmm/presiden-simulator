@@ -1,10 +1,10 @@
 export const arab_saudi_olahraga = {
-  "kolam_renang": 38,
-  "sirkuit_balap": 3,
-  "stadion": 1,
-  "stadion_internasional": 12,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 205,
+  "sirkuit_balap": 11,
+  "stadion": 117,
+  "stadion_internasional": 9,
+  "gym": 595,
+  "golf": 71,
+  "esports": 54,
+  "gokart": 64
 } as const;

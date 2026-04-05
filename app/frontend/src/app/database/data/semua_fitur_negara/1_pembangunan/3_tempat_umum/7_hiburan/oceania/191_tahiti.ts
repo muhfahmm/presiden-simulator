@@ -1,4 +1,4 @@
 export const tahiti_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 26,
+  "teater": 3
 } as const;

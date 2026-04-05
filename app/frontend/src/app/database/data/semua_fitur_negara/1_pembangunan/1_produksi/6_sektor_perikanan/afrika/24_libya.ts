@@ -1,5 +1,5 @@
 export const libya_perikanan = {
-  udang: 18,
-  mutiara: 18,
-  ikan: 25,
+  udang: 147,
+  mutiara: 182,
+  ikan: 203,
 } as const;

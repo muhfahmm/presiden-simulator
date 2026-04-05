@@ -1,10 +1,10 @@
 export const luksemburg_hukum = {
-      "pusat_bantuan_hukum": 19,
-      "pengadilan": 40,
-      "kejaksaan": 34,
-      "pos_polisi": 18,
-      "armada_mobil_polisi": 3747,
-      "akademi_polisi": 40,
-      "indeks_korupsi": 67,
-      "indeks_keamanan": 64
+      "pusat_bantuan_hukum": 3,
+      "pengadilan": 12,
+      "kejaksaan": 6,
+      "pos_polisi": 16,
+      "armada_mobil_polisi": 719,
+      "akademi_polisi": 4,
+      "indeks_korupsi": 14,
+      "indeks_keamanan": 46
   } as const;

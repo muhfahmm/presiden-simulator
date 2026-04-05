@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { azerbaijan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/57_azerbaijan";
-import { azerbaijan_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/asia/57_azerbaijan";
+import { azerbaijan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/57_azerbaijan";
 import { azerbaijan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/57_azerbaijan";
 import { azerbaijan_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/57_azerbaijan";
 import { azerbaijan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/57_azerbaijan";
 import { azerbaijan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/57_azerbaijan";
-import { azerbaijan_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/asia/57_azerbaijan";
+import { azerbaijan_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/57_azerbaijan";
 import { azerbaijan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/57_azerbaijan";
 import { azerbaijan_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/57_azerbaijan";
 import { azerbaijan_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/57_azerbaijan";
@@ -14,10 +14,10 @@ import { azerbaijan_olahraga } from "@/app/database/data/semua_fitur_negara/1_pe
 import { azerbaijan_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/57_azerbaijan";
 import { azerbaijan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/57_azerbaijan";
 import { azerbaijan_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/57_azerbaijan";
-import { azerbaijan_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/asia/57_azerbaijan";
+import { azerbaijan_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/57_azerbaijan";
 import { azerbaijan_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/57_azerbaijan";
 import { azerbaijan_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/57_azerbaijan";
-import { azerbaijan_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/asia/57_azerbaijan";
+import { azerbaijan_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/57_azerbaijan";
 const azerbaijan_geopolitik = {
     "un_vote": 140,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const azerbaijan: CountryData = {
     "lingkungan": 60
   }
 };
+
 

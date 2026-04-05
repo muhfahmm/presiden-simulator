@@ -1,13 +1,13 @@
 export const bahrain_pendidikan = {
-      "prasekolah": 27,
+      "prasekolah": 80,
       "dasar": 35,
-      "menengah": 39,
-      "lanjutan": 12,
-      "universitas": 24,
-      "lembaga_pendidikan": 3,
-      "laboratorium": 12,
-      "observatorium": 4,
-      "pusat_penelitian": 18,
-      "pusat_pengembangan": 24,
-      "literasi": 61
+      "menengah": 81,
+      "lanjutan": 27,
+      "universitas": 17,
+      "lembaga_pendidikan": 12,
+      "laboratorium": 2,
+      "observatorium": 0,
+      "pusat_penelitian": 0,
+      "pusat_pengembangan": 1,
+      "literasi": 75
     } as const;

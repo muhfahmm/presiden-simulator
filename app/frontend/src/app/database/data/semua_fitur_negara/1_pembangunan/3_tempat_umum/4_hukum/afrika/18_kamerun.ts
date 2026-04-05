@@ -1,10 +1,10 @@
 export const kamerun_hukum = {
-      "pusat_bantuan_hukum": 19,
-      "pengadilan": 2,
-      "kejaksaan": 2,
-      "pos_polisi": 4,
-      "armada_mobil_polisi": 886,
-      "akademi_polisi": 25,
-      "indeks_korupsi": 65,
-      "indeks_keamanan": 75
+      "pusat_bantuan_hukum": 3,
+      "pengadilan": 9,
+      "kejaksaan": 8,
+      "pos_polisi": 8,
+      "armada_mobil_polisi": 1988,
+      "akademi_polisi": 2,
+      "indeks_korupsi": 23,
+      "indeks_keamanan": 63
   } as const;

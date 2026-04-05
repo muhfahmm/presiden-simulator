@@ -1,13 +1,13 @@
 export const nauru_pendidikan = {
-      "prasekolah": 28,
-      "dasar": 7,
-      "menengah": 7,
-      "lanjutan": 21,
-      "universitas": 4,
-      "lembaga_pendidikan": 3,
-      "laboratorium": 1,
-      "observatorium": 30,
-      "pusat_penelitian": 14,
-      "pusat_pengembangan": 15,
-      "literasi": 61
+      "prasekolah": 46,
+      "dasar": 76,
+      "menengah": 26,
+      "lanjutan": 31,
+      "universitas": 11,
+      "lembaga_pendidikan": 4,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 2,
+      "literasi": 74
     } as const;

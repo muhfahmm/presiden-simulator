@@ -1,7 +1,7 @@
 export const slowakia_kesehatan = {
-      "rumah_sakit_besar": 6,
-      "rumah_sakit_kecil": 18,
-      "pusat_diagnostik": 21,
-      "harapan_hidup": 15,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 9,
+      "rumah_sakit_kecil": 67,
+      "pusat_diagnostik": 19,
+      "harapan_hidup": 57,
+      "indeks_kesehatan": 71
     } as const;

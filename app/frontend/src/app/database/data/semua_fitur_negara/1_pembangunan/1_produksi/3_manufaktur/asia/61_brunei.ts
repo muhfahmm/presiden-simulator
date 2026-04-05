@@ -1,8 +1,9 @@
 export const brunei_manufaktur = {
-  semikonduktor: 30,
-  mobil: 20,
-  sepeda_motor: 19,
-  smelter: 1,
-  semen_beton: 40,
-  kayu: 40,
+  semikonduktor: 15,
+  mobil: 30,
+  sepeda_motor: 42,
+  smelter: 12,
+  semen_beton: 24,
+  kayu: 36,
+  pupuk: 21,
 } as const;

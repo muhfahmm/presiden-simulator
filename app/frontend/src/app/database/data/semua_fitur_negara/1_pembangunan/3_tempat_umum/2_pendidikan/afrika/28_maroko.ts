@@ -1,13 +1,13 @@
 export const maroko_pendidikan = {
-      "prasekolah": 13,
-      "dasar": 17,
-      "menengah": 39,
-      "lanjutan": 22,
-      "universitas": 18,
-      "lembaga_pendidikan": 23,
-      "laboratorium": 40,
-      "observatorium": 21,
-      "pusat_penelitian": 35,
-      "pusat_pengembangan": 33,
-      "literasi": 66
+      "prasekolah": 55,
+      "dasar": 26,
+      "menengah": 71,
+      "lanjutan": 15,
+      "universitas": 11,
+      "lembaga_pendidikan": 9,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 2,
+      "literasi": 79
   } as const;

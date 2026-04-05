@@ -1,7 +1,7 @@
 export const rwanda_kesehatan = {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 7,
-      "pusat_diagnostik": 22,
-      "harapan_hidup": 21,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 5,
+      "rumah_sakit_kecil": 40,
+      "pusat_diagnostik": 27,
+      "harapan_hidup": 60,
+      "indeks_kesehatan": 51
   } as const;

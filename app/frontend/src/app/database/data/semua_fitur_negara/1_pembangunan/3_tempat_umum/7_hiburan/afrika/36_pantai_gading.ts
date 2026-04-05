@@ -1,4 +1,4 @@
 export const pantai_gading_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 22,
+  "teater": 14
 } as const;

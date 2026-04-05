@@ -1,5 +1,5 @@
 export const portugal_perikanan = {
-  udang: 18,
-  mutiara: 18,
-  ikan: 34,
+  udang: 646,
+  mutiara: 680,
+  ikan: 442,
 } as const;

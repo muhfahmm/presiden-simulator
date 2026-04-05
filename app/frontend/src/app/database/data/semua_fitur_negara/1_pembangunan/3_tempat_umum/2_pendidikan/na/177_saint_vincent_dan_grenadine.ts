@@ -1,13 +1,13 @@
 export const saint_vincent_dan_grenadine_pendidikan = {
-      "prasekolah": 21,
-      "dasar": 9,
-      "menengah": 19,
-      "lanjutan": 16,
-      "universitas": 10,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 1,
-      "observatorium": 10,
-      "pusat_penelitian": 2,
-      "pusat_pengembangan": 15,
-      "literasi": 66
+      "prasekolah": 10,
+      "dasar": 117,
+      "menengah": 87,
+      "lanjutan": 32,
+      "universitas": 9,
+      "lembaga_pendidikan": 11,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 1,
+      "literasi": 65
     } as const;

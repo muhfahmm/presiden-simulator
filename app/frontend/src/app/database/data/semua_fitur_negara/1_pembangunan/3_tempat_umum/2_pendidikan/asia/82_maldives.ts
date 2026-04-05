@@ -1,13 +1,13 @@
 export const maldives_pendidikan = {
-      "prasekolah": 27,
-      "dasar": 10,
-      "menengah": 37,
-      "lanjutan": 30,
-      "universitas": 32,
-      "lembaga_pendidikan": 21,
-      "laboratorium": 29,
-      "observatorium": 37,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 5,
-      "literasi": 94
+      "prasekolah": 96,
+      "dasar": 58,
+      "menengah": 74,
+      "lanjutan": 6,
+      "universitas": 14,
+      "lembaga_pendidikan": 4,
+      "laboratorium": 0,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 1,
+      "literasi": 70
     } as const;

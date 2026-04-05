@@ -1,10 +1,10 @@
 export const kanada_hukum = {
-      "pusat_bantuan_hukum": 35,
-      "pengadilan": 31,
-      "kejaksaan": 24,
-      "pos_polisi": 23,
-      "armada_mobil_polisi": 4735,
-      "akademi_polisi": 36,
-      "indeks_korupsi": 53,
-      "indeks_keamanan": 63
+      "pusat_bantuan_hukum": 60,
+      "pengadilan": 182,
+      "kejaksaan": 39,
+      "pos_polisi": 335,
+      "armada_mobil_polisi": 19052,
+      "akademi_polisi": 10,
+      "indeks_korupsi": 76,
+      "indeks_keamanan": 68
   } as const;

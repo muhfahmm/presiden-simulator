@@ -1,5 +1,5 @@
 export const singapura_perikanan = {
-  udang: 22,
-  mutiara: 22,
-  ikan: 29,
+  udang: 1232,
+  mutiara: 572,
+  ikan: 1012,
 } as const;

@@ -1,13 +1,13 @@
 export const panama_pendidikan = {
-      "prasekolah": 17,
-      "dasar": 19,
-      "menengah": 19,
-      "lanjutan": 2,
-      "universitas": 11,
-      "lembaga_pendidikan": 40,
+      "prasekolah": 81,
+      "dasar": 134,
+      "menengah": 89,
+      "lanjutan": 49,
+      "universitas": 6,
+      "lembaga_pendidikan": 10,
       "laboratorium": 2,
-      "observatorium": 9,
-      "pusat_penelitian": 34,
-      "pusat_pengembangan": 36,
-      "literasi": 78
+      "observatorium": 0,
+      "pusat_penelitian": 0,
+      "pusat_pengembangan": 0,
+      "literasi": 80
     } as const;

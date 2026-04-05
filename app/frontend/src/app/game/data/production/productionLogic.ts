@@ -72,7 +72,7 @@ export function calculateDailyProductionTotals(countryData: CountryData, buildin
   
   // 4. SEKTOR MILITER
   Object.entries(militerRate).forEach(([key, val]: [string, any]) => {
-    const baseCount = countryData.pabrik_militer[key as keyof typeof countryData.pabrik_militer] || 0;
+    const baseCount = countryData.pabrik_militer[val.dataKey as keyof typeof countryData.pabrik_militer] || 0;
     const totalCount = Number(baseCount) + (Number(buildingDeltas[key]) || 0);
     const productionRate = val.produksi ?? val.production ?? 0;
     deltas[key] = totalCount * Math.floor(productionRate);

@@ -1,5 +1,5 @@
 export const sierra_leone_perikanan = {
-  udang: 10,
-  mutiara: 10,
-  ikan: 28,
+  udang: 40,
+  mutiara: 84,
+  ikan: 80,
 } as const;

@@ -1,6 +1,6 @@
 export const kuwait_peternakan = {
-  ayam_unggas: 14,
-  sapi_perah: 32,
-  sapi_potong: 18,
-  domba_kambing: 7,
+  ayam_unggas: 420,
+  sapi_perah: 300,
+  sapi_potong: 320,
+  domba_kambing: 820,
 } as const;

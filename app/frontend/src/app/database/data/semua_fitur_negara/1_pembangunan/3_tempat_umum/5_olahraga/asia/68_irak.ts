@@ -1,10 +1,10 @@
 export const irak_olahraga = {
-  "kolam_renang": 39,
-  "sirkuit_balap": 21,
-  "stadion": 23,
-  "stadion_internasional": 23,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 84,
+  "sirkuit_balap": 2,
+  "stadion": 49,
+  "stadion_internasional": 2,
+  "gym": 167,
+  "golf": 10,
+  "esports": 9,
+  "gokart": 26
 } as const;

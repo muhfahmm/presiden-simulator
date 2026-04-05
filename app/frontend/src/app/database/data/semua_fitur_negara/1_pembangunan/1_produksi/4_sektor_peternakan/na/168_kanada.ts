@@ -1,6 +1,6 @@
 export const kanada_peternakan = {
-  ayam_unggas: 18,
-  sapi_perah: 17,
-  sapi_potong: 32,
-  domba_kambing: 22,
+  ayam_unggas: 9216,
+  sapi_perah: 12288,
+  sapi_potong: 11904,
+  domba_kambing: 5760,
 } as const;

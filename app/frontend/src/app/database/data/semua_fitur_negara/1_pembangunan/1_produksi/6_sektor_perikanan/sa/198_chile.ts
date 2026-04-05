@@ -1,5 +1,5 @@
 export const chile_perikanan = {
-  udang: 20,
-  mutiara: 20,
-  ikan: 25,
+  udang: 864,
+  mutiara: 1134,
+  ikan: 324,
 } as const;

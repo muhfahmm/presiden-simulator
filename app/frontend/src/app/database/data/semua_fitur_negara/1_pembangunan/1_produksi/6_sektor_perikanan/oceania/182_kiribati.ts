@@ -1,5 +1,5 @@
 export const kiribati_perikanan = {
-  udang: 14,
-  mutiara: 14,
-  ikan: 26,
+  udang: 20,
+  mutiara: 56,
+  ikan: 14,
 } as const;

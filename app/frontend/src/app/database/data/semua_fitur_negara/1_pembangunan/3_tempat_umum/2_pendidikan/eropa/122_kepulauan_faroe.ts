@@ -1,13 +1,13 @@
 export const kepulauan_faroe_pendidikan = {
-      "prasekolah": 19,
-      "dasar": 1,
-      "menengah": 20,
-      "lanjutan": 32,
-      "universitas": 40,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 18,
-      "observatorium": 39,
-      "pusat_penelitian": 13,
-      "pusat_pengembangan": 12,
-      "literasi": 86
+      "prasekolah": 100,
+      "dasar": 43,
+      "menengah": 77,
+      "lanjutan": 9,
+      "universitas": 3,
+      "lembaga_pendidikan": 5,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 3,
+      "pusat_pengembangan": 0,
+      "literasi": 72
     } as const;

@@ -1,10 +1,10 @@
 export const sri_lanka_hukum = {
-      "pusat_bantuan_hukum": 10,
-      "pengadilan": 19,
-      "kejaksaan": 36,
-      "pos_polisi": 33,
-      "armada_mobil_polisi": 7907,
-      "akademi_polisi": 38,
-      "indeks_korupsi": 89,
-      "indeks_keamanan": 67
+      "pusat_bantuan_hukum": 7,
+      "pengadilan": 13,
+      "kejaksaan": 9,
+      "pos_polisi": 12,
+      "armada_mobil_polisi": 1051,
+      "akademi_polisi": 2,
+      "indeks_korupsi": 23,
+      "indeks_keamanan": 70
   } as const;

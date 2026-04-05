@@ -1,10 +1,10 @@
 export const singapura_olahraga = {
-  "kolam_renang": 16,
-  "sirkuit_balap": 38,
-  "stadion": 11,
-  "stadion_internasional": 25,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 54,
+  "sirkuit_balap": 6,
+  "stadion": 23,
+  "stadion_internasional": 4,
+  "gym": 187,
+  "golf": 14,
+  "esports": 7,
+  "gokart": 29
 } as const;

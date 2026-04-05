@@ -1,10 +1,10 @@
 export const curacao_infrastruktur = {
-  jalur_sepeda: 1,
-  jalan_raya: 39,
-  terminal_bus: 20,
-  stasiun_kereta_api: 13,
-  kereta_bawah_tanah: 23,
-  pelabuhan: 36,
-  bandara: 24,
-  helipad: 35,
+  jalur_sepeda: 6,
+  jalan_raya: 10,
+  terminal_bus: 7,
+  stasiun_kereta_api: 2,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 4,
+  bandara: 5,
+  helipad: 5,
 } as const;

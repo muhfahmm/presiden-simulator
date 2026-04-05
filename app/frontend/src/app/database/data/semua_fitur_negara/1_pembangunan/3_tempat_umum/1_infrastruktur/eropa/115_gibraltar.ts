@@ -1,10 +1,10 @@
 export const gibraltar_infrastruktur = {
-  jalur_sepeda: 28,
-  jalan_raya: 18,
-  terminal_bus: 13,
-  stasiun_kereta_api: 17,
-  kereta_bawah_tanah: 31,
-  pelabuhan: 21,
-  bandara: 27,
-  helipad: 1,
+  jalur_sepeda: 6,
+  jalan_raya: 14,
+  terminal_bus: 3,
+  stasiun_kereta_api: 2,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 1,
+  bandara: 1,
+  helipad: 2,
 } as const;

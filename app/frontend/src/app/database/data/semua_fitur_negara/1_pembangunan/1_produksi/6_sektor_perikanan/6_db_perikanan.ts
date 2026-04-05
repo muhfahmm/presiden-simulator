@@ -12,7 +12,7 @@ export const perikananRate = {
     waktu_pembangunan: 45,
     biaya_pembangunan: 2800,
     lowongan_kerja: 250,
-    konsumsi_listrik: 0.65
+    konsumsi_listrik: 1
   },
   "2_budidaya_ikan_tawar": {
     key: "2_budidaya_ikan_tawar",
@@ -24,7 +24,7 @@ export const perikananRate = {
     waktu_pembangunan: 45,
     biaya_pembangunan: 1500,
     lowongan_kerja: 200,
-    konsumsi_listrik: 0.5
+    konsumsi_listrik: 1
   },
   "3_budidaya_mutiara": {
     key: "3_budidaya_mutiara",
@@ -36,7 +36,7 @@ export const perikananRate = {
     waktu_pembangunan: 120,
     biaya_pembangunan: 5500,
     lowongan_kerja: 150,
-    konsumsi_listrik: 0.65
+    konsumsi_listrik: 1
   }
 };
 

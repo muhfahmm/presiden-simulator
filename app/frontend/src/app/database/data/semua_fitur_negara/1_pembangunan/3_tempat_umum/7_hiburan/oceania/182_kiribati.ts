@@ -1,4 +1,4 @@
 export const kiribati_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 33,
+  "teater": 6
 } as const;

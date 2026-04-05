@@ -1,4 +1,4 @@
 export const komoro_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 48,
+  "teater": 12
 } as const;

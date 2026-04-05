@@ -1,13 +1,13 @@
 export const somalia_pendidikan = {
-      "prasekolah": 38,
-      "dasar": 19,
-      "menengah": 20,
-      "lanjutan": 24,
-      "universitas": 21,
-      "lembaga_pendidikan": 35,
-      "laboratorium": 1,
-      "observatorium": 1,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 3,
-      "literasi": 74
+      "prasekolah": 36,
+      "dasar": 29,
+      "menengah": 80,
+      "lanjutan": 18,
+      "universitas": 3,
+      "lembaga_pendidikan": 12,
+      "laboratorium": 0,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 0,
+      "literasi": 83
   } as const;

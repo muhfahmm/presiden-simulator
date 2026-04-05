@@ -1,4 +1,4 @@
 export const china_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 4522,
+  "teater": 929
 } as const;

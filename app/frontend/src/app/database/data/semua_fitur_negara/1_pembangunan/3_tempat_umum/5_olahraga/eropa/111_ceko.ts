@@ -1,10 +1,10 @@
 export const ceko_olahraga = {
-  "kolam_renang": 3,
-  "sirkuit_balap": 14,
-  "stadion": 29,
-  "stadion_internasional": 10,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 40,
+  "sirkuit_balap": 10,
+  "stadion": 24,
+  "stadion_internasional": 3,
+  "gym": 105,
+  "golf": 8,
+  "esports": 7,
+  "gokart": 29
 } as const;

@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { mozambik_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/32_mozambik";
-import { mozambik_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/afrika/32_mozambik";
+import { mozambik_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/32_mozambik";
 import { mozambik_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/32_mozambik";
 import { mozambik_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/32_mozambik";
 import { mozambik_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/32_mozambik";
 import { mozambik_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/32_mozambik";
-import { mozambik_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/afrika/32_mozambik";
+import { mozambik_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/32_mozambik";
 import { mozambik_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/32_mozambik";
 import { mozambik_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/32_mozambik";
 import { mozambik_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/32_mozambik";
@@ -14,10 +14,10 @@ import { mozambik_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { mozambik_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/32_mozambik";
 import { mozambik_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/32_mozambik";
 import { mozambik_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/32_mozambik";
-import { mozambik_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/afrika/32_mozambik";
+import { mozambik_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/32_mozambik";
 import { mozambik_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/32_mozambik";
 import { mozambik_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/32_mozambik";
-import { mozambik_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/afrika/32_mozambik";
+import { mozambik_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/32_mozambik";
 const mozambik_geopolitik = {
     "un_vote": 85,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const mozambik: CountryData = {
     "lingkungan": 60
   }
 };
+
 

@@ -1,10 +1,10 @@
 export const eswatini_olahraga = {
-  "kolam_renang": 24,
-  "sirkuit_balap": 37,
-  "stadion": 27,
-  "stadion_internasional": 21,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 17,
+  "sirkuit_balap": 2,
+  "stadion": 9,
+  "stadion_internasional": 0,
+  "gym": 30,
+  "golf": 3,
+  "esports": 2,
+  "gokart": 15
 } as const;

@@ -1,8 +1,9 @@
 export const amerika_serikat_manufaktur = {
-  semikonduktor: 34,
-  mobil: 5,
-  sepeda_motor: 31,
-  smelter: 2,
-  semen_beton: 18,
-  kayu: 40,
+  semikonduktor: 1624,
+  mobil: 1740,
+  sepeda_motor: 464,
+  smelter: 580,
+  semen_beton: 1740,
+  kayu: 812,
+  pupuk: 348,
 } as const;

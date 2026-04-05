@@ -1,0 +1,13 @@
+import { uruguay_intelijen } from "../../2_intelijen/sa/206_uruguay";
+
+export const uruguay_strategis = {
+    "waktu_respon": 1,
+    "intelijen": 4,
+    "status_nuklir": false,
+    "intel_radar": uruguay_intelijen,
+    "operasi_strategis": { "misi_serangan": 8,
+      "misi_mata_mata": 16,
+      "misi_sabotase": 15,
+      "manajemen_wilayah": 12,
+      "program_nuklir": 0 }
+  } as const;

@@ -1,10 +1,10 @@
 export const brunei_olahraga = {
-  "kolam_renang": 23,
-  "sirkuit_balap": 33,
-  "stadion": 23,
-  "stadion_internasional": 9,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 2,
+  "sirkuit_balap": 2,
+  "stadion": 9,
+  "stadion_internasional": 1,
+  "gym": 21,
+  "golf": 1,
+  "esports": 3,
+  "gokart": 3
 } as const;

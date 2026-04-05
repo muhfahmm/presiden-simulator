@@ -1,4 +1,4 @@
 export const swiss_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 291,
+  "teater": 94
 } as const;

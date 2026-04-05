@@ -1,13 +1,13 @@
 export const vanuatu_pendidikan = {
-      "prasekolah": 40,
-      "dasar": 26,
-      "menengah": 25,
-      "lanjutan": 31,
-      "universitas": 23,
-      "lembaga_pendidikan": 31,
-      "laboratorium": 30,
-      "observatorium": 36,
-      "pusat_penelitian": 18,
-      "pusat_pengembangan": 39,
-      "literasi": 87
+      "prasekolah": 89,
+      "dasar": 20,
+      "menengah": 38,
+      "lanjutan": 13,
+      "universitas": 5,
+      "lembaga_pendidikan": 10,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 2,
+      "literasi": 78
     } as const;

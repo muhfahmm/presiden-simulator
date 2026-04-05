@@ -1,8 +1,9 @@
 export const tahiti_manufaktur = {
-  semikonduktor: 2,
-  mobil: 37,
-  sepeda_motor: 17,
-  smelter: 37,
-  semen_beton: 28,
-  kayu: 33,
+  semikonduktor: 9,
+  mobil: 14,
+  sepeda_motor: 7,
+  smelter: 8,
+  semen_beton: 13,
+  kayu: 13,
+  pupuk: 9,
 } as const;

@@ -1,10 +1,10 @@
 export const greenland_infrastruktur = {
-  jalur_sepeda: 35,
-  jalan_raya: 1,
-  terminal_bus: 25,
-  stasiun_kereta_api: 33,
-  kereta_bawah_tanah: 20,
-  pelabuhan: 6,
-  bandara: 6,
-  helipad: 27,
+  jalur_sepeda: 3,
+  jalan_raya: 8,
+  terminal_bus: 7,
+  stasiun_kereta_api: 5,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 4,
+  bandara: 1,
+  helipad: 4,
 } as const;

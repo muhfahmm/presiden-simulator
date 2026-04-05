@@ -1,10 +1,10 @@
 export const ukraina_hukum = {
-      "pusat_bantuan_hukum": 29,
-      "pengadilan": 32,
+      "pusat_bantuan_hukum": 6,
+      "pengadilan": 3,
       "kejaksaan": 8,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 5151,
-      "akademi_polisi": 16,
-      "indeks_korupsi": 67,
-      "indeks_keamanan": 59
+      "pos_polisi": 14,
+      "armada_mobil_polisi": 447,
+      "akademi_polisi": 5,
+      "indeks_korupsi": 41,
+      "indeks_keamanan": 45
   } as const;

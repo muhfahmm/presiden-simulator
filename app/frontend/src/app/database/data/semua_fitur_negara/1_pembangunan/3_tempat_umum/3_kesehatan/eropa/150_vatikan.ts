@@ -1,7 +1,7 @@
 export const vatikan_kesehatan = {
-      "rumah_sakit_besar": 39,
-      "rumah_sakit_kecil": 11,
-      "pusat_diagnostik": 4,
-      "harapan_hidup": 14,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 8,
+      "rumah_sakit_kecil": 38,
+      "pusat_diagnostik": 19,
+      "harapan_hidup": 67,
+      "indeks_kesehatan": 74
     } as const;

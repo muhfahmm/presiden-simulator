@@ -1,10 +1,10 @@
 export const burkina_faso_hukum = {
-      "pusat_bantuan_hukum": 22,
-      "pengadilan": 13,
+      "pusat_bantuan_hukum": 5,
+      "pengadilan": 9,
       "kejaksaan": 10,
-      "pos_polisi": 8,
-      "armada_mobil_polisi": 5057,
-      "akademi_polisi": 13,
-      "indeks_korupsi": 88,
-      "indeks_keamanan": 54
+      "pos_polisi": 17,
+      "armada_mobil_polisi": 1149,
+      "akademi_polisi": 1,
+      "indeks_korupsi": 49,
+      "indeks_keamanan": 48
   } as const;

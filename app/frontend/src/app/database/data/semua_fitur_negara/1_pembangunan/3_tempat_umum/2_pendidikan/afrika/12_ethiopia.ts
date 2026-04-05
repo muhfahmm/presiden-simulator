@@ -1,13 +1,13 @@
 export const ethiopia_pendidikan = {
-      "prasekolah": 6,
-      "dasar": 2,
-      "menengah": 32,
-      "lanjutan": 7,
-      "universitas": 9,
-      "lembaga_pendidikan": 16,
-      "laboratorium": 38,
-      "observatorium": 24,
-      "pusat_penelitian": 28,
-      "pusat_pengembangan": 33,
-      "literasi": 54
+      "prasekolah": 84,
+      "dasar": 54,
+      "menengah": 41,
+      "lanjutan": 48,
+      "universitas": 7,
+      "lembaga_pendidikan": 3,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 1,
+      "literasi": 63
   } as const;

@@ -1,8 +1,9 @@
 export const barbados_manufaktur = {
-  semikonduktor: 26,
-  mobil: 28,
+  semikonduktor: 5,
+  mobil: 10,
   sepeda_motor: 14,
-  smelter: 16,
-  semen_beton: 3,
-  kayu: 17,
+  smelter: 15,
+  semen_beton: 15,
+  kayu: 11,
+  pupuk: 4,
 } as const;

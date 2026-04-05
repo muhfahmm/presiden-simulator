@@ -1,6 +1,6 @@
 export const ghana_peternakan = {
-  ayam_unggas: 18,
-  sapi_perah: 33,
-  sapi_potong: 15,
-  domba_kambing: 4,
+  ayam_unggas: 245,
+  sapi_perah: 329,
+  sapi_potong: 238,
+  domba_kambing: 133,
 } as const;

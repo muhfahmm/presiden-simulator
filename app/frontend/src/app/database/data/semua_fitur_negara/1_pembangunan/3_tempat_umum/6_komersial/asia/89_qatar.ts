@@ -1,5 +1,5 @@
 export const qatar_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 30,
+  "hotel": 65,
+  "pusat_grosir_tekstil": 12
 } as const;

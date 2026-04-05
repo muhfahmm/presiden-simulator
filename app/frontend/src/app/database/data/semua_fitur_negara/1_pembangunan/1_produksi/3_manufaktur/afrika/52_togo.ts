@@ -1,8 +1,9 @@
 export const togo_manufaktur = {
-  mobil: 16,
-  semen_beton: 4,
-  sepeda_motor: 16,
-  semikonduktor: 12,
-  smelter: 16,
-  kayu: 4,
+  mobil: 24,
+  semen_beton: 12,
+  sepeda_motor: 14,
+  semikonduktor: 22,
+  smelter: 10,
+  kayu: 10,
+  pupuk: 18,
 } as const;

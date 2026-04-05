@@ -1,10 +1,10 @@
 export const panama_hukum = {
-      "pusat_bantuan_hukum": 18,
-      "pengadilan": 4,
-      "kejaksaan": 33,
-      "pos_polisi": 8,
-      "armada_mobil_polisi": 748,
-      "akademi_polisi": 18,
-      "indeks_korupsi": 59,
-      "indeks_keamanan": 50
+      "pusat_bantuan_hukum": 5,
+      "pengadilan": 15,
+      "kejaksaan": 9,
+      "pos_polisi": 10,
+      "armada_mobil_polisi": 817,
+      "akademi_polisi": 3,
+      "indeks_korupsi": 35,
+      "indeks_keamanan": 67
   } as const;

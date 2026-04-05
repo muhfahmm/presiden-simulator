@@ -1,7 +1,7 @@
 export const hungaria_kesehatan = {
-      "rumah_sakit_besar": 38,
-      "rumah_sakit_kecil": 27,
-      "pusat_diagnostik": 6,
-      "harapan_hidup": 17,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 29,
+      "rumah_sakit_kecil": 217,
+      "pusat_diagnostik": 59,
+      "harapan_hidup": 70,
+      "indeks_kesehatan": 76
     } as const;

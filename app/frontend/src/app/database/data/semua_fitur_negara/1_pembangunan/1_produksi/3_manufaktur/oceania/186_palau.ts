@@ -1,8 +1,9 @@
 export const palau_manufaktur = {
-  semikonduktor: 38,
-  mobil: 12,
-  sepeda_motor: 36,
-  smelter: 40,
-  semen_beton: 13,
-  kayu: 16,
+  semikonduktor: 26,
+  mobil: 24,
+  sepeda_motor: 12,
+  smelter: 16,
+  semen_beton: 16,
+  kayu: 8,
+  pupuk: 16,
 } as const;

@@ -1,4 +1,4 @@
 export const montenegro_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 16,
+  "teater": 19
 } as const;

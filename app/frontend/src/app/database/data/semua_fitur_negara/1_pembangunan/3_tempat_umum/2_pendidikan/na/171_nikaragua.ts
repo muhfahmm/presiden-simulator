@@ -1,13 +1,13 @@
 export const nikaragua_pendidikan = {
-      "prasekolah": 25,
-      "dasar": 21,
-      "menengah": 22,
-      "lanjutan": 19,
-      "universitas": 9,
-      "lembaga_pendidikan": 9,
-      "laboratorium": 26,
-      "observatorium": 34,
-      "pusat_penelitian": 9,
-      "pusat_pengembangan": 27,
-      "literasi": 75
+      "prasekolah": 95,
+      "dasar": 35,
+      "menengah": 69,
+      "lanjutan": 5,
+      "universitas": 3,
+      "lembaga_pendidikan": 13,
+      "laboratorium": 2,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 2,
+      "literasi": 69
     } as const;

@@ -1,8 +1,9 @@
 export const bolivia_manufaktur = {
-  semikonduktor: 15,
-  mobil: 14,
-  sepeda_motor: 1,
-  smelter: 32,
-  semen_beton: 33,
-  kayu: 23,
+  semikonduktor: 75,
+  mobil: 65,
+  sepeda_motor: 50,
+  smelter: 55,
+  semen_beton: 35,
+  kayu: 45,
+  pupuk: 15,
 } as const;

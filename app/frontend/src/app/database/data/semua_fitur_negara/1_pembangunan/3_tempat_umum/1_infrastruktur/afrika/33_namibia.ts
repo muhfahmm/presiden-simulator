@@ -1,10 +1,10 @@
 export const namibia_infrastruktur = {
-  jalur_sepeda: 24,
-  jalan_raya: 4,
+  jalur_sepeda: 3,
+  jalan_raya: 15,
   terminal_bus: 2,
-  stasiun_kereta_api: 16,
-  kereta_bawah_tanah: 1,
-  pelabuhan: 34,
-  bandara: 16,
-  helipad: 15,
+  stasiun_kereta_api: 3,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 4,
+  bandara: 4,
+  helipad: 2,
 } as const;

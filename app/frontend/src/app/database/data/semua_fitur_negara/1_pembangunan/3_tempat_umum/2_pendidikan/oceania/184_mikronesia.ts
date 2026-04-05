@@ -1,13 +1,13 @@
 export const mikronesia_pendidikan = {
-      "prasekolah": 36,
-      "dasar": 16,
-      "menengah": 1,
-      "lanjutan": 2,
-      "universitas": 1,
-      "lembaga_pendidikan": 8,
-      "laboratorium": 33,
-      "observatorium": 40,
-      "pusat_penelitian": 15,
-      "pusat_pengembangan": 28,
-      "literasi": 86
+      "prasekolah": 100,
+      "dasar": 27,
+      "menengah": 41,
+      "lanjutan": 26,
+      "universitas": 4,
+      "lembaga_pendidikan": 12,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 0,
+      "literasi": 76
     } as const;

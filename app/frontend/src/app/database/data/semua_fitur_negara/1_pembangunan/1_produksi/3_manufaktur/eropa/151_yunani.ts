@@ -1,8 +1,9 @@
 export const yunani_manufaktur = {
-  semikonduktor: 3,
-  mobil: 29,
-  sepeda_motor: 25,
-  smelter: 8,
-  semen_beton: 18,
-  kayu: 14,
+  semikonduktor: 60,
+  mobil: 110,
+  sepeda_motor: 100,
+  smelter: 80,
+  semen_beton: 80,
+  kayu: 50,
+  pupuk: 20,
 } as const;

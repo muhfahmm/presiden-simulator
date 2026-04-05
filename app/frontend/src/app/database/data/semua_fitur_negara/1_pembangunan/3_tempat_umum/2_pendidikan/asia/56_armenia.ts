@@ -1,13 +1,13 @@
 export const armenia_pendidikan = {
-      "prasekolah": 40,
-      "dasar": 40,
-      "menengah": 33,
-      "lanjutan": 24,
-      "universitas": 17,
-      "lembaga_pendidikan": 23,
-      "laboratorium": 12,
-      "observatorium": 3,
+      "prasekolah": 10,
+      "dasar": 106,
+      "menengah": 77,
+      "lanjutan": 48,
+      "universitas": 10,
+      "lembaga_pendidikan": 7,
+      "laboratorium": 0,
+      "observatorium": 0,
       "pusat_penelitian": 4,
-      "pusat_pengembangan": 27,
-      "literasi": 69
+      "pusat_pengembangan": 0,
+      "literasi": 70
     } as const;

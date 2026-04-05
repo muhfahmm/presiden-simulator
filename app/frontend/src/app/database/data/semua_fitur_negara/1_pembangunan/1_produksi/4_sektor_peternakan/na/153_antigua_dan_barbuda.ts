@@ -1,6 +1,6 @@
 export const antigua_dan_barbuda_peternakan = {
-  ayam_unggas: 28,
-  sapi_perah: 7,
-  sapi_potong: 40,
-  domba_kambing: 3,
+  ayam_unggas: 32,
+  sapi_perah: 42,
+  sapi_potong: 62,
+  domba_kambing: 64,
 } as const;

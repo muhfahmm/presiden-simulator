@@ -1,0 +1,13 @@
+import { swiss_intelijen } from "../../2_intelijen/eropa/147_swiss";
+
+export const swiss_strategis = {
+    "waktu_respon": 2,
+    "intelijen": 1,
+    "status_nuklir": true,
+    "intel_radar": swiss_intelijen,
+    "operasi_strategis": { "misi_serangan": 9,
+      "misi_mata_mata": 11,
+      "misi_sabotase": 16,
+      "manajemen_wilayah": 38,
+      "program_nuklir": 80 }
+  } as const;

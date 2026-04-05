@@ -1,8 +1,9 @@
 export const mauritius_manufaktur = {
-  mobil: 40,
-  semen_beton: 26,
-  sepeda_motor: 26,
-  semikonduktor: 39,
-  smelter: 38,
-  kayu: 14,
+  mobil: 5,
+  semen_beton: 8,
+  sepeda_motor: 5,
+  semikonduktor: 15,
+  smelter: 15,
+  kayu: 12,
+  pupuk: 4,
 } as const;

@@ -1,8 +1,9 @@
 export const belize_manufaktur = {
-  semikonduktor: 23,
-  mobil: 3,
-  sepeda_motor: 16,
-  smelter: 32,
-  semen_beton: 28,
-  kayu: 21,
+  semikonduktor: 28,
+  mobil: 22,
+  sepeda_motor: 10,
+  smelter: 18,
+  semen_beton: 30,
+  kayu: 30,
+  pupuk: 6,
 } as const;

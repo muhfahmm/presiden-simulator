@@ -8,7 +8,7 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/negara/benua/index";
-import { policeRate } from "@/app/database/data/harga_bangunan_negara/2_pertahanan";
+import { armadaPolisiRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MaterialRequirement from "../../3_pembangunan/1-produksi/MaterialRequirement";
 
@@ -60,8 +60,20 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
   const buildingData = buildingStorage.getData();
   const buildingDeltas = buildingData.buildingDeltas;
 
-  const totalPasokan = hitungTotalKapasitas(currentData);
-  const totalBeban = hitungTotalKonsumsiNasional(currentData);
+  // 2. Logic Sinkronisasi Listrik Nasional (dengan Deltas)
+  const currentDataWithDeltas = JSON.parse(JSON.stringify(currentData));
+  Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
+    if (typeof deltaValue !== 'number') return;
+    
+    // Sektor Listrik
+    if (KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA]) {
+      const dataKey = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA].dataKey;
+      (currentDataWithDeltas.sektor_listrik as any)[dataKey] = ((currentDataWithDeltas.sektor_listrik as any)[dataKey] || 0) + deltaValue;
+    }
+  });
+
+  const totalPasokan = hitungTotalKapasitas(currentDataWithDeltas.sektor_listrik);
+  const totalBeban = hitungTotalKonsumsiNasional(currentDataWithDeltas);
   const surplus = totalPasokan - totalBeban;
 
   const policeGroups = [
@@ -71,9 +83,9 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       icon: Shield,
       color: "text-blue-500",
       items: [
-        { ...policeRate["1_pusat_komando"], groupId: "komando", icon: Shield, cost: policeRate["1_pusat_komando"].biaya_pembangunan, buildTime: policeRate["1_pusat_komando"].waktu_pembangunan, maintenanceCost: policeRate["1_pusat_komando"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.stasiun_komando || 0) + ((buildingDeltas["stasiun_komando"] as number) || 0) },
-        { ...policeRate["2_akademi_polisi"], groupId: "komando", icon: GraduationCap, cost: policeRate["2_akademi_polisi"].biaya_pembangunan, buildTime: policeRate["2_akademi_polisi"].waktu_pembangunan, maintenanceCost: policeRate["2_akademi_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.akademi_polisi || 0) + ((buildingDeltas["akademi_polisi"] as number) || 0) },
-        { ...policeRate["3_pusat_forensik"], groupId: "komando", icon: Search, cost: policeRate["3_pusat_forensik"].biaya_pembangunan, buildTime: policeRate["3_pusat_forensik"].waktu_pembangunan, maintenanceCost: policeRate["3_pusat_forensik"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.pusat_forensik || 0) + ((buildingDeltas["forensik"] as number) || 0) },
+        { ...armadaPolisiRate["1_pusat_komando"], groupId: "komando", icon: Shield, cost: armadaPolisiRate["1_pusat_komando"].biaya_pembangunan, buildTime: armadaPolisiRate["1_pusat_komando"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["1_pusat_komando"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.stasiun_komando || 0) + ((buildingDeltas["stasiun_komando"] as number) || 0) },
+        { ...armadaPolisiRate["2_akademi_polisi"], groupId: "komando", icon: GraduationCap, cost: armadaPolisiRate["2_akademi_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["2_akademi_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["2_akademi_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.akademi_polisi || 0) + ((buildingDeltas["akademi_polisi"] as number) || 0) },
+        { ...armadaPolisiRate["3_pusat_forensik"], groupId: "komando", icon: Search, cost: armadaPolisiRate["3_pusat_forensik"].biaya_pembangunan, buildTime: armadaPolisiRate["3_pusat_forensik"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["3_pusat_forensik"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.pusat_forensik || 0) + ((buildingDeltas["forensik"] as number) || 0) },
       ]
     },
     {
@@ -82,9 +94,9 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       icon: Building,
       color: "text-emerald-500",
       items: [
-        { ...policeRate["4_kantor_polisi"], groupId: "wilayah", icon: Siren, cost: policeRate["4_kantor_polisi"].biaya_pembangunan, buildTime: policeRate["4_kantor_polisi"].waktu_pembangunan, maintenanceCost: policeRate["4_kantor_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.kantor_polisi || 0) + ((buildingDeltas["pos_polisi"] as number) || 0) },
-        { ...policeRate["5_pos_polisi"], groupId: "wilayah", icon: ShieldAlert, cost: policeRate["5_pos_polisi"].biaya_pembangunan, buildTime: policeRate["5_pos_polisi"].waktu_pembangunan, maintenanceCost: policeRate["5_pos_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.pos_polisi_kecil || 0) + ((buildingDeltas["pos_polisi_kecil"] as number) || 0) },
-        { ...policeRate["6_network_cctv"], groupId: "wilayah", icon: Cctv, cost: policeRate["6_network_cctv"].biaya_pembangunan, buildTime: policeRate["6_network_cctv"].waktu_pembangunan, maintenanceCost: policeRate["6_network_cctv"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.kamera_pengawas || 0) + ((buildingDeltas["cctv_network"] as number) || 0) },
+        { ...armadaPolisiRate["4_kantor_polisi"], groupId: "wilayah", icon: Siren, cost: armadaPolisiRate["4_kantor_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["4_kantor_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["4_kantor_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.kantor_polisi || 0) + ((buildingDeltas["pos_polisi"] as number) || 0) },
+        { ...armadaPolisiRate["5_pos_polisi"], groupId: "wilayah", icon: ShieldAlert, cost: armadaPolisiRate["5_pos_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["5_pos_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["5_pos_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.pos_polisi_kecil || 0) + ((buildingDeltas["pos_polisi_kecil"] as number) || 0) },
+        { ...armadaPolisiRate["6_network_cctv"], groupId: "wilayah", icon: Cctv, cost: armadaPolisiRate["6_network_cctv"].biaya_pembangunan, buildTime: armadaPolisiRate["6_network_cctv"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["6_network_cctv"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_komando?.kamera_pengawas || 0) + ((buildingDeltas["cctv_network"] as number) || 0) },
       ]
     },
     {
@@ -93,10 +105,10 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       icon: Car,
       color: "text-amber-500",
       items: [
-        { ...policeRate["7_armada_mobil"], groupId: "armada", icon: Car, cost: policeRate["7_armada_mobil"].biaya_pembangunan, buildTime: policeRate["7_armada_mobil"].waktu_pembangunan, maintenanceCost: policeRate["7_armada_mobil"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.armada_mobil || 0) + ((buildingDeltas["armada_polisi"] as number) || 0) },
-        { ...policeRate["8_mobil_interceptor"], groupId: "armada", icon: Car, cost: policeRate["8_mobil_interceptor"].biaya_pembangunan, buildTime: policeRate["8_mobil_interceptor"].waktu_pembangunan, maintenanceCost: policeRate["8_mobil_interceptor"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.mobil_patroli_interceptor || 0) + ((buildingDeltas["mobil_patroli_interceptor"] as number) || 0) },
-        { ...policeRate["9_unit_r2"], groupId: "armada", icon: Bike, cost: policeRate["9_unit_r2"].biaya_pembangunan, buildTime: policeRate["9_unit_r2"].waktu_pembangunan, maintenanceCost: policeRate["9_unit_r2"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.unit_interceptor_r2 || 0) + ((buildingDeltas["unit_interceptor_r2"] as number) || 0) },
-        { ...policeRate["10_heli_polisi"], groupId: "armada", icon: Radio, cost: policeRate["10_heli_polisi"].biaya_pembangunan, buildTime: policeRate["10_heli_polisi"].waktu_pembangunan, maintenanceCost: policeRate["10_heli_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.helikopter_polisi || 0) + ((buildingDeltas["police_heli"] as number) || 0) },
+        { ...armadaPolisiRate["7_armada_mobil"], groupId: "armada", icon: Car, cost: armadaPolisiRate["7_armada_mobil"].biaya_pembangunan, buildTime: armadaPolisiRate["7_armada_mobil"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["7_armada_mobil"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.armada_mobil || 0) + ((buildingDeltas["armada_polisi"] as number) || 0) },
+        { ...armadaPolisiRate["8_mobil_interceptor"], groupId: "armada", icon: Car, cost: armadaPolisiRate["8_mobil_interceptor"].biaya_pembangunan, buildTime: armadaPolisiRate["8_mobil_interceptor"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["8_mobil_interceptor"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.mobil_patroli_interceptor || 0) + ((buildingDeltas["mobil_patroli_interceptor"] as number) || 0) },
+        { ...armadaPolisiRate["9_unit_r2"], groupId: "armada", icon: Bike, cost: armadaPolisiRate["9_unit_r2"].biaya_pembangunan, buildTime: armadaPolisiRate["9_unit_r2"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["9_unit_r2"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.unit_interceptor_r2 || 0) + ((buildingDeltas["unit_interceptor_r2"] as number) || 0) },
+        { ...armadaPolisiRate["10_heli_polisi"], groupId: "armada", icon: Radio, cost: armadaPolisiRate["10_heli_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["10_heli_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["10_heli_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.helikopter_polisi || 0) + ((buildingDeltas["police_heli"] as number) || 0) },
       ]
     },
     {
@@ -105,9 +117,9 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       icon: Crosshair,
       color: "text-rose-500",
       items: [
-        { ...policeRate["11_unit_k9"], groupId: "khusus", icon: Dog, cost: policeRate["11_unit_k9"].biaya_pembangunan, buildTime: policeRate["11_unit_k9"].waktu_pembangunan, maintenanceCost: policeRate["11_unit_k9"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.unit_k9 || 0) + ((buildingDeltas["unit_k9"] as number) || 0) },
-        { ...policeRate["12_swat"], groupId: "khusus", icon: Crosshair, cost: policeRate["12_swat"].biaya_pembangunan, buildTime: policeRate["12_swat"].waktu_pembangunan, maintenanceCost: policeRate["12_swat"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.swat || 0) + ((buildingDeltas["swat"] as number) || 0) },
-        { ...policeRate["13_anti_huru_hara"], groupId: "khusus", icon: ShieldAlert, cost: policeRate["13_anti_huru_hara"].biaya_pembangunan, buildTime: policeRate["13_anti_huru_hara"].waktu_pembangunan, maintenanceCost: policeRate["13_anti_huru_hara"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.anti_huru_hara || 0) + ((buildingDeltas["riot_control"] as number) || 0) },
+        { ...armadaPolisiRate["11_unit_k9"], groupId: "khusus", icon: Dog, cost: armadaPolisiRate["11_unit_k9"].biaya_pembangunan, buildTime: armadaPolisiRate["11_unit_k9"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["11_unit_k9"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.patroli_lantas?.unit_k9 || 0) + ((buildingDeltas["unit_k9"] as number) || 0) },
+        { ...armadaPolisiRate["12_swat"], groupId: "khusus", icon: Crosshair, cost: armadaPolisiRate["12_swat"].biaya_pembangunan, buildTime: armadaPolisiRate["12_swat"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["12_swat"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.swat || 0) + ((buildingDeltas["swat"] as number) || 0) },
+        { ...armadaPolisiRate["13_anti_huru_hara"], groupId: "khusus", icon: ShieldAlert, cost: armadaPolisiRate["13_anti_huru_hara"].biaya_pembangunan, buildTime: armadaPolisiRate["13_anti_huru_hara"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["13_anti_huru_hara"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.taktis_khusus?.anti_huru_hara || 0) + ((buildingDeltas["riot_control"] as number) || 0) },
       ]
     }
   ];
@@ -176,6 +188,43 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
               <span className="text-[10px] font-black uppercase tracking-widest pl-1">Tutup</span>
               <X className="h-6 w-6 group-hover:rotate-90 transition-transform" />
             </button>
+          </div>
+        </div>
+
+        {/* Dashboard Summary Listrik (Nasional) */}
+        <div className="px-8 py-4 bg-zinc-900/50 border-b border-zinc-800/50">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 group hover:bg-zinc-900 transition-colors">
+              <div className="p-3 bg-cyan-500/10 rounded-xl">
+                <Zap className="h-6 w-6 text-cyan-500" />
+              </div>
+              <div>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.supply.title}</p>
+                <p className="text-xl font-black text-white leading-tight">{totalPasokan.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
+              </div>
+            </div>
+
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 group hover:bg-zinc-900 transition-colors">
+              <div className="p-3 bg-rose-500/10 rounded-xl">
+                <Activity className="h-6 w-6 text-rose-500" />
+              </div>
+              <div>
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.usage.title}</p>
+                <p className="text-xl font-black text-white leading-tight">{totalBeban.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
+              </div>
+            </div>
+
+            <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 relative overflow-hidden group hover:bg-zinc-900 transition-colors">
+              <div className={`p-3 rounded-xl ${surplus >= 0 ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>
+                {surplus >= 0 ? <TrendingUp className="h-6 w-6 text-emerald-500" /> : <TrendingDown className="h-6 w-6 text-rose-500" />}
+              </div>
+              <div className="relative z-10">
+                <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.balance.title}</p>
+                <p className={`text-xl font-black leading-tight ${surplus >= 0 ? "text-emerald-500" : "text-rose-500"}`}>
+                  {surplus.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 

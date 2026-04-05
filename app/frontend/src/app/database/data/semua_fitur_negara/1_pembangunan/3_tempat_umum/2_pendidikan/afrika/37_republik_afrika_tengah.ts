@@ -1,13 +1,13 @@
 export const republik_afrika_tengah_pendidikan = {
-      "prasekolah": 8,
-      "dasar": 36,
-      "menengah": 26,
-      "lanjutan": 35,
-      "universitas": 22,
-      "lembaga_pendidikan": 29,
-      "laboratorium": 38,
-      "observatorium": 18,
-      "pusat_penelitian": 39,
-      "pusat_pengembangan": 32,
-      "literasi": 65
+      "prasekolah": 78,
+      "dasar": 46,
+      "menengah": 49,
+      "lanjutan": 26,
+      "universitas": 17,
+      "lembaga_pendidikan": 13,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 3,
+      "pusat_pengembangan": 0,
+      "literasi": 66
   } as const;

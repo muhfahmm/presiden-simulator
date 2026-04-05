@@ -1,5 +1,5 @@
 export const republik_tanzania_perikanan = {
-  udang: 26,
-  mutiara: 26,
-  ikan: 30,
+  udang: 96,
+  mutiara: 57,
+  ikan: 114,
 } as const;

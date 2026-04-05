@@ -1,8 +1,9 @@
 export const greenland_manufaktur = {
-  semikonduktor: 21,
-  mobil: 30,
-  sepeda_motor: 20,
-  smelter: 21,
-  semen_beton: 25,
-  kayu: 39,
+  semikonduktor: 16,
+  mobil: 60,
+  sepeda_motor: 52,
+  smelter: 28,
+  semen_beton: 52,
+  kayu: 20,
+  pupuk: 36,
 } as const;

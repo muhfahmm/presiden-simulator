@@ -1,10 +1,10 @@
 export const estonia_olahraga = {
-  "kolam_renang": 14,
-  "sirkuit_balap": 21,
-  "stadion": 20,
-  "stadion_internasional": 30,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 16,
+  "sirkuit_balap": 2,
+  "stadion": 4,
+  "stadion_internasional": 0,
+  "gym": 22,
+  "golf": 3,
+  "esports": 5,
+  "gokart": 12
 } as const;

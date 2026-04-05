@@ -1,13 +1,13 @@
 export const republik_zambia_pendidikan = {
-      "prasekolah": 23,
-      "dasar": 18,
-      "menengah": 17,
-      "lanjutan": 3,
-      "universitas": 23,
-      "lembaga_pendidikan": 1,
-      "laboratorium": 18,
-      "observatorium": 24,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 36,
-      "literasi": 69
+      "prasekolah": 41,
+      "dasar": 87,
+      "menengah": 83,
+      "lanjutan": 8,
+      "universitas": 15,
+      "lembaga_pendidikan": 4,
+      "laboratorium": 0,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 1,
+      "literasi": 71
   } as const;

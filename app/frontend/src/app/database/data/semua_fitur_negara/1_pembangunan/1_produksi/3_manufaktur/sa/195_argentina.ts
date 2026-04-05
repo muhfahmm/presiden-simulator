@@ -1,8 +1,9 @@
 export const argentina_manufaktur = {
-  semikonduktor: 9,
-  mobil: 27,
-  sepeda_motor: 18,
-  smelter: 9,
-  semen_beton: 4,
-  kayu: 33,
+  semikonduktor: 240,
+  mobil: 624,
+  sepeda_motor: 240,
+  smelter: 672,
+  semen_beton: 192,
+  kayu: 624,
+  pupuk: 144,
 } as const;

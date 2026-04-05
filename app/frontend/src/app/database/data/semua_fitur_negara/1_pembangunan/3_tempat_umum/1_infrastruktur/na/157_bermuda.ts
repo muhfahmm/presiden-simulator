@@ -1,10 +1,10 @@
 export const bermuda_infrastruktur = {
-  jalur_sepeda: 24,
-  jalan_raya: 39,
-  terminal_bus: 39,
-  stasiun_kereta_api: 21,
-  kereta_bawah_tanah: 31,
-  pelabuhan: 1,
-  bandara: 37,
-  helipad: 29,
+  jalur_sepeda: 6,
+  jalan_raya: 10,
+  terminal_bus: 4,
+  stasiun_kereta_api: 4,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 3,
+  bandara: 5,
+  helipad: 5,
 } as const;

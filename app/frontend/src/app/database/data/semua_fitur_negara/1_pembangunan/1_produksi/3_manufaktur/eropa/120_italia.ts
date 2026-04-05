@@ -1,8 +1,9 @@
 export const italia_manufaktur = {
-  semikonduktor: 12,
-  mobil: 11,
-  sepeda_motor: 1,
-  smelter: 13,
-  semen_beton: 37,
-  kayu: 10,
+  semikonduktor: 2778,
+  mobil: 1852,
+  sepeda_motor: 2778,
+  smelter: 3241,
+  semen_beton: 6945,
+  kayu: 4167,
+  pupuk: 2778,
 } as const;

@@ -1,4 +1,4 @@
 export const kroasia_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 24,
+  "teater": 9
 } as const;

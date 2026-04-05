@@ -1,10 +1,10 @@
 export const madagaskar_infrastruktur = {
-  jalur_sepeda: 33,
-  jalan_raya: 12,
-  terminal_bus: 24,
-  stasiun_kereta_api: 39,
-  kereta_bawah_tanah: 32,
-  pelabuhan: 1,
-  bandara: 40,
-  helipad: 38,
+  jalur_sepeda: 3,
+  jalan_raya: 20,
+  terminal_bus: 6,
+  stasiun_kereta_api: 2,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 2,
+  bandara: 2,
+  helipad: 5,
 } as const;

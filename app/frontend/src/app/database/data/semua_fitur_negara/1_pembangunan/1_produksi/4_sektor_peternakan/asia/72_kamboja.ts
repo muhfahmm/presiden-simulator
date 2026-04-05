@@ -1,6 +1,6 @@
 export const kamboja_peternakan = {
-  ayam_unggas: 22,
-  sapi_perah: 24,
-  sapi_potong: 29,
-  domba_kambing: 33,
+  ayam_unggas: 135,
+  sapi_perah: 66,
+  sapi_potong: 42,
+  domba_kambing: 117,
 } as const;

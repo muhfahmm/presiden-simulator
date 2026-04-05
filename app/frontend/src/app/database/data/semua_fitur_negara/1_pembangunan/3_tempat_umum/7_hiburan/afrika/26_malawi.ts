@@ -1,4 +1,4 @@
 export const malawi_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 42,
+  "teater": 17
 } as const;

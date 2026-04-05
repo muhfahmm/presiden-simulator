@@ -1,6 +1,6 @@
 export const andorra_peternakan = {
-  ayam_unggas: 12,
-  sapi_perah: 30,
-  sapi_potong: 32,
-  domba_kambing: 4,
+  ayam_unggas: 62,
+  sapi_perah: 76,
+  sapi_potong: 64,
+  domba_kambing: 38,
 } as const;

@@ -1,13 +1,13 @@
 export const ghana_pendidikan = {
-      "prasekolah": 29,
-      "dasar": 16,
-      "menengah": 24,
-      "lanjutan": 3,
-      "universitas": 37,
-      "lembaga_pendidikan": 39,
-      "laboratorium": 6,
-      "observatorium": 18,
-      "pusat_penelitian": 23,
-      "pusat_pengembangan": 18,
-      "literasi": 56
+      "prasekolah": 63,
+      "dasar": 65,
+      "menengah": 41,
+      "lanjutan": 21,
+      "universitas": 12,
+      "lembaga_pendidikan": 7,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 0,
+      "literasi": 75
   } as const;

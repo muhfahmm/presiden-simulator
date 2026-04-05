@@ -1,8 +1,9 @@
 export const somalia_manufaktur = {
-  mobil: 5,
-  semen_beton: 12,
-  sepeda_motor: 13,
-  semikonduktor: 16,
-  smelter: 39,
-  kayu: 33,
+  mobil: 27,
+  semen_beton: 30,
+  sepeda_motor: 21,
+  semikonduktor: 42,
+  smelter: 36,
+  kayu: 36,
+  pupuk: 18,
 } as const;

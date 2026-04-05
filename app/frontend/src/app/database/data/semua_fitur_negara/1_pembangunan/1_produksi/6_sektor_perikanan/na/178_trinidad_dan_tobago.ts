@@ -1,5 +1,5 @@
 export const trinidad_dan_tobago_perikanan = {
-  udang: 12,
-  mutiara: 12,
-  ikan: 28,
+  udang: 74,
+  mutiara: 16,
+  ikan: 42,
 } as const;

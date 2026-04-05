@@ -1,10 +1,10 @@
 export const nauru_infrastruktur = {
-  jalur_sepeda: 4,
-  jalan_raya: 18,
-  terminal_bus: 40,
-  stasiun_kereta_api: 35,
-  kereta_bawah_tanah: 21,
-  pelabuhan: 22,
-  bandara: 30,
-  helipad: 33,
+  jalur_sepeda: 10,
+  jalan_raya: 8,
+  terminal_bus: 8,
+  stasiun_kereta_api: 1,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 2,
+  bandara: 3,
+  helipad: 5,
 } as const;

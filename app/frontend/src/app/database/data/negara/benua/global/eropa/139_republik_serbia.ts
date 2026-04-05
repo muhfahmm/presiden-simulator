@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { republik_serbia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/139_republik_serbia";
-import { republik_serbia_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/eropa/139_republik_serbia";
+import { republik_serbia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/139_republik_serbia";
 import { republik_serbia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/139_republik_serbia";
 import { republik_serbia_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/139_republik_serbia";
 import { republik_serbia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/139_republik_serbia";
 import { republik_serbia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/139_republik_serbia";
-import { republik_serbia_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/eropa/139_republik_serbia";
+import { republik_serbia_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/139_republik_serbia";
 import { republik_serbia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/139_republik_serbia";
 import { republik_serbia_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/139_republik_serbia";
 import { republik_serbia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/139_republik_serbia";
@@ -14,10 +14,10 @@ import { republik_serbia_olahraga } from "@/app/database/data/semua_fitur_negara
 import { republik_serbia_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/139_republik_serbia";
 import { republik_serbia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/139_republik_serbia";
 import { republik_serbia_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/139_republik_serbia";
-import { republik_serbia_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/eropa/139_republik_serbia";
+import { republik_serbia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/139_republik_serbia";
 import { republik_serbia_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/139_republik_serbia";
 import { republik_serbia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/139_republik_serbia";
-import { republik_serbia_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/eropa/139_republik_serbia";
+import { republik_serbia_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/139_republik_serbia";
 const republik_serbia_geopolitik = {
     "un_vote": 167,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const republik_serbia: CountryData = {
     "lingkungan": 60
   }
 };
+
 

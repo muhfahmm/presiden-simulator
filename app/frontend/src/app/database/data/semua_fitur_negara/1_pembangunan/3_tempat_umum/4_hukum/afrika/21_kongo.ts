@@ -1,10 +1,10 @@
 export const kongo_hukum = {
-      "pusat_bantuan_hukum": 33,
-      "pengadilan": 11,
-      "kejaksaan": 28,
-      "pos_polisi": 29,
-      "armada_mobil_polisi": 6616,
-      "akademi_polisi": 16,
-      "indeks_korupsi": 88,
-      "indeks_keamanan": 86
+      "pusat_bantuan_hukum": 9,
+      "pengadilan": 10,
+      "kejaksaan": 4,
+      "pos_polisi": 25,
+      "armada_mobil_polisi": 1085,
+      "akademi_polisi": 5,
+      "indeks_korupsi": 33,
+      "indeks_keamanan": 65
   } as const;

@@ -1,10 +1,10 @@
 export const sao_tome_dan_principe_olahraga = {
-  "kolam_renang": 19,
-  "sirkuit_balap": 10,
-  "stadion": 18,
-  "stadion_internasional": 30,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 9,
+  "sirkuit_balap": 3,
+  "stadion": 7,
+  "stadion_internasional": 1,
+  "gym": 25,
+  "golf": 3,
+  "esports": 5,
+  "gokart": 2
 } as const;

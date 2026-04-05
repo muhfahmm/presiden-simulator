@@ -1,7 +1,7 @@
 export const australia_kesehatan = {
-      "rumah_sakit_besar": 25,
-      "rumah_sakit_kecil": 16,
-      "pusat_diagnostik": 12,
-      "harapan_hidup": 26,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 163,
+      "rumah_sakit_kecil": 682,
+      "pusat_diagnostik": 289,
+      "harapan_hidup": 72,
+      "indeks_kesehatan": 78
     } as const;

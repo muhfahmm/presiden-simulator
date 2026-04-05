@@ -1,5 +1,5 @@
 export const bolivia_perikanan = {
-  udang: 19,
-  mutiara: 19,
-  ikan: 17,
+  udang: 0,
+  mutiara: 0,
+  ikan: 0,
 } as const;

@@ -1,10 +1,10 @@
 export const paraguay_olahraga = {
-  "kolam_renang": 33,
-  "sirkuit_balap": 32,
-  "stadion": 24,
-  "stadion_internasional": 16,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 11,
+  "sirkuit_balap": 2,
+  "stadion": 10,
+  "stadion_internasional": 1,
+  "gym": 35,
+  "golf": 2,
+  "esports": 3,
+  "gokart": 3
 } as const;

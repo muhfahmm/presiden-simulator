@@ -1,6 +1,6 @@
 export const nikaragua_peternakan = {
-  ayam_unggas: 38,
-  sapi_perah: 33,
-  sapi_potong: 12,
-  domba_kambing: 40,
+  ayam_unggas: 36,
+  sapi_perah: 37,
+  sapi_potong: 29,
+  domba_kambing: 17,
 } as const;

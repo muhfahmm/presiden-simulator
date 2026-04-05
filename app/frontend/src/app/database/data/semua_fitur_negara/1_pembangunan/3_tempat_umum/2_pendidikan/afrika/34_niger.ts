@@ -1,13 +1,13 @@
 export const niger_pendidikan = {
-      "prasekolah": 13,
-      "dasar": 34,
-      "menengah": 7,
-      "lanjutan": 15,
-      "universitas": 1,
-      "lembaga_pendidikan": 19,
-      "laboratorium": 23,
-      "observatorium": 40,
-      "pusat_penelitian": 10,
-      "pusat_pengembangan": 7,
-      "literasi": 72
+      "prasekolah": 10,
+      "dasar": 21,
+      "menengah": 13,
+      "lanjutan": 18,
+      "universitas": 15,
+      "lembaga_pendidikan": 1,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 0,
+      "pusat_pengembangan": 1,
+      "literasi": 83
   } as const;

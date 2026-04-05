@@ -1,8 +1,9 @@
 export const benin_manufaktur = {
-  mobil: 31,
-  semen_beton: 10,
-  sepeda_motor: 2,
-  semikonduktor: 23,
-  smelter: 14,
-  kayu: 23,
+  mobil: 14,
+  semen_beton: 18,
+  sepeda_motor: 24,
+  semikonduktor: 20,
+  smelter: 24,
+  kayu: 8,
+  pupuk: 18,
 } as const;

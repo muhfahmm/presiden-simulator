@@ -1,7 +1,7 @@
 export const lesotho_kesehatan = {
-      "rumah_sakit_besar": 12,
-      "rumah_sakit_kecil": 32,
-      "pusat_diagnostik": 21,
-      "harapan_hidup": 10,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 7,
+      "rumah_sakit_kecil": 51,
+      "pusat_diagnostik": 14,
+      "harapan_hidup": 62,
+      "indeks_kesehatan": 51
   } as const;

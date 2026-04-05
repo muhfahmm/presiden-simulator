@@ -1,13 +1,13 @@
 export const meksiko_pendidikan = {
-      "prasekolah": 32,
-      "dasar": 12,
-      "menengah": 8,
-      "lanjutan": 23,
-      "universitas": 18,
-      "lembaga_pendidikan": 37,
-      "laboratorium": 16,
-      "observatorium": 5,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 18,
-      "literasi": 58
+      "prasekolah": 973,
+      "dasar": 1963,
+      "menengah": 1381,
+      "lanjutan": 956,
+      "universitas": 321,
+      "lembaga_pendidikan": 231,
+      "laboratorium": 46,
+      "observatorium": 2,
+      "pusat_penelitian": 40,
+      "pusat_pengembangan": 28,
+      "literasi": 91
     } as const;

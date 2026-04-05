@@ -1,10 +1,10 @@
 export const guam_infrastruktur = {
-  jalur_sepeda: 9,
-  jalan_raya: 35,
-  terminal_bus: 27,
-  stasiun_kereta_api: 24,
-  kereta_bawah_tanah: 16,
-  pelabuhan: 7,
-  bandara: 5,
-  helipad: 13,
+  jalur_sepeda: 7,
+  jalan_raya: 11,
+  terminal_bus: 2,
+  stasiun_kereta_api: 5,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 1,
+  bandara: 1,
+  helipad: 2,
 } as const;

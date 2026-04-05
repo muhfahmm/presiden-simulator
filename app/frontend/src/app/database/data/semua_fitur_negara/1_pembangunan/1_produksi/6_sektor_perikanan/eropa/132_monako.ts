@@ -1,5 +1,5 @@
 export const monako_perikanan = {
-  udang: 18,
-  mutiara: 18,
-  ikan: 26,
+  udang: 27,
+  mutiara: 8,
+  ikan: 12,
 } as const;

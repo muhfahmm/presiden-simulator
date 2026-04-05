@@ -1,13 +1,13 @@
 export const guiana_prancis_pendidikan = {
-      "prasekolah": 35,
-      "dasar": 18,
-      "menengah": 20,
-      "lanjutan": 31,
-      "universitas": 31,
-      "lembaga_pendidikan": 29,
-      "laboratorium": 10,
-      "observatorium": 31,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 23,
-      "literasi": 86
+      "prasekolah": 98,
+      "dasar": 42,
+      "menengah": 65,
+      "lanjutan": 25,
+      "universitas": 17,
+      "lembaga_pendidikan": 14,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 2,
+      "literasi": 65
     } as const;

@@ -1,5 +1,5 @@
 export const taiwan_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 26,
+  "hotel": 38,
+  "pusat_grosir_tekstil": 19
 } as const;

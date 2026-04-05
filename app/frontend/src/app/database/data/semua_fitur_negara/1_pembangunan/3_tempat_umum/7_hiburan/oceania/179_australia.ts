@@ -1,4 +1,4 @@
 export const australia_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 358,
+  "teater": 143
 } as const;

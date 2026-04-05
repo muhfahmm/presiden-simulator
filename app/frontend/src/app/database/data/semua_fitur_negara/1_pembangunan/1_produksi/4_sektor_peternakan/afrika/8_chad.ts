@@ -1,6 +1,6 @@
 export const chad_peternakan = {
-  ayam_unggas: 20,
-  sapi_perah: 6,
-  sapi_potong: 38,
-  domba_kambing: 35,
+  ayam_unggas: 114,
+  sapi_perah: 81,
+  sapi_potong: 114,
+  domba_kambing: 90,
 } as const;

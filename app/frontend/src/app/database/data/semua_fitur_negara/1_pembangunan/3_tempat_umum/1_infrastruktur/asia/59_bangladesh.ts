@@ -1,10 +1,10 @@
 export const bangladesh_infrastruktur = {
-  jalur_sepeda: 39,
-  jalan_raya: 15,
-  terminal_bus: 13,
-  stasiun_kereta_api: 30,
-  kereta_bawah_tanah: 25,
-  pelabuhan: 31,
-  bandara: 34,
-  helipad: 28,
+  jalur_sepeda: 17,
+  jalan_raya: 56,
+  terminal_bus: 26,
+  stasiun_kereta_api: 20,
+  kereta_bawah_tanah: 4,
+  pelabuhan: 8,
+  bandara: 7,
+  helipad: 8,
 } as const;

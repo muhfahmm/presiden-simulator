@@ -1,13 +1,13 @@
 export const moldova_pendidikan = {
-      "prasekolah": 13,
-      "dasar": 32,
-      "menengah": 34,
-      "lanjutan": 25,
-      "universitas": 40,
-      "lembaga_pendidikan": 31,
-      "laboratorium": 9,
-      "observatorium": 20,
-      "pusat_penelitian": 3,
-      "pusat_pengembangan": 6,
-      "literasi": 59
+      "prasekolah": 74,
+      "dasar": 100,
+      "menengah": 24,
+      "lanjutan": 19,
+      "universitas": 8,
+      "lembaga_pendidikan": 15,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 0,
+      "literasi": 62
     } as const;

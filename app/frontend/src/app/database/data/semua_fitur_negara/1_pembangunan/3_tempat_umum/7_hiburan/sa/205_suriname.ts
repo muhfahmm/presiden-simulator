@@ -1,4 +1,4 @@
 export const suriname_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 45,
+  "teater": 5
 } as const;

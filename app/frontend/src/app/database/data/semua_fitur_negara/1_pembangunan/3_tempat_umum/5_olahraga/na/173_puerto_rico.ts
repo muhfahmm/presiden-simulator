@@ -1,10 +1,10 @@
 export const puerto_rico_olahraga = {
-  "kolam_renang": 39,
-  "sirkuit_balap": 35,
-  "stadion": 6,
-  "stadion_internasional": 13,
-  "gym": 0,
-  "golf": 0,
+  "kolam_renang": 13,
+  "sirkuit_balap": 1,
+  "stadion": 9,
+  "stadion_internasional": 1,
+  "gym": 21,
+  "golf": 2,
   "esports": 0,
-  "gokart": 0
+  "gokart": 2
 } as const;

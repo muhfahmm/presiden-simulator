@@ -1,4 +1,4 @@
 export const kamerun_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 16,
+  "teater": 4
 } as const;

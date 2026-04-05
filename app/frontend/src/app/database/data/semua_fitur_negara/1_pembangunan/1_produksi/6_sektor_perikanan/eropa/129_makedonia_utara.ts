@@ -1,5 +1,5 @@
 export const makedonia_utara_perikanan = {
-  udang: 28,
-  mutiara: 28,
-  ikan: 16,
+  udang: 0,
+  mutiara: 0,
+  ikan: 0,
 } as const;

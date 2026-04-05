@@ -1,8 +1,9 @@
 export const republik_dominika_manufaktur = {
-  semikonduktor: 6,
-  mobil: 36,
-  sepeda_motor: 1,
-  smelter: 32,
-  semen_beton: 3,
-  kayu: 9,
+  semikonduktor: 196,
+  mobil: 140,
+  sepeda_motor: 210,
+  smelter: 56,
+  semen_beton: 210,
+  kayu: 70,
+  pupuk: 84,
 } as const;

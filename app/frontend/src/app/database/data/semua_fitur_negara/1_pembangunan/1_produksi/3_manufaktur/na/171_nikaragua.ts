@@ -1,8 +1,9 @@
 export const nikaragua_manufaktur = {
-  semikonduktor: 9,
-  mobil: 1,
-  sepeda_motor: 32,
-  smelter: 18,
-  semen_beton: 39,
-  kayu: 36,
+  semikonduktor: 4,
+  mobil: 4,
+  sepeda_motor: 6,
+  smelter: 7,
+  semen_beton: 15,
+  kayu: 6,
+  pupuk: 5,
 } as const;

@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { marshall_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/183_marshall";
-import { marshall_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/oceania/183_marshall";
+import { marshall_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/183_marshall";
 import { marshall_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/183_marshall";
 import { marshall_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/oceania/183_marshall";
 import { marshall_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/oceania/183_marshall";
 import { marshall_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/oceania/183_marshall";
-import { marshall_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/oceania/183_marshall";
+import { marshall_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/oceania/183_marshall";
 import { marshall_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/oceania/183_marshall";
 import { marshall_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/oceania/183_marshall";
 import { marshall_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/oceania/183_marshall";
@@ -14,10 +14,10 @@ import { marshall_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { marshall_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/oceania/183_marshall";
 import { marshall_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/oceania/183_marshall";
 import { marshall_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/oceania/183_marshall";
-import { marshall_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/oceania/183_marshall";
+import { marshall_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/oceania/183_marshall";
 import { marshall_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/oceania/183_marshall";
 import { marshall_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/183_marshall";
-import { marshall_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/oceania/183_marshall";
+import { marshall_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/oceania/183_marshall";
 const marshall_geopolitik = {
     "un_vote": 4,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const marshall: CountryData = {
     "lingkungan": 60
   }
 };
+
 

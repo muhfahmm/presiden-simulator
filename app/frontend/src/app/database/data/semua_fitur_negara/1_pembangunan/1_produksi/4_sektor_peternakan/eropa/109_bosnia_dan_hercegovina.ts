@@ -1,6 +1,6 @@
 export const bosnia_dan_hercegovina_peternakan = {
-  ayam_unggas: 12,
-  sapi_perah: 10,
-  sapi_potong: 19,
-  domba_kambing: 34,
+  ayam_unggas: 40,
+  sapi_perah: 40,
+  sapi_potong: 88,
+  domba_kambing: 80,
 } as const;

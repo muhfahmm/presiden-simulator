@@ -1,8 +1,9 @@
 export const kazakhstan_manufaktur = {
-  semikonduktor: 37,
-  mobil: 40,
-  sepeda_motor: 24,
-  smelter: 8,
-  semen_beton: 21,
-  kayu: 12,
+  semikonduktor: 65,
+  mobil: 130,
+  sepeda_motor: 65,
+  smelter: 65,
+  semen_beton: 65,
+  kayu: 156,
+  pupuk: 39,
 } as const;

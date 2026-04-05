@@ -1,5 +1,5 @@
 export const gabon_perikanan = {
-  udang: 32,
-  mutiara: 32,
-  ikan: 31,
+  udang: 28,
+  mutiara: 27,
+  ikan: 30,
 } as const;

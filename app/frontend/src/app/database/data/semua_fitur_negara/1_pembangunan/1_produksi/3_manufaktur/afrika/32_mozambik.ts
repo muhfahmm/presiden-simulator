@@ -1,8 +1,9 @@
 export const mozambik_manufaktur = {
-  mobil: 31,
-  semen_beton: 11,
-  sepeda_motor: 5,
+  mobil: 10,
+  semen_beton: 5,
+  sepeda_motor: 6,
   semikonduktor: 13,
-  smelter: 29,
-  kayu: 28,
+  smelter: 7,
+  kayu: 12,
+  pupuk: 2,
 } as const;

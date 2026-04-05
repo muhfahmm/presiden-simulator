@@ -1,10 +1,10 @@
 export const bangladesh_olahraga = {
-  "kolam_renang": 25,
-  "sirkuit_balap": 36,
-  "stadion": 9,
-  "stadion_internasional": 39,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 74,
+  "sirkuit_balap": 7,
+  "stadion": 22,
+  "stadion_internasional": 3,
+  "gym": 91,
+  "golf": 12,
+  "esports": 16,
+  "gokart": 17
 } as const;

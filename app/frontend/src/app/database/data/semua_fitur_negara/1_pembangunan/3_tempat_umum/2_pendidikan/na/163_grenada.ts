@@ -1,13 +1,13 @@
 export const grenada_pendidikan = {
-      "prasekolah": 8,
-      "dasar": 24,
-      "menengah": 11,
-      "lanjutan": 6,
-      "universitas": 32,
-      "lembaga_pendidikan": 38,
-      "laboratorium": 33,
-      "observatorium": 8,
-      "pusat_penelitian": 24,
-      "pusat_pengembangan": 11,
-      "literasi": 60
+      "prasekolah": 80,
+      "dasar": 115,
+      "menengah": 47,
+      "lanjutan": 31,
+      "universitas": 11,
+      "lembaga_pendidikan": 13,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 0,
+      "literasi": 70
     } as const;

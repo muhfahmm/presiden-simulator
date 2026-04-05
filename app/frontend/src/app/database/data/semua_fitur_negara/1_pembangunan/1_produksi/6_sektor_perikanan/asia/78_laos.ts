@@ -1,5 +1,5 @@
 export const laos_perikanan = {
-  udang: 12,
-  mutiara: 12,
-  ikan: 13,
+  udang: 0,
+  mutiara: 0,
+  ikan: 0,
 } as const;

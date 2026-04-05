@@ -1,5 +1,5 @@
 export const panama_perikanan = {
-  udang: 20,
-  mutiara: 20,
-  ikan: 14,
+  udang: 120,
+  mutiara: 130,
+  ikan: 150,
 } as const;

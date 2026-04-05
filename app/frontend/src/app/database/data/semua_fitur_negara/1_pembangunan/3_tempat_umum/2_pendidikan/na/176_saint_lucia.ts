@@ -1,13 +1,13 @@
 export const saint_lucia_pendidikan = {
-      "prasekolah": 13,
-      "dasar": 27,
-      "menengah": 26,
-      "lanjutan": 36,
-      "universitas": 5,
-      "lembaga_pendidikan": 3,
-      "laboratorium": 28,
-      "observatorium": 11,
-      "pusat_penelitian": 3,
-      "pusat_pengembangan": 27,
-      "literasi": 66
+      "prasekolah": 100,
+      "dasar": 64,
+      "menengah": 94,
+      "lanjutan": 17,
+      "universitas": 20,
+      "lembaga_pendidikan": 14,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 1,
+      "literasi": 64
     } as const;

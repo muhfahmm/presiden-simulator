@@ -1,13 +1,13 @@
 export const nepal_pendidikan = {
-      "prasekolah": 16,
-      "dasar": 36,
-      "menengah": 18,
-      "lanjutan": 21,
-      "universitas": 6,
-      "lembaga_pendidikan": 35,
-      "laboratorium": 22,
-      "observatorium": 14,
-      "pusat_penelitian": 6,
-      "pusat_pengembangan": 17,
-      "literasi": 94
+      "prasekolah": 92,
+      "dasar": 72,
+      "menengah": 50,
+      "lanjutan": 28,
+      "universitas": 9,
+      "lembaga_pendidikan": 7,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 2,
+      "literasi": 76
     } as const;

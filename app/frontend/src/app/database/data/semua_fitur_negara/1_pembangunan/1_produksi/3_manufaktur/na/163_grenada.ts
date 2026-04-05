@@ -1,8 +1,9 @@
 export const grenada_manufaktur = {
-  semikonduktor: 15,
-  mobil: 14,
-  sepeda_motor: 12,
-  smelter: 3,
-  semen_beton: 39,
-  kayu: 32,
+  semikonduktor: 10,
+  mobil: 9,
+  sepeda_motor: 5,
+  smelter: 9,
+  semen_beton: 6,
+  kayu: 13,
+  pupuk: 3,
 } as const;

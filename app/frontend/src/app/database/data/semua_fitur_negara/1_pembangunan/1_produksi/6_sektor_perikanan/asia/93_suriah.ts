@@ -1,5 +1,5 @@
 export const suriah_perikanan = {
-  udang: 13,
-  mutiara: 13,
-  ikan: 30,
+  udang: 8,
+  mutiara: 23,
+  ikan: 9,
 } as const;

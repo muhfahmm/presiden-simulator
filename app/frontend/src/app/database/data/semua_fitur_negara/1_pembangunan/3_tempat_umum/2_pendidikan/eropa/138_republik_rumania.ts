@@ -1,13 +1,13 @@
 export const republik_rumania_pendidikan = {
-      "prasekolah": 1,
-      "dasar": 7,
-      "menengah": 29,
-      "lanjutan": 10,
-      "universitas": 1,
-      "lembaga_pendidikan": 32,
-      "laboratorium": 6,
-      "observatorium": 39,
-      "pusat_penelitian": 6,
-      "pusat_pengembangan": 29,
-      "literasi": 52
+      "prasekolah": 259,
+      "dasar": 731,
+      "menengah": 480,
+      "lanjutan": 199,
+      "universitas": 123,
+      "lembaga_pendidikan": 62,
+      "laboratorium": 20,
+      "observatorium": 0,
+      "pusat_penelitian": 14,
+      "pusat_pengembangan": 5,
+      "literasi": 78
     } as const;

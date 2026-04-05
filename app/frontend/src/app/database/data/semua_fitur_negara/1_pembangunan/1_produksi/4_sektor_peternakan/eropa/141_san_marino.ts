@@ -1,6 +1,6 @@
 export const san_marino_peternakan = {
-  ayam_unggas: 16,
-  sapi_perah: 29,
-  sapi_potong: 19,
-  domba_kambing: 24,
+  ayam_unggas: 128,
+  sapi_perah: 56,
+  sapi_potong: 68,
+  domba_kambing: 184,
 } as const;

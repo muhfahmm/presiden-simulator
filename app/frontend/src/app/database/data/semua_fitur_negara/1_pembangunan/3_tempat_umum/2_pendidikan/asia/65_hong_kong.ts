@@ -1,13 +1,13 @@
 export const hong_kong_pendidikan = {
-      "prasekolah": 4,
-      "dasar": 8,
-      "menengah": 22,
-      "lanjutan": 27,
-      "universitas": 38,
-      "lembaga_pendidikan": 5,
-      "laboratorium": 25,
-      "observatorium": 39,
-      "pusat_penelitian": 19,
-      "pusat_pengembangan": 36,
-      "literasi": 59
+      "prasekolah": 44,
+      "dasar": 26,
+      "menengah": 75,
+      "lanjutan": 36,
+      "universitas": 15,
+      "lembaga_pendidikan": 10,
+      "laboratorium": 2,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 1,
+      "literasi": 71
     } as const;

@@ -1,5 +1,5 @@
 export const mikronesia_perikanan = {
-  udang: 40,
-  mutiara: 40,
-  ikan: 34,
+  udang: 24,
+  mutiara: 152,
+  ikan: 148,
 } as const;

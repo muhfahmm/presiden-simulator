@@ -1,13 +1,13 @@
 export const suriah_pendidikan = {
-      "prasekolah": 8,
-      "dasar": 13,
-      "menengah": 35,
-      "lanjutan": 2,
-      "universitas": 12,
-      "lembaga_pendidikan": 31,
-      "laboratorium": 17,
-      "observatorium": 35,
-      "pusat_penelitian": 27,
-      "pusat_pengembangan": 6,
-      "literasi": 60
+      "prasekolah": 36,
+      "dasar": 129,
+      "menengah": 70,
+      "lanjutan": 18,
+      "universitas": 6,
+      "lembaga_pendidikan": 6,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 3,
+      "pusat_pengembangan": 0,
+      "literasi": 74
     } as const;

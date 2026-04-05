@@ -1,8 +1,9 @@
 export const korea_utara_manufaktur = {
-  semikonduktor: 37,
-  mobil: 26,
-  sepeda_motor: 27,
-  smelter: 11,
-  semen_beton: 1,
-  kayu: 27,
+  semikonduktor: 60,
+  mobil: 60,
+  sepeda_motor: 24,
+  smelter: 32,
+  semen_beton: 36,
+  kayu: 36,
+  pupuk: 20,
 } as const;

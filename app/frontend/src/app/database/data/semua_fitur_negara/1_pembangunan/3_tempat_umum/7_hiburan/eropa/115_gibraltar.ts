@@ -1,4 +1,4 @@
 export const gibraltar_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 31,
+  "teater": 16
 } as const;

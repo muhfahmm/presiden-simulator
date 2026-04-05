@@ -1,10 +1,10 @@
 export const marshall_infrastruktur = {
-  jalur_sepeda: 21,
-  jalan_raya: 14,
-  terminal_bus: 40,
-  stasiun_kereta_api: 28,
-  kereta_bawah_tanah: 38,
-  pelabuhan: 16,
-  bandara: 18,
-  helipad: 29,
+  jalur_sepeda: 7,
+  jalan_raya: 17,
+  terminal_bus: 4,
+  stasiun_kereta_api: 1,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 1,
+  bandara: 3,
+  helipad: 2,
 } as const;

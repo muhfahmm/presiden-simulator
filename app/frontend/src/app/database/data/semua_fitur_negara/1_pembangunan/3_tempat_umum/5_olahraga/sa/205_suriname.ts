@@ -1,10 +1,10 @@
 export const suriname_olahraga = {
-  "kolam_renang": 39,
-  "sirkuit_balap": 30,
-  "stadion": 39,
-  "stadion_internasional": 33,
-  "gym": 0,
-  "golf": 0,
+  "kolam_renang": 10,
+  "sirkuit_balap": 2,
+  "stadion": 2,
+  "stadion_internasional": 0,
+  "gym": 21,
+  "golf": 3,
   "esports": 0,
-  "gokart": 0
+  "gokart": 9
 } as const;

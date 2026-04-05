@@ -1,10 +1,10 @@
 export const republik_sudan_olahraga = {
-  "kolam_renang": 2,
-  "sirkuit_balap": 15,
-  "stadion": 26,
-  "stadion_internasional": 39,
-  "gym": 0,
-  "golf": 0,
+  "kolam_renang": 9,
+  "sirkuit_balap": 1,
+  "stadion": 6,
+  "stadion_internasional": 1,
+  "gym": 12,
+  "golf": 2,
   "esports": 0,
-  "gokart": 0
+  "gokart": 2
 } as const;

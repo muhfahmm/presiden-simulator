@@ -1,7 +1,7 @@
 export const montenegro_kesehatan = {
-      "rumah_sakit_besar": 2,
-      "rumah_sakit_kecil": 13,
-      "pusat_diagnostik": 4,
-      "harapan_hidup": 4,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 11,
+      "rumah_sakit_kecil": 55,
+      "pusat_diagnostik": 13,
+      "harapan_hidup": 60,
+      "indeks_kesehatan": 72
     } as const;

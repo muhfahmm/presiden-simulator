@@ -1,10 +1,10 @@
 export const republik_tanzania_olahraga = {
-  "kolam_renang": 1,
-  "sirkuit_balap": 3,
-  "stadion": 34,
-  "stadion_internasional": 40,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 5,
+  "sirkuit_balap": 1,
+  "stadion": 4,
+  "stadion_internasional": 1,
+  "gym": 17,
+  "golf": 1,
+  "esports": 1,
+  "gokart": 4
 } as const;

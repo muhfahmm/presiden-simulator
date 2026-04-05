@@ -1,10 +1,10 @@
 export const india_infrastruktur = {
-  jalur_sepeda: 22,
-  jalan_raya: 15,
-  terminal_bus: 14,
-  stasiun_kereta_api: 29,
-  kereta_bawah_tanah: 25,
-  pelabuhan: 6,
-  bandara: 20,
-  helipad: 40,
+  jalur_sepeda: 138,
+  jalan_raya: 149,
+  terminal_bus: 59,
+  stasiun_kereta_api: 49,
+  kereta_bawah_tanah: 30,
+  pelabuhan: 27,
+  bandara: 18,
+  helipad: 32,
 } as const;

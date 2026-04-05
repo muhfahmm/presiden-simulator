@@ -1,8 +1,9 @@
 export const portugal_manufaktur = {
-  semikonduktor: 30,
-  mobil: 7,
-  sepeda_motor: 8,
-  smelter: 32,
-  semen_beton: 14,
-  kayu: 1,
+  semikonduktor: 255,
+  mobil: 153,
+  sepeda_motor: 238,
+  smelter: 221,
+  semen_beton: 68,
+  kayu: 170,
+  pupuk: 85,
 } as const;

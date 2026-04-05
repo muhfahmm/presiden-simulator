@@ -1,10 +1,10 @@
 export const hungaria_olahraga = {
-  "kolam_renang": 27,
-  "sirkuit_balap": 6,
-  "stadion": 25,
-  "stadion_internasional": 30,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 80,
+  "sirkuit_balap": 7,
+  "stadion": 12,
+  "stadion_internasional": 3,
+  "gym": 154,
+  "golf": 20,
+  "esports": 15,
+  "gokart": 23
 } as const;

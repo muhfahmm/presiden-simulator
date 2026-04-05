@@ -1,10 +1,10 @@
 export const argentina_olahraga = {
-  "kolam_renang": 40,
-  "sirkuit_balap": 13,
-  "stadion": 37,
-  "stadion_internasional": 35,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 24,
+  "sirkuit_balap": 8,
+  "stadion": 47,
+  "stadion_internasional": 1,
+  "gym": 88,
+  "golf": 8,
+  "esports": 8,
+  "gokart": 46
 } as const;

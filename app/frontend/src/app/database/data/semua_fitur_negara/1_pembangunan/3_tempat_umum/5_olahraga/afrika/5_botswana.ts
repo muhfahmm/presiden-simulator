@@ -1,10 +1,10 @@
 export const botswana_olahraga = {
-  "kolam_renang": 2,
-  "sirkuit_balap": 2,
-  "stadion": 10,
-  "stadion_internasional": 1,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 10,
+  "sirkuit_balap": 1,
+  "stadion": 7,
+  "stadion_internasional": 0,
+  "gym": 39,
+  "golf": 1,
+  "esports": 5,
+  "gokart": 6
 } as const;

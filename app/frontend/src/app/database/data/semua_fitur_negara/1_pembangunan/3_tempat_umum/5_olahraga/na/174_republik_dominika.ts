@@ -1,10 +1,10 @@
 export const republik_dominika_olahraga = {
-  "kolam_renang": 28,
-  "sirkuit_balap": 35,
-  "stadion": 7,
-  "stadion_internasional": 31,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 5,
+  "sirkuit_balap": 2,
+  "stadion": 9,
+  "stadion_internasional": 0,
+  "gym": 12,
+  "golf": 3,
+  "esports": 2,
+  "gokart": 8
 } as const;

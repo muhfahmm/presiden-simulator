@@ -1,10 +1,10 @@
 export const bhutan_olahraga = {
-  "kolam_renang": 20,
-  "sirkuit_balap": 8,
-  "stadion": 16,
-  "stadion_internasional": 28,
-  "gym": 0,
-  "golf": 0,
+  "kolam_renang": 6,
+  "sirkuit_balap": 2,
+  "stadion": 10,
+  "stadion_internasional": 0,
+  "gym": 16,
+  "golf": 4,
   "esports": 0,
-  "gokart": 0
+  "gokart": 7
 } as const;

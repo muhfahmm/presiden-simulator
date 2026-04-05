@@ -1,5 +1,5 @@
 export const republik_zambia_perikanan = {
-  udang: 14,
-  mutiara: 14,
-  ikan: 9,
+  udang: 74,
+  mutiara: 12,
+  ikan: 78,
 } as const;

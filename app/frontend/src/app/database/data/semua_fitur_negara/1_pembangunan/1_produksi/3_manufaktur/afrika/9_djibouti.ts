@@ -1,8 +1,9 @@
 export const djibouti_manufaktur = {
-  mobil: 23,
-  semen_beton: 9,
-  sepeda_motor: 24,
-  semikonduktor: 16,
-  smelter: 28,
-  kayu: 34,
+  mobil: 9,
+  semen_beton: 6,
+  sepeda_motor: 11,
+  semikonduktor: 13,
+  smelter: 14,
+  kayu: 12,
+  pupuk: 4,
 } as const;

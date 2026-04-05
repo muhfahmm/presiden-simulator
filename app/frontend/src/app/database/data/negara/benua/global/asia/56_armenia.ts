@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { armenia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/56_armenia";
-import { armenia_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/asia/56_armenia";
+import { armenia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/56_armenia";
 import { armenia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/56_armenia";
 import { armenia_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/56_armenia";
 import { armenia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/56_armenia";
 import { armenia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/56_armenia";
-import { armenia_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/asia/56_armenia";
+import { armenia_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/56_armenia";
 import { armenia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/56_armenia";
 import { armenia_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/56_armenia";
 import { armenia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/56_armenia";
@@ -14,10 +14,10 @@ import { armenia_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { armenia_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/56_armenia";
 import { armenia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/56_armenia";
 import { armenia_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/56_armenia";
-import { armenia_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/asia/56_armenia";
+import { armenia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/56_armenia";
 import { armenia_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/56_armenia";
 import { armenia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/56_armenia";
-import { armenia_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/asia/56_armenia";
+import { armenia_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/56_armenia";
 const armenia_geopolitik = {
     "un_vote": 152,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const armenia: CountryData = {
     "lingkungan": 60
   }
 };
+
 

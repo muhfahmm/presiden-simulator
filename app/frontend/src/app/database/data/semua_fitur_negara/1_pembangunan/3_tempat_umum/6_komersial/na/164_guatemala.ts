@@ -1,5 +1,5 @@
 export const guatemala_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 9,
+  "hotel": 8,
+  "pusat_grosir_tekstil": 4
 } as const;

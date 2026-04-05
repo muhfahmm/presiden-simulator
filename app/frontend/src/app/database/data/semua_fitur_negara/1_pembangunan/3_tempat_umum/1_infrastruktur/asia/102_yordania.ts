@@ -1,10 +1,10 @@
 export const yordania_infrastruktur = {
-  jalur_sepeda: 21,
-  jalan_raya: 9,
-  terminal_bus: 1,
-  stasiun_kereta_api: 8,
-  kereta_bawah_tanah: 17,
-  pelabuhan: 33,
-  bandara: 32,
-  helipad: 3,
+  jalur_sepeda: 4,
+  jalan_raya: 7,
+  terminal_bus: 7,
+  stasiun_kereta_api: 3,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 5,
+  bandara: 1,
+  helipad: 1,
 } as const;

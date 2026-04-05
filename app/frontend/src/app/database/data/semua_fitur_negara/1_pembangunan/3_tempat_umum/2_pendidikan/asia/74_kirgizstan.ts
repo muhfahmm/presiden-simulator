@@ -1,13 +1,13 @@
 export const kirgizstan_pendidikan = {
-      "prasekolah": 6,
-      "dasar": 5,
-      "menengah": 21,
-      "lanjutan": 18,
-      "universitas": 40,
-      "lembaga_pendidikan": 28,
-      "laboratorium": 17,
-      "observatorium": 20,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 14,
-      "literasi": 69
+      "prasekolah": 84,
+      "dasar": 78,
+      "menengah": 75,
+      "lanjutan": 29,
+      "universitas": 10,
+      "lembaga_pendidikan": 9,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 0,
+      "pusat_pengembangan": 2,
+      "literasi": 62
     } as const;

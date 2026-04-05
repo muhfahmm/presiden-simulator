@@ -1,10 +1,10 @@
 export const papua_nugini_infrastruktur = {
-  jalur_sepeda: 20,
-  jalan_raya: 17,
-  terminal_bus: 30,
-  stasiun_kereta_api: 4,
-  kereta_bawah_tanah: 1,
-  pelabuhan: 13,
-  bandara: 13,
-  helipad: 13,
+  jalur_sepeda: 10,
+  jalan_raya: 8,
+  terminal_bus: 6,
+  stasiun_kereta_api: 0,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 1,
+  bandara: 1,
+  helipad: 3,
 } as const;

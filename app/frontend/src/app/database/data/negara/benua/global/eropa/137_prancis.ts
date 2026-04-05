@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { prancis_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/137_prancis";
-import { prancis_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/eropa/137_prancis";
+import { prancis_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/137_prancis";
 import { prancis_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/137_prancis";
 import { prancis_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/137_prancis";
 import { prancis_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/137_prancis";
 import { prancis_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/137_prancis";
-import { prancis_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/eropa/137_prancis";
+import { prancis_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/137_prancis";
 import { prancis_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/137_prancis";
 import { prancis_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/137_prancis";
 import { prancis_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/137_prancis";
@@ -14,10 +14,10 @@ import { prancis_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { prancis_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/137_prancis";
 import { prancis_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/137_prancis";
 import { prancis_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/137_prancis";
-import { prancis_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/eropa/137_prancis";
+import { prancis_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/137_prancis";
 import { prancis_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/137_prancis";
 import { prancis_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/137_prancis";
-import { prancis_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/eropa/137_prancis";
+import { prancis_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/137_prancis";
 const prancis_geopolitik = {
     "un_vote": 202,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const prancis: CountryData = {
     "lingkungan": 60
   }
 };
+
 

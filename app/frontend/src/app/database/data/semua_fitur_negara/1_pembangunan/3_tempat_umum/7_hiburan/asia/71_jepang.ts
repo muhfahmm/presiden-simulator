@@ -1,4 +1,4 @@
 export const jepang_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 975,
+  "teater": 219
 } as const;

@@ -1,5 +1,5 @@
 export const curacao_perikanan = {
-  udang: 19,
-  mutiara: 19,
-  ikan: 11,
+  udang: 56,
+  mutiara: 46,
+  ikan: 60,
 } as const;

@@ -1,10 +1,10 @@
 export const republik_timor_leste_hukum = {
-      "pusat_bantuan_hukum": 17,
-      "pengadilan": 13,
-      "kejaksaan": 20,
-      "pos_polisi": 11,
-      "armada_mobil_polisi": 4976,
-      "akademi_polisi": 4,
-      "indeks_korupsi": 93,
-      "indeks_keamanan": 90
+      "pusat_bantuan_hukum": 6,
+      "pengadilan": 11,
+      "kejaksaan": 7,
+      "pos_polisi": 5,
+      "armada_mobil_polisi": 1212,
+      "akademi_polisi": 5,
+      "indeks_korupsi": 16,
+      "indeks_keamanan": 51
   } as const;

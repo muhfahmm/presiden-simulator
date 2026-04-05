@@ -1,13 +1,13 @@
 export const bosnia_dan_hercegovina_pendidikan = {
-      "prasekolah": 40,
-      "dasar": 35,
-      "menengah": 34,
-      "lanjutan": 5,
-      "universitas": 25,
-      "lembaga_pendidikan": 37,
-      "laboratorium": 5,
-      "observatorium": 6,
-      "pusat_penelitian": 1,
-      "pusat_pengembangan": 40,
-      "literasi": 81
+      "prasekolah": 75,
+      "dasar": 39,
+      "menengah": 48,
+      "lanjutan": 45,
+      "universitas": 5,
+      "lembaga_pendidikan": 9,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 2,
+      "literasi": 76
     } as const;

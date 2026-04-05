@@ -1,10 +1,10 @@
 export const vatikan_infrastruktur = {
-  jalur_sepeda: 22,
-  jalan_raya: 34,
-  terminal_bus: 16,
-  stasiun_kereta_api: 26,
-  kereta_bawah_tanah: 5,
-  pelabuhan: 23,
-  bandara: 5,
-  helipad: 29,
+  jalur_sepeda: 3,
+  jalan_raya: 19,
+  terminal_bus: 2,
+  stasiun_kereta_api: 4,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 2,
+  bandara: 3,
+  helipad: 3,
 } as const;

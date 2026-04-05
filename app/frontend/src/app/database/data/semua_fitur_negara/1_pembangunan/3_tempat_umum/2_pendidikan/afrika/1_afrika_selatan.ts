@@ -1,13 +1,13 @@
 export const afrika_selatan_pendidikan = {
-      "prasekolah": 32,
-      "dasar": 3,
-      "menengah": 34,
-      "lanjutan": 15,
-      "universitas": 2,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 28,
-      "observatorium": 20,
-      "pusat_penelitian": 40,
-      "pusat_pengembangan": 10,
-      "literasi": 85
+      "prasekolah": 190,
+      "dasar": 416,
+      "menengah": 181,
+      "lanjutan": 116,
+      "universitas": 127,
+      "lembaga_pendidikan": 95,
+      "laboratorium": 14,
+      "observatorium": 3,
+      "pusat_penelitian": 20,
+      "pusat_pengembangan": 9,
+      "literasi": 78
   } as const;

@@ -1,10 +1,10 @@
 export const turki_hukum = {
-      "pusat_bantuan_hukum": 23,
-      "pengadilan": 13,
-      "kejaksaan": 32,
-      "pos_polisi": 26,
-      "armada_mobil_polisi": 8169,
-      "akademi_polisi": 31,
-      "indeks_korupsi": 72,
-      "indeks_keamanan": 59
+      "pusat_bantuan_hukum": 10,
+      "pengadilan": 14,
+      "kejaksaan": 1,
+      "pos_polisi": 24,
+      "armada_mobil_polisi": 1502,
+      "akademi_polisi": 5,
+      "indeks_korupsi": 31,
+      "indeks_keamanan": 49
   } as const;

@@ -1,10 +1,10 @@
 export const hong_kong_infrastruktur = {
-  jalur_sepeda: 17,
-  jalan_raya: 37,
-  terminal_bus: 31,
-  stasiun_kereta_api: 22,
-  kereta_bawah_tanah: 34,
-  pelabuhan: 39,
-  bandara: 19,
-  helipad: 7,
+  jalur_sepeda: 6,
+  jalan_raya: 18,
+  terminal_bus: 7,
+  stasiun_kereta_api: 5,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 4,
+  bandara: 3,
+  helipad: 3,
 } as const;

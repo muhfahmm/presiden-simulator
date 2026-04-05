@@ -1,8 +1,9 @@
 export const austria_manufaktur = {
-  semikonduktor: 6,
-  mobil: 5,
-  sepeda_motor: 38,
-  smelter: 15,
-  semen_beton: 6,
-  kayu: 31,
+  semikonduktor: 666,
+  mobil: 444,
+  sepeda_motor: 1110,
+  smelter: 444,
+  semen_beton: 1110,
+  kayu: 1110,
+  pupuk: 518,
 } as const;

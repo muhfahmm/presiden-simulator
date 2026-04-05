@@ -1,10 +1,10 @@
 export const guinea_bissau_hukum = {
-      "pusat_bantuan_hukum": 2,
-      "pengadilan": 36,
-      "kejaksaan": 10,
-      "pos_polisi": 28,
-      "armada_mobil_polisi": 6154,
-      "akademi_polisi": 14,
-      "indeks_korupsi": 95,
-      "indeks_keamanan": 92
+      "pusat_bantuan_hukum": 4,
+      "pengadilan": 8,
+      "kejaksaan": 3,
+      "pos_polisi": 19,
+      "armada_mobil_polisi": 1897,
+      "akademi_polisi": 4,
+      "indeks_korupsi": 10,
+      "indeks_keamanan": 64
   } as const;

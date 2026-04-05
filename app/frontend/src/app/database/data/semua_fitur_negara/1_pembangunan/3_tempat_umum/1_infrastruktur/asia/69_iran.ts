@@ -1,10 +1,10 @@
 export const iran_infrastruktur = {
-  jalur_sepeda: 8,
-  jalan_raya: 35,
-  terminal_bus: 21,
-  stasiun_kereta_api: 20,
-  kereta_bawah_tanah: 27,
-  pelabuhan: 22,
-  bandara: 30,
-  helipad: 33,
+  jalur_sepeda: 24,
+  jalan_raya: 84,
+  terminal_bus: 24,
+  stasiun_kereta_api: 17,
+  kereta_bawah_tanah: 2,
+  pelabuhan: 6,
+  bandara: 3,
+  helipad: 5,
 } as const;

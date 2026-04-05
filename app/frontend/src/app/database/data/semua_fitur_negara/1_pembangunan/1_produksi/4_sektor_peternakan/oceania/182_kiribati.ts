@@ -1,6 +1,6 @@
 export const kiribati_peternakan = {
-  ayam_unggas: 16,
-  sapi_perah: 29,
-  sapi_potong: 26,
-  domba_kambing: 17,
+  ayam_unggas: 30,
+  sapi_perah: 50,
+  sapi_potong: 32,
+  domba_kambing: 20,
 } as const;

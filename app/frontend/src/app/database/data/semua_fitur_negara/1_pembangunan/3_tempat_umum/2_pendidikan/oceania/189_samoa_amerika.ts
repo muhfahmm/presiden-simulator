@@ -1,13 +1,13 @@
 export const samoa_amerika_pendidikan = {
-      "prasekolah": 11,
-      "dasar": 28,
-      "menengah": 19,
-      "lanjutan": 37,
-      "universitas": 19,
-      "lembaga_pendidikan": 16,
-      "laboratorium": 2,
-      "observatorium": 12,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 15,
-      "literasi": 51
+      "prasekolah": 70,
+      "dasar": 50,
+      "menengah": 74,
+      "lanjutan": 13,
+      "universitas": 15,
+      "lembaga_pendidikan": 6,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 1,
+      "literasi": 64
     } as const;

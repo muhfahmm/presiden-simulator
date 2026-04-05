@@ -1,8 +1,9 @@
 export const kenya_manufaktur = {
-  mobil: 30,
-  semen_beton: 9,
-  sepeda_motor: 17,
-  semikonduktor: 14,
-  smelter: 29,
-  kayu: 40,
+  mobil: 91,
+  semen_beton: 91,
+  sepeda_motor: 84,
+  semikonduktor: 105,
+  smelter: 35,
+  kayu: 49,
+  pupuk: 63,
 } as const;

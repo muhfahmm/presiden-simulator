@@ -1,8 +1,9 @@
 export const malaysia_manufaktur = {
-  semikonduktor: 24,
-  mobil: 23,
-  sepeda_motor: 9,
-  smelter: 29,
-  semen_beton: 12,
-  kayu: 3,
+  semikonduktor: 396,
+  mobil: 216,
+  sepeda_motor: 216,
+  smelter: 288,
+  semen_beton: 360,
+  kayu: 288,
+  pupuk: 288,
 } as const;

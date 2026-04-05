@@ -1,10 +1,10 @@
 export const republik_tanzania_infrastruktur = {
-  jalur_sepeda: 30,
-  jalan_raya: 14,
-  terminal_bus: 40,
-  stasiun_kereta_api: 33,
-  kereta_bawah_tanah: 24,
-  pelabuhan: 31,
-  bandara: 14,
-  helipad: 1,
+  jalur_sepeda: 2,
+  jalan_raya: 5,
+  terminal_bus: 5,
+  stasiun_kereta_api: 3,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 4,
+  bandara: 5,
+  helipad: 2,
 } as const;

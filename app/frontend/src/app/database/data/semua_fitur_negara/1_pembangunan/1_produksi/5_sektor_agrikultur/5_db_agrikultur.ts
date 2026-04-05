@@ -12,7 +12,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 90,
     biaya_pembangunan: 1000,
     lowongan_kerja: 300,
-    konsumsi_listrik: 0.2
+    konsumsi_listrik: 1
   },
   "2_ladang_gandum": {
     key: "2_ladang_gandum",
@@ -24,7 +24,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 90,
     biaya_pembangunan: 1200,
     lowongan_kerja: 200,
-    konsumsi_listrik: 0.1
+    konsumsi_listrik: 1
   },
   "3_ladang_jagung": {
     key: "3_ladang_jagung",
@@ -36,7 +36,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 75,
     biaya_pembangunan: 1100,
     lowongan_kerja: 150,
-    konsumsi_listrik: 0.1
+    konsumsi_listrik: 1
   },
   "4_ladang_umbi": {
     key: "4_ladang_umbi",
@@ -48,7 +48,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 60,
     biaya_pembangunan: 1000,
     lowongan_kerja: 120,
-    konsumsi_listrik: 0.15
+    konsumsi_listrik: 1
   },
   "5_ladang_kedelai": {
     key: "5_ladang_kedelai",
@@ -60,7 +60,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 60,
     biaya_pembangunan: 1300,
     lowongan_kerja: 100,
-    konsumsi_listrik: 0.1
+    konsumsi_listrik: 1
   },
   "6_perkebunan_sawit": {
     key: "6_perkebunan_sawit",
@@ -84,7 +84,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 180,
     biaya_pembangunan: 2500,
     lowongan_kerja: 400,
-    konsumsi_listrik: 0.2
+    konsumsi_listrik: 1
   },
   "8_perkebunan_kopi": {
     key: "8_perkebunan_kopi",
@@ -96,7 +96,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 240,
     biaya_pembangunan: 3000,
     lowongan_kerja: 400,
-    konsumsi_listrik: 0.2
+    konsumsi_listrik: 1
   },
   "9_perkebunan_kakao": {
     key: "9_perkebunan_kakao",
@@ -108,7 +108,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 300,
     biaya_pembangunan: 3500,
     lowongan_kerja: 400,
-    konsumsi_listrik: 0.2
+    konsumsi_listrik: 1
   },
   "10_perkebunan_tebu": {
     key: "10_perkebunan_tebu",
@@ -120,7 +120,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 180,
     biaya_pembangunan: 2000,
     lowongan_kerja: 500,
-    konsumsi_listrik: 0.15
+    konsumsi_listrik: 1
   },
   "11_kebun_sayur": {
     key: "11_kebun_sayur",
@@ -132,7 +132,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 30,
     biaya_pembangunan: 1000,
     lowongan_kerja: 120,
-    konsumsi_listrik: 0.15
+    konsumsi_listrik: 1
   },
   "12_perkebunan_karet": {
     key: "12_perkebunan_karet",
@@ -144,7 +144,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 240,
     biaya_pembangunan: 4000,
     lowongan_kerja: 600,
-    konsumsi_listrik: 0.5
+    konsumsi_listrik: 1
   },
   "13_perkebunan_kapas": {
     key: "13_perkebunan_kapas",
@@ -156,7 +156,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 120,
     biaya_pembangunan: 1800,
     lowongan_kerja: 400,
-    konsumsi_listrik: 0.2
+    konsumsi_listrik: 1
   },
   "14_perkebunan_tembakau": {
     key: "14_perkebunan_tembakau",
@@ -168,7 +168,7 @@ export const agrikulturRate = {
     waktu_pembangunan: 180,
     biaya_pembangunan: 3500,
     lowongan_kerja: 800,
-    konsumsi_listrik: 0.3
+    konsumsi_listrik: 1
   }
 };
 

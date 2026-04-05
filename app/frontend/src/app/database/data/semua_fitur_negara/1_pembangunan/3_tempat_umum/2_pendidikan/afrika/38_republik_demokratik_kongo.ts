@@ -1,13 +1,13 @@
 export const republik_demokratik_kongo_pendidikan = {
-      "prasekolah": 35,
-      "dasar": 34,
-      "menengah": 40,
-      "lanjutan": 8,
-      "universitas": 19,
-      "lembaga_pendidikan": 38,
-      "laboratorium": 12,
-      "observatorium": 27,
-      "pusat_penelitian": 13,
-      "pusat_pengembangan": 40,
-      "literasi": 84
+      "prasekolah": 60,
+      "dasar": 127,
+      "menengah": 17,
+      "lanjutan": 19,
+      "universitas": 11,
+      "lembaga_pendidikan": 14,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 2,
+      "literasi": 69
   } as const;

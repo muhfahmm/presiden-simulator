@@ -1,5 +1,5 @@
 export const papua_nugini_perikanan = {
-  udang: 14,
-  mutiara: 14,
-  ikan: 1,
+  udang: 111,
+  mutiara: 36,
+  ikan: 78,
 } as const;

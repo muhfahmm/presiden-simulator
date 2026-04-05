@@ -1,13 +1,13 @@
 export const fiji_pendidikan = {
-      "prasekolah": 13,
-      "dasar": 36,
-      "menengah": 17,
-      "lanjutan": 29,
-      "universitas": 17,
-      "lembaga_pendidikan": 30,
-      "laboratorium": 15,
-      "observatorium": 24,
-      "pusat_penelitian": 36,
-      "pusat_pengembangan": 12,
-      "literasi": 83
+      "prasekolah": 47,
+      "dasar": 94,
+      "menengah": 60,
+      "lanjutan": 41,
+      "universitas": 19,
+      "lembaga_pendidikan": 2,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 2,
+      "literasi": 71
     } as const;

@@ -1,13 +1,13 @@
 export const kazakhstan_pendidikan = {
-      "prasekolah": 19,
-      "dasar": 38,
-      "menengah": 1,
-      "lanjutan": 39,
-      "universitas": 15,
-      "lembaga_pendidikan": 19,
-      "laboratorium": 22,
-      "observatorium": 40,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 36,
-      "literasi": 85
+      "prasekolah": 102,
+      "dasar": 469,
+      "menengah": 301,
+      "lanjutan": 95,
+      "universitas": 115,
+      "lembaga_pendidikan": 81,
+      "laboratorium": 5,
+      "observatorium": 2,
+      "pusat_penelitian": 18,
+      "pusat_pengembangan": 3,
+      "literasi": 78
     } as const;

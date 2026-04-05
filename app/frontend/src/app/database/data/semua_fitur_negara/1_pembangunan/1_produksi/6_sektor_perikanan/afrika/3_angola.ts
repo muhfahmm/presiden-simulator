@@ -1,5 +1,5 @@
 export const angola_perikanan = {
-  udang: 32,
-  mutiara: 32,
-  ikan: 13,
+  udang: 112,
+  mutiara: 40,
+  ikan: 120,
 } as const;

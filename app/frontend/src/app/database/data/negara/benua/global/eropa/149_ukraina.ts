@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { ukraina_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/149_ukraina";
-import { ukraina_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/eropa/149_ukraina";
+import { ukraina_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/149_ukraina";
 import { ukraina_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/149_ukraina";
 import { ukraina_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/149_ukraina";
 import { ukraina_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/149_ukraina";
 import { ukraina_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/149_ukraina";
-import { ukraina_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/eropa/149_ukraina";
+import { ukraina_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/149_ukraina";
 import { ukraina_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/149_ukraina";
 import { ukraina_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/149_ukraina";
 import { ukraina_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/149_ukraina";
@@ -14,10 +14,10 @@ import { ukraina_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { ukraina_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/149_ukraina";
 import { ukraina_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/149_ukraina";
 import { ukraina_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/149_ukraina";
-import { ukraina_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/eropa/149_ukraina";
+import { ukraina_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/149_ukraina";
 import { ukraina_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/149_ukraina";
 import { ukraina_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/149_ukraina";
-import { ukraina_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/eropa/149_ukraina";
+import { ukraina_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/149_ukraina";
 const ukraina_geopolitik = {
     "un_vote": 205,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const ukraina: CountryData = {
     "lingkungan": 60
   }
 };
+
 

@@ -1,10 +1,10 @@
 export const panama_olahraga = {
-  "kolam_renang": 35,
-  "sirkuit_balap": 34,
-  "stadion": 22,
-  "stadion_internasional": 31,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 19,
+  "sirkuit_balap": 3,
+  "stadion": 2,
+  "stadion_internasional": 0,
+  "gym": 18,
+  "golf": 1,
+  "esports": 1,
+  "gokart": 10
 } as const;

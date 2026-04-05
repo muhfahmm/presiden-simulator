@@ -1,13 +1,13 @@
 export const georgia_pendidikan = {
-      "prasekolah": 9,
-      "dasar": 15,
-      "menengah": 36,
-      "lanjutan": 16,
-      "universitas": 13,
-      "lembaga_pendidikan": 31,
-      "laboratorium": 19,
-      "observatorium": 19,
-      "pusat_penelitian": 40,
-      "pusat_pengembangan": 28,
-      "literasi": 54
+      "prasekolah": 64,
+      "dasar": 115,
+      "menengah": 92,
+      "lanjutan": 32,
+      "universitas": 6,
+      "lembaga_pendidikan": 4,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 0,
+      "pusat_pengembangan": 0,
+      "literasi": 71
     } as const;

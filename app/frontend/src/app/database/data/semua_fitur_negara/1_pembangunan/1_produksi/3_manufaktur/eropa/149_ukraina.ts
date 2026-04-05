@@ -1,8 +1,9 @@
 export const ukraina_manufaktur = {
-  semikonduktor: 31,
-  mobil: 16,
-  sepeda_motor: 38,
-  smelter: 5,
-  semen_beton: 18,
-  kayu: 37,
+  semikonduktor: 30,
+  mobil: 40,
+  sepeda_motor: 20,
+  smelter: 45,
+  semen_beton: 30,
+  kayu: 75,
+  pupuk: 30,
 } as const;

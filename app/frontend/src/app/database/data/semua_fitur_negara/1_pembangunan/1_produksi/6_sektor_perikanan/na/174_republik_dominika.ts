@@ -1,5 +1,5 @@
 export const republik_dominika_perikanan = {
-  udang: 28,
-  mutiara: 28,
-  ikan: 14,
+  udang: 294,
+  mutiara: 434,
+  ikan: 280,
 } as const;

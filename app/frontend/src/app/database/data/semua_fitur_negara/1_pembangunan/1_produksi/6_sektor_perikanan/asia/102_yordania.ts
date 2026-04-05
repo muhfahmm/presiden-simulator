@@ -1,5 +1,5 @@
 export const yordania_perikanan = {
-  udang: 28,
-  mutiara: 28,
-  ikan: 37,
+  udang: 18,
+  mutiara: 12,
+  ikan: 78,
 } as const;

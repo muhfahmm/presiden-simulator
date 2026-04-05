@@ -1,8 +1,9 @@
 export const libya_manufaktur = {
-  mobil: 40,
-  semen_beton: 38,
-  sepeda_motor: 37,
-  semikonduktor: 20,
-  smelter: 25,
-  kayu: 22,
+  mobil: 98,
+  semen_beton: 77,
+  sepeda_motor: 84,
+  semikonduktor: 49,
+  smelter: 91,
+  kayu: 35,
+  pupuk: 35,
 } as const;

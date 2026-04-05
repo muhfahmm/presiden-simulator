@@ -1,13 +1,13 @@
 export const tajikistan_pendidikan = {
-      "prasekolah": 1,
-      "dasar": 25,
-      "menengah": 23,
-      "lanjutan": 22,
-      "universitas": 28,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 38,
-      "observatorium": 1,
-      "pusat_penelitian": 30,
-      "pusat_pengembangan": 12,
-      "literasi": 79
+      "prasekolah": 44,
+      "dasar": 145,
+      "menengah": 17,
+      "lanjutan": 36,
+      "universitas": 12,
+      "lembaga_pendidikan": 9,
+      "laboratorium": 0,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 1,
+      "literasi": 85
     } as const;

@@ -1,13 +1,13 @@
 export const argentina_pendidikan = {
-      "prasekolah": 38,
-      "dasar": 16,
-      "menengah": 21,
-      "lanjutan": 26,
-      "universitas": 23,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 19,
-      "observatorium": 13,
-      "pusat_penelitian": 4,
-      "pusat_pengembangan": 22,
-      "literasi": 75
+      "prasekolah": 175,
+      "dasar": 798,
+      "menengah": 360,
+      "lanjutan": 280,
+      "universitas": 117,
+      "lembaga_pendidikan": 95,
+      "laboratorium": 24,
+      "observatorium": 1,
+      "pusat_penelitian": 18,
+      "pusat_pengembangan": 2,
+      "literasi": 88
     } as const;

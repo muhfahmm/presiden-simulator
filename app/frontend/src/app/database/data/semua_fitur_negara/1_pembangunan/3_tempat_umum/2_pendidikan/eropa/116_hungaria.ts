@@ -1,13 +1,13 @@
 export const hungaria_pendidikan = {
-      "prasekolah": 2,
-      "dasar": 17,
-      "menengah": 34,
-      "lanjutan": 37,
-      "universitas": 27,
-      "lembaga_pendidikan": 9,
-      "laboratorium": 27,
-      "observatorium": 36,
+      "prasekolah": 113,
+      "dasar": 462,
+      "menengah": 397,
+      "lanjutan": 179,
+      "universitas": 86,
+      "lembaga_pendidikan": 77,
+      "laboratorium": 16,
+      "observatorium": 0,
       "pusat_penelitian": 15,
-      "pusat_pengembangan": 1,
-      "literasi": 74
+      "pusat_pengembangan": 3,
+      "literasi": 89
     } as const;

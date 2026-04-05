@@ -1,8 +1,9 @@
 export const arab_saudi_manufaktur = {
-  semikonduktor: 15,
-  mobil: 2,
-  sepeda_motor: 31,
-  smelter: 15,
-  semen_beton: 24,
-  kayu: 6,
+  semikonduktor: 1995,
+  mobil: 931,
+  sepeda_motor: 1729,
+  smelter: 931,
+  semen_beton: 1330,
+  kayu: 1064,
+  pupuk: 931,
 } as const;

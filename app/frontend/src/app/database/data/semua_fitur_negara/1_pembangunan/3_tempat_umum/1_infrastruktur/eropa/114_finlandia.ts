@@ -1,10 +1,10 @@
 export const finlandia_infrastruktur = {
-  jalur_sepeda: 8,
-  jalan_raya: 29,
-  terminal_bus: 38,
-  stasiun_kereta_api: 27,
-  kereta_bawah_tanah: 1,
-  pelabuhan: 31,
-  bandara: 35,
-  helipad: 4,
+  jalur_sepeda: 20,
+  jalan_raya: 91,
+  terminal_bus: 26,
+  stasiun_kereta_api: 9,
+  kereta_bawah_tanah: 4,
+  pelabuhan: 7,
+  bandara: 5,
+  helipad: 5,
 } as const;

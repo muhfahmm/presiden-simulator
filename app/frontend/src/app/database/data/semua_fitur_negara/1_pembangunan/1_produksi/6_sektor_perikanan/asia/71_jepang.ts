@@ -1,5 +1,5 @@
 export const jepang_perikanan = {
-  udang: 26,
-  mutiara: 26,
-  ikan: 38,
+  udang: 1428,
+  mutiara: 5950,
+  ikan: 4998,
 } as const;

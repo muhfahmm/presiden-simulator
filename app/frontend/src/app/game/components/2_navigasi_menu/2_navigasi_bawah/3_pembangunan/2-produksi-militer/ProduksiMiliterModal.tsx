@@ -10,7 +10,9 @@ import { calculateConstructionProgress, getStatusText } from "@/app/game/data/co
 import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MaterialRequirement from "../1-produksi/MaterialRequirement";
-import { pertahananRate, produksiMiliter } from "@/app/database/data/semua_fitur_negara/4_pertahanan";
+import { pertahananRate, produksiMiliter } from "@/app/database/data/semua_fitur_negara/2_pertahanan";
+import { mineralKritisRate, manufakturRate, peternakanRate, agrikulturRate, perikananRate, olahanPanganRate, farmasiRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi";
+import { infrastrukturRate, sosialRate } from "@/app/database/data/semua_fitur_negara";
 import { pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
@@ -142,21 +144,98 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
   const buildingData = buildingStorage.getData();
   const buildingDeltas = buildingData.buildingDeltas;
 
-  const totalPasokan = hitungTotalKapasitas(currentData.sektor_listrik);
-  const totalBeban = hitungTotalKonsumsiNasional(currentData);
+  // --- ENERGY DASHBOARD SYNCHRONIZATION ---
+  // Apply construction deltas to a temporary country object to get accurate supply/usage
+  const currentDataWithDeltas = {
+    ...currentData,
+    sektor_listrik: { ...currentData.sektor_listrik || {} },
+    sektor_manufaktur: { ...currentData.sektor_manufaktur || {} },
+    sektor_peternakan: { ...currentData.sektor_peternakan || {} },
+    sektor_perikanan: { ...currentData.sektor_perikanan || {} },
+    sektor_agrikultur: { ...currentData.sektor_agrikultur || {} },
+    sektor_ekstraksi: { ...currentData.sektor_ekstraksi || {} },
+    sektor_olahan_pangan: { ...currentData.sektor_olahan_pangan || {} },
+    sektor_farmasi: { ...currentData.sektor_farmasi || {} },
+    pabrik_militer: { ...currentData.pabrik_militer || {} },
+    infrastruktur: { ...currentData.infrastruktur || {} },
+    pendidikan: { ...currentData.pendidikan || {} },
+    kesehatan: { ...currentData.kesehatan || {} },
+    hukum: { ...currentData.hukum || {} },
+    sektor_olahraga: { ...currentData.sektor_olahraga || {} },
+    sektor_komersial: { ...currentData.sektor_komersial || {} },
+    sektor_hiburan: { ...currentData.sektor_hiburan || {} },
+  };
 
-  let adjustedTotalPasokan = totalPasokan;
-  let adjustedTotalBeban = totalBeban;
+  Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
+    if (typeof deltaValue !== 'number' || deltaValue === 0) return;
 
-  const deltaEntries = Object.entries(buildingDeltas);
-  deltaEntries.forEach(([key, deltaValue]) => {
-    const meta = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA];
-    if (meta && typeof deltaValue === 'number') {
-      const prodValue = (meta as any).produksi || (meta as any).production || 0;
-      adjustedTotalPasokan += (deltaValue * prodValue);
+    // 1. Electricity Sector
+    if (KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA]) {
+      const dataKey = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_listrik as any)[dataKey] = ((currentDataWithDeltas.sektor_listrik as any)[dataKey] || 0) + deltaValue;
+    }
+    // 2. Critical Minerals
+    else if ((mineralKritisRate as any)[key]) {
+      const dataKey = (mineralKritisRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] = ((currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] || 0) + deltaValue;
+    }
+    // 3. Manufaktur
+    else if ((manufakturRate as any)[key]) {
+      const dataKey = (manufakturRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_manufaktur as any)[dataKey] = ((currentDataWithDeltas.sektor_manufaktur as any)[dataKey] || 0) + deltaValue;
+    }
+    // 4. Peternakan
+    else if ((peternakanRate as any)[key]) {
+      const dataKey = (peternakanRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_peternakan as any)[dataKey] = ((currentDataWithDeltas.sektor_peternakan as any)[dataKey] || 0) + deltaValue;
+    }
+    // 5. Agrikultur
+    else if ((agrikulturRate as any)[key]) {
+      const dataKey = (agrikulturRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_agrikultur as any)[dataKey] = ((currentDataWithDeltas.sektor_agrikultur as any)[dataKey] || 0) + deltaValue;
+    }
+    // 6. Perikanan
+    else if ((perikananRate as any)[key]) {
+      const dataKey = (perikananRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_perikanan as any)[dataKey] = ((currentDataWithDeltas.sektor_perikanan as any)[dataKey] || 0) + deltaValue;
+    }
+    // 7. Olahan Pangan
+    else if ((olahanPanganRate as any)[key]) {
+      const dataKey = (olahanPanganRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_olahan_pangan as any)[dataKey] = ((currentDataWithDeltas.sektor_olahan_pangan as any)[dataKey] || 0) + deltaValue;
+    }
+    // 8. Farmasi
+    else if ((farmasiRate as any)[key]) {
+      const dataKey = (farmasiRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_farmasi as any)[dataKey] = ((currentDataWithDeltas.sektor_farmasi as any)[dataKey] || 0) + deltaValue;
+    }
+    // 9. Infrastruktur
+    else if (infrastrukturRate[key]) {
+      const dataKey = (infrastrukturRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.infrastruktur as any)[dataKey] = ((currentDataWithDeltas.infrastruktur as any)[dataKey] || 0) + deltaValue;
+    }
+    // 10. Sosial & Public
+    else if (sosialRate[key]) {
+      const dataKey = (sosialRate as any)[key].dataKey;
+      const groupId = (sosialRate as any)[key].groupId;
+      if (dataKey && groupId) {
+        if (groupId === "pendidikan") (currentDataWithDeltas.pendidikan as any)[dataKey] = ((currentDataWithDeltas.pendidikan as any)[dataKey] || 0) + deltaValue;
+        else if (groupId === "kesehatan") (currentDataWithDeltas.kesehatan as any)[dataKey] = ((currentDataWithDeltas.kesehatan as any)[dataKey] || 0) + deltaValue;
+        else if (groupId === "hukum") (currentDataWithDeltas.hukum as any)[dataKey] = ((currentDataWithDeltas.hukum as any)[dataKey] || 0) + deltaValue;
+        else if (groupId === "olahraga") (currentDataWithDeltas.sektor_olahraga as any)[dataKey] = ((currentDataWithDeltas.sektor_olahraga as any)[dataKey] || 0) + deltaValue;
+        else if (groupId === "komersial") (currentDataWithDeltas.sektor_komersial as any)[dataKey] = ((currentDataWithDeltas.sektor_komersial as any)[dataKey] || 0) + deltaValue;
+        else if (groupId === "hiburan") (currentDataWithDeltas.sektor_hiburan as any)[dataKey] = ((currentDataWithDeltas.sektor_hiburan as any)[dataKey] || 0) + deltaValue;
+      }
+    }
+    // 11. Pabrik Militer
+    else if (pabrikMiliterRate[key as keyof typeof pabrikMiliterRate]) {
+       const dataKey = pabrikMiliterRate[key as keyof typeof pabrikMiliterRate].dataKey;
+       if (dataKey) (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
     }
   });
 
+  const adjustedTotalPasokan = hitungTotalKapasitas(currentDataWithDeltas.sektor_listrik);
+  const adjustedTotalBeban = hitungTotalKonsumsiNasional(currentDataWithDeltas);
   const surplus = adjustedTotalPasokan - adjustedTotalBeban;
 
   const toggleSector = (id: string) => {
@@ -281,7 +360,8 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
       icon: Factory,
       color: "text-purple-500",
       items: Object.entries(pabrikMiliterRate).map(([key, val]: [string, any]) => ({
-          key: val.dataKey,
+          key: val.key,
+          dataKey: val.dataKey,
           groupId: val.groupId,
           label: val.label,
           icon: getMilitaryIcon(val.dataKey),
@@ -357,21 +437,21 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
               <div className="p-3 bg-cyan-500/10 rounded-xl"><Zap className="h-6 w-6 text-cyan-500" /></div>
               <div>
                 <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.supply.title}</p>
-                <p className="text-xl font-black text-white leading-tight">{(adjustedTotalPasokan * 10).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
+                <p className="text-xl font-black text-white leading-tight">{adjustedTotalPasokan.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
               </div>
             </div>
             <div className="bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4">
               <div className="p-3 bg-rose-500/10 rounded-xl"><Activity className="h-6 w-6 text-rose-500" /></div>
               <div>
                 <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.usage.title}</p>
-                <p className="text-xl font-black text-white leading-tight">{(adjustedTotalBeban * 10).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
+                <p className="text-xl font-black text-white leading-tight">{adjustedTotalBeban.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
               </div>
             </div>
             <div className={`bg-zinc-900/50 border border-zinc-800 p-4 rounded-2xl flex items-center gap-4 relative overflow-hidden group`}>
               <div className={`p-3 rounded-xl ${surplus >= 0 ? "bg-emerald-500/10" : "bg-rose-500/10"}`}>{surplus >= 0 ? <TrendingUp className="h-6 w-6 text-emerald-500" /> : <TrendingDown className="h-6 w-6 text-rose-500" />}</div>
               <div>
                 <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-wider">{DASHBOARD_LABELS.balance.title}</p>
-                <p className={`text-xl font-black leading-tight ${surplus >= 0 ? "text-emerald-500" : "text-rose-500"}`}>{(surplus * 10).toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
+                <p className={`text-xl font-black leading-tight ${surplus >= 0 ? "text-emerald-500" : "text-rose-500"}`}>{surplus.toLocaleString('id-ID')} <span className="text-[10px] text-zinc-500">MW</span></p>
               </div>
             </div>
           </div>
@@ -684,15 +764,25 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
             </div>
           )}
 
-          {item.consumption > 0 && (
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-amber-500/10 rounded-lg">
-                <Zap size={12} className="text-amber-500/90" />
+          {((item.consumption ?? 0) >= 0) && (
+            <>
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 bg-amber-500/10 rounded-lg">
+                  <Zap size={12} className="text-amber-500/90" />
+                </div>
+                <span className="text-[12px] font-bold text-amber-500/80">
+                  Konsumsi: {Math.max(item.consumption, 1)} MW/unit
+                </span>
               </div>
-              <span className="text-[12px] font-bold text-amber-500/80">
-                Konsumsi: {item.consumption} MW/unit
-              </span>
-            </div>
+              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-amber-500/10 pl-3">
+                <div className="p-1.5 bg-amber-500/5 rounded-lg">
+                  <Activity size={12} className="text-amber-400/70" />
+                </div>
+                <span className="text-[11px] font-bold text-amber-400/70 uppercase">
+                  Total Konsumsi Listrik: {(item.count * Math.max(item.consumption, 1)).toLocaleString('id-ID')} MW
+                </span>
+              </div>
+            </>
           )}
 
           {item.lowongan_kerja > 0 && (

@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { bolivia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/196_bolivia";
-import { bolivia_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/sa/196_bolivia";
+import { bolivia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/196_bolivia";
 import { bolivia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/196_bolivia";
 import { bolivia_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/sa/196_bolivia";
 import { bolivia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/sa/196_bolivia";
 import { bolivia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/sa/196_bolivia";
-import { bolivia_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/sa/196_bolivia";
+import { bolivia_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/sa/196_bolivia";
 import { bolivia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/sa/196_bolivia";
 import { bolivia_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/sa/196_bolivia";
 import { bolivia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/sa/196_bolivia";
@@ -14,10 +14,10 @@ import { bolivia_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { bolivia_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/sa/196_bolivia";
 import { bolivia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/sa/196_bolivia";
 import { bolivia_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/sa/196_bolivia";
-import { bolivia_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/sa/196_bolivia";
+import { bolivia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/sa/196_bolivia";
 import { bolivia_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/sa/196_bolivia";
 import { bolivia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/196_bolivia";
-import { bolivia_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/sa/196_bolivia";
+import { bolivia_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/sa/196_bolivia";
 const bolivia_geopolitik = {
     "un_vote": 68,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const bolivia: CountryData = {
     "lingkungan": 60
   }
 };
+
 

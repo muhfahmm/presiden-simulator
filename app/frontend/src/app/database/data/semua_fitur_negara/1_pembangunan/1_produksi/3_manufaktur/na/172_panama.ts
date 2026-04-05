@@ -1,8 +1,9 @@
 export const panama_manufaktur = {
-  semikonduktor: 34,
-  mobil: 36,
-  sepeda_motor: 6,
-  smelter: 33,
-  semen_beton: 40,
-  kayu: 11,
+  semikonduktor: 30,
+  mobil: 30,
+  sepeda_motor: 60,
+  smelter: 75,
+  semen_beton: 30,
+  kayu: 45,
+  pupuk: 35,
 } as const;

@@ -1,13 +1,13 @@
 export const djibouti_pendidikan = {
-      "prasekolah": 29,
-      "dasar": 39,
-      "menengah": 20,
-      "lanjutan": 39,
-      "universitas": 34,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 30,
-      "observatorium": 18,
-      "pusat_penelitian": 7,
-      "pusat_pengembangan": 28,
-      "literasi": 90
+      "prasekolah": 69,
+      "dasar": 25,
+      "menengah": 80,
+      "lanjutan": 14,
+      "universitas": 10,
+      "lembaga_pendidikan": 9,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 0,
+      "literasi": 61
   } as const;

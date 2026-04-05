@@ -1,13 +1,13 @@
 export const saint_kitts_dan_nevis_pendidikan = {
-      "prasekolah": 39,
-      "dasar": 1,
-      "menengah": 2,
-      "lanjutan": 29,
-      "universitas": 2,
-      "lembaga_pendidikan": 40,
-      "laboratorium": 22,
-      "observatorium": 14,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 9,
-      "literasi": 73
+      "prasekolah": 32,
+      "dasar": 28,
+      "menengah": 48,
+      "lanjutan": 42,
+      "universitas": 18,
+      "lembaga_pendidikan": 6,
+      "laboratorium": 2,
+      "observatorium": 0,
+      "pusat_penelitian": 0,
+      "pusat_pengembangan": 0,
+      "literasi": 68
     } as const;

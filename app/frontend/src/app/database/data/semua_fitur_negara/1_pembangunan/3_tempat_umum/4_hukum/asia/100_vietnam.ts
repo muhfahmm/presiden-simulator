@@ -1,10 +1,10 @@
 export const vietnam_hukum = {
-      "pusat_bantuan_hukum": 14,
-      "pengadilan": 28,
-      "kejaksaan": 29,
-      "pos_polisi": 8,
-      "armada_mobil_polisi": 6043,
-      "akademi_polisi": 8,
-      "indeks_korupsi": 68,
-      "indeks_keamanan": 68
+      "pusat_bantuan_hukum": 30,
+      "pengadilan": 36,
+      "kejaksaan": 17,
+      "pos_polisi": 97,
+      "armada_mobil_polisi": 6211,
+      "akademi_polisi": 4,
+      "indeks_korupsi": 37,
+      "indeks_keamanan": 55
   } as const;

@@ -1,10 +1,10 @@
 export const brunei_infrastruktur = {
-  jalur_sepeda: 12,
-  jalan_raya: 8,
-  terminal_bus: 34,
-  stasiun_kereta_api: 28,
-  kereta_bawah_tanah: 37,
-  pelabuhan: 22,
-  bandara: 9,
-  helipad: 21,
+  jalur_sepeda: 10,
+  jalan_raya: 5,
+  terminal_bus: 4,
+  stasiun_kereta_api: 1,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 1,
+  bandara: 4,
+  helipad: 5,
 } as const;

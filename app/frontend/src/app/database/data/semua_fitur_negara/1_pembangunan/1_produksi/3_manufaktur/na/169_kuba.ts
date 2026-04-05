@@ -1,8 +1,9 @@
 export const kuba_manufaktur = {
-  semikonduktor: 23,
-  mobil: 1,
-  sepeda_motor: 31,
-  smelter: 30,
-  semen_beton: 7,
-  kayu: 8,
+  semikonduktor: 285,
+  mobil: 76,
+  sepeda_motor: 152,
+  smelter: 285,
+  semen_beton: 76,
+  kayu: 133,
+  pupuk: 95,
 } as const;

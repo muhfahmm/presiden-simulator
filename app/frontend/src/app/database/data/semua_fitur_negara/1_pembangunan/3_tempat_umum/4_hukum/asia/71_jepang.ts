@@ -1,10 +1,10 @@
 export const jepang_hukum = {
-      "pusat_bantuan_hukum": 23,
-      "pengadilan": 13,
-      "kejaksaan": 14,
-      "pos_polisi": 28,
-      "armada_mobil_polisi": 6450,
-      "akademi_polisi": 33,
-      "indeks_korupsi": 90,
-      "indeks_keamanan": 64
+      "pusat_bantuan_hukum": 43,
+      "pengadilan": 131,
+      "kejaksaan": 70,
+      "pos_polisi": 363,
+      "armada_mobil_polisi": 12138,
+      "akademi_polisi": 39,
+      "indeks_korupsi": 58,
+      "indeks_keamanan": 67
   } as const;

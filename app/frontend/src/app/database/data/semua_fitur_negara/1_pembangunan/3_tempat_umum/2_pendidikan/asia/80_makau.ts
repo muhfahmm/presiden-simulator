@@ -1,13 +1,13 @@
 export const makau_pendidikan = {
-      "prasekolah": 36,
-      "dasar": 27,
-      "menengah": 31,
-      "lanjutan": 3,
-      "universitas": 38,
-      "lembaga_pendidikan": 15,
-      "laboratorium": 24,
-      "observatorium": 3,
-      "pusat_penelitian": 24,
-      "pusat_pengembangan": 13,
-      "literasi": 61
+      "prasekolah": 83,
+      "dasar": 49,
+      "menengah": 92,
+      "lanjutan": 50,
+      "universitas": 12,
+      "lembaga_pendidikan": 1,
+      "laboratorium": 2,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 0,
+      "literasi": 78
     } as const;

@@ -1,8 +1,9 @@
 export const swiss_manufaktur = {
-  semikonduktor: 20,
-  mobil: 14,
-  sepeda_motor: 4,
-  smelter: 40,
-  semen_beton: 4,
-  kayu: 4,
+  semikonduktor: 705,
+  mobil: 564,
+  sepeda_motor: 235,
+  smelter: 282,
+  semen_beton: 423,
+  kayu: 564,
+  pupuk: 188,
 } as const;

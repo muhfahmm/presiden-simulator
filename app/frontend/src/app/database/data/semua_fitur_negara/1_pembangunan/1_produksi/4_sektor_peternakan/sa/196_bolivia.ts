@@ -1,6 +1,6 @@
 export const bolivia_peternakan = {
-  ayam_unggas: 20,
-  sapi_perah: 20,
-  sapi_potong: 21,
-  domba_kambing: 13,
+  ayam_unggas: 200,
+  sapi_perah: 230,
+  sapi_potong: 80,
+  domba_kambing: 190,
 } as const;

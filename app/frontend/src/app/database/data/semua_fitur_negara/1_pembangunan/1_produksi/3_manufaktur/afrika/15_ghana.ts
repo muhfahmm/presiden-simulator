@@ -1,8 +1,9 @@
 export const ghana_manufaktur = {
-  mobil: 36,
-  semen_beton: 13,
-  sepeda_motor: 7,
-  semikonduktor: 8,
-  smelter: 38,
-  kayu: 40,
+  mobil: 35,
+  semen_beton: 77,
+  sepeda_motor: 70,
+  semikonduktor: 91,
+  smelter: 98,
+  kayu: 105,
+  pupuk: 35,
 } as const;

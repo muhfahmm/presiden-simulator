@@ -1,7 +1,7 @@
 export const kosovo_kesehatan = {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 26,
-      "pusat_diagnostik": 39,
-      "harapan_hidup": 10,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 15,
+      "rumah_sakit_kecil": 69,
+      "pusat_diagnostik": 12,
+      "harapan_hidup": 59,
+      "indeks_kesehatan": 54
     } as const;

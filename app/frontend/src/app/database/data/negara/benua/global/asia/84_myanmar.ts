@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { myanmar_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/84_myanmar";
-import { myanmar_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/asia/84_myanmar";
+import { myanmar_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/84_myanmar";
 import { myanmar_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/84_myanmar";
 import { myanmar_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/84_myanmar";
 import { myanmar_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/84_myanmar";
 import { myanmar_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/84_myanmar";
-import { myanmar_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/asia/84_myanmar";
+import { myanmar_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/84_myanmar";
 import { myanmar_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/84_myanmar";
 import { myanmar_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/84_myanmar";
 import { myanmar_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/84_myanmar";
@@ -14,10 +14,10 @@ import { myanmar_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { myanmar_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/84_myanmar";
 import { myanmar_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/84_myanmar";
 import { myanmar_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/84_myanmar";
-import { myanmar_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/asia/84_myanmar";
+import { myanmar_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/84_myanmar";
 import { myanmar_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/84_myanmar";
 import { myanmar_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/84_myanmar";
-import { myanmar_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/asia/84_myanmar";
+import { myanmar_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/84_myanmar";
 const myanmar_geopolitik = {
     "un_vote": 55,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const myanmar: CountryData = {
     "lingkungan": 60
   }
 };
+
 

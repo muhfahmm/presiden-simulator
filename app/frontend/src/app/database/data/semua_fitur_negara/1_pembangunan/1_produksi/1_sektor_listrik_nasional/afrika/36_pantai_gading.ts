@@ -3,6 +3,6 @@ export const pantai_gading_listrik = {
   pembangkit_listrik_tenaga_air: 20,
   pembangkit_listrik_tenaga_nuklir: 0,
   pembangkit_listrik_tenaga_surya: 5,
-  pembangkit_listrik_tenaga_uap: 40,
+  pembangkit_listrik_tenaga_uap: 62,
   pembangkit_listrik_tenaga_angin: 4,
 } as const;

@@ -1,10 +1,10 @@
 export const republik_uganda_olahraga = {
-  "kolam_renang": 33,
+  "kolam_renang": 19,
   "sirkuit_balap": 3,
-  "stadion": 4,
-  "stadion_internasional": 40,
-  "gym": 0,
+  "stadion": 9,
+  "stadion_internasional": 0,
+  "gym": 26,
   "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "esports": 1,
+  "gokart": 9
 } as const;

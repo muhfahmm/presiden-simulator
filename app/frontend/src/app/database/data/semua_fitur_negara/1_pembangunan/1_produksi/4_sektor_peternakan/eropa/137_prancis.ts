@@ -1,6 +1,6 @@
 export const prancis_peternakan = {
-  ayam_unggas: 16,
-  sapi_perah: 29,
-  sapi_potong: 19,
-  domba_kambing: 9,
+  ayam_unggas: 6812,
+  sapi_perah: 7598,
+  sapi_potong: 9956,
+  domba_kambing: 5764,
 } as const;

@@ -1,13 +1,13 @@
 export const venezuela_pendidikan = {
-      "prasekolah": 12,
-      "dasar": 25,
-      "menengah": 6,
-      "lanjutan": 20,
-      "universitas": 40,
-      "lembaga_pendidikan": 38,
-      "laboratorium": 40,
-      "observatorium": 3,
-      "pusat_penelitian": 25,
-      "pusat_pengembangan": 10,
-      "literasi": 69
+      "prasekolah": 41,
+      "dasar": 31,
+      "menengah": 19,
+      "lanjutan": 39,
+      "universitas": 2,
+      "lembaga_pendidikan": 13,
+      "laboratorium": 0,
+      "observatorium": 0,
+      "pusat_penelitian": 0,
+      "pusat_pengembangan": 0,
+      "literasi": 76
     } as const;

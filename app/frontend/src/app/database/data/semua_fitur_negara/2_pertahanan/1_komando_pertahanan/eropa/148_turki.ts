@@ -1,0 +1,13 @@
+import { turki_intelijen } from "../../2_intelijen/eropa/148_turki";
+
+export const turki_strategis = {
+    "waktu_respon": 33,
+    "intelijen": 7,
+    "status_nuklir": false,
+    "intel_radar": turki_intelijen,
+    "operasi_strategis": { "misi_serangan": 25,
+      "misi_mata_mata": 35,
+      "misi_sabotase": 40,
+      "manajemen_wilayah": 21,
+      "program_nuklir": 0 }
+  } as const;

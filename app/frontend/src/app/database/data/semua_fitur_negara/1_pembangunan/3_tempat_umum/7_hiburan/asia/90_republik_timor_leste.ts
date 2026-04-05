@@ -1,4 +1,4 @@
 export const republik_timor_leste_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 17,
+  "teater": 2
 } as const;

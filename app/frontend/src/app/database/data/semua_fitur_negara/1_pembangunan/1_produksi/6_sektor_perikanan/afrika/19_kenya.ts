@@ -1,5 +1,5 @@
 export const kenya_perikanan = {
-  udang: 28,
-  mutiara: 28,
-  ikan: 7,
+  udang: 133,
+  mutiara: 63,
+  ikan: 238,
 } as const;

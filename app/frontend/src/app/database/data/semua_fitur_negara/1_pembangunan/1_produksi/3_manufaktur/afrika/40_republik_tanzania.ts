@@ -1,8 +1,9 @@
 export const republik_tanzania_manufaktur = {
-  mobil: 30,
-  semen_beton: 15,
-  sepeda_motor: 11,
-  semikonduktor: 34,
-  smelter: 10,
-  kayu: 13,
+  mobil: 15,
+  semen_beton: 42,
+  sepeda_motor: 36,
+  semikonduktor: 24,
+  smelter: 30,
+  kayu: 21,
+  pupuk: 18,
 } as const;

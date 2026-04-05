@@ -1,4 +1,4 @@
 export const ceko_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 67,
+  "teater": 54
 } as const;

@@ -1,10 +1,10 @@
 export const slowakia_infrastruktur = {
-  jalur_sepeda: 24,
-  jalan_raya: 40,
-  terminal_bus: 8,
-  stasiun_kereta_api: 1,
-  kereta_bawah_tanah: 3,
-  pelabuhan: 4,
-  bandara: 39,
-  helipad: 33,
+  jalur_sepeda: 8,
+  jalan_raya: 5,
+  terminal_bus: 7,
+  stasiun_kereta_api: 3,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 5,
+  bandara: 5,
+  helipad: 5,
 } as const;

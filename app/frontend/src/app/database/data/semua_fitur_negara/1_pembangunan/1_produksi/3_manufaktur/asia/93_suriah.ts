@@ -1,8 +1,9 @@
 export const suriah_manufaktur = {
-  semikonduktor: 40,
-  mobil: 39,
-  sepeda_motor: 32,
-  smelter: 27,
-  semen_beton: 4,
-  kayu: 8,
+  semikonduktor: 9,
+  mobil: 4,
+  sepeda_motor: 4,
+  smelter: 5,
+  semen_beton: 9,
+  kayu: 7,
+  pupuk: 9,
 } as const;

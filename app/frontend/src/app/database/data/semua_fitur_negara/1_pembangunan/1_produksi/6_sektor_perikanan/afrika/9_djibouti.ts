@@ -1,5 +1,5 @@
 export const djibouti_perikanan = {
-  udang: 32,
-  mutiara: 32,
-  ikan: 2,
+  udang: 12,
+  mutiara: 11,
+  ikan: 30,
 } as const;

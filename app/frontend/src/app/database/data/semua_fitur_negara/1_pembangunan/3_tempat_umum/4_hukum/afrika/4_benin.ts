@@ -1,10 +1,10 @@
 export const benin_hukum = {
-      "pusat_bantuan_hukum": 13,
-      "pengadilan": 20,
+      "pusat_bantuan_hukum": 5,
+      "pengadilan": 10,
       "kejaksaan": 7,
-      "pos_polisi": 36,
-      "armada_mobil_polisi": 7222,
-      "akademi_polisi": 33,
-      "indeks_korupsi": 71,
-      "indeks_keamanan": 55
+      "pos_polisi": 7,
+      "armada_mobil_polisi": 643,
+      "akademi_polisi": 2,
+      "indeks_korupsi": 44,
+      "indeks_keamanan": 54
   } as const;

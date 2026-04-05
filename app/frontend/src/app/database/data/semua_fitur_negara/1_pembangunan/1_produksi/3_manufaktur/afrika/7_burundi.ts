@@ -1,8 +1,9 @@
 export const burundi_manufaktur = {
-  mobil: 13,
-  semen_beton: 1,
-  sepeda_motor: 2,
-  semikonduktor: 27,
-  smelter: 14,
-  kayu: 37,
+  mobil: 20,
+  semen_beton: 28,
+  sepeda_motor: 28,
+  semikonduktor: 22,
+  smelter: 8,
+  kayu: 10,
+  pupuk: 16,
 } as const;

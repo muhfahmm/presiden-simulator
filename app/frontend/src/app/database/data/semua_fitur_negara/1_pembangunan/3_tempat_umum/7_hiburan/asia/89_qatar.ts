@@ -1,4 +1,4 @@
 export const qatar_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 274,
+  "teater": 38
 } as const;

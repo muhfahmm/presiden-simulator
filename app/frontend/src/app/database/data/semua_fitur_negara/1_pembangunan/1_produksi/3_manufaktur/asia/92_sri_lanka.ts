@@ -1,8 +1,9 @@
 export const sri_lanka_manufaktur = {
-  semikonduktor: 22,
-  mobil: 4,
-  sepeda_motor: 19,
-  smelter: 20,
-  semen_beton: 24,
-  kayu: 13,
+  semikonduktor: 75,
+  mobil: 75,
+  sepeda_motor: 25,
+  smelter: 30,
+  semen_beton: 25,
+  kayu: 50,
+  pupuk: 35,
 } as const;

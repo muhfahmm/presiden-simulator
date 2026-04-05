@@ -1,6 +1,6 @@
 export const republik_zimbabwe_peternakan = {
-  ayam_unggas: 10,
-  sapi_perah: 34,
-  sapi_potong: 40,
-  domba_kambing: 32,
+  ayam_unggas: 40,
+  sapi_perah: 84,
+  sapi_potong: 92,
+  domba_kambing: 56,
 } as const;

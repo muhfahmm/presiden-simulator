@@ -1,13 +1,13 @@
 export const sierra_leone_pendidikan = {
-      "prasekolah": 2,
-      "dasar": 34,
-      "menengah": 22,
-      "lanjutan": 32,
-      "universitas": 2,
-      "lembaga_pendidikan": 31,
-      "laboratorium": 28,
-      "observatorium": 4,
-      "pusat_penelitian": 26,
-      "pusat_pengembangan": 11,
-      "literasi": 61
+      "prasekolah": 23,
+      "dasar": 104,
+      "menengah": 54,
+      "lanjutan": 31,
+      "universitas": 5,
+      "lembaga_pendidikan": 11,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 1,
+      "literasi": 85
   } as const;

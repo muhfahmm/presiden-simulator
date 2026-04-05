@@ -1,7 +1,7 @@
 export const paraguay_kesehatan = {
-      "rumah_sakit_besar": 37,
-      "rumah_sakit_kecil": 14,
-      "pusat_diagnostik": 23,
-      "harapan_hidup": 18,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 8,
+      "rumah_sakit_kecil": 24,
+      "pusat_diagnostik": 15,
+      "harapan_hidup": 63,
+      "indeks_kesehatan": 50
     } as const;

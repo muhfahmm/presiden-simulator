@@ -1,10 +1,10 @@
 export const afrika_selatan_infrastruktur = {
-  jalur_sepeda: 6,
-  jalan_raya: 12,
-  terminal_bus: 6,
-  stasiun_kereta_api: 18,
-  kereta_bawah_tanah: 15,
-  pelabuhan: 35,
-  bandara: 3,
-  helipad: 4,
+  jalur_sepeda: 25,
+  jalan_raya: 73,
+  terminal_bus: 27,
+  stasiun_kereta_api: 14,
+  kereta_bawah_tanah: 2,
+  pelabuhan: 11,
+  bandara: 8,
+  helipad: 2,
 } as const;

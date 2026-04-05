@@ -1,6 +1,6 @@
 export const samoa_peternakan = {
-  ayam_unggas: 20,
-  sapi_perah: 14,
-  sapi_potong: 1,
-  domba_kambing: 33,
+  ayam_unggas: 84,
+  sapi_perah: 76,
+  sapi_potong: 42,
+  domba_kambing: 58,
 } as const;

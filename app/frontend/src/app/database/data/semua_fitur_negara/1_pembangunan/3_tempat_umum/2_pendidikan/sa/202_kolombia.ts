@@ -1,13 +1,13 @@
 export const kolombia_pendidikan = {
-      "prasekolah": 27,
-      "dasar": 18,
-      "menengah": 2,
-      "lanjutan": 2,
-      "universitas": 38,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 18,
-      "observatorium": 37,
-      "pusat_penelitian": 32,
-      "pusat_pengembangan": 11,
-      "literasi": 73
+      "prasekolah": 382,
+      "dasar": 577,
+      "menengah": 469,
+      "lanjutan": 79,
+      "universitas": 70,
+      "lembaga_pendidikan": 38,
+      "laboratorium": 23,
+      "observatorium": 1,
+      "pusat_penelitian": 6,
+      "pusat_pengembangan": 4,
+      "literasi": 85
     } as const;

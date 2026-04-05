@@ -1,13 +1,13 @@
 export const myanmar_pendidikan = {
-      "prasekolah": 7,
-      "dasar": 37,
-      "menengah": 11,
-      "lanjutan": 18,
-      "universitas": 4,
-      "lembaga_pendidikan": 31,
-      "laboratorium": 1,
-      "observatorium": 25,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 13,
+      "prasekolah": 63,
+      "dasar": 84,
+      "menengah": 84,
+      "lanjutan": 47,
+      "universitas": 10,
+      "lembaga_pendidikan": 9,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 2,
       "literasi": 72
     } as const;

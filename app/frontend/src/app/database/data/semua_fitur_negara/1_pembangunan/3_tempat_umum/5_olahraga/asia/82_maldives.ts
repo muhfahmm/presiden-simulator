@@ -1,10 +1,10 @@
 export const maldives_olahraga = {
-  "kolam_renang": 24,
-  "sirkuit_balap": 16,
-  "stadion": 12,
-  "stadion_internasional": 7,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 2,
+  "sirkuit_balap": 3,
+  "stadion": 4,
+  "stadion_internasional": 1,
+  "gym": 19,
+  "golf": 1,
+  "esports": 2,
+  "gokart": 11
 } as const;

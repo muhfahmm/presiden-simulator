@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { bhutan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/60_bhutan";
-import { bhutan_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/asia/60_bhutan";
+import { bhutan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/60_bhutan";
 import { bhutan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/60_bhutan";
 import { bhutan_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/60_bhutan";
 import { bhutan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/60_bhutan";
 import { bhutan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/60_bhutan";
-import { bhutan_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/asia/60_bhutan";
+import { bhutan_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/60_bhutan";
 import { bhutan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/60_bhutan";
 import { bhutan_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/60_bhutan";
 import { bhutan_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/60_bhutan";
@@ -14,10 +14,10 @@ import { bhutan_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemban
 import { bhutan_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/60_bhutan";
 import { bhutan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/60_bhutan";
 import { bhutan_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/60_bhutan";
-import { bhutan_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/asia/60_bhutan";
+import { bhutan_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/60_bhutan";
 import { bhutan_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/60_bhutan";
 import { bhutan_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/60_bhutan";
-import { bhutan_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/asia/60_bhutan";
+import { bhutan_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/60_bhutan";
 const bhutan_geopolitik = {
     "un_vote": 149,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const bhutan: CountryData = {
     "lingkungan": 60
   }
 };
+
 

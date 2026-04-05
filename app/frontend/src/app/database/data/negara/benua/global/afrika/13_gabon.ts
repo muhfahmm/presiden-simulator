@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { gabon_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/13_gabon";
-import { gabon_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/afrika/13_gabon";
+import { gabon_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/13_gabon";
 import { gabon_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/13_gabon";
 import { gabon_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/13_gabon";
 import { gabon_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/13_gabon";
 import { gabon_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/13_gabon";
-import { gabon_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/afrika/13_gabon";
+import { gabon_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/13_gabon";
 import { gabon_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/13_gabon";
 import { gabon_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/13_gabon";
 import { gabon_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/13_gabon";
@@ -14,10 +14,10 @@ import { gabon_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembang
 import { gabon_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/13_gabon";
 import { gabon_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/13_gabon";
 import { gabon_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/13_gabon";
-import { gabon_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/afrika/13_gabon";
+import { gabon_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/13_gabon";
 import { gabon_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/13_gabon";
 import { gabon_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/13_gabon";
-import { gabon_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/afrika/13_gabon";
+import { gabon_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/13_gabon";
 const gabon_geopolitik = {
     "un_vote": 73,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const gabon: CountryData = {
     "lingkungan": 60
   }
 };
+
 

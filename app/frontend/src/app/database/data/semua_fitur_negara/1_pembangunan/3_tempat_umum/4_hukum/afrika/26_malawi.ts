@@ -1,10 +1,10 @@
 export const malawi_hukum = {
-      "pusat_bantuan_hukum": 29,
-      "pengadilan": 18,
-      "kejaksaan": 40,
-      "pos_polisi": 4,
-      "armada_mobil_polisi": 5954,
-      "akademi_polisi": 12,
-      "indeks_korupsi": 82,
-      "indeks_keamanan": 90
+      "pusat_bantuan_hukum": 5,
+      "pengadilan": 10,
+      "kejaksaan": 2,
+      "pos_polisi": 24,
+      "armada_mobil_polisi": 365,
+      "akademi_polisi": 5,
+      "indeks_korupsi": 50,
+      "indeks_keamanan": 70
   } as const;

@@ -1,4 +1,4 @@
 export const irlandia_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 299,
+  "teater": 49
 } as const;

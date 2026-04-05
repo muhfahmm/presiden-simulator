@@ -1,10 +1,10 @@
 export const eswatini_hukum = {
-      "pusat_bantuan_hukum": 40,
-      "pengadilan": 28,
-      "kejaksaan": 16,
-      "pos_polisi": 39,
-      "armada_mobil_polisi": 879,
-      "akademi_polisi": 33,
-      "indeks_korupsi": 51,
-      "indeks_keamanan": 81
+      "pusat_bantuan_hukum": 4,
+      "pengadilan": 5,
+      "kejaksaan": 3,
+      "pos_polisi": 25,
+      "armada_mobil_polisi": 1403,
+      "akademi_polisi": 2,
+      "indeks_korupsi": 25,
+      "indeks_keamanan": 49
   } as const;

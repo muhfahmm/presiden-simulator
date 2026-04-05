@@ -1,13 +1,13 @@
 export const pantai_gading_pendidikan = {
-      "prasekolah": 6,
-      "dasar": 14,
-      "menengah": 12,
-      "lanjutan": 9,
-      "universitas": 36,
-      "lembaga_pendidikan": 24,
-      "laboratorium": 38,
-      "observatorium": 37,
-      "pusat_penelitian": 16,
-      "pusat_pengembangan": 22,
-      "literasi": 76
+      "prasekolah": 75,
+      "dasar": 58,
+      "menengah": 74,
+      "lanjutan": 38,
+      "universitas": 2,
+      "lembaga_pendidikan": 1,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 2,
+      "literasi": 83
   } as const;

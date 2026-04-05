@@ -1,10 +1,10 @@
 export const palau_hukum = {
-      "pusat_bantuan_hukum": 16,
-      "pengadilan": 10,
-      "kejaksaan": 14,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 9244,
-      "akademi_polisi": 23,
-      "indeks_korupsi": 69,
-      "indeks_keamanan": 58
+      "pusat_bantuan_hukum": 9,
+      "pengadilan": 13,
+      "kejaksaan": 7,
+      "pos_polisi": 11,
+      "armada_mobil_polisi": 704,
+      "akademi_polisi": 1,
+      "indeks_korupsi": 47,
+      "indeks_keamanan": 62
   } as const;

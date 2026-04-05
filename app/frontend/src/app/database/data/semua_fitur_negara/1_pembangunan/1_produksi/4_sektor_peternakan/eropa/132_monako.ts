@@ -1,6 +1,6 @@
 export const monako_peternakan = {
-  ayam_unggas: 32,
-  sapi_perah: 5,
-  sapi_potong: 38,
+  ayam_unggas: 10,
+  sapi_perah: 43,
+  sapi_potong: 42,
   domba_kambing: 17,
 } as const;

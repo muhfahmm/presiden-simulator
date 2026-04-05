@@ -1,8 +1,9 @@
 export const selandia_baru_manufaktur = {
-  semikonduktor: 9,
-  mobil: 24,
-  sepeda_motor: 35,
-  smelter: 21,
-  semen_beton: 9,
-  kayu: 22,
+  semikonduktor: 252,
+  mobil: 252,
+  sepeda_motor: 147,
+  smelter: 315,
+  semen_beton: 294,
+  kayu: 189,
+  pupuk: 84,
 } as const;

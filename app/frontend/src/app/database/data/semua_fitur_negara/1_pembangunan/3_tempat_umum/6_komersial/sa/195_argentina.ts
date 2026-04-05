@@ -1,5 +1,5 @@
 export const argentina_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 38,
+  "hotel": 54,
+  "pusat_grosir_tekstil": 11
 } as const;

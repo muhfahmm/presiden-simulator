@@ -1,4 +1,4 @@
 export const filipina_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 281,
+  "teater": 71
 } as const;

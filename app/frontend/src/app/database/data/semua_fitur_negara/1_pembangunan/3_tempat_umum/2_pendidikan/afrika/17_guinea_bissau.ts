@@ -1,13 +1,13 @@
 export const guinea_bissau_pendidikan = {
-      "prasekolah": 39,
-      "dasar": 3,
-      "menengah": 15,
-      "lanjutan": 19,
-      "universitas": 40,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 35,
-      "observatorium": 38,
-      "pusat_penelitian": 6,
-      "pusat_pengembangan": 33,
-      "literasi": 80
+      "prasekolah": 32,
+      "dasar": 55,
+      "menengah": 34,
+      "lanjutan": 11,
+      "universitas": 19,
+      "lembaga_pendidikan": 5,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 0,
+      "literasi": 83
   } as const;

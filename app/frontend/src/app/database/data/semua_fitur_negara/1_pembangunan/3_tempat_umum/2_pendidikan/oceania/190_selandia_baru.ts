@@ -1,13 +1,13 @@
 export const selandia_baru_pendidikan = {
-      "prasekolah": 7,
-      "dasar": 34,
-      "menengah": 5,
-      "lanjutan": 25,
-      "universitas": 39,
-      "lembaga_pendidikan": 6,
-      "laboratorium": 3,
-      "observatorium": 9,
-      "pusat_penelitian": 13,
-      "pusat_pengembangan": 28,
-      "literasi": 58
+      "prasekolah": 183,
+      "dasar": 278,
+      "menengah": 116,
+      "lanjutan": 126,
+      "universitas": 76,
+      "lembaga_pendidikan": 53,
+      "laboratorium": 29,
+      "observatorium": 1,
+      "pusat_penelitian": 12,
+      "pusat_pengembangan": 7,
+      "literasi": 78
     } as const;

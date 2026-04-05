@@ -1,5 +1,5 @@
 export const swiss_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 19,
+  "hotel": 40,
+  "pusat_grosir_tekstil": 17
 } as const;

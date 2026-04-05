@@ -1,0 +1,14 @@
+import { malawi_intelijen } from "../../2_intelijen/afrika/26_malawi";
+
+export const malawi_strategis = {
+    "waktu_respon": 17,
+    "intelijen": 14,
+    "status_nuklir": false,
+    "intel_radar": malawi_intelijen,
+    "operasi_strategis": { "misi_serangan": 20,
+      "misi_mata_mata": 1,
+      "misi_sabotase": 21,
+      "manajemen_wilayah": 1,
+      "program_nuklir": 0
+  }
+  } as const;

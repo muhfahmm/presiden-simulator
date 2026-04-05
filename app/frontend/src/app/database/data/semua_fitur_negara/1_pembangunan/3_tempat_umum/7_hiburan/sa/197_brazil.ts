@@ -1,4 +1,4 @@
 export const brazil_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 809,
+  "teater": 148
 } as const;

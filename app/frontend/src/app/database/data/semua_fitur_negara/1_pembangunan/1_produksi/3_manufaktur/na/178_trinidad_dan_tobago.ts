@@ -1,8 +1,9 @@
 export const trinidad_dan_tobago_manufaktur = {
-  semikonduktor: 40,
-  mobil: 14,
-  sepeda_motor: 24,
-  smelter: 24,
-  semen_beton: 28,
-  kayu: 27,
+  semikonduktor: 18,
+  mobil: 8,
+  sepeda_motor: 16,
+  smelter: 22,
+  semen_beton: 20,
+  kayu: 28,
+  pupuk: 6,
 } as const;

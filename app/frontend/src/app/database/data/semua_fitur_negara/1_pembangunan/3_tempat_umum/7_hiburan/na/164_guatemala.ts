@@ -1,4 +1,4 @@
 export const guatemala_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 6,
+  "teater": 18
 } as const;

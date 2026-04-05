@@ -1,10 +1,10 @@
 export const pantai_gading_infrastruktur = {
-  jalur_sepeda: 8,
-  jalan_raya: 23,
-  terminal_bus: 19,
-  stasiun_kereta_api: 17,
-  kereta_bawah_tanah: 1,
-  pelabuhan: 4,
-  bandara: 13,
-  helipad: 34,
+  jalur_sepeda: 6,
+  jalan_raya: 20,
+  terminal_bus: 8,
+  stasiun_kereta_api: 3,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 5,
+  bandara: 2,
+  helipad: 5,
 } as const;

@@ -1,5 +1,5 @@
 export const india_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 76,
+  "hotel": 179,
+  "pusat_grosir_tekstil": 57
 } as const;

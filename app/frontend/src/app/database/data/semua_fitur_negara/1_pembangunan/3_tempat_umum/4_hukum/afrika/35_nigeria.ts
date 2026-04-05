@@ -1,10 +1,10 @@
 export const nigeria_hukum = {
-      "pusat_bantuan_hukum": 6,
-      "pengadilan": 2,
-      "kejaksaan": 17,
-      "pos_polisi": 34,
-      "armada_mobil_polisi": 8695,
-      "akademi_polisi": 14,
-      "indeks_korupsi": 73,
-      "indeks_keamanan": 56
+      "pusat_bantuan_hukum": 29,
+      "pengadilan": 20,
+      "kejaksaan": 24,
+      "pos_polisi": 54,
+      "armada_mobil_polisi": 9944,
+      "akademi_polisi": 12,
+      "indeks_korupsi": 44,
+      "indeks_keamanan": 64
   } as const;

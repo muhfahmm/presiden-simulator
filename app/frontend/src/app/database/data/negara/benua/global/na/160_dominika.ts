@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { dominika_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/160_dominika";
-import { dominika_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/na/160_dominika";
+import { dominika_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/160_dominika";
 import { dominika_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/160_dominika";
 import { dominika_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/160_dominika";
 import { dominika_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/160_dominika";
 import { dominika_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/160_dominika";
-import { dominika_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/na/160_dominika";
+import { dominika_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/160_dominika";
 import { dominika_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/160_dominika";
 import { dominika_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/160_dominika";
 import { dominika_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/160_dominika";
@@ -14,10 +14,10 @@ import { dominika_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { dominika_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/160_dominika";
 import { dominika_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/160_dominika";
 import { dominika_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/160_dominika";
-import { dominika_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/na/160_dominika";
+import { dominika_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/160_dominika";
 import { dominika_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/160_dominika";
 import { dominika_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/160_dominika";
-import { dominika_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/na/160_dominika";
+import { dominika_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/160_dominika";
 const dominika_geopolitik = {
     "un_vote": 54,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const dominika: CountryData = {
     "lingkungan": 60
   }
 };
+
 

@@ -1,5 +1,5 @@
 export const tanjung_verde_perikanan = {
-  udang: 28,
-  mutiara: 28,
-  ikan: 27,
+  udang: 72,
+  mutiara: 66,
+  ikan: 84,
 } as const;

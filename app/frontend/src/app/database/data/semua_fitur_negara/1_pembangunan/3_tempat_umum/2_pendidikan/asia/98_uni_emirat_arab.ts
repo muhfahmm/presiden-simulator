@@ -1,13 +1,13 @@
 export const uni_emirat_arab_pendidikan = {
-      "prasekolah": 27,
-      "dasar": 23,
-      "menengah": 30,
-      "lanjutan": 34,
-      "universitas": 35,
-      "lembaga_pendidikan": 36,
-      "laboratorium": 35,
-      "observatorium": 9,
-      "pusat_penelitian": 37,
-      "pusat_pengembangan": 22,
-      "literasi": 91
+      "prasekolah": 371,
+      "dasar": 649,
+      "menengah": 482,
+      "lanjutan": 126,
+      "universitas": 132,
+      "lembaga_pendidikan": 84,
+      "laboratorium": 9,
+      "observatorium": 1,
+      "pusat_penelitian": 16,
+      "pusat_pengembangan": 4,
+      "literasi": 83
     } as const;

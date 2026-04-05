@@ -1,6 +1,6 @@
 export const republik_tanzania_peternakan = {
-  ayam_unggas: 18,
-  sapi_perah: 26,
-  sapi_potong: 21,
-  domba_kambing: 38,
+  ayam_unggas: 39,
+  sapi_perah: 126,
+  sapi_potong: 141,
+  domba_kambing: 60,
 } as const;

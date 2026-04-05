@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { hungaria_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/116_hungaria";
-import { hungaria_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/eropa/116_hungaria";
+import { hungaria_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/116_hungaria";
 import { hungaria_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/116_hungaria";
 import { hungaria_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/116_hungaria";
 import { hungaria_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/116_hungaria";
 import { hungaria_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/116_hungaria";
-import { hungaria_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/eropa/116_hungaria";
+import { hungaria_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/116_hungaria";
 import { hungaria_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/116_hungaria";
 import { hungaria_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/116_hungaria";
 import { hungaria_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/116_hungaria";
@@ -14,10 +14,10 @@ import { hungaria_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { hungaria_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/116_hungaria";
 import { hungaria_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/116_hungaria";
 import { hungaria_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/116_hungaria";
-import { hungaria_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/eropa/116_hungaria";
+import { hungaria_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/116_hungaria";
 import { hungaria_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/116_hungaria";
 import { hungaria_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/116_hungaria";
-import { hungaria_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/eropa/116_hungaria";
+import { hungaria_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/116_hungaria";
 const hungaria_geopolitik = {
     "un_vote": 94,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const hungaria: CountryData = {
     "lingkungan": 60
   }
 };
+
 

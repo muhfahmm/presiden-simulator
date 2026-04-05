@@ -1,13 +1,13 @@
 export const albania_pendidikan = {
-      "prasekolah": 16,
-      "dasar": 23,
-      "menengah": 2,
-      "lanjutan": 36,
-      "universitas": 30,
-      "lembaga_pendidikan": 33,
-      "laboratorium": 16,
-      "observatorium": 4,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 12,
-      "literasi": 77
+      "prasekolah": 69,
+      "dasar": 37,
+      "menengah": 75,
+      "lanjutan": 43,
+      "universitas": 9,
+      "lembaga_pendidikan": 12,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 1,
+      "literasi": 67
     } as const;

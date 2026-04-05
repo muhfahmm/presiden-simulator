@@ -1,6 +1,6 @@
 export const madagaskar_peternakan = {
-  ayam_unggas: 10,
-  sapi_perah: 13,
-  sapi_potong: 32,
-  domba_kambing: 2,
+  ayam_unggas: 50,
+  sapi_perah: 82,
+  sapi_potong: 68,
+  domba_kambing: 86,
 } as const;

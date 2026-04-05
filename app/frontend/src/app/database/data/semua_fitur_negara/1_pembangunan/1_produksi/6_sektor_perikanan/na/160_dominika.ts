@@ -1,5 +1,5 @@
 export const dominika_perikanan = {
-  udang: 36,
-  mutiara: 36,
-  ikan: 2,
+  udang: 48,
+  mutiara: 68,
+  ikan: 92,
 } as const;

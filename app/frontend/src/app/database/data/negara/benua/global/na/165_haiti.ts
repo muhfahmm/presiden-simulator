@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { haiti_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/165_haiti";
-import { haiti_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/na/165_haiti";
+import { haiti_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/165_haiti";
 import { haiti_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/165_haiti";
 import { haiti_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/165_haiti";
 import { haiti_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/165_haiti";
 import { haiti_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/165_haiti";
-import { haiti_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/na/165_haiti";
+import { haiti_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/165_haiti";
 import { haiti_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/165_haiti";
 import { haiti_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/165_haiti";
 import { haiti_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/165_haiti";
@@ -14,10 +14,10 @@ import { haiti_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembang
 import { haiti_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/165_haiti";
 import { haiti_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/165_haiti";
 import { haiti_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/165_haiti";
-import { haiti_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/na/165_haiti";
+import { haiti_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/165_haiti";
 import { haiti_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/165_haiti";
 import { haiti_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/165_haiti";
-import { haiti_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/na/165_haiti";
+import { haiti_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/165_haiti";
 const haiti_geopolitik = {
     "un_vote": 105,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const haiti: CountryData = {
     "lingkungan": 60
   }
 };
+
 

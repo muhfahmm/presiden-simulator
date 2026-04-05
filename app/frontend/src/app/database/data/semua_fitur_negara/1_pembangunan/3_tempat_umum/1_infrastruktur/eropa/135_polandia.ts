@@ -1,10 +1,10 @@
 export const polandia_infrastruktur = {
-  jalur_sepeda: 14,
-  jalan_raya: 11,
-  terminal_bus: 28,
-  stasiun_kereta_api: 21,
-  kereta_bawah_tanah: 35,
-  pelabuhan: 32,
-  bandara: 23,
-  helipad: 20,
+  jalur_sepeda: 48,
+  jalan_raya: 76,
+  terminal_bus: 14,
+  stasiun_kereta_api: 14,
+  kereta_bawah_tanah: 5,
+  pelabuhan: 11,
+  bandara: 6,
+  helipad: 8,
 } as const;

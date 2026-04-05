@@ -1,10 +1,10 @@
 export const mikronesia_olahraga = {
-  "kolam_renang": 2,
-  "sirkuit_balap": 28,
-  "stadion": 26,
-  "stadion_internasional": 34,
-  "gym": 0,
+  "kolam_renang": 10,
+  "sirkuit_balap": 2,
+  "stadion": 2,
+  "stadion_internasional": 0,
+  "gym": 20,
   "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "esports": 4,
+  "gokart": 10
 } as const;

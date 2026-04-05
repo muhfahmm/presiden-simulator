@@ -1,8 +1,9 @@
 export const belarus_manufaktur = {
-  semikonduktor: 26,
-  mobil: 31,
-  sepeda_motor: 18,
-  smelter: 35,
-  semen_beton: 18,
-  kayu: 3,
+  semikonduktor: 50,
+  mobil: 50,
+  sepeda_motor: 50,
+  smelter: 40,
+  semen_beton: 30,
+  kayu: 75,
+  pupuk: 45,
 } as const;

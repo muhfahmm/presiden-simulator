@@ -1,5 +1,5 @@
 export const benin_perikanan = {
-  udang: 31,
-  mutiara: 31,
-  ikan: 11,
+  udang: 20,
+  mutiara: 32,
+  ikan: 68,
 } as const;

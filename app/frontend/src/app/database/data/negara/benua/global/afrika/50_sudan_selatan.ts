@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { sudan_selatan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/50_sudan_selatan";
-import { sudan_selatan_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/afrika/50_sudan_selatan";
+import { sudan_selatan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/50_sudan_selatan";
 import { sudan_selatan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/50_sudan_selatan";
 import { sudan_selatan_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/50_sudan_selatan";
 import { sudan_selatan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/50_sudan_selatan";
 import { sudan_selatan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/50_sudan_selatan";
-import { sudan_selatan_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/afrika/50_sudan_selatan";
+import { sudan_selatan_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/50_sudan_selatan";
 import { sudan_selatan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/50_sudan_selatan";
 import { sudan_selatan_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/50_sudan_selatan";
 import { sudan_selatan_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/50_sudan_selatan";
@@ -14,10 +14,10 @@ import { sudan_selatan_olahraga } from "@/app/database/data/semua_fitur_negara/1
 import { sudan_selatan_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/50_sudan_selatan";
 import { sudan_selatan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/50_sudan_selatan";
 import { sudan_selatan_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/50_sudan_selatan";
-import { sudan_selatan_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/afrika/50_sudan_selatan";
+import { sudan_selatan_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/50_sudan_selatan";
 import { sudan_selatan_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/50_sudan_selatan";
 import { sudan_selatan_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/50_sudan_selatan";
-import { sudan_selatan_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/afrika/50_sudan_selatan";
+import { sudan_selatan_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/50_sudan_selatan";
 const sudan_selatan_geopolitik = {
     "un_vote": 92,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const sudan_selatan: CountryData = {
     "lingkungan": 60
   }
 };
+
 

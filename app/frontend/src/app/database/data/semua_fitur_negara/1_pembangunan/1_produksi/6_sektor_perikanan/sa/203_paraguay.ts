@@ -1,5 +1,5 @@
 export const paraguay_perikanan = {
-  udang: 9,
-  mutiara: 9,
-  ikan: 4,
+  udang: 0,
+  mutiara: 0,
+  ikan: 0,
 } as const;

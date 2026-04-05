@@ -1,4 +1,4 @@
 export const vietnam_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 128,
+  "teater": 83
 } as const;

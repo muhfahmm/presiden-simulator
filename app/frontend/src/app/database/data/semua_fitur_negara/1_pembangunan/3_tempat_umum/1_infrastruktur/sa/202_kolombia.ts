@@ -1,10 +1,10 @@
 export const kolombia_infrastruktur = {
-  jalur_sepeda: 30,
-  jalan_raya: 40,
-  terminal_bus: 39,
-  stasiun_kereta_api: 19,
-  kereta_bawah_tanah: 15,
-  pelabuhan: 26,
-  bandara: 33,
-  helipad: 3,
+  jalur_sepeda: 29,
+  jalan_raya: 85,
+  terminal_bus: 23,
+  stasiun_kereta_api: 18,
+  kereta_bawah_tanah: 2,
+  pelabuhan: 10,
+  bandara: 6,
+  helipad: 9,
 } as const;

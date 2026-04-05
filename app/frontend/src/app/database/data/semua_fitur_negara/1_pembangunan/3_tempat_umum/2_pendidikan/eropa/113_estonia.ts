@@ -1,13 +1,13 @@
 export const estonia_pendidikan = {
-      "prasekolah": 20,
-      "dasar": 1,
-      "menengah": 8,
-      "lanjutan": 19,
-      "universitas": 27,
-      "lembaga_pendidikan": 12,
-      "laboratorium": 8,
-      "observatorium": 9,
-      "pusat_penelitian": 13,
-      "pusat_pengembangan": 20,
-      "literasi": 88
+      "prasekolah": 54,
+      "dasar": 58,
+      "menengah": 42,
+      "lanjutan": 45,
+      "universitas": 4,
+      "lembaga_pendidikan": 3,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 1,
+      "literasi": 67
     } as const;

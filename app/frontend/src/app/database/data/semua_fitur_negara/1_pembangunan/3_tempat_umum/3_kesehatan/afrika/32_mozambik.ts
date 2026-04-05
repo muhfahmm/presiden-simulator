@@ -1,7 +1,7 @@
 export const mozambik_kesehatan = {
-      "rumah_sakit_besar": 34,
-      "rumah_sakit_kecil": 7,
-      "pusat_diagnostik": 40,
-      "harapan_hidup": 23,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 4,
+      "rumah_sakit_kecil": 32,
+      "pusat_diagnostik": 14,
+      "harapan_hidup": 70,
+      "indeks_kesehatan": 72
   } as const;

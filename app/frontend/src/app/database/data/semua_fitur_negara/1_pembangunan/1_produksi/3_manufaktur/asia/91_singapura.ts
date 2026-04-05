@@ -1,8 +1,9 @@
 export const singapura_manufaktur = {
-  semikonduktor: 28,
-  mobil: 26,
-  sepeda_motor: 10,
-  smelter: 22,
-  semen_beton: 10,
-  kayu: 38,
+  semikonduktor: 264,
+  mobil: 308,
+  sepeda_motor: 308,
+  smelter: 396,
+  semen_beton: 484,
+  kayu: 572,
+  pupuk: 220,
 } as const;

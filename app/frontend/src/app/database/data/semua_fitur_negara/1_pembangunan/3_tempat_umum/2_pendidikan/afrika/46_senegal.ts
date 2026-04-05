@@ -1,13 +1,13 @@
 export const senegal_pendidikan = {
-      "prasekolah": 29,
-      "dasar": 17,
-      "menengah": 11,
-      "lanjutan": 32,
-      "universitas": 35,
-      "lembaga_pendidikan": 28,
-      "laboratorium": 4,
-      "observatorium": 22,
-      "pusat_penelitian": 1,
-      "pusat_pengembangan": 29,
-      "literasi": 89
+      "prasekolah": 56,
+      "dasar": 86,
+      "menengah": 94,
+      "lanjutan": 5,
+      "universitas": 7,
+      "lembaga_pendidikan": 14,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 0,
+      "pusat_pengembangan": 0,
+      "literasi": 70
   } as const;

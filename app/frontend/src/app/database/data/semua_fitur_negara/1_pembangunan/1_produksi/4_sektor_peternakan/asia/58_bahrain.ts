@@ -1,6 +1,6 @@
 export const bahrain_peternakan = {
-  ayam_unggas: 32,
-  sapi_perah: 7,
-  sapi_potong: 5,
-  domba_kambing: 33,
+  ayam_unggas: 280,
+  sapi_perah: 296,
+  sapi_potong: 320,
+  domba_kambing: 328,
 } as const;

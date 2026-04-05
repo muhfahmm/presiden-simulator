@@ -1,7 +1,7 @@
 export const meksiko_kesehatan = {
-      "rumah_sakit_besar": 12,
-      "rumah_sakit_kecil": 34,
-      "pusat_diagnostik": 27,
-      "harapan_hidup": 33,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 83,
+      "rumah_sakit_kecil": 927,
+      "pusat_diagnostik": 237,
+      "harapan_hidup": 78,
+      "indeks_kesehatan": 79
     } as const;

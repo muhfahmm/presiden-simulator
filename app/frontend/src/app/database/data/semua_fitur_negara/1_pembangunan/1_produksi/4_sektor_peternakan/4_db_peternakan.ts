@@ -12,7 +12,7 @@ export const peternakanRate = {
     waktu_pembangunan: 30,
     biaya_pembangunan: 1200,
     lowongan_kerja: 100,
-    konsumsi_listrik: 0.05
+    konsumsi_listrik: 1
   },
   "2_peternakan_sapi_perah": {
     key: "2_peternakan_sapi_perah",
@@ -24,7 +24,7 @@ export const peternakanRate = {
     waktu_pembangunan: 60,
     biaya_pembangunan: 2500,
     lowongan_kerja: 150,
-    konsumsi_listrik: 0.5
+    konsumsi_listrik: 1
   },
   "3_peternakan_sapi_potong": {
     key: "3_peternakan_sapi_potong",
@@ -36,7 +36,7 @@ export const peternakanRate = {
     waktu_pembangunan: 90,
     biaya_pembangunan: 3000,
     lowongan_kerja: 120,
-    konsumsi_listrik: 0.2
+    konsumsi_listrik: 1
   },
   "4_peternakan_domba_kambing": {
     key: "4_peternakan_domba_kambing",
@@ -48,7 +48,7 @@ export const peternakanRate = {
     waktu_pembangunan: 60,
     biaya_pembangunan: 1500,
     lowongan_kerja: 80,
-    konsumsi_listrik: 0.1
+    konsumsi_listrik: 1
   }
 };
 

@@ -1,10 +1,10 @@
 export const malaysia_hukum = {
-      "pusat_bantuan_hukum": 22,
-      "pengadilan": 17,
-      "kejaksaan": 21,
-      "pos_polisi": 18,
-      "armada_mobil_polisi": 2455,
-      "akademi_polisi": 16,
-      "indeks_korupsi": 52,
-      "indeks_keamanan": 87
+      "pusat_bantuan_hukum": 31,
+      "pengadilan": 44,
+      "kejaksaan": 16,
+      "pos_polisi": 31,
+      "armada_mobil_polisi": 7296,
+      "akademi_polisi": 10,
+      "indeks_korupsi": 53,
+      "indeks_keamanan": 60
   } as const;

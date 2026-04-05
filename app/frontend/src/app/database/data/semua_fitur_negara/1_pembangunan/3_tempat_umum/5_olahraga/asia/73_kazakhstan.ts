@@ -1,10 +1,10 @@
 export const kazakhstan_olahraga = {
-  "kolam_renang": 11,
-  "sirkuit_balap": 4,
-  "stadion": 23,
-  "stadion_internasional": 9,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 60,
+  "sirkuit_balap": 5,
+  "stadion": 30,
+  "stadion_internasional": 2,
+  "gym": 156,
+  "golf": 15,
+  "esports": 6,
+  "gokart": 45
 } as const;

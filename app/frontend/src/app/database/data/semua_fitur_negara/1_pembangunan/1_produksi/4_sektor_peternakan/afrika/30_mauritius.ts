@@ -1,6 +1,6 @@
 export const mauritius_peternakan = {
-  ayam_unggas: 16,
-  sapi_perah: 16,
-  sapi_potong: 30,
-  domba_kambing: 15,
+  ayam_unggas: 11,
+  sapi_perah: 37,
+  sapi_potong: 40,
+  domba_kambing: 44,
 } as const;

@@ -1,8 +1,9 @@
 export const slowakia_manufaktur = {
-  semikonduktor: 7,
-  mobil: 33,
-  sepeda_motor: 18,
-  smelter: 1,
-  semen_beton: 11,
-  kayu: 20,
+  semikonduktor: 195,
+  mobil: 130,
+  sepeda_motor: 52,
+  smelter: 195,
+  semen_beton: 91,
+  kayu: 130,
+  pupuk: 39,
 } as const;

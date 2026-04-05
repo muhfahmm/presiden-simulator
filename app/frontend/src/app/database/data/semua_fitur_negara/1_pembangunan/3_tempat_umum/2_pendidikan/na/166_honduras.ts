@@ -1,13 +1,13 @@
 export const honduras_pendidikan = {
-      "prasekolah": 18,
-      "dasar": 35,
-      "menengah": 7,
-      "lanjutan": 7,
-      "universitas": 6,
+      "prasekolah": 69,
+      "dasar": 128,
+      "menengah": 29,
+      "lanjutan": 32,
+      "universitas": 18,
       "lembaga_pendidikan": 14,
-      "laboratorium": 24,
-      "observatorium": 29,
-      "pusat_penelitian": 39,
-      "pusat_pengembangan": 22,
-      "literasi": 90
+      "laboratorium": 2,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 2,
+      "literasi": 78
     } as const;

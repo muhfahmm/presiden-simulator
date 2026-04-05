@@ -1,8 +1,9 @@
 export const gambia_manufaktur = {
-  mobil: 5,
-  semen_beton: 17,
-  sepeda_motor: 16,
-  semikonduktor: 24,
-  smelter: 5,
-  kayu: 19,
+  mobil: 30,
+  semen_beton: 24,
+  sepeda_motor: 18,
+  semikonduktor: 30,
+  smelter: 20,
+  kayu: 8,
+  pupuk: 4,
 } as const;

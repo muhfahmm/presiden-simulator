@@ -1,4 +1,4 @@
 export const singapura_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 184,
+  "teater": 83
 } as const;

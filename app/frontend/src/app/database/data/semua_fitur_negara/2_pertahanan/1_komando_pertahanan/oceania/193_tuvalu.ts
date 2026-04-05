@@ -1,0 +1,13 @@
+import { tuvalu_intelijen } from "../../2_intelijen/oceania/193_tuvalu";
+
+export const tuvalu_strategis = {
+    "waktu_respon": 36,
+    "intelijen": 13,
+    "status_nuklir": false,
+    "intel_radar": tuvalu_intelijen,
+    "operasi_strategis": { "misi_serangan": 27,
+      "misi_mata_mata": 19,
+      "misi_sabotase": 5,
+      "manajemen_wilayah": 12,
+      "program_nuklir": 0 }
+  } as const;

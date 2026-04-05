@@ -1,10 +1,10 @@
 export const el_salvador_hukum = {
-      "pusat_bantuan_hukum": 17,
-      "pengadilan": 27,
-      "kejaksaan": 31,
-      "pos_polisi": 17,
-      "armada_mobil_polisi": 9033,
-      "akademi_polisi": 20,
-      "indeks_korupsi": 77,
-      "indeks_keamanan": 78
+      "pusat_bantuan_hukum": 8,
+      "pengadilan": 15,
+      "kejaksaan": 5,
+      "pos_polisi": 21,
+      "armada_mobil_polisi": 981,
+      "akademi_polisi": 5,
+      "indeks_korupsi": 37,
+      "indeks_keamanan": 53
   } as const;

@@ -9,14 +9,13 @@ import {
   olahanPanganRate, 
   farmasiRate 
 } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi";
-import { pertahananRate, produksiMiliter } from "@/app/database/data/semua_fitur_negara/4_pertahanan";
-import { pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer";
+import { pertahananRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
 import JugaMaterialDanUangKurang from "../jika_material_dan_uang_kurang";
 import { getBuildingRequirement } from "./MaterialRequirement";
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI } from "@/app/database/data/semua_fitur_negara"
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, infrastrukturRate, sosialRate, pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara"
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
@@ -123,6 +122,16 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
     sektor_perikanan: { ...currentData.sektor_perikanan || {} },
     sektor_agrikultur: { ...currentData.sektor_agrikultur || {} },
     sektor_ekstraksi: { ...currentData.sektor_ekstraksi || {} },
+    sektor_olahan_pangan: { ...currentData.sektor_olahan_pangan || {} },
+    sektor_farmasi: { ...currentData.sektor_farmasi || {} },
+    pabrik_militer: { ...currentData.pabrik_militer || {} },
+    infrastruktur: { ...currentData.infrastruktur || {} },
+    pendidikan: { ...currentData.pendidikan || {} },
+    kesehatan: { ...currentData.kesehatan || {} },
+    hukum: { ...currentData.hukum || {} },
+    sektor_olahraga: { ...currentData.sektor_olahraga || {} },
+    sektor_komersial: { ...currentData.sektor_komersial || {} },
+    sektor_hiburan: { ...currentData.sektor_hiburan || {} },
   };
 
   Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
@@ -130,7 +139,8 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
 
     // 1. Electricity Sector
     if (KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA]) {
-      (currentDataWithDeltas.sektor_listrik as any)[key] = ((currentDataWithDeltas.sektor_listrik as any)[key] || 0) + deltaValue;
+      const dataKey = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA].dataKey;
+      if (dataKey) (currentDataWithDeltas.sektor_listrik as any)[dataKey] = ((currentDataWithDeltas.sektor_listrik as any)[dataKey] || 0) + deltaValue;
     }
     // 2. Critical Minerals
     else if ((mineralKritisRate as any)[key]) {
@@ -166,6 +176,29 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
     else if ((farmasiRate as any)[key]) {
       const dataKey = (farmasiRate as any)[key].dataKey;
       if (dataKey) (currentDataWithDeltas.sektor_farmasi as any)[dataKey] = ((currentDataWithDeltas.sektor_farmasi as any)[dataKey] || 0) + deltaValue;
+    }
+    // 9. Infrastruktur
+    else if (infrastrukturRate[key]) {
+      const dataKey = infrastrukturRate[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.infrastruktur as any)[dataKey] = ((currentDataWithDeltas.infrastruktur as any)[dataKey] || 0) + deltaValue;
+    }
+    // 10. Sosial & Public
+    else if (sosialRate[key]) {
+      const dataKey = sosialRate[key].dataKey;
+      const groupId = sosialRate[key].groupId;
+      if (dataKey && groupId) {
+        if (groupId === "pendidikan") (currentDataWithDeltas.pendidikan as any)[dataKey] = ((currentDataWithDeltas.pendidikan as any)[dataKey] || 0) + deltaValue;
+        else if (groupId === "kesehatan") (currentDataWithDeltas.kesehatan as any)[dataKey] = ((currentDataWithDeltas.kesehatan as any)[dataKey] || 0) + deltaValue;
+        else if (groupId === "hukum") (currentDataWithDeltas.hukum as any)[dataKey] = ((currentDataWithDeltas.hukum as any)[dataKey] || 0) + deltaValue;
+        else if (groupId === "olahraga") (currentDataWithDeltas.sektor_olahraga as any)[dataKey] = ((currentDataWithDeltas.sektor_olahraga as any)[dataKey] || 0) + deltaValue;
+        else if (groupId === "komersial") (currentDataWithDeltas.sektor_komersial as any)[dataKey] = ((currentDataWithDeltas.sektor_komersial as any)[dataKey] || 0) + deltaValue;
+        else if (groupId === "hiburan") (currentDataWithDeltas.sektor_hiburan as any)[dataKey] = ((currentDataWithDeltas.sektor_hiburan as any)[dataKey] || 0) + deltaValue;
+      }
+    }
+    // 11. Pabrik Militer
+    else if ((pabrikMiliterRate as any)[key]) {
+      const dataKey = (pabrikMiliterRate as any)[key].dataKey;
+      if (dataKey) (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
     }
   });
 
@@ -507,29 +540,6 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           cost: val.biaya_pembangunan || 4500,
           buildTime: val.waktu_pembangunan || 60,
           maintenanceCost: val.biaya_pemeliharaan ?? 25,
-          lowongan_kerja: val.lowongan_kerja || 0
-        }))
-    },
-    {
-      id: "pabrik_militer",
-      title: "9. Sektor Produksi Militer",
-      icon: Factory,
-      color: "text-purple-500",
-      items: Object.entries(pabrikMiliterRate)
-        .map(([key, val]: [string, any]) => ({
-          key: val.dataKey,
-          groupId: "pabrik_militer",
-          label: val.label,
-          icon: getIcon(val.dataKey),
-          desc: "Produksi Militer",
-          tarif: val.produksi,
-          unit: val.satuan || "Unit",
-          count: (currentData.pabrik_militer?.[val.dataKey as keyof typeof currentData.pabrik_militer] || 0) + ((buildingDeltas[val.dataKey] as number) || 0),
-          powerUsage: val.konsumsi_listrik || 0,
-          pendapatan_nasional: val.pendapatan_nasional || 0,
-          cost: val.biaya_pembangunan || 5000,
-          buildTime: val.waktu_pembangunan || 90,
-          maintenanceCost: val.biaya_pemeliharaan ?? 500,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     }
@@ -1003,15 +1013,25 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
             </span>
           </div>
 
-          {item.groupId !== "kelistrikan" && item.powerUsage > 0 && (
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-rose-500/10 rounded-lg">
-                <Zap size={12} className="text-rose-500/90" />
+          {(item.groupId !== "kelistrikan" && (item.powerUsage ?? 0) >= 0) && (
+            <>
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                  <Zap size={12} className="text-rose-500/90" />
+                </div>
+                <span className="text-[12px] font-bold text-rose-500/80">
+                  Konsumsi: {Math.max(item.powerUsage, 1)} MW/bangunan
+                </span>
               </div>
-              <span className="text-[12px] font-bold text-rose-500/80">
-                Konsumsi: {item.powerUsage} MW/bangunan
-              </span>
-            </div>
+              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                  <Activity size={12} className="text-rose-400/70" />
+                </div>
+                <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+                  Total Konsumsi Listrik: {(item.count * Math.max(item.powerUsage, 1)).toLocaleString('id-ID')} MW
+                </span>
+              </div>
+            </>
           )}
 
           <div className="flex items-center gap-2.5">

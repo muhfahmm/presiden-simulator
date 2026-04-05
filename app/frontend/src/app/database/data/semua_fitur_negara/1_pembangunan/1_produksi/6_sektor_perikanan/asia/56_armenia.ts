@@ -1,5 +1,5 @@
 export const armenia_perikanan = {
-  udang: 8,
-  mutiara: 8,
-  ikan: 6,
+  udang: 48,
+  mutiara: 60,
+  ikan: 72,
 } as const;

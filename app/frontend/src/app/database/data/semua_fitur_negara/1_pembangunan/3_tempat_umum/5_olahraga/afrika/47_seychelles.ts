@@ -1,10 +1,10 @@
 export const seychelles_olahraga = {
-  "kolam_renang": 13,
-  "sirkuit_balap": 22,
-  "stadion": 39,
-  "stadion_internasional": 19,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 11,
+  "sirkuit_balap": 2,
+  "stadion": 2,
+  "stadion_internasional": 0,
+  "gym": 39,
+  "golf": 2,
+  "esports": 1,
+  "gokart": 14
 } as const;

@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { djibouti_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/9_djibouti";
-import { djibouti_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/afrika/9_djibouti";
+import { djibouti_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/9_djibouti";
 import { djibouti_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/9_djibouti";
 import { djibouti_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/9_djibouti";
 import { djibouti_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/9_djibouti";
 import { djibouti_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/9_djibouti";
-import { djibouti_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/afrika/9_djibouti";
+import { djibouti_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/9_djibouti";
 import { djibouti_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/9_djibouti";
 import { djibouti_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/9_djibouti";
 import { djibouti_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/9_djibouti";
@@ -14,10 +14,10 @@ import { djibouti_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { djibouti_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/9_djibouti";
 import { djibouti_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/9_djibouti";
 import { djibouti_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/9_djibouti";
-import { djibouti_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/afrika/9_djibouti";
+import { djibouti_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/9_djibouti";
 import { djibouti_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/9_djibouti";
 import { djibouti_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/9_djibouti";
-import { djibouti_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/afrika/9_djibouti";
+import { djibouti_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/9_djibouti";
 const djibouti_geopolitik = {
     "un_vote": 13,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const djibouti: CountryData = {
     "lingkungan": 60
   }
 };
+
 

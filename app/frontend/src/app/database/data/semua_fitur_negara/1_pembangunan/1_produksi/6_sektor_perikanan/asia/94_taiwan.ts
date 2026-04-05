@@ -1,5 +1,5 @@
 export const taiwan_perikanan = {
-  udang: 33,
-  mutiara: 33,
-  ikan: 2,
+  udang: 264,
+  mutiara: 312,
+  ikan: 696,
 } as const;

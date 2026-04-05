@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { uruguay_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/206_uruguay";
-import { uruguay_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/sa/206_uruguay";
+import { uruguay_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/206_uruguay";
 import { uruguay_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/206_uruguay";
 import { uruguay_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/sa/206_uruguay";
 import { uruguay_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/sa/206_uruguay";
 import { uruguay_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/sa/206_uruguay";
-import { uruguay_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/sa/206_uruguay";
+import { uruguay_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/sa/206_uruguay";
 import { uruguay_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/sa/206_uruguay";
 import { uruguay_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/sa/206_uruguay";
 import { uruguay_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/sa/206_uruguay";
@@ -14,10 +14,10 @@ import { uruguay_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { uruguay_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/sa/206_uruguay";
 import { uruguay_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/sa/206_uruguay";
 import { uruguay_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/sa/206_uruguay";
-import { uruguay_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/sa/206_uruguay";
+import { uruguay_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/sa/206_uruguay";
 import { uruguay_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/sa/206_uruguay";
 import { uruguay_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/206_uruguay";
-import { uruguay_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/sa/206_uruguay";
+import { uruguay_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/sa/206_uruguay";
 const uruguay_geopolitik = {
     "un_vote": 99,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const uruguay: CountryData = {
     "lingkungan": 60
   }
 };
+
 

@@ -1,10 +1,10 @@
 export const tajikistan_hukum = {
-      "pusat_bantuan_hukum": 35,
-      "pengadilan": 23,
-      "kejaksaan": 21,
-      "pos_polisi": 26,
-      "armada_mobil_polisi": 3913,
-      "akademi_polisi": 29,
-      "indeks_korupsi": 54,
-      "indeks_keamanan": 95
+      "pusat_bantuan_hukum": 5,
+      "pengadilan": 6,
+      "kejaksaan": 3,
+      "pos_polisi": 8,
+      "armada_mobil_polisi": 1325,
+      "akademi_polisi": 5,
+      "indeks_korupsi": 22,
+      "indeks_keamanan": 56
   } as const;

@@ -1,13 +1,13 @@
 export const san_marino_pendidikan = {
-      "prasekolah": 15,
+      "prasekolah": 79,
       "dasar": 39,
-      "menengah": 25,
-      "lanjutan": 10,
-      "universitas": 18,
-      "lembaga_pendidikan": 19,
-      "laboratorium": 6,
-      "observatorium": 18,
-      "pusat_penelitian": 30,
-      "pusat_pengembangan": 11,
-      "literasi": 50
+      "menengah": 61,
+      "lanjutan": 19,
+      "universitas": 6,
+      "lembaga_pendidikan": 6,
+      "laboratorium": 0,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 0,
+      "literasi": 73
     } as const;

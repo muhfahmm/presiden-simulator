@@ -1,6 +1,6 @@
 export const korea_utara_peternakan = {
-  ayam_unggas: 24,
-  sapi_perah: 24,
-  sapi_potong: 38,
-  domba_kambing: 11,
+  ayam_unggas: 104,
+  sapi_perah: 112,
+  sapi_potong: 180,
+  domba_kambing: 188,
 } as const;

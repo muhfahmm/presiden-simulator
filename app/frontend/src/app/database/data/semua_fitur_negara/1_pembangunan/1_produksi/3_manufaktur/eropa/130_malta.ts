@@ -1,8 +1,9 @@
 export const malta_manufaktur = {
-  semikonduktor: 21,
-  mobil: 3,
-  sepeda_motor: 37,
-  smelter: 27,
-  semen_beton: 16,
-  kayu: 6,
+  semikonduktor: 28,
+  mobil: 14,
+  sepeda_motor: 26,
+  smelter: 10,
+  semen_beton: 12,
+  kayu: 24,
+  pupuk: 12,
 } as const;

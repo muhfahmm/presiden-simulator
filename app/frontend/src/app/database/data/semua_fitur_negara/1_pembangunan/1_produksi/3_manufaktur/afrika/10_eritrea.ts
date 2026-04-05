@@ -1,8 +1,9 @@
 export const eritrea_manufaktur = {
-  mobil: 11,
+  mobil: 10,
   semen_beton: 7,
-  sepeda_motor: 11,
-  semikonduktor: 16,
-  smelter: 32,
-  kayu: 1,
+  sepeda_motor: 13,
+  semikonduktor: 15,
+  smelter: 8,
+  kayu: 13,
+  pupuk: 9,
 } as const;

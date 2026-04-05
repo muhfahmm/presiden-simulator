@@ -1,13 +1,13 @@
 export const kamboja_pendidikan = {
-      "prasekolah": 22,
-      "dasar": 19,
-      "menengah": 40,
-      "lanjutan": 25,
-      "universitas": 33,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 26,
-      "observatorium": 35,
-      "pusat_penelitian": 11,
-      "pusat_pengembangan": 9,
-      "literasi": 65
+      "prasekolah": 99,
+      "dasar": 149,
+      "menengah": 12,
+      "lanjutan": 20,
+      "universitas": 4,
+      "lembaga_pendidikan": 3,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 2,
+      "literasi": 64
     } as const;

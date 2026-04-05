@@ -1,13 +1,13 @@
 export const trinidad_dan_tobago_pendidikan = {
-      "prasekolah": 26,
-      "dasar": 5,
-      "menengah": 22,
-      "lanjutan": 32,
-      "universitas": 2,
-      "lembaga_pendidikan": 14,
-      "laboratorium": 39,
-      "observatorium": 40,
-      "pusat_penelitian": 32,
-      "pusat_pengembangan": 3,
-      "literasi": 74
+      "prasekolah": 88,
+      "dasar": 140,
+      "menengah": 90,
+      "lanjutan": 6,
+      "universitas": 5,
+      "lembaga_pendidikan": 9,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 0,
+      "literasi": 82
     } as const;

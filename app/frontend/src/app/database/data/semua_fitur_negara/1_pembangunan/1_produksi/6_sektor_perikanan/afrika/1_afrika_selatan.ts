@@ -1,5 +1,5 @@
 export const afrika_selatan_perikanan = {
-  udang: 28,
-  mutiara: 28,
-  ikan: 39,
+  udang: 1240,
+  mutiara: 840,
+  ikan: 720,
 } as const;

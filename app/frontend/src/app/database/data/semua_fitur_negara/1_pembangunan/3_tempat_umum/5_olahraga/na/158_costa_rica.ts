@@ -1,10 +1,10 @@
 export const costa_rica_olahraga = {
-  "kolam_renang": 36,
-  "sirkuit_balap": 31,
-  "stadion": 19,
-  "stadion_internasional": 37,
-  "gym": 0,
-  "golf": 0,
+  "kolam_renang": 17,
+  "sirkuit_balap": 1,
+  "stadion": 5,
+  "stadion_internasional": 0,
+  "gym": 18,
+  "golf": 5,
   "esports": 0,
-  "gokart": 0
+  "gokart": 10
 } as const;

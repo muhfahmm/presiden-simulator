@@ -1,10 +1,10 @@
 export const bhutan_infrastruktur = {
-  jalur_sepeda: 22,
-  jalan_raya: 34,
-  terminal_bus: 29,
-  stasiun_kereta_api: 2,
-  kereta_bawah_tanah: 15,
-  pelabuhan: 25,
-  bandara: 14,
-  helipad: 26,
+  jalur_sepeda: 6,
+  jalan_raya: 16,
+  terminal_bus: 7,
+  stasiun_kereta_api: 5,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 2,
+  bandara: 2,
+  helipad: 3,
 } as const;

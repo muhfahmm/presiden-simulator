@@ -1,10 +1,10 @@
 export const mali_hukum = {
-      "pusat_bantuan_hukum": 34,
-      "pengadilan": 13,
-      "kejaksaan": 27,
-      "pos_polisi": 31,
-      "armada_mobil_polisi": 2788,
-      "akademi_polisi": 5,
-      "indeks_korupsi": 53,
-      "indeks_keamanan": 93
+      "pusat_bantuan_hukum": 3,
+      "pengadilan": 5,
+      "kejaksaan": 4,
+      "pos_polisi": 22,
+      "armada_mobil_polisi": 826,
+      "akademi_polisi": 2,
+      "indeks_korupsi": 48,
+      "indeks_keamanan": 59
   } as const;

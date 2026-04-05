@@ -1,13 +1,13 @@
 export const siprus_pendidikan = {
-      "prasekolah": 11,
-      "dasar": 33,
-      "menengah": 25,
-      "lanjutan": 24,
-      "universitas": 27,
-      "lembaga_pendidikan": 12,
-      "laboratorium": 7,
-      "observatorium": 6,
-      "pusat_penelitian": 33,
-      "pusat_pengembangan": 20,
-      "literasi": 66
+      "prasekolah": 82,
+      "dasar": 141,
+      "menengah": 80,
+      "lanjutan": 38,
+      "universitas": 8,
+      "lembaga_pendidikan": 1,
+      "laboratorium": 0,
+      "observatorium": 0,
+      "pusat_penelitian": 3,
+      "pusat_pengembangan": 2,
+      "literasi": 79
     } as const;

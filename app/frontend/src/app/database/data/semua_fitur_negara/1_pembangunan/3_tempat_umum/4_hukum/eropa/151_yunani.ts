@@ -1,10 +1,10 @@
 export const yunani_hukum = {
-      "pusat_bantuan_hukum": 11,
-      "pengadilan": 4,
-      "kejaksaan": 5,
-      "pos_polisi": 22,
-      "armada_mobil_polisi": 651,
-      "akademi_polisi": 25,
-      "indeks_korupsi": 74,
+      "pusat_bantuan_hukum": 24,
+      "pengadilan": 41,
+      "kejaksaan": 13,
+      "pos_polisi": 56,
+      "armada_mobil_polisi": 8126,
+      "akademi_polisi": 3,
+      "indeks_korupsi": 53,
       "indeks_keamanan": 75
   } as const;

@@ -1,13 +1,13 @@
 export const norwegia_pendidikan = {
-      "prasekolah": 1,
-      "dasar": 26,
-      "menengah": 9,
-      "lanjutan": 13,
-      "universitas": 1,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 19,
-      "observatorium": 36,
-      "pusat_penelitian": 5,
-      "pusat_pengembangan": 13,
-      "literasi": 82
+      "prasekolah": 299,
+      "dasar": 697,
+      "menengah": 228,
+      "lanjutan": 144,
+      "universitas": 104,
+      "lembaga_pendidikan": 72,
+      "laboratorium": 29,
+      "observatorium": 0,
+      "pusat_penelitian": 9,
+      "pusat_pengembangan": 6,
+      "literasi": 87
     } as const;

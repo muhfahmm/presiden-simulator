@@ -1,7 +1,7 @@
 export const greenland_kesehatan = {
-      "rumah_sakit_besar": 20,
-      "rumah_sakit_kecil": 10,
-      "pusat_diagnostik": 22,
-      "harapan_hidup": 11,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 13,
+      "rumah_sakit_kecil": 63,
+      "pusat_diagnostik": 8,
+      "harapan_hidup": 60,
+      "indeks_kesehatan": 50
     } as const;

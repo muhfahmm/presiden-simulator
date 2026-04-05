@@ -1,10 +1,10 @@
 export const kazakhstan_infrastruktur = {
-  jalur_sepeda: 14,
-  jalan_raya: 16,
-  terminal_bus: 25,
-  stasiun_kereta_api: 14,
-  kereta_bawah_tanah: 27,
-  pelabuhan: 33,
-  bandara: 20,
-  helipad: 16,
+  jalur_sepeda: 37,
+  jalan_raya: 43,
+  terminal_bus: 20,
+  stasiun_kereta_api: 18,
+  kereta_bawah_tanah: 5,
+  pelabuhan: 6,
+  bandara: 8,
+  helipad: 5,
 } as const;

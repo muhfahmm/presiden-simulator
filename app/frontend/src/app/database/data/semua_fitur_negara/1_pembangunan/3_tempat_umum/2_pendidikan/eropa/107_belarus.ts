@@ -1,13 +1,13 @@
 export const belarus_pendidikan = {
-      "prasekolah": 36,
-      "dasar": 16,
-      "menengah": 11,
-      "lanjutan": 6,
-      "universitas": 16,
-      "lembaga_pendidikan": 13,
-      "laboratorium": 23,
-      "observatorium": 33,
-      "pusat_penelitian": 12,
-      "pusat_pengembangan": 13,
-      "literasi": 90
+      "prasekolah": 14,
+      "dasar": 144,
+      "menengah": 100,
+      "lanjutan": 8,
+      "universitas": 11,
+      "lembaga_pendidikan": 12,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 0,
+      "literasi": 80
     } as const;

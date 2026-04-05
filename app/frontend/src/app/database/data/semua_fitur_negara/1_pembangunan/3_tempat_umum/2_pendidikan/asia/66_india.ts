@@ -1,13 +1,13 @@
 export const india_pendidikan = {
-      "prasekolah": 26,
-      "dasar": 3,
-      "menengah": 31,
-      "lanjutan": 23,
-      "universitas": 26,
-      "lembaga_pendidikan": 19,
-      "laboratorium": 25,
-      "observatorium": 16,
-      "pusat_penelitian": 23,
-      "pusat_pengembangan": 5,
-      "literasi": 63
+      "prasekolah": 734,
+      "dasar": 1759,
+      "menengah": 1136,
+      "lanjutan": 862,
+      "universitas": 444,
+      "lembaga_pendidikan": 229,
+      "laboratorium": 77,
+      "observatorium": 3,
+      "pusat_penelitian": 35,
+      "pusat_pengembangan": 34,
+      "literasi": 92
     } as const;

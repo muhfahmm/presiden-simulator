@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { saint_kitts_dan_nevis_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/175_saint_kitts_dan_nevis";
-import { saint_kitts_dan_nevis_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/na/175_saint_kitts_dan_nevis";
+import { saint_kitts_dan_nevis_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/175_saint_kitts_dan_nevis";
-import { saint_kitts_dan_nevis_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/na/175_saint_kitts_dan_nevis";
+import { saint_kitts_dan_nevis_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/175_saint_kitts_dan_nevis";
@@ -14,10 +14,10 @@ import { saint_kitts_dan_nevis_olahraga } from "@/app/database/data/semua_fitur_
 import { saint_kitts_dan_nevis_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/175_saint_kitts_dan_nevis";
-import { saint_kitts_dan_nevis_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/na/175_saint_kitts_dan_nevis";
+import { saint_kitts_dan_nevis_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/175_saint_kitts_dan_nevis";
-import { saint_kitts_dan_nevis_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/na/175_saint_kitts_dan_nevis";
+import { saint_kitts_dan_nevis_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/175_saint_kitts_dan_nevis";
 const saint_kitts_dan_nevis_geopolitik = {
     "un_vote": 64,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const saint_kitts_dan_nevis: CountryData = {
     "lingkungan": 60
   }
 };
+
 

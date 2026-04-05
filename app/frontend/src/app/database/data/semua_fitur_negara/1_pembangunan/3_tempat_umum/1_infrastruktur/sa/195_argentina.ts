@@ -1,10 +1,10 @@
 export const argentina_infrastruktur = {
-  jalur_sepeda: 30,
-  jalan_raya: 37,
-  terminal_bus: 29,
-  stasiun_kereta_api: 25,
-  kereta_bawah_tanah: 39,
-  pelabuhan: 25,
-  bandara: 10,
-  helipad: 40,
+  jalur_sepeda: 28,
+  jalan_raya: 24,
+  terminal_bus: 25,
+  stasiun_kereta_api: 19,
+  kereta_bawah_tanah: 3,
+  pelabuhan: 10,
+  bandara: 5,
+  helipad: 9,
 } as const;

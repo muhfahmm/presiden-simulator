@@ -1,10 +1,10 @@
 export const argentina_hukum = {
-      "pusat_bantuan_hukum": 32,
-      "pengadilan": 39,
-      "kejaksaan": 34,
-      "pos_polisi": 12,
-      "armada_mobil_polisi": 6304,
-      "akademi_polisi": 6,
-      "indeks_korupsi": 79,
-      "indeks_keamanan": 58
+      "pusat_bantuan_hukum": 38,
+      "pengadilan": 44,
+      "kejaksaan": 12,
+      "pos_polisi": 63,
+      "armada_mobil_polisi": 5262,
+      "akademi_polisi": 5,
+      "indeks_korupsi": 54,
+      "indeks_keamanan": 75
   } as const;

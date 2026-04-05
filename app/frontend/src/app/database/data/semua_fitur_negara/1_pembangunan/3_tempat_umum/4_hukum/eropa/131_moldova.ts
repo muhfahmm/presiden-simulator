@@ -1,10 +1,10 @@
 export const moldova_hukum = {
-      "pusat_bantuan_hukum": 39,
-      "pengadilan": 40,
-      "kejaksaan": 40,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 9602,
-      "akademi_polisi": 13,
-      "indeks_korupsi": 57,
-      "indeks_keamanan": 65
+      "pusat_bantuan_hukum": 2,
+      "pengadilan": 2,
+      "kejaksaan": 6,
+      "pos_polisi": 5,
+      "armada_mobil_polisi": 1152,
+      "akademi_polisi": 1,
+      "indeks_korupsi": 45,
+      "indeks_keamanan": 69
   } as const;

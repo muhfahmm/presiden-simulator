@@ -1,8 +1,9 @@
 export const bahama_manufaktur = {
-  semikonduktor: 20,
-  mobil: 12,
-  sepeda_motor: 4,
-  smelter: 32,
-  semen_beton: 15,
-  kayu: 24,
+  semikonduktor: 52,
+  mobil: 48,
+  sepeda_motor: 52,
+  smelter: 36,
+  semen_beton: 16,
+  kayu: 44,
+  pupuk: 32,
 } as const;

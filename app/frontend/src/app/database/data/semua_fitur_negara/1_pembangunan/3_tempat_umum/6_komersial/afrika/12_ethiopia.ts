@@ -1,5 +1,5 @@
 export const ethiopia_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 7,
+  "hotel": 14,
+  "pusat_grosir_tekstil": 5
 } as const;

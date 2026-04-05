@@ -1,6 +1,6 @@
 export const ethiopia_peternakan = {
-  ayam_unggas: 16,
-  sapi_perah: 7,
-  sapi_potong: 11,
-  domba_kambing: 10,
+  ayam_unggas: 450,
+  sapi_perah: 684,
+  sapi_potong: 360,
+  domba_kambing: 774,
 } as const;

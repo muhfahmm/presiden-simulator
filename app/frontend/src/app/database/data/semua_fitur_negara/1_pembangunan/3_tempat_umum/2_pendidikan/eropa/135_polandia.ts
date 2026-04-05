@@ -1,13 +1,13 @@
 export const polandia_pendidikan = {
-      "prasekolah": 22,
-      "dasar": 29,
-      "menengah": 10,
-      "lanjutan": 11,
-      "universitas": 10,
-      "lembaga_pendidikan": 5,
-      "laboratorium": 33,
-      "observatorium": 31,
-      "pusat_penelitian": 6,
-      "pusat_pengembangan": 34,
-      "literasi": 60
+      "prasekolah": 254,
+      "dasar": 178,
+      "menengah": 369,
+      "lanjutan": 228,
+      "universitas": 103,
+      "lembaga_pendidikan": 91,
+      "laboratorium": 13,
+      "observatorium": 2,
+      "pusat_penelitian": 7,
+      "pusat_pengembangan": 3,
+      "literasi": 79
     } as const;

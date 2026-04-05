@@ -1,10 +1,10 @@
 export const luksemburg_infrastruktur = {
-  jalur_sepeda: 17,
-  jalan_raya: 19,
-  terminal_bus: 34,
+  jalur_sepeda: 6,
+  jalan_raya: 9,
+  terminal_bus: 8,
   stasiun_kereta_api: 4,
-  kereta_bawah_tanah: 10,
-  pelabuhan: 29,
-  bandara: 34,
-  helipad: 37,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 4,
+  bandara: 1,
+  helipad: 1,
 } as const;

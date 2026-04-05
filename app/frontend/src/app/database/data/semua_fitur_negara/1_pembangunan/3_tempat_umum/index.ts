@@ -1,61 +1,25 @@
-export interface PendidikanData {
-  prasekolah?: number;
-  dasar?: number;
-  menengah?: number;
-  lanjutan?: number;
-  universitas?: number;
-  lembaga_pendidikan?: number;
-  laboratorium?: number;
-  observatorium?: number;
-  pusat_penelitian?: number;
-  pusat_pengembangan?: number;
-  literasi?: number;
-}
-
-export interface KesehatanData {
-  rumah_sakit_besar?: number;
-  rumah_sakit_kecil?: number;
-  pusat_diagnostik?: number;
-  harapan_hidup?: number;
-  indeks_kesehatan?: number;
-}
-
-export interface OlahragaSosialData {
-  kolam_renang: number;
-  sirkuit_balap: number;
-  stadion: number;
-  stadion_internasional: number;
-}
-
-export interface HukumData {
-  pusat_bantuan_hukum?: number;
-  pengadilan?: number;
-  kejaksaan?: number;
-  pos_polisi?: number;
-  armada_mobil_polisi?: number;
-  akademi_polisi?: number;
-  indeks_korupsi?: number;
-  indeks_keamanan?: number;
-}
-
-export interface SektorKomersial {
-  mall?: number;
-  hotel?: number;
-  pusat_grosir_tekstil?: number;
-}
-
-export interface SektorHiburan {
-  bioskop?: number;
-  teater?: number;
-}
+export * from "./1_infrastruktur";
+export * from "./2_pendidikan";
+export * from "./3_kesehatan";
+export * from "./4_hukum";
+export * from "./5_olahraga";
+export * from "./6_komersial";
+export * from "./7_hiburan";
 
 export interface SektorSosial {
-  pendidikan?: PendidikanData;
-  kesehatan?: KesehatanData;
-  olahraga?: OlahragaSosialData;
-  hukum?: HukumData;
-  komersial?: SektorKomersial;
-  hiburan?: SektorHiburan;
+  pendidikan?: import("./2_pendidikan").PendidikanData;
+  kesehatan?: import("./3_kesehatan").KesehatanData;
+  olahraga?: import("./5_olahraga").OlahragaData;
+  hukum?: import("./4_hukum").HukumData;
+  komersial?: import("./6_komersial").SektorKomersial;
+  hiburan?: import("./7_hiburan").SektorHiburan;
 }
 
-export * from "./1_infrastruktur";
+export const sosialRate = {
+  ...require("./2_pendidikan").pendidikanRate,
+  ...require("./3_kesehatan").kesehatanRate,
+  ...require("./4_hukum").hukumRate,
+  ...require("./5_olahraga").olahragaRate,
+  ...require("./6_komersial").komersialRate,
+  ...require("./7_hiburan").hiburanRate
+};

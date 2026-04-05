@@ -1,10 +1,10 @@
 export const azerbaijan_hukum = {
-      "pusat_bantuan_hukum": 34,
-      "pengadilan": 13,
-      "kejaksaan": 22,
-      "pos_polisi": 28,
-      "armada_mobil_polisi": 6700,
-      "akademi_polisi": 35,
-      "indeks_korupsi": 56,
-      "indeks_keamanan": 82
+      "pusat_bantuan_hukum": 10,
+      "pengadilan": 3,
+      "kejaksaan": 7,
+      "pos_polisi": 14,
+      "armada_mobil_polisi": 1004,
+      "akademi_polisi": 1,
+      "indeks_korupsi": 27,
+      "indeks_keamanan": 56
   } as const;

@@ -1,10 +1,10 @@
 export const ethiopia_hukum = {
-      "pusat_bantuan_hukum": 14,
-      "pengadilan": 24,
-      "kejaksaan": 10,
-      "pos_polisi": 21,
-      "armada_mobil_polisi": 9104,
-      "akademi_polisi": 17,
-      "indeks_korupsi": 82,
-      "indeks_keamanan": 82
+      "pusat_bantuan_hukum": 8,
+      "pengadilan": 15,
+      "kejaksaan": 2,
+      "pos_polisi": 22,
+      "armada_mobil_polisi": 228,
+      "akademi_polisi": 1,
+      "indeks_korupsi": 38,
+      "indeks_keamanan": 48
   } as const;

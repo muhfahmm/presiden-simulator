@@ -1,10 +1,10 @@
 export const meksiko_olahraga = {
-  "kolam_renang": 16,
-  "sirkuit_balap": 28,
-  "stadion": 14,
-  "stadion_internasional": 3,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 297,
+  "sirkuit_balap": 13,
+  "stadion": 72,
+  "stadion_internasional": 14,
+  "gym": 461,
+  "golf": 50,
+  "esports": 61,
+  "gokart": 134
 } as const;

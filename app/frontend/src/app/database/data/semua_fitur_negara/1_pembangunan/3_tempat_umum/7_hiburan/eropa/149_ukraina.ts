@@ -1,4 +1,4 @@
 export const ukraina_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 23,
+  "teater": 4
 } as const;

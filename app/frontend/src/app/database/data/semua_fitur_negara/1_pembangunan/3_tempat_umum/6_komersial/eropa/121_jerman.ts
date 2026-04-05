@@ -1,5 +1,5 @@
 export const jerman_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 154,
+  "hotel": 233,
+  "pusat_grosir_tekstil": 58
 } as const;

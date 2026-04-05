@@ -1,8 +1,9 @@
 export const costa_rica_manufaktur = {
-  semikonduktor: 31,
-  mobil: 37,
-  sepeda_motor: 23,
-  smelter: 15,
-  semen_beton: 23,
-  kayu: 23,
+  semikonduktor: 12,
+  mobil: 12,
+  sepeda_motor: 42,
+  smelter: 39,
+  semen_beton: 21,
+  kayu: 33,
+  pupuk: 30,
 } as const;

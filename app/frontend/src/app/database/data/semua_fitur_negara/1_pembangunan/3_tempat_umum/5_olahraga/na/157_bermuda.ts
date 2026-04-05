@@ -1,10 +1,10 @@
 export const bermuda_olahraga = {
-  "kolam_renang": 39,
-  "sirkuit_balap": 40,
-  "stadion": 19,
-  "stadion_internasional": 22,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 16,
+  "sirkuit_balap": 1,
+  "stadion": 4,
+  "stadion_internasional": 0,
+  "gym": 34,
+  "golf": 2,
+  "esports": 4,
+  "gokart": 10
 } as const;

@@ -1,7 +1,7 @@
 export const liechtenstein_kesehatan = {
-      "rumah_sakit_besar": 34,
-      "rumah_sakit_kecil": 11,
-      "pusat_diagnostik": 24,
-      "harapan_hidup": 10,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 7,
+      "rumah_sakit_kecil": 52,
+      "pusat_diagnostik": 8,
+      "harapan_hidup": 65,
+      "indeks_kesehatan": 59
     } as const;

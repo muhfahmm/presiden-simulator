@@ -1,0 +1,13 @@
+import { mongolia_intelijen } from "../../2_intelijen/asia/83_mongolia";
+
+export const mongolia_strategis = {
+    "waktu_respon": 31,
+    "intelijen": 33,
+    "status_nuklir": false,
+    "intel_radar": mongolia_intelijen,
+    "operasi_strategis": { "misi_serangan": 4,
+      "misi_mata_mata": 35,
+      "misi_sabotase": 33,
+      "manajemen_wilayah": 4,
+      "program_nuklir": 0 }
+  } as const;

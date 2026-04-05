@@ -1,6 +1,6 @@
 export const oman_peternakan = {
-  ayam_unggas: 20,
-  sapi_perah: 35,
-  sapi_potong: 24,
-  domba_kambing: 35,
+  ayam_unggas: 143,
+  sapi_perah: 495,
+  sapi_potong: 297,
+  domba_kambing: 495,
 } as const;

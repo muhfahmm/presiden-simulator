@@ -1,6 +1,6 @@
 export const kepulauan_faroe_peternakan = {
-  ayam_unggas: 14,
-  sapi_perah: 2,
-  sapi_potong: 13,
-  domba_kambing: 29,
+  ayam_unggas: 29,
+  sapi_perah: 18,
+  sapi_potong: 21,
+  domba_kambing: 18,
 } as const;

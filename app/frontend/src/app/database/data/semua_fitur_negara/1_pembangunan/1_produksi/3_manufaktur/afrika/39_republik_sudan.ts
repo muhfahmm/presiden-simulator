@@ -1,8 +1,9 @@
 export const republik_sudan_manufaktur = {
-  mobil: 27,
-  semen_beton: 16,
-  sepeda_motor: 21,
-  semikonduktor: 20,
-  smelter: 37,
+  mobil: 12,
+  semen_beton: 24,
+  sepeda_motor: 33,
+  semikonduktor: 36,
+  smelter: 30,
   kayu: 30,
+  pupuk: 30,
 } as const;

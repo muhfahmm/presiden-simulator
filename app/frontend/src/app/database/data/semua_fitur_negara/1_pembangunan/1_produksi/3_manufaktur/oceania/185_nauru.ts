@@ -1,8 +1,9 @@
 export const nauru_manufaktur = {
-  semikonduktor: 30,
-  mobil: 19,
-  sepeda_motor: 23,
-  smelter: 16,
-  semen_beton: 21,
-  kayu: 30,
+  semikonduktor: 15,
+  mobil: 42,
+  sepeda_motor: 39,
+  smelter: 27,
+  semen_beton: 30,
+  kayu: 45,
+  pupuk: 21,
 } as const;

@@ -1,13 +1,13 @@
 export const bahama_pendidikan = {
-      "prasekolah": 24,
-      "dasar": 1,
-      "menengah": 4,
-      "lanjutan": 18,
-      "universitas": 23,
-      "lembaga_pendidikan": 17,
-      "laboratorium": 25,
-      "observatorium": 24,
-      "pusat_penelitian": 33,
-      "pusat_pengembangan": 2,
-      "literasi": 94
+      "prasekolah": 100,
+      "dasar": 35,
+      "menengah": 37,
+      "lanjutan": 25,
+      "universitas": 4,
+      "lembaga_pendidikan": 6,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 1,
+      "literasi": 62
     } as const;

@@ -1,10 +1,10 @@
 export const san_marino_infrastruktur = {
-  jalur_sepeda: 22,
-  jalan_raya: 2,
-  terminal_bus: 26,
-  stasiun_kereta_api: 7,
-  kereta_bawah_tanah: 36,
-  pelabuhan: 31,
-  bandara: 36,
-  helipad: 20,
+  jalur_sepeda: 6,
+  jalan_raya: 5,
+  terminal_bus: 7,
+  stasiun_kereta_api: 1,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 5,
+  bandara: 4,
+  helipad: 4,
 } as const;

@@ -1,10 +1,10 @@
 export const curacao_hukum = {
-      "pusat_bantuan_hukum": 11,
-      "pengadilan": 1,
-      "kejaksaan": 17,
-      "pos_polisi": 39,
-      "armada_mobil_polisi": 5296,
-      "akademi_polisi": 22,
-      "indeks_korupsi": 78,
-      "indeks_keamanan": 79
+      "pusat_bantuan_hukum": 4,
+      "pengadilan": 4,
+      "kejaksaan": 4,
+      "pos_polisi": 26,
+      "armada_mobil_polisi": 1908,
+      "akademi_polisi": 1,
+      "indeks_korupsi": 44,
+      "indeks_keamanan": 50
   } as const;

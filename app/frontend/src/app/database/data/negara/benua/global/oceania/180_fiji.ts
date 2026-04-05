@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { fiji_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/180_fiji";
-import { fiji_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/oceania/180_fiji";
+import { fiji_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/180_fiji";
 import { fiji_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/180_fiji";
 import { fiji_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/oceania/180_fiji";
 import { fiji_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/oceania/180_fiji";
 import { fiji_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/oceania/180_fiji";
-import { fiji_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/oceania/180_fiji";
+import { fiji_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/oceania/180_fiji";
 import { fiji_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/oceania/180_fiji";
 import { fiji_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/oceania/180_fiji";
 import { fiji_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/oceania/180_fiji";
@@ -14,10 +14,10 @@ import { fiji_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangu
 import { fiji_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/oceania/180_fiji";
 import { fiji_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/oceania/180_fiji";
 import { fiji_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/oceania/180_fiji";
-import { fiji_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/oceania/180_fiji";
+import { fiji_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/oceania/180_fiji";
 import { fiji_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/oceania/180_fiji";
 import { fiji_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/180_fiji";
-import { fiji_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/oceania/180_fiji";
+import { fiji_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/oceania/180_fiji";
 const fiji_geopolitik = {
     "un_vote": 113,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const fiji: CountryData = {
     "lingkungan": 60
   }
 };
+
 

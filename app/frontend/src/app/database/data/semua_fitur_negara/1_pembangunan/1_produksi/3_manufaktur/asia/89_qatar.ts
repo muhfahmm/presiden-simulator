@@ -1,8 +1,9 @@
 export const qatar_manufaktur = {
-  semikonduktor: 24,
-  mobil: 35,
-  sepeda_motor: 38,
-  smelter: 30,
-  semen_beton: 5,
-  kayu: 40,
+  semikonduktor: 210,
+  mobil: 195,
+  sepeda_motor: 165,
+  smelter: 195,
+  semen_beton: 120,
+  kayu: 60,
+  pupuk: 75,
 } as const;

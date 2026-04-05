@@ -1,7 +1,7 @@
 export const guinea_kesehatan = {
-      "rumah_sakit_besar": 11,
-      "rumah_sakit_kecil": 2,
-      "pusat_diagnostik": 39,
-      "harapan_hidup": 37,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 2,
+      "rumah_sakit_kecil": 44,
+      "pusat_diagnostik": 8,
+      "harapan_hidup": 55,
+      "indeks_kesehatan": 51
   } as const;

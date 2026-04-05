@@ -1,13 +1,13 @@
 export const afganistan_pendidikan = {
-      "prasekolah": 30,
-      "dasar": 21,
-      "menengah": 33,
-      "lanjutan": 11,
-      "universitas": 30,
-      "lembaga_pendidikan": 9,
-      "laboratorium": 28,
-      "observatorium": 25,
-      "pusat_penelitian": 1,
-      "pusat_pengembangan": 13,
-      "literasi": 70
+      "prasekolah": 82,
+      "dasar": 114,
+      "menengah": 78,
+      "lanjutan": 19,
+      "universitas": 7,
+      "lembaga_pendidikan": 7,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 2,
+      "literasi": 77
     } as const;

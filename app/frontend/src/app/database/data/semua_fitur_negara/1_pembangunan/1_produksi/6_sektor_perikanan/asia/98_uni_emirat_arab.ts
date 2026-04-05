@@ -1,5 +1,5 @@
 export const uni_emirat_arab_perikanan = {
-  udang: 33,
-  mutiara: 33,
-  ikan: 26,
+  udang: 1848,
+  mutiara: 1782,
+  ikan: 528,
 } as const;

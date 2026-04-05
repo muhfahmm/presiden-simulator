@@ -1,13 +1,13 @@
 export const kongo_pendidikan = {
-      "prasekolah": 17,
-      "dasar": 12,
-      "menengah": 7,
-      "lanjutan": 19,
-      "universitas": 23,
-      "lembaga_pendidikan": 13,
-      "laboratorium": 26,
-      "observatorium": 1,
-      "pusat_penelitian": 38,
-      "pusat_pengembangan": 33,
-      "literasi": 64
+      "prasekolah": 77,
+      "dasar": 122,
+      "menengah": 73,
+      "lanjutan": 38,
+      "universitas": 4,
+      "lembaga_pendidikan": 9,
+      "laboratorium": 0,
+      "observatorium": 0,
+      "pusat_penelitian": 3,
+      "pusat_pengembangan": 2,
+      "literasi": 85
   } as const;

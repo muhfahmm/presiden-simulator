@@ -1,10 +1,10 @@
 export const dominika_hukum = {
-      "pusat_bantuan_hukum": 9,
+      "pusat_bantuan_hukum": 8,
       "pengadilan": 2,
-      "kejaksaan": 16,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 7579,
-      "akademi_polisi": 28,
-      "indeks_korupsi": 88,
-      "indeks_keamanan": 86
+      "kejaksaan": 4,
+      "pos_polisi": 5,
+      "armada_mobil_polisi": 1843,
+      "akademi_polisi": 2,
+      "indeks_korupsi": 31,
+      "indeks_keamanan": 67
   } as const;

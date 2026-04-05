@@ -1,8 +1,9 @@
 export const madagaskar_manufaktur = {
-  mobil: 30,
-  semen_beton: 25,
-  sepeda_motor: 39,
-  semikonduktor: 13,
-  smelter: 39,
+  mobil: 8,
+  semen_beton: 16,
+  sepeda_motor: 12,
+  semikonduktor: 16,
+  smelter: 10,
   kayu: 28,
+  pupuk: 16,
 } as const;

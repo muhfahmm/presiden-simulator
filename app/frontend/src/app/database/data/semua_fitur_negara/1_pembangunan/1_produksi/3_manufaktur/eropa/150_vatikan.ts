@@ -1,8 +1,9 @@
 export const vatikan_manufaktur = {
-  semikonduktor: 23,
-  mobil: 38,
-  sepeda_motor: 10,
-  smelter: 15,
-  semen_beton: 14,
-  kayu: 8,
+  semikonduktor: 16,
+  mobil: 20,
+  sepeda_motor: 48,
+  smelter: 40,
+  semen_beton: 56,
+  kayu: 48,
+  pupuk: 36,
 } as const;

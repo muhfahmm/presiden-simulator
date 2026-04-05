@@ -1,7 +1,7 @@
 export const eswatini_kesehatan = {
-      "rumah_sakit_besar": 29,
-      "rumah_sakit_kecil": 2,
-      "pusat_diagnostik": 20,
-      "harapan_hidup": 7,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 5,
+      "rumah_sakit_kecil": 26,
+      "pusat_diagnostik": 21,
+      "harapan_hidup": 57,
+      "indeks_kesehatan": 65
   } as const;

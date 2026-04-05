@@ -1,10 +1,10 @@
 export const hong_kong_hukum = {
-      "pusat_bantuan_hukum": 10,
-      "pengadilan": 17,
-      "kejaksaan": 15,
-      "pos_polisi": 33,
-      "armada_mobil_polisi": 7778,
-      "akademi_polisi": 40,
-      "indeks_korupsi": 86,
-      "indeks_keamanan": 66
+      "pusat_bantuan_hukum": 7,
+      "pengadilan": 12,
+      "kejaksaan": 7,
+      "pos_polisi": 12,
+      "armada_mobil_polisi": 1135,
+      "akademi_polisi": 4,
+      "indeks_korupsi": 14,
+      "indeks_keamanan": 47
   } as const;

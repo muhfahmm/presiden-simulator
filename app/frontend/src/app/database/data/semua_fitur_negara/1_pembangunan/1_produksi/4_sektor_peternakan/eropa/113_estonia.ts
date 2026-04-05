@@ -1,6 +1,6 @@
 export const estonia_peternakan = {
-  ayam_unggas: 28,
-  sapi_perah: 34,
-  sapi_potong: 5,
-  domba_kambing: 28,
+  ayam_unggas: 95,
+  sapi_perah: 65,
+  sapi_potong: 90,
+  domba_kambing: 55,
 } as const;

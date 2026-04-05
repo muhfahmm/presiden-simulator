@@ -1,13 +1,13 @@
 export const oman_pendidikan = {
-      "prasekolah": 11,
-      "dasar": 17,
-      "menengah": 17,
-      "lanjutan": 12,
-      "universitas": 1,
-      "lembaga_pendidikan": 7,
-      "laboratorium": 38,
-      "observatorium": 4,
-      "pusat_penelitian": 16,
-      "pusat_pengembangan": 4,
-      "literasi": 60
+      "prasekolah": 84,
+      "dasar": 97,
+      "menengah": 71,
+      "lanjutan": 31,
+      "universitas": 2,
+      "lembaga_pendidikan": 9,
+      "laboratorium": 0,
+      "observatorium": 0,
+      "pusat_penelitian": 3,
+      "pusat_pengembangan": 1,
+      "literasi": 85
     } as const;

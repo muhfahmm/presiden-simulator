@@ -1,8 +1,9 @@
 export const ceko_manufaktur = {
-  semikonduktor: 31,
-  mobil: 32,
-  sepeda_motor: 20,
-  smelter: 23,
-  semen_beton: 16,
-  kayu: 26,
+  semikonduktor: 207,
+  mobil: 253,
+  sepeda_motor: 276,
+  smelter: 92,
+  semen_beton: 299,
+  kayu: 92,
+  pupuk: 46,
 } as const;

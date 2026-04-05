@@ -1,13 +1,13 @@
 export const libya_pendidikan = {
-      "prasekolah": 11,
-      "dasar": 24,
-      "menengah": 10,
-      "lanjutan": 25,
-      "universitas": 11,
+      "prasekolah": 68,
+      "dasar": 20,
+      "menengah": 90,
+      "lanjutan": 49,
+      "universitas": 2,
       "lembaga_pendidikan": 9,
-      "laboratorium": 34,
-      "observatorium": 14,
+      "laboratorium": 2,
+      "observatorium": 0,
       "pusat_penelitian": 3,
-      "pusat_pengembangan": 18,
-      "literasi": 88
+      "pusat_pengembangan": 0,
+      "literasi": 73
   } as const;

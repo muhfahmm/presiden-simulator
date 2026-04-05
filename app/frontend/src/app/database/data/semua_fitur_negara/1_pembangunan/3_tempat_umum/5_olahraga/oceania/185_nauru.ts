@@ -1,10 +1,10 @@
 export const nauru_olahraga = {
-  "kolam_renang": 27,
-  "sirkuit_balap": 11,
-  "stadion": 23,
-  "stadion_internasional": 30,
-  "gym": 0,
-  "golf": 0,
+  "kolam_renang": 18,
+  "sirkuit_balap": 1,
+  "stadion": 9,
+  "stadion_internasional": 1,
+  "gym": 11,
+  "golf": 5,
   "esports": 0,
-  "gokart": 0
+  "gokart": 5
 } as const;

@@ -1,13 +1,13 @@
 export const mauritius_pendidikan = {
-      "prasekolah": 22,
-      "dasar": 14,
-      "menengah": 17,
-      "lanjutan": 38,
-      "universitas": 2,
-      "lembaga_pendidikan": 13,
-      "laboratorium": 1,
-      "observatorium": 25,
-      "pusat_penelitian": 16,
-      "pusat_pengembangan": 36,
-      "literasi": 95
+      "prasekolah": 87,
+      "dasar": 100,
+      "menengah": 20,
+      "lanjutan": 18,
+      "universitas": 4,
+      "lembaga_pendidikan": 11,
+      "laboratorium": 0,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 2,
+      "literasi": 69
   } as const;

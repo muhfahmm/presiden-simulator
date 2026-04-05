@@ -1,8 +1,9 @@
 export const bosnia_dan_hercegovina_manufaktur = {
-  semikonduktor: 2,
-  mobil: 13,
-  sepeda_motor: 28,
-  smelter: 37,
-  semen_beton: 26,
+  semikonduktor: 40,
+  mobil: 44,
+  sepeda_motor: 48,
+  smelter: 52,
+  semen_beton: 40,
   kayu: 28,
+  pupuk: 16,
 } as const;

@@ -1,6 +1,6 @@
 export const puerto_rico_peternakan = {
-  ayam_unggas: 22,
-  sapi_perah: 35,
-  sapi_potong: 5,
-  domba_kambing: 2,
+  ayam_unggas: 44,
+  sapi_perah: 184,
+  sapi_potong: 84,
+  domba_kambing: 140,
 } as const;

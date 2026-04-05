@@ -1,10 +1,10 @@
 export const guyana_infrastruktur = {
-  jalur_sepeda: 27,
-  jalan_raya: 14,
-  terminal_bus: 3,
-  stasiun_kereta_api: 10,
-  kereta_bawah_tanah: 11,
-  pelabuhan: 14,
-  bandara: 23,
-  helipad: 16,
+  jalur_sepeda: 4,
+  jalan_raya: 15,
+  terminal_bus: 6,
+  stasiun_kereta_api: 4,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 2,
+  bandara: 1,
+  helipad: 1,
 } as const;

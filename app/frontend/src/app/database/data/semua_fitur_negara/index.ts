@@ -6,7 +6,7 @@ import { Ministry } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah
 import { SektorListrik } from "./1_pembangunan/1_produksi/1_sektor_listrik_nasional/1_db_listrik";
 import { SektorInfrastruktur } from "./1_pembangunan/3_tempat_umum/1_infrastruktur";
 import { SektorManufaktur, SektorPeternakan, SektorAgrikultur, SektorPerikanan, SektorOlahanPangan, SektorFarmasi, SektorEkstraksi } from "./1_pembangunan/1_produksi";
-import { SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian } from "./4_pertahanan";
+import { SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian } from "./2_pertahanan";
 import { SektorPabrikMiliter } from "./1_pembangunan/2_produksi_militer";
 import { PendidikanData, KesehatanData, HukumData, SektorKomersial, SektorHiburan } from "./1_pembangunan/3_tempat_umum";
 import { SektorGeopolitik } from "./5_geopolitik";
@@ -118,7 +118,7 @@ export * from "./1_pembangunan/1_produksi/1_sektor_listrik_nasional/1_db_listrik
 export * from "./1_pembangunan/1_produksi/1_sektor_listrik_nasional/listrik_logic";
 export * from "./1_pembangunan/3_tempat_umum/1_infrastruktur";
 export * from "./1_pembangunan/1_produksi";
-export * from "./4_pertahanan";
+export * from "./2_pertahanan";
 export * from "./1_pembangunan/2_produksi_militer";
 export * from "./1_pembangunan/3_tempat_umum";
 export * from "./5_geopolitik";
@@ -128,4 +128,4 @@ export * from "./1_pembangunan/3_tempat_umum/5_olahraga";
 export { 
   infrastrukturRate, 
   sosialRate 
-} from "../harga_bangunan_negara/1_pembangunan/3_tempat_umum";
+} from "./1_pembangunan/3_tempat_umum";

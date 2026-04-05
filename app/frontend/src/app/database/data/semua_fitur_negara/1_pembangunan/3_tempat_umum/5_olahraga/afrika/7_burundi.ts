@@ -1,10 +1,10 @@
 export const burundi_olahraga = {
-  "kolam_renang": 9,
-  "sirkuit_balap": 3,
-  "stadion": 4,
-  "stadion_internasional": 12,
-  "gym": 0,
-  "golf": 0,
+  "kolam_renang": 19,
+  "sirkuit_balap": 1,
+  "stadion": 10,
+  "stadion_internasional": 0,
+  "gym": 17,
+  "golf": 3,
   "esports": 0,
-  "gokart": 0
+  "gokart": 7
 } as const;

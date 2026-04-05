@@ -1,8 +1,9 @@
 export const kuwait_manufaktur = {
-  semikonduktor: 14,
-  mobil: 9,
-  sepeda_motor: 27,
-  smelter: 28,
-  semen_beton: 18,
-  kayu: 27,
+  semikonduktor: 300,
+  mobil: 160,
+  sepeda_motor: 180,
+  smelter: 260,
+  semen_beton: 300,
+  kayu: 120,
+  pupuk: 120,
 } as const;

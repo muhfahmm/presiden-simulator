@@ -1,6 +1,6 @@
 export const mesir_peternakan = {
-  ayam_unggas: 32,
-  sapi_perah: 17,
-  sapi_potong: 2,
-  domba_kambing: 26,
+  ayam_unggas: 1034,
+  sapi_perah: 1974,
+  sapi_potong: 2303,
+  domba_kambing: 2350,
 } as const;

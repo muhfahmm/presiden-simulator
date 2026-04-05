@@ -1,0 +1,13 @@
+import { turkmenistan_intelijen } from "../../2_intelijen/asia/97_turkmenistan";
+
+export const turkmenistan_strategis = {
+    "waktu_respon": 15,
+    "intelijen": 18,
+    "status_nuklir": false,
+    "intel_radar": turkmenistan_intelijen,
+    "operasi_strategis": { "misi_serangan": 11,
+      "misi_mata_mata": 34,
+      "misi_sabotase": 2,
+      "manajemen_wilayah": 3,
+      "program_nuklir": 0 }
+  } as const;

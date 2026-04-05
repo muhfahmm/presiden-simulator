@@ -1,8 +1,9 @@
 export const guinea_manufaktur = {
-  mobil: 13,
-  semen_beton: 40,
-  sepeda_motor: 33,
-  semikonduktor: 21,
-  smelter: 34,
-  kayu: 27,
+  mobil: 12,
+  semen_beton: 28,
+  sepeda_motor: 30,
+  semikonduktor: 12,
+  smelter: 20,
+  kayu: 28,
+  pupuk: 20,
 } as const;

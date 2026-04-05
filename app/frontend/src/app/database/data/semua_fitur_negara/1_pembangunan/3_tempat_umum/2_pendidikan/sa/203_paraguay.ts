@@ -1,13 +1,13 @@
 export const paraguay_pendidikan = {
-      "prasekolah": 1,
-      "dasar": 7,
-      "menengah": 15,
-      "lanjutan": 4,
-      "universitas": 26,
-      "lembaga_pendidikan": 25,
-      "laboratorium": 14,
-      "observatorium": 30,
-      "pusat_penelitian": 11,
-      "pusat_pengembangan": 13,
-      "literasi": 81
+      "prasekolah": 25,
+      "dasar": 112,
+      "menengah": 16,
+      "lanjutan": 29,
+      "universitas": 9,
+      "lembaga_pendidikan": 15,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 0,
+      "literasi": 83
     } as const;

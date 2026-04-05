@@ -1,10 +1,10 @@
 export const mauritius_hukum = {
-      "pusat_bantuan_hukum": 35,
-      "pengadilan": 27,
-      "kejaksaan": 23,
-      "pos_polisi": 22,
-      "armada_mobil_polisi": 1046,
-      "akademi_polisi": 37,
-      "indeks_korupsi": 72,
-      "indeks_keamanan": 83
+      "pusat_bantuan_hukum": 4,
+      "pengadilan": 2,
+      "kejaksaan": 3,
+      "pos_polisi": 6,
+      "armada_mobil_polisi": 1573,
+      "akademi_polisi": 1,
+      "indeks_korupsi": 48,
+      "indeks_keamanan": 47
   } as const;

@@ -1,10 +1,10 @@
 export const georgia_infrastruktur = {
-  jalur_sepeda: 13,
-  jalan_raya: 21,
-  terminal_bus: 39,
-  stasiun_kereta_api: 18,
-  kereta_bawah_tanah: 11,
-  pelabuhan: 16,
-  bandara: 28,
-  helipad: 25,
+  jalur_sepeda: 7,
+  jalan_raya: 6,
+  terminal_bus: 6,
+  stasiun_kereta_api: 2,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 3,
+  bandara: 1,
+  helipad: 5,
 } as const;

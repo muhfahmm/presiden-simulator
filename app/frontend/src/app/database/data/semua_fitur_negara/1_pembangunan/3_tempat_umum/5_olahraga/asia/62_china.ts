@@ -1,10 +1,10 @@
 export const china_olahraga = {
-  "kolam_renang": 6,
-  "sirkuit_balap": 17,
-  "stadion": 31,
-  "stadion_internasional": 5,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 1573,
+  "sirkuit_balap": 180,
+  "stadion": 1333,
+  "stadion_internasional": 83,
+  "gym": 4782,
+  "golf": 253,
+  "esports": 429,
+  "gokart": 1014
 } as const;

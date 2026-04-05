@@ -1,5 +1,5 @@
 export const tonga_perikanan = {
-  udang: 5,
-  mutiara: 5,
-  ikan: 29,
+  udang: 29,
+  mutiara: 14,
+  ikan: 34,
 } as const;

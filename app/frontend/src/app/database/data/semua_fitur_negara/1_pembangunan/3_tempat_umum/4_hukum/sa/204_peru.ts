@@ -1,10 +1,10 @@
 export const peru_hukum = {
-      "pusat_bantuan_hukum": 3,
-      "pengadilan": 34,
-      "kejaksaan": 26,
-      "pos_polisi": 20,
-      "armada_mobil_polisi": 8042,
-      "akademi_polisi": 25,
-      "indeks_korupsi": 91,
-      "indeks_keamanan": 89
+      "pusat_bantuan_hukum": 30,
+      "pengadilan": 46,
+      "kejaksaan": 18,
+      "pos_polisi": 54,
+      "armada_mobil_polisi": 3370,
+      "akademi_polisi": 5,
+      "indeks_korupsi": 30,
+      "indeks_keamanan": 59
   } as const;

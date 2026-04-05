@@ -1,10 +1,10 @@
 export const estonia_infrastruktur = {
-  jalur_sepeda: 26,
-  jalan_raya: 35,
-  terminal_bus: 2,
-  stasiun_kereta_api: 39,
-  kereta_bawah_tanah: 32,
-  pelabuhan: 18,
-  bandara: 14,
-  helipad: 19,
+  jalur_sepeda: 9,
+  jalan_raya: 19,
+  terminal_bus: 6,
+  stasiun_kereta_api: 1,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 1,
+  bandara: 5,
+  helipad: 2,
 } as const;

@@ -1,8 +1,9 @@
 export const guam_manufaktur = {
-  semikonduktor: 35,
-  mobil: 4,
-  sepeda_motor: 16,
-  smelter: 32,
-  semen_beton: 8,
-  kayu: 19,
+  semikonduktor: 22,
+  mobil: 14,
+  sepeda_motor: 28,
+  smelter: 14,
+  semen_beton: 24,
+  kayu: 30,
+  pupuk: 4,
 } as const;

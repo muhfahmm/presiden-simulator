@@ -1,5 +1,5 @@
 export const hong_kong_perikanan = {
-  udang: 32,
-  mutiara: 32,
-  ikan: 11,
+  udang: 28,
+  mutiara: 34,
+  ikan: 31,
 } as const;

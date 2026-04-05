@@ -1,13 +1,13 @@
 export const seychelles_pendidikan = {
-      "prasekolah": 9,
-      "dasar": 8,
-      "menengah": 29,
-      "lanjutan": 36,
-      "universitas": 7,
-      "lembaga_pendidikan": 28,
-      "laboratorium": 27,
-      "observatorium": 27,
-      "pusat_penelitian": 39,
-      "pusat_pengembangan": 25,
-      "literasi": 84
+      "prasekolah": 25,
+      "dasar": 97,
+      "menengah": 42,
+      "lanjutan": 46,
+      "universitas": 12,
+      "lembaga_pendidikan": 4,
+      "laboratorium": 0,
+      "observatorium": 0,
+      "pusat_penelitian": 3,
+      "pusat_pengembangan": 0,
+      "literasi": 62
   } as const;

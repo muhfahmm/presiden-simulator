@@ -1,8 +1,9 @@
 export const rwanda_manufaktur = {
-  mobil: 6,
-  semen_beton: 12,
-  sepeda_motor: 34,
-  semikonduktor: 38,
-  smelter: 17,
-  kayu: 11,
+  mobil: 15,
+  semen_beton: 8,
+  sepeda_motor: 14,
+  semikonduktor: 11,
+  smelter: 9,
+  kayu: 10,
+  pupuk: 5,
 } as const;

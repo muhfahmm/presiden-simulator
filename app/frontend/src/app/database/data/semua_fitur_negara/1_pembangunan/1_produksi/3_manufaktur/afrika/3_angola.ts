@@ -1,8 +1,9 @@
 export const angola_manufaktur = {
-  mobil: 2,
-  semen_beton: 20,
-  sepeda_motor: 38,
-  semikonduktor: 1,
-  smelter: 4,
-  kayu: 22,
+  mobil: 64,
+  semen_beton: 56,
+  sepeda_motor: 112,
+  semikonduktor: 88,
+  smelter: 80,
+  kayu: 72,
+  pupuk: 16,
 } as const;

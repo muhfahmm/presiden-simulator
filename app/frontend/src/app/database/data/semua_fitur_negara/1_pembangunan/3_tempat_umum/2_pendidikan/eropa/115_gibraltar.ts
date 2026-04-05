@@ -1,13 +1,13 @@
 export const gibraltar_pendidikan = {
-      "prasekolah": 21,
-      "dasar": 37,
-      "menengah": 9,
-      "lanjutan": 33,
-      "universitas": 12,
-      "lembaga_pendidikan": 32,
-      "laboratorium": 14,
-      "observatorium": 40,
-      "pusat_penelitian": 33,
-      "pusat_pengembangan": 11,
-      "literasi": 86
+      "prasekolah": 75,
+      "dasar": 76,
+      "menengah": 69,
+      "lanjutan": 19,
+      "universitas": 6,
+      "lembaga_pendidikan": 8,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 2,
+      "literasi": 78
     } as const;

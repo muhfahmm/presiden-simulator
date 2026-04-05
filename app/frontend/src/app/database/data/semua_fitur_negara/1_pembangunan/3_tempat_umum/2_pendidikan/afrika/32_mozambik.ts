@@ -1,13 +1,13 @@
 export const mozambik_pendidikan = {
-      "prasekolah": 38,
-      "dasar": 12,
-      "menengah": 22,
-      "lanjutan": 16,
-      "universitas": 17,
-      "lembaga_pendidikan": 12,
-      "laboratorium": 17,
-      "observatorium": 33,
-      "pusat_penelitian": 25,
-      "pusat_pengembangan": 4,
-      "literasi": 83
+      "prasekolah": 39,
+      "dasar": 145,
+      "menengah": 76,
+      "lanjutan": 11,
+      "universitas": 9,
+      "lembaga_pendidikan": 10,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 0,
+      "literasi": 80
   } as const;

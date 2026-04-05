@@ -1,10 +1,10 @@
 export const singapura_hukum = {
-      "pusat_bantuan_hukum": 2,
-      "pengadilan": 16,
-      "kejaksaan": 37,
-      "pos_polisi": 6,
-      "armada_mobil_polisi": 2865,
-      "akademi_polisi": 33,
-      "indeks_korupsi": 64,
-      "indeks_keamanan": 92
+      "pusat_bantuan_hukum": 27,
+      "pengadilan": 41,
+      "kejaksaan": 18,
+      "pos_polisi": 38,
+      "armada_mobil_polisi": 2613,
+      "akademi_polisi": 10,
+      "indeks_korupsi": 29,
+      "indeks_keamanan": 51
   } as const;

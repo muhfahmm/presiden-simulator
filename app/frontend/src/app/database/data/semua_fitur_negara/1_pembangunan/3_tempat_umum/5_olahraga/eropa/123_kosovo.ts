@@ -1,10 +1,10 @@
 export const kosovo_olahraga = {
-  "kolam_renang": 22,
-  "sirkuit_balap": 33,
-  "stadion": 25,
-  "stadion_internasional": 13,
-  "gym": 0,
+  "kolam_renang": 11,
+  "sirkuit_balap": 2,
+  "stadion": 3,
+  "stadion_internasional": 1,
+  "gym": 38,
   "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "esports": 2,
+  "gokart": 9
 } as const;

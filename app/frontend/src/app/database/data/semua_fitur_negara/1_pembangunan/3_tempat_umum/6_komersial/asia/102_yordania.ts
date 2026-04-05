@@ -1,5 +1,5 @@
 export const yordania_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 3,
+  "hotel": 13,
+  "pusat_grosir_tekstil": 3
 } as const;

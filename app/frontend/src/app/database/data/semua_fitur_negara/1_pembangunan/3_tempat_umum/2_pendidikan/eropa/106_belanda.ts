@@ -1,13 +1,13 @@
 export const belanda_pendidikan = {
-      "prasekolah": 34,
-      "dasar": 15,
-      "menengah": 28,
-      "lanjutan": 27,
-      "universitas": 33,
-      "lembaga_pendidikan": 11,
-      "laboratorium": 1,
-      "observatorium": 40,
-      "pusat_penelitian": 34,
-      "pusat_pengembangan": 25,
-      "literasi": 74
+      "prasekolah": 1064,
+      "dasar": 1965,
+      "menengah": 915,
+      "lanjutan": 476,
+      "universitas": 418,
+      "lembaga_pendidikan": 161,
+      "laboratorium": 43,
+      "observatorium": 4,
+      "pusat_penelitian": 48,
+      "pusat_pengembangan": 27,
+      "literasi": 85
     } as const;

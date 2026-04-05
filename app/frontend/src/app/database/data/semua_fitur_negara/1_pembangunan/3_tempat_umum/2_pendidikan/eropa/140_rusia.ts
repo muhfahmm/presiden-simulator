@@ -1,13 +1,13 @@
 export const rusia_pendidikan = {
-      "prasekolah": 12,
-      "dasar": 37,
-      "menengah": 12,
-      "lanjutan": 2,
-      "universitas": 15,
-      "lembaga_pendidikan": 37,
-      "laboratorium": 26,
-      "observatorium": 34,
-      "pusat_penelitian": 29,
-      "pusat_pengembangan": 8,
-      "literasi": 87
+      "prasekolah": 1181,
+      "dasar": 1996,
+      "menengah": 1193,
+      "lanjutan": 771,
+      "universitas": 485,
+      "lembaga_pendidikan": 282,
+      "laboratorium": 98,
+      "observatorium": 5,
+      "pusat_penelitian": 64,
+      "pusat_pengembangan": 33,
+      "literasi": 95
     } as const;

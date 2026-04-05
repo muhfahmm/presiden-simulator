@@ -1,8 +1,9 @@
 export const tunisia_manufaktur = {
-  mobil: 39,
-  semen_beton: 37,
-  sepeda_motor: 23,
-  semikonduktor: 14,
-  smelter: 22,
-  kayu: 12,
+  mobil: 24,
+  semen_beton: 10,
+  sepeda_motor: 20,
+  semikonduktor: 28,
+  smelter: 28,
+  kayu: 18,
+  pupuk: 4,
 } as const;

@@ -1,10 +1,10 @@
 export const belanda_hukum = {
-      "pusat_bantuan_hukum": 34,
-      "pengadilan": 30,
-      "kejaksaan": 2,
-      "pos_polisi": 6,
-      "armada_mobil_polisi": 6595,
-      "akademi_polisi": 28,
-      "indeks_korupsi": 73,
-      "indeks_keamanan": 95
+      "pusat_bantuan_hukum": 136,
+      "pengadilan": 120,
+      "kejaksaan": 37,
+      "pos_polisi": 234,
+      "armada_mobil_polisi": 20263,
+      "akademi_polisi": 24,
+      "indeks_korupsi": 52,
+      "indeks_keamanan": 80
   } as const;

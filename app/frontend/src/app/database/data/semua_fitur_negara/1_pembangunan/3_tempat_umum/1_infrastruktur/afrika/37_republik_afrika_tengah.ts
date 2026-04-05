@@ -1,10 +1,10 @@
 export const republik_afrika_tengah_infrastruktur = {
-  jalur_sepeda: 34,
-  jalan_raya: 21,
-  terminal_bus: 39,
-  stasiun_kereta_api: 40,
-  kereta_bawah_tanah: 39,
-  pelabuhan: 22,
-  bandara: 30,
-  helipad: 24,
+  jalur_sepeda: 9,
+  jalan_raya: 6,
+  terminal_bus: 5,
+  stasiun_kereta_api: 4,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 5,
+  bandara: 3,
+  helipad: 1,
 } as const;

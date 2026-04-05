@@ -1,5 +1,5 @@
 export const costa_rica_perikanan = {
-  udang: 12,
-  mutiara: 12,
-  ikan: 10,
+  udang: 42,
+  mutiara: 45,
+  ikan: 27,
 } as const;

@@ -1,10 +1,10 @@
 export const chile_olahraga = {
-  "kolam_renang": 7,
-  "sirkuit_balap": 28,
-  "stadion": 28,
-  "stadion_internasional": 40,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 81,
+  "sirkuit_balap": 5,
+  "stadion": 27,
+  "stadion_internasional": 2,
+  "gym": 66,
+  "golf": 10,
+  "esports": 15,
+  "gokart": 35
 } as const;

@@ -1,10 +1,10 @@
 export const honduras_infrastruktur = {
-  jalur_sepeda: 16,
-  jalan_raya: 13,
-  terminal_bus: 21,
-  stasiun_kereta_api: 7,
-  kereta_bawah_tanah: 36,
-  pelabuhan: 17,
-  bandara: 1,
-  helipad: 18,
+  jalur_sepeda: 3,
+  jalan_raya: 9,
+  terminal_bus: 7,
+  stasiun_kereta_api: 1,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 5,
+  bandara: 3,
+  helipad: 1,
 } as const;

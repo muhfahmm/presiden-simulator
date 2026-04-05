@@ -1,10 +1,10 @@
 export const jamaika_infrastruktur = {
-  jalur_sepeda: 31,
-  jalan_raya: 21,
-  terminal_bus: 22,
-  stasiun_kereta_api: 20,
-  kereta_bawah_tanah: 3,
-  pelabuhan: 24,
-  bandara: 11,
-  helipad: 30,
+  jalur_sepeda: 4,
+  jalan_raya: 15,
+  terminal_bus: 7,
+  stasiun_kereta_api: 1,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 5,
+  bandara: 3,
+  helipad: 2,
 } as const;

@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { republik_uganda_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/41_republik_uganda";
-import { republik_uganda_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/afrika/41_republik_uganda";
+import { republik_uganda_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/41_republik_uganda";
 import { republik_uganda_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/41_republik_uganda";
 import { republik_uganda_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/41_republik_uganda";
 import { republik_uganda_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/41_republik_uganda";
 import { republik_uganda_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/41_republik_uganda";
-import { republik_uganda_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/afrika/41_republik_uganda";
+import { republik_uganda_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/41_republik_uganda";
 import { republik_uganda_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/41_republik_uganda";
 import { republik_uganda_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/41_republik_uganda";
 import { republik_uganda_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/41_republik_uganda";
@@ -14,10 +14,10 @@ import { republik_uganda_olahraga } from "@/app/database/data/semua_fitur_negara
 import { republik_uganda_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/41_republik_uganda";
 import { republik_uganda_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/41_republik_uganda";
 import { republik_uganda_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/41_republik_uganda";
-import { republik_uganda_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/afrika/41_republik_uganda";
+import { republik_uganda_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/41_republik_uganda";
 import { republik_uganda_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/41_republik_uganda";
 import { republik_uganda_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/41_republik_uganda";
-import { republik_uganda_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/afrika/41_republik_uganda";
+import { republik_uganda_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/41_republik_uganda";
 const republik_uganda_geopolitik = {
     "un_vote": 101,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const republik_uganda: CountryData = {
     "lingkungan": 60
   }
 };
+
 

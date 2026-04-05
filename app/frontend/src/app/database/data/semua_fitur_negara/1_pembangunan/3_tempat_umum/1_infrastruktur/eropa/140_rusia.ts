@@ -1,10 +1,10 @@
 export const rusia_infrastruktur = {
-  jalur_sepeda: 4,
-  jalan_raya: 36,
-  terminal_bus: 23,
-  stasiun_kereta_api: 21,
-  kereta_bawah_tanah: 1,
-  pelabuhan: 32,
-  bandara: 31,
-  helipad: 37,
+  jalur_sepeda: 50,
+  jalan_raya: 162,
+  terminal_bus: 85,
+  stasiun_kereta_api: 89,
+  kereta_bawah_tanah: 17,
+  pelabuhan: 24,
+  bandara: 33,
+  helipad: 38,
 } as const;

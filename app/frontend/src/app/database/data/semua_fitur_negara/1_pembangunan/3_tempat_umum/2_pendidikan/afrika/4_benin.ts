@@ -1,13 +1,13 @@
 export const benin_pendidikan = {
-      "prasekolah": 18,
-      "dasar": 28,
-      "menengah": 25,
-      "lanjutan": 21,
-      "universitas": 38,
-      "lembaga_pendidikan": 27,
-      "laboratorium": 8,
-      "observatorium": 33,
-      "pusat_penelitian": 17,
-      "pusat_pengembangan": 36,
-      "literasi": 87
+      "prasekolah": 25,
+      "dasar": 147,
+      "menengah": 48,
+      "lanjutan": 24,
+      "universitas": 6,
+      "lembaga_pendidikan": 4,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 0,
+      "literasi": 70
   } as const;

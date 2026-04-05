@@ -1,10 +1,10 @@
 export const mauritania_infrastruktur = {
-  jalur_sepeda: 14,
-  jalan_raya: 23,
-  terminal_bus: 12,
-  stasiun_kereta_api: 24,
-  kereta_bawah_tanah: 38,
-  pelabuhan: 38,
-  bandara: 9,
-  helipad: 25,
+  jalur_sepeda: 10,
+  jalan_raya: 19,
+  terminal_bus: 6,
+  stasiun_kereta_api: 3,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 2,
+  bandara: 4,
+  helipad: 4,
 } as const;

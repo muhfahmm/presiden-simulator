@@ -1,5 +1,5 @@
 export const tahiti_perikanan = {
-  udang: 10,
-  mutiara: 10,
-  ikan: 14,
+  udang: 24,
+  mutiara: 12,
+  ikan: 27,
 } as const;

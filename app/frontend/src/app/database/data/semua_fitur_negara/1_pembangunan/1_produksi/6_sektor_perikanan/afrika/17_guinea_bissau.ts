@@ -1,5 +1,5 @@
 export const guinea_bissau_perikanan = {
-  udang: 10,
-  mutiara: 10,
-  ikan: 9,
+  udang: 50,
+  mutiara: 30,
+  ikan: 64,
 } as const;

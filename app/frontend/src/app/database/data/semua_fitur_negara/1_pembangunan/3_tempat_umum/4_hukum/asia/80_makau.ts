@@ -1,10 +1,10 @@
 export const makau_hukum = {
-      "pusat_bantuan_hukum": 23,
-      "pengadilan": 33,
-      "kejaksaan": 7,
-      "pos_polisi": 36,
-      "armada_mobil_polisi": 2272,
-      "akademi_polisi": 38,
-      "indeks_korupsi": 90,
-      "indeks_keamanan": 50
+      "pusat_bantuan_hukum": 5,
+      "pengadilan": 6,
+      "kejaksaan": 10,
+      "pos_polisi": 30,
+      "armada_mobil_polisi": 1552,
+      "akademi_polisi": 4,
+      "indeks_korupsi": 14,
+      "indeks_keamanan": 44
   } as const;

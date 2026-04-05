@@ -1,10 +1,10 @@
 export const tajikistan_olahraga = {
-  "kolam_renang": 2,
-  "sirkuit_balap": 14,
-  "stadion": 36,
-  "stadion_internasional": 6,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 7,
+  "sirkuit_balap": 2,
+  "stadion": 10,
+  "stadion_internasional": 1,
+  "gym": 8,
+  "golf": 1,
+  "esports": 4,
+  "gokart": 13
 } as const;

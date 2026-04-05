@@ -1,10 +1,10 @@
 export const aljazair_infrastruktur = {
-  jalur_sepeda: 32,
-  jalan_raya: 30,
-  terminal_bus: 17,
-  stasiun_kereta_api: 12,
-  kereta_bawah_tanah: 34,
-  pelabuhan: 15,
-  bandara: 12,
-  helipad: 2,
+  jalur_sepeda: 37,
+  jalan_raya: 49,
+  terminal_bus: 13,
+  stasiun_kereta_api: 15,
+  kereta_bawah_tanah: 3,
+  pelabuhan: 8,
+  bandara: 7,
+  helipad: 10,
 } as const;

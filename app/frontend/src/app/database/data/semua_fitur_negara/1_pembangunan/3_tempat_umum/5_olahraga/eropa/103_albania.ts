@@ -1,10 +1,10 @@
 export const albania_olahraga = {
-  "kolam_renang": 11,
-  "sirkuit_balap": 8,
-  "stadion": 32,
-  "stadion_internasional": 26,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 18,
+  "sirkuit_balap": 2,
+  "stadion": 9,
+  "stadion_internasional": 0,
+  "gym": 22,
+  "golf": 1,
+  "esports": 2,
+  "gokart": 8
 } as const;

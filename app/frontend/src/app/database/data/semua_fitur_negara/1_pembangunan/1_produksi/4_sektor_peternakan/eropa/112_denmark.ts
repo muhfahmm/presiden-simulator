@@ -1,6 +1,6 @@
 export const denmark_peternakan = {
-  ayam_unggas: 28,
-  sapi_perah: 15,
-  sapi_potong: 16,
-  domba_kambing: 16,
+  ayam_unggas: 2200,
+  sapi_perah: 1716,
+  sapi_potong: 2200,
+  domba_kambing: 704,
 } as const;

@@ -1,10 +1,10 @@
 export const prancis_infrastruktur = {
-  jalur_sepeda: 5,
-  jalan_raya: 27,
-  terminal_bus: 21,
-  stasiun_kereta_api: 27,
-  kereta_bawah_tanah: 2,
-  pelabuhan: 8,
-  bandara: 34,
-  helipad: 12,
+  jalur_sepeda: 194,
+  jalan_raya: 177,
+  terminal_bus: 49,
+  stasiun_kereta_api: 60,
+  kereta_bawah_tanah: 27,
+  pelabuhan: 41,
+  bandara: 22,
+  helipad: 14,
 } as const;

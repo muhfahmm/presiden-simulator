@@ -1,4 +1,4 @@
 export const korea_selatan_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 641,
+  "teater": 300
 } as const;

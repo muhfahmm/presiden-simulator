@@ -1,13 +1,13 @@
 export const israel_pendidikan = {
-      "prasekolah": 37,
-      "dasar": 7,
-      "menengah": 7,
-      "lanjutan": 2,
-      "universitas": 28,
-      "lembaga_pendidikan": 15,
-      "laboratorium": 11,
-      "observatorium": 5,
-      "pusat_penelitian": 31,
-      "pusat_pengembangan": 33,
-      "literasi": 76
+      "prasekolah": 336,
+      "dasar": 547,
+      "menengah": 329,
+      "lanjutan": 120,
+      "universitas": 126,
+      "lembaga_pendidikan": 48,
+      "laboratorium": 10,
+      "observatorium": 2,
+      "pusat_penelitian": 9,
+      "pusat_pengembangan": 6,
+      "literasi": 87
     } as const;

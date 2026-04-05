@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { republik_tanzania_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/40_republik_tanzania";
-import { republik_tanzania_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/afrika/40_republik_tanzania";
+import { republik_tanzania_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/40_republik_tanzania";
 import { republik_tanzania_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/40_republik_tanzania";
 import { republik_tanzania_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/40_republik_tanzania";
 import { republik_tanzania_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/40_republik_tanzania";
 import { republik_tanzania_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/40_republik_tanzania";
-import { republik_tanzania_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/afrika/40_republik_tanzania";
+import { republik_tanzania_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/40_republik_tanzania";
 import { republik_tanzania_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/40_republik_tanzania";
 import { republik_tanzania_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/40_republik_tanzania";
 import { republik_tanzania_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/40_republik_tanzania";
@@ -14,10 +14,10 @@ import { republik_tanzania_olahraga } from "@/app/database/data/semua_fitur_nega
 import { republik_tanzania_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/40_republik_tanzania";
 import { republik_tanzania_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/40_republik_tanzania";
 import { republik_tanzania_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/40_republik_tanzania";
-import { republik_tanzania_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/afrika/40_republik_tanzania";
+import { republik_tanzania_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/40_republik_tanzania";
 import { republik_tanzania_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/40_republik_tanzania";
 import { republik_tanzania_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/40_republik_tanzania";
-import { republik_tanzania_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/afrika/40_republik_tanzania";
+import { republik_tanzania_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/40_republik_tanzania";
 const republik_tanzania_geopolitik = {
     "un_vote": 178,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const republik_tanzania: CountryData = {
     "lingkungan": 60
   }
 };
+
 

@@ -1,8 +1,9 @@
 export const kolombia_manufaktur = {
-  semikonduktor: 1,
-  mobil: 27,
-  sepeda_motor: 10,
-  smelter: 13,
-  semen_beton: 32,
-  kayu: 12,
+  semikonduktor: 540,
+  mobil: 360,
+  sepeda_motor: 180,
+  smelter: 468,
+  semen_beton: 540,
+  kayu: 504,
+  pupuk: 252,
 } as const;

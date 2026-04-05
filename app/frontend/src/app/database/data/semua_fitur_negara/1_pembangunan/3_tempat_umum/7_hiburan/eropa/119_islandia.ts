@@ -1,4 +1,4 @@
 export const islandia_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 8,
+  "teater": 17
 } as const;

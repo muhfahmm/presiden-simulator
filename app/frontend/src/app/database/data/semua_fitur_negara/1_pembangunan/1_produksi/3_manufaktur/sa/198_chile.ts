@@ -1,8 +1,9 @@
 export const chile_manufaktur = {
-  semikonduktor: 15,
-  mobil: 4,
-  sepeda_motor: 4,
-  smelter: 26,
-  semen_beton: 4,
-  kayu: 20,
+  semikonduktor: 378,
+  mobil: 378,
+  sepeda_motor: 702,
+  smelter: 540,
+  semen_beton: 216,
+  kayu: 540,
+  pupuk: 540,
 } as const;

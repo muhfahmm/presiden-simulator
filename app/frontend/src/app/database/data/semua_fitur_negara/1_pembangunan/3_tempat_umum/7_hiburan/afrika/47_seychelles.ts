@@ -1,4 +1,4 @@
 export const seychelles_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 29,
+  "teater": 15
 } as const;

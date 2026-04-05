@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { uni_emirat_arab_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/98_uni_emirat_arab";
-import { uni_emirat_arab_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/asia/98_uni_emirat_arab";
+import { uni_emirat_arab_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/98_uni_emirat_arab";
-import { uni_emirat_arab_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/asia/98_uni_emirat_arab";
+import { uni_emirat_arab_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/98_uni_emirat_arab";
@@ -14,10 +14,10 @@ import { uni_emirat_arab_olahraga } from "@/app/database/data/semua_fitur_negara
 import { uni_emirat_arab_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/98_uni_emirat_arab";
-import { uni_emirat_arab_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/asia/98_uni_emirat_arab";
+import { uni_emirat_arab_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/98_uni_emirat_arab";
-import { uni_emirat_arab_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/asia/98_uni_emirat_arab";
+import { uni_emirat_arab_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/98_uni_emirat_arab";
 const uni_emirat_arab_geopolitik = {
     "un_vote": 193,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const uni_emirat_arab: CountryData = {
     "lingkungan": 60
   }
 };
+
 

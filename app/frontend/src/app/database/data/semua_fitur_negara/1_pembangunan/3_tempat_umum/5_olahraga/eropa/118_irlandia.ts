@@ -1,10 +1,10 @@
 export const irlandia_olahraga = {
-  "kolam_renang": 17,
-  "sirkuit_balap": 3,
-  "stadion": 3,
-  "stadion_internasional": 17,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 52,
+  "sirkuit_balap": 7,
+  "stadion": 19,
+  "stadion_internasional": 1,
+  "gym": 48,
+  "golf": 12,
+  "esports": 10,
+  "gokart": 31
 } as const;

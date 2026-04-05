@@ -1,7 +1,7 @@
 export const grenada_kesehatan = {
-      "rumah_sakit_besar": 3,
-      "rumah_sakit_kecil": 34,
-      "pusat_diagnostik": 25,
-      "harapan_hidup": 32,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 15,
+      "rumah_sakit_kecil": 48,
+      "pusat_diagnostik": 16,
+      "harapan_hidup": 65,
+      "indeks_kesehatan": 56
     } as const;

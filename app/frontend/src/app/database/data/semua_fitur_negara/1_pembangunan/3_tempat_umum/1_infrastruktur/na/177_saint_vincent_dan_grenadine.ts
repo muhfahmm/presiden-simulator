@@ -1,10 +1,10 @@
 export const saint_vincent_dan_grenadine_infrastruktur = {
-  jalur_sepeda: 1,
-  jalan_raya: 16,
-  terminal_bus: 7,
-  stasiun_kereta_api: 33,
-  kereta_bawah_tanah: 24,
-  pelabuhan: 27,
-  bandara: 26,
-  helipad: 7,
+  jalur_sepeda: 5,
+  jalan_raya: 10,
+  terminal_bus: 2,
+  stasiun_kereta_api: 5,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 2,
+  bandara: 5,
+  helipad: 4,
 } as const;

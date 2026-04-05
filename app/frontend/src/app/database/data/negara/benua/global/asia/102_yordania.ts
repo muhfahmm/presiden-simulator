@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { yordania_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/102_yordania";
-import { yordania_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/asia/102_yordania";
+import { yordania_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/102_yordania";
 import { yordania_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/102_yordania";
 import { yordania_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/102_yordania";
 import { yordania_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/102_yordania";
 import { yordania_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/102_yordania";
-import { yordania_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/asia/102_yordania";
+import { yordania_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/102_yordania";
 import { yordania_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/102_yordania";
 import { yordania_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/102_yordania";
 import { yordania_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/102_yordania";
@@ -14,10 +14,10 @@ import { yordania_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { yordania_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/102_yordania";
 import { yordania_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/102_yordania";
 import { yordania_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/102_yordania";
-import { yordania_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/asia/102_yordania";
+import { yordania_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/102_yordania";
 import { yordania_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/102_yordania";
 import { yordania_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/102_yordania";
-import { yordania_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/asia/102_yordania";
+import { yordania_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/102_yordania";
 const yordania_geopolitik = {
     "un_vote": 82,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const yordania: CountryData = {
     "lingkungan": 60
   }
 };
+
 

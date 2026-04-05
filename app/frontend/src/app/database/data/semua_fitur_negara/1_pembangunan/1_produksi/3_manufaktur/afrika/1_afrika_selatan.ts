@@ -1,8 +1,9 @@
 export const afrika_selatan_manufaktur = {
-  mobil: 6,
-  semen_beton: 40,
-  sepeda_motor: 39,
-  semikonduktor: 37,
-  smelter: 4,
-  kayu: 9,
+  mobil: 560,
+  semen_beton: 320,
+  sepeda_motor: 480,
+  semikonduktor: 400,
+  smelter: 600,
+  kayu: 560,
+  pupuk: 400,
 } as const;

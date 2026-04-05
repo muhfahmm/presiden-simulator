@@ -1,8 +1,9 @@
 export const maldives_manufaktur = {
-  semikonduktor: 39,
-  mobil: 16,
-  sepeda_motor: 27,
-  smelter: 38,
-  semen_beton: 12,
-  kayu: 25,
+  semikonduktor: 8,
+  mobil: 20,
+  sepeda_motor: 24,
+  smelter: 20,
+  semen_beton: 18,
+  kayu: 30,
+  pupuk: 14,
 } as const;

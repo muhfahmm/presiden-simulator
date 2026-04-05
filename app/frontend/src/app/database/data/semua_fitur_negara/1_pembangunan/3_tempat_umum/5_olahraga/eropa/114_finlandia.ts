@@ -1,10 +1,10 @@
 export const finlandia_olahraga = {
-  "kolam_renang": 31,
-  "sirkuit_balap": 18,
-  "stadion": 4,
-  "stadion_internasional": 20,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 49,
+  "sirkuit_balap": 8,
+  "stadion": 37,
+  "stadion_internasional": 2,
+  "gym": 95,
+  "golf": 6,
+  "esports": 17,
+  "gokart": 37
 } as const;

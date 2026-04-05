@@ -1,10 +1,10 @@
 export const bolivia_hukum = {
-      "pusat_bantuan_hukum": 27,
-      "pengadilan": 10,
-      "kejaksaan": 5,
-      "pos_polisi": 25,
-      "armada_mobil_polisi": 9720,
-      "akademi_polisi": 5,
-      "indeks_korupsi": 52,
-      "indeks_keamanan": 58
+      "pusat_bantuan_hukum": 2,
+      "pengadilan": 9,
+      "kejaksaan": 1,
+      "pos_polisi": 10,
+      "armada_mobil_polisi": 1672,
+      "akademi_polisi": 3,
+      "indeks_korupsi": 14,
+      "indeks_keamanan": 51
   } as const;

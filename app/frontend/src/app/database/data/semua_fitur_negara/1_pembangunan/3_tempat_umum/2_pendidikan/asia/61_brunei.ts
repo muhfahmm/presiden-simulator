@@ -1,13 +1,13 @@
 export const brunei_pendidikan = {
-      "prasekolah": 3,
-      "dasar": 14,
-      "menengah": 14,
-      "lanjutan": 2,
-      "universitas": 12,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 5,
-      "observatorium": 13,
-      "pusat_penelitian": 18,
-      "pusat_pengembangan": 13,
-      "literasi": 61
+      "prasekolah": 61,
+      "dasar": 50,
+      "menengah": 97,
+      "lanjutan": 33,
+      "universitas": 18,
+      "lembaga_pendidikan": 13,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 0,
+      "literasi": 69
     } as const;

@@ -1,0 +1,13 @@
+import { spanyol_intelijen } from "../../2_intelijen/eropa/145_spanyol";
+
+export const spanyol_strategis = {
+    "waktu_respon": 40,
+    "intelijen": 8,
+    "status_nuklir": true,
+    "intel_radar": spanyol_intelijen,
+    "operasi_strategis": { "misi_serangan": 18,
+      "misi_mata_mata": 30,
+      "misi_sabotase": 6,
+      "manajemen_wilayah": 15,
+      "program_nuklir": 80 }
+  } as const;

@@ -1,5 +1,5 @@
 export const aljazair_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 14,
+  "hotel": 46,
+  "pusat_grosir_tekstil": 13
 } as const;

@@ -1,4 +1,4 @@
 export const curacao_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 28,
+  "teater": 2
 } as const;

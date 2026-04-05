@@ -1,13 +1,13 @@
 export const bermuda_pendidikan = {
-      "prasekolah": 28,
-      "dasar": 35,
-      "menengah": 3,
-      "lanjutan": 21,
-      "universitas": 6,
-      "lembaga_pendidikan": 29,
-      "laboratorium": 40,
-      "observatorium": 23,
-      "pusat_penelitian": 20,
-      "pusat_pengembangan": 6,
-      "literasi": 94
+      "prasekolah": 65,
+      "dasar": 79,
+      "menengah": 38,
+      "lanjutan": 34,
+      "universitas": 14,
+      "lembaga_pendidikan": 6,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 1,
+      "literasi": 85
     } as const;

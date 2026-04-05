@@ -1,8 +1,9 @@
 export const mali_manufaktur = {
-  mobil: 24,
-  semen_beton: 27,
-  sepeda_motor: 2,
-  semikonduktor: 20,
-  smelter: 1,
-  kayu: 1,
+  mobil: 39,
+  semen_beton: 33,
+  sepeda_motor: 39,
+  semikonduktor: 36,
+  smelter: 30,
+  kayu: 45,
+  pupuk: 24,
 } as const;

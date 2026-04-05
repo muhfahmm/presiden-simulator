@@ -1,8 +1,9 @@
 export const tajikistan_manufaktur = {
-  semikonduktor: 16,
-  mobil: 33,
-  sepeda_motor: 23,
-  smelter: 15,
-  semen_beton: 5,
-  kayu: 5,
+  semikonduktor: 28,
+  mobil: 16,
+  sepeda_motor: 48,
+  smelter: 36,
+  semen_beton: 52,
+  kayu: 36,
+  pupuk: 40,
 } as const;

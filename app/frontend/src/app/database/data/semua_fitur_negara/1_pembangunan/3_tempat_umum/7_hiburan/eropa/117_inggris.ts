@@ -1,4 +1,4 @@
 export const inggris_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 692,
+  "teater": 123
 } as const;

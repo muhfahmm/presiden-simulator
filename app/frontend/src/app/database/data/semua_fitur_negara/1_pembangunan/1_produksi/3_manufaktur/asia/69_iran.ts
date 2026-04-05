@@ -1,8 +1,9 @@
 export const iran_manufaktur = {
-  semikonduktor: 6,
-  mobil: 20,
-  sepeda_motor: 9,
-  smelter: 17,
-  semen_beton: 11,
-  kayu: 4,
+  semikonduktor: 690,
+  mobil: 414,
+  sepeda_motor: 276,
+  smelter: 598,
+  semen_beton: 368,
+  kayu: 368,
+  pupuk: 184,
 } as const;

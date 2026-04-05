@@ -1,10 +1,10 @@
 export const monako_infrastruktur = {
-  jalur_sepeda: 13,
+  jalur_sepeda: 10,
   jalan_raya: 15,
-  terminal_bus: 33,
-  stasiun_kereta_api: 25,
-  kereta_bawah_tanah: 9,
-  pelabuhan: 36,
-  bandara: 13,
-  helipad: 31,
+  terminal_bus: 3,
+  stasiun_kereta_api: 2,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 3,
+  bandara: 5,
+  helipad: 2,
 } as const;

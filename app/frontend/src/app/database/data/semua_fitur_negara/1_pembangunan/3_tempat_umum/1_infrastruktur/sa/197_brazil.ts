@@ -1,10 +1,10 @@
 export const brazil_infrastruktur = {
-  jalur_sepeda: 3,
-  jalan_raya: 1,
-  terminal_bus: 11,
-  stasiun_kereta_api: 16,
-  kereta_bawah_tanah: 8,
-  pelabuhan: 13,
-  bandara: 34,
-  helipad: 24,
+  jalur_sepeda: 68,
+  jalan_raya: 92,
+  terminal_bus: 74,
+  stasiun_kereta_api: 81,
+  kereta_bawah_tanah: 22,
+  pelabuhan: 17,
+  bandara: 19,
+  helipad: 22,
 } as const;

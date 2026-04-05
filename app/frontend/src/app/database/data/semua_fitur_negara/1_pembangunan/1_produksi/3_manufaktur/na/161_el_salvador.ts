@@ -1,8 +1,9 @@
 export const el_salvador_manufaktur = {
-  semikonduktor: 6,
-  mobil: 34,
-  sepeda_motor: 35,
-  smelter: 3,
-  semen_beton: 33,
-  kayu: 36,
+  semikonduktor: 25,
+  mobil: 60,
+  sepeda_motor: 65,
+  smelter: 65,
+  semen_beton: 45,
+  kayu: 50,
+  pupuk: 15,
 } as const;

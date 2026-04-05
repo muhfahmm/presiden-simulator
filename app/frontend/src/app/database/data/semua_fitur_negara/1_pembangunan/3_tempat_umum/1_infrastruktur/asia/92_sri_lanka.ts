@@ -1,10 +1,10 @@
 export const sri_lanka_infrastruktur = {
-  jalur_sepeda: 1,
-  jalan_raya: 1,
-  terminal_bus: 15,
-  stasiun_kereta_api: 37,
-  kereta_bawah_tanah: 29,
-  pelabuhan: 35,
-  bandara: 31,
-  helipad: 24,
+  jalur_sepeda: 8,
+  jalan_raya: 15,
+  terminal_bus: 3,
+  stasiun_kereta_api: 3,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 1,
+  bandara: 1,
+  helipad: 2,
 } as const;

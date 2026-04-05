@@ -1,10 +1,10 @@
 export const venezuela_olahraga = {
-  "kolam_renang": 12,
-  "sirkuit_balap": 3,
-  "stadion": 23,
-  "stadion_internasional": 20,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 14,
+  "sirkuit_balap": 2,
+  "stadion": 3,
+  "stadion_internasional": 0,
+  "gym": 39,
+  "golf": 3,
+  "esports": 3,
+  "gokart": 11
 } as const;

@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { palau_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/186_palau";
-import { palau_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/oceania/186_palau";
+import { palau_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/186_palau";
 import { palau_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/186_palau";
 import { palau_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/oceania/186_palau";
 import { palau_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/oceania/186_palau";
 import { palau_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/oceania/186_palau";
-import { palau_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/oceania/186_palau";
+import { palau_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/oceania/186_palau";
 import { palau_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/oceania/186_palau";
 import { palau_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/oceania/186_palau";
 import { palau_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/oceania/186_palau";
@@ -14,10 +14,10 @@ import { palau_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembang
 import { palau_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/oceania/186_palau";
 import { palau_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/oceania/186_palau";
 import { palau_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/oceania/186_palau";
-import { palau_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/oceania/186_palau";
+import { palau_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/oceania/186_palau";
 import { palau_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/oceania/186_palau";
 import { palau_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/186_palau";
-import { palau_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/oceania/186_palau";
+import { palau_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/oceania/186_palau";
 const palau_geopolitik = {
     "un_vote": 44,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const palau: CountryData = {
     "lingkungan": 60
   }
 };
+
 

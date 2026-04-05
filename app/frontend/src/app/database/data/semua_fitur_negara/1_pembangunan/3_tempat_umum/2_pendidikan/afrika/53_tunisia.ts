@@ -1,13 +1,13 @@
 export const tunisia_pendidikan = {
-      "prasekolah": 22,
-      "dasar": 40,
-      "menengah": 36,
-      "lanjutan": 33,
-      "universitas": 33,
-      "lembaga_pendidikan": 33,
-      "laboratorium": 20,
-      "observatorium": 10,
-      "pusat_penelitian": 10,
-      "pusat_pengembangan": 38,
-      "literasi": 64
+      "prasekolah": 41,
+      "dasar": 92,
+      "menengah": 11,
+      "lanjutan": 14,
+      "universitas": 13,
+      "lembaga_pendidikan": 15,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 1,
+      "literasi": 84
   } as const;

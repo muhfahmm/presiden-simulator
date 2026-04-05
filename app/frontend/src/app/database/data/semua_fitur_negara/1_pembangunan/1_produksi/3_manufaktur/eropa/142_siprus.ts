@@ -1,8 +1,9 @@
 export const siprus_manufaktur = {
-  semikonduktor: 11,
-  mobil: 2,
-  sepeda_motor: 26,
-  smelter: 3,
-  semen_beton: 1,
-  kayu: 20,
+  semikonduktor: 32,
+  mobil: 40,
+  sepeda_motor: 36,
+  smelter: 24,
+  semen_beton: 36,
+  kayu: 56,
+  pupuk: 36,
 } as const;

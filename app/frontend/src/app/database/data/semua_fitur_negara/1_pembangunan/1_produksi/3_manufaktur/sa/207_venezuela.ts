@@ -1,8 +1,9 @@
 export const venezuela_manufaktur = {
-  semikonduktor: 25,
-  mobil: 2,
-  sepeda_motor: 33,
-  smelter: 39,
-  semen_beton: 40,
-  kayu: 32,
+  semikonduktor: 32,
+  mobil: 88,
+  sepeda_motor: 112,
+  smelter: 56,
+  semen_beton: 72,
+  kayu: 72,
+  pupuk: 56,
 } as const;

@@ -1,5 +1,5 @@
 export const kongo_perikanan = {
-  udang: 28,
-  mutiara: 28,
-  ikan: 20,
+  udang: 108,
+  mutiara: 24,
+  ikan: 28,
 } as const;

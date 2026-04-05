@@ -1,10 +1,10 @@
 export const mongolia_hukum = {
-      "pusat_bantuan_hukum": 26,
-      "pengadilan": 39,
-      "kejaksaan": 3,
-      "pos_polisi": 1,
-      "armada_mobil_polisi": 5711,
-      "akademi_polisi": 14,
-      "indeks_korupsi": 87,
-      "indeks_keamanan": 78
+      "pusat_bantuan_hukum": 3,
+      "pengadilan": 2,
+      "kejaksaan": 6,
+      "pos_polisi": 25,
+      "armada_mobil_polisi": 1555,
+      "akademi_polisi": 2,
+      "indeks_korupsi": 42,
+      "indeks_keamanan": 59
   } as const;

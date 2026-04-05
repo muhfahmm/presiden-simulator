@@ -1,5 +1,5 @@
 export const armenia_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 8,
+  "hotel": 2,
+  "pusat_grosir_tekstil": 4
 } as const;

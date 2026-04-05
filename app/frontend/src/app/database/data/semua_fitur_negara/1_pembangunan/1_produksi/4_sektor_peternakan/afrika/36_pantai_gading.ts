@@ -1,6 +1,6 @@
 export const pantai_gading_peternakan = {
-  ayam_unggas: 30,
-  sapi_perah: 4,
-  sapi_potong: 29,
-  domba_kambing: 23,
+  ayam_unggas: 205,
+  sapi_perah: 50,
+  sapi_potong: 50,
+  domba_kambing: 245,
 } as const;

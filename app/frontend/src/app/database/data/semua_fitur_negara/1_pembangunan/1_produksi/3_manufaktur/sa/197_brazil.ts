@@ -1,8 +1,9 @@
 export const brazil_manufaktur = {
-  semikonduktor: 28,
-  mobil: 11,
-  sepeda_motor: 14,
-  smelter: 24,
-  semen_beton: 27,
-  kayu: 29,
+  semikonduktor: 1746,
+  mobil: 3783,
+  sepeda_motor: 1746,
+  smelter: 2619,
+  semen_beton: 2037,
+  kayu: 4074,
+  pupuk: 873,
 } as const;

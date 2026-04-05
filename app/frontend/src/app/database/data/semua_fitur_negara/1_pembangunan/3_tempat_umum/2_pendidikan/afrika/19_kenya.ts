@@ -1,13 +1,13 @@
 export const kenya_pendidikan = {
-      "prasekolah": 17,
-      "dasar": 17,
-      "menengah": 16,
-      "lanjutan": 12,
-      "universitas": 40,
-      "lembaga_pendidikan": 35,
-      "laboratorium": 27,
-      "observatorium": 20,
-      "pusat_penelitian": 34,
-      "pusat_pengembangan": 18,
-      "literasi": 57
+      "prasekolah": 80,
+      "dasar": 39,
+      "menengah": 99,
+      "lanjutan": 44,
+      "universitas": 17,
+      "lembaga_pendidikan": 6,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 2,
+      "literasi": 60
   } as const;

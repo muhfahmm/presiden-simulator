@@ -1,10 +1,10 @@
 export const kuwait_hukum = {
-      "pusat_bantuan_hukum": 26,
-      "pengadilan": 19,
-      "kejaksaan": 18,
-      "pos_polisi": 32,
-      "armada_mobil_polisi": 8824,
-      "akademi_polisi": 32,
-      "indeks_korupsi": 72,
-      "indeks_keamanan": 68
+      "pusat_bantuan_hukum": 4,
+      "pengadilan": 3,
+      "kejaksaan": 1,
+      "pos_polisi": 21,
+      "armada_mobil_polisi": 924,
+      "akademi_polisi": 2,
+      "indeks_korupsi": 40,
+      "indeks_keamanan": 42
   } as const;

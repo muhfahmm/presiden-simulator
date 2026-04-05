@@ -1,0 +1,13 @@
+import { pakistan_intelijen } from "../../2_intelijen/asia/87_pakistan";
+
+export const pakistan_strategis = {
+    "waktu_respon": 33,
+    "intelijen": 10,
+    "status_nuklir": true,
+    "intel_radar": pakistan_intelijen,
+    "operasi_strategis": { "misi_serangan": 4,
+      "misi_mata_mata": 8,
+      "misi_sabotase": 4,
+      "manajemen_wilayah": 5,
+      "program_nuklir": 100 }
+  } as const;

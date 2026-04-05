@@ -1,13 +1,13 @@
 export const austria_pendidikan = {
-      "prasekolah": 27,
-      "dasar": 10,
-      "menengah": 30,
-      "lanjutan": 21,
-      "universitas": 7,
-      "lembaga_pendidikan": 26,
-      "laboratorium": 12,
-      "observatorium": 23,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 23,
-      "literasi": 88
+      "prasekolah": 141,
+      "dasar": 608,
+      "menengah": 374,
+      "lanjutan": 240,
+      "universitas": 43,
+      "lembaga_pendidikan": 95,
+      "laboratorium": 26,
+      "observatorium": 1,
+      "pusat_penelitian": 13,
+      "pusat_pengembangan": 9,
+      "literasi": 76
     } as const;

@@ -1,8 +1,9 @@
 export const irlandia_manufaktur = {
-  semikonduktor: 15,
-  mobil: 38,
-  sepeda_motor: 24,
-  smelter: 12,
-  semen_beton: 34,
-  kayu: 35,
+  semikonduktor: 735,
+  mobil: 588,
+  sepeda_motor: 539,
+  smelter: 343,
+  semen_beton: 588,
+  kayu: 245,
+  pupuk: 147,
 } as const;

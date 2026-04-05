@@ -1,10 +1,10 @@
 export const belanda_infrastruktur = {
-  jalur_sepeda: 36,
-  jalan_raya: 4,
-  terminal_bus: 2,
-  stasiun_kereta_api: 7,
-  kereta_bawah_tanah: 37,
-  pelabuhan: 17,
-  bandara: 20,
-  helipad: 33,
+  jalur_sepeda: 57,
+  jalan_raya: 168,
+  terminal_bus: 74,
+  stasiun_kereta_api: 66,
+  kereta_bawah_tanah: 10,
+  pelabuhan: 33,
+  bandara: 29,
+  helipad: 34,
 } as const;

@@ -1,10 +1,10 @@
 export const mauritania_olahraga = {
-  "kolam_renang": 35,
-  "sirkuit_balap": 10,
-  "stadion": 20,
-  "stadion_internasional": 4,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 19,
+  "sirkuit_balap": 3,
+  "stadion": 3,
+  "stadion_internasional": 1,
+  "gym": 36,
+  "golf": 3,
+  "esports": 3,
+  "gokart": 14
 } as const;

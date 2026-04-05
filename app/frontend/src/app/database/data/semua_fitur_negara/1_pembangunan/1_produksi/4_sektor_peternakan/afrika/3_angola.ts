@@ -1,6 +1,6 @@
 export const angola_peternakan = {
-  ayam_unggas: 14,
-  sapi_perah: 15,
-  sapi_potong: 17,
-  domba_kambing: 39,
+  ayam_unggas: 224,
+  sapi_perah: 264,
+  sapi_potong: 120,
+  domba_kambing: 136,
 } as const;

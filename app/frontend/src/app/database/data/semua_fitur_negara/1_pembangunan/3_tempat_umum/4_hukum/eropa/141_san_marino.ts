@@ -1,10 +1,10 @@
 export const san_marino_hukum = {
-      "pusat_bantuan_hukum": 4,
-      "pengadilan": 36,
-      "kejaksaan": 21,
-      "pos_polisi": 33,
-      "armada_mobil_polisi": 9208,
-      "akademi_polisi": 22,
-      "indeks_korupsi": 86,
-      "indeks_keamanan": 73
+      "pusat_bantuan_hukum": 9,
+      "pengadilan": 14,
+      "kejaksaan": 10,
+      "pos_polisi": 26,
+      "armada_mobil_polisi": 501,
+      "akademi_polisi": 4,
+      "indeks_korupsi": 38,
+      "indeks_keamanan": 55
   } as const;

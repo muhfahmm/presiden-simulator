@@ -1,0 +1,13 @@
+import { andorra_intelijen } from "../../2_intelijen/eropa/104_andorra";
+
+export const andorra_strategis = {
+    "waktu_respon": 6,
+    "intelijen": 31,
+    "status_nuklir": false,
+    "intel_radar": andorra_intelijen,
+    "operasi_strategis": { "misi_serangan": 30,
+      "misi_mata_mata": 11,
+      "misi_sabotase": 6,
+      "manajemen_wilayah": 5,
+      "program_nuklir": 0 }
+  } as const;

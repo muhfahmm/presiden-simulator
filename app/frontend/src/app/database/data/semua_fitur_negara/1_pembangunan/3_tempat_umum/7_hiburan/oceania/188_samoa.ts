@@ -1,4 +1,4 @@
 export const samoa_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 43,
+  "teater": 11
 } as const;

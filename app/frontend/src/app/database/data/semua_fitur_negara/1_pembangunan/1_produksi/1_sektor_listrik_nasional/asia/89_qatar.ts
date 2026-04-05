@@ -3,6 +3,6 @@ export const qatar_listrik = {
   pembangkit_listrik_tenaga_air: 0,
   pembangkit_listrik_tenaga_surya: 1,
   pembangkit_listrik_tenaga_uap: 1,
-  pembangkit_listrik_tenaga_gas: 98,
+  pembangkit_listrik_tenaga_gas: 438,
   pembangkit_listrik_tenaga_angin: 0,
 } as const;

@@ -1,13 +1,13 @@
 export const jepang_pendidikan = {
-      "prasekolah": 28,
-      "dasar": 7,
-      "menengah": 22,
-      "lanjutan": 10,
-      "universitas": 23,
-      "lembaga_pendidikan": 17,
-      "laboratorium": 17,
-      "observatorium": 9,
-      "pusat_penelitian": 13,
-      "pusat_pengembangan": 5,
-      "literasi": 86
+      "prasekolah": 859,
+      "dasar": 1604,
+      "menengah": 818,
+      "lanjutan": 592,
+      "universitas": 340,
+      "lembaga_pendidikan": 220,
+      "laboratorium": 86,
+      "observatorium": 10,
+      "pusat_penelitian": 41,
+      "pusat_pengembangan": 35,
+      "literasi": 94
     } as const;

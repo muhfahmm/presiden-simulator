@@ -1,8 +1,9 @@
 export const botswana_manufaktur = {
-  mobil: 19,
-  semen_beton: 22,
-  sepeda_motor: 36,
-  semikonduktor: 13,
-  smelter: 7,
-  kayu: 2,
+  mobil: 14,
+  semen_beton: 10,
+  sepeda_motor: 16,
+  semikonduktor: 8,
+  smelter: 18,
+  kayu: 18,
+  pupuk: 6,
 } as const;

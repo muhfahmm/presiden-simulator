@@ -1,10 +1,10 @@
 export const jerman_hukum = {
-      "pusat_bantuan_hukum": 10,
-      "pengadilan": 8,
-      "kejaksaan": 7,
-      "pos_polisi": 33,
-      "armada_mobil_polisi": 542,
-      "akademi_polisi": 10,
-      "indeks_korupsi": 69,
-      "indeks_keamanan": 87
+      "pusat_bantuan_hukum": 82,
+      "pengadilan": 120,
+      "kejaksaan": 41,
+      "pos_polisi": 327,
+      "armada_mobil_polisi": 27704,
+      "akademi_polisi": 21,
+      "indeks_korupsi": 76,
+      "indeks_keamanan": 75
   } as const;

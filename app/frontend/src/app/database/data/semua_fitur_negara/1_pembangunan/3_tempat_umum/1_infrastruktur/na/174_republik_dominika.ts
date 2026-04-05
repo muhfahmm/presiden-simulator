@@ -1,10 +1,10 @@
 export const republik_dominika_infrastruktur = {
-  jalur_sepeda: 9,
-  jalan_raya: 23,
-  terminal_bus: 11,
-  stasiun_kereta_api: 33,
-  kereta_bawah_tanah: 21,
-  pelabuhan: 6,
-  bandara: 34,
-  helipad: 36,
+  jalur_sepeda: 4,
+  jalan_raya: 17,
+  terminal_bus: 4,
+  stasiun_kereta_api: 5,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 1,
+  bandara: 5,
+  helipad: 4,
 } as const;

@@ -1,6 +1,6 @@
 export const indonesia_peternakan = {
-  ayam_unggas: 3,
-  sapi_perah: 14,
-  sapi_potong: 17,
-  domba_kambing: 10,
+  ayam_unggas: 1975,
+  sapi_perah: 3160,
+  sapi_potong: 1422,
+  domba_kambing: 2607,
 } as const;

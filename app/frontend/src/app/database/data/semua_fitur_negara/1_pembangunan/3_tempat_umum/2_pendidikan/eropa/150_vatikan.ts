@@ -1,13 +1,13 @@
 export const vatikan_pendidikan = {
-      "prasekolah": 11,
-      "dasar": 10,
-      "menengah": 4,
-      "lanjutan": 33,
-      "universitas": 11,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 33,
-      "observatorium": 20,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 18,
-      "literasi": 66
+      "prasekolah": 95,
+      "dasar": 51,
+      "menengah": 84,
+      "lanjutan": 15,
+      "universitas": 16,
+      "lembaga_pendidikan": 6,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 2,
+      "pusat_pengembangan": 1,
+      "literasi": 76
     } as const;

@@ -1,10 +1,10 @@
 export const somalia_hukum = {
-      "pusat_bantuan_hukum": 11,
-      "pengadilan": 3,
-      "kejaksaan": 22,
-      "pos_polisi": 27,
-      "armada_mobil_polisi": 9421,
-      "akademi_polisi": 17,
-      "indeks_korupsi": 78,
-      "indeks_keamanan": 74
+      "pusat_bantuan_hukum": 6,
+      "pengadilan": 10,
+      "kejaksaan": 2,
+      "pos_polisi": 16,
+      "armada_mobil_polisi": 270,
+      "akademi_polisi": 5,
+      "indeks_korupsi": 33,
+      "indeks_keamanan": 62
   } as const;

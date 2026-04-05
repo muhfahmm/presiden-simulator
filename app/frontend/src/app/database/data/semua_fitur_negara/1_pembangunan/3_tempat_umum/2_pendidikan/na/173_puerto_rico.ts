@@ -1,13 +1,13 @@
 export const puerto_rico_pendidikan = {
-      "prasekolah": 31,
-      "dasar": 8,
-      "menengah": 14,
-      "lanjutan": 27,
-      "universitas": 19,
-      "lembaga_pendidikan": 26,
-      "laboratorium": 28,
-      "observatorium": 40,
-      "pusat_penelitian": 22,
-      "pusat_pengembangan": 9,
-      "literasi": 55
+      "prasekolah": 84,
+      "dasar": 54,
+      "menengah": 68,
+      "lanjutan": 37,
+      "universitas": 16,
+      "lembaga_pendidikan": 11,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 1,
+      "literasi": 65
     } as const;

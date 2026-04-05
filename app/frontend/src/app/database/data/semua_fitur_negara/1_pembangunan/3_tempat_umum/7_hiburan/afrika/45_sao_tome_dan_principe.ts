@@ -1,4 +1,4 @@
 export const sao_tome_dan_principe_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 18,
+  "teater": 14
 } as const;

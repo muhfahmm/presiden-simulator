@@ -1,10 +1,10 @@
 export const republik_demokratik_kongo_infrastruktur = {
-  jalur_sepeda: 20,
-  jalan_raya: 4,
-  terminal_bus: 30,
-  stasiun_kereta_api: 29,
-  kereta_bawah_tanah: 21,
-  pelabuhan: 34,
-  bandara: 29,
-  helipad: 3,
+  jalur_sepeda: 6,
+  jalan_raya: 15,
+  terminal_bus: 8,
+  stasiun_kereta_api: 1,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 2,
+  bandara: 2,
+  helipad: 4,
 } as const;

@@ -1,10 +1,10 @@
 export const iran_hukum = {
-      "pusat_bantuan_hukum": 14,
-      "pengadilan": 16,
-      "kejaksaan": 35,
-      "pos_polisi": 3,
-      "armada_mobil_polisi": 9271,
-      "akademi_polisi": 17,
-      "indeks_korupsi": 74,
-      "indeks_keamanan": 86
+      "pusat_bantuan_hukum": 38,
+      "pengadilan": 32,
+      "kejaksaan": 24,
+      "pos_polisi": 90,
+      "armada_mobil_polisi": 4069,
+      "akademi_polisi": 13,
+      "indeks_korupsi": 48,
+      "indeks_keamanan": 53
   } as const;

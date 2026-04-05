@@ -1,10 +1,10 @@
 export const malta_hukum = {
-      "pusat_bantuan_hukum": 29,
-      "pengadilan": 19,
-      "kejaksaan": 25,
-      "pos_polisi": 31,
-      "armada_mobil_polisi": 9865,
-      "akademi_polisi": 5,
-      "indeks_korupsi": 89,
-      "indeks_keamanan": 82
+      "pusat_bantuan_hukum": 9,
+      "pengadilan": 14,
+      "kejaksaan": 10,
+      "pos_polisi": 6,
+      "armada_mobil_polisi": 1583,
+      "akademi_polisi": 1,
+      "indeks_korupsi": 29,
+      "indeks_keamanan": 52
   } as const;

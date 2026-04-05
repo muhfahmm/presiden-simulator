@@ -1,6 +1,6 @@
 export const iran_peternakan = {
-  ayam_unggas: 30,
-  sapi_perah: 20,
-  sapi_potong: 9,
-  domba_kambing: 10,
+  ayam_unggas: 2024,
+  sapi_perah: 460,
+  sapi_potong: 644,
+  domba_kambing: 1334,
 } as const;

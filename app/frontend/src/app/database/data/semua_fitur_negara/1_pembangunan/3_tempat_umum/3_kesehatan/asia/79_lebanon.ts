@@ -1,7 +1,7 @@
 export const lebanon_kesehatan = {
-      "rumah_sakit_besar": 9,
-      "rumah_sakit_kecil": 14,
-      "pusat_diagnostik": 34,
-      "harapan_hidup": 10,
-      "indeks_kesehatan": 85
+      "rumah_sakit_besar": 6,
+      "rumah_sakit_kecil": 53,
+      "pusat_diagnostik": 25,
+      "harapan_hidup": 55,
+      "indeks_kesehatan": 75
     } as const;

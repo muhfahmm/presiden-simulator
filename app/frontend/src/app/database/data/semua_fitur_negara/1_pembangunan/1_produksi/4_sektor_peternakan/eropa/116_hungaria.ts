@@ -1,6 +1,6 @@
 export const hungaria_peternakan = {
-  ayam_unggas: 28,
-  sapi_perah: 40,
-  sapi_potong: 24,
-  domba_kambing: 18,
+  ayam_unggas: 248,
+  sapi_perah: 264,
+  sapi_potong: 176,
+  domba_kambing: 248,
 } as const;

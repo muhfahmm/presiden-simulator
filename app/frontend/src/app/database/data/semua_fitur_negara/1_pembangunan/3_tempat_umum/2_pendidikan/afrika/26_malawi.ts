@@ -1,13 +1,13 @@
 export const malawi_pendidikan = {
-      "prasekolah": 17,
-      "dasar": 38,
-      "menengah": 16,
-      "lanjutan": 5,
-      "universitas": 35,
-      "lembaga_pendidikan": 39,
-      "laboratorium": 6,
-      "observatorium": 28,
-      "pusat_penelitian": 19,
-      "pusat_pengembangan": 32,
-      "literasi": 95
+      "prasekolah": 23,
+      "dasar": 106,
+      "menengah": 37,
+      "lanjutan": 27,
+      "universitas": 4,
+      "lembaga_pendidikan": 14,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 3,
+      "pusat_pengembangan": 1,
+      "literasi": 76
   } as const;

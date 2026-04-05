@@ -1,13 +1,13 @@
 export const finlandia_pendidikan = {
-      "prasekolah": 14,
-      "dasar": 2,
-      "menengah": 37,
-      "lanjutan": 36,
-      "universitas": 32,
-      "lembaga_pendidikan": 15,
-      "laboratorium": 17,
-      "observatorium": 3,
-      "pusat_penelitian": 36,
-      "pusat_pengembangan": 40,
-      "literasi": 64
+      "prasekolah": 320,
+      "dasar": 593,
+      "menengah": 385,
+      "lanjutan": 177,
+      "universitas": 139,
+      "lembaga_pendidikan": 82,
+      "laboratorium": 24,
+      "observatorium": 1,
+      "pusat_penelitian": 9,
+      "pusat_pengembangan": 10,
+      "literasi": 81
     } as const;

@@ -1,10 +1,10 @@
 export const yunani_olahraga = {
-  "kolam_renang": 38,
-  "sirkuit_balap": 24,
-  "stadion": 27,
-  "stadion_internasional": 37,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 49,
+  "sirkuit_balap": 6,
+  "stadion": 26,
+  "stadion_internasional": 2,
+  "gym": 164,
+  "golf": 6,
+  "esports": 7,
+  "gokart": 40
 } as const;

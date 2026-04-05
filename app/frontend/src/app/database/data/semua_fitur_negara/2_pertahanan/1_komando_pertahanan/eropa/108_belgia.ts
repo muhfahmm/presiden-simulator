@@ -1,0 +1,13 @@
+import { belgia_intelijen } from "../../2_intelijen/eropa/108_belgia";
+
+export const belgia_strategis = {
+    "waktu_respon": 7,
+    "intelijen": 36,
+    "status_nuklir": true,
+    "intel_radar": belgia_intelijen,
+    "operasi_strategis": { "misi_serangan": 34,
+      "misi_mata_mata": 27,
+      "misi_sabotase": 1,
+      "manajemen_wilayah": 23,
+      "program_nuklir": 80 }
+  } as const;

@@ -1,10 +1,10 @@
 export const kuba_infrastruktur = {
-  jalur_sepeda: 40,
-  jalan_raya: 26,
-  terminal_bus: 8,
-  stasiun_kereta_api: 19,
-  kereta_bawah_tanah: 16,
-  pelabuhan: 25,
-  bandara: 23,
-  helipad: 29,
+  jalur_sepeda: 3,
+  jalan_raya: 18,
+  terminal_bus: 3,
+  stasiun_kereta_api: 2,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 4,
+  bandara: 4,
+  helipad: 1,
 } as const;

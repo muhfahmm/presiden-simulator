@@ -1,6 +1,6 @@
 export const belize_peternakan = {
-  ayam_unggas: 24,
-  sapi_perah: 37,
-  sapi_potong: 13,
-  domba_kambing: 9,
+  ayam_unggas: 36,
+  sapi_perah: 76,
+  sapi_potong: 26,
+  domba_kambing: 60,
 } as const;

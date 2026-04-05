@@ -1,10 +1,10 @@
 export const andorra_olahraga = {
-  "kolam_renang": 32,
-  "sirkuit_balap": 24,
-  "stadion": 1,
-  "stadion_internasional": 22,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 4,
+  "sirkuit_balap": 3,
+  "stadion": 8,
+  "stadion_internasional": 0,
+  "gym": 11,
+  "golf": 1,
+  "esports": 1,
+  "gokart": 7
 } as const;

@@ -1,10 +1,10 @@
 export const india_hukum = {
-      "pusat_bantuan_hukum": 17,
-      "pengadilan": 16,
-      "kejaksaan": 40,
-      "pos_polisi": 12,
-      "armada_mobil_polisi": 7944,
-      "akademi_polisi": 18,
-      "indeks_korupsi": 68,
-      "indeks_keamanan": 54
+      "pusat_bantuan_hukum": 53,
+      "pengadilan": 136,
+      "kejaksaan": 95,
+      "pos_polisi": 372,
+      "armada_mobil_polisi": 20466,
+      "akademi_polisi": 12,
+      "indeks_korupsi": 70,
+      "indeks_keamanan": 65
   } as const;

@@ -1,10 +1,10 @@
 export const guinea_olahraga = {
-  "kolam_renang": 1,
-  "sirkuit_balap": 8,
-  "stadion": 33,
-  "stadion_internasional": 20,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 2,
+  "sirkuit_balap": 3,
+  "stadion": 4,
+  "stadion_internasional": 1,
+  "gym": 25,
+  "golf": 2,
+  "esports": 5,
+  "gokart": 6
 } as const;

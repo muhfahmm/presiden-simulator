@@ -1,13 +1,13 @@
 export const burundi_pendidikan = {
-      "prasekolah": 9,
-      "dasar": 21,
-      "menengah": 1,
-      "lanjutan": 34,
-      "universitas": 35,
-      "lembaga_pendidikan": 17,
-      "laboratorium": 14,
-      "observatorium": 3,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 28,
-      "literasi": 88
+      "prasekolah": 69,
+      "dasar": 103,
+      "menengah": 11,
+      "lanjutan": 29,
+      "universitas": 7,
+      "lembaga_pendidikan": 5,
+      "laboratorium": 4,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 1,
+      "literasi": 70
   } as const;

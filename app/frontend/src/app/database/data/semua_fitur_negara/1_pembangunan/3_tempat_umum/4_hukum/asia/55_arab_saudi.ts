@@ -1,10 +1,10 @@
 export const arab_saudi_hukum = {
-      "pusat_bantuan_hukum": 27,
-      "pengadilan": 36,
-      "kejaksaan": 18,
-      "pos_polisi": 26,
-      "armada_mobil_polisi": 1693,
-      "akademi_polisi": 38,
-      "indeks_korupsi": 94,
-      "indeks_keamanan": 84
+      "pusat_bantuan_hukum": 112,
+      "pengadilan": 140,
+      "kejaksaan": 72,
+      "pos_polisi": 192,
+      "armada_mobil_polisi": 31453,
+      "akademi_polisi": 27,
+      "indeks_korupsi": 52,
+      "indeks_keamanan": 65
   } as const;

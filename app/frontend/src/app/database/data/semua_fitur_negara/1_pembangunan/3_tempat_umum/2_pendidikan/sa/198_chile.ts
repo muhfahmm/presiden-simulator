@@ -1,13 +1,13 @@
 export const chile_pendidikan = {
-      "prasekolah": 32,
-      "dasar": 16,
-      "menengah": 22,
-      "lanjutan": 5,
-      "universitas": 16,
-      "lembaga_pendidikan": 35,
-      "laboratorium": 10,
-      "observatorium": 38,
-      "pusat_penelitian": 7,
-      "pusat_pengembangan": 20,
-      "literasi": 88
+      "prasekolah": 199,
+      "dasar": 719,
+      "menengah": 307,
+      "lanjutan": 138,
+      "universitas": 79,
+      "lembaga_pendidikan": 63,
+      "laboratorium": 16,
+      "observatorium": 1,
+      "pusat_penelitian": 16,
+      "pusat_pengembangan": 10,
+      "literasi": 89
     } as const;

@@ -1,4 +1,4 @@
 export const finlandia_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 160,
+  "teater": 75
 } as const;

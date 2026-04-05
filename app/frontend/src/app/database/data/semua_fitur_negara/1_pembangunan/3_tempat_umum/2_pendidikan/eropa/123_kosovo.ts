@@ -1,13 +1,13 @@
 export const kosovo_pendidikan = {
-      "prasekolah": 4,
-      "dasar": 38,
-      "menengah": 37,
-      "lanjutan": 39,
-      "universitas": 25,
-      "lembaga_pendidikan": 2,
-      "laboratorium": 9,
-      "observatorium": 21,
-      "pusat_penelitian": 18,
-      "pusat_pengembangan": 39,
-      "literasi": 51
+      "prasekolah": 60,
+      "dasar": 93,
+      "menengah": 81,
+      "lanjutan": 47,
+      "universitas": 16,
+      "lembaga_pendidikan": 10,
+      "laboratorium": 3,
+      "observatorium": 0,
+      "pusat_penelitian": 3,
+      "pusat_pengembangan": 1,
+      "literasi": 66
     } as const;

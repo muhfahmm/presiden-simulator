@@ -1,6 +1,6 @@
 export const belarus_peternakan = {
-  ayam_unggas: 22,
-  sapi_perah: 38,
-  sapi_potong: 35,
-  domba_kambing: 37,
+  ayam_unggas: 155,
+  sapi_perah: 65,
+  sapi_potong: 245,
+  domba_kambing: 110,
 } as const;

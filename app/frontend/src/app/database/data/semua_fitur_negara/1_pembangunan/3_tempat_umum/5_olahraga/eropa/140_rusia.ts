@@ -1,10 +1,10 @@
 export const rusia_olahraga = {
-  "kolam_renang": 24,
-  "sirkuit_balap": 2,
-  "stadion": 14,
-  "stadion_internasional": 17,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 314,
+  "sirkuit_balap": 20,
+  "stadion": 72,
+  "stadion_internasional": 13,
+  "gym": 325,
+  "golf": 63,
+  "esports": 37,
+  "gokart": 150
 } as const;

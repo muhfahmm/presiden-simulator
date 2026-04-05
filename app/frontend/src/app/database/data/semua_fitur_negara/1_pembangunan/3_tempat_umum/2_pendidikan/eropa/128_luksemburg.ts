@@ -1,13 +1,13 @@
 export const luksemburg_pendidikan = {
-      "prasekolah": 39,
-      "dasar": 32,
-      "menengah": 30,
-      "lanjutan": 6,
-      "universitas": 20,
-      "lembaga_pendidikan": 39,
-      "laboratorium": 17,
-      "observatorium": 8,
-      "pusat_penelitian": 39,
-      "pusat_pengembangan": 38,
-      "literasi": 91
+      "prasekolah": 88,
+      "dasar": 33,
+      "menengah": 59,
+      "lanjutan": 11,
+      "universitas": 10,
+      "lembaga_pendidikan": 12,
+      "laboratorium": 5,
+      "observatorium": 0,
+      "pusat_penelitian": 4,
+      "pusat_pengembangan": 1,
+      "literasi": 60
     } as const;

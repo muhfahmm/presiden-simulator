@@ -1,6 +1,6 @@
 export const makau_peternakan = {
-  ayam_unggas: 6,
-  sapi_perah: 29,
-  sapi_potong: 22,
-  domba_kambing: 19,
+  ayam_unggas: 76,
+  sapi_perah: 48,
+  sapi_potong: 60,
+  domba_kambing: 172,
 } as const;

@@ -1,8 +1,9 @@
 export const rusia_manufaktur = {
-  semikonduktor: 16,
-  mobil: 11,
-  sepeda_motor: 28,
-  smelter: 36,
-  semen_beton: 35,
-  kayu: 20,
+  semikonduktor: 2268,
+  mobil: 1890,
+  sepeda_motor: 945,
+  smelter: 1890,
+  semen_beton: 945,
+  kayu: 1890,
+  pupuk: 1323,
 } as const;

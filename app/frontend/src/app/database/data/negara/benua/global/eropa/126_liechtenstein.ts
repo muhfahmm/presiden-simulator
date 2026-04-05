@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { liechtenstein_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/126_liechtenstein";
-import { liechtenstein_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/eropa/126_liechtenstein";
+import { liechtenstein_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/126_liechtenstein";
 import { liechtenstein_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/126_liechtenstein";
 import { liechtenstein_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/126_liechtenstein";
 import { liechtenstein_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/126_liechtenstein";
 import { liechtenstein_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/126_liechtenstein";
-import { liechtenstein_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/eropa/126_liechtenstein";
+import { liechtenstein_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/126_liechtenstein";
 import { liechtenstein_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/126_liechtenstein";
 import { liechtenstein_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/126_liechtenstein";
 import { liechtenstein_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/126_liechtenstein";
@@ -14,10 +14,10 @@ import { liechtenstein_olahraga } from "@/app/database/data/semua_fitur_negara/1
 import { liechtenstein_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/126_liechtenstein";
 import { liechtenstein_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/126_liechtenstein";
 import { liechtenstein_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/126_liechtenstein";
-import { liechtenstein_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/eropa/126_liechtenstein";
+import { liechtenstein_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/126_liechtenstein";
 import { liechtenstein_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/126_liechtenstein";
 import { liechtenstein_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/126_liechtenstein";
-import { liechtenstein_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/eropa/126_liechtenstein";
+import { liechtenstein_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/126_liechtenstein";
 const liechtenstein_geopolitik = {
     "un_vote": 20,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const liechtenstein: CountryData = {
     "lingkungan": 60
   }
 };
+
 

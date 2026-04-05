@@ -1,5 +1,5 @@
 export const turki_komersial = {
-  "mall": 0,
-  "hotel": 0,
-  "pusat_grosir_tekstil": 0
+  "mall": 3,
+  "hotel": 12,
+  "pusat_grosir_tekstil": 4
 } as const;

@@ -1,10 +1,10 @@
 export const siprus_infrastruktur = {
-  jalur_sepeda: 34,
-  jalan_raya: 26,
-  terminal_bus: 21,
-  stasiun_kereta_api: 23,
-  kereta_bawah_tanah: 22,
-  pelabuhan: 8,
-  bandara: 24,
-  helipad: 25,
+  jalur_sepeda: 8,
+  jalan_raya: 9,
+  terminal_bus: 6,
+  stasiun_kereta_api: 0,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 3,
+  bandara: 5,
+  helipad: 1,
 } as const;

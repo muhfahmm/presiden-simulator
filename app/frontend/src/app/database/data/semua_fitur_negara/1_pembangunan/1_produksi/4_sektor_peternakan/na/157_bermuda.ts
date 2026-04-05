@@ -1,6 +1,6 @@
 export const bermuda_peternakan = {
-  ayam_unggas: 20,
-  sapi_perah: 10,
-  sapi_potong: 33,
-  domba_kambing: 13,
+  ayam_unggas: 56,
+  sapi_perah: 76,
+  sapi_potong: 92,
+  domba_kambing: 70,
 } as const;

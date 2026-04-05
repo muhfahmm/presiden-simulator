@@ -1,5 +1,5 @@
 export const barbados_perikanan = {
-  udang: 34,
-  mutiara: 34,
-  ikan: 10,
+  udang: 32,
+  mutiara: 15,
+  ikan: 15,
 } as const;

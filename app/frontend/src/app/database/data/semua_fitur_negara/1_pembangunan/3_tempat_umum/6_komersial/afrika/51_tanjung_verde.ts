@@ -1,5 +1,5 @@
 export const tanjung_verde_komersial = {
-  "mall": 0,
-  "hotel": 0,
+  "mall": 10,
+  "hotel": 3,
   "pusat_grosir_tekstil": 0
 } as const;

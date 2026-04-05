@@ -1,13 +1,13 @@
 export const guyana_pendidikan = {
-      "prasekolah": 14,
-      "dasar": 24,
-      "menengah": 34,
-      "lanjutan": 14,
-      "universitas": 29,
-      "lembaga_pendidikan": 21,
-      "laboratorium": 36,
-      "observatorium": 6,
-      "pusat_penelitian": 34,
-      "pusat_pengembangan": 16,
-      "literasi": 91
+      "prasekolah": 15,
+      "dasar": 113,
+      "menengah": 91,
+      "lanjutan": 15,
+      "universitas": 6,
+      "lembaga_pendidikan": 2,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 3,
+      "pusat_pengembangan": 2,
+      "literasi": 81
     } as const;

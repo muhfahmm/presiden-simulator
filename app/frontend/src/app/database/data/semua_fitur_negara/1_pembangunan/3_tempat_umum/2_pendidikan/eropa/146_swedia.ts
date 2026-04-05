@@ -1,13 +1,13 @@
 export const swedia_pendidikan = {
-      "prasekolah": 5,
-      "dasar": 30,
-      "menengah": 4,
-      "lanjutan": 32,
-      "universitas": 38,
-      "lembaga_pendidikan": 6,
-      "laboratorium": 20,
-      "observatorium": 30,
-      "pusat_penelitian": 27,
-      "pusat_pengembangan": 35,
-      "literasi": 84
+      "prasekolah": 161,
+      "dasar": 271,
+      "menengah": 176,
+      "lanjutan": 65,
+      "universitas": 43,
+      "lembaga_pendidikan": 96,
+      "laboratorium": 10,
+      "observatorium": 3,
+      "pusat_penelitian": 16,
+      "pusat_pengembangan": 4,
+      "literasi": 87
     } as const;

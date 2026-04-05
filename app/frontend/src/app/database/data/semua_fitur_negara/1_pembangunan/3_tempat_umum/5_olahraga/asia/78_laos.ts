@@ -1,10 +1,10 @@
 export const laos_olahraga = {
-  "kolam_renang": 40,
-  "sirkuit_balap": 15,
-  "stadion": 12,
-  "stadion_internasional": 10,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 18,
+  "sirkuit_balap": 3,
+  "stadion": 3,
+  "stadion_internasional": 1,
+  "gym": 20,
+  "golf": 2,
+  "esports": 1,
+  "gokart": 8
 } as const;

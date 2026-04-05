@@ -1,13 +1,13 @@
 export const gabon_pendidikan = {
-      "prasekolah": 26,
-      "dasar": 28,
-      "menengah": 15,
-      "lanjutan": 40,
+      "prasekolah": 37,
+      "dasar": 96,
+      "menengah": 76,
+      "lanjutan": 36,
       "universitas": 15,
-      "lembaga_pendidikan": 14,
-      "laboratorium": 12,
-      "observatorium": 26,
-      "pusat_penelitian": 40,
-      "pusat_pengembangan": 12,
-      "literasi": 50
+      "lembaga_pendidikan": 11,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 0,
+      "pusat_pengembangan": 2,
+      "literasi": 85
   } as const;

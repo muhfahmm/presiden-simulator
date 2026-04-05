@@ -1,13 +1,13 @@
 export const uruguay_pendidikan = {
-      "prasekolah": 9,
-      "dasar": 27,
-      "menengah": 15,
-      "lanjutan": 14,
-      "universitas": 34,
-      "lembaga_pendidikan": 20,
-      "laboratorium": 15,
-      "observatorium": 22,
-      "pusat_penelitian": 8,
-      "pusat_pengembangan": 32,
-      "literasi": 95
+      "prasekolah": 93,
+      "dasar": 118,
+      "menengah": 97,
+      "lanjutan": 17,
+      "universitas": 4,
+      "lembaga_pendidikan": 3,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 1,
+      "pusat_pengembangan": 0,
+      "literasi": 76
     } as const;

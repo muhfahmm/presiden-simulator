@@ -1,10 +1,10 @@
 export const guinea_bissau_infrastruktur = {
-  jalur_sepeda: 38,
-  jalan_raya: 26,
-  terminal_bus: 15,
-  stasiun_kereta_api: 22,
-  kereta_bawah_tanah: 1,
-  pelabuhan: 25,
-  bandara: 16,
-  helipad: 15,
+  jalur_sepeda: 3,
+  jalan_raya: 19,
+  terminal_bus: 3,
+  stasiun_kereta_api: 3,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 3,
+  bandara: 4,
+  helipad: 5,
 } as const;

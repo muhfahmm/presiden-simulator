@@ -1,1 +1,4 @@
-export const indonesia_pabrik = { "pabrik_drone_kamikaze": 0, "pabrik_amunisi": 0,   } as const;
+export const indonesia_pabrik = {
+    "pabrik_drone_kamikaze": 14,
+    "pabrik_amunisi": 18,
+} as const;

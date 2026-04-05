@@ -77,7 +77,7 @@ export default function ModalsBeriTentara({
 
       if (pRegistry) {
         try {
-          const mod = await import(`@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/${pRegistry.continent}/${pRegistry.id}_${(playerCountry || "indonesia").toLowerCase().replace(/ /g, '_')}`);
+          const mod = await import(`@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/${pRegistry.continent}/${pRegistry.id}_${(playerCountry || "indonesia").toLowerCase().replace(/ /g, '_')}`);
           const baseArmada = JSON.parse(JSON.stringify(mod[pRegistry.exportName]));
           
           // Apply Player Deltas
@@ -111,7 +111,7 @@ export default function ModalsBeriTentara({
 
       if (tRegistry) {
         try {
-          const mod = await import(`@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/${tRegistry.continent}/${tRegistry.id}_${targetCountry.toLowerCase().replace(/ /g, '_')}`);
+          const mod = await import(`@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/${tRegistry.continent}/${tRegistry.id}_${targetCountry.toLowerCase().replace(/ /g, '_')}`);
           const targetBase = JSON.parse(JSON.stringify(mod[tRegistry.exportName]));
           
           // Apply Target Aid Deltas

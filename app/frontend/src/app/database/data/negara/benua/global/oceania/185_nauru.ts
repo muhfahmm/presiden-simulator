@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { nauru_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/185_nauru";
-import { nauru_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/oceania/185_nauru";
+import { nauru_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/185_nauru";
 import { nauru_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/185_nauru";
 import { nauru_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/oceania/185_nauru";
 import { nauru_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/oceania/185_nauru";
 import { nauru_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/oceania/185_nauru";
-import { nauru_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/oceania/185_nauru";
+import { nauru_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/oceania/185_nauru";
 import { nauru_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/oceania/185_nauru";
 import { nauru_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/oceania/185_nauru";
 import { nauru_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/oceania/185_nauru";
@@ -14,10 +14,10 @@ import { nauru_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembang
 import { nauru_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/oceania/185_nauru";
 import { nauru_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/oceania/185_nauru";
 import { nauru_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/oceania/185_nauru";
-import { nauru_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/oceania/185_nauru";
+import { nauru_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/oceania/185_nauru";
 import { nauru_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/oceania/185_nauru";
 import { nauru_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/185_nauru";
-import { nauru_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/oceania/185_nauru";
+import { nauru_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/oceania/185_nauru";
 const nauru_geopolitik = {
     "un_vote": 52,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const nauru: CountryData = {
     "lingkungan": 60
   }
 };
+
 

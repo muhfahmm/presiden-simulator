@@ -1,5 +1,5 @@
 export const namibia_perikanan = {
-  udang: 23,
-  mutiara: 23,
-  ikan: 28,
+  udang: 28,
+  mutiara: 31,
+  ikan: 11,
 } as const;

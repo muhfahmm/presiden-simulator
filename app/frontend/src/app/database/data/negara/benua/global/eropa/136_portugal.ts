@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { portugal_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/136_portugal";
-import { portugal_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/eropa/136_portugal";
+import { portugal_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/136_portugal";
 import { portugal_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/136_portugal";
 import { portugal_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/136_portugal";
 import { portugal_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/136_portugal";
 import { portugal_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/136_portugal";
-import { portugal_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/eropa/136_portugal";
+import { portugal_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/136_portugal";
 import { portugal_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/136_portugal";
 import { portugal_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/136_portugal";
 import { portugal_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/136_portugal";
@@ -14,10 +14,10 @@ import { portugal_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { portugal_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/136_portugal";
 import { portugal_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/136_portugal";
 import { portugal_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/136_portugal";
-import { portugal_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/eropa/136_portugal";
+import { portugal_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/136_portugal";
 import { portugal_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/136_portugal";
 import { portugal_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/136_portugal";
-import { portugal_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/eropa/136_portugal";
+import { portugal_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/136_portugal";
 const portugal_geopolitik = {
     "un_vote": 194,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const portugal: CountryData = {
     "lingkungan": 60
   }
 };
+
 

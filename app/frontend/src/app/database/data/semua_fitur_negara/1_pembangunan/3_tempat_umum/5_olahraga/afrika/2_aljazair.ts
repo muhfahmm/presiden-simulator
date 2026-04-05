@@ -1,10 +1,10 @@
 export const aljazair_olahraga = {
-  "kolam_renang": 20,
-  "sirkuit_balap": 36,
-  "stadion": 12,
-  "stadion_internasional": 26,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 99,
+  "sirkuit_balap": 7,
+  "stadion": 26,
+  "stadion_internasional": 4,
+  "gym": 139,
+  "golf": 7,
+  "esports": 13,
+  "gokart": 41
 } as const;

@@ -1,5 +1,5 @@
 export const aljazair_perikanan = {
-  udang: 16,
-  mutiara: 16,
-  ikan: 36,
+  udang: 176,
+  mutiara: 187,
+  ikan: 77,
 } as const;

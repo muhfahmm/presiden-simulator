@@ -1,4 +1,4 @@
 export const burundi_hiburan = {
-  "bioskop": 0,
-  "teater": 0
+  "bioskop": 18,
+  "teater": 2
 } as const;

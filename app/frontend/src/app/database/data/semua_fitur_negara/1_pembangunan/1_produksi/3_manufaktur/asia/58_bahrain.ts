@@ -1,8 +1,9 @@
 export const bahrain_manufaktur = {
-  semikonduktor: 18,
-  mobil: 35,
-  sepeda_motor: 33,
-  smelter: 21,
-  semen_beton: 14,
-  kayu: 26,
+  semikonduktor: 96,
+  mobil: 48,
+  sepeda_motor: 72,
+  smelter: 48,
+  semen_beton: 104,
+  kayu: 64,
+  pupuk: 64,
 } as const;

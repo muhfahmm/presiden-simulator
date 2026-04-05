@@ -1,10 +1,10 @@
 export const bulgaria_infrastruktur = {
-  jalur_sepeda: 9,
-  jalan_raya: 24,
-  terminal_bus: 11,
-  stasiun_kereta_api: 39,
-  kereta_bawah_tanah: 36,
-  pelabuhan: 21,
-  bandara: 37,
-  helipad: 9,
+  jalur_sepeda: 10,
+  jalan_raya: 14,
+  terminal_bus: 8,
+  stasiun_kereta_api: 1,
+  kereta_bawah_tanah: 0,
+  pelabuhan: 4,
+  bandara: 3,
+  helipad: 5,
 } as const;

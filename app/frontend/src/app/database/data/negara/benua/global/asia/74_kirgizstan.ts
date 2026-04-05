@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { kirgizstan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/74_kirgizstan";
-import { kirgizstan_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/asia/74_kirgizstan";
+import { kirgizstan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/74_kirgizstan";
 import { kirgizstan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/74_kirgizstan";
 import { kirgizstan_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/74_kirgizstan";
 import { kirgizstan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/74_kirgizstan";
 import { kirgizstan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/74_kirgizstan";
-import { kirgizstan_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/asia/74_kirgizstan";
+import { kirgizstan_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/74_kirgizstan";
 import { kirgizstan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/74_kirgizstan";
 import { kirgizstan_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/74_kirgizstan";
 import { kirgizstan_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/74_kirgizstan";
@@ -14,10 +14,10 @@ import { kirgizstan_olahraga } from "@/app/database/data/semua_fitur_negara/1_pe
 import { kirgizstan_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/74_kirgizstan";
 import { kirgizstan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/74_kirgizstan";
 import { kirgizstan_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/74_kirgizstan";
-import { kirgizstan_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/asia/74_kirgizstan";
+import { kirgizstan_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/74_kirgizstan";
 import { kirgizstan_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/74_kirgizstan";
 import { kirgizstan_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/74_kirgizstan";
-import { kirgizstan_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/asia/74_kirgizstan";
+import { kirgizstan_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/74_kirgizstan";
 const kirgizstan_geopolitik = {
     "un_vote": 19,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const kirgizstan: CountryData = {
     "lingkungan": 60
   }
 };
+
 

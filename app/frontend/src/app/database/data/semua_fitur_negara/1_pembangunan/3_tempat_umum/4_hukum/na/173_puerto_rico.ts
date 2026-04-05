@@ -1,10 +1,10 @@
 export const puerto_rico_hukum = {
-      "pusat_bantuan_hukum": 15,
-      "pengadilan": 36,
+      "pusat_bantuan_hukum": 9,
+      "pengadilan": 4,
       "kejaksaan": 4,
-      "pos_polisi": 40,
-      "armada_mobil_polisi": 3667,
-      "akademi_polisi": 37,
-      "indeks_korupsi": 91,
-      "indeks_keamanan": 77
+      "pos_polisi": 20,
+      "armada_mobil_polisi": 495,
+      "akademi_polisi": 1,
+      "indeks_korupsi": 30,
+      "indeks_keamanan": 50
   } as const;

@@ -1,10 +1,10 @@
 export const palestina_olahraga = {
-  "kolam_renang": 3,
-  "sirkuit_balap": 20,
-  "stadion": 29,
-  "stadion_internasional": 9,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 18,
+  "sirkuit_balap": 2,
+  "stadion": 7,
+  "stadion_internasional": 0,
+  "gym": 32,
+  "golf": 2,
+  "esports": 3,
+  "gokart": 10
 } as const;

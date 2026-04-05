@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { peru_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/204_peru";
-import { peru_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/sa/204_peru";
+import { peru_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/204_peru";
 import { peru_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/204_peru";
 import { peru_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/sa/204_peru";
 import { peru_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/sa/204_peru";
 import { peru_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/sa/204_peru";
-import { peru_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/sa/204_peru";
+import { peru_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/sa/204_peru";
 import { peru_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/sa/204_peru";
 import { peru_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/sa/204_peru";
 import { peru_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/sa/204_peru";
@@ -14,10 +14,10 @@ import { peru_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangu
 import { peru_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/sa/204_peru";
 import { peru_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/sa/204_peru";
 import { peru_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/sa/204_peru";
-import { peru_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/sa/204_peru";
+import { peru_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/sa/204_peru";
 import { peru_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/sa/204_peru";
 import { peru_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/204_peru";
-import { peru_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/sa/204_peru";
+import { peru_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/sa/204_peru";
 const peru_geopolitik = {
     "un_vote": 41,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const peru: CountryData = {
     "lingkungan": 60
   }
 };
+
 

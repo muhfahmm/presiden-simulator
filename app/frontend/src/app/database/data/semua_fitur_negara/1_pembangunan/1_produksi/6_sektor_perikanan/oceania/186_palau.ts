@@ -1,5 +1,5 @@
 export const palau_perikanan = {
-  udang: 17,
-  mutiara: 17,
-  ikan: 2,
+  udang: 74,
+  mutiara: 40,
+  ikan: 80,
 } as const;

@@ -1,0 +1,13 @@
+import { grenada_intelijen } from "../../2_intelijen/na/163_grenada";
+
+export const grenada_strategis = {
+    "waktu_respon": 34,
+    "intelijen": 20,
+    "status_nuklir": false,
+    "intel_radar": grenada_intelijen,
+    "operasi_strategis": { "misi_serangan": 17,
+      "misi_mata_mata": 34,
+      "misi_sabotase": 27,
+      "manajemen_wilayah": 18,
+      "program_nuklir": 0 }
+  } as const;

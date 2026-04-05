@@ -1,13 +1,13 @@
 export const kroasia_pendidikan = {
-      "prasekolah": 28,
-      "dasar": 13,
-      "menengah": 35,
-      "lanjutan": 19,
-      "universitas": 40,
-      "lembaga_pendidikan": 8,
-      "laboratorium": 22,
-      "observatorium": 4,
-      "pusat_penelitian": 30,
-      "pusat_pengembangan": 20,
-      "literasi": 55
+      "prasekolah": 76,
+      "dasar": 97,
+      "menengah": 37,
+      "lanjutan": 23,
+      "universitas": 11,
+      "lembaga_pendidikan": 9,
+      "laboratorium": 1,
+      "observatorium": 0,
+      "pusat_penelitian": 5,
+      "pusat_pengembangan": 2,
+      "literasi": 73
     } as const;

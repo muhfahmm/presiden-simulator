@@ -1,13 +1,13 @@
 export const namibia_pendidikan = {
-      "prasekolah": 15,
-      "dasar": 29,
-      "menengah": 36,
-      "lanjutan": 39,
-      "universitas": 40,
-      "lembaga_pendidikan": 29,
-      "laboratorium": 28,
-      "observatorium": 10,
-      "pusat_penelitian": 28,
-      "pusat_pengembangan": 27,
-      "literasi": 69
+      "prasekolah": 38,
+      "dasar": 148,
+      "menengah": 50,
+      "lanjutan": 38,
+      "universitas": 17,
+      "lembaga_pendidikan": 14,
+      "laboratorium": 2,
+      "observatorium": 0,
+      "pusat_penelitian": 3,
+      "pusat_pengembangan": 2,
+      "literasi": 62
   } as const;

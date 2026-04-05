@@ -1,10 +1,10 @@
 export const lesotho_olahraga = {
-  "kolam_renang": 15,
-  "sirkuit_balap": 26,
-  "stadion": 34,
-  "stadion_internasional": 12,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 11,
+  "sirkuit_balap": 1,
+  "stadion": 5,
+  "stadion_internasional": 0,
+  "gym": 39,
+  "golf": 4,
+  "esports": 4,
+  "gokart": 15
 } as const;

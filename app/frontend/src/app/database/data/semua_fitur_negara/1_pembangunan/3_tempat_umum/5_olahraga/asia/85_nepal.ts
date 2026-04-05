@@ -1,10 +1,10 @@
 export const nepal_olahraga = {
-  "kolam_renang": 14,
-  "sirkuit_balap": 19,
-  "stadion": 17,
-  "stadion_internasional": 14,
-  "gym": 0,
-  "golf": 0,
-  "esports": 0,
-  "gokart": 0
+  "kolam_renang": 15,
+  "sirkuit_balap": 3,
+  "stadion": 9,
+  "stadion_internasional": 0,
+  "gym": 11,
+  "golf": 3,
+  "esports": 4,
+  "gokart": 12
 } as const;

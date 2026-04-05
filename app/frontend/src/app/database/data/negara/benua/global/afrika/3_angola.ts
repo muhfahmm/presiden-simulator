@@ -1,11 +1,11 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { angola_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/3_angola";
-import { angola_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/afrika/3_angola";
+import { angola_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/3_angola";
 import { angola_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/3_angola";
 import { angola_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/3_angola";
 import { angola_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/3_angola";
 import { angola_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/3_angola";
-import { angola_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/afrika/3_angola";
+import { angola_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/3_angola";
 import { angola_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/3_angola";
 import { angola_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/3_angola";
 import { angola_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/3_angola";
@@ -14,10 +14,10 @@ import { angola_olahraga } from "@/app/database/data/semua_fitur_negara/1_pemban
 import { angola_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/3_angola";
 import { angola_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/3_angola";
 import { angola_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/3_angola";
-import { angola_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/afrika/3_angola";
+import { angola_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/3_angola";
 import { angola_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/3_angola";
 import { angola_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/3_angola";
-import { angola_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/afrika/3_angola";
+import { angola_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/3_angola";
 const angola_geopolitik = {
     "un_vote": 155,
     "reputasi_diplomatik": "Netral",
@@ -152,4 +152,5 @@ export const angola: CountryData = {
     "lingkungan": 60
   }
 };
+
 

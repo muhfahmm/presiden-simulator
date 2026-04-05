@@ -1,6 +1,6 @@
 export const siprus_peternakan = {
-  ayam_unggas: 34,
-  sapi_perah: 7,
-  sapi_potong: 12,
-  domba_kambing: 5,
+  ayam_unggas: 112,
+  sapi_perah: 124,
+  sapi_potong: 164,
+  domba_kambing: 116,
 } as const;

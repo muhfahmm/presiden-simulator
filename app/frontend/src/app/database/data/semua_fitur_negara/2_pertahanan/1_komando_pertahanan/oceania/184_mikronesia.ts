@@ -1,0 +1,13 @@
+import { mikronesia_intelijen } from "../../2_intelijen/oceania/184_mikronesia";
+
+export const mikronesia_strategis = {
+    "waktu_respon": 25,
+    "intelijen": 27,
+    "status_nuklir": false,
+    "intel_radar": mikronesia_intelijen,
+    "operasi_strategis": { "misi_serangan": 8,
+      "misi_mata_mata": 36,
+      "misi_sabotase": 9,
+      "manajemen_wilayah": 8,
+      "program_nuklir": 0 }
+  } as const;
