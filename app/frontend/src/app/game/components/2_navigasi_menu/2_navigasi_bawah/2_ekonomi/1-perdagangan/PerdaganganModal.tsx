@@ -23,7 +23,7 @@ import {
   produkIndustriRate,
   mineralKritisRate
 } from "@/app/database/data/semua_fitur_negara";
-import { militerRate } from "@/app/database/data/semua_fitur_negara/2_produksi_militer";
+import { militerRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer";
 import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { EksporHalaman } from "./ekspor_impor/ekspor/EksporHalaman";
 import { ImporHalaman } from "./ekspor_impor/impor/ImporHalaman";

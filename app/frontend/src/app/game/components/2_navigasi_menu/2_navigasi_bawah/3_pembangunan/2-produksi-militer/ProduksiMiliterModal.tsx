@@ -10,7 +10,8 @@ import { calculateConstructionProgress, getStatusText } from "@/app/game/data/co
 import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MaterialRequirement from "../1-produksi/MaterialRequirement";
-import { pertahananRate, produksiMiliter, pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/2_produksi_militer";
+import { pertahananRate, produksiMiliter } from "@/app/database/data/semua_fitur_negara/4_pertahanan";
+import { pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
@@ -269,8 +270,6 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
       case "cyber_shield": return ShieldAlert;
       case "pabrik_drone_kamikaze": return Target;
       case "pabrik_amunisi": return Archive;
-      case "pabrik_kendaraan_tempur": return Truck;
-      case "pabrik_senjata_berat": return Crosshair;
       default: return Shield;
     }
   };

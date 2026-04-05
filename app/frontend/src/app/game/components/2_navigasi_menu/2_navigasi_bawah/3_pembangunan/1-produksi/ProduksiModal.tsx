@@ -1,15 +1,16 @@
 import { useState, useEffect, Fragment } from "react";
-import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain, Briefcase, Users2, Cloud } from "lucide-react"
+import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Hammer, Trees, Coffee, Cookie, Milk, Fish, Waves, Shell, Sprout, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Apple, Bird, Bean, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, Archive, Warehouse, GraduationCap, Landmark, Crosshair, HeartPulse, Library, TrainFront, HardHat, ShieldAlert, Scale, Siren, Cpu, TreePine, Croissant, Soup, Leaf, Info, Gem, Radio, Layers, Box, Battery, Mountain, Briefcase, Users2, Cloud, Target, Truck } from "lucide-react"
 import { 
   mineralKritisRate, 
-  produkIndustriRate as manufakturRate, 
+  manufakturRate, 
   peternakanRate, 
   agrikulturRate, 
   perikananRate, 
   olahanPanganRate, 
   farmasiRate 
-} from "@/app/database/data/harga_bangunan_negara/1_pembangunan";
-import { pertahananRate, produksiMiliter, pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/2_produksi_militer";
+} from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi";
+import { pertahananRate, produksiMiliter } from "@/app/database/data/semua_fitur_negara/4_pertahanan";
+import { pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
@@ -315,6 +316,8 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
     if (key.includes("karet")) return Droplets;
     if (key.includes("kapas")) return Cloud;
     if (key.includes("tembakau")) return Flame;
+    if (key.includes("pabrik_drone_kamikaze")) return Target;
+    if (key.includes("pabrik_amunisi")) return Archive;
     return Pickaxe;
   };
 
@@ -504,6 +507,29 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           cost: val.biaya_pembangunan || 4500,
           buildTime: val.waktu_pembangunan || 60,
           maintenanceCost: val.biaya_pemeliharaan ?? 25,
+          lowongan_kerja: val.lowongan_kerja || 0
+        }))
+    },
+    {
+      id: "pabrik_militer",
+      title: "9. Sektor Produksi Militer",
+      icon: Factory,
+      color: "text-purple-500",
+      items: Object.entries(pabrikMiliterRate)
+        .map(([key, val]: [string, any]) => ({
+          key: val.dataKey,
+          groupId: "pabrik_militer",
+          label: val.label,
+          icon: getIcon(val.dataKey),
+          desc: "Produksi Militer",
+          tarif: val.produksi,
+          unit: val.satuan || "Unit",
+          count: (currentData.pabrik_militer?.[val.dataKey as keyof typeof currentData.pabrik_militer] || 0) + ((buildingDeltas[val.dataKey] as number) || 0),
+          powerUsage: val.konsumsi_listrik || 0,
+          pendapatan_nasional: val.pendapatan_nasional || 0,
+          cost: val.biaya_pembangunan || 5000,
+          buildTime: val.waktu_pembangunan || 90,
+          maintenanceCost: val.biaya_pemeliharaan ?? 500,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     }

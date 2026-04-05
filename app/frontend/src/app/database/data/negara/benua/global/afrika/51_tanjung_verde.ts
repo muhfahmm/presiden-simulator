@@ -1,23 +1,23 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
-import { tanjung_verde_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/afrika/51_tanjung_verde";
-import { tanjung_verde_armada } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/2_armada_militer/afrika/51_tanjung_verde";
-import { tanjung_verde_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/afrika/51_tanjung_verde";
-import { tanjung_verde_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/afrika/51_tanjung_verde";
-import { tanjung_verde_hukum } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/3_hukum/afrika/51_tanjung_verde";
-import { tanjung_verde_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/afrika/51_tanjung_verde";
-import { tanjung_verde_kepolisian } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/4_armada_kepolisian/afrika/51_tanjung_verde";
-import { tanjung_verde_kesehatan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/2_kesehatan/afrika/51_tanjung_verde";
-import { tanjung_verde_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/afrika/51_tanjung_verde";
-import { tanjung_verde_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/afrika/51_tanjung_verde";
-import { tanjung_verde_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/afrika/51_tanjung_verde";
-import { tanjung_verde_olahraga } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/4_olahraga/afrika/51_tanjung_verde";
-import { tanjung_verde_pabrik } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/5_pabrik_militer/afrika/51_tanjung_verde";
-import { tanjung_verde_pendidikan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/1_pendidikan/afrika/51_tanjung_verde";
-import { tanjung_verde_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/afrika/51_tanjung_verde";
-import { tanjung_verde_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/1_sektor_pertahanan/afrika/51_tanjung_verde";
-import { tanjung_verde_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/afrika/51_tanjung_verde";
+import { tanjung_verde_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/51_tanjung_verde";
+import { tanjung_verde_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/afrika/51_tanjung_verde";
+import { tanjung_verde_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/51_tanjung_verde";
+import { tanjung_verde_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/51_tanjung_verde";
+import { tanjung_verde_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/51_tanjung_verde";
+import { tanjung_verde_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/51_tanjung_verde";
+import { tanjung_verde_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/afrika/51_tanjung_verde";
+import { tanjung_verde_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/51_tanjung_verde";
+import { tanjung_verde_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/51_tanjung_verde";
+import { tanjung_verde_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/51_tanjung_verde";
+import { tanjung_verde_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/51_tanjung_verde";
+import { tanjung_verde_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/51_tanjung_verde";
+import { tanjung_verde_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/51_tanjung_verde";
+import { tanjung_verde_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/51_tanjung_verde";
+import { tanjung_verde_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/51_tanjung_verde";
+import { tanjung_verde_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/afrika/51_tanjung_verde";
+import { tanjung_verde_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/51_tanjung_verde";
 import { tanjung_verde_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/51_tanjung_verde";
-import { tanjung_verde_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/afrika/51_tanjung_verde";
+import { tanjung_verde_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/afrika/51_tanjung_verde";
 const tanjung_verde_geopolitik = {
     "un_vote": 97,
     "reputasi_diplomatik": "Netral",

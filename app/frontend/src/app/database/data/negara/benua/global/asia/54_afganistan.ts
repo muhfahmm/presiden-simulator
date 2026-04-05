@@ -1,23 +1,23 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
-import { afganistan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/asia/54_afganistan";
-import { afganistan_armada } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/2_armada_militer/asia/54_afganistan";
-import { afganistan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/asia/54_afganistan";
-import { afganistan_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/asia/54_afganistan";
-import { afganistan_hukum } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/3_hukum/asia/54_afganistan";
-import { afganistan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/asia/54_afganistan";
-import { afganistan_kepolisian } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/4_armada_kepolisian/asia/54_afganistan";
-import { afganistan_kesehatan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/2_kesehatan/asia/54_afganistan";
-import { afganistan_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/asia/54_afganistan";
-import { afganistan_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/asia/54_afganistan";
-import { afganistan_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/asia/54_afganistan";
-import { afganistan_olahraga } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/4_olahraga/asia/54_afganistan";
-import { afganistan_pabrik } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/5_pabrik_militer/asia/54_afganistan";
-import { afganistan_pendidikan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/1_pendidikan/asia/54_afganistan";
-import { afganistan_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/asia/54_afganistan";
-import { afganistan_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/1_sektor_pertahanan/asia/54_afganistan";
-import { afganistan_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/54_afganistan";
+import { afganistan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/54_afganistan";
+import { afganistan_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/asia/54_afganistan";
+import { afganistan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/54_afganistan";
+import { afganistan_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/54_afganistan";
+import { afganistan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/54_afganistan";
+import { afganistan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/54_afganistan";
+import { afganistan_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/asia/54_afganistan";
+import { afganistan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/54_afganistan";
+import { afganistan_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/54_afganistan";
+import { afganistan_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/54_afganistan";
+import { afganistan_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/54_afganistan";
+import { afganistan_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/54_afganistan";
+import { afganistan_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/54_afganistan";
+import { afganistan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/54_afganistan";
+import { afganistan_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/54_afganistan";
+import { afganistan_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/asia/54_afganistan";
+import { afganistan_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/54_afganistan";
 import { afganistan_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/54_afganistan";
-import { afganistan_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/asia/54_afganistan";
+import { afganistan_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/asia/54_afganistan";
 const afganistan_geopolitik = {
     "un_vote": 126,
     "reputasi_diplomatik": "Netral",

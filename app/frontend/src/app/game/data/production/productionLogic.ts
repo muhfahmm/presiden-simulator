@@ -1,5 +1,5 @@
 import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/database/data/semua_fitur_negara";
-import { militerRate } from "@/app/database/data/semua_fitur_negara/2_produksi_militer";
+import { militerRate } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 
 /**

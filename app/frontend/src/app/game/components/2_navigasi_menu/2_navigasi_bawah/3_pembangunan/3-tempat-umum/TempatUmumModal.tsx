@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Gem, Battery, Box, Cpu, Mountain, Waves, TreePine, Croissant, Soup, Shell, Milk, Sprout, Apple, Bean, Coffee, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Bird, Fish, Info, Building, Archive, Layers, Hammer, Microscope, Search, Building2, Library, Trophy, Gavel, Scale, Radar, Settings, Target, ShieldAlert, HeartPulse, Stethoscope, Briefcase, Users, Warehouse, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, GraduationCap, Landmark, Crosshair, TrainFront, HardHat, Siren, Leaf, Truck, School, Lightbulb, Dumbbell, Flag, Gamepad2, Clapperboard, Theater } from "lucide-react"
@@ -111,60 +111,99 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
   const publicGroups = [
     {
       id: "infrastruktur",
-      title: "2. Sektor Infrastruktur & Logistik (8 jenis)",
+      title: "1. Sektor Infrastruktur & Logistik (8 jenis)",
       icon: Ship,
       color: "text-cyan-400",
       items: [
         { ...infrastrukturRate["1_jalur_sepeda"], groupId: "infra_darat", label: "Jalur Sepeda", icon: Bike, desc: "Logistik", tarif: 1, unit: "Unit", cost: infrastrukturRate["1_jalur_sepeda"].biaya_pembangunan, count: (currentData.infrastruktur?.jalur_sepeda || 0) + ((buildingDeltas["jalur_sepeda"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_sepeda },
-        { ...infrastrukturRate["2_jalan_tol"], groupId: "infra_darat", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", tarif: 1, unit: "Unit", cost: infrastrukturRate["2_jalan_tol"].biaya_pembangunan, count: (currentData.infrastruktur?.jalan_tol || 0) + ((buildingDeltas["jalan_tol"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalan_tol },
+        { ...infrastrukturRate["2_jalan_tol"], groupId: "infra_darat", label: "Jalan Raya", icon: Map, desc: "Infrastruktur", tarif: 1, unit: "Unit", cost: infrastrukturRate["2_jalan_tol"].biaya_pembangunan, count: (currentData.infrastruktur?.jalan_raya || 0) + ((buildingDeltas["2_jalan_tol"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalan_raya },
         { ...infrastrukturRate["3_terminal_bus"], groupId: "infra_darat", label: "Terminal Bus", icon: Bus, desc: "Transportasi", tarif: 1, unit: "Unit", cost: infrastrukturRate["3_terminal_bus"].biaya_pembangunan, count: (currentData.infrastruktur?.terminal_bus || 0) + ((buildingDeltas["terminal_bus"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.terminal_bus },
         
-        { ...infrastrukturRate["4_jalur_kereta"], groupId: "perkeretaapian", label: "Stasiun Kereta Api", icon: TrainFront, desc: "Logistik", tarif: 1, unit: "Unit", cost: infrastrukturRate["4_jalur_kereta"].biaya_pembangunan, count: (currentData.infrastruktur?.jalur_kereta || 0) + ((buildingDeltas["jalur_kereta"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.jalur_kereta },
+        { ...infrastrukturRate["4_jalur_kereta"], groupId: "perkeretaapian", label: "Stasiun Kereta Api", icon: TrainFront, desc: "Logistik", tarif: 1, unit: "Unit", cost: infrastrukturRate["4_jalur_kereta"].biaya_pembangunan, count: (currentData.infrastruktur?.stasiun_kereta_api || 0) + ((buildingDeltas["4_jalur_kereta"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.stasiun_kereta_api },
         { ...infrastrukturRate["5_kereta_bawah_tanah"], groupId: "perkeretaapian", label: "Kereta Bawah Tanah", icon: TrainFront, desc: "Transportasi", tarif: 1, unit: "Unit", cost: infrastrukturRate["5_kereta_bawah_tanah"].biaya_pembangunan, count: (currentData.infrastruktur?.kereta_bawah_tanah || 0) + ((buildingDeltas["kereta_bawah_tanah"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.kereta_bawah_tanah },
         
-        { ...infrastrukturRate["6_pelabuhan_laut"], groupId: "maritim_udara", label: "Pelabuhan", icon: Ship, desc: "Maritim", tarif: 1, unit: "Unit", cost: infrastrukturRate["6_pelabuhan_laut"].biaya_pembangunan, count: (currentData.infrastruktur?.pelabuhan_laut || 0) + ((buildingDeltas["seaport"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.pelabuhan_laut },
+        { ...infrastrukturRate["6_pelabuhan_laut"], groupId: "maritim_udara", label: "Pelabuhan", icon: Ship, desc: "Maritim", tarif: 1, unit: "Unit", cost: infrastrukturRate["6_pelabuhan_laut"].biaya_pembangunan, count: (currentData.infrastruktur?.pelabuhan || 0) + ((buildingDeltas["6_pelabuhan_laut"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.pelabuhan },
         { ...infrastrukturRate["7_bandara"], groupId: "maritim_udara", label: "Bandara", icon: Plane, desc: "Udara", tarif: 1, unit: "Unit", cost: infrastrukturRate["7_bandara"].biaya_pembangunan, count: (currentData.infrastruktur?.bandara || 0) + ((buildingDeltas["bandara"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.bandara },
         { ...infrastrukturRate["8_helipad"], groupId: "maritim_udara", label: "Helipad", icon: Plane, desc: "Udara", tarif: 1, unit: "Unit", cost: infrastrukturRate["8_helipad"].biaya_pembangunan, count: (currentData.infrastruktur?.helipad || 0) + ((buildingDeltas["helipad"] as number) || 0), consumption: KONSUMSI_TRANSPORTASI.helipad },
       ]
     },
     {
-      id: "layanan_sosial",
-      title: "10. Sektor Sosial & Pelayanan Publik (18 jenis)",
+      id: "pendidikan_riset",
+      title: "2. Sektor Pendidikan & Riset (10 jenis)",
+      icon: GraduationCap,
+      color: "text-indigo-400",
+      items: [
+        { ...sosialRate["1_prasekolah"], groupId: "pendidikan", label: "Prasekolah (PAUD)", icon: Building2, desc: "Pendidikan", tarif: 1, cost: sosialRate["1_prasekolah"].biaya_pembangunan, count: (currentData.pendidikan?.prasekolah || 0) + ((buildingDeltas["prasekolah"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.prasekolah },
+        { ...sosialRate["2_dasar"], groupId: "pendidikan", label: "Pendidikan Dasar", icon: School, desc: "Pendidikan", tarif: 1, cost: sosialRate["2_dasar"].biaya_pembangunan, count: (currentData.pendidikan?.dasar || 0) + ((buildingDeltas["dasar"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.dasar },
+        { ...sosialRate["3_menengah"], groupId: "pendidikan", label: "Sekolah Menengah", icon: Library, desc: "Pendidikan", tarif: 1, cost: sosialRate["3_menengah"].biaya_pembangunan, count: (currentData.pendidikan?.menengah || 0) + ((buildingDeltas["menengah"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.menengah },
+        { ...sosialRate["4_lanjutan"], groupId: "pendidikan", label: "Sekolah Lanjutan", icon: GraduationCap, desc: "Pendidikan", tarif: 1, cost: sosialRate["4_lanjutan"].biaya_pembangunan, count: (currentData.pendidikan?.lanjutan || 0) + ((buildingDeltas["lanjutan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.lanjutan },
+        { ...sosialRate["5_universitas"], groupId: "pendidikan", label: "Universitas", icon: Landmark, desc: "Pendidikan Tinggi", tarif: 1, cost: sosialRate["5_universitas"].biaya_pembangunan, count: (currentData.pendidikan?.universitas || 0) + ((buildingDeltas["universitas"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.universitas },
+        { ...sosialRate["6_lembaga_pendidikan"], groupId: "pendidikan", label: "Lembaga Pendidikan", icon: Briefcase, desc: "Vokasional", tarif: 1, cost: sosialRate["6_lembaga_pendidikan"].biaya_pembangunan, count: (currentData.pendidikan?.lembaga_pendidikan || 0) + ((buildingDeltas["lembaga_pendidikan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.lembaga_pendidikan },
+        { ...sosialRate["7_laboratorium"], groupId: "pendidikan", label: "Laboratorium", icon: Microscope, desc: "Riset", tarif: 1, cost: sosialRate["7_laboratorium"].biaya_pembangunan, count: (currentData.pendidikan?.laboratorium || 0) + ((buildingDeltas["laboratorium"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.laboratorium },
+        { ...sosialRate["8_observatorium"], groupId: "pendidikan", label: "Observatorium", icon: Eye, desc: "Astronomi", tarif: 1, cost: sosialRate["8_observatorium"].biaya_pembangunan, count: (currentData.pendidikan?.observatorium || 0) + ((buildingDeltas["observatorium"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.observatorium },
+        { ...sosialRate["9_pusat_penelitian"], groupId: "pendidikan", label: "Pusat Penelitian", icon: Search, desc: "Riset Strategis", tarif: 1, cost: sosialRate["9_pusat_penelitian"].biaya_pembangunan, count: (currentData.pendidikan?.pusat_penelitian || 0) + ((buildingDeltas["pusat_penelitian"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.pusat_penelitian },
+        { ...sosialRate["10_pusat_pengembangan"], groupId: "pendidikan", label: "Pusat Pengembangan", icon: Lightbulb, desc: "Inovasi", tarif: 1, cost: sosialRate["10_pusat_pengembangan"].biaya_pembangunan, count: (currentData.pendidikan?.pusat_pengembangan || 0) + ((buildingDeltas["pusat_pengembangan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.pusat_pengembangan },
+      ]
+    },
+    {
+      id: "kesehatan",
+      title: "3. Sektor Layanan Kesehatan (3 jenis)",
       icon: HeartPulse,
       color: "text-rose-400",
       items: [
-        // --- PENDIDIKAN & RISET (6 JENIS) ---
-        { ...sosialRate["1_tk_sd"], groupId: "pendidikan", label: "TK / SD", icon: Building2, desc: "Pendidikan", tarif: 1, cost: sosialRate["1_tk_sd"].biaya_pembangunan, count: ((currentData.pendidikan?.prasekolah || 0) + (currentData.pendidikan?.dasar || 0)) + ((buildingDeltas["tk_sd"] as number) || 0), consumption: (KONSUMSI_SOSIAL.pendidikan.prasekolah + KONSUMSI_SOSIAL.pendidikan.dasar) / 2 },
-        { ...sosialRate["2_smp_sma"], groupId: "pendidikan", label: "SMP / SMA", icon: Library, desc: "Pendidikan", tarif: 1, cost: sosialRate["2_smp_sma"].biaya_pembangunan, count: ((currentData.pendidikan?.menengah || 0) + (currentData.pendidikan?.lanjutan || 0)) + ((buildingDeltas["smp_sma"] as number) || 0), consumption: (KONSUMSI_SOSIAL.pendidikan.menengah + KONSUMSI_SOSIAL.pendidikan.lanjutan) / 2 },
-        { ...sosialRate["3_pt_lembaga"], groupId: "pendidikan", label: "PT / Lembaga", icon: Library, desc: "Pendidikan", tarif: 1, cost: sosialRate["3_pt_lembaga"].biaya_pembangunan, count: ((currentData.pendidikan?.universitas || 0) + (currentData.pendidikan?.lembaga_pendidikan || 0)) + ((buildingDeltas["pt_lembaga"] as number) || 0), consumption: ((KONSUMSI_SOSIAL.pendidikan.universitas || 0) + (KONSUMSI_SOSIAL.pendidikan.lembaga_pendidikan || 0)) / 2 },
-        { ...sosialRate["4_lab_riset"], groupId: "pendidikan", label: "Lab & Riset", icon: Microscope, desc: "Riset", tarif: 1, cost: sosialRate["4_lab_riset"].biaya_pembangunan, count: ((currentData.pendidikan?.laboratorium || 0) + (currentData.pendidikan?.pusat_penelitian || 0)) + ((buildingDeltas["lab_riset"] as number) || 0), consumption: ((KONSUMSI_SOSIAL.pendidikan.laboratorium || 0) + (KONSUMSI_SOSIAL.pendidikan.pusat_penelitian || 0)) / 2 },
-        { ...sosialRate["5_observatorium"], groupId: "pendidikan", label: "Observatorium", icon: Eye, desc: "Riset", tarif: 1, cost: sosialRate["5_observatorium"].biaya_pembangunan, count: (currentData.pendidikan?.observatorium || 0) + ((buildingDeltas["observatorium"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.observatorium },
-        { ...sosialRate["6_pusat_pengembangan"], groupId: "pendidikan", label: "Pengembangan", icon: Lightbulb, desc: "Inovasi", tarif: 1, cost: sosialRate["6_pusat_pengembangan"].biaya_pembangunan, count: (currentData.pendidikan?.pusat_pengembangan || 0) + ((buildingDeltas["pusat_pengembangan"] as number) || 0), consumption: KONSUMSI_SOSIAL.pendidikan.pusat_pengembangan },
-
-        // --- KESEHATAN (3 JENIS) ---
-        { ...sosialRate["7_rumah_sakit_besar"], groupId: "kesehatan", label: "RS Besar", icon: Building2, desc: "Kesehatan", tarif: 1, cost: sosialRate["7_rumah_sakit_besar"].biaya_pembangunan, count: (currentData.kesehatan?.rumah_sakit_besar || 0) + ((buildingDeltas["rumah_sakit_besar"] as number) || 0), consumption: KONSUMSI_SOSIAL.kesehatan.rumah_sakit_besar },
-        { ...sosialRate["8_rumah_sakit_kecil"], groupId: "kesehatan", label: "RS Kecil", icon: Building2, desc: "Kesehatan", tarif: 1, cost: sosialRate["8_rumah_sakit_kecil"].biaya_pembangunan, count: (currentData.kesehatan?.rumah_sakit_kecil || 0) + ((buildingDeltas["rumah_sakit_kecil"] as number) || 0), consumption: KONSUMSI_SOSIAL.kesehatan.rumah_sakit_kecil },
-        { ...sosialRate["9_pusat_diagnostik"], groupId: "kesehatan", label: "Diagnostik", icon: Search, desc: "Kesehatan", tarif: 1, cost: sosialRate["9_pusat_diagnostik"].biaya_pembangunan, count: (currentData.kesehatan?.pusat_diagnostik || 0) + ((buildingDeltas["pusat_diagnostik"] as number) || 0), consumption: KONSUMSI_SOSIAL.kesehatan.pusat_diagnostik },
-
-        // --- OLAHRAGA (7 JENIS) ---
-        { ...sosialRate["10_kolam_renang"], groupId: "olahraga", label: "Kolam Renang", icon: Waves, desc: "Olahraga", tarif: 1, cost: sosialRate["10_kolam_renang"].biaya_pembangunan, count: (currentData.sektor_olahraga?.kolam_renang || 0) + ((buildingDeltas["kolam_renang"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.kolam_renang },
-        { ...sosialRate["11_sirkuit_balap"], groupId: "olahraga", label: "Sirkuit Balap", icon: Flame, desc: "Olahraga", tarif: 1, cost: sosialRate["11_sirkuit_balap"].biaya_pembangunan, count: (currentData.sektor_olahraga?.sirkuit_balap || 0) + ((buildingDeltas["sirkuit_balap"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.sirkuit_balap },
-        { ...sosialRate["12_stadium_int"], groupId: "olahraga", label: "Stadion (Nas/Int)", icon: Trophy, desc: "Olahraga", tarif: 1, cost: sosialRate["12_stadium_int"].biaya_pembangunan, count: ((currentData.sektor_olahraga?.stadion || 0) + (currentData.sektor_olahraga?.stadion_internasional || 0)) + ((buildingDeltas["stadium_int"] as number) || 0), consumption: (KONSUMSI_SOSIAL.olahraga.stadion + KONSUMSI_SOSIAL.olahraga.stadion_internasional) / 2 },
-        { ...sosialRate["13_gym_center"], groupId: "olahraga", label: "Pusat Kebugaran", icon: Dumbbell, desc: "Olahraga", tarif: 1, cost: sosialRate["13_gym_center"].biaya_pembangunan, count: (currentData.sektor_olahraga?.gym || 0) + ((buildingDeltas["gym_center"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.gym },
-        { ...sosialRate["14_lapangan_golf"], groupId: "olahraga", label: "Lapangan Golf", icon: Flag, desc: "Olahraga", tarif: 1, cost: sosialRate["14_lapangan_golf"].biaya_pembangunan, count: (currentData.sektor_olahraga?.golf || 0) + ((buildingDeltas["lapangan_golf"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.golf },
-        { ...sosialRate["15_esports_arena"], groupId: "olahraga", label: "Arena E-Sports", icon: Gamepad2, desc: "Olahraga", tarif: 1, cost: sosialRate["15_esports_arena"].biaya_pembangunan, count: (currentData.sektor_olahraga?.esports || 0) + ((buildingDeltas["esports_arena"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.esports },
-        { ...sosialRate["16_gokart_circuit"], groupId: "olahraga", label: "Sirkuit Gokart", icon: Flame, desc: "Olahraga", tarif: 1, cost: sosialRate["16_gokart_circuit"].biaya_pembangunan, count: (currentData.sektor_olahraga?.gokart || 0) + ((buildingDeltas["gokart_circuit"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.gokart },
-
-        // --- FASILITAS KOMERSIAL & HIBURAN (3 JENIS) ---
-        { ...sosialRate["17_pusat_belanja"], groupId: "komersial", label: "Pusat Perbelanjaan (Mall)", icon: Store, desc: "Komersial", tarif: 1, cost: sosialRate["17_pusat_belanja"].biaya_pembangunan, count: (currentData.sektor_komersial?.mall || 0) + ((buildingDeltas["pusat_belanja"] as number) || 0), consumption: KONSUMSI_SOSIAL.komersial.mall },
-        { ...sosialRate["18_bioskop"], groupId: "komersial", label: "Bioskop", icon: Clapperboard, desc: "Hiburan", tarif: 1, cost: sosialRate["18_bioskop"].biaya_pembangunan, count: (currentData.sektor_hiburan?.bioskop || 0) + ((buildingDeltas["bioskop"] as number) || 0), consumption: KONSUMSI_SOSIAL.hiburan.bioskop },
-        { ...sosialRate["19_gedung_teater"], groupId: "komersial", label: "Gedung Teater", icon: Theater, desc: "Hiburan", tarif: 1, cost: sosialRate["19_gedung_teater"].biaya_pembangunan, count: (currentData.sektor_hiburan?.teater || 0) + ((buildingDeltas["gedung_teater"] as number) || 0), consumption: KONSUMSI_SOSIAL.hiburan.teater },
-
-        // --- HUKUM & KEAMANAN (2 JENIS) ---
-        { ...sosialRate["20_kejaksaan_court"], groupId: "hukum", label: "Kejaksaan / Court", icon: Gavel, desc: "Hukum", tarif: 1, cost: sosialRate["20_kejaksaan_court"].biaya_pembangunan, count: ((currentData.hukum?.kejaksaan || 0) + (currentData.hukum?.pengadilan || 0)) + ((buildingDeltas["kejaksaan_court"] as number) || 0), consumption: (KONSUMSI_SOSIAL.hukum.kejaksaan + KONSUMSI_SOSIAL.hukum.pengadilan) / 2 },
-        { ...sosialRate["21_legal_aid"], groupId: "hukum", label: "Bantuan Hukum", icon: Scale, desc: "Hukum", tarif: 1, cost: sosialRate["21_legal_aid"].biaya_pembangunan, count: (currentData.hukum?.pusat_bantuan_hukum || 0) + ((buildingDeltas["legal_aid"] as number) || 0), consumption: KONSUMSI_SOSIAL.hukum.pusat_bantuan_hukum },
+        { ...sosialRate["11_rumah_sakit_besar"], groupId: "kesehatan", label: "RS Besar", icon: Building2, desc: "Kesehatan", tarif: 1, cost: sosialRate["11_rumah_sakit_besar"].biaya_pembangunan, count: (currentData.kesehatan?.rumah_sakit_besar || 0) + ((buildingDeltas["rumah_sakit_besar"] as number) || 0), consumption: KONSUMSI_SOSIAL.kesehatan.rumah_sakit_besar },
+        { ...sosialRate["12_rumah_sakit_kecil"], groupId: "kesehatan", label: "RS Kecil", icon: Building2, desc: "Kesehatan", tarif: 1, cost: sosialRate["12_rumah_sakit_kecil"].biaya_pembangunan, count: (currentData.kesehatan?.rumah_sakit_kecil || 0) + ((buildingDeltas["rumah_sakit_kecil"] as number) || 0), consumption: KONSUMSI_SOSIAL.kesehatan.rumah_sakit_kecil },
+        { ...sosialRate["13_pusat_diagnostik"], groupId: "kesehatan", label: "Diagnostik", icon: Search, desc: "Kesehatan", tarif: 1, cost: sosialRate["13_pusat_diagnostik"].biaya_pembangunan, count: (currentData.kesehatan?.pusat_diagnostik || 0) + ((buildingDeltas["pusat_diagnostik"] as number) || 0), consumption: KONSUMSI_SOSIAL.kesehatan.pusat_diagnostik },
+      ]
+    },
+    {
+      id: "hukum_keamanan",
+      title: "4. Sektor Hukum & Keamanan (2 jenis)",
+      icon: Gavel,
+      color: "text-slate-400",
+      items: [
+        { ...sosialRate["14_kejaksaan_court"], groupId: "hukum", label: "Kejaksaan / Court", icon: Gavel, desc: "Hukum", tarif: 1, cost: sosialRate["14_kejaksaan_court"].biaya_pembangunan, count: ((currentData.hukum?.kejaksaan || 0) + (currentData.hukum?.pengadilan || 0)) + ((buildingDeltas["kejaksaan_court"] as number) || 0), consumption: (KONSUMSI_SOSIAL.hukum.kejaksaan + KONSUMSI_SOSIAL.hukum.pengadilan) / 2 },
+        { ...sosialRate["15_legal_aid"], groupId: "hukum", label: "Bantuan Hukum", icon: Scale, desc: "Hukum", tarif: 1, cost: sosialRate["15_legal_aid"].biaya_pembangunan, count: (currentData.hukum?.pusat_bantuan_hukum || 0) + ((buildingDeltas["legal_aid"] as number) || 0), consumption: KONSUMSI_SOSIAL.hukum.pusat_bantuan_hukum },
+      ]
+    },
+    {
+      id: "olahraga",
+      title: "5. Sektor Olahraga & Rekreasi (7 jenis)",
+      icon: Trophy,
+      color: "text-orange-400",
+      items: [
+        { ...sosialRate["16_kolam_renang"], groupId: "olahraga", label: "Kolam Renang", icon: Waves, desc: "Olahraga", tarif: 1, cost: sosialRate["16_kolam_renang"].biaya_pembangunan, count: (currentData.sektor_olahraga?.kolam_renang || 0) + ((buildingDeltas["kolam_renang"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.kolam_renang },
+        { ...sosialRate["17_sirkuit_balap"], groupId: "olahraga", label: "Sirkuit Balap", icon: Flame, desc: "Olahraga", tarif: 1, cost: sosialRate["17_sirkuit_balap"].biaya_pembangunan, count: (currentData.sektor_olahraga?.sirkuit_balap || 0) + ((buildingDeltas["sirkuit_balap"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.sirkuit_balap },
+        { ...sosialRate["18_stadium_int"], groupId: "olahraga", label: "Stadion (Nas/Int)", icon: Trophy, desc: "Olahraga", tarif: 1, cost: sosialRate["18_stadium_int"].biaya_pembangunan, count: ((currentData.sektor_olahraga?.stadion || 0) + (currentData.sektor_olahraga?.stadion_internasional || 0)) + ((buildingDeltas["stadium_int"] as number) || 0), consumption: (KONSUMSI_SOSIAL.olahraga.stadion + KONSUMSI_SOSIAL.olahraga.stadion_internasional) / 2 },
+        { ...sosialRate["19_gym_center"], groupId: "olahraga", label: "Pusat Kebugaran", icon: Dumbbell, desc: "Olahraga", tarif: 1, cost: sosialRate["19_gym_center"].biaya_pembangunan, count: (currentData.sektor_olahraga?.gym || 0) + ((buildingDeltas["gym_center"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.gym },
+        { ...sosialRate["20_lapangan_golf"], groupId: "olahraga", label: "Lapangan Golf", icon: Flag, desc: "Olahraga", tarif: 1, cost: sosialRate["20_lapangan_golf"].biaya_pembangunan, count: (currentData.sektor_olahraga?.golf || 0) + ((buildingDeltas["lapangan_golf"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.golf },
+        { ...sosialRate["21_esports_arena"], groupId: "olahraga", label: "Arena E-Sports", icon: Gamepad2, desc: "Olahraga", tarif: 1, cost: sosialRate["21_esports_arena"].biaya_pembangunan, count: (currentData.sektor_olahraga?.esports || 0) + ((buildingDeltas["esports_arena"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.esports },
+        { ...sosialRate["22_gokart_circuit"], groupId: "olahraga", label: "Sirkuit Gokart", icon: Flame, desc: "Olahraga", tarif: 1, cost: sosialRate["22_gokart_circuit"].biaya_pembangunan, count: (currentData.sektor_olahraga?.gokart || 0) + ((buildingDeltas["gokart_circuit"] as number) || 0), consumption: KONSUMSI_SOSIAL.olahraga.gokart },
+      ]
+    },
+    {
+      id: "komersial",
+      title: "6. Sektor Fasilitas Komersial (3 jenis)",
+      icon: Store,
+      color: "text-amber-400",
+      items: [
+        { ...sosialRate["23_pusat_belanja"], groupId: "komersial", label: "Pusat Perbelanjaan (Mall)", icon: Store, desc: "Komersial", tarif: 1, cost: sosialRate["23_pusat_belanja"].biaya_pembangunan, count: (currentData.sektor_komersial?.mall || 0) + ((buildingDeltas["pusat_belanja"] as number) || 0), consumption: KONSUMSI_SOSIAL.komersial.mall },
+        { ...sosialRate["24_hotel"], groupId: "komersial", label: "Hotel Bintang 5", icon: Landmark, desc: "Akomodasi", tarif: 1, cost: sosialRate["24_hotel"].biaya_pembangunan, count: (currentData.sektor_komersial?.hotel || 0) + ((buildingDeltas["hotel"] as number) || 0), consumption: KONSUMSI_SOSIAL.komersial.hotel },
+        { ...sosialRate["25_pusat_grosir_tekstil"], groupId: "komersial", label: "Pusat Grosir Tekstil", icon: Store, desc: "Perdagangan", tarif: 1, cost: sosialRate["25_pusat_grosir_tekstil"].biaya_pembangunan, count: (currentData.sektor_komersial?.pusat_grosir_tekstil || 0) + ((buildingDeltas["pusat_grosir_tekstil"] as number) || 0), consumption: KONSUMSI_SOSIAL.komersial.pusat_grosir_tekstil },
+      ]
+    },
+    {
+      id: "hiburan",
+      title: "7. Sektor Hiburan & Seni (2 jenis)",
+      icon: Clapperboard,
+      color: "text-purple-400",
+      items: [
+        { ...sosialRate["26_bioskop"], groupId: "hiburan", label: "Bioskop", icon: Clapperboard, desc: "Hiburan", tarif: 1, cost: sosialRate["26_bioskop"].biaya_pembangunan, count: (currentData.sektor_hiburan?.bioskop || 0) + ((buildingDeltas["bioskop"] as number) || 0), consumption: KONSUMSI_SOSIAL.hiburan.bioskop },
+        { ...sosialRate["27_gedung_teater"], groupId: "hiburan", label: "Gedung Teater", icon: Theater, desc: "Hiburan", tarif: 1, cost: sosialRate["27_gedung_teater"].biaya_pembangunan, count: (currentData.sektor_hiburan?.teater || 0) + ((buildingDeltas["gedung_teater"] as number) || 0), consumption: KONSUMSI_SOSIAL.hiburan.teater },
       ]
     }
+
+
   ];
 
   const handleBuildRequest = (item: any) => {
@@ -361,7 +400,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
                           pendidikan: "Pendidikan & Riset",
                           kesehatan: "Layanan Kesehatan",
                           olahraga: "Sektor Olahraga",
-                          komersial: "Fasilitas Komersial & Hiburan",
+                          komersial: "Fasilitas Komersial",
                           hukum: "Hukum, Pertahanan & Keamanan",
                           infra_darat: "Infrastruktur Darat & Logistik",
                           perkeretaapian: "Sistem Perkeretaapian Nasional",

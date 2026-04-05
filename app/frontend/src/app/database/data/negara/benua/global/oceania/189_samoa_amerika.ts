@@ -1,23 +1,23 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
-import { samoa_amerika_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/oceania/189_samoa_amerika";
-import { samoa_amerika_armada } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/2_armada_militer/oceania/189_samoa_amerika";
-import { samoa_amerika_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/oceania/189_samoa_amerika";
-import { samoa_amerika_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/oceania/189_samoa_amerika";
-import { samoa_amerika_hukum } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/3_hukum/oceania/189_samoa_amerika";
-import { samoa_amerika_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/oceania/189_samoa_amerika";
-import { samoa_amerika_kepolisian } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/4_armada_kepolisian/oceania/189_samoa_amerika";
-import { samoa_amerika_kesehatan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/2_kesehatan/oceania/189_samoa_amerika";
-import { samoa_amerika_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/oceania/189_samoa_amerika";
-import { samoa_amerika_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/oceania/189_samoa_amerika";
-import { samoa_amerika_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/oceania/189_samoa_amerika";
-import { samoa_amerika_olahraga } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/4_olahraga/oceania/189_samoa_amerika";
-import { samoa_amerika_pabrik } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/5_pabrik_militer/oceania/189_samoa_amerika";
-import { samoa_amerika_pendidikan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/1_pendidikan/oceania/189_samoa_amerika";
-import { samoa_amerika_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/oceania/189_samoa_amerika";
-import { samoa_amerika_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/1_sektor_pertahanan/oceania/189_samoa_amerika";
-import { samoa_amerika_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/oceania/189_samoa_amerika";
+import { samoa_amerika_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/189_samoa_amerika";
+import { samoa_amerika_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/oceania/189_samoa_amerika";
+import { samoa_amerika_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/189_samoa_amerika";
+import { samoa_amerika_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/oceania/189_samoa_amerika";
+import { samoa_amerika_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/oceania/189_samoa_amerika";
+import { samoa_amerika_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/oceania/189_samoa_amerika";
+import { samoa_amerika_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/oceania/189_samoa_amerika";
+import { samoa_amerika_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/oceania/189_samoa_amerika";
+import { samoa_amerika_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/oceania/189_samoa_amerika";
+import { samoa_amerika_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/oceania/189_samoa_amerika";
+import { samoa_amerika_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/oceania/189_samoa_amerika";
+import { samoa_amerika_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/oceania/189_samoa_amerika";
+import { samoa_amerika_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/oceania/189_samoa_amerika";
+import { samoa_amerika_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/oceania/189_samoa_amerika";
+import { samoa_amerika_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/oceania/189_samoa_amerika";
+import { samoa_amerika_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/oceania/189_samoa_amerika";
+import { samoa_amerika_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/oceania/189_samoa_amerika";
 import { samoa_amerika_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/189_samoa_amerika";
-import { samoa_amerika_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/oceania/189_samoa_amerika";
+import { samoa_amerika_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/oceania/189_samoa_amerika";
 const samoa_amerika_geopolitik = {
     "un_vote": 24,
     "reputasi_diplomatik": "Netral",

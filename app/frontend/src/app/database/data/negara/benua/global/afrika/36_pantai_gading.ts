@@ -1,23 +1,23 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
-import { pantai_gading_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/afrika/36_pantai_gading";
-import { pantai_gading_armada } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/2_armada_militer/afrika/36_pantai_gading";
-import { pantai_gading_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/afrika/36_pantai_gading";
-import { pantai_gading_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/afrika/36_pantai_gading";
-import { pantai_gading_hukum } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/3_hukum/afrika/36_pantai_gading";
-import { pantai_gading_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/afrika/36_pantai_gading";
-import { pantai_gading_kepolisian } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/4_armada_kepolisian/afrika/36_pantai_gading";
-import { pantai_gading_kesehatan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/2_kesehatan/afrika/36_pantai_gading";
-import { pantai_gading_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/afrika/36_pantai_gading";
-import { pantai_gading_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/afrika/36_pantai_gading";
-import { pantai_gading_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/afrika/36_pantai_gading";
-import { pantai_gading_olahraga } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/4_olahraga/afrika/36_pantai_gading";
-import { pantai_gading_pabrik } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/5_pabrik_militer/afrika/36_pantai_gading";
-import { pantai_gading_pendidikan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/1_pendidikan/afrika/36_pantai_gading";
-import { pantai_gading_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/afrika/36_pantai_gading";
-import { pantai_gading_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/1_sektor_pertahanan/afrika/36_pantai_gading";
-import { pantai_gading_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/afrika/36_pantai_gading";
+import { pantai_gading_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/36_pantai_gading";
+import { pantai_gading_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/afrika/36_pantai_gading";
+import { pantai_gading_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/36_pantai_gading";
+import { pantai_gading_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/36_pantai_gading";
+import { pantai_gading_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/36_pantai_gading";
+import { pantai_gading_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/36_pantai_gading";
+import { pantai_gading_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/afrika/36_pantai_gading";
+import { pantai_gading_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/36_pantai_gading";
+import { pantai_gading_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/36_pantai_gading";
+import { pantai_gading_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/36_pantai_gading";
+import { pantai_gading_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/36_pantai_gading";
+import { pantai_gading_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/36_pantai_gading";
+import { pantai_gading_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/36_pantai_gading";
+import { pantai_gading_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/36_pantai_gading";
+import { pantai_gading_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/36_pantai_gading";
+import { pantai_gading_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/afrika/36_pantai_gading";
+import { pantai_gading_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/36_pantai_gading";
 import { pantai_gading_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/36_pantai_gading";
-import { pantai_gading_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/afrika/36_pantai_gading";
+import { pantai_gading_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/afrika/36_pantai_gading";
 const pantai_gading_geopolitik = {
     "un_vote": 51,
     "reputasi_diplomatik": "Netral",

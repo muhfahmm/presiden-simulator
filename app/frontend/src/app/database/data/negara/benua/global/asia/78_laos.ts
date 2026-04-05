@@ -1,23 +1,23 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
-import { laos_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/asia/78_laos";
-import { laos_armada } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/2_armada_militer/asia/78_laos";
-import { laos_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/asia/78_laos";
-import { laos_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/asia/78_laos";
-import { laos_hukum } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/3_hukum/asia/78_laos";
-import { laos_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/asia/78_laos";
-import { laos_kepolisian } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/4_armada_kepolisian/asia/78_laos";
-import { laos_kesehatan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/2_kesehatan/asia/78_laos";
-import { laos_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/asia/78_laos";
-import { laos_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/asia/78_laos";
-import { laos_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/asia/78_laos";
-import { laos_olahraga } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/4_olahraga/asia/78_laos";
-import { laos_pabrik } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/5_pabrik_militer/asia/78_laos";
-import { laos_pendidikan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/1_pendidikan/asia/78_laos";
-import { laos_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/asia/78_laos";
-import { laos_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/1_sektor_pertahanan/asia/78_laos";
-import { laos_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/78_laos";
+import { laos_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/78_laos";
+import { laos_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/asia/78_laos";
+import { laos_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/78_laos";
+import { laos_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/78_laos";
+import { laos_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/78_laos";
+import { laos_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/78_laos";
+import { laos_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/asia/78_laos";
+import { laos_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/78_laos";
+import { laos_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/78_laos";
+import { laos_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/78_laos";
+import { laos_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/78_laos";
+import { laos_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/78_laos";
+import { laos_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/78_laos";
+import { laos_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/78_laos";
+import { laos_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/78_laos";
+import { laos_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/asia/78_laos";
+import { laos_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/78_laos";
 import { laos_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/78_laos";
-import { laos_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/asia/78_laos";
+import { laos_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/asia/78_laos";
 const laos_geopolitik = {
     "un_vote": 21,
     "reputasi_diplomatik": "Netral",

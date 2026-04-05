@@ -1,23 +1,23 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
-import { barbados_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/na/155_barbados";
-import { barbados_armada } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/2_armada_militer/na/155_barbados";
-import { barbados_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/na/155_barbados";
-import { barbados_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/na/155_barbados";
-import { barbados_hukum } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/3_hukum/na/155_barbados";
-import { barbados_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/na/155_barbados";
-import { barbados_kepolisian } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/4_armada_kepolisian/na/155_barbados";
-import { barbados_kesehatan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/2_kesehatan/na/155_barbados";
-import { barbados_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/na/155_barbados";
-import { barbados_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/na/155_barbados";
-import { barbados_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/na/155_barbados";
-import { barbados_olahraga } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/4_olahraga/na/155_barbados";
-import { barbados_pabrik } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/5_pabrik_militer/na/155_barbados";
-import { barbados_pendidikan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/1_pendidikan/na/155_barbados";
-import { barbados_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/na/155_barbados";
-import { barbados_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/1_sektor_pertahanan/na/155_barbados";
-import { barbados_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/na/155_barbados";
+import { barbados_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/155_barbados";
+import { barbados_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/na/155_barbados";
+import { barbados_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/155_barbados";
+import { barbados_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/155_barbados";
+import { barbados_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/155_barbados";
+import { barbados_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/155_barbados";
+import { barbados_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/na/155_barbados";
+import { barbados_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/155_barbados";
+import { barbados_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/155_barbados";
+import { barbados_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/155_barbados";
+import { barbados_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/na/155_barbados";
+import { barbados_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/na/155_barbados";
+import { barbados_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/155_barbados";
+import { barbados_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/155_barbados";
+import { barbados_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/155_barbados";
+import { barbados_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/na/155_barbados";
+import { barbados_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/155_barbados";
 import { barbados_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/155_barbados";
-import { barbados_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/na/155_barbados";
+import { barbados_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/na/155_barbados";
 const barbados_geopolitik = {
     "un_vote": 10,
     "reputasi_diplomatik": "Netral",

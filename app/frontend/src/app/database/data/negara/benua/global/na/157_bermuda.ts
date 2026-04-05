@@ -1,23 +1,23 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
-import { bermuda_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/na/157_bermuda";
-import { bermuda_armada } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/2_armada_militer/na/157_bermuda";
-import { bermuda_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/na/157_bermuda";
-import { bermuda_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/na/157_bermuda";
-import { bermuda_hukum } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/3_hukum/na/157_bermuda";
-import { bermuda_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/na/157_bermuda";
-import { bermuda_kepolisian } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/4_armada_kepolisian/na/157_bermuda";
-import { bermuda_kesehatan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/2_kesehatan/na/157_bermuda";
-import { bermuda_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/na/157_bermuda";
-import { bermuda_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/na/157_bermuda";
-import { bermuda_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/na/157_bermuda";
-import { bermuda_olahraga } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/4_olahraga/na/157_bermuda";
-import { bermuda_pabrik } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/5_pabrik_militer/na/157_bermuda";
-import { bermuda_pendidikan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/1_pendidikan/na/157_bermuda";
-import { bermuda_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/na/157_bermuda";
-import { bermuda_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/1_sektor_pertahanan/na/157_bermuda";
-import { bermuda_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/na/157_bermuda";
+import { bermuda_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/157_bermuda";
+import { bermuda_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/na/157_bermuda";
+import { bermuda_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/157_bermuda";
+import { bermuda_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/157_bermuda";
+import { bermuda_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/157_bermuda";
+import { bermuda_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/157_bermuda";
+import { bermuda_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/na/157_bermuda";
+import { bermuda_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/157_bermuda";
+import { bermuda_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/157_bermuda";
+import { bermuda_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/157_bermuda";
+import { bermuda_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/na/157_bermuda";
+import { bermuda_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/na/157_bermuda";
+import { bermuda_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/157_bermuda";
+import { bermuda_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/157_bermuda";
+import { bermuda_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/157_bermuda";
+import { bermuda_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/na/157_bermuda";
+import { bermuda_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/157_bermuda";
 import { bermuda_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/157_bermuda";
-import { bermuda_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/na/157_bermuda";
+import { bermuda_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/na/157_bermuda";
 const bermuda_geopolitik = {
     "un_vote": 22,
     "reputasi_diplomatik": "Netral",

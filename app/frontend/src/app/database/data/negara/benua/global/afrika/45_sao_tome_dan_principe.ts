@@ -1,23 +1,23 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
-import { sao_tome_dan_principe_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_armada } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/2_armada_militer/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_hukum } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/3_hukum/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_kepolisian } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/4_armada_kepolisian/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_kesehatan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/2_kesehatan/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_olahraga } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/4_olahraga/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_pabrik } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/5_pabrik_militer/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_pendidikan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/1_pendidikan/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/1_sektor_pertahanan/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/45_sao_tome_dan_principe";
-import { sao_tome_dan_principe_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/afrika/45_sao_tome_dan_principe";
+import { sao_tome_dan_principe_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/afrika/45_sao_tome_dan_principe";
 const sao_tome_dan_principe_geopolitik = {
     "un_vote": 86,
     "reputasi_diplomatik": "Netral",

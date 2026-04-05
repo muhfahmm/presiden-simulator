@@ -1,23 +1,23 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
-import { tonga_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/oceania/192_tonga";
-import { tonga_armada } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/2_armada_militer/oceania/192_tonga";
-import { tonga_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/oceania/192_tonga";
-import { tonga_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/oceania/192_tonga";
-import { tonga_hukum } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/3_hukum/oceania/192_tonga";
-import { tonga_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/oceania/192_tonga";
-import { tonga_kepolisian } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/4_armada_kepolisian/oceania/192_tonga";
-import { tonga_kesehatan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/2_kesehatan/oceania/192_tonga";
-import { tonga_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/oceania/192_tonga";
-import { tonga_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/oceania/192_tonga";
-import { tonga_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/oceania/192_tonga";
-import { tonga_olahraga } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/4_olahraga/oceania/192_tonga";
-import { tonga_pabrik } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/5_pabrik_militer/oceania/192_tonga";
-import { tonga_pendidikan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/1_pendidikan/oceania/192_tonga";
-import { tonga_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/oceania/192_tonga";
-import { tonga_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/1_sektor_pertahanan/oceania/192_tonga";
-import { tonga_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/oceania/192_tonga";
+import { tonga_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/192_tonga";
+import { tonga_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/oceania/192_tonga";
+import { tonga_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/192_tonga";
+import { tonga_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/oceania/192_tonga";
+import { tonga_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/oceania/192_tonga";
+import { tonga_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/oceania/192_tonga";
+import { tonga_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/oceania/192_tonga";
+import { tonga_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/oceania/192_tonga";
+import { tonga_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/oceania/192_tonga";
+import { tonga_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/oceania/192_tonga";
+import { tonga_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/oceania/192_tonga";
+import { tonga_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/oceania/192_tonga";
+import { tonga_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/oceania/192_tonga";
+import { tonga_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/oceania/192_tonga";
+import { tonga_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/oceania/192_tonga";
+import { tonga_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/oceania/192_tonga";
+import { tonga_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/oceania/192_tonga";
 import { tonga_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/192_tonga";
-import { tonga_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/oceania/192_tonga";
+import { tonga_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/oceania/192_tonga";
 const tonga_geopolitik = {
     "un_vote": 5,
     "reputasi_diplomatik": "Netral",

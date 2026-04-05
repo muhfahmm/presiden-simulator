@@ -1,23 +1,23 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
-import { maldives_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/asia/82_maldives";
-import { maldives_armada } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/2_armada_militer/asia/82_maldives";
-import { maldives_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/asia/82_maldives";
-import { maldives_farmasi } from "@/app/database/data/semua_fitur_negara/1_produksi/8_sektor_farmasi/asia/82_maldives";
-import { maldives_hukum } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/3_hukum/asia/82_maldives";
-import { maldives_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_produksi/9_infrastruktur/asia/82_maldives";
-import { maldives_kepolisian } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/4_armada_kepolisian/asia/82_maldives";
-import { maldives_kesehatan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/2_kesehatan/asia/82_maldives";
-import { maldives_listrik } from "@/app/database/data/semua_fitur_negara/1_produksi/1_sektor_listrik_nasional/asia/82_maldives";
-import { maldives_manufaktur } from "@/app/database/data/semua_fitur_negara/1_produksi/3_manufaktur/asia/82_maldives";
-import { maldives_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_produksi/7_sektor_olahan_pangan/asia/82_maldives";
-import { maldives_olahraga } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/4_olahraga/asia/82_maldives";
-import { maldives_pabrik } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/5_pabrik_militer/asia/82_maldives";
-import { maldives_pendidikan } from "@/app/database/data/semua_fitur_negara/3_tempat_umum/1_pendidikan/asia/82_maldives";
-import { maldives_perikanan } from "@/app/database/data/semua_fitur_negara/1_produksi/6_sektor_perikanan/asia/82_maldives";
-import { maldives_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/1_sektor_pertahanan/asia/82_maldives";
-import { maldives_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/82_maldives";
+import { maldives_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/82_maldives";
+import { maldives_armada } from "@/app/database/data/semua_fitur_negara/4_pertahanan/2_armada_militer/asia/82_maldives";
+import { maldives_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/82_maldives";
+import { maldives_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/82_maldives";
+import { maldives_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/82_maldives";
+import { maldives_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/82_maldives";
+import { maldives_kepolisian } from "@/app/database/data/semua_fitur_negara/4_pertahanan/4_armada_kepolisian/asia/82_maldives";
+import { maldives_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/82_maldives";
+import { maldives_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/82_maldives";
+import { maldives_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/82_maldives";
+import { maldives_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/82_maldives";
+import { maldives_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/82_maldives";
+import { maldives_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/82_maldives";
+import { maldives_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/82_maldives";
+import { maldives_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/82_maldives";
+import { maldives_pertahanan } from "@/app/database/data/semua_fitur_negara/4_pertahanan/1_manajemen_pertahanan/1_sektor_pertahanan/asia/82_maldives";
+import { maldives_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/82_maldives";
 import { maldives_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/82_maldives";
-import { maldives_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/asia/82_maldives";
+import { maldives_strategis } from "@/app/database/data/semua_fitur_negara/4_pertahanan/3_militer_strategis/asia/82_maldives";
 const maldives_geopolitik = {
     "un_vote": 145,
     "reputasi_diplomatik": "Netral",

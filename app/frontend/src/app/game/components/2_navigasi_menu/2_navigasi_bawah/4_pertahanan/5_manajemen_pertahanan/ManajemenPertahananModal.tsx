@@ -10,7 +10,7 @@ import { calculateConstructionProgress, getStatusText } from "@/app/game/data/co
 import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MaterialRequirement from "../../3_pembangunan/1-produksi/MaterialRequirement";
-import { pertahananRate } from "@/app/database/data/semua_fitur_negara/2_produksi_militer";
+import { pertahananRate } from "@/app/database/data/semua_fitur_negara/4_pertahanan";
 import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
 import { playerMilitaryStorage } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
 

@@ -1,4 +1,4 @@
-﻿"use client"
+"use client"
 
 import { useState, useEffect, Fragment } from "react";
 import { X, ShieldAlert, Car, Bike, Dog, Crosshair, Radio, Shield, Cctv, Search, Siren, Clock, Loader2, Info, Users, GraduationCap, Flame, Zap, Eye, EyeOff, TrendingUp, TrendingDown, Activity, Building, Briefcase } from "lucide-react"
@@ -518,7 +518,7 @@ function BuildingCard({ item, onBuild, construction }: any) {
           {/* Row 2: Kalkulasi Total Kekuatan */}
           <div className="flex items-center justify-between gap-1 pt-1 border-t border-zinc-800/30">
             <span className="text-[12px] font-black text-zinc-600 uppercase tracking-[0.15em] italic whitespace-nowrap">
-              {(item.count || 0).toLocaleString('id-ID')} Ã— {(item.power || 0).toLocaleString('id-ID')}
+              {(item.count || 0).toLocaleString('id-ID')} × {(item.power || 0).toLocaleString('id-ID')}
             </span>
             <span className="text-[12px] text-zinc-700 font-bold">=</span>
             <span className="text-[19px] font-black text-amber-400 tracking-tight leading-none">
