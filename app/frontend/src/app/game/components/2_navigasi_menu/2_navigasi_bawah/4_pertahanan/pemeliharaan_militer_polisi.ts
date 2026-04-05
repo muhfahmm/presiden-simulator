@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { 
   KAPASITAS_LISTRIK_METADATA, 
   mineralKritisRate, 
@@ -6,7 +6,7 @@ import {
   komoditasPanganRate, 
   produksiMiliter, 
   tempatUmum 
-} from "@/app/database/data/types";
+} from "@/app/database/data/semua_fitur_negara";
 
 /**
  * Metadata gabungan untuk pencarian biaya pemeliharaan.

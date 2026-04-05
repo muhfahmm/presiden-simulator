@@ -1,9 +1,8 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect, Fragment, useMemo } from "react";
 import { X, Wrench, Zap, Shield, Truck, MapPin, Radiation, Eye, Gavel, UserCheck, Landmark, Swords as MilitaryIcon, HardHat, Building2, TowerControl, Ship, Plane, Rocket, Crosshair, Activity, Wifi, Radio, Cctv, Search, Siren, Car, Bike, Dog, ShieldAlert, Anchor, Waves, Waypoints, Satellite, RadioTower, Cpu, Target, Radar, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, EyeOff, Building, Archive, Info, Briefcase, Users, Flame, Coins, MessageSquare, Handshake, ThumbsUp, BookOpen, Scale } from "lucide-react"
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/types/1_kelistrikan";
-import { KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL } from "@/app/database/data/types/1_kelistrikan/2_konsumsi_listrik";
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL } from "@/app/database/data/semua_fitur_negara";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
@@ -1140,7 +1139,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
           {/* Row 2: Kalkulasi Total Kekuatan */}
           <div className="flex items-center justify-between gap-1 pt-1 border-t border-zinc-800/30">
             <span className="text-[12px] font-black text-zinc-600 uppercase tracking-[0.15em] italic whitespace-nowrap">
-              {(item.count || 0).toLocaleString('id-ID')} × {(item.power || 0).toLocaleString('id-ID')}
+              {(item.count || 0).toLocaleString('id-ID')} Ã— {(item.power || 0).toLocaleString('id-ID')}
             </span>
             <span className="text-[12px] text-zinc-700 font-bold">=</span>
             <span className="text-[19px] font-black text-amber-400 tracking-tight leading-none">

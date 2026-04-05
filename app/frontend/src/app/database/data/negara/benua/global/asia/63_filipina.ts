@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types";
+import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { filipina_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/asia/63_filipina";
 import { filipina_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/asia/63_filipina";
 import { filipina_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/asia/63_filipina";
@@ -41,7 +41,7 @@ export const filipina: CountryData = {
   "hukum": filipina_hukum,
   "sektor_olahraga": filipina_olahraga,
   // =============================================================
-  // 11. 💰 PAJAK & EKONOMI
+  // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const filipina: CountryData = {
     }
   },
   // =============================================================
-  // 12. 💰 GAJI & SUBSIDI (Default)
+  // 12. ðŸ’° GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 50,
@@ -96,7 +96,7 @@ export const filipina: CountryData = {
     "subsidi_perumahan": 50
   },
   // =============================================================
-  // 13. 🛒 HARGA PASAR DOMESTIK
+  // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 32000,
@@ -112,11 +112,11 @@ export const filipina: CountryData = {
     "harga_pendidikan": 483900
   },
     // =============================================================
-  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": filipina_geopolitik,
   // =============================================================
-  // 16. 🏛️ KEMENTERIAN NEGARA
+  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 13,

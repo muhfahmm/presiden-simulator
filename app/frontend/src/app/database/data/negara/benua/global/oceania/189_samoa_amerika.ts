@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types";
+import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { samoa_amerika_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/oceania/189_samoa_amerika";
 import { samoa_amerika_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/oceania/189_samoa_amerika";
 import { samoa_amerika_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/oceania/189_samoa_amerika";
@@ -41,7 +41,7 @@ export const samoa_amerika: CountryData = {
   "hukum": samoa_amerika_hukum,
   "sektor_olahraga": samoa_amerika_olahraga,
   // =============================================================
-  // 11. 💰 PAJAK & EKONOMI
+  // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const samoa_amerika: CountryData = {
     }
   },
   // =============================================================
-  // 12. 💰 GAJI & SUBSIDI (Default)
+  // 12. ðŸ’° GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 80,
@@ -96,7 +96,7 @@ export const samoa_amerika: CountryData = {
     "subsidi_perumahan": 75
   },
   // =============================================================
-  // 13. 🛒 HARGA PASAR DOMESTIK
+  // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 22400,
@@ -112,11 +112,11 @@ export const samoa_amerika: CountryData = {
     "harga_pendidikan": 967800
   },
     // =============================================================
-  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": samoa_amerika_geopolitik,
   // =============================================================
-  // 16. 🏛️ KEMENTERIAN NEGARA
+  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 37,

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { X, Radiation, Clock, Calendar, Shield, Zap, AlertTriangle, Loader2 } from "lucide-react";
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { nuclearStorage } from "../nuclearStorage";
 import NavigasiWaktu from "../../../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 

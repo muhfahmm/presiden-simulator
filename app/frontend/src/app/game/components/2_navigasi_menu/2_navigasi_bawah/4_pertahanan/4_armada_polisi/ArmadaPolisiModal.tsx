@@ -1,8 +1,8 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect, Fragment } from "react";
 import { X, ShieldAlert, Car, Bike, Dog, Crosshair, Radio, Shield, Cctv, Search, Siren, Clock, Loader2, Info, Users, GraduationCap, Flame, Zap, Eye, EyeOff, TrendingUp, TrendingDown, Activity, Building, Briefcase } from "lucide-react"
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/types/1_kelistrikan";
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/semua_fitur_negara";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
@@ -518,7 +518,7 @@ function BuildingCard({ item, onBuild, construction }: any) {
           {/* Row 2: Kalkulasi Total Kekuatan */}
           <div className="flex items-center justify-between gap-1 pt-1 border-t border-zinc-800/30">
             <span className="text-[12px] font-black text-zinc-600 uppercase tracking-[0.15em] italic whitespace-nowrap">
-              {(item.count || 0).toLocaleString('id-ID')} × {(item.power || 0).toLocaleString('id-ID')}
+              {(item.count || 0).toLocaleString('id-ID')} Ã— {(item.power || 0).toLocaleString('id-ID')}
             </span>
             <span className="text-[12px] text-zinc-700 font-bold">=</span>
             <span className="text-[19px] font-black text-amber-400 tracking-tight leading-none">

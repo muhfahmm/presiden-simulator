@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { incomeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
 import { expenseStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
@@ -57,7 +57,7 @@ export interface BudgetBreakdown {
  * Calculates a complete breakdown of the national budget.
  */
 export function calculateBudgetBreakdown(countryData: CountryData, buildingDeltas: Record<string, number>): BudgetBreakdown {
-  // 1. Income (Revenue) — iterate ALL tax keys dynamically (same as PajakModal)
+  // 1. Income (Revenue) â€” iterate ALL tax keys dynamically (same as PajakModal)
   const currentTaxes = taxStorage.getTaxes(countryData.name_en) || countryData.pajak;
   const TRADE_KEYS = new Set(["bea_cukai", "transit_sekutu", "transit_non_sekutu", "tarif_ekspor", "tarif_impor"]);
   const allTaxKeys = Object.keys(currentTaxes as any);

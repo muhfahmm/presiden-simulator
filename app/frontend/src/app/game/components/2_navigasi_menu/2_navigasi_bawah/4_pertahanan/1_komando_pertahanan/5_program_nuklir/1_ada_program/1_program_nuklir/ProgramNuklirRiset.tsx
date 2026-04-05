@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Radiation, Zap, FlaskConical, Binary, AlertTriangle, ArrowLeft, Loader2, Gauge, Microscope, ChevronRight, Box } from "lucide-react";
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { nuclearStorage, NuclearData } from "../../nuclearStorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 

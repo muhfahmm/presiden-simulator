@@ -9,7 +9,7 @@ import {
 import { gameStorage } from "@/app/game/gamestorage";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { countries } from "@/app/database/data/negara/benua/index";
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { allRelations } from "@/app/database/data/negara/hubungan/index"; // Added relations import
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
@@ -154,7 +154,7 @@ export default function DiplomasiModal({ isOpen, onClose, activeMenu, setActiveM
             </div>
             <div>
               <h2 className="text-2xl font-black text-white tracking-tight italic uppercase leading-none">Pusat Diplomasi Global</h2>
-              <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1.5 opacity-60">Strategic International Relations • Registry: {currentCountry.name_id}</p>
+              <p className="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-1.5 opacity-60">Strategic International Relations â€¢ Registry: {currentCountry.name_id}</p>
             </div>
           </div>
           
@@ -277,7 +277,7 @@ export default function DiplomasiModal({ isOpen, onClose, activeMenu, setActiveM
                               <h3 className="text-4xl font-black text-white italic uppercase tracking-tighter leading-none shrink-0">{selectedTarget.name_id}</h3>
                               <p className="text-xs text-zinc-500 font-bold uppercase tracking-widest flex items-center gap-2">
                                 <span className="w-1.5 h-1.5 bg-emerald-500 rounded-full animate-pulse"></span>
-                                Hubungan Stabil • Berbagi Ideologi: {selectedTarget.ideology || "Netral"}
+                                Hubungan Stabil â€¢ Berbagi Ideologi: {selectedTarget.ideology || "Netral"}
                               </p>
                            </div>
                         </div>
@@ -356,7 +356,7 @@ export default function DiplomasiModal({ isOpen, onClose, activeMenu, setActiveM
 
         {/* FOOTER */}
         <div className="px-10 py-5 bg-zinc-900/40 border-t border-zinc-800/30 flex justify-center sticky bottom-0 backdrop-blur-md z-[100]">
-           <p className="text-[9px] text-zinc-700 font-black uppercase tracking-[0.5em] opacity-40 italic">Global Diplomatic Intelligence Network • EM4 Geopolitical Sovereignty System</p>
+           <p className="text-[9px] text-zinc-700 font-black uppercase tracking-[0.5em] opacity-40 italic">Global Diplomatic Intelligence Network â€¢ EM4 Geopolitical Sovereignty System</p>
         </div>
       </div>
     </div>

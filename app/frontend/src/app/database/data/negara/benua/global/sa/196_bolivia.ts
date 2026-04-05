@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types";
+import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { bolivia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/sa/196_bolivia";
 import { bolivia_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/sa/196_bolivia";
 import { bolivia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/sa/196_bolivia";
@@ -41,7 +41,7 @@ export const bolivia: CountryData = {
   "hukum": bolivia_hukum,
   "sektor_olahraga": bolivia_olahraga,
   // =============================================================
-  // 11. 💰 PAJAK & EKONOMI
+  // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const bolivia: CountryData = {
     }
   },
   // =============================================================
-  // 12. 💰 GAJI & SUBSIDI (Default)
+  // 12. ðŸ’° GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 60,
@@ -96,7 +96,7 @@ export const bolivia: CountryData = {
     "subsidi_perumahan": 25
   },
   // =============================================================
-  // 13. 🛒 HARGA PASAR DOMESTIK
+  // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 12800,
@@ -112,11 +112,11 @@ export const bolivia: CountryData = {
     "harga_pendidikan": 387120
   },
     // =============================================================
-  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": bolivia_geopolitik,
   // =============================================================
-  // 16. 🏛️ KEMENTERIAN NEGARA
+  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 31,

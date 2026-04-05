@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { countries as centersData } from "@/app/database/data/negara/benua/index";
 import { Layers, Mountain, Gem, Waves, Flame, Battery, Droplets, Box, Cpu, Pickaxe, Radio } from "lucide-react";
-import { getExtractionData } from "@/app/database/data/types/7_ekstraksi_mineral_kritis/1_kualitas_ekstraksi";
+
 import { allRelations } from "@/app/database/data/negara/hubungan/index";
 
 export const sdaIcons: { [key: string]: { icon: any, color: string, label: string } } = {
@@ -364,7 +364,7 @@ export default function MapSDA({ userCountry, targetCountry, onSelect, onSelectS
              const x = ((center.lon + 180) / 360) * mapWidth + (offsetIdx * mapWidth);
              const y = ((90 - center.lat) / 180) * mapHeight;
              
-             const resources = getExtractionData(center.name_id) || {};
+             const resources = center.sektor_ekstraksi || {};
              const activeResources = Object.entries(resources).filter(([_, v]) => (v as number) > 0);
              
              if (activeResources.length === 0) return null;

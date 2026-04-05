@@ -7,7 +7,7 @@ import {
   Target, Shield, Sword, Navigation, Ban, History as HistoryIcon, Newspaper, ChevronLeft
 } from "lucide-react"
 import { AddTradePartnerModal } from "./mitra_dagang_internasional/AddTradePartnerModal"
-import { CountryData } from "@/app/database/data/types/index"
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index"
 import NavigasiWaktu from "./NavigasiWaktu"
 import { tradeStorage } from "./TradeStorage"
 import { buyPriceMap, sellPriceMap, labelsMap, baseKeyMapping, getDynamicPrice } from "./tradeData"
@@ -18,17 +18,12 @@ import { inboxStorage } from "@/app/game/components/sidemenu/2_kotak_masuk/inbox
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
 import { countries } from "@/app/database/data/negara/benua/index"
-import { getExtractionData } from "@/app/database/data/types/7_ekstraksi_mineral_kritis/1_kualitas_ekstraksi";
+
 import { 
-  getManufakturData, 
-  getPeternakanData, 
-  getAgrikulturData, 
-  getPerikananData, 
-  getOlahanPanganData, 
-  getFarmasiData 
-} from "@/app/database/data/types/3_produksi";
-import { mineralKritisRate, produkIndustriRate } from "@/app/database/data/types";
-import { militerRate } from "@/app/database/data/types/4_militer/7_militer_rates";
+  produkIndustriRate,
+  mineralKritisRate
+} from "@/app/database/data/semua_fitur_negara";
+import { militerRate } from "@/app/database/data/semua_fitur_negara/2_militer";
 import { INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { EksporHalaman } from "./ekspor_impor/ekspor/EksporHalaman";
 import { ImporHalaman } from "./ekspor_impor/impor/ImporHalaman";
@@ -220,7 +215,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
   const minerals = useMemo(() => {
     const data = getContextualData();
     const lookupId = data?.name_id || data?.name_en || "indonesia";
-    const extractionStats = getExtractionData(lookupId);
+    const extractionStats = data?.sektor_ekstraksi || {};
     
     return mineralOrder.map(key => {
       const baseVal = (extractionStats as any)[key] ?? 
@@ -234,12 +229,9 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
   const manufakturItems = useMemo(() => {
     const data = getContextualData();
-    const lookupId = data?.name_id || data?.name_en || "indonesia";
-    const overrideStats = getManufakturData(lookupId);
 
     return manufakturOrder.map(key => {
-      const baseVal = (overrideStats as any)[key] ??
-                      (data?.sektor_manufaktur as any)?.[key] ?? 0;
+      const baseVal = (data?.sektor_manufaktur as any)?.[key] ?? 0;
       const factoryKey = manufakturKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
       return [key, getManufacturingCount(factoryKey, baseVal, isPlayerContext)];
     }) as [string, number][];
@@ -247,12 +239,9 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
   const olahanPanganItems = useMemo(() => {
     const data = getContextualData();
-    const lookupId = data?.name_id || data?.name_en || "indonesia";
-    const overrideStats = getOlahanPanganData(lookupId);
 
     return olahanPanganOrder.map(key => {
-      const baseVal = (overrideStats as any)[key] ??
-                      (data?.sektor_olahan_pangan as any)?.[key] ?? 0;
+      const baseVal = (data?.sektor_olahan_pangan as any)?.[key] ?? 0;
       const factoryKey = olahanPanganFactoryKeys.find(mk => mk === key || mk.replace('_factory', '') === key) || key;
       return [key, getManufacturingCount(factoryKey, baseVal, isPlayerContext)];
     }) as [string, number][];
@@ -260,25 +249,19 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
   const farmasiItems = useMemo(() => {
     const data = getContextualData();
-    const lookupId = data?.name_id || data?.name_en || "indonesia";
-    const overrideStats = getFarmasiData(lookupId);
 
     return farmasiOrder.map(key => {
-      const baseVal = (overrideStats as any)[key] ??
-                      (data?.sektor_farmasi as any)?.[key] ?? 0;
+      const baseVal = (data?.sektor_farmasi as any)?.[key] ?? 0;
       return [key, getManufacturingCount("pharma_factory", baseVal, isPlayerContext)];
     }) as [string, number][];
   }, [activeCountryData, tradeType, currentCountry, buildingDeltas]);
 
   const peternakanItems = useMemo(() => {
     const data = getContextualData();
-    const lookupId = data?.name_id || data?.name_en || "indonesia";
-    const overrideStats = getPeternakanData(lookupId);
     const keys = ["ayam_unggas", "sapi_perah", "sapi_potong", "domba_kambing"];
 
     return keys.map(key => {
-      const baseVal = (overrideStats as any)[key] ??
-                      (data?.sektor_peternakan as any)?.[key] ?? 0;
+      const baseVal = (data?.sektor_peternakan as any)?.[key] ?? 0;
       const delta = isPlayerContext ? ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number) : 0;
       return [key, baseVal + delta];
     }) as [string, number][];
@@ -286,13 +269,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
   const perikananItems = useMemo(() => {
     const data = getContextualData();
-    const lookupId = data?.name_id || data?.name_en || "indonesia";
-    const overrideStats = getPerikananData(lookupId);
     const keys = ["udang_kerang", "ikan"];
 
     return keys.map(key => {
-      const baseVal = (overrideStats as any)[key] ??
-                      (data?.sektor_perikanan as any)?.[key] ?? 0;
+      const baseVal = (data?.sektor_perikanan as any)?.[key] ?? 0;
       const delta = isPlayerContext ? ((buildingDeltas[key] || 0) as number) : 0;
       return [key, baseVal + delta];
     }) as [string, number][];
@@ -300,13 +280,10 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
 
   const agrikulturItems = useMemo(() => {
     const data = getContextualData();
-    const lookupId = data?.name_id || data?.name_en || "indonesia";
-    const overrideStats = getAgrikulturData(lookupId);
     const keys = ["padi", "gandum_jagung", "sayur_umbi", "kedelai", "kelapa_sawit", "kopi_teh_kakao"];
 
     return keys.map(key => {
-      const baseVal = (overrideStats as any)[key] ??
-                      (data?.sektor_agrikultur as any)?.[key] ?? 0;
+      const baseVal = (data?.sektor_agrikultur as any)?.[key] ?? 0;
       const delta = isPlayerContext ? ((buildingDeltas[key] || buildingDeltas[key + '_farm'] || buildingDeltas[key + '_field'] || 0) as number) : 0;
       return [key, baseVal + delta];
     }) as [string, number][];
@@ -460,7 +437,7 @@ export default function PerdaganganModal({ isOpen, onClose, activeMenu, setActiv
               </div>
               <div>
                  <h2 className="text-2xl font-bold text-white tracking-tight leading-none">Hub Perdagangan Strategis</h2>
-                 <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-1">{currentCountry.flag} {currentCountry.name_id} — Strategic Trade Terminal</p>
+                 <p className="text-xs text-zinc-500 font-medium uppercase tracking-widest mt-1">{currentCountry.flag} {currentCountry.name_id} â€” Strategic Trade Terminal</p>
               </div>
            </div>
            <div className="flex items-center gap-4">

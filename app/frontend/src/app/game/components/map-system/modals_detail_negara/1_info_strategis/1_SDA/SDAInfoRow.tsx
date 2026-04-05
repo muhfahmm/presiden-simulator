@@ -2,7 +2,7 @@
 
 import React from "react";
 import { RESOURCE_ICONS } from "./SDAIcons";
-import { SektorEkstraksi } from "@/app/database/data/types";
+import { SektorEkstraksi } from "@/app/database/data/semua_fitur_negara";
 
 interface SDAInfoRowProps {
   sektor_ekstraksi: SektorEkstraksi | undefined;

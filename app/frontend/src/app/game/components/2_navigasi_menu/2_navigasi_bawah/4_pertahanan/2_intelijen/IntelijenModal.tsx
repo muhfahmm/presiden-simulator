@@ -1,8 +1,8 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect, Fragment } from "react";
 import { X, Zap, Shield, Eye, Target, Radar, Satellite, Cpu, Radio, Search, ShieldAlert, Clock, Loader2, Info, Flame, Users, TrendingUp, TrendingDown, Activity, Globe, Bomb, Radiation, Map as MapIcon, RadioTower, EyeOff, Briefcase } from "lucide-react"
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS } from "@/app/database/data/types/1_kelistrikan";
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS } from "@/app/database/data/semua_fitur_negara";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";

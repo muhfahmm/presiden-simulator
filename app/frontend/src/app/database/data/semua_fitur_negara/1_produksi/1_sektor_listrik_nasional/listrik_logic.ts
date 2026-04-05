@@ -1,16 +1,16 @@
-import { CountryData, SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian, SektorPabrikMiliter, SektorEkstraksi } from "../index";
-import { KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/harga_bangunan_negara/1_pembangunan";
-
-export { KAPASITAS_LISTRIK_METADATA };
-
-export interface SektorListrik {
-  pembangkit_listrik_tenaga_nuklir: number;
-  pembangkit_listrik_tenaga_air: number;
-  pembangkit_listrik_tenaga_surya: number;
-  pembangkit_listrik_tenaga_uap: number;
-  pembangkit_listrik_tenaga_gas: number;
-  pembangkit_listrik_tenaga_angin: number;
-}
+import { SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian, SektorPabrikMiliter } from "../../2_militer";
+import { SektorEkstraksi } from "../2_sektor_mineral_kritis";
+import { SektorInfrastruktur } from "../9_infrastruktur";
+import { 
+  SektorManufaktur, 
+  SektorPeternakan, 
+  SektorAgrikultur, 
+  SektorOlahanPangan, 
+  SektorFarmasi 
+} from "../index";
+import { PendidikanData, KesehatanData, HukumData, SektorKomersial, SektorHiburan } from "../../3_sosial";
+import { OlahragaData } from "../../3_sosial/4_olahraga";
+import { SektorListrik, KAPASITAS_LISTRIK_METADATA } from "./1_sektor_listrik_nasional";
 
 export const KAPASITAS_LISTRIK = Object.fromEntries(
   Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]) => [val.dataKey, val.produksi])
@@ -61,7 +61,7 @@ export const KONSUMSI_PRODUKSI = {
   pupuk: 20, pengolahan_daging: 5, mie_instan: 10
 };
 
-export function hitungKonsumsiProduksi(manufacturing: CountryData["sektor_manufaktur"]) {
+export function hitungKonsumsiProduksi(manufacturing: SektorManufaktur) {
   return (
     (manufacturing.semikonduktor ?? 0) * KONSUMSI_PRODUKSI.semikonduktor +
     (manufacturing.mobil ?? 0) * KONSUMSI_PRODUKSI.mobil +
@@ -72,7 +72,7 @@ export function hitungKonsumsiProduksi(manufacturing: CountryData["sektor_manufa
   );
 }
 
-export function hitungKonsumsiOlahanPangan(olahan: CountryData["sektor_olahan_pangan"]) {
+export function hitungKonsumsiOlahanPangan(olahan: SektorOlahanPangan) {
   return (
     (olahan.air_mineral ?? 0) * KONSUMSI_PRODUKSI.air_mineral +
     (olahan.gula ?? 0) * KONSUMSI_PRODUKSI.gula +
@@ -82,7 +82,7 @@ export function hitungKonsumsiOlahanPangan(olahan: CountryData["sektor_olahan_pa
   );
 }
 
-export function hitungKonsumsiFarmasi(farmasi: CountryData["sektor_farmasi"]) {
+export function hitungKonsumsiFarmasi(farmasi: SektorFarmasi) {
   return (farmasi.farmasi ?? 0) * KONSUMSI_PRODUKSI.farmasi;
 }
 
@@ -93,7 +93,7 @@ export const KONSUMSI_PANGAN = {
   sayur_umbi: 0.15, kedelai: 0.1, kelapa_sawit: 1, kopi_teh_kakao: 0.2
 };
 
-export function hitungKonsumsiPangan(peternakan: CountryData["sektor_peternakan"], agrikultur: CountryData["sektor_agrikultur"]) {
+export function hitungKonsumsiPangan(peternakan: SektorPeternakan, agrikultur: SektorAgrikultur) {
   let total = 0;
   if (peternakan) {
     total += Object.keys(peternakan).reduce((sum, key) => {
@@ -214,7 +214,7 @@ export const KONSUMSI_SOSIAL = {
   hiburan: { bioskop: 15, teater: 12 }
 };
 
-export function hitungKonsumsiSosial(data: Partial<CountryData>) {
+export function hitungKonsumsiSosial(data: { pendidikan?: PendidikanData; kesehatan?: KesehatanData; hukum?: HukumData }) {
   const edu = data.pendidikan || {};
   const kesehatan = data.kesehatan || {};
   const hukum = data.hukum || {};
@@ -231,19 +231,19 @@ export function hitungKonsumsiSosial(data: Partial<CountryData>) {
   return totalEdu + totalHealth + totalLaw;
 }
 
-export function hitungKonsumsiOlahraga(olahraga: CountryData["sektor_olahraga"]) {
+export function hitungKonsumsiOlahraga(olahraga: OlahragaData) {
   if (!olahraga) return 0;
   return Object.keys(KONSUMSI_SOSIAL.olahraga).reduce((total, key) =>
     total + ((olahraga as any)[key] ?? 0) * (KONSUMSI_SOSIAL.olahraga as any)[key], 0);
 }
 
-export function hitungKonsumsiKomersial(komersial?: CountryData["sektor_komersial"]) {
+export function hitungKonsumsiKomersial(komersial?: SektorKomersial) {
   if (!komersial) return 0;
   return Object.keys(KONSUMSI_SOSIAL.komersial).reduce((total, key) =>
     total + ((komersial as any)[key] ?? 0) * (KONSUMSI_SOSIAL.komersial as any)[key], 0);
 }
 
-export function hitungKonsumsiHiburan(hiburan?: CountryData["sektor_hiburan"]) {
+export function hitungKonsumsiHiburan(hiburan?: SektorHiburan) {
   if (!hiburan) return 0;
   return Object.keys(KONSUMSI_SOSIAL.hiburan).reduce((total, key) =>
     total + ((hiburan as any)[key] ?? 0) * (KONSUMSI_SOSIAL.hiburan as any)[key], 0);
@@ -254,7 +254,7 @@ export const KONSUMSI_TRANSPORTASI = {
   jalur_sepeda: 0, kereta_bawah_tanah: 20, jalur_kereta: 15, jalan_tol: 3, pelabuhan_laut: 25, bandara: 30, terminal_bus: 5, helipad: 2
 };
 
-export function hitungKonsumsiTransportasi(infra: CountryData["infrastruktur"]) {
+export function hitungKonsumsiTransportasi(infra: SektorInfrastruktur) {
   return (
     (infra.jalur_sepeda ?? 0) * KONSUMSI_TRANSPORTASI.jalur_sepeda +
     (infra.kereta_bawah_tanah ?? 0) * KONSUMSI_TRANSPORTASI.kereta_bawah_tanah +
@@ -267,7 +267,7 @@ export function hitungKonsumsiTransportasi(infra: CountryData["infrastruktur"]) 
   );
 }
 
-export function hitungTotalKonsumsiNasional(data: CountryData) {
+export function hitungTotalKonsumsiNasional(data: any) {
   return (
     hitungKonsumsiEkstraksi(data.sektor_ekstraksi) +
     hitungKonsumsiProduksi(data.sektor_manufaktur) +
@@ -282,18 +282,3 @@ export function hitungTotalKonsumsiNasional(data: CountryData) {
     hitungKonsumsiTransportasi(data.infrastruktur)
   );
 }
-
-export const DASHBOARD_LABELS = {
-  supply: { title: "Pemasukan Listrik (Pasokan)", label: "Total Kapasitas Terpasang", unit: "MW" },
-  usage: { title: "Penggunaan Listrik (Beban)", label: "Total Konsumsi Nasional", unit: "MW" },
-  balance: { title: "Neraca Daya", label: "Surplus/Defisit", unit: "MW" }
-};
-
-export const SECTOR_USAGE_LABELS = {
-  extraction: "Sektor Ekstraksi & Energi",
-  manufacturing: "Sektor Industri & Manufaktur",
-  pangan: "Sektor Pangan (Tani & Ternak)",
-  defense: "Sektor Pertahanan & Keamanan",
-  social: "Sektor Sosial & Layanan Publik",
-  transportation: "Sektor Transportasi & Logistik"
-};

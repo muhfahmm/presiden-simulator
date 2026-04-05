@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types";
+import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { ghana_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/afrika/15_ghana";
 import { ghana_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/afrika/15_ghana";
 import { ghana_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/afrika/15_ghana";
@@ -41,7 +41,7 @@ export const ghana: CountryData = {
   "hukum": ghana_hukum,
   "sektor_olahraga": ghana_olahraga,
   // =============================================================
-  // 11. 💰 PAJAK & EKONOMI
+  // 11. ðŸ’° PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -78,7 +78,7 @@ export const ghana: CountryData = {
     }
   },
   // =============================================================
-  // 12. 💰 GAJI & SUBSIDI (Default)
+  // 12. ðŸ’° GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 30,
@@ -96,7 +96,7 @@ export const ghana: CountryData = {
     "subsidi_perumahan": 25
   },
   // =============================================================
-  // 13. 🛒 HARGA PASAR DOMESTIK
+  // 13. ðŸ›’ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 32000,
@@ -112,11 +112,11 @@ export const ghana: CountryData = {
     "harga_pendidikan": 677460
   },
     // =============================================================
-  // 15. 🌍 GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": ghana_geopolitik,
   // =============================================================
-  // 16. 🏛️ KEMENTERIAN NEGARA
+  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 11,

@@ -1,6 +1,6 @@
-import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/database/data/types";
-import { militerRate } from "@/app/database/data/types/4_militer/7_militer_rates";
-import { CountryData } from "@/app/database/data/types/index";
+import { mineralKritisRate, produkIndustriRate, komoditasPanganRate } from "@/app/database/data/semua_fitur_negara";
+import { militerRate } from "@/app/database/data/semua_fitur_negara/2_militer";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 
 /**
  * MENGHITUNG TOTAL OUTPUT HARIAN UNTUK SETIAP JENIS BANGUNAN

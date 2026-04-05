@@ -13,9 +13,9 @@ export interface SektorGeopolitik {
     readonly role: "Anggota" | "Pemimpin" | "Pengamat";
   }[];
   perjanjian?: readonly {
-    readonly mitra: string;
-    readonly jenis: "Perdagangan" | "Militer" | "Penelitian" | "Politik";
-    readonly status: "Aktif" | "Tertunda" | "Pendinginan";
+    mitra: string;
+    jenis: "Perdagangan" | "Militer" | "Penelitian" | "Politik";
+    status: "Aktif" | "Tertunda" | "Pendinginan";
   }[];
   reputasi_diplomatik: "Unggul" | "Baik" | "Netral" | "Buruk" | "Terisolasi";
   aliansi_aktif: readonly string[];

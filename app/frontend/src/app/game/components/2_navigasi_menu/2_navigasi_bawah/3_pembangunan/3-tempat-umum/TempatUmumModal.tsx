@@ -1,8 +1,8 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Gem, Battery, Box, Cpu, Mountain, Waves, TreePine, Croissant, Soup, Shell, Milk, Sprout, Apple, Bean, Coffee, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Bird, Fish, Info, Building, Archive, Layers, Hammer, Microscope, Search, Building2, Library, Trophy, Gavel, Scale, Radar, Settings, Target, ShieldAlert, HeartPulse, Stethoscope, Briefcase, Users, Warehouse, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, GraduationCap, Landmark, Crosshair, TrainFront, HardHat, Siren, Leaf, Truck, School, Lightbulb, Dumbbell, Flag, Gamepad2, Clapperboard, Theater } from "lucide-react"
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_PANGAN } from "@/app/database/data/types/1_kelistrikan"
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_PANGAN } from "@/app/database/data/semua_fitur_negara"
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";

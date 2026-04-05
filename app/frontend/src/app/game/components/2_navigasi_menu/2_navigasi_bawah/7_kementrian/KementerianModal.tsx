@@ -5,7 +5,7 @@ import { DEFAULT_INITIAL_KEMENTERIAN, DEFAULT_KEMENTERIAN_FULL_DATABASE } from "
 import { budgetStorage } from "../../../1_navbar/3_kas_negara"
 import UndangUndangTab from "./undangundang"
 import NavigasiWaktu from "../2_ekonomi/1-perdagangan/NavigasiWaktu"
-import { CountryData } from "@/app/database/data/types"
+import { CountryData } from "@/app/database/data/semua_fitur_negara"
 
 interface ModalProps {
   isOpen: boolean;
@@ -165,7 +165,7 @@ export default function KementerianModal({ isOpen, onClose, countryData }: Modal
                 <div className="flex items-center justify-between px-4">
                   <div>
                     <h3 className="text-2xl font-black text-white uppercase italic tracking-tighter">Kabinet Pemerintahan</h3>
-                    <p className="text-xs text-zinc-500 font-bold uppercase tracking-[0.2em] mt-2">Eksekutif • Pengelolaan Menteri dan Kebijakan Sektoral</p>
+                    <p className="text-xs text-zinc-500 font-bold uppercase tracking-[0.2em] mt-2">Eksekutif â€¢ Pengelolaan Menteri dan Kebijakan Sektoral</p>
                   </div>
                   <div className="flex gap-6 mb-3">
                     <div className="px-6 py-3 bg-zinc-900/60 border border-zinc-800 rounded-[1.5rem] shadow-inner flex flex-col items-center">

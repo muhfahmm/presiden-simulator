@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layers, TreePine, Hammer, Construction, Warehouse } from "lucide-react";
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 
 /**

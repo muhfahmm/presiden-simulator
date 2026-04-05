@@ -2,13 +2,13 @@
 
 import React from "react";
 import { X, TrendingUp, TrendingDown, Coins, Landmark, Receipt, Percent, Globe, Briefcase, Zap, Shield, HeartPulse, GraduationCap, Truck, Home, Activity, Info, BarChart3, PieChart, Users } from "lucide-react";
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { incomeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
 import { expenseStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
 import { priceStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 import { calculateTotalMaintenance, calculateBudgetBreakdown } from "@/app/game/data/economy/BudgetDeltaLogic";
-import { produksiMiliter } from "@/app/database/data/types";
+import { produksiMiliter } from "@/app/database/data/semua_fitur_negara";
 import NavigasiWaktu from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 interface BudgetDetailModalProps {

@@ -1,6 +1,6 @@
 import { gameStorage } from "@/app/game/gamestorage";
 import { countries } from "@/app/database/data/negara/benua/index";
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { historiImportStorage } from "./ekspor_impor/impor/HistoriImportStorage";
 import { historiEksporStorage } from "./ekspor_impor/ekspor/HistoriEksporStorage";
 import { importStockStorage } from "./ImportStockStorage";

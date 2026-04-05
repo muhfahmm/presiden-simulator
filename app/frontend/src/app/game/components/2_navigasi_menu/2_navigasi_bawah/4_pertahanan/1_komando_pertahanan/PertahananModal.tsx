@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { X, Shield, Swords, Eye, Bomb, Map as MapIcon, Radiation, Zap, Truck, Anchor, Plane, Search, Crosshair, Target, Clock, Loader2, EyeOff } from "lucide-react"
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import ProgramNuklirModal from "./5_program_nuklir/5_program_nuklir";
 

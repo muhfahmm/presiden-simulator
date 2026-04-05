@@ -1,4 +1,4 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect } from "react";
 import { X, Users, TrendingUp, TrendingDown, Minus, ShoppingCart, CalendarDays, Users2, Clock, Heart, Brain, ShieldAlert, BadgeDollarSign, Activity, GraduationCap, Gavel, Landmark, Briefcase, ChevronRight, Baby } from "lucide-react";
@@ -9,8 +9,8 @@ import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_baw
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
-import { mineralKritisRate, produkIndustriRate, komoditasPanganRate, produksiMiliter, tempatUmum } from "@/app/database/data/types";
-import { KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/types/1_kelistrikan"
+import { mineralKritisRate, produkIndustriRate, komoditasPanganRate, produksiMiliter, tempatUmum } from "@/app/database/data/semua_fitur_negara";
+import { KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/semua_fitur_negara"
 import NavigasiWaktu from "../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 

@@ -38,9 +38,20 @@ export interface HukumData {
   indeks_keamanan?: number;
 }
 
+export interface SektorKomersial {
+  mall?: number;
+}
+
+export interface SektorHiburan {
+  bioskop?: number;
+  teater?: number;
+}
+
 export interface SektorSosial {
   pendidikan?: PendidikanData;
   kesehatan?: KesehatanData;
   olahraga?: OlahragaSosialData;
   hukum?: HukumData;
+  komersial?: SektorKomersial;
+  hiburan?: SektorHiburan;
 }

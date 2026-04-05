@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { X, FileText, Scale, Coins, Smile, Meh, Frown, Angry, AlertCircle, TrendingUp, RefreshCw, Wallet, Globe, Shield, ShieldAlert, Info, Users } from "lucide-react"
 import { countries } from "@/app/database/data/negara/benua/index"
-import { CountryData } from "@/app/database/data/types/index"
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index"
 import { gameStorage } from "@/app/game/gamestorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
 import { taxStorage } from "./TaxStorage"
@@ -44,7 +44,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
 
   if (!isOpen || !managedTaxes) return null;
 
-  // ── Klasifikasi dinamis berdasarkan key data negara ──
+  // â”€â”€ Klasifikasi dinamis berdasarkan key data negara â”€â”€
   // Key perdagangan diketahui (global), sisanya = domestik
   const TRADE_KEYS = new Set(["bea_cukai", "transit_sekutu", "transit_non_sekutu", "tarif_ekspor", "tarif_impor"]);
 
@@ -169,7 +169,7 @@ export default function PajakModal({ isOpen, onClose }: ModalProps) {
   const monthlyGrowthPercent = dailyGrowthRate * 30 * 100; // % per bulan
 
 
-  // Daily Happiness Delta (dari kebijakan pajak — sama dengan applyDailyHappinessDecay)
+  // Daily Happiness Delta (dari kebijakan pajak â€” sama dengan applyDailyHappinessDecay)
   const getDailyHappinessDelta = (rate: number): number => {
     if (rate <= 25) return 0.1;
     if (rate <= 50) return 0;

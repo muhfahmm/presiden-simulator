@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { X, BarChart3, TrendingUp, TrendingDown, Landmark, PieChart, Coins, Shield, Zap, Building2, Activity, Info, Wallet, ArrowRight, Hammer, Users, Eye, ChevronLeft, Car, Home, Search } from "lucide-react"
 import { countries } from "@/app/database/data/negara/benua/index"
-import { CountryData } from "@/app/database/data/types/index"
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index"
 import { gameStorage } from "@/app/game/gamestorage"
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara"
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage"
@@ -16,7 +16,7 @@ import {
   komoditasPanganRate, 
   produksiMiliter, 
   tempatUmum 
-} from "@/app/database/data/types"
+} from "@/app/database/data/semua_fitur_negara"
 
 import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMaintenance } from "@/app/game/data/economy/BudgetDeltaLogic"
 import { incomeStorage } from "./pemasukkan/IncomeStorage"
@@ -65,7 +65,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
 
   if (!isOpen) return null;
 
-  // 1. Revenue — dynamic iteration same as PajakModal
+  // 1. Revenue â€” dynamic iteration same as PajakModal
   const savedTaxes = taxStorage.getTaxes(initialCountry.name_en) || initialCountry.pajak;
   const TRADE_KEYS = new Set(["bea_cukai", "transit_sekutu", "transit_non_sekutu", "tarif_ekspor", "tarif_impor"]);
   const autoLabel = (key: string) => key.replace(/_/g, " ").replace(/\b\w/g, c => c.toUpperCase());
@@ -334,7 +334,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                    <span className="text-xs font-black text-emerald-400">+{Math.round(dailyTaxRevenue).toLocaleString('id-ID')}</span>
                 </div>
                                  <div className="space-y-4 max-h-[400px] overflow-y-auto no-scrollbar pr-2">
-                    {/* Domestic Taxes — dynamic */}
+                    {/* Domestic Taxes â€” dynamic */}
                     {dynamicDomestic.length > 0 && (
                     <div className="space-y-3">
                        <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Domestic Fiscal</span>
@@ -350,7 +350,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                     </div>
                     )}
 
-                    {/* Trade Taxes — dynamic */}
+                    {/* Trade Taxes â€” dynamic */}
                     {dynamicTrade.length > 0 && (
                     <div className="space-y-3 mt-6">
                        <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Trade &amp; Logistics</span>

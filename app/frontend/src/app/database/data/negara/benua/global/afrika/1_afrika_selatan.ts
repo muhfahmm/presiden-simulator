@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types";
+import { CountryData } from "@/app/database/data/semua_fitur_negara";
 import { afrika_selatan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_produksi/5_sektor_agrikultur/afrika/1_afrika_selatan";
 import { afrika_selatan_armada } from "@/app/database/data/semua_fitur_negara/2_militer/2_armada_militer/afrika/1_afrika_selatan";
 import { afrika_selatan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_produksi/2_sektor_mineral_kritis/afrika/1_afrika_selatan";
@@ -45,7 +45,7 @@ export const afrika_selatan: CountryData = {
   "sektor_komersial": afrika_selatan_komersial,
   "sektor_hiburan": afrika_selatan_hiburan,
   // =============================================================
-  // 11. ðŸ’° PAJAK & EKONOMI
+  // 11. Ã°Å¸â€™Â° PAJAK & EKONOMI
   // =============================================================
   "pajak": {
     "ppn": {
@@ -82,7 +82,7 @@ export const afrika_selatan: CountryData = {
     }
   },
   // =============================================================
-  // 12. ðŸ’° GAJI & SUBSIDI (Default)
+  // 12. Ã°Å¸â€™Â° GAJI & SUBSIDI (Default)
   // =============================================================
   "gaji": {
     "gaji_asn": 30,
@@ -100,7 +100,7 @@ export const afrika_selatan: CountryData = {
     "subsidi_perumahan": 25
   },
   // =============================================================
-  // 13. ðŸ›’ HARGA PASAR DOMESTIK
+  // 13. Ã°Å¸â€ºâ€™ HARGA PASAR DOMESTIK
   // =============================================================
   "harga": {
     "harga_beras": 16000,
@@ -116,11 +116,11 @@ export const afrika_selatan: CountryData = {
     "harga_pendidikan": 483900
   },
     // =============================================================
-  // 15. ðŸŒ GEOPOLITIK & HUBUNGAN INTERNASIONAL
+  // 15. Ã°Å¸Å’Â GEOPOLITIK & HUBUNGAN INTERNASIONAL
   // =============================================================
   "geopolitik": afrika_selatan_geopolitik,
   // =============================================================
-  // 16. ðŸ›ï¸ KEMENTERIAN NEGARA
+  // 16. Ã°Å¸Ââ€ºÃ¯Â¸Â KEMENTERIAN NEGARA
   // =============================================================
   "kementerian": {
     "kesehatan": 13,

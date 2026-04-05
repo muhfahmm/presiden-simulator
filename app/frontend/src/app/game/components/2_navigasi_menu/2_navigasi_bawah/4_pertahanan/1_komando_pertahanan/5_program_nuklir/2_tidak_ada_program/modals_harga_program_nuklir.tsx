@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { X, Radiation, Coins, ShieldAlert, CheckCircle2, AlertTriangle, ArrowRight, Zap, Clock, Calendar } from "lucide-react";
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import { nuclearStorage } from "../nuclearStorage";
 import { timeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/timeStorage";

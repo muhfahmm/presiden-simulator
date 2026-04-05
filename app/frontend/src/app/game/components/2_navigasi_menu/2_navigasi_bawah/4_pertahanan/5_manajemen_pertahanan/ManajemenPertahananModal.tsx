@@ -1,9 +1,8 @@
-"use client"
+﻿"use client"
 
 import { useState, useEffect, Fragment } from "react";
 import { X, Wrench, Zap, Shield, Truck, MapPin, Gavel, TowerControl, Ship, Rocket, Activity, TrendingUp, TrendingDown, Clock, Loader2, Eye, EyeOff, Building, Archive, Info, Briefcase, Users, Flame, Landmark, ShieldAlert } from "lucide-react"
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA } from "@/app/database/data/types/1_kelistrikan";
-import { KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC } from "@/app/database/data/types/1_kelistrikan/2_konsumsi_listrik";
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC } from "@/app/database/data/semua_fitur_negara";
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
@@ -11,7 +10,7 @@ import { calculateConstructionProgress, getStatusText } from "@/app/game/data/co
 import { countries } from "@/app/database/data/negara/benua/index";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 import MaterialRequirement from "../../3_pembangunan/1-produksi/MaterialRequirement";
-import { pertahananRate } from "@/app/database/data/types/4_militer";
+import { pertahananRate } from "@/app/database/data/semua_fitur_negara/2_militer";
 import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
 import { playerMilitaryStorage } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
 

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Radiation, Shield, Zap, AlertTriangle, Cpu, FlaskConical, Target, Binary, Plus } from "lucide-react";
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 
 interface Props {
   data: CountryData;

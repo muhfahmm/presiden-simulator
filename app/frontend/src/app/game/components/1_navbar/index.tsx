@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Heart, Users, Coins, Shield, LogOut, RotateCcw, TrendingUp, TrendingDown, Clock, Activity, Zap, PieChart, BarChart3, Landmark, Percent, Receipt } from "lucide-react";
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { HappinessBreakdown } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan";
 import { gameStorage } from "@/app/game/gamestorage";
 import { populationStorage } from "@/app/game/components/1_navbar/2_populasi";

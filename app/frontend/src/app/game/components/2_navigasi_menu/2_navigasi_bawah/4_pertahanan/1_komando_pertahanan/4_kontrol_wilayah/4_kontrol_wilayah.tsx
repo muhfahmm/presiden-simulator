@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { X, Map as MapIcon, Shield, Zap, Globe, Navigation, Users } from "lucide-react";
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import NavigasiWaktu from "../../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 interface Props {

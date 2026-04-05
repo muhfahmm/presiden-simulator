@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { X, Radiation, Rocket, Bomb, Shield, Zap, AlertTriangle, Lock, ArrowRight } from "lucide-react";
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import ModalsHargaProgramNuklir from "./modals_harga_program_nuklir";
 import ModalsBerhasilMembuatProgramNuklir from "./modals_berhasil_membuat_program_nuklir";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";

@@ -1,4 +1,4 @@
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { priceStorage, BASE_PRICES } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 
@@ -38,11 +38,11 @@ function getAveragePriceMultiplier(countryData: CountryData): number {
  *
  * Tabel dampak tarif pajak terhadap pertumbuhan populasi:
  * | Rentang Tarif Pajak | Dampak Pertumbuhan Populasi |
- * | 0% – 15%        | +0.01% populasi (sangat positif) |
- * | 16% – 35%       | +0.005%                          |
- * | 36% – 55%       | +0.002% (pertumbuhan alami)      |
- * | 56% – 75%       | -0.003%                          |
- * | 76% – 100%      | -0.008% (krisis eksodus)         |
+ * | 0% â€“ 15%        | +0.01% populasi (sangat positif) |
+ * | 16% â€“ 35%       | +0.005%                          |
+ * | 36% â€“ 55%       | +0.002% (pertumbuhan alami)      |
+ * | 56% â€“ 75%       | -0.003%                          |
+ * | 76% â€“ 100%      | -0.008% (krisis eksodus)         |
  *
  * @param countryData - Data negara yang sedang dimainkan
  * @param currentPopulation - Populasi saat ini

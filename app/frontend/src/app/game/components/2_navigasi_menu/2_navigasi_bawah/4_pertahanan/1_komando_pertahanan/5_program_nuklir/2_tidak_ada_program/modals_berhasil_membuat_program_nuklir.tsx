@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { X, Radiation, CheckCircle2, Clock, Calendar, ArrowRight, ShieldCheck, Zap, Sparkles } from "lucide-react";
-import { CountryData } from "@/app/database/data/types/index";
+import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 
 interface Props {
   isOpen: boolean;
