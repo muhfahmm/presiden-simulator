@@ -10,7 +10,8 @@ import HargaModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2
 // Other Modals
 import ProduksiHubV3 from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/1-produksi/ProduksiModal";
 import ProduksiMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/2-produksi-militer/ProduksiMiliterModal";
-import KelistrikanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/9_kelistrikan/KelistrikanModal";
+import KelistrikanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/9_produksi_konsumsi/KelistrikanModal";
+import PerminyakanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/9_produksi_konsumsi/PerminyakanModal";
 import TempatUmumModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/TempatUmumModal";
 import PertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/PertahananModal";
 import IntelijenModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/2_intelijen/IntelijenModal";
@@ -23,13 +24,13 @@ import TingkatHubunganModal from "@/app/game/components/2_navigasi_menu/2_naviga
 import BantuanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/4_bantuan/BantuanModal";
 import DiplomasiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/5_diplomasi/DiplomasiModal";
 import KedutaanBesarModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/6_kedutaan_besar/KedutaanBesarModal";
-import KementerianModal from "./7_kementrian/KementerianModal";
-import AgamaModal from "./6_sosial_budaya/1_agama/AgamaModal";
-import IdeologiModal from "./6_sosial_budaya/2_ideologi/IdeologiModal";
+import KementerianModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/7_kementrian/KementerianModal";
+import AgamaModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/1_agama/AgamaModal";
+import IdeologiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/6_sosial_budaya/2_ideologi/IdeologiModal";
 import BeritaModal from "@/app/game/components/sidemenu/1_berita/BeritaModal";
 import InboxModal from "@/app/game/components/sidemenu/2_kotak_masuk/InboxModal";
 import KepuasanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/KepuasanModal";
-import PopulasiModal from "./8_populasi/PopulasiModal";
+import PopulasiModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/8_populasi/PopulasiModal";
 import AcaraModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/1_kepuasan/acara/AcaraModal";
 import NewMessageToast from "@/app/game/components/sidemenu/2_kotak_masuk/NewMessageToast";
 import RelationAlertToast from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/5_geopolitik/3_tingkat_hubungan/RelationAlertToast";
@@ -37,8 +38,6 @@ import BudgetDetailModal from "@/app/game/components/1_navbar/3_kas_negara/Budge
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 
 // Diplomatic Sub-Modals
-import KedutaanModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/KedutaanModal";
-// PaktaNonAgresiModal, AliansiPertahanan, & PerjanjianDagang removed to be handled in StrategyModal/modals.tsx
 import KontrakPenelitianModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/5_kontrak_penelitian/KontrakPenelitianModal";
 import KirimPasukanModal from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/6_kirim_pasukan/KirimPasukanModal";
 import { relationStorage } from "@/app/game/components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
@@ -114,8 +113,12 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       />
       <KelistrikanModal
         isOpen={activeMenu === "Menu:Kelistrikan"}
-        onClose={() => setActiveMenu("Kelistrikan")}
+        onClose={() => setActiveMenu("ProduksiKonsumsi")}
         setActiveMenu={setActiveMenu}
+      />
+      <PerminyakanModal
+        isOpen={activeMenu === "Menu:Perminyakan"}
+        onClose={() => setActiveMenu("ProduksiKonsumsi")}
       />
       <TempatUmumModal
         isOpen={activeMenu === "Menu:TempatUmum"}

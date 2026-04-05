@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { X, Zap, Activity, TrendingUp, TrendingDown, Battery, Radio, Gauge, Info, Hammer, Shield, Users, Factory, Pickaxe, Lightbulb, ZapOff, CloudLightning, Sprout, Utensils, Pill, TrainFront, Store, Beef, Fish, Bus, School, Hospital, Gavel, Trophy, Theater, Plane, Ship, MapPin, Eye, EyeOff, Truck } from "lucide-react";
+import { X, Bolt, Activity, TrendingUp, TrendingDown, Battery, Radio, Gauge, Info, Hammer, Shield, Users, Factory, Pickaxe, Lightbulb, ZapOff, CloudLightning, Sprout, Utensils, Pill, TrainFront, Store, Beef, Fish, Bus, School, Hospital, Gavel, Trophy, Theater, Plane, Ship, MapPin, Eye, EyeOff, Truck } from "lucide-react";
 import { 
   hitungTotalKapasitas, 
   hitungTotalKonsumsiNasional, 
@@ -337,7 +337,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
   const generationSources = Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, meta]) => {
     const count = (currentDataWithDeltas.sektor_listrik as any)[meta.dataKey] || 0;
     const totalOutput = count * meta.produksi;
-    const { icon, color } = iconMap[key] || { icon: Zap, color: "text-yellow-500" };
+    const { icon, color } = iconMap[key] || { icon: Bolt, color: "text-yellow-500" };
     
     return {
       name: meta.deskripsi,
@@ -356,7 +356,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
         <div className="px-8 py-6 border-b border-zinc-800/50 flex items-center justify-between bg-zinc-900/30">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-yellow-500/10 rounded-xl">
-              <Zap className="h-6 w-6 text-yellow-500" />
+              <Bolt className="h-6 w-6 text-yellow-500" />
             </div>
             <div>
               <h2 className="text-2xl font-bold text-white tracking-tight italic uppercase">Pusat Kelistrikan Nasional</h2>
@@ -377,7 +377,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-zinc-900/50 border border-zinc-800 p-6 rounded-[32px] flex items-center gap-6 group hover:bg-zinc-900 transition-all hover:border-cyan-500/30 shadow-indigo-500/10 shadow-lg">
               <div className="p-4 bg-cyan-500/10 rounded-2xl border border-cyan-500/20">
-                <Zap className="h-8 w-8 text-cyan-500" />
+                <Bolt className="h-8 w-8 text-cyan-500" />
               </div>
               <div>
                 <p className="text-[11px] text-zinc-500 font-bold uppercase tracking-[0.2em]">{DASHBOARD_LABELS.supply.title}</p>
