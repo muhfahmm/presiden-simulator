@@ -18,7 +18,33 @@ import { peru_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produk
 import { peru_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/sa/204_peru";
 import { peru_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/204_peru";
 import { peru_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/sa/204_peru";
-import { peru_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/sa/204_peru";
+const peru_geopolitik = {
+    "un_vote": 41,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 2,
+      "kekuatan_keras": 11,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const peru: CountryData = {
   ...peru_profile,

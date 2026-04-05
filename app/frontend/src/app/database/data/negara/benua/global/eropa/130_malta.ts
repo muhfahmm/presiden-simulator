@@ -18,7 +18,33 @@ import { malta_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produ
 import { malta_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/eropa/130_malta";
 import { malta_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/130_malta";
 import { malta_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/eropa/130_malta";
-import { malta_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/eropa/130_malta";
+const malta_geopolitik = {
+    "un_vote": 121,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 17,
+      "kekuatan_keras": 39,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const malta: CountryData = {
   ...malta_profile,

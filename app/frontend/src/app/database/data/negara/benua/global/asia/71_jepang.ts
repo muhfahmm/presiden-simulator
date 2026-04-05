@@ -18,7 +18,33 @@ import { jepang_pertahanan } from "@/app/database/data/semua_fitur_negara/2_prod
 import { jepang_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/71_jepang";
 import { jepang_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/71_jepang";
 import { jepang_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/asia/71_jepang";
-import { jepang_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/71_jepang";
+const jepang_geopolitik = {
+    "un_vote": 207,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 39,
+      "kekuatan_keras": 19,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const jepang: CountryData = {
   ...jepang_profile,

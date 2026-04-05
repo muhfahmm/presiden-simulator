@@ -18,7 +18,33 @@ import { inggris_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pro
 import { inggris_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/eropa/117_inggris";
 import { inggris_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/117_inggris";
 import { inggris_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/eropa/117_inggris";
-import { inggris_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/eropa/117_inggris";
+const inggris_geopolitik = {
+    "un_vote": 181,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 3,
+      "kekuatan_keras": 29,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const inggris: CountryData = {
   ...inggris_profile,

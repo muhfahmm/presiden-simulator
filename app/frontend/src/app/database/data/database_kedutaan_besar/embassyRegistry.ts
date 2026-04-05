@@ -38,12 +38,20 @@ const normalizeCountryName = (name: string): string => {
     .replace(/[()]/g, '');
 };
 
-export const getInitialEmbassy = (countryNameEn: string, countryNameId: string): any => {
+export const getInitialEmbassy = (countryNameEn: string, countryNameId: string, playerCountry: string = "Indonesia"): any => {
   const keyEn = `${normalizeCountryName(countryNameEn)}EmbassyConfig`;
   const keyId = `${normalizeCountryName(countryNameId)}EmbassyConfig`;
 
   // Try lookup with ID name first, then EN name
-  return allEmbassies[keyId] || allEmbassies[keyEn] || {
+  const config = allEmbassies[keyId] || allEmbassies[keyEn];
+
+  // If the config is a function (new dynamic format), call it with playerCountry
+  if (typeof config === 'function') {
+    return config(playerCountry);
+  }
+
+  // Fallback for static objects or missing configs
+  return config || {
     level: 0,
     staffSlots: [
       { id: 1, type: "Atase Militer", active: false },

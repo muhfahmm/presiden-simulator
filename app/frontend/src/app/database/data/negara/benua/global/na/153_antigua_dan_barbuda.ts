@@ -18,7 +18,33 @@ import { antigua_dan_barbuda_pertahanan } from "@/app/database/data/semua_fitur_
 import { antigua_dan_barbuda_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/na/153_antigua_dan_barbuda";
-import { antigua_dan_barbuda_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/na/153_antigua_dan_barbuda";
+const antigua_dan_barbuda_geopolitik = {
+    "un_vote": 12,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 14,
+      "kekuatan_keras": 3,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const antigua_dan_barbuda: CountryData = {
   ...antigua_dan_barbuda_profile,

@@ -18,7 +18,33 @@ import { hong_kong_pertahanan } from "@/app/database/data/semua_fitur_negara/2_p
 import { hong_kong_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/65_hong_kong";
 import { hong_kong_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/65_hong_kong";
 import { hong_kong_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/asia/65_hong_kong";
-import { hong_kong_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/65_hong_kong";
+const hong_kong_geopolitik = {
+    "un_vote": 27,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 1,
+      "kekuatan_keras": 20,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const hong_kong: CountryData = {
   ...hong_kong_profile,

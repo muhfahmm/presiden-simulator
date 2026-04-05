@@ -18,8 +18,33 @@ import { botswana_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pr
 import { botswana_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/afrika/5_botswana";
 import { botswana_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/5_botswana";
 import { botswana_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/afrika/5_botswana";
-import { botswana_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/afrika/5_botswana";
-
+const botswana_geopolitik = {
+    "un_vote": 48,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 13,
+      "kekuatan_keras": 15,
+      "prestise_diplomatik": 57
+  },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+  },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+  },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+  }
+    ]
+  } as const;
 
 export const botswana: CountryData = {
   ...botswana_profile,

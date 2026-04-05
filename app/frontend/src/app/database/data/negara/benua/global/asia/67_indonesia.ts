@@ -20,12 +20,39 @@ import { indonesia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_p
 import { indonesia_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/67_indonesia";
 import { indonesia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/67_indonesia";
 import { indonesia_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/asia/67_indonesia";
-import { indonesia_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/67_indonesia";
 import { 
   infrastruktur_options, pendidikan_options, sains_penelitian_options, kesehatan_options, olahraga_options, 
   kehakiman_options, pertahanan_options, luar_negeri_options, kebudayaan_options, pariwisata_options, 
   lingkungan_hidup_options, perumahan_options, pembangunan_options, perdagangan_options, keuangan_options 
 } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/7_kementrian/1_database_menteri/index";
+
+const indonesia_geopolitik = {
+    "un_vote": 128,
+    "reputasi_diplomatik": "Unggul",
+    "aliansi_aktif": ["Amerika Serikat", "Jepang", "Australia", "India"],
+    "pengaruh_global": 78.2,
+    "peringkat_diplomasi": 12,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 8,
+      "kekuatan_keras": 7,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const indonesia: CountryData = {
   ...indonesia_profile,

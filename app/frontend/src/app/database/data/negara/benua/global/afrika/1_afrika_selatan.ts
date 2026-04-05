@@ -20,7 +20,33 @@ import { afrika_selatan_pertahanan } from "@/app/database/data/semua_fitur_negar
 import { afrika_selatan_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/afrika/1_afrika_selatan";
 import { afrika_selatan_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/1_afrika_selatan";
 import { afrika_selatan_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/afrika/1_afrika_selatan";
-import { afrika_selatan_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/afrika/1_afrika_selatan";
+const afrika_selatan_geopolitik = {
+    "un_vote": 188,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 34,
+      "kekuatan_keras": 7,
+      "prestise_diplomatik": 57
+  },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+  },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+  },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+  }
+    ]
+  } as const;
 
 export const afrika_selatan: CountryData = {
   ...afrika_selatan_profile,

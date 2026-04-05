@@ -18,7 +18,33 @@ import { barbados_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pr
 import { barbados_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/na/155_barbados";
 import { barbados_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/155_barbados";
 import { barbados_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/na/155_barbados";
-import { barbados_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/na/155_barbados";
+const barbados_geopolitik = {
+    "un_vote": 10,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 4,
+      "kekuatan_keras": 9,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const barbados: CountryData = {
   ...barbados_profile,

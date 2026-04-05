@@ -18,7 +18,33 @@ import { armenia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pro
 import { armenia_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/56_armenia";
 import { armenia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/56_armenia";
 import { armenia_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/asia/56_armenia";
-import { armenia_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/56_armenia";
+const armenia_geopolitik = {
+    "un_vote": 152,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 30,
+      "kekuatan_keras": 11,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const armenia: CountryData = {
   ...armenia_profile,

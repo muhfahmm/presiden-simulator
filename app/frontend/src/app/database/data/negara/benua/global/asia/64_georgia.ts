@@ -18,7 +18,33 @@ import { georgia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pro
 import { georgia_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/64_georgia";
 import { georgia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/64_georgia";
 import { georgia_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/asia/64_georgia";
-import { georgia_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/64_georgia";
+const georgia_geopolitik = {
+    "un_vote": 127,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 18,
+      "kekuatan_keras": 32,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const georgia: CountryData = {
   ...georgia_profile,

@@ -18,7 +18,33 @@ import { curacao_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pro
 import { curacao_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/na/159_curacao";
 import { curacao_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/159_curacao";
 import { curacao_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/na/159_curacao";
-import { curacao_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/na/159_curacao";
+const curacao_geopolitik = {
+    "un_vote": 16,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 27,
+      "kekuatan_keras": 6,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const curacao: CountryData = {
   ...curacao_profile,

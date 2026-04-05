@@ -18,7 +18,33 @@ import { albania_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pro
 import { albania_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/eropa/103_albania";
 import { albania_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/103_albania";
 import { albania_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/eropa/103_albania";
-import { albania_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/eropa/103_albania";
+const albania_geopolitik = {
+    "un_vote": 77,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 25,
+      "kekuatan_keras": 9,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const albania: CountryData = {
   ...albania_profile,

@@ -18,7 +18,33 @@ import { marshall_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pr
 import { marshall_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/oceania/183_marshall";
 import { marshall_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/183_marshall";
 import { marshall_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/oceania/183_marshall";
-import { marshall_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/oceania/183_marshall";
+const marshall_geopolitik = {
+    "un_vote": 4,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 22,
+      "kekuatan_keras": 2,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const marshall: CountryData = {
   ...marshall_profile,

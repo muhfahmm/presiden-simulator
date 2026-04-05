@@ -1,5 +1,9 @@
-export const costa_ricaEmbassyConfig = {
-  level: 1, // 1: Konsulat, 2: Kedubes Utama, 3: Hub Regional
+import { costa_ricaAgreements } from "@/app/database/data/database_mitra_perdagangan/na/158_costa_rica";
+
+export const costa_ricaEmbassyConfig = (playerCountry: string) => {
+  const hasTrade = costa_ricaAgreements.some(a => a.mitra === playerCountry && a.status === "Aktif");
+  return {
+  level: hasTrade ? 1 : 0, // 1: Konsulat, 2: Kedubes Utama, 3: Hub Regional
   staffSlots: [
     { id: 1, type: "Atase Militer", active: false },
     { id: 2, type: "Atase Ekonomi", active: false },
@@ -10,6 +14,7 @@ export const costa_ricaEmbassyConfig = {
     { name: "Ruang Intelijen", level: 0 },
     { name: "Sektor Ekonomi", level: 0 }
   ],
-  maintenanceCost: 50,
+  maintenanceCost: hasTrade ? 50 : 0,
   relationshipBonus: 0.1
+};
 };

@@ -18,7 +18,33 @@ import { samoa_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produ
 import { samoa_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/oceania/188_samoa";
 import { samoa_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/188_samoa";
 import { samoa_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/oceania/188_samoa";
-import { samoa_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/oceania/188_samoa";
+const samoa_geopolitik = {
+    "un_vote": 9,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 2,
+      "kekuatan_keras": 35,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const samoa: CountryData = {
   ...samoa_profile,

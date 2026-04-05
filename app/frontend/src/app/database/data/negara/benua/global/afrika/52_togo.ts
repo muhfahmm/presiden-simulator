@@ -18,7 +18,33 @@ import { togo_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produk
 import { togo_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/afrika/52_togo";
 import { togo_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/52_togo";
 import { togo_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/afrika/52_togo";
-import { togo_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/afrika/52_togo";
+const togo_geopolitik = {
+    "un_vote": 122,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 35,
+      "kekuatan_keras": 17,
+      "prestise_diplomatik": 57
+  },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+  },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+  },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+  }
+    ]
+  } as const;
 
 export const togo: CountryData = {
   ...togo_profile,

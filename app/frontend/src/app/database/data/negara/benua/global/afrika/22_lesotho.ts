@@ -18,7 +18,33 @@ import { lesotho_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pro
 import { lesotho_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/afrika/22_lesotho";
 import { lesotho_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/22_lesotho";
 import { lesotho_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/afrika/22_lesotho";
-import { lesotho_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/afrika/22_lesotho";
+const lesotho_geopolitik = {
+    "un_vote": 115,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 36,
+      "kekuatan_keras": 23,
+      "prestise_diplomatik": 57
+  },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+  },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+  },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+  }
+    ]
+  } as const;
 
 export const lesotho: CountryData = {
   ...lesotho_profile,

@@ -18,7 +18,33 @@ import { finlandia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_p
 import { finlandia_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/eropa/114_finlandia";
 import { finlandia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/114_finlandia";
 import { finlandia_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/eropa/114_finlandia";
-import { finlandia_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/eropa/114_finlandia";
+const finlandia_geopolitik = {
+    "un_vote": 156,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 22,
+      "kekuatan_keras": 6,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const finlandia: CountryData = {
   ...finlandia_profile,

@@ -18,7 +18,33 @@ import { austria_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pro
 import { austria_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/eropa/105_austria";
 import { austria_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/105_austria";
 import { austria_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/eropa/105_austria";
-import { austria_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/eropa/105_austria";
+const austria_geopolitik = {
+    "un_vote": 192,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 28,
+      "kekuatan_keras": 34,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const austria: CountryData = {
   ...austria_profile,

@@ -18,7 +18,33 @@ import { republik_afrika_tengah_pertahanan } from "@/app/database/data/semua_fit
 import { republik_afrika_tengah_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/afrika/37_republik_afrika_tengah";
-import { republik_afrika_tengah_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/afrika/37_republik_afrika_tengah";
+const republik_afrika_tengah_geopolitik = {
+    "un_vote": 66,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 23,
+      "kekuatan_keras": 20,
+      "prestise_diplomatik": 57
+  },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+  },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+  },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+  }
+    ]
+  } as const;
 
 export const republik_afrika_tengah: CountryData = {
   ...republik_afrika_tengah_profile,

@@ -18,7 +18,33 @@ import { palau_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produ
 import { palau_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/oceania/186_palau";
 import { palau_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/186_palau";
 import { palau_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/oceania/186_palau";
-import { palau_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/oceania/186_palau";
+const palau_geopolitik = {
+    "un_vote": 44,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 34,
+      "kekuatan_keras": 21,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const palau: CountryData = {
   ...palau_profile,

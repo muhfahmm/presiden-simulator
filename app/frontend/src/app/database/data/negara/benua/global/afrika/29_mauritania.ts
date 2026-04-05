@@ -18,7 +18,33 @@ import { mauritania_pertahanan } from "@/app/database/data/semua_fitur_negara/2_
 import { mauritania_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/afrika/29_mauritania";
 import { mauritania_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/29_mauritania";
 import { mauritania_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/afrika/29_mauritania";
-import { mauritania_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/afrika/29_mauritania";
+const mauritania_geopolitik = {
+    "un_vote": 124,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 17,
+      "kekuatan_keras": 40,
+      "prestise_diplomatik": 57
+  },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+  },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+  },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+  }
+    ]
+  } as const;
 
 export const mauritania: CountryData = {
   ...mauritania_profile,

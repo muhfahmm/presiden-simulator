@@ -18,7 +18,33 @@ import { slovenia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pr
 import { slovenia_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/eropa/143_slovenia";
 import { slovenia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/143_slovenia";
 import { slovenia_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/eropa/143_slovenia";
-import { slovenia_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/eropa/143_slovenia";
+const slovenia_geopolitik = {
+    "un_vote": 78,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 10,
+      "kekuatan_keras": 31,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const slovenia: CountryData = {
   ...slovenia_profile,

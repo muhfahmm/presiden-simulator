@@ -18,7 +18,33 @@ import { saint_lucia_pertahanan } from "@/app/database/data/semua_fitur_negara/2
 import { saint_lucia_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/na/176_saint_lucia";
 import { saint_lucia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/176_saint_lucia";
 import { saint_lucia_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/na/176_saint_lucia";
-import { saint_lucia_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/na/176_saint_lucia";
+const saint_lucia_geopolitik = {
+    "un_vote": 17,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 2,
+      "kekuatan_keras": 19,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const saint_lucia: CountryData = {
   ...saint_lucia_profile,

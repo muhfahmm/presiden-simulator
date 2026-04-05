@@ -18,7 +18,33 @@ import { myanmar_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pro
 import { myanmar_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/84_myanmar";
 import { myanmar_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/84_myanmar";
 import { myanmar_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/asia/84_myanmar";
-import { myanmar_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/84_myanmar";
+const myanmar_geopolitik = {
+    "un_vote": 55,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 15,
+      "kekuatan_keras": 2,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const myanmar: CountryData = {
   ...myanmar_profile,

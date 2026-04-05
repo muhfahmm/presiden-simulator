@@ -18,7 +18,33 @@ import { kiribati_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pr
 import { kiribati_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/oceania/182_kiribati";
 import { kiribati_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/182_kiribati";
 import { kiribati_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/oceania/182_kiribati";
-import { kiribati_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/oceania/182_kiribati";
+const kiribati_geopolitik = {
+    "un_vote": 2,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 3,
+      "kekuatan_keras": 18,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const kiribati: CountryData = {
   ...kiribati_profile,

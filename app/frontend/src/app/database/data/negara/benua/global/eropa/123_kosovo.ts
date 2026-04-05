@@ -18,7 +18,33 @@ import { kosovo_pertahanan } from "@/app/database/data/semua_fitur_negara/2_prod
 import { kosovo_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/eropa/123_kosovo";
 import { kosovo_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/123_kosovo";
 import { kosovo_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/eropa/123_kosovo";
-import { kosovo_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/eropa/123_kosovo";
+const kosovo_geopolitik = {
+    "un_vote": 7,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 17,
+      "kekuatan_keras": 3,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const kosovo: CountryData = {
   ...kosovo_profile,

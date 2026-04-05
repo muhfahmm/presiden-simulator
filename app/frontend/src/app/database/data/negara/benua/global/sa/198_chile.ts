@@ -18,7 +18,33 @@ import { chile_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produ
 import { chile_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/sa/198_chile";
 import { chile_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/198_chile";
 import { chile_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/sa/198_chile";
-import { chile_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/sa/198_chile";
+const chile_geopolitik = {
+    "un_vote": 147,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 26,
+      "kekuatan_keras": 4,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const chile: CountryData = {
   ...chile_profile,

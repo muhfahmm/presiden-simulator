@@ -18,7 +18,33 @@ import { uni_emirat_arab_pertahanan } from "@/app/database/data/semua_fitur_nega
 import { uni_emirat_arab_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/98_uni_emirat_arab";
 import { uni_emirat_arab_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/asia/98_uni_emirat_arab";
-import { uni_emirat_arab_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/98_uni_emirat_arab";
+const uni_emirat_arab_geopolitik = {
+    "un_vote": 193,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 32,
+      "kekuatan_keras": 29,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const uni_emirat_arab: CountryData = {
   ...uni_emirat_arab_profile,

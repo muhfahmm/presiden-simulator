@@ -18,7 +18,33 @@ import { china_pertahanan } from "@/app/database/data/semua_fitur_negara/2_produ
 import { china_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/asia/62_china";
 import { china_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/62_china";
 import { china_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/asia/62_china";
-import { china_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/asia/62_china";
+const china_geopolitik = {
+    "un_vote": 201,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 3,
+      "kekuatan_keras": 30,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const china: CountryData = {
   ...china_profile,

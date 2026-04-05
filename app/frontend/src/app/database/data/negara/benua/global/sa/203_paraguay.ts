@@ -18,7 +18,33 @@ import { paraguay_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pr
 import { paraguay_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/sa/203_paraguay";
 import { paraguay_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/203_paraguay";
 import { paraguay_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/sa/203_paraguay";
-import { paraguay_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/sa/203_paraguay";
+const paraguay_geopolitik = {
+    "un_vote": 71,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 17,
+      "kekuatan_keras": 6,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const paraguay: CountryData = {
   ...paraguay_profile,

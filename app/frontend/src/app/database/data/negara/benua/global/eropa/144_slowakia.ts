@@ -18,7 +18,33 @@ import { slowakia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pr
 import { slowakia_peternakan } from "@/app/database/data/semua_fitur_negara/1_produksi/4_sektor_peternakan/eropa/144_slowakia";
 import { slowakia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/144_slowakia";
 import { slowakia_strategis } from "@/app/database/data/semua_fitur_negara/2_produksi_militer/3_militer_strategis/eropa/144_slowakia";
-import { slowakia_geopolitik } from "@/app/database/data/semua_fitur_negara/4_geopolitik/eropa/144_slowakia";
+const slowakia_geopolitik = {
+    "un_vote": 176,
+    "reputasi_diplomatik": "Netral",
+    "aliansi_aktif": [],
+    "pengaruh_global": 0,
+    "peringkat_diplomasi": 100,
+    "sikap": "Netral",
+    "pengaruh_internasional": {
+      "kekuatan_lunak": 13,
+      "kekuatan_keras": 38,
+      "prestise_diplomatik": 57
+    },
+    "organisasi_internasional": [
+      {
+        "name": "PBB (UN)",
+        "role": "Anggota"
+      },
+      {
+        "name": "WHO",
+        "role": "Anggota"
+      },
+      {
+        "name": "WTO",
+        "role": "Anggota"
+      }
+    ]
+  } as const;
 
 export const slowakia: CountryData = {
   ...slowakia_profile,
