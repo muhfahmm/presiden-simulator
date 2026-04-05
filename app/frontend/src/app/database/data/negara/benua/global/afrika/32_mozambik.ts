@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { mozambik_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/32_mozambik";
+
 import { mozambik_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/32_mozambik";
 import { mozambik_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/32_mozambik";
 import { mozambik_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/32_mozambik";
@@ -62,6 +64,7 @@ export const mozambik: CountryData = {
   "militer_strategis": mozambik_strategis,
   "armada_kepolisian": mozambik_kepolisian,
   "pabrik_militer": mozambik_pabrik,
+  "intelijen": mozambik_intelijen,
     "pendidikan": mozambik_pendidikan,
   "kesehatan": mozambik_kesehatan,
   "hukum": mozambik_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { republik_demokratik_kongo_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/38_republik_demokratik_kongo";
+
 import { republik_demokratik_kongo_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/38_republik_demokratik_kongo";
@@ -62,6 +64,7 @@ export const republik_demokratik_kongo: CountryData = {
   "militer_strategis": republik_demokratik_kongo_strategis,
   "armada_kepolisian": republik_demokratik_kongo_kepolisian,
   "pabrik_militer": republik_demokratik_kongo_pabrik,
+  "intelijen": republik_demokratik_kongo_intelijen,
     "pendidikan": republik_demokratik_kongo_pendidikan,
   "kesehatan": republik_demokratik_kongo_kesehatan,
   "hukum": republik_demokratik_kongo_hukum,

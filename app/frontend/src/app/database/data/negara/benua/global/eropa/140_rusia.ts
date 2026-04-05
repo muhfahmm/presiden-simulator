@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { rusia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/140_rusia";
+
 import { rusia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/140_rusia";
 import { rusia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/140_rusia";
 import { rusia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/140_rusia";
@@ -62,6 +64,7 @@ export const rusia: CountryData = {
   "militer_strategis": rusia_strategis,
   "armada_kepolisian": rusia_kepolisian,
   "pabrik_militer": rusia_pabrik,
+  "intelijen": rusia_intelijen,
     "pendidikan": rusia_pendidikan,
   "kesehatan": rusia_kesehatan,
   "hukum": rusia_hukum,

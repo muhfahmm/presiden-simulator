@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { kazakhstan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/73_kazakhstan";
+
 import { kazakhstan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/73_kazakhstan";
 import { kazakhstan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/73_kazakhstan";
 import { kazakhstan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/73_kazakhstan";
@@ -62,6 +64,7 @@ export const kazakhstan: CountryData = {
   "militer_strategis": kazakhstan_strategis,
   "armada_kepolisian": kazakhstan_kepolisian,
   "pabrik_militer": kazakhstan_pabrik,
+  "intelijen": kazakhstan_intelijen,
     "pendidikan": kazakhstan_pendidikan,
   "kesehatan": kazakhstan_kesehatan,
   "hukum": kazakhstan_hukum,

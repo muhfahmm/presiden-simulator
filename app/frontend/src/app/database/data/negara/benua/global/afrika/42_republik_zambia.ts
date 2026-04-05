@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { republik_zambia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/42_republik_zambia";
+
 import { republik_zambia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/42_republik_zambia";
 import { republik_zambia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/42_republik_zambia";
 import { republik_zambia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/42_republik_zambia";
@@ -62,6 +64,7 @@ export const republik_zambia: CountryData = {
   "militer_strategis": republik_zambia_strategis,
   "armada_kepolisian": republik_zambia_kepolisian,
   "pabrik_militer": republik_zambia_pabrik,
+  "intelijen": republik_zambia_intelijen,
     "pendidikan": republik_zambia_pendidikan,
   "kesehatan": republik_zambia_kesehatan,
   "hukum": republik_zambia_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { panama_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/172_panama";
+
 import { panama_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/172_panama";
 import { panama_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/172_panama";
 import { panama_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/172_panama";
@@ -62,6 +64,7 @@ export const panama: CountryData = {
   "militer_strategis": panama_strategis,
   "armada_kepolisian": panama_kepolisian,
   "pabrik_militer": panama_pabrik,
+  "intelijen": panama_intelijen,
     "pendidikan": panama_pendidikan,
   "kesehatan": panama_kesehatan,
   "hukum": panama_hukum,

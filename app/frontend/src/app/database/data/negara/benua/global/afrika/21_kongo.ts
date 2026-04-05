@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { kongo_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/21_kongo";
+
 import { kongo_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/21_kongo";
 import { kongo_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/21_kongo";
 import { kongo_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/21_kongo";
@@ -62,6 +64,7 @@ export const kongo: CountryData = {
   "militer_strategis": kongo_strategis,
   "armada_kepolisian": kongo_kepolisian,
   "pabrik_militer": kongo_pabrik,
+  "intelijen": kongo_intelijen,
     "pendidikan": kongo_pendidikan,
   "kesehatan": kongo_kesehatan,
   "hukum": kongo_hukum,

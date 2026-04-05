@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { inggris_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/117_inggris";
+
 import { inggris_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/117_inggris";
 import { inggris_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/117_inggris";
 import { inggris_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/117_inggris";
@@ -62,6 +64,7 @@ export const inggris: CountryData = {
   "militer_strategis": inggris_strategis,
   "armada_kepolisian": inggris_kepolisian,
   "pabrik_militer": inggris_pabrik,
+  "intelijen": inggris_intelijen,
     "pendidikan": inggris_pendidikan,
   "kesehatan": inggris_kesehatan,
   "hukum": inggris_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { bulgaria_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/110_bulgaria";
+
 import { bulgaria_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/110_bulgaria";
 import { bulgaria_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/110_bulgaria";
 import { bulgaria_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/110_bulgaria";
@@ -62,6 +64,7 @@ export const bulgaria: CountryData = {
   "militer_strategis": bulgaria_strategis,
   "armada_kepolisian": bulgaria_kepolisian,
   "pabrik_militer": bulgaria_pabrik,
+  "intelijen": bulgaria_intelijen,
     "pendidikan": bulgaria_pendidikan,
   "kesehatan": bulgaria_kesehatan,
   "hukum": bulgaria_hukum,

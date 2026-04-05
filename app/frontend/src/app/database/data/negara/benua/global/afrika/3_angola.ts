@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { angola_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/3_angola";
+
 import { angola_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/3_angola";
 import { angola_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/3_angola";
 import { angola_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/3_angola";
@@ -62,6 +64,7 @@ export const angola: CountryData = {
   "militer_strategis": angola_strategis,
   "armada_kepolisian": angola_kepolisian,
   "pabrik_militer": angola_pabrik,
+  "intelijen": angola_intelijen,
     "pendidikan": angola_pendidikan,
   "kesehatan": angola_kesehatan,
   "hukum": angola_hukum,

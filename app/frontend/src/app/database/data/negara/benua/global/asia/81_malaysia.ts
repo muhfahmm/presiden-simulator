@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { malaysia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/81_malaysia";
+
 import { malaysia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/81_malaysia";
 import { malaysia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/81_malaysia";
 import { malaysia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/81_malaysia";
@@ -64,6 +66,7 @@ export const malaysia: CountryData = {
   "militer_strategis": malaysia_strategis,
   "armada_kepolisian": malaysia_kepolisian,
   "pabrik_militer": malaysia_pabrik,
+  "intelijen": malaysia_intelijen,
     "pendidikan": malaysia_pendidikan,
   "kesehatan": malaysia_kesehatan,
   "hukum": malaysia_hukum,

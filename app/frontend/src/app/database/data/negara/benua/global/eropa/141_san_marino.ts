@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { san_marino_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/141_san_marino";
+
 import { san_marino_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/141_san_marino";
 import { san_marino_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/141_san_marino";
 import { san_marino_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/141_san_marino";
@@ -62,6 +64,7 @@ export const san_marino: CountryData = {
   "militer_strategis": san_marino_strategis,
   "armada_kepolisian": san_marino_kepolisian,
   "pabrik_militer": san_marino_pabrik,
+  "intelijen": san_marino_intelijen,
     "pendidikan": san_marino_pendidikan,
   "kesehatan": san_marino_kesehatan,
   "hukum": san_marino_hukum,

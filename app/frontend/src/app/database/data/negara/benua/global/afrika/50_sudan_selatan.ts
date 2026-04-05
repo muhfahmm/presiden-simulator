@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { sudan_selatan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/50_sudan_selatan";
+
 import { sudan_selatan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/50_sudan_selatan";
 import { sudan_selatan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/50_sudan_selatan";
 import { sudan_selatan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/50_sudan_selatan";
@@ -62,6 +64,7 @@ export const sudan_selatan: CountryData = {
   "militer_strategis": sudan_selatan_strategis,
   "armada_kepolisian": sudan_selatan_kepolisian,
   "pabrik_militer": sudan_selatan_pabrik,
+  "intelijen": sudan_selatan_intelijen,
     "pendidikan": sudan_selatan_pendidikan,
   "kesehatan": sudan_selatan_kesehatan,
   "hukum": sudan_selatan_hukum,

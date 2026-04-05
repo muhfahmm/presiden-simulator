@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { kuwait_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/77_kuwait";
+
 import { kuwait_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/77_kuwait";
 import { kuwait_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/77_kuwait";
 import { kuwait_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/77_kuwait";
@@ -62,6 +64,7 @@ export const kuwait: CountryData = {
   "militer_strategis": kuwait_strategis,
   "armada_kepolisian": kuwait_kepolisian,
   "pabrik_militer": kuwait_pabrik,
+  "intelijen": kuwait_intelijen,
     "pendidikan": kuwait_pendidikan,
   "kesehatan": kuwait_kesehatan,
   "hukum": kuwait_hukum,

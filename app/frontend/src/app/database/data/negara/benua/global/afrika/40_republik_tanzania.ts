@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { republik_tanzania_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/40_republik_tanzania";
+
 import { republik_tanzania_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/40_republik_tanzania";
 import { republik_tanzania_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/40_republik_tanzania";
 import { republik_tanzania_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/40_republik_tanzania";
@@ -62,6 +64,7 @@ export const republik_tanzania: CountryData = {
   "militer_strategis": republik_tanzania_strategis,
   "armada_kepolisian": republik_tanzania_kepolisian,
   "pabrik_militer": republik_tanzania_pabrik,
+  "intelijen": republik_tanzania_intelijen,
     "pendidikan": republik_tanzania_pendidikan,
   "kesehatan": republik_tanzania_kesehatan,
   "hukum": republik_tanzania_hukum,

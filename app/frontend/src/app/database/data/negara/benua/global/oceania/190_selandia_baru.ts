@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { selandia_baru_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/190_selandia_baru";
+
 import { selandia_baru_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/190_selandia_baru";
 import { selandia_baru_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/190_selandia_baru";
 import { selandia_baru_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/190_selandia_baru";
@@ -62,6 +64,7 @@ export const selandia_baru: CountryData = {
   "militer_strategis": selandia_baru_strategis,
   "armada_kepolisian": selandia_baru_kepolisian,
   "pabrik_militer": selandia_baru_pabrik,
+  "intelijen": selandia_baru_intelijen,
     "pendidikan": selandia_baru_pendidikan,
   "kesehatan": selandia_baru_kesehatan,
   "hukum": selandia_baru_hukum,

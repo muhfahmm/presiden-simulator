@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { antigua_dan_barbuda_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/153_antigua_dan_barbuda";
+
 import { antigua_dan_barbuda_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/153_antigua_dan_barbuda";
 import { antigua_dan_barbuda_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/153_antigua_dan_barbuda";
@@ -62,6 +64,7 @@ export const antigua_dan_barbuda: CountryData = {
   "militer_strategis": antigua_dan_barbuda_strategis,
   "armada_kepolisian": antigua_dan_barbuda_kepolisian,
   "pabrik_militer": antigua_dan_barbuda_pabrik,
+  "intelijen": antigua_dan_barbuda_intelijen,
     "pendidikan": antigua_dan_barbuda_pendidikan,
   "kesehatan": antigua_dan_barbuda_kesehatan,
   "hukum": antigua_dan_barbuda_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { mauritius_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/30_mauritius";
+
 import { mauritius_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/30_mauritius";
 import { mauritius_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/30_mauritius";
 import { mauritius_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/30_mauritius";
@@ -62,6 +64,7 @@ export const mauritius: CountryData = {
   "militer_strategis": mauritius_strategis,
   "armada_kepolisian": mauritius_kepolisian,
   "pabrik_militer": mauritius_pabrik,
+  "intelijen": mauritius_intelijen,
     "pendidikan": mauritius_pendidikan,
   "kesehatan": mauritius_kesehatan,
   "hukum": mauritius_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { burundi_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/7_burundi";
+
 import { burundi_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/7_burundi";
 import { burundi_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/7_burundi";
 import { burundi_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/7_burundi";
@@ -62,6 +64,7 @@ export const burundi: CountryData = {
   "militer_strategis": burundi_strategis,
   "armada_kepolisian": burundi_kepolisian,
   "pabrik_militer": burundi_pabrik,
+  "intelijen": burundi_intelijen,
     "pendidikan": burundi_pendidikan,
   "kesehatan": burundi_kesehatan,
   "hukum": burundi_hukum,

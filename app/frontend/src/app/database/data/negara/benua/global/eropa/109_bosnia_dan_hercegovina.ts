@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { bosnia_dan_hercegovina_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/109_bosnia_dan_hercegovina";
+
 import { bosnia_dan_hercegovina_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/109_bosnia_dan_hercegovina";
@@ -62,6 +64,7 @@ export const bosnia_dan_hercegovina: CountryData = {
   "militer_strategis": bosnia_dan_hercegovina_strategis,
   "armada_kepolisian": bosnia_dan_hercegovina_kepolisian,
   "pabrik_militer": bosnia_dan_hercegovina_pabrik,
+  "intelijen": bosnia_dan_hercegovina_intelijen,
     "pendidikan": bosnia_dan_hercegovina_pendidikan,
   "kesehatan": bosnia_dan_hercegovina_kesehatan,
   "hukum": bosnia_dan_hercegovina_hukum,

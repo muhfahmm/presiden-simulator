@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { andorra_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/104_andorra";
+
 import { andorra_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/104_andorra";
 import { andorra_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/104_andorra";
 import { andorra_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/104_andorra";
@@ -62,6 +64,7 @@ export const andorra: CountryData = {
   "militer_strategis": andorra_strategis,
   "armada_kepolisian": andorra_kepolisian,
   "pabrik_militer": andorra_pabrik,
+  "intelijen": andorra_intelijen,
     "pendidikan": andorra_pendidikan,
   "kesehatan": andorra_kesehatan,
   "hukum": andorra_hukum,

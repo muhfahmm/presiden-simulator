@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { chile_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/198_chile";
+
 import { chile_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/198_chile";
 import { chile_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/198_chile";
 import { chile_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/198_chile";
@@ -62,6 +64,7 @@ export const chile: CountryData = {
   "militer_strategis": chile_strategis,
   "armada_kepolisian": chile_kepolisian,
   "pabrik_militer": chile_pabrik,
+  "intelijen": chile_intelijen,
     "pendidikan": chile_pendidikan,
   "kesehatan": chile_kesehatan,
   "hukum": chile_hukum,

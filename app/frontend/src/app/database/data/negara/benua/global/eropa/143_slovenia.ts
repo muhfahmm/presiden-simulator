@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { slovenia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/143_slovenia";
+
 import { slovenia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/143_slovenia";
 import { slovenia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/143_slovenia";
 import { slovenia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/143_slovenia";
@@ -62,6 +64,7 @@ export const slovenia: CountryData = {
   "militer_strategis": slovenia_strategis,
   "armada_kepolisian": slovenia_kepolisian,
   "pabrik_militer": slovenia_pabrik,
+  "intelijen": slovenia_intelijen,
     "pendidikan": slovenia_pendidikan,
   "kesehatan": slovenia_kesehatan,
   "hukum": slovenia_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { argentina_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/195_argentina";
+
 import { argentina_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/195_argentina";
 import { argentina_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/195_argentina";
 import { argentina_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/195_argentina";
@@ -62,6 +64,7 @@ export const argentina: CountryData = {
   "militer_strategis": argentina_strategis,
   "armada_kepolisian": argentina_kepolisian,
   "pabrik_militer": argentina_pabrik,
+  "intelijen": argentina_intelijen,
     "pendidikan": argentina_pendidikan,
   "kesehatan": argentina_kesehatan,
   "hukum": argentina_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { afrika_selatan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/1_afrika_selatan";
+
 import { afrika_selatan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/1_afrika_selatan";
 import { afrika_selatan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/1_afrika_selatan";
 import { afrika_selatan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/1_afrika_selatan";
@@ -64,6 +66,7 @@ export const afrika_selatan: CountryData = {
   "militer_strategis": afrika_selatan_strategis,
   "armada_kepolisian": afrika_selatan_kepolisian,
   "pabrik_militer": afrika_selatan_pabrik,
+  "intelijen": afrika_selatan_intelijen,
     "pendidikan": afrika_selatan_pendidikan,
   "kesehatan": afrika_selatan_kesehatan,
   "hukum": afrika_selatan_hukum,

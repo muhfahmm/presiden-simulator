@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { samoa_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/188_samoa";
+
 import { samoa_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/188_samoa";
 import { samoa_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/188_samoa";
 import { samoa_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/188_samoa";
@@ -62,6 +64,7 @@ export const samoa: CountryData = {
   "militer_strategis": samoa_strategis,
   "armada_kepolisian": samoa_kepolisian,
   "pabrik_militer": samoa_pabrik,
+  "intelijen": samoa_intelijen,
     "pendidikan": samoa_pendidikan,
   "kesehatan": samoa_kesehatan,
   "hukum": samoa_hukum,

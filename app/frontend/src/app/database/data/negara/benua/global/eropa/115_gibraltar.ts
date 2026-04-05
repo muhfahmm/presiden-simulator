@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { gibraltar_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/115_gibraltar";
+
 import { gibraltar_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/115_gibraltar";
 import { gibraltar_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/115_gibraltar";
 import { gibraltar_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/115_gibraltar";
@@ -62,6 +64,7 @@ export const gibraltar: CountryData = {
   "militer_strategis": gibraltar_strategis,
   "armada_kepolisian": gibraltar_kepolisian,
   "pabrik_militer": gibraltar_pabrik,
+  "intelijen": gibraltar_intelijen,
     "pendidikan": gibraltar_pendidikan,
   "kesehatan": gibraltar_kesehatan,
   "hukum": gibraltar_hukum,

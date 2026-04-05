@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { ghana_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/15_ghana";
+
 import { ghana_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/15_ghana";
 import { ghana_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/15_ghana";
 import { ghana_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/15_ghana";
@@ -62,6 +64,7 @@ export const ghana: CountryData = {
   "militer_strategis": ghana_strategis,
   "armada_kepolisian": ghana_kepolisian,
   "pabrik_militer": ghana_pabrik,
+  "intelijen": ghana_intelijen,
     "pendidikan": ghana_pendidikan,
   "kesehatan": ghana_kesehatan,
   "hukum": ghana_hukum,

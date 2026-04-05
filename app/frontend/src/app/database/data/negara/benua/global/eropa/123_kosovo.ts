@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { kosovo_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/123_kosovo";
+
 import { kosovo_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/123_kosovo";
 import { kosovo_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/123_kosovo";
 import { kosovo_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/123_kosovo";
@@ -62,6 +64,7 @@ export const kosovo: CountryData = {
   "militer_strategis": kosovo_strategis,
   "armada_kepolisian": kosovo_kepolisian,
   "pabrik_militer": kosovo_pabrik,
+  "intelijen": kosovo_intelijen,
     "pendidikan": kosovo_pendidikan,
   "kesehatan": kosovo_kesehatan,
   "hukum": kosovo_hukum,

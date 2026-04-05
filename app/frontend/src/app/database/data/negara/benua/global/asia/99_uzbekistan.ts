@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { uzbekistan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/99_uzbekistan";
+
 import { uzbekistan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/99_uzbekistan";
 import { uzbekistan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/99_uzbekistan";
 import { uzbekistan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/99_uzbekistan";
@@ -62,6 +64,7 @@ export const uzbekistan: CountryData = {
   "militer_strategis": uzbekistan_strategis,
   "armada_kepolisian": uzbekistan_kepolisian,
   "pabrik_militer": uzbekistan_pabrik,
+  "intelijen": uzbekistan_intelijen,
     "pendidikan": uzbekistan_pendidikan,
   "kesehatan": uzbekistan_kesehatan,
   "hukum": uzbekistan_hukum,

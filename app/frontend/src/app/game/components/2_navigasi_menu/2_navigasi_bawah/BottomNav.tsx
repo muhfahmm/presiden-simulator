@@ -31,6 +31,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
   const menuItems = [
     { id: "Kepuasan", icon: Smile, label: "Kepuasan" },
     { id: "Populasi", icon: Users2, label: "Populasi" },
+    { id: "Kelistrikan", icon: Zap, label: "Kelistrikan" },
     { id: "Ekonomi", icon: Wallet, label: "Ekonomi" },
     { id: "Pembangunan", icon: Wrench, label: "Pembangunan" },
     { id: "Pertahanan", icon: Shield, label: "Pertahanan" },
@@ -58,6 +59,9 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
       { id: "Menu:Produksi", label: "Produksi", icon: Hammer },
       { id: "Menu:ProduksiMiliter", label: "Produksi Militer", icon: MilitaryIcon },
       { id: "Menu:TempatUmum", label: "Tempat Umum", icon: Users2 },
+    ],
+    "Kelistrikan": [
+      { id: "Menu:Kelistrikan", label: "Grid Nasional", icon: Zap },
     ],
     "Pertahanan": [
       { id: "Komando Pertahanan", label: "Komando Pertahanan", icon: Shield },

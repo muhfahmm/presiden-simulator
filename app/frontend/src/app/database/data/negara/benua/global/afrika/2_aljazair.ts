@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { aljazair_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/2_aljazair";
+
 import { aljazair_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/2_aljazair";
 import { aljazair_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/2_aljazair";
 import { aljazair_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/2_aljazair";
@@ -62,6 +64,7 @@ export const aljazair: CountryData = {
   "militer_strategis": aljazair_strategis,
   "armada_kepolisian": aljazair_kepolisian,
   "pabrik_militer": aljazair_pabrik,
+  "intelijen": aljazair_intelijen,
     "pendidikan": aljazair_pendidikan,
   "kesehatan": aljazair_kesehatan,
   "hukum": aljazair_hukum,

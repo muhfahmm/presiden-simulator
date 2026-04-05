@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { vanuatu_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/194_vanuatu";
+
 import { vanuatu_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/194_vanuatu";
 import { vanuatu_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/194_vanuatu";
 import { vanuatu_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/194_vanuatu";
@@ -62,6 +64,7 @@ export const vanuatu: CountryData = {
   "militer_strategis": vanuatu_strategis,
   "armada_kepolisian": vanuatu_kepolisian,
   "pabrik_militer": vanuatu_pabrik,
+  "intelijen": vanuatu_intelijen,
     "pendidikan": vanuatu_pendidikan,
   "kesehatan": vanuatu_kesehatan,
   "hukum": vanuatu_hukum,

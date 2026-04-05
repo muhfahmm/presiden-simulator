@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { guam_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/181_guam";
+
 import { guam_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/181_guam";
 import { guam_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/181_guam";
 import { guam_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/181_guam";
@@ -62,6 +64,7 @@ export const guam: CountryData = {
   "militer_strategis": guam_strategis,
   "armada_kepolisian": guam_kepolisian,
   "pabrik_militer": guam_pabrik,
+  "intelijen": guam_intelijen,
     "pendidikan": guam_pendidikan,
   "kesehatan": guam_kesehatan,
   "hukum": guam_hukum,

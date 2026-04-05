@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { bermuda_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/157_bermuda";
+
 import { bermuda_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/157_bermuda";
 import { bermuda_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/157_bermuda";
 import { bermuda_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/157_bermuda";
@@ -62,6 +64,7 @@ export const bermuda: CountryData = {
   "militer_strategis": bermuda_strategis,
   "armada_kepolisian": bermuda_kepolisian,
   "pabrik_militer": bermuda_pabrik,
+  "intelijen": bermuda_intelijen,
     "pendidikan": bermuda_pendidikan,
   "kesehatan": bermuda_kesehatan,
   "hukum": bermuda_hukum,

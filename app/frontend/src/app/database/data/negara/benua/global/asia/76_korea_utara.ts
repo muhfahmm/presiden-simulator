@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { korea_utara_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/76_korea_utara";
+
 import { korea_utara_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/76_korea_utara";
 import { korea_utara_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/76_korea_utara";
 import { korea_utara_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/76_korea_utara";
@@ -62,6 +64,7 @@ export const korea_utara: CountryData = {
   "militer_strategis": korea_utara_strategis,
   "armada_kepolisian": korea_utara_kepolisian,
   "pabrik_militer": korea_utara_pabrik,
+  "intelijen": korea_utara_intelijen,
     "pendidikan": korea_utara_pendidikan,
   "kesehatan": korea_utara_kesehatan,
   "hukum": korea_utara_hukum,

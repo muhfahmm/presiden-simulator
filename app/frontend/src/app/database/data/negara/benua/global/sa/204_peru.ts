@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { peru_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/204_peru";
+
 import { peru_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/204_peru";
 import { peru_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/204_peru";
 import { peru_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/204_peru";
@@ -62,6 +64,7 @@ export const peru: CountryData = {
   "militer_strategis": peru_strategis,
   "armada_kepolisian": peru_kepolisian,
   "pabrik_militer": peru_pabrik,
+  "intelijen": peru_intelijen,
     "pendidikan": peru_pendidikan,
   "kesehatan": peru_kesehatan,
   "hukum": peru_hukum,

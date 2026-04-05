@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { barbados_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/155_barbados";
+
 import { barbados_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/155_barbados";
 import { barbados_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/155_barbados";
 import { barbados_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/155_barbados";
@@ -62,6 +64,7 @@ export const barbados: CountryData = {
   "militer_strategis": barbados_strategis,
   "armada_kepolisian": barbados_kepolisian,
   "pabrik_militer": barbados_pabrik,
+  "intelijen": barbados_intelijen,
     "pendidikan": barbados_pendidikan,
   "kesehatan": barbados_kesehatan,
   "hukum": barbados_hukum,

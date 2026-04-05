@@ -3,6 +3,7 @@
 // ===================
 export const armadaMiliterRate = {
   // ARMADA DARAT
+  // ARMADA DARAT
   "1_barak": {
     key: "1_barak",
     dataKey: "barak",
@@ -13,7 +14,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 45,
     biaya_pemeliharaan: 15,
     lowongan_kerja: 500,
-    konsumsi_listrik: 5
+    consumption: 1
   },
   "2_tank": {
     key: "2_tank",
@@ -25,7 +26,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 30,
     biaya_pemeliharaan: 10,
     lowongan_kerja: 4,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 12
   },
   "3_apc": {
@@ -38,7 +39,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 15,
     biaya_pemeliharaan: 4,
     lowongan_kerja: 3,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 8
   },
   "4_artileri": {
@@ -51,7 +52,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 45,
     biaya_pemeliharaan: 8,
     lowongan_kerja: 6,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 6
   },
   "5_roket_peluncur": {
@@ -64,7 +65,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 50,
     biaya_pemeliharaan: 12,
     lowongan_kerja: 5,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 10
   },
   "6_misil_sam": {
@@ -77,7 +78,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 60,
     biaya_pemeliharaan: 15,
     lowongan_kerja: 6,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 5
   },
   "7_kendaraan_taktis": {
@@ -91,7 +92,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 2,
     lowongan_kerja: 2,
     power: 0,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 4
   },
   
@@ -106,7 +107,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 480,
     biaya_pemeliharaan: 200,
     lowongan_kerja: 5000,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 500
   },
   "9_kapal_perusak": {
@@ -119,7 +120,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 360,
     biaya_pemeliharaan: 100,
     lowongan_kerja: 300,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 150
   },
   "10_kapal_korvet": {
@@ -132,7 +133,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 180,
     biaya_pemeliharaan: 45,
     lowongan_kerja: 100,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 80
   },
   "11_kapal_selam_nuklir": {
@@ -145,7 +146,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 420,
     biaya_pemeliharaan: 150,
     lowongan_kerja: 80,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 42
   },
   "12_kapal_selam_reguler": {
@@ -158,7 +159,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 240,
     biaya_pemeliharaan: 60,
     lowongan_kerja: 60,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 40
   },
   "13_penyapu_ranjau": {
@@ -171,7 +172,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 90,
     biaya_pemeliharaan: 15,
     lowongan_kerja: 40,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 30
   },
   "14_kapal_logistik": {
@@ -184,7 +185,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 120,
     biaya_pemeliharaan: 25,
     lowongan_kerja: 50,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 60
   },
   
@@ -199,7 +200,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 300,
     biaya_pemeliharaan: 120,
     lowongan_kerja: 2,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 120
   },
   "16_jet_pencegat": {
@@ -212,7 +213,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 180,
     biaya_pemeliharaan: 55,
     lowongan_kerja: 2,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 100
   },
   "17_pesawat_pembom": {
@@ -225,7 +226,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 360,
     biaya_pemeliharaan: 180,
     lowongan_kerja: 3,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 200
   },
   "18_helikopter_serbu": {
@@ -238,7 +239,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 90,
     biaya_pemeliharaan: 25,
     lowongan_kerja: 3,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 50
   },
   "19_pesawat_intai": {
@@ -251,7 +252,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 120,
     biaya_pemeliharaan: 20,
     lowongan_kerja: 2,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 40
   },
   "20_drone_intai": {
@@ -264,7 +265,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 30,
     biaya_pemeliharaan: 5,
     lowongan_kerja: 1,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 5
   },
   "21_drone_kamikaze": {
@@ -277,7 +278,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 7,
     biaya_pemeliharaan: 1,
     lowongan_kerja: 1,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 2
   },
   "22_transport_udara": {
@@ -290,7 +291,7 @@ export const armadaMiliterRate = {
     waktu_pembangunan: 90,
     biaya_pemeliharaan: 15,
     lowongan_kerja: 3,
-    konsumsi_listrik: 0,
+    consumption: 0,
     konsumsi_bahan_bakar: 80
   }
 };

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { iran_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/69_iran";
+
 import { iran_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/69_iran";
 import { iran_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/69_iran";
 import { iran_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/69_iran";
@@ -62,6 +64,7 @@ export const iran: CountryData = {
   "militer_strategis": iran_strategis,
   "armada_kepolisian": iran_kepolisian,
   "pabrik_militer": iran_pabrik,
+  "intelijen": iran_intelijen,
     "pendidikan": iran_pendidikan,
   "kesehatan": iran_kesehatan,
   "hukum": iran_hukum,

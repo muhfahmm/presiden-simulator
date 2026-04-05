@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { italia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/120_italia";
+
 import { italia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/120_italia";
 import { italia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/120_italia";
 import { italia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/120_italia";
@@ -62,6 +64,7 @@ export const italia: CountryData = {
   "militer_strategis": italia_strategis,
   "armada_kepolisian": italia_kepolisian,
   "pabrik_militer": italia_pabrik,
+  "intelijen": italia_intelijen,
     "pendidikan": italia_pendidikan,
   "kesehatan": italia_kesehatan,
   "hukum": italia_hukum,

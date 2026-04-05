@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { republik_rumania_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/138_republik_rumania";
+
 import { republik_rumania_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/138_republik_rumania";
 import { republik_rumania_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/138_republik_rumania";
 import { republik_rumania_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/138_republik_rumania";
@@ -62,6 +64,7 @@ export const republik_rumania: CountryData = {
   "militer_strategis": republik_rumania_strategis,
   "armada_kepolisian": republik_rumania_kepolisian,
   "pabrik_militer": republik_rumania_pabrik,
+  "intelijen": republik_rumania_intelijen,
     "pendidikan": republik_rumania_pendidikan,
   "kesehatan": republik_rumania_kesehatan,
   "hukum": republik_rumania_hukum,

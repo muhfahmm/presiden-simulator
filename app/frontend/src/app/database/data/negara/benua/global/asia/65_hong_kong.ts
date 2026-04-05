@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { hong_kong_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/65_hong_kong";
+
 import { hong_kong_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/65_hong_kong";
 import { hong_kong_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/65_hong_kong";
 import { hong_kong_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/65_hong_kong";
@@ -62,6 +64,7 @@ export const hong_kong: CountryData = {
   "militer_strategis": hong_kong_strategis,
   "armada_kepolisian": hong_kong_kepolisian,
   "pabrik_militer": hong_kong_pabrik,
+  "intelijen": hong_kong_intelijen,
     "pendidikan": hong_kong_pendidikan,
   "kesehatan": hong_kong_kesehatan,
   "hukum": hong_kong_hukum,

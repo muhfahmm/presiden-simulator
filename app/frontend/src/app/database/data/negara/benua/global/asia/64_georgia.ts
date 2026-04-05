@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { georgia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/64_georgia";
+
 import { georgia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/64_georgia";
 import { georgia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/64_georgia";
 import { georgia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/64_georgia";
@@ -62,6 +64,7 @@ export const georgia: CountryData = {
   "militer_strategis": georgia_strategis,
   "armada_kepolisian": georgia_kepolisian,
   "pabrik_militer": georgia_pabrik,
+  "intelijen": georgia_intelijen,
     "pendidikan": georgia_pendidikan,
   "kesehatan": georgia_kesehatan,
   "hukum": georgia_hukum,

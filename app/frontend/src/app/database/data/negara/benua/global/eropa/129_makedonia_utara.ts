@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { makedonia_utara_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/129_makedonia_utara";
+
 import { makedonia_utara_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/129_makedonia_utara";
 import { makedonia_utara_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/129_makedonia_utara";
 import { makedonia_utara_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/129_makedonia_utara";
@@ -62,6 +64,7 @@ export const makedonia_utara: CountryData = {
   "militer_strategis": makedonia_utara_strategis,
   "armada_kepolisian": makedonia_utara_kepolisian,
   "pabrik_militer": makedonia_utara_pabrik,
+  "intelijen": makedonia_utara_intelijen,
     "pendidikan": makedonia_utara_pendidikan,
   "kesehatan": makedonia_utara_kesehatan,
   "hukum": makedonia_utara_hukum,

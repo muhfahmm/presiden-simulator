@@ -221,32 +221,32 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
         color: "text-orange-500",
         items: [
           // ARMADA DARAT
-          { ...armadaMiliterRate["1_barak"], groupId: "darat", icon: MilitaryIcon, count: ((currentData.armada_militer.barak || 0) + ((effectiveDeltas["barak"] as number) || 0)) * 10000, consumption: KONSUMSI_PERTAHANAN.barak, power: 1 },
-          { ...armadaMiliterRate["2_tank"], groupId: "darat", icon: Truck, count: (currentData.armada_militer.darat.tank_tempur_utama || 0) + ((effectiveDeltas["tank"] as number) || 0), consumption: 0, fuel_consumption: 12, power: TANK_POWER_PER_UNIT },
-          { ...armadaMiliterRate["3_apc"], groupId: "darat", icon: Truck, count: (currentData.armada_militer.darat.apc_ifv || 0) + ((effectiveDeltas["apc"] as number) || 0), consumption: 0, fuel_consumption: 8, power: APC_POWER_PER_UNIT },
-          { ...armadaMiliterRate["4_artileri"], groupId: "darat", icon: Target, count: (currentData.armada_militer.darat.artileri_berat || 0) + ((effectiveDeltas["artileri"] as number) || 0), consumption: 0, fuel_consumption: 6, power: ARTILLERY_POWER_PER_UNIT },
-          { ...armadaMiliterRate["5_roket_peluncur"], groupId: "darat", icon: Rocket, count: (currentData.armada_militer.darat.sistem_peluncur_roket || 0) + ((effectiveDeltas["rocket"] as number) || 0), consumption: 0, fuel_consumption: 10, power: ROCKET_POWER_PER_UNIT },
-          { ...armadaMiliterRate["6_misil_sam"], groupId: "darat", icon: ShieldAlert, count: (currentData.armada_militer.darat.pertahanan_udara_mobile || 0) + ((effectiveDeltas["sam"] as number) || 0), consumption: 0, fuel_consumption: 5, power: SAM_POWER_PER_UNIT },
-          { ...armadaMiliterRate["7_kendaraan_taktis"], groupId: "darat", icon: Car, count: (currentData.armada_militer.darat.kendaraan_taktis || 0) + ((effectiveDeltas["tactical"] as number) || 0), consumption: 0, fuel_consumption: 4, power: TACTICAL_POWER_PER_UNIT },
+          { ...armadaMiliterRate["1_barak"], groupId: "darat", icon: MilitaryIcon, count: ((currentData.armada_militer.barak || 0) + ((effectiveDeltas["barak"] as number) || 0)) * 10000, power: 1 },
+          { ...armadaMiliterRate["2_tank"], groupId: "darat", icon: Truck, count: (currentData.armada_militer.darat.tank_tempur_utama || 0) + ((effectiveDeltas["tank"] as number) || 0), fuel_consumption: 12, power: TANK_POWER_PER_UNIT },
+          { ...armadaMiliterRate["3_apc"], groupId: "darat", icon: Truck, count: (currentData.armada_militer.darat.apc_ifv || 0) + ((effectiveDeltas["apc"] as number) || 0), fuel_consumption: 8, power: APC_POWER_PER_UNIT },
+          { ...armadaMiliterRate["4_artileri"], groupId: "darat", icon: Target, count: (currentData.armada_militer.darat.artileri_berat || 0) + ((effectiveDeltas["artileri"] as number) || 0), fuel_consumption: 6, power: ARTILLERY_POWER_PER_UNIT },
+          { ...armadaMiliterRate["5_roket_peluncur"], groupId: "darat", icon: Rocket, count: (currentData.armada_militer.darat.sistem_peluncur_roket || 0) + ((effectiveDeltas["rocket"] as number) || 0), fuel_consumption: 10, power: ROCKET_POWER_PER_UNIT },
+          { ...armadaMiliterRate["6_misil_sam"], groupId: "darat", icon: ShieldAlert, count: (currentData.armada_militer.darat.pertahanan_udara_mobile || 0) + ((effectiveDeltas["sam"] as number) || 0), fuel_consumption: 5, power: SAM_POWER_PER_UNIT },
+          { ...armadaMiliterRate["7_kendaraan_taktis"], groupId: "darat", icon: Car, count: (currentData.armada_militer.darat.kendaraan_taktis || 0) + ((effectiveDeltas["tactical"] as number) || 0), fuel_consumption: 4, power: TACTICAL_POWER_PER_UNIT },
           
           // ARMADA LAUT
-          { ...armadaMiliterRate["8_kapal_induk"], groupId: "laut", icon: Ship, count: (currentData.armada_militer.laut.kapal_induk || 0) + ((effectiveDeltas["carrier"] as number) || 0), consumption: 0, fuel_consumption: 500, power: CARRIER_POWER_PER_UNIT },
-          { ...armadaMiliterRate["9_kapal_perusak"], groupId: "laut", icon: Waypoints, count: (currentData.armada_militer.laut.kapal_destroyer || 0) + ((effectiveDeltas["destroyer"] as number) || 0), consumption: 0, fuel_consumption: 150, power: DESTROYER_POWER_PER_UNIT },
-          { ...armadaMiliterRate["10_kapal_korvet"], groupId: "laut", icon: Anchor, count: (currentData.armada_militer.laut.kapal_korvet || 0) + ((effectiveDeltas["corvette"] as number) || 0), consumption: 0, fuel_consumption: 80, power: CORVETTE_POWER_PER_UNIT },
-          { ...armadaMiliterRate["11_kapal_selam_nuklir"], groupId: "laut", icon: RadioTower, count: (currentData.armada_militer.laut.kapal_selam_nuklir || 0) + ((effectiveDeltas["submarine"] as number) || 0), consumption: 0, fuel_consumption: 42, power: SUBMARINE_POWER_PER_UNIT },
-          { ...armadaMiliterRate["12_kapal_selam_reguler"], groupId: "laut", icon: RadioTower, count: (currentData.armada_militer.laut.kapal_selam_regular || 0) + ((effectiveDeltas["reg_sub"] as number) || 0), consumption: 0, fuel_consumption: 40, power: REGULAR_SUB_POWER_PER_UNIT },
-          { ...armadaMiliterRate["13_penyapu_ranjau"], groupId: "laut", icon: Ship, count: (currentData.armada_militer.laut.kapal_ranjau || 0) + ((effectiveDeltas["mine_ship"] as number) || 0), consumption: 0, fuel_consumption: 30, power: MINE_SHIP_POWER_PER_UNIT },
-          { ...armadaMiliterRate["14_kapal_logistik"], groupId: "laut", icon: Truck, count: (currentData.armada_militer.laut.kapal_logistik || 0) + ((effectiveDeltas["logistics"] as number) || 0), consumption: 0, fuel_consumption: 60, power: LOGISTICS_POWER_PER_UNIT },
+          { ...armadaMiliterRate["8_kapal_induk"], groupId: "laut", icon: Ship, count: (currentData.armada_militer.laut.kapal_induk || 0) + ((effectiveDeltas["carrier"] as number) || 0), fuel_consumption: 500, power: CARRIER_POWER_PER_UNIT },
+          { ...armadaMiliterRate["9_kapal_perusak"], groupId: "laut", icon: Waypoints, count: (currentData.armada_militer.laut.kapal_destroyer || 0) + ((effectiveDeltas["destroyer"] as number) || 0), fuel_consumption: 150, power: DESTROYER_POWER_PER_UNIT },
+          { ...armadaMiliterRate["10_kapal_korvet"], groupId: "laut", icon: Anchor, count: (currentData.armada_militer.laut.kapal_korvet || 0) + ((effectiveDeltas["corvette"] as number) || 0), fuel_consumption: 80, power: CORVETTE_POWER_PER_UNIT },
+          { ...armadaMiliterRate["11_kapal_selam_nuklir"], groupId: "laut", icon: RadioTower, count: (currentData.armada_militer.laut.kapal_selam_nuklir || 0) + ((effectiveDeltas["submarine"] as number) || 0), fuel_consumption: 42, power: SUBMARINE_POWER_PER_UNIT },
+          { ...armadaMiliterRate["12_kapal_selam_reguler"], groupId: "laut", icon: RadioTower, count: (currentData.armada_militer.laut.kapal_selam_regular || 0) + ((effectiveDeltas["reg_sub"] as number) || 0), fuel_consumption: 40, power: REGULAR_SUB_POWER_PER_UNIT },
+          { ...armadaMiliterRate["13_penyapu_ranjau"], groupId: "laut", icon: Ship, count: (currentData.armada_militer.laut.kapal_ranjau || 0) + ((effectiveDeltas["mine_ship"] as number) || 0), fuel_consumption: 30, power: MINE_SHIP_POWER_PER_UNIT },
+          { ...armadaMiliterRate["14_kapal_logistik"], groupId: "laut", icon: Truck, count: (currentData.armada_militer.laut.kapal_logistik || 0) + ((effectiveDeltas["logistics"] as number) || 0), fuel_consumption: 60, power: LOGISTICS_POWER_PER_UNIT },
           
           // ARMADA UDARA
-          { ...armadaMiliterRate["15_jet_tempur_siluman"], groupId: "udara", icon: Plane, count: (currentData.armada_militer.udara.jet_tempur_siluman || 0) + ((effectiveDeltas["stealth_jet"] as number) || 0), consumption: 0, fuel_consumption: 120, power: STEALTH_POWER_PER_UNIT },
-          { ...armadaMiliterRate["16_jet_pencegat"], groupId: "udara", icon: Plane, count: (currentData.armada_militer.udara.jet_tempur_interceptor || 0) + ((effectiveDeltas["interceptor"] as number) || 0), consumption: 0, fuel_consumption: 100, power: INTERCEPTOR_POWER_PER_UNIT },
-          { ...armadaMiliterRate["17_pesawat_pembom"], groupId: "udara", icon: Radio, count: (currentData.armada_militer.udara.pesawat_pengebom || 0) + ((effectiveDeltas["bomber"] as number) || 0), consumption: 0, fuel_consumption: 200, power: BOMBER_POWER_PER_UNIT },
-          { ...armadaMiliterRate["18_helikopter_serbu"], groupId: "udara", icon: Radio, count: (currentData.armada_militer.udara.helikopter_serang || 0) + ((effectiveDeltas["heli_attack"] as number) || 0), consumption: 0, fuel_consumption: 50, power: ATTACK_HELI_POWER_PER_UNIT },
-          { ...armadaMiliterRate["19_pesawat_intai"], groupId: "udara", icon: Search, count: (currentData.armada_militer.udara.pesawat_pengintai || 0) + ((effectiveDeltas["recon_plane"] as number) || 0), consumption: 0, fuel_consumption: 40, power: RECON_POWER_PER_UNIT },
-          { ...armadaMiliterRate["20_drone_intai"], groupId: "udara", icon: Satellite, count: (currentData.armada_militer.udara.drone_intai_uav || 0) + ((effectiveDeltas["uav"] as number) || 0), consumption: 0, fuel_consumption: 5, power: UAV_POWER_PER_UNIT },
-          { ...armadaMiliterRate["21_drone_kamikaze"], groupId: "udara", icon: Target, count: (currentData.armada_militer.udara.drone_kamikaze || 0) + ((effectiveDeltas["kamikaze"] as number) || 0), consumption: 0, fuel_consumption: 2, power: KAMIKAZE_POWER_PER_UNIT },
-          { ...armadaMiliterRate["22_transport_udara"], groupId: "udara", icon: Truck, count: (currentData.armada_militer.udara.pesawat_angkut || 0) + ((effectiveDeltas["transport"] as number) || 0), consumption: 0, fuel_consumption: 80, power: TRANSPORT_POWER_PER_UNIT }
+          { ...armadaMiliterRate["15_jet_tempur_siluman"], groupId: "udara", icon: Plane, count: (currentData.armada_militer.udara.jet_tempur_siluman || 0) + ((effectiveDeltas["stealth_jet"] as number) || 0), fuel_consumption: 120, power: STEALTH_POWER_PER_UNIT },
+          { ...armadaMiliterRate["16_jet_pencegat"], groupId: "udara", icon: Plane, count: (currentData.armada_militer.udara.jet_tempur_interceptor || 0) + ((effectiveDeltas["interceptor"] as number) || 0), fuel_consumption: 100, power: INTERCEPTOR_POWER_PER_UNIT },
+          { ...armadaMiliterRate["17_pesawat_pembom"], groupId: "udara", icon: Radio, count: (currentData.armada_militer.udara.pesawat_pengebom || 0) + ((effectiveDeltas["bomber"] as number) || 0), fuel_consumption: 200, power: BOMBER_POWER_PER_UNIT },
+          { ...armadaMiliterRate["18_helikopter_serbu"], groupId: "udara", icon: Radio, count: (currentData.armada_militer.udara.helikopter_serang || 0) + ((effectiveDeltas["heli_attack"] as number) || 0), fuel_consumption: 50, power: ATTACK_HELI_POWER_PER_UNIT },
+          { ...armadaMiliterRate["19_pesawat_intai"], groupId: "udara", icon: Search, count: (currentData.armada_militer.udara.pesawat_pengintai || 0) + ((effectiveDeltas["recon_plane"] as number) || 0), fuel_consumption: 40, power: RECON_POWER_PER_UNIT },
+          { ...armadaMiliterRate["20_drone_intai"], groupId: "udara", icon: Satellite, count: (currentData.armada_militer.udara.drone_intai_uav || 0) + ((effectiveDeltas["uav"] as number) || 0), fuel_consumption: 5, power: UAV_POWER_PER_UNIT },
+          { ...armadaMiliterRate["21_drone_kamikaze"], groupId: "udara", icon: Target, count: (currentData.armada_militer.udara.drone_kamikaze || 0) + ((effectiveDeltas["kamikaze"] as number) || 0), fuel_consumption: 2, power: KAMIKAZE_POWER_PER_UNIT },
+          { ...armadaMiliterRate["22_transport_udara"], groupId: "udara", icon: Truck, count: (currentData.armada_militer.udara.pesawat_angkut || 0) + ((effectiveDeltas["transport"] as number) || 0), fuel_consumption: 80, power: TRANSPORT_POWER_PER_UNIT }
         ].map(unit => {
           const config = STORAGE_CONFIG[unit.key];
           if (!config) return unit;
@@ -1132,10 +1132,20 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
           </div>
 
           {item.consumption > 0 && (
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-amber-500/10 rounded-lg"><Zap size={12} className="text-amber-500/90" /></div>
-              <span className="text-[12px] font-bold text-amber-500/80">Energi: {item.consumption} MW/unit</span>
-            </div>
+            <>
+              <div className="flex items-center gap-2.5">
+                <div className="p-1.5 bg-amber-500/10 rounded-lg"><Zap size={12} className="text-amber-500/90" /></div>
+                <span className="text-[12px] font-bold text-amber-500/80">Energi: {item.consumption} MW/unit</span>
+              </div>
+              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                  <Activity size={12} className="text-rose-400/70" />
+                </div>
+                <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+                  Total Konsumsi Listrik: {(item.count * item.consumption).toLocaleString('id-ID')} MW
+                </span>
+              </div>
+            </>
           )}
 
           {item.fuel_consumption > 0 && (

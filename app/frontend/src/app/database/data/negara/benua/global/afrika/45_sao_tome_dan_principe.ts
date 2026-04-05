@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { sao_tome_dan_principe_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/45_sao_tome_dan_principe";
+
 import { sao_tome_dan_principe_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/45_sao_tome_dan_principe";
 import { sao_tome_dan_principe_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/45_sao_tome_dan_principe";
@@ -62,6 +64,7 @@ export const sao_tome_dan_principe: CountryData = {
   "militer_strategis": sao_tome_dan_principe_strategis,
   "armada_kepolisian": sao_tome_dan_principe_kepolisian,
   "pabrik_militer": sao_tome_dan_principe_pabrik,
+  "intelijen": sao_tome_dan_principe_intelijen,
     "pendidikan": sao_tome_dan_principe_pendidikan,
   "kesehatan": sao_tome_dan_principe_kesehatan,
   "hukum": sao_tome_dan_principe_hukum,

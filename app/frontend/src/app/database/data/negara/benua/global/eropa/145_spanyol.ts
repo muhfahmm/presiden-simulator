@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { spanyol_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/145_spanyol";
+
 import { spanyol_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/145_spanyol";
 import { spanyol_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/145_spanyol";
 import { spanyol_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/145_spanyol";
@@ -62,6 +64,7 @@ export const spanyol: CountryData = {
   "militer_strategis": spanyol_strategis,
   "armada_kepolisian": spanyol_kepolisian,
   "pabrik_militer": spanyol_pabrik,
+  "intelijen": spanyol_intelijen,
     "pendidikan": spanyol_pendidikan,
   "kesehatan": spanyol_kesehatan,
   "hukum": spanyol_hukum,

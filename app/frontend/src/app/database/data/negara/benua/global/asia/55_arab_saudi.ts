@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { arab_saudi_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/55_arab_saudi";
+
 import { arab_saudi_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/55_arab_saudi";
 import { arab_saudi_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/55_arab_saudi";
 import { arab_saudi_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/55_arab_saudi";
@@ -62,6 +64,7 @@ export const arab_saudi: CountryData = {
   "militer_strategis": arab_saudi_strategis,
   "armada_kepolisian": arab_saudi_kepolisian,
   "pabrik_militer": arab_saudi_pabrik,
+  "intelijen": arab_saudi_intelijen,
     "pendidikan": arab_saudi_pendidikan,
   "kesehatan": arab_saudi_kesehatan,
   "hukum": arab_saudi_hukum,

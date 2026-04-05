@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { yordania_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/102_yordania";
+
 import { yordania_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/102_yordania";
 import { yordania_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/102_yordania";
 import { yordania_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/102_yordania";
@@ -62,6 +64,7 @@ export const yordania: CountryData = {
   "militer_strategis": yordania_strategis,
   "armada_kepolisian": yordania_kepolisian,
   "pabrik_militer": yordania_pabrik,
+  "intelijen": yordania_intelijen,
     "pendidikan": yordania_pendidikan,
   "kesehatan": yordania_kesehatan,
   "hukum": yordania_hukum,

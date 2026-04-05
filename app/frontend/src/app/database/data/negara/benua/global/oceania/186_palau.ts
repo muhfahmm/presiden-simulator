@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { palau_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/186_palau";
+
 import { palau_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/186_palau";
 import { palau_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/186_palau";
 import { palau_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/186_palau";
@@ -62,6 +64,7 @@ export const palau: CountryData = {
   "militer_strategis": palau_strategis,
   "armada_kepolisian": palau_kepolisian,
   "pabrik_militer": palau_pabrik,
+  "intelijen": palau_intelijen,
     "pendidikan": palau_pendidikan,
   "kesehatan": palau_kesehatan,
   "hukum": palau_hukum,

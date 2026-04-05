@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { botswana_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/5_botswana";
+
 import { botswana_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/5_botswana";
 import { botswana_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/5_botswana";
 import { botswana_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/5_botswana";
@@ -62,6 +64,7 @@ export const botswana: CountryData = {
   "militer_strategis": botswana_strategis,
   "armada_kepolisian": botswana_kepolisian,
   "pabrik_militer": botswana_pabrik,
+  "intelijen": botswana_intelijen,
     "pendidikan": botswana_pendidikan,
   "kesehatan": botswana_kesehatan,
   "hukum": botswana_hukum,

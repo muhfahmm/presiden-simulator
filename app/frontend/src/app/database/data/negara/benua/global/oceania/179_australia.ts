@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { australia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/179_australia";
+
 import { australia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/179_australia";
 import { australia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/179_australia";
 import { australia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/179_australia";
@@ -62,6 +64,7 @@ export const australia: CountryData = {
   "militer_strategis": australia_strategis,
   "armada_kepolisian": australia_kepolisian,
   "pabrik_militer": australia_pabrik,
+  "intelijen": australia_intelijen,
     "pendidikan": australia_pendidikan,
   "kesehatan": australia_kesehatan,
   "hukum": australia_hukum,

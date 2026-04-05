@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { swiss_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/147_swiss";
+
 import { swiss_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/147_swiss";
 import { swiss_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/147_swiss";
 import { swiss_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/147_swiss";
@@ -62,6 +64,7 @@ export const swiss: CountryData = {
   "militer_strategis": swiss_strategis,
   "armada_kepolisian": swiss_kepolisian,
   "pabrik_militer": swiss_pabrik,
+  "intelijen": swiss_intelijen,
     "pendidikan": swiss_pendidikan,
   "kesehatan": swiss_kesehatan,
   "hukum": swiss_hukum,

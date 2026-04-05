@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { nauru_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/185_nauru";
+
 import { nauru_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/185_nauru";
 import { nauru_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/185_nauru";
 import { nauru_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/185_nauru";
@@ -62,6 +64,7 @@ export const nauru: CountryData = {
   "militer_strategis": nauru_strategis,
   "armada_kepolisian": nauru_kepolisian,
   "pabrik_militer": nauru_pabrik,
+  "intelijen": nauru_intelijen,
     "pendidikan": nauru_pendidikan,
   "kesehatan": nauru_kesehatan,
   "hukum": nauru_hukum,

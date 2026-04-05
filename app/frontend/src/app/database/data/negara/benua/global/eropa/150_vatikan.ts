@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { vatikan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/150_vatikan";
+
 import { vatikan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/150_vatikan";
 import { vatikan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/150_vatikan";
 import { vatikan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/150_vatikan";
@@ -62,6 +64,7 @@ export const vatikan: CountryData = {
   "militer_strategis": vatikan_strategis,
   "armada_kepolisian": vatikan_kepolisian,
   "pabrik_militer": vatikan_pabrik,
+  "intelijen": vatikan_intelijen,
     "pendidikan": vatikan_pendidikan,
   "kesehatan": vatikan_kesehatan,
   "hukum": vatikan_hukum,

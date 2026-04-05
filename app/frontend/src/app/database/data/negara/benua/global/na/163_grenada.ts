@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { grenada_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/163_grenada";
+
 import { grenada_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/163_grenada";
 import { grenada_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/163_grenada";
 import { grenada_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/163_grenada";
@@ -62,6 +64,7 @@ export const grenada: CountryData = {
   "militer_strategis": grenada_strategis,
   "armada_kepolisian": grenada_kepolisian,
   "pabrik_militer": grenada_pabrik,
+  "intelijen": grenada_intelijen,
     "pendidikan": grenada_pendidikan,
   "kesehatan": grenada_kesehatan,
   "hukum": grenada_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { belize_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/156_belize";
+
 import { belize_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/156_belize";
 import { belize_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/156_belize";
 import { belize_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/156_belize";
@@ -62,6 +64,7 @@ export const belize: CountryData = {
   "militer_strategis": belize_strategis,
   "armada_kepolisian": belize_kepolisian,
   "pabrik_militer": belize_pabrik,
+  "intelijen": belize_intelijen,
     "pendidikan": belize_pendidikan,
   "kesehatan": belize_kesehatan,
   "hukum": belize_hukum,

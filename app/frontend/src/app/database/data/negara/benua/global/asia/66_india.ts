@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { india_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/66_india";
+
 import { india_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/66_india";
 import { india_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/66_india";
 import { india_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/66_india";
@@ -62,6 +64,7 @@ export const india: CountryData = {
   "militer_strategis": india_strategis,
   "armada_kepolisian": india_kepolisian,
   "pabrik_militer": india_pabrik,
+  "intelijen": india_intelijen,
     "pendidikan": india_pendidikan,
   "kesehatan": india_kesehatan,
   "hukum": india_hukum,

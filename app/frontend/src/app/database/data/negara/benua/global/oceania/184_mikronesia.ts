@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { mikronesia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/184_mikronesia";
+
 import { mikronesia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/184_mikronesia";
 import { mikronesia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/184_mikronesia";
 import { mikronesia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/184_mikronesia";
@@ -62,6 +64,7 @@ export const mikronesia: CountryData = {
   "militer_strategis": mikronesia_strategis,
   "armada_kepolisian": mikronesia_kepolisian,
   "pabrik_militer": mikronesia_pabrik,
+  "intelijen": mikronesia_intelijen,
     "pendidikan": mikronesia_pendidikan,
   "kesehatan": mikronesia_kesehatan,
   "hukum": mikronesia_hukum,

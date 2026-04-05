@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { republik_serbia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/139_republik_serbia";
+
 import { republik_serbia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/139_republik_serbia";
 import { republik_serbia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/139_republik_serbia";
 import { republik_serbia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/139_republik_serbia";
@@ -62,6 +64,7 @@ export const republik_serbia: CountryData = {
   "militer_strategis": republik_serbia_strategis,
   "armada_kepolisian": republik_serbia_kepolisian,
   "pabrik_militer": republik_serbia_pabrik,
+  "intelijen": republik_serbia_intelijen,
     "pendidikan": republik_serbia_pendidikan,
   "kesehatan": republik_serbia_kesehatan,
   "hukum": republik_serbia_hukum,

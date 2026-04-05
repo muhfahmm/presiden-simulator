@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { malta_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/130_malta";
+
 import { malta_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/130_malta";
 import { malta_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/130_malta";
 import { malta_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/130_malta";
@@ -62,6 +64,7 @@ export const malta: CountryData = {
   "militer_strategis": malta_strategis,
   "armada_kepolisian": malta_kepolisian,
   "pabrik_militer": malta_pabrik,
+  "intelijen": malta_intelijen,
     "pendidikan": malta_pendidikan,
   "kesehatan": malta_kesehatan,
   "hukum": malta_hukum,

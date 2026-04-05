@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { liechtenstein_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/126_liechtenstein";
+
 import { liechtenstein_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/126_liechtenstein";
 import { liechtenstein_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/126_liechtenstein";
 import { liechtenstein_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/126_liechtenstein";
@@ -62,6 +64,7 @@ export const liechtenstein: CountryData = {
   "militer_strategis": liechtenstein_strategis,
   "armada_kepolisian": liechtenstein_kepolisian,
   "pabrik_militer": liechtenstein_pabrik,
+  "intelijen": liechtenstein_intelijen,
     "pendidikan": liechtenstein_pendidikan,
   "kesehatan": liechtenstein_kesehatan,
   "hukum": liechtenstein_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { mesir_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/31_mesir";
+
 import { mesir_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/31_mesir";
 import { mesir_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/31_mesir";
 import { mesir_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/31_mesir";
@@ -62,6 +64,7 @@ export const mesir: CountryData = {
   "militer_strategis": mesir_strategis,
   "armada_kepolisian": mesir_kepolisian,
   "pabrik_militer": mesir_pabrik,
+  "intelijen": mesir_intelijen,
     "pendidikan": mesir_pendidikan,
   "kesehatan": mesir_kesehatan,
   "hukum": mesir_hukum,

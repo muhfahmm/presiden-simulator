@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { saint_kitts_dan_nevis_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/175_saint_kitts_dan_nevis";
+
 import { saint_kitts_dan_nevis_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/175_saint_kitts_dan_nevis";
 import { saint_kitts_dan_nevis_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/175_saint_kitts_dan_nevis";
@@ -62,6 +64,7 @@ export const saint_kitts_dan_nevis: CountryData = {
   "militer_strategis": saint_kitts_dan_nevis_strategis,
   "armada_kepolisian": saint_kitts_dan_nevis_kepolisian,
   "pabrik_militer": saint_kitts_dan_nevis_pabrik,
+  "intelijen": saint_kitts_dan_nevis_intelijen,
     "pendidikan": saint_kitts_dan_nevis_pendidikan,
   "kesehatan": saint_kitts_dan_nevis_kesehatan,
   "hukum": saint_kitts_dan_nevis_hukum,

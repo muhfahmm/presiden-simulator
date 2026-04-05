@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { sierra_leone_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/48_sierra_leone";
+
 import { sierra_leone_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/48_sierra_leone";
 import { sierra_leone_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/48_sierra_leone";
 import { sierra_leone_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/48_sierra_leone";
@@ -62,6 +64,7 @@ export const sierra_leone: CountryData = {
   "militer_strategis": sierra_leone_strategis,
   "armada_kepolisian": sierra_leone_kepolisian,
   "pabrik_militer": sierra_leone_pabrik,
+  "intelijen": sierra_leone_intelijen,
     "pendidikan": sierra_leone_pendidikan,
   "kesehatan": sierra_leone_kesehatan,
   "hukum": sierra_leone_hukum,

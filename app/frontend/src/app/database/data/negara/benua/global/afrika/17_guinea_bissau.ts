@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { guinea_bissau_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/17_guinea_bissau";
+
 import { guinea_bissau_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/17_guinea_bissau";
 import { guinea_bissau_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/17_guinea_bissau";
 import { guinea_bissau_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/17_guinea_bissau";
@@ -62,6 +64,7 @@ export const guinea_bissau: CountryData = {
   "militer_strategis": guinea_bissau_strategis,
   "armada_kepolisian": guinea_bissau_kepolisian,
   "pabrik_militer": guinea_bissau_pabrik,
+  "intelijen": guinea_bissau_intelijen,
     "pendidikan": guinea_bissau_pendidikan,
   "kesehatan": guinea_bissau_kesehatan,
   "hukum": guinea_bissau_hukum,

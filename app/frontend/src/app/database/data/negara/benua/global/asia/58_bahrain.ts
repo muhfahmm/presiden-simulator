@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { bahrain_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/58_bahrain";
+
 import { bahrain_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/58_bahrain";
 import { bahrain_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/58_bahrain";
 import { bahrain_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/58_bahrain";
@@ -62,6 +64,7 @@ export const bahrain: CountryData = {
   "militer_strategis": bahrain_strategis,
   "armada_kepolisian": bahrain_kepolisian,
   "pabrik_militer": bahrain_pabrik,
+  "intelijen": bahrain_intelijen,
     "pendidikan": bahrain_pendidikan,
   "kesehatan": bahrain_kesehatan,
   "hukum": bahrain_hukum,

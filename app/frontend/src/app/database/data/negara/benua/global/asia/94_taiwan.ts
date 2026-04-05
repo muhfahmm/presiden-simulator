@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { taiwan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/94_taiwan";
+
 import { taiwan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/94_taiwan";
 import { taiwan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/94_taiwan";
 import { taiwan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/94_taiwan";
@@ -62,6 +64,7 @@ export const taiwan: CountryData = {
   "militer_strategis": taiwan_strategis,
   "armada_kepolisian": taiwan_kepolisian,
   "pabrik_militer": taiwan_pabrik,
+  "intelijen": taiwan_intelijen,
     "pendidikan": taiwan_pendidikan,
   "kesehatan": taiwan_kesehatan,
   "hukum": taiwan_hukum,

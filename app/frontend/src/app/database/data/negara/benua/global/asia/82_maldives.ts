@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { maldives_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/82_maldives";
+
 import { maldives_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/82_maldives";
 import { maldives_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/82_maldives";
 import { maldives_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/82_maldives";
@@ -62,6 +64,7 @@ export const maldives: CountryData = {
   "militer_strategis": maldives_strategis,
   "armada_kepolisian": maldives_kepolisian,
   "pabrik_militer": maldives_pabrik,
+  "intelijen": maldives_intelijen,
     "pendidikan": maldives_pendidikan,
   "kesehatan": maldives_kesehatan,
   "hukum": maldives_hukum,

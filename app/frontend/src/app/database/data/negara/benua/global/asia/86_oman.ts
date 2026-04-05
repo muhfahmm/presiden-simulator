@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { oman_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/86_oman";
+
 import { oman_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/86_oman";
 import { oman_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/86_oman";
 import { oman_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/86_oman";
@@ -62,6 +64,7 @@ export const oman: CountryData = {
   "militer_strategis": oman_strategis,
   "armada_kepolisian": oman_kepolisian,
   "pabrik_militer": oman_pabrik,
+  "intelijen": oman_intelijen,
     "pendidikan": oman_pendidikan,
   "kesehatan": oman_kesehatan,
   "hukum": oman_hukum,

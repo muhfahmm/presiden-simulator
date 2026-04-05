@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { austria_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/105_austria";
+
 import { austria_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/105_austria";
 import { austria_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/105_austria";
 import { austria_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/105_austria";
@@ -62,6 +64,7 @@ export const austria: CountryData = {
   "militer_strategis": austria_strategis,
   "armada_kepolisian": austria_kepolisian,
   "pabrik_militer": austria_pabrik,
+  "intelijen": austria_intelijen,
     "pendidikan": austria_pendidikan,
   "kesehatan": austria_kesehatan,
   "hukum": austria_hukum,

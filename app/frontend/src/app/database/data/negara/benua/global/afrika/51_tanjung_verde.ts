@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { tanjung_verde_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/51_tanjung_verde";
+
 import { tanjung_verde_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/51_tanjung_verde";
 import { tanjung_verde_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/51_tanjung_verde";
 import { tanjung_verde_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/51_tanjung_verde";
@@ -62,6 +64,7 @@ export const tanjung_verde: CountryData = {
   "militer_strategis": tanjung_verde_strategis,
   "armada_kepolisian": tanjung_verde_kepolisian,
   "pabrik_militer": tanjung_verde_pabrik,
+  "intelijen": tanjung_verde_intelijen,
     "pendidikan": tanjung_verde_pendidikan,
   "kesehatan": tanjung_verde_kesehatan,
   "hukum": tanjung_verde_hukum,

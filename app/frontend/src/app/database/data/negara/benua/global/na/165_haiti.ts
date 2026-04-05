@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { haiti_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/165_haiti";
+
 import { haiti_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/165_haiti";
 import { haiti_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/165_haiti";
 import { haiti_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/165_haiti";
@@ -62,6 +64,7 @@ export const haiti: CountryData = {
   "militer_strategis": haiti_strategis,
   "armada_kepolisian": haiti_kepolisian,
   "pabrik_militer": haiti_pabrik,
+  "intelijen": haiti_intelijen,
     "pendidikan": haiti_pendidikan,
   "kesehatan": haiti_kesehatan,
   "hukum": haiti_hukum,

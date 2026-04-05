@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { togo_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/52_togo";
+
 import { togo_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/52_togo";
 import { togo_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/52_togo";
 import { togo_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/52_togo";
@@ -62,6 +64,7 @@ export const togo: CountryData = {
   "militer_strategis": togo_strategis,
   "armada_kepolisian": togo_kepolisian,
   "pabrik_militer": togo_pabrik,
+  "intelijen": togo_intelijen,
     "pendidikan": togo_pendidikan,
   "kesehatan": togo_kesehatan,
   "hukum": togo_hukum,

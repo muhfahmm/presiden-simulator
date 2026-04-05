@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { saint_vincent_dan_grenadine_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/177_saint_vincent_dan_grenadine";
+
 import { saint_vincent_dan_grenadine_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/177_saint_vincent_dan_grenadine";
 import { saint_vincent_dan_grenadine_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/177_saint_vincent_dan_grenadine";
@@ -62,6 +64,7 @@ export const saint_vincent_dan_grenadine: CountryData = {
   "militer_strategis": saint_vincent_dan_grenadine_strategis,
   "armada_kepolisian": saint_vincent_dan_grenadine_kepolisian,
   "pabrik_militer": saint_vincent_dan_grenadine_pabrik,
+  "intelijen": saint_vincent_dan_grenadine_intelijen,
     "pendidikan": saint_vincent_dan_grenadine_pendidikan,
   "kesehatan": saint_vincent_dan_grenadine_kesehatan,
   "hukum": saint_vincent_dan_grenadine_hukum,

@@ -16,6 +16,20 @@ export const pabrikMiliterRate = {
     produksi: 5,
     satuan: "Unit"
   },
+  "2_pabrik_amunisi": {
+    key: "2_pabrik_amunisi",
+    dataKey: "pabrik_amunisi",
+    groupId: "pabrik_militer",
+    label: "Pabrik Amunisi",
+    deskripsi: "Produksi Amunisi Militer",
+    biaya_pembangunan: 3000,
+    waktu_pembangunan: 45,
+    biaya_pemeliharaan: 100,
+    lowongan_kerja: 800,
+    konsumsi_listrik: 10,
+    produksi: 50,
+    satuan: "Unit"
+  },
   "3_pabrik_kendaraan_tempur": {
     key: "3_pabrik_kendaraan_tempur",
     dataKey: "pabrik_kendaraan_tempur",

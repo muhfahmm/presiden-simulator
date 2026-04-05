@@ -82,9 +82,9 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
       icon: Search,
       color: "text-cyan-400",
       items: [
-        { ...intelijenRate["satellite"], groupId: "infra", icon: Satellite, count: (currentData.militer_strategis?.intel_radar?.sistem_satelit || 0) + ((buildingDeltas["satellite"] as number) || 0), consumption: 0 },
-        { ...intelijenRate["radar"], groupId: "infra", icon: Radar, count: (currentData.militer_strategis?.intel_radar?.jaringan_radar || 0) + ((buildingDeltas["radar"] as number) || 0), consumption: 5 },
-        { ...intelijenRate["operasi_siber"], groupId: "infra", icon: Cpu, count: (currentData.militer_strategis?.intel_radar?.operasi_siber || 0) + ((buildingDeltas["operasi_siber"] as number) || 0), consumption: 10 }
+        { ...intelijenRate["sistem_satelit"], groupId: "infra", icon: Satellite, count: (currentData.militer_strategis?.intel_radar?.sistem_satelit || 0) + ((buildingDeltas["sistem_satelit"] as number) || 0) },
+        { ...intelijenRate["jaringan_radar"], groupId: "infra", icon: Radar, count: (currentData.militer_strategis?.intel_radar?.jaringan_radar || 0) + ((buildingDeltas["jaringan_radar"] as number) || 0) },
+        { ...intelijenRate["operasi_siber"], groupId: "infra", icon: Cpu, count: (currentData.militer_strategis?.intel_radar?.operasi_siber || 0) + ((buildingDeltas["operasi_siber"] as number) || 0) }
       ]
     },
     {
@@ -453,10 +453,20 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
             </div>
 
             {item.consumption > 0 && (
-              <div className="flex items-center gap-2.5">
-                <div className="p-1.5 bg-amber-500/10 rounded-lg"><Zap size={12} className="text-amber-500/90" /></div>
-                <span className="text-[12px] font-bold text-amber-500/80">Konsumsi: {item.consumption} MW/unit</span>
-              </div>
+              <>
+                <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-amber-500/10 rounded-lg"><Zap size={12} className="text-amber-500/90" /></div>
+                  <span className="text-[12px] font-bold text-amber-500/80">Konsumsi: {item.consumption} MW/unit</span>
+                </div>
+                <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                  <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                    <Activity size={12} className="text-rose-400/70" />
+                  </div>
+                  <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+                    Total Konsumsi Listrik: {(item.count * item.consumption).toLocaleString('id-ID')} MW
+                  </span>
+                </div>
+              </>
             )}
 
             <div className="flex items-center gap-2.5">

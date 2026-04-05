@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { chad_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/8_chad";
+
 import { chad_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/8_chad";
 import { chad_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/8_chad";
 import { chad_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/8_chad";
@@ -62,6 +64,7 @@ export const chad: CountryData = {
   "militer_strategis": chad_strategis,
   "armada_kepolisian": chad_kepolisian,
   "pabrik_militer": chad_pabrik,
+  "intelijen": chad_intelijen,
     "pendidikan": chad_pendidikan,
   "kesehatan": chad_kesehatan,
   "hukum": chad_hukum,

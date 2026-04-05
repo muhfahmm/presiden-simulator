@@ -89,6 +89,7 @@ export interface CountryData extends EkonomiData {
   militer_strategis: SektorMiliterStrategis;
   armada_kepolisian: SektorArmadaKepolisian;
   pabrik_militer: SektorPabrikMiliter;
+  intelijen: any;
   
   // Sektor Sosial (Flattened)
   pendidikan: PendidikanData;
@@ -129,3 +130,7 @@ export {
   infrastrukturRate, 
   sosialRate 
 } from "./1_pembangunan/3_tempat_umum";
+
+export {
+  intelijenRate
+} from "./2_pertahanan/2_intelijen";

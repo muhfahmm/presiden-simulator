@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { nigeria_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/35_nigeria";
+
 import { nigeria_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/35_nigeria";
 import { nigeria_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/35_nigeria";
 import { nigeria_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/35_nigeria";
@@ -62,6 +64,7 @@ export const nigeria: CountryData = {
   "militer_strategis": nigeria_strategis,
   "armada_kepolisian": nigeria_kepolisian,
   "pabrik_militer": nigeria_pabrik,
+  "intelijen": nigeria_intelijen,
     "pendidikan": nigeria_pendidikan,
   "kesehatan": nigeria_kesehatan,
   "hukum": nigeria_hukum,

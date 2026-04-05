@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { somalia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/49_somalia";
+
 import { somalia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/49_somalia";
 import { somalia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/49_somalia";
 import { somalia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/49_somalia";
@@ -62,6 +64,7 @@ export const somalia: CountryData = {
   "militer_strategis": somalia_strategis,
   "armada_kepolisian": somalia_kepolisian,
   "pabrik_militer": somalia_pabrik,
+  "intelijen": somalia_intelijen,
     "pendidikan": somalia_pendidikan,
   "kesehatan": somalia_kesehatan,
   "hukum": somalia_hukum,

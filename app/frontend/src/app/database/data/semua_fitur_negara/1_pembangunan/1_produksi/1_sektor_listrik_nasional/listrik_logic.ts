@@ -7,11 +7,15 @@ import {
   SektorAgrikultur, 
   SektorOlahanPangan, 
   SektorFarmasi,
-  SektorEkstraksi
+  SektorEkstraksi,
+  SektorPerikanan,
+  mineralKritisRate
 } from "../index";
 import { PendidikanData, KesehatanData, HukumData, SektorKomersial, SektorHiburan } from "../../3_tempat_umum";
 import { OlahragaData } from "../../3_tempat_umum/5_olahraga";
 import { SektorListrik, KAPASITAS_LISTRIK_METADATA } from "./1_db_listrik";
+import { intelijenRate } from "../../../2_pertahanan/2_intelijen";
+import { armadaMiliterRate } from "../../../2_pertahanan/3_armada_militer";
 
 export const KAPASITAS_LISTRIK = Object.fromEntries(
   Object.entries(KAPASITAS_LISTRIK_METADATA).map(([key, val]) => [val.dataKey, val.produksi])
@@ -32,14 +36,13 @@ export function hitungOutputPLTN(electricity: SektorListrik) {
   return (electricity.pembangkit_listrik_tenaga_nuklir ?? 0) * KAPASITAS_LISTRIK.pembangkit_listrik_tenaga_nuklir;
 }
 
-// Helper to enforce minimum 1 MW per building as per user request
-const withMin1MW = (rate: number) => Math.max(rate, 1);
+// Helper to enforce minimum 1 MW per building, but allow 0 for disabled sectors
+const withMin1MW = (rate: number) => rate <= 0 ? 0 : Math.max(rate, 1);
 
-// Konsumsi Ekstraksi (Mining) - Standardized @ 50 MW per unit as per user request
-export const KONSUMSI_EKSTRAKSI = {
-  aluminium: 50, emas: 50, bijih_besi: 50, batu_bara: 50, gas_alam: 50, garam: 50,
-  litium: 50, minyak_bumi: 50, nikel: 50, logam_tanah_jarang: 50, tembaga: 50, uranium: 50
-};
+// Konsumsi Ekstraksi (Mining) - Dynamic based on mineralKritisRate
+export const KONSUMSI_EKSTRAKSI = Object.fromEntries(
+  Object.values(mineralKritisRate).map(val => [val.dataKey, val.konsumsi_listrik])
+) as Record<string, number>;
 
 export function hitungKonsumsiEkstraksi(extraction: SektorEkstraksi) {
   return (
@@ -62,7 +65,8 @@ export function hitungKonsumsiEkstraksi(extraction: SektorEkstraksi) {
 export const KONSUMSI_PRODUKSI = {
   semikonduktor: 50, mobil: 20, sepeda_motor: 15, smelter: 100, semen_beton: 30,
   kayu: 5, air_mineral: 2, gula: 10, roti: 2, farmasi: 10,
-  pupuk: 20, pengolahan_daging: 5, mie_instan: 10
+  pupuk: 20, pengolahan_daging: 5, mie_instan: 10,
+  minyak_goreng: 10, susu: 5, pakan_ternak: 8, ikan_kaleng: 12, kopi_teh: 6
 };
 
 export function hitungKonsumsiProduksi(manufacturing: SektorManufaktur) {
@@ -83,7 +87,12 @@ export function hitungKonsumsiOlahanPangan(olahan: SektorOlahanPangan) {
     (olahan.gula ?? 0) * withMin1MW(KONSUMSI_PRODUKSI.gula) +
     (olahan.roti ?? 0) * withMin1MW(KONSUMSI_PRODUKSI.roti) +
     (olahan.pengolahan_daging ?? 0) * withMin1MW(KONSUMSI_PRODUKSI.pengolahan_daging) +
-    (olahan.mie_instan ?? 0) * withMin1MW(KONSUMSI_PRODUKSI.mie_instan)
+    (olahan.mie_instan ?? 0) * withMin1MW(KONSUMSI_PRODUKSI.mie_instan) +
+    (olahan.minyak_goreng ?? 0) * withMin1MW(KONSUMSI_PRODUKSI.minyak_goreng) +
+    (olahan.susu ?? 0) * withMin1MW(KONSUMSI_PRODUKSI.susu) +
+    (olahan.pakan_ternak ?? 0) * withMin1MW(KONSUMSI_PRODUKSI.pakan_ternak) +
+    (olahan.ikan_kaleng ?? 0) * withMin1MW(KONSUMSI_PRODUKSI.ikan_kaleng) +
+    (olahan.kopi_teh ?? 0) * withMin1MW(KONSUMSI_PRODUKSI.kopi_teh)
   );
 }
 
@@ -94,43 +103,58 @@ export function hitungKonsumsiFarmasi(farmasi: SektorFarmasi) {
 // Konsumsi Pangan (Tani & Ternak)
 export const KONSUMSI_PANGAN = {
   ayam_unggas: 0.05, sapi_perah: 0.5, sapi_potong: 0.2, domba_kambing: 0.1,
-  udang_kerang: 0.65, ikan: 0.5, padi: 0.2, gandum_jagung: 0.1,
-  sayur_umbi: 0.15, kedelai: 0.1, kelapa_sawit: 1, kopi_teh_kakao: 0.2
+  udang: 0.65, ikan: 0.5, mutiara: 0.8,
+  padi: 0.2, gandum: 0.3, jagung: 0.1,
+  sayur: 0.15, umbi: 0.1, kedelai: 0.1, kelapa_sawit: 1, 
+  teh: 0.2, kopi: 0.2, kakao: 0.2, tebu: 0.2, karet: 0.3, kapas: 0.15, tembakau: 0.25
 };
 
+export function hitungKonsumsiPeternakan(peternakan: SektorPeternakan) {
+  if (!peternakan) return 0;
+  return Object.keys(peternakan).reduce((sum, key) => {
+    const consumptionRate = withMin1MW((KONSUMSI_PANGAN as any)[key] ?? 0);
+    return sum + ((peternakan as any)[key] ?? 0) * consumptionRate;
+  }, 0);
+}
+
+export function hitungKonsumsiAgrikultur(agrikultur: SektorAgrikultur) {
+  if (!agrikultur) return 0;
+  return Object.keys(agrikultur).reduce((sum, key) => {
+    const consumptionRate = withMin1MW((KONSUMSI_PANGAN as any)[key] ?? 0);
+    return sum + ((agrikultur as any)[key] ?? 0) * consumptionRate;
+  }, 0);
+}
+
+export function hitungKonsumsiPerikanan(perikanan: SektorPerikanan) {
+  if (!perikanan) return 0;
+  return Object.keys(perikanan).reduce((sum, key) => {
+    const consumptionRate = withMin1MW((KONSUMSI_PANGAN as any)[key] ?? 0);
+    return sum + ((perikanan as any)[key] ?? 0) * consumptionRate;
+  }, 0);
+}
+
 export function hitungKonsumsiPangan(peternakan: SektorPeternakan, agrikultur: SektorAgrikultur) {
-  let total = 0;
-  if (peternakan) {
-    total += Object.keys(peternakan).reduce((sum, key) => {
-      const consumptionRate = withMin1MW((KONSUMSI_PANGAN as any)[key] ?? 0);
-      return sum + ((peternakan as any)[key] ?? 0) * consumptionRate;
-    }, 0);
-  }
-  if (agrikultur) {
-    total += Object.keys(agrikultur).reduce((sum, key) => {
-      const consumptionRate = withMin1MW((KONSUMSI_PANGAN as any)[key] ?? 0);
-      return sum + ((agrikultur as any)[key] ?? 0) * consumptionRate;
-    }, 0);
-  }
-  return total;
+  return hitungKonsumsiPeternakan(peternakan) + hitungKonsumsiAgrikultur(agrikultur);
 }
 
 // Konsumsi Pertahanan (Defense)
 export const KONSUMSI_PERTAHANAN = {
-  penjara: 2, barak: 5, gudang_senjata: 2, hangar_tank: 5, akademi_militer: 10
+  penjara: 0, barak: 1, gudang_senjata: 0, hangar_tank: 0, akademi_militer: 0
 };
 
 export const KONSUMSI_STRATEGIC = {
-  pusat_komando: 15, pangkalan_udara: 30, pangkalan_laut: 35,
-  arms_factory: 40, program_luar_angkasa: 80
+  pusat_komando: 0, pangkalan_udara: 0, pangkalan_laut: 0,
+  arms_factory: 0, program_luar_angkasa: 0
 };
 
 export const KONSUMSI_PABRIK_MILITER = {
-  pabrik_drone_kamikaze: 5,
-  pabrik_amunisi: 8,
-  pabrik_kendaraan_tempur: 20,
-  pabrik_senjata_berat: 25
+  pabrik_drone_kamikaze: 0,
+  pabrik_amunisi: 0,
+  pabrik_kendaraan_tempur: 0,
+  pabrik_senjata_berat: 0
 };
+
+// 5. Konsumsi Unit Intelijen & Strategis ditangani secara dinamis dari intelijenRate
 
 export function hitungKonsumsiPertahanan(
   management: SektorPertahanan,
@@ -149,16 +173,14 @@ export function hitungKonsumsiPertahanan(
     (management.pangkalan_laut ?? 0) * withMin1MW(KONSUMSI_STRATEGIC.pangkalan_laut)
   );
 
-  const fleetCons = (
-    (fleet.barak ?? 0) * withMin1MW(KONSUMSI_PERTAHANAN.barak)
-  );
+  const fleetCons = 0; // Handled by hitungKonsumsiArmadaDatabase
 
   const securityCons = (
-    (strategis.intelijen ?? 0) * withMin1MW(10)
+    (strategis.intelijen ?? 0) * withMin1MW(0)
   );
 
   const managementCons = (
-    (management.pertahanan_siber ?? 0) * withMin1MW(5)
+    (management.pertahanan_siber ?? 0) * withMin1MW(0)
   );
 
   const policeCons = (
@@ -190,9 +212,9 @@ export function hitungKonsumsiBangunanMiliter(
     (management.pangkalan_udara ?? 0) * withMin1MW(KONSUMSI_STRATEGIC.pangkalan_udara) +
     (management.pangkalan_laut ?? 0) * withMin1MW(KONSUMSI_STRATEGIC.pangkalan_laut) +
     (management.program_luar_angkasa ?? 0) * withMin1MW(KONSUMSI_STRATEGIC.program_luar_angkasa) +
-    (management.pertahanan_siber ?? 0) * withMin1MW(5) +
+    (management.pertahanan_siber ?? 0) * withMin1MW(0) +
     (barak ?? 0) * withMin1MW(KONSUMSI_PERTAHANAN.barak) +
-    (status_nuklir ? withMin1MW(50) : 0)
+    (status_nuklir ? withMin1MW(0) : 0)
   );
 }
 
@@ -203,6 +225,10 @@ export function hitungKonsumsiPabrikMiliter(pabrik: SektorPabrikMiliter) {
     (pabrik.pabrik_kendaraan_tempur ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_kendaraan_tempur) +
     (pabrik.pabrik_senjata_berat ?? 0) * withMin1MW(KONSUMSI_PABRIK_MILITER.pabrik_senjata_berat)
   );
+}
+
+export function hitungKonsumsiIntelDatabase(intel: any) {
+  return 0;
 }
 
 // Konsumsi Sosial
@@ -274,18 +300,64 @@ export function hitungKonsumsiTransportasi(infra: SektorInfrastruktur) {
   );
 }
 
+export function hitungKonsumsiArmadaDatabase(fleet: any) {
+  if (!fleet) return 0;
+  
+  let total = 0;
+  total += (fleet.barak || 0) * (armadaMiliterRate["1_barak"].consumption || 0);
+  
+  // Darat
+  if (fleet.darat) {
+    total += (fleet.darat.tank_tempur_utama || 0) * (armadaMiliterRate["2_tank"].consumption || 0);
+    total += (fleet.darat.apc_ifv || 0) * (armadaMiliterRate["3_apc"].consumption || 0);
+    total += (fleet.darat.artileri_berat || 0) * (armadaMiliterRate["4_artileri"].consumption || 0);
+    total += (fleet.darat.sistem_peluncur_roket || 0) * (armadaMiliterRate["5_roket_peluncur"].consumption || 0);
+    total += (fleet.darat.pertahanan_udara_mobile || 0) * (armadaMiliterRate["6_misil_sam"].consumption || 0);
+    total += (fleet.darat.kendaraan_taktis || 0) * (armadaMiliterRate["7_kendaraan_taktis"].consumption || 0);
+  }
+  
+  // Laut
+  if (fleet.laut) {
+    total += (fleet.laut.kapal_induk || 0) * (armadaMiliterRate["8_kapal_induk"].consumption || 0);
+    total += (fleet.laut.kapal_destroyer || 0) * (armadaMiliterRate["9_kapal_perusak"].consumption || 0);
+    total += (fleet.laut.kapal_korvet || 0) * (armadaMiliterRate["10_kapal_korvet"].consumption || 0);
+    total += (fleet.laut.kapal_selam_nuklir || 0) * (armadaMiliterRate["11_kapal_selam_nuklir"].consumption || 0);
+    total += (fleet.laut.kapal_selam_regular || 0) * (armadaMiliterRate["12_kapal_selam_reguler"].consumption || 0);
+    total += (fleet.laut.kapal_ranjau || 0) * (armadaMiliterRate["13_penyapu_ranjau"].consumption || 0);
+    total += (fleet.laut.kapal_logistik || 0) * (armadaMiliterRate["14_kapal_logistik"].consumption || 0);
+  }
+  
+  // Udara
+  if (fleet.udara) {
+    total += (fleet.udara.jet_tempur_siluman || 0) * (armadaMiliterRate["15_jet_tempur_siluman"].consumption || 0);
+    total += (fleet.udara.jet_tempur_interceptor || 0) * (armadaMiliterRate["16_jet_pencegat"].consumption || 0);
+    total += (fleet.udara.pesawat_pengebom || 0) * (armadaMiliterRate["17_pesawat_pembom"].consumption || 0);
+    total += (fleet.udara.helikopter_serang || 0) * (armadaMiliterRate["18_helikopter_serbu"].consumption || 0);
+    total += (fleet.udara.pesawat_pengintai || 0) * (armadaMiliterRate["19_pesawat_intai"].consumption || 0);
+    total += (fleet.udara.drone_intai_uav || 0) * (armadaMiliterRate["20_drone_intai"].consumption || 0);
+    total += (fleet.udara.drone_kamikaze || 0) * (armadaMiliterRate["21_drone_kamikaze"].consumption || 0);
+    total += (fleet.udara.pesawat_angkut || 0) * (armadaMiliterRate["22_transport_udara"].consumption || 0);
+  }
+  
+  return total;
+}
+
 export function hitungTotalKonsumsiNasional(data: any) {
   return (
     hitungKonsumsiEkstraksi(data.sektor_ekstraksi) +
     hitungKonsumsiProduksi(data.sektor_manufaktur) +
     hitungKonsumsiOlahanPangan(data.sektor_olahan_pangan) +
     hitungKonsumsiFarmasi(data.sektor_farmasi) +
-    hitungKonsumsiPangan(data.sektor_peternakan, data.sektor_agrikultur) +
+    hitungKonsumsiAgrikultur(data.sektor_agrikultur) +
+    hitungKonsumsiPeternakan(data.sektor_peternakan) +
+    hitungKonsumsiPerikanan(data.sektor_perikanan) +
     hitungKonsumsiPertahanan(data.sektor_pertahanan, data.armada_militer, data.militer_strategis, data.armada_kepolisian, data.pabrik_militer) +
     hitungKonsumsiSosial(data) +
     hitungKonsumsiOlahraga(data.sektor_olahraga) +
     hitungKonsumsiKomersial(data.sektor_komersial) +
     hitungKonsumsiHiburan(data.sektor_hiburan) +
-    hitungKonsumsiTransportasi(data.infrastruktur)
+    hitungKonsumsiTransportasi(data.infrastruktur) +
+    hitungKonsumsiIntelDatabase(data.intelijen) +
+    hitungKonsumsiArmadaDatabase(data.armada_militer)
   );
 }

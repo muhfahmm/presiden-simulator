@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { bangladesh_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/59_bangladesh";
+
 import { bangladesh_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/59_bangladesh";
 import { bangladesh_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/59_bangladesh";
 import { bangladesh_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/59_bangladesh";
@@ -62,6 +64,7 @@ export const bangladesh: CountryData = {
   "militer_strategis": bangladesh_strategis,
   "armada_kepolisian": bangladesh_kepolisian,
   "pabrik_militer": bangladesh_pabrik,
+  "intelijen": bangladesh_intelijen,
     "pendidikan": bangladesh_pendidikan,
   "kesehatan": bangladesh_kesehatan,
   "hukum": bangladesh_hukum,

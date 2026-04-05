@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { mauritania_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/29_mauritania";
+
 import { mauritania_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/29_mauritania";
 import { mauritania_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/29_mauritania";
 import { mauritania_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/29_mauritania";
@@ -62,6 +64,7 @@ export const mauritania: CountryData = {
   "militer_strategis": mauritania_strategis,
   "armada_kepolisian": mauritania_kepolisian,
   "pabrik_militer": mauritania_pabrik,
+  "intelijen": mauritania_intelijen,
     "pendidikan": mauritania_pendidikan,
   "kesehatan": mauritania_kesehatan,
   "hukum": mauritania_hukum,

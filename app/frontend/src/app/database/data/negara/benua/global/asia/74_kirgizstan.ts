@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { kirgizstan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/74_kirgizstan";
+
 import { kirgizstan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/74_kirgizstan";
 import { kirgizstan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/74_kirgizstan";
 import { kirgizstan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/74_kirgizstan";
@@ -62,6 +64,7 @@ export const kirgizstan: CountryData = {
   "militer_strategis": kirgizstan_strategis,
   "armada_kepolisian": kirgizstan_kepolisian,
   "pabrik_militer": kirgizstan_pabrik,
+  "intelijen": kirgizstan_intelijen,
     "pendidikan": kirgizstan_pendidikan,
   "kesehatan": kirgizstan_kesehatan,
   "hukum": kirgizstan_hukum,

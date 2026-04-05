@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { tahiti_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/191_tahiti";
+
 import { tahiti_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/191_tahiti";
 import { tahiti_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/191_tahiti";
 import { tahiti_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/191_tahiti";
@@ -62,6 +64,7 @@ export const tahiti: CountryData = {
   "militer_strategis": tahiti_strategis,
   "armada_kepolisian": tahiti_kepolisian,
   "pabrik_militer": tahiti_pabrik,
+  "intelijen": tahiti_intelijen,
     "pendidikan": tahiti_pendidikan,
   "kesehatan": tahiti_kesehatan,
   "hukum": tahiti_hukum,

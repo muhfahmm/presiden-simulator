@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { honduras_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/166_honduras";
+
 import { honduras_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/166_honduras";
 import { honduras_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/166_honduras";
 import { honduras_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/166_honduras";
@@ -62,6 +64,7 @@ export const honduras: CountryData = {
   "militer_strategis": honduras_strategis,
   "armada_kepolisian": honduras_kepolisian,
   "pabrik_militer": honduras_pabrik,
+  "intelijen": honduras_intelijen,
     "pendidikan": honduras_pendidikan,
   "kesehatan": honduras_kesehatan,
   "hukum": honduras_hukum,

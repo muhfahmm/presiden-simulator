@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { kuba_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/169_kuba";
+
 import { kuba_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/169_kuba";
 import { kuba_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/169_kuba";
 import { kuba_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/169_kuba";
@@ -62,6 +64,7 @@ export const kuba: CountryData = {
   "militer_strategis": kuba_strategis,
   "armada_kepolisian": kuba_kepolisian,
   "pabrik_militer": kuba_pabrik,
+  "intelijen": kuba_intelijen,
     "pendidikan": kuba_pendidikan,
   "kesehatan": kuba_kesehatan,
   "hukum": kuba_hukum,

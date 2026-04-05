@@ -10,6 +10,7 @@ import HargaModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2
 // Other Modals
 import ProduksiHubV3 from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/1-produksi/ProduksiModal";
 import ProduksiMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/2-produksi-militer/ProduksiMiliterModal";
+import KelistrikanModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/9_kelistrikan/KelistrikanModal";
 import TempatUmumModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/TempatUmumModal";
 import PertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/PertahananModal";
 import IntelijenModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/2_intelijen/IntelijenModal";
@@ -110,6 +111,11 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       <ProduksiMiliterModal
         isOpen={activeMenu === "Menu:ProduksiMiliter"}
         onClose={() => setActiveMenu("Pembangunan")}
+      />
+      <KelistrikanModal
+        isOpen={activeMenu === "Menu:Kelistrikan"}
+        onClose={() => setActiveMenu("Kelistrikan")}
+        setActiveMenu={setActiveMenu}
       />
       <TempatUmumModal
         isOpen={activeMenu === "Menu:TempatUmum"}

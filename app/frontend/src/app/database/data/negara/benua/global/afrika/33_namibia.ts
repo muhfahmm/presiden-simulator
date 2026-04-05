@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { namibia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/33_namibia";
+
 import { namibia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/33_namibia";
 import { namibia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/33_namibia";
 import { namibia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/33_namibia";
@@ -62,6 +64,7 @@ export const namibia: CountryData = {
   "militer_strategis": namibia_strategis,
   "armada_kepolisian": namibia_kepolisian,
   "pabrik_militer": namibia_pabrik,
+  "intelijen": namibia_intelijen,
     "pendidikan": namibia_pendidikan,
   "kesehatan": namibia_kesehatan,
   "hukum": namibia_hukum,

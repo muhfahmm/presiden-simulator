@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { mali_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/27_mali";
+
 import { mali_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/27_mali";
 import { mali_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/27_mali";
 import { mali_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/27_mali";
@@ -62,6 +64,7 @@ export const mali: CountryData = {
   "militer_strategis": mali_strategis,
   "armada_kepolisian": mali_kepolisian,
   "pabrik_militer": mali_pabrik,
+  "intelijen": mali_intelijen,
     "pendidikan": mali_pendidikan,
   "kesehatan": mali_kesehatan,
   "hukum": mali_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { lebanon_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/79_lebanon";
+
 import { lebanon_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/79_lebanon";
 import { lebanon_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/79_lebanon";
 import { lebanon_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/79_lebanon";
@@ -62,6 +64,7 @@ export const lebanon: CountryData = {
   "militer_strategis": lebanon_strategis,
   "armada_kepolisian": lebanon_kepolisian,
   "pabrik_militer": lebanon_pabrik,
+  "intelijen": lebanon_intelijen,
     "pendidikan": lebanon_pendidikan,
   "kesehatan": lebanon_kesehatan,
   "hukum": lebanon_hukum,

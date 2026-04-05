@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { puerto_rico_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/173_puerto_rico";
+
 import { puerto_rico_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/173_puerto_rico";
 import { puerto_rico_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/173_puerto_rico";
 import { puerto_rico_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/173_puerto_rico";
@@ -62,6 +64,7 @@ export const puerto_rico: CountryData = {
   "militer_strategis": puerto_rico_strategis,
   "armada_kepolisian": puerto_rico_kepolisian,
   "pabrik_militer": puerto_rico_pabrik,
+  "intelijen": puerto_rico_intelijen,
     "pendidikan": puerto_rico_pendidikan,
   "kesehatan": puerto_rico_kesehatan,
   "hukum": puerto_rico_hukum,

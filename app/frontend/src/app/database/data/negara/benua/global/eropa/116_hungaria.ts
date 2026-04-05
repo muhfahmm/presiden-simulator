@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { hungaria_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/116_hungaria";
+
 import { hungaria_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/116_hungaria";
 import { hungaria_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/116_hungaria";
 import { hungaria_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/116_hungaria";
@@ -62,6 +64,7 @@ export const hungaria: CountryData = {
   "militer_strategis": hungaria_strategis,
   "armada_kepolisian": hungaria_kepolisian,
   "pabrik_militer": hungaria_pabrik,
+  "intelijen": hungaria_intelijen,
     "pendidikan": hungaria_pendidikan,
   "kesehatan": hungaria_kesehatan,
   "hukum": hungaria_hukum,

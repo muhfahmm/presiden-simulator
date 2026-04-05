@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { gabon_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/13_gabon";
+
 import { gabon_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/13_gabon";
 import { gabon_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/13_gabon";
 import { gabon_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/13_gabon";
@@ -62,6 +64,7 @@ export const gabon: CountryData = {
   "militer_strategis": gabon_strategis,
   "armada_kepolisian": gabon_kepolisian,
   "pabrik_militer": gabon_pabrik,
+  "intelijen": gabon_intelijen,
     "pendidikan": gabon_pendidikan,
   "kesehatan": gabon_kesehatan,
   "hukum": gabon_hukum,

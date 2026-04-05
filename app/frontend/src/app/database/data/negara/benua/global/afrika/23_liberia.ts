@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { liberia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/23_liberia";
+
 import { liberia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/23_liberia";
 import { liberia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/23_liberia";
 import { liberia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/23_liberia";
@@ -62,6 +64,7 @@ export const liberia: CountryData = {
   "militer_strategis": liberia_strategis,
   "armada_kepolisian": liberia_kepolisian,
   "pabrik_militer": liberia_pabrik,
+  "intelijen": liberia_intelijen,
     "pendidikan": liberia_pendidikan,
   "kesehatan": liberia_kesehatan,
   "hukum": liberia_hukum,

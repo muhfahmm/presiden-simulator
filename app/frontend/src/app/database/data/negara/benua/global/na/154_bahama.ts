@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { bahama_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/154_bahama";
+
 import { bahama_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/154_bahama";
 import { bahama_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/154_bahama";
 import { bahama_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/154_bahama";
@@ -62,6 +64,7 @@ export const bahama: CountryData = {
   "militer_strategis": bahama_strategis,
   "armada_kepolisian": bahama_kepolisian,
   "pabrik_militer": bahama_pabrik,
+  "intelijen": bahama_intelijen,
     "pendidikan": bahama_pendidikan,
   "kesehatan": bahama_kesehatan,
   "hukum": bahama_hukum,

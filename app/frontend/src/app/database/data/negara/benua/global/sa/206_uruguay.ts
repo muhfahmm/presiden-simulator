@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { uruguay_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/206_uruguay";
+
 import { uruguay_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/206_uruguay";
 import { uruguay_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/206_uruguay";
 import { uruguay_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/206_uruguay";
@@ -62,6 +64,7 @@ export const uruguay: CountryData = {
   "militer_strategis": uruguay_strategis,
   "armada_kepolisian": uruguay_kepolisian,
   "pabrik_militer": uruguay_pabrik,
+  "intelijen": uruguay_intelijen,
     "pendidikan": uruguay_pendidikan,
   "kesehatan": uruguay_kesehatan,
   "hukum": uruguay_hukum,

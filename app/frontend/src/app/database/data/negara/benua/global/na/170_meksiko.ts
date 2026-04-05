@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { meksiko_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/170_meksiko";
+
 import { meksiko_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/170_meksiko";
 import { meksiko_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/170_meksiko";
 import { meksiko_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/170_meksiko";
@@ -62,6 +64,7 @@ export const meksiko: CountryData = {
   "militer_strategis": meksiko_strategis,
   "armada_kepolisian": meksiko_kepolisian,
   "pabrik_militer": meksiko_pabrik,
+  "intelijen": meksiko_intelijen,
     "pendidikan": meksiko_pendidikan,
   "kesehatan": meksiko_kesehatan,
   "hukum": meksiko_hukum,

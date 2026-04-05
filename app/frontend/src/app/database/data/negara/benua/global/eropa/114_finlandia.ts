@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { finlandia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/114_finlandia";
+
 import { finlandia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/114_finlandia";
 import { finlandia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/114_finlandia";
 import { finlandia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/114_finlandia";
@@ -62,6 +64,7 @@ export const finlandia: CountryData = {
   "militer_strategis": finlandia_strategis,
   "armada_kepolisian": finlandia_kepolisian,
   "pabrik_militer": finlandia_pabrik,
+  "intelijen": finlandia_intelijen,
     "pendidikan": finlandia_pendidikan,
   "kesehatan": finlandia_kesehatan,
   "hukum": finlandia_hukum,

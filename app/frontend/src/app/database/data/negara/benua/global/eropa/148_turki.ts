@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { turki_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/148_turki";
+
 import { turki_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/148_turki";
 import { turki_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/148_turki";
 import { turki_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/148_turki";
@@ -62,6 +64,7 @@ export const turki: CountryData = {
   "militer_strategis": turki_strategis,
   "armada_kepolisian": turki_kepolisian,
   "pabrik_militer": turki_pabrik,
+  "intelijen": turki_intelijen,
     "pendidikan": turki_pendidikan,
   "kesehatan": turki_kesehatan,
   "hukum": turki_hukum,

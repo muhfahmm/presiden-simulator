@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { moldova_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/131_moldova";
+
 import { moldova_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/131_moldova";
 import { moldova_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/131_moldova";
 import { moldova_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/131_moldova";
@@ -62,6 +64,7 @@ export const moldova: CountryData = {
   "militer_strategis": moldova_strategis,
   "armada_kepolisian": moldova_kepolisian,
   "pabrik_militer": moldova_pabrik,
+  "intelijen": moldova_intelijen,
     "pendidikan": moldova_pendidikan,
   "kesehatan": moldova_kesehatan,
   "hukum": moldova_hukum,

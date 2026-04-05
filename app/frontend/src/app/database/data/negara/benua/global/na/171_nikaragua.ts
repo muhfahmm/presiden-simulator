@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { nikaragua_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/171_nikaragua";
+
 import { nikaragua_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/171_nikaragua";
 import { nikaragua_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/171_nikaragua";
 import { nikaragua_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/171_nikaragua";
@@ -62,6 +64,7 @@ export const nikaragua: CountryData = {
   "militer_strategis": nikaragua_strategis,
   "armada_kepolisian": nikaragua_kepolisian,
   "pabrik_militer": nikaragua_pabrik,
+  "intelijen": nikaragua_intelijen,
     "pendidikan": nikaragua_pendidikan,
   "kesehatan": nikaragua_kesehatan,
   "hukum": nikaragua_hukum,

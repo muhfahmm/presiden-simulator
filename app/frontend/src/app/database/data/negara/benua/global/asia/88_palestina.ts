@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { palestina_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/88_palestina";
+
 import { palestina_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/88_palestina";
 import { palestina_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/88_palestina";
 import { palestina_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/88_palestina";
@@ -62,6 +64,7 @@ export const palestina: CountryData = {
   "militer_strategis": palestina_strategis,
   "armada_kepolisian": palestina_kepolisian,
   "pabrik_militer": palestina_pabrik,
+  "intelijen": palestina_intelijen,
     "pendidikan": palestina_pendidikan,
   "kesehatan": palestina_kesehatan,
   "hukum": palestina_hukum,

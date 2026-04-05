@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { ethiopia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/12_ethiopia";
+
 import { ethiopia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/12_ethiopia";
 import { ethiopia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/12_ethiopia";
 import { ethiopia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/12_ethiopia";
@@ -62,6 +64,7 @@ export const ethiopia: CountryData = {
   "militer_strategis": ethiopia_strategis,
   "armada_kepolisian": ethiopia_kepolisian,
   "pabrik_militer": ethiopia_pabrik,
+  "intelijen": ethiopia_intelijen,
     "pendidikan": ethiopia_pendidikan,
   "kesehatan": ethiopia_kesehatan,
   "hukum": ethiopia_hukum,

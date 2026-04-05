@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { islandia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/119_islandia";
+
 import { islandia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/119_islandia";
 import { islandia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/119_islandia";
 import { islandia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/119_islandia";
@@ -62,6 +64,7 @@ export const islandia: CountryData = {
   "militer_strategis": islandia_strategis,
   "armada_kepolisian": islandia_kepolisian,
   "pabrik_militer": islandia_pabrik,
+  "intelijen": islandia_intelijen,
     "pendidikan": islandia_pendidikan,
   "kesehatan": islandia_kesehatan,
   "hukum": islandia_hukum,

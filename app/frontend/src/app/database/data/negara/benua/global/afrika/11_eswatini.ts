@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { eswatini_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/11_eswatini";
+
 import { eswatini_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/11_eswatini";
 import { eswatini_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/11_eswatini";
 import { eswatini_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/11_eswatini";
@@ -62,6 +64,7 @@ export const eswatini: CountryData = {
   "militer_strategis": eswatini_strategis,
   "armada_kepolisian": eswatini_kepolisian,
   "pabrik_militer": eswatini_pabrik,
+  "intelijen": eswatini_intelijen,
     "pendidikan": eswatini_pendidikan,
   "kesehatan": eswatini_kesehatan,
   "hukum": eswatini_hukum,

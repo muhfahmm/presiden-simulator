@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { azerbaijan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/57_azerbaijan";
+
 import { azerbaijan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/57_azerbaijan";
 import { azerbaijan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/57_azerbaijan";
 import { azerbaijan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/57_azerbaijan";
@@ -62,6 +64,7 @@ export const azerbaijan: CountryData = {
   "militer_strategis": azerbaijan_strategis,
   "armada_kepolisian": azerbaijan_kepolisian,
   "pabrik_militer": azerbaijan_pabrik,
+  "intelijen": azerbaijan_intelijen,
     "pendidikan": azerbaijan_pendidikan,
   "kesehatan": azerbaijan_kesehatan,
   "hukum": azerbaijan_hukum,

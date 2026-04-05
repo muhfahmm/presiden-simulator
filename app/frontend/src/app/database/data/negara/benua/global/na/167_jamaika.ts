@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { jamaika_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/167_jamaika";
+
 import { jamaika_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/167_jamaika";
 import { jamaika_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/167_jamaika";
 import { jamaika_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/167_jamaika";
@@ -62,6 +64,7 @@ export const jamaika: CountryData = {
   "militer_strategis": jamaika_strategis,
   "armada_kepolisian": jamaika_kepolisian,
   "pabrik_militer": jamaika_pabrik,
+  "intelijen": jamaika_intelijen,
     "pendidikan": jamaika_pendidikan,
   "kesehatan": jamaika_kesehatan,
   "hukum": jamaika_hukum,

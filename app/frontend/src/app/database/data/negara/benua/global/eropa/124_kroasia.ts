@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { kroasia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/124_kroasia";
+
 import { kroasia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/124_kroasia";
 import { kroasia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/124_kroasia";
 import { kroasia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/124_kroasia";
@@ -62,6 +64,7 @@ export const kroasia: CountryData = {
   "militer_strategis": kroasia_strategis,
   "armada_kepolisian": kroasia_kepolisian,
   "pabrik_militer": kroasia_pabrik,
+  "intelijen": kroasia_intelijen,
     "pendidikan": kroasia_pendidikan,
   "kesehatan": kroasia_kesehatan,
   "hukum": kroasia_hukum,

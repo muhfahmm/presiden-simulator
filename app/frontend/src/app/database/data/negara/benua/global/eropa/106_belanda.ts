@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { belanda_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/106_belanda";
+
 import { belanda_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/106_belanda";
 import { belanda_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/106_belanda";
 import { belanda_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/106_belanda";
@@ -62,6 +64,7 @@ export const belanda: CountryData = {
   "militer_strategis": belanda_strategis,
   "armada_kepolisian": belanda_kepolisian,
   "pabrik_militer": belanda_pabrik,
+  "intelijen": belanda_intelijen,
     "pendidikan": belanda_pendidikan,
   "kesehatan": belanda_kesehatan,
   "hukum": belanda_hukum,

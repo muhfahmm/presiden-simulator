@@ -92,6 +92,9 @@ export function useGamePath(path: string[]) {
     else initialMenu = "Komando Pertahanan:PerbandinganMisi";
   } else if (category === 'ideologi') {
     initialMenu = "Menu:Ideologi";
+  } else if (category === 'kelistrikan') {
+    if (subMenu === 'grid-nasional') initialMenu = "Menu:Kelistrikan";
+    else initialMenu = "Kelistrikan";
   }
 
   const [activeMenu, setActiveMenu] = useState<string>(initialMenu);
@@ -142,6 +145,8 @@ export function useGamePath(path: string[]) {
       "Dashboard:Budget": "/game/anggaran/dashboard",
       "Menu:Agama": "/game/agama",
       "Menu:Ideologi": "/game/ideologi",
+      "Kelistrikan": "/game/kelistrikan",
+      "Menu:Kelistrikan": "/game/kelistrikan/grid-nasional",
       "Komando Pertahanan:PerbandinganMisi": "/game/misi-taktis"
     };
 

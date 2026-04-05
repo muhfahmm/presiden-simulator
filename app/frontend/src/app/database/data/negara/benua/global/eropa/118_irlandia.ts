@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { irlandia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/118_irlandia";
+
 import { irlandia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/118_irlandia";
 import { irlandia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/118_irlandia";
 import { irlandia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/118_irlandia";
@@ -62,6 +64,7 @@ export const irlandia: CountryData = {
   "militer_strategis": irlandia_strategis,
   "armada_kepolisian": irlandia_kepolisian,
   "pabrik_militer": irlandia_pabrik,
+  "intelijen": irlandia_intelijen,
     "pendidikan": irlandia_pendidikan,
   "kesehatan": irlandia_kesehatan,
   "hukum": irlandia_hukum,

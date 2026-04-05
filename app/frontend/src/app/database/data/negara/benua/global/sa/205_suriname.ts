@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { suriname_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/205_suriname";
+
 import { suriname_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/205_suriname";
 import { suriname_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/205_suriname";
 import { suriname_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/205_suriname";
@@ -62,6 +64,7 @@ export const suriname: CountryData = {
   "militer_strategis": suriname_strategis,
   "armada_kepolisian": suriname_kepolisian,
   "pabrik_militer": suriname_pabrik,
+  "intelijen": suriname_intelijen,
     "pendidikan": suriname_pendidikan,
   "kesehatan": suriname_kesehatan,
   "hukum": suriname_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { dominika_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/160_dominika";
+
 import { dominika_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/160_dominika";
 import { dominika_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/160_dominika";
 import { dominika_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/160_dominika";
@@ -62,6 +64,7 @@ export const dominika: CountryData = {
   "militer_strategis": dominika_strategis,
   "armada_kepolisian": dominika_kepolisian,
   "pabrik_militer": dominika_pabrik,
+  "intelijen": dominika_intelijen,
     "pendidikan": dominika_pendidikan,
   "kesehatan": dominika_kesehatan,
   "hukum": dominika_hukum,

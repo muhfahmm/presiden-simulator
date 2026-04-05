@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { polandia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/135_polandia";
+
 import { polandia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/135_polandia";
 import { polandia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/135_polandia";
 import { polandia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/135_polandia";
@@ -62,6 +64,7 @@ export const polandia: CountryData = {
   "militer_strategis": polandia_strategis,
   "armada_kepolisian": polandia_kepolisian,
   "pabrik_militer": polandia_pabrik,
+  "intelijen": polandia_intelijen,
     "pendidikan": polandia_pendidikan,
   "kesehatan": polandia_kesehatan,
   "hukum": polandia_hukum,

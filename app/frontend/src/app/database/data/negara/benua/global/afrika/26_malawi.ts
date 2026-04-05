@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { malawi_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/26_malawi";
+
 import { malawi_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/26_malawi";
 import { malawi_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/26_malawi";
 import { malawi_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/26_malawi";
@@ -62,6 +64,7 @@ export const malawi: CountryData = {
   "militer_strategis": malawi_strategis,
   "armada_kepolisian": malawi_kepolisian,
   "pabrik_militer": malawi_pabrik,
+  "intelijen": malawi_intelijen,
     "pendidikan": malawi_pendidikan,
   "kesehatan": malawi_kesehatan,
   "hukum": malawi_hukum,

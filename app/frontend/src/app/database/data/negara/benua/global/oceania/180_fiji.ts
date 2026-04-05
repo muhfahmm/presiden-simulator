@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { fiji_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/180_fiji";
+
 import { fiji_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/180_fiji";
 import { fiji_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/180_fiji";
 import { fiji_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/180_fiji";
@@ -62,6 +64,7 @@ export const fiji: CountryData = {
   "militer_strategis": fiji_strategis,
   "armada_kepolisian": fiji_kepolisian,
   "pabrik_militer": fiji_pabrik,
+  "intelijen": fiji_intelijen,
     "pendidikan": fiji_pendidikan,
   "kesehatan": fiji_kesehatan,
   "hukum": fiji_hukum,

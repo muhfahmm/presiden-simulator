@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { latvia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/125_latvia";
+
 import { latvia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/125_latvia";
 import { latvia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/125_latvia";
 import { latvia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/125_latvia";
@@ -62,6 +64,7 @@ export const latvia: CountryData = {
   "militer_strategis": latvia_strategis,
   "armada_kepolisian": latvia_kepolisian,
   "pabrik_militer": latvia_pabrik,
+  "intelijen": latvia_intelijen,
     "pendidikan": latvia_pendidikan,
   "kesehatan": latvia_kesehatan,
   "hukum": latvia_hukum,

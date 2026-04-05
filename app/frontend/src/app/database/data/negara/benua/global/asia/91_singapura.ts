@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { singapura_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/91_singapura";
+
 import { singapura_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/91_singapura";
 import { singapura_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/91_singapura";
 import { singapura_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/91_singapura";
@@ -62,6 +64,7 @@ export const singapura: CountryData = {
   "militer_strategis": singapura_strategis,
   "armada_kepolisian": singapura_kepolisian,
   "pabrik_militer": singapura_pabrik,
+  "intelijen": singapura_intelijen,
     "pendidikan": singapura_pendidikan,
   "kesehatan": singapura_kesehatan,
   "hukum": singapura_hukum,

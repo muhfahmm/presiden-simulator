@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { jerman_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/121_jerman";
+
 import { jerman_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/121_jerman";
 import { jerman_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/121_jerman";
 import { jerman_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/121_jerman";
@@ -62,6 +64,7 @@ export const jerman: CountryData = {
   "militer_strategis": jerman_strategis,
   "armada_kepolisian": jerman_kepolisian,
   "pabrik_militer": jerman_pabrik,
+  "intelijen": jerman_intelijen,
     "pendidikan": jerman_pendidikan,
   "kesehatan": jerman_kesehatan,
   "hukum": jerman_hukum,

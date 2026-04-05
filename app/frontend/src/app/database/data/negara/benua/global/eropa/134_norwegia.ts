@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { norwegia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/134_norwegia";
+
 import { norwegia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/134_norwegia";
 import { norwegia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/134_norwegia";
 import { norwegia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/134_norwegia";
@@ -62,6 +64,7 @@ export const norwegia: CountryData = {
   "militer_strategis": norwegia_strategis,
   "armada_kepolisian": norwegia_kepolisian,
   "pabrik_militer": norwegia_pabrik,
+  "intelijen": norwegia_intelijen,
     "pendidikan": norwegia_pendidikan,
   "kesehatan": norwegia_kesehatan,
   "hukum": norwegia_hukum,

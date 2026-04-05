@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { china_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/62_china";
+
 import { china_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/62_china";
 import { china_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/62_china";
 import { china_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/62_china";
@@ -62,6 +64,7 @@ export const china: CountryData = {
   "militer_strategis": china_strategis,
   "armada_kepolisian": china_kepolisian,
   "pabrik_militer": china_pabrik,
+  "intelijen": china_intelijen,
     "pendidikan": china_pendidikan,
   "kesehatan": china_kesehatan,
   "hukum": china_hukum,

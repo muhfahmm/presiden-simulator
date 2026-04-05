@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { gambia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/14_gambia";
+
 import { gambia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/14_gambia";
 import { gambia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/14_gambia";
 import { gambia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/14_gambia";
@@ -62,6 +64,7 @@ export const gambia: CountryData = {
   "militer_strategis": gambia_strategis,
   "armada_kepolisian": gambia_kepolisian,
   "pabrik_militer": gambia_pabrik,
+  "intelijen": gambia_intelijen,
     "pendidikan": gambia_pendidikan,
   "kesehatan": gambia_kesehatan,
   "hukum": gambia_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { burkina_faso_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/6_burkina_faso";
+
 import { burkina_faso_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/6_burkina_faso";
 import { burkina_faso_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/6_burkina_faso";
 import { burkina_faso_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/6_burkina_faso";
@@ -62,6 +64,7 @@ export const burkina_faso: CountryData = {
   "militer_strategis": burkina_faso_strategis,
   "armada_kepolisian": burkina_faso_kepolisian,
   "pabrik_militer": burkina_faso_pabrik,
+  "intelijen": burkina_faso_intelijen,
     "pendidikan": burkina_faso_pendidikan,
   "kesehatan": burkina_faso_kesehatan,
   "hukum": burkina_faso_hukum,

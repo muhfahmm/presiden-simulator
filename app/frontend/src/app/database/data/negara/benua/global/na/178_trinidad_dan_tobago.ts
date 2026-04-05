@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { trinidad_dan_tobago_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/178_trinidad_dan_tobago";
+
 import { trinidad_dan_tobago_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/178_trinidad_dan_tobago";
 import { trinidad_dan_tobago_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/178_trinidad_dan_tobago";
 import { trinidad_dan_tobago_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/178_trinidad_dan_tobago";
@@ -62,6 +64,7 @@ export const trinidad_dan_tobago: CountryData = {
   "militer_strategis": trinidad_dan_tobago_strategis,
   "armada_kepolisian": trinidad_dan_tobago_kepolisian,
   "pabrik_militer": trinidad_dan_tobago_pabrik,
+  "intelijen": trinidad_dan_tobago_intelijen,
     "pendidikan": trinidad_dan_tobago_pendidikan,
   "kesehatan": trinidad_dan_tobago_kesehatan,
   "hukum": trinidad_dan_tobago_hukum,

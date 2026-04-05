@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { republik_zimbabwe_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/43_republik_zimbabwe";
+
 import { republik_zimbabwe_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/43_republik_zimbabwe";
 import { republik_zimbabwe_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/43_republik_zimbabwe";
 import { republik_zimbabwe_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/43_republik_zimbabwe";
@@ -62,6 +64,7 @@ export const republik_zimbabwe: CountryData = {
   "militer_strategis": republik_zimbabwe_strategis,
   "armada_kepolisian": republik_zimbabwe_kepolisian,
   "pabrik_militer": republik_zimbabwe_pabrik,
+  "intelijen": republik_zimbabwe_intelijen,
     "pendidikan": republik_zimbabwe_pendidikan,
   "kesehatan": republik_zimbabwe_kesehatan,
   "hukum": republik_zimbabwe_hukum,

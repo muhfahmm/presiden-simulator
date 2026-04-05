@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { brazil_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/197_brazil";
+
 import { brazil_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/197_brazil";
 import { brazil_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/197_brazil";
 import { brazil_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/197_brazil";
@@ -62,6 +64,7 @@ export const brazil: CountryData = {
   "militer_strategis": brazil_strategis,
   "armada_kepolisian": brazil_kepolisian,
   "pabrik_militer": brazil_pabrik,
+  "intelijen": brazil_intelijen,
     "pendidikan": brazil_pendidikan,
   "kesehatan": brazil_kesehatan,
   "hukum": brazil_hukum,

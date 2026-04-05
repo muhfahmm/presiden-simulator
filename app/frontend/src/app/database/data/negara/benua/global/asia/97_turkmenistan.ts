@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { turkmenistan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/97_turkmenistan";
+
 import { turkmenistan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/97_turkmenistan";
 import { turkmenistan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/97_turkmenistan";
 import { turkmenistan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/97_turkmenistan";
@@ -62,6 +64,7 @@ export const turkmenistan: CountryData = {
   "militer_strategis": turkmenistan_strategis,
   "armada_kepolisian": turkmenistan_kepolisian,
   "pabrik_militer": turkmenistan_pabrik,
+  "intelijen": turkmenistan_intelijen,
     "pendidikan": turkmenistan_pendidikan,
   "kesehatan": turkmenistan_kesehatan,
   "hukum": turkmenistan_hukum,

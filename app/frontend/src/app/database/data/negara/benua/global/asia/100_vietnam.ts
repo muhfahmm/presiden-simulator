@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { vietnam_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/100_vietnam";
+
 import { vietnam_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/100_vietnam";
 import { vietnam_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/100_vietnam";
 import { vietnam_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/100_vietnam";
@@ -62,6 +64,7 @@ export const vietnam: CountryData = {
   "militer_strategis": vietnam_strategis,
   "armada_kepolisian": vietnam_kepolisian,
   "pabrik_militer": vietnam_pabrik,
+  "intelijen": vietnam_intelijen,
     "pendidikan": vietnam_pendidikan,
   "kesehatan": vietnam_kesehatan,
   "hukum": vietnam_hukum,

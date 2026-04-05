@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { paraguay_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/203_paraguay";
+
 import { paraguay_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/203_paraguay";
 import { paraguay_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/203_paraguay";
 import { paraguay_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/203_paraguay";
@@ -62,6 +64,7 @@ export const paraguay: CountryData = {
   "militer_strategis": paraguay_strategis,
   "armada_kepolisian": paraguay_kepolisian,
   "pabrik_militer": paraguay_pabrik,
+  "intelijen": paraguay_intelijen,
     "pendidikan": paraguay_pendidikan,
   "kesehatan": paraguay_kesehatan,
   "hukum": paraguay_hukum,

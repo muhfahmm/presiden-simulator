@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { mongolia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/83_mongolia";
+
 import { mongolia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/83_mongolia";
 import { mongolia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/83_mongolia";
 import { mongolia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/83_mongolia";
@@ -62,6 +64,7 @@ export const mongolia: CountryData = {
   "militer_strategis": mongolia_strategis,
   "armada_kepolisian": mongolia_kepolisian,
   "pabrik_militer": mongolia_pabrik,
+  "intelijen": mongolia_intelijen,
     "pendidikan": mongolia_pendidikan,
   "kesehatan": mongolia_kesehatan,
   "hukum": mongolia_hukum,

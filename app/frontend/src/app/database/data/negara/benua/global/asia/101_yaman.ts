@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { yaman_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/101_yaman";
+
 import { yaman_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/101_yaman";
 import { yaman_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/101_yaman";
 import { yaman_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/101_yaman";
@@ -62,6 +64,7 @@ export const yaman: CountryData = {
   "militer_strategis": yaman_strategis,
   "armada_kepolisian": yaman_kepolisian,
   "pabrik_militer": yaman_pabrik,
+  "intelijen": yaman_intelijen,
     "pendidikan": yaman_pendidikan,
   "kesehatan": yaman_kesehatan,
   "hukum": yaman_hukum,

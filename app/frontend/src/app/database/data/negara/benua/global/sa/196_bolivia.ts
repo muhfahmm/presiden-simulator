@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { bolivia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/196_bolivia";
+
 import { bolivia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/196_bolivia";
 import { bolivia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/196_bolivia";
 import { bolivia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/196_bolivia";
@@ -62,6 +64,7 @@ export const bolivia: CountryData = {
   "militer_strategis": bolivia_strategis,
   "armada_kepolisian": bolivia_kepolisian,
   "pabrik_militer": bolivia_pabrik,
+  "intelijen": bolivia_intelijen,
     "pendidikan": bolivia_pendidikan,
   "kesehatan": bolivia_kesehatan,
   "hukum": bolivia_hukum,

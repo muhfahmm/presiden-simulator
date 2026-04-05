@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { lithuania_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/127_lithuania";
+
 import { lithuania_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/127_lithuania";
 import { lithuania_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/127_lithuania";
 import { lithuania_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/127_lithuania";
@@ -62,6 +64,7 @@ export const lithuania: CountryData = {
   "militer_strategis": lithuania_strategis,
   "armada_kepolisian": lithuania_kepolisian,
   "pabrik_militer": lithuania_pabrik,
+  "intelijen": lithuania_intelijen,
     "pendidikan": lithuania_pendidikan,
   "kesehatan": lithuania_kesehatan,
   "hukum": lithuania_hukum,

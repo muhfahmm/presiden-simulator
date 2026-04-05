@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { thailand_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/96_thailand";
+
 import { thailand_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/96_thailand";
 import { thailand_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/96_thailand";
 import { thailand_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/96_thailand";
@@ -62,6 +64,7 @@ export const thailand: CountryData = {
   "militer_strategis": thailand_strategis,
   "armada_kepolisian": thailand_kepolisian,
   "pabrik_militer": thailand_pabrik,
+  "intelijen": thailand_intelijen,
     "pendidikan": thailand_pendidikan,
   "kesehatan": thailand_kesehatan,
   "hukum": thailand_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { laos_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/78_laos";
+
 import { laos_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/78_laos";
 import { laos_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/78_laos";
 import { laos_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/78_laos";
@@ -62,6 +64,7 @@ export const laos: CountryData = {
   "militer_strategis": laos_strategis,
   "armada_kepolisian": laos_kepolisian,
   "pabrik_militer": laos_pabrik,
+  "intelijen": laos_intelijen,
     "pendidikan": laos_pendidikan,
   "kesehatan": laos_kesehatan,
   "hukum": laos_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { ekuador_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/199_ekuador";
+
 import { ekuador_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/199_ekuador";
 import { ekuador_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/199_ekuador";
 import { ekuador_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/199_ekuador";
@@ -62,6 +64,7 @@ export const ekuador: CountryData = {
   "militer_strategis": ekuador_strategis,
   "armada_kepolisian": ekuador_kepolisian,
   "pabrik_militer": ekuador_pabrik,
+  "intelijen": ekuador_intelijen,
     "pendidikan": ekuador_pendidikan,
   "kesehatan": ekuador_kesehatan,
   "hukum": ekuador_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { guyana_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/201_guyana";
+
 import { guyana_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/201_guyana";
 import { guyana_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/201_guyana";
 import { guyana_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/201_guyana";
@@ -62,6 +64,7 @@ export const guyana: CountryData = {
   "militer_strategis": guyana_strategis,
   "armada_kepolisian": guyana_kepolisian,
   "pabrik_militer": guyana_pabrik,
+  "intelijen": guyana_intelijen,
     "pendidikan": guyana_pendidikan,
   "kesehatan": guyana_kesehatan,
   "hukum": guyana_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { denmark_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/112_denmark";
+
 import { denmark_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/112_denmark";
 import { denmark_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/112_denmark";
 import { denmark_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/112_denmark";
@@ -62,6 +64,7 @@ export const denmark: CountryData = {
   "militer_strategis": denmark_strategis,
   "armada_kepolisian": denmark_kepolisian,
   "pabrik_militer": denmark_pabrik,
+  "intelijen": denmark_intelijen,
     "pendidikan": denmark_pendidikan,
   "kesehatan": denmark_kesehatan,
   "hukum": denmark_hukum,

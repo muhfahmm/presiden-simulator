@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { tonga_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/192_tonga";
+
 import { tonga_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/192_tonga";
 import { tonga_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/192_tonga";
 import { tonga_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/192_tonga";
@@ -62,6 +64,7 @@ export const tonga: CountryData = {
   "militer_strategis": tonga_strategis,
   "armada_kepolisian": tonga_kepolisian,
   "pabrik_militer": tonga_pabrik,
+  "intelijen": tonga_intelijen,
     "pendidikan": tonga_pendidikan,
   "kesehatan": tonga_kesehatan,
   "hukum": tonga_hukum,

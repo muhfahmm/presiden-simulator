@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { belarus_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/107_belarus";
+
 import { belarus_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/107_belarus";
 import { belarus_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/107_belarus";
 import { belarus_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/107_belarus";
@@ -62,6 +64,7 @@ export const belarus: CountryData = {
   "militer_strategis": belarus_strategis,
   "armada_kepolisian": belarus_kepolisian,
   "pabrik_militer": belarus_pabrik,
+  "intelijen": belarus_intelijen,
     "pendidikan": belarus_pendidikan,
   "kesehatan": belarus_kesehatan,
   "hukum": belarus_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { israel_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/70_israel";
+
 import { israel_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/70_israel";
 import { israel_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/70_israel";
 import { israel_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/70_israel";
@@ -62,6 +64,7 @@ export const israel: CountryData = {
   "militer_strategis": israel_strategis,
   "armada_kepolisian": israel_kepolisian,
   "pabrik_militer": israel_pabrik,
+  "intelijen": israel_intelijen,
     "pendidikan": israel_pendidikan,
   "kesehatan": israel_kesehatan,
   "hukum": israel_hukum,

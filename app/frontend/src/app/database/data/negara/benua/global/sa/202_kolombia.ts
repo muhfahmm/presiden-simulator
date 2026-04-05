@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { kolombia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/sa/202_kolombia";
+
 import { kolombia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/sa/202_kolombia";
 import { kolombia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/202_kolombia";
 import { kolombia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/202_kolombia";
@@ -62,6 +64,7 @@ export const kolombia: CountryData = {
   "militer_strategis": kolombia_strategis,
   "armada_kepolisian": kolombia_kepolisian,
   "pabrik_militer": kolombia_pabrik,
+  "intelijen": kolombia_intelijen,
     "pendidikan": kolombia_pendidikan,
   "kesehatan": kolombia_kesehatan,
   "hukum": kolombia_hukum,

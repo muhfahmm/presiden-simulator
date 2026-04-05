@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { republik_afrika_tengah_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/37_republik_afrika_tengah";
+
 import { republik_afrika_tengah_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/37_republik_afrika_tengah";
 import { republik_afrika_tengah_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/37_republik_afrika_tengah";
@@ -62,6 +64,7 @@ export const republik_afrika_tengah: CountryData = {
   "militer_strategis": republik_afrika_tengah_strategis,
   "armada_kepolisian": republik_afrika_tengah_kepolisian,
   "pabrik_militer": republik_afrika_tengah_pabrik,
+  "intelijen": republik_afrika_tengah_intelijen,
     "pendidikan": republik_afrika_tengah_pendidikan,
   "kesehatan": republik_afrika_tengah_kesehatan,
   "hukum": republik_afrika_tengah_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { senegal_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/46_senegal";
+
 import { senegal_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/46_senegal";
 import { senegal_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/46_senegal";
 import { senegal_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/46_senegal";
@@ -62,6 +64,7 @@ export const senegal: CountryData = {
   "militer_strategis": senegal_strategis,
   "armada_kepolisian": senegal_kepolisian,
   "pabrik_militer": senegal_pabrik,
+  "intelijen": senegal_intelijen,
     "pendidikan": senegal_pendidikan,
   "kesehatan": senegal_kesehatan,
   "hukum": senegal_hukum,

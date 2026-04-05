@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { kepulauan_faroe_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/122_kepulauan_faroe";
+
 import { kepulauan_faroe_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/122_kepulauan_faroe";
@@ -62,6 +64,7 @@ export const kepulauan_faroe: CountryData = {
   "militer_strategis": kepulauan_faroe_strategis,
   "armada_kepolisian": kepulauan_faroe_kepolisian,
   "pabrik_militer": kepulauan_faroe_pabrik,
+  "intelijen": kepulauan_faroe_intelijen,
     "pendidikan": kepulauan_faroe_pendidikan,
   "kesehatan": kepulauan_faroe_kesehatan,
   "hukum": kepulauan_faroe_hukum,

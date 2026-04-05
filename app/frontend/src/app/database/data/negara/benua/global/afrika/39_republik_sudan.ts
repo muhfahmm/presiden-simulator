@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { republik_sudan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/39_republik_sudan";
+
 import { republik_sudan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/39_republik_sudan";
 import { republik_sudan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/39_republik_sudan";
 import { republik_sudan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/39_republik_sudan";
@@ -62,6 +64,7 @@ export const republik_sudan: CountryData = {
   "militer_strategis": republik_sudan_strategis,
   "armada_kepolisian": republik_sudan_kepolisian,
   "pabrik_militer": republik_sudan_pabrik,
+  "intelijen": republik_sudan_intelijen,
     "pendidikan": republik_sudan_pendidikan,
   "kesehatan": republik_sudan_kesehatan,
   "hukum": republik_sudan_hukum,

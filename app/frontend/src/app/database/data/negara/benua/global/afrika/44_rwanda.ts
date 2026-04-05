@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { rwanda_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/44_rwanda";
+
 import { rwanda_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/44_rwanda";
 import { rwanda_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/44_rwanda";
 import { rwanda_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/44_rwanda";
@@ -62,6 +64,7 @@ export const rwanda: CountryData = {
   "militer_strategis": rwanda_strategis,
   "armada_kepolisian": rwanda_kepolisian,
   "pabrik_militer": rwanda_pabrik,
+  "intelijen": rwanda_intelijen,
     "pendidikan": rwanda_pendidikan,
   "kesehatan": rwanda_kesehatan,
   "hukum": rwanda_hukum,

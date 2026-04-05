@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { sri_lanka_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/92_sri_lanka";
+
 import { sri_lanka_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/92_sri_lanka";
 import { sri_lanka_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/92_sri_lanka";
 import { sri_lanka_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/92_sri_lanka";
@@ -62,6 +64,7 @@ export const sri_lanka: CountryData = {
   "militer_strategis": sri_lanka_strategis,
   "armada_kepolisian": sri_lanka_kepolisian,
   "pabrik_militer": sri_lanka_pabrik,
+  "intelijen": sri_lanka_intelijen,
     "pendidikan": sri_lanka_pendidikan,
   "kesehatan": sri_lanka_kesehatan,
   "hukum": sri_lanka_hukum,

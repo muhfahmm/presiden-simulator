@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { benin_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/4_benin";
+
 import { benin_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/4_benin";
 import { benin_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/4_benin";
 import { benin_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/4_benin";
@@ -62,6 +64,7 @@ export const benin: CountryData = {
   "militer_strategis": benin_strategis,
   "armada_kepolisian": benin_kepolisian,
   "pabrik_militer": benin_pabrik,
+  "intelijen": benin_intelijen,
     "pendidikan": benin_pendidikan,
   "kesehatan": benin_kesehatan,
   "hukum": benin_hukum,

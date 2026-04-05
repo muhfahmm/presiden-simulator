@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { kamboja_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/72_kamboja";
+
 import { kamboja_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/72_kamboja";
 import { kamboja_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/72_kamboja";
 import { kamboja_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/72_kamboja";
@@ -62,6 +64,7 @@ export const kamboja: CountryData = {
   "militer_strategis": kamboja_strategis,
   "armada_kepolisian": kamboja_kepolisian,
   "pabrik_militer": kamboja_pabrik,
+  "intelijen": kamboja_intelijen,
     "pendidikan": kamboja_pendidikan,
   "kesehatan": kamboja_kesehatan,
   "hukum": kamboja_hukum,

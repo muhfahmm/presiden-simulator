@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { estonia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/113_estonia";
+
 import { estonia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/113_estonia";
 import { estonia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/113_estonia";
 import { estonia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/113_estonia";
@@ -62,6 +64,7 @@ export const estonia: CountryData = {
   "militer_strategis": estonia_strategis,
   "armada_kepolisian": estonia_kepolisian,
   "pabrik_militer": estonia_pabrik,
+  "intelijen": estonia_intelijen,
     "pendidikan": estonia_pendidikan,
   "kesehatan": estonia_kesehatan,
   "hukum": estonia_hukum,

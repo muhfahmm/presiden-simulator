@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { bhutan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/60_bhutan";
+
 import { bhutan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/60_bhutan";
 import { bhutan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/60_bhutan";
 import { bhutan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/60_bhutan";
@@ -62,6 +64,7 @@ export const bhutan: CountryData = {
   "militer_strategis": bhutan_strategis,
   "armada_kepolisian": bhutan_kepolisian,
   "pabrik_militer": bhutan_pabrik,
+  "intelijen": bhutan_intelijen,
     "pendidikan": bhutan_pendidikan,
   "kesehatan": bhutan_kesehatan,
   "hukum": bhutan_hukum,

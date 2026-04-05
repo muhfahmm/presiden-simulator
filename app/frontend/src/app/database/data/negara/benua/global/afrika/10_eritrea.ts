@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { eritrea_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/10_eritrea";
+
 import { eritrea_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/10_eritrea";
 import { eritrea_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/10_eritrea";
 import { eritrea_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/10_eritrea";
@@ -62,6 +64,7 @@ export const eritrea: CountryData = {
   "militer_strategis": eritrea_strategis,
   "armada_kepolisian": eritrea_kepolisian,
   "pabrik_militer": eritrea_pabrik,
+  "intelijen": eritrea_intelijen,
     "pendidikan": eritrea_pendidikan,
   "kesehatan": eritrea_kesehatan,
   "hukum": eritrea_hukum,

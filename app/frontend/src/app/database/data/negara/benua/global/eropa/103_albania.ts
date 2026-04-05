@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { albania_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/103_albania";
+
 import { albania_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/103_albania";
 import { albania_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/103_albania";
 import { albania_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/103_albania";
@@ -62,6 +64,7 @@ export const albania: CountryData = {
   "militer_strategis": albania_strategis,
   "armada_kepolisian": albania_kepolisian,
   "pabrik_militer": albania_pabrik,
+  "intelijen": albania_intelijen,
     "pendidikan": albania_pendidikan,
   "kesehatan": albania_kesehatan,
   "hukum": albania_hukum,

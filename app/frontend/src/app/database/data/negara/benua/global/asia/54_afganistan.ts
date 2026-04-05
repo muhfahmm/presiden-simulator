@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { afganistan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/54_afganistan";
+
 import { afganistan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/54_afganistan";
 import { afganistan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/54_afganistan";
 import { afganistan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/54_afganistan";
@@ -62,6 +64,7 @@ export const afganistan: CountryData = {
   "militer_strategis": afganistan_strategis,
   "armada_kepolisian": afganistan_kepolisian,
   "pabrik_militer": afganistan_pabrik,
+  "intelijen": afganistan_intelijen,
     "pendidikan": afganistan_pendidikan,
   "kesehatan": afganistan_kesehatan,
   "hukum": afganistan_hukum,

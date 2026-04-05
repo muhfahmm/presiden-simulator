@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { belgia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/108_belgia";
+
 import { belgia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/108_belgia";
 import { belgia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/108_belgia";
 import { belgia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/108_belgia";
@@ -62,6 +64,7 @@ export const belgia: CountryData = {
   "militer_strategis": belgia_strategis,
   "armada_kepolisian": belgia_kepolisian,
   "pabrik_militer": belgia_pabrik,
+  "intelijen": belgia_intelijen,
     "pendidikan": belgia_pendidikan,
   "kesehatan": belgia_kesehatan,
   "hukum": belgia_hukum,

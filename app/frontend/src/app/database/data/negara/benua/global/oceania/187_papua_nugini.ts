@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { papua_nugini_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/187_papua_nugini";
+
 import { papua_nugini_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/187_papua_nugini";
 import { papua_nugini_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/187_papua_nugini";
 import { papua_nugini_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/187_papua_nugini";
@@ -62,6 +64,7 @@ export const papua_nugini: CountryData = {
   "militer_strategis": papua_nugini_strategis,
   "armada_kepolisian": papua_nugini_kepolisian,
   "pabrik_militer": papua_nugini_pabrik,
+  "intelijen": papua_nugini_intelijen,
     "pendidikan": papua_nugini_pendidikan,
   "kesehatan": papua_nugini_kesehatan,
   "hukum": papua_nugini_hukum,

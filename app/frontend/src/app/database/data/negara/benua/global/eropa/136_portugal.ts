@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { portugal_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/136_portugal";
+
 import { portugal_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/136_portugal";
 import { portugal_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/136_portugal";
 import { portugal_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/136_portugal";
@@ -62,6 +64,7 @@ export const portugal: CountryData = {
   "militer_strategis": portugal_strategis,
   "armada_kepolisian": portugal_kepolisian,
   "pabrik_militer": portugal_pabrik,
+  "intelijen": portugal_intelijen,
     "pendidikan": portugal_pendidikan,
   "kesehatan": portugal_kesehatan,
   "hukum": portugal_hukum,

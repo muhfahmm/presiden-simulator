@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { tunisia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/53_tunisia";
+
 import { tunisia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/53_tunisia";
 import { tunisia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/53_tunisia";
 import { tunisia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/53_tunisia";
@@ -62,6 +64,7 @@ export const tunisia: CountryData = {
   "militer_strategis": tunisia_strategis,
   "armada_kepolisian": tunisia_kepolisian,
   "pabrik_militer": tunisia_pabrik,
+  "intelijen": tunisia_intelijen,
     "pendidikan": tunisia_pendidikan,
   "kesehatan": tunisia_kesehatan,
   "hukum": tunisia_hukum,

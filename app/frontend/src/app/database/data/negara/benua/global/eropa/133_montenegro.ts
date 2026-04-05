@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { montenegro_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/133_montenegro";
+
 import { montenegro_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/133_montenegro";
 import { montenegro_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/133_montenegro";
 import { montenegro_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/133_montenegro";
@@ -62,6 +64,7 @@ export const montenegro: CountryData = {
   "militer_strategis": montenegro_strategis,
   "armada_kepolisian": montenegro_kepolisian,
   "pabrik_militer": montenegro_pabrik,
+  "intelijen": montenegro_intelijen,
     "pendidikan": montenegro_pendidikan,
   "kesehatan": montenegro_kesehatan,
   "hukum": montenegro_hukum,

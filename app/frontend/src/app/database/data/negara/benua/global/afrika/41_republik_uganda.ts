@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { republik_uganda_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/41_republik_uganda";
+
 import { republik_uganda_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/41_republik_uganda";
 import { republik_uganda_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/41_republik_uganda";
 import { republik_uganda_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/41_republik_uganda";
@@ -62,6 +64,7 @@ export const republik_uganda: CountryData = {
   "militer_strategis": republik_uganda_strategis,
   "armada_kepolisian": republik_uganda_kepolisian,
   "pabrik_militer": republik_uganda_pabrik,
+  "intelijen": republik_uganda_intelijen,
     "pendidikan": republik_uganda_pendidikan,
   "kesehatan": republik_uganda_kesehatan,
   "hukum": republik_uganda_hukum,

@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { nepal_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/85_nepal";
+
 import { nepal_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/85_nepal";
 import { nepal_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/85_nepal";
 import { nepal_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/85_nepal";
@@ -62,6 +64,7 @@ export const nepal: CountryData = {
   "militer_strategis": nepal_strategis,
   "armada_kepolisian": nepal_kepolisian,
   "pabrik_militer": nepal_pabrik,
+  "intelijen": nepal_intelijen,
     "pendidikan": nepal_pendidikan,
   "kesehatan": nepal_kesehatan,
   "hukum": nepal_hukum,

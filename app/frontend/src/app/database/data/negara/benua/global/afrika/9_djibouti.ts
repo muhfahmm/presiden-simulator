@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { djibouti_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/9_djibouti";
+
 import { djibouti_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/9_djibouti";
 import { djibouti_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/9_djibouti";
 import { djibouti_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/9_djibouti";
@@ -62,6 +64,7 @@ export const djibouti: CountryData = {
   "militer_strategis": djibouti_strategis,
   "armada_kepolisian": djibouti_kepolisian,
   "pabrik_militer": djibouti_pabrik,
+  "intelijen": djibouti_intelijen,
     "pendidikan": djibouti_pendidikan,
   "kesehatan": djibouti_kesehatan,
   "hukum": djibouti_hukum,

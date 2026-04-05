@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { tajikistan_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/95_tajikistan";
+
 import { tajikistan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/95_tajikistan";
 import { tajikistan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/95_tajikistan";
 import { tajikistan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/95_tajikistan";
@@ -62,6 +64,7 @@ export const tajikistan: CountryData = {
   "militer_strategis": tajikistan_strategis,
   "armada_kepolisian": tajikistan_kepolisian,
   "pabrik_militer": tajikistan_pabrik,
+  "intelijen": tajikistan_intelijen,
     "pendidikan": tajikistan_pendidikan,
   "kesehatan": tajikistan_kesehatan,
   "hukum": tajikistan_hukum,

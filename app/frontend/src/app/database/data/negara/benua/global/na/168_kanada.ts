@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { kanada_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/168_kanada";
+
 import { kanada_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/168_kanada";
 import { kanada_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/168_kanada";
 import { kanada_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/168_kanada";
@@ -62,6 +64,7 @@ export const kanada: CountryData = {
   "militer_strategis": kanada_strategis,
   "armada_kepolisian": kanada_kepolisian,
   "pabrik_militer": kanada_pabrik,
+  "intelijen": kanada_intelijen,
     "pendidikan": kanada_pendidikan,
   "kesehatan": kanada_kesehatan,
   "hukum": kanada_hukum,

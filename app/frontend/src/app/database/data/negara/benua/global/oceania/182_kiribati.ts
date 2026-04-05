@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { kiribati_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/oceania/182_kiribati";
+
 import { kiribati_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/oceania/182_kiribati";
 import { kiribati_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/182_kiribati";
 import { kiribati_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/182_kiribati";
@@ -62,6 +64,7 @@ export const kiribati: CountryData = {
   "militer_strategis": kiribati_strategis,
   "armada_kepolisian": kiribati_kepolisian,
   "pabrik_militer": kiribati_pabrik,
+  "intelijen": kiribati_intelijen,
     "pendidikan": kiribati_pendidikan,
   "kesehatan": kiribati_kesehatan,
   "hukum": kiribati_hukum,

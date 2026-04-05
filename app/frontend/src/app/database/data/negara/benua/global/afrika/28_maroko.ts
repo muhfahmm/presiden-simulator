@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { maroko_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/28_maroko";
+
 import { maroko_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/28_maroko";
 import { maroko_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/28_maroko";
 import { maroko_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/28_maroko";
@@ -62,6 +64,7 @@ export const maroko: CountryData = {
   "militer_strategis": maroko_strategis,
   "armada_kepolisian": maroko_kepolisian,
   "pabrik_militer": maroko_pabrik,
+  "intelijen": maroko_intelijen,
     "pendidikan": maroko_pendidikan,
   "kesehatan": maroko_kesehatan,
   "hukum": maroko_hukum,

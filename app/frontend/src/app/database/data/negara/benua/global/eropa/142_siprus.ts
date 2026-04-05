@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { siprus_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/142_siprus";
+
 import { siprus_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/142_siprus";
 import { siprus_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/142_siprus";
 import { siprus_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/142_siprus";
@@ -62,6 +64,7 @@ export const siprus: CountryData = {
   "militer_strategis": siprus_strategis,
   "armada_kepolisian": siprus_kepolisian,
   "pabrik_militer": siprus_pabrik,
+  "intelijen": siprus_intelijen,
     "pendidikan": siprus_pendidikan,
   "kesehatan": siprus_kesehatan,
   "hukum": siprus_hukum,

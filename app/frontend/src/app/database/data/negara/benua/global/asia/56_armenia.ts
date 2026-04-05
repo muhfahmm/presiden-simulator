@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { armenia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/56_armenia";
+
 import { armenia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/56_armenia";
 import { armenia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/56_armenia";
 import { armenia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/56_armenia";
@@ -62,6 +64,7 @@ export const armenia: CountryData = {
   "militer_strategis": armenia_strategis,
   "armada_kepolisian": armenia_kepolisian,
   "pabrik_militer": armenia_pabrik,
+  "intelijen": armenia_intelijen,
     "pendidikan": armenia_pendidikan,
   "kesehatan": armenia_kesehatan,
   "hukum": armenia_hukum,

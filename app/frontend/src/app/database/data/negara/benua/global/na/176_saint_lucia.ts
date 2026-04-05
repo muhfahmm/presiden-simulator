@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { saint_lucia_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/176_saint_lucia";
+
 import { saint_lucia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/176_saint_lucia";
 import { saint_lucia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/176_saint_lucia";
 import { saint_lucia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/176_saint_lucia";
@@ -62,6 +64,7 @@ export const saint_lucia: CountryData = {
   "militer_strategis": saint_lucia_strategis,
   "armada_kepolisian": saint_lucia_kepolisian,
   "pabrik_militer": saint_lucia_pabrik,
+  "intelijen": saint_lucia_intelijen,
     "pendidikan": saint_lucia_pendidikan,
   "kesehatan": saint_lucia_kesehatan,
   "hukum": saint_lucia_hukum,

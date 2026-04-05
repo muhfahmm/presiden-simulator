@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { ukraina_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/eropa/149_ukraina";
+
 import { ukraina_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/eropa/149_ukraina";
 import { ukraina_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/149_ukraina";
 import { ukraina_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/149_ukraina";
@@ -62,6 +64,7 @@ export const ukraina: CountryData = {
   "militer_strategis": ukraina_strategis,
   "armada_kepolisian": ukraina_kepolisian,
   "pabrik_militer": ukraina_pabrik,
+  "intelijen": ukraina_intelijen,
     "pendidikan": ukraina_pendidikan,
   "kesehatan": ukraina_kesehatan,
   "hukum": ukraina_hukum,

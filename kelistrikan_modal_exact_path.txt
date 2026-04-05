@@ -1,0 +1,1 @@
+C:\fhm\EM\app\frontend\src\app\game\components\2_navigasi_menu\2_navigasi_bawah\9_kelistrikan\KelistrikanModal.tsx

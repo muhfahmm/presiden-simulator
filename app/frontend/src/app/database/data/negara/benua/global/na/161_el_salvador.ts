@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { el_salvador_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/na/161_el_salvador";
+
 import { el_salvador_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/na/161_el_salvador";
 import { el_salvador_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/161_el_salvador";
 import { el_salvador_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/161_el_salvador";
@@ -62,6 +64,7 @@ export const el_salvador: CountryData = {
   "militer_strategis": el_salvador_strategis,
   "armada_kepolisian": el_salvador_kepolisian,
   "pabrik_militer": el_salvador_pabrik,
+  "intelijen": el_salvador_intelijen,
     "pendidikan": el_salvador_pendidikan,
   "kesehatan": el_salvador_kesehatan,
   "hukum": el_salvador_hukum,

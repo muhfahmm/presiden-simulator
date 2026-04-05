@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { jepang_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/71_jepang";
+
 import { jepang_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/71_jepang";
 import { jepang_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/71_jepang";
 import { jepang_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/71_jepang";
@@ -62,6 +64,7 @@ export const jepang: CountryData = {
   "militer_strategis": jepang_strategis,
   "armada_kepolisian": jepang_kepolisian,
   "pabrik_militer": jepang_pabrik,
+  "intelijen": jepang_intelijen,
     "pendidikan": jepang_pendidikan,
   "kesehatan": jepang_kesehatan,
   "hukum": jepang_hukum,

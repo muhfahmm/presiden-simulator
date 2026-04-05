@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { republik_timor_leste_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/asia/90_republik_timor_leste";
+
 import { republik_timor_leste_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/asia/90_republik_timor_leste";
 import { republik_timor_leste_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/90_republik_timor_leste";
 import { republik_timor_leste_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/90_republik_timor_leste";
@@ -62,6 +64,7 @@ export const republik_timor_leste: CountryData = {
   "militer_strategis": republik_timor_leste_strategis,
   "armada_kepolisian": republik_timor_leste_kepolisian,
   "pabrik_militer": republik_timor_leste_pabrik,
+  "intelijen": republik_timor_leste_intelijen,
     "pendidikan": republik_timor_leste_pendidikan,
   "kesehatan": republik_timor_leste_kesehatan,
   "hukum": republik_timor_leste_hukum,

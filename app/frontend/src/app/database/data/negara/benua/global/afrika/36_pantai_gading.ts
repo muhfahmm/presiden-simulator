@@ -1,4 +1,6 @@
 import { CountryData } from "@/app/database/data/semua_fitur_negara";
+import { pantai_gading_intelijen } from "@/app/database/data/semua_fitur_negara/2_pertahanan/2_intelijen/afrika/36_pantai_gading";
+
 import { pantai_gading_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/5_sektor_agrikultur/afrika/36_pantai_gading";
 import { pantai_gading_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/36_pantai_gading";
 import { pantai_gading_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/36_pantai_gading";
@@ -62,6 +64,7 @@ export const pantai_gading: CountryData = {
   "militer_strategis": pantai_gading_strategis,
   "armada_kepolisian": pantai_gading_kepolisian,
   "pabrik_militer": pantai_gading_pabrik,
+  "intelijen": pantai_gading_intelijen,
     "pendidikan": pantai_gading_pendidikan,
   "kesehatan": pantai_gading_kesehatan,
   "hukum": pantai_gading_hukum,
