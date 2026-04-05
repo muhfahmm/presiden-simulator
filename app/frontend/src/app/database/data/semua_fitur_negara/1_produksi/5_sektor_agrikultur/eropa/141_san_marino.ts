@@ -1,11 +1,16 @@
 export const san_marino_agrikultur = {
-    "padi": 1,
-    "gandum": 24, "jagung": 24,
-    "sayur": 21, "umbi": 21,
-    "kedelai": 15,
-    "kelapa_sawit": 21,
-    "kopi": 18, "teh": 18, "kakao": 18, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 1,
+  gandum: 24,
+  jagung: 24,
+  sayur: 21,
+  umbi: 21,
+  kedelai: 15,
+  kelapa_sawit: 21,
+  kopi: 18,
+  teh: 18,
+  kakao: 18,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

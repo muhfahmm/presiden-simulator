@@ -1,11 +1,16 @@
 export const belize_agrikultur = {
-    "padi": 18,
-    "gandum": 24, "jagung": 24,
-    "sayur": 15, "umbi": 15,
-    "kedelai": 32,
-    "kelapa_sawit": 4,
-    "kopi": 22, "teh": 22, "kakao": 22, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 18,
+  gandum: 24,
+  jagung: 24,
+  sayur: 15,
+  umbi: 15,
+  kedelai: 32,
+  kelapa_sawit: 4,
+  kopi: 22,
+  teh: 22,
+  kakao: 22,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

@@ -1,11 +1,16 @@
 export const mauritania_agrikultur = {
-    "padi": 25,
-    "gandum": 24, "jagung": 24,
-    "sayur": 16, "umbi": 16,
-    "kedelai": 10,
-    "kelapa_sawit": 25,
-    "kopi": 28, "teh": 28, "kakao": 28, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 25,
+  gandum: 24,
+  jagung: 24,
+  sayur: 16,
+  umbi: 16,
+  kedelai: 10,
+  kelapa_sawit: 25,
+  kopi: 28,
+  teh: 28,
+  kakao: 28,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

@@ -1,11 +1,16 @@
 export const uzbekistan_agrikultur = {
-    "padi": 3,
-    "gandum": 9, "jagung": 9,
-    "sayur": 8, "umbi": 8,
-    "kedelai": 25,
-    "kelapa_sawit": 16,
-    "kopi": 19, "teh": 19, "kakao": 19, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 3,
+  gandum: 9,
+  jagung: 9,
+  sayur: 8,
+  umbi: 8,
+  kedelai: 25,
+  kelapa_sawit: 16,
+  kopi: 19,
+  teh: 19,
+  kakao: 19,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

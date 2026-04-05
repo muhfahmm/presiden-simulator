@@ -1,11 +1,16 @@
 export const kamboja_agrikultur = {
-    "padi": 12,
-    "gandum": 24, "jagung": 24,
-    "sayur": 4, "umbi": 4,
-    "kedelai": 5,
-    "kelapa_sawit": 17,
-    "kopi": 19, "teh": 19, "kakao": 19, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 12,
+  gandum: 24,
+  jagung: 24,
+  sayur: 4,
+  umbi: 4,
+  kedelai: 5,
+  kelapa_sawit: 17,
+  kopi: 19,
+  teh: 19,
+  kakao: 19,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

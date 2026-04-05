@@ -1,11 +1,16 @@
 export const polandia_agrikultur = {
-    "padi": 5,
-    "gandum": 16, "jagung": 16,
-    "sayur": 22, "umbi": 22,
-    "kedelai": 6,
-    "kelapa_sawit": 7,
-    "kopi": 11, "teh": 11, "kakao": 11, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 5,
+  gandum: 16,
+  jagung: 16,
+  sayur: 22,
+  umbi: 22,
+  kedelai: 6,
+  kelapa_sawit: 7,
+  kopi: 11,
+  teh: 11,
+  kakao: 11,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

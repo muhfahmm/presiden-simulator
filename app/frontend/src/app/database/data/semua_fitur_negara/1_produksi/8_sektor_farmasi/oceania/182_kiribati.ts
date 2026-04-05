@@ -1,3 +1,3 @@
 export const kiribati_farmasi = {
-    "farmasi": 2
-  } as const;
+  farmasi: 2,
+} as const;

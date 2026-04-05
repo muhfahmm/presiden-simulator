@@ -1,11 +1,16 @@
 export const kamerun_agrikultur = {
-    "padi": 25,
-    "gandum": 22, "jagung": 22,
-    "sayur": 20, "umbi": 20,
-    "kedelai": 4,
-    "kelapa_sawit": 26,
-    "kopi": 26, "teh": 26, "kakao": 26, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 25,
+  gandum: 22,
+  jagung: 22,
+  sayur: 20,
+  umbi: 20,
+  kedelai: 4,
+  kelapa_sawit: 26,
+  kopi: 26,
+  teh: 26,
+  kakao: 26,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

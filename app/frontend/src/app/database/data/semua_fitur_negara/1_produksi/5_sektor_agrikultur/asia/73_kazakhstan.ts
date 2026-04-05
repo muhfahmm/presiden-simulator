@@ -1,11 +1,16 @@
 export const kazakhstan_agrikultur = {
-    "padi": 33,
-    "gandum": 18, "jagung": 18,
-    "sayur": 24, "umbi": 24,
-    "kedelai": 25,
-    "kelapa_sawit": 13,
-    "kopi": 10, "teh": 10, "kakao": 10, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 33,
+  gandum: 18,
+  jagung: 18,
+  sayur: 24,
+  umbi: 24,
+  kedelai: 25,
+  kelapa_sawit: 13,
+  kopi: 10,
+  teh: 10,
+  kakao: 10,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

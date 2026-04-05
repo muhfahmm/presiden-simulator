@@ -1,11 +1,16 @@
 export const pantai_gading_agrikultur = {
-    "padi": 32,
-    "gandum": 20, "jagung": 20,
-    "sayur": 32, "umbi": 32,
-    "kedelai": 2,
-    "kelapa_sawit": 31,
-    "kopi": 29, "teh": 29, "kakao": 29, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 32,
+  gandum: 20,
+  jagung: 20,
+  sayur: 32,
+  umbi: 32,
+  kedelai: 2,
+  kelapa_sawit: 31,
+  kopi: 29,
+  teh: 29,
+  kakao: 29,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

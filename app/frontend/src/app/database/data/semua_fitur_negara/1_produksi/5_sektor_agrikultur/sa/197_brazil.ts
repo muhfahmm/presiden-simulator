@@ -1,11 +1,16 @@
 export const brazil_agrikultur = {
-    "padi": 28,
-    "gandum": 11, "jagung": 11,
-    "sayur": 33, "umbi": 33,
-    "kedelai": 40,
-    "kelapa_sawit": 10,
-    "kopi": 19, "teh": 19, "kakao": 19, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 28,
+  gandum: 11,
+  jagung: 11,
+  sayur: 33,
+  umbi: 33,
+  kedelai: 40,
+  kelapa_sawit: 10,
+  kopi: 19,
+  teh: 19,
+  kakao: 19,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

@@ -1,11 +1,16 @@
 export const argentina_agrikultur = {
-    "padi": 2,
-    "gandum": 30, "jagung": 30,
-    "sayur": 17, "umbi": 17,
-    "kedelai": 2,
-    "kelapa_sawit": 22,
-    "kopi": 22, "teh": 22, "kakao": 22, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 2,
+  gandum: 30,
+  jagung: 30,
+  sayur: 17,
+  umbi: 17,
+  kedelai: 2,
+  kelapa_sawit: 22,
+  kopi: 22,
+  teh: 22,
+  kakao: 22,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

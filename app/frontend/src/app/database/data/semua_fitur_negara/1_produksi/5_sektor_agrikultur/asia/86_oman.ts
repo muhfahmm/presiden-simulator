@@ -1,11 +1,16 @@
 export const oman_agrikultur = {
-    "padi": 38,
-    "gandum": 6, "jagung": 6,
-    "sayur": 23, "umbi": 23,
-    "kedelai": 4,
-    "kelapa_sawit": 22,
-    "kopi": 12, "teh": 12, "kakao": 12, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 38,
+  gandum: 6,
+  jagung: 6,
+  sayur: 23,
+  umbi: 23,
+  kedelai: 4,
+  kelapa_sawit: 22,
+  kopi: 12,
+  teh: 12,
+  kakao: 12,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

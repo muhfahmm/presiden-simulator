@@ -1,11 +1,16 @@
 export const bulgaria_agrikultur = {
-    "padi": 35,
-    "gandum": 11, "jagung": 11,
-    "sayur": 12, "umbi": 12,
-    "kedelai": 28,
-    "kelapa_sawit": 20,
-    "kopi": 39, "teh": 39, "kakao": 39, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 35,
+  gandum: 11,
+  jagung: 11,
+  sayur: 12,
+  umbi: 12,
+  kedelai: 28,
+  kelapa_sawit: 20,
+  kopi: 39,
+  teh: 39,
+  kakao: 39,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

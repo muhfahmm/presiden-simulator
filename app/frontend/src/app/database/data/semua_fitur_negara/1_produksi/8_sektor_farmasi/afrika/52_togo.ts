@@ -1,3 +1,3 @@
 export const togo_farmasi = {
-    "farmasi": 38
-  } as const;
+  farmasi: 38,
+} as const;

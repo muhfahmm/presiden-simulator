@@ -1,11 +1,16 @@
 export const kongo_agrikultur = {
-    "padi": 13,
-    "gandum": 22, "jagung": 22,
-    "sayur": 20, "umbi": 20,
-    "kedelai": 28,
-    "kelapa_sawit": 16,
-    "kopi": 37, "teh": 37, "kakao": 37, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 13,
+  gandum: 22,
+  jagung: 22,
+  sayur: 20,
+  umbi: 20,
+  kedelai: 28,
+  kelapa_sawit: 16,
+  kopi: 37,
+  teh: 37,
+  kakao: 37,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

@@ -1,3 +1,3 @@
 export const vanuatu_farmasi = {
-    "farmasi": 22
-  } as const;
+  farmasi: 22,
+} as const;

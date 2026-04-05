@@ -1,11 +1,16 @@
 export const rusia_agrikultur = {
-    "padi": 35,
-    "gandum": 14, "jagung": 14,
-    "sayur": 27, "umbi": 27,
-    "kedelai": 37,
-    "kelapa_sawit": 10,
-    "kopi": 14, "teh": 14, "kakao": 14, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 35,
+  gandum: 14,
+  jagung: 14,
+  sayur: 27,
+  umbi: 27,
+  kedelai: 37,
+  kelapa_sawit: 10,
+  kopi: 14,
+  teh: 14,
+  kakao: 14,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

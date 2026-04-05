@@ -1,11 +1,16 @@
 export const qatar_agrikultur = {
-    "padi": 19,
-    "gandum": 15, "jagung": 15,
-    "sayur": 13, "umbi": 13,
-    "kedelai": 37,
-    "kelapa_sawit": 32,
-    "kopi": 18, "teh": 18, "kakao": 18, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 19,
+  gandum: 15,
+  jagung: 15,
+  sayur: 13,
+  umbi: 13,
+  kedelai: 37,
+  kelapa_sawit: 32,
+  kopi: 18,
+  teh: 18,
+  kakao: 18,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

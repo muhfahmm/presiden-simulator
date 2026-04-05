@@ -1,11 +1,16 @@
 export const sao_tome_dan_principe_agrikultur = {
-    "padi": 37,
-    "gandum": 26, "jagung": 26,
-    "sayur": 11, "umbi": 11,
-    "kedelai": 26,
-    "kelapa_sawit": 36,
-    "kopi": 28, "teh": 28, "kakao": 28, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 37,
+  gandum: 26,
+  jagung: 26,
+  sayur: 11,
+  umbi: 11,
+  kedelai: 26,
+  kelapa_sawit: 36,
+  kopi: 28,
+  teh: 28,
+  kakao: 28,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

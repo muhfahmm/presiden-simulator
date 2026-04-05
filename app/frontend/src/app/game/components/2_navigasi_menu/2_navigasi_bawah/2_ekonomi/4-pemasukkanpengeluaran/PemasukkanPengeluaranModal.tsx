@@ -15,7 +15,8 @@ import {
   produkIndustriRate, 
   komoditasPanganRate, 
   produksiMiliter, 
-  tempatUmum 
+  infrastrukturRate,
+  sosialRate 
 } from "@/app/database/data/semua_fitur_negara"
 
 import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMaintenance } from "@/app/game/data/economy/BudgetDeltaLogic"
@@ -98,7 +99,8 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
     ...Object.values(mineralKritisRate),
     ...Object.values(produkIndustriRate),
     ...Object.values(komoditasPanganRate),
-    ...tempatUmum,
+    ...Object.values(infrastrukturRate),
+    ...Object.values(sosialRate),
     ...produksiMiliter
   ];
 

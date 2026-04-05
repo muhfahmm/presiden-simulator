@@ -1,11 +1,16 @@
 export const islandia_agrikultur = {
-    "padi": 27,
-    "gandum": 28, "jagung": 28,
-    "sayur": 30, "umbi": 30,
-    "kedelai": 23,
-    "kelapa_sawit": 14,
-    "kopi": 25, "teh": 25, "kakao": 25, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 27,
+  gandum: 28,
+  jagung: 28,
+  sayur: 30,
+  umbi: 30,
+  kedelai: 23,
+  kelapa_sawit: 14,
+  kopi: 25,
+  teh: 25,
+  kakao: 25,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

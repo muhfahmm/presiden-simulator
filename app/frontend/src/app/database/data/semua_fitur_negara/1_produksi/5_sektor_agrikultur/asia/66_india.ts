@@ -1,11 +1,16 @@
 export const india_agrikultur = {
-    "padi": 6,
-    "gandum": 22, "jagung": 22,
-    "sayur": 14, "umbi": 14,
-    "kedelai": 32,
-    "kelapa_sawit": 9,
-    "kopi": 20, "teh": 20, "kakao": 20, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 6,
+  gandum: 22,
+  jagung: 22,
+  sayur: 14,
+  umbi: 14,
+  kedelai: 32,
+  kelapa_sawit: 9,
+  kopi: 20,
+  teh: 20,
+  kakao: 20,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

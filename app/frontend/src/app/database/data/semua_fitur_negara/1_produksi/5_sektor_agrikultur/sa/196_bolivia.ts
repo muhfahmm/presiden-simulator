@@ -1,11 +1,16 @@
 export const bolivia_agrikultur = {
-    "padi": 17,
-    "gandum": 19, "jagung": 19,
-    "sayur": 24, "umbi": 24,
-    "kedelai": 13,
-    "kelapa_sawit": 31,
-    "kopi": 24, "teh": 24, "kakao": 24, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 17,
+  gandum: 19,
+  jagung: 19,
+  sayur: 24,
+  umbi: 24,
+  kedelai: 13,
+  kelapa_sawit: 31,
+  kopi: 24,
+  teh: 24,
+  kakao: 24,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

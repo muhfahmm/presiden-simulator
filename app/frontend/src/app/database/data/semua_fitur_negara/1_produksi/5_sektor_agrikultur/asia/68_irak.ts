@@ -1,11 +1,16 @@
 export const irak_agrikultur = {
-    "padi": 29,
-    "gandum": 2, "jagung": 2,
-    "sayur": 19, "umbi": 19,
-    "kedelai": 10,
-    "kelapa_sawit": 27,
-    "kopi": 12, "teh": 12, "kakao": 12, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 29,
+  gandum: 2,
+  jagung: 2,
+  sayur: 19,
+  umbi: 19,
+  kedelai: 10,
+  kelapa_sawit: 27,
+  kopi: 12,
+  teh: 12,
+  kakao: 12,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

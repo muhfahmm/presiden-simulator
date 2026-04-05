@@ -1,11 +1,16 @@
 export const eritrea_agrikultur = {
-    "padi": 11,
-    "gandum": 34, "jagung": 34,
-    "sayur": 21, "umbi": 21,
-    "kedelai": 28,
-    "kelapa_sawit": 24,
-    "kopi": 14, "teh": 14, "kakao": 14, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 11,
+  gandum: 34,
+  jagung: 34,
+  sayur: 21,
+  umbi: 21,
+  kedelai: 28,
+  kelapa_sawit: 24,
+  kopi: 14,
+  teh: 14,
+  kakao: 14,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

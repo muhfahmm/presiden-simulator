@@ -1,11 +1,16 @@
 export const slovenia_agrikultur = {
-    "padi": 15,
-    "gandum": 5, "jagung": 5,
-    "sayur": 34, "umbi": 34,
-    "kedelai": 21,
-    "kelapa_sawit": 1,
-    "kopi": 15, "teh": 15, "kakao": 15, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 15,
+  gandum: 5,
+  jagung: 5,
+  sayur: 34,
+  umbi: 34,
+  kedelai: 21,
+  kelapa_sawit: 1,
+  kopi: 15,
+  teh: 15,
+  kakao: 15,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

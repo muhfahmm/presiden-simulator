@@ -1,3 +1,3 @@
 export const uzbekistan_farmasi = {
-    "farmasi": 10
-  } as const;
+  farmasi: 10,
+} as const;

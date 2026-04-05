@@ -1,11 +1,16 @@
 export const australia_agrikultur = {
-    "padi": 27,
-    "gandum": 20, "jagung": 20,
-    "sayur": 3, "umbi": 3,
-    "kedelai": 16,
-    "kelapa_sawit": 33,
-    "kopi": 33, "teh": 33, "kakao": 33, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 27,
+  gandum: 20,
+  jagung: 20,
+  sayur: 3,
+  umbi: 3,
+  kedelai: 16,
+  kelapa_sawit: 33,
+  kopi: 33,
+  teh: 33,
+  kakao: 33,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

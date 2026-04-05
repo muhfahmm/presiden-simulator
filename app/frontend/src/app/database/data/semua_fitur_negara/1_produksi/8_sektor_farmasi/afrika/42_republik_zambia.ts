@@ -1,3 +1,3 @@
 export const republik_zambia_farmasi = {
-    "farmasi": 25
-  } as const;
+  farmasi: 25,
+} as const;

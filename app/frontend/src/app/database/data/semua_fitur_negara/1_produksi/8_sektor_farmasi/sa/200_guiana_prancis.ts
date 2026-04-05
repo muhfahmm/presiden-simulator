@@ -1,3 +1,3 @@
 export const guiana_prancis_farmasi = {
-    "farmasi": 13
-  } as const;
+  farmasi: 13,
+} as const;

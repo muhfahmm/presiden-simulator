@@ -1,11 +1,16 @@
 export const republik_dominika_agrikultur = {
-    "padi": 20,
-    "gandum": 34, "jagung": 34,
-    "sayur": 14, "umbi": 14,
-    "kedelai": 26,
-    "kelapa_sawit": 37,
-    "kopi": 29, "teh": 29, "kakao": 29, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 20,
+  gandum: 34,
+  jagung: 34,
+  sayur: 14,
+  umbi: 14,
+  kedelai: 26,
+  kelapa_sawit: 37,
+  kopi: 29,
+  teh: 29,
+  kakao: 29,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

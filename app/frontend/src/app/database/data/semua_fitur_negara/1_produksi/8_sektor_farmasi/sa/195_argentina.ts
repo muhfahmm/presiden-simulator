@@ -1,3 +1,3 @@
 export const argentina_farmasi = {
-    "farmasi": 27
-  } as const;
+  farmasi: 27,
+} as const;

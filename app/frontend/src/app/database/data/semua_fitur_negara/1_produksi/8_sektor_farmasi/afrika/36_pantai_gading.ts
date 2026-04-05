@@ -1,3 +1,3 @@
 export const pantai_gading_farmasi = {
-    "farmasi": 13
-  } as const;
+  farmasi: 13,
+} as const;

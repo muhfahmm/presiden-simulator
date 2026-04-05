@@ -1,11 +1,16 @@
 export const irlandia_agrikultur = {
-    "padi": 37,
-    "gandum": 20, "jagung": 20,
-    "sayur": 22, "umbi": 22,
-    "kedelai": 16,
-    "kelapa_sawit": 4,
-    "kopi": 10, "teh": 10, "kakao": 10, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 37,
+  gandum: 20,
+  jagung: 20,
+  sayur: 22,
+  umbi: 22,
+  kedelai: 16,
+  kelapa_sawit: 4,
+  kopi: 10,
+  teh: 10,
+  kakao: 10,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

@@ -1,11 +1,16 @@
 export const eswatini_agrikultur = {
-    "padi": 28,
-    "gandum": 10, "jagung": 10,
-    "sayur": 5, "umbi": 5,
-    "kedelai": 22,
-    "kelapa_sawit": 17,
-    "kopi": 25, "teh": 25, "kakao": 25, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 28,
+  gandum: 10,
+  jagung: 10,
+  sayur: 5,
+  umbi: 5,
+  kedelai: 22,
+  kelapa_sawit: 17,
+  kopi: 25,
+  teh: 25,
+  kakao: 25,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

@@ -123,3 +123,9 @@ export * from "./3_sosial";
 export * from "./4_geopolitik";
 export * from "./1_produksi/2_sektor_mineral_kritis";
 export * from "./3_sosial/4_olahraga";
+
+// Modular Rates for Infrastructure & Social
+export { 
+  infrastrukturRate, 
+  sosialRate 
+} from "../harga_bangunan_negara/1_pembangunan/3_tempat_umum/2_db_infrastruktur";

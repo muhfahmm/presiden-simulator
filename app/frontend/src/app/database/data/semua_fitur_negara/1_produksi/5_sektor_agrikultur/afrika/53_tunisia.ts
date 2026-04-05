@@ -1,11 +1,16 @@
 export const tunisia_agrikultur = {
-    "padi": 4,
-    "gandum": 21, "jagung": 21,
-    "sayur": 16, "umbi": 16,
-    "kedelai": 15,
-    "kelapa_sawit": 33,
-    "kopi": 24, "teh": 24, "kakao": 24, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 4,
+  gandum: 21,
+  jagung: 21,
+  sayur: 16,
+  umbi: 16,
+  kedelai: 15,
+  kelapa_sawit: 33,
+  kopi: 24,
+  teh: 24,
+  kakao: 24,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

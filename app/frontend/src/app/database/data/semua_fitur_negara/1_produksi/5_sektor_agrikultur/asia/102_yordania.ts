@@ -1,11 +1,16 @@
 export const yordania_agrikultur = {
-    "padi": 20,
-    "gandum": 27, "jagung": 27,
-    "sayur": 32, "umbi": 32,
-    "kedelai": 20,
-    "kelapa_sawit": 19,
-    "kopi": 21, "teh": 21, "kakao": 21, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 20,
+  gandum: 27,
+  jagung: 27,
+  sayur: 32,
+  umbi: 32,
+  kedelai: 20,
+  kelapa_sawit: 19,
+  kopi: 21,
+  teh: 21,
+  kakao: 21,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

@@ -1,11 +1,16 @@
 export const namibia_agrikultur = {
-    "padi": 30,
-    "gandum": 26, "jagung": 26,
-    "sayur": 12, "umbi": 12,
-    "kedelai": 36,
-    "kelapa_sawit": 22,
-    "kopi": 10, "teh": 10, "kakao": 10, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 30,
+  gandum: 26,
+  jagung: 26,
+  sayur: 12,
+  umbi: 12,
+  kedelai: 36,
+  kelapa_sawit: 22,
+  kopi: 10,
+  teh: 10,
+  kakao: 10,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

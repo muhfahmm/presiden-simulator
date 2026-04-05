@@ -1,11 +1,16 @@
 export const saint_vincent_dan_grenadine_agrikultur = {
-    "padi": 35,
-    "gandum": 20, "jagung": 20,
-    "sayur": 10, "umbi": 10,
-    "kedelai": 36,
-    "kelapa_sawit": 29,
-    "kopi": 21, "teh": 21, "kakao": 21, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 35,
+  gandum: 20,
+  jagung: 20,
+  sayur: 10,
+  umbi: 10,
+  kedelai: 36,
+  kelapa_sawit: 29,
+  kopi: 21,
+  teh: 21,
+  kakao: 21,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

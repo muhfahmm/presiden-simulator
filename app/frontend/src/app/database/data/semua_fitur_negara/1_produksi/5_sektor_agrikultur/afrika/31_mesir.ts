@@ -1,11 +1,16 @@
 export const mesir_agrikultur = {
-    "padi": 5,
-    "gandum": 48, "jagung": 48,
-    "sayur": 40, "umbi": 40,
-    "kedelai": 4,
-    "kelapa_sawit": 34,
-    "kopi": 16, "teh": 16, "kakao": 16, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 5,
+  gandum: 48,
+  jagung: 48,
+  sayur: 40,
+  umbi: 40,
+  kedelai: 4,
+  kelapa_sawit: 34,
+  kopi: 16,
+  teh: 16,
+  kakao: 16,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

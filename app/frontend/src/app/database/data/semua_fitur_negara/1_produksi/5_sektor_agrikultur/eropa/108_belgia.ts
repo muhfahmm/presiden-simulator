@@ -1,11 +1,16 @@
 export const belgia_agrikultur = {
-    "padi": 23,
-    "gandum": 28, "jagung": 28,
-    "sayur": 30, "umbi": 30,
-    "kedelai": 14,
-    "kelapa_sawit": 27,
-    "kopi": 12, "teh": 12, "kakao": 12, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 23,
+  gandum: 28,
+  jagung: 28,
+  sayur: 30,
+  umbi: 30,
+  kedelai: 14,
+  kelapa_sawit: 27,
+  kopi: 12,
+  teh: 12,
+  kakao: 12,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

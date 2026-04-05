@@ -1,11 +1,16 @@
 export const estonia_agrikultur = {
-    "padi": 40,
-    "gandum": 38, "jagung": 38,
-    "sayur": 28, "umbi": 28,
-    "kedelai": 14,
-    "kelapa_sawit": 29,
-    "kopi": 15, "teh": 15, "kakao": 15, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 40,
+  gandum: 38,
+  jagung: 38,
+  sayur: 28,
+  umbi: 28,
+  kedelai: 14,
+  kelapa_sawit: 29,
+  kopi: 15,
+  teh: 15,
+  kakao: 15,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

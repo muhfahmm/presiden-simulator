@@ -1,11 +1,16 @@
 export const nepal_agrikultur = {
-    "padi": 22,
-    "gandum": 18, "jagung": 18,
-    "sayur": 12, "umbi": 12,
-    "kedelai": 24,
-    "kelapa_sawit": 27,
-    "kopi": 18, "teh": 18, "kakao": 18, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 22,
+  gandum: 18,
+  jagung: 18,
+  sayur: 12,
+  umbi: 12,
+  kedelai: 24,
+  kelapa_sawit: 27,
+  kopi: 18,
+  teh: 18,
+  kakao: 18,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

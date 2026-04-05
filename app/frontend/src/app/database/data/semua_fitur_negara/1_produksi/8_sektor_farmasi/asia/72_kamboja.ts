@@ -1,3 +1,3 @@
 export const kamboja_farmasi = {
-    "farmasi": 30
-  } as const;
+  farmasi: 30,
+} as const;

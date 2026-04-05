@@ -5,7 +5,8 @@ import {
   produkIndustriRate, 
   komoditasPanganRate, 
   produksiMiliter, 
-  tempatUmum 
+  infrastrukturRate,
+  sosialRate 
 } from "@/app/database/data/semua_fitur_negara";
 
 /**
@@ -18,7 +19,8 @@ export const ALL_MAINTENANCE_METADATA = [
   ...Object.values(produkIndustriRate),
   ...Object.values(komoditasPanganRate),
   ...produksiMiliter,
-  ...tempatUmum
+  ...Object.values(infrastrukturRate),
+  ...Object.values(sosialRate)
 ];
 
 /**

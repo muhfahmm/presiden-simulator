@@ -1,11 +1,16 @@
 export const sierra_leone_agrikultur = {
-    "padi": 20,
-    "gandum": 16, "jagung": 16,
-    "sayur": 30, "umbi": 30,
-    "kedelai": 11,
-    "kelapa_sawit": 15,
-    "kopi": 26, "teh": 26, "kakao": 26, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 20,
+  gandum: 16,
+  jagung: 16,
+  sayur: 30,
+  umbi: 30,
+  kedelai: 11,
+  kelapa_sawit: 15,
+  kopi: 26,
+  teh: 26,
+  kakao: 26,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

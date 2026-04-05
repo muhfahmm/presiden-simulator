@@ -1,11 +1,16 @@
 export const samoa_agrikultur = {
-    "padi": 32,
-    "gandum": 16, "jagung": 16,
-    "sayur": 18, "umbi": 18,
-    "kedelai": 24,
-    "kelapa_sawit": 12,
-    "kopi": 19, "teh": 19, "kakao": 19, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 32,
+  gandum: 16,
+  jagung: 16,
+  sayur: 18,
+  umbi: 18,
+  kedelai: 24,
+  kelapa_sawit: 12,
+  kopi: 19,
+  teh: 19,
+  kakao: 19,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

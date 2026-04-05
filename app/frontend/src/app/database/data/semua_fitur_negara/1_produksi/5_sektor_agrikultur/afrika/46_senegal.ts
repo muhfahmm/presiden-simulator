@@ -1,11 +1,16 @@
 export const senegal_agrikultur = {
-    "padi": 28,
-    "gandum": 25, "jagung": 25,
-    "sayur": 22, "umbi": 22,
-    "kedelai": 23,
-    "kelapa_sawit": 21,
-    "kopi": 21, "teh": 21, "kakao": 21, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 28,
+  gandum: 25,
+  jagung: 25,
+  sayur: 22,
+  umbi: 22,
+  kedelai: 23,
+  kelapa_sawit: 21,
+  kopi: 21,
+  teh: 21,
+  kakao: 21,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

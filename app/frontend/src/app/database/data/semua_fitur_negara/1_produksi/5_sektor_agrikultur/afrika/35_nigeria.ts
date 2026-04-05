@@ -1,11 +1,16 @@
 export const nigeria_agrikultur = {
-    "padi": 60,
-    "gandum": 38, "jagung": 38,
-    "sayur": 14, "umbi": 14,
-    "kedelai": 13,
-    "kelapa_sawit": 5,
-    "kopi": 11, "teh": 11, "kakao": 11, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 60,
+  gandum: 38,
+  jagung: 38,
+  sayur: 14,
+  umbi: 14,
+  kedelai: 13,
+  kelapa_sawit: 5,
+  kopi: 11,
+  teh: 11,
+  kakao: 11,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

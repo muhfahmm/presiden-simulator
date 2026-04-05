@@ -1,11 +1,16 @@
 export const denmark_agrikultur = {
-    "padi": 31,
-    "gandum": 16, "jagung": 16,
-    "sayur": 16, "umbi": 16,
-    "kedelai": 30,
-    "kelapa_sawit": 6,
-    "kopi": 23, "teh": 23, "kakao": 23, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 31,
+  gandum: 16,
+  jagung: 16,
+  sayur: 16,
+  umbi: 16,
+  kedelai: 30,
+  kelapa_sawit: 6,
+  kopi: 23,
+  teh: 23,
+  kakao: 23,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

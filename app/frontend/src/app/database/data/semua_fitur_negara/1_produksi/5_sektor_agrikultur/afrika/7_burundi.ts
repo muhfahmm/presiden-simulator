@@ -1,11 +1,16 @@
 export const burundi_agrikultur = {
-    "padi": 11,
-    "gandum": 28, "jagung": 28,
-    "sayur": 22, "umbi": 22,
-    "kedelai": 34,
-    "kelapa_sawit": 4,
-    "kopi": 17, "teh": 17, "kakao": 17, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 11,
+  gandum: 28,
+  jagung: 28,
+  sayur: 22,
+  umbi: 22,
+  kedelai: 34,
+  kelapa_sawit: 4,
+  kopi: 17,
+  teh: 17,
+  kakao: 17,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

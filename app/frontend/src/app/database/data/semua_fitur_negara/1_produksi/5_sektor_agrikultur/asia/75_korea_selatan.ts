@@ -1,11 +1,16 @@
 export const korea_selatan_agrikultur = {
-    "padi": 39,
-    "gandum": 25, "jagung": 25,
-    "sayur": 30, "umbi": 30,
-    "kedelai": 33,
-    "kelapa_sawit": 13,
-    "kopi": 8, "teh": 8, "kakao": 8, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 39,
+  gandum: 25,
+  jagung: 25,
+  sayur: 30,
+  umbi: 30,
+  kedelai: 33,
+  kelapa_sawit: 13,
+  kopi: 8,
+  teh: 8,
+  kakao: 8,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

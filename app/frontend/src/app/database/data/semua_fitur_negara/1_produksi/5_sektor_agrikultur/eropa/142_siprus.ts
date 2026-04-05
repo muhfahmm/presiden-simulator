@@ -1,11 +1,16 @@
 export const siprus_agrikultur = {
-    "padi": 8,
-    "gandum": 6, "jagung": 6,
-    "sayur": 20, "umbi": 20,
-    "kedelai": 32,
-    "kelapa_sawit": 3,
-    "kopi": 12, "teh": 12, "kakao": 12, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 8,
+  gandum: 6,
+  jagung: 6,
+  sayur: 20,
+  umbi: 20,
+  kedelai: 32,
+  kelapa_sawit: 3,
+  kopi: 12,
+  teh: 12,
+  kakao: 12,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

@@ -1,11 +1,16 @@
 export const guyana_agrikultur = {
-    "padi": 6,
-    "gandum": 28, "jagung": 28,
-    "sayur": 30, "umbi": 30,
-    "kedelai": 23,
-    "kelapa_sawit": 34,
-    "kopi": 17, "teh": 17, "kakao": 17, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 6,
+  gandum: 28,
+  jagung: 28,
+  sayur: 30,
+  umbi: 30,
+  kedelai: 23,
+  kelapa_sawit: 34,
+  kopi: 17,
+  teh: 17,
+  kakao: 17,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

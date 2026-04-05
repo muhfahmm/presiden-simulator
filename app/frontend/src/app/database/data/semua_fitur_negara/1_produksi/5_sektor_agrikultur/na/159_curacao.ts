@@ -1,11 +1,16 @@
 export const curacao_agrikultur = {
-    "padi": 31,
-    "gandum": 27, "jagung": 27,
-    "sayur": 24, "umbi": 24,
-    "kedelai": 31,
-    "kelapa_sawit": 7,
-    "kopi": 14, "teh": 14, "kakao": 14, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 31,
+  gandum: 27,
+  jagung: 27,
+  sayur: 24,
+  umbi: 24,
+  kedelai: 31,
+  kelapa_sawit: 7,
+  kopi: 14,
+  teh: 14,
+  kakao: 14,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

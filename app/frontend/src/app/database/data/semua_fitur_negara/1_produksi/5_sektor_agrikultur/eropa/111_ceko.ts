@@ -1,11 +1,16 @@
 export const ceko_agrikultur = {
-    "padi": 5,
-    "gandum": 20, "jagung": 20,
-    "sayur": 22, "umbi": 22,
-    "kedelai": 25,
-    "kelapa_sawit": 36,
-    "kopi": 28, "teh": 28, "kakao": 28, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 5,
+  gandum: 20,
+  jagung: 20,
+  sayur: 22,
+  umbi: 22,
+  kedelai: 25,
+  kelapa_sawit: 36,
+  kopi: 28,
+  teh: 28,
+  kakao: 28,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

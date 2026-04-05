@@ -1,11 +1,16 @@
 export const el_salvador_agrikultur = {
-    "padi": 25,
-    "gandum": 26, "jagung": 26,
-    "sayur": 28, "umbi": 28,
-    "kedelai": 18,
-    "kelapa_sawit": 6,
-    "kopi": 21, "teh": 21, "kakao": 21, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 25,
+  gandum: 26,
+  jagung: 26,
+  sayur: 28,
+  umbi: 28,
+  kedelai: 18,
+  kelapa_sawit: 6,
+  kopi: 21,
+  teh: 21,
+  kakao: 21,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

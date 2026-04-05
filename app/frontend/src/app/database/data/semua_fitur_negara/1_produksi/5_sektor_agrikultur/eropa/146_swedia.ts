@@ -1,11 +1,16 @@
 export const swedia_agrikultur = {
-    "padi": 37,
-    "gandum": 23, "jagung": 23,
-    "sayur": 18, "umbi": 18,
-    "kedelai": 33,
-    "kelapa_sawit": 23,
-    "kopi": 26, "teh": 26, "kakao": 26, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 37,
+  gandum: 23,
+  jagung: 23,
+  sayur: 18,
+  umbi: 18,
+  kedelai: 33,
+  kelapa_sawit: 23,
+  kopi: 26,
+  teh: 26,
+  kakao: 26,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

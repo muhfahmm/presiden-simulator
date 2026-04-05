@@ -1,3 +1,3 @@
 export const nauru_farmasi = {
-    "farmasi": 20
-  } as const;
+  farmasi: 20,
+} as const;

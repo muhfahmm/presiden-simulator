@@ -1,11 +1,16 @@
 export const republik_tanzania_agrikultur = {
-    "padi": 19,
-    "gandum": 16, "jagung": 16,
-    "sayur": 11, "umbi": 11,
-    "kedelai": 11,
-    "kelapa_sawit": 6,
-    "kopi": 11, "teh": 11, "kakao": 11, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 19,
+  gandum: 16,
+  jagung: 16,
+  sayur: 11,
+  umbi: 11,
+  kedelai: 11,
+  kelapa_sawit: 6,
+  kopi: 11,
+  teh: 11,
+  kakao: 11,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

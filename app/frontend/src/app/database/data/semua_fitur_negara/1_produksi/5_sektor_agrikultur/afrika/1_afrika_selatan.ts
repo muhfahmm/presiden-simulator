@@ -1,11 +1,16 @@
 export const afrika_selatan_agrikultur = {
-    "padi": 5,
-    "gandum": 28, "jagung": 28,
-    "sayur": 16, "umbi": 16,
-    "kedelai": 8,
-    "kelapa_sawit": 18,
-    "kopi": 12, "teh": 12, "kakao": 12, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 5,
+  gandum: 28,
+  jagung: 28,
+  sayur: 16,
+  umbi: 16,
+  kedelai: 8,
+  kelapa_sawit: 18,
+  kopi: 12,
+  teh: 12,
+  kakao: 12,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

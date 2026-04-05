@@ -1,11 +1,16 @@
 export const liechtenstein_agrikultur = {
-    "padi": 7,
-    "gandum": 22, "jagung": 22,
-    "sayur": 14, "umbi": 14,
-    "kedelai": 16,
-    "kelapa_sawit": 22,
-    "kopi": 16, "teh": 16, "kakao": 16, "tebu": 0,
-    "karet": 0,
-    "kapas": 0,
-    "tembakau": 0
-  } as const;
+  padi: 7,
+  gandum: 22,
+  jagung: 22,
+  sayur: 14,
+  umbi: 14,
+  kedelai: 16,
+  kelapa_sawit: 22,
+  kopi: 16,
+  teh: 16,
+  kakao: 16,
+  tebu: 0,
+  karet: 0,
+  kapas: 0,
+  tembakau: 0,
+} as const;

@@ -1,3 +1,3 @@
 export const selandia_baru_farmasi = {
-    "farmasi": 24
-  } as const;
+  farmasi: 24,
+} as const;
