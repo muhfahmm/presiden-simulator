@@ -5,21 +5,22 @@ import { honduras_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pe
 import { honduras_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/166_honduras";
 import { honduras_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/166_honduras";
 import { honduras_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/166_honduras";
-import { honduras_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/166_honduras";
-import { honduras_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/166_honduras";
+import { honduras_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/na/166_honduras";
+import { honduras_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/na/166_honduras";
 import { honduras_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/166_honduras";
-import { honduras_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/166_honduras";
+import { honduras_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/na/166_honduras";
 import { honduras_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/166_honduras";
 import { honduras_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/166_honduras";
 import { honduras_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/na/166_honduras";
-import { honduras_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/na/166_honduras";
+import { honduras_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/na/166_honduras";
 import { honduras_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/166_honduras";
-import { honduras_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/166_honduras";
+import { honduras_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/na/166_honduras";
 import { honduras_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/166_honduras";
 import { honduras_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/166_honduras";
 import { honduras_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/166_honduras";
 import { honduras_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/166_honduras";
 import { honduras_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/166_honduras";
+import { honduras_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/na/166_honduras";
 const honduras_geopolitik = {
     "un_vote": 137,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const honduras_geopolitik = {
 export const honduras: CountryData = {
   ...honduras_profile,
   "sektor_listrik": honduras_listrik,
+  "hunian": honduras_hunian,
   "infrastruktur": honduras_infrastruktur,
   "sektor_ekstraksi": honduras_ekstraksi,
   "sektor_manufaktur": honduras_manufaktur,

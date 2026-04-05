@@ -5,21 +5,22 @@ import { gibraltar_agrikultur } from "@/app/database/data/semua_fitur_negara/1_p
 import { gibraltar_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/115_gibraltar";
 import { gibraltar_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/115_gibraltar";
 import { gibraltar_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/115_gibraltar";
-import { gibraltar_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/115_gibraltar";
-import { gibraltar_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/115_gibraltar";
+import { gibraltar_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/115_gibraltar";
+import { gibraltar_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/115_gibraltar";
 import { gibraltar_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/115_gibraltar";
-import { gibraltar_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/115_gibraltar";
+import { gibraltar_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/115_gibraltar";
 import { gibraltar_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/115_gibraltar";
 import { gibraltar_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/115_gibraltar";
 import { gibraltar_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/115_gibraltar";
-import { gibraltar_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/115_gibraltar";
+import { gibraltar_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/115_gibraltar";
 import { gibraltar_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/115_gibraltar";
-import { gibraltar_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/115_gibraltar";
+import { gibraltar_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/115_gibraltar";
 import { gibraltar_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/115_gibraltar";
 import { gibraltar_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/115_gibraltar";
 import { gibraltar_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/115_gibraltar";
 import { gibraltar_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/115_gibraltar";
 import { gibraltar_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/115_gibraltar";
+import { gibraltar_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/115_gibraltar";
 const gibraltar_geopolitik = {
     "un_vote": 23,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const gibraltar_geopolitik = {
 export const gibraltar: CountryData = {
   ...gibraltar_profile,
   "sektor_listrik": gibraltar_listrik,
+  "hunian": gibraltar_hunian,
   "infrastruktur": gibraltar_infrastruktur,
   "sektor_ekstraksi": gibraltar_ekstraksi,
   "sektor_manufaktur": gibraltar_manufaktur,

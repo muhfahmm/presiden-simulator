@@ -5,21 +5,22 @@ import { kamerun_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pem
 import { kamerun_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/18_kamerun";
 import { kamerun_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/18_kamerun";
 import { kamerun_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/18_kamerun";
-import { kamerun_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/18_kamerun";
-import { kamerun_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/18_kamerun";
+import { kamerun_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/18_kamerun";
+import { kamerun_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/18_kamerun";
 import { kamerun_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/18_kamerun";
-import { kamerun_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/18_kamerun";
+import { kamerun_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/18_kamerun";
 import { kamerun_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/18_kamerun";
 import { kamerun_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/18_kamerun";
 import { kamerun_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/18_kamerun";
-import { kamerun_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/18_kamerun";
+import { kamerun_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/18_kamerun";
 import { kamerun_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/18_kamerun";
-import { kamerun_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/18_kamerun";
+import { kamerun_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/18_kamerun";
 import { kamerun_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/18_kamerun";
 import { kamerun_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/18_kamerun";
 import { kamerun_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/18_kamerun";
 import { kamerun_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/18_kamerun";
 import { kamerun_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/18_kamerun";
+import { kamerun_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/18_kamerun";
 const kamerun_geopolitik = {
     "un_vote": 138,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const kamerun_geopolitik = {
 export const kamerun: CountryData = {
   ...kamerun_profile,
   "sektor_listrik": kamerun_listrik,
+  "hunian": kamerun_hunian,
   "infrastruktur": kamerun_infrastruktur,
   "sektor_ekstraksi": kamerun_ekstraksi,
   "sektor_manufaktur": kamerun_manufaktur,

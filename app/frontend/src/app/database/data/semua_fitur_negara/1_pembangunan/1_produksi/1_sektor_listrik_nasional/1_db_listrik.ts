@@ -10,7 +10,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     deskripsi: "PLTN (Fisi Nuklir)",
     biaya_pemeliharaan: 80,
     waktu_pembangunan: 365,
-    biaya_pembangunan: 15000,
+    biaya_pembangunan: 150000,
     lowongan_kerja: 800,
     konsumsi_listrik: 0
   },
@@ -22,7 +22,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     deskripsi: "PLTA (Hidroelektrik)",
     biaya_pemeliharaan: 15,
     waktu_pembangunan: 180,
-    biaya_pembangunan: 5500,
+    biaya_pembangunan: 15000,
     lowongan_kerja: 150,
     konsumsi_listrik: 0
   },
@@ -34,7 +34,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     deskripsi: "PLTS (Panel Surya)",
     biaya_pemeliharaan: 2,
     waktu_pembangunan: 30,
-    biaya_pembangunan: 1500,
+    biaya_pembangunan: 10000,
     lowongan_kerja: 40,
     konsumsi_listrik: 0
   },
@@ -46,7 +46,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     deskripsi: "PLTU (Tenaga Uap)",
     biaya_pemeliharaan: 40,
     waktu_pembangunan: 120,
-    biaya_pembangunan: 4000,
+    biaya_pembangunan: 25000,
     lowongan_kerja: 450,
     konsumsi_listrik: 0
   },
@@ -58,7 +58,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     deskripsi: "PLTG (Gas Alam)",
     biaya_pemeliharaan: 25,
     waktu_pembangunan: 90,
-    biaya_pembangunan: 3000,
+    biaya_pembangunan: 25000,
     lowongan_kerja: 250,
     konsumsi_listrik: 0
   },
@@ -70,7 +70,7 @@ export const KAPASITAS_LISTRIK_METADATA = {
     deskripsi: "PLTB (Angin)",
     biaya_pemeliharaan: 3,
     waktu_pembangunan: 45,
-    biaya_pembangunan: 2250,
+    biaya_pembangunan: 15000,
     lowongan_kerja: 20,
     konsumsi_listrik: 0
   }

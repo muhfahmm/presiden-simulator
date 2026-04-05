@@ -5,21 +5,22 @@ import { kolombia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pe
 import { kolombia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/202_kolombia";
 import { kolombia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/202_kolombia";
 import { kolombia_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/sa/202_kolombia";
-import { kolombia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/sa/202_kolombia";
-import { kolombia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/sa/202_kolombia";
+import { kolombia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/sa/202_kolombia";
+import { kolombia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/sa/202_kolombia";
 import { kolombia_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/sa/202_kolombia";
-import { kolombia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/sa/202_kolombia";
+import { kolombia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/sa/202_kolombia";
 import { kolombia_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/sa/202_kolombia";
 import { kolombia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/sa/202_kolombia";
 import { kolombia_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/sa/202_kolombia";
-import { kolombia_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/sa/202_kolombia";
+import { kolombia_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/sa/202_kolombia";
 import { kolombia_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/sa/202_kolombia";
-import { kolombia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/sa/202_kolombia";
+import { kolombia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/sa/202_kolombia";
 import { kolombia_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/sa/202_kolombia";
 import { kolombia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/sa/202_kolombia";
 import { kolombia_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/sa/202_kolombia";
 import { kolombia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/202_kolombia";
 import { kolombia_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/sa/202_kolombia";
+import { kolombia_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/sa/202_kolombia";
 const kolombia_geopolitik = {
     "un_vote": 173,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const kolombia_geopolitik = {
 export const kolombia: CountryData = {
   ...kolombia_profile,
   "sektor_listrik": kolombia_listrik,
+  "hunian": kolombia_hunian,
   "infrastruktur": kolombia_infrastruktur,
   "sektor_ekstraksi": kolombia_ekstraksi,
   "sektor_manufaktur": kolombia_manufaktur,

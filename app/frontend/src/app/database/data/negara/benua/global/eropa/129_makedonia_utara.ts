@@ -5,21 +5,22 @@ import { makedonia_utara_agrikultur } from "@/app/database/data/semua_fitur_nega
 import { makedonia_utara_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/129_makedonia_utara";
 import { makedonia_utara_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/129_makedonia_utara";
 import { makedonia_utara_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/129_makedonia_utara";
-import { makedonia_utara_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/129_makedonia_utara";
-import { makedonia_utara_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/129_makedonia_utara";
+import { makedonia_utara_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/129_makedonia_utara";
+import { makedonia_utara_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/129_makedonia_utara";
 import { makedonia_utara_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/129_makedonia_utara";
-import { makedonia_utara_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/129_makedonia_utara";
+import { makedonia_utara_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/129_makedonia_utara";
 import { makedonia_utara_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/129_makedonia_utara";
 import { makedonia_utara_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/129_makedonia_utara";
 import { makedonia_utara_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/129_makedonia_utara";
-import { makedonia_utara_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/129_makedonia_utara";
+import { makedonia_utara_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/129_makedonia_utara";
 import { makedonia_utara_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/129_makedonia_utara";
-import { makedonia_utara_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/129_makedonia_utara";
+import { makedonia_utara_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/129_makedonia_utara";
 import { makedonia_utara_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/129_makedonia_utara";
 import { makedonia_utara_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/129_makedonia_utara";
 import { makedonia_utara_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/129_makedonia_utara";
 import { makedonia_utara_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/129_makedonia_utara";
 import { makedonia_utara_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/129_makedonia_utara";
+import { makedonia_utara_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/129_makedonia_utara";
 const makedonia_utara_geopolitik = {
     "un_vote": 172,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const makedonia_utara_geopolitik = {
 export const makedonia_utara: CountryData = {
   ...makedonia_utara_profile,
   "sektor_listrik": makedonia_utara_listrik,
+  "hunian": makedonia_utara_hunian,
   "infrastruktur": makedonia_utara_infrastruktur,
   "sektor_ekstraksi": makedonia_utara_ekstraksi,
   "sektor_manufaktur": makedonia_utara_manufaktur,

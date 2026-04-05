@@ -5,21 +5,22 @@ import { kongo_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { kongo_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/21_kongo";
 import { kongo_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/21_kongo";
 import { kongo_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/21_kongo";
-import { kongo_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/21_kongo";
-import { kongo_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/21_kongo";
+import { kongo_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/21_kongo";
+import { kongo_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/21_kongo";
 import { kongo_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/21_kongo";
-import { kongo_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/21_kongo";
+import { kongo_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/21_kongo";
 import { kongo_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/21_kongo";
 import { kongo_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/21_kongo";
 import { kongo_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/21_kongo";
-import { kongo_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/21_kongo";
+import { kongo_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/21_kongo";
 import { kongo_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/21_kongo";
-import { kongo_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/21_kongo";
+import { kongo_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/21_kongo";
 import { kongo_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/21_kongo";
 import { kongo_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/21_kongo";
 import { kongo_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/21_kongo";
 import { kongo_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/21_kongo";
 import { kongo_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/21_kongo";
+import { kongo_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/21_kongo";
 const kongo_geopolitik = {
     "un_vote": 53,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const kongo_geopolitik = {
 export const kongo: CountryData = {
   ...kongo_profile,
   "sektor_listrik": kongo_listrik,
+  "hunian": kongo_hunian,
   "infrastruktur": kongo_infrastruktur,
   "sektor_ekstraksi": kongo_ekstraksi,
   "sektor_manufaktur": kongo_manufaktur,

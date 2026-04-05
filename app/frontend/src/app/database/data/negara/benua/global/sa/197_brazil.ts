@@ -5,21 +5,22 @@ import { brazil_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { brazil_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/197_brazil";
 import { brazil_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/197_brazil";
 import { brazil_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/sa/197_brazil";
-import { brazil_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/sa/197_brazil";
-import { brazil_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/sa/197_brazil";
+import { brazil_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/sa/197_brazil";
+import { brazil_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/sa/197_brazil";
 import { brazil_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/sa/197_brazil";
-import { brazil_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/sa/197_brazil";
+import { brazil_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/sa/197_brazil";
 import { brazil_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/sa/197_brazil";
 import { brazil_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/sa/197_brazil";
 import { brazil_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/sa/197_brazil";
-import { brazil_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/sa/197_brazil";
+import { brazil_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/sa/197_brazil";
 import { brazil_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/sa/197_brazil";
-import { brazil_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/sa/197_brazil";
+import { brazil_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/sa/197_brazil";
 import { brazil_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/sa/197_brazil";
 import { brazil_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/sa/197_brazil";
 import { brazil_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/sa/197_brazil";
 import { brazil_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/197_brazil";
 import { brazil_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/sa/197_brazil";
+import { brazil_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/sa/197_brazil";
 const brazil_geopolitik = {
     "un_vote": 206,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const brazil_geopolitik = {
 export const brazil: CountryData = {
   ...brazil_profile,
   "sektor_listrik": brazil_listrik,
+  "hunian": brazil_hunian,
   "infrastruktur": brazil_infrastruktur,
   "sektor_ekstraksi": brazil_ekstraksi,
   "sektor_manufaktur": brazil_manufaktur,

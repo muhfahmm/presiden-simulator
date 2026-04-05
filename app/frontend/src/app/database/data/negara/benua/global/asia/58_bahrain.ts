@@ -5,21 +5,22 @@ import { bahrain_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pem
 import { bahrain_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/58_bahrain";
 import { bahrain_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/58_bahrain";
 import { bahrain_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/58_bahrain";
-import { bahrain_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/58_bahrain";
-import { bahrain_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/58_bahrain";
+import { bahrain_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/asia/58_bahrain";
+import { bahrain_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/asia/58_bahrain";
 import { bahrain_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/58_bahrain";
-import { bahrain_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/58_bahrain";
+import { bahrain_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/asia/58_bahrain";
 import { bahrain_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/58_bahrain";
 import { bahrain_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/58_bahrain";
 import { bahrain_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/58_bahrain";
-import { bahrain_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/58_bahrain";
+import { bahrain_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/asia/58_bahrain";
 import { bahrain_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/58_bahrain";
-import { bahrain_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/58_bahrain";
+import { bahrain_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/asia/58_bahrain";
 import { bahrain_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/58_bahrain";
 import { bahrain_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/58_bahrain";
 import { bahrain_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/58_bahrain";
 import { bahrain_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/58_bahrain";
 import { bahrain_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/58_bahrain";
+import { bahrain_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/asia/58_bahrain";
 const bahrain_geopolitik = {
     "un_vote": 96,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const bahrain_geopolitik = {
 export const bahrain: CountryData = {
   ...bahrain_profile,
   "sektor_listrik": bahrain_listrik,
+  "hunian": bahrain_hunian,
   "infrastruktur": bahrain_infrastruktur,
   "sektor_ekstraksi": bahrain_ekstraksi,
   "sektor_manufaktur": bahrain_manufaktur,

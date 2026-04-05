@@ -5,21 +5,22 @@ import { chad_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemban
 import { chad_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/8_chad";
 import { chad_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/8_chad";
 import { chad_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/8_chad";
-import { chad_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/8_chad";
-import { chad_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/8_chad";
+import { chad_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/8_chad";
+import { chad_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/8_chad";
 import { chad_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/8_chad";
-import { chad_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/8_chad";
+import { chad_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/8_chad";
 import { chad_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/8_chad";
 import { chad_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/8_chad";
 import { chad_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/8_chad";
-import { chad_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/8_chad";
+import { chad_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/8_chad";
 import { chad_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/8_chad";
-import { chad_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/8_chad";
+import { chad_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/8_chad";
 import { chad_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/8_chad";
 import { chad_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/8_chad";
 import { chad_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/8_chad";
 import { chad_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/8_chad";
 import { chad_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/8_chad";
+import { chad_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/8_chad";
 const chad_geopolitik = {
     "un_vote": 58,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const chad_geopolitik = {
 export const chad: CountryData = {
   ...chad_profile,
   "sektor_listrik": chad_listrik,
+  "hunian": chad_hunian,
   "infrastruktur": chad_infrastruktur,
   "sektor_ekstraksi": chad_ekstraksi,
   "sektor_manufaktur": chad_manufaktur,

@@ -5,23 +5,24 @@ import { malaysia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pe
 import { malaysia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/81_malaysia";
 import { malaysia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/81_malaysia";
 import { malaysia_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/81_malaysia";
-import { malaysia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/81_malaysia";
-import { malaysia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/81_malaysia";
+import { malaysia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/asia/81_malaysia";
+import { malaysia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/asia/81_malaysia";
 import { malaysia_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/81_malaysia";
-import { malaysia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/81_malaysia";
+import { malaysia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/asia/81_malaysia";
 import { malaysia_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/81_malaysia";
 import { malaysia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/81_malaysia";
 import { malaysia_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/81_malaysia";
-import { malaysia_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/81_malaysia";
-import { malaysia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/6_komersial/asia/81_malaysia";
-import { malaysia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/7_hiburan/asia/81_malaysia";
+import { malaysia_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/asia/81_malaysia";
+import { malaysia_komersial } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/6_komersial/asia/81_malaysia";
+import { malaysia_hiburan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/7_hiburan/asia/81_malaysia";
 import { malaysia_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/81_malaysia";
-import { malaysia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/81_malaysia";
+import { malaysia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/asia/81_malaysia";
 import { malaysia_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/81_malaysia";
 import { malaysia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/81_malaysia";
 import { malaysia_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/81_malaysia";
 import { malaysia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/81_malaysia";
 import { malaysia_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/81_malaysia";
+import { malaysia_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/asia/81_malaysia";
 const malaysia_geopolitik = {
     "un_vote": 141,
     "reputasi_diplomatik": "Netral",
@@ -73,6 +74,7 @@ export const malaysia: CountryData = {
   "sektor_olahraga": malaysia_olahraga,
   "sektor_komersial": malaysia_komersial,
   "sektor_hiburan": malaysia_hiburan,
+  "hunian": malaysia_hunian,
   // =============================================================
   // 11. Ã°Å¸â€™Â° PAJAK & EKONOMI
   // =============================================================

@@ -5,21 +5,22 @@ import { oman_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemban
 import { oman_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/86_oman";
 import { oman_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/86_oman";
 import { oman_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/86_oman";
-import { oman_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/86_oman";
-import { oman_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/86_oman";
+import { oman_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/asia/86_oman";
+import { oman_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/asia/86_oman";
 import { oman_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/86_oman";
-import { oman_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/86_oman";
+import { oman_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/asia/86_oman";
 import { oman_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/86_oman";
 import { oman_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/86_oman";
 import { oman_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/86_oman";
-import { oman_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/86_oman";
+import { oman_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/asia/86_oman";
 import { oman_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/86_oman";
-import { oman_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/86_oman";
+import { oman_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/asia/86_oman";
 import { oman_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/86_oman";
 import { oman_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/86_oman";
 import { oman_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/86_oman";
 import { oman_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/86_oman";
 import { oman_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/86_oman";
+import { oman_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/asia/86_oman";
 const oman_geopolitik = {
     "un_vote": 165,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const oman_geopolitik = {
 export const oman: CountryData = {
   ...oman_profile,
   "sektor_listrik": oman_listrik,
+  "hunian": oman_hunian,
   "infrastruktur": oman_infrastruktur,
   "sektor_ekstraksi": oman_ekstraksi,
   "sektor_manufaktur": oman_manufaktur,

@@ -5,21 +5,22 @@ import { malawi_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { malawi_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/26_malawi";
 import { malawi_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/26_malawi";
 import { malawi_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/26_malawi";
-import { malawi_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/26_malawi";
-import { malawi_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/26_malawi";
+import { malawi_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/26_malawi";
+import { malawi_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/26_malawi";
 import { malawi_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/26_malawi";
-import { malawi_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/26_malawi";
+import { malawi_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/26_malawi";
 import { malawi_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/26_malawi";
 import { malawi_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/26_malawi";
 import { malawi_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/26_malawi";
-import { malawi_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/26_malawi";
+import { malawi_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/26_malawi";
 import { malawi_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/26_malawi";
-import { malawi_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/26_malawi";
+import { malawi_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/26_malawi";
 import { malawi_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/26_malawi";
 import { malawi_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/26_malawi";
 import { malawi_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/26_malawi";
 import { malawi_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/26_malawi";
 import { malawi_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/26_malawi";
+import { malawi_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/26_malawi";
 const malawi_geopolitik = {
     "un_vote": 35,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const malawi_geopolitik = {
 export const malawi: CountryData = {
   ...malawi_profile,
   "sektor_listrik": malawi_listrik,
+  "hunian": malawi_hunian,
   "infrastruktur": malawi_infrastruktur,
   "sektor_ekstraksi": malawi_ekstraksi,
   "sektor_manufaktur": malawi_manufaktur,

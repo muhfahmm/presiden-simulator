@@ -5,21 +5,22 @@ import { kenya_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { kenya_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/19_kenya";
 import { kenya_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/19_kenya";
 import { kenya_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/19_kenya";
-import { kenya_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/19_kenya";
-import { kenya_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/19_kenya";
+import { kenya_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/19_kenya";
+import { kenya_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/19_kenya";
 import { kenya_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/19_kenya";
-import { kenya_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/19_kenya";
+import { kenya_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/19_kenya";
 import { kenya_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/19_kenya";
 import { kenya_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/19_kenya";
 import { kenya_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/19_kenya";
-import { kenya_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/19_kenya";
+import { kenya_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/19_kenya";
 import { kenya_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/19_kenya";
-import { kenya_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/19_kenya";
+import { kenya_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/19_kenya";
 import { kenya_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/19_kenya";
 import { kenya_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/19_kenya";
 import { kenya_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/19_kenya";
 import { kenya_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/19_kenya";
 import { kenya_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/19_kenya";
+import { kenya_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/19_kenya";
 const kenya_geopolitik = {
     "un_vote": 169,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const kenya_geopolitik = {
 export const kenya: CountryData = {
   ...kenya_profile,
   "sektor_listrik": kenya_listrik,
+  "hunian": kenya_hunian,
   "infrastruktur": kenya_infrastruktur,
   "sektor_ekstraksi": kenya_ekstraksi,
   "sektor_manufaktur": kenya_manufaktur,

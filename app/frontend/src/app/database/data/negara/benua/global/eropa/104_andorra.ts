@@ -5,21 +5,22 @@ import { andorra_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pem
 import { andorra_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/104_andorra";
 import { andorra_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/104_andorra";
 import { andorra_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/104_andorra";
-import { andorra_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/104_andorra";
-import { andorra_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/104_andorra";
+import { andorra_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/104_andorra";
+import { andorra_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/104_andorra";
 import { andorra_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/104_andorra";
-import { andorra_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/104_andorra";
+import { andorra_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/104_andorra";
 import { andorra_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/104_andorra";
 import { andorra_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/104_andorra";
 import { andorra_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/104_andorra";
-import { andorra_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/104_andorra";
+import { andorra_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/104_andorra";
 import { andorra_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/104_andorra";
-import { andorra_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/104_andorra";
+import { andorra_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/104_andorra";
 import { andorra_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/104_andorra";
 import { andorra_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/104_andorra";
 import { andorra_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/104_andorra";
 import { andorra_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/104_andorra";
 import { andorra_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/104_andorra";
+import { andorra_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/104_andorra";
 const andorra_geopolitik = {
     "un_vote": 11,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const andorra_geopolitik = {
 export const andorra: CountryData = {
   ...andorra_profile,
   "sektor_listrik": andorra_listrik,
+  "hunian": andorra_hunian,
   "infrastruktur": andorra_infrastruktur,
   "sektor_ekstraksi": andorra_ekstraksi,
   "sektor_manufaktur": andorra_manufaktur,

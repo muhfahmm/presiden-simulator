@@ -5,21 +5,22 @@ import { tuvalu_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { tuvalu_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/193_tuvalu";
 import { tuvalu_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/193_tuvalu";
 import { tuvalu_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/oceania/193_tuvalu";
-import { tuvalu_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/oceania/193_tuvalu";
-import { tuvalu_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/oceania/193_tuvalu";
+import { tuvalu_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/oceania/193_tuvalu";
+import { tuvalu_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/oceania/193_tuvalu";
 import { tuvalu_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/oceania/193_tuvalu";
-import { tuvalu_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/oceania/193_tuvalu";
+import { tuvalu_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/oceania/193_tuvalu";
 import { tuvalu_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/oceania/193_tuvalu";
 import { tuvalu_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/oceania/193_tuvalu";
 import { tuvalu_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/oceania/193_tuvalu";
-import { tuvalu_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/oceania/193_tuvalu";
+import { tuvalu_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/oceania/193_tuvalu";
 import { tuvalu_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/oceania/193_tuvalu";
-import { tuvalu_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/oceania/193_tuvalu";
+import { tuvalu_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/oceania/193_tuvalu";
 import { tuvalu_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/oceania/193_tuvalu";
 import { tuvalu_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/oceania/193_tuvalu";
 import { tuvalu_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/oceania/193_tuvalu";
 import { tuvalu_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/193_tuvalu";
 import { tuvalu_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/oceania/193_tuvalu";
+import { tuvalu_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/oceania/193_tuvalu";
 const tuvalu_geopolitik = {
     "un_vote": 29,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const tuvalu_geopolitik = {
 export const tuvalu: CountryData = {
   ...tuvalu_profile,
   "sektor_listrik": tuvalu_listrik,
+  "hunian": tuvalu_hunian,
   "infrastruktur": tuvalu_infrastruktur,
   "sektor_ekstraksi": tuvalu_ekstraksi,
   "sektor_manufaktur": tuvalu_manufaktur,

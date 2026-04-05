@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react";
-import { X, Bolt, Activity, TrendingUp, TrendingDown, Battery, Radio, Gauge, Info, Hammer, Shield, Users, Factory, Pickaxe, Lightbulb, ZapOff, CloudLightning, Sprout, Utensils, Pill, TrainFront, Store, Beef, Fish, Bus, School, Hospital, Gavel, Trophy, Theater, Plane, Ship, MapPin, Eye, EyeOff, Truck } from "lucide-react";
+import { X, Bolt, Activity, TrendingUp, TrendingDown, Battery, Radio, Gauge, Info, Hammer, Shield, Users, Factory, Pickaxe, Lightbulb, ZapOff, CloudLightning, Sprout, Utensils, Pill, TrainFront, Store, Beef, Fish, Bus, School, Hospital, Gavel, Trophy, Theater, Plane, Ship, MapPin, Eye, EyeOff, Truck, Home } from "lucide-react";
 import { 
   hitungTotalKapasitas, 
   hitungTotalKonsumsiNasional, 
@@ -38,6 +38,7 @@ import {
   olahragaRate,
   komersialRate,
   hiburanRate,
+  hunianRate,
   pabrikMiliterRate,
   intelijenRate,
   armadaMiliterRate
@@ -93,6 +94,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
     sektor_olahraga: { ...currentData.sektor_olahraga || {} },
     sektor_komersial: { ...currentData.sektor_komersial || {} },
     sektor_hiburan: { ...currentData.sektor_hiburan || {} },
+    hunian: { ...currentData.hunian || {} },
   };
 
   Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
@@ -146,6 +148,10 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
     else if ((pabrikMiliterRate as any)[key]) {
       const dataKey = (pabrikMiliterRate as any)[key].dataKey;
       (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((hunianRate as any)[key]) {
+      const dataKey = key; // for hunian, the key IS the dataKey (rumah_subsidi, etc)
+      (currentDataWithDeltas.hunian as any)[dataKey] = ((currentDataWithDeltas.hunian as any)[dataKey] || 0) + deltaValue;
     }
   });
 
@@ -217,7 +223,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
   ];
 
   // 1. Sektor Infrastruktur & Logistik (8 jenis)
-  const infraUsage = Object.entries(infrastrukturRate).map(([key, val]) => ({
+  const infraUsage = Object.entries(infrastrukturRate).map(([key, val]: [string, any]) => ({
     name: val.deskripsi,
     description: "Infrastruktur & Logistik",
     value: ((currentDataWithDeltas.infrastruktur as any)[val.dataKey] || 0) * (val.konsumsi_listrik || 0),
@@ -226,7 +232,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
   }));
 
   // 2. Sektor Pendidikan & Riset (10 jenis)
-  const eduUsage = Object.entries(pendidikanRate).map(([key, val]) => ({
+  const eduUsage = Object.entries(pendidikanRate).map(([key, val]: [string, any]) => ({
     name: val.deskripsi,
     description: "Pendidikan & Riset",
     value: ((currentDataWithDeltas.pendidikan as any)[val.dataKey] || 0) * (val.konsumsi_listrik || 0),
@@ -235,7 +241,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
   }));
 
   // 3. Sektor Layanan Kesehatan (3 jenis)
-  const healthUsage = Object.entries(kesehatanRate).map(([key, val]) => ({
+  const healthUsage = Object.entries(kesehatanRate).map(([key, val]: [string, any]) => ({
     name: val.deskripsi,
     description: "Layanan Kesehatan",
     value: ((currentDataWithDeltas.kesehatan as any)[val.dataKey] || 0) * (val.konsumsi_listrik || 0),
@@ -244,7 +250,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
   }));
 
   // 4. Sektor Hukum & Keamanan (2 jenis)
-  const lawUsage = Object.entries(hukumRate).map(([key, val]) => ({
+  const lawUsage = Object.entries(hukumRate).map(([key, val]: [string, any]) => ({
     name: val.deskripsi,
     description: "Hukum & Keamanan",
     value: ((currentDataWithDeltas.hukum as any)[val.dataKey] || 0) * (val.konsumsi_listrik || 0),
@@ -253,7 +259,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
   }));
 
   // 5. Sektor Olahraga & Rekreasi (7 jenis)
-  const sportUsage = Object.entries(olahragaRate).map(([key, val]) => ({
+  const sportUsage = Object.entries(olahragaRate).map(([key, val]: [string, any]) => ({
     name: val.deskripsi,
     description: "Olahraga & Rekreasi",
     value: ((currentDataWithDeltas.sektor_olahraga as any)[val.dataKey] || 0) * (val.konsumsi_listrik || 0),
@@ -262,7 +268,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
   }));
 
   // 6. Sektor Fasilitas Komersial (3 jenis)
-  const commUsage = Object.entries(komersialRate).map(([key, val]) => ({
+  const commUsage = Object.entries(komersialRate).map(([key, val]: [string, any]) => ({
     name: val.deskripsi,
     description: "Fasilitas Komersial",
     value: ((currentDataWithDeltas.sektor_komersial as any)[val.dataKey] || 0) * (val.konsumsi_listrik || 0),
@@ -271,12 +277,21 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
   }));
 
   // 7. Sektor Hiburan & Seni (2 jenis)
-  const entUsage = Object.entries(hiburanRate).map(([key, val]) => ({
+  const entUsage = Object.entries(hiburanRate).map(([key, val]: [string, any]) => ({
     name: val.deskripsi,
     description: "Hiburan & Seni",
     value: ((currentDataWithDeltas.sektor_hiburan as any)[val.dataKey] || 0) * (val.konsumsi_listrik || 0),
     icon: Theater,
     color: "text-purple-400"
+  }));
+  
+  // 7b. Sektor Hunian & Pemukiman (3 jenis)
+  const hunianUsage = Object.entries(hunianRate).map(([key, val]: [string, any]) => ({
+    name: val.label,
+    description: val.desc,
+    value: ((currentDataWithDeltas.hunian as any)[key] || 0) * (val.konsumsi_listrik || 0),
+    icon: Home,
+    color: "text-amber-200"
   }));
 
   // 8. Sektor Intelijen & Strategis (3 jenis)
@@ -561,6 +576,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
                     { title: "5. Sektor Olahraga & Rekreasi (7 Jenis)", data: sportUsage, color: "text-orange-400", bgColor: "from-orange-500/10" },
                     { title: "6. Sektor Fasilitas Komersial (3 Jenis)", data: commUsage, color: "text-pink-400", bgColor: "from-pink-500/10" },
                     { title: "7. Sektor Hiburan & Seni (2 Jenis)", data: entUsage, color: "text-purple-400", bgColor: "from-purple-500/10" },
+                    { title: "8. Sektor Hunian & Pemukiman (3 Jenis)", data: hunianUsage, color: "text-amber-200", bgColor: "from-amber-200/10" },
                   ].map((group, gIdx) => (
                     <div key={gIdx} className="space-y-3">
                       <div className="flex items-center gap-2 px-4 py-1.5 bg-zinc-900/40 border border-zinc-800/40 rounded-xl relative overflow-hidden group">

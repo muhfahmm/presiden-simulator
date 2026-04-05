@@ -5,21 +5,22 @@ import { curacao_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pem
 import { curacao_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/159_curacao";
 import { curacao_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/159_curacao";
 import { curacao_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/159_curacao";
-import { curacao_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/159_curacao";
-import { curacao_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/159_curacao";
+import { curacao_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/na/159_curacao";
+import { curacao_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/na/159_curacao";
 import { curacao_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/159_curacao";
-import { curacao_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/159_curacao";
+import { curacao_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/na/159_curacao";
 import { curacao_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/159_curacao";
 import { curacao_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/159_curacao";
 import { curacao_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/na/159_curacao";
-import { curacao_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/na/159_curacao";
+import { curacao_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/na/159_curacao";
 import { curacao_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/159_curacao";
-import { curacao_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/159_curacao";
+import { curacao_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/na/159_curacao";
 import { curacao_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/159_curacao";
 import { curacao_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/159_curacao";
 import { curacao_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/159_curacao";
 import { curacao_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/159_curacao";
 import { curacao_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/159_curacao";
+import { curacao_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/na/159_curacao";
 const curacao_geopolitik = {
     "un_vote": 16,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const curacao_geopolitik = {
 export const curacao: CountryData = {
   ...curacao_profile,
   "sektor_listrik": curacao_listrik,
+  "hunian": curacao_hunian,
   "infrastruktur": curacao_infrastruktur,
   "sektor_ekstraksi": curacao_ekstraksi,
   "sektor_manufaktur": curacao_manufaktur,

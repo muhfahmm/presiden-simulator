@@ -5,21 +5,22 @@ import { ekuador_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pem
 import { ekuador_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/199_ekuador";
 import { ekuador_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/199_ekuador";
 import { ekuador_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/sa/199_ekuador";
-import { ekuador_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/sa/199_ekuador";
-import { ekuador_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/sa/199_ekuador";
+import { ekuador_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/sa/199_ekuador";
+import { ekuador_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/sa/199_ekuador";
 import { ekuador_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/sa/199_ekuador";
-import { ekuador_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/sa/199_ekuador";
+import { ekuador_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/sa/199_ekuador";
 import { ekuador_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/sa/199_ekuador";
 import { ekuador_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/sa/199_ekuador";
 import { ekuador_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/sa/199_ekuador";
-import { ekuador_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/sa/199_ekuador";
+import { ekuador_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/sa/199_ekuador";
 import { ekuador_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/sa/199_ekuador";
-import { ekuador_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/sa/199_ekuador";
+import { ekuador_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/sa/199_ekuador";
 import { ekuador_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/sa/199_ekuador";
 import { ekuador_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/sa/199_ekuador";
 import { ekuador_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/sa/199_ekuador";
 import { ekuador_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/199_ekuador";
 import { ekuador_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/sa/199_ekuador";
+import { ekuador_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/sa/199_ekuador";
 const ekuador_geopolitik = {
     "un_vote": 32,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const ekuador_geopolitik = {
 export const ekuador: CountryData = {
   ...ekuador_profile,
   "sektor_listrik": ekuador_listrik,
+  "hunian": ekuador_hunian,
   "infrastruktur": ekuador_infrastruktur,
   "sektor_ekstraksi": ekuador_ekstraksi,
   "sektor_manufaktur": ekuador_manufaktur,

@@ -5,21 +5,22 @@ import { kuba_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemban
 import { kuba_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/169_kuba";
 import { kuba_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/169_kuba";
 import { kuba_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/169_kuba";
-import { kuba_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/169_kuba";
-import { kuba_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/169_kuba";
+import { kuba_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/na/169_kuba";
+import { kuba_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/na/169_kuba";
 import { kuba_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/169_kuba";
-import { kuba_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/169_kuba";
+import { kuba_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/na/169_kuba";
 import { kuba_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/169_kuba";
 import { kuba_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/169_kuba";
 import { kuba_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/na/169_kuba";
-import { kuba_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/na/169_kuba";
+import { kuba_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/na/169_kuba";
 import { kuba_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/169_kuba";
-import { kuba_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/169_kuba";
+import { kuba_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/na/169_kuba";
 import { kuba_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/169_kuba";
 import { kuba_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/169_kuba";
 import { kuba_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/169_kuba";
 import { kuba_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/169_kuba";
 import { kuba_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/169_kuba";
+import { kuba_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/na/169_kuba";
 const kuba_geopolitik = {
     "un_vote": 171,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const kuba_geopolitik = {
 export const kuba: CountryData = {
   ...kuba_profile,
   "sektor_listrik": kuba_listrik,
+  "hunian": kuba_hunian,
   "infrastruktur": kuba_infrastruktur,
   "sektor_ekstraksi": kuba_ekstraksi,
   "sektor_manufaktur": kuba_manufaktur,

@@ -5,21 +5,22 @@ import { inggris_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pem
 import { inggris_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/117_inggris";
 import { inggris_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/117_inggris";
 import { inggris_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/117_inggris";
-import { inggris_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/117_inggris";
-import { inggris_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/117_inggris";
+import { inggris_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/117_inggris";
+import { inggris_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/117_inggris";
 import { inggris_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/117_inggris";
-import { inggris_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/117_inggris";
+import { inggris_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/117_inggris";
 import { inggris_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/117_inggris";
 import { inggris_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/117_inggris";
 import { inggris_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/117_inggris";
-import { inggris_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/117_inggris";
+import { inggris_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/117_inggris";
 import { inggris_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/117_inggris";
-import { inggris_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/117_inggris";
+import { inggris_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/117_inggris";
 import { inggris_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/117_inggris";
 import { inggris_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/117_inggris";
 import { inggris_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/117_inggris";
 import { inggris_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/117_inggris";
 import { inggris_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/117_inggris";
+import { inggris_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/117_inggris";
 const inggris_geopolitik = {
     "un_vote": 181,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const inggris_geopolitik = {
 export const inggris: CountryData = {
   ...inggris_profile,
   "sektor_listrik": inggris_listrik,
+  "hunian": inggris_hunian,
   "infrastruktur": inggris_infrastruktur,
   "sektor_ekstraksi": inggris_ekstraksi,
   "sektor_manufaktur": inggris_manufaktur,

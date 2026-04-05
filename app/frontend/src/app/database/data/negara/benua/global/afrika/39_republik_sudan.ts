@@ -5,21 +5,22 @@ import { republik_sudan_agrikultur } from "@/app/database/data/semua_fitur_negar
 import { republik_sudan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/39_republik_sudan";
 import { republik_sudan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/39_republik_sudan";
 import { republik_sudan_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/39_republik_sudan";
-import { republik_sudan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/39_republik_sudan";
-import { republik_sudan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/39_republik_sudan";
+import { republik_sudan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/39_republik_sudan";
+import { republik_sudan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/39_republik_sudan";
 import { republik_sudan_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/39_republik_sudan";
-import { republik_sudan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/39_republik_sudan";
+import { republik_sudan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/39_republik_sudan";
 import { republik_sudan_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/39_republik_sudan";
 import { republik_sudan_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/39_republik_sudan";
 import { republik_sudan_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/39_republik_sudan";
-import { republik_sudan_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/39_republik_sudan";
+import { republik_sudan_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/39_republik_sudan";
 import { republik_sudan_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/39_republik_sudan";
-import { republik_sudan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/39_republik_sudan";
+import { republik_sudan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/39_republik_sudan";
 import { republik_sudan_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/39_republik_sudan";
 import { republik_sudan_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/39_republik_sudan";
 import { republik_sudan_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/39_republik_sudan";
 import { republik_sudan_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/39_republik_sudan";
 import { republik_sudan_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/39_republik_sudan";
+import { republik_sudan_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/39_republik_sudan";
 const republik_sudan_geopolitik = {
     "un_vote": 95,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const republik_sudan_geopolitik = {
 export const republik_sudan: CountryData = {
   ...republik_sudan_profile,
   "sektor_listrik": republik_sudan_listrik,
+  "hunian": republik_sudan_hunian,
   "infrastruktur": republik_sudan_infrastruktur,
   "sektor_ekstraksi": republik_sudan_ekstraksi,
   "sektor_manufaktur": republik_sudan_manufaktur,

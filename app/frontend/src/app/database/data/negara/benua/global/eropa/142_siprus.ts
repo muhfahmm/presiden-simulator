@@ -5,21 +5,22 @@ import { siprus_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { siprus_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/142_siprus";
 import { siprus_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/142_siprus";
 import { siprus_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/142_siprus";
-import { siprus_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/142_siprus";
-import { siprus_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/142_siprus";
+import { siprus_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/142_siprus";
+import { siprus_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/142_siprus";
 import { siprus_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/142_siprus";
-import { siprus_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/142_siprus";
+import { siprus_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/142_siprus";
 import { siprus_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/142_siprus";
 import { siprus_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/142_siprus";
 import { siprus_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/142_siprus";
-import { siprus_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/142_siprus";
+import { siprus_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/142_siprus";
 import { siprus_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/142_siprus";
-import { siprus_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/142_siprus";
+import { siprus_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/142_siprus";
 import { siprus_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/142_siprus";
 import { siprus_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/142_siprus";
 import { siprus_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/142_siprus";
 import { siprus_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/142_siprus";
 import { siprus_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/142_siprus";
+import { siprus_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/142_siprus";
 const siprus_geopolitik = {
     "un_vote": 131,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const siprus_geopolitik = {
 export const siprus: CountryData = {
   ...siprus_profile,
   "sektor_listrik": siprus_listrik,
+  "hunian": siprus_hunian,
   "infrastruktur": siprus_infrastruktur,
   "sektor_ekstraksi": siprus_ekstraksi,
   "sektor_manufaktur": siprus_manufaktur,

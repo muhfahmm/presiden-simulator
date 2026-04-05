@@ -5,21 +5,22 @@ import { bosnia_dan_hercegovina_agrikultur } from "@/app/database/data/semua_fit
 import { bosnia_dan_hercegovina_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/109_bosnia_dan_hercegovina";
-import { bosnia_dan_hercegovina_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/109_bosnia_dan_hercegovina";
-import { bosnia_dan_hercegovina_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/109_bosnia_dan_hercegovina";
-import { bosnia_dan_hercegovina_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/109_bosnia_dan_hercegovina";
-import { bosnia_dan_hercegovina_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/109_bosnia_dan_hercegovina";
-import { bosnia_dan_hercegovina_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/109_bosnia_dan_hercegovina";
 import { bosnia_dan_hercegovina_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/109_bosnia_dan_hercegovina";
+import { bosnia_dan_hercegovina_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/109_bosnia_dan_hercegovina";
 const bosnia_dan_hercegovina_geopolitik = {
     "un_vote": 144,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const bosnia_dan_hercegovina_geopolitik = {
 export const bosnia_dan_hercegovina: CountryData = {
   ...bosnia_dan_hercegovina_profile,
   "sektor_listrik": bosnia_dan_hercegovina_listrik,
+  "hunian": bosnia_dan_hercegovina_hunian,
   "infrastruktur": bosnia_dan_hercegovina_infrastruktur,
   "sektor_ekstraksi": bosnia_dan_hercegovina_ekstraksi,
   "sektor_manufaktur": bosnia_dan_hercegovina_manufaktur,

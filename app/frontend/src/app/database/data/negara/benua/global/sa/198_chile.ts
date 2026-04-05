@@ -5,21 +5,22 @@ import { chile_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { chile_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/198_chile";
 import { chile_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/198_chile";
 import { chile_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/sa/198_chile";
-import { chile_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/sa/198_chile";
-import { chile_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/sa/198_chile";
+import { chile_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/sa/198_chile";
+import { chile_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/sa/198_chile";
 import { chile_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/sa/198_chile";
-import { chile_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/sa/198_chile";
+import { chile_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/sa/198_chile";
 import { chile_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/sa/198_chile";
 import { chile_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/sa/198_chile";
 import { chile_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/sa/198_chile";
-import { chile_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/sa/198_chile";
+import { chile_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/sa/198_chile";
 import { chile_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/sa/198_chile";
-import { chile_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/sa/198_chile";
+import { chile_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/sa/198_chile";
 import { chile_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/sa/198_chile";
 import { chile_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/sa/198_chile";
 import { chile_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/sa/198_chile";
 import { chile_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/198_chile";
 import { chile_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/sa/198_chile";
+import { chile_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/sa/198_chile";
 const chile_geopolitik = {
     "un_vote": 147,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const chile_geopolitik = {
 export const chile: CountryData = {
   ...chile_profile,
   "sektor_listrik": chile_listrik,
+  "hunian": chile_hunian,
   "infrastruktur": chile_infrastruktur,
   "sektor_ekstraksi": chile_ekstraksi,
   "sektor_manufaktur": chile_manufaktur,

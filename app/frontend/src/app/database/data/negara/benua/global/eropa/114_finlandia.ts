@@ -5,21 +5,22 @@ import { finlandia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_p
 import { finlandia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/114_finlandia";
 import { finlandia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/114_finlandia";
 import { finlandia_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/114_finlandia";
-import { finlandia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/114_finlandia";
-import { finlandia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/114_finlandia";
+import { finlandia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/114_finlandia";
+import { finlandia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/114_finlandia";
 import { finlandia_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/114_finlandia";
-import { finlandia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/114_finlandia";
+import { finlandia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/114_finlandia";
 import { finlandia_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/114_finlandia";
 import { finlandia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/114_finlandia";
 import { finlandia_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/114_finlandia";
-import { finlandia_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/114_finlandia";
+import { finlandia_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/114_finlandia";
 import { finlandia_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/114_finlandia";
-import { finlandia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/114_finlandia";
+import { finlandia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/114_finlandia";
 import { finlandia_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/114_finlandia";
 import { finlandia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/114_finlandia";
 import { finlandia_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/114_finlandia";
 import { finlandia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/114_finlandia";
 import { finlandia_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/114_finlandia";
+import { finlandia_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/114_finlandia";
 const finlandia_geopolitik = {
     "un_vote": 156,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const finlandia_geopolitik = {
 export const finlandia: CountryData = {
   ...finlandia_profile,
   "sektor_listrik": finlandia_listrik,
+  "hunian": finlandia_hunian,
   "infrastruktur": finlandia_infrastruktur,
   "sektor_ekstraksi": finlandia_ekstraksi,
   "sektor_manufaktur": finlandia_manufaktur,

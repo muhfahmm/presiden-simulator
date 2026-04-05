@@ -5,21 +5,22 @@ import { seychelles_agrikultur } from "@/app/database/data/semua_fitur_negara/1_
 import { seychelles_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/47_seychelles";
 import { seychelles_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/47_seychelles";
 import { seychelles_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/47_seychelles";
-import { seychelles_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/47_seychelles";
-import { seychelles_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/47_seychelles";
+import { seychelles_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/47_seychelles";
+import { seychelles_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/47_seychelles";
 import { seychelles_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/47_seychelles";
-import { seychelles_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/47_seychelles";
+import { seychelles_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/47_seychelles";
 import { seychelles_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/47_seychelles";
 import { seychelles_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/47_seychelles";
 import { seychelles_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/47_seychelles";
-import { seychelles_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/47_seychelles";
+import { seychelles_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/47_seychelles";
 import { seychelles_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/47_seychelles";
-import { seychelles_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/47_seychelles";
+import { seychelles_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/47_seychelles";
 import { seychelles_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/47_seychelles";
 import { seychelles_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/47_seychelles";
 import { seychelles_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/47_seychelles";
 import { seychelles_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/47_seychelles";
 import { seychelles_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/47_seychelles";
+import { seychelles_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/47_seychelles";
 const seychelles_geopolitik = {
     "un_vote": 6,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const seychelles_geopolitik = {
 export const seychelles: CountryData = {
   ...seychelles_profile,
   "sektor_listrik": seychelles_listrik,
+  "hunian": seychelles_hunian,
   "infrastruktur": seychelles_infrastruktur,
   "sektor_ekstraksi": seychelles_ekstraksi,
   "sektor_manufaktur": seychelles_manufaktur,

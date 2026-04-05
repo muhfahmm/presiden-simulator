@@ -5,21 +5,22 @@ import { republik_rumania_agrikultur } from "@/app/database/data/semua_fitur_neg
 import { republik_rumania_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/138_republik_rumania";
 import { republik_rumania_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/138_republik_rumania";
 import { republik_rumania_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/138_republik_rumania";
-import { republik_rumania_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/138_republik_rumania";
-import { republik_rumania_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/138_republik_rumania";
+import { republik_rumania_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/138_republik_rumania";
+import { republik_rumania_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/138_republik_rumania";
 import { republik_rumania_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/138_republik_rumania";
-import { republik_rumania_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/138_republik_rumania";
+import { republik_rumania_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/138_republik_rumania";
 import { republik_rumania_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/138_republik_rumania";
 import { republik_rumania_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/138_republik_rumania";
 import { republik_rumania_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/138_republik_rumania";
-import { republik_rumania_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/138_republik_rumania";
+import { republik_rumania_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/138_republik_rumania";
 import { republik_rumania_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/138_republik_rumania";
-import { republik_rumania_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/138_republik_rumania";
+import { republik_rumania_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/138_republik_rumania";
 import { republik_rumania_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/138_republik_rumania";
 import { republik_rumania_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/138_republik_rumania";
 import { republik_rumania_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/138_republik_rumania";
 import { republik_rumania_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/138_republik_rumania";
 import { republik_rumania_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/138_republik_rumania";
+import { republik_rumania_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/138_republik_rumania";
 const republik_rumania_geopolitik = {
     "un_vote": 143,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const republik_rumania_geopolitik = {
 export const republik_rumania: CountryData = {
   ...republik_rumania_profile,
   "sektor_listrik": republik_rumania_listrik,
+  "hunian": republik_rumania_hunian,
   "infrastruktur": republik_rumania_infrastruktur,
   "sektor_ekstraksi": republik_rumania_ekstraksi,
   "sektor_manufaktur": republik_rumania_manufaktur,

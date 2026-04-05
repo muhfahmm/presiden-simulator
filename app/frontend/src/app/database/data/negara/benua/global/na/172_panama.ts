@@ -5,21 +5,22 @@ import { panama_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { panama_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/172_panama";
 import { panama_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/172_panama";
 import { panama_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/172_panama";
-import { panama_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/172_panama";
-import { panama_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/172_panama";
+import { panama_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/na/172_panama";
+import { panama_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/na/172_panama";
 import { panama_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/172_panama";
-import { panama_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/172_panama";
+import { panama_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/na/172_panama";
 import { panama_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/172_panama";
 import { panama_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/172_panama";
 import { panama_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/na/172_panama";
-import { panama_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/na/172_panama";
+import { panama_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/na/172_panama";
 import { panama_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/172_panama";
-import { panama_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/172_panama";
+import { panama_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/na/172_panama";
 import { panama_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/172_panama";
 import { panama_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/172_panama";
 import { panama_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/172_panama";
 import { panama_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/172_panama";
 import { panama_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/172_panama";
+import { panama_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/na/172_panama";
 const panama_geopolitik = {
     "un_vote": 120,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const panama_geopolitik = {
 export const panama: CountryData = {
   ...panama_profile,
   "sektor_listrik": panama_listrik,
+  "hunian": panama_hunian,
   "infrastruktur": panama_infrastruktur,
   "sektor_ekstraksi": panama_ekstraksi,
   "sektor_manufaktur": panama_manufaktur,

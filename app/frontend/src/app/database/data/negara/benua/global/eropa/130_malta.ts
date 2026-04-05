@@ -5,21 +5,22 @@ import { malta_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { malta_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/130_malta";
 import { malta_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/130_malta";
 import { malta_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/130_malta";
-import { malta_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/130_malta";
-import { malta_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/130_malta";
+import { malta_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/130_malta";
+import { malta_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/130_malta";
 import { malta_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/130_malta";
-import { malta_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/130_malta";
+import { malta_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/130_malta";
 import { malta_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/130_malta";
 import { malta_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/130_malta";
 import { malta_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/130_malta";
-import { malta_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/130_malta";
+import { malta_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/130_malta";
 import { malta_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/130_malta";
-import { malta_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/130_malta";
+import { malta_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/130_malta";
 import { malta_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/130_malta";
 import { malta_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/130_malta";
 import { malta_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/130_malta";
 import { malta_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/130_malta";
 import { malta_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/130_malta";
+import { malta_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/130_malta";
 const malta_geopolitik = {
     "un_vote": 121,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const malta_geopolitik = {
 export const malta: CountryData = {
   ...malta_profile,
   "sektor_listrik": malta_listrik,
+  "hunian": malta_hunian,
   "infrastruktur": malta_infrastruktur,
   "sektor_ekstraksi": malta_ekstraksi,
   "sektor_manufaktur": malta_manufaktur,

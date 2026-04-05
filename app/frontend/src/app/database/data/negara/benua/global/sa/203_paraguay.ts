@@ -5,21 +5,22 @@ import { paraguay_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pe
 import { paraguay_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/sa/203_paraguay";
 import { paraguay_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/sa/203_paraguay";
 import { paraguay_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/sa/203_paraguay";
-import { paraguay_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/sa/203_paraguay";
-import { paraguay_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/sa/203_paraguay";
+import { paraguay_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/sa/203_paraguay";
+import { paraguay_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/sa/203_paraguay";
 import { paraguay_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/sa/203_paraguay";
-import { paraguay_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/sa/203_paraguay";
+import { paraguay_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/sa/203_paraguay";
 import { paraguay_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/sa/203_paraguay";
 import { paraguay_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/sa/203_paraguay";
 import { paraguay_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/sa/203_paraguay";
-import { paraguay_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/sa/203_paraguay";
+import { paraguay_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/sa/203_paraguay";
 import { paraguay_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/sa/203_paraguay";
-import { paraguay_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/sa/203_paraguay";
+import { paraguay_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/sa/203_paraguay";
 import { paraguay_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/sa/203_paraguay";
 import { paraguay_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/sa/203_paraguay";
 import { paraguay_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/sa/203_paraguay";
 import { paraguay_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/sa/203_paraguay";
 import { paraguay_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/sa/203_paraguay";
+import { paraguay_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/sa/203_paraguay";
 const paraguay_geopolitik = {
     "un_vote": 71,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const paraguay_geopolitik = {
 export const paraguay: CountryData = {
   ...paraguay_profile,
   "sektor_listrik": paraguay_listrik,
+  "hunian": paraguay_hunian,
   "infrastruktur": paraguay_infrastruktur,
   "sektor_ekstraksi": paraguay_ekstraksi,
   "sektor_manufaktur": paraguay_manufaktur,

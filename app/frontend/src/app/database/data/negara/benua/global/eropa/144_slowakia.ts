@@ -5,21 +5,22 @@ import { slowakia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pe
 import { slowakia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/144_slowakia";
 import { slowakia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/144_slowakia";
 import { slowakia_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/144_slowakia";
-import { slowakia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/144_slowakia";
-import { slowakia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/144_slowakia";
+import { slowakia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/144_slowakia";
+import { slowakia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/144_slowakia";
 import { slowakia_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/144_slowakia";
-import { slowakia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/144_slowakia";
+import { slowakia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/144_slowakia";
 import { slowakia_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/144_slowakia";
 import { slowakia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/144_slowakia";
 import { slowakia_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/144_slowakia";
-import { slowakia_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/144_slowakia";
+import { slowakia_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/144_slowakia";
 import { slowakia_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/144_slowakia";
-import { slowakia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/144_slowakia";
+import { slowakia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/144_slowakia";
 import { slowakia_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/144_slowakia";
 import { slowakia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/144_slowakia";
 import { slowakia_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/144_slowakia";
 import { slowakia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/144_slowakia";
 import { slowakia_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/144_slowakia";
+import { slowakia_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/144_slowakia";
 const slowakia_geopolitik = {
     "un_vote": 176,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const slowakia_geopolitik = {
 export const slowakia: CountryData = {
   ...slowakia_profile,
   "sektor_listrik": slowakia_listrik,
+  "hunian": slowakia_hunian,
   "infrastruktur": slowakia_infrastruktur,
   "sektor_ekstraksi": slowakia_ekstraksi,
   "sektor_manufaktur": slowakia_manufaktur,

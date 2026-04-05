@@ -5,21 +5,22 @@ import { senegal_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pem
 import { senegal_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/46_senegal";
 import { senegal_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/46_senegal";
 import { senegal_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/46_senegal";
-import { senegal_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/46_senegal";
-import { senegal_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/46_senegal";
+import { senegal_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/46_senegal";
+import { senegal_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/46_senegal";
 import { senegal_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/46_senegal";
-import { senegal_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/46_senegal";
+import { senegal_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/46_senegal";
 import { senegal_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/46_senegal";
 import { senegal_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/46_senegal";
 import { senegal_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/46_senegal";
-import { senegal_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/46_senegal";
+import { senegal_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/46_senegal";
 import { senegal_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/46_senegal";
-import { senegal_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/46_senegal";
+import { senegal_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/46_senegal";
 import { senegal_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/46_senegal";
 import { senegal_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/46_senegal";
 import { senegal_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/46_senegal";
 import { senegal_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/46_senegal";
 import { senegal_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/46_senegal";
+import { senegal_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/46_senegal";
 const senegal_geopolitik = {
     "un_vote": 119,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const senegal_geopolitik = {
 export const senegal: CountryData = {
   ...senegal_profile,
   "sektor_listrik": senegal_listrik,
+  "hunian": senegal_hunian,
   "infrastruktur": senegal_infrastruktur,
   "sektor_ekstraksi": senegal_ekstraksi,
   "sektor_manufaktur": senegal_manufaktur,

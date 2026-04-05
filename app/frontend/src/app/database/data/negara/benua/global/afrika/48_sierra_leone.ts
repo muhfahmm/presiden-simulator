@@ -5,21 +5,22 @@ import { sierra_leone_agrikultur } from "@/app/database/data/semua_fitur_negara/
 import { sierra_leone_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/48_sierra_leone";
 import { sierra_leone_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/48_sierra_leone";
 import { sierra_leone_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/48_sierra_leone";
-import { sierra_leone_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/48_sierra_leone";
-import { sierra_leone_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/48_sierra_leone";
+import { sierra_leone_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/48_sierra_leone";
+import { sierra_leone_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/48_sierra_leone";
 import { sierra_leone_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/48_sierra_leone";
-import { sierra_leone_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/48_sierra_leone";
+import { sierra_leone_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/48_sierra_leone";
 import { sierra_leone_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/48_sierra_leone";
 import { sierra_leone_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/48_sierra_leone";
 import { sierra_leone_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/48_sierra_leone";
-import { sierra_leone_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/48_sierra_leone";
+import { sierra_leone_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/48_sierra_leone";
 import { sierra_leone_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/48_sierra_leone";
-import { sierra_leone_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/48_sierra_leone";
+import { sierra_leone_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/48_sierra_leone";
 import { sierra_leone_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/48_sierra_leone";
 import { sierra_leone_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/48_sierra_leone";
 import { sierra_leone_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/48_sierra_leone";
 import { sierra_leone_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/48_sierra_leone";
 import { sierra_leone_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/48_sierra_leone";
+import { sierra_leone_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/48_sierra_leone";
 const sierra_leone_geopolitik = {
     "un_vote": 91,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const sierra_leone_geopolitik = {
 export const sierra_leone: CountryData = {
   ...sierra_leone_profile,
   "sektor_listrik": sierra_leone_listrik,
+  "hunian": sierra_leone_hunian,
   "infrastruktur": sierra_leone_infrastruktur,
   "sektor_ekstraksi": sierra_leone_ekstraksi,
   "sektor_manufaktur": sierra_leone_manufaktur,

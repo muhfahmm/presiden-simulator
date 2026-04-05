@@ -5,21 +5,22 @@ import { turkmenistan_agrikultur } from "@/app/database/data/semua_fitur_negara/
 import { turkmenistan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/97_turkmenistan";
 import { turkmenistan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/97_turkmenistan";
 import { turkmenistan_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/97_turkmenistan";
-import { turkmenistan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/97_turkmenistan";
-import { turkmenistan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/97_turkmenistan";
+import { turkmenistan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/asia/97_turkmenistan";
+import { turkmenistan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/asia/97_turkmenistan";
 import { turkmenistan_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/97_turkmenistan";
-import { turkmenistan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/97_turkmenistan";
+import { turkmenistan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/asia/97_turkmenistan";
 import { turkmenistan_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/97_turkmenistan";
 import { turkmenistan_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/97_turkmenistan";
 import { turkmenistan_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/97_turkmenistan";
-import { turkmenistan_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/97_turkmenistan";
+import { turkmenistan_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/asia/97_turkmenistan";
 import { turkmenistan_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/97_turkmenistan";
-import { turkmenistan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/97_turkmenistan";
+import { turkmenistan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/asia/97_turkmenistan";
 import { turkmenistan_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/97_turkmenistan";
 import { turkmenistan_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/97_turkmenistan";
 import { turkmenistan_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/97_turkmenistan";
 import { turkmenistan_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/97_turkmenistan";
 import { turkmenistan_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/97_turkmenistan";
+import { turkmenistan_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/asia/97_turkmenistan";
 const turkmenistan_geopolitik = {
     "un_vote": 133,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const turkmenistan_geopolitik = {
 export const turkmenistan: CountryData = {
   ...turkmenistan_profile,
   "sektor_listrik": turkmenistan_listrik,
+  "hunian": turkmenistan_hunian,
   "infrastruktur": turkmenistan_infrastruktur,
   "sektor_ekstraksi": turkmenistan_ekstraksi,
   "sektor_manufaktur": turkmenistan_manufaktur,

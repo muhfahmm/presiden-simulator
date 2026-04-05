@@ -5,21 +5,22 @@ import { taiwan_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { taiwan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/94_taiwan";
 import { taiwan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/94_taiwan";
 import { taiwan_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/94_taiwan";
-import { taiwan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/94_taiwan";
-import { taiwan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/94_taiwan";
+import { taiwan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/asia/94_taiwan";
+import { taiwan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/asia/94_taiwan";
 import { taiwan_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/94_taiwan";
-import { taiwan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/94_taiwan";
+import { taiwan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/asia/94_taiwan";
 import { taiwan_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/94_taiwan";
 import { taiwan_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/94_taiwan";
 import { taiwan_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/94_taiwan";
-import { taiwan_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/94_taiwan";
+import { taiwan_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/asia/94_taiwan";
 import { taiwan_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/94_taiwan";
-import { taiwan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/94_taiwan";
+import { taiwan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/asia/94_taiwan";
 import { taiwan_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/94_taiwan";
 import { taiwan_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/94_taiwan";
 import { taiwan_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/94_taiwan";
 import { taiwan_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/94_taiwan";
 import { taiwan_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/94_taiwan";
+import { taiwan_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/asia/94_taiwan";
 const taiwan_geopolitik = {
     "un_vote": 75,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const taiwan_geopolitik = {
 export const taiwan: CountryData = {
   ...taiwan_profile,
   "sektor_listrik": taiwan_listrik,
+  "hunian": taiwan_hunian,
   "infrastruktur": taiwan_infrastruktur,
   "sektor_ekstraksi": taiwan_ekstraksi,
   "sektor_manufaktur": taiwan_manufaktur,

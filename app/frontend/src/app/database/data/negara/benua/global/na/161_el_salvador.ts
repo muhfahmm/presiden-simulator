@@ -5,21 +5,22 @@ import { el_salvador_agrikultur } from "@/app/database/data/semua_fitur_negara/1
 import { el_salvador_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/161_el_salvador";
 import { el_salvador_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/161_el_salvador";
 import { el_salvador_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/161_el_salvador";
-import { el_salvador_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/161_el_salvador";
-import { el_salvador_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/161_el_salvador";
+import { el_salvador_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/na/161_el_salvador";
+import { el_salvador_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/na/161_el_salvador";
 import { el_salvador_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/161_el_salvador";
-import { el_salvador_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/161_el_salvador";
+import { el_salvador_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/na/161_el_salvador";
 import { el_salvador_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/161_el_salvador";
 import { el_salvador_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/161_el_salvador";
 import { el_salvador_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/na/161_el_salvador";
-import { el_salvador_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/na/161_el_salvador";
+import { el_salvador_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/na/161_el_salvador";
 import { el_salvador_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/161_el_salvador";
-import { el_salvador_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/161_el_salvador";
+import { el_salvador_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/na/161_el_salvador";
 import { el_salvador_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/161_el_salvador";
 import { el_salvador_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/161_el_salvador";
 import { el_salvador_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/161_el_salvador";
 import { el_salvador_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/161_el_salvador";
 import { el_salvador_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/161_el_salvador";
+import { el_salvador_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/na/161_el_salvador";
 const el_salvador_geopolitik = {
     "un_vote": 79,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const el_salvador_geopolitik = {
 export const el_salvador: CountryData = {
   ...el_salvador_profile,
   "sektor_listrik": el_salvador_listrik,
+  "hunian": el_salvador_hunian,
   "infrastruktur": el_salvador_infrastruktur,
   "sektor_ekstraksi": el_salvador_ekstraksi,
   "sektor_manufaktur": el_salvador_manufaktur,

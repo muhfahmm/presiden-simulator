@@ -5,21 +5,22 @@ import { republik_dominika_agrikultur } from "@/app/database/data/semua_fitur_ne
 import { republik_dominika_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/174_republik_dominika";
 import { republik_dominika_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/174_republik_dominika";
 import { republik_dominika_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/174_republik_dominika";
-import { republik_dominika_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/174_republik_dominika";
-import { republik_dominika_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/174_republik_dominika";
+import { republik_dominika_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/na/174_republik_dominika";
+import { republik_dominika_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/na/174_republik_dominika";
 import { republik_dominika_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/174_republik_dominika";
-import { republik_dominika_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/174_republik_dominika";
+import { republik_dominika_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/na/174_republik_dominika";
 import { republik_dominika_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/174_republik_dominika";
 import { republik_dominika_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/174_republik_dominika";
 import { republik_dominika_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/na/174_republik_dominika";
-import { republik_dominika_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/na/174_republik_dominika";
+import { republik_dominika_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/na/174_republik_dominika";
 import { republik_dominika_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/174_republik_dominika";
-import { republik_dominika_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/174_republik_dominika";
+import { republik_dominika_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/na/174_republik_dominika";
 import { republik_dominika_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/174_republik_dominika";
 import { republik_dominika_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/174_republik_dominika";
 import { republik_dominika_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/174_republik_dominika";
 import { republik_dominika_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/174_republik_dominika";
 import { republik_dominika_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/174_republik_dominika";
+import { republik_dominika_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/na/174_republik_dominika";
 const republik_dominika_geopolitik = {
     "un_vote": 45,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const republik_dominika_geopolitik = {
 export const republik_dominika: CountryData = {
   ...republik_dominika_profile,
   "sektor_listrik": republik_dominika_listrik,
+  "hunian": republik_dominika_hunian,
   "infrastruktur": republik_dominika_infrastruktur,
   "sektor_ekstraksi": republik_dominika_ekstraksi,
   "sektor_manufaktur": republik_dominika_manufaktur,

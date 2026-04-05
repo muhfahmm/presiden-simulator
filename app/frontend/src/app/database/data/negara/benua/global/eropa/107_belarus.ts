@@ -5,21 +5,22 @@ import { belarus_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pem
 import { belarus_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/107_belarus";
 import { belarus_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/107_belarus";
 import { belarus_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/107_belarus";
-import { belarus_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/107_belarus";
-import { belarus_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/107_belarus";
+import { belarus_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/107_belarus";
+import { belarus_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/107_belarus";
 import { belarus_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/107_belarus";
-import { belarus_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/107_belarus";
+import { belarus_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/107_belarus";
 import { belarus_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/107_belarus";
 import { belarus_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/107_belarus";
 import { belarus_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/107_belarus";
-import { belarus_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/107_belarus";
+import { belarus_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/107_belarus";
 import { belarus_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/107_belarus";
-import { belarus_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/107_belarus";
+import { belarus_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/107_belarus";
 import { belarus_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/107_belarus";
 import { belarus_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/107_belarus";
 import { belarus_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/107_belarus";
 import { belarus_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/107_belarus";
 import { belarus_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/107_belarus";
+import { belarus_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/107_belarus";
 const belarus_geopolitik = {
     "un_vote": 102,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const belarus_geopolitik = {
 export const belarus: CountryData = {
   ...belarus_profile,
   "sektor_listrik": belarus_listrik,
+  "hunian": belarus_hunian,
   "infrastruktur": belarus_infrastruktur,
   "sektor_ekstraksi": belarus_ekstraksi,
   "sektor_manufaktur": belarus_manufaktur,

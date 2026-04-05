@@ -5,21 +5,22 @@ import { mauritius_agrikultur } from "@/app/database/data/semua_fitur_negara/1_p
 import { mauritius_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/30_mauritius";
 import { mauritius_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/30_mauritius";
 import { mauritius_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/30_mauritius";
-import { mauritius_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/30_mauritius";
-import { mauritius_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/30_mauritius";
+import { mauritius_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/30_mauritius";
+import { mauritius_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/30_mauritius";
 import { mauritius_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/30_mauritius";
-import { mauritius_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/30_mauritius";
+import { mauritius_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/30_mauritius";
 import { mauritius_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/30_mauritius";
 import { mauritius_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/30_mauritius";
 import { mauritius_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/30_mauritius";
-import { mauritius_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/30_mauritius";
+import { mauritius_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/30_mauritius";
 import { mauritius_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/30_mauritius";
-import { mauritius_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/30_mauritius";
+import { mauritius_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/30_mauritius";
 import { mauritius_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/30_mauritius";
 import { mauritius_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/30_mauritius";
 import { mauritius_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/30_mauritius";
 import { mauritius_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/30_mauritius";
 import { mauritius_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/30_mauritius";
+import { mauritius_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/30_mauritius";
 const mauritius_geopolitik = {
     "un_vote": 69,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const mauritius_geopolitik = {
 export const mauritius: CountryData = {
   ...mauritius_profile,
   "sektor_listrik": mauritius_listrik,
+  "hunian": mauritius_hunian,
   "infrastruktur": mauritius_infrastruktur,
   "sektor_ekstraksi": mauritius_ekstraksi,
   "sektor_manufaktur": mauritius_manufaktur,

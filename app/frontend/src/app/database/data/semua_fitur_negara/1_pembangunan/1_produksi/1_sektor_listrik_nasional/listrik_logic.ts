@@ -1,6 +1,6 @@
 import { SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian } from "../../../2_pertahanan";
 import { SektorPabrikMiliter } from "../../2_produksi_militer";
-import { SektorInfrastruktur } from "../../3_tempat_umum/1_infrastruktur";
+import { SektorInfrastruktur } from "../../3_tempat_umum/1_Layanan Publik/1_infrastruktur";
 import { 
   SektorManufaktur, 
   SektorPeternakan, 
@@ -11,8 +11,8 @@ import {
   SektorPerikanan,
   mineralKritisRate
 } from "../index";
-import { PendidikanData, KesehatanData, HukumData, SektorKomersial, SektorHiburan } from "../../3_tempat_umum";
-import { OlahragaData } from "../../3_tempat_umum/5_olahraga";
+import { PendidikanData, KesehatanData, HukumData, SektorKomersial, SektorHiburan, HunianData } from "../../3_tempat_umum";
+import { OlahragaData } from "../../3_tempat_umum/1_Layanan Publik/5_olahraga";
 import { SektorListrik, KAPASITAS_LISTRIK_METADATA } from "./1_db_listrik";
 import { intelijenRate } from "../../../2_pertahanan/2_intelijen";
 import { armadaMiliterRate } from "../../../2_pertahanan/3_armada_militer";
@@ -281,6 +281,22 @@ export function hitungKonsumsiHiburan(hiburan?: SektorHiburan) {
     total + ((hiburan as any)[key] ?? 0) * withMin1MW((KONSUMSI_SOSIAL.hiburan as any)[key]), 0);
 }
 
+// Konsumsi Hunian & Pemukiman
+export const KONSUMSI_HUNIAN = {
+  rumah_subsidi: 1, 
+  apartemen: 10, 
+  mansion: 50
+};
+
+export function hitungKonsumsiHunian(hunian?: HunianData) {
+  if (!hunian) return 0;
+  return (
+    (hunian.rumah_subsidi ?? 0) * withMin1MW(KONSUMSI_HUNIAN.rumah_subsidi) +
+    (hunian.apartemen ?? 0) * withMin1MW(KONSUMSI_HUNIAN.apartemen) +
+    (hunian.mansion ?? 0) * withMin1MW(KONSUMSI_HUNIAN.mansion)
+  );
+}
+
 // Konsumsi Transportasi
 export const KONSUMSI_TRANSPORTASI = {
   jalur_sepeda: 0, jalan_raya: 3, terminal_bus: 5, stasiun_kereta_api: 15,
@@ -357,6 +373,7 @@ export function hitungTotalKonsumsiNasional(data: any) {
     hitungKonsumsiOlahraga(data.sektor_olahraga) +
     hitungKonsumsiKomersial(data.sektor_komersial) +
     hitungKonsumsiHiburan(data.sektor_hiburan) +
+    hitungKonsumsiHunian(data.hunian) +
     hitungKonsumsiTransportasi(data.infrastruktur) +
     hitungKonsumsiIntelDatabase(data.intelijen) +
     hitungKonsumsiArmadaDatabase(data.armada_militer)

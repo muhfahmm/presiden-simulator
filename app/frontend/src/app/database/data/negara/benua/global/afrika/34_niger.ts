@@ -5,21 +5,22 @@ import { niger_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { niger_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/34_niger";
 import { niger_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/34_niger";
 import { niger_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/34_niger";
-import { niger_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/34_niger";
-import { niger_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/34_niger";
+import { niger_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/34_niger";
+import { niger_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/34_niger";
 import { niger_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/34_niger";
-import { niger_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/34_niger";
+import { niger_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/34_niger";
 import { niger_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/34_niger";
 import { niger_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/34_niger";
 import { niger_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/34_niger";
-import { niger_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/34_niger";
+import { niger_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/34_niger";
 import { niger_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/34_niger";
-import { niger_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/34_niger";
+import { niger_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/34_niger";
 import { niger_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/34_niger";
 import { niger_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/34_niger";
 import { niger_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/34_niger";
 import { niger_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/34_niger";
 import { niger_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/34_niger";
+import { niger_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/34_niger";
 const niger_geopolitik = {
     "un_vote": 30,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const niger_geopolitik = {
 export const niger: CountryData = {
   ...niger_profile,
   "sektor_listrik": niger_listrik,
+  "hunian": niger_hunian,
   "infrastruktur": niger_infrastruktur,
   "sektor_ekstraksi": niger_ekstraksi,
   "sektor_manufaktur": niger_manufaktur,

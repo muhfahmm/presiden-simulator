@@ -5,21 +5,22 @@ import { puerto_rico_agrikultur } from "@/app/database/data/semua_fitur_negara/1
 import { puerto_rico_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/173_puerto_rico";
 import { puerto_rico_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/173_puerto_rico";
 import { puerto_rico_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/173_puerto_rico";
-import { puerto_rico_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/173_puerto_rico";
-import { puerto_rico_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/173_puerto_rico";
+import { puerto_rico_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/na/173_puerto_rico";
+import { puerto_rico_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/na/173_puerto_rico";
 import { puerto_rico_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/173_puerto_rico";
-import { puerto_rico_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/173_puerto_rico";
+import { puerto_rico_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/na/173_puerto_rico";
 import { puerto_rico_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/173_puerto_rico";
 import { puerto_rico_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/173_puerto_rico";
 import { puerto_rico_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/na/173_puerto_rico";
-import { puerto_rico_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/na/173_puerto_rico";
+import { puerto_rico_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/na/173_puerto_rico";
 import { puerto_rico_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/173_puerto_rico";
-import { puerto_rico_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/173_puerto_rico";
+import { puerto_rico_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/na/173_puerto_rico";
 import { puerto_rico_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/173_puerto_rico";
 import { puerto_rico_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/173_puerto_rico";
 import { puerto_rico_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/173_puerto_rico";
 import { puerto_rico_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/173_puerto_rico";
 import { puerto_rico_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/173_puerto_rico";
+import { puerto_rico_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/na/173_puerto_rico";
 const puerto_rico_geopolitik = {
     "un_vote": 117,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const puerto_rico_geopolitik = {
 export const puerto_rico: CountryData = {
   ...puerto_rico_profile,
   "sektor_listrik": puerto_rico_listrik,
+  "hunian": puerto_rico_hunian,
   "infrastruktur": puerto_rico_infrastruktur,
   "sektor_ekstraksi": puerto_rico_ekstraksi,
   "sektor_manufaktur": puerto_rico_manufaktur,

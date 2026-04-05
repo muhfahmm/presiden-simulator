@@ -5,21 +5,22 @@ import { makau_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { makau_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/80_makau";
 import { makau_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/80_makau";
 import { makau_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/80_makau";
-import { makau_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/80_makau";
-import { makau_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/80_makau";
+import { makau_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/asia/80_makau";
+import { makau_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/asia/80_makau";
 import { makau_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/80_makau";
-import { makau_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/80_makau";
+import { makau_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/asia/80_makau";
 import { makau_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/80_makau";
 import { makau_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/80_makau";
 import { makau_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/80_makau";
-import { makau_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/80_makau";
+import { makau_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/asia/80_makau";
 import { makau_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/80_makau";
-import { makau_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/80_makau";
+import { makau_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/asia/80_makau";
 import { makau_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/80_makau";
 import { makau_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/80_makau";
 import { makau_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/80_makau";
 import { makau_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/80_makau";
 import { makau_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/80_makau";
+import { makau_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/asia/80_makau";
 const makau_geopolitik = {
     "un_vote": 8,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const makau_geopolitik = {
 export const makau: CountryData = {
   ...makau_profile,
   "sektor_listrik": makau_listrik,
+  "hunian": makau_hunian,
   "infrastruktur": makau_infrastruktur,
   "sektor_ekstraksi": makau_ekstraksi,
   "sektor_manufaktur": makau_manufaktur,

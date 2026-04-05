@@ -4,13 +4,13 @@ import { Ministry } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah
 
 // Import Sektor
 import { SektorListrik } from "./1_pembangunan/1_produksi/1_sektor_listrik_nasional/1_db_listrik";
-import { SektorInfrastruktur } from "./1_pembangunan/3_tempat_umum/1_infrastruktur";
+import { SektorInfrastruktur } from "./1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur";
 import { SektorManufaktur, SektorPeternakan, SektorAgrikultur, SektorPerikanan, SektorOlahanPangan, SektorFarmasi, SektorEkstraksi } from "./1_pembangunan/1_produksi";
 import { SektorPertahanan, SektorArmadaMiliter, SektorMiliterStrategis, SektorArmadaKepolisian } from "./2_pertahanan";
 import { SektorPabrikMiliter } from "./1_pembangunan/2_produksi_militer";
-import { PendidikanData, KesehatanData, HukumData, SektorKomersial, SektorHiburan } from "./1_pembangunan/3_tempat_umum";
+import { PendidikanData, KesehatanData, HukumData, SektorKomersial, SektorHiburan, HunianData } from "./1_pembangunan/3_tempat_umum";
 import { SektorGeopolitik } from "./5_geopolitik";
-import { OlahragaData } from "./1_pembangunan/3_tempat_umum/5_olahraga";
+import { OlahragaData } from "./1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga";
 
 export interface PajakData {
   ppn: { tarif: number; kepuasan: number; pendapatan: number };
@@ -99,6 +99,7 @@ export interface CountryData extends EkonomiData {
   sektor_olahraga: OlahragaData;
   sektor_komersial?: SektorKomersial;
   sektor_hiburan?: SektorHiburan;
+  hunian?: HunianData;
   geopolitik: SektorGeopolitik;
   
   // Global & Politik
@@ -117,13 +118,13 @@ export interface CountryData extends EkonomiData {
 // Re-export nested types for convenience
 export * from "./1_pembangunan/1_produksi/1_sektor_listrik_nasional/1_db_listrik";
 export * from "./1_pembangunan/1_produksi/1_sektor_listrik_nasional/listrik_logic";
-export * from "./1_pembangunan/3_tempat_umum/1_infrastruktur";
+export * from "./1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur";
 export * from "./1_pembangunan/1_produksi";
 export * from "./2_pertahanan";
 export * from "./1_pembangunan/2_produksi_militer";
 export * from "./1_pembangunan/3_tempat_umum";
 export * from "./5_geopolitik";
-export * from "./1_pembangunan/3_tempat_umum/5_olahraga";
+export * from "./1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga";
 
 // Modular Rates for Infrastructure & Social
 export { 

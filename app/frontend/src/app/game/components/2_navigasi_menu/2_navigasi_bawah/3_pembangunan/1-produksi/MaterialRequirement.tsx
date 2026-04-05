@@ -96,6 +96,11 @@ export const BUILDING_REQUIREMENTS: Record<string, BuildingRequirement> = {
   "kejaksaan_court": { beton: 1000, baja: 700, kayu: 0 },
   "stasiun_komando": { beton: 1200, baja: 1500, kayu: 0 },
 
+  // --- 10.5 SEKTOR HUNIAN & PEMUKIMAN ---
+  "rumah_subsidi": { beton: 10, baja: 0, kayu: 20 },
+  "apartemen": { beton: 100, baja: 50, kayu: 0 },
+  "mansion": { beton: 200, baja: 50, kayu: 50 },
+
   // --- 11. SEKTOR PABRIK MILITER ---
   "pabrik_drone_kamikaze": { beton: 850, baja: 1100, kayu: 0 },
   "pabrik_amunisi": { beton: 600, baja: 900, kayu: 150 },

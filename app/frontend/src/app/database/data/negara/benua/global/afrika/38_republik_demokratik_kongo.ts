@@ -5,21 +5,22 @@ import { republik_demokratik_kongo_agrikultur } from "@/app/database/data/semua_
 import { republik_demokratik_kongo_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/38_republik_demokratik_kongo";
-import { republik_demokratik_kongo_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/38_republik_demokratik_kongo";
-import { republik_demokratik_kongo_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/38_republik_demokratik_kongo";
+import { republik_demokratik_kongo_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/38_republik_demokratik_kongo";
+import { republik_demokratik_kongo_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/38_republik_demokratik_kongo";
-import { republik_demokratik_kongo_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/38_republik_demokratik_kongo";
+import { republik_demokratik_kongo_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/38_republik_demokratik_kongo";
-import { republik_demokratik_kongo_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/38_republik_demokratik_kongo";
+import { republik_demokratik_kongo_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/38_republik_demokratik_kongo";
-import { republik_demokratik_kongo_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/38_republik_demokratik_kongo";
+import { republik_demokratik_kongo_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/38_republik_demokratik_kongo";
 import { republik_demokratik_kongo_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/38_republik_demokratik_kongo";
+import { republik_demokratik_kongo_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/38_republik_demokratik_kongo";
 const republik_demokratik_kongo_geopolitik = {
     "un_vote": 136,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const republik_demokratik_kongo_geopolitik = {
 export const republik_demokratik_kongo: CountryData = {
   ...republik_demokratik_kongo_profile,
   "sektor_listrik": republik_demokratik_kongo_listrik,
+  "hunian": republik_demokratik_kongo_hunian,
   "infrastruktur": republik_demokratik_kongo_infrastruktur,
   "sektor_ekstraksi": republik_demokratik_kongo_ekstraksi,
   "sektor_manufaktur": republik_demokratik_kongo_manufaktur,

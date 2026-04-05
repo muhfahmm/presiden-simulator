@@ -5,21 +5,22 @@ import { guinea_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { guinea_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/16_guinea";
 import { guinea_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/16_guinea";
 import { guinea_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/16_guinea";
-import { guinea_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/16_guinea";
-import { guinea_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/16_guinea";
+import { guinea_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/16_guinea";
+import { guinea_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/16_guinea";
 import { guinea_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/16_guinea";
-import { guinea_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/16_guinea";
+import { guinea_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/16_guinea";
 import { guinea_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/16_guinea";
 import { guinea_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/16_guinea";
 import { guinea_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/16_guinea";
-import { guinea_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/16_guinea";
+import { guinea_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/16_guinea";
 import { guinea_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/16_guinea";
-import { guinea_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/16_guinea";
+import { guinea_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/16_guinea";
 import { guinea_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/16_guinea";
 import { guinea_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/16_guinea";
 import { guinea_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/16_guinea";
 import { guinea_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/16_guinea";
 import { guinea_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/16_guinea";
+import { guinea_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/16_guinea";
 const guinea_geopolitik = {
     "un_vote": 49,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const guinea_geopolitik = {
 export const guinea: CountryData = {
   ...guinea_profile,
   "sektor_listrik": guinea_listrik,
+  "hunian": guinea_hunian,
   "infrastruktur": guinea_infrastruktur,
   "sektor_ekstraksi": guinea_ekstraksi,
   "sektor_manufaktur": guinea_manufaktur,

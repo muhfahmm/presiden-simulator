@@ -5,21 +5,22 @@ import { samoa_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { samoa_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/188_samoa";
 import { samoa_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/188_samoa";
 import { samoa_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/oceania/188_samoa";
-import { samoa_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/oceania/188_samoa";
-import { samoa_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/oceania/188_samoa";
+import { samoa_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/oceania/188_samoa";
+import { samoa_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/oceania/188_samoa";
 import { samoa_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/oceania/188_samoa";
-import { samoa_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/oceania/188_samoa";
+import { samoa_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/oceania/188_samoa";
 import { samoa_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/oceania/188_samoa";
 import { samoa_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/oceania/188_samoa";
 import { samoa_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/oceania/188_samoa";
-import { samoa_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/oceania/188_samoa";
+import { samoa_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/oceania/188_samoa";
 import { samoa_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/oceania/188_samoa";
-import { samoa_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/oceania/188_samoa";
+import { samoa_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/oceania/188_samoa";
 import { samoa_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/oceania/188_samoa";
 import { samoa_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/oceania/188_samoa";
 import { samoa_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/oceania/188_samoa";
 import { samoa_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/188_samoa";
 import { samoa_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/oceania/188_samoa";
+import { samoa_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/oceania/188_samoa";
 const samoa_geopolitik = {
     "un_vote": 9,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const samoa_geopolitik = {
 export const samoa: CountryData = {
   ...samoa_profile,
   "sektor_listrik": samoa_listrik,
+  "hunian": samoa_hunian,
   "infrastruktur": samoa_infrastruktur,
   "sektor_ekstraksi": samoa_ekstraksi,
   "sektor_manufaktur": samoa_manufaktur,

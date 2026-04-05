@@ -5,21 +5,22 @@ import { kamboja_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pem
 import { kamboja_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/72_kamboja";
 import { kamboja_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/72_kamboja";
 import { kamboja_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/72_kamboja";
-import { kamboja_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/72_kamboja";
-import { kamboja_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/72_kamboja";
+import { kamboja_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/asia/72_kamboja";
+import { kamboja_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/asia/72_kamboja";
 import { kamboja_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/72_kamboja";
-import { kamboja_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/72_kamboja";
+import { kamboja_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/asia/72_kamboja";
 import { kamboja_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/72_kamboja";
 import { kamboja_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/72_kamboja";
 import { kamboja_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/72_kamboja";
-import { kamboja_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/72_kamboja";
+import { kamboja_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/asia/72_kamboja";
 import { kamboja_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/72_kamboja";
-import { kamboja_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/72_kamboja";
+import { kamboja_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/asia/72_kamboja";
 import { kamboja_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/72_kamboja";
 import { kamboja_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/72_kamboja";
 import { kamboja_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/72_kamboja";
 import { kamboja_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/72_kamboja";
 import { kamboja_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/72_kamboja";
+import { kamboja_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/asia/72_kamboja";
 const kamboja_geopolitik = {
     "un_vote": 166,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const kamboja_geopolitik = {
 export const kamboja: CountryData = {
   ...kamboja_profile,
   "sektor_listrik": kamboja_listrik,
+  "hunian": kamboja_hunian,
   "infrastruktur": kamboja_infrastruktur,
   "sektor_ekstraksi": kamboja_ekstraksi,
   "sektor_manufaktur": kamboja_manufaktur,

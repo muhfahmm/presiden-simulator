@@ -5,21 +5,22 @@ import { hong_kong_agrikultur } from "@/app/database/data/semua_fitur_negara/1_p
 import { hong_kong_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/65_hong_kong";
 import { hong_kong_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/65_hong_kong";
 import { hong_kong_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/65_hong_kong";
-import { hong_kong_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/65_hong_kong";
-import { hong_kong_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/65_hong_kong";
+import { hong_kong_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/asia/65_hong_kong";
+import { hong_kong_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/asia/65_hong_kong";
 import { hong_kong_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/65_hong_kong";
-import { hong_kong_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/65_hong_kong";
+import { hong_kong_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/asia/65_hong_kong";
 import { hong_kong_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/65_hong_kong";
 import { hong_kong_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/65_hong_kong";
 import { hong_kong_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/65_hong_kong";
-import { hong_kong_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/65_hong_kong";
+import { hong_kong_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/asia/65_hong_kong";
 import { hong_kong_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/65_hong_kong";
-import { hong_kong_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/65_hong_kong";
+import { hong_kong_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/asia/65_hong_kong";
 import { hong_kong_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/65_hong_kong";
 import { hong_kong_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/65_hong_kong";
 import { hong_kong_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/65_hong_kong";
 import { hong_kong_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/65_hong_kong";
 import { hong_kong_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/65_hong_kong";
+import { hong_kong_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/asia/65_hong_kong";
 const hong_kong_geopolitik = {
     "un_vote": 27,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const hong_kong_geopolitik = {
 export const hong_kong: CountryData = {
   ...hong_kong_profile,
   "sektor_listrik": hong_kong_listrik,
+  "hunian": hong_kong_hunian,
   "infrastruktur": hong_kong_infrastruktur,
   "sektor_ekstraksi": hong_kong_ekstraksi,
   "sektor_manufaktur": hong_kong_manufaktur,

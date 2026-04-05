@@ -5,21 +5,22 @@ import { kepulauan_faroe_agrikultur } from "@/app/database/data/semua_fitur_nega
 import { kepulauan_faroe_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/122_kepulauan_faroe";
-import { kepulauan_faroe_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/122_kepulauan_faroe";
-import { kepulauan_faroe_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/122_kepulauan_faroe";
+import { kepulauan_faroe_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/122_kepulauan_faroe";
+import { kepulauan_faroe_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/122_kepulauan_faroe";
-import { kepulauan_faroe_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/122_kepulauan_faroe";
+import { kepulauan_faroe_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/122_kepulauan_faroe";
-import { kepulauan_faroe_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/122_kepulauan_faroe";
+import { kepulauan_faroe_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/122_kepulauan_faroe";
-import { kepulauan_faroe_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/122_kepulauan_faroe";
+import { kepulauan_faroe_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/122_kepulauan_faroe";
 import { kepulauan_faroe_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/122_kepulauan_faroe";
+import { kepulauan_faroe_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/122_kepulauan_faroe";
 const kepulauan_faroe_geopolitik = {
     "un_vote": 18,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const kepulauan_faroe_geopolitik = {
 export const kepulauan_faroe: CountryData = {
   ...kepulauan_faroe_profile,
   "sektor_listrik": kepulauan_faroe_listrik,
+  "hunian": kepulauan_faroe_hunian,
   "infrastruktur": kepulauan_faroe_infrastruktur,
   "sektor_ekstraksi": kepulauan_faroe_ekstraksi,
   "sektor_manufaktur": kepulauan_faroe_manufaktur,

@@ -5,21 +5,22 @@ import { liberia_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pem
 import { liberia_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/23_liberia";
 import { liberia_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/23_liberia";
 import { liberia_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/23_liberia";
-import { liberia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/23_liberia";
-import { liberia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/23_liberia";
+import { liberia_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/23_liberia";
+import { liberia_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/23_liberia";
 import { liberia_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/23_liberia";
-import { liberia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/23_liberia";
+import { liberia_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/23_liberia";
 import { liberia_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/23_liberia";
 import { liberia_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/23_liberia";
 import { liberia_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/23_liberia";
-import { liberia_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/23_liberia";
+import { liberia_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/23_liberia";
 import { liberia_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/23_liberia";
-import { liberia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/23_liberia";
+import { liberia_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/23_liberia";
 import { liberia_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/23_liberia";
 import { liberia_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/23_liberia";
 import { liberia_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/23_liberia";
 import { liberia_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/23_liberia";
 import { liberia_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/23_liberia";
+import { liberia_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/23_liberia";
 const liberia_geopolitik = {
     "un_vote": 93,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const liberia_geopolitik = {
 export const liberia: CountryData = {
   ...liberia_profile,
   "sektor_listrik": liberia_listrik,
+  "hunian": liberia_hunian,
   "infrastruktur": liberia_infrastruktur,
   "sektor_ekstraksi": liberia_ekstraksi,
   "sektor_manufaktur": liberia_manufaktur,

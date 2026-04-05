@@ -5,21 +5,22 @@ import { korea_selatan_agrikultur } from "@/app/database/data/semua_fitur_negara
 import { korea_selatan_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/75_korea_selatan";
 import { korea_selatan_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/75_korea_selatan";
 import { korea_selatan_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/75_korea_selatan";
-import { korea_selatan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/75_korea_selatan";
-import { korea_selatan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/75_korea_selatan";
+import { korea_selatan_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/asia/75_korea_selatan";
+import { korea_selatan_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/asia/75_korea_selatan";
 import { korea_selatan_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/75_korea_selatan";
-import { korea_selatan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/75_korea_selatan";
+import { korea_selatan_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/asia/75_korea_selatan";
 import { korea_selatan_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/75_korea_selatan";
 import { korea_selatan_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/75_korea_selatan";
 import { korea_selatan_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/75_korea_selatan";
-import { korea_selatan_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/75_korea_selatan";
+import { korea_selatan_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/asia/75_korea_selatan";
 import { korea_selatan_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/75_korea_selatan";
-import { korea_selatan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/75_korea_selatan";
+import { korea_selatan_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/asia/75_korea_selatan";
 import { korea_selatan_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/75_korea_selatan";
 import { korea_selatan_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/75_korea_selatan";
 import { korea_selatan_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/75_korea_selatan";
 import { korea_selatan_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/75_korea_selatan";
 import { korea_selatan_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/75_korea_selatan";
+import { korea_selatan_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/asia/75_korea_selatan";
 const korea_selatan_geopolitik = {
     "un_vote": 185,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const korea_selatan_geopolitik = {
 export const korea_selatan: CountryData = {
   ...korea_selatan_profile,
   "sektor_listrik": korea_selatan_listrik,
+  "hunian": korea_selatan_hunian,
   "infrastruktur": korea_selatan_infrastruktur,
   "sektor_ekstraksi": korea_selatan_ekstraksi,
   "sektor_manufaktur": korea_selatan_manufaktur,

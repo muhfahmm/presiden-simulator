@@ -5,21 +5,22 @@ import { brunei_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemb
 import { brunei_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/61_brunei";
 import { brunei_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/61_brunei";
 import { brunei_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/61_brunei";
-import { brunei_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/61_brunei";
-import { brunei_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/61_brunei";
+import { brunei_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/asia/61_brunei";
+import { brunei_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/asia/61_brunei";
 import { brunei_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/61_brunei";
-import { brunei_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/61_brunei";
+import { brunei_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/asia/61_brunei";
 import { brunei_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/61_brunei";
 import { brunei_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/61_brunei";
 import { brunei_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/61_brunei";
-import { brunei_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/61_brunei";
+import { brunei_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/asia/61_brunei";
 import { brunei_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/61_brunei";
-import { brunei_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/61_brunei";
+import { brunei_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/asia/61_brunei";
 import { brunei_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/61_brunei";
 import { brunei_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/61_brunei";
 import { brunei_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/61_brunei";
 import { brunei_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/61_brunei";
 import { brunei_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/61_brunei";
+import { brunei_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/asia/61_brunei";
 const brunei_geopolitik = {
     "un_vote": 114,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const brunei_geopolitik = {
 export const brunei: CountryData = {
   ...brunei_profile,
   "sektor_listrik": brunei_listrik,
+  "hunian": brunei_hunian,
   "infrastruktur": brunei_infrastruktur,
   "sektor_ekstraksi": brunei_ekstraksi,
   "sektor_manufaktur": brunei_manufaktur,

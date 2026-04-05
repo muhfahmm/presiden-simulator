@@ -5,21 +5,22 @@ import { benin_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemba
 import { benin_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/4_benin";
 import { benin_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/4_benin";
 import { benin_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/4_benin";
-import { benin_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/4_benin";
-import { benin_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/4_benin";
+import { benin_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/4_benin";
+import { benin_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/4_benin";
 import { benin_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/4_benin";
-import { benin_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/4_benin";
+import { benin_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/4_benin";
 import { benin_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/4_benin";
 import { benin_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/4_benin";
 import { benin_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/4_benin";
-import { benin_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/4_benin";
+import { benin_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/4_benin";
 import { benin_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/4_benin";
-import { benin_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/4_benin";
+import { benin_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/4_benin";
 import { benin_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/4_benin";
 import { benin_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/4_benin";
 import { benin_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/4_benin";
 import { benin_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/4_benin";
 import { benin_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/4_benin";
+import { benin_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/4_benin";
 const benin_geopolitik = {
     "un_vote": 62,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const benin_geopolitik = {
 export const benin: CountryData = {
   ...benin_profile,
   "sektor_listrik": benin_listrik,
+  "hunian": benin_hunian,
   "infrastruktur": benin_infrastruktur,
   "sektor_ekstraksi": benin_ekstraksi,
   "sektor_manufaktur": benin_manufaktur,

@@ -5,21 +5,22 @@ import { iran_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pemban
 import { iran_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/asia/69_iran";
 import { iran_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/asia/69_iran";
 import { iran_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/asia/69_iran";
-import { iran_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/asia/69_iran";
-import { iran_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/asia/69_iran";
+import { iran_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/asia/69_iran";
+import { iran_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/asia/69_iran";
 import { iran_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/asia/69_iran";
-import { iran_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/asia/69_iran";
+import { iran_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/asia/69_iran";
 import { iran_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/asia/69_iran";
 import { iran_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/asia/69_iran";
 import { iran_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/asia/69_iran";
-import { iran_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/asia/69_iran";
+import { iran_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/asia/69_iran";
 import { iran_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/asia/69_iran";
-import { iran_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/asia/69_iran";
+import { iran_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/asia/69_iran";
 import { iran_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/asia/69_iran";
 import { iran_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/asia/69_iran";
 import { iran_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/asia/69_iran";
 import { iran_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/asia/69_iran";
 import { iran_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/asia/69_iran";
+import { iran_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/asia/69_iran";
 const iran_geopolitik = {
     "un_vote": 191,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const iran_geopolitik = {
 export const iran: CountryData = {
   ...iran_profile,
   "sektor_listrik": iran_listrik,
+  "hunian": iran_hunian,
   "infrastruktur": iran_infrastruktur,
   "sektor_ekstraksi": iran_ekstraksi,
   "sektor_manufaktur": iran_manufaktur,

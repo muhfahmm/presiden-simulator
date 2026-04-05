@@ -5,21 +5,22 @@ import { guatemala_agrikultur } from "@/app/database/data/semua_fitur_negara/1_p
 import { guatemala_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/na/164_guatemala";
 import { guatemala_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/na/164_guatemala";
 import { guatemala_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/na/164_guatemala";
-import { guatemala_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/na/164_guatemala";
-import { guatemala_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/na/164_guatemala";
+import { guatemala_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/na/164_guatemala";
+import { guatemala_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/na/164_guatemala";
 import { guatemala_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/na/164_guatemala";
-import { guatemala_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/na/164_guatemala";
+import { guatemala_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/na/164_guatemala";
 import { guatemala_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/na/164_guatemala";
 import { guatemala_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/na/164_guatemala";
 import { guatemala_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/na/164_guatemala";
-import { guatemala_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/na/164_guatemala";
+import { guatemala_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/na/164_guatemala";
 import { guatemala_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/na/164_guatemala";
-import { guatemala_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/na/164_guatemala";
+import { guatemala_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/na/164_guatemala";
 import { guatemala_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/na/164_guatemala";
 import { guatemala_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/na/164_guatemala";
 import { guatemala_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/na/164_guatemala";
 import { guatemala_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/na/164_guatemala";
 import { guatemala_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/na/164_guatemala";
+import { guatemala_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/na/164_guatemala";
 const guatemala_geopolitik = {
     "un_vote": 142,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const guatemala_geopolitik = {
 export const guatemala: CountryData = {
   ...guatemala_profile,
   "sektor_listrik": guatemala_listrik,
+  "hunian": guatemala_hunian,
   "infrastruktur": guatemala_infrastruktur,
   "sektor_ekstraksi": guatemala_ekstraksi,
   "sektor_manufaktur": guatemala_manufaktur,

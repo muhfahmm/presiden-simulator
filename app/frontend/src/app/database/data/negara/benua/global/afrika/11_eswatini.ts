@@ -5,21 +5,22 @@ import { eswatini_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pe
 import { eswatini_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/afrika/11_eswatini";
 import { eswatini_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/afrika/11_eswatini";
 import { eswatini_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/afrika/11_eswatini";
-import { eswatini_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/afrika/11_eswatini";
-import { eswatini_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/afrika/11_eswatini";
+import { eswatini_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/afrika/11_eswatini";
+import { eswatini_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/afrika/11_eswatini";
 import { eswatini_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/afrika/11_eswatini";
-import { eswatini_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/afrika/11_eswatini";
+import { eswatini_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/afrika/11_eswatini";
 import { eswatini_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/afrika/11_eswatini";
 import { eswatini_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/afrika/11_eswatini";
 import { eswatini_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/afrika/11_eswatini";
-import { eswatini_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/afrika/11_eswatini";
+import { eswatini_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/afrika/11_eswatini";
 import { eswatini_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/afrika/11_eswatini";
-import { eswatini_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/afrika/11_eswatini";
+import { eswatini_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/afrika/11_eswatini";
 import { eswatini_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/afrika/11_eswatini";
 import { eswatini_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/afrika/11_eswatini";
 import { eswatini_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/afrika/11_eswatini";
 import { eswatini_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/afrika/11_eswatini";
 import { eswatini_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/afrika/11_eswatini";
+import { eswatini_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/afrika/11_eswatini";
 const eswatini_geopolitik = {
     "un_vote": 60,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const eswatini_geopolitik = {
 export const eswatini: CountryData = {
   ...eswatini_profile,
   "sektor_listrik": eswatini_listrik,
+  "hunian": eswatini_hunian,
   "infrastruktur": eswatini_infrastruktur,
   "sektor_ekstraksi": eswatini_ekstraksi,
   "sektor_manufaktur": eswatini_manufaktur,

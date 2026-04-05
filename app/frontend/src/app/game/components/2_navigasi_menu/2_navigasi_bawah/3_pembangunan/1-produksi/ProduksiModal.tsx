@@ -15,7 +15,7 @@ import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
 import JugaMaterialDanUangKurang from "../jika_material_dan_uang_kurang";
 import { getBuildingRequirement } from "./MaterialRequirement";
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, infrastrukturRate, sosialRate, pabrikMiliterRate } from "@/app/database/data/semua_fitur_negara"
+import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, infrastrukturRate, sosialRate, pabrikMiliterRate, hunianRate } from "@/app/database/data/semua_fitur_negara"
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
@@ -132,6 +132,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
     sektor_olahraga: { ...currentData.sektor_olahraga || {} },
     sektor_komersial: { ...currentData.sektor_komersial || {} },
     sektor_hiburan: { ...currentData.sektor_hiburan || {} },
+    hunian: { ...currentData.hunian || {} },
   };
 
   Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
@@ -199,6 +200,11 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
     else if ((pabrikMiliterRate as any)[key]) {
       const dataKey = (pabrikMiliterRate as any)[key].dataKey;
       if (dataKey) (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
+    }
+    // 12. Hunian
+    else if ((hunianRate as any)[key]) {
+      const dataKey = key; // for hunian, the key IS the dataKey
+      (currentDataWithDeltas.hunian as any)[dataKey] = ((currentDataWithDeltas.hunian as any)[dataKey] || 0) + deltaValue;
     }
   });
 

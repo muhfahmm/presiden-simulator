@@ -5,21 +5,22 @@ import { bulgaria_agrikultur } from "@/app/database/data/semua_fitur_negara/1_pe
 import { bulgaria_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/eropa/110_bulgaria";
 import { bulgaria_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/eropa/110_bulgaria";
 import { bulgaria_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/eropa/110_bulgaria";
-import { bulgaria_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/eropa/110_bulgaria";
-import { bulgaria_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/eropa/110_bulgaria";
+import { bulgaria_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/eropa/110_bulgaria";
+import { bulgaria_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/eropa/110_bulgaria";
 import { bulgaria_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/eropa/110_bulgaria";
-import { bulgaria_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/eropa/110_bulgaria";
+import { bulgaria_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/eropa/110_bulgaria";
 import { bulgaria_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/eropa/110_bulgaria";
 import { bulgaria_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/eropa/110_bulgaria";
 import { bulgaria_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/eropa/110_bulgaria";
-import { bulgaria_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/eropa/110_bulgaria";
+import { bulgaria_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/eropa/110_bulgaria";
 import { bulgaria_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/eropa/110_bulgaria";
-import { bulgaria_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/eropa/110_bulgaria";
+import { bulgaria_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/eropa/110_bulgaria";
 import { bulgaria_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/eropa/110_bulgaria";
 import { bulgaria_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/eropa/110_bulgaria";
 import { bulgaria_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/eropa/110_bulgaria";
 import { bulgaria_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/eropa/110_bulgaria";
 import { bulgaria_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/eropa/110_bulgaria";
+import { bulgaria_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/eropa/110_bulgaria";
 const bulgaria_geopolitik = {
     "un_vote": 42,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const bulgaria_geopolitik = {
 export const bulgaria: CountryData = {
   ...bulgaria_profile,
   "sektor_listrik": bulgaria_listrik,
+  "hunian": bulgaria_hunian,
   "infrastruktur": bulgaria_infrastruktur,
   "sektor_ekstraksi": bulgaria_ekstraksi,
   "sektor_manufaktur": bulgaria_manufaktur,

@@ -5,21 +5,22 @@ import { selandia_baru_agrikultur } from "@/app/database/data/semua_fitur_negara
 import { selandia_baru_armada } from "@/app/database/data/semua_fitur_negara/2_pertahanan/3_armada_militer/oceania/190_selandia_baru";
 import { selandia_baru_ekstraksi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/2_sektor_mineral_kritis/oceania/190_selandia_baru";
 import { selandia_baru_farmasi } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/8_sektor_farmasi/oceania/190_selandia_baru";
-import { selandia_baru_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/4_hukum/oceania/190_selandia_baru";
-import { selandia_baru_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_infrastruktur/oceania/190_selandia_baru";
+import { selandia_baru_hukum } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/4_hukum/oceania/190_selandia_baru";
+import { selandia_baru_infrastruktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur/oceania/190_selandia_baru";
 import { selandia_baru_kepolisian } from "@/app/database/data/semua_fitur_negara/2_pertahanan/4_armada_polisi/oceania/190_selandia_baru";
-import { selandia_baru_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/3_kesehatan/oceania/190_selandia_baru";
+import { selandia_baru_kesehatan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/3_kesehatan/oceania/190_selandia_baru";
 import { selandia_baru_listrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/1_sektor_listrik_nasional/oceania/190_selandia_baru";
 import { selandia_baru_manufaktur } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/3_manufaktur/oceania/190_selandia_baru";
 import { selandia_baru_olahan_pangan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/7_sektor_olahan_pangan/oceania/190_selandia_baru";
-import { selandia_baru_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/5_olahraga/oceania/190_selandia_baru";
+import { selandia_baru_olahraga } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/5_olahraga/oceania/190_selandia_baru";
 import { selandia_baru_pabrik } from "@/app/database/data/semua_fitur_negara/1_pembangunan/2_produksi_militer/1_pabrik_militer/oceania/190_selandia_baru";
-import { selandia_baru_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_pendidikan/oceania/190_selandia_baru";
+import { selandia_baru_pendidikan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/1_Layanan Publik/2_pendidikan/oceania/190_selandia_baru";
 import { selandia_baru_perikanan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/6_sektor_perikanan/oceania/190_selandia_baru";
 import { selandia_baru_pertahanan } from "@/app/database/data/semua_fitur_negara/2_pertahanan/5_manajemen_pertahanan/1_sektor_pertahanan/oceania/190_selandia_baru";
 import { selandia_baru_peternakan } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi/4_sektor_peternakan/oceania/190_selandia_baru";
 import { selandia_baru_profile } from "@/app/database/data/semua_fitur_negara/0_profiles/oceania/190_selandia_baru";
 import { selandia_baru_strategis } from "@/app/database/data/semua_fitur_negara/2_pertahanan/1_komando_pertahanan/oceania/190_selandia_baru";
+import { selandia_baru_hunian } from "@/app/database/data/semua_fitur_negara/1_pembangunan/3_tempat_umum/2_hunian_permukiman/oceania/190_selandia_baru";
 const selandia_baru_geopolitik = {
     "un_vote": 107,
     "reputasi_diplomatik": "Netral",
@@ -51,6 +52,7 @@ const selandia_baru_geopolitik = {
 export const selandia_baru: CountryData = {
   ...selandia_baru_profile,
   "sektor_listrik": selandia_baru_listrik,
+  "hunian": selandia_baru_hunian,
   "infrastruktur": selandia_baru_infrastruktur,
   "sektor_ekstraksi": selandia_baru_ekstraksi,
   "sektor_manufaktur": selandia_baru_manufaktur,
