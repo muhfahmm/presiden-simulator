@@ -11,7 +11,6 @@ export const armadaMiliterRate = {
     deskripsi: "Kompleks Hunian & Pelatihan Tentara",
     biaya_pembangunan: 65000,
     waktu_pembangunan: 30,
-    biaya_pemeliharaan: 4500,
     lowongan_kerja: 8000,
     konsumsi_listrik: 650,
   },
@@ -23,7 +22,6 @@ export const armadaMiliterRate = {
     deskripsi: "Divisi Kavaleri Berat",
     biaya_pembangunan: 180000,
     waktu_pembangunan: 30,
-    biaya_pemeliharaan: 12000,
     lowongan_kerja: 15000,
     konsumsi_bahan_bakar: 19000
   },
@@ -35,7 +33,6 @@ export const armadaMiliterRate = {
     deskripsi: "Transportasi Taktis & Mekanis",
     biaya_pembangunan: 85000,
     waktu_pembangunan: 15,
-    biaya_pemeliharaan: 5500,
     lowongan_kerja: 10000,
     konsumsi_bahan_bakar: 8000
   },
@@ -47,7 +44,6 @@ export const armadaMiliterRate = {
     deskripsi: "Sistem Pukulan Jarak Jauh",
     biaya_pembangunan: 150000,
     waktu_pembangunan: 45,
-    biaya_pemeliharaan: 8500,
     lowongan_kerja: 8500,
     konsumsi_bahan_bakar: 6000
   },
@@ -59,7 +55,6 @@ export const armadaMiliterRate = {
     deskripsi: "Sistem Roket Multi-Laras",
     biaya_pembangunan: 220000,
     waktu_pembangunan: 50,
-    biaya_pemeliharaan: 15000,
     lowongan_kerja: 5000,
     konsumsi_bahan_bakar: 10000
   },
@@ -71,7 +66,6 @@ export const armadaMiliterRate = {
     deskripsi: "Pertahanan Udara Jarak Menengah",
     biaya_pembangunan: 280000,
     waktu_pembangunan: 60,
-    biaya_pemeliharaan: 18000,
     lowongan_kerja: 6000,
     konsumsi_bahan_bakar: 15000
   },
@@ -83,7 +77,6 @@ export const armadaMiliterRate = {
     deskripsi: "Unit Patroli & Serbu Cepat",
     biaya_pembangunan: 45000,
     waktu_pembangunan: 10,
-    biaya_pemeliharaan: 2400,
     lowongan_kerja: 2500,
     konsumsi_bahan_bakar: 12000
   },
@@ -97,7 +90,6 @@ export const armadaMiliterRate = {
     deskripsi: "Pangkalan Udara Maritim Terapung",
     biaya_pembangunan: 2500000,
     waktu_pembangunan: 240,
-    biaya_pemeliharaan: 150000,
     lowongan_kerja: 35000,
     konsumsi_bahan_bakar: 12000000
   },
@@ -109,7 +101,6 @@ export const armadaMiliterRate = {
     deskripsi: "Supremasi Maritim Global",
     biaya_pembangunan: 4500000,
     waktu_pembangunan: 360,
-    biaya_pemeliharaan: 250000,
     lowongan_kerja: 45000,
     konsumsi_uranium: 5
   },
@@ -121,7 +112,6 @@ export const armadaMiliterRate = {
     deskripsi: "Perusak Pertahanan Maritim",
     biaya_pembangunan: 1200000,
     waktu_pembangunan: 180,
-    biaya_pemeliharaan: 85000,
     lowongan_kerja: 18000,
     konsumsi_bahan_bakar: 15000000
   },
@@ -133,7 +123,6 @@ export const armadaMiliterRate = {
     deskripsi: "Kapal Kawal Terintegrasi",
     biaya_pembangunan: 450000,
     waktu_pembangunan: 90,
-    biaya_pemeliharaan: 25000,
     lowongan_kerja: 8500,
     konsumsi_bahan_bakar: 8000000
   },
@@ -145,7 +134,6 @@ export const armadaMiliterRate = {
     deskripsi: "Siluman Bawah Laut Nasional",
     biaya_pembangunan: 1800000,
     waktu_pembangunan: 210,
-    biaya_pemeliharaan: 120000,
     lowongan_kerja: 6500,
     konsumsi_uranium: 2
   },
@@ -157,7 +145,6 @@ export const armadaMiliterRate = {
     deskripsi: "Patroli Bawah Laut",
     biaya_pembangunan: 650000,
     waktu_pembangunan: 120,
-    biaya_pemeliharaan: 45000,
     lowongan_kerja: 4500,
     konsumsi_bahan_bakar: 4000000
   },
@@ -169,7 +156,6 @@ export const armadaMiliterRate = {
     deskripsi: "Penyapu & Penanam Ranjau",
     biaya_pembangunan: 150000,
     waktu_pembangunan: 45,
-    biaya_pemeliharaan: 12000,
     lowongan_kerja: 2500,
     konsumsi_bahan_bakar: 3000000
   },
@@ -181,7 +167,6 @@ export const armadaMiliterRate = {
     deskripsi: "Suplai & Perbekalan Armada",
     biaya_pembangunan: 220000,
     waktu_pembangunan: 60,
-    biaya_pemeliharaan: 15000,
     lowongan_kerja: 4500,
     konsumsi_bahan_bakar: 6000000
   },
@@ -195,7 +180,6 @@ export const armadaMiliterRate = {
     deskripsi: "Supremasi Udara Generasi-5",
     biaya_pembangunan: 650000,
     waktu_pembangunan: 150,
-    biaya_pemeliharaan: 45000,
     lowongan_kerja: 12000,
     konsumsi_bahan_bakar: 12000000
   },
@@ -207,7 +191,6 @@ export const armadaMiliterRate = {
     deskripsi: "Pertahanan Udara Cepat",
     biaya_pembangunan: 350000,
     waktu_pembangunan: 90,
-    biaya_pemeliharaan: 22000,
     lowongan_kerja: 8500,
     konsumsi_bahan_bakar: 10000000
   },
@@ -219,7 +202,6 @@ export const armadaMiliterRate = {
     deskripsi: "Pukulan Udara Jarak Jauh",
     biaya_pembangunan: 850000,
     waktu_pembangunan: 180,
-    biaya_pemeliharaan: 65000,
     lowongan_kerja: 15000,
     konsumsi_bahan_bakar: 20000000
   },
@@ -231,7 +213,6 @@ export const armadaMiliterRate = {
     deskripsi: "Bantuan Tembakan Udara Dekat",
     biaya_pembangunan: 120000,
     waktu_pembangunan: 45,
-    biaya_pemeliharaan: 8500,
     lowongan_kerja: 5500,
     konsumsi_bahan_bakar: 5000000
   },
@@ -243,7 +224,6 @@ export const armadaMiliterRate = {
     deskripsi: "Komando & Pengamatan Udara",
     biaya_pembangunan: 250000,
     waktu_pembangunan: 60,
-    biaya_pemeliharaan: 18000,
     lowongan_kerja: 4500,
     konsumsi_bahan_bakar: 4000000
   },
@@ -255,7 +235,6 @@ export const armadaMiliterRate = {
     deskripsi: "Pengamatan Tanpa Awak",
     biaya_pembangunan: 45000,
     waktu_pembangunan: 15,
-    biaya_pemeliharaan: 3500,
     lowongan_kerja: 1200,
     konsumsi_bahan_bakar: 500000
   },
@@ -267,7 +246,6 @@ export const armadaMiliterRate = {
     deskripsi: "Amunisi Cerdas Presisi",
     biaya_pembangunan: 15000,
     waktu_pembangunan: 7,
-    biaya_pemeliharaan: 800,
     lowongan_kerja: 500,
     konsumsi_bahan_bakar: 200000
   },
@@ -279,7 +257,6 @@ export const armadaMiliterRate = {
     deskripsi: "Logistik & Transportasi Pasukan",
     biaya_pembangunan: 180000,
     waktu_pembangunan: 45,
-    biaya_pemeliharaan: 12000,
     lowongan_kerja: 6500,
     konsumsi_bahan_bakar: 8000000
   }

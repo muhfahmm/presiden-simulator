@@ -37,23 +37,23 @@ export default function NewMessageToast() {
   return (
     <>
       <style>{`
-        @keyframes slideInRight {
-          from { transform: translateX(120%); opacity: 0; }
+        @keyframes slideInLeft {
+          from { transform: translateX(-120%); opacity: 0; }
           to { transform: translateX(0); opacity: 1; }
         }
-        @keyframes slideOutRight {
+        @keyframes slideOutLeft {
           from { transform: translateX(0); opacity: 1; }
-          to { transform: translateX(120%); opacity: 0; }
+          to { transform: translateX(-120%); opacity: 0; }
         }
         .animate-toast-in {
-          animation: slideInRight 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         .animate-toast-out {
-          animation: slideOutRight 0.5s cubic-bezier(0.7, 0, 0.84, 0) forwards;
+          animation: slideOutLeft 0.5s cubic-bezier(0.7, 0, 0.84, 0) forwards;
         }
       `}</style>
       
-      <div className={`fixed top-24 right-8 z-[200] max-w-sm w-full ${isExiting ? 'animate-toast-out' : 'animate-toast-in'}`}>
+      <div className={`fixed top-24 left-8 z-[200] max-w-sm w-full ${isExiting ? 'animate-toast-out' : 'animate-toast-in'}`}>
         <div className="bg-zinc-950/80 backdrop-blur-xl border border-blue-500/30 rounded-2xl p-5 shadow-[0_20px_50px_rgba(0,0,0,0.5),0_0_20px_rgba(59,130,246,0.1)] flex gap-4 items-start relative overflow-hidden group">
           {/* Accent Line */}
           <div className="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>

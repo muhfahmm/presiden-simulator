@@ -31,7 +31,7 @@ export const komandoPertahananRate = {
     dataKey: "pusat_komando_strategis",
     label: "Pusat Komando Strategis",
     deskripsi: "Pusat Komando Strategis Nasional",
-    biaya_pemeliharaan: 25000,
+
     waktu_pembangunan: 90,
     biaya_pembangunan: 1200000,
     lowongan_kerja: 15000,
@@ -42,7 +42,7 @@ export const komandoPertahananRate = {
     dataKey: "bunker_komando",
     label: "Bunker Pertahanan",
     deskripsi: "Bunker Komando Pertahanan Nasional",
-    biaya_pemeliharaan: 15000,
+
     waktu_pembangunan: 120,
     biaya_pembangunan: 850000,
     lowongan_kerja: 8000,
@@ -53,7 +53,7 @@ export const komandoPertahananRate = {
     dataKey: "pusat_komando_wilayah",
     label: "Komando Wilayah",
     deskripsi: "Pusat Komando Operasi Wilayah",
-    biaya_pemeliharaan: 8500,
+
     waktu_pembangunan: 60,
     biaya_pembangunan: 450000,
     lowongan_kerja: 12000,

@@ -8,7 +8,6 @@ export const farmasiRate = {
     deskripsi: "Pabrik Farmasi",
     produksi: 45000,
     satuan: "BOX",
-    biaya_pemeliharaan: 4200,
     waktu_pembangunan: 45,
     biaya_pembangunan: 150000,
     lowongan_kerja: 12000,

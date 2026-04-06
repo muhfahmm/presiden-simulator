@@ -261,7 +261,6 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
           const translatedUnit = {
             ...unit,
             biaya: (unit as any).biaya_pembangunan,
-            maintenanceCost: (unit as any).biaya_pemeliharaan,
             consumption: (unit as any).konsumsi_listrik || 0,
             desc: (unit as any).deskripsi
           };
@@ -1113,13 +1112,6 @@ function BuildingCard({ item, onBuild, construction, tankCapacity, hasUraniumMin
                 <span className="text-[14px] font-black text-cyan-400">+{item.power?.toLocaleString('id-ID')} <span className="text-[9px] text-cyan-500/50 italic opacity-80">/ UNIT</span></span>
               </div>
 
-              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
-                </div>
-                <span className="text-[14px] font-black text-rose-400">-{item.biaya_pemeliharaan?.toLocaleString('id-ID') || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
-              </div>
 
               {item.konsumsi_listrik > 0 && (
                 <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
@@ -1240,12 +1232,6 @@ function BuildingCard({ item, onBuild, construction, tankCapacity, hasUraniumMin
             </span>
           </div>
 
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 bg-rose-500/10 rounded-lg">
-              <Flame size={12} className="text-rose-400" />
-            </div>
-            <span className="text-[12px] font-bold text-rose-400/90">Pemeliharaan: -{item.biaya_pemeliharaan?.toLocaleString('id-ID') || 5}/hari</span>
-          </div>
 
           {item.konsumsi_listrik > 0 && (
             <div className="flex flex-col gap-2">

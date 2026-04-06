@@ -12,7 +12,7 @@ export const intelijenRate = {
     deskripsi: "Sistem Satelit Intelijen Strategis Nasional",
     biaya_pembangunan: 850000,
     waktu_pembangunan: 90,
-    biaya_pemeliharaan: 12000,
+
     lowongan_kerja: 4500,
     konsumsi_listrik: 650,
   },
@@ -23,7 +23,7 @@ export const intelijenRate = {
     deskripsi: "Jaringan Radar Pertahanan Nasional Terpadu",
     biaya_pembangunan: 450000,
     waktu_pembangunan: 45,
-    biaya_pemeliharaan: 5500,
+
     lowongan_kerja: 3500,
     konsumsi_listrik: 550,
   },
@@ -34,7 +34,7 @@ export const intelijenRate = {
     deskripsi: "Pusat Operasi Intelijen & Pertahanan Siber",
     biaya_pembangunan: 350000,
     waktu_pembangunan: 60,
-    biaya_pemeliharaan: 8500,
+
     lowongan_kerja: 12000,
     konsumsi_listrik: 450,
   },

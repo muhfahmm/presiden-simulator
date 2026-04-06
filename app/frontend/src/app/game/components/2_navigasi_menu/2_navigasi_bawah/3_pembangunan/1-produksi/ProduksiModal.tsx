@@ -395,7 +395,6 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
         pendapatan_nasional: 0,
         cost: val.biaya_pembangunan || 1500,
         buildTime: val.waktu_pembangunan || 90,
-        maintenanceCost: val.biaya_pemeliharaan ?? 5,
         lowongan_kerja: val.lowongan_kerja || 0,
         konsumsi_uranium: val.konsumsi_uranium || 0
       }))
@@ -425,7 +424,6 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: 0,
           cost: val.biaya_pembangunan || 1000,
           buildTime: val.waktu_pembangunan || 30,
-          maintenanceCost: val.biaya_pemeliharaan ?? 10,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -448,7 +446,6 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: val.pendapatan_nasional,
           cost: val.biaya_pembangunan || 2000,
           buildTime: val.waktu_pembangunan || 45,
-          maintenanceCost: val.biaya_pemeliharaan ?? 15,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -471,7 +468,6 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: val.pendapatan_nasional,
           cost: val.biaya_pembangunan || 1200,
           buildTime: val.waktu_pembangunan || 25,
-          maintenanceCost: val.biaya_pemeliharaan ?? 2,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -494,7 +490,6 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: val.pendapatan_nasional,
           cost: val.biaya_pembangunan || 1000,
           buildTime: val.waktu_pembangunan || 30,
-          maintenanceCost: val.biaya_pemeliharaan ?? 1,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -517,7 +512,6 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: val.pendapatan_nasional,
           cost: val.biaya_pembangunan || 1100,
           buildTime: val.waktu_pembangunan || 20,
-          maintenanceCost: val.biaya_pemeliharaan ?? 1.5,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -540,7 +534,6 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: val.pendapatan_nasional,
           cost: val.biaya_pembangunan || 1500,
           buildTime: val.waktu_pembangunan || 35,
-          maintenanceCost: val.biaya_pemeliharaan ?? 8,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     },
@@ -563,7 +556,6 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
           pendapatan_nasional: val.pendapatan_nasional,
           cost: val.biaya_pembangunan || 4500,
           buildTime: val.waktu_pembangunan || 60,
-          maintenanceCost: val.biaya_pemeliharaan ?? 25,
           lowongan_kerja: val.lowongan_kerja || 0
         }))
     }
@@ -940,15 +932,6 @@ function BuildingCard({ item, onBuild, construction, cumulative, hasUraniumMines
             </div>
 
             <div className="grid gap-2">
-              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400">
-                    <Flame size={12} />
-                  </div>
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
-                </div>
-                <span className="text-[14px] font-black text-rose-400">-{(item.biaya_pemeliharaan || 5).toLocaleString('id-ID')} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
-              </div>
               
               {item.powerUsage > 0 && (
                 <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
@@ -1038,14 +1021,6 @@ function BuildingCard({ item, onBuild, construction, cumulative, hasUraniumMines
         </h4>
 
         <div className="flex flex-col gap-2.5 flex-1">
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 bg-rose-500/10 rounded-lg">
-              <Flame size={12} className="text-rose-400" />
-            </div>
-            <span className="text-[12px] font-bold text-rose-400/90">
-              Pemeliharaan: -{(item.maintenanceCost || 5).toLocaleString('id-ID')}/hari
-            </span>
-          </div>
 
           <div className="flex items-center gap-2.5">
             <div className="p-1.5 bg-amber-500/10 rounded-lg">

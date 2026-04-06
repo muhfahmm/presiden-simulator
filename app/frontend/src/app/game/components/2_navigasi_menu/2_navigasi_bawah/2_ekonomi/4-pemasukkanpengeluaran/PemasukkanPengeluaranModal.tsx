@@ -104,149 +104,14 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
     ...produksiMiliter
   ];
 
-  const maintenanceSectors = [
-    { label: "Kelistrikan", data: initialCountry.sektor_listrik },
-    { label: "Infrastruktur", data: initialCountry.infrastruktur },
-    { label: "Ekstraksi", data: initialCountry.sektor_ekstraksi },
-    { label: "Manufaktur", data: initialCountry.sektor_manufaktur },
-    { label: "Peternakan", data: initialCountry.sektor_peternakan },
-    { label: "Perikanan", data: initialCountry.sektor_perikanan },
-    { label: "Agrikultur", data: initialCountry.sektor_agrikultur },
-    { label: "Pendidikan", data: initialCountry.pendidikan },
-    { label: "Kesehatan", data: initialCountry.kesehatan },
-    { label: "Olahraga", data: initialCountry.sektor_olahraga },
-    { label: "Hukum", data: initialCountry.hukum }
-  ];
 
-  const militarySectors = [
-    { label: "Manajemen Pertahanan", data: initialCountry.sektor_pertahanan },
-    { label: "Sektor Armada Tempur", data: {
-      barak: initialCountry.armada_militer?.barak,
-      tank: initialCountry.armada_militer?.darat?.tank_tempur_utama,
-      apc: initialCountry.armada_militer?.darat?.apc_ifv,
-      artileri: initialCountry.armada_militer?.darat?.artileri_berat,
-      carrier: initialCountry.armada_militer?.laut?.kapal_induk,
-      destroyer: initialCountry.armada_militer?.laut?.kapal_destroyer,
-      submarine: initialCountry.armada_militer?.laut?.kapal_selam_nuklir,
-      stealth_jet: initialCountry.armada_militer?.udara?.jet_tempur_siluman,
-      heli_attack: initialCountry.armada_militer?.udara?.helikopter_serang,
-      recon_plane: initialCountry.armada_militer?.udara?.pesawat_pengintai,
-    } },
-    { label: "Strategis & Keamanan", data: {
-      satellite: initialCountry.militer_strategis?.intel_radar?.sistem_satelit,
-      radar: initialCountry.militer_strategis?.intel_radar?.jaringan_radar,
-      operasi_siber: initialCountry.militer_strategis?.intel_radar?.operasi_siber,
-      pos_polisi: initialCountry.armada_kepolisian?.armada_polisi?.kantor_polisi,
-      mobil_patroli_interceptor: initialCountry.armada_kepolisian?.armada_polisi?.mobil_patroli_interceptor,
-      unit_interceptor_r2: initialCountry.armada_kepolisian?.armada_polisi?.unit_roda_dua,
-      unit_k9: initialCountry.armada_kepolisian?.armada_polisi?.unit_k9,
-      swat: initialCountry.armada_kepolisian?.armada_polisi?.pasukan_swat,
-      police_heli: initialCountry.armada_kepolisian?.armada_polisi?.helikopter_polisi,
-      riot_control: initialCountry.armada_kepolisian?.armada_polisi?.samapta,
-      cctv_network: initialCountry.armada_kepolisian?.armada_polisi?.network_cctv,
-      forensik: initialCountry.armada_kepolisian?.armada_polisi?.pusat_forensik,
-    } }
-  ];
 
-  const buildAggregated = (sectorsList: any[]) => {
-    const agg: Record<string, any[]> = {};
-    sectorsList.forEach(s => {
-      if (!s.data) return;
-      Object.entries(s.data).forEach(([key, count]) => {
-        if (typeof count !== 'number' || count <= 0) return;
-        const metadata = allMetadata.find((m: any) => m.key === key || m.id === key || m.dataKey === key) as any;
-        if (metadata) {
-          const cat = metadata.category || metadata.groupId || s.label;
-          if (!agg[cat]) agg[cat] = [];
-          agg[cat].push({
-            name: metadata.deskripsi || metadata.label || metadata.name || key,
-            count: count,
-            maintenance: metadata.biaya_pemeliharaan || metadata.maintenanceCost || metadata.maintenance || 0
-          });
-        }
-      });
-    });
-    return agg;
-  };
-
-  const renderAggregatedSection = (agg: Record<string, any[]>, title: string, color: string, IconComponent: any) => {
-    const totalMatches = Object.values(agg).reduce((acc: number, items: any[]) => {
-      return acc + items.filter((item: any) => item.name.toLowerCase().includes(searchQuery.toLowerCase())).length;
-    }, 0);
-
-    return (
-      <div className="bg-zinc-900/40 border border-zinc-800 p-6 rounded-3xl space-y-4">
-        <div className="flex items-center justify-between border-b border-zinc-800 pb-2">
-          <div className="flex items-center gap-3">
-            <IconComponent className={`h-5 w-5 ${color}`} />
-            <span className="text-sm font-bold text-white">{title} <span className="text-zinc-400 font-medium ml-1">({totalMatches})</span></span>
-          </div>
-          <div className="flex items-center gap-2 bg-zinc-950/80 border border-zinc-800/80 px-4 py-2 rounded-xl w-full max-w-[220px] shadow-inner">
-            <Search className="h-4 w-4 text-zinc-500" />
-            <input 
-              type="text" 
-              placeholder="Cari bangunan..." 
-              value={searchQuery || ""} 
-              onChange={(e) => setSearchQuery(e.target.value)} 
-              className="bg-transparent text-sm text-white outline-none w-full"
-            />
-          </div>
-        </div>
-        <div className="space-y-4 max-h-[380px] overflow-y-auto pr-2 no-scrollbar">
-          {totalMatches === 0 ? (
-            <div className="flex flex-col items-center justify-center py-16 text-zinc-600">
-               <Search className="h-12 w-12 mb-3 opacity-20" />
-               <p className="text-sm font-black italic text-zinc-400">Tidak ada bangunan ditemukan</p>
-               <p className="text-xs text-zinc-500 mt-1">Coba gunakan kata kunci lain...</p>
-            </div>
-          ) : (
-            Object.entries(agg).map(([category, items]: any, catIdx) => {
-              const filteredItems = items.filter((item: any) => item.name.toLowerCase().includes(searchQuery.toLowerCase()));
-              const totalCount = filteredItems.length;
-              if (totalCount === 0) return null;
-              const categorySum = filteredItems.reduce((sum: number, item: any) => sum + (item.count * item.maintenance), 0);
-              return (
-                <div key={catIdx} className="space-y-2">
-                  <div className="flex items-center gap-2">
-                    <div className={`w-1 h-3 ${color.replace('text-', 'bg-')} rounded-full`}></div>
-                    <span className={`text-sm font-black ${color} uppercase tracking-wider`}>{category} <span className="text-zinc-200">({totalCount})</span> <span className="text-rose-400 font-black ml-1">= -{categorySum}</span></span>
-                  </div>
-                  <div className="grid grid-cols-2 gap-2">
-                    {filteredItems.map((item: any, idx: number) => (
-                      <div key={idx} className="bg-zinc-950 core-border border border-zinc-900/60 p-3 rounded-xl flex justify-between items-center">
-                        <div className="flex flex-col">
-                          <span className="text-sm font-bold text-white">{item.name}</span>
-                          <span className="text-xs font-medium text-zinc-400">Jumlah: {item.count}</span>
-                        </div>
-                        <span className="text-sm font-black text-rose-400">-{item.maintenance} / unit <span className="text-zinc-500 font-bold mx-1">=</span> <span className="text-rose-400">-{item.count * item.maintenance}</span></span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })
-          )}
-        </div>
-      </div>
-    );
-  };
-
-  const aggMaintenance = buildAggregated(maintenanceSectors);
-  const dailyBaseMaintenance = Object.values(aggMaintenance).reduce((sum, items) => sum + items.reduce((subSum, item) => subSum + (item.count * item.maintenance), 0), 0) / 100000;
-  const dailyDeltaMaintenance = calculateDeltaMaintenance(buildingData.buildingDeltas);
-  const aggMilitary = buildAggregated(militarySectors);
-  const dailyMilitaryExpense = Object.values(aggMilitary).reduce((sum, items) => sum + items.reduce((subSum, item) => subSum + (item.count * item.maintenance), 0), 0) / 100000;
-  
-  // Extra Fiscal Expenses
-  const coreMaintenance = dailyBaseMaintenance + dailyDeltaMaintenance;
-  const totalDailyExpense = coreMaintenance + dailyMilitaryExpense + (expData.debtInterestPaid || 0);
+  const totalDailyExpense = (expData.debtInterestPaid || 0);
 
   // 3. Final Balance
   const netDailySurplus = totalDailyIncome - totalDailyExpense;
-  const surplusPercentage = (netDailySurplus / totalDailyIncome) * 100;
+  const surplusPercentage = totalDailyIncome > 0 ? (netDailySurplus / totalDailyIncome) * 100 : 0;
   const expenseItems = [
-     { id: "military", label: "Beban Militer & Pertahanan", value: dailyMilitaryExpense, icon: Shield, color: "text-red-400", desc: "Pemeliharaan alutsista dan gaji personel aktif." },
-     { id: "maintenance", label: "Pemeliharaan Infrastruktur", value: dailyBaseMaintenance, icon: Zap, color: "text-amber-400", desc: "Listrik, jalan raya, pelabuhan, dan fasilitas publik." },
      ...(expData.debtInterestPaid > 0 ? [{ id: "debt", label: "Bunga Hutang Luar Negeri", value: expData.debtInterestPaid, icon: Landmark, color: "text-rose-500", desc: "Biaya bunga atas pinjaman dana internasional." }] : [])
   ];
 
@@ -381,7 +246,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                                     <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">{item.label}</span>
                                  </div>
                                  <div className="flex items-center gap-2">
-                                    <span className={`text-[13px] font-black ${item.id === 'subsidi' ? item.color : item.color}`}>-{Math.round(item.id === 'subsidi' ? item.value : item.value * 100000).toLocaleString('id-ID')}</span>
+                                    <span className={`text-[13px] font-black ${item.color}`}>-{Math.round(item.value).toLocaleString('id-ID')}</span>
                                     <button onClick={() => setExpandedItem(item.id)} className="p-1 rounded-md hover:bg-zinc-800 text-zinc-400 hover:text-white transition-colors cursor-pointer ml-1">
                                        <Eye size={12} />
                                     </button>
@@ -414,11 +279,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                      </div>
 
                      <div className="flex-1 overflow-y-auto no-scrollbar space-y-6">
-                        {expandedItem === 'military' && renderAggregatedSection(buildAggregated(militarySectors), "Rincian Perawatan Militer", "text-red-400", Shield)}
-
-                        {expandedItem === 'maintenance' && renderAggregatedSection(buildAggregated(maintenanceSectors), "Rincian Perawatan Infrastruktur", "text-amber-400", Zap)}
-
-                        {!['military', 'maintenance'].includes(expandedItem || '') && expandedItem && (
+                        {expandedItem && (
                            <div className="flex flex-col items-center justify-center h-full gap-3">
                               <Info size={24} className="text-zinc-600" />
                               <p className="text-xs text-zinc-500 italic">Rincian statis tidak memiliki kontrol manajemen saat ini.</p>

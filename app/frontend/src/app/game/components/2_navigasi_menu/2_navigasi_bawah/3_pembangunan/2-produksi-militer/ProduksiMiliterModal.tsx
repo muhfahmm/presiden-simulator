@@ -367,7 +367,6 @@ export default function ProduksiMiliterModal({ isOpen, onClose }: ModalProps) {
           desc: val.deskripsi,
           cost: val.biaya_pembangunan,
           buildTime: val.waktu_pembangunan,
-          maintenanceCost: val.biaya_pemeliharaan,
           lowongan_kerja: val.lowongan_kerja,
           count: Number(currentData.pabrik_militer?.[val.dataKey as keyof typeof currentData.pabrik_militer] || 0) + ((buildingDeltas[val.dataKey] as number) || 0),
           consumption: val.konsumsi_listrik || 0,
@@ -645,13 +644,6 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
             </div>
 
             <div className="grid gap-2">
-              <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
-                </div>
-                <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
-              </div>
 
               {item.tarif > 0 && (
                 <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
@@ -743,14 +735,6 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
         </h4>
 
         <div className="flex flex-col gap-2.5 flex-1">
-          <div className="flex items-center gap-2.5">
-            <div className="p-1.5 bg-rose-500/10 rounded-lg">
-              <Flame size={12} className="text-rose-400" />
-            </div>
-            <span className="text-[12px] font-bold text-rose-400/90">
-              Pemeliharaan: -{item.maintenanceCost || 5}/hari
-            </span>
-          </div>
 
           {item.tarif > 0 && (
             <div className="flex items-center gap-2.5">

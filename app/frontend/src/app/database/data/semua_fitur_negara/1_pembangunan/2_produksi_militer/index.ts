@@ -10,7 +10,6 @@ export const pabrikMiliterRate = {
     deskripsi: "Produksi Amunisi Militer",
     biaya_pembangunan: 80000,
     waktu_pembangunan: 22,
-    biaya_pemeliharaan: 4200,
     lowongan_kerja: 12000,
     konsumsi_listrik: 120,
     produksi: 25000,

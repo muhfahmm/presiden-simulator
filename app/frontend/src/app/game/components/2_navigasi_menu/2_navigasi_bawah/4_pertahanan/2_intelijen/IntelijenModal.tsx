@@ -209,9 +209,6 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
           icon: Satellite, 
           biaya_pembangunan: intelijenRate["sistem_satelit"].biaya_pembangunan,
           waktu_pembangunan: intelijenRate["sistem_satelit"].waktu_pembangunan,
-          biaya_pemeliharaan: intelijenRate["sistem_satelit"].biaya_pemeliharaan,
-          konsumsi_listrik: intelijenRate["sistem_satelit"].konsumsi_listrik,
-          deskripsi: intelijenRate["sistem_satelit"].deskripsi,
           count: (currentData.militer_strategis?.intel_radar?.sistem_satelit || 0) + ((buildingDeltas["sistem_satelit"] as number) || 0) 
         },
         { 
@@ -220,9 +217,6 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
           icon: Radar, 
           biaya_pembangunan: intelijenRate["jaringan_radar"].biaya_pembangunan,
           waktu_pembangunan: intelijenRate["jaringan_radar"].waktu_pembangunan,
-          biaya_pemeliharaan: intelijenRate["jaringan_radar"].biaya_pemeliharaan,
-          konsumsi_listrik: intelijenRate["jaringan_radar"].konsumsi_listrik,
-          deskripsi: intelijenRate["jaringan_radar"].deskripsi,
           count: (currentData.militer_strategis?.intel_radar?.jaringan_radar || 0) + ((buildingDeltas["jaringan_radar"] as number) || 0) 
         },
         { 
@@ -231,9 +225,6 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
           icon: Cpu, 
           biaya_pembangunan: intelijenRate["operasi_siber"].biaya_pembangunan,
           waktu_pembangunan: intelijenRate["operasi_siber"].waktu_pembangunan,
-          biaya_pemeliharaan: intelijenRate["operasi_siber"].biaya_pemeliharaan,
-          konsumsi_listrik: intelijenRate["operasi_siber"].konsumsi_listrik,
-          deskripsi: intelijenRate["operasi_siber"].deskripsi,
           count: (currentData.militer_strategis?.intel_radar?.operasi_siber || 0) + ((buildingDeltas["operasi_siber"] as number) || 0) 
         }
       ]
@@ -506,13 +497,6 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
             <div className="grid gap-2">
               {!isStatusOnly ? (
                 <>
-                  <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
-                    <div className="flex items-center gap-2.5">
-                      <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
-                      <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
-                    </div>
-                    <span className="text-[14px] font-black text-rose-400">-{item.biaya_pemeliharaan.toLocaleString('id-ID') || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
-                  </div>
 
                   {item.konsumsi_listrik > 0 && (
                     <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
@@ -596,12 +580,6 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
           </div>
         ) : (
           <div className="flex flex-col gap-2.5 flex-1">
-            <div className="flex items-center gap-2.5">
-              <div className="p-1.5 bg-rose-500/10 rounded-lg">
-                <Flame size={12} className="text-rose-400" />
-              </div>
-              <span className="text-[12px] font-bold text-rose-400/90">Pemeliharaan: -{item.biaya_pemeliharaan.toLocaleString('id-ID') || 5}/hari</span>
-            </div>
 
             {item.konsumsi_listrik > 0 && (
               <div className="flex flex-col gap-2">

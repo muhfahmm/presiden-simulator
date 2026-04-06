@@ -28,7 +28,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Pusat Komando & Pengendali Keamanan Nasional",
     biaya_pembangunan: 450000,
     waktu_pembangunan: 90,
-    biaya_pemeliharaan: 25000,
+
     lowongan_kerja: 45000,
     konsumsi_listrik: 850,
     satuan: "Unit"
@@ -40,7 +40,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Pusat Pendidikan & Pelatihan Perwira",
     biaya_pembangunan: 120000,
     waktu_pembangunan: 60,
-    biaya_pemeliharaan: 12000,
+
     lowongan_kerja: 8500,
     konsumsi_listrik: 350,
     satuan: "Unit"
@@ -52,7 +52,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Identifikasi Digital & Fisik Terpadu",
     biaya_pembangunan: 85000,
     waktu_pembangunan: 45,
-    biaya_pemeliharaan: 8500,
+
     lowongan_kerja: 2500,
     konsumsi_listrik: 150,
     satuan: "Unit"
@@ -66,7 +66,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Pusat Komando Keamanan Wilayah",
     biaya_pembangunan: 65000,
     waktu_pembangunan: 45,
-    biaya_pemeliharaan: 4500,
+
     lowongan_kerja: 5500,
     konsumsi_listrik: 120,
     satuan: "Unit"
@@ -78,7 +78,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Pelayanan Keamanan Masyarakat Terpadu",
     biaya_pembangunan: 25000,
     waktu_pembangunan: 22,
-    biaya_pemeliharaan: 1500,
+
     lowongan_kerja: 1200,
     konsumsi_listrik: 45,
     satuan: "Unit"
@@ -90,7 +90,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Sistem Pengawasan CCTV Terintegrasi",
     biaya_pembangunan: 45000,
     waktu_pembangunan: 30,
-    biaya_pemeliharaan: 8500,
+
     lowongan_kerja: 800,
     konsumsi_listrik: 85,
     satuan: "Unit"
@@ -104,7 +104,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Unit Reaksi Cepat & Logistik Polisi",
     biaya_pembangunan: 15000,
     waktu_pembangunan: 15,
-    biaya_pemeliharaan: 800,
+
     lowongan_kerja: 500,
     konsumsi_listrik: 10,
     satuan: "Unit"
@@ -116,7 +116,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Unit Pengejaran & Patroli Jalan Raya",
     biaya_pembangunan: 8500,
     waktu_pembangunan: 7,
-    biaya_pemeliharaan: 500,
+
     lowongan_kerja: 200,
     konsumsi_listrik: 10,
     satuan: "Unit"
@@ -128,7 +128,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Patroli Gesit & Respon Cepat Kota",
     biaya_pembangunan: 4500,
     waktu_pembangunan: 5,
-    biaya_pemeliharaan: 200,
+
     lowongan_kerja: 100,
     konsumsi_listrik: 5,
     satuan: "Unit"
@@ -140,7 +140,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Pengawasan & Respon Taktis Udara",
     biaya_pembangunan: 120000,
     waktu_pembangunan: 45,
-    biaya_pemeliharaan: 12000,
+
     lowongan_kerja: 1500,
     konsumsi_listrik: 120,
     satuan: "Unit"
@@ -154,7 +154,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Pasukan Pelacak & K-9 Taktis",
     biaya_pembangunan: 8500,
     waktu_pembangunan: 5,
-    biaya_pemeliharaan: 800,
+
     lowongan_kerja: 800,
     konsumsi_listrik: 25,
     satuan: "Unit"
@@ -166,7 +166,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Unit Anti-Teror & Respon Taktis Tinggi",
     biaya_pembangunan: 85000,
     waktu_pembangunan: 45,
-    biaya_pemeliharaan: 12000,
+
     lowongan_kerja: 8500,
     konsumsi_listrik: 150,
     satuan: "Unit"
@@ -178,7 +178,7 @@ export const armadaPolisiRate: Record<string, any> = {
     deskripsi: "Pemeliharaan Ketertiban & Anti Huru-Hara",
     biaya_pembangunan: 45000,
     waktu_pembangunan: 30,
-    biaya_pemeliharaan: 4500,
+
     lowongan_kerja: 12000,
     konsumsi_listrik: 85,
     satuan: "Unit"

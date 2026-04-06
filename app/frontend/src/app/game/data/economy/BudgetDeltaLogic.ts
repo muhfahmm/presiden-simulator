@@ -2,29 +2,27 @@ import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { incomeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
 import { expenseStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
-import { calculateDailyMaintenance } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/pemeliharaan_militer_polisi";
 import { priceStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
 
 /**
  * Calculates the total daily maintenance cost.
  */
 export function calculateTotalMaintenance(countryData: CountryData, buildingDeltas: Record<string, number>): number {
-  return calculateDailyMaintenance(countryData, buildingDeltas);
+  return 0;
 }
 
 /**
  * Legacy wrapper: Calculates the total daily maintenance cost for all national base infrastructure.
  */
 export function calculateBaseMaintenance(countryData: CountryData): number {
-  return calculateDailyMaintenance(countryData, {});
+  return 0;
 }
 
 /**
  * Legacy wrapper: Calculates maintenance for user-built infrastructure (deltas).
  */
 export function calculateDeltaMaintenance(buildingDeltas: Record<string, number>): number {
-  // Pass an empty country object that satisfy the required sectors to avoid crashes
-  return calculateDailyMaintenance({} as any, buildingDeltas);
+  return 0;
 }
 
 export interface BudgetBreakdown {
@@ -81,8 +79,8 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   // 2. Expenses
   const expData = expenseStorage.getData(countryData.name_en, countryData);
   
-  // Maintenance (Termasuk Militer & Polisi)
-  const maintenanceExpense = calculateTotalMaintenance(countryData, buildingDeltas);
+  // Maintenance (Semua pemeliharaan infrastruktur dan operasional militer kini nol)
+  const maintenanceExpense = 0;
   
   // Military (Khusus operasional/pabrik jika diperlukan tambahan, saat ini sudah masuk maintenance)
   const militaryExpense = 0; 
