@@ -444,7 +444,7 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
     uav: "Drone UAV",
     kamikaze: "Drone Kamikaze",
     transport: "Pesawat Angkut",
-    carrier: "Kapal Induk",
+    carrier: "Kapal Induk Konvensional",
     destroyer: "Kapal Destroyer",
     corvette: "Kapal Korvet",
     submarine: "Kapal Selam Nuklir",

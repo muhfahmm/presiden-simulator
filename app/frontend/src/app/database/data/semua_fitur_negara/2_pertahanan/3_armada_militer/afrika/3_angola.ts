@@ -10,6 +10,7 @@ export const angola_armada = {
   },
   "laut": {
         "kapal_induk": 40,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 21,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

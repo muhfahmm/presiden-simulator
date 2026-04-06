@@ -82,7 +82,8 @@ export default function Perbandingan({ isOpen, onClose, userCountryData, targetC
         ]
       case 'laut':
         return [
-          { label: "Kapal Induk", user: (userArmada.laut?.kapal_induk || 0) + (userDeltas.carrier || 0), target: (targetArmada.laut?.kapal_induk || 0) + (targetAid.kapal_induk || 0) },
+          { label: "Kapal Induk Konvensional", user: (userArmada.laut?.kapal_induk || 0) + (userDeltas.carrier || 0), target: (targetArmada.laut?.kapal_induk || 0) + (targetAid.kapal_induk || 0) },
+          { label: "Kapal Induk Nuklir", user: (userArmada.laut?.kapal_induk_nuklir || 0) + (userDeltas.nuclear_carrier || 0), target: (targetArmada.laut?.kapal_induk_nuklir || 0) + (targetAid.kapal_induk_nuklir || 0) },
           { label: "Kapal Destroyer", user: (userArmada.laut?.kapal_destroyer || 0) + (userDeltas.destroyer || 0), target: (targetArmada.laut?.kapal_destroyer || 0) + (targetAid.kapal_destroyer || 0) },
           { label: "Kapal Korvet", user: (userArmada.laut?.kapal_korvet || 0) + (userDeltas.corvette || 0), target: (targetArmada.laut?.kapal_korvet || 0) + (targetAid.kapal_korvet || 0) },
           { label: "Kapal Selam Nuklir", user: (userArmada.laut?.kapal_selam_nuklir || 0) + (userDeltas.submarine || 0), target: (targetArmada.laut?.kapal_selam_nuklir || 0) + (targetAid.kapal_selam_nuklir || 0) },

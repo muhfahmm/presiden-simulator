@@ -10,6 +10,7 @@ export const guiana_prancis_armada = {
       },
   "laut": {
         "kapal_induk": 16,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 31,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

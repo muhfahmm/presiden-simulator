@@ -10,6 +10,7 @@ export const bahama_armada = {
       },
   "laut": {
         "kapal_induk": 15,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 14,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

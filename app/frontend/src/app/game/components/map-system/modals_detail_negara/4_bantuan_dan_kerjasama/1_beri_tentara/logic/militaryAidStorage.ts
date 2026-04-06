@@ -16,6 +16,7 @@ export const MILITARY_KEY_MAP: Record<string, string> = {
   pertahanan_udara_mobile: "sam",
   kendaraan_taktis: "tactical",
   kapal_induk: "carrier",
+  kapal_induk_nuklir: "nuclear_carrier",
   kapal_destroyer: "destroyer",
   kapal_korvet: "corvette",
   kapal_selam_nuklir: "submarine",

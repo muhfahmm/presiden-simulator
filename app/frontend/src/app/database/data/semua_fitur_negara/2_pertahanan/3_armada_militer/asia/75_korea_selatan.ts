@@ -10,6 +10,7 @@ export const korea_selatan_armada = {
       },
   "laut": {
         "kapal_induk": 12,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 27,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

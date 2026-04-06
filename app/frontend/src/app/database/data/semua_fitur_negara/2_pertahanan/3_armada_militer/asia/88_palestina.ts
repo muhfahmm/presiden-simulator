@@ -10,6 +10,7 @@ export const palestina_armada = {
       },
   "laut": {
         "kapal_induk": 32,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 186,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

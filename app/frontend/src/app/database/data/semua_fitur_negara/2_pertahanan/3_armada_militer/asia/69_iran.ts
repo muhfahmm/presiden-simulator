@@ -10,6 +10,7 @@ export const iran_armada = {
       },
   "laut": {
         "kapal_induk": 8,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 1,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

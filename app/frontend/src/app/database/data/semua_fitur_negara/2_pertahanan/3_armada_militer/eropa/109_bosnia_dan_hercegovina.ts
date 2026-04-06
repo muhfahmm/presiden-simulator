@@ -10,6 +10,7 @@ export const bosnia_dan_hercegovina_armada = {
       },
   "laut": {
         "kapal_induk": 13,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 11,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

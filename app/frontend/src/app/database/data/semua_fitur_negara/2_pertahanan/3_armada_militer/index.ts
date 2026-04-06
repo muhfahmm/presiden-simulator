@@ -27,7 +27,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 10,
     lowongan_kerja: 4,
     consumption: 0,
-    konsumsi_bahan_bakar: 12
+    konsumsi_bahan_bakar: 1900
   },
   "3_apc": {
     key: "3_apc",
@@ -40,7 +40,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 4,
     lowongan_kerja: 3,
     consumption: 0,
-    konsumsi_bahan_bakar: 8
+    konsumsi_bahan_bakar: 800
   },
   "4_artileri": {
     key: "4_artileri",
@@ -53,7 +53,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 8,
     lowongan_kerja: 6,
     consumption: 0,
-    konsumsi_bahan_bakar: 6
+    konsumsi_bahan_bakar: 600
   },
   "5_roket_peluncur": {
     key: "5_roket_peluncur",
@@ -66,7 +66,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 12,
     lowongan_kerja: 5,
     consumption: 0,
-    konsumsi_bahan_bakar: 10
+    konsumsi_bahan_bakar: 1000
   },
   "6_misil_sam": {
     key: "6_misil_sam",
@@ -79,7 +79,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 15,
     lowongan_kerja: 6,
     consumption: 0,
-    konsumsi_bahan_bakar: 5
+    konsumsi_bahan_bakar: 1500
   },
   "7_kendaraan_taktis": {
     key: "7_kendaraan_taktis",
@@ -93,7 +93,7 @@ export const armadaMiliterRate = {
     lowongan_kerja: 2,
     power: 0,
     consumption: 0,
-    konsumsi_bahan_bakar: 4
+    konsumsi_bahan_bakar: 1200
   },
   
   // ARMADA LAUT
@@ -101,14 +101,28 @@ export const armadaMiliterRate = {
     key: "8_kapal_induk",
     dataKey: "carrier",
     groupId: "laut",
-    label: "Kapal Induk",
+    label: "Kapal Induk Konvensional",
     deskripsi: "Pangkalan Apung",
     biaya: 750,
     waktu_pembangunan: 480,
     biaya_pemeliharaan: 200,
     lowongan_kerja: 5000,
     consumption: 0,
-    konsumsi_bahan_bakar: 500
+    konsumsi_bahan_bakar: 1200000
+  },
+  "8b_kapal_induk_nuklir": {
+    key: "8b_kapal_induk_nuklir",
+    dataKey: "nuclear_carrier",
+    groupId: "laut",
+    label: "Kapal Induk Nuklir",
+    deskripsi: "Pangkalan Udara Terapung",
+    biaya: 1500,
+    waktu_pembangunan: 720,
+    biaya_pemeliharaan: 400,
+    lowongan_kerja: 6500,
+    consumption: 0,
+    konsumsi_bahan_bakar: 0,
+    konsumsi_uranium: 0.8
   },
   "9_kapal_perusak": {
     key: "9_kapal_perusak",
@@ -121,7 +135,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 100,
     lowongan_kerja: 300,
     consumption: 0,
-    konsumsi_bahan_bakar: 150
+    konsumsi_bahan_bakar: 1500000
   },
   "10_kapal_korvet": {
     key: "10_kapal_korvet",
@@ -134,33 +148,34 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 45,
     lowongan_kerja: 100,
     consumption: 0,
-    konsumsi_bahan_bakar: 80
+    konsumsi_bahan_bakar: 800000
   },
   "11_kapal_selam_nuklir": {
     key: "11_kapal_selam_nuklir",
     dataKey: "submarine",
     groupId: "laut",
-    label: "Kapal Selam N",
+    label: "Kapal Selam Nuklir",
     deskripsi: "Siluman Bawah Air",
     biaya: 420,
     waktu_pembangunan: 420,
     biaya_pemeliharaan: 150,
     lowongan_kerja: 80,
     consumption: 0,
-    konsumsi_bahan_bakar: 42
+    konsumsi_bahan_bakar: 0,
+    konsumsi_uranium: 0.2
   },
   "12_kapal_selam_reguler": {
     key: "12_kapal_selam_reguler",
     dataKey: "reg_sub",
     groupId: "laut",
-    label: "Kapal Selam R",
+    label: "Kapal Selam Reguler",
     deskripsi: "Selam Reguler",
     biaya: 150,
     waktu_pembangunan: 240,
     biaya_pemeliharaan: 60,
     lowongan_kerja: 60,
     consumption: 0,
-    konsumsi_bahan_bakar: 40
+    konsumsi_bahan_bakar: 400000
   },
   "13_penyapu_ranjau": {
     key: "13_penyapu_ranjau",
@@ -173,7 +188,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 15,
     lowongan_kerja: 40,
     consumption: 0,
-    konsumsi_bahan_bakar: 30
+    konsumsi_bahan_bakar: 300000
   },
   "14_kapal_logistik": {
     key: "14_kapal_logistik",
@@ -186,7 +201,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 25,
     lowongan_kerja: 50,
     consumption: 0,
-    konsumsi_bahan_bakar: 60
+    konsumsi_bahan_bakar: 600000
   },
   
   // ARMADA UDARA
@@ -201,7 +216,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 120,
     lowongan_kerja: 2,
     consumption: 0,
-    konsumsi_bahan_bakar: 120
+    konsumsi_bahan_bakar: 1200000
   },
   "16_jet_pencegat": {
     key: "16_jet_pencegat",
@@ -214,7 +229,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 55,
     lowongan_kerja: 2,
     consumption: 0,
-    konsumsi_bahan_bakar: 100
+    konsumsi_bahan_bakar: 1000000
   },
   "17_pesawat_pembom": {
     key: "17_pesawat_pembom",
@@ -227,7 +242,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 180,
     lowongan_kerja: 3,
     consumption: 0,
-    konsumsi_bahan_bakar: 200
+    konsumsi_bahan_bakar: 2000000
   },
   "18_helikopter_serbu": {
     key: "18_helikopter_serbu",
@@ -240,7 +255,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 25,
     lowongan_kerja: 3,
     consumption: 0,
-    konsumsi_bahan_bakar: 50
+    konsumsi_bahan_bakar: 500000
   },
   "19_pesawat_intai": {
     key: "19_pesawat_intai",
@@ -253,7 +268,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 20,
     lowongan_kerja: 2,
     consumption: 0,
-    konsumsi_bahan_bakar: 40
+    konsumsi_bahan_bakar: 400000
   },
   "20_drone_intai": {
     key: "20_drone_intai",
@@ -266,7 +281,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 5,
     lowongan_kerja: 1,
     consumption: 0,
-    konsumsi_bahan_bakar: 5
+    konsumsi_bahan_bakar: 500000
   },
   "21_drone_kamikaze": {
     key: "21_drone_kamikaze",
@@ -279,7 +294,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 1,
     lowongan_kerja: 1,
     consumption: 0,
-    konsumsi_bahan_bakar: 2
+    konsumsi_bahan_bakar: 200000
   },
   "22_transport_udara": {
     key: "22_transport_udara",
@@ -292,7 +307,7 @@ export const armadaMiliterRate = {
     biaya_pemeliharaan: 15,
     lowongan_kerja: 3,
     consumption: 0,
-    konsumsi_bahan_bakar: 80
+    konsumsi_bahan_bakar: 800000
   }
 };
 
@@ -308,6 +323,7 @@ export interface SektorArmadaMiliter {
   };
   laut: {
     kapal_induk: number;
+    kapal_induk_nuklir: number;
     kapal_destroyer: number;
     kapal_korvet: number;
     kapal_selam_nuklir: number;
@@ -336,11 +352,12 @@ export const armadaMiliterList = [
   { key: "rocket", category: "Armada", label: "MLRS Rocket", desc: "Sistem Roket", cost: 18, buildTime: 50, maintenanceCost: 12 },
   { key: "sam", category: "Armada", label: "Mobile SAM", desc: "Hulu Ledak", cost: 25, buildTime: 60, maintenanceCost: 15 },
   { key: "tactical", category: "Armada", label: "Kendaraan Taktis", desc: "Patroli Tempur", cost: 5, buildTime: 10, maintenanceCost: 2 },
-  { key: "carrier", category: "Armada", label: "Kapal Induk", desc: "Pangkalan Apung", cost: 750, buildTime: 480, maintenanceCost: 200 },
+  { key: "carrier", category: "Armada", label: "Kapal Induk Konvensional", desc: "Pangkalan Apung", cost: 750, buildTime: 480, maintenanceCost: 200 },
+  { key: "nuclear_carrier", category: "Armada", label: "Kapal Induk Nuklir", desc: "Pangkalan Udara Terapung", cost: 1500, buildTime: 720, maintenanceCost: 400 },
   { key: "destroyer", category: "Armada", label: "Kapal Destroyer", desc: "Perusak Maritim", cost: 280, buildTime: 360, maintenanceCost: 100 },
   { key: "corvette", category: "Armada", label: "Kapal Korvet", desc: "Kapal Kawal", cost: 120, buildTime: 180, maintenanceCost: 45 },
-  { key: "submarine", category: "Armada", label: "Kapal Selam N", desc: "Siluman Bawah Air", cost: 420, buildTime: 420, maintenanceCost: 150 },
-  { key: "reg_sub", category: "Armada", label: "Kapal Selam R", desc: "Selam Reguler", cost: 150, buildTime: 240, maintenanceCost: 60 },
+  { key: "submarine", category: "Armada", label: "Kapal Selam Nuklir", desc: "Siluman Bawah Air", cost: 420, buildTime: 420, maintenanceCost: 150 },
+  { key: "reg_sub", category: "Armada", label: "Kapal Selam Reguler", desc: "Selam Reguler", cost: 150, buildTime: 240, maintenanceCost: 60 },
   { key: "mine_ship", category: "Armada", label: "Kapal Ranjau", desc: "Penyapu Ranjau", cost: 45, buildTime: 90, maintenanceCost: 15 },
   { key: "logistics", category: "Armada", label: "Kapal Logistik", desc: "Suplai Maritim", cost: 60, buildTime: 120, maintenanceCost: 25 },
   { key: "stealth_jet", category: "Armada", label: "Jet Stealth", desc: "Supremasi Udara", cost: 250, buildTime: 300, maintenanceCost: 120 },

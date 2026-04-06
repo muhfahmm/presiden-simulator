@@ -10,6 +10,7 @@ export const portugal_armada = {
       },
   "laut": {
         "kapal_induk": 1,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 168,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

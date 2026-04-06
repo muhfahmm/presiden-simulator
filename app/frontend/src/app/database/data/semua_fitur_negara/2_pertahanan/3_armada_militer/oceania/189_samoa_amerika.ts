@@ -10,6 +10,7 @@ export const samoa_amerika_armada = {
       },
   "laut": {
         "kapal_induk": 25,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 174,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

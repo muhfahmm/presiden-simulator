@@ -10,6 +10,7 @@ export const antigua_dan_barbuda_armada = {
       },
   "laut": {
         "kapal_induk": 18,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 18,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

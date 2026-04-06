@@ -10,6 +10,7 @@ export const montenegro_armada = {
       },
   "laut": {
         "kapal_induk": 26,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 99,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

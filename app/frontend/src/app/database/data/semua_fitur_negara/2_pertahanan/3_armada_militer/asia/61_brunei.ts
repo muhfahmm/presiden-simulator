@@ -10,6 +10,7 @@ export const brunei_armada = {
       },
   "laut": {
         "kapal_induk": 20,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 34,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

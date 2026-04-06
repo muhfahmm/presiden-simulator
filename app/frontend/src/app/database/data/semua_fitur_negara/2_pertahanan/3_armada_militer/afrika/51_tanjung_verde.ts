@@ -10,6 +10,7 @@ export const tanjung_verde_armada = {
   },
   "laut": {
         "kapal_induk": 9,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 54,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

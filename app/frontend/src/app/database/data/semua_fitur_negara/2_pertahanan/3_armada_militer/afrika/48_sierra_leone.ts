@@ -10,6 +10,7 @@ export const sierra_leone_armada = {
   },
   "laut": {
         "kapal_induk": 5,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 77,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

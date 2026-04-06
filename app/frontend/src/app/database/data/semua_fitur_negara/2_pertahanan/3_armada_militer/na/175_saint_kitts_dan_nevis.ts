@@ -10,6 +10,7 @@ export const saint_kitts_dan_nevis_armada = {
       },
   "laut": {
         "kapal_induk": 14,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 83,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

@@ -10,6 +10,7 @@ export const myanmar_armada = {
       },
   "laut": {
         "kapal_induk": 3,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 173,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

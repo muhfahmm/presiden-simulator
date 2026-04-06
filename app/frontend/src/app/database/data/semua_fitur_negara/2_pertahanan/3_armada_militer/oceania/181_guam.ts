@@ -10,6 +10,7 @@ export const guam_armada = {
       },
   "laut": {
         "kapal_induk": 34,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 75,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

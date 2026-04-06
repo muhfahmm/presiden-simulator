@@ -10,6 +10,7 @@ export const mauritania_armada = {
   },
   "laut": {
         "kapal_induk": 10,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 98,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

@@ -10,6 +10,7 @@ export const mikronesia_armada = {
       },
   "laut": {
         "kapal_induk": 35,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 19,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

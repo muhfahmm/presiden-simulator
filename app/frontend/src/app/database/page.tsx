@@ -12,7 +12,7 @@ import MapHubungan from "../game/components/2_navigasi_menu/1_navigasi_atas/Hubu
 import { countries } from "./data/negara/benua/index";
 import { gameStorage } from "../game/gamestorage";
 import { taxStorage } from "../game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
-import { CountryData } from "./data/types/index";
+import { CountryData } from "./data/semua_fitur_negara";
 
 export default function DatabasePage() {
   const router = useRouter();

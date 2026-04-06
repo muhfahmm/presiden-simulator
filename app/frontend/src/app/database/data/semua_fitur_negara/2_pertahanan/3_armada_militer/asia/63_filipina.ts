@@ -10,6 +10,7 @@ export const filipina_armada = {
       },
   "laut": {
         "kapal_induk": 37,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 37,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

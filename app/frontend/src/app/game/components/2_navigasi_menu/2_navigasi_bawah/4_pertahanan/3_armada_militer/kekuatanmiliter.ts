@@ -8,6 +8,7 @@ export const SAM_POWER_PER_UNIT = 300;
 export const TACTICAL_POWER_PER_UNIT = 50;
 
 export const CARRIER_POWER_PER_UNIT = 5000;
+export const NUCLEAR_CARRIER_POWER_PER_UNIT = 12000;
 export const DESTROYER_POWER_PER_UNIT = 1200;
 export const CORVETTE_POWER_PER_UNIT = 800;
 export const SUBMARINE_POWER_PER_UNIT = 2000; // Nuclear
@@ -117,6 +118,7 @@ export const calculateTotalMilitaryPower = (armadaData: any, deltas: Record<stri
 
   const totalLaut =
     ((armadaData.laut?.kapal_induk || 0) + (deltas["carrier"] || 0)) * CARRIER_POWER_PER_UNIT +
+    ((armadaData.laut?.kapal_induk_nuklir || 0) + (deltas["nuclear_carrier"] || 0)) * NUCLEAR_CARRIER_POWER_PER_UNIT +
     ((armadaData.laut?.kapal_destroyer || 0) + (deltas["destroyer"] || 0)) * DESTROYER_POWER_PER_UNIT +
     ((armadaData.laut?.kapal_korvet || 0) + (deltas["corvette"] || 0)) * CORVETTE_POWER_PER_UNIT +
     ((armadaData.laut?.kapal_selam_nuklir || 0) + (deltas["submarine"] || 0)) * SUBMARINE_POWER_PER_UNIT +
@@ -159,6 +161,7 @@ export const calculateForcesPower = (forces: any) => {
 
   const totalLaut =
     (forces.laut?.kapal_induk || 0) * CARRIER_POWER_PER_UNIT +
+    (forces.laut?.kapal_induk_nuklir || 0) * NUCLEAR_CARRIER_POWER_PER_UNIT +
     (forces.laut?.kapal_destroyer || 0) * DESTROYER_POWER_PER_UNIT +
     (forces.laut?.kapal_korvet || 0) * CORVETTE_POWER_PER_UNIT +
     (forces.laut?.kapal_selam_nuklir || 0) * SUBMARINE_POWER_PER_UNIT +

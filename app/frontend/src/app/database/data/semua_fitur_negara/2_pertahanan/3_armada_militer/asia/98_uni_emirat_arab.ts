@@ -10,6 +10,7 @@ export const uni_emirat_arab_armada = {
       },
   "laut": {
         "kapal_induk": 36,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 142,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

@@ -10,6 +10,7 @@ export const palau_armada = {
       },
   "laut": {
         "kapal_induk": 4,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 84,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

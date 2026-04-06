@@ -10,6 +10,7 @@ export const republik_timor_leste_armada = {
       },
   "laut": {
         "kapal_induk": 16,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 15,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,

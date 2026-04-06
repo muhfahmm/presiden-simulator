@@ -10,6 +10,7 @@ export const grenada_armada = {
       },
   "laut": {
         "kapal_induk": 38,
+        "kapal_induk_nuklir": 0,
         "kapal_destroyer": 13,
         "kapal_korvet": 0,
         "kapal_selam_nuklir": 0,
