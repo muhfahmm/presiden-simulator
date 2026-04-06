@@ -1,5 +1,6 @@
 // Sektor Imports & Exports
 export * from "./1_sektor_listrik_nasional/1_db_listrik";
+export * from "./1_sektor_listrik_nasional/listrik_logic";
 export * from "./2_sektor_mineral_kritis/2_db_ekstraksi";
 export * from "./3_manufaktur/3_db_manufaktur";
 export * from "./4_sektor_peternakan/4_db_peternakan";

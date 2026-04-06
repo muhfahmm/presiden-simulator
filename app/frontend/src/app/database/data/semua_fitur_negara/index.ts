@@ -116,8 +116,6 @@ export interface CountryData extends EkonomiData {
 }
 
 // Re-export nested types for convenience
-export * from "./1_pembangunan/1_produksi/1_sektor_listrik_nasional/1_db_listrik";
-export * from "./1_pembangunan/1_produksi/1_sektor_listrik_nasional/listrik_logic";
 export * from "./1_pembangunan/3_tempat_umum/1_Layanan Publik/1_infrastruktur";
 export * from "./1_pembangunan/1_produksi";
 export * from "./2_pertahanan";

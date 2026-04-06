@@ -6,37 +6,37 @@ export const perikananRate = {
     key: "1_tambak_udang",
     dataKey: "udang",
     deskripsi: "Tambang Udang Intensif",
-    produksi: 1000,
+    produksi: 75000,
     satuan: "KG",
-    biaya_pemeliharaan: 50,
-    waktu_pembangunan: 45,
-    biaya_pembangunan: 2800,
-    lowongan_kerja: 250,
-    konsumsi_listrik: 1
+    biaya_pemeliharaan: 1500,
+    waktu_pembangunan: 22,
+    biaya_pembangunan: 32000,
+    lowongan_kerja: 3500,
+    konsumsi_listrik: 25
   },
   "2_budidaya_ikan_tawar": {
     key: "2_budidaya_ikan_tawar",
     dataKey: "ikan",
     deskripsi: "Budidaya Ikan Air Tawar",
-    produksi: 2000,
+    produksi: 120000,
     satuan: "KG",
-    biaya_pemeliharaan: 30,
-    waktu_pembangunan: 45,
-    biaya_pembangunan: 1500,
-    lowongan_kerja: 200,
-    konsumsi_listrik: 1
+    biaya_pemeliharaan: 1100,
+    waktu_pembangunan: 22,
+    biaya_pembangunan: 28000,
+    lowongan_kerja: 4500,
+    konsumsi_listrik: 18
   },
   "3_budidaya_mutiara": {
     key: "3_budidaya_mutiara",
     dataKey: "mutiara",
     deskripsi: "Budidaya Kerang & Mutiara",
-    produksi: 100,
+    produksi: 15000,
     satuan: "GRAM",
-    biaya_pemeliharaan: 80,
-    waktu_pembangunan: 120,
-    biaya_pembangunan: 5500,
-    lowongan_kerja: 150,
-    konsumsi_listrik: 1
+    biaya_pemeliharaan: 2800,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 65000,
+    lowongan_kerja: 2500,
+    konsumsi_listrik: 45
   }
 };
 

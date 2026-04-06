@@ -6,49 +6,49 @@ export const peternakanRate = {
     key: "1_peternakan_unggas",
     dataKey: "ayam_unggas",
     deskripsi: "Peternakan Unggas",
-    produksi: 1000,
+    produksi: 150000,
     satuan: "EKOR",
-    biaya_pemeliharaan: 20,
-    waktu_pembangunan: 30,
-    biaya_pembangunan: 1200,
-    lowongan_kerja: 100,
-    konsumsi_listrik: 1
+    biaya_pemeliharaan: 1200,
+    waktu_pembangunan: 15,
+    biaya_pembangunan: 25000,
+    lowongan_kerja: 1500,
+    konsumsi_listrik: 15
   },
   "2_peternakan_sapi_perah": {
     key: "2_peternakan_sapi_perah",
     dataKey: "sapi_perah",
     deskripsi: "Peternakan Sapi Perah",
-    produksi: 500,
+    produksi: 75000,
     satuan: "LITER",
-    biaya_pemeliharaan: 40,
-    waktu_pembangunan: 60,
-    biaya_pembangunan: 2500,
-    lowongan_kerja: 150,
-    konsumsi_listrik: 1
+    biaya_pemeliharaan: 1800,
+    waktu_pembangunan: 30,
+    biaya_pembangunan: 38000,
+    lowongan_kerja: 2500,
+    konsumsi_listrik: 25
   },
   "3_peternakan_sapi_potong": {
     key: "3_peternakan_sapi_potong",
     dataKey: "sapi_potong",
     deskripsi: "Peternakan Sapi Potong",
-    produksi: 100,
+    produksi: 12000,
     satuan: "EKOR",
-    biaya_pemeliharaan: 60,
-    waktu_pembangunan: 90,
-    biaya_pembangunan: 3000,
-    lowongan_kerja: 120,
-    konsumsi_listrik: 1
+    biaya_pemeliharaan: 2200,
+    waktu_pembangunan: 45,
+    biaya_pembangunan: 45000,
+    lowongan_kerja: 2800,
+    konsumsi_listrik: 20
   },
   "4_peternakan_domba_kambing": {
     key: "4_peternakan_domba_kambing",
     dataKey: "domba_kambing",
     deskripsi: "Peternakan Domba & Kambing",
-    produksi: 200,
+    produksi: 18000,
     satuan: "EKOR",
-    biaya_pemeliharaan: 30,
-    waktu_pembangunan: 60,
-    biaya_pembangunan: 1500,
-    lowongan_kerja: 80,
-    konsumsi_listrik: 1
+    biaya_pemeliharaan: 1400,
+    waktu_pembangunan: 30,
+    biaya_pembangunan: 32000,
+    lowongan_kerja: 1800,
+    konsumsi_listrik: 18
   }
 };
 

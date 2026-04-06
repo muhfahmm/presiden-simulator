@@ -6,13 +6,13 @@ export const farmasiRate = {
     key: "1_pabrik_farmasi",
     dataKey: "farmasi",
     deskripsi: "Pabrik Farmasi",
-    produksi: 1000,
+    produksi: 45000,
     satuan: "BOX",
-    biaya_pemeliharaan: 150,
-    waktu_pembangunan: 90,
-    biaya_pembangunan: 7500,
-    lowongan_kerja: 1200,
-    konsumsi_listrik: 10
+    biaya_pemeliharaan: 4200,
+    waktu_pembangunan: 45,
+    biaya_pembangunan: 150000,
+    lowongan_kerja: 12000,
+    konsumsi_listrik: 250
   }
 };
 

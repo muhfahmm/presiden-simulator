@@ -13,35 +13,35 @@ export const komersialRate: Record<string, any> = {
     dataKey: "pusat_belanja",
     produksi: 1,
     satuan: "Unit",
-    deskripsi: "Pusat Perbelanjaan (Mall)",
-    biaya_pemeliharaan: 120,
-    waktu_pembangunan: 360,
-    biaya_pembangunan: 45000,
-    lowongan_kerja: 1500,
-    konsumsi_listrik: 50
+    deskripsi: "Pusat Perbelanjaan & Mall Nasional",
+    biaya_pemeliharaan: 22000,
+    waktu_pembangunan: 180,
+    biaya_pembangunan: 450000,
+    lowongan_kerja: 25000,
+    konsumsi_listrik: 650
   },
   "24_hotel": {
     key: "24_hotel",
     dataKey: "hotel",
     produksi: 1,
     satuan: "Unit",
-    deskripsi: "Hotel & Akomodasi Bintang 5",
-    biaya_pemeliharaan: 80,
-    waktu_pembangunan: 240,
-    biaya_pembangunan: 35000,
-    lowongan_kerja: 800,
-    konsumsi_listrik: 40
+    deskripsi: "Kompleks Hotel & Resort Internasional",
+    biaya_pemeliharaan: 15000,
+    waktu_pembangunan: 120,
+    biaya_pembangunan: 180000,
+    lowongan_kerja: 8500,
+    konsumsi_listrik: 350
   },
   "25_pusat_grosir_tekstil": {
     key: "25_pusat_grosir_tekstil",
     dataKey: "pusat_grosir_tekstil",
     produksi: 1,
     satuan: "Unit",
-    deskripsi: "Pusat Grosir & Perdagangan Tekstil",
-    biaya_pemeliharaan: 30,
-    waktu_pembangunan: 120,
-    biaya_pembangunan: 15000,
-    lowongan_kerja: 1200,
-    konsumsi_listrik: 25
+    deskripsi: "Pusat Perdagangan & Logistik Tekstil",
+    biaya_pemeliharaan: 8500,
+    waktu_pembangunan: 60,
+    biaya_pembangunan: 85000,
+    lowongan_kerja: 12000,
+    konsumsi_listrik: 150
   },
 };

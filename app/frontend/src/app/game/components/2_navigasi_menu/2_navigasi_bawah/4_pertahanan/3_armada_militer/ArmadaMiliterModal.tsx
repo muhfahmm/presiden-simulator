@@ -9,16 +9,32 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/negara/benua/index";
-import { armadaMiliterRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan";
+import Perbandingan from "./1_menu_modal/1_umumkan_perang/perbandingan";
+import MaterialRequirement from "../../3_pembangunan/1-produksi/MaterialRequirement";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
+import { 
+  armadaPolisiRate, 
+  armadaMiliterRate, 
+  intelijenRate, 
+  pertahananRate, 
+  pabrikMiliterRate,
+  mineralKritisRate,
+  manufakturRate,
+  peternakanRate,
+  agrikulturRate,
+  perikananRate,
+  olahanPanganRate,
+  farmasiRate,
+  infrastrukturRate,
+  sosialRate,
+  hunianRate
+} from "@/app/database/data/semua_fitur_negara";
 import { 
   TANK_POWER_PER_UNIT, APC_POWER_PER_UNIT, ARTILLERY_POWER_PER_UNIT, ROCKET_POWER_PER_UNIT, SAM_POWER_PER_UNIT, TACTICAL_POWER_PER_UNIT,
   CARRIER_POWER_PER_UNIT, NUCLEAR_CARRIER_POWER_PER_UNIT, DESTROYER_POWER_PER_UNIT, CORVETTE_POWER_PER_UNIT, SUBMARINE_POWER_PER_UNIT, REGULAR_SUB_POWER_PER_UNIT, MINE_SHIP_POWER_PER_UNIT, LOGISTICS_POWER_PER_UNIT,
   STEALTH_POWER_PER_UNIT, INTERCEPTOR_POWER_PER_UNIT, BOMBER_POWER_PER_UNIT, ATTACK_HELI_POWER_PER_UNIT, RECON_POWER_PER_UNIT, UAV_POWER_PER_UNIT, KAMIKAZE_POWER_PER_UNIT, TRANSPORT_POWER_PER_UNIT,
   INFANTRY_POWER_PER_UNIT, calculateTotalMilitaryPower 
 } from "./kekuatanmiliter";
-import Perbandingan from "./1_menu_modal/1_umumkan_perang/perbandingan";
-import MaterialRequirement from "../../3_pembangunan/1-produksi/MaterialRequirement";
 import { militaryAidStorage, MILITARY_KEY_MAP } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
 import { playerMilitaryStorage } from "../../../../map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
 
@@ -210,7 +226,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
         color: "text-orange-500",
         items: [
           // ARMADA DARAT
-          { ...armadaMiliterRate["1_barak"], groupId: "darat", icon: MilitaryIcon, count: ((currentData.armada_militer.barak || 0) + ((effectiveDeltas["barak"] as number) || 0)) * 10000, power: 1 },
+          { ...armadaMiliterRate["1_barak"], groupId: "darat", icon: MilitaryIcon, count: ((currentData.armada_militer.barak || 0) + ((effectiveDeltas["barak"] as number) || 0)) * 10000, unitCount: ((currentData.armada_militer.barak || 0) + ((effectiveDeltas["barak"] as number) || 0)), power: 1 },
           { ...armadaMiliterRate["2_tank"], groupId: "darat", icon: Truck, count: (currentData.armada_militer.darat.tank_tempur_utama || 0) + ((effectiveDeltas["tank"] as number) || 0), power: TANK_POWER_PER_UNIT },
           { ...armadaMiliterRate["3_apc"], groupId: "darat", icon: Truck, count: (currentData.armada_militer.darat.apc_ifv || 0) + ((effectiveDeltas["apc"] as number) || 0), power: APC_POWER_PER_UNIT },
           { ...armadaMiliterRate["4_artileri"], groupId: "darat", icon: Target, count: (currentData.armada_militer.darat.artileri_berat || 0) + ((effectiveDeltas["artileri"] as number) || 0), power: ARTILLERY_POWER_PER_UNIT },
@@ -271,15 +287,122 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
 
    if (!isOpen || !currentData) return null;
 
-  // 2. Logic Sinkronisasi Listrik Nasional (dengan Deltas)
-  const currentDataWithDeltas = JSON.parse(JSON.stringify(currentData));
+
+
+  // 2. Logic Sinkronisasi Listrik Nasional (dengan Deltas Kompleks)
+  const currentDataWithDeltas = {
+    ...currentData,
+    sektor_listrik: { ...currentData.sektor_listrik || {} },
+    sektor_ekstraksi: { ...currentData.sektor_ekstraksi || {} },
+    sektor_manufaktur: { ...currentData.sektor_manufaktur || {} },
+    sektor_olahan_pangan: { ...currentData.sektor_olahan_pangan || {} },
+    sektor_farmasi: { ...currentData.sektor_farmasi || {} },
+    sektor_agrikultur: { ...currentData.sektor_agrikultur || {} },
+    sektor_peternakan: { ...currentData.sektor_peternakan || {} },
+    sektor_perikanan: { ...currentData.sektor_perikanan || {} },
+    pendidikan: { ...currentData.pendidikan || {} },
+    kesehatan: { ...currentData.kesehatan || {} },
+    hukum: { ...currentData.hukum || {} },
+    sektor_olahraga: { ...currentData.sektor_olahraga || {} },
+    sektor_komersial: { ...currentData.sektor_komersial || {} },
+    sektor_hiburan: { ...currentData.sektor_hiburan || {} },
+    hunian: { ...currentData.hunian || {} },
+    armada_militer: { 
+      ...currentData.armada_militer || {},
+      darat: { ...currentData.armada_militer?.darat || {} },
+      laut: { ...currentData.armada_militer?.laut || {} },
+      udara: { ...currentData.armada_militer?.udara || {} },
+    },
+    armada_kepolisian: { 
+      ...currentData.armada_kepolisian || {},
+      armada_polisi: { ...currentData.armada_kepolisian?.armada_polisi || {} }
+    },
+    sektor_pertahanan: { ...currentData.sektor_pertahanan || {} },
+    militer_strategis: { 
+      ...currentData.militer_strategis || {},
+      intel_radar: { ...currentData.militer_strategis?.intel_radar || {} }
+    },
+    pabrik_militer: { ...currentData.pabrik_militer || {} },
+    infrastruktur: { ...currentData.infrastruktur || {} }
+  };
+
   Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
-    if (typeof deltaValue !== 'number') return;
+    if (typeof deltaValue !== 'number' || deltaValue === 0) return;
     
-    // Sektor Listrik
     if (KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA]) {
       const dataKey = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA].dataKey;
       (currentDataWithDeltas.sektor_listrik as any)[dataKey] = ((currentDataWithDeltas.sektor_listrik as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((mineralKritisRate as any)[key]) {
+      const dataKey = (mineralKritisRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] = ((currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((manufakturRate as any)[key]) {
+      const dataKey = (manufakturRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_manufaktur as any)[dataKey] = ((currentDataWithDeltas.sektor_manufaktur as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((peternakanRate as any)[key]) {
+      const dataKey = (peternakanRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_peternakan as any)[dataKey] = ((currentDataWithDeltas.sektor_peternakan as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((agrikulturRate as any)[key]) {
+      const dataKey = (agrikulturRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_agrikultur as any)[dataKey] = ((currentDataWithDeltas.sektor_agrikultur as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((perikananRate as any)[key]) {
+      const dataKey = (perikananRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_perikanan as any)[dataKey] = ((currentDataWithDeltas.sektor_perikanan as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((olahanPanganRate as any)[key]) {
+      const dataKey = (olahanPanganRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_olahan_pangan as any)[dataKey] = ((currentDataWithDeltas.sektor_olahan_pangan as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((farmasiRate as any)[key]) {
+      const dataKey = (farmasiRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_farmasi as any)[dataKey] = ((currentDataWithDeltas.sektor_farmasi as any)[dataKey] || 0) + deltaValue;
+    }
+    else if (infrastrukturRate[key as keyof typeof infrastrukturRate]) {
+      const dataKey = (infrastrukturRate as any)[key].dataKey;
+      (currentDataWithDeltas.infrastruktur as any)[dataKey] = ((currentDataWithDeltas.infrastruktur as any)[dataKey] || 0) + deltaValue;
+    }
+    else if (sosialRate[key as keyof typeof sosialRate]) {
+      const { dataKey, groupId } = (sosialRate as any)[key];
+      if (groupId === "pendidikan") (currentDataWithDeltas.pendidikan as any)[dataKey] = ((currentDataWithDeltas.pendidikan as any)[dataKey] || 0) + deltaValue;
+      else if (groupId === "kesehatan") (currentDataWithDeltas.kesehatan as any)[dataKey] = ((currentDataWithDeltas.kesehatan as any)[dataKey] || 0) + deltaValue;
+      else if (groupId === "hukum") (currentDataWithDeltas.hukum as any)[dataKey] = ((currentDataWithDeltas.hukum as any)[dataKey] || 0) + deltaValue;
+      else if (groupId === "olahraga") (currentDataWithDeltas.sektor_olahraga as any)[dataKey] = ((currentDataWithDeltas.sektor_olahraga as any)[dataKey] || 0) + deltaValue;
+      else if (groupId === "komersial") (currentDataWithDeltas.sektor_komersial as any)[dataKey] = ((currentDataWithDeltas.sektor_komersial as any)[dataKey] || 0) + deltaValue;
+      else if (groupId === "hiburan") (currentDataWithDeltas.sektor_hiburan as any)[dataKey] = ((currentDataWithDeltas.sektor_hiburan as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((pabrikMiliterRate as any)[key]) {
+      const dataKey = (pabrikMiliterRate as any)[key].dataKey;
+      (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((hunianRate as any)[key]) {
+      const dataKey = key; 
+      (currentDataWithDeltas.hunian as any)[dataKey] = ((currentDataWithDeltas.hunian as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((armadaMiliterRate as any)[key]) {
+      const { dataKey, groupId } = (armadaMiliterRate as any)[key];
+      if (groupId === "darat" && dataKey === "barak") {
+        currentDataWithDeltas.armada_militer.barak = (currentDataWithDeltas.armada_militer.barak || 0) + deltaValue;
+      } else {
+        const sector = (currentDataWithDeltas.armada_militer as any)[groupId];
+        if (sector) sector[dataKey] = (sector[dataKey] || 0) + deltaValue;
+      }
+    }
+    else if ((armadaPolisiRate as any)[key]) {
+      const dataKey = (armadaPolisiRate as any)[key].dataKey;
+      if (!currentDataWithDeltas.armada_kepolisian.armada_polisi) currentDataWithDeltas.armada_kepolisian.armada_polisi = {} as any;
+      (currentDataWithDeltas.armada_kepolisian.armada_polisi as any)[dataKey] = ((currentDataWithDeltas.armada_kepolisian.armada_polisi as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((intelijenRate as any)[key]) {
+      const dataKey = (intelijenRate as any)[key].dataKey;
+      (currentDataWithDeltas.militer_strategis.intel_radar as any)[dataKey] = ((currentDataWithDeltas.militer_strategis.intel_radar as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((pertahananRate as any)[key]) {
+      const dataKey = (pertahananRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_pertahanan as any)[dataKey] = ((currentDataWithDeltas.sektor_pertahanan as any)[dataKey] || 0) + deltaValue;
     }
   });
 
@@ -679,7 +802,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
                     </div>
                   </div>
 
-                  {confirmBuild.consumption > 0 && (
+                  {confirmBuild.consumption > 0 && confirmBuild.dataKey === 'barak' && (
                     <div className="bg-zinc-950/50 border border-zinc-800/80 rounded-3xl p-5 flex flex-col items-center gap-1.5 group hover:bg-zinc-900/50 transition-colors">
                       <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">Energi</span>
                       <div className="flex items-center gap-2">
@@ -980,16 +1103,16 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
                   <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
                 </div>
-                <span className="text-[14px] font-black text-rose-400">-{item.biaya_pemeliharaan || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
+                <span className="text-[14px] font-black text-rose-400">-{item.biaya_pemeliharaan?.toLocaleString('id-ID') || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
               </div>
 
               {item.consumption > 0 && (
                 <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                   <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
+                    <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-500"><Zap size={12} /></div>
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                   </div>
-                  <span className="text-[14px] font-black text-amber-500">{item.consumption} MW</span>
+                  <span className="text-[14px] font-black text-rose-500">{item.consumption?.toLocaleString('id-ID')} MW</span>
                 </div>
               )}
 
@@ -999,7 +1122,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
                     <div className="p-1.5 bg-emerald-500/10 rounded-lg text-emerald-400"><Radiation size={12} /></div>
                     <span className="text-[10px] font-bold text-emerald-400/70 uppercase tracking-widest">Konsumsi Uranium</span>
                   </div>
-                  <span className="text-[14px] font-black text-emerald-400">{item.konsumsi_uranium} g/hari</span>
+                  <span className="text-[14px] font-black text-emerald-400">{item.konsumsi_uranium?.toLocaleString('id-ID')} g/hari</span>
                 </div>
               ) : item.konsumsi_bahan_bakar > 0 && (
                 <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
@@ -1007,7 +1130,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
                     <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Flame size={12} /></div>
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Konsumsi BBM</span>
                   </div>
-                  <span className="text-[14px] font-black text-amber-500">{item.konsumsi_bahan_bakar} L/hari</span>
+                  <span className="text-[14px] font-black text-amber-500">{item.konsumsi_bahan_bakar?.toLocaleString('id-ID')} L/hari</span>
                 </div>
               )}
 
@@ -1017,7 +1140,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
                     <div className="p-1.5 bg-emerald-500/10 rounded-lg text-emerald-500"><Radiation size={12} /></div>
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Konsumsi Uranium</span>
                   </div>
-                  <span className="text-[14px] font-black text-emerald-500">{item.konsumsi_uranium} g/Hari</span>
+                  <span className="text-[14px] font-black text-emerald-500">{item.konsumsi_uranium?.toLocaleString('id-ID')} g/Hari</span>
                 </div>
               )}
 
@@ -1081,7 +1204,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
             {item.desc}
           </div>
           <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-            Aktif: {item.count.toLocaleString('id-ID')} {item.key === 'barak' ? 'Pasukan' : 'Unit'}
+            Terbangun: {item.count.toLocaleString('id-ID')} {item.dataKey === 'barak' ? 'Pasukan' : 'Unit'} {item.consumption > 0 && `(${(item.count * item.consumption).toLocaleString('id-ID')} MW)`}
           </div>
         </div>
       </div>
@@ -1098,7 +1221,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
               <MilitaryIcon size={12} className="text-cyan-400" />
             </div>
             <span className="text-[12px] font-bold text-cyan-400/90">
-              Daya Tempur: +{item.power?.toLocaleString('id-ID')} / {item.key === 'barak' ? 'person' : 'unit'}
+              Daya Tempur: +{item.power?.toLocaleString('id-ID')} / {item.dataKey === 'barak' ? 'person' : 'unit'}
             </span>
           </div>
 
@@ -1106,39 +1229,43 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
             <div className="p-1.5 bg-rose-500/10 rounded-lg">
               <Flame size={12} className="text-rose-400" />
             </div>
-            <span className="text-[12px] font-bold text-rose-400/90">Pemeliharaan: -{item.biaya_pemeliharaan || 5}/hari</span>
+            <span className="text-[12px] font-bold text-rose-400/90">Pemeliharaan: -{item.biaya_pemeliharaan?.toLocaleString('id-ID') || 5}/hari</span>
           </div>
 
           {item.consumption > 0 && (
-            <>
-              <div className="flex items-center gap-2.5">
-                <div className="p-1.5 bg-amber-500/10 rounded-lg"><Zap size={12} className="text-amber-500/90" /></div>
-                <span className="text-[12px] font-bold text-amber-500/80">Energi: {item.consumption} MW/unit</span>
-              </div>
-              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
-                <div className="p-1.5 bg-rose-500/5 rounded-lg">
-                  <Activity size={12} className="text-rose-400/70" />
-                </div>
-                <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                  Total Konsumsi Listrik: {(item.count * item.consumption).toLocaleString('id-ID')} MW
-                </span>
-              </div>
-            </>
+            <div className="flex flex-col gap-2">
+               <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                     <Zap size={12} className="text-rose-500/90" />
+                  </div>
+                  <span className="text-[12px] font-bold text-rose-500/80">
+                     Konsumsi: {item.consumption?.toLocaleString('id-ID')} MW/bangunan
+                  </span>
+               </div>
+               <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                  <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                     <Activity size={12} className="text-rose-400/70" />
+                  </div>
+                  <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+                     Total Konsumsi Listrik: {(item.count * item.consumption).toLocaleString('id-ID')} MW
+                  </span>
+               </div>
+            </div>
           )}
 
           {item.konsumsi_uranium > 0 ? (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-emerald-500/10 rounded-lg"><Radiation size={12} className="text-emerald-500/90" /></div>
-              <span className="text-[12px] font-bold text-emerald-500/80">Konsumsi Uranium: {item.konsumsi_uranium} g/hari</span>
+              <span className="text-[12px] font-bold text-emerald-500/80">Konsumsi Uranium: {item.konsumsi_uranium?.toLocaleString('id-ID')} g/hari</span>
             </div>
           ) : item.konsumsi_bahan_bakar > 0 && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-amber-500/10 rounded-lg"><Flame size={12} className="text-amber-500/90" /></div>
-              <span className="text-[12px] font-bold text-amber-500/80">Konsumsi BBM: {item.konsumsi_bahan_bakar} L/hari</span>
+              <span className="text-[12px] font-bold text-amber-500/80">Konsumsi BBM: {item.konsumsi_bahan_bakar?.toLocaleString('id-ID')} L/hari</span>
             </div>
           )}
 
-          {item.key === "barak" && (
+          {item.dataKey === "barak" && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-emerald-500/10 rounded-lg">
                 <Users size={12} className="text-emerald-400" />
@@ -1155,7 +1282,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
                 <item.storageIcon size={12} className="text-amber-500" />
               </div>
               <span className={`text-[12px] font-bold italic ${item.isFull ? 'text-rose-500' : 'text-amber-500/90'}`}>
-                Kapasitas {item.storageLabel.replace('Pangkalan ', '')}: {item.storageUsed} / {item.storageMax}
+                Kapasitas {item.storageLabel.replace('Pangkalan ', '')}: {item.storageUsed?.toLocaleString('id-ID')} / {item.storageMax?.toLocaleString('id-ID')}
               </span>
             </div>
           )}
@@ -1204,8 +1331,8 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
         ) : (
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
-              <span className="text-[13px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
-              <span className="text-xl font-black text-zinc-400 tracking-tight mt-1">{item.biaya}</span>
+              <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
+              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya?.toLocaleString('id-ID')}</span>
             </div>
             {item.isFull ? (
               <button disabled className="flex-1 py-3.5 rounded-2xl bg-zinc-800 text-rose-500/50 text-[10px] font-black uppercase tracking-[0.1em] border border-rose-500/20 cursor-not-allowed">

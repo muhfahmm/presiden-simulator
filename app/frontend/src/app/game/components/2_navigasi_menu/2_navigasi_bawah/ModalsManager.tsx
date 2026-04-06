@@ -10,7 +10,7 @@ import HargaModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2
 // Other Modals
 import ProduksiHubV3 from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/1-produksi/ProduksiModal";
 import ProduksiMiliterModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/2-produksi-militer/ProduksiMiliterModal";
-import { KelistrikanModal, PerminyakanModal } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/9_produksi_konsumsi";
+import { KelistrikanModal, PerminyakanModal, UraniumModal } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/9_produksi_konsumsi";
 import TempatUmumModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/3-tempat-umum/TempatUmumModal";
 import PertahananModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/PertahananModal";
 import IntelijenModal from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/2_intelijen/IntelijenModal";
@@ -117,6 +117,10 @@ export default function ModalsManager({ isMounted, activeMenu, setActiveMenu, co
       />
       <PerminyakanModal
         isOpen={activeMenu === "Menu:Perminyakan"}
+        onClose={() => setActiveMenu("ProduksiKonsumsi")}
+      />
+      <UraniumModal
+        isOpen={activeMenu === "Menu:Uranium"}
         onClose={() => setActiveMenu("ProduksiKonsumsi")}
       />
       <TempatUmumModal

@@ -667,10 +667,10 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
               {item.consumption > 0 && (
                 <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                   <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
+                    <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-500"><Zap size={12} /></div>
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                   </div>
-                  <span className="text-[14px] font-black text-amber-500">{item.consumption} MW</span>
+                  <span className="text-[14px] font-black text-rose-500">{item.consumption} MW</span>
                 </div>
               )}
 
@@ -732,7 +732,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
             {item.desc}
           </div>
           <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-            Aktif: {item.count} Unit
+            Terbangun: {item.count} Unit {item.consumption > 0 && `(${(item.count * item.consumption).toLocaleString('id-ID')} MW)`}
           </div>
         </div>
       </div>
@@ -765,24 +765,24 @@ function BuildingCard({ item, onBuild, construction, cumulative }: any) {
           )}
 
           {((item.consumption ?? 0) >= 0) && (
-            <>
-              <div className="flex items-center gap-2.5">
-                <div className="p-1.5 bg-amber-500/10 rounded-lg">
-                  <Zap size={12} className="text-amber-500/90" />
-                </div>
-                <span className="text-[12px] font-bold text-amber-500/80">
-                  Konsumsi: {Math.max(item.consumption, 1)} MW/unit
-                </span>
-              </div>
-              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-amber-500/10 pl-3">
-                <div className="p-1.5 bg-amber-500/5 rounded-lg">
-                  <Activity size={12} className="text-amber-400/70" />
-                </div>
-                <span className="text-[11px] font-bold text-amber-400/70 uppercase">
-                  Total Konsumsi Listrik: {(item.count * Math.max(item.consumption, 1)).toLocaleString('id-ID')} MW
-                </span>
-              </div>
-            </>
+            <div className="flex flex-col gap-2">
+               <div className="flex items-center gap-2.5">
+                  <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                     <Zap size={12} className="text-rose-500/90" />
+                  </div>
+                  <span className="text-[12px] font-bold text-rose-500/80">
+                     Konsumsi: {Math.max(item.consumption, 1)} MW/bangunan
+                  </span>
+               </div>
+               <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                  <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                     <Activity size={12} className="text-rose-400/70" />
+                  </div>
+                  <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+                     Total Konsumsi Listrik: {(item.count * Math.max(item.consumption, 1)).toLocaleString('id-ID')} MW
+                  </span>
+               </div>
+            </div>
           )}
 
           {item.lowongan_kerja > 0 && (

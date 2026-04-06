@@ -5,7 +5,7 @@ import {
   Star, Wallet, Wrench, Shield, Globe, Landmark, LayoutGrid, ChevronLeft,
   Hammer, Swords as MilitaryIcon, Users2, BarChart3, TrendingUp,
   ArrowRightLeft, FileText, CreditCard, Zap, Package, Home, ShieldAlert, Gem, Tag, Smile, Eye, HeartHandshake, HandHelping, Handshake,
-  Droplet, Activity, Bolt
+  Droplet, Activity, Bolt, Radiation
 } from "lucide-react";
 
 interface BottomNavProps {
@@ -64,6 +64,7 @@ export default function BottomNav({ activeMenu, setActiveMenu }: BottomNavProps)
     "ProduksiKonsumsi": [
       { id: "Menu:Kelistrikan", label: "Grid Nasional", icon: Bolt },
       { id: "Menu:Perminyakan", label: "Perminyakan", icon: Droplet },
+      { id: "Menu:Uranium", label: "Uranium", icon: Radiation },
     ],
     "Pertahanan": [
       { id: "Komando Pertahanan", label: "Komando Pertahanan", icon: Shield },

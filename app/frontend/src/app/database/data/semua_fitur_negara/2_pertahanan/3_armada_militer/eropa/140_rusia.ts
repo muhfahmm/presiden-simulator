@@ -1,31 +1,31 @@
 export const rusia_armada = {
-    "barak": 11,
+    "barak": 132,
     "darat": {
-        "tank_tempur_utama": 17,
-        "apc_ifv": 142,
-        "artileri_berat": 26,
-        "sistem_peluncur_roket": 0,
-        "pertahanan_udara_mobile": 0,
-        "kendaraan_taktis": 0
+        "tank_tempur_utama": 14777,
+        "apc_ifv": 30000,
+        "artileri_berat": 10000,
+        "sistem_peluncur_roket": 3300,
+        "pertahanan_udara_mobile": 1500,
+        "kendaraan_taktis": 8000
       },
   "laut": {
-        "kapal_induk": 33,
+        "kapal_induk": 1,
         "kapal_induk_nuklir": 0,
-        "kapal_destroyer": 19,
-        "kapal_korvet": 0,
-        "kapal_selam_nuklir": 0,
-        "kapal_selam_regular": 0,
-        "kapal_ranjau": 0,
-        "kapal_logistik": 0
+        "kapal_destroyer": 15,
+        "kapal_korvet": 80,
+        "kapal_selam_nuklir": 29,
+        "kapal_selam_regular": 35,
+        "kapal_ranjau": 40,
+        "kapal_logistik": 50
       },
   "udara": {
-        "jet_tempur_siluman": 189,
-        "jet_tempur_interceptor": 0,
-        "pesawat_pengebom": 0,
-        "helikopter_serang": 33,
-        "pesawat_pengintai": 2,
-        "drone_intai_uav": 0,
-        "drone_kamikaze": 0,
-        "pesawat_angkut": 0
+        "jet_tempur_siluman": 20,
+        "jet_tempur_interceptor": 800,
+        "pesawat_pengebom": 130,
+        "helikopter_serang": 500,
+        "pesawat_pengintai": 100,
+        "drone_intai_uav": 2000,
+        "drone_kamikaze": 3000,
+        "pesawat_angkut": 400
       }
 } as const;

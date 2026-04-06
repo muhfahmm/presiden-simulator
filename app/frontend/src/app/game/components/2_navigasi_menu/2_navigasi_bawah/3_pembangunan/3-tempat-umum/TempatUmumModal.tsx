@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, Fragment } from "react";
-import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Gem, Battery, Box, Cpu, Mountain, Waves, TreePine, Croissant, Soup, Shell, Milk, Sprout, Apple, Bean, Coffee, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Bird, Fish, Info, Building, Archive, Layers, Hammer, Microscope, Search, Building2, Library, Trophy, Gavel, Scale, Radar, Settings, Target, ShieldAlert, HeartPulse, Stethoscope, Briefcase, Users, Warehouse, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, GraduationCap, Landmark, Crosshair, TrainFront, HardHat, Siren, Leaf, Truck, School, Lightbulb, Dumbbell, Flag, Gamepad2, Clapperboard, Theater, AlertTriangle } from "lucide-react"
+import { X, Wrench, Zap, Pickaxe, Factory, Construction, Store, Beef, Wheat, Radiation, Coins, Flame, Droplets, FlaskConical, Shovel, Container, Car, Bike, Gem, Battery, Box, Cpu, Mountain, Waves, TreePine, Croissant, Soup, Shell, Milk, Sprout, Apple, Bean, Coffee, Activity, TrendingUp, TrendingDown, Clock, Loader2, RefreshCw, Eye, EyeOff, Pill, Utensils, Bird, Fish, Info, Building, Archive, Layers, Hammer, Microscope, Search, Building2, Library, Trophy, Gavel, Scale, Radar, Settings, Target, ShieldAlert, HeartPulse, Stethoscope, Briefcase, Users, Users2, Warehouse, Ship, Map, Wifi, Plane, Bus, ShieldCheck, Home, GraduationCap, Landmark, Crosshair, TrainFront, HardHat, Siren, Leaf, Truck, School, Lightbulb, Dumbbell, Flag, Gamepad2, Clapperboard, Theater, AlertTriangle } from "lucide-react"
 import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, KAPASITAS_LISTRIK_METADATA, KONSUMSI_EKSTRAKSI, KONSUMSI_PRODUKSI, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, DASHBOARD_LABELS, KONSUMSI_PANGAN } from "@/app/database/data/semua_fitur_negara"
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
@@ -762,16 +762,16 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
                   <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
                 </div>
-                <span className="text-[14px] font-black text-rose-400">-{item.biaya_pemeliharaan ?? 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
+                <span className="text-[14px] font-black text-rose-400">-{item.biaya_pemeliharaan?.toLocaleString('id-ID') ?? 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
               </div>
 
               {item.consumption > 0 && (
                 <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                   <div className="flex items-center gap-2.5">
-                    <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
+                    <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-500"><Zap size={12} /></div>
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                   </div>
-                  <span className="text-[14px] font-black text-amber-500">{item.consumption} MW</span>
+                  <span className="text-[14px] font-black text-rose-500">{item.consumption?.toLocaleString('id-ID')} MW</span>
                 </div>
               )}
 
@@ -780,7 +780,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
                   <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                     <div className="flex items-center gap-2.5">
                       <div className="p-1.5 bg-blue-500/10 rounded-lg text-blue-400">
-                        <Users size={12} />
+                        <Users2 size={12} />
                       </div>
                       <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Lowongan</span>
                     </div>
@@ -833,7 +833,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
             {item.desc}
           </div>
           <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-            Terbangun: {item.count} Unit
+            Terbangun: {item.count.toLocaleString('id-ID')} Unit {item.consumption > 0 && `(${(item.count * item.consumption).toLocaleString('id-ID')} MW)`}
           </div>
         </div>
       </div>
@@ -850,25 +850,25 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
               <Flame size={12} className="text-rose-400" />
             </div>
             <span className="text-[12px] font-bold text-rose-400/90">
-              Pemeliharaan: -{item.maintenanceCost ?? 5}/hari
+              Pemeliharaan: -{item.maintenanceCost?.toLocaleString('id-ID') ?? 5}/hari
             </span>
           </div>
 
           {((item.consumption ?? 0) >= 0) && (
             <>
               <div className="flex items-center gap-2.5">
-                <div className="p-1.5 bg-amber-500/10 rounded-lg">
-                  <Zap size={12} className="text-amber-500/90" />
+                <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                  <Zap size={12} className="text-rose-500/90" />
                 </div>
-                <span className="text-[12px] font-bold text-amber-500/80">
-                  Konsumsi: {Math.max(item.consumption, 1)} MW/unit
+                <span className="text-[12px] font-bold text-rose-500/80">
+                  Konsumsi: {Math.max(item.consumption, 1).toLocaleString('id-ID')} MW/unit
                 </span>
               </div>
-              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-amber-500/10 pl-3">
-                <div className="p-1.5 bg-amber-500/5 rounded-lg">
-                  <Activity size={12} className="text-amber-400/70" />
+              <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                  <Activity size={12} className="text-rose-400/70" />
                 </div>
-                <span className="text-[11px] font-bold text-amber-400/70 uppercase">
+                <span className="text-[11px] font-bold text-rose-400/70 uppercase">
                   Total Konsumsi Listrik: {(item.count * Math.max(item.consumption, 1)).toLocaleString('id-ID')} MW
                 </span>
               </div>
@@ -878,7 +878,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
           {lowongan > 0 && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-blue-500/10 rounded-lg">
-                <Users size={12} />
+                <Users2 size={12} className="text-blue-400" />
               </div>
               <span className="text-[12px] font-bold text-blue-400/80">
                 Lowongan: {lowongan.toLocaleString('id-ID')} Jiwa/unit
@@ -889,7 +889,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
           {item.capacity > 0 && (
             <div className="flex items-center gap-2.5">
               <div className="p-1.5 bg-indigo-500/10 rounded-lg">
-                <Users size={12} className="text-indigo-400" />
+                <Users2 size={12} className="text-indigo-400" />
               </div>
               <span className="text-[12px] font-bold text-indigo-400/80">
                 Kapasitas: {item.capacity.toLocaleString('id-ID')} Jiwa/unit
@@ -952,7 +952,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
               <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span>
-              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
+              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost?.toLocaleString('id-ID')}</span>
             </div>
             <button
               onClick={(e) => { e.stopPropagation(); onBuild(item); }}

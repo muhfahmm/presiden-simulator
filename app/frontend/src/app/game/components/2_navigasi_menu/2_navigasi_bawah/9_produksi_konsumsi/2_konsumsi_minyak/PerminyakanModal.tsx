@@ -303,7 +303,7 @@ export default function PerminyakanModal({ isOpen, onClose }: PerminyakanModalPr
                 </div>
 
                 {/* MILITARY SECTOR CONSUMPTION */}
-                <div className="pt-2 pb-2">
+                <div className="bg-zinc-900/40 border border-zinc-800/50 p-4 rounded-3xl">
                   <div className="flex items-center gap-3 mb-4 px-2">
                     <Shield size={18} className="text-rose-500" />
                     <span className="text-sm font-bold text-white uppercase tracking-tight">Sektor Pertahanan & Keamanan</span>
@@ -318,6 +318,10 @@ export default function PerminyakanModal({ isOpen, onClose }: PerminyakanModalPr
                       </div>
                       <div className="grid grid-cols-2 gap-x-6 gap-y-2 mb-4">
                         <div className="flex justify-between text-[10px] text-zinc-400">
+                          <span>Barak Militer</span>
+                          <span className="font-bold text-white">{(armada.barak || 0).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="flex justify-between text-[10px] text-zinc-400">
                           <span>Main Battle Tank</span>
                           <span className="font-bold text-white">{(armada.darat?.tank_tempur_utama || 0).toLocaleString('id-ID')}</span>
                         </div>
@@ -330,8 +334,16 @@ export default function PerminyakanModal({ isOpen, onClose }: PerminyakanModalPr
                           <span className="font-bold text-white">{(armada.darat?.artileri_berat || 0).toLocaleString('id-ID')}</span>
                         </div>
                         <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>MLRS / SAM</span>
-                          <span className="font-bold text-white">{((armada.darat?.sistem_peluncur_roket || 0) + (armada.darat?.pertahanan_udara_mobile || 0)).toLocaleString('id-ID')}</span>
+                          <span>MLRS Rocket</span>
+                          <span className="font-bold text-white">{(armada.darat?.sistem_peluncur_roket || 0).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="flex justify-between text-[10px] text-zinc-400">
+                          <span>Mobile SAM</span>
+                          <span className="font-bold text-white">{(armada.darat?.pertahanan_udara_mobile || 0).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="flex justify-between text-[10px] text-zinc-400">
+                          <span>Kendaraan Taktis</span>
+                          <span className="font-bold text-white">{(armada.darat?.kendaraan_taktis || 0).toLocaleString('id-ID')}</span>
                         </div>
                       </div>
                       <div className="pt-2 border-t border-zinc-800/50">
@@ -350,16 +362,36 @@ export default function PerminyakanModal({ isOpen, onClose }: PerminyakanModalPr
                       </div>
                       <div className="grid grid-cols-2 gap-x-6 gap-y-2 mb-4">
                         <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Kapal Induk/Nuklir</span>
-                          <span className="font-bold text-white">{((armada.laut?.kapal_induk || 0) + (armada.laut?.kapal_induk_nuklir || 0)).toLocaleString('id-ID')}</span>
+                          <span>Kapal Induk</span>
+                          <span className="font-bold text-white">{(armada.laut?.kapal_induk || 0).toLocaleString('id-ID')}</span>
                         </div>
                         <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Kapal Selam (Nuklir/Reg)</span>
-                          <span className="font-bold text-white">{((armada.laut?.kapal_selam_nuklir || 0) + (armada.laut?.kapal_selam_regular || 0)).toLocaleString('id-ID')}</span>
+                          <span>Kapal Induk Nuklir</span>
+                          <span className="font-bold text-white">{(armada.laut?.kapal_induk_nuklir || 0).toLocaleString('id-ID')}</span>
                         </div>
                         <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Logistik/Ranjau</span>
-                          <span className="font-bold text-white">{((armada.laut?.kapal_logistik || 0) + (armada.laut?.kapal_ranjau || 0)).toLocaleString('id-ID')}</span>
+                          <span>Kapal Destroyer</span>
+                          <span className="font-bold text-white">{(armada.laut?.kapal_destroyer || 0).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="flex justify-between text-[10px] text-zinc-400">
+                          <span>Kapal Korvet</span>
+                          <span className="font-bold text-white">{(armada.laut?.kapal_korvet || 0).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="flex justify-between text-[10px] text-zinc-400">
+                          <span>Kapal Selam Nuklir</span>
+                          <span className="font-bold text-white">{(armada.laut?.kapal_selam_nuklir || 0).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="flex justify-between text-[10px] text-zinc-400">
+                          <span>Kapal Selam Reguler</span>
+                          <span className="font-bold text-white">{(armada.laut?.kapal_selam_regular || 0).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="flex justify-between text-[10px] text-zinc-400">
+                          <span>Kapal Ranjau</span>
+                          <span className="font-bold text-white">{(armada.laut?.kapal_ranjau || 0).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="flex justify-between text-[10px] text-zinc-400">
+                          <span>Kapal Logistik</span>
+                          <span className="font-bold text-white">{(armada.laut?.kapal_logistik || 0).toLocaleString('id-ID')}</span>
                         </div>
                       </div>
                       <div className="pt-2 border-t border-zinc-800/50">
@@ -378,20 +410,36 @@ export default function PerminyakanModal({ isOpen, onClose }: PerminyakanModalPr
                       </div>
                       <div className="grid grid-cols-2 gap-x-6 gap-y-2 mb-4">
                         <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Jet Tempur</span>
-                          <span className="font-bold text-white">{((armada.udara?.jet_tempur_siluman || 0) + (armada.udara?.jet_tempur_interceptor || 0)).toLocaleString('id-ID')}</span>
+                          <span>Jet Stealth</span>
+                          <span className="font-bold text-white">{(armada.udara?.jet_tempur_siluman || 0).toLocaleString('id-ID')}</span>
                         </div>
                         <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Bomber & Heli</span>
-                          <span className="font-bold text-white">{((armada.udara?.pesawat_pengebom || 0) + (armada.udara?.helikopter_serang || 0)).toLocaleString('id-ID')}</span>
+                          <span>Jet Interceptor</span>
+                          <span className="font-bold text-white">{(armada.udara?.jet_tempur_interceptor || 0).toLocaleString('id-ID')}</span>
                         </div>
                         <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Recon/Transport</span>
-                          <span className="font-bold text-white">{((armada.udara?.pesawat_pengintai || 0) + (armada.udara?.pesawat_angkut || 0)).toLocaleString('id-ID')}</span>
+                          <span>Pesawat Pengebom</span>
+                          <span className="font-bold text-white">{(armada.udara?.pesawat_pengebom || 0).toLocaleString('id-ID')}</span>
                         </div>
                         <div className="flex justify-between text-[10px] text-zinc-400">
-                          <span>Drone Fleet</span>
-                          <span className="font-bold text-white">{((armada.udara?.drone_intai_uav || 0) + (armada.udara?.drone_kamikaze || 0)).toLocaleString('id-ID')}</span>
+                          <span>Helikopter Serang</span>
+                          <span className="font-bold text-white">{(armada.udara?.helikopter_serang || 0).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="flex justify-between text-[10px] text-zinc-400">
+                          <span>Pesawat Pengintai</span>
+                          <span className="font-bold text-white">{(armada.udara?.pesawat_pengintai || 0).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="flex justify-between text-[10px] text-zinc-400">
+                          <span>Drone UAV</span>
+                          <span className="font-bold text-white">{(armada.udara?.drone_intai_uav || 0).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="flex justify-between text-[10px] text-zinc-400">
+                          <span>Drone Kamikaze</span>
+                          <span className="font-bold text-white">{(armada.udara?.drone_kamikaze || 0).toLocaleString('id-ID')}</span>
+                        </div>
+                        <div className="flex justify-between text-[10px] text-zinc-400">
+                          <span>Pesawat Angkut</span>
+                          <span className="font-bold text-white">{(armada.udara?.pesawat_angkut || 0).toLocaleString('id-ID')}</span>
                         </div>
                       </div>
                       <div className="pt-2 border-t border-zinc-800/50">

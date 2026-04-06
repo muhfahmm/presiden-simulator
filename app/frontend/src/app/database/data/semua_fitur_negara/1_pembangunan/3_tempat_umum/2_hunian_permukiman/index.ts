@@ -6,31 +6,31 @@ export interface HunianData {
 
 export const hunianRate = {
   rumah_subsidi: {
-    biaya_pembangunan: 4000,
+    biaya_pembangunan: 25000,
     waktu_pembangunan: 7,
-    biaya_pemeliharaan: 5,
-    konsumsi_listrik: 1,
-    kapasitas: 4,
-    label: "Rumah Subsidi",
-    desc: "Hunian Rakyat"
+    biaya_pemeliharaan: 800,
+    konsumsi_listrik: 45,
+    kapasitas: 450,
+    label: "Perumahan Subsidi Rakyat",
+    desc: "Hunian Terpadu Masyarakat Terjangkau"
   },
   apartemen: {
-    biaya_pembangunan: 12000,
-    waktu_pembangunan: 15,
-    biaya_pemeliharaan: 25,
-    konsumsi_listrik: 10,
-    kapasitas: 50,
-    label: "Apartemen Modern",
-    desc: "Hunian Vertikal"
+    biaya_pembangunan: 180000,
+    waktu_pembangunan: 45,
+    biaya_pemeliharaan: 4500,
+    konsumsi_listrik: 350,
+    kapasitas: 5500,
+    label: "Apartemen Modern & High-Rise",
+    desc: "Hunian Vertikal Kepadatan Tinggi"
   },
   mansion: {
-    biaya_pembangunan: 50000,
+    biaya_pembangunan: 450000,
     waktu_pembangunan: 30,
-    biaya_pemeliharaan: 100,
-    konsumsi_listrik: 50,
-    kapasitas: 10,
-    label: "Mansion Mewah",
-    desc: "Hunian Eksklusif"
+    biaya_pemeliharaan: 12000,
+    konsumsi_listrik: 180,
+    kapasitas: 50,
+    label: "Kompleks Mansion Mewah",
+    desc: "Hunian Eksklusif Kelas Atas"
   }
 };
 

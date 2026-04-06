@@ -9,13 +9,26 @@ import {
   olahanPanganRate, 
   farmasiRate 
 } from "@/app/database/data/semua_fitur_negara/1_pembangunan/1_produksi";
+import { 
+  KONSUMSI_PERTAHANAN, 
+  KONSUMSI_STRATEGIC, 
+  KONSUMSI_SOSIAL, 
+  KONSUMSI_TRANSPORTASI, 
+  infrastrukturRate, 
+  sosialRate, 
+  pabrikMiliterRate, 
+  hunianRate,
+  KAPASITAS_LISTRIK_METADATA,
+  DASHBOARD_LABELS,
+  hitungTotalKapasitas,
+  hitungTotalKonsumsiNasional
+} from "@/app/database/data/semua_fitur_negara";
 import { pertahananRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan";
 import { budgetStorage } from "@/app/game/components/1_navbar/3_kas_negara";
 import JikaUangKurang from "../jika_uang_kurang";
 import JikaMaterialKurang from "../jika_material_kurang";
 import JugaMaterialDanUangKurang from "../jika_material_dan_uang_kurang";
 import { getBuildingRequirement } from "./MaterialRequirement";
-import { hitungTotalKapasitas, hitungTotalKonsumsiNasional, DASHBOARD_LABELS, KAPASITAS_LISTRIK_METADATA, KONSUMSI_PERTAHANAN, KONSUMSI_STRATEGIC, KONSUMSI_SOSIAL, KONSUMSI_TRANSPORTASI, infrastrukturRate, sosialRate, pabrikMiliterRate, hunianRate } from "@/app/database/data/semua_fitur_negara"
 import { gameStorage } from "@/app/game/gamestorage";
 import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/3_pembangunan/buildingStorage";
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
@@ -690,7 +703,11 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                                 item={item}
                                 onBuild={handleBuildRequest}
                                 construction={currentConstruction}
-                                cumulative={item.count || 0}
+                                cumulative={
+                                  group.id === "kelistrikan" 
+                                    ? (currentDataWithDeltas.sektor_listrik as any)[(KAPASITAS_LISTRIK_METADATA as any)[item.key]?.dataKey] || 0 
+                                    : budgetStorage.getCumulativeProduction()[item.key]
+                                }
                               />
                             </Fragment>
                           );
@@ -719,13 +736,13 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
               <div className={`w-full grid ${confirmBuild.powerUsage || confirmBuild.tarif ? 'grid-cols-3' : 'grid-cols-2'} gap-3`}>
                 <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                   <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Biaya Total</span>
-                  <span className="text-xl font-black text-amber-500 group-hover:scale-110 transition-transform duration-300 tracking-tight">{confirmBuild.cost * quantity}</span>
+                  <span className="text-xl font-black text-amber-500 group-hover:scale-110 transition-transform duration-300 tracking-tight">{(confirmBuild.cost * quantity).toLocaleString('id-ID')}</span>
                 </div>
                 <div className="bg-zinc-950/50 border border-zinc-800 rounded-2xl p-4 flex flex-col items-center gap-1 group">
                   <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Waktu Total</span>
                   <div className="flex items-center gap-2">
                     <Clock size={14} className="text-cyan-500" />
-                    <span className="text-xl font-black text-white group-hover:scale-110 transition-transform duration-300 tracking-tight">{confirmBuild.buildTime * quantity} Hari</span>
+                    <span className="text-xl font-black text-white group-hover:scale-110 transition-transform duration-300 tracking-tight">{(confirmBuild.buildTime * quantity).toLocaleString('id-ID')} Hari</span>
                   </div>
                 </div>
                 {(confirmBuild.groupId === "kelistrikan" || (confirmBuild.powerUsage && confirmBuild.powerUsage > 0)) && (
@@ -754,7 +771,7 @@ export default function ProduksiHubV3({ isOpen, onClose }: ModalProps) {
                     -
                   </button>
                   <div className="flex flex-col items-center min-w-[80px]">
-                    <span className="text-3xl font-black text-white tracking-tighter">{quantity}</span>
+                    <span className="text-3xl font-black text-white tracking-tighter">{quantity.toLocaleString('id-ID')}</span>
                     <span className="text-[10px] font-bold text-zinc-500 uppercase tracking-tighter italic">Unit</span>
                   </div>
                   <button
@@ -924,7 +941,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
                   </div>
                   <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
                 </div>
-                <span className="text-[14px] font-black text-rose-400">-{item.biaya_pemeliharaan || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
+                <span className="text-[14px] font-black text-rose-400">-{(item.biaya_pemeliharaan || 5).toLocaleString('id-ID')} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
               </div>
               
               {item.powerUsage > 0 && (
@@ -935,7 +952,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
                     </div>
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                   </div>
-                  <span className="text-[14px] font-black text-amber-500">{item.powerUsage} MW</span>
+                  <span className="text-[14px] font-black text-amber-500">{item.powerUsage?.toLocaleString('id-ID')} MW</span>
                 </div>
               )}
 
@@ -990,7 +1007,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
             {item.desc || "Infrastruktur"}
           </div>
           <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-            Terbangun: {item.count} Unit {item.groupId !== "kelistrikan" && (item.powerUsage ?? 0) > 0 && `(${item.count * item.powerUsage} MW)`}
+            Terbangun: {item.count?.toLocaleString('id-ID')} Unit {item.groupId !== "kelistrikan" && (item.powerUsage ?? 0) > 0 && `(${(item.count * item.powerUsage).toLocaleString('id-ID')} MW)`}
           </div>
         </div>
       </div>
@@ -1006,7 +1023,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
               <Flame size={12} className="text-rose-400" />
             </div>
             <span className="text-[12px] font-bold text-rose-400/90">
-              Pemeliharaan: -{item.maintenanceCost || 5}/hari
+              Pemeliharaan: -{(item.maintenanceCost || 5).toLocaleString('id-ID')}/hari
             </span>
           </div>
 
@@ -1015,7 +1032,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
               <TrendingUp size={12} className="text-amber-500" />
             </div>
             <span className="text-[12px] font-bold text-amber-500/90">
-              Produksi: +{Math.floor(item.tarif)} {item.unit}/bangunan
+              Produksi: +{Math.floor(item.tarif).toLocaleString('id-ID')} {item.unit}/bangunan
             </span>
           </div>
 
@@ -1026,7 +1043,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
                   <Zap size={12} className="text-rose-500/90" />
                 </div>
                 <span className="text-[12px] font-bold text-rose-500/80">
-                  Konsumsi: {Math.max(item.powerUsage, 1)} MW/bangunan
+                  Konsumsi: {Math.max(item.powerUsage, 1).toLocaleString('id-ID')} MW/bangunan
                 </span>
               </div>
               <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
@@ -1054,7 +1071,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
               <div className="p-1.5 bg-zinc-800/50 rounded-lg">
                 <Clock size={12} className="text-zinc-500" />
               </div>
-              <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
+              <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime?.toLocaleString('id-ID')} Hari</span>
             </div>
           )}
         </div>
@@ -1066,10 +1083,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
               {item.groupId === "kelistrikan" ? "TOTAL PRODUKSI:" : "STOK GUDANG:"}
             </span>
             <span className="text-[16px] font-black text-cyan-400 tracking-tight">
-              {item.groupId === "kelistrikan" 
-                ? (Math.floor(item.tarif) * item.count).toLocaleString('id-ID')
-                : (budgetStorage.getCumulativeProduction()[item.key] || 0).toLocaleString('id-ID')
-              } <span className="text-[10px] text-cyan-500/50 font-normal uppercase italic ml-1">{item.unit}</span>
+              {(Math.floor(item.groupId === "kelistrikan" ? (item.tarif * item.count) : cumulative) || 0).toLocaleString('id-ID')} <span className="text-[10px] text-cyan-500/50 font-normal uppercase italic ml-1">{item.unit}</span>
             </span>
           </div>
         </div>
@@ -1100,7 +1114,7 @@ function BuildingCard({ item, onBuild, construction, cumulative }: { item: any, 
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
               <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span>
-              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
+              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost?.toLocaleString('id-ID')}</span>
             </div>
             <button
               onClick={(e) => { e.stopPropagation(); onBuild(item); }}

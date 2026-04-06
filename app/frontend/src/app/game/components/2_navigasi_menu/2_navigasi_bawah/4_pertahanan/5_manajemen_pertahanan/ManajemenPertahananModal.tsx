@@ -166,7 +166,7 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
         lowongan_kerja: val.lowongan_kerja,
         dataKey: val.dataKey,
         count: Number(currentData.sektor_pertahanan?.[val.dataKey as keyof typeof currentData.sektor_pertahanan] || 0) + ((buildingDeltas[key] as number) || 0),
-        consumption: (KONSUMSI_PERTAHANAN as any)[val.dataKey] || (KONSUMSI_STRATEGIC as any)[val.dataKey] || 0
+        consumption: val.konsumsi_listrik || 0
       }))
     }
   ];
@@ -525,7 +525,7 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
                          <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
                          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
                       </div>
-                      <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
+                      <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost?.toLocaleString('id-ID') || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
                    </div>
 
                    {item.consumption > 0 && (
@@ -534,7 +534,7 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
                             <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
                             <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                          </div>
-                         <span className="text-[14px] font-black text-amber-500">{item.consumption} MW</span>
+                         <span className="text-[14px] font-black text-amber-500">{item.consumption?.toLocaleString('id-ID')} MW</span>
                       </div>
                    )}
 
@@ -661,7 +661,7 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
                Infra Pertahanan
             </div>
             <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-               Aktif: {item.count} Unit
+               Terbangun: {item.count.toLocaleString('id-ID')} Unit {item.consumption > 0 && `(${(item.count * item.consumption).toLocaleString('id-ID')} MW)`}
             </div>
          </div>
       </div>
@@ -672,26 +672,24 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
             {item.label}
          </h4>
 
-         <div className="flex flex-col gap-2.5 flex-1">
-            <div className="flex items-center gap-2.5">
-               <div className="p-1.5 bg-rose-500/10 rounded-lg">
-                  <Flame size={12} className="text-rose-400" />
-               </div>
-               <span className="text-[12px] font-bold text-rose-400/90">
-                  Pemeliharaan: -{item.maintenanceCost || 5}/hari
-               </span>
-            </div>
-
-            {item.consumption > 0 && (
+            <div className="flex flex-col gap-2">
                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-amber-500/10 rounded-lg">
-                     <Zap size={12} className="text-amber-500/90" />
+                  <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                     <Zap size={12} className="text-rose-500/90" />
                   </div>
-                  <span className="text-[12px] font-bold text-amber-500/80">
-                     Konsumsi: {item.consumption} MW/unit
+                  <span className="text-[12px] font-bold text-rose-500/80">
+                     Konsumsi: {item.consumption?.toLocaleString('id-ID')} MW/bangunan
                   </span>
                </div>
-            )}
+               <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                  <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                     <Activity size={12} className="text-rose-400/70" />
+                  </div>
+                  <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+                     Total Konsumsi Listrik: {(item.count * item.consumption).toLocaleString('id-ID')} MW
+                  </span>
+               </div>
+            </div>
 
             {item.dataKey === "hangar_tank" && (
                <div className="flex items-center gap-2.5">
@@ -724,7 +722,6 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
                </div>
             )}
          </div>
-      </div>
 
       {/* Build button / progress */}
       <div className="mt-auto pt-4 relative z-10">
@@ -751,8 +748,8 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
          ) : (
             <div className="flex items-center justify-between gap-4">
                <div className="flex flex-col">
-                  <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span>
-                  <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
+                  <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
+                  <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost?.toLocaleString('id-ID')}</span>
                </div>
                <button
                   onClick={(e) => { e.stopPropagation(); onBuild(item); }}

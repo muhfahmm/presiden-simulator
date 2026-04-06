@@ -1,31 +1,31 @@
 export const israel_armada = {
-    "barak": 35,
+    "barak": 17,
     "darat": {
-        "tank_tempur_utama": 14,
-        "apc_ifv": 39,
-        "artileri_berat": 26,
-        "sistem_peluncur_roket": 0,
-        "pertahanan_udara_mobile": 0,
-        "kendaraan_taktis": 0
+        "tank_tempur_utama": 2200,
+        "apc_ifv": 56000,
+        "artileri_berat": 1000,
+        "sistem_peluncur_roket": 300,
+        "pertahanan_udara_mobile": 100,
+        "kendaraan_taktis": 5000
       },
   "laut": {
-        "kapal_induk": 35,
+        "kapal_induk": 0,
         "kapal_induk_nuklir": 0,
-        "kapal_destroyer": 19,
-        "kapal_korvet": 0,
+        "kapal_destroyer": 0,
+        "kapal_korvet": 7,
         "kapal_selam_nuklir": 0,
-        "kapal_selam_regular": 0,
+        "kapal_selam_regular": 6,
         "kapal_ranjau": 0,
-        "kapal_logistik": 0
+        "kapal_logistik": 10
       },
   "udara": {
-        "jet_tempur_siluman": 16,
-        "jet_tempur_interceptor": 0,
+        "jet_tempur_siluman": 39,
+        "jet_tempur_interceptor": 200,
         "pesawat_pengebom": 0,
-        "helikopter_serang": 9,
-        "pesawat_pengintai": 2,
-        "drone_intai_uav": 0,
-        "drone_kamikaze": 0,
-        "pesawat_angkut": 0
+        "helikopter_serang": 48,
+        "pesawat_pengintai": 30,
+        "drone_intai_uav": 150,
+        "drone_kamikaze": 1000,
+        "pesawat_angkut": 15
       }
 } as const;

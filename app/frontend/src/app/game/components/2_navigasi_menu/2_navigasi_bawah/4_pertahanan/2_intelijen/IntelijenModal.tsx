@@ -8,7 +8,23 @@ import { buildingStorage } from "@/app/game/components/2_navigasi_menu/2_navigas
 import { formatGameDate, addDays, getStoredGameDate, INITIAL_GAME_DATE } from "@/app/game/components/1_navbar/5_navigasi_waktu/gameTime";
 import { calculateConstructionProgress, getStatusText } from "@/app/game/data/construction/constructionLogic";
 import { countries } from "@/app/database/data/negara/benua/index";
-import { intelijenRate } from "@/app/database/data/semua_fitur_negara/2_pertahanan";
+import { 
+  armadaPolisiRate, 
+  armadaMiliterRate, 
+  intelijenRate, 
+  pertahananRate, 
+  pabrikMiliterRate,
+  mineralKritisRate,
+  manufakturRate,
+  peternakanRate,
+  agrikulturRate,
+  perikananRate,
+  olahanPanganRate,
+  farmasiRate,
+  infrastrukturRate,
+  sosialRate,
+  hunianRate
+} from "@/app/database/data/semua_fitur_negara";
 import NavigasiWaktu from "../../2_ekonomi/1-perdagangan/NavigasiWaktu";
 
 export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: boolean; onClose: () => void; data: any }) {
@@ -59,15 +75,120 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
   const buildingData = buildingStorage.getData();
   const buildingDeltas = buildingData.buildingDeltas;
 
-  // 2. Logic Sinkronisasi Listrik Nasional (dengan Deltas)
-  const currentDataWithDeltas = JSON.parse(JSON.stringify(currentData));
+  // 2. Logic Sinkronisasi Listrik Nasional (dengan Deltas Kompleks)
+  const currentDataWithDeltas = {
+    ...currentData,
+    sektor_listrik: { ...currentData.sektor_listrik || {} },
+    sektor_ekstraksi: { ...currentData.sektor_ekstraksi || {} },
+    sektor_manufaktur: { ...currentData.sektor_manufaktur || {} },
+    sektor_olahan_pangan: { ...currentData.sektor_olahan_pangan || {} },
+    sektor_farmasi: { ...currentData.sektor_farmasi || {} },
+    sektor_agrikultur: { ...currentData.sektor_agrikultur || {} },
+    sektor_peternakan: { ...currentData.sektor_peternakan || {} },
+    sektor_perikanan: { ...currentData.sektor_perikanan || {} },
+    pendidikan: { ...currentData.pendidikan || {} },
+    kesehatan: { ...currentData.kesehatan || {} },
+    hukum: { ...currentData.hukum || {} },
+    sektor_olahraga: { ...currentData.sektor_olahraga || {} },
+    sektor_komersial: { ...currentData.sektor_komersial || {} },
+    sektor_hiburan: { ...currentData.sektor_hiburan || {} },
+    hunian: { ...currentData.hunian || {} },
+    armada_militer: { 
+      ...currentData.armada_militer || {},
+      darat: { ...currentData.armada_militer?.darat || {} },
+      laut: { ...currentData.armada_militer?.laut || {} },
+      udara: { ...currentData.armada_militer?.udara || {} },
+    },
+    armada_kepolisian: { 
+      ...currentData.armada_kepolisian || {},
+      armada_polisi: { ...currentData.armada_kepolisian?.armada_polisi || {} }
+    },
+    sektor_pertahanan: { ...currentData.sektor_pertahanan || {} },
+    militer_strategis: { 
+      ...currentData.militer_strategis || {},
+      intel_radar: { ...currentData.militer_strategis?.intel_radar || {} }
+    },
+    pabrik_militer: { ...currentData.pabrik_militer || {} },
+    infrastruktur: { ...currentData.infrastruktur || {} }
+  };
+
   Object.entries(buildingDeltas).forEach(([key, deltaValue]) => {
-    if (typeof deltaValue !== 'number') return;
+    if (typeof deltaValue !== 'number' || deltaValue === 0) return;
     
-    // Sektor Listrik
     if (KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA]) {
       const dataKey = KAPASITAS_LISTRIK_METADATA[key as keyof typeof KAPASITAS_LISTRIK_METADATA].dataKey;
       (currentDataWithDeltas.sektor_listrik as any)[dataKey] = ((currentDataWithDeltas.sektor_listrik as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((mineralKritisRate as any)[key]) {
+      const dataKey = (mineralKritisRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] = ((currentDataWithDeltas.sektor_ekstraksi as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((manufakturRate as any)[key]) {
+      const dataKey = (manufakturRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_manufaktur as any)[dataKey] = ((currentDataWithDeltas.sektor_manufaktur as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((peternakanRate as any)[key]) {
+      const dataKey = (peternakanRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_peternakan as any)[dataKey] = ((currentDataWithDeltas.sektor_peternakan as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((agrikulturRate as any)[key]) {
+      const dataKey = (agrikulturRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_agrikultur as any)[dataKey] = ((currentDataWithDeltas.sektor_agrikultur as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((perikananRate as any)[key]) {
+      const dataKey = (perikananRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_perikanan as any)[dataKey] = ((currentDataWithDeltas.sektor_perikanan as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((olahanPanganRate as any)[key]) {
+      const dataKey = (olahanPanganRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_olahan_pangan as any)[dataKey] = ((currentDataWithDeltas.sektor_olahan_pangan as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((farmasiRate as any)[key]) {
+      const dataKey = (farmasiRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_farmasi as any)[dataKey] = ((currentDataWithDeltas.sektor_farmasi as any)[dataKey] || 0) + deltaValue;
+    }
+    else if (infrastrukturRate[key as keyof typeof infrastrukturRate]) {
+      const dataKey = (infrastrukturRate as any)[key].dataKey;
+      (currentDataWithDeltas.infrastruktur as any)[dataKey] = ((currentDataWithDeltas.infrastruktur as any)[dataKey] || 0) + deltaValue;
+    }
+    else if (sosialRate[key as keyof typeof sosialRate]) {
+      const { dataKey, groupId } = (sosialRate as any)[key];
+      if (groupId === "pendidikan") (currentDataWithDeltas.pendidikan as any)[dataKey] = ((currentDataWithDeltas.pendidikan as any)[dataKey] || 0) + deltaValue;
+      else if (groupId === "kesehatan") (currentDataWithDeltas.kesehatan as any)[dataKey] = ((currentDataWithDeltas.kesehatan as any)[dataKey] || 0) + deltaValue;
+      else if (groupId === "hukum") (currentDataWithDeltas.hukum as any)[dataKey] = ((currentDataWithDeltas.hukum as any)[dataKey] || 0) + deltaValue;
+      else if (groupId === "olahraga") (currentDataWithDeltas.sektor_olahraga as any)[dataKey] = ((currentDataWithDeltas.sektor_olahraga as any)[dataKey] || 0) + deltaValue;
+      else if (groupId === "komersial") (currentDataWithDeltas.sektor_komersial as any)[dataKey] = ((currentDataWithDeltas.sektor_komersial as any)[dataKey] || 0) + deltaValue;
+      else if (groupId === "hiburan") (currentDataWithDeltas.sektor_hiburan as any)[dataKey] = ((currentDataWithDeltas.sektor_hiburan as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((pabrikMiliterRate as any)[key]) {
+      const dataKey = (pabrikMiliterRate as any)[key].dataKey;
+      (currentDataWithDeltas.pabrik_militer as any)[dataKey] = ((currentDataWithDeltas.pabrik_militer as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((hunianRate as any)[key]) {
+      const dataKey = key; 
+      (currentDataWithDeltas.hunian as any)[dataKey] = ((currentDataWithDeltas.hunian as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((armadaMiliterRate as any)[key]) {
+      const { dataKey, groupId } = (armadaMiliterRate as any)[key];
+      if (groupId === "darat" && dataKey === "barak") {
+        currentDataWithDeltas.armada_militer.barak = (currentDataWithDeltas.armada_militer.barak || 0) + deltaValue;
+      } else {
+        const sector = (currentDataWithDeltas.armada_militer as any)[groupId];
+        if (sector) sector[dataKey] = (sector[dataKey] || 0) + deltaValue;
+      }
+    }
+    else if ((armadaPolisiRate as any)[key]) {
+      const dataKey = (armadaPolisiRate as any)[key].dataKey;
+      if (!currentDataWithDeltas.armada_kepolisian.armada_polisi) currentDataWithDeltas.armada_kepolisian.armada_polisi = {} as any;
+      (currentDataWithDeltas.armada_kepolisian.armada_polisi as any)[dataKey] = ((currentDataWithDeltas.armada_kepolisian.armada_polisi as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((intelijenRate as any)[key]) {
+      const dataKey = (intelijenRate as any)[key].dataKey;
+      (currentDataWithDeltas.militer_strategis.intel_radar as any)[dataKey] = ((currentDataWithDeltas.militer_strategis.intel_radar as any)[dataKey] || 0) + deltaValue;
+    }
+    else if ((pertahananRate as any)[key]) {
+      const dataKey = (pertahananRate as any)[key].dataKey;
+      (currentDataWithDeltas.sektor_pertahanan as any)[dataKey] = ((currentDataWithDeltas.sektor_pertahanan as any)[dataKey] || 0) + deltaValue;
     }
   });
 
@@ -256,9 +377,9 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
               </div>
               <div className="space-y-4 mb-8">
                 <div className="bg-zinc-950/50 p-4 rounded-2xl border border-zinc-800/50 space-y-3">
-                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Biaya Pembangunan</span><span className="text-sm font-black text-white">{confirmBuild.cost}</span></div>
-                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Waktu Pengerjaan</span><span className="text-sm font-black text-cyan-400">{confirmBuild.buildTime} Hari</span></div>
-                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Beban Listrik</span><span className="text-sm font-black text-rose-500">{confirmBuild.consumption} MW / unit</span></div>
+                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Biaya Pembangunan</span><span className="text-sm font-black text-white">{(confirmBuild.cost * quantity).toLocaleString('id-ID')}</span></div>
+                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Waktu Pengerjaan</span><span className="text-sm font-black text-cyan-400">{(confirmBuild.buildTime * quantity).toLocaleString('id-ID')} Hari</span></div>
+                  <div className="flex items-center justify-between"><span className="text-xs text-zinc-500 font-bold">Beban Listrik</span><span className="text-sm font-black text-rose-500">{(confirmBuild.consumption * quantity).toLocaleString('id-ID')} MW</span></div>
                 </div>
                 <div className="flex items-center justify-between gap-4">
                   <span className="text-xs text-zinc-500 font-bold uppercase">Jumlah Unit</span>
@@ -360,7 +481,7 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
                       <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
                       <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
                     </div>
-                    <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
+                    <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost.toLocaleString('id-ID') || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
                   </div>
 
                   {item.consumption > 0 && (
@@ -426,7 +547,7 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
           </div>
           {!isStatusOnly && (
             <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-              Aktif: {item.count} Unit
+              Terbangun: {item.count.toLocaleString('id-ID')} Unit {item.consumption > 0 && `(${(item.count * item.consumption).toLocaleString('id-ID')} MW)`}
             </div>
           )}
         </div>
@@ -449,24 +570,28 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
               <div className="p-1.5 bg-rose-500/10 rounded-lg">
                 <Flame size={12} className="text-rose-400" />
               </div>
-              <span className="text-[12px] font-bold text-rose-400/90">Pemeliharaan: -{item.maintenanceCost || 5}/hari</span>
+              <span className="text-[12px] font-bold text-rose-400/90">Pemeliharaan: -{item.maintenanceCost.toLocaleString('id-ID') || 5}/hari</span>
             </div>
 
             {item.consumption > 0 && (
-              <>
-                <div className="flex items-center gap-2.5">
-                  <div className="p-1.5 bg-amber-500/10 rounded-lg"><Zap size={12} className="text-amber-500/90" /></div>
-                  <span className="text-[12px] font-bold text-amber-500/80">Konsumsi: {item.consumption} MW/unit</span>
-                </div>
-                <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
-                  <div className="p-1.5 bg-rose-500/5 rounded-lg">
-                    <Activity size={12} className="text-rose-400/70" />
-                  </div>
-                  <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                    Total Konsumsi Listrik: {(item.count * item.consumption).toLocaleString('id-ID')} MW
-                  </span>
-                </div>
-              </>
+              <div className="flex flex-col gap-2">
+                 <div className="flex items-center gap-2.5">
+                    <div className="p-1.5 bg-rose-500/10 rounded-lg">
+                       <Zap size={12} className="text-rose-500/90" />
+                    </div>
+                    <span className="text-[12px] font-bold text-rose-500/80">
+                       Konsumsi: {item.consumption} MW/bangunan
+                    </span>
+                 </div>
+                 <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
+                    <div className="p-1.5 bg-rose-500/5 rounded-lg">
+                       <Activity size={12} className="text-rose-400/70" />
+                    </div>
+                    <span className="text-[11px] font-bold text-rose-400/70 uppercase">
+                       Total Konsumsi Listrik: {(item.count * item.consumption).toLocaleString('id-ID')} MW
+                    </span>
+                 </div>
+              </div>
             )}
 
             <div className="flex items-center gap-2.5">
@@ -516,8 +641,8 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
           ) : (
             <div className="flex items-center justify-between gap-4">
               <div className="flex flex-col">
-                <span className="text-[13px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
-                <span className="text-xl font-black text-zinc-400 tracking-tight mt-1">{item.cost}</span>
+                <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
+                <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost.toLocaleString('id-ID')}</span>
               </div>
               <button onClick={(e) => { e.stopPropagation(); onBuild(item); }} className="flex-1 py-3.5 rounded-2xl bg-cyan-600 text-white text-[11px] font-black uppercase tracking-[0.2em] shadow-[0_0_20px_rgba(8,145,178,0.3)] hover:bg-cyan-500 hover:shadow-[0_0_30px_rgba(8,145,178,0.4)] transition-all cursor-pointer active:scale-95 border border-cyan-400/20">
                 Deploy

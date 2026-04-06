@@ -18,23 +18,23 @@ export const hukumRate: Record<string, any> = {
     dataKey: "kejaksaan_court",
     produksi: 1,
     satuan: "Unit",
-    deskripsi: "Fasilitas Peradilan",
-    biaya_pemeliharaan: 15,
-    waktu_pembangunan: 90,
-    biaya_pembangunan: 8500,
-    lowongan_kerja: 400,
-    konsumsi_listrik: 20
+    deskripsi: "Pusat Peradilan & Kejaksaan Agung",
+    biaya_pemeliharaan: 4500,
+    waktu_pembangunan: 45,
+    biaya_pembangunan: 85000,
+    lowongan_kerja: 5500,
+    konsumsi_listrik: 150
   },
   "15_legal_aid": {
     key: "15_legal_aid",
     dataKey: "legal_aid",
     produksi: 1,
     satuan: "Unit",
-    deskripsi: "Pusat Bantuan Hukum",
-    biaya_pemeliharaan: 5,
-    waktu_pembangunan: 30,
-    biaya_pembangunan: 2000,
-    lowongan_kerja: 80,
-    konsumsi_listrik: 5
+    deskripsi: "Pusat Bantuan Hukum Nasional",
+    biaya_pemeliharaan: 1400,
+    waktu_pembangunan: 15,
+    biaya_pembangunan: 25000,
+    lowongan_kerja: 1200,
+    konsumsi_listrik: 45
   },
 };

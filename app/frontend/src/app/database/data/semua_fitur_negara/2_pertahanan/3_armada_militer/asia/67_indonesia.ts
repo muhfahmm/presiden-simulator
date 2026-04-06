@@ -1,31 +1,31 @@
 export const indonesia_armada = {
-    "barak": 34,
+    "barak": 40,
     "darat": {
-      "tank_tempur_utama": 31,
-      "apc_ifv": 9,
-      "artileri_berat": 26,
-      "sistem_peluncur_roket": 0,
-      "pertahanan_udara_mobile": 0,
-      "kendaraan_taktis": 0
+      "tank_tempur_utama": 313,
+      "apc_ifv": 1200,
+      "artileri_berat": 600,
+      "sistem_peluncur_roket": 63,
+      "pertahanan_udara_mobile": 40,
+      "kendaraan_taktis": 500
     },
   "laut": {
-      "kapal_induk": 29,
+      "kapal_induk": 0,
       "kapal_induk_nuklir": 0,
-      "kapal_destroyer": 40,
-      "kapal_korvet": 0,
+      "kapal_destroyer": 0,
+      "kapal_korvet": 24,
       "kapal_selam_nuklir": 0,
-      "kapal_selam_regular": 0,
-      "kapal_ranjau": 0,
-      "kapal_logistik": 0
+      "kapal_selam_regular": 4,
+      "kapal_ranjau": 10,
+      "kapal_logistik": 30
     },
   "udara": {
-      "jet_tempur_siluman": 8,
-      "jet_tempur_interceptor": 0,
+      "jet_tempur_siluman": 0,
+      "jet_tempur_interceptor": 108,
       "pesawat_pengebom": 0,
-      "helikopter_serang": 8,
-      "pesawat_pengintai": 2,
-      "drone_intai_uav": 0,
-      "drone_kamikaze": 0,
-      "pesawat_angkut": 0
+      "helikopter_serang": 15,
+      "pesawat_pengintai": 5,
+      "drone_intai_uav": 20,
+      "drone_kamikaze": 50,
+      "pesawat_angkut": 54
     }
 } as const;
