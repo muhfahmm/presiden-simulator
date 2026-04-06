@@ -112,14 +112,14 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
         let currentStart = getStoredGameDate().getTime();
         const itemsToAdd: any[] = [];
         for (let i = 0; i < quantity; i++) {
-          const currentEnd = addDays(new Date(currentStart), confirmBuild.buildTime).getTime();
+          const currentEnd = addDays(new Date(currentStart), confirmBuild.waktu_pembangunan).getTime();
           const newItem = buildingStorage.addToQueue({
             buildingKey: confirmBuild.key,
             label: confirmBuild.label,
             sector: confirmBuild.groupId,
             startDate: currentStart,
             endDate: currentEnd,
-            buildTime: confirmBuild.buildTime
+            waktu_pembangunan: confirmBuild.waktu_pembangunan
           });
           if (newItem) itemsToAdd.push(newItem);
           currentStart = currentEnd;
@@ -159,14 +159,14 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
         groupId: "pertahanan",
         label: val.label,
         icon: getMilitaryIcon(val.key),
-        desc: val.deskripsi,
-        cost: val.biaya_pembangunan,
-        buildTime: val.waktu_pembangunan,
-        maintenanceCost: val.biaya_pemeliharaan,
+        deskripsi: val.deskripsi,
+        biaya_pembangunan: val.biaya_pembangunan,
+        waktu_pembangunan: val.waktu_pembangunan,
+        biaya_pemeliharaan: val.biaya_pemeliharaan,
         lowongan_kerja: val.lowongan_kerja,
         dataKey: val.dataKey,
         count: Number(currentData.sektor_pertahanan?.[val.dataKey as keyof typeof currentData.sektor_pertahanan] || 0) + ((buildingDeltas[key] as number) || 0),
-        consumption: val.konsumsi_listrik || 0,
+        konsumsi_listrik: val.konsumsi_listrik || 0,
         kapasitas: val.kapasitas,
         satuan_kapasitas: val.satuan_kapasitas
       }))
@@ -298,7 +298,7 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
                   <div className="bg-zinc-950/50 border border-zinc-800/80 rounded-3xl p-5 flex flex-col items-center gap-1.5 group hover:bg-zinc-900/50 transition-colors">
                     <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">Biaya Total</span>
                     <span className="text-2xl font-black text-amber-500 tracking-tight leading-none overflow-hidden text-ellipsis w-full text-center">
-                      {(confirmBuild.cost * quantity).toLocaleString('id-ID')}
+                      {(confirmBuild.biaya_pembangunan * quantity).toLocaleString('id-ID')}
                     </span>
                   </div>
                   
@@ -307,7 +307,7 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
                     <div className="flex items-center gap-2">
                        <Clock size={16} className="text-cyan-500" />
                        <span className="text-2xl font-black text-white tracking-tight leading-none">
-                        {confirmBuild.buildTime * quantity}<span className="text-xs text-zinc-500 font-bold uppercase ml-1">Hari</span>
+                        {confirmBuild.waktu_pembangunan * quantity}<span className="text-xs text-zinc-500 font-bold uppercase ml-1">Hari</span>
                        </span>
                     </div>
                   </div>
@@ -317,7 +317,7 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
                     <div className="flex items-center gap-2">
                       <Zap size={14} className="text-rose-500 fill-rose-500/20" />
                       <span className="text-2xl font-black text-rose-500 tracking-tight leading-none overflow-hidden text-ellipsis w-full text-center">
-                        {(confirmBuild.consumption * quantity).toLocaleString('id-ID')} <span className="text-[10px] font-bold">MW</span>
+                        {(confirmBuild.konsumsi_listrik * quantity).toLocaleString('id-ID')} <span className="text-[10px] font-bold">MW</span>
                       </span>
                     </div>
                   </div>
@@ -358,7 +358,7 @@ export default function ManajemenPertahananModal({ isOpen, onClose }: ModalProps
                 {/* Estimation Date Badge */}
                 <div className="text-center">
                     <p className="text-[11px] font-black text-cyan-500 italic">
-                        Selesai Bertahap S/D: {formatGameDate(addDays(getStoredGameDate(), confirmBuild.buildTime * quantity))}
+                        Selesai Bertahap S/D: {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
                     </p>
                 </div>
               </div>
@@ -527,16 +527,16 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
                          <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
                          <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
                       </div>
-                      <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost?.toLocaleString('id-ID') || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
+                      <span className="text-[14px] font-black text-rose-400">-{item.biaya_pemeliharaan?.toLocaleString('id-ID') || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
                    </div>
 
-                   {item.consumption > 0 && (
+                   {item.konsumsi_listrik > 0 && (
                       <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                          <div className="flex items-center gap-2.5">
                             <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
                             <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                          </div>
-                         <span className="text-[14px] font-black text-amber-500">{item.consumption?.toLocaleString('id-ID')} MW</span>
+                         <span className="text-[14px] font-black text-amber-500">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
                       </div>
                    )}
 
@@ -663,7 +663,7 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
                Infra Pertahanan
             </div>
             <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-               Terbangun: {item.count.toLocaleString('id-ID')} Unit {item.consumption > 0 && `(${(item.count * item.consumption).toLocaleString('id-ID')} MW)`}
+               Terbangun: {item.count.toLocaleString('id-ID')} Unit {item.konsumsi_listrik > 0 && `(${(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW)`}
             </div>
          </div>
       </div>
@@ -680,7 +680,7 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
                      <Zap size={12} className="text-rose-500/90" />
                   </div>
                   <span className="text-[12px] font-bold text-rose-500/80">
-                     Konsumsi: {item.consumption?.toLocaleString('id-ID')} MW/bangunan
+                     Konsumsi: {item.konsumsi_listrik?.toLocaleString('id-ID')} MW/bangunan
                   </span>
                </div>
                <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
@@ -688,7 +688,7 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
                      <Activity size={12} className="text-rose-400/70" />
                   </div>
                   <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                     Total Konsumsi Listrik: {(item.count * item.consumption).toLocaleString('id-ID')} MW
+                     Total Konsumsi Listrik: {(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW
                   </span>
                </div>
             </div>
@@ -720,7 +720,7 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
                   <div className="p-1.5 bg-zinc-800/50 rounded-lg">
                      <Clock size={12} className="text-zinc-500" />
                   </div>
-                  <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
+                  <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.waktu_pembangunan} Hari</span>
                </div>
             )}
          </div>
@@ -751,7 +751,7 @@ function BuildingCard({ item, onBuild, construction, currentData, buildingDeltas
             <div className="flex items-center justify-between gap-4">
                <div className="flex flex-col">
                   <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
-                  <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost?.toLocaleString('id-ID')}</span>
+                  <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya_pembangunan?.toLocaleString('id-ID')}</span>
                </div>
                <button
                   onClick={(e) => { e.stopPropagation(); onBuild(item); }}

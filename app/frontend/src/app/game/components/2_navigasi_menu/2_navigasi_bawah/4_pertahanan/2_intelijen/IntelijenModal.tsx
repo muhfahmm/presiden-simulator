@@ -203,9 +203,39 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
       icon: Search,
       color: "text-cyan-400",
       items: [
-        { ...intelijenRate["sistem_satelit"], groupId: "infra", icon: Satellite, count: (currentData.militer_strategis?.intel_radar?.sistem_satelit || 0) + ((buildingDeltas["sistem_satelit"] as number) || 0) },
-        { ...intelijenRate["jaringan_radar"], groupId: "infra", icon: Radar, count: (currentData.militer_strategis?.intel_radar?.jaringan_radar || 0) + ((buildingDeltas["jaringan_radar"] as number) || 0) },
-        { ...intelijenRate["operasi_siber"], groupId: "infra", icon: Cpu, count: (currentData.militer_strategis?.intel_radar?.operasi_siber || 0) + ((buildingDeltas["operasi_siber"] as number) || 0) }
+        { 
+          ...intelijenRate["sistem_satelit"], 
+          groupId: "infra", 
+          icon: Satellite, 
+          biaya_pembangunan: intelijenRate["sistem_satelit"].biaya_pembangunan,
+          waktu_pembangunan: intelijenRate["sistem_satelit"].waktu_pembangunan,
+          biaya_pemeliharaan: intelijenRate["sistem_satelit"].biaya_pemeliharaan,
+          konsumsi_listrik: intelijenRate["sistem_satelit"].konsumsi_listrik,
+          deskripsi: intelijenRate["sistem_satelit"].deskripsi,
+          count: (currentData.militer_strategis?.intel_radar?.sistem_satelit || 0) + ((buildingDeltas["sistem_satelit"] as number) || 0) 
+        },
+        { 
+          ...intelijenRate["jaringan_radar"], 
+          groupId: "infra", 
+          icon: Radar, 
+          biaya_pembangunan: intelijenRate["jaringan_radar"].biaya_pembangunan,
+          waktu_pembangunan: intelijenRate["jaringan_radar"].waktu_pembangunan,
+          biaya_pemeliharaan: intelijenRate["jaringan_radar"].biaya_pemeliharaan,
+          konsumsi_listrik: intelijenRate["jaringan_radar"].konsumsi_listrik,
+          deskripsi: intelijenRate["jaringan_radar"].deskripsi,
+          count: (currentData.militer_strategis?.intel_radar?.jaringan_radar || 0) + ((buildingDeltas["jaringan_radar"] as number) || 0) 
+        },
+        { 
+          ...intelijenRate["operasi_siber"], 
+          groupId: "infra", 
+          icon: Cpu, 
+          biaya_pembangunan: intelijenRate["operasi_siber"].biaya_pembangunan,
+          waktu_pembangunan: intelijenRate["operasi_siber"].waktu_pembangunan,
+          biaya_pemeliharaan: intelijenRate["operasi_siber"].biaya_pemeliharaan,
+          konsumsi_listrik: intelijenRate["operasi_siber"].konsumsi_listrik,
+          deskripsi: intelijenRate["operasi_siber"].deskripsi,
+          count: (currentData.militer_strategis?.intel_radar?.operasi_siber || 0) + ((buildingDeltas["operasi_siber"] as number) || 0) 
+        }
       ]
     },
     {
@@ -215,10 +245,10 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
       color: "text-rose-500",
       isStatusOnly: true,
       items: [
-        { key: "spionase", label: "Operasi Spionase", icon: Eye, desc: "Agen Lapangan", value: `${currentData.militer_strategis?.operasi_strategis?.misi_mata_mata || 0} Agen`, color: "text-indigo-400" },
-        { key: "sabotase", label: "Misi Sabotase", icon: Bomb, desc: "Target Teridentifikasi", value: `${currentData.militer_strategis?.operasi_strategis?.misi_sabotase || 0} Target`, color: "text-orange-500" },
-        { key: "nuklir", label: "Program Nuklir", icon: Radiation, desc: "Kesiapan Strategis", value: `${currentData.militer_strategis?.operasi_strategis?.program_nuklir || 0}% Ready`, color: "text-yellow-500" },
-        { key: "wilayah", label: "Manajemen Wilayah", icon: MapIcon, desc: "Kontrol Administrasi", value: `${currentData.militer_strategis?.operasi_strategis?.manajemen_wilayah || 0}% Kontrol`, color: "text-emerald-500" }
+        { key: "spionase", label: "Operasi Spionase", icon: Eye, deskripsi: "Agen Lapangan", value: `${currentData.militer_strategis?.operasi_strategis?.misi_mata_mata || 0} Agen`, color: "text-indigo-400" },
+        { key: "sabotase", label: "Misi Sabotase", icon: Bomb, deskripsi: "Target Teridentifikasi", value: `${currentData.militer_strategis?.operasi_strategis?.misi_sabotase || 0} Target`, color: "text-orange-500" },
+        { key: "nuklir", label: "Program Nuklir", icon: Radiation, deskripsi: "Kesiapan Strategis", value: `${currentData.militer_strategis?.operasi_strategis?.program_nuklir || 0}% Ready`, color: "text-yellow-500" },
+        { key: "wilayah", label: "Manajemen Wilayah", icon: MapIcon, deskripsi: "Kontrol Administrasi", value: `${currentData.militer_strategis?.operasi_strategis?.manajemen_wilayah || 0}% Kontrol`, color: "text-emerald-500" }
       ]
     }
   ];
@@ -242,7 +272,7 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
           sector: confirmBuild.groupId,
           startDate: currentStart,
           endDate: currentEnd,
-          buildTime: confirmBuild.buildTime
+          waktu_pembangunan: confirmBuild.waktu_pembangunan
         });
         if (newItem) itemsToAdd.push(newItem);
         currentStart = currentEnd;
@@ -481,16 +511,16 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
                       <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-400"><Flame size={12} /></div>
                       <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Pemeliharaan</span>
                     </div>
-                    <span className="text-[14px] font-black text-rose-400">-{item.maintenanceCost.toLocaleString('id-ID') || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
+                    <span className="text-[14px] font-black text-rose-400">-{item.biaya_pemeliharaan.toLocaleString('id-ID') || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
                   </div>
 
-                  {item.consumption > 0 && (
+                  {item.konsumsi_listrik > 0 && (
                     <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                       <div className="flex items-center gap-2.5">
                         <div className="p-1.5 bg-amber-500/10 rounded-lg text-amber-500"><Zap size={12} /></div>
                         <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                       </div>
-                      <span className="text-[14px] font-black text-amber-500">{item.consumption} MW</span>
+                      <span className="text-[14px] font-black text-amber-500">{item.konsumsi_listrik} MW</span>
                     </div>
                   )}
 
@@ -543,11 +573,11 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
         </div>
         <div className="flex flex-col items-end gap-1">
           <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
-            {item.desc}
+            {item.deskripsi}
           </div>
           {!isStatusOnly && (
             <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-              Terbangun: {item.count.toLocaleString('id-ID')} Unit {item.consumption > 0 && `(${(item.count * item.consumption).toLocaleString('id-ID')} MW)`}
+              Terbangun: {item.count.toLocaleString('id-ID')} Unit {item.konsumsi_listrik > 0 && `(${(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW)`}
             </div>
           )}
         </div>
@@ -570,17 +600,17 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
               <div className="p-1.5 bg-rose-500/10 rounded-lg">
                 <Flame size={12} className="text-rose-400" />
               </div>
-              <span className="text-[12px] font-bold text-rose-400/90">Pemeliharaan: -{item.maintenanceCost.toLocaleString('id-ID') || 5}/hari</span>
+              <span className="text-[12px] font-bold text-rose-400/90">Pemeliharaan: -{item.biaya_pemeliharaan.toLocaleString('id-ID') || 5}/hari</span>
             </div>
 
-            {item.consumption > 0 && (
+            {item.konsumsi_listrik > 0 && (
               <div className="flex flex-col gap-2">
                  <div className="flex items-center gap-2.5">
                     <div className="p-1.5 bg-rose-500/10 rounded-lg">
                        <Zap size={12} className="text-rose-500/90" />
                     </div>
                     <span className="text-[12px] font-bold text-rose-500/80">
-                       Konsumsi: {item.consumption} MW/bangunan
+                       Konsumsi: {item.konsumsi_listrik} MW/bangunan
                     </span>
                  </div>
                  <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
@@ -588,7 +618,7 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
                        <Activity size={12} className="text-rose-400/70" />
                     </div>
                     <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                       Total Konsumsi Listrik: {(item.count * item.consumption).toLocaleString('id-ID')} MW
+                       Total Konsumsi Listrik: {(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW
                     </span>
                  </div>
               </div>
@@ -602,7 +632,7 @@ function BuildingCard({ item, onBuild, construction, isStatusOnly = false }: any
             {!progress && (
               <div className="flex items-center gap-2.5">
                 <div className="p-1.5 bg-zinc-800/50 rounded-lg"><Clock size={12} className="text-zinc-500" /></div>
-                <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
+                <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.waktu_pembangunan} Hari</span>
               </div>
             )}
           </div>

@@ -46,7 +46,7 @@ export interface ConstructionItem {
   sector: string;
   startDate: number;
   endDate: number;
-  buildTime: number;
+  waktu_pembangunan: number;
 }
 
 export const gameStorage = {

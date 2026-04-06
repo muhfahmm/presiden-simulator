@@ -18,13 +18,13 @@ export default function HunianPemukiman() {
     {
       id: "rumah_subsidi",
       title: hunianRate.rumah_subsidi.label,
-      desc: hunianRate.rumah_subsidi.desc,
+      deskripsi: hunianRate.rumah_subsidi.deskripsi,
       category: "RESIDENSIAL",
       icon: Home,
       color: "text-cyan-500",
       price: hunianRate.rumah_subsidi.biaya_pembangunan.toLocaleString('id-ID'),
       maintenance: hunianRate.rumah_subsidi.biaya_pemeliharaan,
-      consumption: hunianRate.rumah_subsidi.konsumsi_listrik,
+      konsumsi_listrik: hunianRate.rumah_subsidi.konsumsi_listrik,
       capacity: hunianRate.rumah_subsidi.kapasitas.toLocaleString('id-ID'),
       time: hunianRate.rumah_subsidi.waktu_pembangunan,
       count: hunianData.rumah_subsidi || 0,
@@ -32,13 +32,13 @@ export default function HunianPemukiman() {
     {
       id: "apartemen",
       title: hunianRate.apartemen.label,
-      desc: hunianRate.apartemen.desc,
+      deskripsi: hunianRate.apartemen.deskripsi,
       category: "KAPASITAS TINGGI",
       icon: Building2,
       color: "text-cyan-500",
       price: hunianRate.apartemen.biaya_pembangunan.toLocaleString('id-ID'),
       maintenance: hunianRate.apartemen.biaya_pemeliharaan,
-      consumption: hunianRate.apartemen.konsumsi_listrik,
+      konsumsi_listrik: hunianRate.apartemen.konsumsi_listrik,
       capacity: hunianRate.apartemen.kapasitas.toLocaleString('id-ID'),
       time: hunianRate.apartemen.waktu_pembangunan,
       count: hunianData.apartemen || 0,
@@ -46,13 +46,13 @@ export default function HunianPemukiman() {
     {
       id: "mansion",
       title: hunianRate.mansion.label,
-      desc: hunianRate.mansion.desc,
+      deskripsi: hunianRate.mansion.deskripsi,
       category: "ELITE",
       icon: Landmark,
       color: "text-cyan-500",
       price: hunianRate.mansion.biaya_pembangunan.toLocaleString('id-ID'),
       maintenance: hunianRate.mansion.biaya_pemeliharaan,
-      consumption: hunianRate.mansion.konsumsi_listrik,
+      konsumsi_listrik: hunianRate.mansion.konsumsi_listrik,
       capacity: hunianRate.mansion.kapasitas.toLocaleString('id-ID'),
       time: hunianRate.mansion.waktu_pembangunan,
       count: hunianData.mansion || 0,
@@ -112,7 +112,7 @@ export default function HunianPemukiman() {
                     <Zap size={12} className="text-amber-500/90" />
                   </div>
                   <span className="text-[12px] font-bold text-amber-500/80">
-                    Konsumsi: {item.consumption} MW/unit
+                    Konsumsi: {item.konsumsi_listrik} MW/unit
                   </span>
                 </div>
 
@@ -121,7 +121,7 @@ export default function HunianPemukiman() {
                     <Activity size={12} className="text-amber-400/70" />
                   </div>
                   <span className="text-[11px] font-bold text-amber-400/70 uppercase">
-                    Total Konsumsi Listrik: {(item.count * item.consumption).toLocaleString('id-ID')} MW
+                    Total Konsumsi Listrik: {(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW
                   </span>
                 </div>
 

@@ -12,7 +12,7 @@ export const hunianRate = {
     konsumsi_listrik: 45,
     kapasitas: 450,
     label: "Perumahan Subsidi Rakyat",
-    desc: "Hunian Terpadu Masyarakat Terjangkau"
+    deskripsi: "Hunian Terpadu Masyarakat Terjangkau"
   },
   apartemen: {
     biaya_pembangunan: 180000,
@@ -21,7 +21,7 @@ export const hunianRate = {
     konsumsi_listrik: 350,
     kapasitas: 5500,
     label: "Apartemen Modern & High-Rise",
-    desc: "Hunian Vertikal Kepadatan Tinggi"
+    deskripsi: "Hunian Vertikal Kepadatan Tinggi"
   },
   mansion: {
     biaya_pembangunan: 450000,
@@ -30,7 +30,7 @@ export const hunianRate = {
     konsumsi_listrik: 180,
     kapasitas: 50,
     label: "Kompleks Mansion Mewah",
-    desc: "Hunian Eksklusif Kelas Atas"
+    deskripsi: "Hunian Eksklusif Kelas Atas"
   }
 };
 

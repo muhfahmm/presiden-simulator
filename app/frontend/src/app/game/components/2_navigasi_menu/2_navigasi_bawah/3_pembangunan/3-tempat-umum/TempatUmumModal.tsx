@@ -300,9 +300,9 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
       icon: Home,
       color: "text-amber-400",
       items: [
-        { ...hunianRate.rumah_subsidi, key: "rumah_subsidi", groupId: "hunian", label: hunianRate.rumah_subsidi.label, icon: Home, desc: "Residensial", tarif: 1, unit: "Unit", cost: hunianRate.rumah_subsidi.biaya_pembangunan, buildTime: hunianRate.rumah_subsidi.waktu_pembangunan, maintenanceCost: hunianRate.rumah_subsidi.biaya_pemeliharaan || 5, count: (currentDataWithDeltas.hunian?.rumah_subsidi || 0), consumption: hunianRate.rumah_subsidi.konsumsi_listrik, capacity: hunianRate.rumah_subsidi.kapasitas },
-        { ...hunianRate.apartemen, key: "apartemen", groupId: "hunian", label: hunianRate.apartemen.label, icon: Building2, desc: "Residensial", tarif: 1, unit: "Unit", cost: hunianRate.apartemen.biaya_pembangunan, buildTime: hunianRate.apartemen.waktu_pembangunan, maintenanceCost: hunianRate.apartemen.biaya_pemeliharaan || 5, count: (currentDataWithDeltas.hunian?.apartemen || 0), consumption: hunianRate.apartemen.konsumsi_listrik, capacity: hunianRate.apartemen.kapasitas },
-        { ...hunianRate.mansion, key: "mansion", groupId: "hunian", label: hunianRate.mansion.label, icon: Landmark, desc: "Residensial", tarif: 1, unit: "Unit", cost: hunianRate.mansion.biaya_pembangunan, buildTime: hunianRate.mansion.waktu_pembangunan, maintenanceCost: hunianRate.mansion.biaya_pemeliharaan || 5, count: (currentDataWithDeltas.hunian?.mansion || 0), consumption: hunianRate.mansion.konsumsi_listrik, capacity: hunianRate.mansion.kapasitas },
+        { ...hunianRate.rumah_subsidi, key: "rumah_subsidi", groupId: "hunian", label: hunianRate.rumah_subsidi.label, icon: Home, deskripsi: "Residensial", tarif: 1, unit: "Unit", biaya_pembangunan: hunianRate.rumah_subsidi.biaya_pembangunan, waktu_pembangunan: hunianRate.rumah_subsidi.waktu_pembangunan, biaya_pemeliharaan: hunianRate.rumah_subsidi.biaya_pemeliharaan || 5, count: (currentDataWithDeltas.hunian?.rumah_subsidi || 0), konsumsi_listrik: hunianRate.rumah_subsidi.konsumsi_listrik, kapasitas: hunianRate.rumah_subsidi.kapasitas },
+        { ...hunianRate.apartemen, key: "apartemen", groupId: "hunian", label: hunianRate.apartemen.label, icon: Building2, deskripsi: "Residensial", tarif: 1, unit: "Unit", biaya_pembangunan: hunianRate.apartemen.biaya_pembangunan, waktu_pembangunan: hunianRate.apartemen.waktu_pembangunan, biaya_pemeliharaan: hunianRate.apartemen.biaya_pemeliharaan || 5, count: (currentDataWithDeltas.hunian?.apartemen || 0), konsumsi_listrik: hunianRate.apartemen.konsumsi_listrik, kapasitas: hunianRate.apartemen.kapasitas },
+        { ...hunianRate.mansion, key: "mansion", groupId: "hunian", label: hunianRate.mansion.label, icon: Landmark, deskripsi: "Residensial", tarif: 1, unit: "Unit", biaya_pembangunan: hunianRate.mansion.biaya_pembangunan, waktu_pembangunan: hunianRate.mansion.waktu_pembangunan, biaya_pemeliharaan: hunianRate.mansion.biaya_pemeliharaan || 5, count: (currentDataWithDeltas.hunian?.mansion || 0), konsumsi_listrik: hunianRate.mansion.konsumsi_listrik, kapasitas: hunianRate.mansion.kapasitas },
       ]
     }
   ];
@@ -316,7 +316,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
     if (!confirmBuild) return;
     try {
       // 1. Calculate total cost with robust number casting
-      const unitCost = Number(confirmBuild.cost || 0);
+      const unitCost = Number(confirmBuild.biaya_pembangunan || 0);
       const buildQuantity = Number(quantity || 1);
       const totalCost = unitCost * buildQuantity;
       
@@ -384,7 +384,7 @@ export default function TempatUmumModal({ isOpen, onClose }: ModalProps) {
           sector: confirmBuild.groupId,
           startDate: currentStart,
           endDate: currentEnd,
-          buildTime: confirmBuild.waktu_pembangunan
+          waktu_pembangunan: confirmBuild.waktu_pembangunan
         });
         if (newItem) itemsToAdd.push(newItem);
         currentStart = currentEnd;
@@ -765,13 +765,13 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
                 <span className="text-[14px] font-black text-rose-400">-{item.biaya_pemeliharaan?.toLocaleString('id-ID') ?? 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
               </div>
 
-              {item.consumption > 0 && (
+              {item.konsumsi_listrik > 0 && (
                 <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                   <div className="flex items-center gap-2.5">
                     <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-500"><Zap size={12} /></div>
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                   </div>
-                  <span className="text-[14px] font-black text-rose-500">{item.consumption?.toLocaleString('id-ID')} MW</span>
+                  <span className="text-[14px] font-black text-rose-500">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
                 </div>
               )}
 
@@ -830,10 +830,10 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
         </div>
         <div className="flex flex-col items-end gap-1">
           <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
-            {item.desc}
+            {item.deskripsi}
           </div>
           <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-            Terbangun: {item.count.toLocaleString('id-ID')} Unit {item.consumption > 0 && `(${(item.count * item.consumption).toLocaleString('id-ID')} MW)`}
+            Terbangun: {item.count.toLocaleString('id-ID')} Unit {(item.konsumsi_listrik || 0) > 0 && `(${(item.count * (item.konsumsi_listrik || 0)).toLocaleString('id-ID')} MW)`}
           </div>
         </div>
       </div>
@@ -850,18 +850,18 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
               <Flame size={12} className="text-rose-400" />
             </div>
             <span className="text-[12px] font-bold text-rose-400/90">
-              Pemeliharaan: -{item.maintenanceCost?.toLocaleString('id-ID') ?? 5}/hari
+              Pemeliharaan: -{item.biaya_pemeliharaan?.toLocaleString('id-ID') ?? 5}/hari
             </span>
           </div>
 
-          {((item.consumption ?? 0) >= 0) && (
+          {((item.konsumsi_listrik ?? 0) >= 0) && (
             <>
               <div className="flex items-center gap-2.5">
                 <div className="p-1.5 bg-rose-500/10 rounded-lg">
                   <Zap size={12} className="text-rose-500/90" />
                 </div>
                 <span className="text-[12px] font-bold text-rose-500/80">
-                  Konsumsi: {Math.max(item.consumption, 1).toLocaleString('id-ID')} MW/unit
+                  Konsumsi: {Math.max((item.konsumsi_listrik || 0), 1).toLocaleString('id-ID')} MW/unit
                 </span>
               </div>
               <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
@@ -869,7 +869,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
                   <Activity size={12} className="text-rose-400/70" />
                 </div>
                 <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                  Total Konsumsi Listrik: {(item.count * Math.max(item.consumption, 1)).toLocaleString('id-ID')} MW
+                  Total Konsumsi Listrik: {(item.count * Math.max((item.konsumsi_listrik || 0), 1)).toLocaleString('id-ID')} MW
                 </span>
               </div>
             </>
@@ -952,7 +952,7 @@ function BuildingCard({ item, onBuild, construction, cumulative, isShortage }: a
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
               <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Bangun</span>
-              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost?.toLocaleString('id-ID')}</span>
+              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya_pembangunan?.toLocaleString('id-ID')}</span>
             </div>
             <button
               onClick={(e) => { e.stopPropagation(); onBuild(item); }}

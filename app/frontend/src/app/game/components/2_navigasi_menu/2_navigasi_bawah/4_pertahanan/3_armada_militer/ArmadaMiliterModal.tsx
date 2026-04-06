@@ -255,7 +255,17 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
           { ...armadaMiliterRate["22_transport_udara"], groupId: "udara", icon: Truck, count: (currentData.armada_militer.udara.pesawat_angkut || 0) + ((effectiveDeltas["transport"] as number) || 0), power: TRANSPORT_POWER_PER_UNIT }
         ].map(unit => {
           const config = STORAGE_CONFIG[unit.key];
-          if (!config) return unit;
+          
+          // Map Indonesian to English keys for BuildingCard compatibility
+          const translatedUnit = {
+            ...unit,
+            biaya: (unit as any).biaya_pembangunan,
+            maintenanceCost: (unit as any).biaya_pemeliharaan,
+            consumption: (unit as any).konsumsi_listrik || 0,
+            desc: (unit as any).deskripsi
+          };
+
+          if (!config) return translatedUnit;
 
           const baseStorage = currentData.sektor_pertahanan?.[config.storageKey as keyof typeof currentData.sektor_pertahanan] || 0;
           const deltaStorage = (buildingDeltas[config.storageKey] as number) || 0;
@@ -272,7 +282,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
           }
 
           return {
-            ...unit,
+            ...translatedUnit,
             storageLabel: config.label,
             storageIcon: config.icon,
             storageUsed,
@@ -428,7 +438,7 @@ export default function ArmadaMiliterModal({ isOpen, onClose, data, activeMenu, 
           sector: confirmBuild.groupId,
           startDate: currentStart,
           endDate: currentEnd,
-          buildTime: confirmBuild.waktu_pembangunan
+          waktu_pembangunan: confirmBuild.waktu_pembangunan
         });
         if (newItem) itemsToAdd.push(newItem);
         currentStart = currentEnd;
@@ -1106,13 +1116,13 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
                 <span className="text-[14px] font-black text-rose-400">-{item.biaya_pemeliharaan?.toLocaleString('id-ID') || 5} <span className="text-[9px] text-rose-500/50 italic opacity-80">/ HARI</span></span>
               </div>
 
-              {item.consumption > 0 && (
+              {item.konsumsi_listrik > 0 && (
                 <div className="flex items-center justify-between p-2.5 rounded-2xl bg-zinc-900/80 border border-zinc-800/50 hover:border-zinc-700 transition-colors">
                   <div className="flex items-center gap-2.5">
                     <div className="p-1.5 bg-rose-500/10 rounded-lg text-rose-500"><Zap size={12} /></div>
                     <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Beban Energi</span>
                   </div>
-                  <span className="text-[14px] font-black text-rose-500">{item.consumption?.toLocaleString('id-ID')} MW</span>
+                  <span className="text-[14px] font-black text-rose-500">{item.konsumsi_listrik?.toLocaleString('id-ID')} MW</span>
                 </div>
               )}
 
@@ -1201,10 +1211,10 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
         </div>
         <div className="flex flex-col items-end gap-1">
           <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[11px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
-            {item.desc}
+            {item.deskripsi}
           </div>
           <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-            Terbangun: {item.count.toLocaleString('id-ID')} {item.dataKey === 'barak' ? 'Pasukan' : 'Unit'} {item.consumption > 0 && `(${(item.count * item.consumption).toLocaleString('id-ID')} MW)`}
+            Terbangun: {item.count.toLocaleString('id-ID')} {item.dataKey === 'barak' ? 'Pasukan' : 'Unit'} {item.konsumsi_listrik > 0 && `(${(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW)`}
           </div>
         </div>
       </div>
@@ -1232,14 +1242,14 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
             <span className="text-[12px] font-bold text-rose-400/90">Pemeliharaan: -{item.biaya_pemeliharaan?.toLocaleString('id-ID') || 5}/hari</span>
           </div>
 
-          {item.consumption > 0 && (
+          {item.konsumsi_listrik > 0 && (
             <div className="flex flex-col gap-2">
                <div className="flex items-center gap-2.5">
                   <div className="p-1.5 bg-rose-500/10 rounded-lg">
                      <Zap size={12} className="text-rose-500/90" />
                   </div>
                   <span className="text-[12px] font-bold text-rose-500/80">
-                     Konsumsi: {item.consumption?.toLocaleString('id-ID')} MW/bangunan
+                     Konsumsi: {item.konsumsi_listrik?.toLocaleString('id-ID')} MW/bangunan
                   </span>
                </div>
                <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
@@ -1247,7 +1257,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
                      <Activity size={12} className="text-rose-400/70" />
                   </div>
                   <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                     Total Konsumsi Listrik: {(item.count * item.consumption).toLocaleString('id-ID')} MW
+                     Total Konsumsi Listrik: {(item.count * (item.konsumsi_listrik || 0)).toLocaleString('id-ID')} MW
                   </span>
                </div>
             </div>
@@ -1332,7 +1342,7 @@ function BuildingCard({ item, onBuild, construction, tankCapacity }: any) {
           <div className="flex items-center justify-between gap-4">
             <div className="flex flex-col">
               <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
-              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya?.toLocaleString('id-ID')}</span>
+              <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya_pembangunan?.toLocaleString('id-ID')}</span>
             </div>
             {item.isFull ? (
               <button disabled className="flex-1 py-3.5 rounded-2xl bg-zinc-800 text-rose-500/50 text-[10px] font-black uppercase tracking-[0.1em] border border-rose-500/20 cursor-not-allowed">

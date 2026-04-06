@@ -204,9 +204,9 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       icon: Shield,
       color: "text-blue-500",
       items: [
-        { ...armadaPolisiRate["1_pusat_komando"], groupId: "komando", icon: Shield, cost: armadaPolisiRate["1_pusat_komando"].biaya_pembangunan, buildTime: armadaPolisiRate["1_pusat_komando"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["1_pusat_komando"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.markas_besar_polri || 0) + ((buildingDeltas["markas_besar_polri"] as number) || 0) },
-        { ...armadaPolisiRate["2_akademi_polisi"], groupId: "komando", icon: GraduationCap, cost: armadaPolisiRate["2_akademi_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["2_akademi_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["2_akademi_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.akademi_kepolisian || 0) + ((buildingDeltas["akademi_kepolisian"] as number) || 0) },
-        { ...armadaPolisiRate["3_pusat_forensik"], groupId: "komando", icon: Search, cost: armadaPolisiRate["3_pusat_forensik"].biaya_pembangunan, buildTime: armadaPolisiRate["3_pusat_forensik"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["3_pusat_forensik"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_forensik || 0) + ((buildingDeltas["pusat_forensik"] as number) || 0) },
+        { ...armadaPolisiRate["1_pusat_komando"], groupId: "komando", icon: Shield, biaya_pembangunan: armadaPolisiRate["1_pusat_komando"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["1_pusat_komando"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["1_pusat_komando"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["1_pusat_komando"].konsumsi_listrik, deskripsi: armadaPolisiRate["1_pusat_komando"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.markas_besar_polri || 0) + ((buildingDeltas["markas_besar_polri"] as number) || 0) },
+        { ...armadaPolisiRate["2_akademi_polisi"], groupId: "komando", icon: GraduationCap, biaya_pembangunan: armadaPolisiRate["2_akademi_polisi"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["2_akademi_polisi"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["2_akademi_polisi"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["2_akademi_polisi"].konsumsi_listrik, deskripsi: armadaPolisiRate["2_akademi_polisi"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.akademi_kepolisian || 0) + ((buildingDeltas["akademi_kepolisian"] as number) || 0) },
+        { ...armadaPolisiRate["3_pusat_forensik"], groupId: "komando", icon: Search, biaya_pembangunan: armadaPolisiRate["3_pusat_forensik"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["3_pusat_forensik"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["3_pusat_forensik"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["3_pusat_forensik"].konsumsi_listrik, deskripsi: armadaPolisiRate["3_pusat_forensik"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.pusat_forensik || 0) + ((buildingDeltas["pusat_forensik"] as number) || 0) },
       ]
     },
     {
@@ -215,9 +215,9 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       icon: Building,
       color: "text-emerald-500",
       items: [
-        { ...armadaPolisiRate["4_kantor_polisi"], groupId: "wilayah", icon: Siren, cost: armadaPolisiRate["4_kantor_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["4_kantor_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["4_kantor_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.kantor_polisi || 0) + ((buildingDeltas["kantor_polisi"] as number) || 0) },
-        { ...armadaPolisiRate["5_pos_polisi"], groupId: "wilayah", icon: ShieldAlert, cost: armadaPolisiRate["5_pos_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["5_pos_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["5_pos_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pos_polisi || 0) + ((buildingDeltas["pos_polisi"] as number) || 0) },
-        { ...armadaPolisiRate["6_network_cctv"], groupId: "wilayah", icon: Cctv, cost: armadaPolisiRate["6_network_cctv"].biaya_pembangunan, buildTime: armadaPolisiRate["6_network_cctv"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["6_network_cctv"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.network_cctv || 0) + ((buildingDeltas["network_cctv"] as number) || 0) },
+        { ...armadaPolisiRate["4_kantor_polisi"], groupId: "wilayah", icon: Siren, biaya_pembangunan: armadaPolisiRate["4_kantor_polisi"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["4_kantor_polisi"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["4_kantor_polisi"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["4_kantor_polisi"].konsumsi_listrik, deskripsi: armadaPolisiRate["4_kantor_polisi"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.kantor_polisi || 0) + ((buildingDeltas["kantor_polisi"] as number) || 0) },
+        { ...armadaPolisiRate["5_pos_polisi"], groupId: "wilayah", icon: ShieldAlert, biaya_pembangunan: armadaPolisiRate["5_pos_polisi"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["5_pos_polisi"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["5_pos_polisi"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["5_pos_polisi"].konsumsi_listrik, deskripsi: armadaPolisiRate["5_pos_polisi"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.pos_polisi || 0) + ((buildingDeltas["pos_polisi"] as number) || 0) },
+        { ...armadaPolisiRate["6_network_cctv"], groupId: "wilayah", icon: Cctv, biaya_pembangunan: armadaPolisiRate["6_network_cctv"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["6_network_cctv"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["6_network_cctv"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["6_network_cctv"].konsumsi_listrik, deskripsi: armadaPolisiRate["6_network_cctv"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.network_cctv || 0) + ((buildingDeltas["network_cctv"] as number) || 0) },
       ]
     },
     {
@@ -226,10 +226,10 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       icon: Car,
       color: "text-amber-500",
       items: [
-        { ...armadaPolisiRate["7_armada_mobil"], groupId: "armada", icon: Car, cost: armadaPolisiRate["7_armada_mobil"].biaya_pembangunan, buildTime: armadaPolisiRate["7_armada_mobil"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["7_armada_mobil"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.armada_mobil_polisi || 0) + ((buildingDeltas["armada_mobil_polisi"] as number) || 0) },
-        { ...armadaPolisiRate["8_mobil_interceptor"], groupId: "armada", icon: Car, cost: armadaPolisiRate["8_mobil_interceptor"].biaya_pembangunan, buildTime: armadaPolisiRate["8_mobil_interceptor"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["8_mobil_interceptor"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.mobil_patroli_interceptor || 0) + ((buildingDeltas["mobil_patroli_interceptor"] as number) || 0) },
-        { ...armadaPolisiRate["9_unit_r2"], groupId: "armada", icon: Bike, cost: armadaPolisiRate["9_unit_r2"].biaya_pembangunan, buildTime: armadaPolisiRate["9_unit_r2"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["9_unit_r2"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.unit_roda_dua || 0) + ((buildingDeltas["unit_roda_dua"] as number) || 0) },
-        { ...armadaPolisiRate["10_heli_polisi"], groupId: "armada", icon: Radio, cost: armadaPolisiRate["10_heli_polisi"].biaya_pembangunan, buildTime: armadaPolisiRate["10_heli_polisi"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["10_heli_polisi"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.helikopter_polisi || 0) + ((buildingDeltas["helikopter_polisi"] as number) || 0) },
+        { ...armadaPolisiRate["7_armada_mobil"], groupId: "armada", icon: Car, biaya_pembangunan: armadaPolisiRate["7_armada_mobil"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["7_armada_mobil"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["7_armada_mobil"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["7_armada_mobil"].konsumsi_listrik, deskripsi: armadaPolisiRate["7_armada_mobil"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.armada_mobil_polisi || 0) + ((buildingDeltas["armada_mobil_polisi"] as number) || 0) },
+        { ...armadaPolisiRate["8_mobil_interceptor"], groupId: "armada", icon: Car, biaya_pembangunan: armadaPolisiRate["8_mobil_interceptor"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["8_mobil_interceptor"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["8_mobil_interceptor"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["8_mobil_interceptor"].konsumsi_listrik, deskripsi: armadaPolisiRate["8_mobil_interceptor"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.mobil_patroli_interceptor || 0) + ((buildingDeltas["mobil_patroli_interceptor"] as number) || 0) },
+        { ...armadaPolisiRate["9_unit_r2"], groupId: "armada", icon: Bike, biaya_pembangunan: armadaPolisiRate["9_unit_r2"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["9_unit_r2"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["9_unit_r2"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["9_unit_r2"].konsumsi_listrik, deskripsi: armadaPolisiRate["9_unit_r2"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.unit_roda_dua || 0) + ((buildingDeltas["unit_roda_dua"] as number) || 0) },
+        { ...armadaPolisiRate["10_heli_polisi"], groupId: "armada", icon: Radio, biaya_pembangunan: armadaPolisiRate["10_heli_polisi"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["10_heli_polisi"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["10_heli_polisi"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["10_heli_polisi"].konsumsi_listrik, deskripsi: armadaPolisiRate["10_heli_polisi"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.helikopter_polisi || 0) + ((buildingDeltas["helikopter_polisi"] as number) || 0) },
       ]
     },
     {
@@ -238,9 +238,9 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       icon: Crosshair,
       color: "text-rose-500",
       items: [
-        { ...armadaPolisiRate["11_unit_k9"], groupId: "khusus", icon: Dog, cost: armadaPolisiRate["11_unit_k9"].biaya_pembangunan, buildTime: armadaPolisiRate["11_unit_k9"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["11_unit_k9"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.unit_k9 || 0) + ((buildingDeltas["unit_k9"] as number) || 0) },
-        { ...armadaPolisiRate["12_swat"], groupId: "khusus", icon: Crosshair, cost: armadaPolisiRate["12_swat"].biaya_pembangunan, buildTime: armadaPolisiRate["12_swat"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["12_swat"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.pasukan_swat || 0) + ((buildingDeltas["pasukan_swat"] as number) || 0) },
-        { ...armadaPolisiRate["13_anti_huru_hara"], groupId: "khusus", icon: ShieldAlert, cost: armadaPolisiRate["13_anti_huru_hara"].biaya_pembangunan, buildTime: armadaPolisiRate["13_anti_huru_hara"].waktu_pembangunan, maintenanceCost: armadaPolisiRate["13_anti_huru_hara"].biaya_pemeliharaan, count: (currentData.armada_kepolisian?.armada_polisi?.samapta || 0) + ((buildingDeltas["samapta"] as number) || 0) },
+        { ...armadaPolisiRate["11_unit_k9"], groupId: "khusus", icon: Dog, biaya_pembangunan: armadaPolisiRate["11_unit_k9"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["11_unit_k9"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["11_unit_k9"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["11_unit_k9"].konsumsi_listrik, deskripsi: armadaPolisiRate["11_unit_k9"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.unit_k9 || 0) + ((buildingDeltas["unit_k9"] as number) || 0) },
+        { ...armadaPolisiRate["12_swat"], groupId: "khusus", icon: Crosshair, biaya_pembangunan: armadaPolisiRate["12_swat"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["12_swat"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["12_swat"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["12_swat"].konsumsi_listrik, deskripsi: armadaPolisiRate["12_swat"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.pasukan_swat || 0) + ((buildingDeltas["pasukan_swat"] as number) || 0) },
+        { ...armadaPolisiRate["13_anti_huru_hara"], groupId: "khusus", icon: ShieldAlert, biaya_pembangunan: armadaPolisiRate["13_anti_huru_hara"].biaya_pembangunan, waktu_pembangunan: armadaPolisiRate["13_anti_huru_hara"].waktu_pembangunan, biaya_pemeliharaan: armadaPolisiRate["13_anti_huru_hara"].biaya_pemeliharaan, konsumsi_listrik: armadaPolisiRate["13_anti_huru_hara"].konsumsi_listrik, deskripsi: armadaPolisiRate["13_anti_huru_hara"].deskripsi, count: (currentData.armada_kepolisian?.armada_polisi?.samapta || 0) + ((buildingDeltas["samapta"] as number) || 0) },
       ]
     }
   ];
@@ -256,14 +256,14 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
       let currentStart = getStoredGameDate().getTime();
       const itemsToAdd: any[] = [];
       for (let i = 0; i < quantity; i++) {
-        const currentEnd = addDays(new Date(currentStart), confirmBuild.buildTime).getTime();
+        const currentEnd = addDays(new Date(currentStart), confirmBuild.waktu_pembangunan).getTime();
         const newItem = buildingStorage.addToQueue({
           buildingKey: confirmBuild.key,
           label: confirmBuild.label,
           sector: confirmBuild.groupId,
           startDate: currentStart,
           endDate: currentEnd,
-          buildTime: confirmBuild.buildTime
+          waktu_pembangunan: confirmBuild.waktu_pembangunan
         });
         if (newItem) itemsToAdd.push(newItem);
         currentStart = currentEnd;
@@ -429,7 +429,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
                   <div className="bg-zinc-950/50 border border-zinc-800/80 rounded-3xl p-5 flex flex-col items-center gap-1.5 group hover:bg-zinc-900/50 transition-colors">
                     <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest leading-none">Biaya Total</span>
                     <span className="text-2xl font-black text-amber-500 tracking-tight leading-none overflow-hidden text-ellipsis w-full text-center">
-                      {(confirmBuild.cost * quantity).toLocaleString('id-ID')}
+                      {(confirmBuild.biaya_pembangunan * quantity).toLocaleString('id-ID')}
                     </span>
                   </div>
                   
@@ -438,7 +438,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
                     <div className="flex items-center gap-2">
                        <Clock size={16} className="text-emerald-500" />
                        <span className="text-2xl font-black text-white tracking-tight leading-none">
-                        {confirmBuild.buildTime * quantity}<span className="text-xs text-zinc-500 font-bold uppercase ml-1">Hari</span>
+                        {confirmBuild.waktu_pembangunan * quantity}<span className="text-xs text-zinc-500 font-bold uppercase ml-1">Hari</span>
                        </span>
                     </div>
                   </div>
@@ -448,7 +448,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
                     <div className="flex items-center gap-2">
                       <Flame size={14} className="text-rose-500 fill-rose-500/20" />
                       <span className="text-2xl font-black text-rose-500 tracking-tight leading-none overflow-hidden text-ellipsis w-full text-center">
-                        {(confirmBuild.maintenanceCost * quantity).toLocaleString('id-ID')} <span className="text-[10px] font-bold">/ HARI</span>
+                        {(confirmBuild.biaya_pemeliharaan * quantity).toLocaleString('id-ID')} <span className="text-[10px] font-bold">/ HARI</span>
                       </span>
                     </div>
                   </div>
@@ -458,7 +458,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
                     <div className="flex items-center gap-2">
                       <Zap size={14} className="text-amber-500" />
                       <span className="text-2xl font-black text-amber-500 tracking-tight leading-none">
-                        {((confirmBuild.consumption || confirmBuild.konsumsi_listrik || 0) * quantity).toLocaleString('id-ID')} <span className="text-[10px] font-bold">MW</span>
+                        {((confirmBuild.konsumsi_listrik || 0) * quantity).toLocaleString('id-ID')} <span className="text-[10px] font-bold">MW</span>
                       </span>
                     </div>
                   </div>
@@ -499,7 +499,7 @@ export default function ArmadaPolisiModal({ isOpen, onClose, data }: { isOpen: b
                 {/* Estimation Date Badge */}
                 <div className="text-center">
                     <p className="text-[11px] font-black text-cyan-500 italic">
-                        Selesai Bertahap S/D: {formatGameDate(addDays(getStoredGameDate(), confirmBuild.buildTime * quantity))}
+                        Selesai Bertahap S/D: {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
                     </p>
                 </div>
               </div>
@@ -653,10 +653,10 @@ function BuildingCard({ item, onBuild, construction }: any) {
           </div>
           <div className="flex flex-col items-end gap-1">
             <div className="px-2.5 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-[10px] font-bold text-zinc-500 group-hover:text-cyan-400 transition-colors uppercase tracking-tight">
-              {item.desc}
+              {item.deskripsi}
             </div>
             <div className="px-2.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-[11px] font-black text-emerald-300 uppercase tracking-tighter shadow-[0_0_10px_rgba(16,185,129,0.2)]">
-              Terbangun: {item.count.toLocaleString('id-ID')} Unit {(item.consumption > 0 || item.konsumsi_listrik > 0) && `(${(item.count * (item.consumption || item.konsumsi_listrik)).toLocaleString('id-ID')} MW)`}
+              Terbangun: {item.count.toLocaleString('id-ID')} Unit {item.konsumsi_listrik > 0 && `(${(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW)`}
             </div>
           </div>
         </div>
@@ -680,17 +680,17 @@ function BuildingCard({ item, onBuild, construction }: any) {
               <div className="p-1.5 bg-rose-500/10 rounded-lg">
                 <Flame size={12} className="text-rose-400" />
               </div>
-              <span className="text-[12px] font-bold text-rose-400/90 italic">Pemeliharaan: -{item.maintenanceCost?.toLocaleString('id-ID') || 5}/hari</span>
+              <span className="text-[12px] font-bold text-rose-400/90 italic">Pemeliharaan: -{item.biaya_pemeliharaan?.toLocaleString('id-ID') || 5}/hari</span>
             </div>
 
-            {(item.consumption > 0 || item.konsumsi_listrik > 0) && (
+            {item.konsumsi_listrik > 0 && (
               <div className="flex flex-col gap-2">
                  <div className="flex items-center gap-2.5">
                     <div className="p-1.5 bg-rose-500/10 rounded-lg">
                        <Zap size={12} className="text-rose-500/90" />
                     </div>
                     <span className="text-[12px] font-bold text-rose-500/80">
-                       Konsumsi: {(item.consumption || item.konsumsi_listrik || 0).toLocaleString('id-ID')} MW/bangunan
+                       Konsumsi: {item.konsumsi_listrik.toLocaleString('id-ID')} MW/bangunan
                     </span>
                  </div>
                  <div className="flex items-center gap-2.5 ml-1 border-l-2 border-rose-500/10 pl-3">
@@ -698,7 +698,7 @@ function BuildingCard({ item, onBuild, construction }: any) {
                        <Activity size={12} className="text-rose-400/70" />
                     </div>
                     <span className="text-[11px] font-bold text-rose-400/70 uppercase">
-                       Total Konsumsi Listrik: {((item.count || 0) * (item.consumption || item.konsumsi_listrik || 0)).toLocaleString('id-ID')} MW
+                       Total Konsumsi Listrik: {(item.count * item.konsumsi_listrik).toLocaleString('id-ID')} MW
                     </span>
                  </div>
               </div>
@@ -707,7 +707,7 @@ function BuildingCard({ item, onBuild, construction }: any) {
             {!progress && (
               <div className="flex items-center gap-2.5 mt-1 opacity-60">
                 <div className="p-1.5 bg-zinc-800/50 rounded-lg"><Clock size={12} className="text-zinc-500" /></div>
-                <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.buildTime} Hari</span>
+                <span className="text-[11px] font-bold text-zinc-500 italic">Waktu: {item.waktu_pembangunan} Hari</span>
               </div>
             )}
           </div>
@@ -741,7 +741,7 @@ function BuildingCard({ item, onBuild, construction }: any) {
             <div className="flex items-center justify-between gap-4">
               <div className="flex flex-col">
                 <span className="text-[9px] font-bold text-zinc-600 uppercase tracking-widest leading-none">Biaya Akuisisi</span>
-                <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.cost?.toLocaleString('id-ID')}</span>
+                <span className="text-sm font-black text-zinc-400 tracking-tight mt-1">{item.biaya_pembangunan?.toLocaleString('id-ID')}</span>
               </div>
               <button 
                 onClick={(e) => { e.stopPropagation(); onBuild(item); }} 

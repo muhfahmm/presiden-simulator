@@ -81,6 +81,6 @@ export const militerRate = {
 };
 
 export const produksiMiliterPabrik = [
-  { key: "pabrik_drone_kamikaze", category: "Pabrik", label: "Pabrik Drone Kamikaze", desc: "Produksi Drone", cost: 120000, buildTime: 45, maintenanceCost: 8500 },
-  { key: "pabrik_amunisi", category: "Pabrik", label: "Pabrik Amunisi Militer", desc: "Produksi Amunisi", cost: 80000, buildTime: 22, maintenanceCost: 4200 }
+  { key: "pabrik_drone_kamikaze", category: "Pabrik", label: "Pabrik Drone Kamikaze", deskripsi: "Produksi Drone", biaya_pembangunan: 120000, waktu_pembangunan: 45, biaya_pemeliharaan: 8500 },
+  { key: "pabrik_amunisi", category: "Pabrik", label: "Pabrik Amunisi Militer", deskripsi: "Produksi Amunisi", biaya_pembangunan: 80000, waktu_pembangunan: 22, biaya_pemeliharaan: 4200 }
 ];

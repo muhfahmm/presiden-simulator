@@ -230,7 +230,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
   const intelUsage = Object.entries(intelijenRate).map(([key, val]: [string, any]) => ({
     name: val.label,
     description: "Intelijen & Strategis",
-    value: ((currentDataWithDeltas.militer_strategis?.intel_radar as any)?.[val.key] || 0) * (val.consumption || 0),
+    value: ((currentDataWithDeltas.militer_strategis?.intel_radar as any)?.[val.key] || 0) * (val.konsumsi_listrik || 0),
     icon: Radio,
     color: "text-amber-400"
   }));
@@ -246,7 +246,7 @@ export default function KelistrikanModal({ isOpen, onClose, setActiveMenu }: Kel
   const armadaUsage = [
     {
       name: "Barak Militer Nasional",
-      value: (currentDataWithDeltas.armada_militer.barak || 0) * (armadaMiliterRate["1_barak"].consumption || 0),
+      value: (currentDataWithDeltas.armada_militer.barak || 0) * (armadaMiliterRate["1_barak"].konsumsi_listrik || 0),
       icon: Truck,
       color: "text-rose-500",
       description: "Fasilitas & Pendukung"
