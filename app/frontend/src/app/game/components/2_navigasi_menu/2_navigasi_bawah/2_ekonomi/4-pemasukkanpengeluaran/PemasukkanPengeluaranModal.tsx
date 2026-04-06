@@ -23,6 +23,7 @@ import { calculateDailyBudgetDelta, calculateBaseMaintenance, calculateDeltaMain
 import { incomeStorage } from "./pemasukkan/IncomeStorage"
 import NavigasiWaktu from "../1-perdagangan/NavigasiWaktu"
 import { expenseStorage } from "./pengeluaran/ExpenseStorage"
+import { calculateGoldMineRevenue } from "@/app/game/components/1_navbar/3_kas_negara/GoldMineRevenue"
 
 interface ModalProps {
   isOpen: boolean;
@@ -77,11 +78,12 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
   const activeDomesticRevenue = dynamicDomestic.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0);
   const activeTradeRevenue = dynamicTrade.reduce((acc, t) => acc + ((savedTaxes as any)[t.id]?.pendapatan || 0), 0);
 
-  const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue;
-  const totalDailyIncome = dailyTaxRevenue + (incData.grants || 0) + (incData.investments || 0);
-
   // 2. Expenses
   const buildingData = buildingStorage.getData();
+
+  const dailyTaxRevenue = activeDomesticRevenue + activeTradeRevenue;
+  const goldRevenue = calculateGoldMineRevenue(buildingData.buildingDeltas);
+  const totalDailyIncome = dailyTaxRevenue + (incData.grants || 0) + (incData.investments || 0) + goldRevenue;
 
   const getSatisfaction = (mult: number) => {
     if (mult <= 2.0) { // Backward compatibility
@@ -190,7 +192,7 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                       <div className="p-2 bg-emerald-500/10 rounded-lg border border-emerald-500/20"><TrendingUp size={18} className="text-emerald-400" /></div>
                       Pendapatan Harian
                    </h3>
-                   <span className="text-xs font-black text-emerald-400">+{Math.round(dailyTaxRevenue).toLocaleString('id-ID')}</span>
+                   <span className="text-xs font-black text-emerald-400">+{Math.round(totalDailyIncome).toLocaleString('id-ID')}</span>
                 </div>
                                  <div className="space-y-4 max-h-[400px] overflow-y-auto no-scrollbar pr-2">
                     {/* Domestic Taxes â€” dynamic */}
@@ -222,6 +224,20 @@ export default function PemasukkanPengeluaranModal({ isOpen, onClose }: ModalPro
                              <span className="text-[13px] font-black text-white">+{Math.round(((savedTaxes as any)[tax.id]?.pendapatan || 0)).toLocaleString('id-ID')}</span>
                           </div>
                        ))}
+                    </div>
+                    )}
+
+                    {/* Resources Income */}
+                    {goldRevenue > 0 && (
+                    <div className="space-y-3 mt-6">
+                       <span className="text-[13px] font-black text-zinc-600 uppercase tracking-widest block px-1">Resource Income</span>
+                       <div className="bg-zinc-950/50 border border-emerald-500/20 p-4 rounded-2xl flex justify-between items-center group hover:border-emerald-500/40 transition-all shadow-[0_0_15px_rgba(16,185,129,0.05)]">
+                          <div className="flex items-center gap-3">
+                             <TrendingUp size={14} className="text-emerald-400" />
+                             <span className="text-[13px] font-bold text-zinc-300 uppercase tracking-tight">Hasil Tambang Emas</span>
+                          </div>
+                          <span className="text-[13px] font-black text-emerald-400">+{goldRevenue.toLocaleString('id-ID')}</span>
+                       </div>
                     </div>
                     )}
                  </div>

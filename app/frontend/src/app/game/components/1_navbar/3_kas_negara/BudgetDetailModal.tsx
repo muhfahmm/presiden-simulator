@@ -1,7 +1,7 @@
 "use client"
 
 import React from "react";
-import { X, TrendingUp, TrendingDown, Coins, Landmark, Receipt, Percent, Globe, Briefcase, Zap, Shield, HeartPulse, GraduationCap, Truck, Home, Activity, Info, BarChart3, PieChart, Users } from "lucide-react";
+import { X, TrendingUp, TrendingDown, Coins, Landmark, Receipt, Percent, Globe, Briefcase, Zap, Shield, HeartPulse, GraduationCap, Truck, Home, Activity, Info, BarChart3, PieChart, Users, Gem } from "lucide-react";
 import { CountryData } from "@/app/database/data/semua_fitur_negara/index";
 import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/2-pajak/TaxStorage";
 import { incomeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
@@ -33,6 +33,7 @@ export default function BudgetDetailModal({ isOpen, onClose, countryData, buildi
     { key: "bea_cukai", label: "Bea Cukai & Ekspor", icon: <TrendingUp className="h-4 w-4 text-amber-400" />, value: revenues.trade.bea_cukai },
     { key: "transit_sekutu", label: "Biaya Transit (Sekutu)", icon: <Activity className="h-4 w-4 text-green-400" />, value: revenues.trade.transit_sekutu },
     { key: "transit_non_sekutu", label: "Biaya Transit (Non-Sekutu)", icon: <Activity className="h-4 w-4 text-orange-400" />, value: revenues.trade.transit_non_sekutu },
+    { key: "emas", label: "Produksi Emas (Sumber Daya)", icon: <Gem className="h-4 w-4 text-amber-500" />, value: revenues.resources.emas || 0 },
     { key: "hibah", label: "Hibah & Grants Internasional", value: revenues.other.grants, icon: <Briefcase className="h-4 w-4 text-indigo-400" /> },
     { key: "investasi", label: "FDI (Investasi Asing Langsung)", value: revenues.other.investments, icon: <BarChart3 className="h-4 w-4 text-cyan-500" /> }
   ];

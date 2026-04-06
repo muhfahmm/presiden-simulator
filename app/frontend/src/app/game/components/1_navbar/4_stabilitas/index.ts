@@ -55,6 +55,11 @@ export const stabilityStorage = {
     data.stability = Math.max(0, Math.min(100, data.stability + delta));
     stabilityStorage.saveData(data);
     return data.stability;
+  },
+
+  clear: () => {
+    if (typeof window === 'undefined') return;
+    localStorage.removeItem(STABILITY_STORAGE_KEY);
   }
 };
 

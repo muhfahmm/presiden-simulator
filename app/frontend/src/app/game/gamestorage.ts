@@ -29,6 +29,16 @@ import { embassyStorage } from "./components/map-system/modals_detail_negara/2_d
 import { relationStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/1_kedutaan/logic/relationStorage";
 import { militaryAidStorage } from "./components/map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/militaryAidStorage";
 import { playerMilitaryStorage } from "./components/map-system/modals_detail_negara/4_bantuan_dan_kerjasama/1_beri_tentara/logic/playerMilitaryStorage";
+import { stabilityStorage } from "./components/1_navbar/4_stabilitas";
+import { nuclearStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/4_pertahanan/1_komando_pertahanan/5_program_nuklir/nuclearStorage";
+import { aiBudgetStorage } from "./components/map-system/modals_detail_negara/1_info_strategis/5_Keuangan/AIBudgetStorage";
+import { importStockStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ImportStockStorage";
+import { historiImportStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ekspor_impor/impor/HistoriImportStorage";
+import { historiEksporStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/ekspor_impor/ekspor/HistoriEksporStorage";
+import { aliansiStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/3_aliansi_pertahanan/logic/aliansiStorage";
+import { nonAggressionStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/2_pakta_non_agresi/logic/nonAggressionStorage";
+import { newsStorage } from "./components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/1-perdagangan/berita/newsStorage";
+import { relationDeltaStorage } from "./components/map-system/modals_detail_negara/2_diplomasi_hubungan/8_hubungan_internasional/logic/relationDeltaStorage";
 
 const STORAGE_KEY = "game_session";
 
@@ -93,6 +103,16 @@ export const gameStorage = {
     relationStorage.clear();
     militaryAidStorage.clear();
     playerMilitaryStorage.clear();
+    stabilityStorage.clear();
+    nuclearStorage.clear();
+    aiBudgetStorage.clear();
+    importStockStorage.clear();
+    historiImportStorage.clearHistory();
+    historiEksporStorage.clearHistory();
+    aliansiStorage.clear();
+    nonAggressionStorage.clear();
+    newsStorage.clear();
+    relationDeltaStorage.clear();
   },
 
   getSession: (): GameSession | null => {
@@ -166,6 +186,16 @@ export const gameStorage = {
     relationStorage.clear();
     militaryAidStorage.clear();
     playerMilitaryStorage.clear();
+    stabilityStorage.clear();
+    nuclearStorage.clear();
+    aiBudgetStorage.clear();
+    importStockStorage.clear();
+    historiImportStorage.clearHistory();
+    historiEksporStorage.clearHistory();
+    aliansiStorage.clear();
+    nonAggressionStorage.clear();
+    newsStorage.clear();
+    relationDeltaStorage.clear();
     
     window.location.href = '/database';
   },
@@ -214,5 +244,15 @@ export const gameStorage = {
     relationStorage.clear();
     militaryAidStorage.clear();
     playerMilitaryStorage.clear();
+    stabilityStorage.clear();
+    nuclearStorage.clear();
+    aiBudgetStorage.clear();
+    importStockStorage.clear();
+    historiImportStorage.clearHistory();
+    historiEksporStorage.clearHistory();
+    aliansiStorage.clear();
+    nonAggressionStorage.clear();
+    newsStorage.clear();
+    relationDeltaStorage.clear();
   },
 };

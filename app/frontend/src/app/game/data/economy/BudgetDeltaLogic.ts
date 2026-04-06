@@ -3,6 +3,7 @@ import { taxStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_baw
 import { incomeStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pemasukkan/IncomeStorage";
 import { expenseStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/4-pemasukkanpengeluaran/pengeluaran/ExpenseStorage";
 import { priceStorage } from "@/app/game/components/2_navigasi_menu/2_navigasi_bawah/2_ekonomi/8-pasar-domestik/priceStorage";
+import { calculateGoldMineRevenue } from "@/app/game/components/1_navbar/3_kas_negara/GoldMineRevenue";
 
 /**
  * Calculates the total daily maintenance cost.
@@ -34,6 +35,7 @@ export interface BudgetBreakdown {
   revenues: {
     domestic: Record<string, number>;
     trade: Record<string, number>;
+    resources: Record<string, number>;
     other: Record<string, number>;
   };
   expenses: {
@@ -41,9 +43,13 @@ export interface BudgetBreakdown {
     military: number;
     debtInterest: number;
     priceSubsidies: number;
+    subsidies: number;
+    salaries: number;
   };
   details: {
     priceMultiplier: number;
+    subsidiLevel: number;
+    salaryMultiplier: number;
   }
 }
 
@@ -56,7 +62,7 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   const TRADE_KEYS = new Set(["bea_cukai", "transit_sekutu", "transit_non_sekutu", "tarif_ekspor", "tarif_impor"]);
   const allTaxKeys = Object.keys(currentTaxes as any);
 
-  const revenues: BudgetBreakdown['revenues'] = { domestic: {}, trade: {}, other: {} };
+  const revenues: BudgetBreakdown['revenues'] = { domestic: {}, trade: {}, resources: {}, other: {} };
   
   allTaxKeys.forEach(key => {
     const pendapatan = (currentTaxes as any)[key]?.pendapatan || 0;
@@ -71,9 +77,16 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
   revenues.other["grants"] = incomeData.grants || 0;
   revenues.other["investments"] = incomeData.investments || 0;
 
+  // 1.1 Resource Income (Gold Mines)
+  const goldRevenue = calculateGoldMineRevenue(buildingDeltas);
+  if (goldRevenue > 0) {
+    revenues.resources["emas"] = goldRevenue * 365; // Annualized
+  }
+
   const totalAnnualRevenue = 
     Object.values(revenues.domestic).reduce((a, b) => a + b, 0) +
     Object.values(revenues.trade).reduce((a, b) => a + b, 0) +
+    Object.values(revenues.resources).reduce((a, b) => a + b, 0) +
     Object.values(revenues.other).reduce((a, b) => a + b, 0);
 
   // 2. Expenses
@@ -105,16 +118,22 @@ export function calculateBudgetBreakdown(countryData: CountryData, buildingDelta
     totalAnnualExpense,
     netAnnualSurplus,
     dailyDelta,
-    dailyTaxRevenue: Object.values(revenues.domestic).reduce((a, b) => a + b, 0) + Object.values(revenues.trade).reduce((a, b) => a + b, 0),
+    dailyTaxRevenue: Object.values(revenues.domestic).reduce((a, b) => a + b, 0) + 
+                     Object.values(revenues.trade).reduce((a, b) => a + b, 0) +
+                     (Object.values(revenues.resources).reduce((a, b) => a + b, 0) / 365),
     revenues,
     expenses: {
       maintenance: maintenanceExpense,
       military: militaryExpense,
       debtInterest: expData.debtInterestPaid || 0,
-      priceSubsidies: priceSubsidyExpense
+      priceSubsidies: priceSubsidyExpense,
+      subsidies: 0,
+      salaries: 0
     },
     details: {
-      priceMultiplier: avgPriceMultiplier
+      priceMultiplier: avgPriceMultiplier,
+      subsidiLevel: 0,
+      salaryMultiplier: 0
     }
   };
 }
