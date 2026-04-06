@@ -479,6 +479,9 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
                 )}
               </div>
 
+              {/* Material Requirements */}
+              <MaterialRequirement buildingKey={confirmBuild.key} quantity={quantity} />
+
               {/* Quantity Selector */}
               <div className="w-full flex flex-col gap-2">
                 <span className="text-[10px] font-black text-zinc-500 uppercase tracking-widest italic">Jumlah Unit Pembangunan</span>
@@ -501,9 +504,6 @@ export default function IntelijenModal({ isOpen, onClose, data }: { isOpen: bool
                   </button>
                 </div>
               </div>
-
-              {/* Material Requirements */}
-              <MaterialRequirement buildingKey={confirmBuild.key} quantity={quantity} />
 
               <div className="w-full py-2 px-4 rounded-xl bg-cyan-500/5 border border-cyan-500/10 text-[10px] font-medium text-cyan-500/80 italic">
                 Selesai Bertahap S/D: {formatGameDate(addDays(getStoredGameDate(), confirmBuild.waktu_pembangunan * quantity))}
